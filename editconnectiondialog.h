@@ -48,6 +48,7 @@ private:
     QSpinBox* width;
     QSpinBox* height;
     QLineEdit* cmd;
+    QComboBox* cmdCombo;
     QRadioButton* fs;
     QCheckBox* kbd;
     QLineEdit* layout;

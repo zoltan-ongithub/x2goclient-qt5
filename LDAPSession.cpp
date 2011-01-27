@@ -1,7 +1,7 @@
 #include "LDAPSession.h"
 #include "x2goclientconfig.h"
 #ifdef USELDAP
-
+#include <stdlib.h>
 
 
 ByteArray::ByteArray()

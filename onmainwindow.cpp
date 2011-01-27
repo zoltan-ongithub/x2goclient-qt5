@@ -147,6 +147,7 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
 	acceptRsa=false;
 	cardStarted=false;
 	cardReady=false;
+	miniMode=false;
 	defaultWidth=800;
 	defaultHeight=600;
 	defaultPack="16m-jpeg";
@@ -157,6 +158,7 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
 	defaultSshPort=sshPort=clientSshPort="22";
 
 
+	setWindowTitle ( tr ( "X2Go Client" ) );
 	ld=0;
 	tunnel=0l;
 	sndTunnel=0l;
@@ -174,6 +176,19 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
 	ldapOnly=false;
 	hide();
 	kdeIconsPath=getKdeIconsPath();
+
+	addToAppNames ( "WWWBROWSER",tr ( "Internet Browser" ) );
+	addToAppNames ( "MAILCLIENT",tr ( "Email Client" ) );
+	addToAppNames ( "OFFICE",tr ( "OpenOffice.org" ) );
+	addToAppNames ( "TERMINAL",tr ( "Terminal" ) );
+
+
+
+
+
+#ifndef Q_OS_LINUX
+	widgetExtraStyle =new QPlastiqueStyle();
+#endif
 
 	QDesktopWidget wd;
 	x2goDebug<<"Desktop Geometry:"<<wd.screenGeometry();
@@ -225,7 +240,11 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
 	fr=new IMGFrame ( ( QImage* ) 0l,this );
 	setCentralWidget ( fr );
 
+#ifndef Q_WS_HILDON
 	bgFrame=new SVGFrame ( ( QString ) ":/svg/bg.svg",true,fr );
+#else
+	bgFrame=new SVGFrame ( ( QString ) ":/svg/bg_hildon.svg",true,fr );
+#endif
 	//bgFrame=new SVGFrame((QString)"/home/admin/test.svg",false,fr);
 
 
@@ -241,12 +260,12 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
 
 	if ( !miniMode )
 	{
-		x2g->setFixedSize ( 100,80 );
+		x2g->setFixedSize ( 100,100 );
 		on->setFixedSize ( 100,80 );
 	}
 	else
 	{
-		x2g->setFixedSize ( 50,40 );
+		x2g->setFixedSize ( 50,50 );
 		on->setFixedSize ( 50,40 );
 	}
 
@@ -255,17 +274,21 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
 	ln=new SVGFrame ( ( QString ) ":/svg/line.svg",true,fr );
 	ln->setFixedWidth ( ln->sizeHint().width() );
 	uname=new QLineEdit ( bgFrame );
-	uname->setStyle ( new QPlastiqueStyle() );
+	setWidgetStyle ( uname );
 
 	uname->hide();
 	uname->setFrame ( false );
 	u=new QLabel ( tr ( "Session:" ),bgFrame );
 	u->hide();
 	QFont fnt=u->font();
-	if ( !miniMode )
-		fnt.setPointSize ( 16 );
-	else
+	fnt.setPointSize ( 16 );
+#ifndef Q_WS_HILDON
+	if ( miniMode )
+	{
 		fnt.setPointSize ( 12 );
+	}
+#endif
+
 	u->setFont ( fnt );
 
 	connect ( uname,SIGNAL ( returnPressed() ),this,SLOT ( slotUnameEntered() ) );
@@ -640,7 +663,7 @@ void ONMainWindow::loadSettings()
 		ldapServer2=st1.value ( "LDAP/server2", ( QVariant ) QString::null ).toString();
 		ldapPort2=st1.value ( "LDAP/port2", ( QVariant ) 0 ).toInt();
 	}
-	clientSshPort=st1.value("clientport",( QVariant )22).toString();
+	clientSshPort=st1.value ( "clientport", ( QVariant ) 22 ).toString();
 	showToolBar=st1.value ( "toolbar/show", ( QVariant ) true ).toBool();
 
 }
@@ -677,9 +700,9 @@ void ONMainWindow::displayUsers()
 		int val=i+1;
 		UserButton* l;
 		if ( ( *it ).foto.isNull() )
-			l=new UserButton (this, uframe, ( *it ).uid, ( *it ).name,foto,pal);
+			l=new UserButton ( this, uframe, ( *it ).uid, ( *it ).name,foto,pal );
 		else
-			l=new UserButton (this, uframe, ( *it ).uid, ( *it ).name, ( *it ).foto,pal );
+			l=new UserButton ( this, uframe, ( *it ).uid, ( *it ).name, ( *it ).foto,pal );
 		connect ( l,SIGNAL ( userSelected ( UserButton* ) ),this,SLOT ( slotSelectedFromList ( UserButton* ) ) );
 		if ( !miniMode )
 			l->move ( ( users->width()-360 ) /2,i*120+ ( val-1 ) *25+5 );
@@ -720,13 +743,13 @@ void ONMainWindow::showPass ( UserButton* user )
 	}
 
 	passForm = new SVGFrame ( ":/svg/passform.svg",false,bgFrame );
-	passForm->setStyle ( new QPlastiqueStyle() );
+	setWidgetStyle ( passForm );
 
 	passForm->hide();
 	if ( !miniMode )
 		passForm->setFixedSize ( passForm->sizeHint() );
 	else
-		passForm->setFixedSize ( 350,180 );
+		passForm->setFixedSize ( 310,180 );
 
 
 	username->addWidget ( passForm );
@@ -742,7 +765,7 @@ void ONMainWindow::showPass ( UserButton* user )
 	nameLabel=new QLabel ( text,passForm );
 	nameLabel->hide();
 	login=new QLineEdit ( passForm );
-	login->setStyle ( new QPlastiqueStyle() );
+	setWidgetStyle ( login );
 	login->setText ( nick );
 	login->hide();
 
@@ -758,7 +781,7 @@ void ONMainWindow::showPass ( UserButton* user )
 	passPrompt->setFont ( fnt );
 
 	pass=new QLineEdit ( passForm );
-	pass->setStyle ( new QPlastiqueStyle() );
+	setWidgetStyle ( pass );
 	pass->setFrame ( false );
 	fnt.setBold ( true );
 	pass->setFont ( fnt );
@@ -771,15 +794,15 @@ void ONMainWindow::showPass ( UserButton* user )
 
 	ok=new QPushButton ( tr ( "Ok" ),passForm );
 	cancel=new QPushButton ( tr ( "Cancel" ),passForm );
-	cancel->setStyle ( new QPlastiqueStyle() );
+	setWidgetStyle ( cancel );
 	ok->hide();
 	cancel->hide();
 
-	pal.setColor ( QPalette::Button, QColor ( 0,0,0,0 ) );
+	pal.setColor ( QPalette::Button, QColor ( 255,255,255,0 ) );
 	pal.setColor ( QPalette::Window, QColor ( 255,255,255,255 ) );
 	pal.setColor ( QPalette::Base, QColor ( 255,255,255,255 ) );
 	ok->setPalette ( pal );
-	ok->setStyle ( new QPlastiqueStyle() );
+	setWidgetStyle ( ok );
 	cancel->setPalette ( pal );
 
 	connect ( ok,SIGNAL ( clicked() ),this, SLOT ( slotPassEnter() ) );
@@ -1509,6 +1532,8 @@ void ONMainWindow::slotSelectedFromList ( SessionButton* session )
 
 	QString command=st.value ( sid+"/command",
 	                           ( QVariant ) tr ( "KDE" ) ).toString();
+	selectedCommand=command;
+	command=transAppName(command);
 
 	QString server=st.value ( sid+"/host", ( QVariant ) QString::null ).toString();
 	QString userName=st.value ( sid+"/user", ( QVariant ) QString::null ).toString();
@@ -1516,12 +1541,22 @@ void ONMainWindow::slotSelectedFromList ( SessionButton* session )
 
 
 	passForm = new SVGFrame ( ":/svg/passform.svg",false,bgFrame );
-	passForm->setStyle ( new QPlastiqueStyle() );
+	QFont fnt=passForm->font();
+	if ( !miniMode )
+		fnt.setPointSize ( 12 );
+	else
+#ifdef Q_WS_HILDON
+		fnt.setPointSize ( 10 );
+#else
+		fnt.setPointSize ( 9 );
+#endif
+	passForm->setFont ( fnt );
+	setWidgetStyle ( passForm );
 	passForm->hide();
 	if ( !miniMode )
 		passForm->setFixedSize ( passForm->sizeHint() );
 	else
-		passForm->setFixedSize ( 350,180 );
+		passForm->setFixedSize ( 310,180 );
 
 	username->addWidget ( passForm );
 	pal=passForm->palette();
@@ -1548,31 +1583,20 @@ void ONMainWindow::slotSelectedFromList ( SessionButton* session )
 	nameLabel=new QLabel ( text,passForm );
 	nameLabel->hide();
 
-	QFont fnt=passForm->font();
-	if ( !miniMode )
-		fnt.setPointSize ( 12 );
-	else
-		fnt.setPointSize ( 9 );
-
-	nameLabel->setFont ( fnt );
-
 
 	loginPrompt=new QLabel ( tr ( "Login:" ),passForm );
 	passPrompt=new QLabel ( tr ( "Password:" ),passForm );
-	passPrompt->setFont ( fnt );
-	loginPrompt->setFont ( fnt );
-
 
 
 	login=new QLineEdit ( passForm );
-	login->setStyle ( new QPlastiqueStyle() );
+	setWidgetStyle ( login );
 	login->setFrame ( false );
 
 	login->hide();
 	loginPrompt->hide();
 
 	pass=new QLineEdit ( passForm );
-	pass->setStyle ( new QPlastiqueStyle() );
+	setWidgetStyle ( pass );
 	pass->setFrame ( false );
 	fnt.setBold ( true );
 	pass->setFont ( fnt );
@@ -1585,13 +1609,13 @@ void ONMainWindow::slotSelectedFromList ( SessionButton* session )
 
 
 	ok=new QPushButton ( tr ( "Ok" ),passForm );
-	ok->setStyle ( new QPlastiqueStyle() );
+	setWidgetStyle ( ok );
 	cancel=new QPushButton ( tr ( "Cancel" ),passForm );
-	cancel->setStyle ( new QPlastiqueStyle() );
+	setWidgetStyle ( cancel );
 	ok->hide();
 	cancel->hide();
 
-	pal.setColor ( QPalette::Button, QColor ( 0,0,0,0 ) );
+	pal.setColor ( QPalette::Button, QColor ( 255,255,255,0 ) );
 	pal.setColor ( QPalette::Window, QColor ( 255,255,255,255 ) );
 	pal.setColor ( QPalette::Base, QColor ( 255,255,255,255 ) );
 	ok->setPalette ( pal );
@@ -1607,8 +1631,19 @@ void ONMainWindow::slotSelectedFromList ( SessionButton* session )
 
 
 
+#ifndef Q_WS_HILDON
 	ok->setFixedSize ( ok->sizeHint() );
 	cancel->setFixedSize ( cancel->sizeHint() );
+#else
+	QSize sz=cancel->sizeHint();
+	sz.setWidth ( ( int ) ( sz.width() /1.5 ) );
+	sz.setHeight ( ( int ) ( sz.height() /1.5 ) );
+	cancel->setFixedSize ( sz );
+	sz=ok->sizeHint();
+	sz.setWidth ( ( int ) ( sz.width() /1.5 ) );
+	sz.setHeight ( ( int ) ( sz.height() /1.5 ) );
+	ok->setFixedSize ( sz );
+#endif
 
 	ok->move ( ( passForm->width()- ( ok->width() +12+cancel->width() ) ) /2,
 	           passForm->height()-ok->height()-12 );
@@ -1784,7 +1819,8 @@ void ONMainWindow::slot_listSessions ( bool result,QString output,sshProcess* pr
 	{
 		x2goSession s=getSessionFromString ( sessions[0] );
 		QDesktopWidget wd;
-		if ( s.status=="S" && isColorDepthOk ( wd.depth(),s.colorDepth ) )
+		if ( s.status=="S" && isColorDepthOk ( wd.depth(),s.colorDepth ) 
+		   &&s.command == selectedCommand)
 			resumeSession ( s );
 		else
 			selectSession ( sessions );
@@ -1813,6 +1849,21 @@ x2goSession ONMainWindow::getSessionFromString ( const QString& string )
 	{
 		s.colorDepth=s.sessionId.split ( "_dp" ) [1].toInt();
 	}
+	s.sessionType=x2goSession::DESKTOP;
+	s.command=tr("unknown");
+	if( s.sessionId.indexOf ( "_st" ) !=-1 )
+	{
+		QString cmdinfo=s.sessionId.split ( "_st" )[1];
+		cmdinfo=cmdinfo.split ( "_" ) [0];
+		QChar st=cmdinfo[0];
+		if(st=='R')
+			s.sessionType=x2goSession::ROOTLESS;
+		if(st=='S')
+			s.sessionType=x2goSession::SHADOW;
+		QString command=cmdinfo.mid(1);
+		if(command.length()>0)
+			s.command=command;
+	}
 	return s;
 }
 
@@ -1830,8 +1881,10 @@ void ONMainWindow::startNewSession()
 	int quality;
 	int speed;
 	bool usekbd;
+	bool rootless=false;
 	QString layout;
 	QString type;
+	QString command;
 	QString host=QString::null;
 
 	if ( useLdap )
@@ -1845,6 +1898,7 @@ void ONMainWindow::startNewSession()
 		usekbd=defaultSetKbd;
 		layout=defaultLayout;
 		type=defaultKbdType;
+		command=defaultCmd;
 		for ( int j=0;j<x2goServers.size();++j )
 		{
 			if ( x2goServers[j].connOk )
@@ -1872,6 +1926,8 @@ void ONMainWindow::startNewSession()
 #endif
 
 		QString sid=lastSession->id();
+		command=st.value ( sid+"/command",
+		                   ( QVariant ) defaultCmd ).toString();
 		pack=st.value ( sid+"/pack",
 		                ( QVariant ) defaultPack ).toString();
 		host=st.value ( sid+"/host",
@@ -1893,6 +1949,8 @@ void ONMainWindow::startNewSession()
 		                  ( QVariant ) defaultLayout ).toString();
 		type=st.value ( sid+"/type",
 		                ( QVariant ) defaultKbdType ).toString();
+		rootless=st.value ( sid+"/rootless",
+		                    ( QVariant ) false ).toBool();
 	}
 
 
@@ -1954,16 +2012,20 @@ void ONMainWindow::startNewSession()
 	usekbd=0;
 	type="query";
 #endif
+	QString sessTypeStr="D ";
+	if ( rootless )
+		sessTypeStr="R ";
 	QString cmd="x2gostartagent "+geometry+" "+link+" "+pack+
 	            " unix-kde-depth_"+depth+" "+layout+" "+type+" ";
 	if ( usekbd )
-		cmd += "1";
+		cmd += "1 ";
 	else
-		cmd += "0";
-
+		cmd += "0 ";
+	QFileInfo f ( command );
+	cmd+=sessTypeStr+f.fileName();
 
 	sshProcess* proc=0l;
-	;
+
 	try
 	{
 		proc=new sshProcess ( this,user,host,sshPort,
@@ -2163,33 +2225,40 @@ void ONMainWindow::selectSession ( const QStringList& sessions )
 {
 
 	selectSessionDlg = new SVGFrame ( ":/svg/passform.svg",false,bgFrame );
-	selectSessionDlg->setStyle ( new QPlastiqueStyle() );
+	setWidgetStyle ( selectSessionDlg );
 	selectSessionDlg->hide();
 
 	if ( !miniMode )
 		selectSessionDlg->setFixedSize ( selectSessionDlg->sizeHint() );
 	else
-		selectSessionDlg->setFixedSize ( 350,180 );
+		selectSessionDlg->setFixedSize ( 310,180 );
 
 	username->addWidget ( selectSessionDlg );
 	QPalette pal=selectSessionDlg->palette();
 	pal.setBrush ( QPalette::Window, QColor ( 0,0,0,0 ) );
 	selectSessionDlg->setPalette ( pal );
 
+	QFont fnt=selectSessionDlg->font();
+	if ( miniMode )
+#ifdef Q_WS_HILDON
+		fnt.setPointSize ( 10 );
+#else
+		fnt.setPointSize ( 9 );
+#endif
+	selectSessionDlg->setFont ( fnt );
 	selectSessionLabel=new QLabel ( tr ( "Select session:" ), selectSessionDlg );
-
 	sOk=new QPushButton ( tr ( "Resume" ),selectSessionDlg );
-	sOk->setStyle ( new QPlastiqueStyle() );
+	setWidgetStyle ( sOk );
 	sCancel=new QPushButton ( tr ( "Cancel" ),selectSessionDlg );
-	sCancel->setStyle ( new QPlastiqueStyle() );
+	setWidgetStyle ( sCancel );
 
 	bSusp=new QPushButton ( tr ( "Suspend" ),selectSessionDlg );
-	bSusp->setStyle ( new QPlastiqueStyle() );
+	setWidgetStyle ( bSusp );
 	bTerm=new QPushButton ( tr ( "Terminate" ),selectSessionDlg );
-	bTerm->setStyle ( new QPlastiqueStyle() );
+	setWidgetStyle ( bTerm );
 
 	bNew=new QPushButton ( tr ( "New" ),selectSessionDlg );
-	bNew->setStyle ( new QPlastiqueStyle() );
+	setWidgetStyle ( bNew );
 
 
 	if ( !miniMode )
@@ -2197,7 +2266,7 @@ void ONMainWindow::selectSession ( const QStringList& sessions )
 	else
 		selectSessionLabel->move ( 10,10 );
 
-	pal.setColor ( QPalette::Button, QColor ( 0,0,0,0 ) );
+	pal.setColor ( QPalette::Button, QColor ( 255,255,255,0 ) );
 	pal.setColor ( QPalette::Window, QColor ( 255,255,255,255 ) );
 	pal.setColor ( QPalette::Base, QColor ( 255,255,255,255 ) );
 	sOk->setPalette ( pal );
@@ -2206,10 +2275,29 @@ void ONMainWindow::selectSession ( const QStringList& sessions )
 	connect ( sCancel,SIGNAL ( clicked() ),this, SLOT ( slotCloseSelectDlg() ) );
 
 	selectSessionDlg->show();
-
-	sOk->setFixedSize ( sOk->sizeHint() );
-	sCancel->setFixedSize ( sCancel->sizeHint() );
-
+#ifndef Q_WS_HILDON
+	sOk->setFixedSize ( ok->sizeHint() );
+	sCancel->setFixedSize ( cancel->sizeHint() );
+#else
+	QSize sz=sCancel->sizeHint();
+	sz.setWidth ( ( int ) ( sz.width() /1.5 ) );
+	sz.setHeight ( ( int ) ( sz.height() /1.5 ) );
+	sCancel->setFixedSize ( sz );
+	sz=sOk->sizeHint();
+	sz.setWidth ( ( int ) ( sz.width() /1.5 ) );
+	sz.setHeight ( ( int ) ( sz.height() /1.5 ) );
+	sOk->setFixedSize ( sz );
+	sz=bSusp->sizeHint();
+	if ( bTerm->sizeHint().width() > sz.width() )
+		sz=bTerm->sizeHint();
+	if ( bNew->sizeHint().width() > sz.width() )
+		sz=bNew->sizeHint();
+	sz.setWidth ( ( int ) ( sz.width() /1.5 ) );
+	sz.setHeight ( ( int ) ( sz.height() /1.5 ) );
+	bSusp->setFixedSize ( sz );
+	bTerm->setFixedSize ( sz );
+	bNew->setFixedSize ( sz );
+#endif
 	if ( !miniMode )
 	{
 		sOk->move ( ( selectSessionDlg->width()- ( sOk->width() +12+sCancel->width() ) ) /2,
@@ -2222,47 +2310,65 @@ void ONMainWindow::selectSession ( const QStringList& sessions )
 		            selectSessionDlg->height()-sOk->height()-8 );
 		sCancel->move ( sOk->pos().x() +sOk->width() +8,sOk->pos().y() );
 	}
+	int bmaxw=bNew->size().width();
+	if ( bSusp->size().width() >bmaxw )
+		bmaxw=bSusp->size().width();
+	if ( bTerm->size().width() >bmaxw )
+		bmaxw=bTerm->size().width();
+
+	bNew->setFixedWidth ( bmaxw );
+	bSusp->setFixedWidth ( bmaxw );
+	bTerm->setFixedWidth ( bmaxw );
+
+	if ( !miniMode )
+	{
+		int butx=selectSessionDlg->width()-bmaxw-12;
+		bSusp->move ( butx,45 );
+		bTerm->move ( butx,bSusp->y() +bSusp->height() +6 );
+	}
+	else
+	{
+		int butx=selectSessionDlg->width()-bmaxw-9;
+		bSusp->move ( butx,30 );
+		bTerm->move ( butx,bSusp->y() +bSusp->height() +6 );
+	}
 
 	sOk->setEnabled ( true );
 	sCancel->setEnabled ( true );
 	selectSessionDlg->setEnabled ( true );
 	setEnabled ( true );
-	if ( !miniMode )
-	{
-		bSusp->move ( 350,45 );
-		bTerm->move ( 350,bSusp->y() +bSusp->height() +6 );
-	}
-	else
-	{
-		bSusp->move ( 265,30 );
-		bTerm->move ( 265,bSusp->y() +bSusp->height() +6 );
-	}
 
 
 	sessTv=new QTreeView ( selectSessionDlg );
-	sessTv->setStyle ( new QPlastiqueStyle() );
-	sessTv->horizontalScrollBar()->setStyle ( new QPlastiqueStyle() );
+	setWidgetStyle ( sessTv );
+	setWidgetStyle ( sessTv->horizontalScrollBar() );
 	sessTv->setItemsExpandable ( false );
 	sessTv->setRootIsDecorated ( false );
 
-	QStandardItemModel* model=new QStandardItemModel ( sessions.size(), 6 );
+	QStandardItemModel* model=new QStandardItemModel ( sessions.size(), 8 );
 
 	model->setHeaderData ( 0,Qt::Horizontal,QVariant ( ( QString ) tr ( "Display" ) ) );
 	model->setHeaderData ( 1,Qt::Horizontal,QVariant ( ( QString ) tr ( "Status" ) ) );
-	model->setHeaderData ( 2,Qt::Horizontal,QVariant ( ( QString ) tr ( "Server" ) ) );
-	model->setHeaderData ( 3,Qt::Horizontal,QVariant ( ( QString ) tr ( "Creation Time" ) ) );
-	model->setHeaderData ( 4,Qt::Horizontal,QVariant ( ( QString ) tr ( "Client IP" ) ) );
-	model->setHeaderData ( 5,Qt::Horizontal,QVariant ( ( QString ) tr ( "Session ID" ) ) );
+	model->setHeaderData ( 2,Qt::Horizontal,QVariant ( ( QString ) tr ( "Command" ) ) );
+	model->setHeaderData ( 3,Qt::Horizontal,QVariant ( ( QString ) tr ( "Type" ) ) );
+	model->setHeaderData ( 4,Qt::Horizontal,QVariant ( ( QString ) tr ( "Server" ) ) );
+	model->setHeaderData ( 5,Qt::Horizontal,QVariant ( ( QString ) tr ( "Creation Time" ) ) );
+	model->setHeaderData ( 6,Qt::Horizontal,QVariant ( ( QString ) tr ( "Client IP" ) ) );
+	model->setHeaderData ( 7,Qt::Horizontal,QVariant ( ( QString ) tr ( "Session ID" ) ) );
 	sessTv->setModel ( ( QAbstractItemModel* ) model );
 	if ( !miniMode )
 	{
 		sessTv->move ( 20,45 );
-		sessTv->setFixedSize ( 315,120 );
+		sessTv->setFixedSize ( bSusp->x()-24,sOk->y()-
+		                       ( selectSessionLabel->y() +
+		                         selectSessionLabel->height() +8 ) );
 	}
 	else
 	{
 		sessTv->move ( 10,30 );
-		sessTv->setFixedSize ( 250,105 );
+		sessTv->setFixedSize ( bSusp->x()-13,sOk->y()-
+		                       ( selectSessionLabel->y() +
+		                         selectSessionLabel->height() +6 ) );
 	}
 	QFontMetrics fm ( sessTv->font() );
 	selectedSessions.clear();
@@ -2281,19 +2387,28 @@ void ONMainWindow::selectSession ( const QStringList& sessions )
 		else
 			item= new QStandardItem ( tr ( "suspended" ) );
 		model->setItem ( row,1,item );
-
-		item= new QStandardItem ( s.crTime );
-		model->setItem ( row,3,item );
-
-		item= new QStandardItem ( s.server );
+		
+		item= new QStandardItem ( transAppName(s.command) );
 		model->setItem ( row,2,item );
-
-		item= new QStandardItem ( s.clientIp );
-		model->setItem ( row,4,item );
-
-		item= new QStandardItem ( s.sessionId );
+		
+		QString type=tr("Desktop");
+		if(s.sessionType==x2goSession::ROOTLESS)
+			type=tr("single application");
+		if(s.sessionType==x2goSession::SHADOW)
+			type=tr("shadow session");
+		
+		item= new QStandardItem ( type );
+		model->setItem ( row,3,item );
+		
+		item= new QStandardItem ( s.crTime );
 		model->setItem ( row,5,item );
-		for ( int j=0;j<6;++j )
+		item= new QStandardItem ( s.server );
+		model->setItem ( row,4,item );
+		item= new QStandardItem ( s.clientIp );
+		model->setItem ( row,6,item );
+		item= new QStandardItem ( s.sessionId );
+		model->setItem ( row,7,item );
+		for ( int j=0;j<8;++j )
 		{
 			QString txt=model->index ( row,j ).data().toString();
 			if ( sessTv->header()->sectionSize ( j ) < fm.width ( txt ) +6 )
@@ -2304,9 +2419,9 @@ void ONMainWindow::selectSession ( const QStringList& sessions )
 	}
 	sessTv->setEditTriggers ( QAbstractItemView::NoEditTriggers );
 	if ( !miniMode )
-		bNew->move ( 350,sessTv->y() +sessTv->height()-bNew->height() );
+		bNew->move ( bTerm->x(),sessTv->y() +sessTv->height()-bNew->height() );
 	else
-		bNew->move ( 265,sessTv->y() +sessTv->height()-bNew->height() );
+		bNew->move ( bTerm->x(),sessTv->y() +sessTv->height()-bNew->height() );
 	sessTv->setPalette ( pal );
 	bNew->setPalette ( pal );
 	bSusp->setPalette ( pal );
@@ -2323,15 +2438,6 @@ void ONMainWindow::selectSession ( const QStringList& sessions )
 	bSusp->hide();
 	bTerm->hide();
 
-	int bmaxw=bNew->sizeHint().width();
-	if ( bSusp->sizeHint().width() >bmaxw )
-		bmaxw=bSusp->sizeHint().width();
-	if ( bTerm->sizeHint().width() >bmaxw )
-		bmaxw=bTerm->sizeHint().width();
-
-	bNew->setFixedWidth ( bmaxw );
-	bSusp->setFixedWidth ( bmaxw );
-	bTerm->setFixedWidth ( bmaxw );
 
 	connect ( sessTv,SIGNAL ( clicked ( const QModelIndex& ) ),
 	          this,SLOT ( slot_activated ( const QModelIndex& ) ) );
@@ -2624,8 +2730,8 @@ void ONMainWindow::slot_retResumeSess ( bool result, QString output,sshProcess* 
 		sound=st.value ( sid+"/sound",
 		                 ( QVariant ) defaultUseSound ).toBool();
 		QString sndsys=st.value ( sid+"/soundsystem",
-		                 ( QVariant ) "arts" ).toString();
-		if(sndsys=="esd")
+		                          ( QVariant ) "arts" ).toString();
+		if ( sndsys=="esd" )
 			useEsd=true;
 		else
 			useEsd=false;
@@ -2714,7 +2820,7 @@ void ONMainWindow::slot_retResumeSess ( bool result, QString output,sshProcess* 
 			ecmd=esdCmd;
 		if ( useEsd )
 			artsd->start ( ecmd+" -tcp -nobeeps -bind localhost -port "+
-					resumingSession.sndPort );
+			               resumingSession.sndPort );
 		else
 			artsd->start ( acmd+" -u -N -p "+resumingSession.sndPort );
 		try
@@ -2756,7 +2862,7 @@ void ONMainWindow::slot_retResumeSess ( bool result, QString output,sshProcess* 
 
 x2goSession ONMainWindow::getSelectedSession()
 {
-	QString sessId=sessTv->model()->index ( sessTv->currentIndex().row(),5 ).data().toString();
+	QString sessId=sessTv->model()->index ( sessTv->currentIndex().row(),7 ).data().toString();
 	for ( int i=0;i<selectedSessions.size();++i )
 	{
 		if ( selectedSessions[i].sessionId==sessId )
@@ -2821,7 +2927,9 @@ void ONMainWindow::slot_tunnelOk()
 	nxproxy=new QProcess;
 	QStringList env = QProcess::systemEnvironment();
 	QString x2golibpath="/usr/lib/x2go";
+#if defined ( WINDOWS ) || defined ( Q_OS_DARWIN )
 	int dispInd=-1;
+#endif
 	for ( int l=0;l<env.size();++l )
 	{
 		if ( env[l].indexOf ( "X2GO_LIB" ) ==0 )
@@ -2837,6 +2945,7 @@ void ONMainWindow::slot_tunnelOk()
 
 	}
 	env << "LD_LIBRARY_PATH="+x2golibpath;
+	env << "NX_CLIENT="+QCoreApplication::applicationFilePath ();
 #ifdef Q_OS_DARWIN
 	//setting /usr/X11/bin to find xauth
 	env.insert ( 0,"PATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin" );
@@ -2983,10 +3092,12 @@ void ONMainWindow::slot_proxyStderr()
 
 	if ( stInfo->toPlainText().indexOf ( "Connection to remote proxy 'localhost:"+
 	                                     resumingSession.grPort+"' established" ) !=-1 )
+	{
 		if ( newSession )
 			setStatStatus ( tr ( "starting" ) );
 		else
 			setStatStatus ( tr ( "resuming" ) );
+	}
 
 	if ( stInfo->toPlainText().indexOf ( "Established X server connection" ) !=-1 )
 	{
@@ -3054,7 +3165,16 @@ void ONMainWindow::showSessionStatus()
 	if ( !miniMode )
 		sessionStatusDlg->setFixedSize ( sessionStatusDlg->sizeHint() );
 	else
-		sessionStatusDlg->setFixedSize ( 350,180 );
+		sessionStatusDlg->setFixedSize ( 310,200 );
+	QFont fnt=sessionStatusDlg->font();
+	if ( miniMode )
+#ifdef Q_WS_HILDON
+		fnt.setPointSize ( 10 );
+#else
+		fnt.setPointSize ( 9 );
+#endif
+	sessionStatusDlg->setFont ( fnt );
+
 	username->addWidget ( sessionStatusDlg );
 	QPalette pal=sessionStatusDlg->palette();
 	pal.setBrush ( QPalette::Window, QColor ( 0,0,0,0 ) );
@@ -3084,21 +3204,39 @@ void ONMainWindow::showSessionStatus()
 		slVal->move ( 25+slName->width(),10 );
 	slVal->hide();
 	sbSusp=new QPushButton ( tr ( "Abort" ),sessionStatusDlg );
-	sbSusp->setStyle ( new QPlastiqueStyle() );
+	setWidgetStyle ( sbSusp );
 	sbTerm=new QPushButton ( tr ( "Terminate" ),sessionStatusDlg );
-	sbTerm->setStyle ( new QPlastiqueStyle() );
+	setWidgetStyle ( sbTerm );
 	sbExp=new QPushButton ( tr ( "Share Folder..." ),sessionStatusDlg );
-	sbExp->setStyle ( new QPlastiqueStyle() );
+	setWidgetStyle ( sbExp );
 	sbAdv=new QCheckBox ( tr ( "Show Details" ),sessionStatusDlg );
-	sbAdv->setStyle ( new QPlastiqueStyle() );
-
+	setWidgetStyle ( sbAdv );
+	sbAdv->setFixedSize ( sbAdv->sizeHint() );
+#ifndef Q_WS_HILDON
+	sbSusp->setFixedSize ( sbSusp->sizeHint() );
+	sbTerm->setFixedSize ( sbTerm->sizeHint() );
+	sbExp->setFixedSize ( sbExp->sizeHint() );
+#else
+	QSize sz=sbSusp->sizeHint();
+	sz.setWidth ( ( int ) ( sz.width() /1.5 ) );
+	sz.setHeight ( ( int ) ( sz.height() /1.5 ) );
+	sbSusp->setFixedSize ( sz );
+	sz=sbExp->sizeHint();
+	sz.setWidth ( ( int ) ( sz.width() ) );
+	sz.setHeight ( ( int ) ( sz.height() /1.5 ) );
+	sbExp->setFixedSize ( sz );
+	sz=sbTerm->sizeHint();
+	sz.setWidth ( ( int ) ( sz.width() /1.5 ) );
+	sz.setHeight ( ( int ) ( sz.height() /1.5 ) );
+	sbTerm->setFixedSize ( sz );
+#endif
 	sbAdv->hide();
 	sbSusp->hide();
 	sbTerm->hide();
 	sbExp->hide();
 
 
-	pal.setColor ( QPalette::Button, QColor ( 0,0,0,0 ) );
+	pal.setColor ( QPalette::Button, QColor ( 255,255,255,0 ) );
 	pal.setColor ( QPalette::Window, QColor ( 255,255,255,255 ) );
 	pal.setColor ( QPalette::Base, QColor ( 255,255,255,255 ) );
 
@@ -3107,10 +3245,6 @@ void ONMainWindow::showSessionStatus()
 	sbTerm->setPalette ( pal );
 	sbExp->setPalette ( pal );
 
-	sbSusp->setFixedSize ( sbSusp->sizeHint() );
-	sbTerm->setFixedSize ( sbTerm->sizeHint() );
-	sbAdv->setFixedSize ( sbAdv->sizeHint() );
-	sbExp->setFixedSize ( sbExp->sizeHint() );
 
 	if ( !miniMode )
 		sbExp->move ( ( sessionStatusDlg->width()- ( sbExp->width() +12+sbTerm->width() +sbSusp->width() +12 ) ) /2,
@@ -3125,11 +3259,11 @@ void ONMainWindow::showSessionStatus()
 	if ( !miniMode )
 		sbAdv->move ( 30,sbSusp->y()-8-sbSusp->height() );
 	else
-		sbAdv->move ( 15,sbSusp->y()-sbAdv->height() +2 );
+		sbAdv->move ( 15,sbSusp->y()-sbAdv->height() -4 );
 
 	stInfo=new QTextEdit ( sessionStatusDlg );
-	stInfo->setStyle ( new QPlastiqueStyle() );
-	stInfo->verticalScrollBar()->setStyle ( new QPlastiqueStyle() );
+	setWidgetStyle ( stInfo );
+	setWidgetStyle ( stInfo->verticalScrollBar() );
 	stInfo->setReadOnly ( true );
 	stInfo->hide();
 	stInfo->setFrameStyle ( QFrame::StyledPanel|QFrame::Plain );
@@ -3165,12 +3299,12 @@ void ONMainWindow::slotShowAdvancedStat()
 	{
 		if ( sbAdv->isChecked() )
 		{
-			sessionStatusDlg->setFixedSize ( 350,300 );
+			sessionStatusDlg->setFixedSize ( 310,300 );
 		}
 		else
 		{
-			sessionStatusDlg->setFixedSize ( 350,180 );
 			stInfo->hide();
+			sessionStatusDlg->setFixedSize ( 310,200 );
 		}
 	}
 
@@ -3190,15 +3324,25 @@ void ONMainWindow::slotShowAdvancedStat()
 	if ( !miniMode )
 		sbAdv->move ( 30,sbSusp->y()-8-sbSusp->height() );
 	else
-		sbAdv->move ( 15,sbSusp->y()-sbAdv->height() +2 );
+		sbAdv->move ( 15,sbSusp->y()-sbAdv->height() -3 );
 
 
 
 	if ( sbAdv->isChecked() )
 	{
-		stInfo->setFixedSize ( sessionStatusDlg->width()-40,
-		                       sbAdv->y()-slVal->y()-slVal->height()-24 );
-		stInfo->move ( 20,slVal->y() +slVal->height() +12 );
+		if ( !miniMode )
+		{
+			stInfo->setFixedSize ( sessionStatusDlg->width()-40,
+			                       sbAdv->y()-slVal->y()-slVal->height()-24 );
+			stInfo->move ( 20,slVal->y() +slVal->height() +12 );
+		}
+		else
+		{
+			stInfo->setFixedSize ( sessionStatusDlg->width()-30,
+			                       sbAdv->y()-slVal->y()-slVal->height()-12 );
+			stInfo->move ( 15,slVal->y() +slVal->height() +6 );
+		}
+
 		stInfo->show();
 	}
 
@@ -3381,12 +3525,16 @@ void ONMainWindow::runCommand()
 	QString user=login->text();
 	QString host=resumingSession.server;
 	QString command;
+	QString sessionType="D";
 	if ( useLdap )
 		command=sessionCmd;
 	else
 	{
 		QString sid=lastSession->id();
 		command=st.value ( sid+"/command", ( QVariant ) tr ( "KDE" ) ).toString();
+		bool rootless=st.value ( sid+"/rootless", ( QVariant )false).toBool();
+		if(rootless)
+			sessionType="R";
 	}
 
 	if ( command=="KDE" )
@@ -3426,15 +3574,18 @@ void ONMainWindow::runCommand()
 	if ( !sound )
 		cmd="setsid x2goruncommand "+resumingSession.display+" "+
 		    resumingSession.agentPid + " " +resumingSession.sessionId+" "+
-		    resumingSession.sndPort+ " "+ command+"  >& /dev/null & exit";
+		    resumingSession.sndPort+ " "+ command+" nosnd "+
+		    sessionType +">& /dev/null & exit";
 	else if ( useEsd )
 		cmd="setsid x2goruncommand "+resumingSession.display+" "+
 		    resumingSession.agentPid + " " +resumingSession.sessionId+" "+
-		    resumingSession.sndPort+ " "+ command+" esd >& /dev/null & exit";
+		    resumingSession.sndPort+ " "+ command+" esd "+
+		    sessionType +">& /dev/null & exit";
 	else
 		cmd="setsid x2goruncommand "+resumingSession.display+" "+
 		    resumingSession.agentPid + " " +resumingSession.sessionId+" "+
-		    resumingSession.sndPort+ " "+ command+" arts >& /dev/null & exit";
+		    resumingSession.sndPort+ " "+ command+" arts "+
+		    sessionType +">& /dev/null & exit";
 
 
 	try
@@ -5188,4 +5339,46 @@ bool ONMainWindow::isColorDepthOk ( int disp, int sess )
 	if ( ( disp == 24 || disp == 32 ) && ( sess == 24 || sess == 32 ) )
 		return true;
 	return false;
+}
+
+void ONMainWindow::setWidgetStyle ( QWidget* widget )
+{
+#ifndef Q_OS_LINUX
+	widget->setStyle ( widgetExtraStyle );
+#endif
+}
+
+QString ONMainWindow::internAppName ( const QString& transAppName, bool* found)
+{
+	if ( found )
+		*found=false;
+	int ind=_transApplicationsNames.indexOf ( transAppName );
+	if ( ind!=-1 )
+	{
+		if ( found )
+			*found=true;
+		return _internApplicationsNames[ind];
+	}
+	return transAppName;
+}
+
+
+QString ONMainWindow::transAppName ( const QString& internAppName, bool* found)
+{
+	if ( found )
+		*found=false;
+	int ind=_internApplicationsNames.indexOf ( internAppName );
+	if ( ind!=-1 )
+	{
+		if ( found )
+			*found=true;
+		return _transApplicationsNames[ind];
+	}
+	return internAppName;
+}
+
+void ONMainWindow::addToAppNames ( QString intName, QString transName )
+{
+	_internApplicationsNames.append ( intName );
+	_transApplicationsNames.append ( transName );
 }

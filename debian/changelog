@@ -1,3 +1,9 @@
+x2goclient (2.0.1-13) unstable; urgency=low
+
+  * Fixed "black buttons" on button focus with new qt
+
+ -- Oleksandr Shneyder <oleksandr.shneyder@treuchtlingen.de>  Mon, 16 Jun 2008 10:08:01 +0000
+
 x2goclient (2.0.1-12) unstable; urgency=low
 
   * Client ssh port in settings dialog

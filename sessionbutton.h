@@ -49,6 +49,7 @@ private:
     QPushButton* sound;
     QLabel* soundIcon;
     ONMainWindow* par;
+    bool rootless;
 
 private slots:
     void slotClicked();

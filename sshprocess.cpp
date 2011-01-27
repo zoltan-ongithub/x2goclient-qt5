@@ -408,6 +408,9 @@ QString sshProcess::setsid()
 	dir.cd ( "exe" );
 	return "\""+dir.absolutePath()+"/setsid\"";
 #else
+#ifdef Q_WS_HILDON
+	return "/usr/lib/x2go/setsid";
+#endif
 	return "setsid";
 #endif
 }

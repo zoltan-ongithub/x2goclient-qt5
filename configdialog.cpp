@@ -36,8 +36,18 @@ ConfigDialog::ConfigDialog ( QWidget * parent, Qt::WFlags f )
 	QVBoxLayout* frLay=new QVBoxLayout ( fr );
 	ml->addWidget ( fr );
 	ONMainWindow* par= ( ONMainWindow* ) parent;
-#ifdef USELDAP
 
+
+#ifndef WINDOWS
+
+	QSettings st ( QDir::homePath() +"/.x2goclient/settings",QSettings::NativeFormat );
+#else
+
+	QSettings st ( "Obviously Nice","x2goclient" );
+	st.beginGroup ( "settings" );
+#endif
+
+#ifdef USELDAP
 	useldap=new QCheckBox ( tr ( "Use LDAP" ),fr );
 
 	frLay->addWidget ( useldap );
@@ -72,13 +82,6 @@ ConfigDialog::ConfigDialog ( QWidget * parent, Qt::WFlags f )
 	port2=new QSpinBox ( gb );
 	port1->setMaximum ( 1000000 );
 	port2->setMaximum ( 1000000 );
-	clientSshPort=new QSpinBox ( fr );
-	clientSshPort->setMaximum ( 1000000 );
-
-	QHBoxLayout* sshLay=new QHBoxLayout();
-	sshLay->addWidget(new QLabel(tr("Clientside SSH Port For File System Export Usage:"),fr));
-	sshLay->addWidget(clientSshPort);
-	sshLay->addStretch();
 
 
 	QHBoxLayout* aLay=new QHBoxLayout();
@@ -109,17 +112,6 @@ ConfigDialog::ConfigDialog ( QWidget * parent, Qt::WFlags f )
 	setLay->addLayout ( aLay2 );
 
 
-
-#ifndef WINDOWS
-
-	QSettings st ( QDir::homePath() +"/.x2goclient/settings",QSettings::NativeFormat );
-#else
-
-	QSettings st ( "Obviously Nice","x2goclient" );
-	st.beginGroup ( "settings" );
-#endif
-
-
 	useldap->setChecked ( st.value ( "LDAP/useldap", ( QVariant ) par->retUseLdap() ).toBool() );
 	ldapServer->setText ( st.value ( "LDAP/server", ( QVariant ) par->retLdapServer() ).toString() );
 	port->setValue ( st.value ( "LDAP/port", ( QVariant ) par->retLdapPort() ).toInt() );
@@ -128,10 +120,8 @@ ConfigDialog::ConfigDialog ( QWidget * parent, Qt::WFlags f )
 	ldapServer2->setText ( st.value ( "LDAP/server2", ( QVariant ) par->retLdapServer2() ).toString() );
 	port2->setValue ( st.value ( "LDAP/port2", ( QVariant ) par->retLdapPort2() ).toInt() );
 	ldapBase->setText ( st.value ( "LDAP/basedn", ( QVariant ) par->retLdapDn() ).toString() );
-	clientSshPort->setValue ( st.value ( "clientport", ( QVariant ) 22 ).toInt() );
 	gb->setEnabled ( useldap->isChecked() );
 	frLay->addWidget ( gb );
-	frLay->addLayout ( sshLay );
 	connect ( useldap,SIGNAL ( toggled ( bool ) ),gb,SLOT ( setEnabled ( bool ) ) );
 
 	connect ( useldap,SIGNAL ( toggled ( bool ) ),this,SLOT ( slot_checkOkStat() ) );
@@ -288,6 +278,15 @@ ConfigDialog::ConfigDialog ( QWidget * parent, Qt::WFlags f )
 
 
 #endif //WINDOWS
+	clientSshPort=new QSpinBox ( fr );
+	clientSshPort->setMaximum ( 1000000 );
+	clientSshPort->setValue ( st.value ( "clientport", ( QVariant ) 22 ).toInt() );
+
+	QHBoxLayout* sshLay=new QHBoxLayout();
+	sshLay->addWidget ( new QLabel ( tr ( "Clientside SSH Port For File System Export Usage:" ),fr ) );
+	sshLay->addWidget ( clientSshPort );
+	sshLay->addStretch();
+	frLay->addLayout ( sshLay );
 
 	frLay->addStretch();
 	ok=new QPushButton ( tr ( "&OK" ),this );
@@ -312,6 +311,22 @@ ConfigDialog::ConfigDialog ( QWidget * parent, Qt::WFlags f )
 	setSizeGripEnabled ( true );
 	setWindowIcon ( QIcon ( ( ( ONMainWindow* ) parent )->iconsPath ( "/32x32/edit_settings.png" ) ) );
 	setWindowTitle ( tr ( "Settings" ) );
+
+#ifdef Q_WS_HILDON
+	QFont fnt=font();
+	fnt.setPointSize ( 10 );
+	setFont ( fnt );
+	QSize sz=ok->sizeHint();
+	sz.setWidth((int)(sz.width()/1.5));
+	sz.setHeight((int)(sz.height()/1.5));
+	ok->setFixedSize ( sz );
+	sz=cancel->sizeHint();
+	sz.setWidth((int)(sz.width()));
+	sz.setHeight((int)(sz.height()/1.5));
+	cancel->setFixedSize ( sz );
+        clientSshPort->setFixedHeight(int(clientSshPort->sizeHint().height()*1.5));
+#endif
+
 }
 
 
@@ -321,7 +336,6 @@ ConfigDialog::~ConfigDialog()
 
 void ConfigDialog::slot_accepted()
 {
-#ifdef USELDAP
 #ifndef WINDOWS
 	QSettings st ( QDir::homePath() +"/.x2goclient/settings",QSettings::NativeFormat );
 #else
@@ -330,6 +344,7 @@ void ConfigDialog::slot_accepted()
 	st.beginGroup ( "settings" );
 #endif
 
+#ifdef USELDAP
 	st.setValue ( "LDAP/useldap", ( QVariant ) useldap->isChecked() );
 	st.setValue ( "LDAP/port", ( QVariant ) port->value() );
 	if ( ldapServer->text().length() )
@@ -366,7 +381,7 @@ void ConfigDialog::slot_accepted()
 #ifdef Q_OS_DARWIN
 	st.setValue ( "xdarwin/directory", ( QVariant ) leXexec->text() );
 #endif
-	st.setValue ( "clientport", ( QVariant ) clientSshPort->value());
+	st.setValue ( "clientport", ( QVariant ) clientSshPort->value() );
 
 }
 
