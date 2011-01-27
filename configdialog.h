@@ -21,62 +21,70 @@ class QSpinBox;
 class QPushButton;
 class QRadioButton;
 class QButtonGroup;
+class PrintWidget;
 /**
 	@author Oleksandr Shneyder <oleksandr.shneyder@obviously-nice.de>
 */
 class ConfigDialog : public QDialog
 {
-    Q_OBJECT
-public:
-    enum XServers{XMING,CYGWIN,CUSTOM};
-    ConfigDialog(QWidget * parent, Qt::WFlags f = 0 );
-    ~ConfigDialog();
+		Q_OBJECT
+	public:
+		enum XServers{XMING,CYGWIN,CUSTOM};
+		ConfigDialog ( QWidget * parent, Qt::WFlags f = 0 );
+		~ConfigDialog();
 #ifdef Q_OS_DARWIN
-static    QString findXDarwin(QString& version, QString path="");
-static    QString retMaxXDarwinVersion(QString v1, QString v2);
-static    QString getXDarwinDirectory();
-	  void    printXDarwinVersionWarning(QString version);
+		static    QString findXDarwin ( QString& version,
+		                                QString path="" );
+		static    QString retMaxXDarwinVersion ( QString v1,
+		        QString v2 );
+		static    QString getXDarwinDirectory();
+		void    printXDarwinVersionWarning ( QString version );
 #endif
-#ifdef WINDOWS    
-static    void getXming(bool* found, QString* execName,QString* execDir, QString* options);
-static    QString getCygwinDir(const QString& dir);
-static    void getCygwin(bool* found, QString* execName,QString* execDir, QString* options);
-static    void getXSettings(uint* display, QString* execName,QString* execDir, QString* options);
+#ifdef WINDOWS
+		static    void getXming ( bool* found, QString* execName,
+		                          QString* execDir, QString* options );
+		static    QString getCygwinDir ( const QString& dir );
+		static    void getCygwin ( bool* found, QString* execName,
+		                           QString* execDir, QString* options );
+		static    void getXSettings ( uint* display, QString* execName,
+		                              QString* execDir,
+		                              QString* options );
 #endif
 
-private:
-    QCheckBox* useldap;
-    QLineEdit* ldapBase;
-    QLineEdit* ldapServer;
-    QSpinBox*  port;
-    QLineEdit* ldapServer1;
-    QSpinBox*  port1;
-    QLineEdit* ldapServer2;
-    QSpinBox*  port2;
-    QSpinBox*  clientSshPort;
-    QPushButton* ok;
-    QLineEdit* leXexec;
-    QLineEdit* leCmdOpt;
-    QSpinBox* sbDisp;
-    QLineEdit* leXexecDir;
-    QRadioButton* rbX[3];
-    QPushButton* pbOpenExec;
-    QButtonGroup* bgRadio;
+	private:
+		QCheckBox* useldap;
+		QLineEdit* ldapBase;
+		QLineEdit* ldapServer;
+		QSpinBox*  port;
+		QLineEdit* ldapServer1;
+		QSpinBox*  port1;
+		PrintWidget* pwid;
+		QLineEdit* ldapServer2;
+		QSpinBox*  port2;
+		QSpinBox*  clientSshPort;
+		QPushButton* ok;
+		QLineEdit* leXexec;
+		QLineEdit* leCmdOpt;
+		QSpinBox* sbDisp;
+		QLineEdit* leXexecDir;
+		QRadioButton* rbX[3];
+		QPushButton* pbOpenExec;
+		QButtonGroup* bgRadio;
 
-public slots:
-    void slot_accepted();
-    void slot_checkOkStat();
-private slots:
-#ifdef WINDOWS	
-    void slotDefaultXSettings();
-    void slotGetExecDir();
-    void slotGetExec();
-    void slotXSelected(int id);
-    void slotDispChanged(const QString& val);
+	public slots:
+		void slot_accepted();
+		void slot_checkOkStat();
+	private slots:
+#ifdef WINDOWS
+		void slotDefaultXSettings();
+		void slotGetExecDir();
+		void slotGetExec();
+		void slotXSelected ( int id );
+		void slotDispChanged ( const QString& val );
 #endif
 #ifdef Q_OS_DARWIN
-    void slot_selectXDarwin();
-    void slot_findXDarwin();
+		void slot_selectXDarwin();
+		void slot_findXDarwin();
 #endif
 };
 

@@ -89,7 +89,8 @@ SessionButton::SessionButton ( ONMainWindow* mw,QWidget *parent, QString id )
 	sound->setPalette ( cpal );
 	sound->setFlat ( true );
 	sound->setMouseTracking ( true );
-	connect ( sound,SIGNAL ( clicked() ),this,SLOT ( slot_soundClicked() ) );
+	connect ( sound,SIGNAL ( clicked() ),this,
+	          SLOT ( slot_soundClicked() ) );
 
 	editBut=new QPushButton ( this );
 	editBut->setMouseTracking ( true );
@@ -167,8 +168,10 @@ SessionButton::SessionButton ( ONMainWindow* mw,QWidget *parent, QString id )
 	soundIcon->setFixedSize ( 16,16 );
 	redraw();
 
-	connect ( cmdBox,SIGNAL ( activated ( const QString& ) ),this,SLOT ( slot_cmd_change ( const QString& ) ) );
-	connect ( geomBox,SIGNAL ( activated ( const QString& ) ),this,SLOT ( slot_geom_change ( const QString& ) ) );
+	connect ( cmdBox,SIGNAL ( activated ( const QString& ) ),this,
+	          SLOT ( slot_cmd_change ( const QString& ) ) );
+	connect ( geomBox,SIGNAL ( activated ( const QString& ) ),this,
+	          SLOT ( slot_geom_change ( const QString& ) ) );
 
 	editBut->setFocusPolicy ( Qt::NoFocus );
 	sound->setFocusPolicy ( Qt::NoFocus );
@@ -196,26 +199,39 @@ void SessionButton::redraw()
 {
 	bool snd;
 #ifndef WINDOWS
-	QSettings st ( QDir::homePath() +"/.x2goclient/sessions",QSettings::NativeFormat );
+	QSettings st ( QDir::homePath() +"/.x2goclient/sessions",
+	               QSettings::NativeFormat );
 #else
 	QSettings st ( "Obviously Nice","x2goclient" );
 	st.beginGroup ( "sessions" );
 #endif
-	sessName->setText ( st.value ( sid+"/name", ( QVariant ) tr ( "New Session" ) ).toString() );
-	QString sessIcon=st.value ( sid+"/icon",
-	                            ( QVariant ) ":icons/128x128/x2gosession.png" ).toString();
+	sessName->setText (
+	    st.value ( sid+"/name",
+	               ( QVariant ) tr ( "New Session" ) ).toString() );
+	QString sessIcon=st.value (
+	                     sid+"/icon",
+	                     ( QVariant )
+	                     ":icons/128x128/x2gosession.png"
+	                 ).toString();
 	QPixmap pix ( sessIcon );
 	if ( !par->retMiniMode() )
-		icon->setPixmap ( pix.scaled ( 64,64,Qt::IgnoreAspectRatio,Qt::SmoothTransformation ) );
+		icon->setPixmap ( pix.scaled ( 64,64,Qt::IgnoreAspectRatio,
+		                               Qt::SmoothTransformation ) );
 	else
-		icon->setPixmap ( pix.scaled ( 48,48,Qt::IgnoreAspectRatio,Qt::SmoothTransformation ) );
+		icon->setPixmap ( pix.scaled ( 48,48,Qt::IgnoreAspectRatio,
+		                               Qt::SmoothTransformation ) );
 
-	QString sv=st.value ( sid+"/host", ( QVariant ) QString::null ).toString();
-	QString uname=st.value ( sid+"/user", ( QVariant ) QString::null ).toString();
+	QString sv=st.value ( sid+"/host", ( QVariant )
+	                      QString::null ).toString();
+	QString uname=st.value ( sid+"/user", ( QVariant )
+	                         QString::null ).toString();
 	server->setText ( uname+"@"+sv );
 
 	QString command=st.value ( sid+"/command",
-	                           ( QVariant ) tr ( "/usr/bin/startkde" ) ).toString();
+	                           ( QVariant )
+	                           tr (
+	                               "/usr/bin/startkde" ) ).
+	                toString();
 	rootless=st.value ( sid+"/rootless",
 	                    false ).toBool();
 
@@ -238,15 +254,15 @@ void SessionButton::redraw()
 	else
 	{
 		pix.load ( par->iconsPath ( "/16x16/X.png" ) );
-		command=par->transAppName(command);
+		command=par->transAppName ( command );
 		int id= cmdBox->findText ( command );
-		if (id ==-1 )
+		if ( id ==-1 )
 		{
 			cmdBox->addItem ( command );
-			cmdBox->setCurrentIndex(cmdBox->count()-1);
+			cmdBox->setCurrentIndex ( cmdBox->count()-1 );
 		}
 		else
-		   cmdBox->setCurrentIndex ( id);
+			cmdBox->setCurrentIndex ( id );
 	}
 
 
@@ -257,13 +273,13 @@ void SessionButton::redraw()
 
 	geomBox->clear();
 	geomBox->addItem ( tr ( "fullscreen" ) );
-#ifndef Q_WS_HILDON	
+#ifndef Q_WS_HILDON
 	geomBox->addItem ( "1440x900" );
 	geomBox->addItem ( "1280x1024" );
 	geomBox->addItem ( "1024x768" );
 	geomBox->addItem ( "800x600" );
 #else
-		geomBox->addItem ( tr ( "window" ) );
+	geomBox->addItem ( tr ( "window" ) );
 #endif
 	if ( st.value ( sid+"/fullscreen", ( QVariant ) false ).toBool() )
 	{
@@ -280,8 +296,8 @@ void SessionButton::redraw()
 		geomBox->setCurrentIndex ( geomBox->findText ( g ) );
 #else
 		geom->setText ( tr ( "window" ) );
-		geomBox->setCurrentIndex ( 1);
-#endif		
+		geomBox->setCurrentIndex ( 1 );
+#endif
 	}
 
 
@@ -294,7 +310,8 @@ void SessionButton::redraw()
 		sound->setText ( tr ( "Disabled" ) );
 	soundIcon->setEnabled ( snd );
 	QFontMetrics fm ( sound->font() );
-	sound->setFixedSize ( fm.size ( Qt::TextSingleLine,sound->text() ) +QSize ( 4,4 ) );
+	sound->setFixedSize ( fm.size ( Qt::TextSingleLine,sound->text() ) +
+	                      QSize ( 4,4 ) );
 
 	sessName->setMinimumSize ( sessName->sizeHint() );
 	geom->setMinimumSize ( geom->sizeHint() );
@@ -323,8 +340,10 @@ void SessionButton::mouseMoveEvent ( QMouseEvent * event )
 
 	SVGFrame::mouseMoveEvent ( event );
 	if ( cmd->isVisible() )
-		if ( event->x() > cmd->x() && event->x() < cmd->x() +cmd->width() &&
-		        event->y() >cmd->y() && event->y() <cmd->y() +cmd->height() )
+		if ( event->x() > cmd->x() && event->x() < cmd->x() +
+		        cmd->width() &&
+		        event->y() >cmd->y() && event->y() <cmd->y() +
+		        cmd->height() )
 		{
 			if ( cmdBox->width() <cmd->width() )
 				cmdBox->setFixedWidth ( cmd->width() +20 );
@@ -334,8 +353,10 @@ void SessionButton::mouseMoveEvent ( QMouseEvent * event )
 			cmdBox->show();
 		}
 	if ( cmdBox->isVisible() )
-		if ( event->x() < cmdBox->x() || event->x() > cmdBox->x() +cmdBox->width() ||
-		        event->y() <cmdBox->y() || event->y() >cmdBox->y() +cmdBox->height() )
+		if ( event->x() < cmdBox->x() || event->x() > cmdBox->x() +
+		        cmdBox->width() ||
+		        event->y() <cmdBox->y() || event->y() >cmdBox->y() +
+		        cmdBox->height() )
 		{
 			cmdBox->hide();
 			cmd->show();
@@ -344,16 +365,20 @@ void SessionButton::mouseMoveEvent ( QMouseEvent * event )
 
 	if ( sound->isFlat() )
 	{
-		if ( event->x() > sound->x() && event->x() < sound->x() +sound->width() &&
-		        event->y() >sound->y() && event->y() <sound->y() +sound->height() )
+		if ( event->x() > sound->x() && event->x() < sound->x() +
+		        sound->width() &&
+		        event->y() >sound->y() && event->y() <sound->y() +
+		        sound->height() )
 		{
 			sound->setFlat ( false );
 		}
 	}
 	else
 	{
-		if ( event->x() < sound->x() || event->x() > sound->x() +sound->width() ||
-		        event->y() <sound->y() || event->y() >sound->y() +sound->height() )
+		if ( event->x() < sound->x() || event->x() > sound->x() +
+		        sound->width() ||
+		        event->y() <sound->y() || event->y() >sound->y() +
+		        sound->height() )
 		{
 			sound->setFlat ( true );
 		}
@@ -362,34 +387,44 @@ void SessionButton::mouseMoveEvent ( QMouseEvent * event )
 
 	if ( editBut->isFlat() )
 	{
-		if ( event->x() > editBut->x() && event->x() < editBut->x() +editBut->width() &&
-		        event->y() >editBut->y() && event->y() <editBut->y() +editBut->height() )
+		if ( event->x() > editBut->x() && event->x() < editBut->x() +
+		        editBut->width() &&
+		        event->y() >editBut->y() && event->y() <editBut->y() +
+		        editBut->height() )
 			editBut->setFlat ( false );
 	}
 	else
 	{
-		if ( event->x() < editBut->x() || event->x() > editBut->x() +editBut->width() ||
-		        event->y() <editBut->y() || event->y() >editBut->y() +editBut->height() )
+		if ( event->x() < editBut->x() || event->x() > editBut->x() +
+		        editBut->width() ||
+		        event->y() <editBut->y() || event->y() >editBut->y() +
+		        editBut->height() )
 			editBut->setFlat ( true );
 	}
 
 	if ( rmBut->isFlat() )
 	{
-		if ( event->x() > rmBut->x() && event->x() < rmBut->x() +rmBut->width() &&
-		        event->y() >rmBut->y() && event->y() <rmBut->y() +rmBut->height() )
+		if ( event->x() > rmBut->x() && event->x() < rmBut->x() +
+		        rmBut->width() &&
+		        event->y() >rmBut->y() && event->y() <rmBut->y() +
+		        rmBut->height() )
 			rmBut->setFlat ( false );
 	}
 	else
 	{
-		if ( event->x() < rmBut->x() || event->x() > rmBut->x() +rmBut->width() ||
-		        event->y() <rmBut->y() || event->y() >rmBut->y() +rmBut->height() )
+		if ( event->x() < rmBut->x() || event->x() > rmBut->x() +
+		        rmBut->width() ||
+		        event->y() <rmBut->y() || event->y() >rmBut->y() +
+		        rmBut->height() )
 			rmBut->setFlat ( true );
 	}
 
 
 	if ( geom->isVisible() )
-		if ( event->x() > geom->x() && event->x() < geom->x() +geom->width() &&
-		        event->y() >geom->y() && event->y() <geom->y() +geom->height() )
+		if ( event->x() > geom->x() && event->x() < geom->x() +
+		        geom->width() &&
+		        event->y() >geom->y() && event->y() <geom->y() +
+		        geom->height() )
 		{
 			if ( geomBox->width() <geom->width() )
 				geomBox->setFixedWidth ( geom->width() +20 );
@@ -399,8 +434,10 @@ void SessionButton::mouseMoveEvent ( QMouseEvent * event )
 			geomBox->show();
 		}
 	if ( geomBox->isVisible() )
-		if ( event->x() < geomBox->x() || event->x() > geomBox->x() +geomBox->width() ||
-		        event->y() <geomBox->y() || event->y() >geomBox->y() +geomBox->height() )
+		if ( event->x() < geomBox->x() || event->x() > geomBox->x() +
+		        geomBox->width() ||
+		        event->y() <geomBox->y() || event->y() >geomBox->y() +
+		        geomBox->height() )
 		{
 			geomBox->hide();
 			geom->show();
@@ -417,10 +454,12 @@ void SessionButton::slot_soundClicked()
 	else
 		sound->setText ( tr ( "Disabled" ) );
 	QFontMetrics fm ( sound->font() );
-	sound->setFixedSize ( fm.size ( Qt::TextSingleLine,sound->text() ) +QSize ( 4,4 ) );
+	sound->setFixedSize ( fm.size ( Qt::TextSingleLine,sound->text() ) +
+	                      QSize ( 4,4 ) );
 
 #ifndef WINDOWS
-	QSettings st ( QDir::homePath() +"/.x2goclient/sessions",QSettings::NativeFormat );
+	QSettings st ( QDir::homePath() +"/.x2goclient/sessions",
+	               QSettings::NativeFormat );
 #else
 	QSettings st ( "Obviously Nice","x2goclient" );
 	st.beginGroup ( "sessions" );
@@ -452,7 +491,8 @@ void SessionButton::slot_cmd_change ( const QString& command )
 	QString cmd=command;
 
 #ifndef WINDOWS
-	QSettings st ( QDir::homePath() +"/.x2goclient/sessions",QSettings::NativeFormat );
+	QSettings st ( QDir::homePath() +"/.x2goclient/sessions",
+	               QSettings::NativeFormat );
 #else
 	QSettings st ( "Obviously Nice","x2goclient" );
 	st.beginGroup ( "sessions" );
@@ -468,8 +508,8 @@ void SessionButton::slot_cmd_change ( const QString& command )
 		newRootless=false;
 	}
 	bool found=false;
-	cmd=par->internAppName(cmd,&found);
-	if(found)
+	cmd=par->internAppName ( cmd,&found );
+	if ( found )
 		newRootless=true;
 	st.setValue ( sid+"/command", ( QVariant ) cmd );
 	st.setValue ( sid+"/rootless", ( QVariant ) newRootless );
@@ -482,7 +522,8 @@ void SessionButton::slot_geom_change ( const QString& new_g )
 {
 	geom->setText ( new_g );
 #ifndef WINDOWS
-	QSettings st ( QDir::homePath() +"/.x2goclient/sessions",QSettings::NativeFormat );
+	QSettings st ( QDir::homePath() +"/.x2goclient/sessions",
+	               QSettings::NativeFormat );
 #else
 	QSettings st ( "Obviously Nice","x2goclient" );
 	st.beginGroup ( "sessions" );
@@ -503,9 +544,11 @@ void SessionButton::slot_geom_change ( const QString& new_g )
 	st.sync();
 }
 
-bool SessionButton::lessThen ( const SessionButton* b1, const SessionButton* b2 )
+bool SessionButton::lessThen ( const SessionButton* b1,
+                               const SessionButton* b2 )
 {
-	return b1->sessName->text().toLower().localeAwareCompare ( b2->sessName->text().toLower() ) <0;
+	return b1->sessName->text().toLower().localeAwareCompare (
+	           b2->sessName->text().toLower() ) <0;
 }
 
 

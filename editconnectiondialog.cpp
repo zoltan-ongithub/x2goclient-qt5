@@ -36,7 +36,8 @@
 #include "onmainwindow.h"
 #include <QTextStream>
 
-EditConnectionDialog::EditConnectionDialog ( QString id, QWidget * par,int ind,Qt::WFlags f )
+EditConnectionDialog::EditConnectionDialog ( QString id, QWidget * par,
+        int ind,Qt::WFlags f )
 		: QDialog ( par,f )
 {
 	QVBoxLayout* ml=new QVBoxLayout ( this );
@@ -128,12 +129,15 @@ EditConnectionDialog::EditConnectionDialog ( QString id, QWidget * par,int ind,Q
 	key=new QLineEdit ( sgb );
 
 #ifndef Q_WS_HILDON
-	QPushButton* openKey=new QPushButton ( QIcon ( parent->iconsPath ( "/32x32/file-open.png" ) ),
-	                                       QString::null,sgb );
+	QPushButton* openKey=new QPushButton (
+	    QIcon ( parent->iconsPath (
+	                "/32x32/file-open.png" ) ),
+	    QString::null,sgb );
 	QVBoxLayout *sgbLay = new QVBoxLayout ( sgb );
 #else
-	QPushButton* openKey=new QPushButton ( QIcon ( parent->iconsPath ( "/16x16/file-open.png" ) ),
-	                                       QString::null,sgb );
+	QPushButton* openKey=new QPushButton (
+	    QIcon ( parent->iconsPath ( "/16x16/file-open.png" ) ),
+	    QString::null,sgb );
 	QVBoxLayout *sgbLay = new QVBoxLayout ();
 #endif
 	QHBoxLayout *suLay =new QHBoxLayout();
@@ -152,7 +156,8 @@ EditConnectionDialog::EditConnectionDialog ( QString id, QWidget * par,int ind,Q
 #endif
 
 	QHBoxLayout *keyLay =new QHBoxLayout();
-	keyLay->addWidget ( new QLabel ( tr ( "Use RSA/DSA key for ssh connection:" ),sgb ) );
+	keyLay->addWidget (
+	    new QLabel ( tr ( "Use RSA/DSA key for ssh connection:" ),sgb ) );
 	keyLay->addWidget ( key );
 	keyLay->addWidget ( openKey );
 
@@ -179,7 +184,8 @@ EditConnectionDialog::EditConnectionDialog ( QString id, QWidget * par,int ind,Q
 	cmdLay->addWidget ( new QLabel ( tr ( "Command:" ),deskSess ) );
 	cmdLay->addWidget ( cmd );
 	cmdLay->addWidget ( cmdCombo );
-	cmdCombo->setSizePolicy ( QSizePolicy::Expanding,QSizePolicy::Preferred );
+	cmdCombo->setSizePolicy ( QSizePolicy::Expanding,
+	                          QSizePolicy::Preferred );
 	cmdCombo->hide();
 	cmdCombo->addItem ( "" );
 	cmdCombo->addItems ( parent->transApplicationsNames() );
@@ -271,7 +277,8 @@ EditConnectionDialog::EditConnectionDialog ( QString id, QWidget * par,int ind,Q
 #else
 	colLay->addWidget ( new QLabel ( tr ( "Compression method:" ),compr ) );
 #endif
-	colLay->addWidget ( qualiLabel=new QLabel ( tr ( "Image quality:" ),compr ) );
+	colLay->addWidget ( qualiLabel=new QLabel ( tr ( "Image quality:" ),
+	        compr ) );
 	cowLay->addWidget ( packMethode );
 	spbl->addWidget ( quali );
 	spbl->addStretch();
@@ -354,8 +361,10 @@ EditConnectionDialog::EditConnectionDialog ( QString id, QWidget * par,int ind,Q
 	QVBoxLayout *kwLay = new QVBoxLayout();
 	QHBoxLayout *ksLay = new QHBoxLayout();
 
-	klLay->addWidget ( layoutLabel= new QLabel ( tr ( "Keyboard layout:" ),kgb ) );
-	klLay->addWidget ( typeLabel= new QLabel ( tr ( "Keyboard model:" ),kgb ) );
+	klLay->addWidget ( layoutLabel= new QLabel (
+	    tr ( "Keyboard layout:" ),kgb ) );
+	klLay->addWidget ( typeLabel= new QLabel (
+	    tr ( "Keyboard model:" ),kgb ) );
 
 	kwLay->addWidget ( layout );
 	kwLay->addWidget ( type );
@@ -379,8 +388,11 @@ EditConnectionDialog::EditConnectionDialog ( QString id, QWidget * par,int ind,Q
 	sndsys->addButton ( esd,ESD );
 	sndsys->setExclusive ( true );
 	rbStartSnd=new QRadioButton ( tr ( "Start sound daemon" ),sbgr );
-	rbNotStartSnd=new QRadioButton ( tr ( "Use running sound daemon" ),sbgr );
-	cbSndSshTun=new QCheckBox ( tr ( "Use SSH port forwarding to tunnel\nsound system connections through firewalls" ),sbgr );
+	rbNotStartSnd=new QRadioButton (
+	    tr ( "Use running sound daemon" ),sbgr );
+	cbSndSshTun=new QCheckBox (
+	    tr ( "Use SSH port forwarding to tunnel\n"
+	         "sound system connections through firewalls" ),sbgr );
 	cbDefSndPort=new QCheckBox ( tr ( "Use default sound port" ),sbgr );
 	sbSndPort=new QSpinBox ( sbgr );
 	sbSndPort->setMinimum ( 1 );
@@ -406,18 +418,22 @@ EditConnectionDialog::EditConnectionDialog ( QString id, QWidget * par,int ind,Q
 	sLay_opt->addLayout ( sndPortLay );
 	sndLay->addWidget ( sound );
 	sndLay->addLayout ( sLay );
+	cbClientPrint=new QCheckBox ( tr ( "Client side printing support" ),
+	                              otherSet );
 #ifdef	Q_OS_DARWIN
 	arts->hide();
-	pulse->hide();	
-	esd->setChecked(true);		
+	pulse->hide();
+	esd->setChecked ( true );
 #endif
 
 #ifndef Q_WS_HILDON
 	setLay->addWidget ( dgb );
 	setLay->addWidget ( kgb );
 	setLay->addWidget ( sbgr );
+	setLay->addWidget ( cbClientPrint );
 #else
 	setLay->addWidget ( tabSettings );
+	cbClientPrint->hide();
 #endif
 	setLay->addStretch();
 
@@ -435,14 +451,17 @@ EditConnectionDialog::EditConnectionDialog ( QString id, QWidget * par,int ind,Q
 	ldir=new QLabel ( egb );
 
 
-	model->setHeaderData ( 0,Qt::Horizontal,QVariant ( ( QString ) tr ( "Path" ) ) );
-	model->setHeaderData ( 1,Qt::Horizontal,QVariant ( ( QString ) tr ( "Automount" ) ) );
+	model->setHeaderData ( 0,Qt::Horizontal,QVariant (
+	                           ( QString ) tr ( "Path" ) ) );
+	model->setHeaderData ( 1,Qt::Horizontal,QVariant (
+	                           ( QString ) tr ( "Automount" ) ) );
 	expTv->setEditTriggers ( QAbstractItemView::NoEditTriggers );
 
 
 
-	QPushButton* openDir=new QPushButton ( QIcon ( parent->iconsPath ( "/16x16/file-open.png" ) ),
-	                                       QString::null,egb );
+	QPushButton* openDir=new QPushButton (
+	    QIcon ( parent->iconsPath ( "/16x16/file-open.png" ) ),
+	    QString::null,egb );
 
 	QPushButton* addDir=new QPushButton ( tr ( "Add" ),egb );
 	QPushButton* delDir=new QPushButton ( tr ( "Delete" ),egb );
@@ -462,7 +481,9 @@ EditConnectionDialog::EditConnectionDialog ( QString id, QWidget * par,int ind,Q
 	ldir->setFrameStyle ( QFrame::StyledPanel|QFrame::Sunken );
 
 
-	cbFsSshTun=new QCheckBox ( tr ( "Use ssh port forwarding to tunnel file system connections through firewalls" ),egb );
+	cbFsSshTun=new QCheckBox (
+	    tr ( "Use ssh port forwarding to tunnel file system "
+	         "connections through firewalls" ),egb );
 
 	QVBoxLayout* expLay=new QVBoxLayout ( exportDir );
 	expLay->addWidget ( egb );
@@ -495,7 +516,8 @@ EditConnectionDialog::EditConnectionDialog ( QString id, QWidget * par,int ind,Q
 
 	expTv->setModel ( ( QAbstractItemModel* ) model );
 	QFontMetrics fm1 ( expTv->font() );
-	expTv->header()->resizeSection ( 1,fm1.width ( tr ( "Automount" ) ) +10 );
+	expTv->header()->resizeSection ( 1,
+	                                 fm1.width ( tr ( "Automount" ) ) +10 );
 
 
 	connect ( sessName,SIGNAL ( textChanged ( const QString & ) ),this,
@@ -510,16 +532,24 @@ EditConnectionDialog::EditConnectionDialog ( QString id, QWidget * par,int ind,Q
 	connect ( addDir,SIGNAL ( clicked() ),this,SLOT ( slot_addDir() ) );
 	connect ( delDir,SIGNAL ( clicked() ),this,SLOT ( slot_delDir() ) );
 
-	connect ( custom,SIGNAL ( toggled ( bool ) ),width,SLOT ( setEnabled ( bool ) ) );
-	connect ( custom,SIGNAL ( toggled ( bool ) ),height,SLOT ( setEnabled ( bool ) ) );
-	connect ( custom,SIGNAL ( toggled ( bool ) ),widthLabel,SLOT ( setEnabled ( bool ) ) );
-	connect ( custom,SIGNAL ( toggled ( bool ) ),heightLabel,SLOT ( setEnabled ( bool ) ) );
+	connect ( custom,SIGNAL ( toggled ( bool ) ),width,
+	          SLOT ( setEnabled ( bool ) ) );
+	connect ( custom,SIGNAL ( toggled ( bool ) ),height,
+	          SLOT ( setEnabled ( bool ) ) );
+	connect ( custom,SIGNAL ( toggled ( bool ) ),widthLabel,
+	          SLOT ( setEnabled ( bool ) ) );
+	connect ( custom,SIGNAL ( toggled ( bool ) ),heightLabel,
+	          SLOT ( setEnabled ( bool ) ) );
 
 
-	connect ( kbd,SIGNAL ( toggled ( bool ) ),layout,SLOT ( setDisabled ( bool ) ) );
-	connect ( kbd,SIGNAL ( toggled ( bool ) ),layoutLabel,SLOT ( setDisabled ( bool ) ) );
-	connect ( kbd,SIGNAL ( toggled ( bool ) ),type,SLOT ( setDisabled ( bool ) ) );
-	connect ( kbd,SIGNAL ( toggled ( bool ) ),typeLabel,SLOT ( setDisabled ( bool ) ) );
+	connect ( kbd,SIGNAL ( toggled ( bool ) ),layout,
+	          SLOT ( setDisabled ( bool ) ) );
+	connect ( kbd,SIGNAL ( toggled ( bool ) ),layoutLabel,
+	          SLOT ( setDisabled ( bool ) ) );
+	connect ( kbd,SIGNAL ( toggled ( bool ) ),type,
+	          SLOT ( setDisabled ( bool ) ) );
+	connect ( kbd,SIGNAL ( toggled ( bool ) ),typeLabel,
+	          SLOT ( setDisabled ( bool ) ) );
 
 	connect ( packMethode,SIGNAL ( activated ( const QString& ) ),this,
 	          SLOT ( slot_changePack ( const QString& ) ) );
@@ -527,11 +557,16 @@ EditConnectionDialog::EditConnectionDialog ( QString id, QWidget * par,int ind,Q
 	connect ( sessBox,SIGNAL ( activated ( int ) ),this,
 	          SLOT ( slot_changeCmd ( int ) ) );
 
-	connect ( sound,SIGNAL ( toggled ( bool ) ),this,SLOT ( slot_sndToggled ( bool ) ) );
-	connect ( sndsys,SIGNAL ( buttonClicked ( int ) ),this,SLOT ( slot_sndSysSelected ( int ) ) );
-	connect ( rbStartSnd,SIGNAL ( clicked ( ) ),this,SLOT ( slot_sndStartClicked() ) );
-	connect ( rbNotStartSnd,SIGNAL ( clicked ( ) ),this,SLOT ( slot_sndStartClicked() ) );
-	connect ( cbDefSndPort,SIGNAL ( toggled ( bool ) ),this,SLOT ( slot_sndDefPortChecked ( bool ) ) );
+	connect ( sound,SIGNAL ( toggled ( bool ) ),this,
+	          SLOT ( slot_sndToggled ( bool ) ) );
+	connect ( sndsys,SIGNAL ( buttonClicked ( int ) ),this,
+	          SLOT ( slot_sndSysSelected ( int ) ) );
+	connect ( rbStartSnd,SIGNAL ( clicked ( ) ),this,
+	          SLOT ( slot_sndStartClicked() ) );
+	connect ( rbNotStartSnd,SIGNAL ( clicked ( ) ),this,
+	          SLOT ( slot_sndStartClicked() ) );
+	connect ( cbDefSndPort,SIGNAL ( toggled ( bool ) ),this,
+	          SLOT ( slot_sndDefPortChecked ( bool ) ) );
 
 	kbd->setChecked ( true );
 	custom->setChecked ( true );
@@ -566,27 +601,38 @@ void EditConnectionDialog::readConfig()
 
 	loadPackMethods();
 #ifndef WINDOWS
-	QSettings st ( QDir::homePath() +"/.x2goclient/sessions",QSettings::NativeFormat );
+	QSettings st ( QDir::homePath() +"/.x2goclient/sessions",
+	               QSettings::NativeFormat );
 #else
 	QSettings st ( "Obviously Nice","x2goclient" );
 	st.beginGroup ( "sessions" );
 #endif
-	sessName->setText ( st.value ( sessionId+"/name", ( QVariant ) tr ( "New session" ) ).toString() );
-	sessIcon=st.value ( sessionId+"/icon",
-	                    ( QVariant ) ":icons/128x128/x2gosession.png" ).toString();
+	sessName->setText (
+	    st.value ( sessionId+"/name",
+	               ( QVariant ) tr ( "New session" ) ).toString() );
+	sessIcon=st.value (
+	             sessionId+"/icon",
+	             ( QVariant ) ":icons/128x128/x2gosession.png" ).toString();
 	icon->setIcon ( QIcon ( sessIcon ) );
 
-	server->setText ( st.value ( sessionId+"/host", ( QVariant ) QString::null ).toString() );
-	uname->setText ( st.value ( sessionId+"/user", ( QVariant ) QString::null ).toString() );
-	key->setText ( st.value ( sessionId+"/key", ( QVariant ) QString::null ).toString() );
-	sshPort->setValue ( st.value ( sessionId+"/sshport",
-	                               ( QVariant ) parent->getDefaultSshPort().toInt() ).toInt() );
+	server->setText ( st.value ( sessionId+"/host",
+	                             ( QVariant ) QString::null ).toString() );
+	uname->setText ( st.value ( sessionId+"/user",
+	                            ( QVariant ) QString::null ).toString() );
+	key->setText ( st.value ( sessionId+"/key",
+	                          ( QVariant ) QString::null ).toString() );
+	sshPort->setValue (
+	    st.value ( sessionId+"/sshport",
+	               ( QVariant ) parent->getDefaultSshPort().toInt()
+	             ).toInt() );
 
-	QStringList appNames=st.value ( sessionId+"/applications" ).toStringList();
+	QStringList appNames=st.value (
+	                         sessionId+"/applications" ).toStringList();
 	bool rootless=st.value ( sessionId+"/rootless",false ).toBool();
 
 	QString
-	command=st.value ( sessionId+"/command", ( QVariant ) parent->getDefaultCmd() ).toString();
+	command=st.value ( sessionId+"/command",
+	                   ( QVariant ) parent->getDefaultCmd() ).toString();
 	for ( int i=0;i<appNames.count();++i )
 	{
 		QString app=parent->transAppName ( appNames[i] );
@@ -627,35 +673,61 @@ void EditConnectionDialog::readConfig()
 		sessName->setFocus();
 	}
 
-	spd->setValue ( st.value ( sessionId+"/speed", ( QVariant ) parent->getDefaultLink() ).toInt() );
-	QString mt=st.value ( sessionId+"/pack", ( QVariant ) parent->getDefaultPack() ).toString();
+	spd->setValue ( st.value (
+	                    sessionId+"/speed",
+	                    ( QVariant ) parent->getDefaultLink() ).toInt() );
+	QString mt=st.value (
+	               sessionId+"/pack",
+	               ( QVariant ) parent->getDefaultPack() ).toString();
 
 
 	packMethode->setCurrentIndex ( packMethode->findText ( mt ) );
-	quali->setValue ( st.value ( sessionId+"/quality",parent->getDefaultQuality() ).toInt() );
+	quali->setValue ( st.value ( sessionId+"/quality",
+	                             parent->getDefaultQuality() ).toInt() );
 	slot_changePack ( mt );
 
 
-	fs->setChecked ( st.value ( sessionId+"/fullscreen",
-	                            ( QVariant ) parent->getDefaultFullscreen() ).toBool() );
+	fs->setChecked (
+	    st.value ( sessionId+"/fullscreen",
+	               ( QVariant ) parent->getDefaultFullscreen() ).toBool() );
 
-	custom->setChecked ( ! st.value ( sessionId+"/fullscreen",
-	                                  ( QVariant ) parent->getDefaultFullscreen() ).toBool() );
+	custom->setChecked ( ! st.value (
+	                         sessionId+"/fullscreen",
+	                         ( QVariant ) parent->getDefaultFullscreen()
+	                     ).toBool() );
 
 
-	width->setValue ( st.value ( sessionId+"/width", ( QVariant ) parent->getDefaultWidth() ).toInt() );
-	height->setValue ( st.value ( sessionId+"/height", ( QVariant ) parent->getDefaultHeight() ).toInt() );
+	width->setValue (
+	    st.value ( sessionId+"/width",
+	               ( QVariant ) parent->getDefaultWidth() ).toInt() );
+	height->setValue (
+	    st.value ( sessionId+"/height",
+	               ( QVariant ) parent->getDefaultHeight() ).toInt() );
 
-	kbd->setChecked ( !st.value ( sessionId+"/usekbd", ( QVariant ) parent->getDefaultSetKbd() ).toBool() );
-	layout->setText ( st.value ( sessionId+"/layout", ( QVariant ) parent->getDefaultLayout() ).toString() );
-	type->setText ( st.value ( sessionId+"/type", ( QVariant ) parent->getDefaultKbdType() ).toString() );
-	bool snd=st.value ( sessionId+"/sound", ( QVariant ) parent->getDefaultUseSound() ).toBool();
+	kbd->setChecked ( !st.value (
+	                      sessionId+"/usekbd",
+	                      ( QVariant ) parent->getDefaultSetKbd()
+	                  ).toBool() );
+	layout->setText (
+	    st.value ( sessionId+"/layout",
+	               ( QVariant ) parent->getDefaultLayout()
+	             ).toString() );
+	type->setText (
+	    st.value ( sessionId+"/type",
+	               ( QVariant ) parent->getDefaultKbdType()
+	             ).toString() );
+	bool snd=st.value (
+	             sessionId+"/sound",
+	             ( QVariant ) parent->getDefaultUseSound()
+	         ).toBool();
 	QString sndsys=st.value ( sessionId+"/soundsystem","pulse" ).toString();
-	bool startServ=st.value ( sessionId+"/startsoundsystem", true ).toBool();
+	bool startServ=st.value ( sessionId+"/startsoundsystem",
+	                          true ).toBool();
 	bool sndInTun=st.value ( sessionId+"/soundtunnel", true ).toBool();
 	bool defSndPort=st.value ( sessionId+"/defsndport", true ).toBool();
 	int sndPort= st.value ( sessionId+"/sndport",4713 ).toInt();
-	cbFsSshTun->setChecked ( st.value ( sessionId+"/fstunnel", true ).toBool() );
+	cbFsSshTun->setChecked ( st.value ( sessionId+"/fstunnel",
+	                                    true ).toBool() );
 	if ( startServ )
 		rbStartSnd->setChecked ( true );
 	else
@@ -691,7 +763,12 @@ void EditConnectionDialog::readConfig()
 		cbDefSndPort->setChecked ( false );
 	slot_sndToggled ( snd );
 	slot_sndStartClicked();
-	QString exportDir=st.value ( sessionId+"/export", ( QVariant ) QString::null ).toString();
+
+	cbClientPrint->setChecked ( st.value ( sessionId+"/print",
+	                                       true ).toBool() );
+
+	QString exportDir=st.value ( sessionId+"/export",
+	                             ( QVariant ) QString::null ).toString();
 
 	QStringList lst=exportDir.split ( ";",QString::SkipEmptyParts );
 	for ( int i=0;i<lst.size();++i )
@@ -779,7 +856,8 @@ void EditConnectionDialog::slot_accepted()
 {
 
 #ifndef WINDOWS
-	QSettings st ( QDir::homePath() +"/.x2goclient/sessions",QSettings::NativeFormat );
+	QSettings st ( QDir::homePath() +"/.x2goclient/sessions",
+	               QSettings::NativeFormat );
 #else
 	QSettings st ( "Obviously Nice","x2goclient" );
 	st.beginGroup ( "sessions" );
@@ -807,7 +885,8 @@ void EditConnectionDialog::slot_accepted()
 	{
 		QString app;
 		if ( i==-1 )
-			app=parent->internAppName ( cmdCombo->lineEdit()->text () );
+			app=parent->internAppName (
+			        cmdCombo->lineEdit()->text () );
 		else
 			app=parent->internAppName ( cmdCombo->itemText ( i ) );
 		if ( appList.indexOf ( app ) ==-1 && app!="" &&
@@ -825,7 +904,8 @@ void EditConnectionDialog::slot_accepted()
 	st.setValue ( sessionId+"/applications", ( QVariant ) appList );
 	st.setValue ( sessionId+"/command", ( QVariant ) command );
 	st.setValue ( sessionId+"/speed", ( QVariant ) spd->value() );
-	st.setValue ( sessionId+"/pack", ( QVariant ) packMethode->currentText() );
+	st.setValue ( sessionId+"/pack",
+	              ( QVariant ) packMethode->currentText() );
 	st.setValue ( sessionId+"/quality", ( QVariant ) quali->value() );
 	st.setValue ( sessionId+"/fullscreen", ( QVariant ) fs->isChecked() );
 	st.setValue ( sessionId+"/width", ( QVariant ) width->value() );
@@ -841,11 +921,17 @@ void EditConnectionDialog::slot_accepted()
 	if ( pulse->isChecked() )
 		st.setValue ( sessionId+"/soundsystem", ( QVariant ) "pulse" );
 
-	st.setValue ( sessionId+"/startsoundsystem", ( QVariant ) rbStartSnd->isChecked() );
-	st.setValue ( sessionId+"/soundtunnel", ( QVariant ) cbSndSshTun->isChecked() );
-	st.setValue ( sessionId+"/fstunnel", ( QVariant ) cbFsSshTun->isChecked() );
-	st.setValue ( sessionId+"/defsndport", ( QVariant ) cbDefSndPort->isChecked() );
+	st.setValue ( sessionId+"/startsoundsystem",
+	              ( QVariant ) rbStartSnd->isChecked() );
+	st.setValue ( sessionId+"/soundtunnel",
+	              ( QVariant ) cbSndSshTun->isChecked() );
+	st.setValue ( sessionId+"/fstunnel",
+	              ( QVariant ) cbFsSshTun->isChecked() );
+	st.setValue ( sessionId+"/defsndport",
+	              ( QVariant ) cbDefSndPort->isChecked() );
 	st.setValue ( sessionId+"/sndport", ( QVariant ) sbSndPort->value() );
+	st.setValue ( sessionId+"/print",
+	              ( QVariant ) cbClientPrint->isChecked() );
 
 
 	QString exportDirs;
@@ -878,19 +964,22 @@ void EditConnectionDialog::slot_default()
 			cmdCombo->clear();
 			cmdCombo->addItem ( "" );
 			cmdCombo->addItems ( parent->transApplicationsNames() );
-			cmdCombo->lineEdit()->setText ( tr ( "Path to executable" ) );
+			cmdCombo->lineEdit()->setText (
+			    tr ( "Path to executable" ) );
 			cmdCombo->lineEdit()->selectAll();
 			slot_changeCmd ( 0 );
 			cmd->setEnabled ( false );
 			sessIcon=":icons/128x128/x2gosession.png";
 			icon->setIcon ( QIcon ( sessIcon ) );
-			sshPort->setValue ( parent->getDefaultSshPort().toInt() );
+			sshPort->setValue (
+			    parent->getDefaultSshPort().toInt() );
 		}
 		break;
 		case 1:
 		{
 			spd->setValue ( 2 );
-			packMethode->setCurrentIndex ( packMethode->findText ( "16m-jpeg" ) );
+			packMethode->setCurrentIndex (
+			    packMethode->findText ( "16m-jpeg" ) );
 			quali->setValue ( 9 );
 			slot_changePack ( "16m-jpeg" );
 		}
@@ -1000,7 +1089,7 @@ void EditConnectionDialog::slot_sndSysSelected ( int system )
 			rbStartSnd->hide();
 			rbNotStartSnd->hide();
 			cbSndSshTun->show();
-		        cbSndSshTun->setEnabled (true);
+			cbSndSshTun->setEnabled ( true );
 			break;
 		}
 		case ARTS:
@@ -1016,8 +1105,8 @@ void EditConnectionDialog::slot_sndSysSelected ( int system )
 			rbStartSnd->hide();
 			rbNotStartSnd->hide();
 			cbSndSshTun->show();
-		        cbSndSshTun->setEnabled (false);
-		        cbSndSshTun->setChecked (true);
+			cbSndSshTun->setEnabled ( false );
+			cbSndSshTun->setChecked ( true );
 #endif
 			sbSndPort->setValue ( 16001 );
 			break;
@@ -1035,15 +1124,15 @@ void EditConnectionDialog::slot_sndToggled ( bool val )
 	rbStartSnd->setEnabled ( val );
 	rbNotStartSnd->setEnabled ( val );
 
-        cbSndSshTun->setEnabled (false);
-	if(pulse->isChecked())
-	    cbSndSshTun->setEnabled ( val );
+	cbSndSshTun->setEnabled ( false );
+	if ( pulse->isChecked() )
+		cbSndSshTun->setEnabled ( val );
 	lSndPort->setEnabled ( val );
 	if ( !arts->isChecked() )
 		cbDefSndPort->setEnabled ( val );
 	sbSndPort->setEnabled ( val );
-	if(val)
-	   slot_sndStartClicked();
+	if ( val )
+		slot_sndStartClicked();
 
 }
 
@@ -1052,7 +1141,7 @@ void EditConnectionDialog::slot_sndStartClicked()
 	bool start=rbStartSnd->isChecked();
 #ifdef WINDOWS
 	start=false;
-#endif	
+#endif
 	if ( pulse->isChecked() )
 	{
 		lSndPort->setEnabled ( true );

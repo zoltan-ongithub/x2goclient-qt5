@@ -8,7 +8,8 @@
 
 
 
-SVGFrame::SVGFrame(QString fname,bool st,QWidget* parent, Qt::WFlags f) :QFrame(parent,f)
+SVGFrame::SVGFrame(QString fname,bool st,QWidget* parent, 
+		   Qt::WFlags f) :QFrame(parent,f)
 {
     empty=false;
     if(fname==QString::null)
@@ -24,7 +25,8 @@ SVGFrame::SVGFrame(QString fname,bool st,QWidget* parent, Qt::WFlags f) :QFrame(
         {
             setAutoFillBackground(true);
             QPalette pal=palette();
-            QImage img(renderer->defaultSize(),QImage::Format_ARGB32_Premultiplied);
+            QImage img(renderer->defaultSize(),
+		       QImage::Format_ARGB32_Premultiplied);
             QPainter p(&img);
             renderer->render(&p);
             pal.setBrush(QPalette::Window,QBrush(QPixmap::fromImage(img)));

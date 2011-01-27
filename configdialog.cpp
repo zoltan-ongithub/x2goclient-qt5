@@ -26,21 +26,25 @@
 #include <QRadioButton>
 #include <QMessageBox>
 #include "x2gologdebug.h"
-
+#include "printwidget.h"
+#include <QTabWidget>
 ConfigDialog::ConfigDialog ( QWidget * parent, Qt::WFlags f )
 		: QDialog ( parent,f )
 {
 
+	QTabWidget* tbw=new QTabWidget ( this );
 	QVBoxLayout* ml=new QVBoxLayout ( this );
-	QFrame *fr=new QFrame ( this );
+	QWidget *fr=new QWidget ( this );
+	tbw->addTab ( fr,tr ( "General" ) );
 	QVBoxLayout* frLay=new QVBoxLayout ( fr );
-	ml->addWidget ( fr );
+	ml->addWidget ( tbw );
 	ONMainWindow* par= ( ONMainWindow* ) parent;
 
 
 #ifndef WINDOWS
 
-	QSettings st ( QDir::homePath() +"/.x2goclient/settings",QSettings::NativeFormat );
+	QSettings st ( QDir::homePath() +"/.x2goclient/settings",
+	               QSettings::NativeFormat );
 #else
 
 	QSettings st ( "Obviously Nice","x2goclient" );
@@ -112,20 +116,39 @@ ConfigDialog::ConfigDialog ( QWidget * parent, Qt::WFlags f )
 	setLay->addLayout ( aLay2 );
 
 
-	useldap->setChecked ( st.value ( "LDAP/useldap", ( QVariant ) par->retUseLdap() ).toBool() );
-	ldapServer->setText ( st.value ( "LDAP/server", ( QVariant ) par->retLdapServer() ).toString() );
-	port->setValue ( st.value ( "LDAP/port", ( QVariant ) par->retLdapPort() ).toInt() );
-	ldapServer1->setText ( st.value ( "LDAP/server1", ( QVariant ) par->retLdapServer1() ).toString() );
-	port1->setValue ( st.value ( "LDAP/port1", ( QVariant ) par->retLdapPort1() ).toInt() );
-	ldapServer2->setText ( st.value ( "LDAP/server2", ( QVariant ) par->retLdapServer2() ).toString() );
-	port2->setValue ( st.value ( "LDAP/port2", ( QVariant ) par->retLdapPort2() ).toInt() );
-	ldapBase->setText ( st.value ( "LDAP/basedn", ( QVariant ) par->retLdapDn() ).toString() );
+	useldap->setChecked ( st.value ( "LDAP/useldap",
+	                                 ( QVariant ) par->retUseLdap()
+	                               ).toBool() );
+	ldapServer->setText ( st.value ( "LDAP/server",
+	                                 ( QVariant ) par->retLdapServer()
+	                               ).toString() );
+	port->setValue ( st.value ( "LDAP/port",
+	                            ( QVariant ) par->retLdapPort()
+	                          ).toInt() );
+	ldapServer1->setText ( st.value ( "LDAP/server1",
+	                                  ( QVariant ) par->retLdapServer1()
+	                                ).toString() );
+	port1->setValue ( st.value ( "LDAP/port1",
+	                             ( QVariant ) par->retLdapPort1()
+	                           ).toInt() );
+	ldapServer2->setText ( st.value ( "LDAP/server2",
+	                                  ( QVariant ) par->retLdapServer2()
+	                                ).toString() );
+	port2->setValue ( st.value ( "LDAP/port2",
+	                             ( QVariant ) par->retLdapPort2()
+	                           ).toInt() );
+	ldapBase->setText ( st.value ( "LDAP/basedn",
+	                               ( QVariant ) par->retLdapDn()
+	                             ).toString() );
 	gb->setEnabled ( useldap->isChecked() );
 	frLay->addWidget ( gb );
-	connect ( useldap,SIGNAL ( toggled ( bool ) ),gb,SLOT ( setEnabled ( bool ) ) );
+	connect ( useldap,SIGNAL ( toggled ( bool ) ),gb,
+	          SLOT ( setEnabled ( bool ) ) );
 
-	connect ( useldap,SIGNAL ( toggled ( bool ) ),this,SLOT ( slot_checkOkStat() ) );
-	connect ( ldapBase,SIGNAL ( textChanged ( const QString& ) ),this,SLOT ( slot_checkOkStat() ) );
+	connect ( useldap,SIGNAL ( toggled ( bool ) ),this,
+	          SLOT ( slot_checkOkStat() ) );
+	connect ( ldapBase,SIGNAL ( textChanged ( const QString& ) ),this,
+	          SLOT ( slot_checkOkStat() ) );
 	connect ( ldapServer,SIGNAL ( textChanged ( const QString& ) ),this,
 	          SLOT ( slot_checkOkStat() ) );
 #endif  //USELDAP
@@ -136,7 +159,8 @@ ConfigDialog::ConfigDialog ( QWidget * parent, Qt::WFlags f )
 
 	leXexec=new QLineEdit ( xgb );
 	leXexec->setReadOnly ( true );
-	pbOpenExec=new QPushButton ( QIcon ( par->iconsPath ( "/32x32/file-open.png" ) ),
+	pbOpenExec=new QPushButton ( QIcon ( par->iconsPath (
+	                                         "/32x32/file-open.png" ) ),
 	                             QString::null,xgb );
 	xLay->addWidget ( new QLabel ( tr ( "X11 application:" ) ),0,0 );
 
@@ -163,10 +187,13 @@ ConfigDialog::ConfigDialog ( QWidget * parent, Qt::WFlags f )
 	else
 		slot_findXDarwin();
 
-	QPushButton* findButton=new QPushButton ( tr ( "Find X11 application" ),xgb );
+	QPushButton* findButton=new QPushButton (
+	    tr ( "Find X11 application" ),xgb );
 	xLay->addWidget ( findButton,2,1 );
-	connect ( findButton,SIGNAL ( clicked() ),this,SLOT ( slot_findXDarwin() ) );
-	connect ( pbOpenExec,SIGNAL ( clicked() ),this,SLOT ( slot_selectXDarwin() ) );
+	connect ( findButton,SIGNAL ( clicked() ),this,
+	          SLOT ( slot_findXDarwin() ) );
+	connect ( pbOpenExec,SIGNAL ( clicked() ),this,
+	          SLOT ( slot_selectXDarwin() ) );
 
 #endif //Q_OS_DARWIN
 
@@ -183,17 +210,20 @@ ConfigDialog::ConfigDialog ( QWidget * parent, Qt::WFlags f )
 		bgRadio->addButton ( rbX[i],i );
 
 	leXexec=new QLineEdit ( xgb );
-	pbOpenExec=new QPushButton ( QIcon ( par->iconsPath ( "/32x32/file-open.png" ) ),
+	pbOpenExec=new QPushButton ( QIcon ( par->iconsPath (
+	                                         "/32x32/file-open.png" ) ),
 	                             QString::null,xgb );
 	leCmdOpt=new QLineEdit ( xgb );
 	sbDisp=new QSpinBox ( xgb );
 	sbDisp->setMinimum ( 0 );
 	sbDisp->setMaximum ( 100 );
 	leXexecDir=new QLineEdit ( xgb );
-	QPushButton* pbOpenExecDir=new QPushButton ( QIcon ( par->iconsPath ( "/32x32/file-open.png" ) ),
+	QPushButton* pbOpenExecDir=new QPushButton ( QIcon ( par->iconsPath (
+	            "/32x32/file-open.png" ) ),
 	        QString::null,xgb );
 
-	QPushButton* pbDefault=new QPushButton ( tr ( "Reset to defaults" ),xgb );
+	QPushButton* pbDefault=new QPushButton (
+	    tr ( "Reset to defaults" ),xgb );
 	xLay->addWidget ( rbX[0],0,0 );
 	xLay->addWidget ( rbX[1],1,0 );
 	xLay->addWidget ( rbX[2],2,0 );
@@ -222,18 +252,30 @@ ConfigDialog::ConfigDialog ( QWidget * parent, Qt::WFlags f )
 
 	QSettings xst ( "Obviously Nice","x2goclient" );
 	xst.beginGroup ( "settings" );
-	leXexec->setText ( xst.value ( "X/command", ( QVariant ) QString::null ).toString() );
-	sbDisp->setValue ( xst.value ( "X/display", ( QVariant ) 0 ).toInt() );
-	leXexecDir->setText ( xst.value ( "X/execdir", ( QVariant ) QString::null ).toString() );
-	leCmdOpt->setText ( xst.value ( "X/options", ( QVariant ) QString::null ).toString() );
+	leXexec->setText ( xst.value ( "X/command",
+	                               ( QVariant ) QString::null
+	                             ).toString() );
+	sbDisp->setValue ( xst.value ( "X/display",
+	                               ( QVariant ) 0 ).toInt() );
+	leXexecDir->setText ( xst.value ( "X/execdir",
+	                                  ( QVariant ) QString::null
+	                                ).toString() );
+	leCmdOpt->setText ( xst.value ( "X/options",
+	                                ( QVariant ) QString::null
+	                              ).toString() );
 	rbX[2]->setChecked ( true );
 	if ( leXexec->text().length() <=0 )
 		slotDefaultXSettings();
-	connect ( pbDefault,SIGNAL ( clicked() ),this,SLOT ( slotDefaultXSettings() ) );
-	connect ( pbOpenExecDir,SIGNAL ( clicked() ),this,SLOT ( slotGetExecDir() ) );
-	connect ( pbOpenExec,SIGNAL ( clicked() ),this,SLOT ( slotGetExec() ) );
-	connect ( bgRadio,SIGNAL ( buttonClicked ( int ) ),this,SLOT ( slotXSelected ( int ) ) );
-	connect ( sbDisp,SIGNAL ( valueChanged ( const QString& ) ),this,SLOT ( slotDispChanged ( const QString& ) ) );
+	connect ( pbDefault,SIGNAL ( clicked() ),this,
+	          SLOT ( slotDefaultXSettings() ) );
+	connect ( pbOpenExecDir,SIGNAL ( clicked() ),this,
+	          SLOT ( slotGetExecDir() ) );
+	connect ( pbOpenExec,SIGNAL ( clicked() ),this,
+	          SLOT ( slotGetExec() ) );
+	connect ( bgRadio,SIGNAL ( buttonClicked ( int ) ),this,
+	          SLOT ( slotXSelected ( int ) ) );
+	connect ( sbDisp,SIGNAL ( valueChanged ( const QString& ) ),
+	          this,SLOT ( slotDispChanged ( const QString& ) ) );
 
 	bool found;
 	QString xname,xdir,xopt;
@@ -278,12 +320,17 @@ ConfigDialog::ConfigDialog ( QWidget * parent, Qt::WFlags f )
 
 
 #endif //WINDOWS
+
 	clientSshPort=new QSpinBox ( fr );
 	clientSshPort->setMaximum ( 1000000 );
-	clientSshPort->setValue ( st.value ( "clientport", ( QVariant ) 22 ).toInt() );
+	clientSshPort->setValue ( st.value ( "clientport",
+	                                     ( QVariant ) 22 ).toInt() );
 
 	QHBoxLayout* sshLay=new QHBoxLayout();
-	sshLay->addWidget ( new QLabel ( tr ( "Clientside SSH port for file system export usage:" ),fr ) );
+	sshLay->addWidget (
+	    new QLabel ( tr (
+	                     "Clientside SSH port for file system export usage:"
+	                 ),fr ) );
 	sshLay->addWidget ( clientSshPort );
 	sshLay->addStretch();
 	frLay->addLayout ( sshLay );
@@ -305,11 +352,13 @@ ConfigDialog::ConfigDialog ( QWidget * parent, Qt::WFlags f )
 	bLay->addWidget ( cancel );
 	ml->addLayout ( bLay );
 
-	fr->setFrameStyle ( QFrame::StyledPanel | QFrame::Raised );
-	fr->setLineWidth ( 2 );
+// 	fr->setFrameStyle ( QFrame::StyledPanel | QFrame::Raised );
+// 	fr->setLineWidth ( 2 );
 
 	setSizeGripEnabled ( true );
-	setWindowIcon ( QIcon ( ( ( ONMainWindow* ) parent )->iconsPath ( "/32x32/edit_settings.png" ) ) );
+	setWindowIcon ( QIcon ( (
+	                            ( ONMainWindow* ) parent )->iconsPath (
+	                            "/32x32/edit_settings.png" ) ) );
 	setWindowTitle ( tr ( "Settings" ) );
 
 #ifdef Q_WS_HILDON
@@ -317,15 +366,19 @@ ConfigDialog::ConfigDialog ( QWidget * parent, Qt::WFlags f )
 	fnt.setPointSize ( 10 );
 	setFont ( fnt );
 	QSize sz=ok->sizeHint();
-	sz.setWidth((int)(sz.width()/1.5));
-	sz.setHeight((int)(sz.height()/1.5));
+	sz.setWidth ( ( int ) ( sz.width() /1.5 ) );
+	sz.setHeight ( ( int ) ( sz.height() /1.5 ) );
 	ok->setFixedSize ( sz );
 	sz=cancel->sizeHint();
-	sz.setWidth((int)(sz.width()));
-	sz.setHeight((int)(sz.height()/1.5));
+	sz.setWidth ( ( int ) ( sz.width() ) );
+	sz.setHeight ( ( int ) ( sz.height() /1.5 ) );
 	cancel->setFixedSize ( sz );
-        clientSshPort->setFixedHeight(int(clientSshPort->sizeHint().height()*1.5));
+	clientSshPort->setFixedHeight (
+	    int ( clientSshPort->sizeHint().height() *1.5 ) );
 #endif
+
+	pwid=new PrintWidget ( this );
+	tbw->addTab ( pwid,tr ( "Printing" ) );
 
 }
 
@@ -337,7 +390,8 @@ ConfigDialog::~ConfigDialog()
 void ConfigDialog::slot_accepted()
 {
 #ifndef WINDOWS
-	QSettings st ( QDir::homePath() +"/.x2goclient/settings",QSettings::NativeFormat );
+	QSettings st ( QDir::homePath() +"/.x2goclient/settings",
+	               QSettings::NativeFormat );
 #else
 
 	QSettings st ( "Obviously Nice","x2goclient" );
@@ -351,10 +405,12 @@ void ConfigDialog::slot_accepted()
 		st.setValue ( "LDAP/server", ( QVariant ) ldapServer->text() );
 	st.setValue ( "LDAP/port1", ( QVariant ) port1->value() );
 	if ( ldapServer1->text().length() )
-		st.setValue ( "LDAP/server1", ( QVariant ) ldapServer1->text() );
+		st.setValue ( "LDAP/server1", ( QVariant )
+		              ldapServer1->text() );
 	st.setValue ( "LDAP/port2", ( QVariant ) port2->value() );
 	if ( ldapServer2->text().length() )
-		st.setValue ( "LDAP/server2", ( QVariant ) ldapServer2->text() );
+		st.setValue ( "LDAP/server2", ( QVariant )
+		              ldapServer2->text() );
 	if ( ldapBase->text().length() )
 		st.setValue ( "LDAP/basedn", ( QVariant ) ldapBase->text() );
 #endif //USELDAP
@@ -371,7 +427,8 @@ void ConfigDialog::slot_accepted()
 			xst.setValue ( "X/command", ( QVariant ) "CYGWIN" );
 			break;
 		case CUSTOM:
-			xst.setValue ( "X/command", ( QVariant ) leXexec->text() );
+			xst.setValue ( "X/command", ( QVariant )
+			               leXexec->text() );
 			break;
 	}
 	xst.setValue ( "X/display", ( QVariant ) sbDisp->value() );
@@ -382,19 +439,21 @@ void ConfigDialog::slot_accepted()
 	st.setValue ( "xdarwin/directory", ( QVariant ) leXexec->text() );
 #endif
 	st.setValue ( "clientport", ( QVariant ) clientSshPort->value() );
-
+	pwid->saveSettings();
 }
 
 
 void ConfigDialog::slot_checkOkStat()
 {
-	ok->setEnabled ( ( !useldap->isChecked() ) || ( ( ldapBase->text().length() &&
-	                 ldapServer->text().length() ) ) );
+	ok->setEnabled ( ( !useldap->isChecked() ) ||
+	                 ( ( ldapBase->text().length() &&
+	                     ldapServer->text().length() ) ) );
 }
 
 
 #ifdef WINDOWS
-void ConfigDialog::getXming ( bool* found, QString* execName,QString* execDir, QString* options )
+void ConfigDialog::getXming ( bool* found, QString* execName,
+                              QString* execDir, QString* options )
 {
 	*found=false;
 	QString xming;
@@ -412,8 +471,12 @@ void ConfigDialog::getXming ( bool* found, QString* execName,QString* execDir, Q
 			return;
 		}
 	}
-	QSettings st ( "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Xming_is1",QSettings::NativeFormat );
-	xming=st.value ( "Inno Setup: App Path", ( QVariant ) QString::null ).toString();
+	QSettings st ( "HKEY_LOCAL_MACHINE""\\SOFTWARE\\Microsoft"
+	               "\\Windows\\CurrentVersion"
+	               "\\Uninstall\\Xming_is1",
+	               QSettings::NativeFormat );
+	xming=st.value ( "Inno Setup: App Path",
+	                 ( QVariant ) QString::null ).toString();
 	if ( xming.length() >0 && QFile::exists ( xming+"\\Xming.exe" ) )
 	{
 		*found=true;
@@ -423,7 +486,8 @@ void ConfigDialog::getXming ( bool* found, QString* execName,QString* execDir, Q
 	}
 }
 
-void ConfigDialog::getCygwin ( bool* found, QString* execName,QString* execDir, QString* options )
+void ConfigDialog::getCygwin ( bool* found, QString* execName,
+                               QString* execDir, QString* options )
 {
 	*found=false;
 	QString cygbin;
@@ -472,7 +536,8 @@ void ConfigDialog::slotDefaultXSettings()
 
 void ConfigDialog::slotGetExecDir()
 {
-	QString newDir=QFileDialog::getExistingDirectory ( this,QString(),leXexecDir->text() );
+	QString newDir=QFileDialog::getExistingDirectory ( this,
+	               QString(),leXexecDir->text() );
 	if ( newDir.length() >0 )
 		leXexecDir->setText ( newDir );
 }
@@ -497,7 +562,10 @@ void ConfigDialog::slotGetExec()
 	if ( !xmingFound && !cygFound )
 	{
 		QString newFile=
-		    QFileDialog::getOpenFileName ( this,QString(),leXexecDir->text(),tr ( "Applications (*.exe);;All Files (*.*)" ) );
+		    QFileDialog::getOpenFileName (
+		        this,QString(),
+		        leXexecDir->text(),
+		        tr ( "Applications (*.exe);;All Files (*.*)" ) );
 		if ( newFile.length() >0 )
 			leXexec->setText ( newFile );
 		return;
@@ -561,14 +629,18 @@ void ConfigDialog::slotDispChanged ( const QString& val )
 	leCmdOpt->setText ( args[0].trimmed() +" :"+val );
 }
 
-void ConfigDialog::getXSettings ( uint *display, QString* execName,QString* execDir, QString* options )
+void ConfigDialog::getXSettings ( uint *display, QString* execName,
+                                  QString* execDir, QString* options )
 {
 	QSettings xst ( "Obviously Nice","x2goclient" );
 	xst.beginGroup ( "settings" );
-	QString xname=xst.value ( "X/command", ( QVariant ) QString::null ).toString();
+	QString xname=xst.value ( "X/command", ( QVariant )
+	                          QString::null ).toString();
 	int disp=xst.value ( "X/display", ( QVariant ) 0 ).toInt();
-	QString xdir=xst.value ( "X/execdir", ( QVariant ) QString::null ).toString();
-	QString opt=xst.value ( "X/options", ( QVariant ) QString::null ).toString();
+	QString xdir=xst.value ( "X/execdir", ( QVariant )
+	                         QString::null ).toString();
+	QString opt=xst.value ( "X/options", ( QVariant )
+	                        QString::null ).toString();
 	*display=disp;
 	if ( xname.length() >0 && xname!="XMING" && xname !="CYGWIN" )
 	{
@@ -627,11 +699,15 @@ void ConfigDialog::getXSettings ( uint *display, QString* execName,QString* exec
 QString ConfigDialog::getCygwinDir ( const QString& dir )
 {
 	QString cygdir=QString::null;
-	QSettings lu_st ( "HKEY_CURRENT_USER\\Software\\Cygnus Solutions\\Cygwin\\mounts v2\\"+dir,QSettings::NativeFormat );
+	QSettings lu_st ( "HKEY_CURRENT_USER\\Software"
+	                  "\\Cygnus Solutions\\Cygwin\\mounts v2\\"+
+	                  dir,QSettings::NativeFormat );
 	cygdir=lu_st.value ( "native", ( QVariant ) QString::null ).toString();
 	if ( cygdir!= QString::null )
 		return cygdir;
-	QSettings lm_st ( "HKEY_LOCAL_MACHINE\\SOFTWARE\\Cygnus Solutions\\Cygwin\\mounts v2\\"+dir,QSettings::NativeFormat );
+	QSettings lm_st ( "HKEY_LOCAL_MACHINE\\SOFTWARE"
+	                  "\\Cygnus Solutions\\Cygwin\\mounts v2\\"+
+	                  dir,QSettings::NativeFormat );
 	return lm_st.value ( "native", ( QVariant ) QString::null ).toString();
 }
 #endif
@@ -661,15 +737,19 @@ QString ConfigDialog::findXDarwin ( QString& version, QString path )
 		QString ver1="0.0.0";
 		if ( QFile::exists ( dir1+"/Contents/Info.plist" ) )
 		{
-			QSettings vst ( dir1+"/Contents/Info.plist",QSettings::NativeFormat );
-			ver1=vst.value ( "CFBundleShortVersionString", ( QVariant ) "0.0.0" ).toString();
+			QSettings vst ( dir1+"/Contents/Info.plist",
+			                QSettings::NativeFormat );
+			ver1=vst.value ( "CFBundleShortVersionString",
+			                 ( QVariant ) "0.0.0" ).toString();
 		}
 		QString dir2="/usr/X11/X11.app";
 		QString ver2="0.0.0";;
 		if ( QFile::exists ( dir2+"/Contents/Info.plist" ) )
 		{
-			QSettings vst ( dir2+"/Contents/Info.plist",QSettings::NativeFormat );
-			ver2=vst.value ( "CFBundleShortVersionString", ( QVariant ) "0.0.0" ).toString();
+			QSettings vst ( dir2+"/Contents/Info.plist",
+			                QSettings::NativeFormat );
+			ver2=vst.value ( "CFBundleShortVersionString",
+			                 ( QVariant ) "0.0.0" ).toString();
 		}
 		if ( retMaxXDarwinVersion ( ver1,ver2 ) ==ver1 )
 		{
@@ -685,8 +765,10 @@ QString ConfigDialog::findXDarwin ( QString& version, QString path )
 	version="0.0.0";
 	if ( QFile::exists ( path+"/Contents/Info.plist" ) )
 	{
-		QSettings vst ( path+"/Contents/Info.plist",QSettings::NativeFormat );
-		version=vst.value ( "CFBundleShortVersionString", ( QVariant ) "0.0.0" ).toString();
+		QSettings vst ( path+"/Contents/Info.plist",
+		                QSettings::NativeFormat );
+		version=vst.value ( "CFBundleShortVersionString",
+		                    ( QVariant ) "0.0.0" ).toString();
 	}
 	return path;
 }
@@ -698,7 +780,11 @@ void ConfigDialog::slot_findXDarwin()
 	QString path=findXDarwin ( version );
 	if ( path=="" )
 	{
-		QMessageBox::warning ( this,tr ( "Warning" ), tr ( "x2goclient could not find any suitable X11 Application. Please install Apple X11 or select the path to the application" ) );
+		QMessageBox::warning (
+		    this,tr ( "Warning" ),
+		    tr ( "x2goclient could not find any suitable X11 "
+		         "Application. Please install Apple X11 "
+		         "or select the path to the application" ) );
 	}
 	QString minVer="2.1.0";
 	if ( retMaxXDarwinVersion ( minVer,version ) ==minVer )
@@ -712,10 +798,13 @@ void ConfigDialog::slot_findXDarwin()
 
 void ConfigDialog::printXDarwinVersionWarning ( QString version )
 {
-	QMessageBox::warning ( this,tr ( "Warning" ),
-	                       tr ( "Your are using X11 (Apple X-Window Server) version " )
-	                       +version+
-	                       tr ( ". This version causes problems with X-application in 24bit color mode. You should update your X11 environment (http://trac.macosforge.org/projects/xquartz)." ) );
+	QMessageBox::warning (
+	    this,tr ( "Warning" ),
+	    tr ( "Your are using X11 (Apple X-Window Server) version " )
+	    +version+
+	    tr ( ". This version causes problems with X-application in 24bit "
+	         "color mode. You should update your X11 environment "
+	         "(http://trac.macosforge.org/projects/xquartz)." ) );
 }
 
 
@@ -728,7 +817,10 @@ void ConfigDialog::slot_selectXDarwin()
 		findXDarwin ( version,newDir );
 		if ( version=="0.0.0" )
 		{
-			QMessageBox::warning ( this, tr ( "Warning" ),tr ( "No suitable X11 application found in selected path" ) );
+			QMessageBox::warning (
+			    this, tr ( "Warning" ),
+			    tr ( "No suitable X11 application found "
+			         "in selected path" ) );
 			return;
 		}
 		QString minVer="2.1.0";
@@ -742,9 +834,8 @@ void ConfigDialog::slot_selectXDarwin()
 }
 QString ConfigDialog::getXDarwinDirectory()
 {
-	QSettings st ( QDir::homePath() +"/.x2goclient/settings",QSettings::NativeFormat );
+	QSettings st ( QDir::homePath() +"/.x2goclient/settings",
+	               QSettings::NativeFormat );
 	return st.value ( "xdarwin/directory", ( QVariant ) "" ).toString() ;
 }
 #endif
-
-

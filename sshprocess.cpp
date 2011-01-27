@@ -17,8 +17,10 @@
 #include <QTemporaryFile>
 #include <QApplication>
 
-sshProcess::sshProcess ( QObject* parent,const QString& user, const QString& host,const QString& pt,
-                         const QString& cmd,const QString& pass, const QString& key, bool acc )
+sshProcess::sshProcess ( QObject* parent,const QString& user,
+                         const QString& host,const QString& pt,
+                         const QString& cmd,const QString& pass,
+                         const QString& key, bool acc )
 		: QProcess ( parent )
 {
 	sudoErr=false;
@@ -51,7 +53,8 @@ sshProcess::sshProcess ( QObject* parent,const QString& user, const QString& hos
 	QStringList env = QProcess::systemEnvironment();
 	for ( int i=env.count()-1;i>=0;--i ) //clear gpg variables
 	{
-		if ( ( env[i].indexOf ( "GPG_AGENT_INFO" ) !=-1 ) || ( env[i].indexOf ( "SSH_AUTH_SOCK" ) !=-1 ) ||
+		if ( ( env[i].indexOf ( "GPG_AGENT_INFO" ) !=-1 ) ||
+		        ( env[i].indexOf ( "SSH_AUTH_SOCK" ) !=-1 ) ||
 		        ( env[i].indexOf ( "SSH_AGENT_PID" ) !=-1 ) )
 		{
 			env.removeAt ( i );
@@ -63,7 +66,8 @@ sshProcess::sshProcess ( QObject* parent,const QString& user, const QString& hos
 
 	env.insert ( 0, "SSH_ASKPASS=winaskpass" );
 	env.insert ( 0, "SSH_PASSFILE="+askpass );
-	env.insert ( 0, "DISPLAY=localhost:0" );   //don't care if real display is not 0
+	env.insert ( 0, "DISPLAY=localhost:0" );
+	//don't care if real display is not 0
 	//we need it only to start winaskpass
 	//which is not X application
 #endif
@@ -97,24 +101,29 @@ void sshProcess::slot_finished ( int exitCode, QProcess::ExitStatus status )
 	if ( ( exitCode!=0&&exitCode!=1 ) || status !=0 )
 	{
 		QString resp=getResponce();
-		if ( errorString.indexOf ( "Host key verification failed" ) !=-1 )
+		if ( errorString.indexOf (
+		            "Host key verification failed" ) !=-1 )
 		{
 			int res;
 			if ( !autoAccept )
-				res=QMessageBox::warning ( 0l,errorString,resp,tr ( "Yes" ),tr ( "No" ) );
+				res=QMessageBox::warning ( 0l,errorString,resp,
+				                           tr ( "Yes" ),
+				                           tr ( "No" ) );
 			else
 				res=0;
 			if ( res==0 )
 			{
 				if ( isTunnel )
-					startTunnel ( tunnelHost,localPort,remotePort,reverse,true );
+					startTunnel ( tunnelHost,localPort,
+					              remotePort,reverse,true );
 				else if ( isCopy )
 					start_cp ( source,destination,true );
 				else
 					startNormal ( true );
 			}
 			else
-				emit sshFinished ( false,host+":\n"+errorString,this );
+				emit sshFinished ( false,host+":\n"+
+				                   errorString,this );
 		}
 		else
 			emit sshFinished ( false,host+":\n"+errorString,this );
@@ -129,7 +138,9 @@ void sshProcess::slot_stderr()
 	QString reserr ( readAllStandardError() );
 	errorString+=reserr;
 // 	x2goDebug<<reserr<<endl;
-	if ( reserr.indexOf ( "Permission denied (publickey,keyboard-interactive)" ) !=-1 )
+	if ( reserr.indexOf (
+	            "Permission denied (publickey,keyboard-interactive)" ) !=-1
+	   )
 	{
 		needPass=true;
 		kill();
@@ -139,7 +150,8 @@ void sshProcess::slot_stderr()
 		hidePass();
 		emit sshTunnelOk();
 	}
-	if (( reserr.indexOf ( "Password:" ) !=-1 )||(reserr.indexOf ( "[sudo] password for" ) !=-1))
+	if ( ( reserr.indexOf ( "Password:" ) !=-1 ) ||
+	        ( reserr.indexOf ( "[sudo] password for" ) !=-1 ) )
 	{
 		sudoErr=true;
 		emit sudoConfigError ( errorString, this );
@@ -197,9 +209,11 @@ void sshProcess::startNormal ( bool accept )
 		printKey ( accept );
 #ifndef  WINDOWS
 
-		start ( setsid() +" ssh "+cmX+"-i \""+key+"\" -p "+sshPort+" "+user+"@"+host+" \""+command+"\"" );
+		start ( setsid() +" ssh "+cmX+"-i \""+key+"\" -p "+sshPort+" "+
+		        user+"@"+host+" \""+command+"\"" );
 #else
-		start ( "ssh "+cmX+"-i \""+key+"\" -p "+sshPort+" "+user+"@"+host+" \""+command+"\"" );
+		start ( "ssh "+cmX+"-i \""+key+"\" -p "+sshPort+" "+user+"@"+
+		        host+" \""+command+"\"" );
 #endif
 	}
 	else
@@ -207,10 +221,12 @@ void sshProcess::startNormal ( bool accept )
 		printPass ( accept );
 #ifndef  WINDOWS
 
-		start ( setsid() +" ssh" +cmX+" -p "+sshPort+" "+user+"@"+host+" \""+command+"\"" );
+		start ( setsid() +" ssh" +cmX+" -p "+sshPort+" "+user+"@"+host+
+		        " \""+command+"\"" );
 #else
 
-		start ( "ssh "+cmX+"-p "+sshPort+" "+user+"@"+host+" \""+command+"\"" );
+		start ( "ssh "+cmX+"-p "+sshPort+" "+user+"@"+host+" \""+
+		        command+"\"" );
 #endif
 
 	}
@@ -225,7 +241,8 @@ void sshProcess::printPass ( bool accept )
 		QString message=tr ( "Unable to write: " ) +askpass;
 		throw message;
 	}
-	fl.setPermissions ( QFile::ReadOwner|QFile::WriteOwner|QFile::ExeOwner );
+	fl.setPermissions (
+	    QFile::ReadOwner|QFile::WriteOwner|QFile::ExeOwner );
 	QTextStream out ( &fl );
 #ifndef WINDOWS
 
@@ -258,7 +275,8 @@ void sshProcess::printKey ( bool accept )
 		QString message=tr ( "Unable to write: " ) +askpass;
 		throw message;
 	}
-	fl.setPermissions ( QFile::ReadOwner|QFile::WriteOwner|QFile::ExeOwner );
+	fl.setPermissions (
+	    QFile::ReadOwner|QFile::WriteOwner|QFile::ExeOwner );
 	QTextStream out ( &fl );
 #ifndef WINDOWS
 
@@ -299,14 +317,16 @@ void sshProcess::hidePass()
 	{
 		return;
 	}
-	fl.setPermissions ( QFile::ReadOwner|QFile::WriteOwner|QFile::ExeOwner );
+	fl.setPermissions (
+	    QFile::ReadOwner|QFile::WriteOwner|QFile::ExeOwner );
 	QTextStream out ( &fl );
 	for ( int i=0;i<1024;++i )
 		out<<"X";
 	fl.close();
 }
 
-void sshProcess::startTunnel ( QString h,QString lp,QString rp,bool rev,bool accept )
+void sshProcess::startTunnel ( QString h,QString lp,
+                               QString rp,bool rev,bool accept )
 {
 	x2goDebug<<"tunnel"<<endl;
 	isTunnel=true;
@@ -347,10 +367,12 @@ void sshProcess::startTunnel ( QString h,QString lp,QString rp,bool rev,bool acc
 		printKey ( accept );
 #ifndef  WINDOWS
 
-		start ( setsid() +" ssh -c blowfish -v -i \""+key+"\" -p "+sshPort+" "+user+"@"+host+params );
+		start ( setsid() +" ssh -c blowfish -v -i \""+key+"\" -p "+
+		        sshPort+" "+user+"@"+host+params );
 #else
 
-		start ( "ssh -c blowfish -v -i \""+key+"\" -p "+sshPort+" "+user+"@"+host+params );
+		start ( "ssh -c blowfish -v -i \""+key+"\" -p "+sshPort+" "+
+		        user+"@"+host+params );
 #endif
 
 	}
@@ -359,10 +381,12 @@ void sshProcess::startTunnel ( QString h,QString lp,QString rp,bool rev,bool acc
 		printPass ( accept );
 #ifndef  WINDOWS
 
-		start ( setsid() +" ssh -c blowfish -v "+user+"@"+host+params+" -p "+sshPort );
+		start ( setsid() +" ssh -c blowfish -v "+user+"@"+host+params+
+		        " -p "+sshPort );
 #else
 
-		start ( "ssh -c blowfish -v "+user+"@"+host+params+" -p "+sshPort );
+		start ( "ssh -c blowfish -v "+user+"@"+host+params+" -p "+
+		        sshPort );
 #endif
 
 	}
@@ -399,10 +423,12 @@ void sshProcess::start_cp ( QString src, QString dst, bool accept )
 		printKey ( accept );
 #ifndef  WINDOWS
 
-		start ( setsid() +" scp -i \""+key+"\" -P "+sshPort+" "+" \""+src+"\" "+user+"@"+host+":"+dst );
+		start ( setsid() +" scp -i \""+key+"\" -P "+sshPort+" "+" \""+
+		        src+"\" "+user+"@"+host+":"+dst );
 #else
 
-		start ( "scp -i \""+key+"\" -P "+sshPort+" "+" \""+src+"\" "+user+"@"+host+":"+dst );
+		start ( "scp -i \""+key+"\" -P "+sshPort+" "+" \""+src+"\" "+
+		        user+"@"+host+":"+dst );
 
 #endif
 
@@ -412,10 +438,12 @@ void sshProcess::start_cp ( QString src, QString dst, bool accept )
 		printPass ( accept );
 #ifndef  WINDOWS
 
-		start ( setsid() +" scp -P "+sshPort+" \""+src+"\" "+user+"@"+host+":"+dst );
+		start ( setsid() +" scp -P "+sshPort+" \""+src+"\" "+user+"@"+
+		        host+":"+dst );
 #else
 
-		start ( "scp -P "+sshPort+" \""+src+"\" "+user+"@"+host+":"+dst );
+		start ( "scp -P "+sshPort+" \""+src+"\" "+user+"@"+host+
+		        ":"+dst );
 #endif
 	}
 }

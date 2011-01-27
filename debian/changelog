@@ -1,3 +1,9 @@
+x2goclient (3.00-1) unstable; urgency=low
+
+  * Client side printing support
+
+ -- Oleksandr Shneyder <oleksandr.shneyder@obviously-nice.de>  Tue, 24 Feb 2009 07:50:45 +0100
+
 x2goclient (2.99-3) unstable; urgency=low
 
   * make sshfs mount work if user home is not in /home/<uname>

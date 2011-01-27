@@ -1,0 +1,163 @@
+<ui version="4.0" >
+ <class>PrinterCmdDialog</class>
+ <widget class="QDialog" name="PrinterCmdDialog" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>462</width>
+    <height>542</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>Printer command</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout_4" >
+   <item>
+    <widget class="QGroupBox" name="groupBox_2" >
+     <property name="title" >
+      <string>Command</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_2" >
+      <item>
+       <widget class="QLabel" name="label" >
+        <property name="text" >
+         <string>Please enter your customized or individual printing command.
+Examples:
+kprinter
+lpr -P hp_laserjet</string>
+        </property>
+        <property name="wordWrap" >
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="leCmd" />
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="groupBox" >
+     <property name="title" >
+      <string>Output format</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout" >
+      <item>
+       <widget class="QLabel" name="label_2" >
+        <property name="text" >
+         <string>Please choose the printing file format (regarding to your printing environment - if you use CUPS you may use PDF)</string>
+        </property>
+        <property name="textFormat" >
+         <enum>Qt::PlainText</enum>
+        </property>
+        <property name="scaledContents" >
+         <bool>false</bool>
+        </property>
+        <property name="wordWrap" >
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QRadioButton" name="rbPDF" >
+        <property name="text" >
+         <string>PDF</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QRadioButton" name="rbPS" >
+        <property name="text" >
+         <string>PS</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+     <zorder>rbPDF</zorder>
+     <zorder>label_2</zorder>
+     <zorder>rbPS</zorder>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="groupBox_3" >
+     <property name="title" >
+      <string>Data structure</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_3" >
+      <item>
+       <widget class="QLabel" name="label_3" >
+        <property name="text" >
+         <string>Please choose the method of printing file input (some commands accepting printing files as program options, some are awaiting data on standard input):</string>
+        </property>
+        <property name="textFormat" >
+         <enum>Qt::PlainText</enum>
+        </property>
+        <property name="scaledContents" >
+         <bool>false</bool>
+        </property>
+        <property name="wordWrap" >
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QRadioButton" name="rbStdIn" >
+        <property name="text" >
+         <string>standard input (STDIN)</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QRadioButton" name="rbParam" >
+        <property name="text" >
+         <string>Specify path as program parameter</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <spacer name="verticalSpacer" >
+     <property name="orientation" >
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0" >
+      <size>
+       <width>20</width>
+       <height>37</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item>
+    <widget class="QDialogButtonBox" name="buttonBox" >
+     <property name="standardButtons" >
+      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>rejected()</signal>
+   <receiver>PrinterCmdDialog</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>230</x>
+     <y>519</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>230</x>
+     <y>270</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

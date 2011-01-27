@@ -103,13 +103,13 @@
     <run>
       <directoryradio>executable</directoryradio>
       <customdirectory>/</customdirectory>
-      <mainprogram>/usr/src.cur/db-builds/x2goclient/x2goclient-2.99/x2goclient</mainprogram>
+      <mainprogram>/usr/src.cur/db-builds/x2goclient/x2goclient-3.00/x2goclient</mainprogram>
       <programargs/>
       <terminal>false</terminal>
       <autocompile>true</autocompile>
       <envvars/>
       <globaldebugarguments/>
-      <globalcwd>/usr/src.cur/db-builds/x2goclient/x2goclient-2.99</globalcwd>
+      <globalcwd>/usr/src.cur/db-builds/x2goclient/x2goclient-3.00</globalcwd>
       <useglobalprogram>true</useglobalprogram>
       <autoinstall>false</autoinstall>
       <autokdesu>false</autokdesu>

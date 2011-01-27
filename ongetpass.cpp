@@ -35,11 +35,13 @@ int main ( int argc, char *argv[] )
 {
 	QApplication app ( argc,argv );
 	QTranslator x2goclientTranslator;
-	QString filename=QString ( ":/x2goclient_%1" ).arg ( QLocale::system().name() );
+	QString filename=QString ( ":/x2goclient_%1" ).arg (
+	                     QLocale::system().name() );
 	filename=filename.toLower();
 	if ( !x2goclientTranslator.load ( filename ) )
 	{
-		qDebug ( "Can't load translator (%s) !\n",filename.toLocal8Bit().data() );
+		qDebug ( "Can't load translator (%s) !\n",
+		         filename.toLocal8Bit().data() );
 	}
 	else
 		app.installTranslator ( &x2goclientTranslator );
@@ -50,7 +52,8 @@ int main ( int argc, char *argv[] )
 	filename=QString ( ":/qt_%1" ).arg ( QLocale::system().name() );
 	if ( !qtTranslator.load ( filename ) )
 	{
-		qDebug ( "Can't load translator (%s) !\n",filename.toLocal8Bit().data() );
+		qDebug ( "Can't load translator (%s) !\n",
+		         filename.toLocal8Bit().data() );
 	}
 	else
 		app.installTranslator ( &qtTranslator );
@@ -65,7 +68,7 @@ int main ( int argc, char *argv[] )
 	QStringList args;
 	if ( argc > 1 )
 		args=app.arguments();
-	if ( args.count()>1 && args[1]=="--dialog" )
+	if ( args.count() >1 && args[1]=="--dialog" )
 	{
 		QString type=args[2];
 		QString caption=args[4];
@@ -77,7 +80,8 @@ int main ( int argc, char *argv[] )
 			return QMessageBox::information ( 0, caption,text );
 		if ( type=="yesno" )
 			return  QMessageBox::question ( 0, caption,text,
-			                                QMessageBox::Yes,QMessageBox::No );
+			                                QMessageBox::Yes,
+			                                QMessageBox::No );
 		return -1;
 	}
 	else

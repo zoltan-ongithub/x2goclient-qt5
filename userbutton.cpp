@@ -23,7 +23,9 @@
 #include <QPixmap>
 #include <QLabel>
 #include "onmainwindow.h"
-UserButton::UserButton ( ONMainWindow* wnd, QWidget *par, QString name,QString fullName, QPixmap& foto, QPalette& bgpal, int width,int height )
+UserButton::UserButton ( ONMainWindow* wnd, QWidget *par, QString name,
+                         QString fullName, QPixmap& foto, QPalette& bgpal,
+                         int width,int height )
 		: QPushButton ( par )
 {
 	user=name;

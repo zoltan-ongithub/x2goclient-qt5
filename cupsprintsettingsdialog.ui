@@ -1,0 +1,232 @@
+<ui version="4.0" >
+ <class>CupsPrinterSettingsDialog</class>
+ <widget class="QDialog" name="CupsPrinterSettingsDialog" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>408</width>
+    <height>532</height>
+   </rect>
+  </property>
+  <property name="sizePolicy" >
+   <sizepolicy vsizetype="Minimum" hsizetype="Preferred" >
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="windowTitle" >
+   <string>Dialog</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout_2" >
+   <item>
+    <widget class="QTabWidget" name="tabWidget" >
+     <property name="sizePolicy" >
+      <sizepolicy vsizetype="Minimum" hsizetype="Expanding" >
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="currentIndex" >
+      <number>0</number>
+     </property>
+     <widget class="QWidget" name="tabGeneral" >
+      <attribute name="title" >
+       <string>General</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout" >
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_2" >
+         <item>
+          <layout class="QGridLayout" name="gridLayout" >
+           <item row="0" column="0" >
+            <widget class="QLabel" name="label" >
+             <property name="text" >
+              <string>Page size:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1" >
+            <widget class="QComboBox" name="cbPageSize" >
+             <property name="sizePolicy" >
+              <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0" >
+            <widget class="QLabel" name="label_2" >
+             <property name="text" >
+              <string>Paper type:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1" >
+            <widget class="QComboBox" name="cbMediaType" />
+           </item>
+           <item row="2" column="0" >
+            <widget class="QLabel" name="label_3" >
+             <property name="text" >
+              <string>Paper source:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1" >
+            <widget class="QComboBox" name="cbInputSlot" />
+           </item>
+          </layout>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_2" >
+           <property name="orientation" >
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0" >
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="gbDuplex" >
+         <property name="title" >
+          <string>Duplex Printing</string>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_3" >
+          <item>
+           <widget class="QRadioButton" name="rbNone" >
+            <property name="text" >
+             <string>None</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QRadioButton" name="rbLong" >
+            <property name="text" >
+             <string>Long side</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QRadioButton" name="rbShort" >
+            <property name="text" >
+             <string>Short side</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <spacer name="verticalSpacer" >
+         <property name="orientation" >
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0" >
+          <size>
+           <width>20</width>
+           <height>211</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tabDriver" >
+      <attribute name="title" >
+       <string>Driver settings</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_5" >
+       <item>
+        <widget class="QSplitter" name="splitter" >
+         <property name="enabled" >
+          <bool>true</bool>
+         </property>
+         <property name="orientation" >
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="childrenCollapsible" >
+          <bool>false</bool>
+         </property>
+         <widget class="QTreeWidget" name="ppdTree" >
+          <property name="rootIsDecorated" >
+           <bool>false</bool>
+          </property>
+          <property name="animated" >
+           <bool>true</bool>
+          </property>
+          <property name="allColumnsShowFocus" >
+           <bool>true</bool>
+          </property>
+          <property name="headerHidden" >
+           <bool>true</bool>
+          </property>
+          <property name="expandsOnDoubleClick" >
+           <bool>false</bool>
+          </property>
+          <column>
+           <property name="text" >
+            <string>Option</string>
+           </property>
+          </column>
+          <column>
+           <property name="text" >
+            <string>Value</string>
+           </property>
+          </column>
+         </widget>
+         <widget class="QGroupBox" name="gbOptions" >
+          <property name="title" >
+           <string>No option selected</string>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_4" >
+           <item>
+            <widget class="QTreeWidget" name="optionsTree" >
+             <property name="rootIsDecorated" >
+              <bool>false</bool>
+             </property>
+             <property name="itemsExpandable" >
+              <bool>false</bool>
+             </property>
+             <property name="headerHidden" >
+              <bool>true</bool>
+             </property>
+             <property name="expandsOnDoubleClick" >
+              <bool>false</bool>
+             </property>
+             <column>
+              <property name="text" >
+               <string>text</string>
+              </property>
+             </column>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+   <item>
+    <widget class="QDialogButtonBox" name="buttonBox" >
+     <property name="standardButtons" >
+      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok|QDialogButtonBox::RestoreDefaults|QDialogButtonBox::Save</set>
+     </property>
+     <property name="centerButtons" >
+      <bool>false</bool>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

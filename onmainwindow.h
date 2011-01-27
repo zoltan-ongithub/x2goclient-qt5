@@ -139,8 +139,10 @@ class ONMainWindow : public QMainWindow
 		}
 		void startNewSession();
 		void showSessionStatus();
-		void suspendSession ( QString user,QString host,QString pass,QString key, QString sessId );
-		void termSession ( QString user,QString host,QString pass,QString key, QString sessId );
+		void suspendSession ( QString user,QString host,QString pass,
+		                      QString key, QString sessId );
+		void termSession ( QString user,QString host,QString pass,
+		                   QString key, QString sessId );
 		void setStatStatus ( const QString& status );
 		x2goSession getNewSessionFromString ( const QString& string );
 		void runCommand();
@@ -210,10 +212,18 @@ class ONMainWindow : public QMainWindow
 		void exportDirs ( QString exports,bool removable=false );
 		void reloadUsers();
 		void setWidgetStyle ( QWidget* widget );
-		QStringList internApplicationsNames() {return _internApplicationsNames;}
-		QStringList transApplicationsNames() {return _transApplicationsNames;}
-		QString transAppName ( const QString& internAppName, bool* found=0l );
-		QString internAppName ( const QString& transAppName, bool* found=0l );
+		QStringList internApplicationsNames()
+		{
+			return _internApplicationsNames;
+		}
+		QStringList transApplicationsNames()
+		{
+			return _transApplicationsNames;
+		}
+		QString transAppName ( const QString& internAppName,
+		                       bool* found=0l );
+		QString internAppName ( const QString& transAppName,
+		                        bool* found=0l );
 
 	private:
 		QStringList _internApplicationsNames;
@@ -235,6 +245,7 @@ class ONMainWindow : public QMainWindow
 		bool defaultFullscreen;
 		bool acceptRsa;
 		bool extLogin;
+		bool printSupport;
 		QString sshPort;
 		QString clientSshPort;
 		QString defaultSshPort;
@@ -300,6 +311,7 @@ class ONMainWindow : public QMainWindow
 		QTimer *exportTimer;
 		QTimer *extTimer;
 		QTimer *agentCheckTimer;
+		QTimer *spoolTimer;
 		QStyle* widgetExtraStyle;
 		QString qpass;
 		bool isPassShown;
@@ -307,6 +319,7 @@ class ONMainWindow : public QMainWindow
 
 
 		QString sessionStatus;
+		QString spoolDir;
 		QString sessionRes;
 		QHBoxLayout* username;
 		QList <user> userList;
@@ -347,6 +360,8 @@ class ONMainWindow : public QMainWindow
 		QString LDAPSndSys;
 		QString LDAPSndPort;
 		bool LDAPSndStartServer;
+
+		bool  LDAPPrintSupport;
 
 		QAction *act_edit;
 		QAction *act_new;
@@ -401,7 +416,8 @@ class ONMainWindow : public QMainWindow
 		void setUsersEnabled ( bool enable );
 		void externalLogout ( const QString& logoutDir );
 		void externalLogin ( const QString& loginDir );
-		void startGPGAgent ( const QString& login, const QString& appId );
+		void startGPGAgent ( const QString& login,
+		                     const QString& appId );
 
 	protected:
 		virtual void closeEvent ( QCloseEvent* event );
@@ -441,14 +457,22 @@ class ONMainWindow : public QMainWindow
 		void slotSuspendSessFromSt();
 		void slotTermSess();
 		void slotNewSess();
-		void slot_cmdMessage ( bool result,QString output,sshProcess* );
-		void slot_listSessions ( bool result,QString output,sshProcess* );
-		void slot_retSuspSess ( bool value,QString message,sshProcess* );
-		void slot_retTermSess ( bool result,QString output,sshProcess* );
-		void slot_retResumeSess ( bool result,QString output,sshProcess* );
-		void slot_tunnelFailed ( bool result,QString output,sshProcess* );
-		void slot_fsTunnelFailed ( bool result,QString output,sshProcess* );
-		void slot_sndTunnelFailed ( bool result,QString output,sshProcess* );
+		void slot_cmdMessage ( bool result,QString output,
+		                       sshProcess* );
+		void slot_listSessions ( bool result,QString output,
+		                         sshProcess* );
+		void slot_retSuspSess ( bool value,QString message,
+		                        sshProcess* );
+		void slot_retTermSess ( bool result,QString output,
+		                        sshProcess* );
+		void slot_retResumeSess ( bool result,QString output,
+		                          sshProcess* );
+		void slot_tunnelFailed ( bool result,QString output,
+		                         sshProcess* );
+		void slot_fsTunnelFailed ( bool result,QString output,
+		                           sshProcess* );
+		void slot_sndTunnelFailed ( bool result,QString output,
+		                            sshProcess* );
 		void slot_copyKey ( bool result,QString output,sshProcess* );
 		void slot_tunnelOk();
 		void slot_fsTunnelOk();
@@ -461,40 +485,49 @@ class ONMainWindow : public QMainWindow
 		void slot_showStatusWidgets();
 		void slot_restartNxProxy();
 		void slot_testSessionStatus();
-		void slot_retRunCommand ( bool result, QString output,sshProcess* );
-		void slot_getServers ( bool result, QString output,sshProcess* );
-		void slot_listAllSessions ( bool result,QString output,sshProcess* );
-		void slot_retExportDir ( bool result,QString output,sshProcess* );
+		void slot_retRunCommand ( bool result, QString output,
+		                          sshProcess* );
+		void slot_getServers ( bool result, QString output,
+		                       sshProcess* );
+		void slot_listAllSessions ( bool result,QString output,
+		                            sshProcess* );
+		void slot_retExportDir ( bool result,QString output,
+		                         sshProcess* );
 		void slot_resize();
 		void slot_exportDirectory();
 		void slot_exportTimer();
 		void slot_about_qt();
 		void slot_about();
 	private slots:
+		void slot_checkPrintSpool();
 		void slot_rereadUsers();
 		void slotExtTimer();
 		void slot_startPGPAuth();
 		void slot_scDaemonOut();
 		void slot_scDaemonError();
-		void slot_gpgFinished ( int exitCode, QProcess::ExitStatus exitStatus );
-		void slot_scDaemonFinished ( int exitCode, QProcess::ExitStatus exitStatus );
+		void slot_gpgFinished ( int exitCode,
+		                        QProcess::ExitStatus exitStatus );
+		void slot_scDaemonFinished ( int exitCode,
+		                             QProcess::ExitStatus exitStatus );
 		void slot_gpgError();
 		void slot_checkScDaemon();
-		void slot_gpgAgentFinished ( int exitCode, QProcess::ExitStatus exitStatus );
+		void slot_gpgAgentFinished ( int exitCode,
+		                             QProcess::ExitStatus exitStatus );
 		void slot_checkAgentProcess();
 		void slot_execXmodmap();
-		void slot_sudoErr ( QString errstr, sshProcess* pr);
+		void slot_sudoErr ( QString errstr, sshProcess* pr );
 	private:
 		void cartReady();
-	private:
 		void addToAppNames ( QString intName, QString transName );
 		bool checkAgentProcess();
 		bool isColorDepthOk ( int disp, int sess );
 		void check_cmd_status();
 		int startSshFsTunnel();
 		void startX2goMount();
+		void cleanPrintSpool();
 #ifdef WINDOWS
-		QString transform2cygwinPath ( const QString& winPath, bool trunc=false );
+		QString transform2cygwinPath ( const QString& winPath,
+		                               bool trunc=false );
 		QString transform2winPath ( const QString& winPath );
 		QString cygwinHomePath();
 #endif
@@ -502,7 +535,7 @@ class ONMainWindow : public QMainWindow
 		QString getXDisplay();
 #endif
 #if defined  (WINDOWS)
-		bool isServerRunning(int port);
+		bool isServerRunning ( int port );
 		QProcess* pulseServer;
 		void launchPulse();
 #endif

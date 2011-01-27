@@ -1,39 +1,10 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
 <!DOCTYPE KDevPrjSession>
 <KDevPrjSession>
- <DocsAndViews NumberOfDocuments="4" >
-  <Doc0 NumberOfViews="1" URL="file:///usr/src.cur/db-builds/x2goclient/x2goclient-2.99/editconnectiondialog.cpp" >
-   <View0 Encoding="" Type="Source" />
-  </Doc0>
-  <Doc1 NumberOfViews="1" URL="file:///usr/src.cur/db-builds/x2goclient/x2goclient-2.99/onmainwindow.h" >
-   <View0 Encoding="" Type="Source" />
-  </Doc1>
-  <Doc2 NumberOfViews="1" URL="file:///usr/src.cur/db-builds/x2goclient/x2goclient-2.99/sshprocess.cpp" >
-   <View0 Encoding="" line="94" Type="Source" />
-  </Doc2>
-  <Doc3 NumberOfViews="1" URL="file:///usr/src.cur/db-builds/x2goclient/x2goclient-2.99/onmainwindow.cpp" >
-   <View0 Encoding="" line="1891" Type="Source" />
-  </Doc3>
- </DocsAndViews>
+ <DocsAndViews NumberOfDocuments="0" />
  <pluginList>
   <kdevdebugger>
-   <breakpointList>
-    <breakpoint0 location="/usr/src.cur/db-builds/x2goclient/x2goclient-2.0.1/ongetpass.cpp:67" type="1" tracingFormatString="" traceFormatStringEnabled="0" condition="" tracingEnabled="0" enabled="1" >
-     <tracedExpressions/>
-    </breakpoint0>
-    <breakpoint1 location="/usr/src.cur/db-builds/x2goclient/x2goclient-2.0.1/sessionbutton.cpp:469" type="1" tracingFormatString="" traceFormatStringEnabled="0" condition="" tracingEnabled="0" enabled="1" >
-     <tracedExpressions/>
-    </breakpoint1>
-    <breakpoint2 location="/usr/src.cur/db-builds/x2goclient/x2goclient-2.0.1/onmainwindow.cpp:3701" type="1" tracingFormatString="" traceFormatStringEnabled="0" condition="" tracingEnabled="0" enabled="1" >
-     <tracedExpressions/>
-    </breakpoint2>
-    <breakpoint3 location="/usr/src.cur/db-builds/x2goclient/x2goclient-2.99/sshprocess.cpp:92" type="1" tracingFormatString="" traceFormatStringEnabled="0" condition="" tracingEnabled="0" enabled="1" >
-     <tracedExpressions/>
-    </breakpoint3>
-    <breakpoint4 location="/usr/src.cur/db-builds/x2goclient/x2goclient-2.99/sshprocess.cpp:99" type="1" tracingFormatString="" traceFormatStringEnabled="0" condition="" tracingEnabled="0" enabled="1" >
-     <tracedExpressions/>
-    </breakpoint4>
-   </breakpointList>
+   <breakpointList/>
    <showInternalCommands value="0" />
   </kdevdebugger>
   <kdevastyle>
