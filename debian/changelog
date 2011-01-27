@@ -1,3 +1,9 @@
+x2goclient (2.0.1-14) unstable; urgency=low
+
+  * fixed editconnectiondialog
+
+ -- Oleksandr Shneyder <oleksandr.shneyder@treuchtlingen.de>  Wed, 01 Oct 2008 10:18:08 +0200
+
 x2goclient (2.0.1-13) unstable; urgency=low
 
   * Fixed "black buttons" on button focus with new qt
