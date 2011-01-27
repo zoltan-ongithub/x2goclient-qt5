@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2005 by Oleksandr Shneyder   *
+ *   Copyright (C) 2005-2011 by Oleksandr Shneyder   *
  *   oleksandr.shneyder@obviously-nice.de   *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -41,6 +41,7 @@
 #include <QProcess>
 #include "LDAPSession.h"
 #include <QToolBar>
+#include <QSystemTrayIcon>
 
 
 #ifdef Q_OS_WIN
@@ -75,6 +76,7 @@ class SshMasterConnection;
 class IMGFrame;
 class QStandardItemModel;
 class HttpBrokerClient;
+class QMenu;
 struct user
 {
     int uin;
@@ -672,6 +674,17 @@ private:
     bool cardReady;
     HttpBrokerClient* broker;
 
+    // Tray icon stuff based on patch from Joachim Langenbach <joachim@falaba.de>
+    QSystemTrayIcon *trayIcon;
+    QMenu *trayIconMenu;
+    QMenu *trayIconActiveConnectionMenu;
+    bool trayEnabled;
+    bool trayMinToTray;
+    bool trayNoclose;
+    bool trayMinCon;
+    bool trayMaxDiscon;
+    bool trayAutoHidden;
+
     void installTranslator();
     void loadSettings();
     void showPass ( UserButton* user );
@@ -717,6 +730,8 @@ private:
 
 protected:
     virtual void closeEvent ( QCloseEvent* event );
+    virtual void hideEvent ( QHideEvent* event);
+
 #ifndef Q_OS_WIN
     virtual void mouseReleaseEvent ( QMouseEvent * event );
 #else
@@ -808,6 +823,14 @@ private slots:
     void slotExportTimer();
     void slotAboutQt();
     void slotAbout();
+
+    //trayIcon stuff
+    void trayIconActivated(QSystemTrayIcon::ActivationReason reason);
+    void trayMessageClicked();
+    void trayQuit();
+    void trayIconInit();
+
+
 private slots:
     void slotCheckPrintSpool();
     void slotRereadUsers();

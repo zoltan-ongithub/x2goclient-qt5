@@ -25,6 +25,7 @@ class PrintWidget;
 class ConnectionWidget;
 class SettingsWidget;
 class QTabWidget;
+class QGroupBox;
 /**
 	@author Oleksandr Shneyder <oleksandr.shneyder@obviously-nice.de>
 */
@@ -50,7 +51,6 @@ class ConfigDialog : public QDialog
 	private:
 		QTabWidget* tabWidg;
 		QCheckBox* cbStartEmbed;
-		QCheckBox* useldap;
 		QLineEdit* ldapBase;
 		QLineEdit* ldapServer;
 		QSpinBox*  port;
@@ -63,6 +63,7 @@ class ConfigDialog : public QDialog
 		QSpinBox*  clientSshPort;
 		QPushButton* ok;
 		bool advOptionsShown;
+		QGroupBox* gbLDAP;
 
 		QPushButton* defaults;
 		QPushButton* advancedOptions;
@@ -76,6 +77,12 @@ class ConfigDialog : public QDialog
 		QButtonGroup* bgRadio;
 		ConnectionWidget* conWidg;
 		SettingsWidget* setWidg;
+
+		QGroupBox *gbTrayIcon;
+		QCheckBox *cbMinimizeTray;
+		QCheckBox *cbMaxmizeTray;
+		QCheckBox *cbNoClose;
+		QCheckBox *cbMinToTray;
 
 	public slots:
 		void slot_accepted();

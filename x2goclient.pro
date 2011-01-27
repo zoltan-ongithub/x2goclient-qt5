@@ -42,6 +42,7 @@ HEADERS += configdialog.h \
  clicklineedit.h \
  httpbrokerclient.h \
  ongetpass.h \
+ onmainwindow_privat.h \
  x2gosettings.h
 
 SOURCES += sharewidget.cpp \
@@ -55,6 +56,9 @@ SOURCES += sharewidget.cpp \
  imgframe.cpp \
  LDAPSession.cpp \
  onmainwindow.cpp \
+ onmainwindow_part2.cpp \
+ onmainwindow_part3.cpp \
+ onmainwindow_part4.cpp \
  sessionbutton.cpp \
  sessionmanagedialog.cpp \
  sshmasterconnection.cpp \

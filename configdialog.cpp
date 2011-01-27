@@ -47,22 +47,50 @@ ConfigDialog::ConfigDialog ( QWidget * parent,  Qt::WFlags f )
 
 	X2goSettings st ( "settings" );
 
+	
+#ifndef CFGPLUGIN
+
+	gbTrayIcon=new QGroupBox(tr("Display icon in system tray"),fr);
+	frLay->addWidget(gbTrayIcon);
+	gbTrayIcon->setCheckable(true);
+	QHBoxLayout* grmainLay=new QHBoxLayout(gbTrayIcon);
+	QFrame* frTray=new QFrame(gbTrayIcon);
+	grmainLay->setMargin(0);	
+	grmainLay->addWidget(frTray);
+	cbMinToTray=new QCheckBox(tr("Hide to system tray when minimized"),frTray);
+	cbNoClose=new QCheckBox(tr("Hide to system tray when closed"),frTray);
+	cbMinimizeTray=new QCheckBox(tr("Hide to system tray after connection is established"),frTray);
+	cbMaxmizeTray=new QCheckBox(tr("Restore from system tray after session is disconnected"),frTray);
+	QVBoxLayout* trLay=new QVBoxLayout(frTray);
+	trLay->addWidget(cbMinToTray);
+	trLay->addWidget(cbNoClose);
+	trLay->addWidget(cbMinimizeTray);
+	trLay->addWidget(cbMaxmizeTray);
+	gbTrayIcon->setChecked ( st.setting()->value ( "trayicon/enabled", false ).toBool() );
+	cbMinimizeTray->setChecked ( st.setting()->value ( "trayicon/mincon", false ).toBool() );
+	cbMaxmizeTray->setChecked ( st.setting()->value ( "trayicon/maxdiscon", false ).toBool() );
+	cbNoClose->setChecked ( st.setting()->value ( "trayicon/noclose", false ).toBool() );
+	cbMinToTray->setChecked ( st.setting()->value ( "trayicon/mintotray", false ).toBool() );
+#endif
+
 #ifdef USELDAP
 	if ( !embedMode )
 	{
 		ONMainWindow* par= ( ONMainWindow* ) parent;
-		useldap=new QCheckBox ( tr ( "Use LDAP" ),fr );
 
-		frLay->addWidget ( useldap );
+		gbLDAP=new QGroupBox ( tr ( "Use LDAP" ),fr );
+		gbLDAP->setCheckable(true);
+		QHBoxLayout* grmainLay=new QHBoxLayout(gbLDAP);
+		QFrame* frLdap=new QFrame(gbLDAP);
+		grmainLay->setMargin(0);
+		grmainLay->addWidget(frLdap);
 
-		QGroupBox* gb=new QGroupBox ( tr ( "LDAP settings" ),fr );
-
-		ldapServer=new QLineEdit ( gb );
-		port=new QSpinBox ( gb );
-		ldapBase=new QLineEdit ( gb );
+		ldapServer=new QLineEdit ( frLdap );
+		port=new QSpinBox ( frLdap );
+		ldapBase=new QLineEdit ( frLdap );
 		port->setMaximum ( 1000000 );
 
-		QHBoxLayout *grLay=new QHBoxLayout ( gb );
+		QHBoxLayout *grLay=new QHBoxLayout ( frLdap );
 
 		QVBoxLayout *laiLay=new QVBoxLayout();
 		QVBoxLayout *setLay=new QVBoxLayout();
@@ -74,40 +102,40 @@ ConfigDialog::ConfigDialog ( QWidget * parent,  Qt::WFlags f )
 		grLay->addStretch();
 		grLay->addLayout ( setLay );
 
-		laiLay->addWidget ( new QLabel ( tr ( "Server URL:" ),gb ) );
-		laiLay->addWidget ( new QLabel ( tr ( "BaseDN:" ),gb ) );
+		laiLay->addWidget ( new QLabel ( tr ( "Server URL:" ),frLdap) );
+		laiLay->addWidget ( new QLabel ( tr ( "BaseDN:" ),frLdap ) );
 		laiLay->addWidget ( new QLabel (
-		                        tr ( "Failover server 1 URL:" ),gb ) );
+		                        tr ( "Failover server 1 URL:" ),frLdap ) );
 		laiLay->addWidget ( new QLabel (
-		                        tr ( "Failover server 2 URL:" ),gb ) );
+		                        tr ( "Failover server 2 URL:" ),frLdap ) );
 
-		ldapServer1=new QLineEdit ( gb );
-		port1=new QSpinBox ( gb );
-		ldapServer2=new QLineEdit ( gb );
-		port2=new QSpinBox ( gb );
+		ldapServer1=new QLineEdit ( frLdap);
+		port1=new QSpinBox ( frLdap );
+		ldapServer2=new QLineEdit ( frLdap );
+		port2=new QSpinBox ( frLdap );
 		port1->setMaximum ( 1000000 );
 		port2->setMaximum ( 1000000 );
 
 
 		QHBoxLayout* aLay=new QHBoxLayout();
 		aLay->setSpacing ( 3 );
-		aLay->addWidget ( new QLabel ( "ldap//:",gb ) );
+		aLay->addWidget ( new QLabel ( "ldap//:",frLdap ) );
 		aLay->addWidget ( ldapServer );
-		aLay->addWidget ( new QLabel ( ":",gb ) );
+		aLay->addWidget ( new QLabel ( ":",frLdap ) );
 		aLay->addWidget ( port );
 
 		QHBoxLayout* aLay1=new QHBoxLayout();
 		aLay1->setSpacing ( 3 );
-		aLay1->addWidget ( new QLabel ( "ldap//:",gb ) );
+		aLay1->addWidget ( new QLabel ( "ldap//:",frLdap ) );
 		aLay1->addWidget ( ldapServer1 );
-		aLay1->addWidget ( new QLabel ( ":",gb ) );
+		aLay1->addWidget ( new QLabel ( ":",frLdap ) );
 		aLay1->addWidget ( port1 );
 
 		QHBoxLayout* aLay2=new QHBoxLayout();
 		aLay2->setSpacing ( 3 );
-		aLay2->addWidget ( new QLabel ( "ldap//:",gb ) );
+		aLay2->addWidget ( new QLabel ( "ldap//:",frLdap ) );
 		aLay2->addWidget ( ldapServer2 );
-		aLay2->addWidget ( new QLabel ( ":",gb ) );
+		aLay2->addWidget ( new QLabel ( ":",frLdap ) );
 		aLay2->addWidget ( port2 );
 
 
@@ -117,7 +145,7 @@ ConfigDialog::ConfigDialog ( QWidget * parent,  Qt::WFlags f )
 		setLay->addLayout ( aLay2 );
 
 
-		useldap->setChecked ( st.setting()->value ( "LDAP/useldap",
+		gbLDAP->setChecked ( st.setting()->value ( "LDAP/useldap",
 		                                 ( QVariant ) par->retUseLdap()
 		                               ).toBool() );
 		ldapServer->setText ( st.setting()->value (
@@ -144,12 +172,12 @@ ConfigDialog::ConfigDialog ( QWidget * parent,  Qt::WFlags f )
 		ldapBase->setText ( st.setting()->value ( "LDAP/basedn",
 		                               ( QVariant ) par->retLdapDn()
 		                             ).toString() );
-		gb->setEnabled ( useldap->isChecked() );
-		frLay->addWidget ( gb );
-		connect ( useldap,SIGNAL ( toggled ( bool ) ),gb,
-		          SLOT ( setEnabled ( bool ) ) );
+		frLdap->setEnabled ( gbLDAP->isChecked() );
+		frLay->addWidget ( gbLDAP );
+ 		connect ( gbLDAP,SIGNAL ( toggled ( bool ) ),frLdap,
+ 		          SLOT ( setEnabled ( bool ) ) );
 
-		connect ( useldap,SIGNAL ( toggled ( bool ) ),this,
+		connect ( gbLDAP,SIGNAL ( toggled ( bool ) ),this,
 		          SLOT ( slot_checkOkStat() ) );
 		connect ( ldapBase,SIGNAL ( textChanged ( const QString& ) ),
 		          this,
@@ -247,12 +275,12 @@ ConfigDialog::ConfigDialog ( QWidget * parent,  Qt::WFlags f )
 		    st.setting()->value ( "embedded/startembed",
 			       true ).toBool() );
 	}
-#ifdef Q_OS_WIN
+/* #ifdef Q_OS_WIN
 	else
 	{
 		tabWidg->removeTab ( 0 );
 	}
-#endif
+ #endif*/
 	frLay->addStretch();
 	defaults=new QPushButton ( tr ( "Defaults" ),this );
 	ok=new QPushButton ( tr ( "&OK" ),this );
@@ -311,12 +339,18 @@ ConfigDialog::~ConfigDialog()
 void ConfigDialog::slot_accepted()
 {
 	X2goSettings st ( "settings" );
-
+#ifndef CFGPLUGIN
+	st.setting()->setValue ( "trayicon/enabled", gbTrayIcon->isChecked() );
+	st.setting()->setValue ( "trayicon/mintotray", cbMinToTray->isChecked() );
+	st.setting()->setValue ( "trayicon/noclose", cbNoClose->isChecked() );
+	st.setting()->setValue ( "trayicon/mincon", cbMinimizeTray->isChecked() );
+	st.setting()->setValue ( "trayicon/maxdiscon", cbMaxmizeTray->isChecked() );
+#endif	
 #ifdef USELDAP
 	if ( !embedMode )
 	{
 		st.setting()->setValue ( "LDAP/useldap",
-		              ( QVariant ) useldap->isChecked() );
+		              ( QVariant ) gbLDAP->isChecked() );
 		st.setting()->setValue ( "LDAP/port",
 			   ( QVariant ) port->value() );
 		if ( ldapServer->text().length() )
@@ -361,7 +395,7 @@ void ConfigDialog::slot_accepted()
 
 void ConfigDialog::slot_checkOkStat()
 {
-	ok->setEnabled ( ( !useldap->isChecked() ) ||
+	ok->setEnabled ( ( !gbLDAP->isChecked() ) ||
 	                 ( ( ldapBase->text().length() &&
 	                     ldapServer->text().length() ) ) );
 }
@@ -544,6 +578,13 @@ void ConfigDialog::slotDefaults()
 			if ( embedMode )
 				cbStartEmbed->setChecked ( true );
 			clientSshPort->setValue ( 22 );
+#ifndef CFGPLUGIN
+			gbTrayIcon->setChecked (false);
+			cbMinimizeTray->setChecked (false);
+			cbMaxmizeTray->setChecked ( false);
+			cbNoClose->setChecked (false);
+			cbMinToTray->setChecked (false);
+#endif
 		}
 		break;
 		case 1:
