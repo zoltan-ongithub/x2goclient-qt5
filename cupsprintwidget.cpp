@@ -11,6 +11,7 @@
 //
 #include "cupsprint.h"
 #include "cupsprintwidget.h"
+#ifndef Q_OS_WIN
 #include "x2gologdebug.h"
 #include "cupsprintersettingsdialog.h"
 
@@ -96,4 +97,4 @@ void CUPSPrintWidget::savePrinter()
 {
 	m_cups->setDefaultUserPrinter ( ui.cbPrinters->currentText() );
 }
-
+#endif

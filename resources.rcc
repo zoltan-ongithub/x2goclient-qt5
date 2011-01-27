@@ -33,6 +33,14 @@
        <file>icons/32x32/lxde.png</file>
        <file>icons/32x32/preferences.png</file>
        <file>icons/32x32/rdp.png</file>
+       <file>icons/32x32/tbhide.png</file>
+       <file>icons/32x32/tbshow.png</file>
+       <file>icons/32x32/attach.png</file>
+       <file>icons/32x32/detach.png</file>
+       <file>icons/32x32/suspend.png</file>
+       <file>icons/32x32/stop.png</file>
+       <file>icons/32x32/x2goclient.png</file>
+       <file>icons/32x32/resolution.png</file>
        <file>icons/16x16/audio.png</file>
        <file>icons/16x16/file-open.png</file>
        <file>icons/16x16/delete.png</file>
@@ -43,6 +51,7 @@
        <file>icons/16x16/resolution.png</file>
        <file>icons/16x16/session.png</file>
        <file>icons/16x16/x2go.png</file>
+       <file>icons/16x16/tbshow.png</file>
        <file>icons/16x16/X.png</file>
        <file>icons/16x16/create_file.png</file>
        <file>icons/16x16/lxde.png</file>

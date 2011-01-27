@@ -10,6 +10,7 @@
 //
 //
 #include "cupsprint.h"
+#ifndef Q_OS_WIN
 #include "x2gologdebug.h"
 #include <QSettings>
 #include <QDir>
@@ -40,7 +41,7 @@ QStringList CUPSPrint::getPrinters()
 
 QString CUPSPrint::getDefaultUserPrinter()
 {
-#ifndef WINDOWS
+#ifndef Q_OS_WIN
 	QSettings st ( QDir::homePath() +"/.x2goclient/printing",
 	               QSettings::NativeFormat );
 #else
@@ -66,7 +67,7 @@ QString CUPSPrint::getDefaultUserPrinter()
 
 void CUPSPrint::setDefaultUserPrinter ( QString printer )
 {
-#ifndef WINDOWS
+#ifndef Q_OS_WIN
 	QSettings st ( QDir::homePath() +"/.x2goclient/printing",
 	               QSettings::NativeFormat );
 #else
@@ -327,7 +328,7 @@ void CUPSPrint::saveOptions()
 {
 	if ( !ppd )
 		return;
-#ifndef WINDOWS
+#ifndef Q_OS_WIN
 	QSettings st ( QDir::homePath() +"/.x2goclient/printing",
 	               QSettings::NativeFormat );
 #else
@@ -361,7 +362,7 @@ void CUPSPrint::saveOptions()
 
 void CUPSPrint::loadUserOptions()
 {
-#ifndef WINDOWS
+#ifndef Q_OS_WIN
 	QSettings st ( QDir::homePath() +"/.x2goclient/printing",
 	               QSettings::NativeFormat );
 #else
@@ -410,3 +411,4 @@ void CUPSPrint::print ( const QString& file, QString title )
 	                title.toAscii(), num_options,options );
 	cupsFreeOptions ( num_options, options );
 }
+#endif

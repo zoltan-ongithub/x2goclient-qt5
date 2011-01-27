@@ -46,8 +46,8 @@ clean: configure
 	rm -f build-stamp configure-stamp
 
 	# Add here commands to clean up after the build process.
-	$(MAKE) clean
-	$(MAKE) distclean
+	-$(MAKE) clean
+	-$(MAKE) distclean
 
 	dh_clean 
 

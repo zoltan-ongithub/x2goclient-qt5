@@ -11,6 +11,7 @@
 //
 #include "cupsprintersettingsdialog.h"
 #include "cupsprint.h"
+#ifndef Q_OS_WIN
 #include <QHeaderView>
 #include <QMessageBox>
 #include <QTimer>
@@ -366,3 +367,4 @@ void CUPSPrinterSettingsDialog::slot_ok()
 	accept();
 }
 
+#endif

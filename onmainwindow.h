@@ -28,7 +28,12 @@
 #include <QPixmap>
 #include <QProcess>
 #include "LDAPSession.h"
+#include "embedwidget.h"
+#include <QToolBar>
 
+#ifdef Q_OS_WIN
+#include <windows.h>
+#endif
 /**
 @author Oleksandr Shneyder
 */
@@ -52,7 +57,7 @@ class QTreeView;
 class QModelIndex;
 class sshProcess;
 class IMGFrame;
-
+class QStandardItemModel;
 struct user
 {
 	int uin;
@@ -109,7 +114,39 @@ struct x2goSession
 	void operator = ( const x2goSession& s );
 };
 
-class ONMainWindow : public QMainWindow
+struct ConfigFile
+{
+	QString session;
+	QString server;
+	QString user;
+	QString sshport;
+	QString command;
+	bool rootless;
+};
+//wrapper to send mouse events under windows in embedded mode
+#ifdef Q_OS_WIN
+class WWrapper : public QPushButton
+{
+		friend class ONMainWindow;
+};
+#include <QThread>
+#include <QMutex>
+class ONMainWindow;
+class WinServerStarter: public QThread
+{
+	public:
+		enum daemon{X,SSH,PULSE};
+		WinServerStarter ( daemon server, ONMainWindow * par );
+		void run();
+	private:
+		daemon mode;
+		ONMainWindow* parent;
+};
+#endif
+
+class ClickLineEdit;
+
+class ONMainWindow : public QMainWindow, public EmbedWidget
 {
 		Q_OBJECT
 	public:
@@ -138,12 +175,11 @@ class ONMainWindow : public QMainWindow
 			return &sessions;
 		}
 		void startNewSession();
-		void showSessionStatus();
 		void suspendSession ( QString user,QString host,QString pass,
 		                      QString key, QString sessId );
-		void termSession ( QString user,QString host,QString pass,
+		bool termSession ( QString user,QString host,QString pass,
 		                   QString key, QString sessId );
-		void setStatStatus ( const QString& status );
+		void setStatStatus ( QString status=QString::null );
 		x2goSession getNewSessionFromString ( const QString& string );
 		void runCommand();
 		bool retUseLdap() {return useLdap;}
@@ -155,6 +191,8 @@ class ONMainWindow : public QMainWindow
 		int retLdapPort1() {return ldapPort1;}
 		QString retLdapServer2() {return ldapServer2;}
 		int retLdapPort2() {return ldapPort2;}
+		QHBoxLayout* mainLayout() {return mainL;}
+		QWidget* mainWidget() {return ( QWidget* ) fr;}
 
 
 		QString getDefaultCmd()
@@ -180,6 +218,21 @@ class ONMainWindow : public QMainWindow
 		int getDefaultQuality()
 		{
 			return defaultQuality;
+		}
+
+		uint getDefaultDPI()
+		{
+			return defaultDPI;
+		}
+
+		bool getDefaultSetDPI()
+		{
+			return defaultSetDPI;
+		}
+
+		bool getEmbedMode()
+		{
+			return embedMode;
 		}
 
 		int getDefaultLink()
@@ -224,6 +277,13 @@ class ONMainWindow : public QMainWindow
 		                       bool* found=0l );
 		QString internAppName ( const QString& transAppName,
 		                        bool* found=0l );
+		void setEmbedSessionActionsEnabled ( bool enable );
+#ifdef Q_OS_WIN
+		static QString cygwinPath ( const QString& winPath );
+		void startXOrg();
+		void startSshd();
+		void startPulsed();
+#endif
 
 	private:
 		QStringList _internApplicationsNames;
@@ -238,14 +298,19 @@ class ONMainWindow : public QMainWindow
 		bool showExport;
 		bool usePGPCard;
 		bool miniMode;
+		bool embedMode;
+		QString statusString;
+		QString sessionConfigFile;
 		int defaultLink;
 		int defaultQuality;
 		int defaultWidth;
 		int defaultHeight;
 		bool defaultFullscreen;
 		bool acceptRsa;
+		bool startEmbedded;
 		bool extLogin;
 		bool printSupport;
+		bool showTbTooltip;
 		QString sshPort;
 		QString clientSshPort;
 		QString defaultSshPort;
@@ -254,7 +319,12 @@ class ONMainWindow : public QMainWindow
 		QString defaultLayout;
 		QString defaultKbdType;
 		QString defaultCmd;
+		bool defaultSetDPI;
+		uint defaultDPI;
 		QStringList listedSessions;
+		QString appDir;
+		QString localGraphicPort;
+		QString homeDir;
 		int retSessions;
 		QList<serv> x2goServers;
 
@@ -269,8 +339,8 @@ class ONMainWindow : public QMainWindow
 		IMGFrame* fr;
 		SVGFrame *bgFrame;
 		QLineEdit* uname;
-		QLineEdit* pass;
-		QLineEdit* login;
+		ClickLineEdit* pass;
+		ClickLineEdit* login;
 		QFrame* uframe;
 		SVGFrame *passForm;
 		QSize mwSize;
@@ -312,10 +382,26 @@ class ONMainWindow : public QMainWindow
 		QTimer *extTimer;
 		QTimer *agentCheckTimer;
 		QTimer *spoolTimer;
+		QTimer *proxyWinTimer;
 		QStyle* widgetExtraStyle;
-		QString qpass;
 		bool isPassShown;
 		bool xmodExecuted;
+		long proxyWinId;
+		bool embedControlChanged;
+		bool embedTbVisible;
+		QLabel* statusLabel;
+		ConfigFile config;
+		QStandardItemModel* model;
+
+		QAction *act_set;
+		QAction *act_abclient;
+		QAction *act_shareFolder;
+		QAction *act_suspend;
+		QAction *act_terminate;
+		QAction *act_embedContol;
+		QAction *act_embedToolBar;
+
+		QToolBar *stb;
 
 
 		QString sessionStatus;
@@ -331,13 +417,18 @@ class ONMainWindow : public QMainWindow
 		QProcess* soundServer;
 		QProcess* scDaemon;
 		QProcess* gpgAgent;
+		QString sshAgentPid;
 		QProcess* gpg;
 		LDAPSession* ld;
+		long embedParent;
+		long embedChild;
+		bool proxyWinEmbedded;
 		bool useLdap;
 		bool showToolBar;
 		bool newSession;
 		bool ldapOnly;
 		bool isScDaemonOk;
+		bool parecTunnelOk;
 
 		bool startSessSound;
 		int startSessSndSystem;
@@ -367,6 +458,27 @@ class ONMainWindow : public QMainWindow
 		QAction *act_new;
 		QAction *act_sessicon;
 		QProcess *nxproxy;
+#ifdef Q_OS_WIN
+		QProcess *xorg;
+		PROCESS_INFORMATION sshd;
+		
+		QProcess* pulseServer;
+		int xDisplay;
+		int sshdPort;
+		bool winServersReady;
+		QString oldEtcDir;
+		QString oldBinDir;
+		QString oldTmpDir;
+		QString pulseDir;
+		int pulsePort;
+		int esdPort;
+		bool maximizeProxyWin;
+		int proxyWinWidth;
+		int proxyWinHeight;
+		QTimer* xorgLogTimer;
+		QString xorgLogFile;
+		QMutex xorgLogMutex;
+#endif
 		QString lastFreeServer;
 		QString cardLogin;
 		QTextEdit* stInfo;
@@ -383,6 +495,7 @@ class ONMainWindow : public QMainWindow
 		QStringList sshEnv;
 		QString agentPid;
 		bool cardReady;
+		bool useSshAgent;
 		void loadSettings();
 		void showPass ( UserButton* user );
 		void clean();
@@ -423,11 +536,17 @@ class ONMainWindow : public QMainWindow
 
 	protected:
 		virtual void closeEvent ( QCloseEvent* event );
-
+#ifndef Q_OS_WIN
+		virtual void mouseReleaseEvent ( QMouseEvent * event );
+#else
+	private slots:
+		void slotSetWinServersReady();
+		void startWinServers();
+		void slotCheckXOrgLog();
+#endif
 	private slots:
 		void slot_showPassForm();
 		void displayUsers();
-		void slot_showWidgets();
 		void slot_resize ( const QSize sz );
 		void slotUnameChanged ( const QString& text );
 		void slotPassEnter();
@@ -439,6 +558,7 @@ class ONMainWindow : public QMainWindow
 		void slot_readSessions();
 		void slot_manage();
 		void displayToolBar ( bool );
+		void showSessionStatus();
 
 	public slots:
 		void slot_config();
@@ -447,12 +567,16 @@ class ONMainWindow : public QMainWindow
 		void slot_edit ( SessionButton* );
 		void slot_createDesktopIcon ( SessionButton* bt );
 		void exportsEdit ( SessionButton* bt );
+		void slotUpdateEmbed();
+		void slotEmbedControlAction();
+		void slotDetachProxyWindow();
+		void slotActivateWindow();
+
 	private slots:
 		void slotSnameChanged ( const QString& );
 		void slotSelectedFromList ( SessionButton* session );
 		void slotSessEnter();
 		void slotCloseSelectDlg();
-		void slot_showSelectSessionWidgets();
 		void slot_activated ( const QModelIndex& index );
 		void slotResumeSess();
 		void slotSuspendSess();
@@ -485,7 +609,6 @@ class ONMainWindow : public QMainWindow
 		void slot_proxyStdout();
 		void slot_resumeDoubleClick ( const QModelIndex& );
 		void slotShowAdvancedStat();
-		void slot_showStatusWidgets();
 		void slot_restartNxProxy();
 		void slot_testSessionStatus();
 		void slot_retRunCommand ( bool result, QString output,
@@ -520,8 +643,17 @@ class ONMainWindow : public QMainWindow
 		void slot_execXmodmap();
 		void slot_sudoErr ( QString errstr, sshProcess* pr );
 		void slotCreateSessionIcon();
+		void slotFindProxyWin();
+		void slotAttachProxyWindow();
+		void slotEmbedIntoParentWindow();
+		void slotEmbedWindow();
+		void slotStartParec ();
+		void slotSndTunOk();
+		void slotPCookieReady (	bool result,QString output,sshProcess* proc );
+		void slotEmbedToolBar();
+		void slotEmbedToolBarToolTip();
+		void slotHideEmbedToolBarToolTip();
 	private:
-		void cartReady();
 		void addToAppNames ( QString intName, QString transName );
 		bool checkAgentProcess();
 		bool isColorDepthOk ( int disp, int sess );
@@ -530,19 +662,30 @@ class ONMainWindow : public QMainWindow
 		void startX2goMount();
 		void cleanPrintSpool();
 		void cleanAskPass();
-#ifdef WINDOWS
-		QString transform2cygwinPath ( const QString& winPath,
-		                               bool trunc=false );
-		QString transform2winPath ( const QString& winPath );
-		QString cygwinHomePath();
-#endif
-#if defined  (WINDOWS) || defined (Q_OS_DARWIN)
-		QString getXDisplay();
-#endif
-#if defined  (WINDOWS)
+		void initWidgetsEmbed();
+		void initWidgetsNormal();
+		QString getCurrentUname();
+		QString getCurrentPass();
+		void processSessionConfig();
+		void startSshAgent();
+		void addKey2SshAgent();
+		void finishSshAgent();
+		void processCfgLine ( QString line );
+		void initSelectSessDlg();
+		void initStatusDlg();
+		void initPassDlg();
+		void printSshDError();
+		void loadPulseModuleNativeProtocol();
+		void initEmbedToolBar();
 		bool isServerRunning ( int port );
-		QProcess* pulseServer;
-		void launchPulse();
+#ifdef Q_OS_WIN
+		void generateHostDsaKey();
+		void generateEtcFiles();
+		void saveCygnusSettings();
+		void restoreCygnusSettings();
+#endif
+#if defined  (Q_OS_WIN) || defined (Q_OS_DARWIN)
+		QString getXDisplay();
 #endif
 };
 

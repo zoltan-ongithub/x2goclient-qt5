@@ -11,7 +11,8 @@
 //
 #ifndef CUPSPRINTERSETTINGSDIALOG_H
 #define CUPSPRINTERSETTINGSDIALOG_H
-
+#include "x2goclientconfig.h"
+#ifndef Q_OS_WIN
 #include <QDialog>
 #include "ui_cupsprintsettingsdialog.h"
 
@@ -58,4 +59,5 @@ class CUPSPrinterSettingsDialog : public QDialog
 
 };
 
+#endif
 #endif

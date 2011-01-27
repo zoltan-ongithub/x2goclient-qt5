@@ -16,7 +16,7 @@
 #include <QSettings>
 #include <QDir>
 #include "printdialog.h"
-#if (!defined WINDOWS) && (!defined Q_WS_HILDON)
+#if (!defined Q_OS_WIN) && (!defined Q_WS_HILDON)
 #include "cupsprint.h"
 #else
 #include "printwidget.h"
@@ -25,20 +25,25 @@
 #include <QMessageBox>
 #include <QFileDialog>
 #include "x2gologdebug.h"
+#ifdef Q_OS_WIN
+#include "wapi.h"
+#endif
+#include <QTimer>
 PrintProcess::PrintProcess ( QString pdf, QString title, QObject *parent ) :
 		QObject ( parent )
 {
 	pdfFile=pdf;
 	pdfTitle=title;
+	parentWidg= ( QWidget* ) parent;
 	if ( !loadSettings() )
 	{
 		QFile::remove ( pdfFile );
 		return;
 	}
 	if ( viewPdf )
-		openPdf();
+		QTimer::singleShot ( 100, this, SLOT ( openPdf() ) );
 	else
-		print();
+		QTimer::singleShot ( 100, this, SLOT ( print() ) );
 }
 
 
@@ -81,7 +86,7 @@ void PrintProcess::slot_processFinished ( int exitCode,
 
 bool PrintProcess::loadSettings()
 {
-#ifndef WINDOWS
+#ifndef Q_OS_WIN
 	QSettings st ( QDir::homePath() +"/.x2goclient/printing",
 	               QSettings::NativeFormat );
 #else
@@ -105,8 +110,12 @@ bool PrintProcess::loadSettings()
 
 	pdfOpen= st.value ( "view/open",true ).toBool();
 
-#ifndef WINDOWS
+#ifndef Q_OS_WIN
 	pdfOpenCmd=st.value ( "view/command","xpdf" ).toString();
+#else
+	winX2goPrinter=
+	    st.value ( "print/defaultprinter",
+	               wapiGetDefaultPrinter() ).toString();
 #endif
 #ifdef Q_WS_HILDON
 	pdfOpenCmd="run-standalone.sh dbus-send --print-reply"
@@ -124,27 +133,34 @@ void PrintProcess::openPdf()
 {
 	if ( pdfOpen )
 	{
-#ifndef WINDOWS
-#ifndef Q_WS_HILDON		
+#ifndef Q_OS_WIN
+#ifndef Q_WS_HILDON
 		QString cmd=pdfOpenCmd+" \""+pdfFile+"\"";
 #else
-		QString cmd=pdfOpenCmd+"\""+pdfFile+"\"";				
-#endif		
+		QString cmd=pdfOpenCmd+"\""+pdfFile+"\"";
+#endif
 		x2goDebug<<cmd;
 		if ( ! QProcess::startDetached ( cmd ) )
-#else
-		pdfOpenCmd=PrintWidget::getPdfCmd();
-		pdfOpenCmd.replace ( "%1",pdfFile );
-
-		if ( ! QProcess::startDetached ( pdfOpenCmd ) )
-#endif
 			slot_error ( QProcess::FailedToStart );
+
+#else
+		wapiShellExecute ( "open",
+		                   wapiShortFileName ( pdfFile ),
+		                   QString::null,
+		                   wapiShortFileName ( QDir::homePath() ) );
+#endif
 	}
 	else
 	{
-		QString fileName = QFileDialog::getSaveFileName ( 0l,
-		                   tr ( "Save File" ),
-		                   QDir::homePath() +"/"+pdfTitle+".pdf",
+		QString homePath=QDir::homePath();
+#ifndef Q_OS_WIN
+		homePath +="/"+pdfTitle+".pdf";
+#else
+		homePath +="\\x2goprint.pdf";
+#endif
+		QString fileName = QFileDialog::getSaveFileName ( 0,
+		                   tr ( "Save File" ),					
+		                   homePath,
 		                   tr ( "PDF Document (*.pdf)" ) );
 		if ( fileName.length() >0 )
 			QFile::rename ( pdfFile,fileName );
@@ -154,15 +170,23 @@ void PrintProcess::openPdf()
 
 void PrintProcess::print()
 {
-#if (!defined WINDOWS) && (!defined Q_WS_HILDON)
+#ifndef Q_WS_HILDON
 	if ( !customPrintCmd )
 	{
+#ifndef Q_OS_WIN
 		CUPSPrint prn;
 		prn.setCurrentPrinter ( prn.getDefaultUserPrinter() );
 		prn.print ( pdfFile, pdfTitle );
+#else
+		x2goDebug<<"printing to "<<winX2goPrinter<<endl;
+		wapiShellExecute ( "printto",
+		                   wapiShortFileName ( pdfFile ),
+		                   winX2goPrinter,
+		                   wapiShortFileName ( QDir::homePath() ) );
+#endif
 	}
 	else
-#endif //WINDOWS
+#endif //Q_WS_HILDON
 	{
 		if ( !printPs )
 		{
@@ -206,7 +230,7 @@ void PrintProcess::print()
 			          this,SLOT (
 			              slot_pdf2psError (
 			                  QProcess::ProcessError ) ) );
-#ifndef WINDOWS
+#ifndef Q_OS_WIN
 			proc->start ( "pdf2ps",args );
 #else
 			QString pdf2ps,ver;
@@ -216,10 +240,12 @@ void PrintProcess::print()
 			proc->setWorkingDirectory ( wdir );
 			QStringList env=QProcess::systemEnvironment();
 			env.replaceInStrings ( QRegExp ( "^PATH=(.*)",
-			                                 Qt::CaseInsensitive ), "PATH=\\1;"+wdir );
+			                                 Qt::CaseInsensitive ),
+			                       "PATH=\\1;"+wdir );
 			wdir.replace ( "\\lib\\","\\bin\\" );
 			env.replaceInStrings ( QRegExp ( "^PATH=(.*)",
-			                                 Qt::CaseInsensitive ), "PATH=\\1;"+wdir );
+			                                 Qt::CaseInsensitive ),
+			                       "PATH=\\1;"+wdir );
 			proc->setEnvironment ( env );
 			proc->start ( pdf2ps,args );
 #endif
@@ -255,4 +281,3 @@ void PrintProcess::slot_pdf2psError ( QProcess::ProcessError )
 	                        tr ( "Failed to execute command:\n" ) +
 	                        "pdf2ps "+pdfFile+" "+psFile );
 }
-

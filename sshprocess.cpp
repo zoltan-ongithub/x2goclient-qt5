@@ -19,6 +19,10 @@
 #include <QLocalServer>
 #include <QLocalSocket>
 #include <QTimer>
+#ifdef Q_OS_WIN
+#include "wapi.h"
+#include "onmainwindow.h"
+#endif
 sshProcess::sshProcess ( QObject* parent,const QString& user,
                          const QString& host,const QString& pt,
                          const QString& cmd,const QString& pass,
@@ -33,22 +37,6 @@ sshProcess::sshProcess ( QObject* parent,const QString& user,
 	sshPort=pt;
 	localSocket=0l;
 	serverSocket=0l;
-	askpass=root+"/ssh";
-	QDir dr ( askpass );
-	if ( !dr.exists() )
-		if ( !dr.mkpath ( askpass ) )
-		{
-			QString message=tr ( "Unable to create: " );
-			message+=askpass;
-			throw message;
-		}
-	askpass+="/socaskpass";
-	QTemporaryFile fl ( askpass );
-	fl.open();
-	askpass=fl.fileName();
-	fl.setAutoRemove ( false );
-	fl.close();
-	QFile::remove ( askpass );
 	this->user=user;
 	this->host=host;
 	command=cmd;
@@ -56,7 +44,7 @@ sshProcess::sshProcess ( QObject* parent,const QString& user,
 	this->key=key;
 	autoAccept=acc;
 	env = QProcess::systemEnvironment();
- 	cleanEnv ( true );
+	cleanEnv ( true );
 #ifdef Q_OS_DARWIN
 	//run x2goclient from bundle
 	QDir dir ( QApplication::applicationDirPath() );
@@ -68,13 +56,38 @@ sshProcess::sshProcess ( QObject* parent,const QString& user,
 #else
 	env.insert ( 0, "SSH_ASKPASS=x2goclient" );
 #endif
-	env.insert ( 0, "X2GO_PSOCKET="+askpass );
-#ifdef WINDOWS
+	askpass=root+"/ssh";
+	QDir dr ( askpass );
+	if ( !dr.exists() )
+		if ( !dr.mkpath ( askpass ) )
+		{
+			QString message=tr ( "Unable to create: " );
+			message+=askpass;
+			throw message;
+		}
+#ifdef Q_OS_WIN
 	env.insert ( 0, "DISPLAY=localhost:0" );
 	//don't care if real display is not 0
 	//we need it only to start askpass
 	//which is not X application
+	askpass=wapiShortFileName ( askpass );
+	extraOptions=" -o UserKnownHostsFile=\""+
+	             askpass +"/known_hosts\" -o ServerAliveInterval=300 ";
+#else
+	extraOptions=" -o ServerAliveInterval=300 ";
 #endif
+	askpass+="/socaskpass-XXXXXX";
+	QTemporaryFile fl ( askpass );
+	if ( !fl.open() )
+	{
+		QMessageBox::critical ( 0l,tr ( "Error" ),
+		                        tr ( "Cannot create temporary file" ) );
+	}
+	askpass=fl.fileName();
+	fl.setAutoRemove ( false );
+	fl.close();
+	QFile::remove ( askpass );
+	env.insert ( 0, "X2GO_PSOCKET="+askpass );
 	setEnvironment ( env );
 }
 
@@ -104,9 +117,9 @@ void sshProcess::slot_finished ( int exitCode, QProcess::ExitStatus status )
 {
 	hidePass();
 // 	QString resout ( readAllStandardOutput() );
-	x2goDebug<<outputString<<endl;
-	x2goDebug<<errorString<<endl;
-	x2goDebug<<"exitCode: "<<exitCode<<" status:"<<status<<endl;
+	/*		x2goDebug<<outputString<<endl;
+			x2goDebug<<errorString<<endl;
+			x2goDebug<<"exitCode: "<<exitCode<<" status:"<<status<<endl;*/
 	if ( ( exitCode!=0&&exitCode!=1 ) || status !=0 )
 	{
 		QString resp=getResponce();
@@ -115,9 +128,12 @@ void sshProcess::slot_finished ( int exitCode, QProcess::ExitStatus status )
 		{
 			int res;
 			if ( !autoAccept )
-				res=QMessageBox::warning ( 0l,errorString,resp,
-				                           tr ( "Yes" ),
-				                           tr ( "No" ) );
+				res=QMessageBox::warning (
+				        0l,
+				        tr ( "Host key verification failed" ),
+				        resp,
+				        tr ( "Yes" ),
+				        tr ( "No" ) );
 			else
 				res=0;
 			if ( res==0 )
@@ -132,10 +148,22 @@ void sshProcess::slot_finished ( int exitCode, QProcess::ExitStatus status )
 			}
 			else
 				emit sshFinished ( false,host+":\n"+
-				                   errorString,this );
+				                   errorString+"\n"+
+				                   outputString,this );
 		}
 		else
-			emit sshFinished ( false,host+":\n"+errorString,this );
+		{
+			if ( isTunnel )
+			{
+				x2goDebug<<"stdout:"<<outputString<<endl;
+				x2goDebug<<"stderr:"<<errorString<<endl;
+				errorString="Can't start ssh tunnel";
+				outputString=QString::null;
+			}
+			emit sshFinished ( false,host+":\n"+
+			                   errorString+"\n"+
+			                   outputString,this );
+		}
 	}
 	else
 		emit sshFinished ( true,outputString,this );
@@ -185,9 +213,9 @@ void sshProcess::slot_stdout()
 
 void sshProcess::startNormal ( bool accept )
 {
-	x2goDebug<<"normal"<<endl;
-	x2goDebug<<command<<endl;
-	x2goDebug<<"host:"<<host<<endl;
+	/*	x2goDebug<<"normal"<<endl;
+		x2goDebug<<command<<endl;
+		x2goDebug<<"host:"<<host<<endl;*/
 	errorString="";
 	needPass=false;
 	disconnect ( this,SIGNAL ( error ( QProcess::ProcessError ) ),this,
@@ -216,25 +244,29 @@ void sshProcess::startNormal ( bool accept )
 	if ( key!=QString::null && key!="" )
 	{
 		printKey ( accept );
-#ifndef  WINDOWS
+#ifndef  Q_OS_WIN
 
-		start ( setsid() +" ssh "+cmX+"-i \""+key+"\" -p "+sshPort+" "+
+		start ( setsid() +" ssh "+cmX+"-i \""+key+"\" -p "+
+		        sshPort+extraOptions+" "+
 		        user+"@"+host+" \""+command+"\"" );
 #else
-		start ( "ssh "+cmX+"-i \""+key+"\" -p "+sshPort+" "+user+"@"+
+		start ( "ssh "+cmX+"-i \""+key+"\" -p "+sshPort+
+		        extraOptions+" "+user+"@"+
 		        host+" \""+command+"\"" );
 #endif
 	}
 	else
 	{
 		printPass ( accept );
-#ifndef  WINDOWS
+#ifndef  Q_OS_WIN
 
-		start ( setsid() +" ssh " +cmX+" -p "+sshPort+" "+user+"@"+host+
+		start ( setsid() +" ssh " +cmX+" -p "+sshPort+
+		        extraOptions+" "+user+"@"+host+
 		        " \""+command+"\"" );
 #else
 
-		start ( "ssh "+cmX+"-p "+sshPort+" "+user+"@"+host+" \""+
+		start ( "ssh "+cmX+"-p "+sshPort+
+		        extraOptions+" "+user+"@"+host+" \""+
 		        command+"\"" );
 #endif
 
@@ -247,6 +279,7 @@ void sshProcess::printPass ( bool accept )
 	if ( serverSocket )
 		delete serverSocket;
 	serverSocket=new QLocalServer();
+	QFile::remove ( askpass );
 	if ( serverSocket->listen ( askpass ) )
 	{
 		QFile fl ( askpass );
@@ -263,10 +296,19 @@ void sshProcess::printPass ( bool accept )
 		connect ( serverSocket,SIGNAL ( newConnection() ),
 		          this,SLOT ( slot_pass_connection() ) );
 	}
+	else
+	{
+		x2goDebug<<"listen server socket error!!: "<<askpass<<endl;
+	}
 }
 
 void sshProcess::printKey ( bool accept )
 {
+	if ( pass!="" && pass!=QString::null )
+	{
+		printPass ( accept );
+		return;
+	}
 	cleanEnv();
 	env.insert ( 0, "X2GO_PCOOKIE=X2GO_RSA_DSA_KEY_USED" );
 	if ( accept )
@@ -302,7 +344,7 @@ void sshProcess::hidePass()
 void sshProcess::startTunnel ( QString h,QString lp,
                                QString rp,bool rev,bool accept )
 {
-	x2goDebug<<"tunnel"<<endl;
+	x2goDebug<<"tunnel :"<<h<<":"<<lp<<":"<<rp<<":"<<reverse<<endl;
 	isTunnel=true;
 	errorString="";
 	needPass=false;
@@ -339,13 +381,14 @@ void sshProcess::startTunnel ( QString h,QString lp,
 	if ( key!=QString::null && key!="" )
 	{
 		printKey ( accept );
-#ifndef  WINDOWS
+#ifndef  Q_OS_WIN
 
 		start ( setsid() +" ssh -c blowfish -v -i \""+key+"\" -p "+
-		        sshPort+" "+user+"@"+host+params );
+		        sshPort+extraOptions+" "+user+"@"+host+params );
 #else
 
-		start ( "ssh -c blowfish -v -i \""+key+"\" -p "+sshPort+" "+
+		start ( "ssh -c blowfish -v -i \""+key+"\" -p "+sshPort+
+		        extraOptions+" "+
 		        user+"@"+host+params );
 #endif
 
@@ -353,14 +396,16 @@ void sshProcess::startTunnel ( QString h,QString lp,
 	else
 	{
 		printPass ( accept );
-#ifndef  WINDOWS
+#ifndef  Q_OS_WIN
 
 		start ( setsid() +" ssh -c blowfish -v "+user+"@"+host+params+
-		        " -p "+sshPort );
+		        " -p "+sshPort+
+		        extraOptions );
 #else
 
 		start ( "ssh -c blowfish -v "+user+"@"+host+params+" -p "+
-		        sshPort );
+		        sshPort+
+		        extraOptions );
 #endif
 
 	}
@@ -368,7 +413,7 @@ void sshProcess::startTunnel ( QString h,QString lp,
 
 void sshProcess::start_cp ( QString src, QString dst, bool accept )
 {
-	x2goDebug<<"copy"<<endl;
+// 	x2goDebug<<"copy"<<endl;
 	isCopy=true;
 	errorString="";
 	needPass=false;
@@ -395,13 +440,16 @@ void sshProcess::start_cp ( QString src, QString dst, bool accept )
 	if ( key!=QString::null && key!="" )
 	{
 		printKey ( accept );
-#ifndef  WINDOWS
+#ifndef  Q_OS_WIN
 
-		start ( setsid() +" scp -i \""+key+"\" -P "+sshPort+" "+" \""+
+		start ( setsid() +" scp -i \""+key+"\" -P "+sshPort+
+		        extraOptions+" "+" \""+
 		        src+"\" "+user+"@"+host+":"+dst );
 #else
 
-		start ( "scp -i \""+key+"\" -P "+sshPort+" "+" \""+src+"\" "+
+		start ( "scp -i \""+key+"\" -P "+sshPort+
+		        extraOptions+" "+" \""+
+		        ONMainWindow::cygwinPath ( src ) +"\" "+
 		        user+"@"+host+":"+dst );
 
 #endif
@@ -410,13 +458,16 @@ void sshProcess::start_cp ( QString src, QString dst, bool accept )
 	else
 	{
 		printPass ( accept );
-#ifndef  WINDOWS
+#ifndef  Q_OS_WIN
 
-		start ( setsid() +" scp -P "+sshPort+" \""+src+"\" "+user+"@"+
+		start ( setsid() +" scp -P "+sshPort+extraOptions+" \""+
+		        src+"\" "+user+"@"+
 		        host+":"+dst );
 #else
 
-		start ( "scp -P "+sshPort+" \""+src+"\" "+user+"@"+host+
+		start ( "scp -P "+sshPort+extraOptions+" \""+
+		        ONMainWindow::cygwinPath ( src ) +"\" "+
+		        user+"@"+host+
 		        ":"+dst );
 #endif
 	}
@@ -518,8 +569,8 @@ void sshProcess::slot_read_cookie_from_socket()
 
 
 
-void sshProcess::setEnvironment(QStringList newEnv)
+void sshProcess::setEnvironment ( QStringList newEnv )
 {
 	env+=newEnv;
-	QProcess::setEnvironment(env);	
+	QProcess::setEnvironment ( env );
 }

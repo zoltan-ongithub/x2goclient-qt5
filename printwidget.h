@@ -26,18 +26,19 @@ class PrintWidget : public QWidget
 
 		~PrintWidget();
 		void saveSettings();
-#ifdef WINDOWS
+#ifdef Q_OS_WIN
 		static bool gsInfo ( QString& version, QString& pdf2ps );
 		static bool gsViewInfo ( QString& version, QString& gsprint );
-		static QString getPdfCmd();
-		static QString getAppCmd ( const QString& app );
 #endif
 	private:
 		Ui::PrintWidget ui;
 		bool printPs;
 		bool printStdIn;
-#ifndef WINDOWS
-		CUPSPrintWidget* pwid;
+#ifndef Q_OS_WIN
+		CUPSPrintWidget* pwid;		
+#else
+		QStringList printers;
+		QString defaultPrinter;
 #endif
 
 	private slots:

@@ -11,6 +11,8 @@
 //
 #ifndef CUPSPRINT_H
 #define CUPSPRINT_H
+#include "x2goclientconfig.h"
+#ifndef Q_OS_WIN
 #include <QStringList>
 #include <cups/cups.h>
 /**
@@ -55,4 +57,5 @@ class CUPSPrint
 		void loadUserOptions();
 };
 
+#endif
 #endif

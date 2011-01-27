@@ -152,7 +152,7 @@ SessionButton::SessionButton ( ONMainWindow* mw,QWidget *parent, QString id )
 		geom->move ( 80,132 );
 		geomBox->move ( 80,132 );
 		soundIcon->move ( 58,156 );
-		sound->move ( 80,156 );
+		sound->move ( 76,156 );
 	}
 	else
 	{
@@ -221,7 +221,7 @@ void SessionButton::slotRemove()
 void SessionButton::redraw()
 {
 	bool snd;
-#ifndef WINDOWS
+#ifndef Q_OS_WIN
 	QSettings st ( QDir::homePath() +"/.x2goclient/sessions",
 	               QSettings::NativeFormat );
 #else
@@ -303,7 +303,6 @@ void SessionButton::redraw()
 	}
 
 
-
 	cmdIcon->setPixmap ( pix );
 	cmd->setText ( command );
 
@@ -338,8 +337,6 @@ void SessionButton::redraw()
 	}
 
 
-
-
 	snd=st.value ( sid+"/sound", ( QVariant ) true ).toBool();
 	if ( snd )
 		sound->setText ( tr ( "Enabled" ) );
@@ -348,7 +345,7 @@ void SessionButton::redraw()
 	soundIcon->setEnabled ( snd );
 	QFontMetrics fm ( sound->font() );
 	sound->setFixedSize ( fm.size ( Qt::TextSingleLine,sound->text() ) +
-	                      QSize ( 4,4 ) );
+	                      QSize ( 8,4 ) );
 
 	sessName->setMinimumSize ( sessName->sizeHint() );
 	geom->setMinimumSize ( geom->sizeHint() );
@@ -474,9 +471,9 @@ void SessionButton::slot_soundClicked()
 		sound->setText ( tr ( "Disabled" ) );
 	QFontMetrics fm ( sound->font() );
 	sound->setFixedSize ( fm.size ( Qt::TextSingleLine,sound->text() ) +
-	                      QSize ( 4,4 ) );
+	                      QSize ( 8,4 ) );
 
-#ifndef WINDOWS
+#ifndef Q_OS_WIN
 	QSettings st ( QDir::homePath() +"/.x2goclient/sessions",
 	               QSettings::NativeFormat );
 #else
@@ -520,7 +517,7 @@ void SessionButton::slot_cmd_change ( const QString& command )
 		pix.load ( par->iconsPath ( "/16x16/X.png" ) );
 	cmdIcon->setPixmap ( pix );
 
-#ifndef WINDOWS
+#ifndef Q_OS_WIN
 	QSettings st ( QDir::homePath() +"/.x2goclient/sessions",
 	               QSettings::NativeFormat );
 #else
@@ -556,7 +553,7 @@ void SessionButton::slot_cmd_change ( const QString& command )
 void SessionButton::slot_geom_change ( const QString& new_g )
 {
 	geom->setText ( new_g );
-#ifndef WINDOWS
+#ifndef Q_OS_WIN
 	QSettings st ( QDir::homePath() +"/.x2goclient/sessions",
 	               QSettings::NativeFormat );
 #else

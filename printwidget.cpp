@@ -10,13 +10,16 @@
 //
 //
 #include "printwidget.h"
-#if (!defined WINDOWS) && (!defined Q_WS_HILDON)
+#if (!defined Q_OS_WIN) && (!defined Q_WS_HILDON)
 #include "cupsprintwidget.h"
 #endif
 #include "printercmddialog.h"
 #include <QSettings>
 #include "x2gologdebug.h"
 #include <QDir>
+#ifdef Q_OS_WIN
+#include "wapi.h"
+#endif
 PrintWidget::PrintWidget ( QWidget* parent )
 		: QWidget ( parent )
 {
@@ -24,12 +27,28 @@ PrintWidget::PrintWidget ( QWidget* parent )
 	ui.rbPrint->setChecked ( true );
 	ui.gbView->setVisible ( false );
 	QVBoxLayout* lay= ( QVBoxLayout* ) ui.gbPrint->layout();
-#if (!defined WINDOWS) && (!defined Q_WS_HILDON)
+#if (!defined Q_OS_WIN) && (!defined Q_WS_HILDON)
+	ui.cbWinPrinter->hide();
+	ui.lWinPrinter->hide();
+	ui.lWinInfo->hide();
 	pwid=new CUPSPrintWidget ( ui.gbPrint );
 	lay->insertWidget ( 0,pwid );
 	connect ( ui.cbPrintCmd,SIGNAL ( toggled ( bool ) ),pwid,
 	          SLOT ( setDisabled ( bool ) ) );
 #else
+#ifdef Q_OS_WIN
+	connect ( ui.cbPrintCmd,SIGNAL ( toggled ( bool ) ),ui.cbWinPrinter,
+	          SLOT ( setDisabled ( bool ) ) );
+	connect ( ui.cbPrintCmd,SIGNAL ( toggled ( bool ) ),ui.lWinPrinter,
+	          SLOT ( setDisabled ( bool ) ) );
+	connect ( ui.cbPrintCmd,SIGNAL ( toggled ( bool ) ),ui.lWinInfo,
+	          SLOT ( setDisabled ( bool ) ) );
+	printers=wapiGetLocalPrinters();
+	defaultPrinter=wapiGetDefaultPrinter();
+	ui.cbWinPrinter->insertItems ( 0,printers );
+	int index=printers.indexOf ( defaultPrinter );
+	if ( index!=-1 )
+		ui.cbWinPrinter->setCurrentIndex ( index );
 	QLabel *rtfm=new QLabel (
 	    tr (
 	        "Please configure your client side printing settings.<br><br>"
@@ -43,7 +62,8 @@ PrintWidget::PrintWidget ( QWidget* parent )
 	    ui.gbPrint );
 	rtfm->setWordWrap ( true );
 	rtfm->setOpenExternalLinks ( true );
-	lay->insertWidget ( 3,rtfm );
+	lay->insertWidget ( 6,rtfm );
+#endif
 #endif
 	connect ( ui.pbPrintCmd,SIGNAL ( clicked() ),this,
 	          SLOT ( slot_editPrintCmd() ) );
@@ -54,15 +74,12 @@ PrintWidget::PrintWidget ( QWidget* parent )
 	loadSettings();
 	connect ( ui.cbShowDialog,SIGNAL ( toggled ( bool ) ),
 	          this, SIGNAL ( dialogShowEnabled ( bool ) ) );
-#if (defined WINDOWS)
-	ui.line->hide();
-	ui.cbPrintCmd->setChecked ( true );
-	ui.cbPrintCmd->setEnabled ( false );
+#if (defined Q_OS_WIN)
 	ui.label->hide();
 	ui.leOpenCmd->hide();
 #endif
 #ifdef Q_WS_HILDON
-	ui.rbView->setChecked(true);
+	ui.rbView->setChecked ( true );
 	ui.rbPrint->hide();
 	ui.rbView->hide();
 	ui.label->hide();
@@ -86,7 +103,7 @@ void PrintWidget::slot_editPrintCmd()
 
 void PrintWidget::loadSettings()
 {
-#ifndef WINDOWS
+#ifndef Q_OS_WIN
 	QSettings st ( QDir::homePath() +"/.x2goclient/printing",
 	               QSettings::NativeFormat );
 #else
@@ -97,14 +114,21 @@ void PrintWidget::loadSettings()
 	bool pdfView=st.value ( "pdfview",false ).toBool();
 	QString prcmd=
 	    st.value ( "print/command","" ).toString();
-#ifdef WINDOWS
+#ifdef Q_OS_WIN
+	defaultPrinter=
+	    st.value ( "print/defaultprinter",defaultPrinter ).toString();
+	
+	int index=printers.indexOf ( defaultPrinter );
+	if ( index!=-1 )
+		ui.cbWinPrinter->setCurrentIndex ( index );
+
 	QString ver,gspath,gsvpath;
 	bool isGsInstalled=gsInfo ( ver,gspath );
 	bool isGsViewInstalled=gsViewInfo ( ver,gsvpath );
 	if ( prcmd=="" && ! ( isGsInstalled && isGsViewInstalled ) )
 	{
-		x2goDebug<<"fallback to view"<<endl;
-		pdfView=true;
+// 		x2goDebug<<"fallback to view"<<endl;
+// 		pdfView=true;
 	}
 	else if ( prcmd=="" )
 	{
@@ -119,9 +143,9 @@ void PrintWidget::loadSettings()
 	else
 		ui.rbPrint->setChecked ( true );
 
-#ifndef WINDOWS
 	ui.cbPrintCmd->setChecked ( st.value ( "print/startcmd",
 	                                       false ).toBool() );
+#ifndef Q_OS_WIN
 	if ( prcmd=="" )
 		prcmd="lpr";
 #endif
@@ -130,15 +154,11 @@ void PrintWidget::loadSettings()
 	printStdIn= st.value ( "print/stdin",false ).toBool();
 	printPs=st.value ( "print/ps",false ).toBool();
 
-#ifdef WINDOWS
+#ifdef Q_OS_WIN
 	printPs=printPs&&isGsInstalled;
 #endif
 
-	if ( ( st.value ( "view/open",true ).toBool() )
-#ifdef WINDOWS
-	        && ( getPdfCmd().length() >0 )
-#endif
-	   )
+	if ( ( st.value ( "view/open",true ).toBool() ) )
 		ui.rbOpen->setChecked ( true );
 	else
 		ui.rbSave->setChecked ( true );
@@ -148,7 +168,7 @@ void PrintWidget::loadSettings()
 
 void PrintWidget::saveSettings()
 {
-#ifndef WINDOWS
+#ifndef Q_OS_WIN
 	QSettings st ( QDir::homePath() +"/.x2goclient/printing",
 	               QSettings::NativeFormat );
 #else
@@ -174,13 +194,17 @@ void PrintWidget::saveSettings()
 	              QVariant ( ui.rbOpen->isChecked () ) );
 	st.setValue ( "view/command",
 	              QVariant ( ui.leOpenCmd->text () ) );
-#if (!defined WINDOWS) && (!defined Q_WS_HILDON)
+#ifdef Q_OS_WIN
+	st.setValue ( "print/defaultprinter",
+	              QVariant ( ui.cbWinPrinter->currentText()) );	
+#endif
+#if (!defined Q_OS_WIN) && (!defined Q_WS_HILDON)
 	pwid->savePrinter();
 #endif
 }
 
 
-#ifdef WINDOWS
+#ifdef Q_OS_WIN
 bool PrintWidget::gsInfo ( QString& version, QString& pdf2ps )
 {
 	QSettings st ( "HKEY_LOCAL_MACHINE\\"
@@ -237,50 +261,4 @@ bool PrintWidget::gsViewInfo ( QString& version, QString& gsprint )
 	}
 	return false;
 }
-
-QString PrintWidget::getAppCmd ( const QString& app )
-{
-	QSettings st ( "HKEY_CLASSES_ROOT\\Applications\\"+
-	               app+"\\shell\\open\\command",
-	               QSettings::NativeFormat );
-	QString cmd=st.value ( ".","" ).toString();
-	if ( cmd.length() >0 )
-		return  cmd;
-	else
-	{
-	QSettings st ( "HKEY_CLASSES_ROOT\\Applications\\"+
-	               app+"\\shell\\Read\\command",
-	               QSettings::NativeFormat );
-	return st.value ( ".","" ).toString();
-	}
-
-}
-
-QString PrintWidget::getPdfCmd()
-{
-	QSettings st ( "HKEY_CURRENT_USER\\"
-	               "Software\\Microsoft\\"
-	               "Windows\\CurrentVersion\\"
-	               "Explorer\\FileExts\\.pdf",
-	               QSettings::NativeFormat );
-	QString defApp=st.value ( "Application",
-	                          "" ).toString();
-	QString appA=st.value ( "OpenWithList/a",
-	                        "" ).toString();
-	QString appB=st.value ( "OpenWithList/b",
-	                        "" ).toString();
-	QString appC=st.value ( "OpenWithList/c",
-	                        "" ).toString();
-	QString cmd;
-	cmd=getAppCmd ( defApp );
-	if ( cmd.length() >0 )
-		return cmd;
-	cmd=getAppCmd ( appA );
-	if ( cmd.length() >0 )
-		return cmd;
-	cmd=getAppCmd ( appB );
-	if ( cmd.length() >0 )
-		return cmd;
-	return getAppCmd ( appC );
-}
-#endif //WINDOWS
+#endif //Q_OS_WIN

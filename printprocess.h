@@ -15,6 +15,7 @@
 #include <QString>
 #include <QObject>
 #include <QProcess>
+
 /**
 	@author Oleksandr Shneyder <oleksandr.shneyder@obviously-nice.de>
 */
@@ -26,7 +27,6 @@ class PrintProcess: public QObject
 		PrintProcess ( QString pdf, QString title,
 		               QObject * parent=0l );
 		~PrintProcess();
-		void print();
 	private:
 		QString pdfFile;
 		QString pdfTitle;
@@ -37,15 +37,21 @@ class PrintProcess: public QObject
 		bool printPs;
 		bool pdfOpen;
 		QString pdfOpenCmd;
+		QWidget* parentWidg;
 		QString printCmd;
+#ifdef Q_OS_WIN
+		QString winX2goPrinter;
+		QString winDefaultPrinter;
+#endif
 	private:
 		bool loadSettings();
-		void openPdf();
 	private slots:
 		void slot_processFinished ( int exitCode,
 		                            QProcess::ExitStatus exitStatus );
 		void slot_pdf2psError ( QProcess::ProcessError error ) ;
 		void slot_error ( QProcess::ProcessError error );
+		void openPdf();
+		void print();
 };
 
 #endif

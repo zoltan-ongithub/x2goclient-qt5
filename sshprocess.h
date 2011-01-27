@@ -66,7 +66,7 @@ class sshProcess : public QProcess
 		bool reverse;
 		bool fwX;
 		bool sudoErr;
-
+		QString extraOptions;
 
 	private slots:
 		void slot_error ( QProcess::ProcessError );

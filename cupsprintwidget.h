@@ -13,6 +13,8 @@
 #define CUPSPRINTWIDGET_H
 
 #include <QWidget>
+#include "x2goclientconfig.h"
+#ifndef Q_OS_WIN
 #include "cupsprint.h"
 #include "ui_cupsprintwidget.h"
 /**
@@ -35,4 +37,5 @@ class CUPSPrintWidget : public QWidget
 		void slot_printerSettings();
 };
 
+#endif
 #endif

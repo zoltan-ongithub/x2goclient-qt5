@@ -11,7 +11,7 @@
 //
 #include "printercmddialog.h"
 #include "x2goclientconfig.h"
-#ifdef WINDOWS
+#ifdef Q_OS_WIN
       #include "printwidget.h"
 #endif
 PrinterCmdDialog::PrinterCmdDialog ( QString* cmd, bool* stdinpr,
@@ -33,7 +33,7 @@ PrinterCmdDialog::PrinterCmdDialog ( QString* cmd, bool* stdinpr,
 		ui.rbPDF->setChecked ( true );
 	connect ( ui.buttonBox,
 	          SIGNAL ( accepted() ),this,SLOT ( slot_ok() ) );
-#ifdef WINDOWS
+#ifdef Q_OS_WIN
 	QString txt=tr ( "Please enter your customized or"
 	                         " individual printing command.\n"
 	                         "Example:\n");

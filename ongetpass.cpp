@@ -141,6 +141,7 @@ int main ( int argc, char *argv[] )
 	app.setStyle ( new QPlastiqueStyle() );
 #endif
 #endif
+	
 	QStringList args;
 	if ( argc > 1 )
 		args=app.arguments();

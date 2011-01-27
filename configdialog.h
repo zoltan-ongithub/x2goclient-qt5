@@ -22,6 +22,9 @@ class QPushButton;
 class QRadioButton;
 class QButtonGroup;
 class PrintWidget;
+class ConnectionWidget;
+class SettingsWidget;
+class QTabWidget;
 /**
 	@author Oleksandr Shneyder <oleksandr.shneyder@obviously-nice.de>
 */
@@ -29,8 +32,8 @@ class ConfigDialog : public QDialog
 {
 		Q_OBJECT
 	public:
-		enum XServers{XMING,CYGWIN,CUSTOM};
-		ConfigDialog ( QWidget * parent, Qt::WFlags f = 0 );
+		ConfigDialog ( QWidget * parent,
+		               Qt::WFlags f = 0 );
 		~ConfigDialog();
 #ifdef Q_OS_DARWIN
 		static    QString findXDarwin ( QString& version,
@@ -40,18 +43,13 @@ class ConfigDialog : public QDialog
 		static    QString getXDarwinDirectory();
 		void    printXDarwinVersionWarning ( QString version );
 #endif
-#ifdef WINDOWS
-		static    void getXming ( bool* found, QString* execName,
-		                          QString* execDir, QString* options );
+#ifdef Q_OS_WIN
 		static    QString getCygwinDir ( const QString& dir );
-		static    void getCygwin ( bool* found, QString* execName,
-		                           QString* execDir, QString* options );
-		static    void getXSettings ( uint* display, QString* execName,
-		                              QString* execDir,
-		                              QString* options );
 #endif
 
 	private:
+		QTabWidget* tabWidg;
+		QCheckBox* cbStartEmbed;
 		QCheckBox* useldap;
 		QLineEdit* ldapBase;
 		QLineEdit* ldapServer;
@@ -60,9 +58,15 @@ class ConfigDialog : public QDialog
 		QSpinBox*  port1;
 		PrintWidget* pwid;
 		QLineEdit* ldapServer2;
+		bool embedMode;
 		QSpinBox*  port2;
 		QSpinBox*  clientSshPort;
 		QPushButton* ok;
+		bool advOptionsShown;
+
+		QPushButton* defaults;
+		QPushButton* advancedOptions;
+
 		QLineEdit* leXexec;
 		QLineEdit* leCmdOpt;
 		QSpinBox* sbDisp;
@@ -70,22 +74,20 @@ class ConfigDialog : public QDialog
 		QRadioButton* rbX[3];
 		QPushButton* pbOpenExec;
 		QButtonGroup* bgRadio;
+		ConnectionWidget* conWidg;
+		SettingsWidget* setWidg;
 
 	public slots:
 		void slot_accepted();
 		void slot_checkOkStat();
 	private slots:
-#ifdef WINDOWS
-		void slotDefaultXSettings();
-		void slotGetExecDir();
-		void slotGetExec();
-		void slotXSelected ( int id );
-		void slotDispChanged ( const QString& val );
-#endif
 #ifdef Q_OS_DARWIN
 		void slot_selectXDarwin();
 		void slot_findXDarwin();
 #endif
+	private slots:
+		void slotAdvClicked();
+		void slotDefaults();
 };
 
 #endif

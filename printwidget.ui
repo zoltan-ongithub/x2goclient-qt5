@@ -5,8 +5,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>531</width>
-    <height>292</height>
+    <width>559</width>
+    <height>497</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -63,6 +63,24 @@
           <string>Print settings</string>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_3" >
+          <item>
+           <widget class="QLabel" name="lWinPrinter" >
+            <property name="text" >
+             <string>Printer:</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="cbWinPrinter" />
+          </item>
+          <item>
+           <widget class="QLabel" name="lWinInfo" >
+            <property name="text" >
+             <string>Print using default Windows PDF Viewer
+(Viewer application needs to be installed)</string>
+            </property>
+           </widget>
+          </item>
           <item>
            <widget class="Line" name="line" >
             <property name="orientation" >

@@ -17,6 +17,7 @@
 *   Free Software Foundation, Inc.,                                       *
 *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
 ***************************************************************************/
+#include <QTextStream>
 #include "version.h"
 #include "x2goclientconfig.h"
 #include "onmainwindow.h"
@@ -29,7 +30,8 @@
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QFile>
-#include <QTextStream>
+
+
 #include <QTimer>
 #include <QComboBox>
 #include <QMessageBox>
@@ -47,6 +49,8 @@
 #include <QToolBar>
 #include <QShortcut>
 #include <QSettings>
+#include <QStatusBar>
+#include <QInputDialog>
 #include <QDir>
 #include <unistd.h>
 #include <QTreeView>
@@ -60,13 +64,15 @@
 #include <QPlastiqueStyle>
 #include "sshprocess.h"
 #include "imgframe.h"
+#include <QToolTip>
+#include "clicklineedit.h"
 
-#if !defined WINDOWS
+#if !defined Q_OS_WIN
 #include <sys/mount.h>
 #ifdef Q_OS_LINUX
 #include <linux/fs.h>
 #endif // Q_OS_LINUX
-#endif // !defined WINDOWS
+#endif // !defined Q_OS_WIN
 
 #include <errno.h>
 #include <sys/types.h>
@@ -75,6 +81,7 @@
 #include <QCoreApplication>
 
 #include <QDesktopWidget>
+#include "embedwidget.h"
 
 #define ldap_SUCCESS 0
 #define ldap_INITERROR 1
@@ -117,8 +124,11 @@
 #include "sessionbutton.h"
 #include "sessionmanagedialog.h"
 #include "x2gologdebug.h"
+#include <QMouseEvent>
 
-
+#ifdef Q_OS_WIN
+#include "wapi.h"
+#endif
 
 void x2goSession::operator = ( const x2goSession& s )
 {
@@ -143,14 +153,21 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
 	startMaximized=false;
 	startHidden=false;
 	defaultUseSound=true;
-	defaultSetKbd=false;
+	defaultSetKbd=true;
+	defaultSetDPI=false;
+	defaultDPI=96;
 	extStarted=false;
 	defaultLink=2;
 	defaultFullscreen=false;
 	acceptRsa=false;
 	cardStarted=false;
 	cardReady=false;
+	useSshAgent=false;
 	miniMode=false;
+	embedMode=false;
+	proxyWinEmbedded=false;
+	proxyWinId=0;
+	embedParent=embedChild=0l;
 	defaultSession=false;
 	defaultUser=false;
 	defaultWidth=800;
@@ -161,29 +178,39 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
 	defaultKbdType=tr ( "pc105/us" );
 	defaultCmd="KDE";
 	defaultSshPort=sshPort=clientSshPort="22";
-#ifdef WINDOWS
-	pulseServer=0l;
+#ifdef Q_OS_WIN
+	clientSshPort="7022";
+	pulsePort=4713;
 #endif
-	
+	appDir=QApplication::applicationDirPath();
+	homeDir=QDir::homePath();
+
+#ifdef Q_OS_WIN
+	pulseServer=0l;
+	xorg=0l;
+	xDisplay=0;
+#endif
 	cleanAskPass();
 	setWindowTitle ( tr ( "X2Go client" ) );
 	ld=0;
 	tunnel=0l;
 	sndTunnel=0l;
 	fsTunnel=0l;
-	selectSessionDlg=0l;
 	nxproxy=0l;
 	soundServer=0l;
 	scDaemon=0l;
 	gpgAgent=0l;
+	statusLabel=0;
 	gpg=0l;
 	restartResume=false;
 	isPassShown=true;
-	sessionStatusDlg=0l;
 	readExportsFrom=QString::null;
-	passForm=0l;
 	spoolTimer=0l;
 	ldapOnly=false;
+	embedControlChanged=false;
+	statusString=tr ( "connecting" );
+
+
 	hide();
 	kdeIconsPath=getKdeIconsPath();
 
@@ -209,6 +236,7 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
 		x2goDebug<<"Switching to \"mini\" mode";
 	}
 
+
 	agentCheckTimer=new QTimer ( this );
 	connect ( agentCheckTimer,SIGNAL ( timeout() ),this,
 	          SLOT ( slot_checkAgentProcess() ) );
@@ -223,6 +251,13 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
 			close();
 			exit ( -1 );
 		}
+	}
+
+
+	if ( embedMode )
+	{
+		miniMode=false;
+		useLdap=false;
 	}
 
 	if ( readExportsFrom!=QString::null )
@@ -285,7 +320,175 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
 	}
 
 	mainL=new QHBoxLayout ( fr );
+	QVBoxLayout* onlay=new QVBoxLayout();
+	onlay->addStretch();
+	onlay->addWidget ( on );
 
+	QVBoxLayout* x2golay=new QVBoxLayout();
+	x2golay->addStretch();
+	x2golay->addWidget ( x2g );
+
+
+	QHBoxLayout* bgLay=new QHBoxLayout ( bgFrame );
+	bgLay->setSpacing ( 0 );
+	bgLay->setMargin ( 0 );
+	bgLay->addLayout ( onlay );
+	bgLay->addStretch();
+	username=new QHBoxLayout();
+	bgLay->addLayout ( username );
+	if ( embedMode )
+		bgLay->addStretch();
+	bgLay->addLayout ( x2golay );
+
+
+
+	act_set=new QAction (
+	    QIcon ( iconsPath ( "/32x32/edit_settings.png" ) ),
+	    tr ( "&Settings ..." ),this );
+
+	act_abclient=new QAction ( QIcon ( ":icons/32x32/x2goclient.png" ),
+	                           tr ( "About X2GO client" ),this );
+
+
+
+	connect ( act_set,SIGNAL ( triggered ( bool ) ),this,
+	          SLOT ( slot_config() ) );
+	connect ( act_abclient,SIGNAL ( triggered ( bool ) ),this,
+	          SLOT ( slot_about() ) );
+
+
+#ifdef Q_OS_DARWIN
+	embedMode=false;
+#endif
+
+#ifdef Q_OS_WIN
+	winServersReady=false;
+	startWinServers();
+#endif
+
+	initPassDlg();
+	initSelectSessDlg();
+	initStatusDlg();
+
+	if ( !embedMode )
+	{
+		initWidgetsNormal();
+	}
+	else
+	{
+		initWidgetsEmbed();
+	}
+	mainL->setSpacing ( 0 );
+	mainL->setMargin ( 0 );
+	mainL->insertWidget ( 0, bgFrame );
+	hide();
+	QTimer::singleShot ( 1, this, SLOT ( slot_resize() ) );
+	connect ( fr,SIGNAL ( resized ( const QSize ) ),this,
+	          SLOT ( slot_resize ( const QSize ) ) );
+
+	slot_resize ( fr->size() );
+}
+
+ONMainWindow::~ONMainWindow()
+{
+}
+
+void ONMainWindow::initWidgetsEmbed()
+{
+	stb=new QToolBar ( this );
+	addToolBar ( stb );
+	stb->toggleViewAction()->setEnabled ( false );
+	stb->toggleViewAction()->setVisible ( false );
+	stb->setFloatable ( false );
+	stb->setMovable ( false );
+	statusBar()->setSizeGripEnabled ( false );
+	statusBar()->hide();
+	proxyWinTimer=new QTimer ( this );
+	connect ( proxyWinTimer, SIGNAL ( timeout() ), this,
+	          SLOT ( slotFindProxyWin() ) );
+
+	act_shareFolder=new QAction ( QIcon ( ":icons/32x32/file-open.png" ),
+	                              tr ( "Share folder..." ),this );
+//  	act_shareFolder->setToolTip ( "Share folder" );
+
+	act_suspend=new QAction ( QIcon ( ":icons/32x32/suspend.png" ),
+	                          tr ( "Suspend" ),this );
+//  	act_suspend->setToolTip (tr( "Suspend session" ));
+
+	act_terminate=new QAction ( QIcon ( ":icons/32x32/stop.png" ),
+	                            tr ( "Terminate" ),this );
+//  	act_terminate->setToolTip(tr("Terminate session"))
+
+	act_embedContol=new QAction ( QIcon ( ":icons/32x32/detach.png" ),
+	                              tr ( "Detach X2Go window" ),this );
+
+	act_embedToolBar=new QAction ( QIcon ( ":icons/32x32/tbhide.png" ),
+	                               tr ( "Minimize toolbar" ),this );
+
+
+	setEmbedSessionActionsEnabled ( false );
+
+	connect ( act_shareFolder,SIGNAL ( triggered ( bool ) ),this,
+	          SLOT ( slot_exportDirectory() ) );
+
+	connect ( act_suspend,SIGNAL ( triggered ( bool ) ),this,
+	          SLOT ( slotSuspendSessFromSt() ) );
+
+	connect ( act_terminate,SIGNAL ( triggered ( bool ) ),this,
+	          SLOT ( slotTermSessFromSt() ) );
+
+	connect ( act_embedContol,SIGNAL ( triggered ( bool ) ),this,
+	          SLOT ( slotEmbedControlAction() ) );
+
+	connect ( act_embedToolBar,SIGNAL ( triggered ( bool ) ),this,
+	          SLOT ( slotEmbedToolBar() ) );
+
+	processSessionConfig();
+	EmbedWidget::initWidgets();
+	QTimer::singleShot ( 1, this, SLOT ( slotEmbedIntoParentWindow() ) );
+#ifndef Q_OS_WIN
+	QSettings st ( homeDir +"/.x2goclient/sessions",
+	               QSettings::NativeFormat );
+#else
+
+	QSettings st ( "Obviously Nice","x2goclient" );
+	st.beginGroup ( "sessions" );
+#endif
+
+	embedTbVisible=!st.value ( "embedded/tbvisible", true ).toBool();
+	slotEmbedToolBar();
+	showTbTooltip=false;
+	if ( !embedTbVisible )
+	{
+		showTbTooltip=true;
+		QTimer::singleShot ( 500, this,
+		                     SLOT ( slotEmbedToolBarToolTip() ) );
+		QTimer::singleShot ( 3000, this,
+		                     SLOT ( slotHideEmbedToolBarToolTip() ) );
+	}
+
+
+	slotSelectedFromList ( ( SessionButton* ) 0 );
+#ifdef Q_OS_LINUX
+	QTimer::singleShot ( 500, this,
+	                     SLOT ( slotActivateWindow() ) );
+#endif
+#ifdef Q_OS_WIN
+	if ( embedMode )
+	{
+		QRect r;
+		wapiWindowRect (
+		    stb->widgetForAction ( act_embedToolBar )->winId(),r );
+	}
+#endif
+
+}
+
+void ONMainWindow::initWidgetsNormal()
+{
+	username->setSpacing ( 10 );
+	username->addStretch();
+	username->addStretch();
 	ln=new SVGFrame ( ( QString ) ":/svg/line.svg",true,fr );
 	ln->setFixedWidth ( ln->sizeHint().width() );
 	uname=new QLineEdit ( bgFrame );
@@ -310,42 +513,14 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
 	          SLOT ( slotUnameEntered() ) );
 
 	QPalette pal=u->palette();
-	pal.setColor ( QPalette::WindowText, QColor ( 200,200,200,255 ) );
+	pal.setColor ( QPalette::WindowText,
+	               QColor ( 200,200,200,255 ) );
 	u->setPalette ( pal );
 	uname->setFont ( fnt );
 	pal=uname->palette();
 	pal.setColor ( QPalette::Base, QColor ( 255,255,255,0 ) );
 	pal.setColor ( QPalette::Text, QColor ( 200,200,200,255 ) );
 	uname->setPalette ( pal );
-
-	username=new QHBoxLayout();
-	username->setSpacing ( 10 );
-	username->addStretch();
-	username->addStretch();
-
-
-	QVBoxLayout* onlay=new QVBoxLayout();
-	onlay->addStretch();
-	onlay->addWidget ( on );
-
-	QVBoxLayout* x2golay=new QVBoxLayout();
-	x2golay->addStretch();
-	x2golay->addWidget ( x2g );
-
-
-	QHBoxLayout* bgLay=new QHBoxLayout ( bgFrame );
-	bgLay->setSpacing ( 0 );
-	bgLay->setMargin ( 0 );
-	bgLay->addLayout ( onlay );
-	bgLay->addStretch();
-	bgLay->addLayout ( username );
-	bgLay->addLayout ( x2golay );
-
-
-	mainL->setSpacing ( 0 );
-	mainL->setMargin ( 0 );
-	mainL->addWidget ( bgFrame );
-	mainL->addWidget ( ln );
 
 	u->show();
 	uname->show();
@@ -367,21 +542,15 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
 
 	uframe=new QFrame();
 	users->setWidget ( uframe );
+
+	mainL->insertWidget ( 1, ln );
 	mainL->addWidget ( users );
-
-
-	connect ( fr,SIGNAL ( resized ( const QSize ) ),this,
-	          SLOT ( slot_resize ( const QSize ) ) );
-	slot_resize ( fr->size() );
-
 
 	QAction *act_exit=new QAction (
 	    QIcon ( iconsPath ( "/32x32/exit.png" ) ),
 	    tr ( "&Quit" ),this );
 	act_exit->setShortcut ( tr ( "Ctrl+Q" ) );
 	act_exit->setStatusTip ( tr ( "Quit" ) );
-
-
 
 	act_new=new QAction ( QIcon ( iconsPath ( "/32x32/new_file.png" ) ),
 	                      tr ( "&New session ..." ),this );
@@ -397,24 +566,15 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
 	act_sessicon=new QAction ( QIcon ( iconsPath ( "/32x32/create_file.png" ) ),
 	                           tr ( "&Create session icon on desktop..." ),this );
 
-	QAction *act_set=new QAction (
-	    QIcon ( iconsPath ( "/32x32/edit_settings.png" ) ),
-	    tr ( "&Settings ..." ),this );
 
 	QAction *act_tb=new QAction ( tr ( "Show toolbar" ),this );
 	act_tb->setCheckable ( true );
 	act_tb->setChecked ( showToolBar );
 
 
-	QAction *act_abclient=new QAction ( QIcon ( ":icons/16x16/x2go.png" ),
-	                                    tr ( "About X2GO client" ),this );
 
 	QAction *act_abqt=new QAction ( tr ( "About Qt" ),this );
 
-	connect ( act_set,SIGNAL ( triggered ( bool ) ),this,
-	          SLOT ( slot_config() ) );
-	connect ( act_abclient,SIGNAL ( triggered ( bool ) ),this,
-	          SLOT ( slot_about() ) );
 	connect ( act_abqt,SIGNAL ( triggered ( bool ) ),this,
 	          SLOT ( slot_about_qt() ) );
 	connect ( act_new,SIGNAL ( triggered ( bool ) ),this,
@@ -427,7 +587,7 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
 	          SLOT ( close() ) );
 	connect ( act_tb,SIGNAL ( toggled ( bool ) ),this,
 	          SLOT ( displayToolBar ( bool ) ) );
-	QToolBar *stb=addToolBar ( tr ( "Session" ) );
+	stb=addToolBar ( tr ( "Show toolbar" ) );
 
 	QShortcut* ex=new QShortcut ( QKeySequence ( tr ( "Ctrl+Q","exit" ) ),
 	                              this );
@@ -442,7 +602,7 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
 		menu_sess->addAction ( act_edit );
 #if (!defined Q_WS_HILDON) && (!defined Q_OS_DARWIN)
 		menu_sess->addAction ( act_sessicon );
-#endif		
+#endif
 		menu_sess->addSeparator();
 		menu_sess->addAction ( act_exit );
 		menu_opts->addAction ( act_set );
@@ -456,7 +616,7 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
 		stb->addAction ( act_edit );
 #if (!defined Q_WS_HILDON) && (!defined Q_OS_DARWIN)
 		stb->addAction ( act_sessicon );
-#endif		
+#endif
 		stb->addSeparator();
 		stb->addAction ( act_set );
 
@@ -467,8 +627,6 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
 	}
 	else
 		stb->hide();
-
-	QTimer::singleShot ( 1, this, SLOT ( slot_resize() ) );
 
 #if !defined USELDAP
 
@@ -487,78 +645,23 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
 	QTimer* t=new QTimer ( this );
 	connect ( t,SIGNAL ( timeout() ),this,SLOT ( slot_rereadUsers() ) );
 	t->start ( 20000 );
-	hide();
+#ifdef Q_OS_WIN
+	proxyWinTimer=new QTimer ( this );
+	connect ( proxyWinTimer, SIGNAL ( timeout() ), this,
+	          SLOT ( slotFindProxyWin() ) );
+#endif
+
 }
 
-
-ONMainWindow::~ONMainWindow()
-{}
 
 
 QString ONMainWindow::findTheme ( QString /*theme*/ )
 {
-	/*    QDir dr(QDir::homePath ()+"/.kde/share/icons/"+theme);
-		if(dr.exists())
-		return dr.absolutePath();
-
-		QStringList lst=QProcess::systemEnvironment();
-		QString kdedir;
-		for (int i = 0; i < lst.size(); ++i)
-		{
-		if(lst.at(i).indexOf("KDEDIRS")==0)
-		{
-		kdedir=lst.at(i).split('=').at(1);
-		break;
-	}
-	}
-		if(!kdedir.isNull())
-		{
-		QStringList dirs=kdedir.split(':');
-		for(int i=0; i< dirs.size(); ++i)
-		{
-		dr.setPath(dirs.at(i)+"/share/icons/"+theme);
-		if(dr.exists())
-		return dr.absolutePath();
-	}
-	}
-		dr.setPath((QString)"/usr/share/icons/"+theme);
-		if(dr.exists())
-		return dr.absolutePath();
-
-		dr.setPath((QString)"/usr/kde/3.5/share/icons/"+theme);
-		if(dr.exists())
-		return dr.absolutePath();
-
-		dr.setPath((QString)"/opt/kde3/share/icons/"+theme);
-		if(dr.exists())
-		return dr.absolutePath();*/
-
 	return QString::null;
 }
 
 QString ONMainWindow::getKdeIconsPath()
 {
-	/*    QSettings st(QDir::homePath ()+"/.kde/share/config/kdeglobals",
-	QSettings::NativeFormat);
-		QString theme="default.kde";
-		if(st.contains("Icons/Theme"))
-		{
-		theme=st.value("Icons/Theme","default.kde").toString();
-	}
-
-		QString path=findTheme(theme);
-		if(!path.isNull())
-		{
-		return path;
-	}
-		if(theme == "default.kde")
-		return ":/icons";
-		theme == "default.kde";
-		path=findTheme(theme);
-		if(!path.isNull())
-		{
-		return path;
-	}*/
 	return ":/icons";
 }
 
@@ -571,75 +674,79 @@ void ONMainWindow::slot_resize ( const QSize sz )
 	int height;
 	int usize;
 	height=sz.height();
-	if ( !miniMode )
+	if ( !embedMode )
 	{
-		usize=sz.width()-800;
-		if ( usize<360 )
-			usize=360;
-		if ( usize>500 )
-			usize=500;
-	}
-	else
-	{
-// 		usize=sz.width()-648;
-// 		if ( usize<285 )
-		usize=285;
-// 		if ( usize>300 )
-// 			usize=300;
-	}
-
-	if ( users->width() !=usize )
-	{
-		users->setFixedWidth ( usize );
-		if ( useLdap )
+		if ( !miniMode )
 		{
-			QList<UserButton*>::iterator it;
-			QList<UserButton*>::iterator end=names.end();
-			for ( it=names.begin();it!=end;it++ )
-			{
-				if ( !miniMode )
-					( *it )->move ( ( usize-360 ) /2,
-					                ( *it )->pos().y() );
-				else
-					( *it )->move ( ( usize-250 ) /2,
-					                ( *it )->pos().y() );
-			}
+			usize=sz.width()-800;
+			if ( usize<360 )
+				usize=360;
+			if ( usize>500 )
+				usize=500;
 		}
 		else
 		{
-			QList<SessionButton*>::iterator it;
-			QList<SessionButton*>::iterator end=sessions.end();
-			for ( it=sessions.begin();it!=end;it++ )
+			usize=285;
+		}
+
+		if ( users->width() !=usize )
+		{
+			users->setFixedWidth ( usize );
+			if ( useLdap )
 			{
-				if ( !miniMode )
-					( *it )->move ( ( usize-360 ) /2,
-					                ( *it )->pos().y() );
-				else
-					( *it )->move ( ( usize-250 ) /2,
-					                ( *it )->pos().y() );
+				QList<UserButton*>::iterator it;
+				QList<UserButton*>::iterator end=names.end();
+				for ( it=names.begin();it!=end;it++ )
+				{
+					if ( !miniMode )
+						( *it )->move (
+						    ( usize-360 ) /2,
+						    ( *it )->pos().y() );
+					else
+						( *it )->move (
+						    ( usize-250 ) /2,
+						    ( *it )->pos().y() );
+				}
+			}
+			else
+			{
+				QList<SessionButton*>::iterator it;
+				QList<SessionButton*>::iterator end=
+				    sessions.end();
+				for ( it=sessions.begin();it!=end;it++ )
+				{
+					if ( !miniMode )
+						( *it )->move (
+						    ( usize-360 ) /2,
+						    ( *it )->pos().y() );
+					else
+						( *it )->move (
+						    ( usize-250 ) /2,
+						    ( *it )->pos().y() );
+				}
 			}
 		}
-	}
-	u->setFixedWidth ( u->sizeHint().width() );
+		u->setFixedWidth ( u->sizeHint().width() );
 
-	int bwidth=bgFrame->width();
-	int upos= ( bwidth-u->width() ) /2;
-	if ( upos<0 )
-		upos=0;
-	int rwidth=bwidth- ( upos+u->width() +5 );
-	if ( rwidth<0 )
-		rwidth=1;
-	uname->setMinimumWidth ( rwidth );
-	u->move ( upos,height/2 );
-	uname->move ( u->pos().x() +u->width() +5,u->pos().y() );
+		int bwidth=bgFrame->width();
+		int upos= ( bwidth-u->width() ) /2;
+		if ( upos<0 )
+			upos=0;
+		int rwidth=bwidth- ( upos+u->width() +5 );
+		if ( rwidth<0 )
+			rwidth=1;
+		uname->setMinimumWidth ( rwidth );
+		u->move ( upos,height/2 );
+		uname->move ( u->pos().x() +u->width() +5,u->pos().y() );
+	}
 }
 
 void ONMainWindow::closeEvent ( QCloseEvent* event )
 {
-	if ( !startMaximized && !startHidden )
+	if ( !startMaximized && !startHidden && !embedMode )
 	{
-#ifndef WINDOWS
-		QSettings st ( QDir::homePath() +"/.x2goclient/sizes",
+#ifndef Q_OS_WIN
+		QSettings st ( homeDir +"/.x2goclient/sizes",
 		               QSettings::NativeFormat );
 #else
 
@@ -672,6 +779,8 @@ void ONMainWindow::closeEvent ( QCloseEvent* event )
 		if ( gpgAgent->state() ==QProcess::Running )
 			gpgAgent->terminate();
 	}
+	if ( useSshAgent )
+		finishSshAgent();
 	if ( agentPid.length() >0 )
 	{
 		if ( checkAgentProcess() )
@@ -681,20 +790,41 @@ void ONMainWindow::closeEvent ( QCloseEvent* event )
 			QProcess::execute ( "kill",arg );
 		}
 	}
-#ifdef WINDOWS
+#ifdef Q_OS_WIN
 	if ( pulseServer )
 	{
 		pulseServer->kill();
 		delete pulseServer;
+		QDir dr ( homeDir );
+		dr.remove ( pulseDir+"/config.pa" );
+		dr.remove ( pulseDir+"/pulse-pulseuser/pid" );
+		dr.rmdir ( pulseDir+"/pulse-pulseuser" );
+		dr.rmdir ( pulseDir );
 	}
+	if ( xorg )
+	{
+		xorg->terminate();
+		delete xorg;
+	}
+
+	TerminateProcess ( sshd.hProcess,0 );
+	CloseHandle ( sshd.hProcess );
+	CloseHandle ( sshd.hThread );
+
 #endif
+	if ( embedMode )
+	{
+		passForm->close();
+		selectSessionDlg->close();
+		closeEmbedWidget();
+	}
 }
 
 void ONMainWindow::loadSettings()
 {
 
-#ifndef WINDOWS
-	QSettings st ( QDir::homePath() +"/.x2goclient/sizes",
+#ifndef Q_OS_WIN
+	QSettings st ( homeDir +"/.x2goclient/sizes",
 	               QSettings::NativeFormat );
 #else
 
@@ -708,9 +838,9 @@ void ONMainWindow::loadSettings()
 	                 ( QVariant ) QPoint ( 20,20 ) ).toPoint();
 	mwMax=st.value ( "mainwindow/maximized", ( QVariant ) false ).toBool();
 
-#ifndef WINDOWS
+#ifndef Q_OS_WIN
 
-	QSettings st1 ( QDir::homePath() +"/.x2goclient/settings",
+	QSettings st1 ( homeDir +"/.x2goclient/settings",
 	                QSettings::NativeFormat );
 #else
 
@@ -735,7 +865,9 @@ void ONMainWindow::loadSettings()
 		                        ( QVariant ) QString::null ).toString();
 		ldapPort2=st1.value ( "LDAP/port2", ( QVariant ) 0 ).toInt();
 	}
+#ifndef Q_OS_WIN
 	clientSshPort=st1.value ( "clientport", ( QVariant ) 22 ).toString();
+#endif
 	showToolBar=st1.value ( "toolbar/show", ( QVariant ) true ).toBool();
 
 }
@@ -821,123 +953,18 @@ void ONMainWindow::showPass ( UserButton* user )
 		fullName="User Unknown";
 	}
 
-	passForm = new SVGFrame ( ":/svg/passform.svg",false,bgFrame );
-	setWidgetStyle ( passForm );
-
-	passForm->hide();
-	if ( !miniMode )
-		passForm->setFixedSize ( passForm->sizeHint() );
-	else
-		passForm->setFixedSize ( 310,180 );
-
-
-	username->addWidget ( passForm );
-	pal=passForm->palette();
-	pal.setBrush ( QPalette::Window, QColor ( 0,0,0,0 ) );
-	passForm->setPalette ( pal );
-
-	fotoLabel=new QLabel ( passForm );
-	fotoLabel->hide();
 	fotoLabel->setPixmap ( foto );
 
 	QString text="<b>"+nick+"</b><br>("+fullName+")";
-	nameLabel=new QLabel ( text,passForm );
-	nameLabel->hide();
-	login=new QLineEdit ( passForm );
-	setWidgetStyle ( login );
+	nameLabel->setText ( text );
 	login->setText ( nick );
 	login->hide();
 
-	QFont fnt=passForm->font();
-	if ( !miniMode )
-		fnt.setPointSize ( 12 );
-	else
-		fnt.setPointSize ( 9 );
-	nameLabel->setFont ( fnt );
-
-
-	passPrompt=new QLabel ( tr ( "Password:" ),passForm );
-	passPrompt->setFont ( fnt );
-
-	pass=new QLineEdit ( passForm );
-	setWidgetStyle ( pass );
-	pass->setFrame ( false );
-	fnt.setBold ( true );
-	pass->setFont ( fnt );
 	pass->setEchoMode ( QLineEdit::Password );
 	pass->setFocus();
-
-
-	passPrompt->hide();
-	pass->hide();
-
-	ok=new QPushButton ( tr ( "Ok" ),passForm );
-	cancel=new QPushButton ( tr ( "Cancel" ),passForm );
-	setWidgetStyle ( cancel );
-	ok->hide();
-	cancel->hide();
-
-	pal.setColor ( QPalette::Button, QColor ( 255,255,255,0 ) );
-	pal.setColor ( QPalette::Window, QColor ( 255,255,255,255 ) );
-	pal.setColor ( QPalette::Base, QColor ( 255,255,255,255 ) );
-	ok->setPalette ( pal );
-	setWidgetStyle ( ok );
-	cancel->setPalette ( pal );
-
-	connect ( ok,SIGNAL ( clicked() ),this, SLOT ( slotPassEnter() ) );
-	connect ( cancel,SIGNAL ( clicked() ),this, SLOT ( slotClosePass() ) );
-	connect ( pass,SIGNAL ( returnPressed() ),this,
-	          SLOT ( slotPassEnter() ) );
-
-
-	passForm->show();
-	if ( !miniMode )
-		fotoLabel->move ( 20,20 );
-	else
-		fotoLabel->move ( 10,10 );
-	fotoLabel->setFixedSize ( 100,100 );
-	nameLabel->setFixedSize ( nameLabel->sizeHint() );
-	nameLabel->move ( 130,50 );
-
-
-	ok->setFixedSize ( ok->sizeHint() );
-	cancel->setFixedSize ( cancel->sizeHint() );
-
-	ok->move (
-	    ( passForm->width()- ( ok->width() +12+cancel->width() ) ) /2,
-	    passForm->height()-ok->height()-12 );
-	cancel->move ( ok->pos().x() +ok->width() +12,ok->pos().y() );
-
-
-	passPrompt->setFixedSize ( passPrompt->sizeHint() );
-	int fotoB=fotoLabel->pos().y() +fotoLabel->height();
-	passPrompt->move (
-	    20, ( ok->pos().y()-fotoB ) /2 - passPrompt->height() /2 + fotoB );
-	pass->move (
-	    passPrompt->pos().x() +10+passPrompt->width(),
-	    passPrompt->pos().y() );
-
-
-	QTimer::singleShot ( 1,this,SLOT ( slot_showWidgets() ) );
+	slot_showPassForm();
 }
 
-
-void ONMainWindow::slot_showWidgets()
-{
-	passPrompt->show();
-	pass->show();
-	ok->show();
-	cancel->show();
-	fotoLabel->show();
-	nameLabel->show();
-	if ( !useLdap )
-	{
-		login->show();
-		loginPrompt->show();
-	}
-	u->hide();
-	uname->hide();
-}
 
 
 void ONMainWindow::slotSelectedFromList ( UserButton* user )
@@ -947,34 +974,36 @@ void ONMainWindow::slotSelectedFromList ( UserButton* user )
 
 void ONMainWindow::slotClosePass()
 {
-	passForm->close();
-	u->show();
-	uname->show();
-	if ( useLdap )
+	passForm->hide();
+	if ( !embedMode )
 	{
-		if ( lastUser )
+		u->show();
+		uname->show();
+		if ( useLdap )
 		{
-			lastUser->show();
-			uname->setText ( lastUser->username() );
+			if ( lastUser )
+			{
+				lastUser->show();
+				uname->setText ( lastUser->username() );
+			}
 		}
+		else
+		{
+			lastSession->show();
+			uname->setText ( lastSession->name() );
+		}
+		uname->setEnabled ( true );
+		u->setEnabled ( true );
+		setUsersEnabled ( true );
+		uname->selectAll();
+		uname->setFocus();
 	}
-	else
-	{
-		lastSession->show();
-		uname->setText ( lastSession->name() );
-	}
-	uname->setEnabled ( true );
-	u->setEnabled ( true );
-	setUsersEnabled ( true );
-	uname->selectAll();
-	uname->setFocus();
-	passForm=0;
 }
 
 
 void ONMainWindow::slotPassEnter()
 {
-#if defined ( WINDOWS ) || defined (Q_OS_DARWIN )
+#if defined ( Q_OS_WIN ) || defined (Q_OS_DARWIN )
 	QString disp=getXDisplay();
 	if ( disp==QString::null )
 		return;
@@ -1065,11 +1094,11 @@ void ONMainWindow::slotPassEnter()
 	QString passwd;
 	if ( !extLogin )
 		currentKey=QString::null;
-	QString user=login->text();
+	QString user=getCurrentUname();
 //      get x2gogetservers not from ldap server, but from first x2goserver
 // 	QString host=ldapServer;
 	QString host=firstServer;
-	passwd=pass->text();
+	passwd=getCurrentPass();
 	sshProcess* proc;
 	try
 	{
@@ -1086,12 +1115,13 @@ void ONMainWindow::slotPassEnter()
 	          this,SLOT ( slot_getServers ( bool, QString,sshProcess* ) ) );
 	connect ( proc,SIGNAL ( sudoConfigError ( QString,sshProcess* ) ),
 	          this,SLOT ( slot_sudoErr ( QString,sshProcess* ) ) );
- 	if ( cardReady )
+	if ( cardReady || useSshAgent )
 	{
 		QStringList env=proc->environment();
 		env+=sshEnv;
- 		proc->setEnvironment ( sshEnv );
-		cardStarted=true;
+		proc->setEnvironment ( sshEnv );
+		if ( cardReady )
+			cardStarted=true;
 	}
 
 	try
@@ -1272,10 +1302,10 @@ void ONMainWindow::readUsers()
 
 void ONMainWindow::slot_config()
 {
-	if ( !startMaximized && !startHidden )
+	if ( !startMaximized && !startHidden && !embedMode )
 	{
-#ifndef WINDOWS
-		QSettings st ( QDir::homePath() +"/.x2goclient/sizes",
+#ifndef Q_OS_WIN
+		QSettings st ( homeDir +"/.x2goclient/sizes",
 		               QSettings::NativeFormat );
 #else
 
@@ -1296,25 +1326,26 @@ void ONMainWindow::slot_config()
 	{
 		int i;
 
-		if ( passForm )
+		if ( passForm->isVisible() && !embedMode )
 			slotClosePass();
-		if ( sessionStatusDlg )
+		if ( sessionStatusDlg->isVisible() || embedMode )
 		{
-			//if session is running, save changes,
+			//if session is running or embed mode, save changes,
 			//but not accepted
 			//
 			return;
 		}
+		if ( !embedMode )
+		{
 
-		for ( i=0;i<names.size();++i )
-			names[i]->close();
-		for ( i=0;i<sessions.size();++i )
-			sessions[i]->close();
+			for ( i=0;i<names.size();++i )
+				names[i]->close();
+			for ( i=0;i<sessions.size();++i )
+				sessions[i]->close();
 
-		userList.clear();
-		sessions.clear();
-
-
+			userList.clear();
+			sessions.clear();
+		}
 		loadSettings();
 		if ( useLdap )
 		{
@@ -1359,8 +1390,8 @@ void ONMainWindow::slot_createDesktopIcon ( SessionButton* bt )
 	                          "Use x2goclient hidden mode?" ),
 	                     QMessageBox::Yes|QMessageBox::No ) ==
 	                 QMessageBox::Yes );
-#ifndef WINDOWS
-	QSettings st ( QDir::homePath() +"/.x2goclient/sessions",
+#ifndef Q_OS_WIN
+	QSettings st ( homeDir +"/.x2goclient/sessions",
 	               QSettings::NativeFormat );
 #else
 	QSettings st ( "Obviously Nice","x2goclient" );
@@ -1378,7 +1409,7 @@ void ONMainWindow::slot_createDesktopIcon ( SessionButton* bt )
 	{
 		sessIcon="/usr/share/x2goclient/icons/x2gosession.png";
 	}
-#ifndef WINDOWS	
+#ifndef Q_OS_WIN
 	QFile file (
 	    QDesktopServices::storageLocation (
 	        QDesktopServices::DesktopLocation ) +"/"+name+".desktop" );
@@ -1399,13 +1430,13 @@ void ONMainWindow::slot_createDesktopIcon ( SessionButton* bt )
 	"X-KDE-SubstituteUID=false\n";
 	file.close();
 #else
-	QString scrname=QDir::tempPath()+"\\mklnk.vbs";
-	QFile file (scrname);
+	QString scrname=QDir::tempPath() +"\\mklnk.vbs";
+	QFile file ( scrname );
 	if ( !file.open ( QIODevice::WriteOnly | QIODevice::Text ) )
 		return;
 
-	QSettings xst("HKEY_LOCAL_MACHINE\\SOFTWARE\\x2goclient",QSettings::NativeFormat);
-	QString workDir=xst.value("Default").toString();
+	QSettings xst ( "HKEY_LOCAL_MACHINE\\SOFTWARE\\x2goclient",QSettings::NativeFormat );
+	QString workDir=xst.value ( "Default" ).toString();
 	workDir+="\\bin";
 	QString progname=workDir+"\\x2goclient.exe";
 	QString args="--sessionid="+bt->id();
@@ -1414,25 +1445,27 @@ void ONMainWindow::slot_createDesktopIcon ( SessionButton* bt )
 	QTextStream out ( &file );
 	out << "Set Shell = CreateObject(\"WScript.Shell\")\n"<<
 	"DesktopPath = Shell.SpecialFolders(\"Desktop\")\n"<<
-	"Set link = Shell.CreateShortcut(DesktopPath & \"\\"<<name<<".lnk\")\n"<<
+	"Set link = Shell.CreateShortcut(DesktopPath & \"\\"<<name<<
+	".lnk\")\n"<<
 	"link.Arguments = \""<<args<<"\"\n"<<
-	"link.Description = \""<<tr("X2Go Link to session ")<<"--"<<name<<"--"<<"\"\n"<<
+	"link.Description = \""<<tr ( "X2Go Link to session " ) <<
+	"--"<<name<<"--"<<"\"\n"<<
 	"link.TargetPath = \""<<progname<<"\"\n"<<
 	"link.iconLocation = \""<<progname<<"\"\n"<<
 	"link.WindowStyle = 1\n"<<
 	"link.WorkingDirectory = \""<<workDir<<"\"\n"<<
 	"link.Save\n";
 	file.close();
-	system(scrname.toAscii());
-	QFile::remove(scrname);
-#endif	
+	system ( scrname.toAscii() );
+	QFile::remove ( scrname );
+#endif
 }
 
 
 void ONMainWindow::slot_readSessions()
 {
-#ifndef WINDOWS
-	QSettings st ( QDir::homePath() +"/.x2goclient/sessions",
+#ifndef Q_OS_WIN
+	QSettings st ( homeDir +"/.x2goclient/sessions",
 	               QSettings::NativeFormat );
 #else
 
@@ -1442,7 +1475,10 @@ void ONMainWindow::slot_readSessions()
 
 	QStringList slst=st.childGroups();
 	for ( int i=0;i<slst.size();++i )
-		createBut ( slst[i] );
+	{
+		if ( slst[i]!="embedded" )
+			createBut ( slst[i] );
+	}
 	placeButtons();
 	if ( slst.size() ==0 )
 		slotNewSession();
@@ -1579,9 +1615,9 @@ void ONMainWindow::slotDeleteButton ( SessionButton * bt )
 	            tr ( "Are you sure you want to delete this session?" ),
 	            QMessageBox::Yes,QMessageBox::No ) !=QMessageBox::Yes )
 		return;
-#ifndef WINDOWS
+#ifndef Q_OS_WIN
 
-	QSettings st ( QDir::homePath() +"/.x2goclient/sessions",
+	QSettings st ( homeDir +"/.x2goclient/sessions",
 	               QSettings::NativeFormat );
 #else
 
@@ -1601,8 +1637,8 @@ void ONMainWindow::slotDeleteButton ( SessionButton * bt )
 
 void ONMainWindow::displayToolBar ( bool show )
 {
-#ifndef WINDOWS
-	QSettings st1 ( QDir::homePath() +"/.x2goclient/settings",
+#ifndef Q_OS_WIN
+	QSettings st1 ( homeDir +"/.x2goclient/settings",
 	                QSettings::NativeFormat );
 #else
 
@@ -1860,71 +1896,64 @@ void ONMainWindow::slotSnameChanged ( const QString& text )
 
 void ONMainWindow::slotSelectedFromList ( SessionButton* session )
 {
-	x2goDebug <<"Selected from list"<<endl;
 	lastSession=session;
-	QPalette pal=users->palette();
-	setUsersEnabled ( false );
+	QString command;
+	QString server;
+	QString userName;
+	QString sessIcon;
+	QPalette pal;
+	QString sessionName;
+	if ( !embedMode )
+	{
+		session->hide();
+		pal=users->palette();
+		setUsersEnabled ( false );
+		sessionName=session->name();
 
-	session->hide();
+		QString sid=session->id();
+#ifndef Q_OS_WIN
 
-	QString sid=session->id();
-#ifndef WINDOWS
-
-	QSettings st ( QDir::homePath() +"/.x2goclient/sessions",
-	               QSettings::NativeFormat );
+		QSettings st ( homeDir +"/.x2goclient/sessions",
+		               QSettings::NativeFormat );
 #else
 
-	QSettings st ( "Obviously Nice","x2goclient" );
-	st.beginGroup ( "sessions" );
+		QSettings st ( "Obviously Nice","x2goclient" );
+		st.beginGroup ( "sessions" );
 #endif
 
-	QString sessIcon=st.value (
-	                     sid+"/icon",
-	                     ( QVariant ) ":icons/128x128/x2gosession.png"
-	                 ).toString();
+		sessIcon=st.value (
+		             sid+"/icon",
+		             ( QVariant ) ":icons/128x128/x2gosession.png"
+		         ).toString();
 
 
-	QString command=st.value ( sid+"/command",
-	                           ( QVariant ) tr ( "KDE" ) ).toString();
+		command=st.value ( sid+"/command",
+		                   ( QVariant ) tr ( "KDE" ) ).toString();
+
+		server=st.value ( sid+"/host",
+		                  ( QVariant ) QString::null
+		                ).toString();
+		userName=st.value (
+		             sid+"/user",
+		             ( QVariant ) QString::null ).toString();
+		sshPort=st.value ( sid+"/sshport",
+		                   ( QVariant ) defaultSshPort ).toString();
+		currentKey=st.value ( sid+"/key",
+		                      ( QVariant ) QString::null ).toString();
+	}
+	else
+	{
+		command=config.command;
+		server=config.server;
+		userName=config.user;
+		sshPort=config.sshport;
+		sessIcon=":icons/128x128/x2gosession.png";
+		sessionName=config.session;
+	}
 	selectedCommand=command;
 	command=transAppName ( command );
-
-	QString server=st.value ( sid+"/host",
-	                          ( QVariant ) QString::null
-	                        ).toString();
-	QString userName=st.value (
-	                     sid+"/user",
-	                     ( QVariant ) QString::null ).toString();
-	sshPort=st.value ( sid+"/sshport",
-	                   ( QVariant ) defaultSshPort ).toString();
-
-
-	passForm = new SVGFrame ( ":/svg/passform.svg",false,bgFrame );
-	QFont fnt=passForm->font();
-	if ( !miniMode )
-		fnt.setPointSize ( 12 );
-	else
-#ifdef Q_WS_HILDON
-		fnt.setPointSize ( 10 );
-#else
-		fnt.setPointSize ( 9 );
-#endif
-	passForm->setFont ( fnt );
-	setWidgetStyle ( passForm );
-	passForm->hide();
-	if ( !miniMode )
-		passForm->setFixedSize ( passForm->sizeHint() );
-	else
-		passForm->setFixedSize ( 310,180 );
-
-	username->addWidget ( passForm );
-	pal=passForm->palette();
-	pal.setBrush ( QPalette::Window, QColor ( 0,0,0,0 ) );
-	passForm->setPalette ( pal );
-
+	login->setText ( userName );
 	QPixmap pix ( sessIcon );
-	fotoLabel=new QLabel ( passForm );
-	fotoLabel->hide();
 	if ( !miniMode )
 	{
 		fotoLabel->setPixmap (
@@ -1943,154 +1972,53 @@ void ONMainWindow::slotSelectedFromList ( SessionButton* session )
 	}
 
 
-	if(command=="RDP")
+	if ( command=="RDP" )
 	{
-		command=tr("RDP connection");
+		command=tr ( "RDP connection" );
 	}
 
-	QString text="<b>"+session->name() +"</b><br>"+
+	QString text="<b>"+sessionName +"</b><br>"+
 	             command+tr ( " on " ) +server;
-	nameLabel=new QLabel ( text,passForm );
-	nameLabel->hide();
-
-
-	loginPrompt=new QLabel ( tr ( "Login:" ),passForm );
-	passPrompt=new QLabel ( tr ( "Password:" ),passForm );
-
-
-	login=new QLineEdit ( passForm );
-	setWidgetStyle ( login );
-	login->setFrame ( false );
-
-	login->hide();
-	loginPrompt->hide();
-
-	pass=new QLineEdit ( passForm );
-	setWidgetStyle ( pass );
-	pass->setFrame ( false );
-	fnt.setBold ( true );
-	pass->setFont ( fnt );
-	pass->setEchoMode ( QLineEdit::Password );
-	pass->setFocus();
-
-
-	pass->hide();
-	passPrompt->hide();
-
-
-	ok=new QPushButton ( tr ( "Ok" ),passForm );
-	setWidgetStyle ( ok );
-	cancel=new QPushButton ( tr ( "Cancel" ),passForm );
-	setWidgetStyle ( cancel );
-	ok->hide();
-	cancel->hide();
-
-	pal.setColor ( QPalette::Button, QColor ( 255,255,255,0 ) );
-	pal.setColor ( QPalette::Window, QColor ( 255,255,255,255 ) );
-	pal.setColor ( QPalette::Base, QColor ( 255,255,255,255 ) );
-	ok->setPalette ( pal );
-	cancel->setPalette ( pal );
-
-
-	fotoLabel->move ( 20,20 );
-	nameLabel->setFixedSize ( nameLabel->sizeHint() );
-	if ( !miniMode )
-		nameLabel->move ( 100,30 );
-	else
-		nameLabel->move ( 80,20 );
-
-
-
-#ifndef Q_WS_HILDON
-	ok->setFixedSize ( ok->sizeHint() );
-	cancel->setFixedSize ( cancel->sizeHint() );
-#else
-	QSize sz=cancel->sizeHint();
-	sz.setWidth ( ( int ) ( sz.width() /1.5 ) );
-	sz.setHeight ( ( int ) ( sz.height() /1.5 ) );
-	cancel->setFixedSize ( sz );
-	sz=ok->sizeHint();
-	sz.setWidth ( ( int ) ( sz.width() /1.5 ) );
-	sz.setHeight ( ( int ) ( sz.height() /1.5 ) );
-	ok->setFixedSize ( sz );
-#endif
-
-	ok->move ( ( passForm->width()- ( ok->width() +12+
-	                                  cancel->width() ) ) /2,
-	           passForm->height()-ok->height()-12 );
-	cancel->move ( ok->pos().x() +ok->width() +12,ok->pos().y() );
-
-
-	int fotoB=fotoLabel->pos().y() +fotoLabel->height();
-	int d=ok->y()-fotoB;
-
-	loginPrompt->setFixedSize ( loginPrompt->sizeHint() );
-	loginPrompt->move ( 20,fotoB+ ( d- ( loginPrompt->height() *2 ) ) /2 );
-
-	int lB=loginPrompt->pos().y() +loginPrompt->height();
-
-	passPrompt->setFixedSize ( passPrompt->sizeHint() );
-	if ( !miniMode )
-		passPrompt->move ( 20,lB+7 );
-	else
-		passPrompt->move ( 20,lB+3 );
-
-	int editPos=loginPrompt->pos().x() +10;
-	editPos+= ( loginPrompt->width() >passPrompt->width() ) ?
-	          loginPrompt->width() :
-	          passPrompt->width();
-
-	login->move ( editPos,loginPrompt->pos().y() );
-	pass->move ( editPos,passPrompt->pos().y() );
-
-	login->setFixedHeight ( loginPrompt->height() );
-	pass->setFixedHeight ( loginPrompt->height() );
-
-	if ( !miniMode )
-	{
-		login->setFixedWidth ( passForm->width()-120-login->x() );
-		pass->setFixedWidth ( passForm->width()-120-login->x() );
-	}
-	else
-	{
-		login->setFixedWidth ( passForm->width()-60-login->x() );
-		pass->setFixedWidth ( passForm->width()-60-login->x() );
-	}
-
-
-	pal.setColor ( QPalette::Base, QColor ( 239,239,239,255 ) );
-	login->setPalette ( pal );
-	pass->setPalette ( pal );
-
-	login->setText ( userName );
+	nameLabel->setText ( text );
 	if ( userName.length() <=0 )
 		login->setFocus();
 
-
-	passForm->show();
-
-	connect ( ok,SIGNAL ( clicked() ),this, SLOT ( slotSessEnter() ) );
-	connect ( cancel,SIGNAL ( clicked() ),this, SLOT ( slotClosePass() ) );
-	connect ( pass,SIGNAL ( returnPressed() ),this,
-	          SLOT ( slotSessEnter() ) );
-	connect ( login,SIGNAL ( returnPressed() ),pass, SLOT ( selectAll() ) );
-	connect ( login,SIGNAL ( returnPressed() ),pass, SLOT ( setFocus() ) );
-
-	QTimer::singleShot ( 1,this,SLOT ( slot_showWidgets() ) );
-
-	currentKey=st.value ( sid+"/key",
-	                      ( QVariant ) QString::null ).toString();
 	bool nopass=false;
-	if ( currentKey != QString::null && currentKey != "" )
+	if ( !embedMode )
+		slot_showPassForm();
+
+	if ( currentKey.length() >0 )
 	{
-		nopass=true;
+		QFile file ( currentKey );
+		if ( file.open ( QIODevice::ReadOnly | QIODevice::Text ) )
+		{
+			nopass=true;
+			while ( !file.atEnd() )
+			{
+				QString line = file.readLine();
+				if ( line.indexOf ( "ENCRYPTED" ) !=-1 )
+				{
+					nopass=false;
+					break;
+				}
+
+			}
+			file.close();
+		}
+		else
+			currentKey=QString::null;
+	}
+	if ( currentKey != QString::null && currentKey != "" && nopass )
+	{
 		slotSessEnter();
 	}
-	if ( cardReady )
+	if ( cardReady || useSshAgent )
 	{
 		nopass=true;
-		login->setText ( cardLogin );
+		if ( cardReady )
+			login->setText ( cardLogin );
 		slotSessEnter();
+		return;
 	}
 	if ( startHidden && nopass==false )
 	{
@@ -2100,19 +2028,37 @@ void ONMainWindow::slotSelectedFromList ( SessionButton* session )
 		activateWindow();
 		raise();
 	}
-
+	if ( embedMode )
+	{
+		QTimer::singleShot ( 50, this,
+		                     SLOT ( slot_showPassForm() ) );
+	}
 }
 
 
 void ONMainWindow::slotSessEnter()
 {
-#if defined ( WINDOWS ) || defined (Q_OS_DARWIN )
+	resumingSession.sessionId=QString::null;
+	resumingSession.server=QString::null;
+	resumingSession.display=QString::null;
+	setStatStatus ( tr ( "connecting" ) );
+#ifdef Q_OS_WIN
+	//waiting for X
+	if ( !winServersReady )
+	{
+		QTimer::singleShot ( 100, this, SLOT ( slotSessEnter() ) );
+		return;
+	}
+#endif
+#if defined ( Q_OS_WIN ) || defined (Q_OS_DARWIN )
 	QString disp=getXDisplay();
 	if ( disp==QString::null )
 		return;
 #endif
 
-	QString sid=lastSession->id();
+	QString sid="";
+	if ( !embedMode )
+		sid=lastSession->id();
 	startSession ( sid );
 }
 
@@ -2120,26 +2066,35 @@ void ONMainWindow::slotSessEnter()
 bool ONMainWindow::startSession ( const QString& sid )
 {
 	setEnabled ( false );
-	passForm->setEnabled ( false );
-#ifndef WINDOWS
+	QString passwd;
+	QString user;
+	QString host;
+	user=getCurrentUname();
 
-	QSettings st ( QDir::homePath() +"/.x2goclient/sessions",
-	               QSettings::NativeFormat );
+	if ( !embedMode )
+	{
+#ifndef Q_OS_WIN
+
+		QSettings st ( homeDir +"/.x2goclient/sessions",
+		               QSettings::NativeFormat );
 #else
 
-	QSettings st ( "Obviously Nice","x2goclient" );
-	st.beginGroup ( "sessions" );
+		QSettings st ( "Obviously Nice","x2goclient" );
+		st.beginGroup ( "sessions" );
 #endif
 
-	QString passwd;
-	QString user=login->text();
-	QString host=st.value ( sid+"/host",
-	                        ( QVariant ) QString::null ).toString();
-	if ( currentKey==QString::null||currentKey=="" )
+		passForm->setEnabled ( false );
+		host=st.value ( sid+"/host",
+		                ( QVariant ) QString::null ).toString();
+	}
+	else
 	{
-		passwd=pass->text();
+		host=config.server;
+		sshPort=config.sshport;
+		selectedCommand=config.command;
 	}
 
+	passwd=getCurrentPass();
 	sshProcess* proc;
 	try
 	{
@@ -2158,12 +2113,13 @@ bool ONMainWindow::startSession ( const QString& sid )
 	connect ( proc,SIGNAL ( sudoConfigError ( QString,sshProcess* ) ),
 	          this,SLOT ( slot_sudoErr ( QString,sshProcess* ) ) );
 
-	if ( cardReady )
+	if ( cardReady || useSshAgent )
 	{
 		QStringList env=proc->environment();
-		env+=sshEnv;
+		env=sshEnv+env;
 		proc->setEnvironment ( env );
-		cardStarted=true;
+		if ( cardReady )
+			cardStarted=true;
 	}
 	try
 	{
@@ -2200,15 +2156,19 @@ void ONMainWindow::slot_listSessions ( bool result,QString output,
 		currentKey=QString::null;
 		setEnabled ( true );
 		passForm->setEnabled ( true );
+		slot_showPassForm();
 		pass->setFocus();
 		pass->selectAll();
 		return;
 	}
 
 	passForm->hide();
-	setUsersEnabled ( false );
-	uname->setEnabled ( false );
-	u->setEnabled ( false );
+	if ( !embedMode )
+	{
+		setUsersEnabled ( false );
+		uname->setEnabled ( false );
+		u->setEnabled ( false );
+	}
 	QStringList sessions=output.trimmed().split ( '\n' );
 	if ( sessions.size() ==1&&sessions[0].length() <5 )
 		startNewSession();
@@ -2295,8 +2255,8 @@ x2goSession ONMainWindow::getSessionFromString ( const QString& string )
 void ONMainWindow::startNewSession()
 {
 	newSession=true;
-	QString passwd=pass->text();
-	QString user=login->text();
+	QString passwd=getCurrentPass();
+	QString user=getCurrentUname();
 
 	QString pack;
 	bool fullscreen;
@@ -2306,6 +2266,8 @@ void ONMainWindow::startNewSession()
 	int speed;
 	bool usekbd;
 	bool rootless=false;
+	bool setDPI=defaultSetDPI;
+	uint dpi=defaultDPI;
 	QString layout;
 	QString type;
 	QString command;
@@ -2342,8 +2304,8 @@ void ONMainWindow::startNewSession()
 	}
 	else
 	{
-#ifndef WINDOWS
-		QSettings st ( QDir::homePath() +"/.x2goclient/sessions",
+#ifndef Q_OS_WIN
+		QSettings st ( homeDir +"/.x2goclient/sessions",
 		               QSettings::NativeFormat );
 #else
 
@@ -2351,33 +2313,72 @@ void ONMainWindow::startNewSession()
 		st.beginGroup ( "sessions" );
 #endif
 
-		QString sid=lastSession->id();
-		command=st.value ( sid+"/command",
-		                   ( QVariant ) defaultCmd ).toString();
+		QString sid;
+		if ( !embedMode )
+			sid=lastSession->id();
+		else
+			sid="embedded";
 		pack=st.value ( sid+"/pack",
 		                ( QVariant ) defaultPack ).toString();
-		host=st.value (
-		         sid+"/host",
-		         ( QVariant ) ( QString ) "localhost" ).toString();
-
 		fullscreen=st.value ( sid+"/fullscreen",
-		                      ( QVariant ) defaultFullscreen ).toBool();
+		                      ( QVariant )
+		                      defaultFullscreen ).toBool();
 		height=st.value ( sid+"/height",
 		                  ( QVariant ) defaultHeight ).toInt();
 		width=st.value ( sid+"/width",
 		                 ( QVariant ) defaultWidth ).toInt();
-		quality=st.value ( sid+"/quality",
-		                   ( QVariant ) defaultQuality ).toInt();
+		setDPI=st.value ( sid+"/setdpi",
+		                  ( QVariant ) defaultSetDPI ).toBool();
+		dpi=st.value ( sid+"/dpi",
+		               ( QVariant ) defaultDPI ).toUInt();
+		quality=st.value (
+		            sid+"/quality",
+		            ( QVariant ) defaultQuality ).toInt();
 		speed=st.value ( sid+"/speed",
 		                 ( QVariant ) defaultLink ).toInt();
 		usekbd=st.value ( sid+"/usekbd",
 		                  ( QVariant ) defaultSetKbd ).toBool();
 		layout=st.value ( sid+"/layout",
-		                  ( QVariant ) defaultLayout ).toString();
+		                  ( QVariant )
+		                  defaultLayout ).toString();
 		type=st.value ( sid+"/type",
-		                ( QVariant ) defaultKbdType ).toString();
-		rootless=st.value ( sid+"/rootless",
-		                    ( QVariant ) false ).toBool();
+		                ( QVariant )
+		                defaultKbdType ).toString();
+		if ( !embedMode )
+		{
+			command=st.value ( sid+"/command",
+			                   ( QVariant ) defaultCmd ).toString();
+			host=st.value (
+			         sid+"/host",
+			         ( QVariant )
+			         ( QString ) "localhost" ).toString();
+
+			rootless=st.value ( sid+"/rootless",
+			                    ( QVariant ) false ).toBool();
+		}
+		else
+		{
+			command=config.command;
+			rootless= config.rootless;
+			host=config.server;
+			startEmbedded=false;
+			if ( st.value ( sid+"/startembed",
+			                ( QVariant ) true ).toBool() )
+			{
+				startEmbedded=true;
+				fullscreen=false;
+				height=bgFrame->size().height()-stb->height();
+				width=bgFrame->size().width();
+
+				if ( height<0 ||width<0 )
+				{
+					height=defaultHeight;
+					width=defaultWidth;
+				}
+			}
+
+
+		}
 		if ( command=="RDP" )
 			rootless=true;
 	}
@@ -2387,11 +2388,32 @@ void ONMainWindow::startNewSession()
 	resumingSession.server=host;
 
 	QString geometry;
+#ifdef Q_OS_WIN
+	maximizeProxyWin=false;
+	proxyWinWidth=width;
+	proxyWinHeight=height;
+#endif
 	if ( fullscreen )
+	{
 		geometry="fullscreen";
-	else
+#ifdef Q_OS_WIN
+		fullscreen=false;
+		maximizeProxyWin=true;
+#endif
+	}
+	if ( ! fullscreen )
+	{
 		geometry=QString::number ( width ) +"x"+
 		         QString::number ( height );
+		if ( embedMode )
+		{
+			QPoint position=mapToGlobal ( bgFrame->pos() );
+			geometry+="+"+QString::number ( position.x() ) +"+"+
+			          QString::number ( position.y() +
+			                            stb->height() );
+		}
+
+	}
 	QString link;
 	switch ( speed )
 	{
@@ -2432,9 +2454,12 @@ void ONMainWindow::startNewSession()
 	file.close();
 
 
-	if ( selectSessionDlg )
+	if ( selectSessionDlg->isVisible() )
 	{
-		slotCloseSelectDlg();
+		if ( !embedMode )
+			slotCloseSelectDlg();
+		else
+			selectSessionDlg->hide();
 	}
 	QDesktopWidget wd;
 	QString depth=QString::number ( wd.depth() );
@@ -2445,7 +2470,13 @@ void ONMainWindow::startNewSession()
 	QString sessTypeStr="D ";
 	if ( rootless )
 		sessTypeStr="R ";
-	QString cmd="x2gostartagent "+geometry+" "+link+" "+pack+
+	QString dpiEnv;
+	if ( setDPI )
+	{
+		dpiEnv="X2GODPI="+QString::number ( dpi ) +" ";
+	}
+	QString cmd=dpiEnv+"x2gostartagent "+
+	            geometry+" "+link+" "+pack+
 	            " unix-kde-depth_"+depth+" "+layout+" "+type+" ";
 	if ( usekbd )
 		cmd += "1 ";
@@ -2467,7 +2498,7 @@ void ONMainWindow::startNewSession()
 	{
 		slot_retResumeSess ( false,message,0 );
 	}
-	if ( cardReady )
+	if ( cardReady || useSshAgent )
 	{
 		QStringList env=proc->environment();
 		env+=sshEnv;
@@ -2496,8 +2527,8 @@ void ONMainWindow::resumeSession ( const x2goSession& s )
 {
 	newSession=false;
 
-	QString passwd=pass->text();
-	QString user=login->text();
+	QString passwd=getCurrentPass();
+	QString user=getCurrentUname();
 	QString host=s.server;
 
 	QString pack;
@@ -2525,44 +2556,88 @@ void ONMainWindow::resumeSession ( const x2goSession& s )
 	}
 	else
 	{
-#ifndef WINDOWS
-		QSettings st ( QDir::homePath() +"/.x2goclient/sessions",
-		               QSettings::NativeFormat );
+
+		QString sid;
+		if ( !embedMode )
+			sid=lastSession->id();
+		else
+			sid="embedded";
+#ifndef Q_OS_WIN
+		QSettings st (
+		    homeDir+"/.x2goclient/sessions",
+		    QSettings::NativeFormat );
 #else
 
 		QSettings st ( "Obviously Nice","x2goclient" );
 		st.beginGroup ( "sessions" );
 #endif
 
-		QString sid=lastSession->id();
 		pack=st.value ( sid+"/pack",
 		                ( QVariant ) defaultPack ).toString();
 
 		fullscreen=st.value ( sid+"/fullscreen",
-		                      ( QVariant ) defaultFullscreen ).toBool();
+		                      ( QVariant )
+		                      defaultFullscreen ).toBool();
 		height=st.value ( sid+"/height",
 		                  ( QVariant ) defaultHeight ).toInt();
 		width=st.value ( sid+"/width",
 		                 ( QVariant ) defaultWidth ).toInt();
 		quality=st.value ( sid+"/quality",
-		                   ( QVariant ) defaultQuality ).toInt();
+		                   ( QVariant )
+		                   defaultQuality ).toInt();
 		speed=st.value ( sid+"/speed",
 		                 ( QVariant ) defaultLink ).toInt();
 		usekbd=st.value ( sid+"/usekbd",
 		                  ( QVariant ) defaultSetKbd ).toBool();
 		layout=st.value ( sid+"/layout",
-		                  ( QVariant ) defaultLayout ).toString();
+		                  ( QVariant )
+		                  defaultLayout ).toString();
 		type=st.value ( sid+"/type",
-		                ( QVariant ) defaultKbdType ).toString();
-		host=st.value ( sid+"/host",
-		                ( QVariant ) s.server ).toString();
+		                ( QVariant )
+		                defaultKbdType ).toString();
+		if ( !embedMode )
+		{
+			host=st.value ( sid+"/host",
+			                ( QVariant ) s.server ).toString();
+		}
+		else
+		{
+			startEmbedded=false;
+			if ( st.value ( sid+"/startembed",
+			                ( QVariant ) true ).toBool() )
+			{
+				fullscreen=false;
+				startEmbedded=true;
+				height=bgFrame->size().height()-stb->height();
+				width=bgFrame->size().width();
+				if ( height<0 ||width<0 )
+				{
+					height=defaultHeight;
+					width=defaultWidth;
+				}
+			}
+			host=config.server;
+		}
 	}
 	QString geometry;
+#ifdef Q_OS_WIN
+	maximizeProxyWin=false;
+	proxyWinWidth=width;
+	proxyWinHeight=height;
+#endif
 	if ( fullscreen )
+	{
 		geometry="fullscreen";
-	else
+#ifdef Q_OS_WIN
+		fullscreen=false;
+		maximizeProxyWin=true;
+#endif
+	}
+	if ( !fullscreen )
+	{
 		geometry=QString::number ( width ) +"x"+
 		         QString::number ( height );
+	}
 	QString link;
 	switch ( speed )
 	{
@@ -2608,9 +2683,12 @@ void ONMainWindow::resumeSession ( const x2goSession& s )
 #endif
 
 
-	if ( selectSessionDlg )
+	if ( selectSessionDlg->isVisible() )
 	{
-		slotCloseSelectDlg();
+		if ( !embedMode )
+			slotCloseSelectDlg();
+		else
+			selectSessionDlg->hide();
 	}
 	QString cmd="x2goresume-session "+s.sessionId+" "+geometry+
 	            " "+link+" "+pack+" "+layout+
@@ -2631,7 +2709,7 @@ void ONMainWindow::resumeSession ( const x2goSession& s )
 	{
 		slot_retResumeSess ( false,message,0 );
 	}
-	if ( cardReady )
+	if ( cardReady || useSshAgent )
 	{
 		QStringList env=proc->environment();
 		env+=sshEnv;
@@ -2658,170 +2736,11 @@ void ONMainWindow::resumeSession ( const x2goSession& s )
 
 void ONMainWindow::selectSession ( const QStringList& sessions )
 {
-
-	selectSessionDlg = new SVGFrame ( ":/svg/passform.svg",false,bgFrame );
-	setWidgetStyle ( selectSessionDlg );
-	selectSessionDlg->hide();
-
-	if ( !miniMode )
-		selectSessionDlg->setFixedSize ( selectSessionDlg->sizeHint() );
-	else
-		selectSessionDlg->setFixedSize ( 310,180 );
-
-	username->addWidget ( selectSessionDlg );
-	QPalette pal=selectSessionDlg->palette();
-	pal.setBrush ( QPalette::Window, QColor ( 0,0,0,0 ) );
-	selectSessionDlg->setPalette ( pal );
-
-	QFont fnt=selectSessionDlg->font();
-	if ( miniMode )
-#ifdef Q_WS_HILDON
-		fnt.setPointSize ( 10 );
-#else
-		fnt.setPointSize ( 9 );
-#endif
-	selectSessionDlg->setFont ( fnt );
-	selectSessionLabel=new QLabel ( tr ( "Select session:" ),
-	                                selectSessionDlg );
-	sOk=new QPushButton ( tr ( "Resume" ),selectSessionDlg );
-	setWidgetStyle ( sOk );
-	sCancel=new QPushButton ( tr ( "Cancel" ),selectSessionDlg );
-	setWidgetStyle ( sCancel );
-
-	bSusp=new QPushButton ( tr ( "Suspend" ),selectSessionDlg );
-	setWidgetStyle ( bSusp );
-	bTerm=new QPushButton ( tr ( "Terminate" ),selectSessionDlg );
-	setWidgetStyle ( bTerm );
-
-	bNew=new QPushButton ( tr ( "New" ),selectSessionDlg );
-	setWidgetStyle ( bNew );
-
-
-	if ( !miniMode )
-		selectSessionLabel->move ( 20,20 );
-	else
-		selectSessionLabel->move ( 10,10 );
-
-	pal.setColor ( QPalette::Button, QColor ( 255,255,255,0 ) );
-	pal.setColor ( QPalette::Window, QColor ( 255,255,255,255 ) );
-	pal.setColor ( QPalette::Base, QColor ( 255,255,255,255 ) );
-	sOk->setPalette ( pal );
-	sCancel->setPalette ( pal );
-
-	connect ( sCancel,SIGNAL ( clicked() ),this,
-	          SLOT ( slotCloseSelectDlg() ) );
-
-	selectSessionDlg->show();
-#ifndef Q_WS_HILDON
-	sOk->setFixedSize ( ok->sizeHint() );
-	sCancel->setFixedSize ( cancel->sizeHint() );
-#else
-	QSize sz=sCancel->sizeHint();
-	sz.setWidth ( ( int ) ( sz.width() /1.5 ) );
-	sz.setHeight ( ( int ) ( sz.height() /1.5 ) );
-	sCancel->setFixedSize ( sz );
-	sz=sOk->sizeHint();
-	sz.setWidth ( ( int ) ( sz.width() /1.5 ) );
-	sz.setHeight ( ( int ) ( sz.height() /1.5 ) );
-	sOk->setFixedSize ( sz );
-	sz=bSusp->sizeHint();
-	if ( bTerm->sizeHint().width() > sz.width() )
-		sz=bTerm->sizeHint();
-	if ( bNew->sizeHint().width() > sz.width() )
-		sz=bNew->sizeHint();
-	sz.setWidth ( ( int ) ( sz.width() /1.5 ) );
-	sz.setHeight ( ( int ) ( sz.height() /1.5 ) );
-	bSusp->setFixedSize ( sz );
-	bTerm->setFixedSize ( sz );
-	bNew->setFixedSize ( sz );
-#endif
-	if ( !miniMode )
-	{
-		sOk->move ( ( selectSessionDlg->width()- ( sOk->width() +
-		              12+sCancel->width() ) ) /2,
-		            selectSessionDlg->height()-sOk->height()-12 );
-		sCancel->move ( sOk->pos().x() +sOk->width() +
-		                12,sOk->pos().y() );
-	}
-	else
-	{
-		sOk->move ( ( selectSessionDlg->width()- ( sOk->width() +
-		              8+sCancel->width() ) ) /2,
-		            selectSessionDlg->height()-sOk->height()-8 );
-		sCancel->move ( sOk->pos().x() +sOk->width() +
-		                8,sOk->pos().y() );
-	}
-	int bmaxw=bNew->size().width();
-	if ( bSusp->size().width() >bmaxw )
-		bmaxw=bSusp->size().width();
-	if ( bTerm->size().width() >bmaxw )
-		bmaxw=bTerm->size().width();
-
-	bNew->setFixedWidth ( bmaxw );
-	bSusp->setFixedWidth ( bmaxw );
-	bTerm->setFixedWidth ( bmaxw );
-
-	if ( !miniMode )
-	{
-		int butx=selectSessionDlg->width()-bmaxw-12;
-		bSusp->move ( butx,45 );
-		bTerm->move ( butx,bSusp->y() +bSusp->height() +6 );
-	}
-	else
-	{
-		int butx=selectSessionDlg->width()-bmaxw-9;
-		bSusp->move ( butx,30 );
-		bTerm->move ( butx,bSusp->y() +bSusp->height() +6 );
-	}
-
-	sOk->setEnabled ( true );
-	sCancel->setEnabled ( true );
-	selectSessionDlg->setEnabled ( true );
 	setEnabled ( true );
-
-
-	sessTv=new QTreeView ( selectSessionDlg );
-	setWidgetStyle ( sessTv );
-	setWidgetStyle ( sessTv->horizontalScrollBar() );
-	sessTv->setItemsExpandable ( false );
-	sessTv->setRootIsDecorated ( false );
-
-	QStandardItemModel* model=new QStandardItemModel ( sessions.size(), 8 );
-
-	model->setHeaderData ( S_DISPLAY,Qt::Horizontal,
-	                       QVariant ( ( QString ) tr ( "Display" ) ) );
-	model->setHeaderData ( S_STATUS,Qt::Horizontal,
-	                       QVariant ( ( QString ) tr ( "Status" ) ) );
-	model->setHeaderData ( S_COMMAND,Qt::Horizontal,
-	                       QVariant ( ( QString ) tr ( "Command" ) ) );
-	model->setHeaderData ( S_TYPE,Qt::Horizontal,
-	                       QVariant ( ( QString ) tr ( "Type" ) ) );
-	model->setHeaderData ( S_SERVER,Qt::Horizontal,
-	                       QVariant ( ( QString ) tr ( "Server" ) ) );
-	model->setHeaderData (
-	    S_CRTIME,Qt::Horizontal,
-	    QVariant ( ( QString ) tr ( "Creation time" ) ) );
-	model->setHeaderData ( S_IP,Qt::Horizontal,
-	                       QVariant ( ( QString ) tr ( "Client IP" ) ) );
-	model->setHeaderData ( S_ID,Qt::Horizontal,
-	                       QVariant ( ( QString ) tr ( "Session ID" ) ) );
-	sessTv->setModel ( ( QAbstractItemModel* ) model );
-	if ( !miniMode )
-	{
-		sessTv->move ( 20,45 );
-		sessTv->setFixedSize ( bSusp->x()-24,sOk->y()-
-		                       ( selectSessionLabel->y() +
-		                         selectSessionLabel->height() +8 ) );
-	}
-	else
-	{
-		sessTv->move ( 10,30 );
-		sessTv->setFixedSize ( bSusp->x()-13,sOk->y()-
-		                       ( selectSessionLabel->y() +
-		                         selectSessionLabel->height() +6 ) );
-	}
-	QFontMetrics fm ( sessTv->font() );
+	sessionStatusDlg->hide();
+	passForm->hide();
 	selectedSessions.clear();
+	QFontMetrics fm ( sessTv->font() );
 	for ( int row = 0; row < sessions.size(); ++row )
 	{
 
@@ -2869,65 +2788,21 @@ void ONMainWindow::selectSession ( const QStringList& sessions )
 			}
 		}
 	}
-	sessTv->setEditTriggers ( QAbstractItemView::NoEditTriggers );
-	if ( !miniMode )
-		bNew->move ( bTerm->x(),sessTv->y() +
-		             sessTv->height()-bNew->height() );
-	else
-		bNew->move ( bTerm->x(),sessTv->y() +
-		             sessTv->height()-bNew->height() );
-	sessTv->setPalette ( pal );
-	bNew->setPalette ( pal );
-	bSusp->setPalette ( pal );
-	bTerm->setPalette ( pal );
-	//     sessTv->setFrameStyle(QFrame::NoFrame|QFrame::Plain);
-	sessTv->setFrameStyle ( QFrame::StyledPanel|QFrame::Plain );
-	sOk->setEnabled ( false );
-	bSusp->setEnabled ( false );
-	bTerm->setEnabled ( false );
-	selectSessionLabel->hide();
-	sOk->hide();
-	sCancel->hide();
-	bNew->hide();
-	bSusp->hide();
-	bTerm->hide();
-
-
-	connect ( sessTv,SIGNAL ( clicked ( const QModelIndex& ) ),
-	          this,SLOT ( slot_activated ( const QModelIndex& ) ) );
-
-	connect ( sessTv,SIGNAL ( doubleClicked ( const QModelIndex& ) ),
-	          this,SLOT ( slot_resumeDoubleClick ( const QModelIndex& ) ) );
-
-	connect ( sOk,SIGNAL ( clicked() ),this, SLOT ( slotResumeSess() ) );
-	connect ( bSusp,SIGNAL ( clicked() ),this, SLOT ( slotSuspendSess() ) );
-	connect ( bTerm,SIGNAL ( clicked() ),this, SLOT ( slotTermSess() ) );
-	connect ( bNew,SIGNAL ( clicked() ),this, SLOT ( slotNewSess() ) );
-
-
-	QTimer::singleShot ( 1,this,SLOT ( slot_showSelectSessionWidgets() ) );
+	selectSessionDlg->show();
 }
 
 void ONMainWindow::slotCloseSelectDlg()
 {
-	selectSessionDlg->close();
-	u->setEnabled ( true );
-	uname->setEnabled ( true );
+	selectSessionDlg->hide();
+	if ( !embedMode )
+	{
+		u->setEnabled ( true );
+		uname->setEnabled ( true );
+	}
 	slot_showPassForm();
-	selectSessionDlg=0;
 }
 
 
-void ONMainWindow::slot_showSelectSessionWidgets()
-{
-	selectSessionLabel->show();
-	sOk->show();
-	sCancel->show();
-	bNew->show();
-	bSusp->show();
-	bTerm->show();
-	sessTv->show();
-}
 
 void ONMainWindow::slot_activated ( const QModelIndex& index )
 {
@@ -3012,11 +2887,9 @@ void ONMainWindow::slotSuspendSess()
 {
 
 	QString passwd;
-	QString user=login->text();
-	if ( currentKey==QString::null||currentKey=="" )
-	{
-		passwd=pass->text();
-	}
+	QString user=getCurrentUname();
+
+	passwd=getCurrentPass();
 
 	selectSessionDlg->setEnabled ( false );
 
@@ -3029,18 +2902,25 @@ void ONMainWindow::slotSuspendSess()
 	                 S_SERVER ).data().toString();
 	if ( !useLdap )
 	{
-#ifndef WINDOWS
-		QSettings st ( QDir::homePath() +"/.x2goclient/sessions",
-		               QSettings::NativeFormat );
+		if ( !embedMode )
+		{
+#ifndef Q_OS_WIN
+			QSettings st ( homeDir +
+			               "/.x2goclient/sessions",
+			               QSettings::NativeFormat );
 #else
 
-		QSettings st ( "Obviously Nice","x2goclient" );
-		st.beginGroup ( "sessions" );
+			QSettings st ( "Obviously Nice","x2goclient" );
+			st.beginGroup ( "sessions" );
 #endif
-
-		QString sid=lastSession->id();
-		host=st.value ( sid+"/host",
-		                ( QVariant ) host ).toString();
+			QString sid=lastSession->id();
+			host=st.value ( sid+"/host",
+			                ( QVariant ) host ).toString();
+		}
+		else
+		{
+			host=config.server;
+		}
 	}
 	suspendSession ( user,host,passwd,currentKey,sessId );
 }
@@ -3049,11 +2929,8 @@ void ONMainWindow::slotSuspendSess()
 void ONMainWindow::slotSuspendSessFromSt()
 {
 	QString passwd;
-	QString user=login->text();
-	if ( currentKey==QString::null||currentKey=="" )
-	{
-		passwd=pass->text();
-	}
+	QString user=getCurrentUname();
+	passwd=getCurrentPass();
 	setStatStatus ( tr ( "suspending" ) );
 
 	x2goDebug <<"disconnect export"<<endl;
@@ -3069,20 +2946,18 @@ void ONMainWindow::slotSuspendSessFromSt()
 void ONMainWindow::slotTermSessFromSt()
 {
 	QString passwd;
-	QString user=login->text();
-	if ( currentKey==QString::null||currentKey=="" )
-	{
-		passwd=pass->text();
-	}
+	QString user=getCurrentUname();
+	passwd=getCurrentPass();
+
 	x2goDebug <<"disconnect export"<<endl;
 	disconnect ( sbExp,SIGNAL ( clicked() ),this,
 	             SLOT ( slot_exportDirectory() ) );
 	sbExp->setEnabled ( false );
 
-	setStatStatus ( tr ( "terminating" ) );
-	termSession ( user,resumingSession.server,passwd,
-	              currentKey,
-	              resumingSession.sessionId );
+	if ( termSession ( user,resumingSession.server,passwd,
+	                   currentKey,
+	                   resumingSession.sessionId ) )
+		setStatStatus ( tr ( "terminating" ) );
 }
 
 
@@ -3106,7 +2981,7 @@ void ONMainWindow::slot_retSuspSess ( bool result, QString output,
 	}
 	else
 	{
-		if ( selectSessionDlg )
+		if ( selectSessionDlg->isVisible() )
 		{
 			( ( QStandardItemModel* )
 			  ( sessTv->model() ) )->item (
@@ -3119,7 +2994,7 @@ void ONMainWindow::slot_retSuspSess ( bool result, QString output,
 
 		}
 	}
-	if ( selectSessionDlg )
+	if ( selectSessionDlg->isVisible() )
 		selectSessionDlg->setEnabled ( true );
 }
 
@@ -3128,11 +3003,8 @@ void ONMainWindow::slot_retSuspSess ( bool result, QString output,
 void ONMainWindow::slotTermSess()
 {
 	QString passwd;
-	QString user=login->text();
-	if ( currentKey==QString::null||currentKey=="" )
-	{
-		passwd=pass->text();
-	}
+	QString user=getCurrentUname();
+	passwd=getCurrentPass();
 
 	selectSessionDlg->setEnabled ( false );
 
@@ -3144,18 +3016,27 @@ void ONMainWindow::slotTermSess()
 
 	if ( !useLdap )
 	{
-#ifndef WINDOWS
-		QSettings st ( QDir::homePath() +"/.x2goclient/sessions",
-		               QSettings::NativeFormat );
+		if ( !embedMode )
+		{
+#ifndef Q_OS_WIN
+			QSettings st ( homeDir +
+			               "/.x2goclient/sessions",
+			               QSettings::NativeFormat );
 #else
 
-		QSettings st ( "Obviously Nice","x2goclient" );
-		st.beginGroup ( "sessions" );
+			QSettings st ( "Obviously Nice","x2goclient" );
+			st.beginGroup ( "sessions" );
 #endif
 
-		QString sid=lastSession->id();
-		host=st.value ( sid+"/host",
-		                ( QVariant ) host ).toString();
+			QString sid=lastSession->id();
+			host=st.value ( sid+"/host",
+			                ( QVariant ) host ).toString();
+		}
+		else
+		{
+			host=config.server;
+		}
+
 	}
 
 	termSession ( user,host,passwd,currentKey,sessId );
@@ -3171,6 +3052,7 @@ void ONMainWindow::slotNewSess()
 void ONMainWindow::slot_retTermSess ( bool result,  QString output,
                                       sshProcess* proc )
 {
+	bool nodel= ( proc==0 );
 	if ( proc )
 		delete proc;
 	if ( result==false )
@@ -3188,14 +3070,14 @@ void ONMainWindow::slot_retTermSess ( bool result,  QString output,
 	}
 	else
 	{
-		if ( selectSessionDlg )
+		if ( selectSessionDlg->isVisible() &&!nodel )
 		{
 			sessTv->model()->removeRow (
 			    sessTv->currentIndex().row() );
 			slot_activated ( sessTv->currentIndex() );
 		}
 	}
-	if ( selectSessionDlg )
+	if ( selectSessionDlg->isVisible() )
 		selectSessionDlg->setEnabled ( true );
 }
 
@@ -3213,6 +3095,12 @@ void ONMainWindow::slot_retResumeSess ( bool result,
 			message=tr (
 			            "<b>Wrong Password!</b><br><br>" ) +message;
 		}
+		if ( output.indexOf ( "LIMIT" ) !=-1 )
+		{
+			QString sessions=output.mid ( output.indexOf ( "LIMIT" ) +6 );
+
+			message="Sessions limit reached:"+sessions;
+		}
 
 		QMessageBox::critical ( 0l,tr ( "Error" ),
 		                        message,QMessageBox::Ok,
@@ -3221,12 +3109,16 @@ void ONMainWindow::slot_retResumeSess ( bool result,
 		return;
 	}
 
-	QString passwd=pass->text();
-	QString user=login->text();
+	QString passwd=getCurrentPass();
+	QString user=getCurrentUname();
 	QString host;
-	bool sound=false;
+
+	bool sound=true;
 	int sndSystem=PULSE;
 	QString sndPort;
+#ifndef Q_OS_WIN
+	sndPort="4713";
+#endif
 	bool startSoundServer=true;
 	bool sshSndTunnel=true;
 
@@ -3242,28 +3134,38 @@ void ONMainWindow::slot_retResumeSess ( bool result,
 	}
 	else
 	{
-#ifndef WINDOWS
-		QSettings st ( QDir::homePath() +"/.x2goclient/sessions",
+		QString sid;
+		if ( !embedMode )
+			sid=lastSession->id();
+		else
+			sid="embedded";
+#ifndef Q_OS_WIN
+		QSettings st ( homeDir +
+		               "/.x2goclient/sessions",
 		               QSettings::NativeFormat );
 #else
-
 		QSettings st ( "Obviously Nice","x2goclient" );
 		st.beginGroup ( "sessions" );
 #endif
 
-		QString sid=lastSession->id();
 		sound=st.value ( sid+"/sound",
-		                 ( QVariant ) false ).toBool();
-		QString sndsys=st.value ( sid+"/soundsystem",
-		                          ( QVariant ) "pulse" ).toString();
+		                 ( QVariant ) true ).toBool();
+		QString sndsys=st.value (
+		                   sid+"/soundsystem",
+		                   ( QVariant ) "pulse" ).toString();
 		if ( sndsys=="arts" )
 			sndSystem=ARTS;
 		if ( sndsys=="esd" )
 			sndSystem=ESD;
+#ifndef Q_OS_WIN
 		sndPort=st.value ( sid+"/sndport" ).toString();
-		bool defPort=st.value ( sid+"/defsndport",true ).toBool();
+#endif
 		startSoundServer=st.value (
-		                     sid+"/startsoundsystem",true ).toBool();
+		                     sid+"/startsoundsystem",
+		                     true ).toBool();
+#ifndef Q_OS_WIN
+		bool defPort=st.value ( sid+
+		                        "/defsndport",true ).toBool();
 		if ( defPort )
 		{
 			switch ( sndSystem )
@@ -3274,7 +3176,19 @@ void ONMainWindow::slot_retResumeSess ( bool result,
 					sndPort="16001";break;
 			}
 		}
-		sshSndTunnel=st.value ( sid+"/soundtunnel",true ).toBool();
+#endif
+		sshSndTunnel=st.value ( sid+"/soundtunnel",
+		                        true ).toBool();
+
+#ifdef Q_OS_WIN
+		switch ( sndSystem )
+		{
+			case PULSE:
+				sndPort=QString::number ( pulsePort );break;
+			case ESD:
+				sndPort=QString::number ( esdPort );break;
+		}
+#endif
 	}
 
 	//Will be used in runCommand
@@ -3295,18 +3209,23 @@ void ONMainWindow::slot_retResumeSess ( bool result,
 		host=resumingSession.server;
 	if ( !useLdap )
 	{
-#ifndef WINDOWS
-		QSettings st ( QDir::homePath() +"/.x2goclient/sessions",
-		               QSettings::NativeFormat );
+		if ( !embedMode )
+		{
+#ifndef Q_OS_WIN
+			QSettings st ( homeDir +"/.x2goclient/sessions",
+			               QSettings::NativeFormat );
 #else
 
-		QSettings st ( "Obviously Nice","x2goclient" );
-		st.beginGroup ( "sessions" );
+			QSettings st ( "Obviously Nice","x2goclient" );
+			st.beginGroup ( "sessions" );
 #endif
 
-		QString sid=lastSession->id();
-		host=st.value ( sid+"/host",
-		                ( QVariant ) host ).toString();
+			QString sid=lastSession->id();
+			host=st.value ( sid+"/host",
+			                ( QVariant ) host ).toString();
+		}
+		else
+			host=config.server;
 		resumingSession.server=host;
 	}
 	try
@@ -3319,7 +3238,7 @@ void ONMainWindow::slot_retResumeSess ( bool result,
 	{
 		slot_tunnelFailed ( false,message,0 );
 	}
-	if ( cardReady )
+	if ( cardReady || useSshAgent )
 	{
 		QStringList env=tunnel->environment();
 		env+=sshEnv;
@@ -3333,9 +3252,15 @@ void ONMainWindow::slot_retResumeSess ( bool result,
 	connect ( tunnel,SIGNAL ( sshTunnelOk() ),
 	          this,SLOT ( slot_tunnelOk() ) );
 
+	localGraphicPort=resumingSession.grPort;
+	int iport=localGraphicPort.toInt();
+	while ( isServerRunning ( iport ) )
+		++iport;
+	localGraphicPort=QString::number ( iport );
+
 	try
 	{
-		tunnel->startTunnel ( "localhost",resumingSession.grPort,
+		tunnel->startTunnel ( "localhost",localGraphicPort,
 		                      resumingSession.grPort );
 	}
 	catch ( QString message )
@@ -3349,14 +3274,30 @@ void ONMainWindow::slot_retResumeSess ( bool result,
 		startSoundServer=false;
 		QString scmd;
 		if ( !sshSndTunnel )
-			scmd="mkdir ~/.pulse;echo \"default-server=`echo "
+			scmd="echo \"default-server=`echo "
 			     "$SSH_CLIENT | awk '{print $1}'`:"+
 			     sndPort+
-			     "\" > ~/.pulse/client.conf";
+			     "\"> ~/.x2go/C-"+
+			     resumingSession.sessionId+
+			     "/.pulse-client.conf"
+			     ";echo \"cookie-file=.x2go/C-"+
+			     resumingSession.sessionId+
+			     "/.pulse-cookie"+
+			     "\">> ~/.x2go/C-"+
+			     resumingSession.sessionId+
+			     "/.pulse-client.conf";
 		else
-			scmd="mkdir ~/.pulse;echo \"default-server=localhost:"+
+			scmd="echo \"default-server=localhost:"+
 			     resumingSession.sndPort+
-			     "\" > ~/.pulse/client.conf";
+			     "\"> ~/.x2go/C-"+
+			     resumingSession.sessionId+
+			     "/.pulse-client.conf"
+			     ";echo \"cookie-file=.x2go/C-"+
+			     resumingSession.sessionId+
+			     "/.pulse-cookie"+
+			     "\">> ~/.x2go/C-"+
+			     resumingSession.sessionId+
+			     "/.pulse-client.conf";
 		sshProcess* paProc;
 		try
 		{
@@ -3369,28 +3310,135 @@ void ONMainWindow::slot_retResumeSess ( bool result,
 			return;
 		}
 
-		if ( cardReady )
+		if ( cardReady || useSshAgent )
 		{
 			QStringList env=paProc->environment();
 			env+=sshEnv;
 			paProc->setEnvironment ( env );
 		}
 		paProc->startNormal();
+		try
+		{
+			paProc=new sshProcess ( this,user,host,sshPort,
+			                        scmd,
+			                        passwd,currentKey,acceptRsa );
+		}
+		catch ( QString message )
+		{
+			return;
+		}
 
+		if ( cardReady || useSshAgent )
+		{
+			QStringList env=paProc->environment();
+			env+=sshEnv;
+			paProc->setEnvironment ( env );
+		}
 
+		bool sysPulse=false;
+#ifdef Q_OS_LINUX
+		loadPulseModuleNativeProtocol();
+		QFile file ( "/etc/default/pulseaudio" );
+		if ( file.open ( QIODevice::ReadOnly | QIODevice::Text ) )
+		{
+
+			while ( !file.atEnd() )
+			{
+				QByteArray line = file.readLine();
+				int pos=line.indexOf (
+				            "PULSEAUDIO_SYSTEM_START=1" );
+				if ( pos!=-1 )
+				{
+					int commentPos=line.indexOf ( "#" );
+					if ( commentPos==-1 || commentPos>pos )
+					{
+						sysPulse=true;
+						break;
+					}
+				}
+			}
+			file.close();
+		}
+#endif
+		if ( sysPulse )
+			paProc->start_cp ( "/var/run/pulse/.pulse-cookie",
+			                   "~/.x2go/C-"+
+			                   resumingSession.sessionId+
+			                   "/.pulse-cookie" );
+		else
+		{
+#ifndef Q_OS_WIN
+			paProc->start_cp ( homeDir+"/.pulse-cookie",
+			                   "~/.x2go/C-"+
+			                   resumingSession.sessionId+
+			                   "/.pulse-cookie" );
+#else
+			QString cooFile=
+			    wapiShortFileName ( homeDir )  +
+			    "/.x2go/pulse/.pulse-cookie";
+			QString destFile="~/.x2go/C-"+
+			                 resumingSession.sessionId+
+			                 "/.pulse-cookie";
+			paProc->start_cp ( cooFile,
+			                   destFile );
+
+			/*x2goDebug<<"cookie file: "<<cooFile<<" remote:"<<
+			destFile<<endl;*/
+			connect ( paProc,
+			          SIGNAL ( sshFinished ( bool,
+			                                 QString,
+			                                 sshProcess* ) ),
+			          this,
+			          SLOT ( slotPCookieReady ( bool,
+			                                    QString,
+			                                    sshProcess* ) ) );
+			parecTunnelOk=true;
+#endif
+		}
 	}
+	if ( sndSystem==ESD )
+	{
+		sshProcess* paProc;
+		try
+		{
+			paProc=new sshProcess ( this,user,host,sshPort,
+			                        "",
+			                        passwd,currentKey,acceptRsa );
+		}
+		catch ( QString message )
+		{
+			return;
+		}
 
+		if ( cardReady || useSshAgent )
+		{
+			QStringList env=paProc->environment();
+			env+=sshEnv;
+			paProc->setEnvironment ( env );
+		}
+#ifndef Q_OS_WIN
+		paProc->start_cp ( homeDir+"/.esd_auth",
+		                   "~/.esd_auth" );
+#else
+		QString cooFile=
+		    wapiShortFileName ( homeDir )  +
+		    "/.x2go/pulse/.esd_auth";
+		QString destFile="~/.esd_auth";
+		paProc->start_cp ( cooFile,
+		                   destFile );
+#endif
+	}
 	sndTunnel=0l;
 	if ( sound )
 	{
-#ifndef WINDOWS
+#ifndef Q_OS_WIN
 		if ( startSoundServer )
 		{
 			soundServer=new QProcess ( this );
 			QString acmd="artsd",ecmd="esd";
 #ifdef Q_OS_DARWIN
 			QStringList env = soundServer->environment();
-			QDir dir ( QApplication::applicationDirPath() );
+			QDir dir ( appDir );
 			dir.cdUp();
 			dir.cd ( "esd" );
 			env.insert ( 0,"DYLD_LIBRARY_PATH="+
@@ -3408,12 +3456,7 @@ void ONMainWindow::slot_retResumeSess ( bool result,
 				                     resumingSession.sndPort );
 			sndPort=resumingSession.sndPort;
 		}
-#else
-		if ( !isServerRunning ( sndPort.toInt() ) )
-		{
-			launchPulse();
-		}
-#endif //WINDOWS
+#endif //Q_OS_WIN
 		if ( sshSndTunnel )
 		{
 			try
@@ -3428,13 +3471,21 @@ void ONMainWindow::slot_retResumeSess ( bool result,
 			{
 				slot_sndTunnelFailed ( false,message,0 );
 			}
-			if ( cardReady )
+			if ( cardReady || useSshAgent )
 			{
 				QStringList env=sndTunnel->environment();
 				env+=sshEnv;
 				sndTunnel->setEnvironment ( env );
 			}
 
+#ifdef Q_OS_WIN
+			if ( sndSystem==PULSE )
+			{
+				parecTunnelOk=false;
+				connect ( sndTunnel,SIGNAL ( sshTunnelOk() ),
+				          this,SLOT ( slotSndTunOk() ) );
+			}
+#endif
 			connect ( sndTunnel,SIGNAL ( sshFinished ( bool,
 			                             QString,
 			                             sshProcess* ) ),
@@ -3449,6 +3500,10 @@ void ONMainWindow::slot_retResumeSess ( bool result,
 				    "localhost",
 				    resumingSession.sndPort,
 				    sndPort,true );
+				/*x2goDebug<<"starting tunnel, local port:"<<
+					sndPort<<", remote: "<<
+					resumingSession.sndPort<<
+					endl;*/
 			}
 			catch ( QString message )
 			{
@@ -3477,7 +3532,7 @@ x2goSession ONMainWindow::getSelectedSession()
 void ONMainWindow::slot_tunnelOk()
 {
 	showExport=false;
-	QString nxroot=QDir::homePath() +"/.x2go";
+	QString nxroot=homeDir +"/.x2go";
 	QString dirpath=nxroot+"/S-"+resumingSession.sessionId;
 	QDir d ( dirpath );
 	if ( !d.exists() )
@@ -3502,6 +3557,10 @@ void ONMainWindow::slot_tunnelOk()
 			nxproxy=0l;
 			return;
 		}
+#ifdef Q_OS_WIN
+	dirpath=wapiShortFileName ( dirpath );
+	nxroot=wapiShortFileName ( nxroot );
+#endif
 	QFile file ( dirpath+"/options" );
 	if ( !file.open ( QIODevice::WriteOnly | QIODevice::Text ) )
 	{
@@ -3515,32 +3574,21 @@ void ONMainWindow::slot_tunnelOk()
 	}
 
 	QTextStream out ( &file );
-#ifndef WINDOWS
-
+#ifdef Q_OS_WIN
+	dirpath=cygwinPath ( dirpath );
+	nxroot=cygwinPath ( nxroot );
+#endif
 	out << "nx/nx,root="<<nxroot<<",connect=localhost,cookie="<<
 	resumingSession.cookie<<",port="
-	<<resumingSession.grPort<<",errors="<<dirpath<<"/sessions:"<<
+	<<localGraphicPort/*resumingSession.grPort*/<<
+	",errors="<<dirpath<<"/sessions:"<<
 	resumingSession.display;
-#else
-
-	QString cygwinRoot=nxroot;
-
-	cygwinRoot=transform2cygwinPath ( cygwinRoot,true );
-
-
-	QString cygwinDir=cygwinRoot+"/S-"+resumingSession.sessionId;
-	out << "nx/nx,root="<<cygwinRoot<<",connect=localhost,cookie="<<
-	resumingSession.cookie<<",port="
-	<<resumingSession.grPort<<",errors="<<cygwinDir<<"/sessions:"<<
-	resumingSession.display;
-#endif
-
 	file.close();
 	xmodExecuted=false;
 	nxproxy=new QProcess;
 	QStringList env = QProcess::systemEnvironment();
 	QString x2golibpath="/usr/lib/x2go";
-#if defined ( WINDOWS ) || defined ( Q_OS_DARWIN )
+#if defined ( Q_OS_WIN ) || defined ( Q_OS_DARWIN )
 	int dispInd=-1;
 #endif
 	for ( int l=0;l<env.size();++l )
@@ -3549,7 +3597,7 @@ void ONMainWindow::slot_tunnelOk()
 		{
 			x2golibpath=env[l].split ( "=" ) [1];
 		}
-#if defined ( WINDOWS ) || defined ( Q_OS_DARWIN )
+#if defined ( Q_OS_WIN ) || defined ( Q_OS_DARWIN )
 		if ( env[l].indexOf ( "DISPLAY" ) ==0 )
 		{
 			dispInd=l;
@@ -3566,7 +3614,7 @@ void ONMainWindow::slot_tunnelOk()
 	    "PATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin" );
 #endif
 
-#if defined ( WINDOWS ) || defined ( Q_OS_DARWIN )
+#if defined ( Q_OS_WIN ) || defined ( Q_OS_DARWIN )
 	QString disp=getXDisplay();
 	if ( disp==QString::null )
 	{
@@ -3592,24 +3640,31 @@ void ONMainWindow::slot_tunnelOk()
 	          SLOT ( slot_proxyStderr() ) );
 	connect ( nxproxy,SIGNAL ( readyReadStandardOutput() ),this,
 	          SLOT ( slot_proxyStdout() ) );
-#ifndef WINDOWS
 
 	QString proxyCmd="nxproxy -S nx/nx,options="+dirpath+"/options:"+
 	                 resumingSession.display;
 #ifdef Q_OS_DARWIN
 	//run nxproxy from bundle
-	QDir dir ( QApplication::applicationDirPath() );
+	QDir dir ( appDir );
 	dir.cdUp();
 	dir.cd ( "exe" );
 	proxyCmd="\""+dir.absolutePath() +"/\""+proxyCmd;
 #endif //Q_OS_DARWIN
+	x2goDebug<<"starting nxproxy with: "<<proxyCmd<<endl;
 	nxproxy->start ( proxyCmd );
-#else
-
-	nxproxy->start ( "nxproxy -S nx/nx,options="+cygwinDir+"/options:"+
-	                 resumingSession.display );
+	if ( embedMode )
+	{
+		proxyWinTimer->start ( 300 );
+		if ( !startEmbedded )
+		{
+			act_embedContol->setText (
+			    tr ( "Attach X2Go window" ) );
+		}
+	}
+#ifdef Q_OS_WIN
+	else
+		proxyWinTimer->start ( 300 );
 #endif
-
 	showSessionStatus();
 	QTimer::singleShot ( 30000,this,SLOT ( slot_restartNxProxy() ) );
 
@@ -3664,6 +3719,15 @@ void ONMainWindow::slot_proxyerror ( QProcess::ProcessError )
 
 void ONMainWindow::slot_proxyFinished ( int,QProcess::ExitStatus )
 {
+	if ( embedMode )
+	{
+		proxyWinTimer->stop();
+		setEmbedSessionActionsEnabled ( false );
+	}
+#ifdef Q_OS_WIN
+	else
+		proxyWinTimer->stop();
+#endif
 	if ( tunnel )
 		delete tunnel;
 	if ( sndTunnel )
@@ -3675,11 +3739,14 @@ void ONMainWindow::slot_proxyFinished ( int,QProcess::ExitStatus )
 	if ( spoolTimer )
 		delete spoolTimer;
 
-	delete nxproxy;
+	if ( nxproxy )
+		delete nxproxy;
 	spoolTimer=0l;
 	tunnel=sndTunnel=fsTunnel=0l;
 	soundServer=0l;
 	nxproxy=0l;
+	proxyWinId=0;
+
 	if ( !usePGPCard )
 		check_cmd_status();
 	if ( startHidden )
@@ -3697,35 +3764,39 @@ void ONMainWindow::slot_proxyFinished ( int,QProcess::ExitStatus )
 		cleanPrintSpool();
 	if ( !restartResume )
 	{
-		pass->setText ( "" );
-		QTimer::singleShot ( 2000,this,SLOT ( slot_showPassForm() ) );
+		if ( !embedMode )
+		{
+			pass->setText ( "" );
+			QTimer::singleShot ( 2000,this,
+			                     SLOT ( slot_showPassForm() ) );
+		}
 	}
 	else
 	{
 		restartResume=false;
-		if ( sessionStatusDlg )
-		{
-			sessionStatusDlg->close();
-			sessionStatusDlg=0l;
-		}
+		sessionStatusDlg->hide();
 		resumeSession ( resumingSession );
 	}
+	setStatStatus ( tr ( "Finished" ) );
 }
 
 
 void ONMainWindow::slot_proxyStderr()
 {
-	QString reserr ( nxproxy->readAllStandardError() );
+	QString reserr;
+	if ( nxproxy )
+		reserr= nxproxy->readAllStandardError();
 	stInfo->insertPlainText ( reserr );
 	stInfo->ensureCursorVisible();
 	if ( stInfo->toPlainText().indexOf (
 	            "Connecting to remote host 'localhost:"+
-	            resumingSession.grPort ) !=-1 )
+	            /*resumingSession.grPort*/ localGraphicPort ) !=-1 )
 		setStatStatus ( tr ( "connecting" ) );
 
 	if ( stInfo->toPlainText().indexOf (
 	            "Connection to remote proxy 'localhost:"+
-	            resumingSession.grPort+"' established" ) !=-1 )
+	            /*resumingSession.grPort*/
+	            localGraphicPort+"' established" ) !=-1 )
 	{
 		if ( newSession )
 			setStatStatus ( tr ( "starting" ) );
@@ -3737,6 +3808,8 @@ void ONMainWindow::slot_proxyStderr()
 	            "Established X server connection" ) !=-1 )
 	{
 		setStatStatus ( tr ( "running" ) );
+		if ( embedMode )
+			setEmbedSessionActionsEnabled ( true );
 		disconnect ( sbSusp,SIGNAL ( clicked() ),this,
 		             SLOT ( slot_testSessionStatus() ) );
 		disconnect ( sbSusp,SIGNAL ( clicked() ),this,
@@ -3783,166 +3856,62 @@ void ONMainWindow::slot_proxyStderr()
 
 void ONMainWindow::slot_proxyStdout()
 {
-	QString resout ( nxproxy->readAllStandardOutput() );
+// 	QString resout ( nxproxy->readAllStandardOutput() );
 }
 
 
 void ONMainWindow::slot_showPassForm()
 {
-	if ( sessionStatusDlg )
+	if ( !useLdap )
 	{
-		sessionStatusDlg->close();
-		sessionStatusDlg=0l;
+		loginPrompt->show();
+		login->show();
+	}
+	else
+	{
+		loginPrompt->hide();
+		login->hide();
 	}
 	setEnabled ( true );
-	if ( passForm  &&  isPassShown )
+	if ( !embedMode )
+	{
+		u->hide();
+		uname->hide();
+	}
+	sessionStatusDlg->hide();
+	selectSessionDlg->hide();
+	setEnabled ( true );
+	if ( isPassShown )
 	{
 		passForm->show();
 		passForm->setEnabled ( true );
 	}
 	isPassShown=true;
-	pass->setFocus();
-	pass->selectAll();
-	u->setEnabled ( true );
+	login->setEnabled ( true );
+	if ( login->text().length() >0 )
+	{
+		pass->setFocus();
+		pass->selectAll();
+	}
+	else
+		login->setFocus();
+
+
+	if ( !embedMode )
+	{
+		u->setEnabled ( true );
+	}
+	else
+	{
+		if ( config.user.length() >0 )
+			login->setEnabled ( false );
+	}
 }
 
 
 void ONMainWindow::showSessionStatus()
 {
-	setEnabled ( true );
-	showExport=false;
-	sessionStatusDlg = new SVGFrame ( ":/svg/passform.svg",false,bgFrame );
-	sessionStatusDlg->hide();
-	if ( !miniMode )
-		sessionStatusDlg->setFixedSize ( sessionStatusDlg->sizeHint() );
-	else
-		sessionStatusDlg->setFixedSize ( 310,200 );
-	QFont fnt=sessionStatusDlg->font();
-	if ( miniMode )
-#ifdef Q_WS_HILDON
-		fnt.setPointSize ( 10 );
-#else
-		fnt.setPointSize ( 9 );
-#endif
-	sessionStatusDlg->setFont ( fnt );
-
-	username->addWidget ( sessionStatusDlg );
-	QPalette pal=sessionStatusDlg->palette();
-	pal.setBrush ( QPalette::Window, QColor ( 0,0,0,0 ) );
-	sessionStatusDlg->setPalette ( pal );
-
-	slName=new QLabel ( sessionStatusDlg );
-	slName->setText (
-	    tr (
-	        "<b>Session ID:<br>Server:<br>Username:"
-	        "<br>Display:<br>Creation time:<br>Status:</b>" ) );
-	if ( !miniMode )
-		slName->move ( 30,30 );
-	else
-		slName->move ( 15,10 );
-	slName->setFixedSize ( slName->sizeHint() );
-	slName->hide();
-
-	QString f="dd.MM.yy HH:mm:ss";
-	QDateTime dt=QDateTime::fromString ( resumingSession.crTime,f );
-	dt=dt.addYears ( 100 );
-
-	slVal=new QLabel ( sessionStatusDlg );
-	slVal->setText ( resumingSession.sessionId+"\n"+
-	                 resumingSession.server+"\n"+
-	                 login->text() +"\n"+resumingSession.display+
-	                 "\n"+dt.toString() +"\n"+tr ( "suspended" ) );
-
-	if ( !miniMode )
-		slVal->move ( 40+slName->width(),30 );
-	else
-		slVal->move ( 25+slName->width(),10 );
-	slVal->hide();
-	sbSusp=new QPushButton ( tr ( "Abort" ),sessionStatusDlg );
-	setWidgetStyle ( sbSusp );
-	sbTerm=new QPushButton ( tr ( "Terminate" ),sessionStatusDlg );
-	setWidgetStyle ( sbTerm );
-	sbExp=new QPushButton ( tr ( "Share folder..." ),sessionStatusDlg );
-	setWidgetStyle ( sbExp );
-	sbAdv=new QCheckBox ( tr ( "Show details" ),sessionStatusDlg );
-	setWidgetStyle ( sbAdv );
-	sbAdv->setFixedSize ( sbAdv->sizeHint() );
-#ifndef Q_WS_HILDON
-	sbSusp->setFixedSize ( sbSusp->sizeHint() );
-	sbTerm->setFixedSize ( sbTerm->sizeHint() );
-	sbExp->setFixedSize ( sbExp->sizeHint() );
-#else
-	QSize sz=sbSusp->sizeHint();
-	sz.setWidth ( ( int ) ( sz.width() /1.5 ) );
-	sz.setHeight ( ( int ) ( sz.height() /1.5 ) );
-	sbSusp->setFixedSize ( sz );
-	sz=sbExp->sizeHint();
-	sz.setWidth ( ( int ) ( sz.width() ) );
-	sz.setHeight ( ( int ) ( sz.height() /1.5 ) );
-	sbExp->setFixedSize ( sz );
-	sz=sbTerm->sizeHint();
-	sz.setWidth ( ( int ) ( sz.width() /1.5 ) );
-	sz.setHeight ( ( int ) ( sz.height() /1.5 ) );
-	sbTerm->setFixedSize ( sz );
-#endif
-	sbAdv->hide();
-	sbSusp->hide();
-	sbTerm->hide();
-	sbExp->hide();
-
-
-	pal.setColor ( QPalette::Button, QColor ( 255,255,255,0 ) );
-	pal.setColor ( QPalette::Window, QColor ( 255,255,255,255 ) );
-	pal.setColor ( QPalette::Base, QColor ( 255,255,255,255 ) );
-
-	sbAdv->setPalette ( pal );
-	sbSusp->setPalette ( pal );
-	sbTerm->setPalette ( pal );
-	sbExp->setPalette ( pal );
-
-
-	if ( !miniMode )
-		sbExp->move (
-		    ( sessionStatusDlg->width()-
-		      ( sbExp->width() +12+sbTerm->width() +
-		        sbSusp->width() +12 ) ) /2,
-		    sessionStatusDlg->height()-sbExp->height()-12 );
-	else
-		sbExp->move (
-		    ( sessionStatusDlg->width()- (
-		          sbExp->width() +
-		          12+sbTerm->width() +sbSusp->width() +12 ) ) /2,
-		    sessionStatusDlg->height()-sbExp->height()-8 );
-
-	sbSusp->move ( sbExp->pos().x() +sbExp->width() +12,sbExp->pos().y() );
-	sbTerm->move ( sbSusp->pos().x() +sbSusp->width() +12,
-	               sbSusp->pos().y() );
-
-	if ( !miniMode )
-		sbAdv->move ( 30,sbSusp->y()-8-sbSusp->height() );
-	else
-		sbAdv->move ( 15,sbSusp->y()-sbAdv->height() -4 );
-
-	stInfo=new QTextEdit ( sessionStatusDlg );
-	setWidgetStyle ( stInfo );
-	setWidgetStyle ( stInfo->verticalScrollBar() );
-	stInfo->setReadOnly ( true );
-	stInfo->hide();
-	stInfo->setFrameStyle ( QFrame::StyledPanel|QFrame::Plain );
-	stInfo->setPalette ( pal );
-
-	sbExp->setEnabled ( false );
-
-
-	connect ( sbSusp,SIGNAL ( clicked() ),this,
-	          SLOT ( slot_testSessionStatus() ) );
-	connect ( sbTerm,SIGNAL ( clicked() ),this,
-	          SLOT ( slotTermSessFromSt() ) );
-	connect ( sbAdv,SIGNAL ( clicked() ),this,
-	          SLOT ( slotShowAdvancedStat() ) );
-
-	QTimer::singleShot ( 1,this,SLOT ( slot_showStatusWidgets() ) );
-	sessionStatusDlg->show();
+	setStatStatus();
 }
 
 
@@ -3977,62 +3946,22 @@ void ONMainWindow::slotShowAdvancedStat()
 	}
 
 
-	if ( !miniMode )
-		sbExp->move (
-		    ( sessionStatusDlg->width()- (
-		          sbExp->width() +12+sbTerm->width() +
-		          sbSusp->width() +12 ) ) /2,
-		    sessionStatusDlg->height()-sbExp->height()-12 );
-	else
-		sbExp->move (
-		    ( sessionStatusDlg->width()- (
-		          sbExp->width() +12+sbTerm->width() +
-		          sbSusp->width() +12 ) ) /2,
-		    sessionStatusDlg->height()-sbExp->height()-8 );
-
-	sbSusp->move ( sbExp->pos().x() +sbExp->width() +12,sbExp->pos().y() );
-	sbTerm->move ( sbSusp->pos().x() +sbSusp->width() +12,
-	               sbSusp->pos().y() );
-
-	username->invalidate();
-
-	if ( !miniMode )
-		sbAdv->move ( 30,sbSusp->y()-8-sbSusp->height() );
-	else
-		sbAdv->move ( 15,sbSusp->y()-sbAdv->height() -3 );
-
+// 	username->invalidate();
 
 
 	if ( sbAdv->isChecked() )
 	{
-		if ( !miniMode )
-		{
-			stInfo->setFixedSize ( sessionStatusDlg->width()-40,
-			                       sbAdv->y()-slVal->y()-
-			                       slVal->height()-24 );
-			stInfo->move ( 20,slVal->y() +slVal->height() +12 );
-		}
-		else
-		{
-			stInfo->setFixedSize ( sessionStatusDlg->width()-30,
-			                       sbAdv->y()-slVal->y()-
-			                       slVal->height()-12 );
-			stInfo->move ( 15,slVal->y() +slVal->height() +6 );
-		}
-
 		stInfo->show();
 	}
 
-#ifndef WINDOWS
-	QSettings st ( QDir::homePath() +"/.x2goclient/settings",
+#ifndef Q_OS_WIN
+	QSettings st ( homeDir +"/.x2goclient/settings",
 	               QSettings::NativeFormat );
 #else
 
 	QSettings st ( "Obviously Nice","x2goclient" );
 	st.beginGroup ( "settings" );
 #endif
-
-
 	st.setValue ( "showStatus", ( QVariant ) sbAdv->isChecked() );
 	st.sync();
 }
@@ -4060,7 +3989,7 @@ void ONMainWindow::suspendSession ( QString user,QString host,QString pass,
 	{
 		slot_retSuspSess ( false,message,0 );
 	}
-	if ( cardReady )
+	if ( cardReady || useSshAgent )
 	{
 		QStringList env=proc->environment();
 		env+=sshEnv;
@@ -4083,9 +4012,19 @@ void ONMainWindow::suspendSession ( QString user,QString host,QString pass,
 }
 
 
-void ONMainWindow::termSession ( QString user,QString host,QString pass,
+bool ONMainWindow::termSession ( QString user,QString host,QString pass,
                                  QString key, QString sessId )
 {
+	if ( QMessageBox::warning (
+	            this,tr ( "Warning" ),
+	            tr ( "Are you sure you want to terminate this session?\n"
+	                 "Unsaved documents will be lost" ),
+	            QMessageBox::Yes,QMessageBox::No ) !=QMessageBox::Yes )
+	{
+		slot_retTermSess ( true,QString::null,0 );
+		return false;
+	}
+
 	sshProcess* proc=0l;
 	try
 	{
@@ -4097,7 +4036,7 @@ void ONMainWindow::termSession ( QString user,QString host,QString pass,
 	{
 		slot_retTermSess ( false,message,0 );
 	}
-	if ( cardReady )
+	if ( cardReady || useSshAgent )
 	{
 		QStringList env=proc->environment();
 		env+=sshEnv;
@@ -4115,49 +4054,75 @@ void ONMainWindow::termSession ( QString user,QString host,QString pass,
 	catch ( QString message )
 	{
 		slot_retTermSess ( false,message,0 );
-		return;
+		return true;
 	}
+	return true;
 }
 
 
-void ONMainWindow::slot_showStatusWidgets()
+
+void ONMainWindow::setStatStatus ( QString status )
 {
-	slName->show();
-	slVal->show();
-	sbAdv->show();
-	sbSusp->show();
-	sbTerm->show();
-	sbExp->show();
-#ifndef WINDOWS
-
-	QSettings st ( QDir::homePath() +"/.x2goclient/settings",
-	               QSettings::NativeFormat );
-#else
-
-	QSettings st ( "Obviously Nice","x2goclient" );
-	st.beginGroup ( "settings" );
-#endif
-
-	if ( st.value ( "showStatus", ( QVariant ) false ).toBool() )
+	setEnabled ( true );
+	passForm->hide();
+	selectSessionDlg->hide();
+	if ( status == QString::null )
+		status=statusString;
+	else
+		statusString=status;
+	QString tstr;
+	if ( statusLabel )
+		statusLabel->setText ( QString::null );
+	if ( resumingSession.sessionId!=QString::null )
 	{
-		sbAdv->setChecked ( true );
-		slotShowAdvancedStat();
+		QString f="dd.MM.yy HH:mm:ss";
+		QDateTime dt=QDateTime::fromString ( resumingSession.crTime,f );
+		dt=dt.addYears ( 100 );
+		tstr=dt.toString();
 	}
-}
+	if ( !embedMode || !proxyWinEmbedded )
+	{
+		statusBar()->hide();
+		QString srv;
+		if ( embedMode )
+			srv=config.server;
+		else
+			srv=resumingSession.server;
+		slVal->setText ( resumingSession.sessionId+"\n"+
+		                 srv+"\n"+
+		                 getCurrentUname() +"\n"+resumingSession.display+
+		                 "\n"+tstr+"\n"+status );
 
-void ONMainWindow::setStatStatus ( const QString& status )
-{
-	QStringList lst=slVal->text().split ( '\n' );
-	lst.removeLast();
-	lst.append ( status );
-	slVal->setText ( lst.join ( "\n" ) );
-	slVal->setFixedSize ( slVal->sizeHint() );
+		slVal->setFixedSize ( slVal->sizeHint() );
+		sessionStatusDlg->show();
+	}
+	else
+	{
+		QString srv=config.server;
+		QString message=getCurrentUname() +"@"+
+		                srv+
+		                ", "+tr ( "Session" ) +": "+
+		                resumingSession.sessionId+", "+
+		                tr ( "Display" ) +": "+
+		                resumingSession.display+", "+
+		                tr ( "Creation time" ) +": "+tstr;
+		if ( statusLabel )
+		{
+			statusLabel->setText ( "   "+message );
+		}
+		else
+		{
+			statusBar()->show();
+			statusBar()->showMessage ( message );
+		}
+		sessionStatusDlg->hide();
+	}
 }
 
 
 void ONMainWindow::slot_restartNxProxy()
 {
-	if ( !sessionStatusDlg )
+	if ( !sessionStatusDlg->isVisible() )
 		return;
 	if ( stInfo->toPlainText().indexOf (
 	            "Established X server connection" ) ==-1 )
@@ -4165,7 +4130,8 @@ void ONMainWindow::slot_restartNxProxy()
 		stInfo->insertPlainText (
 		    tr (
 		        "Connection timeout, aborting" ) );
-		nxproxy->terminate();
+		if ( nxproxy )
+			nxproxy->terminate();
 		restartResume=true;
 	}
 }
@@ -4173,14 +4139,15 @@ void ONMainWindow::slot_restartNxProxy()
 
 void ONMainWindow::slot_testSessionStatus()
 {
-	if ( !sessionStatusDlg )
+	if ( !sessionStatusDlg->isVisible() )
 		return;
 	if ( stInfo->toPlainText().indexOf (
 	            "Established X server connection" ) ==-1 )
 	{
 		stInfo->insertPlainText (
 		    tr ( "Connection timeout, aborting" ) );
-		nxproxy->terminate();
+		if ( nxproxy )
+			nxproxy->terminate();
 	}
 }
 
@@ -4203,17 +4170,8 @@ x2goSession ONMainWindow::getNewSessionFromString ( const QString& string )
 
 void ONMainWindow::runCommand()
 {
-#ifndef WINDOWS
-	QSettings st ( QDir::homePath() +"/.x2goclient/sessions",
-	               QSettings::NativeFormat );
-#else
-
-	QSettings st ( "Obviously Nice","x2goclient" );
-	st.beginGroup ( "sessions" );
-#endif
-
-	QString passwd=pass->text();
-	QString user=login->text();
+	QString passwd=getCurrentPass();
+	QString user=getCurrentUname();
 	QString host=resumingSession.server;
 	QString command;
 	QString sessionType="D";
@@ -4221,33 +4179,52 @@ void ONMainWindow::runCommand()
 	bool rdpFS=false;
 	QString rdpWidth;
 	QString rdpHeight;
-	if ( useLdap )
-		command=sessionCmd;
+	bool rootless=false;
+	if ( !embedMode )
+	{
+#ifndef Q_OS_WIN
+		QSettings st ( homeDir +"/.x2goclient/sessions",
+		               QSettings::NativeFormat );
+#else
+
+		QSettings st ( "Obviously Nice","x2goclient" );
+		st.beginGroup ( "sessions" );
+#endif
+
+
+		if ( useLdap )
+			command=sessionCmd;
+		else
+		{
+			QString sid=lastSession->id();
+			command=st.value (
+			            sid+"/command",
+			            ( QVariant ) tr ( "KDE" ) ).toString();
+			rdpOpts=st.value (
+			            sid+"/rdpoptions",
+			            ( QVariant ) "" ).toString();
+			rdpServer=st.value (
+			              sid+"/rdpserver",
+			              ( QVariant ) "" ).toString();
+			rootless=st.value ( sid+"/rootless",
+			                    ( QVariant ) false ).toBool();
+
+			rdpFS=st.value ( sid+"/fullscreen",
+			                 ( QVariant ) defaultFullscreen ).toBool();
+			rdpHeight=st.value ( sid+"/height",
+			                     ( QVariant ) defaultHeight ).toString();
+			rdpWidth=st.value ( sid+"/width",
+			                    ( QVariant ) defaultWidth ).toString();
+
+		}
+	}
 	else
 	{
-		QString sid=lastSession->id();
-		command=st.value (
-		            sid+"/command",
-		            ( QVariant ) tr ( "KDE" ) ).toString();
-		rdpOpts=st.value (
-		            sid+"/rdpoptions",
-		            ( QVariant ) "" ).toString();
-		rdpServer=st.value (
-		              sid+"/rdpserver",
-		              ( QVariant ) "" ).toString();
-		bool rootless=st.value ( sid+"/rootless",
-		                         ( QVariant ) false ).toBool();
-		if ( rootless )
-			sessionType="R";
-		
-		rdpFS=st.value ( sid+"/fullscreen",
-		                      ( QVariant ) defaultFullscreen ).toBool();
-		rdpHeight=st.value ( sid+"/height",
-		                  ( QVariant ) defaultHeight ).toString();
-		rdpWidth=st.value ( sid+"/width",
-		                 ( QVariant ) defaultWidth ).toString();
-
+		command=config.command;
+		rootless=config.rootless;
 	}
+	if ( rootless )
+		sessionType="R";
 
 	if ( command=="KDE" )
 	{
@@ -4264,7 +4241,7 @@ void ONMainWindow::runCommand()
 	else if ( command=="RDP" )
 	{
 		command="rdesktop ";
-		if(rdpFS)
+		if ( rdpFS )
 			command+=" -f ";
 		else
 			command+=" -g "+rdpWidth+"x"+rdpHeight;
@@ -4281,11 +4258,19 @@ void ONMainWindow::runCommand()
 	command.replace ( " ","X2GO_SPACE_CHAR" );
 
 	if ( !startSessSound  || startSessSndSystem==PULSE )
+	{
 		cmd="setsid x2goruncommand "+resumingSession.display+" "+
 		    resumingSession.agentPid + " " +
 		    resumingSession.sessionId+" "+
 		    resumingSession.sndPort+ " "+ command+" nosnd "+
 		    sessionType +">& /dev/null & exit";
+		if ( startSessSndSystem ==PULSE )
+		{
+			cmd="PULSE_CLIENTCONFIG=~/.x2go/C-"+
+			    resumingSession.sessionId+
+			    "/.pulse-client.conf "+cmd;
+		}
+	}
 	else
 	{
 		switch ( startSessSndSystem )
@@ -4327,7 +4312,7 @@ void ONMainWindow::runCommand()
 	          this,SLOT ( slot_retRunCommand ( bool,
 	                                           QString,sshProcess* ) ) );
 
-	if ( cardReady )
+	if ( cardReady || useSshAgent )
 	{
 		QStringList env=proc->environment();
 		env+=sshEnv;
@@ -4501,9 +4486,26 @@ bool ONMainWindow::parseParam ( QString param )
 		defaultSshPort=value;
 		return true;
 	}
+	if ( setting=="--dpi" )
+	{
+		defaultSetDPI=true;
+		defaultDPI=value.toUInt();
+		return true;
+	}
 	if ( setting=="--client-ssh-port" )
 	{
 		clientSshPort=value;
+		return true;
+	}
+	if ( setting == "--embed-into" )
+	{
+		embedMode=true;
+		embedParent=value.toLong();
+		return true;
+	}
+	if ( setting == "--config" )
+	{
+		sessionConfigFile=value;
 		return true;
 	}
 	printError ( param );
@@ -4712,51 +4714,45 @@ void ONMainWindow::printError ( QString param )
 {
 	qCritical ( "%s", ( tr ( "wrong parameter: " ) +param ).
 	            toLocal8Bit().data() );
+#ifdef Q_OS_WIN
+	x2goDebug<<tr ( "wrong parameter: " ) +param <<endl;
+#endif
 }
 
 void ONMainWindow::showHelp()
 {
 	QString helpMsg=
-
-	    "Usage: x2goclient [Options]\n\
-	    Options:\n\
-	    --help				show this message\n\
-	    --help-pack                      show available pack methods\n\
-	    --no-menu                        hide menu bar\n\
-	    --maximize                       start maximized\n\
-	    --hide                           start hidden\n\
-	    --pgp-card    			 use openPGP card "
-	    "authentification\n\
-	    --add-to-known-hosts             add RSA key fingerprint to "
-	    ".ssh/known_hosts if authenticity of server can't "
-	    "be established\n\
-	    --ldap=<host:port:dn>            start with LDAP support. "
-	    "Example:\n\
-	        				 --ldap=ldapserver:389:o="
-	    "organization,c=de\n\
-	    --ldap1=<host:port>              LDAP failover server #1 \n\
-	    --ldap2=<host:port>              LDAP failover server #2 \n\
-	    --ssh-port=<port>                connect to this port, default "
-	    "value 22\n\
-	    --client-ssh-port=<port>         local ssh port (for fs export)"
-	    ", default value 22\n\
-	    --command=<cmd>                  Set default command, default "
-	    "value 'KDE'\n\
-	    --session=<session>              Start session 'session'\n\
-	    --user=<username>                in LDAP mode, select user "
-	    "'username'\n\
-	    --geomerty=<W>x<H>|fullscreen    set default geometry, default "
-	    "value '800x600'\n\
-	    --link=<modem|isdn|adsl|wan|lan> set default link type, "
-	    "default 'lan'\n\
-	    --pack=<packmethod>              set default pack method, "
-	    "default '16m-jpeg-9'\n\
-	    --kbd-layout=<layout>            set default keyboard layout, "
-	    "default 'us'\n\
-	    --kbd-type=<typed>               set default keyboard type, "
-	    "default 'pc105/us'\n\
-	    --set-kbd=<0|1>                  overwrite current keyboard "
-	    "settings, default '0'\n" ;
+	    "Usage: x2goclient [Options]\n"
+	    "Options:\n"
+	    "--help\t\t\t\t show this message\n"
+	    "--help-pack\t\t\t show available pack methods\n"
+	    "--no-menu\t\t\t hide menu bar\n"
+	    "--maximize\t\t\t start maximized\n"
+	    "--hide\t\t\t\t start hidden\n"
+	    "--pgp-card\t\t\t use openPGP card authentication\n"
+	    "--add-to-known-hosts\t\t add RSA key fingerprint to "
+	    ".ssh/known_hosts\n"
+	    "\t\t\t\t if authenticity of server can't be established\n\n"
+	    "--ldap=<host:port:dn> \t\t start with LDAP support. Example:\n"
+	    "\t\t\t\t --ldap=ldapserver:389:o=organization,c=de\n\n"
+	    "--ldap1=<host:port>\t\t LDAP failover server #1 \n"
+	    "--ldap2=<host:port>\t\t LDAP failover server #2 \n"
+	    "--ssh-port=<port>\t\t connect to this port, default 22\n"
+	    "--client-ssh-port=<port>\t local ssh port (for fs export), "
+	    "default 22\n"
+	    "--command=<cmd>\t\t\t Set default command, default value 'KDE'\n"
+	    "--session=<session>\t\t Start session 'session'\n"
+	    "--user=<username>\t\t in LDAP mode, select user 'username'\n"
+	    "--geomerty=<W>x<H>|fullscreen\t set default geometry, default "
+	    "value '800x600'\n"
+	    "--dpi=<dpi>\t\t\t set dpi of x2goagent to dpi, default not set\n"
+	    "--link=<modem|isdn|adsl|wan|lan> set default link type, "
+	    "default 'adsl'\n"
+	    "--pack=<packmethod>\t\t set default pack method, default "
+	    "'16m-jpeg-9'\n"
+	    "--kbd-layout=<layout>\t\t set default keyboard layout\n"
+	    "--kbd-type=<typed>\t\t set default keyboard type\n"
+	    "--set-kbd=<0|1>\t\t\t overwrite current keyboard settings\n" ;
 	qCritical ( "%s",helpMsg.toLocal8Bit().data() );
 	QMessageBox::information ( this,tr ( "Options" ),helpMsg );
 }
@@ -4782,7 +4778,7 @@ void ONMainWindow::showHelpPack()
 		qCritical ( "%s",pc.toLocal8Bit().data() );
 	}
 	file.close();
-#ifdef WINDOWS
+#ifdef Q_OS_WIN
 
 	QMessageBox::information ( this,tr ( "Options" ),msg );
 #endif
@@ -4851,9 +4847,9 @@ void ONMainWindow::slot_getServers ( bool result, QString output,
 	for ( int j=0;j<x2goServers.size();++j )
 	{
 		QString passwd;
-		QString user=login->text();
+		QString user=getCurrentUname();
 		QString host=x2goServers[j].name;
-		passwd=pass->text();
+		passwd=getCurrentPass();
 
 		sshProcess* lproc;
 		try
@@ -4868,7 +4864,7 @@ void ONMainWindow::slot_getServers ( bool result, QString output,
 			slot_listAllSessions ( false,message,0 );
 			continue;
 		}
-		if ( cardReady )
+		if ( cardReady || useSshAgent )
 		{
 			QStringList env=lproc->environment();
 			env+=sshEnv;
@@ -4969,7 +4965,7 @@ void ONMainWindow::slot_resize()
 void ONMainWindow::slot_exportDirectory()
 {
 	QString path;
-	if ( !useLdap )
+	if ( !useLdap && !embedMode )
 	{
 		ExportDialog dlg ( lastSession->id(),this );
 		if ( dlg.exec() ==QDialog::Accepted )
@@ -4978,13 +4974,10 @@ void ONMainWindow::slot_exportDirectory()
 	else
 		path= QFileDialog::getExistingDirectory (
 		          this,QString::null,
-		          QDir::homePath() );
-
-#ifdef WINDOWS
-
-	path=transform2cygwinPath ( path );
+		          homeDir );
+#ifdef Q_OS_WIN
+	path=cygwinPath ( wapiShortFileName ( path ) );
 #endif
-
 	if ( path!=QString::null )
 		exportDirs ( path );
 }
@@ -4996,23 +4989,31 @@ void ONMainWindow::exportDirs ( QString exports,bool removable )
 	directory dr;
 	dr.dirList=exports;
 	dr.key=createRSAKey();
-	QString passwd=pass->text();
+	QString passwd;
+
+	passwd=getCurrentPass();
+
 	fsInTun=false;
 	if ( !useLdap )
 	{
-#ifndef WINDOWS
-		QSettings st ( QDir::homePath() +"/.x2goclient/sessions",
-		               QSettings::NativeFormat );
+		if ( !embedMode )
+		{
+#ifndef Q_OS_WIN
+			QSettings st ( homeDir +"/.x2goclient/sessions",
+			               QSettings::NativeFormat );
 #else
 
-		QSettings st ( "Obviously Nice","x2goclient" );
-		st.beginGroup ( "sessions" );
+			QSettings st ( "Obviously Nice","x2goclient" );
+			st.beginGroup ( "sessions" );
 #endif
 
-		QString sid=lastSession->id();
+			QString sid=lastSession->id();
 
-		fsInTun=st.value ( sid+"/fstunnel",
-		                   ( QVariant ) true ).toBool();
+			fsInTun=st.value ( sid+"/fstunnel",
+			                   ( QVariant ) true ).toBool();
+		}
+		else
+			fsInTun=true;
 	}
 	if ( fsInTun )
 	{
@@ -5021,9 +5022,10 @@ void ONMainWindow::exportDirs ( QString exports,bool removable )
 				return;
 	}
 	sshProcess* lproc;
+	QString uname=getCurrentUname();
 	try
 	{
-		lproc=new sshProcess ( this,login->text(),
+		lproc=new sshProcess ( this,uname,
 		                       resumingSession.server,
 		                       sshPort,"",passwd,
 		                       currentKey,acceptRsa );
@@ -5033,7 +5035,7 @@ void ONMainWindow::exportDirs ( QString exports,bool removable )
 		slot_copyKey ( false,message,0 );
 		return;
 	}
-	if ( cardReady )
+	if ( cardReady || useSshAgent )
 	{
 		QStringList env=lproc->environment();
 		env+=sshEnv;
@@ -5045,20 +5047,17 @@ void ONMainWindow::exportDirs ( QString exports,bool removable )
 	try
 	{
 		QString dst=dr.key;
-		dst.replace ( QDir::homePath() +"/.x2go/ssh/gen/","" );
-// 		dst="/home/"+login->text() +"/.x2go/ssh/"+dst;
-		dst="~"+login->text() +"/.x2go/ssh/"+dst;
+		QString dhdir=homeDir+"/.x2go";
+#ifdef Q_OS_WIN
+		dhdir=wapiShortFileName ( dhdir );
+#endif
+		dst.replace ( dhdir +"/ssh/gen/","" );
+		dst="~"+uname +"/.x2go/ssh/"+dst;
 		dr.dstKey=dst;
 		dr.isRemovable=removable;
 		exportDir.append ( dr );
-#ifndef WINDOWS
-
-		lproc->start_cp ( dr.key,dst );
-#else
-
-		lproc->start_cp ( transform2cygwinPath ( dr.key ),dst );
-#endif
-
+		QString keyFile=dr.key;
+		lproc->start_cp ( keyFile,dst );
 	}
 	catch ( QString message )
 	{
@@ -5075,49 +5074,54 @@ void ONMainWindow::exportDefaultDirs()
 
 	if ( !useLdap )
 	{
-
-#ifndef WINDOWS
-		QSettings st ( QDir::homePath() +"/.x2goclient/sessions",
-		               QSettings::NativeFormat );
-#else
-
-		QSettings st ( "Obviously Nice","x2goclient" );
-		st.beginGroup ( "sessions" );
-#endif
-		clientPrinting= st.value ( lastSession->id() +
-		                           "/print", true ).toBool();
-		
-		QString exd=st.value ( lastSession->id() +"/export",
-		                       ( QVariant ) QString::null ).toString();
-		QStringList lst=exd.split ( ";",QString::SkipEmptyParts );
-		for ( int i=0;i<lst.size();++i )
+		if ( !embedMode )
 		{
-#ifndef WINDOWS
-			QStringList tails=lst[i].split (
-			                      ":",
-			                      QString::SkipEmptyParts );
+
+#ifndef Q_OS_WIN
+			QSettings st ( homeDir +"/.x2goclient/sessions",
+			               QSettings::NativeFormat );
 #else
 
-			QStringList tails=lst[i].split (
-			                      "#",
-			                      QString::SkipEmptyParts );
+			QSettings st ( "Obviously Nice","x2goclient" );
+			st.beginGroup ( "sessions" );
 #endif
+			clientPrinting= st.value ( lastSession->id() +
+			                           "/print", true ).toBool();
 
-			if ( tails[1]=="1" )
-#ifndef WINDOWS
-
-				dirs+=tails[0];
+			QString exd=st.value ( lastSession->id() +"/export",
+			                       ( QVariant ) QString::null ).toString();
+			QStringList lst=exd.split ( ";",QString::SkipEmptyParts );
+			for ( int i=0;i<lst.size();++i )
+			{
+#ifndef Q_OS_WIN
+				QStringList tails=lst[i].split (
+				                      ":",
+				                      QString::SkipEmptyParts );
 #else
 
-				dirs+=transform2cygwinPath ( tails[0] );
+				QStringList tails=lst[i].split (
+				                      "#",
+				                      QString::SkipEmptyParts );
 #endif
 
+				if ( tails[1]=="1" )
+				{
+#ifdef Q_OS_WIN
+					tails[0]=cygwinPath (
+					             wapiShortFileName (
+					                 tails[0] ) );
+#endif
+					dirs+=tails[0];
+				}
+			}
 		}
+		else
+			clientPrinting=true;
 	}
 
 	if ( clientPrinting )
 	{
-		QString path= QDir::home().absolutePath () +
+		QString path= homeDir +
 		              "/.x2go/S-"+
 		              resumingSession.sessionId +"/spool";
 		QDir spooldir;
@@ -5135,14 +5139,16 @@ void ONMainWindow::exportDefaultDirs()
 
 			}
 		}
+		spoolDir=path;
+#ifdef Q_OS_WIN
+		path=cygwinPath (
+		         wapiShortFileName (
+		             path ) );
+#endif
 		QFile::setPermissions (
 		    path,QFile::ReadOwner|QFile::WriteOwner|QFile::ExeOwner );
-		spoolDir=path;
 
 		path+="__PRINT_SPOOL_";
-#ifdef WINDOWS
-		path=transform2cygwinPath ( path );
-#endif
 		dirs+=path;
 		printSupport=true;
 		if ( spoolTimer )
@@ -5160,8 +5166,12 @@ void ONMainWindow::exportDefaultDirs()
 QString ONMainWindow::createRSAKey()
 {
 	QDir dr;
-	dr.mkpath ( QDir::homePath() +"/.x2go/ssh/gen" );
-	QTemporaryFile fl ( QDir::homePath() +"/.x2go/ssh/gen/key" );
+	QString keyPath=homeDir +"/.x2go/ssh/gen";
+	dr.mkpath ( keyPath );
+#ifdef Q_OS_WIN
+	keyPath=wapiShortFileName ( keyPath );
+#endif
+	QTemporaryFile fl ( keyPath+"/key" );
 	fl.open();
 	QString keyName=fl.fileName();
 	fl.setAutoRemove ( false );
@@ -5169,17 +5179,9 @@ QString ONMainWindow::createRSAKey()
 	fl.remove();
 
 	QStringList args;
-#ifndef WINDOWS
 
 	args<<"-t"<<"rsa"<<"-b"<<"1024"<<"-N"<<""<<"-f"<<keyName;
 	x2goDebug <<keyName<<endl;
-#else
-
-	args<<"-t"<<"rsa"<<"-b"<<"1024"<<"-N"<<""<<"-f"<<
-	transform2cygwinPath ( keyName );
-	x2goDebug <<transform2cygwinPath ( keyName ) <<endl;
-#endif
-
 
 	if ( QProcess::execute ( "ssh-keygen",args ) !=0 )
 	{
@@ -5189,9 +5191,10 @@ QString ONMainWindow::createRSAKey()
 	x2goDebug <<"ssh-keygen ok" <<endl;
 
 	QFile rsa ( "/etc/ssh/ssh_host_rsa_key.pub" );
-#ifdef WINDOWS
-	rsa.setFileName ( ConfigDialog::getCygwinDir ( "/" ) +
-	                  "\\etc\\ssh_host_rsa_key.pub" );
+#ifdef Q_OS_WIN
+	rsa.setFileName (
+	    wapiShortFileName (
+	        homeDir+"\\.x2go\\etc\\ssh_host_dsa_key.pub" ) );
 #endif
 #ifdef Q_OS_DARWIN
 	rsa.setFileName ( "/etc/ssh_host_rsa_key.pub" );
@@ -5199,22 +5202,7 @@ QString ONMainWindow::createRSAKey()
 
 	if ( !rsa.open ( QIODevice::ReadOnly | QIODevice::Text ) )
 	{
-#ifdef WINDOWS
-		QMessageBox::critical ( 0l,tr ( "Error" ),
-		                        tr ( "Can't read host rsa key:" ) +
-		                        ConfigDialog::getCygwinDir ( "/" ) +
-		                        "\\etc\\ssh_host_rsa_key.pub",
-		                        QMessageBox::Ok,
-		                        QMessageBox::NoButton );
-#else
-
-		QMessageBox::critical ( 0l,tr ( "Error" ),
-		                        tr ( "Can't read host rsa key:" ) +
-		                        "/etc/ssh/ssh_host_rsa_key.pub",
-		                        QMessageBox::Ok,
-		                        QMessageBox::NoButton );
-#endif
-
+		printSshDError();
 		return QString::null;
 	}
 
@@ -5238,13 +5226,7 @@ QString ONMainWindow::createRSAKey()
 
 void ONMainWindow::slot_copyKey ( bool result,QString output,sshProcess* proc )
 {
-#ifdef WINDOWS
-	fsExportKey=transform2winPath ( proc->getSource() );
-#else
-
 	fsExportKey=proc->getSource();
-#endif
-
 	if ( proc )
 		delete proc;
 	proc=0;
@@ -5277,14 +5259,7 @@ directory* ONMainWindow::getExpDir ( QString key )
 {
 	for ( int i=0;i<exportDir.size();++i )
 	{
-#ifndef   WINDOWS
 		if ( exportDir[i].key==key )
-#else
-
-		if ( transform2winPath (
-		            transform2cygwinPath ( exportDir[i].key ) ) ==key )
-#endif
-
 			return &exportDir[i];
 	}
 	return 0l;
@@ -5325,10 +5300,7 @@ void ONMainWindow::slot_retExportDir ( bool result,QString output,
 	QFile file ( key+".pub" );
 	if ( !file.open ( QIODevice::ReadOnly | QIODevice::Text ) )
 	{
-		QString message=tr ( "Unable to read :\n" ) +key+".pub";
-		QMessageBox::critical ( 0l,tr ( "Error" ),message,
-		                        QMessageBox::Ok,
-		                        QMessageBox::NoButton );
+		printSshDError();
 		QFile::remove
 		( key+".pub" );
 		return;
@@ -5336,32 +5308,25 @@ void ONMainWindow::slot_retExportDir ( bool result,QString output,
 
 	QByteArray line = file.readLine();
 	file.close();
-#ifndef WINDOWS
-
-	QString authofname=QDir::homePath() +"/.ssh/authorized_keys" ;
-#else
-
-	QString authofname=cygwinHomePath() +"\\.ssh\\authorized_keys" ;
+	QString authofname=homeDir;
+#ifdef Q_OS_WIN
+	authofname=wapiShortFileName ( authofname ) +"/.x2go";
 #endif
-
+	authofname+="/.ssh/authorized_keys" ;
 	file.setFileName ( authofname );
 	if ( !file.open ( QIODevice::ReadOnly | QIODevice::Text ) )
 	{
-		QString message=tr ( "Unable to write :\n" ) +authofname;
-		QMessageBox::critical ( 0l,tr ( "Error" ),message,
-		                        QMessageBox::Ok,
-		                        QMessageBox::NoButton );
+		printSshDError();
 		QFile::remove
 		( key+".pub" );
 		return;
 	}
 
 
-	QTemporaryFile fl ( authofname );
-	fl.open();
-	QString tmpName=fl.fileName();
-	fl.setAutoRemove ( false );
-	QTextStream out ( &fl );
+	QTemporaryFile tfile ( authofname );
+	tfile.open();
+	tfile.setAutoRemove ( true );
+	QTextStream out ( &tfile );
 
 	while ( !file.atEnd() )
 	{
@@ -5370,12 +5335,9 @@ void ONMainWindow::slot_retExportDir ( bool result,QString output,
 			out<<newline;
 	}
 	file.close();
-	fl.close();
-
-	QFile::remove
-	( authofname );
-	QFile::rename ( tmpName,authofname );
-
+	tfile.close();
+	file.remove();
+	tfile.copy ( authofname );
 	QFile::remove
 	( key+".pub" );
 }
@@ -5535,8 +5497,8 @@ void ONMainWindow::slot_exportTimer()
 	args.clear();
 	args=unexpList.split ( ":",QString::SkipEmptyParts );
 
-	QString passwd=pass->text();
-	QString user=login->text();
+	QString passwd=getCurrentPass();
+	QString user=getCurrentUname();
 	QString host=resumingSession.server;
 	QString sessionId=resumingSession.sessionId;
 
@@ -5547,7 +5509,7 @@ void ONMainWindow::slot_exportTimer()
 		    "export HOSTNAME && x2goumount_session "+
 		    sessionId+" "+args[i],
 		    passwd,currentKey,acceptRsa );
-		if ( cardReady )
+		if ( cardReady || useSshAgent )
 		{
 			QStringList env=sproc->environment();
 			env+=sshEnv;
@@ -5568,8 +5530,9 @@ void ONMainWindow::slot_about()
 	QMessageBox::about (
 	    this,tr ( "About X2GO client" ),
 	    tr ( "<b>X2Go client V. " ) +VERSION+
+	    " (</b>Qt - "+qVersion() +")"+
 	    tr (
-	        "</b><br> (C. 2006-2008 <b>obviously nice</b>: "
+	        "</b><br> (C. 2006-2009 <b>obviously nice</b>: "
 	        "Oleksandr Shneyder, Heinz-Markus Graesing)<br>"
 	        "<br>Client for use with the X2Go network based "
 	        "computing environment. This Client will be able "
@@ -5748,7 +5711,7 @@ void ONMainWindow::externalLogin ( const QString& loginDir )
 	file.close();
 
 
-	if ( passForm )
+	if ( passForm->isVisible() )
 		slotClosePass();
 	uname->setText ( user );
 	slotUnameEntered();
@@ -5804,9 +5767,9 @@ void ONMainWindow::slot_scDaemonError()
 	x2goDebug<<"SCDAEMON err:"<<stdOut<<endl;
 	if ( stdOut.indexOf ( "updating slot" ) !=-1 )
 	{
-		isScDaemonOk=true;		
-		if ((stdOut.indexOf("->0x0002")!=-1) ||
-		        (stdOut.indexOf("->0x0007")!=-1) ) //USABLE or PRESENT
+		isScDaemonOk=true;
+		if ( ( stdOut.indexOf ( "->0x0002" ) !=-1 ) ||
+		        ( stdOut.indexOf ( "->0x0007" ) !=-1 ) ) //USABLE or PRESENT
 		{
 			scDaemon->kill();
 		}
@@ -5918,7 +5881,7 @@ void ONMainWindow::slot_gpgFinished ( int exitCode,
 
 void ONMainWindow::startGPGAgent ( const QString& login, const QString& appId )
 {
-	QString gpgPath=QDir::homePath() +"/.x2goclient/gnupg";
+	QString gpgPath=homeDir +"/.x2goclient/gnupg";
 	QDir d;
 	cardLogin=login;
 	d.mkpath ( gpgPath );
@@ -5978,25 +5941,13 @@ void ONMainWindow::slot_gpgAgentFinished ( int , QProcess::ExitStatus )
 	agentCheckTimer->start ( 1000 );
 	cardReady=true;
 
-/* 	sshEnv=QProcess::systemEnvironment();
-	for ( int i=sshEnv.count()-1;i>=0;--i ) //clear gpg variables
-	{
-		if ( ( sshEnv[i].indexOf (
-		            "GPG_AGENT_INFO" ) !=-1 ) ||
-		        ( sshEnv[i].indexOf (
-		              "SSH_AUTH_SOCK" ) !=-1 ) ||
-		        ( sshEnv[i].indexOf ( "SSH_AGENT_PID" ) !=-1 ) )
-		{
-			sshEnv.removeAt ( i );
-		}
-	}*/
 	sshEnv.clear();
 	sshEnv<<envLst[0]<<envLst[2]<<envLst[4];
-	x2goDebug<<"sshenv:"<<sshEnv<<endl;
+// 	x2goDebug<<"sshenv:"<<sshEnv<<endl;
 
 	if ( !useLdap )
 	{
-		if ( passForm )
+		if ( passForm->isVisible() )
 		{
 			if ( passForm->isEnabled() )
 			{
@@ -6020,7 +5971,8 @@ void ONMainWindow::slot_gpgAgentFinished ( int , QProcess::ExitStatus )
 	}
 	else
 	{
-		if ( selectSessionDlg || sessionStatusDlg )
+		if ( selectSessionDlg->isVisible() ||
+		        sessionStatusDlg->isVisible() )
 		{
 			QProcess sshadd ( this ); //using it to start scdaemon
 			sshadd.setEnvironment ( sshEnv );
@@ -6033,7 +5985,7 @@ void ONMainWindow::slot_gpgAgentFinished ( int , QProcess::ExitStatus )
 			x2goDebug<<"SSH-ADD out:"<<sshout<<endl;
 			return;
 		}
-		if ( passForm )
+		if ( passForm->isVisible() )
 			slotClosePass();
 		uname->setText ( cardLogin );
 		slotUnameEntered();
@@ -6060,11 +6012,6 @@ void ONMainWindow::slot_checkAgentProcess()
 	slot_startPGPAuth();
 }
 
-
-void ONMainWindow::cartReady()
-{}
-
-
 bool ONMainWindow::checkAgentProcess()
 {
 	QFile file ( "/proc/"+agentPid+"/cmdline" );
@@ -6080,25 +6027,20 @@ bool ONMainWindow::checkAgentProcess()
 	return false;
 }
 
-#if defined ( WINDOWS ) || defined ( Q_OS_DARWIN )
+#if defined ( Q_OS_DARWIN )
 QString ONMainWindow::getXDisplay()
 {
 	QTcpSocket tcpSocket ( this );
 	uint dispNumber=0;
 	QString xname,xdir,xopt;
-#ifdef WINDOWS
-	ConfigDialog::getXSettings ( &dispNumber, &xname, &xdir, &xopt );
-#endif
-#ifdef Q_OS_DARWIN
 	dispNumber=0;
 	xdir=ConfigDialog::getXDarwinDirectory();
 	xname=xdir+"/Contents/MacOS/X11";
 	xopt=" -rootless :0";
-	
+
 	//for newer versions of XQuartz start startx instead of X11.app
-        xname="/usr/X11/bin/startx";
-        xopt="";
-#endif
+	xname="/usr/X11/bin/startx";
+	xopt="";
 	tcpSocket.connectToHost ( "127.0.0.1",6000+dispNumber );
 
 	if ( tcpSocket.waitForConnected ( 3000 ) )
@@ -6108,13 +6050,11 @@ QString ONMainWindow::getXDisplay()
 	}
 	if ( xname==QString::null )
 	{
-#if defined (WINDOWS) || defined (Q_OS_DARWIN)
 		QMessageBox::critical (
 		    this,tr ( "Can't connect to X-Server" ),
 		    tr (
 		        "Can't connect to X-Server\nPlease check your settings"
 		    ) );
-#endif
 		slot_config();
 		return QString::null;
 	}
@@ -6123,86 +6063,52 @@ QString ONMainWindow::getXDisplay()
 	pr->start ( xname+" "+xopt,QIODevice::NotOpen );
 	if ( pr->waitForStarted ( 3000 ) )
 	{
-#ifdef WINDOWS
-		_sleep ( 1000 );
-#endif
-#ifdef Q_OS_DARWIN
-		//FIXME: the call of unistd.h sleep() do not work on all
-		// Mac OS X systems
-		system ( "sleep 3" );
-#endif
+		QThread::sleep ( 3 );
 		tcpSocket.connectToHost ( "127.0.0.1",6000+dispNumber );
 		if ( tcpSocket.waitForConnected ( 1000 ) )
 		{
 			tcpSocket.close();
 			return QString::number ( dispNumber );
 		}
-#if defined (WINDOWS) || defined (Q_OS_DARWIN)
 		QMessageBox::critical (
 		    this,tr ( "Can't connect to X-Server" ),
 		    tr (
 		        "Can't connect to X-Server\nPlease check your settings"
 		    ) );
-#endif
 		slot_config();
 		return QString::null;
 	}
 	QMessageBox::critical (
-	    this,tr ( "Can't start X-Server" ),
+	    this,QString::null,
 	    tr (
 	        "Can't start X Server\nPlease check your settings" ) );
 	slot_config();
-
 	return QString::null;
 }
 #endif
-#ifdef WINDOWS
-QString ONMainWindow::transform2cygwinPath ( const QString& winPath,
-        bool trunc )
+
+#ifdef Q_OS_WIN
+QString ONMainWindow::getXDisplay()
 {
-	QStringList folders=winPath.split ( "/" );
-	for ( int i=0;i<folders.count();++i )
+	if ( !isServerRunning ( 6000+xDisplay ) )
 	{
-		if ( folders[i].length() >8 &&
-		        folders[i].indexOf ( ' ' ) !=-1 &&
-		        trunc ) //hack to transform win home
-			//(4 ex /dokummente und einstellungen)
-			//in usable by nxproxy format
-		{
-			folders[i]=folders[i].left ( 6 ) +"~1";
-		}
-		if ( folders[i].indexOf ( ':' ) ==1 )
-		{
-			folders[i]="/cygdrive/"+folders[i][0];
-		}
+		QMessageBox::critical (
+		    this,QString::null,
+		    tr (
+		        "Can't start X Server\nPlease check your installation" )
+		);
+		close();
 	}
-	return folders.join ( "/" );
+	return QString::number ( xDisplay );
+
 }
 
-QString ONMainWindow::transform2winPath ( const QString& winPath )
+QString ONMainWindow::cygwinPath ( const QString& winPath )
 {
-	QStringList folders=winPath.split ( "/",QString::SkipEmptyParts );
-	for ( int i=0;i<folders.count();++i )
-	{
-		if ( folders[i]=="cygdrive" )
-		{
-			folders[i]=folders[i+1];
-			folders[i+1]=":";
-			break;
-		}
-	}
-	return folders.join ( "\\" ).replace ( "\\:",":" );
-}
-
-QString ONMainWindow::cygwinHomePath()
-{
-	QString path=ConfigDialog::getCygwinDir ( "/home" );
-	if ( path!=QString::null )
-		return path+"\\"+getenv ( "USERNAME" );
-	path=ConfigDialog::getCygwinDir ( "/" );
-	if ( path!=QString::null )
-		return path+"\\home\\"+getenv ( "USERNAME" );
-	return QDir::homePath();
+	QString cPath="/cygdrive/"+winPath;
+	cPath.replace ( "\\","/" );
+	cPath.replace ( ":","" );
+	return cPath;
 }
 #endif
 
@@ -6217,12 +6123,16 @@ bool ONMainWindow::isColorDepthOk ( int disp, int sess )
 	return false;
 }
 
+#ifndef Q_OS_LINUX
 void ONMainWindow::setWidgetStyle ( QWidget* widget )
 {
-#ifndef Q_OS_LINUX
 	widget->setStyle ( widgetExtraStyle );
-#endif
 }
+#else
+void ONMainWindow::setWidgetStyle ( QWidget* )
+{
+}
+#endif
 
 QString ONMainWindow::internAppName ( const QString& transAppName, bool* found )
 {
@@ -6263,8 +6173,8 @@ void ONMainWindow::addToAppNames ( QString intName, QString transName )
 void ONMainWindow::slot_execXmodmap()
 {
 #ifdef Q_WS_HILDON
-	QString passwd=pass->text();
-	QString user=login->text();
+	QString passwd=getCurrentPass();
+	QString user=getCurrentUname();
 	QString host=resumingSession.server;
 	QString cmd;
 
@@ -6296,7 +6206,7 @@ void ONMainWindow::slot_execXmodmap()
 		return;
 	}
 
-	if ( cardReady )
+	if ( cardReady || useSshAgent )
 	{
 		QStringList env=xmodProc->environment();
 		env+=sshEnv;
@@ -6317,12 +6227,9 @@ void ONMainWindow::slot_sudoErr ( QString, sshProcess* proc )
 void ONMainWindow::check_cmd_status()
 {
 	QString passwd;
-	QString user=login->text();
+	QString user=getCurrentUname();
 	QString host=resumingSession.server;
-	if ( currentKey==QString::null||currentKey=="" )
-	{
-		passwd=pass->text();
-	}
+	passwd=getCurrentPass();
 
 	x2goDebug<<"check command message"<<endl;
 	sshProcess* proc;
@@ -6338,7 +6245,7 @@ void ONMainWindow::check_cmd_status()
 		return;
 	}
 
-	if ( cardReady )
+	if ( cardReady || useSshAgent )
 	{
 		QStringList env=proc->environment();
 		env+=sshEnv;
@@ -6402,7 +6309,6 @@ int ONMainWindow::startSshFsTunnel()
 {
 	fsTunReady=false;
 	x2goDebug<<"starting fs tunnel for:"<<resumingSession.sessionId<<
-	"\ngr port: "<<resumingSession.grPort<<
 	"\nfs port: "<<resumingSession.fsPort;
 
 	if ( resumingSession.fsPort.length() <=0 )
@@ -6416,11 +6322,13 @@ int ONMainWindow::startSshFsTunnel()
 		slot_fsTunnelFailed ( false,message,0 );
 		return 1;
 	}
-	QString passwd=pass->text();
+	QString passwd=getCurrentPass();
+	QString uname=getCurrentUname();
+
 	try
 	{
 
-		fsTunnel=new sshProcess ( this,login->text(),
+		fsTunnel=new sshProcess ( this,uname,
 		                          resumingSession.server,
 		                          sshPort,"",passwd,
 		                          currentKey,acceptRsa );
@@ -6430,7 +6338,7 @@ int ONMainWindow::startSshFsTunnel()
 		slot_fsTunnelFailed ( false,message,0 );
 		return 1;
 	}
-	if ( cardReady )
+	if ( cardReady || useSshAgent )
 	{
 		QStringList env=fsTunnel->environment();
 		env+=sshEnv;
@@ -6500,14 +6408,11 @@ void ONMainWindow::startX2goMount()
 
 	QByteArray line = file.readLine();
 	file.close();
-
-#ifndef WINDOWS
-
-	QString authofname=QDir::homePath() +"/.ssh/authorized_keys" ;
-#else
-
-	QString authofname=cygwinHomePath() +"\\.ssh\\authorized_keys" ;
+	QString authofname=homeDir;
+#ifdef Q_OS_WIN
+	authofname=wapiShortFileName ( authofname ) +"/.x2go";
 #endif
+	authofname+= "/.ssh/authorized_keys" ;
 
 	QFile file1 ( authofname );
 
@@ -6531,8 +6436,8 @@ void ONMainWindow::startX2goMount()
 	if ( !dir )
 		return;
 
-	QString passwd=pass->text();
-	QString user=login->text();
+	QString passwd=getCurrentPass();
+	QString user=getCurrentUname();
 	QString host=resumingSession.server;
 	QString sessionId=resumingSession.sessionId;
 
@@ -6544,13 +6449,7 @@ void ONMainWindow::startX2goMount()
 	for ( int i=0;i<env.size();++i )
 	{
 		QStringList ls=env[i].split ( "=" );
-#ifndef WINDOWS
-
 		if ( ls[0]=="USER" )
-#else
-
-		if ( ls[0]=="USERNAME" )
-#endif
 
 		{
 			cuser=ls[1];
@@ -6559,6 +6458,9 @@ void ONMainWindow::startX2goMount()
 	}
 #else
 	cuser="user";
+#endif
+#ifdef Q_OS_WIN
+	cuser="sshuser";
 #endif
 	sshProcess* proc=0l;
 	QString cmd;
@@ -6579,7 +6481,7 @@ void ONMainWindow::startX2goMount()
 		cmd="export HOSTNAME && x2gomountdirs rem "+sessionId+" "+cuser+
 		    " "+dir->dstKey+" "+dirs;
 
-#ifdef WINDOWS
+#ifdef Q_OS_WIN
 
 	cmd="chmod 600 "+dir->dstKey+"&&"+cmd;
 #endif
@@ -6595,7 +6497,7 @@ void ONMainWindow::startX2goMount()
 	{
 		slot_retExportDir ( false,message,proc );
 	}
-	if ( cardReady )
+	if ( cardReady || useSshAgent )
 	{
 		QStringList env=proc->environment();
 		env+=sshEnv;
@@ -6616,26 +6518,6 @@ void ONMainWindow::startX2goMount()
 		return;
 	}
 }
-
-#ifdef WINDOWS
-bool ONMainWindow::isServerRunning ( int port )
-{
-	QTcpSocket tcpSocket ( this );
-	tcpSocket.connectToHost ( "127.0.0.1",port );
-
-	if ( tcpSocket.waitForConnected ( 1000 ) )
-	{
-		tcpSocket.close();
-		return true;
-	}
-	return false;
-}
-void ONMainWindow::launchPulse()
-{
-	pulseServer=new QProcess ( this );
-	pulseServer->start ( "..\\pulse\\pulseaudio" );
-}
-#endif
 
 void ONMainWindow::slot_checkPrintSpool()
 {
@@ -6686,13 +6568,1370 @@ void ONMainWindow::cleanPrintSpool()
 
 void ONMainWindow::cleanAskPass()
 {
-	QString path=QDir::homePath() +"/.x2go/ssh/";
-	QDir dir (path);
+	QString path=homeDir +"/.x2go/ssh/";
+	QDir dir ( path );
 	QStringList list = dir.entryList ( QDir::Files );
 	for ( int i=0;i<list.size();++i )
 	{
 		if ( list[i].startsWith ( "askpass" ) )
-			QFile::remove(path+list[i]);
+			QFile::remove ( path+list[i] );
 	}
 
+}
+
+
+/*
+this slot will be connected from EmbedWidget
+ */
+void ONMainWindow::slotUpdateEmbed()
+{
+	EmbedWidget::slotUpdateEmbed();
+}
+
+bool ONMainWindow::isServerRunning ( int port )
+{
+	QTcpSocket tcpSocket ( 0 );
+	tcpSocket.connectToHost ( "127.0.0.1",port );
+
+	if ( tcpSocket.waitForConnected ( 1000 ) )
+	{
+		tcpSocket.close();
+		return true;
+	}
+	return false;
+}
+
+#ifdef Q_OS_WIN
+void ONMainWindow::slotCheckXOrgLog()
+{
+	xorgLogMutex.lock();
+	if ( xorgLogFile.length() <=0 )
+	{
+		xorgLogMutex.unlock();
+		return;
+	}
+	QFile file ( xorgLogFile );
+	if ( !file.open ( QIODevice::ReadOnly | QIODevice::Text ) )
+	{
+		xorgLogMutex.unlock();
+		return;
+	}
+
+	QTextStream in ( &file );
+	while ( !in.atEnd() )
+	{
+		QString line = in.readLine();
+		if ( line.indexOf ( "successfully opened the display" ) !=-1 )
+		{
+			xorgLogTimer->stop();
+			slotSetWinServersReady();
+			xorgLogMutex.unlock();
+			return;
+		}
+	}
+	xorgLogMutex.unlock();
+}
+
+void ONMainWindow::startXOrg ()
+{
+	while ( isServerRunning ( 6000+xDisplay ) )
+		++xDisplay;
+	QString dispString;
+	QStringList env=QProcess::systemEnvironment();
+	env<<"GLWIN_ENABLE_DEBUG=0";
+	QTextStream ( &dispString ) <<":"<<xDisplay;
+
+	xorgLogMutex.lock();
+	xorgLogFile=homeDir+"/.x2go/xorg";
+	QDir dr ( homeDir );
+	dr.mkpath ( xorgLogFile );
+	xorgLogFile=wapiShortFileName ( xorgLogFile ) +"\\xorg.log."+
+	            QString::number ( xDisplay );
+	if ( QFile::exists ( xorgLogFile ) )
+		QFile::remove ( xorgLogFile );
+	xorgLogMutex.unlock();
+	QStringList args;
+	args<<dispString<<"-multiwindow"<<"-notrayicon"<<
+	"-logfile"<<xorgLogFile;
+	xorg=new QProcess ( 0 );
+	xorg-> setWorkingDirectory ( appDir+"\\xming" );
+	xorg->setEnvironment ( env );
+	xorg->start ( appDir+"\\xming\\Xming.exe",args );
+	if ( !xorg->waitForStarted ( 3000 ) )
+	{
+		QMessageBox::critical (
+		    0,QString::null,
+		    tr ( "Can't start X Server\n"
+		         "Please check your installation" ) );
+		close();
+	}
+}
+
+WinServerStarter::WinServerStarter ( daemon server, ONMainWindow * par ) :
+		QThread ( 0 )
+{
+	mode=server;
+	parent=par;
+}
+
+void WinServerStarter::run()
+{
+	switch ( mode )
+	{
+		case SSH:parent->startSshd();break;
+		case X:parent->startXOrg();break;
+		case PULSE:parent->startPulsed();break;
+	}
+}
+
+
+void ONMainWindow::startWinServers()
+{
+	QString etcDir=homeDir+"/.x2go/etc";
+	QDir dr ( homeDir );
+	dr.mkpath ( etcDir );
+	generateHostDsaKey();
+	generateEtcFiles();
+	saveCygnusSettings();
+
+	WinServerStarter* xStarter = new WinServerStarter ( WinServerStarter::X,
+	        this );
+	WinServerStarter* sshStarter = new WinServerStarter (
+	    WinServerStarter::SSH, this );
+
+	WinServerStarter* pulseStarter = new WinServerStarter (
+	    WinServerStarter::PULSE, this );
+	xStarter->start();
+	sshStarter->start();
+	pulseStarter->start();
+	xorgLogTimer=new QTimer ( this );
+	connect ( xorgLogTimer,SIGNAL ( timeout() ),this,
+	          SLOT ( slotCheckXOrgLog() ) );
+	xorgLogTimer->start ( 1000 );
+}
+
+void ONMainWindow::generateHostDsaKey()
+{
+	QString etcDir=homeDir+"/.x2go/etc";
+	if ( !QFile::exists ( etcDir+"/ssh_host_dsa_key" ) ||
+	        !QFile::exists ( etcDir+"/ssh_host_dsa_key.pub" ) )
+	{
+		/*		x2goDebug<<"Generating host DSA key\n";*/
+		QString fname=cygwinPath ( wapiShortFileName ( etcDir ) ) +
+		              "/ssh_host_dsa_key";
+		QStringList args;
+		args<<"-t"<<"dsa"<<"-N"<<""<<"-C"<<
+		"x2goclient DSA host key"<<"-f"<<fname;
+		QProcess::execute ( "ssh-keygen",args );
+	}
+}
+
+void ONMainWindow::generateEtcFiles()
+{
+	QString etcDir=homeDir+"/.x2go/etc";
+	if ( !QFile::exists ( etcDir+"/passwd" ) )
+	{
+		QString sid, sys, user, grsid, grname;
+		if ( !wapiAccountInfo ( &sid,&user,&grsid, &grname, &sys ) )
+		{
+// 			x2goDebug<<"Get account info failed\n";
+			close();
+		}
+
+// 		x2goDebug<<"sid: "<<sid <<" system:"<<
+// 		sys<< " user: "<<user<<" group sid:"<<grsid<<
+// 		"group name: "<<grname<<endl;
+
+		QStringList sidList=sid.split ( '-' );
+		QString rid=sidList[sidList.count()-1];
+		QStringList grsidList=grsid.split ( '-' );
+		QString grid=grsidList[grsidList.count()-1];
+		QFile file ( etcDir +"/passwd" );
+		if ( !file.open ( QIODevice::WriteOnly | QIODevice::Text ) )
+			return;
+		QTextStream out ( &file );
+		out <<"sshuser::"<<rid<<":"<<grid<<":"<<sys<<"\\sshuser,"
+		<<sid<<":"<<cygwinPath ( wapiShortFileName ( homeDir ) ) <<
+		"/.x2go"<<":/bin/bash\n";
+		file.close();
+	}
+	if ( !QFile::exists ( etcDir+"/sshd_config" ) )
+	{
+		QFile file ( etcDir +"/sshd_config" );
+		if ( !file.open ( QIODevice::WriteOnly | QIODevice::Text ) )
+			return;
+		QTextStream out ( &file );
+		out<<"StrictModes no\n"<<
+		"UsePrivilegeSeparation no\n"<<
+		"Subsystem sftp /bin/sftp-server\n";
+		file.close();
+	}
+}
+
+
+
+void ONMainWindow::saveCygnusSettings()
+{
+	QSettings etcst ( "HKEY_CURRENT_USER\\Software"
+	                  "\\Cygnus Solutions\\Cygwin\\mounts v2\\/etc",
+	                  QSettings::NativeFormat );
+	oldEtcDir=QString::null;
+	oldEtcDir=etcst.value ( "native",oldEtcDir ).toString();
+// 	x2goDebug<<"old etc:"<<oldEtcDir<<endl;
+	QString newEtc=homeDir+"/.x2go/etc";
+	newEtc.replace ( "/","\\" );
+	etcst.setValue ( "native",wapiShortFileName ( newEtc ) );
+	etcst.sync();
+
+	QSettings binst ( "HKEY_CURRENT_USER\\Software"
+	                  "\\Cygnus Solutions\\Cygwin\\mounts v2\\/bin",
+	                  QSettings::NativeFormat );
+	oldBinDir=QString::null;
+	oldBinDir=binst.value ( "native",oldBinDir ).toString();
+// 	x2goDebug<<"old bin:"<<oldBinDir<<endl;
+	QString newBin=appDir;
+	newBin.replace ( "/","\\" );
+	binst.setValue ( "native",wapiShortFileName ( newBin ) );
+	binst.sync();
+
+	QSettings tmpst ( "HKEY_CURRENT_USER\\Software"
+	                  "\\Cygnus Solutions\\Cygwin\\mounts v2\\/tmp",
+	                  QSettings::NativeFormat );
+	oldTmpDir=QString::null;
+	oldTmpDir=tmpst.value ( "native",oldTmpDir ).toString();
+// 	x2goDebug<<"old tmp:"<<oldTmpDir<<endl;
+	QString newTmp=QDir::tempPath();
+	newTmp.replace ( "/","\\" );
+	tmpst.setValue ( "native",wapiShortFileName ( newTmp ) );
+	tmpst.sync();
+}
+
+void ONMainWindow::restoreCygnusSettings()
+{
+	if ( oldEtcDir==QString::null )
+	{
+		QSettings st ( "HKEY_CURRENT_USER\\Software"
+		               "\\Cygnus Solutions\\Cygwin\\mounts v2\\/etc",
+		               QSettings::NativeFormat );
+// 		x2goDebug<<"Removing /etc from cygwin mounts\n";
+		st.remove ( "" );
+		st.sync();
+	}
+	else
+	{
+		QSettings st ( "HKEY_CURRENT_USER\\Software"
+		               "\\Cygnus Solutions\\Cygwin\\mounts v2\\/etc",
+		               QSettings::NativeFormat );
+		st.setValue ( "native",oldEtcDir );
+		st.sync();
+// 		x2goDebug<<"Restoring /etc in cygwin mounts\n";
+	}
+	if ( oldBinDir==QString::null )
+	{
+		QSettings st ( "HKEY_CURRENT_USER\\Software"
+		               "\\Cygnus Solutions\\Cygwin\\mounts v2\\/bin",
+		               QSettings::NativeFormat );
+// 		x2goDebug<<"Removing /bin from cygwin mounts\n";
+		st.remove ( "" );
+		st.sync();
+	}
+	else
+	{
+		QSettings st ( "HKEY_CURRENT_USER\\Software"
+		               "\\Cygnus Solutions\\Cygwin\\mounts v2\\/bin",
+		               QSettings::NativeFormat );
+		st.setValue ( "native",oldBinDir );
+		st.sync();
+// 		x2goDebug<<"Restoring /bin in cygwin mounts\n";
+	}
+	if ( oldTmpDir==QString::null )
+	{
+		QSettings st ( "HKEY_CURRENT_USER\\Software"
+		               "\\Cygnus Solutions\\Cygwin\\mounts v2\\/tmp",
+		               QSettings::NativeFormat );
+// 		x2goDebug<<"Removing /tmp from cygwin mounts\n";
+		st.remove ( "" );
+		st.sync();
+	}
+	else
+	{
+		QSettings st ( "HKEY_CURRENT_USER\\Software"
+		               "\\Cygnus Solutions\\Cygwin\\mounts v2\\/tmp",
+		               QSettings::NativeFormat );
+		st.setValue ( "native",oldTmpDir );
+		st.sync();
+// 		x2goDebug<<"Restoring /tmp in cygwin mounts\n";
+	}
+}
+
+void ONMainWindow::startPulsed()
+{
+	while ( isServerRunning ( pulsePort ) )
+		++pulsePort;
+	esdPort=pulsePort+1;
+	while ( isServerRunning ( esdPort ) )
+		++esdPort;
+
+	pulseDir=homeDir+"/.x2go/pulse";
+	QDir dr ( homeDir );
+	dr.mkpath ( pulseDir );
+	pulseDir=wapiShortFileName ( pulseDir );
+// 	x2goDebug<<"template: "<<pulseDir+"/tmp"<<endl;
+	QTemporaryFile* fl=new QTemporaryFile ( pulseDir+"/tmp" );
+	fl->open();
+	pulseDir=fl->fileName();
+	fl->close();
+	delete fl;
+	QFile::remove ( pulseDir );
+	dr.mkpath ( pulseDir );
+// 	x2goDebug<<"pulse tmp file: "<<pulseDir<<endl;
+	QStringList pEnv=QProcess::systemEnvironment();
+	for ( int i=0; i<pEnv.size();++i )
+	{
+		if ( pEnv[i].indexOf ( "USERPROFILE=" ) !=-1 )
+			pEnv[i]="USERPROFILE="+
+			        wapiShortFileName ( homeDir+"/.x2go/pulse" );
+		if ( pEnv[i].indexOf ( "TEMP=" ) !=-1 )
+			pEnv[i]="TEMP="+pulseDir;
+		if ( pEnv[i].indexOf ( "USERNAME=" ) !=-1 )
+			pEnv[i]="USERNAME=pulseuser";
+	}
+
+	QFile file ( pulseDir+"/config.pa" );
+	if ( !file.open ( QIODevice::WriteOnly | QIODevice::Text ) )
+		return;
+	QTextStream out ( &file );
+	out << "load-module module-native-protocol-tcp port="+
+	QString::number ( pulsePort ) <<endl;
+	out << "load-module module-esound-protocol-tcp port="+
+	QString::number ( esdPort ) <<endl;
+	out << "load-module module-waveout"<<endl;
+	file.close();
+	pulseServer=new QProcess ( 0 );
+	pulseServer->setEnvironment ( pEnv );
+	QStringList args;
+	args<<"-n"<<"-F"<<pulseDir+"/config.pa";
+	pulseServer->setWorkingDirectory ( wapiShortFileName ( appDir+"\\pulse" ) );
+	pulseServer->start ( "pulse\\pulseaudio.exe",args );
+}
+
+#include <windows.h>
+#include<sstream>
+
+void ONMainWindow::startSshd()
+{
+	int port=clientSshPort.toInt();
+
+	//clientSshPort have initvalue
+	while ( isServerRunning ( port ) )
+		++port;
+	clientSshPort=QString::number ( port );
+	std::string clientdir=wapiShortFileName ( appDir ).toStdString();
+	std::stringstream strm;
+	strm<<clientdir<<"\\sshd.exe -D -p"<<clientSshPort.toInt();
+
+	STARTUPINFOA si;
+	std::string desktopName="x2go_";
+	desktopName+=getenv ( "USERNAME" );
+	char* desktop=new char[desktopName.size() +1];
+	strcpy ( desktop,desktopName.c_str() );
+	x2goDebug<<"Creating desktop: "<<desktop<<endl;
+	if ( !CreateDesktopA (
+	            desktop,
+	            0,
+	            0,
+	            0,
+	            GENERIC_ALL,
+	            0
+	        ) )
+	{
+		strcpy ( desktop,"" );
+		x2goDebug<<"Desktop creation failed, using default\n";
+	}
+	ZeroMemory ( &si, sizeof ( si ) );
+	ZeroMemory ( &sshd, sizeof ( sshd ) );
+	si.lpDesktop=desktop;
+	si.cb = sizeof ( si );
+	CreateProcessA ( NULL,  // No module name (use command line)
+	                 ( LPSTR ) strm.str().c_str(),  // Command line
+	                 NULL,           // Process handle not inheritable
+	                 NULL,           // Thread handle not inheritable
+	                 TRUE,          // Set handle inheritance to FALSE
+	                 0/*CREATE_NO_WINDOW|CREATE_NEW_PROCESS_GROUP*/, //creation flags
+	                 NULL,           // Use parent's environment block
+	                 clientdir.c_str(), // Starting directory
+	                 &si,            // Pointer to STARTUPINFO structure
+	                 &sshd );           // Pointer to PROCESS_INFORMATION structure
+	delete []desktop;
+}
+
+
+void ONMainWindow::slotSetWinServersReady()
+{
+	winServersReady=true;
+	restoreCygnusSettings();
+}
+
+#endif
+void ONMainWindow::slotFindProxyWin()
+{
+	proxyWinId=findWindow ( "X2GO-"+resumingSession.sessionId );
+	if ( proxyWinId )
+	{
+		proxyWinTimer->stop();
+		if ( embedMode )
+		{
+			if ( config.rootless )
+			{
+				act_embedContol->setEnabled ( false );
+			}
+			else
+				slotAttachProxyWindow();
+		}
+#ifdef Q_OS_WIN
+		if ( !startEmbedded )
+		{
+			if ( maximizeProxyWin )
+			{
+				wapiShowWindow ( ( HWND ) proxyWinId,
+				                 WAPI_SHOWMAXIMIZED );
+			}
+			else
+			{
+				wapiMoveWindow ( ( HWND ) proxyWinId,0,0,
+				                 proxyWinWidth,
+				                 proxyWinHeight,true );
+			}
+		}
+#endif
+	}
+}
+
+
+QString ONMainWindow::getCurrentUname()
+{
+	return login->text();
+}
+
+QString ONMainWindow::getCurrentPass()
+{
+	return pass->text();
+}
+
+void ONMainWindow::slotDetachProxyWindow()
+{
+	proxyWinEmbedded=false;
+	bgFrame->show();
+	setStatStatus();
+	act_embedContol->setText ( tr ( "Attach X2Go window" ) );
+	act_embedContol->setIcon ( QIcon ( ":icons/32x32/attach.png" ) );
+#ifdef Q_OS_LINUX
+	//if QX11EmbedContainer cannot embed window, check if window exists
+	//and reconnect
+	if ( !embedControlChanged )
+	{
+		x2goDebug<<"\n";
+		slotFindProxyWin();
+		x2goDebug<<"proxy win detached, proxywin is:"<<proxyWinId<<endl;
+	}
+#endif
+	embedControlChanged=false;
+}
+
+
+void ONMainWindow::slotAttachProxyWindow()
+{
+	if ( startEmbedded )
+	{
+		embedControlChanged=false;
+		bgFrame->hide();
+		proxyWinEmbedded=true;
+		setStatStatus();
+		act_embedContol->setText ( tr ( "Detach X2Go window" ) );
+		act_embedContol->setIcon ( QIcon ( ":icons/32x32/detach.png" ) );
+		QTimer::singleShot ( 100, this, SLOT ( slotEmbedWindow() ) );
+	}
+	else
+		startEmbedded=true;
+
+}
+
+void ONMainWindow::slotEmbedWindow()
+{
+	embedWindow ( proxyWinId );
+}
+
+void ONMainWindow::setEmbedSessionActionsEnabled ( bool enable )
+{
+	act_shareFolder->setEnabled ( enable );
+	act_suspend->setEnabled ( enable );
+	act_terminate->setEnabled ( enable );
+	act_embedContol->setEnabled ( enable );
+}
+
+void ONMainWindow::slotEmbedControlAction()
+{
+	embedControlChanged=true;
+	if ( proxyWinEmbedded )
+	{
+		detachClient();
+	}
+	else
+		slotAttachProxyWindow();
+}
+
+void ONMainWindow::slotEmbedIntoParentWindow()
+{
+	embedInto ( embedParent );
+}
+
+
+
+void ONMainWindow::processSessionConfig()
+{
+	x2goDebug<<"config file: "<<sessionConfigFile<<endl;
+	QFile fl ( sessionConfigFile );
+	if ( !fl.open ( QIODevice::ReadOnly | QIODevice::Text ) )
+	{
+		QMessageBox::critical ( 0l,tr ( "Error" ),
+		                        tr ( "Can't open config file: " ) +
+		                        sessionConfigFile,
+		                        QMessageBox::Ok,QMessageBox::NoButton );
+		exit ( -1 );
+	}
+	QTextStream in ( &fl );
+	QString key;
+	bool haveKey=false;
+	config.command="KDE";
+	config.sshport="22";
+	config.session=tr ( "X2Go Session" );
+	while ( !in.atEnd() )
+	{
+		QString line = in.readLine();
+		if ( ( line=="-----BEGIN DSA PRIVATE KEY-----" ) ||
+		        ( line=="-----BEGIN RSA PRIVATE KEY-----" ) )
+		{
+			key=line+"\n";
+			while ( !in.atEnd() )
+				key+=in.readLine() +"\n";
+			haveKey=true;
+		}
+		else
+			processCfgLine ( line );
+	}
+	fl.close();
+	fl.open ( QIODevice::WriteOnly | QIODevice::Text );
+	QTextStream out ( &fl );
+	out<<key;
+	fl.close();
+	if ( haveKey )
+	{
+		startSshAgent();
+	}
+	else
+		QFile::remove ( sessionConfigFile );
+}
+
+void ONMainWindow::startSshAgent()
+{
+	QProcess* sshAgent=new QProcess ( this );
+	sshAgent->start ( "ssh-agent" );
+	if ( !sshAgent->waitForStarted() )
+	{
+		QFile::remove ( sessionConfigFile );
+		return;
+	}
+
+	if ( !sshAgent->waitForFinished ( -1 ) )
+	{
+		QFile::remove ( sessionConfigFile );
+		return;
+	}
+
+	QString stdOut ( sshAgent->readAllStandardOutput() );
+	// 	x2goDebug<<"SSHAGENT out:"<<stdOut;
+	stdOut.replace ( " ","" );
+	stdOut.replace ( "\n","" );
+	QStringList envLst=stdOut.split ( ";" );
+	sshAgentPid=envLst[2].split ( "=" ) [1];
+
+	// 	x2goDebug<<"pid:"<<sshAgentPid;
+	// 	x2goDebug<<"env:"<<envLst[0]<<":"<<envLst[2];
+
+	sshEnv.clear();
+	sshEnv<<envLst[0]<<envLst[2];
+	// 	x2goDebug<<"sshenv:"<<sshEnv<<endl;
+	useSshAgent=true;
+	addKey2SshAgent();
+}
+
+void ONMainWindow::addKey2SshAgent()
+{
+	QProcess sshadd ( this ); //using it to start scdaemon
+	sshadd.setEnvironment ( sshEnv );
+	QStringList arguments;
+	arguments<<sessionConfigFile;
+	sshadd.start ( "ssh-add",arguments );
+	if ( !sshadd.waitForStarted() )
+	{
+		QFile::remove ( sessionConfigFile );
+		x2goDebug<<"ssh-add start failed";
+		return;
+	}
+
+	if ( !sshadd.waitForFinished ( -1 ) )
+	{
+		QFile::remove ( sessionConfigFile );
+		x2goDebug<<"ssh-add finish failed";
+		return;
+	}
+	sshadd.waitForFinished ( -1 );
+	QFile::remove ( sessionConfigFile );
+}
+
+void ONMainWindow::finishSshAgent()
+{
+	QProcess sshAgent ( this ); //using it to start scdaemon
+	sshAgent.setEnvironment ( sshEnv );
+	QStringList arguments;
+	arguments<<"-k";
+	sshAgent.start ( "ssh-agent",arguments );
+	if ( !sshAgent.waitForStarted() )
+	{
+		x2goDebug<<"ssh-agent start failed";
+		return;
+	}
+
+	if ( !sshAgent.waitForFinished ( -1 ) )
+	{
+		x2goDebug<<"ssh-agent finish failed";
+		return;
+	}
+	sshAgent.waitForFinished ( -1 );
+}
+
+
+void ONMainWindow::processCfgLine ( QString line )
+{
+	QStringList lst=line.split ( "=" );
+	if ( lst[0]=="command" )
+	{
+		config.command=lst[1];
+		return;
+	}
+	if ( lst[0]=="server" )
+	{
+		config.server=lst[1];
+		return;
+	}
+	if ( lst[0]=="session" )
+	{
+		config.session=lst[1];
+		return;
+	}
+	if ( lst[0]=="sshport" )
+	{
+		config.sshport=lst[1];
+		return;
+	}
+	if ( lst[0]=="user" )
+	{
+		config.user=lst[1];
+		return;
+	}
+	if ( lst[0]=="rootless" )
+	{
+		if ( lst[1]=="true" )
+			config.rootless=true;
+		else
+			config.rootless=false;
+		return;
+	}
+}
+
+
+void ONMainWindow::initPassDlg()
+{
+	passForm = new SVGFrame ( ":/svg/passform.svg",
+	                          false,bgFrame );
+#ifdef Q_OS_WIN
+	passForm->setMainWidget ( ( QWidget* ) this );
+#endif
+	username->addWidget ( passForm );
+	passForm->hide();
+	setWidgetStyle ( passForm );
+	if ( !miniMode )
+		passForm->setFixedSize ( passForm->sizeHint() );
+	else
+		passForm->setFixedSize ( 310,180 );
+	QPalette pal=passForm->palette();
+	pal.setBrush ( QPalette::Window, QColor ( 255,255,255,0 ) );
+	passForm->setPalette ( pal );
+
+	pal.setColor ( QPalette::Button, QColor ( 255,255,255,0 ) );
+	pal.setColor ( QPalette::Window, QColor ( 255,255,255,255 ) );
+	pal.setColor ( QPalette::Base, QColor ( 255,255,255,255 ) );
+
+	QFont fnt=passForm->font();
+	if ( miniMode )
+#ifdef Q_WS_HILDON
+		fnt.setPointSize ( 10 );
+#else
+		fnt.setPointSize ( 9 );
+#endif
+	passForm->setFont ( fnt );
+
+	fotoLabel=new QLabel ( passForm );
+	fotoLabel->hide();
+
+	nameLabel=new QLabel ( "",passForm );
+	nameLabel->hide();
+
+	loginPrompt=new QLabel ( tr ( "Login:" ),passForm );
+	passPrompt=new QLabel ( tr ( "Password:" ),passForm );
+
+	login=new ClickLineEdit ( passForm );
+	setWidgetStyle ( login );
+	login->setFrame ( false );
+	login->setEnabled ( false );
+
+	login->hide();
+	loginPrompt->hide();
+
+	pass=new ClickLineEdit ( passForm );
+	setWidgetStyle ( pass );
+	pass->setFrame ( false );
+	fnt.setBold ( true );
+	pass->setFont ( fnt );
+	pass->setEchoMode ( QLineEdit::Password );
+	pass->setFocus();
+
+#ifdef Q_OS_LINUX
+	connect ( login,SIGNAL ( clicked() ),this,
+	          SLOT ( slotActivateWindow() ) );
+	connect ( pass,SIGNAL ( clicked() ),this,
+	          SLOT ( slotActivateWindow() ) );
+#endif
+
+	pass->hide();
+	passPrompt->hide();
+
+
+	ok=new QPushButton ( tr ( "Ok" ),passForm );
+	setWidgetStyle ( ok );
+	cancel=new QPushButton ( tr ( "Cancel" ),passForm );
+	setWidgetStyle ( cancel );
+	ok->hide();
+	cancel->hide();
+
+	pal.setColor ( QPalette::Button, QColor ( 255,255,255,0 ) );
+	pal.setColor ( QPalette::Window, QColor ( 255,255,255,255 ) );
+	pal.setColor ( QPalette::Base, QColor ( 255,255,255,255 ) );
+	ok->setPalette ( pal );
+	cancel->setPalette ( pal );
+
+
+#ifndef Q_WS_HILDON
+	ok->setFixedSize ( ok->sizeHint() );
+	cancel->setFixedSize ( cancel->sizeHint() );
+#else
+	QSize sz=cancel->sizeHint();
+	sz.setWidth ( ( int ) ( sz.width() /1.5 ) );
+	sz.setHeight ( ( int ) ( sz.height() /1.5 ) );
+	cancel->setFixedSize ( sz );
+	sz=ok->sizeHint();
+	sz.setWidth ( ( int ) ( sz.width() /1.5 ) );
+	sz.setHeight ( ( int ) ( sz.height() /1.5 ) );
+	ok->setFixedSize ( sz );
+#endif
+
+	QVBoxLayout *layout=new QVBoxLayout ( passForm );
+	QHBoxLayout *labelLay=new QHBoxLayout();
+	QHBoxLayout *inputLay=new QHBoxLayout();
+	QHBoxLayout *buttonLay=new QHBoxLayout();
+
+	labelLay->setSpacing ( 20 );
+	inputLay->setSpacing ( 10 );
+	layout->setContentsMargins ( 20,20,10,10 );
+	layout->addLayout ( labelLay );
+	layout->addStretch();
+	layout->addLayout ( inputLay );
+	layout->addStretch();
+	layout->addLayout ( buttonLay );
+
+	labelLay->addWidget ( fotoLabel );
+	labelLay->addWidget ( nameLabel );
+	labelLay->addStretch();
+
+	QVBoxLayout* il1=new QVBoxLayout();
+	il1->addWidget ( loginPrompt );
+	il1->addWidget ( passPrompt );
+
+	QVBoxLayout* il2=new QVBoxLayout();
+	il2->addWidget ( login );
+	il2->addWidget ( pass );
+	inputLay->addLayout ( il1 );
+	inputLay->addLayout ( il2 );
+	inputLay->addStretch();
+
+	buttonLay->addStretch();
+	buttonLay->addWidget ( ok );
+	buttonLay->addWidget ( cancel );
+	buttonLay->addStretch();
+
+	pal.setColor ( QPalette::Base, QColor ( 239,239,239,255 ) );
+	login->setPalette ( pal );
+	pass->setPalette ( pal );
+
+	connect ( ok,SIGNAL ( clicked() ),this, SLOT ( slotSessEnter() ) );
+	connect ( cancel,SIGNAL ( clicked() ),this, SLOT ( slotClosePass() ) );
+	connect ( pass,SIGNAL ( returnPressed() ),this,
+	          SLOT ( slotSessEnter() ) );
+	connect ( login,SIGNAL ( returnPressed() ),pass, SLOT ( selectAll() ) );
+	connect ( login,SIGNAL ( returnPressed() ),pass, SLOT ( setFocus() ) );
+
+	passPrompt->show();
+	pass->show();
+	ok->show();
+	cancel->show();
+	fotoLabel->show();
+	nameLabel->show();
+	if ( !useLdap )
+	{
+		login->show();
+		loginPrompt->show();
+	}
+	if ( embedMode )
+	{
+		cancel->setEnabled ( false );
+#ifdef Q_OS_WIN
+		QRect r;
+		wapiWindowRect ( ok->winId(),r );
+#endif
+	}
+}
+
+
+void ONMainWindow::initStatusDlg()
+{
+	sessionStatusDlg = new SVGFrame ( ":/svg/passform.svg",
+	                                  false,bgFrame );
+	sessionStatusDlg->hide();
+	if ( !miniMode )
+		sessionStatusDlg->setFixedSize (
+		    sessionStatusDlg->sizeHint() );
+	else
+		sessionStatusDlg->setFixedSize ( 310,200 );
+	QFont fnt=sessionStatusDlg->font();
+	if ( miniMode )
+#ifdef Q_WS_HILDON
+		fnt.setPointSize ( 10 );
+#else
+		fnt.setPointSize ( 9 );
+#endif
+	sessionStatusDlg->setFont ( fnt );
+	username->addWidget ( sessionStatusDlg );
+	QPalette pal=sessionStatusDlg->palette();
+	pal.setBrush ( QPalette::Window, QColor ( 0,0,0,0 ) );
+	sessionStatusDlg->setPalette ( pal );
+
+	slName=new QLabel ( sessionStatusDlg );
+	slVal=new QLabel ( sessionStatusDlg );
+
+	slName->setText (
+	    tr (
+	        "<b>Session ID:<br>Server:<br>Username:"
+	        "<br>Display:<br>Creation time:<br>Status:</b>" ) );
+	slName->setFixedSize ( slName->sizeHint() );
+	slName->hide();
+
+	slVal->hide();
+	slVal->setFixedHeight ( slName->sizeHint().height() );
+	sbSusp=new QPushButton ( tr ( "Abort" ),sessionStatusDlg );
+	sbTerm=new QPushButton ( tr ( "Terminate" ),sessionStatusDlg );
+	sbExp=new QPushButton ( tr ( "Share folder..." ),
+	                        sessionStatusDlg );
+	sbAdv=new QCheckBox ( tr ( "Show details" ),sessionStatusDlg );
+	setWidgetStyle ( sbTerm );
+	setWidgetStyle ( sbExp );
+	setWidgetStyle ( sbSusp );
+	setWidgetStyle ( sbAdv );
+
+	sbAdv->setFixedSize ( sbAdv->sizeHint() );
+#ifndef Q_WS_HILDON
+	sbSusp->setFixedSize ( sbSusp->sizeHint() );
+	sbTerm->setFixedSize ( sbTerm->sizeHint() );
+	sbExp->setFixedSize ( sbExp->sizeHint() );
+#else
+	QSize sz=sbSusp->sizeHint();
+	sz.setWidth ( ( int ) ( sz.width() /1.5 ) );
+	sz.setHeight ( ( int ) ( sz.height() /1.5 ) );
+	sbSusp->setFixedSize ( sz );
+	sz=sbExp->sizeHint();
+	sz.setWidth ( ( int ) ( sz.width() ) );
+	sz.setHeight ( ( int ) ( sz.height() /1.5 ) );
+	sbExp->setFixedSize ( sz );
+	sz=sbTerm->sizeHint();
+	sz.setWidth ( ( int ) ( sz.width() /1.5 ) );
+	sz.setHeight ( ( int ) ( sz.height() /1.5 ) );
+	sbTerm->setFixedSize ( sz );
+#endif
+	sbAdv->hide();
+	sbSusp->hide();
+	sbTerm->hide();
+	sbExp->hide();
+
+
+	pal.setColor ( QPalette::Button, QColor ( 255,255,255,0 ) );
+	pal.setColor ( QPalette::Window, QColor ( 255,255,255,255 ) );
+	pal.setColor ( QPalette::Base, QColor ( 255,255,255,255 ) );
+
+	sbAdv->setPalette ( pal );
+	sbSusp->setPalette ( pal );
+	sbTerm->setPalette ( pal );
+	sbExp->setPalette ( pal );
+
+	stInfo=new QTextEdit ( sessionStatusDlg );
+	setWidgetStyle ( stInfo );
+	setWidgetStyle ( stInfo->verticalScrollBar() );
+	stInfo->setReadOnly ( true );
+	stInfo->hide();
+	stInfo->setFrameStyle ( QFrame::StyledPanel|QFrame::Plain );
+	stInfo->setPalette ( pal );
+
+	sbExp->setEnabled ( false );
+
+	connect ( sbSusp,SIGNAL ( clicked() ),this,
+	          SLOT ( slot_testSessionStatus() ) );
+	connect ( sbTerm,SIGNAL ( clicked() ),this,
+	          SLOT ( slotTermSessFromSt() ) );
+	connect ( sbAdv,SIGNAL ( clicked() ),this,
+	          SLOT ( slotShowAdvancedStat() ) );
+
+	QVBoxLayout* layout=new QVBoxLayout ( sessionStatusDlg );
+	QHBoxLayout* ll=new QHBoxLayout();
+	ll->addWidget ( slName );
+	ll->addWidget ( slVal );
+	ll->addStretch();
+	ll->setSpacing ( 10 );
+	if ( !miniMode )
+		layout->setContentsMargins ( 25,25,10,10 );
+	else
+		layout->setContentsMargins ( 10,10,10,10 );
+
+	QHBoxLayout* bl=new QHBoxLayout();
+	bl->addStretch();
+	bl->addWidget ( sbExp );
+	bl->addWidget ( sbSusp );
+	bl->addWidget ( sbTerm );
+	bl->addStretch();
+	layout->addLayout ( ll );
+	layout->addStretch();
+	layout->addWidget ( stInfo );
+	layout->addWidget ( sbAdv );
+	layout->addStretch();
+	layout->addLayout ( bl );
+
+
+	slName->show();
+	slVal->show();
+	sbAdv->show();
+	if ( !embedMode )
+	{
+		sbSusp->show();
+		sbTerm->show();
+		sbExp->show();
+	}
+#ifndef Q_OS_WIN
+
+	QSettings st ( homeDir +"/.x2goclient/settings",
+	               QSettings::NativeFormat );
+#else
+
+	QSettings st ( "Obviously Nice","x2goclient" );
+	st.beginGroup ( "settings" );
+#endif
+
+
+	if ( st.value ( "showStatus", ( QVariant ) false ).toBool() )
+	{
+		sbAdv->setChecked ( true );
+		slotShowAdvancedStat();
+	}
+#ifdef Q_OS_WIN
+	if ( embedMode )
+	{
+		QRect r;
+		wapiWindowRect ( sbAdv->winId(),r );
+		wapiWindowRect ( stInfo->verticalScrollBar ()->winId(),r );
+	}
+#endif
+
+}
+
+
+void ONMainWindow::initSelectSessDlg()
+{
+	selectSessionDlg = new SVGFrame ( ":/svg/passform.svg",
+	                                  false,bgFrame );
+	username->addWidget ( selectSessionDlg );
+	setWidgetStyle ( selectSessionDlg );
+	if ( !miniMode )
+		selectSessionDlg->setFixedSize ( selectSessionDlg->sizeHint() );
+	else
+		selectSessionDlg->setFixedSize ( 310,180 );
+	QPalette pal=selectSessionDlg->palette();
+	pal.setBrush ( QPalette::Window, QColor ( 255,255,255,0 ) );
+	selectSessionDlg->setPalette ( pal );
+
+	pal.setColor ( QPalette::Button, QColor ( 255,255,255,0 ) );
+	pal.setColor ( QPalette::Window, QColor ( 255,255,255,255 ) );
+	pal.setColor ( QPalette::Base, QColor ( 255,255,255,255 ) );
+
+	QFont fnt=selectSessionDlg->font();
+	if ( miniMode )
+#ifdef Q_WS_HILDON
+		fnt.setPointSize ( 10 );
+#else
+		fnt.setPointSize ( 9 );
+#endif
+	selectSessionDlg->setFont ( fnt );
+	selectSessionLabel=new QLabel ( tr ( "Select session:" ),
+	                                selectSessionDlg );
+	sOk=new QPushButton ( tr ( "Resume" ),selectSessionDlg );
+	setWidgetStyle ( sOk );
+	sCancel=new QPushButton ( tr ( "Cancel" ),selectSessionDlg );
+	setWidgetStyle ( sCancel );
+
+	bSusp=new QPushButton ( tr ( "Suspend" ),selectSessionDlg );
+	setWidgetStyle ( bSusp );
+	bTerm=new QPushButton ( tr ( "Terminate" ),selectSessionDlg );
+	setWidgetStyle ( bTerm );
+
+	bNew=new QPushButton ( tr ( "New" ),selectSessionDlg );
+	setWidgetStyle ( bNew );
+
+	sOk->setPalette ( pal );
+	sCancel->setPalette ( pal );
+
+	connect ( sCancel,SIGNAL ( clicked() ),this,
+	          SLOT ( slotCloseSelectDlg() ) );
+
+	selectSessionDlg->show();
+#ifndef Q_WS_HILDON
+	sOk->setFixedSize ( ok->sizeHint() );
+	sCancel->setFixedSize ( cancel->sizeHint() );
+#else
+	QSize sz=sCancel->sizeHint();
+	sz.setWidth ( ( int ) ( sz.width() /1.5 ) );
+	sz.setHeight ( ( int ) ( sz.height() /1.5 ) );
+	sCancel->setFixedSize ( sz );
+	sz=sOk->sizeHint();
+	sz.setWidth ( ( int ) ( sz.width() /1.5 ) );
+	sz.setHeight ( ( int ) ( sz.height() /1.5 ) );
+	sOk->setFixedSize ( sz );
+	sz=bSusp->sizeHint();
+	if ( bTerm->sizeHint().width() > sz.width() )
+		sz=bTerm->sizeHint();
+	if ( bNew->sizeHint().width() > sz.width() )
+		sz=bNew->sizeHint();
+	sz.setWidth ( ( int ) ( sz.width() /1.5 ) );
+	sz.setHeight ( ( int ) ( sz.height() /1.5 ) );
+	bSusp->setFixedSize ( sz );
+	bTerm->setFixedSize ( sz );
+	bNew->setFixedSize ( sz );
+#endif
+	int bmaxw=bNew->size().width();
+	if ( bSusp->size().width() >bmaxw )
+		bmaxw=bSusp->size().width();
+	if ( bTerm->size().width() >bmaxw )
+		bmaxw=bTerm->size().width();
+
+	bNew->setFixedWidth ( bmaxw );
+	bSusp->setFixedWidth ( bmaxw );
+	bTerm->setFixedWidth ( bmaxw );
+
+
+	sOk->setEnabled ( true );
+	sCancel->setEnabled ( true );
+	selectSessionDlg->setEnabled ( true );
+	setEnabled ( true );
+
+	sessTv=new QTreeView ( selectSessionDlg );
+	setWidgetStyle ( sessTv );
+	setWidgetStyle ( sessTv->horizontalScrollBar() );
+	setWidgetStyle ( sessTv->verticalScrollBar() );
+	sessTv->setItemsExpandable ( false );
+	sessTv->setRootIsDecorated ( false );
+
+	model=new QStandardItemModel ( sessions.size(), 8 );
+
+	model->setHeaderData ( S_DISPLAY,Qt::Horizontal,
+	                       QVariant ( ( QString ) tr ( "Display" ) ) );
+	model->setHeaderData ( S_STATUS,Qt::Horizontal,
+	                       QVariant ( ( QString ) tr ( "Status" ) ) );
+	model->setHeaderData ( S_COMMAND,Qt::Horizontal,
+	                       QVariant ( ( QString ) tr ( "Command" ) ) );
+	model->setHeaderData ( S_TYPE,Qt::Horizontal,
+	                       QVariant ( ( QString ) tr ( "Type" ) ) );
+	model->setHeaderData ( S_SERVER,Qt::Horizontal,
+	                       QVariant ( ( QString ) tr ( "Server" ) ) );
+	model->setHeaderData (
+	    S_CRTIME,Qt::Horizontal,
+	    QVariant ( ( QString ) tr ( "Creation time" ) ) );
+	model->setHeaderData ( S_IP,Qt::Horizontal,
+	                       QVariant ( ( QString ) tr ( "Client IP" ) ) );
+	model->setHeaderData ( S_ID,Qt::Horizontal,
+	                       QVariant ( ( QString ) tr ( "Session ID" ) ) );
+	sessTv->setModel ( ( QAbstractItemModel* ) model );
+
+	QFontMetrics fm ( sessTv->font() );
+	sessTv->setEditTriggers ( QAbstractItemView::NoEditTriggers );
+	sessTv->setPalette ( pal );
+	bNew->setPalette ( pal );
+	bSusp->setPalette ( pal );
+	bTerm->setPalette ( pal );
+	sessTv->setFrameStyle ( QFrame::StyledPanel|QFrame::Plain );
+	sOk->setEnabled ( false );
+	bSusp->setEnabled ( false );
+	bTerm->setEnabled ( false );
+	selectSessionLabel->hide();
+
+	QVBoxLayout* layout=new QVBoxLayout ( selectSessionDlg );
+	QHBoxLayout* blay=new QHBoxLayout();
+	QVBoxLayout* alay=new QVBoxLayout();
+	QHBoxLayout* tvlay=new QHBoxLayout();
+
+	layout->addWidget ( selectSessionLabel );
+	layout->addLayout ( tvlay );
+	layout->addLayout ( blay );
+
+	alay->addWidget ( bSusp );
+	alay->addWidget ( bTerm );
+	alay->addStretch();
+	alay->addWidget ( bNew );
+
+	tvlay->addWidget ( sessTv );
+	tvlay->addLayout ( alay );
+
+	blay->addStretch();
+	blay->addWidget ( sOk );
+	blay->addWidget ( sCancel );
+	blay->addStretch();
+	if ( !miniMode )
+		layout->setContentsMargins ( 25,25,10,10 );
+	else
+		layout->setContentsMargins ( 10,10,10,10 );
+
+
+
+	sOk->hide();
+	sCancel->hide();
+	bNew->hide();
+	bSusp->hide();
+	bTerm->hide();
+
+	connect ( sessTv,SIGNAL ( clicked ( const QModelIndex& ) ),
+	          this,SLOT ( slot_activated ( const QModelIndex& ) ) );
+
+	connect ( sessTv,SIGNAL ( doubleClicked ( const QModelIndex& ) ),
+	          this,SLOT ( slot_resumeDoubleClick ( const QModelIndex& ) ) );
+
+	connect ( sOk,SIGNAL ( clicked() ),this, SLOT ( slotResumeSess() ) );
+	connect ( bSusp,SIGNAL ( clicked() ),this, SLOT ( slotSuspendSess() ) );
+	connect ( bTerm,SIGNAL ( clicked() ),this, SLOT ( slotTermSess() ) );
+	connect ( bNew,SIGNAL ( clicked() ),this, SLOT ( slotNewSess() ) );
+
+	selectSessionLabel->show();
+	sOk->show();
+	sCancel->show();
+	bNew->show();
+	bSusp->show();
+	bTerm->show();
+	sessTv->show();
+	selectSessionDlg->hide();
+#ifdef Q_OS_WIN
+	if ( embedMode )
+	{
+		QRect r;
+		wapiWindowRect ( sOk->winId(),r );
+		wapiWindowRect ( sessTv->verticalScrollBar ()->winId(),r );
+		wapiWindowRect ( sessTv->horizontalScrollBar ()->winId(),r );
+		wapiWindowRect ( sessTv->header ()->viewport()->winId(),r );
+	}
+#endif
+
+}
+
+
+
+void ONMainWindow::printSshDError()
+{
+	QMessageBox::critical ( 0l,tr ( "Error" ),
+	                        tr ( "sshd not started, "
+	                             "you'll need sshd for printing "
+	                             "and file sharing\n"
+	                             "you can install sshd with\n"
+	                             "<b>sudo apt-get install "
+	                             "openssh-server</b>" ),
+	                        QMessageBox::Ok,QMessageBox::NoButton );
+}
+
+void ONMainWindow::slotStartParec ()
+{
+	if ( !parecTunnelOk )
+	{
+// 		wait 1 sec and try again
+		QTimer::singleShot ( 1000, this, SLOT ( slotStartParec() ) );
+		return;
+	}
+	sshProcess* paProc;
+	QString passwd=getCurrentPass();
+	QString user=getCurrentUname();
+	QString host=resumingSession.server;
+	QString scmd="PULSE_CLIENTCONFIG=~/.x2go/C-"+
+	             resumingSession.sessionId+
+	             "/.pulse-client.conf "+
+	             "parec > /dev/null &sleep 1 && kill %1";
+
+	try
+	{
+		paProc=new sshProcess ( this,user,host,sshPort,
+		                        scmd,
+		                        passwd,currentKey,acceptRsa );
+	}
+	catch ( QString message )
+	{
+		return;
+	}
+
+	if ( cardReady || useSshAgent )
+	{
+		QStringList env=paProc->environment();
+		env+=sshEnv;
+		paProc->setEnvironment ( env );
+	}
+	paProc->startNormal();
+}
+
+
+void ONMainWindow::slotSndTunOk()
+{
+	parecTunnelOk=true;
+}
+
+
+void ONMainWindow::slotPCookieReady (	bool result,
+                                      QString ,
+                                      sshProcess* )
+{
+	if ( result )
+		slotStartParec();
+}
+
+
+void ONMainWindow::loadPulseModuleNativeProtocol()
+{
+	QProcess* proc=new QProcess ( this );
+	QStringList args;
+	args<<"load-module"<<"module-native-protocol-tcp";
+	proc->start ( "pactl",args );
+	proc->waitForFinished ( 3000 );
+}
+
+void ONMainWindow::slotEmbedToolBar()
+{
+	if ( statusLabel )
+	{
+		delete statusLabel;
+		statusLabel=0;
+	}
+	if ( embedTbVisible )
+	{
+		stb->clear();
+		act_embedToolBar->setIcon (
+		    QIcon ( ":icons/16x16/tbshow.png" ) );
+		stb->addAction ( act_embedToolBar );
+		stb->setToolButtonStyle ( Qt::ToolButtonIconOnly );
+		stb->widgetForAction (
+		    act_embedToolBar )->setFixedHeight ( 16 );
+		act_embedToolBar->setText ( tr ( "Restore toolbar" ) );
+		statusLabel=new QLabel;
+		stb->addWidget ( statusLabel );
+		statusBar()->hide();
+	}
+	else
+	{
+		initEmbedToolBar();
+		act_embedToolBar->setIcon (
+		    QIcon ( ":icons/32x32/tbhide.png" ) );
+		act_embedToolBar->setText ( tr ( "Minimize toolbar" ) );
+	}
+	embedTbVisible=!embedTbVisible;
+	if ( proxyWinEmbedded )
+		setStatStatus();
+#ifndef Q_OS_WIN
+	QSettings st ( homeDir +"/.x2goclient/sessions",
+	               QSettings::NativeFormat );
+#else
+
+	QSettings st ( "Obviously Nice","x2goclient" );
+	st.beginGroup ( "sessions" );
+#endif
+	st.setValue ( "embedded/tbvisible", embedTbVisible );
+	st.sync();
+}
+
+void ONMainWindow::initEmbedToolBar()
+{
+	stb->addAction ( act_embedToolBar );
+	stb->addSeparator();
+	stb->setToolButtonStyle ( Qt::ToolButtonTextUnderIcon );
+	stb->addAction ( act_shareFolder );
+	stb->addAction ( act_suspend );
+	stb->addAction ( act_terminate );
+	stb->addSeparator();
+	stb->addAction ( act_embedContol );
+	stb->addSeparator();
+	stb->addAction ( act_set );
+	stb->addAction ( act_abclient );
+}
+
+void ONMainWindow::slotEmbedToolBarToolTip()
+{
+	if ( !showTbTooltip )
+		return;
+	QWidget* widg=stb->widgetForAction (
+	                  act_embedToolBar );
+	QToolTip::showText ( this->mapToGlobal ( QPoint ( 6,6 ) ),
+	                     tr ( "<br><b>&nbsp;&nbsp;&nbsp;Click this "
+	                          "button&nbsp;&nbsp;&nbsp;<br>"
+	                          "&nbsp;&nbsp;&nbsp;to restore toolbar"
+	                          "&nbsp;&nbsp;&nbsp;</b><br>" ),
+	                     widg );
+}
+
+
+void ONMainWindow::slotActivateWindow()
+{
+	if ( embedMode )
+	{
+		activateWindow();
+		QTimer::singleShot ( 50, this,
+		                     SLOT ( slotEmbedToolBarToolTip() ) );
+	}
+}
+
+#ifndef Q_OS_WIN
+void ONMainWindow::mouseReleaseEvent ( QMouseEvent * event )
+{
+	QMainWindow::mouseReleaseEvent ( event );
+	slotActivateWindow();
+}
+#endif
+
+void ONMainWindow::slotHideEmbedToolBarToolTip()
+{
+	showTbTooltip=false;
+	QToolTip::hideText();
 }

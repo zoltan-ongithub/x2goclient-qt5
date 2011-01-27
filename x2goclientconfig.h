@@ -3,17 +3,18 @@
 
 #include <stdio.h>
 #include <qconfig.h>
+#include <qglobal.h>
 
-#ifdef __MINGW_H //wir support only mingw to build x2goclient for windows
-#define WINDOWS
-#endif     
 
 //#define LOGFILE QDir::homePath()+"/x2goclient.log"
 
-#if !defined WINDOWS
+#if !defined Q_OS_WIN
 #define USELDAP
 #endif
 
+#ifdef Q_OS_WIN
+#undef USELDAP
+#endif
 
 #if defined Q_WS_HILDON
 #undef USELDAP

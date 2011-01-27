@@ -11,13 +11,13 @@
 //
 #ifndef X2GOLOGDEBUG_H
 #define X2GOLOGDEBUG_H
+#include <QTextStream>
+#include <QFile>
 #include "x2goclientconfig.h"
 /**
 	@author Oleksandr Shneyder <oleksandr.shneyder@obviously-nice.de>
 */
 #ifdef LOGFILE
-#include <QTextStream>
-#include <QFile>
 class X2goLogDebug: public QTextStream
 {
 public:

@@ -92,7 +92,7 @@ void ExportDialog::loadSessions()
 	QStringList dirs;
 	model->setStringList ( dirs );
 
-#ifndef WINDOWS
+#ifndef Q_OS_WIN
 	QSettings st ( QDir::homePath() +"/.x2goclient/sessions",
 	               QSettings::NativeFormat );
 #else
@@ -107,7 +107,7 @@ void ExportDialog::loadSessions()
 	QStringList lst=exports.split ( ";",QString::SkipEmptyParts );
 	for ( int i=0;i<lst.size();++i )
 	{
-#ifndef WINDOWS
+#ifndef Q_OS_WIN
 		QStringList tails=lst[i].split ( ":",QString::SkipEmptyParts );
 #else
 		QStringList tails=lst[i].split ( "#",QString::SkipEmptyParts );
