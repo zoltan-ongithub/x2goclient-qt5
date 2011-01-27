@@ -914,6 +914,7 @@ void ONMainWindow::slotPassEnter()
 	attr.push_back ( "serialNumber" );
 	list<LDAPStringEntry> res;
 	QString searchBase="ou=Servers,ou=ON,"+ldapDn;
+
 	try
 	{
 		ld->stringSearch ( searchBase.toStdString(),attr,"objectClass=ipHost",res );
@@ -3066,7 +3067,8 @@ void ONMainWindow::slot_proxyFinished ( int,QProcess::ExitStatus )
 	tunnel=sndTunnel=0l;
 	artsd=0l;
 	nxproxy=0l;
-	check_cmd_status();
+	if(!usePGPCard)
+	   check_cmd_status();
 
 	if ( readExportsFrom!=QString::null )
 	{

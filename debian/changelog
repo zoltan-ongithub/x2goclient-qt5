@@ -1,3 +1,9 @@
+x2goclient (2.0.1-21) unstable; urgency=low
+
+  * fixed pass error with gpg card
+
+ -- Oleksandr Shneyder <oleksandr.shneyder@treuchtlingen.de>  Thu, 20 Nov 2008 11:10:33 +0100
+
 x2goclient (2.0.1-20) unstable; urgency=low
 
   * fixed resizing by session selecting
