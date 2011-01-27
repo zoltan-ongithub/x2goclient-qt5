@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="ru">
+<defaultcodec></defaultcodec>
 <context>
     <name>ConfigDialog</name>
     <message>
@@ -378,42 +379,42 @@
     <message>
         <location filename="editconnectiondialog.cpp" line="163"/>
         <source>&amp;Session Type</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Тип сессии</translation>
     </message>
     <message>
         <location filename="editconnectiondialog.cpp" line="168"/>
         <source>Session Type:</source>
-        <translation type="unfinished"></translation>
+        <translation>Тип сессии:</translation>
     </message>
     <message>
         <location filename="editconnectiondialog.cpp" line="176"/>
         <source>Custom Desktop</source>
-        <translation type="unfinished"></translation>
+        <translation>Другой оконный менеджер</translation>
     </message>
     <message>
         <location filename="editconnectiondialog.cpp" line="177"/>
         <source>Single Application</source>
-        <translation type="unfinished"></translation>
+        <translation>Приложение</translation>
     </message>
     <message>
         <location filename="editconnectiondialog.cpp" line="794"/>
         <source>Path to executable</source>
-        <translation type="unfinished"></translation>
+        <translation>Путь к исполняемому файлу</translation>
     </message>
     <message>
         <location filename="editconnectiondialog.cpp" line="223"/>
         <source>Connection Speed:</source>
-        <translation type="unfinished"></translation>
+        <translation>Скорость соединения:</translation>
     </message>
     <message>
         <location filename="editconnectiondialog.cpp" line="272"/>
         <source>Compression Method:</source>
-        <translation type="unfinished"></translation>
+        <translation>Метод комрессии:</translation>
     </message>
     <message>
         <location filename="editconnectiondialog.cpp" line="311"/>
         <source>Window</source>
-        <translation type="unfinished"></translation>
+        <translation>Окно</translation>
     </message>
 </context>
 <context>
@@ -954,67 +955,67 @@ Please check your settings</source>
     <message>
         <location filename="onmainwindow.cpp" line="161"/>
         <source>X2Go Client</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="180"/>
         <source>Internet Browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Веб-броузер</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="181"/>
         <source>Email Client</source>
-        <translation type="unfinished"></translation>
+        <translation>Почтовый клиент</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="182"/>
         <source>OpenOffice.org</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="183"/>
         <source>Terminal</source>
-        <translation type="unfinished"></translation>
+        <translation>Терминал</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="1865"/>
         <source>unknown</source>
-        <translation type="unfinished"></translation>
+        <translation>неизвестно</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="2364"/>
         <source>Command</source>
-        <translation type="unfinished"></translation>
+        <translation>Команда</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="2365"/>
         <source>Type</source>
-        <translation type="unfinished"></translation>
+        <translation>Тип</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="2406"/>
         <source>Desktop</source>
-        <translation type="unfinished"></translation>
+        <translation>Оконный менеджер</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="2408"/>
         <source>single application</source>
-        <translation type="unfinished"></translation>
+        <translation>приложение</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="2410"/>
         <source>shadow session</source>
-        <translation type="unfinished"></translation>
+        <translation>теневая сессия</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="5471"/>
         <source>&lt;br&gt;Sudo configuration error</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;br&gt;Ошибка настроек &quot;sudo&quot;</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="5546"/>
         <source>Unable to execute: </source>
-        <translation type="unfinished"></translation>
+        <translation>Невозможно выполнить: </translation>
     </message>
 </context>
 <context>
@@ -1072,7 +1073,7 @@ Please check your settings</source>
     <message>
         <location filename="sessionbutton.cpp" line="282"/>
         <source>window</source>
-        <translation type="unfinished"></translation>
+        <translation>окно</translation>
     </message>
 </context>
 <context>

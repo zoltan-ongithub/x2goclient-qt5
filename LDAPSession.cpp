@@ -238,7 +238,7 @@ void LDAPSession::stringSearch(string dn,const list<string> &attributes,string s
    list<string>::const_iterator end=attributes.end();
    for(;it!=end;++it)
    {
-       attr[i]=(char*)malloc(sizeof(char)*(*it).length());
+       attr[i]=(char*)malloc(sizeof(char)*(*it).length()+1);
        strcpy(attr[i],(*it).c_str());
        ++i;
    }

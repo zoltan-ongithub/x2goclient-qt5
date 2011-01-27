@@ -138,7 +138,7 @@ void sshProcess::slot_stderr()
 		hidePass();
 		emit sshTunnelOk();
 	}
-	if ( reserr.indexOf ( "Password:" ) !=-1 )
+	if (( reserr.indexOf ( "Password:" ) !=-1 )||(reserr.indexOf ( "[sudo] password for" ) !=-1))
 	{
 		sudoErr=true;
 		emit sudoConfigError ( errorString, this );

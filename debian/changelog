@@ -1,3 +1,9 @@
+x2goclient (2.0.1-18) unstable; urgency=low
+
+  * Fixed check for sudo config error
+
+ -- Oleksandr Shneyder <oleksandr.shneyder@treuchtlingen.de>  Mon, 13 Oct 2008 16:20:21 +0200
+
 x2goclient (2.0.1-17) unstable; urgency=low
 
   * Fixed: command with arguments
