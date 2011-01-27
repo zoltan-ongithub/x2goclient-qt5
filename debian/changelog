@@ -1,3 +1,9 @@
+x2goclient (2.0.1-20) unstable; urgency=low
+
+  * fixed resizing by session selecting
+
+ -- Oleksandr Shneyder <oleksandr.shneyder@treuchtlingen.de>  Wed, 19 Nov 2008 18:56:10 +0100
+
 x2goclient (2.0.1-19) unstable; urgency=low
 
   * Fixes in traslation
