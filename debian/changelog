@@ -1,3 +1,12 @@
+x2goclient (2.99-1) unstable; urgency=low
+
+  * PulseAudio support
+  * you can use running arts or esd daemons
+  * use blowfish cipher for ssh tunnels
+  * reverse ssh tunnel for fs export (sshfs)
+
+ -- Oleksandr Shneyder <oleksandr.shneyder@treuchtlingen.de>  Thu, 15 Jan 2009 15:03:58 +0100
+
 x2goclient (2.0.1-24) unstable; urgency=low
 
   * command line options:

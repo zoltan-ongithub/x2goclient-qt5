@@ -66,7 +66,7 @@ EditConnectionDialog::EditConnectionDialog ( QString id, QWidget * par,int ind,Q
 	fr->addTab ( sessSet,tr ( "&Session" ) );
 	fr->addTab ( conSet,tr ( "&Connection" ) );
 	fr->addTab ( otherSet,tr ( "&Settings" ) );
-	fr->addTab ( exportDir,tr ( "&Shared Folders" ) );
+	fr->addTab ( exportDir,tr ( "&Shared folders" ) );
 
 	QPushButton* ok=new QPushButton ( tr ( "&OK" ),this );
 	QPushButton* cancel=new QPushButton ( tr ( "&Cancel" ),this );
@@ -107,12 +107,12 @@ EditConnectionDialog::EditConnectionDialog ( QString id, QWidget * par,int ind,Q
 	icon->setFlat ( true );
 
 	QHBoxLayout* slay=new QHBoxLayout();
-	slay->addWidget ( new QLabel ( tr ( "Session Name:" ),sessSet ) );
+	slay->addWidget ( new QLabel ( tr ( "Session name:" ),sessSet ) );
 	slay->addWidget ( sessName );
 
 	QHBoxLayout* ilay=new QHBoxLayout();
 	ilay->addWidget ( icon );
-	ilay->addWidget ( new QLabel ( tr ( "<< change Icon" ),sessSet ) );
+	ilay->addWidget ( new QLabel ( tr ( "<< change icon" ),sessSet ) );
 
 #ifndef Q_WS_HILDON
 	QGroupBox *sgb=new QGroupBox ( tr ( "&Server" ),sessSet );
@@ -141,7 +141,7 @@ EditConnectionDialog::EditConnectionDialog ( QString id, QWidget * par,int ind,Q
 	QVBoxLayout *elLay =new QVBoxLayout();
 	slLay->addWidget ( new QLabel ( tr ( "Host:" ),sgb ) );
 	slLay->addWidget ( new QLabel ( tr ( "Login:" ),sgb ) );
-	slLay->addWidget ( new QLabel ( tr ( "SSH Port:" ),sgb ) );
+	slLay->addWidget ( new QLabel ( tr ( "SSH port:" ),sgb ) );
 	elLay->addWidget ( server );
 	elLay->addWidget ( uname );
 	elLay->addWidget ( sshPort );
@@ -160,12 +160,12 @@ EditConnectionDialog::EditConnectionDialog ( QString id, QWidget * par,int ind,Q
 	sgbLay->addLayout ( keyLay );
 
 #ifndef Q_WS_HILDON
-	QGroupBox *deskSess=new QGroupBox ( tr ( "&Session Type" ),sessSet );
+	QGroupBox *deskSess=new QGroupBox ( tr ( "&Session type" ),sessSet );
 	QHBoxLayout* cmdLay=new QHBoxLayout ( deskSess );
 #else
 	QFrame* deskSess=sessSet;
 	QHBoxLayout* cmdLay=new QHBoxLayout ();
-	cmdLay->addWidget ( new QLabel ( tr ( "Session Type:" ),sessSet ) );
+	cmdLay->addWidget ( new QLabel ( tr ( "Session type:" ),sessSet ) );
 #endif
 	sessBox=new QComboBox ( deskSess );
 	cmd=new QLineEdit ( deskSess );
@@ -173,8 +173,8 @@ EditConnectionDialog::EditConnectionDialog ( QString id, QWidget * par,int ind,Q
 	cmdCombo->setEditable ( true );
 	sessBox->addItem ( "KDE" );
 	sessBox->addItem ( "GNOME" );
-	sessBox->addItem ( tr ( "Custom Desktop" ) );
-	sessBox->addItem ( tr ( "Single Application" ) );
+	sessBox->addItem ( tr ( "Custom desktop" ) );
+	sessBox->addItem ( tr ( "Single application" ) );
 	cmdLay->addWidget ( sessBox );
 	cmdLay->addWidget ( new QLabel ( tr ( "Command:" ),deskSess ) );
 	cmdLay->addWidget ( cmd );
@@ -215,12 +215,12 @@ EditConnectionDialog::EditConnectionDialog ( QString id, QWidget * par,int ind,Q
 
 	QVBoxLayout *connLay=new QVBoxLayout ( conSet );
 #ifndef Q_WS_HILDON
-	QGroupBox* netSpd=new QGroupBox ( tr ( "&Connection Speed" ),conSet );
+	QGroupBox* netSpd=new QGroupBox ( tr ( "&Connection speed" ),conSet );
 	QVBoxLayout *spdLay=new QVBoxLayout ( netSpd );
 #else
 	QFrame* netSpd=conSet ;
 	QVBoxLayout *spdLay=new QVBoxLayout ();
-	spdLay->addWidget ( new QLabel ( tr ( "Connection Speed:" ),netSpd ) );
+	spdLay->addWidget ( new QLabel ( tr ( "Connection speed:" ),netSpd ) );
 #endif
 	spd=new QSlider ( Qt::Horizontal,netSpd );
 	spd->setMinimum ( 0 );
@@ -269,9 +269,9 @@ EditConnectionDialog::EditConnectionDialog ( QString id, QWidget * par,int ind,Q
 #ifndef Q_WS_HILDON
 	colLay->addWidget ( new QLabel ( tr ( "Method:" ),compr ) );
 #else
-	colLay->addWidget ( new QLabel ( tr ( "Compression Method:" ),compr ) );
+	colLay->addWidget ( new QLabel ( tr ( "Compression method:" ),compr ) );
 #endif
-	colLay->addWidget ( qualiLabel=new QLabel ( tr ( "Image Quality:" ),compr ) );
+	colLay->addWidget ( qualiLabel=new QLabel ( tr ( "Image quality:" ),compr ) );
 	cowLay->addWidget ( packMethode );
 	spbl->addWidget ( quali );
 	spbl->addStretch();
@@ -301,11 +301,16 @@ EditConnectionDialog::EditConnectionDialog ( QString id, QWidget * par,int ind,Q
 	QGroupBox *sbgr=new QGroupBox ( tr ( "Sound" ),otherSet );
 #endif
 	QVBoxLayout *dbLay = new QVBoxLayout ( dgb );
-	QVBoxLayout* sLay=new QVBoxLayout ( sbgr );
+	QVBoxLayout  *sndLay=new QVBoxLayout ( sbgr );
+	QHBoxLayout* sLay=new QHBoxLayout ( );
+	QVBoxLayout* sLay_sys=new QVBoxLayout ( );
+	QVBoxLayout* sLay_opt=new QVBoxLayout ( );
+	sLay->addLayout ( sLay_sys );
+	sLay->addLayout ( sLay_opt );
 	QVBoxLayout* setLay=new QVBoxLayout ( otherSet );
 	QButtonGroup* radio = new QButtonGroup ( dgb );
 	fs=new QRadioButton ( tr ( "Fullscreen" ),dgb );
-#ifndef Q_WS_HILDON	
+#ifndef Q_WS_HILDON
 	custom=new QRadioButton ( tr ( "Custom" ),dgb );
 #else
 	custom=new QRadioButton ( tr ( "Window" ),dgb );
@@ -340,7 +345,7 @@ EditConnectionDialog::EditConnectionDialog ( QString id, QWidget * par,int ind,Q
 #endif
 
 
-	kbd=new QCheckBox ( tr ( "Keep current Keyboard Settings" ),kgb );
+	kbd=new QCheckBox ( tr ( "Keep current keyboard Settings" ),kgb );
 	layout=new QLineEdit ( kgb );
 	type=new QLineEdit ( kgb );
 	QVBoxLayout *kbLay = new QVBoxLayout ( kgb );
@@ -349,8 +354,8 @@ EditConnectionDialog::EditConnectionDialog ( QString id, QWidget * par,int ind,Q
 	QVBoxLayout *kwLay = new QVBoxLayout();
 	QHBoxLayout *ksLay = new QHBoxLayout();
 
-	klLay->addWidget ( layoutLabel= new QLabel ( tr ( "Keyboard Layout:" ),kgb ) );
-	klLay->addWidget ( typeLabel= new QLabel ( tr ( "Keyboard Model:" ),kgb ) );
+	klLay->addWidget ( layoutLabel= new QLabel ( tr ( "Keyboard layout:" ),kgb ) );
+	klLay->addWidget ( typeLabel= new QLabel ( tr ( "Keyboard model:" ),kgb ) );
 
 	kwLay->addWidget ( layout );
 	kwLay->addWidget ( type );
@@ -361,16 +366,51 @@ EditConnectionDialog::EditConnectionDialog ( QString id, QWidget * par,int ind,Q
 	kbLay->addWidget ( kbd );
 	kbLay->addLayout ( ksLay );
 
-	sound=new QCheckBox ( tr ( "Enable Sound Support" ),sbgr );
-	sLay->addWidget ( sound );
+	sound=new QCheckBox ( tr ( "Enable sound support" ),sbgr );
 	QButtonGroup* sndsys=new QButtonGroup;
+	pulse=new QRadioButton ( "PulseAudio",sbgr );
 	arts=new QRadioButton ( "arts",sbgr );
+#ifdef WINDOWS
+	arts->hide();
+#endif
 	esd=new QRadioButton ( "esd",sbgr );
-	sndsys->addButton ( arts );
-	sndsys->addButton ( esd );
-	sLay->addWidget ( sound );
-	sLay->addWidget ( arts );
-	sLay->addWidget ( esd );
+	sndsys->addButton ( pulse,PULSE );
+	sndsys->addButton ( arts,ARTS );
+	sndsys->addButton ( esd,ESD );
+	sndsys->setExclusive ( true );
+	rbStartSnd=new QRadioButton ( tr ( "Start sound daemon" ),sbgr );
+	rbNotStartSnd=new QRadioButton ( tr ( "Use running sound daemon" ),sbgr );
+	cbSndSshTun=new QCheckBox ( tr ( "Use SSH port forwarding to tunnel\nsound system connections through firewalls" ),sbgr );
+	cbDefSndPort=new QCheckBox ( tr ( "Use default sound port" ),sbgr );
+	sbSndPort=new QSpinBox ( sbgr );
+	sbSndPort->setMinimum ( 1 );
+	sbSndPort->setMaximum ( 99999999 );
+
+
+	QHBoxLayout *sndPortLay = new QHBoxLayout();
+	lSndPort=new QLabel ( tr ( "Sound port:" ),sbgr );
+	sndPortLay->addWidget ( lSndPort );
+	sndPortLay->addWidget ( sbSndPort );
+
+	sLay_sys->addWidget ( pulse );
+	sLay_sys->addWidget ( arts );
+	sLay_sys->addWidget ( esd );
+
+	sLay_opt->addWidget ( rbStartSnd );
+	sLay_opt->addWidget ( rbNotStartSnd );
+	sLay_opt->addWidget ( cbSndSshTun );
+	QFrame* hl=new QFrame ( sbgr );
+	hl->setFrameStyle ( QFrame::HLine | QFrame::Sunken );
+	sLay_opt->addWidget ( hl );
+	sLay_opt->addWidget ( cbDefSndPort );
+	sLay_opt->addLayout ( sndPortLay );
+	sndLay->addWidget ( sound );
+	sndLay->addLayout ( sLay );
+#ifdef	Q_OS_DARWIN
+	arts->hide();
+	pulse->hide();	
+	esd->setChecked(true);		
+#endif
 
 #ifndef Q_WS_HILDON
 	setLay->addWidget ( dgb );
@@ -422,6 +462,7 @@ EditConnectionDialog::EditConnectionDialog ( QString id, QWidget * par,int ind,Q
 	ldir->setFrameStyle ( QFrame::StyledPanel|QFrame::Sunken );
 
 
+	cbFsSshTun=new QCheckBox ( tr ( "Use ssh port forwarding to tunnel file system connections through firewalls" ),egb );
 
 	QVBoxLayout* expLay=new QVBoxLayout ( exportDir );
 	expLay->addWidget ( egb );
@@ -437,6 +478,7 @@ EditConnectionDialog::EditConnectionDialog ( QString id, QWidget * par,int ind,Q
 	leftLay->addLayout ( dirLAy );
 	leftLay->addSpacing ( 10 );
 	leftLay->addWidget ( expTv );
+	expLay->addWidget ( cbFsSshTun );
 
 	QVBoxLayout* rightLay=new QVBoxLayout();
 	rightLay->addWidget ( addDir );
@@ -485,9 +527,11 @@ EditConnectionDialog::EditConnectionDialog ( QString id, QWidget * par,int ind,Q
 	connect ( sessBox,SIGNAL ( activated ( int ) ),this,
 	          SLOT ( slot_changeCmd ( int ) ) );
 
-	connect ( sound,SIGNAL ( toggled ( bool ) ),arts,SLOT ( setEnabled ( bool ) ) );
-	connect ( sound,SIGNAL ( toggled ( bool ) ),esd,SLOT ( setEnabled ( bool ) ) );
-
+	connect ( sound,SIGNAL ( toggled ( bool ) ),this,SLOT ( slot_sndToggled ( bool ) ) );
+	connect ( sndsys,SIGNAL ( buttonClicked ( int ) ),this,SLOT ( slot_sndSysSelected ( int ) ) );
+	connect ( rbStartSnd,SIGNAL ( clicked ( ) ),this,SLOT ( slot_sndStartClicked() ) );
+	connect ( rbNotStartSnd,SIGNAL ( clicked ( ) ),this,SLOT ( slot_sndStartClicked() ) );
+	connect ( cbDefSndPort,SIGNAL ( toggled ( bool ) ),this,SLOT ( slot_sndDefPortChecked ( bool ) ) );
 
 	kbd->setChecked ( true );
 	custom->setChecked ( true );
@@ -527,7 +571,7 @@ void EditConnectionDialog::readConfig()
 	QSettings st ( "Obviously Nice","x2goclient" );
 	st.beginGroup ( "sessions" );
 #endif
-	sessName->setText ( st.value ( sessionId+"/name", ( QVariant ) tr ( "New Session" ) ).toString() );
+	sessName->setText ( st.value ( sessionId+"/name", ( QVariant ) tr ( "New session" ) ).toString() );
 	sessIcon=st.value ( sessionId+"/icon",
 	                    ( QVariant ) ":icons/128x128/x2gosession.png" ).toString();
 	icon->setIcon ( QIcon ( sessIcon ) );
@@ -577,7 +621,7 @@ void EditConnectionDialog::readConfig()
 			cmd->setEnabled ( true );
 		}
 	}
-	if ( sessName->text() ==tr ( "New Session" ) )
+	if ( sessName->text() ==tr ( "New session" ) )
 	{
 		sessName->selectAll();
 		sessName->setFocus();
@@ -606,14 +650,47 @@ void EditConnectionDialog::readConfig()
 	layout->setText ( st.value ( sessionId+"/layout", ( QVariant ) parent->getDefaultLayout() ).toString() );
 	type->setText ( st.value ( sessionId+"/type", ( QVariant ) parent->getDefaultKbdType() ).toString() );
 	bool snd=st.value ( sessionId+"/sound", ( QVariant ) parent->getDefaultUseSound() ).toBool();
-	QString sndsys=st.value ( sessionId+"/soundsystem","arts" ).toString();
-	if ( sndsys=="esd" )
-		esd->setChecked ( true );
+	QString sndsys=st.value ( sessionId+"/soundsystem","pulse" ).toString();
+	bool startServ=st.value ( sessionId+"/startsoundsystem", true ).toBool();
+	bool sndInTun=st.value ( sessionId+"/soundtunnel", true ).toBool();
+	bool defSndPort=st.value ( sessionId+"/defsndport", true ).toBool();
+	int sndPort= st.value ( sessionId+"/sndport",4713 ).toInt();
+	cbFsSshTun->setChecked ( st.value ( sessionId+"/fstunnel", true ).toBool() );
+	if ( startServ )
+		rbStartSnd->setChecked ( true );
 	else
+		rbNotStartSnd->setChecked ( true );
+
+	pulse->setChecked ( true );
+	slot_sndSysSelected ( PULSE );
+#ifdef WINDOWS
+	if ( sndsys=="arts" )
+	{
+		sndsys="pulse";
+	}
+#endif
+	if ( sndsys=="arts" )
+	{
 		arts->setChecked ( true );
+		slot_sndSysSelected ( ARTS );
+	}
+#ifdef	Q_OS_DARWIN
+	sndsys=esd;
+#endif
+	if ( sndsys=="esd" )
+	{
+		esd->setChecked ( true );
+		slot_sndSysSelected ( ESD );
+	}
+	cbSndSshTun->setChecked ( sndInTun );
 	sound->setChecked ( snd );
-	arts->setEnabled ( snd );
-	esd->setEnabled ( snd );
+	if ( !defSndPort )
+		sbSndPort->setValue ( sndPort );
+	cbDefSndPort->setChecked ( defSndPort );
+	if ( sndsys=="arts" )
+		cbDefSndPort->setChecked ( false );
+	slot_sndToggled ( snd );
+	slot_sndStartClicked();
 	QString exportDir=st.value ( sessionId+"/export", ( QVariant ) QString::null ).toString();
 
 	QStringList lst=exportDir.split ( ";",QString::SkipEmptyParts );
@@ -638,7 +715,7 @@ void EditConnectionDialog::readConfig()
 
 void EditConnectionDialog::slot_changeCaption ( const QString& newName )
 {
-	setWindowTitle ( tr ( "Session Preferences - " ) +newName );
+	setWindowTitle ( tr ( "Session preferences - " ) +newName );
 }
 
 
@@ -674,7 +751,7 @@ void EditConnectionDialog::slot_getIcon()
 {
 	QString path= QFileDialog::getOpenFileName (
 	                  this,
-	                  tr ( "Open Picture" ),
+	                  tr ( "Open picture" ),
 	                  QDir::homePath(),
 	                  tr ( "Pictures" ) +" (*.png *.xpm *.jpg)" );
 	if ( path!=QString::null )
@@ -688,9 +765,9 @@ void EditConnectionDialog::slot_getKey()
 {
 	QString path= QFileDialog::getOpenFileName (
 	                  this,
-	                  tr ( "Open Key File" ),
+	                  tr ( "Open key file" ),
 	                  QDir::homePath(),
-	                  tr ( "All Files" ) +" (*)" );
+	                  tr ( "All files" ) +" (*)" );
 	if ( path!=QString::null )
 	{
 		key->setText ( path );
@@ -739,7 +816,7 @@ void EditConnectionDialog::slot_accepted()
 			appList.append ( app );
 		}
 	}
-	if ( sessBox->currentIndex()==3)
+	if ( sessBox->currentIndex() ==3 )
 	{
 		rootless=true;
 		command=parent->internAppName ( cmdCombo->lineEdit()->text() );
@@ -757,8 +834,18 @@ void EditConnectionDialog::slot_accepted()
 	st.setValue ( sessionId+"/layout", ( QVariant ) layout->text() );
 	st.setValue ( sessionId+"/type", ( QVariant ) type->text() );
 	st.setValue ( sessionId+"/sound", ( QVariant ) sound->isChecked() );
-	QString sndsys= ( arts->isChecked() ) ?"arts":"esd";
-	st.setValue ( sessionId+"/soundsystem", ( QVariant ) sndsys );
+	if ( arts->isChecked() )
+		st.setValue ( sessionId+"/soundsystem", ( QVariant ) "arts" );
+	if ( esd->isChecked() )
+		st.setValue ( sessionId+"/soundsystem", ( QVariant ) "esd" );
+	if ( pulse->isChecked() )
+		st.setValue ( sessionId+"/soundsystem", ( QVariant ) "pulse" );
+
+	st.setValue ( sessionId+"/startsoundsystem", ( QVariant ) rbStartSnd->isChecked() );
+	st.setValue ( sessionId+"/soundtunnel", ( QVariant ) cbSndSshTun->isChecked() );
+	st.setValue ( sessionId+"/fstunnel", ( QVariant ) cbFsSshTun->isChecked() );
+	st.setValue ( sessionId+"/defsndport", ( QVariant ) cbDefSndPort->isChecked() );
+	st.setValue ( sessionId+"/sndport", ( QVariant ) sbSndPort->value() );
 
 
 	QString exportDirs;
@@ -819,6 +906,11 @@ void EditConnectionDialog::slot_default()
 			layout->setText ( tr ( "us" ) );
 			type->setText ( tr ( "pc105/us" ) );
 			sound->setChecked ( true );
+			pulse->setChecked ( true );
+			slot_sndToggled ( true );
+			slot_sndSysSelected ( PULSE );
+			cbSndSshTun->setChecked ( true );
+			rbStartSnd->setChecked ( true );
 		}
 		break;
 	}
@@ -861,7 +953,7 @@ void EditConnectionDialog::slot_openDir()
 {
 	QString path= QFileDialog::getExistingDirectory (
 	                  this,
-	                  tr ( "Select Folder" ),
+	                  tr ( "Select folder" ),
 	                  QDir::homePath() );
 	if ( path!=QString::null )
 	{
@@ -891,4 +983,107 @@ void EditConnectionDialog::slot_addDir()
 void EditConnectionDialog::slot_delDir()
 {
 	model->removeRow ( expTv->currentIndex().row() );
+}
+
+void EditConnectionDialog::slot_sndSysSelected ( int system )
+{
+	rbStartSnd->show();
+	rbNotStartSnd->show();
+	cbSndSshTun->hide();
+	cbDefSndPort->setChecked ( true );
+	cbDefSndPort->setEnabled ( true );
+
+	switch ( system )
+	{
+		case PULSE:
+		{
+			rbStartSnd->hide();
+			rbNotStartSnd->hide();
+			cbSndSshTun->show();
+		        cbSndSshTun->setEnabled (true);
+			break;
+		}
+		case ARTS:
+		{
+			cbDefSndPort->setChecked ( false );
+			cbDefSndPort->setEnabled ( false );
+			sbSndPort->setValue ( 20221 );
+			break;
+		}
+		case ESD:
+		{
+#ifdef WINDOWS
+			rbStartSnd->hide();
+			rbNotStartSnd->hide();
+			cbSndSshTun->show();
+		        cbSndSshTun->setEnabled (false);
+		        cbSndSshTun->setChecked (true);
+#endif
+			sbSndPort->setValue ( 16001 );
+			break;
+		}
+	}
+	slot_sndStartClicked();
+}
+
+void EditConnectionDialog::slot_sndToggled ( bool val )
+{
+	arts->setEnabled ( val );
+	pulse->setEnabled ( val );
+	esd->setEnabled ( val );
+
+	rbStartSnd->setEnabled ( val );
+	rbNotStartSnd->setEnabled ( val );
+
+        cbSndSshTun->setEnabled (false);
+	if(pulse->isChecked())
+	    cbSndSshTun->setEnabled ( val );
+	lSndPort->setEnabled ( val );
+	if ( !arts->isChecked() )
+		cbDefSndPort->setEnabled ( val );
+	sbSndPort->setEnabled ( val );
+	if(val)
+	   slot_sndStartClicked();
+
+}
+
+void EditConnectionDialog::slot_sndStartClicked()
+{
+	bool start=rbStartSnd->isChecked();
+#ifdef WINDOWS
+	start=false;
+#endif	
+	if ( pulse->isChecked() )
+	{
+		lSndPort->setEnabled ( true );
+		sbSndPort->setEnabled ( true );
+		cbDefSndPort->setEnabled ( true );
+	}
+	else
+	{
+		lSndPort->setEnabled ( !start );
+		sbSndPort->setEnabled ( !start );
+		cbDefSndPort->setEnabled ( !start );
+	}
+	if ( arts->isChecked() )
+		cbDefSndPort->setEnabled ( false );
+	if ( ( !start  && esd->isChecked() ) ||pulse->isChecked() )
+		slot_sndDefPortChecked ( cbDefSndPort->isChecked() );
+
+}
+
+void EditConnectionDialog::slot_sndDefPortChecked ( bool val )
+{
+	sbSndPort->setEnabled ( !val );
+	lSndPort->setEnabled ( !val );
+	if ( val )
+	{
+		if ( pulse->isChecked() )
+			sbSndPort->setValue ( 4713 );
+		if ( arts->isChecked() )
+			sbSndPort->setValue ( 20221 );
+		if ( esd->isChecked() )
+			sbSndPort->setValue ( 16001 );
+	}
+
 }

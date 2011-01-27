@@ -347,10 +347,10 @@ void sshProcess::startTunnel ( QString h,QString lp,QString rp,bool rev,bool acc
 		printKey ( accept );
 #ifndef  WINDOWS
 
-		start ( setsid() +" ssh -v -i "+key+" -p "+sshPort+" "+user+"@"+host+params );
+		start ( setsid() +" ssh -c blowfish -v -i "+key+" -p "+sshPort+" "+user+"@"+host+params );
 #else
 
-		start ( "ssh -v -i "+key+" -p "+sshPort+" "+user+"@"+host+params );
+		start ( "ssh -c blowfish -v -i "+key+" -p "+sshPort+" "+user+"@"+host+params );
 #endif
 
 	}
@@ -359,10 +359,10 @@ void sshProcess::startTunnel ( QString h,QString lp,QString rp,bool rev,bool acc
 		printPass ( accept );
 #ifndef  WINDOWS
 
-		start ( setsid() +" ssh -v "+user+"@"+host+params+" -p "+sshPort );
+		start ( setsid() +" ssh -c blowfish -v "+user+"@"+host+params+" -p "+sshPort );
 #else
 
-		start ( "ssh -v "+user+"@"+host+params+" -p "+sshPort );
+		start ( "ssh -c blowfish -v "+user+"@"+host+params+" -p "+sshPort );
 #endif
 
 	}

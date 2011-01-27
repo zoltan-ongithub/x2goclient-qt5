@@ -38,9 +38,9 @@ SessionManageDialog::SessionManageDialog(QWidget * parent, Qt::WFlags f)
     sessions=new QListView(fr);
     frLay->addWidget(sessions);
 
-    QPushButton* newSession=new QPushButton(tr("&New Session"),fr);
-    editSession=new QPushButton(tr("&Session Preferences"),fr);
-    removeSession=new QPushButton(tr("&Delete Session"),fr);
+    QPushButton* newSession=new QPushButton(tr("&New session"),fr);
+    editSession=new QPushButton(tr("&Session preferences"),fr);
+    removeSession=new QPushButton(tr("&Delete session"),fr);
 
     par=(ONMainWindow*)parent;
     newSession->setIcon(QIcon(par->iconsPath("/16x16/new_file.png")));
@@ -71,7 +71,7 @@ SessionManageDialog::SessionManageDialog(QWidget * parent, Qt::WFlags f)
 
     setSizeGripEnabled ( true );
     setWindowIcon(QIcon(((ONMainWindow*)parent)->iconsPath("/32x32/edit.png")));
-    setWindowTitle(tr("Session Management"));
+    setWindowTitle(tr("Session management"));
     loadSessions();
     connect(sessions,SIGNAL(clicked(const QModelIndex&)),
             this,SLOT(slot_activated(const QModelIndex&)));

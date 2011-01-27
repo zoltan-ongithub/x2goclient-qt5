@@ -52,7 +52,7 @@ ConfigDialog::ConfigDialog ( QWidget * parent, Qt::WFlags f )
 
 	frLay->addWidget ( useldap );
 
-	QGroupBox* gb=new QGroupBox ( tr ( "LDAP Settings" ),fr );
+	QGroupBox* gb=new QGroupBox ( tr ( "LDAP settings" ),fr );
 
 	ldapServer=new QLineEdit ( gb );
 	port=new QSpinBox ( gb );
@@ -73,8 +73,8 @@ ConfigDialog::ConfigDialog ( QWidget * parent, Qt::WFlags f )
 
 	laiLay->addWidget ( new QLabel ( tr ( "Server URL:" ),gb ) );
 	laiLay->addWidget ( new QLabel ( tr ( "BaseDN:" ),gb ) );
-	laiLay->addWidget ( new QLabel ( tr ( "Failover Server 1 URL:" ),gb ) );
-	laiLay->addWidget ( new QLabel ( tr ( "Failover Server 2 URL:" ),gb ) );
+	laiLay->addWidget ( new QLabel ( tr ( "Failover server 1 URL:" ),gb ) );
+	laiLay->addWidget ( new QLabel ( tr ( "Failover server 2 URL:" ),gb ) );
 
 	ldapServer1=new QLineEdit ( gb );
 	port1=new QSpinBox ( gb );
@@ -131,14 +131,14 @@ ConfigDialog::ConfigDialog ( QWidget * parent, Qt::WFlags f )
 #endif  //USELDAP
 
 #ifdef Q_OS_DARWIN
-	QGroupBox* xgb=new QGroupBox ( tr ( "X-Server Settings" ),fr );
+	QGroupBox* xgb=new QGroupBox ( tr ( "X-Server settings" ),fr );
 	QGridLayout *xLay=new QGridLayout ( xgb );
 
 	leXexec=new QLineEdit ( xgb );
 	leXexec->setReadOnly ( true );
 	pbOpenExec=new QPushButton ( QIcon ( par->iconsPath ( "/32x32/file-open.png" ) ),
 	                             QString::null,xgb );
-	xLay->addWidget ( new QLabel ( tr ( "X11 Application:" ) ),0,0 );
+	xLay->addWidget ( new QLabel ( tr ( "X11 application:" ) ),0,0 );
 
 	leCmdOpt=new QLineEdit ( xgb );
 	leCmdOpt->setReadOnly ( true );
@@ -149,7 +149,7 @@ ConfigDialog::ConfigDialog ( QWidget * parent, Qt::WFlags f )
 
 
 	xLay->addLayout ( cmdLay,0,1 );
-	xLay->addWidget ( new QLabel ( tr ( "X11 Version:" ) ),1,0 );
+	xLay->addWidget ( new QLabel ( tr ( "X11 version:" ) ),1,0 );
 	xLay->addWidget ( leCmdOpt,1,1 );
 	frLay->addWidget ( xgb );
 
@@ -163,7 +163,7 @@ ConfigDialog::ConfigDialog ( QWidget * parent, Qt::WFlags f )
 	else
 		slot_findXDarwin();
 
-	QPushButton* findButton=new QPushButton ( tr ( "Find X11 Application" ),xgb );
+	QPushButton* findButton=new QPushButton ( tr ( "Find X11 application" ),xgb );
 	xLay->addWidget ( findButton,2,1 );
 	connect ( findButton,SIGNAL ( clicked() ),this,SLOT ( slot_findXDarwin() ) );
 	connect ( pbOpenExec,SIGNAL ( clicked() ),this,SLOT ( slot_selectXDarwin() ) );
@@ -172,7 +172,7 @@ ConfigDialog::ConfigDialog ( QWidget * parent, Qt::WFlags f )
 
 
 #ifdef WINDOWS
-	QGroupBox* xgb=new QGroupBox ( tr ( "X-Server Settings" ),fr );
+	QGroupBox* xgb=new QGroupBox ( tr ( "X-Server settings" ),fr );
 	QGridLayout *xLay=new QGridLayout ( xgb );
 
 	bgRadio=new QButtonGroup ( xgb );
@@ -283,7 +283,7 @@ ConfigDialog::ConfigDialog ( QWidget * parent, Qt::WFlags f )
 	clientSshPort->setValue ( st.value ( "clientport", ( QVariant ) 22 ).toInt() );
 
 	QHBoxLayout* sshLay=new QHBoxLayout();
-	sshLay->addWidget ( new QLabel ( tr ( "Clientside SSH Port For File System Export Usage:" ),fr ) );
+	sshLay->addWidget ( new QLabel ( tr ( "Clientside SSH port for file system export usage:" ),fr ) );
 	sshLay->addWidget ( clientSshPort );
 	sshLay->addStretch();
 	frLay->addLayout ( sshLay );

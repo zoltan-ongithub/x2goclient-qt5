@@ -26,7 +26,6 @@ public:
  private:
      QFile logFile;
 };
-
 #define x2goDebug X2goLogDebug()
 #else
 #include <QDebug>

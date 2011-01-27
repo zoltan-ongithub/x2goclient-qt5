@@ -39,6 +39,7 @@ class EditConnectionDialog : public QDialog
 public:
     EditConnectionDialog(QString id, QWidget * par,  int ind=0, Qt::WFlags f = 0);
     ~EditConnectionDialog();
+    enum {PULSE,ARTS,ESD};
 private:
     QLineEdit* sessName;
     QLineEdit* uname;
@@ -56,8 +57,16 @@ private:
     QTreeView* expTv;
     QRadioButton* custom;
     QRadioButton* arts;
+    QRadioButton* pulse;
     QRadioButton* esd;
     QCheckBox* sound;
+    QRadioButton* rbStartSnd;
+    QRadioButton* rbNotStartSnd;
+    QCheckBox* cbSndSshTun;
+    QCheckBox* cbDefSndPort;
+    QCheckBox* cbFsSshTun;
+    QLabel* lSndPort;
+    QSpinBox* sbSndPort;
     QString sessIcon;
     QPushButton* icon;
     QComboBox* packMethode;
@@ -93,6 +102,10 @@ private slots:
     void slot_openDir();
     void slot_addDir();
     void slot_delDir();
+    void slot_sndSysSelected(int system);
+    void slot_sndToggled( bool val);
+    void slot_sndStartClicked();
+    void slot_sndDefPortChecked(bool val);
 };
 
 #endif

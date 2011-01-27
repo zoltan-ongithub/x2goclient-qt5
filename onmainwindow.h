@@ -102,6 +102,7 @@ struct x2goSession
 	QString clientIp;
 	QString grPort;
 	QString sndPort;
+	QString fsPort;
 	int colorDepth;
 	enum{DESKTOP,ROOTLESS,SHADOW} sessionType;
 	QString command;
@@ -122,6 +123,12 @@ class ONMainWindow : public QMainWindow
 			S_CRTIME,
 			S_IP,
 			S_ID
+		};
+		enum
+		{
+			PULSE,
+			ARTS,
+			ESD
 		};
 		ONMainWindow ( QWidget *parent = 0 );
 		~ONMainWindow();
@@ -220,7 +227,6 @@ class ONMainWindow : public QMainWindow
 		bool defaultSetKbd;
 		bool showExport;
 		bool usePGPCard;
-		bool useEsd;
 		bool miniMode;
 		int defaultLink;
 		int defaultQuality;
@@ -232,8 +238,6 @@ class ONMainWindow : public QMainWindow
 		QString sshPort;
 		QString clientSshPort;
 		QString defaultSshPort;
-		QString artsCmd;
-		QString esdCmd;
 
 		QString defaultPack;
 		QString defaultLayout;
@@ -246,7 +250,7 @@ class ONMainWindow : public QMainWindow
 		QPushButton* bSusp;
 		QPushButton* sbExp;
 		QPushButton* bTerm;
-		QPushButton* bNew;		
+		QPushButton* bNew;
 
 		QLabel* selectSessionLabel;
 		QTreeView* sessTv;
@@ -291,7 +295,6 @@ class ONMainWindow : public QMainWindow
 		QString prevText;
 		QString onserver;
 		QString id;
-		QString sndport;
 		QString selectedCommand;
 		QString currentKey;
 		QTimer *exportTimer;
@@ -322,6 +325,16 @@ class ONMainWindow : public QMainWindow
 		bool newSession;
 		bool ldapOnly;
 		bool isScDaemonOk;
+
+		bool startSessSound;
+		int startSessSndSystem;
+
+		bool fsInTun;
+		bool fsTunReady;
+
+		QString fsExportKey;
+		bool fsExportKeyReady;
+
 		QString ldapServer;
 		int ldapPort;
 		QString ldapServer1;
@@ -330,17 +343,21 @@ class ONMainWindow : public QMainWindow
 		int ldapPort2;
 		QString ldapDn;
 		QString sessionCmd;
-		QString netSound;
+
+		QString LDAPSndSys;
+		QString LDAPSndPort;
+		bool LDAPSndStartServer;
+
 		QAction *act_edit;
 		QAction *act_new;
 		QProcess *nxproxy;
-		QProcess *artsd;
 		QString lastFreeServer;
 		QString cardLogin;
 		QTextEdit* stInfo;
 		SVGFrame* ln;
 		sshProcess* tunnel;
 		sshProcess* sndTunnel;
+		sshProcess* fsTunnel;
 		QList<x2goSession> selectedSessions;
 		x2goSession resumingSession;
 		bool startSound;
@@ -353,8 +370,8 @@ class ONMainWindow : public QMainWindow
 		void loadSettings();
 		void showPass ( UserButton* user );
 		void clean();
- 		bool defaultSession;
- 		QString defaultSessionName;
+		bool defaultSession;
+		QString defaultSessionName;
 		QString defaultUserName;
 		bool defaultUser;
 		SessionButton* createBut ( const QString& id );
@@ -430,9 +447,11 @@ class ONMainWindow : public QMainWindow
 		void slot_retTermSess ( bool result,QString output,sshProcess* );
 		void slot_retResumeSess ( bool result,QString output,sshProcess* );
 		void slot_tunnelFailed ( bool result,QString output,sshProcess* );
+		void slot_fsTunnelFailed ( bool result,QString output,sshProcess* );
 		void slot_sndTunnelFailed ( bool result,QString output,sshProcess* );
 		void slot_copyKey ( bool result,QString output,sshProcess* );
 		void slot_tunnelOk();
+		void slot_fsTunnelOk();
 		void slot_proxyerror ( QProcess::ProcessError err );
 		void slot_proxyFinished ( int result,QProcess::ExitStatus st );
 		void slot_proxyStderr();
@@ -464,7 +483,7 @@ class ONMainWindow : public QMainWindow
 		void slot_gpgAgentFinished ( int exitCode, QProcess::ExitStatus exitStatus );
 		void slot_checkAgentProcess();
 		void slot_execXmodmap();
-		void slot_sudoErr ( QString stderr, sshProcess* proc );
+		void slot_sudoErr ( QString errstr, sshProcess* pr);
 	private:
 		void cartReady();
 	private:
@@ -472,6 +491,8 @@ class ONMainWindow : public QMainWindow
 		bool checkAgentProcess();
 		bool isColorDepthOk ( int disp, int sess );
 		void check_cmd_status();
+		int startSshFsTunnel();
+		void startX2goMount();
 #ifdef WINDOWS
 		QString transform2cygwinPath ( const QString& winPath, bool trunc=false );
 		QString transform2winPath ( const QString& winPath );
@@ -479,6 +500,11 @@ class ONMainWindow : public QMainWindow
 #endif
 #if defined  (WINDOWS) || defined (Q_OS_DARWIN)
 		QString getXDisplay();
+#endif
+#if defined  (WINDOWS)
+		bool isServerRunning(int port);
+		QProcess* pulseServer;
+		void launchPulse();
 #endif
 };
 

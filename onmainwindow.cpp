@@ -88,7 +88,6 @@
 #define USERNAME  "cn"
 #define CLIENT    "registeredAddress"
 #define SERVER    "postalAddress"
-#define SNDPORT   "postalCode"
 #define RES       "title"
 #define DISPLAY   "street"
 #define STATUS    "st"
@@ -100,8 +99,12 @@
 #define FIRSTUID "ou"
 #define LASTUID "l"
 
-#define NETSOUND "o"
 #define SNDSUPPORT "sn"
+#define NETSOUNDSYSTEM "o"
+#define SNDSUPPORT "sn"
+#define SNDPORT   "ou"
+#define STARTSNDSERVER "title"
+
 
 
 #include <QDateTime>
@@ -126,6 +129,7 @@ void x2goSession::operator = ( const x2goSession& s )
 	server=s.server;
 	sessionId=s.sessionId;
 	sndPort=s.sndPort;
+	fsPort=s.fsPort;
 	status=s.status;
 }
 
@@ -140,7 +144,6 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
 	startHidden=false;
 	defaultUseSound=true;
 	defaultSetKbd=false;
-	useEsd=false;
 	extStarted=false;
 	defaultLink=2;
 	defaultFullscreen=false;
@@ -158,15 +161,19 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
 	defaultKbdType=tr ( "pc105/us" );
 	defaultCmd="KDE";
 	defaultSshPort=sshPort=clientSshPort="22";
+#ifdef WINDOWS
+	pulseServer=0l;
+#endif
 
 
-	setWindowTitle ( tr ( "X2Go Client" ) );
+	setWindowTitle ( tr ( "X2Go client" ) );
 	ld=0;
 	tunnel=0l;
 	sndTunnel=0l;
+	fsTunnel=0l;
 	selectSessionDlg=0l;
 	nxproxy=0l;
-	artsd=0l;
+	soundServer=0l;
 	scDaemon=0l;
 	gpgAgent=0l;
 	gpg=0l;
@@ -179,8 +186,8 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
 	hide();
 	kdeIconsPath=getKdeIconsPath();
 
-	addToAppNames ( "WWWBROWSER",tr ( "Internet Browser" ) );
-	addToAppNames ( "MAILCLIENT",tr ( "Email Client" ) );
+	addToAppNames ( "WWWBROWSER",tr ( "Internet browser" ) );
+	addToAppNames ( "MAILCLIENT",tr ( "Email client" ) );
 	addToAppNames ( "OFFICE",tr ( "OpenOffice.org" ) );
 	addToAppNames ( "TERMINAL",tr ( "Terminal" ) );
 
@@ -193,11 +200,11 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
 #endif
 
 	QDesktopWidget wd;
-	x2goDebug<<"Desktop Geometry:"<<wd.screenGeometry();
+// 	x2goDebug<<"Desktop geometry:"<<wd.screenGeometry();
 	if ( wd.screenGeometry().width() <1024 || wd.screenGeometry().height() <768 )
 	{
 		miniMode=true;
-		x2goDebug<<"Switching to \"mini\" Mode";
+		x2goDebug<<"Switching to \"mini\" mode";
 	}
 
 	agentCheckTimer=new QTimer ( this );
@@ -366,24 +373,24 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
 
 
 
-	act_new=new QAction ( QIcon ( iconsPath ( "/32x32/new_file.png" ) ),tr ( "&New Session ..." ),this );
+	act_new=new QAction ( QIcon ( iconsPath ( "/32x32/new_file.png" ) ),tr ( "&New session ..." ),this );
 	act_new->setShortcut ( tr ( "Ctrl+N" ) );
 
 
 	setWindowIcon ( QIcon ( ":icons/128x128/x2go.png" ) );
 	act_edit=new QAction ( QIcon ( iconsPath ( "/32x32/edit.png" ) ),
-	                       tr ( "Session Management..." ),this );
+	                       tr ( "Session management..." ),this );
 	act_edit->setShortcut ( tr ( "Ctrl+E" ) );
 
 
 	QAction *act_set=new QAction ( QIcon ( iconsPath ( "/32x32/edit_settings.png" ) ),tr ( "&Settings ..." ),this );
 
-	QAction *act_tb=new QAction ( tr ( "Show Toolbar" ),this );
+	QAction *act_tb=new QAction ( tr ( "Show toolbar" ),this );
 	act_tb->setCheckable ( true );
 	act_tb->setChecked ( showToolBar );
 
 
-	QAction *act_abclient=new QAction ( QIcon ( ":icons/16x16/x2go.png" ),tr ( "About X2GO Client" ),this );
+	QAction *act_abclient=new QAction ( QIcon ( ":icons/16x16/x2go.png" ),tr ( "About X2GO client" ),this );
 
 	QAction *act_abqt=new QAction ( tr ( "About Qt" ),this );
 
@@ -615,8 +622,10 @@ void ONMainWindow::closeEvent ( QCloseEvent* event )
 		delete tunnel;
 	if ( sndTunnel!=0l )
 		delete sndTunnel;
-	if ( artsd )
-		delete artsd;
+	if ( fsTunnel!=0l )
+		delete fsTunnel;
+	if ( soundServer )
+		delete soundServer;
 	if ( gpgAgent!=0l )
 	{
 		if ( gpgAgent->state() ==QProcess::Running )
@@ -631,6 +640,13 @@ void ONMainWindow::closeEvent ( QCloseEvent* event )
 			QProcess::execute ( "kill",arg );
 		}
 	}
+#ifdef WINDOWS
+	if ( pulseServer )
+	{
+		pulseServer->kill();
+		delete pulseServer;
+	}
+#endif
 }
 
 void ONMainWindow::loadSettings()
@@ -903,7 +919,7 @@ void ONMainWindow::slotPassEnter()
 
 	if ( ! initLdapSession() )
 	{
-		QMessageBox::critical ( 0l,tr ( "Error" ),tr ( "Please check LDAP Settings" ),
+		QMessageBox::critical ( 0l,tr ( "Error" ),tr ( "Please check LDAP settings" ),
 		                        QMessageBox::Ok,QMessageBox::NoButton );
 
 		slot_config();
@@ -936,7 +952,7 @@ void ONMainWindow::slotPassEnter()
 	}
 	if ( res.size() ==0 )
 	{
-		QString message=tr ( "no X2Go Server found in LDAP " );
+		QString message=tr ( "no X2Go server found in LDAP " );
 		QMessageBox::critical ( 0l,tr ( "Error" ),message,
 		                        QMessageBox::Ok,QMessageBox::NoButton );
 		slot_config();
@@ -1094,7 +1110,7 @@ void ONMainWindow::readUsers()
 #ifdef USELDAP
 	if ( ! initLdapSession() )
 	{
-		QMessageBox::critical ( 0l,tr ( "Error" ),tr ( "Please check LDAP Settings" ),
+		QMessageBox::critical ( 0l,tr ( "Error" ),tr ( "Please check LDAP settings" ),
 		                        QMessageBox::Ok,QMessageBox::NoButton );
 
 		slot_config();
@@ -1120,7 +1136,7 @@ void ONMainWindow::readUsers()
 		message=message+e.err_type.c_str();
 		message=message+" : "+e.err_str.c_str();
 		QMessageBox::critical ( 0l,tr ( "Error" ),message,QMessageBox::Ok,QMessageBox::NoButton );
-		QMessageBox::critical ( 0l,tr ( "Error" ),tr ( "Please check LDAP Settings" ),
+		QMessageBox::critical ( 0l,tr ( "Error" ),tr ( "Please check LDAP settings" ),
 		                        QMessageBox::Ok,QMessageBox::NoButton );
 		slot_config();
 		return;
@@ -1171,7 +1187,7 @@ void ONMainWindow::readUsers()
 
 void ONMainWindow::slot_config()
 {
-	if ( !startMaximized && !startHidden)
+	if ( !startMaximized && !startHidden )
 	{
 #ifndef WINDOWS
 		QSettings st ( QDir::homePath() +"/.x2goclient/sizes",QSettings::NativeFormat );
@@ -1341,7 +1357,7 @@ void ONMainWindow::placeButtons()
 
 void ONMainWindow::slotDeleteButton ( SessionButton * bt )
 {
-	if ( QMessageBox::warning ( this,bt->name(),tr ( "Are you sure you want to delete this Session?" ),
+	if ( QMessageBox::warning ( this,bt->name(),tr ( "Are you sure you want to delete this session?" ),
 	                            QMessageBox::Yes,QMessageBox::No ) !=QMessageBox::Yes )
 		return;
 #ifndef WINDOWS
@@ -1448,7 +1464,8 @@ bool ONMainWindow::initLdapSession ( bool showError )
 
 	}
 	sessionCmd="/usr/bin/startkde";
-	netSound="ARTS_SERVER";
+	LDAPSndSys="ARTS_SERVER";
+	LDAPSndStartServer=true;
 	startSound=false;
 	firstUid=0;
 	lastUid=65535;
@@ -1494,11 +1511,13 @@ bool ONMainWindow::initLdapSession ( bool showError )
 			lastUid= ( ( QString ) str.front().c_str() ).toInt();
 		}
 	}
-
 	attr.clear();
 	res.clear();
-	attr.push_back ( NETSOUND );
+	attr.push_back ( NETSOUNDSYSTEM );
 	attr.push_back ( SNDSUPPORT );
+	attr.push_back ( SNDPORT );
+	attr.push_back ( STARTSNDSERVER );
+
 
 	srch="cn=sound settings";
 	try
@@ -1517,15 +1536,42 @@ bool ONMainWindow::initLdapSession ( bool showError )
 	if ( res.size() !=0 )
 	{
 		LDAPStringEntry entry=res.front();
-		list<string> str=LDAPSession::getStringAttrValues ( entry,NETSOUND );
+		list<string> str=LDAPSession::getStringAttrValues ( entry,NETSOUNDSYSTEM );
 		if ( str.size() )
 		{
-			netSound=str.front().c_str();
+			LDAPSndSys=str.front().c_str();
+		}
+		if ( LDAPSndSys=="PULSE" )
+		{
+			LDAPSndSys="pulse";
+			LDAPSndStartServer=false;
+			LDAPSndPort="4713";
+		}
+		if ( LDAPSndSys=="ARTS_SERVER" )
+		{
+			LDAPSndPort="20221";
+			LDAPSndSys="arts";
+		}
+		if ( LDAPSndSys=="ESPEAKER" )
+		{
+			LDAPSndPort="16001";
+			LDAPSndSys="esd";
 		}
 		str=LDAPSession::getStringAttrValues ( entry,SNDSUPPORT );
 		if ( str.size() )
 		{
 			startSound= ( str.front() =="yes" ) ?true:false;
+		}
+		str=LDAPSession::getStringAttrValues ( entry,SNDPORT );
+		if ( str.size() )
+		{
+			LDAPSndPort=str.front().c_str();
+		}
+		str=LDAPSession::getStringAttrValues ( entry,STARTSNDSERVER );
+		if ( str.size() )
+		{
+			LDAPSndStartServer=
+			    ( str.front() =="yes" ) ?true:false;
 		}
 	}
 #endif
@@ -1745,6 +1791,8 @@ void ONMainWindow::slotSelectedFromList ( SessionButton* session )
 	pass->setPalette ( pal );
 
 	login->setText ( userName );
+	if ( userName.length() <=0 )
+		login->setFocus();
 
 
 	passForm->show();
@@ -1852,7 +1900,7 @@ void ONMainWindow::slot_listSessions ( bool result,QString output,sshProcess* pr
 		QString message=tr ( "<b>Connection failed</b>\n" ) +output;
 		if ( message.indexOf ( "publickey,password" ) !=-1 )
 		{
-			message=tr ( "<b>Wrong Password!</b><br><br>" ) +message;
+			message=tr ( "<b>Wrong password!</b><br><br>" ) +message;
 		}
 
 		QMessageBox::critical ( 0l,tr ( "Error" ),message,QMessageBox::Ok,
@@ -1924,6 +1972,8 @@ x2goSession ONMainWindow::getSessionFromString ( const QString& string )
 	s.clientIp=lst[7];
 	s.grPort=lst[8];
 	s.sndPort=lst[9];
+	if ( lst.count() >13 )
+		s.fsPort=lst[13];
 	s.colorDepth=0;
 	if ( s.sessionId.indexOf ( "_dp" ) !=-1 )
 	{
@@ -1990,7 +2040,7 @@ void ONMainWindow::startNewSession()
 		if ( host==QString::null )
 		{
 			QMessageBox::critical ( 0l,tr ( "Error" ),
-			                        tr ( "No Server availabel" ),QMessageBox::Ok,
+			                        tr ( "No server availabel" ),QMessageBox::Ok,
 			                        QMessageBox::NoButton );
 			return;
 		}
@@ -2432,7 +2482,7 @@ void ONMainWindow::selectSession ( const QStringList& sessions )
 	model->setHeaderData ( S_COMMAND,Qt::Horizontal,QVariant ( ( QString ) tr ( "Command" ) ) );
 	model->setHeaderData ( S_TYPE,Qt::Horizontal,QVariant ( ( QString ) tr ( "Type" ) ) );
 	model->setHeaderData ( S_SERVER,Qt::Horizontal,QVariant ( ( QString ) tr ( "Server" ) ) );
-	model->setHeaderData ( S_CRTIME,Qt::Horizontal,QVariant ( ( QString ) tr ( "Creation Time" ) ) );
+	model->setHeaderData ( S_CRTIME,Qt::Horizontal,QVariant ( ( QString ) tr ( "Creation time" ) ) );
 	model->setHeaderData ( S_IP,Qt::Horizontal,QVariant ( ( QString ) tr ( "Client IP" ) ) );
 	model->setHeaderData ( S_ID,Qt::Horizontal,QVariant ( ( QString ) tr ( "Session ID" ) ) );
 	sessTv->setModel ( ( QAbstractItemModel* ) model );
@@ -2679,7 +2729,7 @@ void ONMainWindow::slot_retSuspSess ( bool result, QString output,sshProcess* pr
 		QString message=tr ( "<b>Connection failed</b>\n" ) +output;
 		if ( message.indexOf ( "publickey,password" ) !=-1 )
 		{
-			message=tr ( "<b>Wrong Password!</b><br><br>" ) +message;
+			message=tr ( "<b>Wrong password!</b><br><br>" ) +message;
 		}
 
 		QMessageBox::critical ( 0l,tr ( "Error" ),message,QMessageBox::Ok,
@@ -2753,7 +2803,7 @@ void ONMainWindow::slot_retTermSess ( bool result,  QString output,sshProcess* p
 		QString message=tr ( "<b>Connection failed</b>\n" ) +output;
 		if ( message.indexOf ( "publickey,password" ) !=-1 )
 		{
-			message=tr ( "<b>Wrong Password!</b><br><br>" ) +message;
+			message=tr ( "<b>Wrong password!</b><br><br>" ) +message;
 		}
 
 		QMessageBox::critical ( 0l,tr ( "Error" ),message,QMessageBox::Ok,
@@ -2789,12 +2839,24 @@ void ONMainWindow::slot_retResumeSess ( bool result, QString output,sshProcess* 
 		return;
 	}
 
+	QString passwd=pass->text();
+	QString user=login->text();
 	QString host;
-	bool sound;
+	bool sound=false;
+	int sndSystem=PULSE;
+	QString sndPort;
+	bool startSoundServer=true;
+	bool sshSndTunnel=true;
 
 	if ( useLdap )
 	{
 		sound=startSound;
+		startSoundServer=LDAPSndStartServer;
+		if ( LDAPSndSys=="arts" )
+			sndSystem=ARTS;
+		if ( LDAPSndSys=="esd" )
+			sndSystem=ESD;
+		sndPort=LDAPSndPort;
 	}
 	else
 	{
@@ -2808,16 +2870,32 @@ void ONMainWindow::slot_retResumeSess ( bool result, QString output,sshProcess* 
 
 		QString sid=lastSession->id();
 		sound=st.value ( sid+"/sound",
-		                 ( QVariant ) defaultUseSound ).toBool();
+		                 ( QVariant ) false ).toBool();
 		QString sndsys=st.value ( sid+"/soundsystem",
-		                          ( QVariant ) "arts" ).toString();
+		                          ( QVariant ) "pulse" ).toString();
+		if ( sndsys=="arts" )
+			sndSystem=ARTS;
 		if ( sndsys=="esd" )
-			useEsd=true;
-		else
-			useEsd=false;
+			sndSystem=ESD;
+		sndPort=st.value ( sid+"/sndport" ).toString();
+		bool defPort=st.value ( sid+"/defsndport",true ).toBool();
+		startSoundServer=st.value ( sid+"/startsoundsystem",true ).toBool();
+		if ( defPort )
+		{
+			switch ( sndSystem )
+			{
+				case PULSE:
+					sndPort="4713";break;
+				case ESD:
+					sndPort="16001";break;
+			}
+		}
+		sshSndTunnel=st.value ( sid+"/soundtunnel",true ).toBool();
 	}
-	QString passwd=pass->text();
-	QString user=login->text();
+
+	//Will be used in runCommand
+	startSessSound=sound;
+	startSessSndSystem=sndSystem;
 
 	if ( newSession )
 	{
@@ -2877,65 +2955,102 @@ void ONMainWindow::slot_retResumeSess ( bool result, QString output,sshProcess* 
 		slot_tunnelFailed ( false,message,0 );
 		return;
 	}
-#if defined (WINDOWS) || defined (Q_OS_DARWIN)
-	useEsd=true;
-#endif
 
-	if ( sound )
+	if ( sndSystem==PULSE )
 	{
-		artsd=new QProcess ( this );
-		QString acmd="artsd",ecmd="esd";
-#ifdef Q_OS_DARWIN
-		QStringList env = artsd->environment();
-		QDir dir ( QApplication::applicationDirPath() );
-		dir.cdUp();
-		dir.cd ( "esd" );
-		env.insert ( 0,"DYLD_LIBRARY_PATH="+dir.absolutePath() );
-		artsd->setEnvironment ( env );
-		ecmd="\""+dir.absolutePath() +"\"/esd";
-#endif
-		if ( artsCmd.length() >0 )
-			acmd=artsCmd;
-		if ( esdCmd.length() >0 )
-			ecmd=esdCmd;
-		if ( useEsd )
-			artsd->start ( ecmd+" -tcp -nobeeps -bind localhost -port "+
-			               resumingSession.sndPort );
+		startSoundServer=false;
+		QString scmd;
+		if ( !sshSndTunnel )
+			scmd="mkdir ~/.pulse;echo \"default-server=`echo $SSH_CLIENT | awk '{print $1}'`:"+sndPort+"\" > ~/.pulse/client.conf";
 		else
-			artsd->start ( acmd+" -u -N -p "+resumingSession.sndPort );
+			scmd="mkdir ~/.pulse;echo \"default-server=localhost:"+resumingSession.sndPort+"\" > ~/.pulse/client.conf";
+		sshProcess* paProc;
 		try
 		{
-			sndTunnel=new sshProcess ( this,user,host,sshPort,
-			                           QString::null,
-			                           passwd,currentKey,acceptRsa );
+			paProc=new sshProcess ( this,user,host,sshPort,
+			                        scmd,
+			                        passwd,currentKey,acceptRsa );
 		}
 		catch ( QString message )
 		{
-			slot_sndTunnelFailed ( false,message,0 );
-		}
-		if ( cardReady )
-		{
-			QStringList env=sndTunnel->environment();
-			env+=sshEnv;
-			sndTunnel->setEnvironment ( env );
-		}
-
-		connect ( sndTunnel,SIGNAL ( sshFinished ( bool, QString,sshProcess* ) ),
-		          this,SLOT ( slot_sndTunnelFailed ( bool, QString,sshProcess* ) ) );
-
-		try
-		{
-			sndTunnel->startTunnel ( "localhost",resumingSession.sndPort,
-			                         resumingSession.sndPort,true );
-		}
-		catch ( QString message )
-		{
-			slot_sndTunnelFailed ( false,message,0 );
 			return;
 		}
+
+		if ( cardReady )
+		{
+			QStringList env=paProc->environment();
+			env+=sshEnv;
+			paProc->setEnvironment ( env );
+		}
+		paProc->startNormal();
+
+
 	}
-	else
-		sndTunnel=0l;
+
+	sndTunnel=0l;
+	if ( sound )
+	{
+#ifndef WINDOWS
+		if ( startSoundServer )
+		{
+			soundServer=new QProcess ( this );
+			QString acmd="artsd",ecmd="esd";
+#ifdef Q_OS_DARWIN
+			QStringList env = soundServer->environment();
+			QDir dir ( QApplication::applicationDirPath() );
+			dir.cdUp();
+			dir.cd ( "esd" );
+			env.insert ( 0,"DYLD_LIBRARY_PATH="+dir.absolutePath() );
+			soundServer->setEnvironment ( env );
+			ecmd="\""+dir.absolutePath() +"\"/esd";
+#endif //Q_OS_DARWIN
+			if ( sndSystem==ESD )
+				soundServer->start ( ecmd+" -tcp -nobeeps -bind localhost -port "+
+				                     resumingSession.sndPort );
+			if ( sndSystem==ARTS )
+				soundServer->start ( acmd+" -u -N -p "+resumingSession.sndPort );
+			sndPort=resumingSession.sndPort;
+		}
+#else
+		if(!isServerRunning(sndPort.toInt()))
+		{
+			launchPulse();
+		}
+#endif //WINDOWS
+		if ( sshSndTunnel )
+		{
+			try
+			{
+				sndTunnel=new sshProcess ( this,user,host,sshPort,
+				                           QString::null,
+				                           passwd,currentKey,acceptRsa );
+			}
+			catch ( QString message )
+			{
+				slot_sndTunnelFailed ( false,message,0 );
+			}
+			if ( cardReady )
+			{
+				QStringList env=sndTunnel->environment();
+				env+=sshEnv;
+				sndTunnel->setEnvironment ( env );
+			}
+
+			connect ( sndTunnel,SIGNAL ( sshFinished ( bool, QString,sshProcess* ) ),
+			          this,SLOT ( slot_sndTunnelFailed ( bool, QString,sshProcess* ) ) );
+
+			try
+			{
+				sndTunnel->startTunnel ( "localhost",resumingSession.sndPort,
+				                         sndPort,true );
+			}
+			catch ( QString message )
+			{
+				slot_sndTunnelFailed ( false,message,0 );
+				return;
+			}
+		}
+	}
 }
 
 
@@ -2961,7 +3076,7 @@ void ONMainWindow::slot_tunnelOk()
 	if ( !d.exists() )
 		if ( !d.mkpath ( dirpath ) )
 		{
-			QString message=tr ( "Unable to create Folder:" ) +dirpath;
+			QString message=tr ( "Unable to create folder:" ) +dirpath;
 			QMessageBox::critical ( 0l,tr ( "Error" ),message,QMessageBox::Ok,
 			                        QMessageBox::NoButton );
 			slot_showPassForm();
@@ -2969,17 +3084,19 @@ void ONMainWindow::slot_tunnelOk()
 				delete tunnel;
 			if ( sndTunnel )
 				delete sndTunnel;
-			if ( artsd )
-				delete artsd;
-			tunnel=sndTunnel=0l;
-			artsd=0l;
+			if ( fsTunnel )
+				delete fsTunnel;
+			if ( soundServer )
+				delete soundServer;
+			tunnel=sndTunnel=fsTunnel=0l;
+			soundServer=0l;
 			nxproxy=0l;
 			return;
 		}
 	QFile file ( dirpath+"/options" );
 	if ( !file.open ( QIODevice::WriteOnly | QIODevice::Text ) )
 	{
-		QString message=tr ( "Unable to write File:" ) +dirpath+"/options";
+		QString message=tr ( "Unable to write file:" ) +dirpath+"/options";
 		QMessageBox::critical ( 0l,tr ( "Error" ),message,QMessageBox::Ok,
 		                        QMessageBox::NoButton );
 		slot_showPassForm();
@@ -3085,17 +3202,19 @@ void ONMainWindow::slot_tunnelFailed ( bool result,  QString output,sshProcess* 
 {
 	if ( result==false )
 	{
-		QString message=tr ( "Unable to create SSL Tunnel:\n" ) +output;
+		QString message=tr ( "Unable to create SSL tunnel:\n" ) +output;
 		QMessageBox::critical ( 0l,tr ( "Error" ),message,QMessageBox::Ok,
 		                        QMessageBox::NoButton );
 		if ( tunnel )
 			delete tunnel;
 		if ( sndTunnel )
 			delete sndTunnel;
-		if ( artsd )
-			delete artsd;
-		tunnel=sndTunnel=0l;
-		artsd=0l;
+		if ( fsTunnel )
+			delete fsTunnel;
+		if ( soundServer )
+			delete soundServer;
+		tunnel=sndTunnel=fsTunnel=0l;
+		soundServer=0l;
 		nxproxy=0l;
 		slot_showPassForm();
 	}
@@ -3128,11 +3247,13 @@ void ONMainWindow::slot_proxyFinished ( int,QProcess::ExitStatus )
 		delete tunnel;
 	if ( sndTunnel )
 		delete sndTunnel;
-	if ( artsd )
-		delete artsd;
+	if ( fsTunnel )
+		delete fsTunnel;
+	if ( soundServer )
+		delete soundServer;
 	delete nxproxy;
-	tunnel=sndTunnel=0l;
-	artsd=0l;
+	tunnel=sndTunnel=fsTunnel=0l;
+	soundServer=0l;
 	nxproxy=0l;
 	if ( !usePGPCard )
 		check_cmd_status();
@@ -3277,7 +3398,7 @@ void ONMainWindow::showSessionStatus()
 
 	slName=new QLabel ( sessionStatusDlg );
 	slName->setText (
-	    tr ( "<b>Session ID:<br>Server:<br>Username:<br>Display:<br>Creation Time:<br>Status:</b>" ) );
+	    tr ( "<b>Session ID:<br>Server:<br>Username:<br>Display:<br>Creation time:<br>Status:</b>" ) );
 	if ( !miniMode )
 		slName->move ( 30,30 );
 	else
@@ -3302,9 +3423,9 @@ void ONMainWindow::showSessionStatus()
 	setWidgetStyle ( sbSusp );
 	sbTerm=new QPushButton ( tr ( "Terminate" ),sessionStatusDlg );
 	setWidgetStyle ( sbTerm );
-	sbExp=new QPushButton ( tr ( "Share Folder..." ),sessionStatusDlg );
+	sbExp=new QPushButton ( tr ( "Share folder..." ),sessionStatusDlg );
 	setWidgetStyle ( sbExp );
-	sbAdv=new QCheckBox ( tr ( "Show Details" ),sessionStatusDlg );
+	sbAdv=new QCheckBox ( tr ( "Show details" ),sessionStatusDlg );
 	setWidgetStyle ( sbAdv );
 	sbAdv->setFixedSize ( sbAdv->sizeHint() );
 #ifndef Q_WS_HILDON
@@ -3602,6 +3723,8 @@ x2goSession ONMainWindow::getNewSessionFromString ( const QString& string )
 	s.sessionId=lst[3];
 	s.grPort=lst[4];
 	s.sndPort=lst[5];
+	if ( lst.count() >6 )
+		s.fsPort=lst[6];
 	return s;
 }
 
@@ -3645,44 +3768,33 @@ void ONMainWindow::runCommand()
 	sshProcess *proc=0l;
 
 	QString cmd;
-	bool sound;
-
-	if ( useLdap )
-	{
-		sound=startSound;
-	}
-	else
-	{
-#ifndef WINDOWS
-		QSettings st ( QDir::homePath() +"/.x2goclient/sessions",QSettings::NativeFormat );
-#else
-
-		QSettings st ( "Obviously Nice","x2goclient" );
-		st.beginGroup ( "sessions" );
-#endif
-
-		QString sid=lastSession->id();
-		sound=st.value ( sid+"/sound",
-		                 ( QVariant ) defaultUseSound ).toBool();
-	}
 
 	command.replace ( " ","X2GO_SPACE_CHAR" );
 
-	if ( !sound )
+	if ( !startSessSound  || startSessSndSystem==PULSE )
 		cmd="setsid x2goruncommand "+resumingSession.display+" "+
 		    resumingSession.agentPid + " " +resumingSession.sessionId+" "+
 		    resumingSession.sndPort+ " "+ command+" nosnd "+
 		    sessionType +">& /dev/null & exit";
-	else if ( useEsd )
-		cmd="setsid x2goruncommand "+resumingSession.display+" "+
-		    resumingSession.agentPid + " " +resumingSession.sessionId+" "+
-		    resumingSession.sndPort+ " "+ command+" esd "+
-		    sessionType +">& /dev/null & exit";
 	else
-		cmd="setsid x2goruncommand "+resumingSession.display+" "+
-		    resumingSession.agentPid + " " +resumingSession.sessionId+" "+
-		    resumingSession.sndPort+ " "+ command+" arts "+
-		    sessionType +">& /dev/null & exit";
+	{
+		switch ( startSessSndSystem )
+		{
+			case ESD:
+				cmd="setsid x2goruncommand "+resumingSession.display+" "+
+				    resumingSession.agentPid + " " +resumingSession.sessionId+" "+
+				    resumingSession.sndPort+ " "+ command+" esd "+
+				    sessionType +">& /dev/null & exit";
+				break;
+			case ARTS:
+				cmd="setsid x2goruncommand "+resumingSession.display+" "+
+				    resumingSession.agentPid + " " +resumingSession.sessionId+" "+
+				    resumingSession.sndPort+ " "+ command+" arts "+
+				    sessionType +">& /dev/null & exit";
+				break;
+
+		}
+	}
 
 
 	try
@@ -3729,7 +3841,7 @@ void ONMainWindow::slot_retRunCommand ( bool result, QString output,sshProcess* 
 		QString message=tr ( "<b>Connection failed</b>\n:\n" ) +output;
 		if ( message.indexOf ( "publickey,password" ) !=-1 )
 		{
-			message=tr ( "<b>Wrong Password!</b><br><br>" ) +message;
+			message=tr ( "<b>Wrong password!</b><br><br>" ) +message;
 		}
 		QMessageBox::critical ( 0l,tr ( "Error" ),message,QMessageBox::Ok,
 		                        QMessageBox::NoButton );
@@ -3765,11 +3877,6 @@ bool ONMainWindow::parseParam ( QString param )
 	if ( param=="--hide" )
 	{
 		startHidden=true;
-		return true;
-	}
-	if ( param=="--esd" )
-	{
-		useEsd=true;
 		return true;
 	}
 	if ( param=="--pgp-card" )
@@ -3863,11 +3970,6 @@ bool ONMainWindow::parseParam ( QString param )
 		readLoginsFrom=value;
 		return true;
 	}
-	if ( setting=="--arts-cmd" )
-	{
-		artsCmd=value;
-		return true;
-	}
 	if ( setting=="--ssh-port" )
 	{
 		defaultSshPort=value;
@@ -3876,11 +3978,6 @@ bool ONMainWindow::parseParam ( QString param )
 	if ( setting=="--client-ssh-port" )
 	{
 		clientSshPort=value;
-		return true;
-	}
-	if ( setting=="--esd-cmd" )
-	{
-		esdCmd=value;
 		return true;
 	}
 	printError ( param );
@@ -4072,31 +4169,28 @@ void ONMainWindow::showHelp()
 	    tr (
 	        "Usage: x2goclient [Options]\n\
 	        Options:\n\
-	        --help                           Print this message\n\
-	        --help-pack                      Print availabel pack methods\n\
-	        --no-menu                        Hide menu bar\n\
-	        --maximize                       Start maximized\n\
-	        --hide                           Start hidden\n\
-	        --pgp-card 			 Use openPGP Card authentification\n\
-	        --add-to-known-hosts             Add RSA key fingerprint to .ssh/known_hosts \n\
-	        if authenticity of server can't be established\n\
-	        --ldap=<host:port:dn>            Start with LDAP Support. Example:\n\
-	        --ldap=ldapserver:389:o=organization,c=de\n\
-	        --ldap1=<host:port>              LDAP Failover Server #1 \n\
-	        --ldap2=<host:port>              LDAP Failover Server #2 \n\
-	        --ssh-port=<port>                connect to this port, default value 22\n\
-	        --client-ssh-port=<port>         local ssh port (for fs export), default value 22\n\
-	        --command=<cmd>                  Set default command, default value 'KDE'\n\
-	        --session=<session>              Start session 'session'\n\
-	        --user=<username>                In LDAP mode, select user 'username'\n\
-	        --sound=<0|1>                    Enable sound, default value '1'\n\
-	        --esd                            Use ESD instead ARTS\n\
-	        --geomerty=<W>x<H>|fullscreen    Set default geometry, default value '800x600'\n\
-	        --link=<modem|isdn|adsl|wan|lan> Set default link type, default 'lan'\n\
-	        --pack=<packmethod>              Set default pack method, default '16m-jpeg-9'\n\
-	        --kbd-layout=<layout>            Set default keyboard layout, default 'us'\n\
-	        --kbd-type=<typed>               Set default keyboard type, default 'pc105/us'\n\
-	        --set-kbd=<0|1>                  Overwrite current keyboard settings, default '0'\n" );
+	        --help                           show this message\n\
+	        --help-pack                      show available pack methods\n\
+	        --no-menu                        hide menu bar\n\
+	        --maximize                       start maximized\n\
+	        --hide                           start hidden\n\
+	        --pgp-card    			 use openPGP card authentification\n\
+	        --add-to-known-hosts             add RSA key fingerprint to .ssh/known_hosts if authenticity of server can't be established\n\
+	        --ldap=<host:port:dn>            start with LDAP support. Example:\n\
+	            				 --ldap=ldapserver:389:o=organization,c=de\n\
+	        --ldap1=<host:port>              LDAP failover server #1 \n\
+	        --ldap2=<host:port>              LDAP failover server #2 \n\
+	        --ssh-port=<port>                connect to this port, default value 22\n\
+	        --client-ssh-port=<port>         local ssh port (for fs export), default value 22\n\
+	        --command=<cmd>                  Set default command, default value 'KDE'\n\
+	        --session=<session>              Start session 'session'\n\
+	        --user=<username>                in LDAP mode, select user 'username'\n\
+	        --geomerty=<W>x<H>|fullscreen    set default geometry, default value '800x600'\n\
+	        --link=<modem|isdn|adsl|wan|lan> set default link type, default 'lan'\n\
+	        --pack=<packmethod>              set default pack method, default '16m-jpeg-9'\n\
+	        --kbd-layout=<layout>            set default keyboard layout, default 'us'\n\
+	        --kbd-type=<typed>               set default keyboard type, default 'pc105/us'\n\
+	        --set-kbd=<0|1>                  overwrite current keyboard settings, default '0'\n" );
 	qCritical ( "%s",helpMsg.toLocal8Bit().data() );
 	QMessageBox::information ( this,tr ( "Options" ),helpMsg );
 }
@@ -4141,7 +4235,7 @@ void ONMainWindow::slot_getServers ( bool result, QString output,sshProcess* pro
 		QString message=tr ( "<b>Connection failed</b>\n" ) +output;
 		if ( message.indexOf ( "publickey,password" ) !=-1 )
 		{
-			message=tr ( "<b>Wrong Password!</b><br><br>" ) +message;
+			message=tr ( "<b>Wrong password!</b><br><br>" ) +message;
 		}
 
 		QMessageBox::critical ( 0l,tr ( "Error" ),message,QMessageBox::Ok,
@@ -4236,7 +4330,7 @@ void ONMainWindow::slot_listAllSessions ( bool result,QString output,sshProcess*
 		QString message=tr ( "<b>Connection failed</b>\n" ) +output;
 		if ( message.indexOf ( "publickey,password" ) !=-1 )
 		{
-			message=tr ( "<b>Wrong Password!</b><br><br>" ) +message;
+			message=tr ( "<b>Wrong password!</b><br><br>" ) +message;
 		}
 
 		QMessageBox::critical ( 0l,tr ( "Error" ),message,QMessageBox::Ok,
@@ -4314,11 +4408,33 @@ void ONMainWindow::slot_exportDirectory()
 
 void ONMainWindow::exportDirs ( QString exports,bool removable )
 {
+	fsExportKeyReady=false;
 	directory dr;
 	dr.dirList=exports;
 	dr.key=createRSAKey();
 	QString passwd=pass->text();
+	fsInTun=false;
+	if ( !useLdap )
+	{
+#ifndef WINDOWS
+		QSettings st ( QDir::homePath() +"/.x2goclient/sessions",QSettings::NativeFormat );
+#else
 
+		QSettings st ( "Obviously Nice","x2goclient" );
+		st.beginGroup ( "sessions" );
+#endif
+
+		QString sid=lastSession->id();
+
+		fsInTun=st.value ( sid+"/fstunnel",
+		                   ( QVariant ) true ).toBool();
+	}
+	if ( fsInTun )
+	{
+		if ( fsTunnel==0l )
+			if ( startSshFsTunnel() )
+				return;
+	}
 	sshProcess* lproc;
 	try
 	{
@@ -4359,6 +4475,7 @@ void ONMainWindow::exportDirs ( QString exports,bool removable )
 	{
 		slot_copyKey ( false,message,0 );
 	}
+
 }
 
 
@@ -4415,23 +4532,27 @@ QString ONMainWindow::createRSAKey()
 #ifndef WINDOWS
 
 	args<<"-t"<<"rsa"<<"-b"<<"1024"<<"-N"<<""<<"-f"<<keyName;
+	x2goDebug <<keyName<<endl;
 #else
 
 	args<<"-t"<<"rsa"<<"-b"<<"1024"<<"-N"<<""<<"-f"<<transform2cygwinPath ( keyName );
+	x2goDebug <<transform2cygwinPath ( keyName ) <<endl;
 #endif
 
-	x2goDebug <<keyName<<endl;
 
 	if ( QProcess::execute ( "ssh-keygen",args ) !=0 )
+	{
+	        x2goDebug <<"ssh-keygen failed" <<endl;
 		return QString::null;
+	}
+        x2goDebug <<"ssh-keygen ok" <<endl;
 
+	QFile rsa ( "/etc/ssh/ssh_host_rsa_key.pub" );
 #ifdef WINDOWS
-	QFile rsa ( ConfigDialog::getCygwinDir ( "/" ) +"\\etc\\ssh_host_rsa_key.pub" );
+	rsa.setFileName( ConfigDialog::getCygwinDir ( "/" ) +"\\etc\\ssh_host_rsa_key.pub" );
 #endif
 #ifdef Q_OS_DARWIN
-	QFile rsa ( "/etc/ssh_host_rsa_key.pub" );
-#else
-	QFile rsa ( "/etc/ssh/ssh_host_rsa_key.pub" );
+	rsa.setFileName( "/etc/ssh_host_rsa_key.pub" );
 #endif
 
 	if ( !rsa.open ( QIODevice::ReadOnly | QIODevice::Text ) )
@@ -4459,156 +4580,41 @@ QString ONMainWindow::createRSAKey()
 	QTextStream out ( &file );
 	out<<"----BEGIN RSA IDENTITY----"<<rsa_pub;
 	file.close();
-
-
 	return keyName;
 }
 
 void ONMainWindow::slot_copyKey ( bool result,QString output,sshProcess* proc )
 {
 #ifdef WINDOWS
-	QString key=transform2winPath ( proc->getSource() );
+	fsExportKey=transform2winPath ( proc->getSource() );
 #else
 
-	QString key=proc->getSource();
+	fsExportKey=proc->getSource();
 #endif
 
 	if ( proc )
 		delete proc;
 	proc=0;
-	QFile::remove
-	( key );
+	QFile::remove ( fsExportKey );
 	if ( result==false )
 	{
 		QString message=tr ( "<b>Connection failed</b>\n" ) +output;
 		if ( message.indexOf ( "publickey,password" ) !=-1 )
 		{
-			message=tr ( "<b>Wrong Password!</b><br><br>" ) +message;
+			message=tr ( "<b>Wrong password!</b><br><br>" ) +message;
 		}
 
 		QMessageBox::critical ( 0l,tr ( "Error" ),message,QMessageBox::Ok,
 		                        QMessageBox::NoButton );
-		QFile::remove
-		( key+".pub" );
+		QFile::remove ( fsExportKey+".pub" );
 		return;
 	}
+	fsExportKeyReady=true;
 
-	QFile file ( key+".pub" );
-	if ( !file.open ( QIODevice::ReadOnly | QIODevice::Text ) )
-	{
-		QString message=tr ( "Unable to read :\n" ) +key+".pub";
-		QMessageBox::critical ( 0l,tr ( "Error" ),message,QMessageBox::Ok,
-		                        QMessageBox::NoButton );
-		QFile::remove
-		( key+".pub" );
-		return;
-	}
-
-	QByteArray line = file.readLine();
-	file.close();
-
-#ifndef WINDOWS
-
-	QString authofname=QDir::homePath() +"/.ssh/authorized_keys" ;
-#else
-
-	QString authofname=cygwinHomePath() +"\\.ssh\\authorized_keys" ;
-#endif
-
-	QFile file1 ( authofname );
-
-	if ( !file1.open ( QIODevice::WriteOnly | QIODevice::Text | QIODevice::Append ) )
-	{
-		QString message=tr ( "Unable to write :\n" ) + authofname;
-		QMessageBox::critical ( 0l,tr ( "Error" ),message,QMessageBox::Ok,
-		                        QMessageBox::NoButton );
-		QFile::remove
-		( key+".pub" );
-		return;
-
-	}
-	QTextStream out ( &file1 );
-	out<<line;
-	file1.close();
-	directory* dir=getExpDir ( key );
-	bool rem=dir->isRemovable;
-	if ( !dir )
-		return;
-
-	QString passwd=pass->text();
-	QString user=login->text();
-	QString host=resumingSession.server;
-	QString sessionId=resumingSession.sessionId;
-
-	QStringList env=QProcess::systemEnvironment();
-	QString cuser;
-	for ( int i=0;i<env.size();++i )
-	{
-		QStringList ls=env[i].split ( "=" );
-#ifndef WINDOWS
-
-		if ( ls[0]=="USER" )
-#else
-
-		if ( ls[0]=="USERNAME" )
-#endif
-
-		{
-			cuser=ls[1];
-			break;
-		}
-	}
-	proc=0l;
-	QString cmd;
-	QString dirs=dir->dirList;
-
-	if ( clientSshPort!="22" )
-	{
-		dirs=dirs+"__SSH_PORT__"+clientSshPort;
-	}
-	if ( !rem )
-		cmd="export HOSTNAME && x2gomountdirs dir "+sessionId+" "+cuser+
-		    " "+dir->dstKey+" "+dirs;
-	else
-		cmd="export HOSTNAME && x2gomountdirs rem "+sessionId+" "+cuser+
-		    " "+dir->dstKey+" "+dirs;
-
-#ifdef WINDOWS
-
-	cmd="chmod 600 "+dir->dstKey+"&&"+cmd;
-#endif
-
-	try
-	{
-		proc=new sshProcess ( this,user,host,sshPort,
-		                      cmd,
-		                      passwd,currentKey,acceptRsa );
-		dir->proc=proc;
-	}
-	catch ( QString message )
-	{
-		slot_retExportDir ( false,message,proc );
-	}
-	if ( cardReady )
-	{
-		QStringList env=proc->environment();
-		env+=sshEnv;
-		proc->setEnvironment ( env );
-	}
-
-	connect ( proc,SIGNAL ( sshFinished ( bool, QString,sshProcess* ) ),
-	          this,SLOT ( slot_retExportDir ( bool, QString,sshProcess* ) ) );
-
-	try
-	{
-		proc->startNormal();
-	}
-	catch ( QString message )
-	{
-		slot_retExportDir ( false,message,proc );
-		return;
-	}
-
+	//start reverse mounting if RSA Key and FS tunnel are ready
+	//start only once from slot_fsTunnelOk() or slot_copyKey().
+	if ( !fsInTun || fsTunReady )
+		startX2goMount();
 
 }
 
@@ -4651,7 +4657,7 @@ void ONMainWindow::slot_retExportDir ( bool result,QString output,sshProcess* pr
 		QString message=tr ( "<b>Connection failed</b>\n" ) +output;
 		if ( message.indexOf ( "publickey,password" ) !=-1 )
 		{
-			message=tr ( "<b>Wrong Password!</b><br><br>" ) +message;
+			message=tr ( "<b>Wrong password!</b><br><br>" ) +message;
 		}
 
 		QMessageBox::critical ( 0l,tr ( "Error" ),message,QMessageBox::Ok,
@@ -4882,7 +4888,7 @@ void ONMainWindow::slot_about_qt()
 
 void ONMainWindow::slot_about()
 {
-	QMessageBox::about ( this,tr ( "About X2GO Client" ),tr ( "<b>X2Go Client V. " ) +VERSION+tr ( "</b><br> (C. 2006-2008 <b>obviously nice</b>: Oleksandr Shneyder, Heinz-Markus Graesing)<br><br>Client for use with the X2Go network based computing environment. This Client will be able to connect to X2Go server(s) and start, stop, resume and terminate (running) desktop sessions. X2Go Client stores different server connections and may automatically request authentification data from LDAP directories. Furthermore it can be used as fullscreen loginscreen (replacement for loginmanager like xdm). Please visit x2go.org for further information." ) );
+	QMessageBox::about ( this,tr ( "About X2GO client" ),tr ( "<b>X2Go client V. " ) +VERSION+tr ( "</b><br> (C. 2006-2008 <b>obviously nice</b>: Oleksandr Shneyder, Heinz-Markus Graesing)<br><br>Client for use with the X2Go network based computing environment. This Client will be able to connect to X2Go server(s) and start, stop, resume and terminate (running) desktop sessions. X2Go Client stores different server connections and may automatically request authentification data from LDAP directories. Furthermore it can be used as fullscreen loginscreen (replacement for loginmanager like xdm). Please visit x2go.org for further information." ) );
 }
 
 
@@ -5184,7 +5190,7 @@ void ONMainWindow::slot_gpgFinished ( int exitCode, QProcess::ExitStatus exitSta
 		{
 			x2goDebug<<"Card not configured\n";
 			QMessageBox::critical ( 0l,tr ( "Error" ),
-			                        tr ( "This card is unknown by X2Go System" ),
+			                        tr ( "This card is unknown by X2Go system" ),
 			                        QMessageBox::Ok,
 			                        QMessageBox::NoButton );
 			QTimer::singleShot ( 1000, this, SLOT ( slot_startPGPAuth() ) );
@@ -5557,7 +5563,7 @@ void ONMainWindow::slot_execXmodmap()
 #endif
 }
 
-void ONMainWindow::slot_sudoErr ( QString stderr, sshProcess* proc )
+void ONMainWindow::slot_sudoErr ( QString, sshProcess* proc )
 {
 	/*	QMessageBox::critical ( 0l,tr ( "Error" ),tr("Check your sudo configuration"),
 		                        QMessageBox::Ok,QMessageBox::NoButton );*/
@@ -5620,7 +5626,7 @@ void ONMainWindow::slot_cmdMessage ( bool result,QString output,sshProcess* proc
 		QString message=tr ( "<b>Connection failed</b>\n" ) +output;
 		if ( message.indexOf ( "publickey,password" ) !=-1 )
 		{
-			message=tr ( "<b>Wrong Password!</b><br><br>" ) +message;
+			message=tr ( "<b>Wrong password!</b><br><br>" ) +message;
 		}
 
 		QMessageBox::critical ( 0l,tr ( "Error" ),message,QMessageBox::Ok,
@@ -5642,3 +5648,231 @@ void ONMainWindow::slot_cmdMessage ( bool result,QString output,sshProcess* proc
 
 
 }
+
+
+int ONMainWindow::startSshFsTunnel()
+{
+	fsTunReady=false;
+	x2goDebug<<"starting fs tunnel for:"<<resumingSession.sessionId<<
+	"\ngr port: "<<resumingSession.grPort<<
+	"\nfs port: "<<resumingSession.fsPort;
+
+	if ( resumingSession.fsPort.length() <=0 )
+	{
+		QString message=tr ( "Remote server does not support file system export "
+		                     "through SSH Tunnel\n"
+		                     "Please update to a newer x2goserver package" );
+		slot_fsTunnelFailed ( false,message,0 );
+		return 1;
+	}
+	QString passwd=pass->text();
+	try
+	{
+
+		fsTunnel=new sshProcess ( this,login->text(),
+		                          resumingSession.server,
+		                          sshPort,"",passwd,
+		                          currentKey,acceptRsa );
+	}
+	catch ( QString message )
+	{
+		slot_fsTunnelFailed ( false,message,0 );
+		return 1;
+	}
+	if ( cardReady )
+	{
+		QStringList env=fsTunnel->environment();
+		env+=sshEnv;
+		fsTunnel->setEnvironment ( env );
+	}
+
+
+	connect ( fsTunnel,SIGNAL ( sshFinished ( bool,  QString,sshProcess* ) ),
+	          this,SLOT ( slot_fsTunnelFailed ( bool,  QString,sshProcess* ) ) );
+	connect ( fsTunnel,SIGNAL ( sshTunnelOk() ),
+	          this,SLOT ( slot_fsTunnelOk() ) );
+
+	try
+	{
+		fsTunnel->startTunnel ( "localhost",resumingSession.fsPort,clientSshPort,true );
+	}
+	catch ( QString message )
+	{
+		slot_fsTunnelFailed ( false,message,0 );
+		return 1;
+	}
+	return 0;
+}
+
+void ONMainWindow::slot_fsTunnelFailed ( bool result,  QString output,sshProcess* )
+{
+	if ( result==false )
+	{
+		QString message=tr ( "Unable to create SSL tunnel:\n" ) +output;
+		QMessageBox::critical ( 0l,tr ( "Error" ),message,QMessageBox::Ok,
+		                        QMessageBox::NoButton );
+		if ( fsTunnel )
+			delete fsTunnel;
+		fsTunnel=0l;
+		fsTunReady=false;
+	}
+}
+
+
+void ONMainWindow::slot_fsTunnelOk()
+{
+	fsTunReady=true;
+	//start reverse mounting if RSA Key and FS tunnel are ready
+	//start only once from slot_fsTunnelOk() or slot_copyKey().
+	if ( fsExportKeyReady )
+		startX2goMount();
+}
+
+void ONMainWindow::startX2goMount()
+{
+	QFile file ( fsExportKey+".pub" );
+	if ( !file.open ( QIODevice::ReadOnly | QIODevice::Text ) )
+	{
+		QString message=tr ( "Unable to read :\n" ) +fsExportKey+".pub";
+		QMessageBox::critical ( 0l,tr ( "Error" ),message,QMessageBox::Ok,
+		                        QMessageBox::NoButton );
+		QFile::remove
+		( fsExportKey+".pub" );
+		return;
+	}
+
+	QByteArray line = file.readLine();
+	file.close();
+
+#ifndef WINDOWS
+
+	QString authofname=QDir::homePath() +"/.ssh/authorized_keys" ;
+#else
+
+	QString authofname=cygwinHomePath() +"\\.ssh\\authorized_keys" ;
+#endif
+
+	QFile file1 ( authofname );
+
+	if ( !file1.open ( QIODevice::WriteOnly | QIODevice::Text | QIODevice::Append ) )
+	{
+		QString message=tr ( "Unable to write :\n" ) + authofname;
+		QMessageBox::critical ( 0l,tr ( "Error" ),message,QMessageBox::Ok,
+		                        QMessageBox::NoButton );
+		QFile::remove
+		( fsExportKey+".pub" );
+		return;
+
+	}
+	QTextStream out ( &file1 );
+	out<<line;
+	file1.close();
+	directory* dir=getExpDir ( fsExportKey );
+	bool rem=dir->isRemovable;
+	if ( !dir )
+		return;
+
+	QString passwd=pass->text();
+	QString user=login->text();
+	QString host=resumingSession.server;
+	QString sessionId=resumingSession.sessionId;
+
+	QStringList env=QProcess::systemEnvironment();
+	
+
+	QString cuser;
+#ifndef Q_WS_HILDON
+	for ( int i=0;i<env.size();++i )
+	{
+		QStringList ls=env[i].split ( "=" );
+#ifndef WINDOWS
+
+		if ( ls[0]=="USER" )
+#else
+
+		if ( ls[0]=="USERNAME" )
+#endif
+
+		{
+			cuser=ls[1];
+			break;
+		}
+	}
+#else
+        cuser="user";
+#endif
+	sshProcess* proc=0l;
+	QString cmd;
+	QString dirs=dir->dirList;
+
+	if ( !fsInTun && clientSshPort!="22" )
+	{
+		dirs=dirs+"__SSH_PORT__"+clientSshPort;
+	}
+	if ( fsInTun )
+	{
+		dirs=dirs+"__REVERSESSH_PORT__"+resumingSession.fsPort;
+	}
+	if ( !rem )
+		cmd="export HOSTNAME && x2gomountdirs dir "+sessionId+" "+cuser+
+		    " "+dir->dstKey+" "+dirs;
+	else
+		cmd="export HOSTNAME && x2gomountdirs rem "+sessionId+" "+cuser+
+		    " "+dir->dstKey+" "+dirs;
+
+#ifdef WINDOWS
+
+	cmd="chmod 600 "+dir->dstKey+"&&"+cmd;
+#endif
+
+	try
+	{
+		proc=new sshProcess ( this,user,host,sshPort,
+		                      cmd,
+		                      passwd,currentKey,acceptRsa );
+		dir->proc=proc;
+	}
+	catch ( QString message )
+	{
+		slot_retExportDir ( false,message,proc );
+	}
+	if ( cardReady )
+	{
+		QStringList env=proc->environment();
+		env+=sshEnv;
+		proc->setEnvironment ( env );
+	}
+
+	connect ( proc,SIGNAL ( sshFinished ( bool, QString,sshProcess* ) ),
+	          this,SLOT ( slot_retExportDir ( bool, QString,sshProcess* ) ) );
+
+	try
+	{
+		proc->startNormal();
+	}
+	catch ( QString message )
+	{
+		slot_retExportDir ( false,message,proc );
+		return;
+	}
+}
+
+#ifdef WINDOWS
+bool ONMainWindow::isServerRunning ( int port )
+{
+	QTcpSocket tcpSocket ( this );
+	tcpSocket.connectToHost ( "127.0.0.1",port );
+
+	if ( tcpSocket.waitForConnected ( 1000 ) )
+	{
+		tcpSocket.close();
+		return true;
+	}
+	return false;
+}
+void ONMainWindow::launchPulse()
+{
+	pulseServer=new QProcess ( this );
+	pulseServer->start ( "..\\pulse\\pulseaudio" );
+}
+#endif

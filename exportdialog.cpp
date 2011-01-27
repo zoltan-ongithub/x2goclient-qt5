@@ -43,7 +43,7 @@ ExportDialog::ExportDialog(QString sid,QWidget * par, Qt::WFlags f)
 
     exportDir=new QPushButton(tr("&share"),fr);
     editSession=new QPushButton(tr("&Preferences ..."),fr);
-    newDir=new QPushButton(tr("&Custom Folder ..."),fr);
+    newDir=new QPushButton(tr("&Custom folder ..."),fr);
 
 
     QVBoxLayout* actLay=new QVBoxLayout();
@@ -69,7 +69,7 @@ ExportDialog::ExportDialog(QString sid,QWidget * par, Qt::WFlags f)
     fr->setLineWidth(2);
 
     setSizeGripEnabled ( true );
-    setWindowTitle(tr("share Folders"));
+    setWindowTitle(tr("share folders"));
     connect(sessions,SIGNAL(clicked(const QModelIndex&)),
             this,SLOT(slot_activated(const QModelIndex&)));
     connect(sessions,SIGNAL(doubleClicked(const QModelIndex&)),
@@ -139,7 +139,7 @@ void ExportDialog::slotNew()
     directory=QString::null;
     directory= QFileDialog::getExistingDirectory(
                    this,
-                   tr("Select Folder"),
+                   tr("Select folder"),
                    QDir::homePath());
 
     if(directory!=QString::null)
