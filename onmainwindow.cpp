@@ -67,6 +67,7 @@
 #include <QToolTip>
 #include "clicklineedit.h"
 
+
 #if !defined Q_OS_WIN
 #include <sys/mount.h>
 #ifdef Q_OS_LINUX
@@ -444,7 +445,9 @@ void ONMainWindow::initWidgetsEmbed()
 	          SLOT ( slotEmbedToolBar() ) );
 
 	processSessionConfig();
+#ifndef Q_OS_DARWIN
 	EmbedWidget::initWidgets();
+#endif
 	QTimer::singleShot ( 1, this, SLOT ( slotEmbedIntoParentWindow() ) );
 #ifndef Q_OS_WIN
 	QSettings st ( homeDir +"/.x2goclient/sessions",
@@ -816,7 +819,9 @@ void ONMainWindow::closeEvent ( QCloseEvent* event )
 	{
 		passForm->close();
 		selectSessionDlg->close();
+#ifndef Q_OS_DARWIN
 		closeEmbedWidget();
+#endif
 	}
 }
 
@@ -5765,11 +5770,13 @@ void ONMainWindow::slot_scDaemonError()
 	QString stdOut ( scDaemon->readAllStandardError() );
 	stdOut=stdOut.simplified();
 	x2goDebug<<"SCDAEMON err:"<<stdOut<<endl;
-	if ( stdOut.indexOf ( "updating slot" ) !=-1 )
+	if ( stdOut.indexOf ( "updating slot" ) !=-1 ||
+	        stdOut.indexOf ( "updating status of slot" ) !=-1 )
 	{
 		isScDaemonOk=true;
-		if ( ( stdOut.indexOf ( "->0x0002" ) !=-1 ) ||
-		        ( stdOut.indexOf ( "->0x0007" ) !=-1 ) ) //USABLE or PRESENT
+		//USABLE or PRESENT
+		if ( ( stdOut.indexOf ( "0x0002" ) !=-1 ) ||
+		        ( stdOut.indexOf ( "0x0007" ) !=-1 ) )
 		{
 			scDaemon->kill();
 		}
@@ -6063,7 +6070,12 @@ QString ONMainWindow::getXDisplay()
 	pr->start ( xname+" "+xopt,QIODevice::NotOpen );
 	if ( pr->waitForStarted ( 3000 ) )
 	{
-		QThread::sleep ( 3 );
+#ifdef Q_OS_DARWIN
+		//FIXME: the call of unistd.h sleep() do not work on all
+		// Mac OS X systems
+		system ( "sleep 3" );
+#endif
+
 		tcpSocket.connectToHost ( "127.0.0.1",6000+dispNumber );
 		if ( tcpSocket.waitForConnected ( 1000 ) )
 		{
@@ -6585,7 +6597,9 @@ this slot will be connected from EmbedWidget
  */
 void ONMainWindow::slotUpdateEmbed()
 {
+#ifndef Q_OS_DARWIN
 	EmbedWidget::slotUpdateEmbed();
+#endif
 }
 
 bool ONMainWindow::isServerRunning ( int port )
@@ -6975,6 +6989,7 @@ void ONMainWindow::slotSetWinServersReady()
 #endif
 void ONMainWindow::slotFindProxyWin()
 {
+#ifndef Q_OS_DARWIN
 	proxyWinId=findWindow ( "X2GO-"+resumingSession.sessionId );
 	if ( proxyWinId )
 	{
@@ -7005,6 +7020,7 @@ void ONMainWindow::slotFindProxyWin()
 		}
 #endif
 	}
+#endif
 }
 
 
@@ -7058,7 +7074,9 @@ void ONMainWindow::slotAttachProxyWindow()
 
 void ONMainWindow::slotEmbedWindow()
 {
+#ifndef Q_OS_DARWIN
 	embedWindow ( proxyWinId );
+#endif
 }
 
 void ONMainWindow::setEmbedSessionActionsEnabled ( bool enable )
@@ -7071,6 +7089,7 @@ void ONMainWindow::setEmbedSessionActionsEnabled ( bool enable )
 
 void ONMainWindow::slotEmbedControlAction()
 {
+#ifndef Q_OS_DARWIN
 	embedControlChanged=true;
 	if ( proxyWinEmbedded )
 	{
@@ -7078,11 +7097,14 @@ void ONMainWindow::slotEmbedControlAction()
 	}
 	else
 		slotAttachProxyWindow();
+#endif
 }
 
 void ONMainWindow::slotEmbedIntoParentWindow()
 {
+#ifndef Q_OS_DARWIN
 	embedInto ( embedParent );
+#endif
 }
 
 

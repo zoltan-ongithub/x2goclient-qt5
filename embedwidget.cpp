@@ -9,6 +9,7 @@
 // Copyright: See COPYING file that comes with this distribution
 //
 //
+#include "x2goclientconfig.h"
 #ifndef Q_OS_DARWIN
 
 #include <QTimer>

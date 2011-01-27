@@ -173,9 +173,10 @@ ConfigDialog::ConfigDialog ( QWidget * parent,  Qt::WFlags f )
 
 	leXexec=new QLineEdit ( xgb );
 	leXexec->setReadOnly ( true );
-	pbOpenExec=new QPushButton ( QIcon ( par->iconsPath (
-	                                         "/32x32/file-open.png" ) ),
-	                             QString::null,xgb );
+	pbOpenExec=new QPushButton (
+	    QIcon ( ( ( ONMainWindow* ) parent )->iconsPath (
+	                "/32x32/file-open.png" ) ),
+	    QString::null,xgb );
 	xLay->addWidget ( new QLabel ( tr ( "X11 application:" ) ),0,0 );
 
 	leCmdOpt=new QLineEdit ( xgb );
@@ -258,7 +259,7 @@ ConfigDialog::ConfigDialog ( QWidget * parent,  Qt::WFlags f )
 #ifdef Q_OS_WIN
 	else
 	{
-		tabWidg->removeTab(0);
+		tabWidg->removeTab ( 0 );
 	}
 #endif
 	frLay->addStretch();
@@ -559,11 +560,11 @@ void ConfigDialog::slotDefaults()
 		{
 			if ( embedMode )
 				cbStartEmbed->setChecked ( true );
-			clientSshPort->setValue(22);
+			clientSshPort->setValue ( 22 );
 		}
 		break;
 		case 1:
-		break;
+			break;
 		case 2:
 		{
 			conWidg->setDefaults();

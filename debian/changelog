@@ -1,3 +1,9 @@
+x2goclient (3.01-5) unstable; urgency=low
+
+  * fixed gpg-card with older gpg version
+
+ -- Oleksandr Shneyder <oleksandr.shneyder@obviously-nice.de>  Fri, 27 Nov 2009 00:00:31 +0100
+
 x2goclient (3.01-4) unstable; urgency=low
 
   * set x2goagents dpi option

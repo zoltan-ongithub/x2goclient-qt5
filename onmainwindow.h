@@ -145,8 +145,11 @@ class WinServerStarter: public QThread
 #endif
 
 class ClickLineEdit;
-
+#ifndef Q_OS_DARWIN
 class ONMainWindow : public QMainWindow, public EmbedWidget
+#else
+class ONMainWindow : public QMainWindow
+#endif
 {
 		Q_OBJECT
 	public:
