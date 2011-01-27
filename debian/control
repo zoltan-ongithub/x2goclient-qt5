@@ -7,7 +7,7 @@ Standards-Version: 3.7.2
 
 Package: x2goclient
 Architecture: any
-Depends: ${misc:Depends}, nxproxy, libqt4-gui, gnupg-agent, pinentry-x2go, gpgsm
+Depends: ${misc:Depends}, nxproxy, libqt4-gui, gnupg-agent, pinentry-x2go, gpgsm, x-window-system, xorg
 Recommends: arts, esound
 Description: x2goclient qt4 client
  x2go is a serverbased computing environment with

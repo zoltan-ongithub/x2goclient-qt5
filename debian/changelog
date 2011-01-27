@@ -1,3 +1,9 @@
+x2goclient (2.0.1-22) unstable; urgency=low
+
+  * xorg dependency in control file
+
+ -- Oleksandr Shneyder <oleksandr.shneyder@treuchtlingen.de>  Tue, 25 Nov 2008 09:21:18 +0100
+
 x2goclient (2.0.1-21) unstable; urgency=low
 
   * fixed pass error with gpg card
