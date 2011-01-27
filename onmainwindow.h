@@ -40,7 +40,6 @@
 #include <QPixmap>
 #include <QProcess>
 #include "LDAPSession.h"
-#include "embedwidget.h"
 #include <QToolBar>
 
 
@@ -50,6 +49,10 @@
 /**
 @author Oleksandr Shneyder
 */
+
+#if defined(CFGPLUGIN) && defined(Q_OS_LINUX)
+class QX11EmbedContainer;
+#endif
 class QLineEdit;
 class QFrame;
 class QVBoxLayout;
@@ -74,797 +77,856 @@ class QStandardItemModel;
 class HttpBrokerClient;
 struct user
 {
-	int uin;
-	QString uid;
-	QString name;
-	QPixmap foto;
-	static bool lessThen ( user u1,user u2 )
-	{
-		return u1.uid < u2.uid;
-	}
+    int uin;
+    QString uid;
+    QString name;
+    QPixmap foto;
+    static bool lessThen ( user u1,user u2 )
+    {
+        return u1.uid < u2.uid;
+    }
 };
 
 struct directory
 {
-	QString key;
-	QString dstKey;
-	QString dirList;
-	bool isRemovable;
-	SshProcess* proc;
+    QString key;
+    QString dstKey;
+    QString dirList;
+    bool isRemovable;
+    SshProcess* proc;
 };
 
 struct serv
 {
-	QString name;
-	float factor;
-	float sess;
-	bool connOk;
-	bool operator < ( const struct serv it )
-	{
-		return ( it.sess < sess );
-	}
-	static bool lt ( const struct serv it, const struct serv it1 )
-	{
-		return it.sess<it1.sess;
-	}
+    QString name;
+    float factor;
+    float sess;
+    bool connOk;
+    bool operator < ( const struct serv it )
+    {
+        return ( it.sess < sess );
+    }
+    static bool lt ( const struct serv it, const struct serv it1 )
+    {
+        return it.sess<it1.sess;
+    }
 };
 
 struct x2goSession
 {
-	QString agentPid;
-	QString sessionId;
-	QString display;
-	QString server;
-	QString status;
-	QString crTime;
-	QString cookie;
-	QString clientIp;
-	QString grPort;
-	QString sndPort;
-	QString fsPort;
-	int colorDepth;
-	enum{DESKTOP,ROOTLESS,SHADOW} sessionType;
-	QString command;
-	void operator = ( const x2goSession& s );
+    QString agentPid;
+    QString sessionId;
+    QString display;
+    QString server;
+    QString status;
+    QString crTime;
+    QString cookie;
+    QString clientIp;
+    QString grPort;
+    QString sndPort;
+    QString fsPort;
+    int colorDepth;
+    enum {DESKTOP,ROOTLESS,SHADOW} sessionType;
+    QString command;
+    void operator = ( const x2goSession& s );
 };
 
 struct ConfigFile
 {
-	QString session;
-	QString user;
-	QString server;
-	QString sshport;
-	QString proxy;
-	QString proxyport;
-	QString command;
-	bool rootless;
-	QString cookie;
-	QString connectionts;
-	QString brokerurl;
-	QString sessiondata;
-	bool checkexitstatus;
-	bool showtermbutton;
-	bool showexpbutton;
-	bool showextconfig;
-	bool showconfig;
-	bool showstatusbar;
-	bool showtoolbar;
+    QString session;
+    QString user;
+    QString server;
+    QString sshport;
+    QString proxy;
+    QString proxyport;
+    QString command;
+    QString key;
+    bool rootless;
+    QString cookie;
+    QString connectionts;
+    QString brokerurl;
+    QString sessiondata;
+    bool checkexitstatus;
+    bool showtermbutton;
+    bool showexpbutton;
+    bool showextconfig;
+    bool showconfig;
+    bool showstatusbar;
+    bool showtoolbar;
 
-	//if true - use cfg values, else default or client settings
-	bool confSnd;
-	bool confFS;
-	bool confConSpd;
-	bool confCompMet;
-	bool confImageQ;
-	bool confDPI;
-	bool confKbd;
-	//
-	bool useSnd;
-	bool useFs;
-	int conSpeed;
-	QString compMet;
-	int imageQ;
-	int dpi;
-	QString kbdLay;
-	QString kbdType;
-	//
+    //if true - use cfg values, else default or client settings
+    bool confSnd;
+    bool confFS;
+    bool confConSpd;
+    bool confCompMet;
+    bool confImageQ;
+    bool confDPI;
+    bool confKbd;
+    //
+    bool useSnd;
+    bool useFs;
+    int conSpeed;
+    QString compMet;
+    int imageQ;
+    int dpi;
+    QString kbdLay;
+    QString kbdType;
+    //
 };
 
 struct SshProxy
 {
-	bool use;
-	QString host;
-	QString port;
-	QString bin;
+    bool use;
+    QString host;
+    QString port;
+    QString bin;
 };
 //wrapper to send mouse events under windows in embedded mode
 #ifdef Q_OS_WIN
 class WWrapper : public QPushButton
 {
-		friend class ONMainWindow;
+    friend class ONMainWindow;
 };
 #include <QThread>
 #include <QMutex>
 class ONMainWindow;
 class WinServerStarter: public QThread
 {
-	public:
-		enum daemon{X,SSH,PULSE};
-		WinServerStarter ( daemon server, ONMainWindow * par );
-		void run();
-	private:
-		daemon mode;
-		ONMainWindow* parent;
+public:
+    enum daemon {X,SSH,PULSE};
+    WinServerStarter ( daemon server, ONMainWindow * par );
+    void run();
+private:
+    daemon mode;
+    ONMainWindow* parent;
 };
 #endif
 class ClickLineEdit;
-#ifndef Q_OS_DARWIN
-class ONMainWindow : public QMainWindow, public EmbedWidget
-#else
 class ONMainWindow : public QMainWindow
-#endif
 #ifdef CFGPLUGIN
-			, public QtNPBindable
+            , public QtNPBindable
 
 #ifdef QAXSERVER
-			, public QAxBindable
+            , public QAxBindable
 #endif
 #endif
 {
-		friend class HttpBrokerClient;
+    friend class HttpBrokerClient;
 #ifdef CFGPLUGIN
-		Q_PROPERTY ( QString x2goconfig READ x2goconfig WRITE setX2goconfig )
-		Q_CLASSINFO ( "ClassID", "{5a20006d-118f-4185-9653-9f98958a0008}" )
-		Q_CLASSINFO ( "InterfaceID", "{2df000ba-da4f-4fb7-8f35-b8dfbf80009a}" )
-		Q_CLASSINFO ( "EventsID", "{44900013-f8bd-4d2e-a2cf-eab407c03005}" )
-		Q_CLASSINFO ( "MIME",
-		              "application/x2go:x2go:Configuration File "
-		              "for X2Go Session" )
-		Q_CLASSINFO ( "ToSuperClass", "ONMainWindow" )
-		Q_CLASSINFO ( "DefaultProperty","x2goconfig" )
+    Q_PROPERTY ( QString x2goconfig READ x2goconfig WRITE setX2goconfig )
+    Q_CLASSINFO ( "ClassID", "{5a20006d-118f-4185-9653-9f98958a0008}" )
+    Q_CLASSINFO ( "InterfaceID", "{2df000ba-da4f-4fb7-8f35-b8dfbf80009a}" )
+    Q_CLASSINFO ( "EventsID", "{44900013-f8bd-4d2e-a2cf-eab407c03005}" )
+    Q_CLASSINFO ( "MIME",
+                  "application/x2go:x2go:Configuration File "
+                  "for X2Go Session" )
+    Q_CLASSINFO ( "ToSuperClass", "ONMainWindow" )
+    Q_CLASSINFO ( "DefaultProperty","x2goconfig" )
 #endif
-		Q_OBJECT
-	public:
-		enum
-		{
-			S_DISPLAY,
-			S_STATUS,
-			S_COMMAND,
-			S_TYPE,
-			S_SERVER,
-			S_CRTIME,
-			S_IP,
-			S_ID
-		};
-		enum
-		{
-			MODEM,
-			ISDN,
-			ADSL,
-			WAN,
-			LAN
-		};
-		enum
-		{
-			D_USER,
-			D_DISPLAY
-		};
-		enum
-		{
-			SHADOW_VIEWONLY,
-			SHADOW_FULL
-		};
-		enum
-		{
-			PULSE,
-			ARTS,
-			ESD
-		};
-		static bool portable;
-		ONMainWindow ( QWidget *parent = 0 );
-		~ONMainWindow();
-		QString iconsPath ( QString fname );
-		const QList<SessionButton*> * getSessionsList()
-		{
-			return &sessions;
-		}
-		void startNewSession();
-		void suspendSession (QString sessId );
-		bool termSession ( QString sessId,
-		                   bool warn=true );
-		void setStatStatus ( QString status=QString::null );
-		x2goSession getNewSessionFromString ( const QString& string );
-		void runCommand();
-		bool retUseLdap() {return useLdap;}
-		bool retMiniMode() {return miniMode;}
-		QString retLdapServer() {return ldapServer;}
-		int retLdapPort() {return ldapPort;}
-		QString retLdapDn() {return ldapDn;}
-		QString retLdapServer1() {return ldapServer1;}
-		int retLdapPort1() {return ldapPort1;}
-		QString retLdapServer2() {return ldapServer2;}
-		int retLdapPort2() {return ldapPort2;}
-		QHBoxLayout* mainLayout() {return mainL;}
-		QWidget* mainWidget() {return ( QWidget* ) fr;}
-#ifdef CFGPLUGIN
-		QString x2goconfig() const
-		{
-			return m_x2goconfig;
-		}
-#endif
+    Q_OBJECT
+public:
+    enum
+    {
+        S_DISPLAY,
+        S_STATUS,
+        S_COMMAND,
+        S_TYPE,
+        S_SERVER,
+        S_CRTIME,
+        S_IP,
+        S_ID
+    };
+    enum
+    {
+        MODEM,
+        ISDN,
+        ADSL,
+        WAN,
+        LAN
+    };
+    enum
+    {
+        D_USER,
+        D_DISPLAY
+    };
+    enum
+    {
+        SHADOW_VIEWONLY,
+        SHADOW_FULL
+    };
+    enum
+    {
+        PULSE,
+        ARTS,
+        ESD
+    };
+    static bool portable;
+    ONMainWindow ( QWidget *parent = 0 );
+    ~ONMainWindow();
+    QString iconsPath ( QString fname );
+    const QList<SessionButton*> * getSessionsList()
+    {
+        return &sessions;
+    }
+    void startNewSession();
+    void suspendSession ( QString sessId );
+    bool termSession ( QString sessId,
+                       bool warn=true );
+    void setStatStatus ( QString status=QString::null );
+    x2goSession getNewSessionFromString ( const QString& string );
+    void runCommand();
+    long findWindow ( QString text );
+    bool retUseLdap()
+    {
+        return useLdap;
+    }
+    bool retMiniMode()
+    {
+        return miniMode;
+    }
+    QString retLdapServer()
+    {
+        return ldapServer;
+    }
+    int retLdapPort()
+    {
+        return ldapPort;
+    }
+    QString retLdapDn()
+    {
+        return ldapDn;
+    }
+    QString retLdapServer1()
+    {
+        return ldapServer1;
+    }
+    int retLdapPort1()
+    {
+        return ldapPort1;
+    }
+    QString retLdapServer2()
+    {
+        return ldapServer2;
+    }
+    int retLdapPort2()
+    {
+        return ldapPort2;
+    }
+    QHBoxLayout* mainLayout()
+    {
+        return mainL;
+    }
+    QWidget* mainWidget()
+    {
+        return ( QWidget* ) fr;
+    }
 
-		static bool getPortable()
-		{
-			return portable;
-		}
-		static QString getHomeDirectory()
-		{
-			return homeDir;
-		}
-		bool getShowAdvOption()
-		{
-			return config.showextconfig;
-		}
-		QString getDefaultCmd()
-		{
-			return defaultCmd;
-		}
-		QString getDefaultSshPort()
-		{
-			return defaultSshPort;
-		}
-		QString getDefaultKbdType()
-		{
-			return defaultKbdType;
-		}
-		QString getDefaultLayout()
-		{
-			return defaultLayout;
-		}
-		QString getDefaultPack()
-		{
-			return defaultPack;
-		}
-		int getDefaultQuality()
-		{
-			return defaultQuality;
-		}
+    static bool getPortable()
+    {
+        return portable;
+    }
+    static QString getHomeDirectory()
+    {
+        return homeDir;
+    }
+    bool getShowAdvOption()
+    {
+        return config.showextconfig;
+    }
+    QString getDefaultCmd()
+    {
+        return defaultCmd;
+    }
+    QString getDefaultSshPort()
+    {
+        return defaultSshPort;
+    }
+    QString getDefaultKbdType()
+    {
+        return defaultKbdType;
+    }
+    QString getDefaultLayout()
+    {
+        return defaultLayout;
+    }
+    QString getDefaultPack()
+    {
+        return defaultPack;
+    }
+    int getDefaultQuality()
+    {
+        return defaultQuality;
+    }
 
-		uint getDefaultDPI()
-		{
-			return defaultDPI;
-		}
+    uint getDefaultDPI()
+    {
+        return defaultDPI;
+    }
 
-		bool getDefaultSetDPI()
-		{
-			return defaultSetDPI;
-		}
+    bool getDefaultSetDPI()
+    {
+        return defaultSetDPI;
+    }
 
-		bool getEmbedMode()
-		{
-			return embedMode;
-		}
+    bool getEmbedMode()
+    {
+        return embedMode;
+    }
 
-		int getDefaultLink()
-		{
-			return defaultLink;
-		}
-		int getDefaultWidth()
-		{
-			return defaultWidth;
-		}
-		int getDefaultHeight()
-		{
-			return defaultHeight;
-		}
-		bool getDefaultSetKbd()
-		{
-			return defaultSetKbd;
-		}
-		bool getDefaultUseSound()
-		{
-			return defaultUseSound;
-		}
-		bool getDefaultFullscreen()
-		{
-			return defaultFullscreen;
-		}
+    int getDefaultLink()
+    {
+        return defaultLink;
+    }
+    int getDefaultWidth()
+    {
+        return defaultWidth;
+    }
+    int getDefaultHeight()
+    {
+        return defaultHeight;
+    }
+    bool getDefaultSetKbd()
+    {
+        return defaultSetKbd;
+    }
+    bool getDefaultUseSound()
+    {
+        return defaultUseSound;
+    }
+    bool getDefaultFullscreen()
+    {
+        return defaultFullscreen;
+    }
 
-		void showHelp();
-		void showHelpPack();
-		void exportDirs ( QString exports,bool removable=false );
-		void reloadUsers();
-		void setWidgetStyle ( QWidget* widget );
-		QStringList internApplicationsNames()
-		{
-			return _internApplicationsNames;
-		}
-		QStringList transApplicationsNames()
-		{
-			return _transApplicationsNames;
-		}
-		QString transAppName ( const QString& internAppName,
-		                       bool* found=0l );
-		QString internAppName ( const QString& transAppName,
-		                        bool* found=0l );
-		void setEmbedSessionActionsEnabled ( bool enable );
-		void startSshd();
-		QSize getEmbedAreaSize();
+    void showHelp();
+    void showHelpPack();
+    void exportDirs ( QString exports,bool removable=false );
+    void reloadUsers();
+    void setWidgetStyle ( QWidget* widget );
+    QStringList internApplicationsNames()
+    {
+        return _internApplicationsNames;
+    }
+    QStringList transApplicationsNames()
+    {
+        return _transApplicationsNames;
+    }
+    QString transAppName ( const QString& internAppName,
+                           bool* found=0l );
+    QString internAppName ( const QString& transAppName,
+                            bool* found=0l );
+    void setEmbedSessionActionsEnabled ( bool enable );
+    void startSshd();
+    QSize getEmbedAreaSize();
 #ifdef Q_OS_WIN
-		static QString cygwinPath ( const QString& winPath );
-		void startXOrg();
-		void startPulsed();
-		static bool haveCySolEntry();
-		static bool haveCygwinEntry();
-		static void removeCySolEntry();
-		static void removeCygwinEntry();
-		static QString U3DevicePath()
-		{
-			return u3Device;
-		}
+    static QString cygwinPath ( const QString& winPath );
+    void startXOrg();
+    void startPulsed();
+    static bool haveCySolEntry();
+    static bool haveCygwinEntry();
+    static void removeCySolEntry();
+    static void removeCygwinEntry();
+    static QString U3DevicePath()
+    {
+        return u3Device;
+    }
 #endif
 
-	private:
-		QString m_x2goconfig;
-		QStringList _internApplicationsNames;
-		QStringList _transApplicationsNames;
-		QString portableDataPath;
-		bool drawMenu;
-		bool extStarted;
-		bool startMaximized;
-		bool startHidden;
-		bool defaultUseSound;
-		bool cardStarted;
-		bool defaultSetKbd;
-		bool showExport;
-		bool usePGPCard;
-		bool miniMode;
-		bool managedMode;
-		bool embedMode;
-		QString statusString;
-		int defaultLink;
-		int defaultQuality;
-		int defaultWidth;
-		int defaultHeight;
-		bool defaultFullscreen;
-		bool acceptRsa;
-		bool startEmbedded;
-		bool extLogin;
-		bool printSupport;
-		bool showTbTooltip;
-		struct SshProxy sshProxy;
-		QString sshPort;
-		QString clientSshPort;
-		QString defaultSshPort;
-		QVBoxLayout* selectSesDlgLayout;
-		SshMasterConnection* sshConnection;
-		bool closeEventSent;
-		int shadowMode;
-		QString shadowUser;
-		QString shadowDisplay;
-		QString defaultPack;
-		QString defaultLayout;
-		QString defaultKbdType;
-		QString defaultCmd;
-		bool defaultSetDPI;
-		uint defaultDPI;
-		QStringList listedSessions;
-		QString appDir;
-		QString localGraphicPort;
-		static QString homeDir;
-		int retSessions;
-		QList<serv> x2goServers;
+private:
+    QString m_x2goconfig;
+    QStringList _internApplicationsNames;
+    QStringList _transApplicationsNames;
+    QString portableDataPath;
+    bool drawMenu;
+    bool extStarted;
+    bool startMaximized;
+    bool startHidden;
+    bool defaultUseSound;
+    bool cardStarted;
+    bool defaultSetKbd;
+    bool showExport;
+    bool usePGPCard;
+    bool miniMode;
+    bool managedMode;
+    bool embedMode;
+    QString statusString;
+    int defaultLink;
+    int defaultQuality;
+    int defaultWidth;
+    int defaultHeight;
+    bool defaultFullscreen;
+    bool acceptRsa;
+    bool startEmbedded;
+    bool extLogin;
+    bool printSupport;
+    bool showTbTooltip;
+    struct SshProxy sshProxy;
+    QString sshPort;
+    QString clientSshPort;
+    QString defaultSshPort;
+    QVBoxLayout* selectSesDlgLayout;
+    SshMasterConnection* sshConnection;
+    bool closeEventSent;
+    int shadowMode;
+    QString shadowUser;
+    QString shadowDisplay;
+    QString defaultPack;
+    QString defaultLayout;
+    QString defaultKbdType;
+    QString defaultCmd;
+    bool defaultSetDPI;
+    uint defaultDPI;
+    QStringList listedSessions;
+    QString appDir;
+    QString localGraphicPort;
+    static QString homeDir;
+    int retSessions;
+    QList<serv> x2goServers;
 
-		QPushButton* bSusp;
-		QPushButton* sbExp;
-		QPushButton* bTerm;
-		QPushButton* bNew;
-		QPushButton* bShadow;
-		QPushButton* bShadowView;
-		QPushButton* bCancel;
+    QPushButton* bSusp;
+    QPushButton* sbExp;
+    QPushButton* bTerm;
+    QPushButton* bNew;
+    QPushButton* bShadow;
+    QPushButton* bShadowView;
+    QPushButton* bCancel;
 
 
-		QLabel* selectSessionLabel;
-		QTreeView* sessTv;
+    QLabel* selectSessionLabel;
+    QTreeView* sessTv;
 
-		QLineEdit* desktopFilter;
-		QCheckBox* desktopFilterCb;
+    QLineEdit* desktopFilter;
+    QCheckBox* desktopFilterCb;
 
-		IMGFrame* fr;
-		SVGFrame *bgFrame;
-		QLineEdit* uname;
-		ClickLineEdit* pass;
-		ClickLineEdit* login;
-		QFrame* uframe;
-		SVGFrame *passForm;
-		QSize mwSize;
-		bool mwMax;
-		QPoint mwPos;
-		SVGFrame *selectSessionDlg;
-		SVGFrame *sessionStatusDlg;
-		QLabel* u;
-		QLabel* fotoLabel;
-		QLabel* nameLabel;
-		QLabel* passPrompt;
-		QLabel* loginPrompt;
-		QLabel* slName;
-		QLabel* slVal;
-		QPushButton* ok;
-		QPushButton* cancel;
-		QString readExportsFrom;
-		QString readLoginsFrom;
-		QPushButton* sOk;
-		QPushButton* sbSusp;
-		QPushButton* sbTerm;
-		QCheckBox* sbAdv;
-		QPushButton* sCancel;
-		QString resolution;
-		QString kdeIconsPath;
-		QScrollArea* users;
-		QVBoxLayout* userl;
-		QHBoxLayout* mainL;
-		QList<UserButton*> names;
-		QList<SessionButton*> sessions;
-		UserButton* lastUser;
-		SessionButton* lastSession;
-		QString prevText;
-		QString onserver;
-		QString id;
-		QString selectedCommand;
-		QString currentKey;
-		QTimer *exportTimer;
-		QTimer *extTimer;
-		QTimer *agentCheckTimer;
-		QTimer *spoolTimer;
-		QTimer *proxyWinTimer;
-		QStyle* widgetExtraStyle;
-		bool isPassShown;
-		bool xmodExecuted;
-		long proxyWinId;
-		bool embedControlChanged;
-		bool embedTbVisible;
-		QLabel* statusLabel;
-		ConfigFile config;
-		QStandardItemModel* model;
-		QStandardItemModel* modelDesktop;
+    IMGFrame* fr;
+    SVGFrame *bgFrame;
+    QLineEdit* uname;
+    ClickLineEdit* pass;
+    ClickLineEdit* login;
+    QFrame* uframe;
+    SVGFrame *passForm;
+    QSize mwSize;
+    bool mwMax;
+    QPoint mwPos;
+    SVGFrame *selectSessionDlg;
+    SVGFrame *sessionStatusDlg;
+    QLabel* u;
+    QLabel* fotoLabel;
+    QLabel* nameLabel;
+    QLabel* passPrompt;
+    QLabel* loginPrompt;
+    QLabel* slName;
+    QLabel* slVal;
+    QPushButton* ok;
+    QPushButton* cancel;
+    QString readExportsFrom;
+    QString readLoginsFrom;
+    QPushButton* sOk;
+    QPushButton* sbSusp;
+    QPushButton* sbTerm;
+    QCheckBox* sbAdv;
+    QPushButton* sCancel;
+    QString resolution;
+    QString kdeIconsPath;
+    QScrollArea* users;
+    QVBoxLayout* userl;
+    QHBoxLayout* mainL;
+    QList<UserButton*> names;
+    QList<SessionButton*> sessions;
+    UserButton* lastUser;
+    SessionButton* lastSession;
+    QString prevText;
+    QString onserver;
+    QString id;
+    QString selectedCommand;
+    QString currentKey;
+    QTimer *exportTimer;
+    QTimer *extTimer;
+    QTimer *agentCheckTimer;
+    QTimer *spoolTimer;
+    QTimer *proxyWinTimer;
+    QStyle* widgetExtraStyle;
+    bool isPassShown;
+    bool xmodExecuted;
+    long proxyWinId;
+    bool embedControlChanged;
+    bool embedTbVisible;
+    QLabel* statusLabel;
+    ConfigFile config;
+    QStandardItemModel* model;
+    QStandardItemModel* modelDesktop;
 
-		QAction *act_set;
-		QAction *act_abclient;
-		QAction *act_shareFolder;
-		QAction *act_suspend;
-		QAction *act_terminate;
-		QAction *act_reconnect;
-		QAction *act_embedContol;
-		QAction *act_embedToolBar;
+    QAction *act_set;
+    QAction *act_abclient;
+    QAction *act_shareFolder;
+    QAction *act_suspend;
+    QAction *act_terminate;
+    QAction *act_reconnect;
+    QAction *act_embedContol;
+    QAction *act_embedToolBar;
 
-		QToolBar *stb;
+    QToolBar *stb;
 
-		QString sessionStatus;
-		QString spoolDir;
-		QString sessionRes;
-		QHBoxLayout* username;
-		QList <user> userList;
-		QList <directory> exportDir;
-		QString nick;
-		QString nfsPort;
-		QString mntPort;
-		QProcess* ssh;
-		QProcess* soundServer;
-		QProcess* scDaemon;
-		QProcess* gpgAgent;
-		QString sshAgentPid;
-		QProcess* gpg;
-		LDAPSession* ld;
-		long embedParent;
-		long embedChild;
-		bool proxyWinEmbedded;
-		bool useLdap;
-		bool showToolBar;
-		bool newSession;
-		bool ldapOnly;
-		bool isScDaemonOk;
-		bool parecTunnelOk;
+    QString sessionStatus;
+    QString spoolDir;
+    QString sessionRes;
+    QHBoxLayout* username;
+    QList <user> userList;
+    QList <directory> exportDir;
+    QString nick;
+    QString nfsPort;
+    QString mntPort;
+    QProcess* ssh;
+    QProcess* soundServer;
+    QProcess* scDaemon;
+    QProcess* gpgAgent;
+    QProcess* gpg;
+    LDAPSession* ld;
+    long embedParent;
+    long embedChild;
+    bool proxyWinEmbedded;
+    bool useLdap;
+    bool showToolBar;
+    bool newSession;
+    bool ldapOnly;
+    bool isScDaemonOk;
+    bool parecTunnelOk;
 
-		bool startSessSound;
-		int startSessSndSystem;
+    bool startSessSound;
+    int startSessSndSystem;
 
-		bool fsInTun;
-		bool fsTunReady;
+    bool fsInTun;
+    bool fsTunReady;
 
-		QString fsExportKey;
-		bool fsExportKeyReady;
+    QString fsExportKey;
+    bool fsExportKeyReady;
 
-		QString ldapServer;
-		int ldapPort;
-		QString ldapServer1;
-		int ldapPort1;
-		QString ldapServer2;
-		int ldapPort2;
-		QString ldapDn;
-		QString sessionCmd;
+    QString ldapServer;
+    int ldapPort;
+    QString ldapServer1;
+    int ldapPort1;
+    QString ldapServer2;
+    int ldapPort2;
+    QString ldapDn;
+    QString sessionCmd;
 
-		QString LDAPSndSys;
-		QString LDAPSndPort;
-		bool LDAPSndStartServer;
+    QString LDAPSndSys;
+    QString LDAPSndPort;
+    bool LDAPSndStartServer;
 
-		bool  LDAPPrintSupport;		
+    bool  LDAPPrintSupport;
 
-		QAction *act_edit;
-		QAction *act_new;
-		QAction *act_sessicon;
-		QProcess *nxproxy;
+    QAction *act_edit;
+    QAction *act_new;
+    QAction *act_sessicon;
+    QProcess *nxproxy;
 #ifndef Q_OS_WIN
-		QProcess *sshd;
-		bool userSshd;
+    QProcess *sshd;
+    bool userSshd;
 #else
-		QProcess *xorg;
-		PROCESS_INFORMATION sshd;
-		bool winSshdStarted;
-		static QString u3Device;
+    QProcess *xorg;
+    PROCESS_INFORMATION sshd;
+    bool winSshdStarted;
+    static QString u3Device;
 
-		QProcess* pulseServer;
-		int xDisplay;
-		int sshdPort;
-		bool winServersReady;
-		QString oldEtcDir;
-		QString oldBinDir;
-		QString oldTmpDir;
+    QProcess* pulseServer;
+    int xDisplay;
+    int sshdPort;
+    bool winServersReady;
+    QString oldEtcDir;
+    QString oldBinDir;
+    QString oldTmpDir;
 
-		bool cySolEntry;
-		bool cyEntry;
+    bool cySolEntry;
+    bool cyEntry;
 
-		QString pulseDir;
-		int pulsePort;
-		int esdPort;
-		bool maximizeProxyWin;
-		int proxyWinWidth;
-		int proxyWinHeight;
-		QTimer* xorgLogTimer;
-		QString xorgLogFile;
-		QMutex xorgLogMutex;
+    QString pulseDir;
+    int pulsePort;
+    int esdPort;
+    bool maximizeProxyWin;
+    int proxyWinWidth;
+    int proxyWinHeight;
+    QTimer* xorgLogTimer;
+    QString xorgLogFile;
+    QMutex xorgLogMutex;
 #endif
-		QString lastFreeServer;
-		QString cardLogin;
-		QTextEdit* stInfo;
+    QString lastFreeServer;
+    QString cardLogin;
+    QTextEdit* stInfo;
 
-		SVGFrame* ln;
-		SshProcess* tunnel;
-		SshProcess* sndTunnel;
-		SshProcess* fsTunnel;
-		QList<x2goSession> selectedSessions;
-		QStringList selectedDesktops;
-		x2goSession resumingSession;
-		bool startSound;
-		bool restartResume;
-		bool runRemoteCommand;
-		bool shadowSession;
-		int firstUid;
-		int lastUid;
-		QStringList sshEnv;
-		QString agentPid;
-		bool cardReady;
-		bool useSshAgent;
-		HttpBrokerClient* broker;
+    SVGFrame* ln;
+    SshProcess* tunnel;
+    SshProcess* sndTunnel;
+    SshProcess* fsTunnel;
+    QList<x2goSession> selectedSessions;
+    QStringList selectedDesktops;
+    x2goSession resumingSession;
+    bool startSound;
+    bool restartResume;
+    bool runRemoteCommand;
+    bool shadowSession;
+    int firstUid;
+    int lastUid;
+    QStringList sshEnv;
+    QString agentPid;
+    bool cardReady;
+    HttpBrokerClient* broker;
 
-#ifdef	CFGPLUGIN
-		void doPluginInit();
-#endif
-		void installTranslator();
-		void loadSettings();
-		void showPass ( UserButton* user );
-		void clean();
-		bool defaultSession;
-		QString defaultSessionName;
-		QString defaultSessionId;
-		QString defaultUserName;
-		bool defaultUser;
-		SessionButton* createBut ( const QString& id );
-		void placeButtons();
-		QString getKdeIconsPath();
-		QString findTheme ( QString theme );
-		bool initLdapSession ( bool showBox=true );
-		bool startSession ( const QString& id );
-		x2goSession getSessionFromString ( const QString& string );
-		void resumeSession ( const x2goSession& s );
-		void selectSession ( QStringList& sessions );
-		x2goSession getSelectedSession();
-		bool parseParameter ( QString param );
-		bool linkParameter ( QString value );
-		bool geometry_par ( QString value );
-		bool setKbd_par ( QString value );
-		bool ldapParameter ( QString value );
-		bool ldap1Parameter ( QString value );
-		bool ldap2Parameter ( QString value );
-		bool packParameter ( QString value );
-		bool soundParameter ( QString val );
-		void printError ( QString param );
-		void exportDefaultDirs();
-		QString createRSAKey();
-		directory* getExpDir ( QString key );
-		bool findInList ( const QString& uid );
-		void setUsersEnabled ( bool enable );
-		void externalLogout ( const QString& logoutDir );
-		void externalLogin ( const QString& loginDir );
-		void startGPGAgent ( const QString& login,
-		                     const QString& appId );
-		void closeClient();
-		void continueNormalSession();
-		void continueLDAPSession();
-		void startSshConnection(QString host, QString port, bool acceptUnknownHosts, QString login, QString password, bool autologin);
+    void installTranslator();
+    void loadSettings();
+    void showPass ( UserButton* user );
+    void clean();
+    bool defaultSession;
+    QString defaultSessionName;
+    QString defaultSessionId;
+    QString defaultUserName;
+    bool defaultUser;
+    SessionButton* createBut ( const QString& id );
+    void placeButtons();
+    QString getKdeIconsPath();
+    QString findTheme ( QString theme );
+    bool initLdapSession ( bool showBox=true );
+    bool startSession ( const QString& id );
+    x2goSession getSessionFromString ( const QString& string );
+    void resumeSession ( const x2goSession& s );
+    void selectSession ( QStringList& sessions );
+    x2goSession getSelectedSession();
+    bool parseParameter ( QString param );
+    bool linkParameter ( QString value );
+    bool geometry_par ( QString value );
+    bool setKbd_par ( QString value );
+    bool ldapParameter ( QString value );
+    bool ldap1Parameter ( QString value );
+    bool ldap2Parameter ( QString value );
+    bool packParameter ( QString value );
+    bool soundParameter ( QString val );
+    void printError ( QString param );
+    void exportDefaultDirs();
+    QString createRSAKey();
+    directory* getExpDir ( QString key );
+    bool findInList ( const QString& uid );
+    void setUsersEnabled ( bool enable );
+    void externalLogout ( const QString& logoutDir );
+    void externalLogin ( const QString& loginDir );
+    void startGPGAgent ( const QString& login,
+                         const QString& appId );
+    void closeClient();
+    void continueNormalSession();
+    void continueLDAPSession();
+    void startSshConnection ( QString host, QString port, bool acceptUnknownHosts, QString login, QString password, bool autologin );
 
-	protected:
-		virtual void closeEvent ( QCloseEvent* event );
+protected:
+    virtual void closeEvent ( QCloseEvent* event );
 #ifndef Q_OS_WIN
-		virtual void mouseReleaseEvent ( QMouseEvent * event );
+    virtual void mouseReleaseEvent ( QMouseEvent * event );
 #else
-	private slots:
-		void slotSetWinServersReady();
-		void startWinServers();
-		void slotCheckXOrgLog();
+private slots:
+    void slotSetWinServersReady();
+    void startWinServers();
+    void slotCheckXOrgLog();
 #endif
-	private slots:
-		void slotShowPassForm();
-		void displayUsers();
-		void slotResize ( const QSize sz );
-		void slotUnameChanged ( const QString& text );
-		void slotPassEnter();
+private slots:
+    void slotShowPassForm();
+    void displayUsers();
+    void slotResize ( const QSize sz );
+    void slotUnameChanged ( const QString& text );
+    void slotPassEnter();
 
-		void readUsers();
-		void slotSelectedFromList ( UserButton* user );
-		void slotUnameEntered();
-		void slotClosePass();
-		void slotReadSessions();
-		void slotManage();
-		void displayToolBar ( bool );
-		void showSessionStatus();
-		void slotSshConnectionError(QString message, QString lastSessionError);
-		void slotSshServerAuthError(int error, QString sshMessage);
-		void slotSshUserAuthError(QString error);
-		void slotSshConnectionOk();
+    void readUsers();
+    void slotSelectedFromList ( UserButton* user );
+    void slotUnameEntered();
+    void slotClosePass();
+    void slotReadSessions();
+    void slotManage();
+    void displayToolBar ( bool );
+    void showSessionStatus();
+    void slotSshConnectionError ( QString message, QString lastSessionError );
+    void slotSshServerAuthError ( int error, QString sshMessage );
+    void slotSshUserAuthError ( QString error );
+    void slotSshConnectionOk();
 
-	public slots:
-#ifdef CFGPLUGIN
-		void setX2goconfig ( const QString& text );
+public slots:
+    void slotConfig();
+    void slotNewSession();
+    void slotDeleteButton ( SessionButton * bt );
+    void slotEdit ( SessionButton* );
+    void slotCreateDesktopIcon ( SessionButton* bt );
+    void exportsEdit ( SessionButton* bt );
+    void slotEmbedControlAction();
+    void slotDetachProxyWindow();
+    void slotActivateWindow();
+
+private slots:
+    void slotSnameChanged ( const QString& );
+    void slotSelectedFromList ( SessionButton* session );
+    void slotSessEnter();
+    void slotCloseSelectDlg();
+    void slotActivated ( const QModelIndex& index );
+    void slotResumeSess();
+    void slotSuspendSess();
+    void slotTermSessFromSt();
+    void slotSuspendSessFromSt();
+    void slotTermSess();
+    void slotNewSess();
+    void slotCmdMessage ( bool result,QString output,
+                          SshProcess* );
+    void slotListSessions ( bool result,QString output,
+                            SshProcess* );
+    void slotRetSuspSess ( bool value,QString message,
+                           SshProcess* );
+    void slotRetTermSess ( bool result,QString output,
+                           SshProcess* );
+    void slotRetResumeSess ( bool result,QString output,
+                             SshProcess* );
+    void slotTunnelFailed ( bool result,QString output,
+                            SshProcess* );
+    void slotFsTunnelFailed ( bool result,QString output,
+                              SshProcess* );
+    void slotSndTunnelFailed ( bool result,QString output,
+                               SshProcess* );
+    void slotCopyKey ( bool result,QString output,SshProcess* );
+    void slotTunnelOk();
+    void slotFsTunnelOk();
+    void slotProxyError ( QProcess::ProcessError err );
+    void slotProxyFinished ( int result,QProcess::ExitStatus st );
+    void slotProxyStderr();
+    void slotProxyStdout();
+    void slotResumeDoubleClick ( const QModelIndex& );
+    void slotShowAdvancedStat();
+    void slotRestartProxy();
+    void slotTestSessionStatus();
+    void slotRetRunCommand ( bool result, QString output,
+                             SshProcess* );
+    void slotGetServers ( bool result, QString output,
+                          SshProcess* );
+    void slotListAllSessions ( bool result,QString output,
+                               SshProcess* );
+    void slotRetExportDir ( bool result,QString output,
+                            SshProcess* );
+    void slotResize();
+    void slotExportDirectory();
+    void slotExportTimer();
+    void slotAboutQt();
+    void slotAbout();
+private slots:
+    void slotCheckPrintSpool();
+    void slotRereadUsers();
+    void slotExtTimer();
+    void slotStartPGPAuth();
+    void slotScDaemonOut();
+    void slotScDaemonError();
+    void slotGpgFinished ( int exitCode,
+                           QProcess::ExitStatus exitStatus );
+    void slotScDaemonFinished ( int exitCode,
+                                QProcess::ExitStatus exitStatus );
+    void slotGpgError();
+    void slotCheckScDaemon();
+    void slotGpgAgentFinished ( int exitCode,
+                                QProcess::ExitStatus exitStatus );
+    void slotCheckAgentProcess();
+    void slotExecXmodmap();
+    void slotCreateSessionIcon();
+    void slotFindProxyWin();
+    void slotAttachProxyWindow();
+    void slotEmbedIntoParentWindow();
+    void slotEmbedWindow();
+    void slotStartParec ();
+    void slotSndTunOk();
+    void slotPCookieReady (	bool result,QString output,
+                            SshProcess* proc );
+    void slotEmbedToolBar();
+    void slotEmbedToolBarToolTip();
+    void slotHideEmbedToolBarToolTip();
+    void slotDesktopFilterChanged ( const QString& text ) ;
+    void slotDesktopFilterCb ( int state ) ;
+    void slotShadowViewSess();
+    void slotShadowSess();
+    void slotReconnectSession();
+    void slotStartBroker();
+    void slotStartNewBrokerSession ();
+private:
+#ifdef Q_OS_LINUX
+    long X11FindWindow ( QString text, long rootWin=0 );
 #endif
-		void slotConfig();
-		void slotNewSession();
-		void slotDeleteButton ( SessionButton * bt );
-		void slotEdit ( SessionButton* );
-		void slotCreateDesktopIcon ( SessionButton* bt );
-		void exportsEdit ( SessionButton* bt );
-		void slotUpdateEmbed();
-		void slotEmbedControlAction();
-		void slotDetachProxyWindow();
-		void slotActivateWindow();
-
-	private slots:
-		void slotSnameChanged ( const QString& );
-		void slotSelectedFromList ( SessionButton* session );
-		void slotSessEnter();
-		void slotCloseSelectDlg();
-		void slotActivated ( const QModelIndex& index );
-		void slotResumeSess();
-		void slotSuspendSess();
-		void slotTermSessFromSt();
-		void slotSuspendSessFromSt();
-		void slotTermSess();
-		void slotNewSess();
-		void slotCmdMessage ( bool result,QString output,
-		                       SshProcess* );
-		void slotListSessions ( bool result,QString output,
-		                         SshProcess* );
-		void slotRetSuspSess ( bool value,QString message,
-		                        SshProcess* );
-		void slotRetTermSess ( bool result,QString output,
-		                        SshProcess* );
-		void slotRetResumeSess ( bool result,QString output,
-		                          SshProcess* );
-		void slotTunnelFailed ( bool result,QString output,
-		                         SshProcess* );
-		void slotFsTunnelFailed ( bool result,QString output,
-		                           SshProcess* );
-		void slotSndTunnelFailed ( bool result,QString output,
-		                            SshProcess* );
-		void slotCopyKey ( bool result,QString output,SshProcess* );
-		void slotTunnelOk();
-		void slotFsTunnelOk();
-		void slotProxyError ( QProcess::ProcessError err );
-		void slotProxyFinished ( int result,QProcess::ExitStatus st );
-		void slotProxyStderr();
-		void slotProxyStdout();
-		void slotResumeDoubleClick ( const QModelIndex& );
-		void slotShowAdvancedStat();
-		void slotRestartProxy();
-		void slotTestSessionStatus();
-		void slotRetRunCommand ( bool result, QString output,
-		                          SshProcess* );
-		void slotGetServers ( bool result, QString output,
-		                       SshProcess* );
-		void slotListAllSessions ( bool result,QString output,
-		                            SshProcess* );
-		void slotRetExportDir ( bool result,QString output,
-		                         SshProcess* );
-		void slotResize();
-		void slotExportDirectory();
-		void slotExportTimer();
-		void slotAboutQt();
-		void slotAbout();
-	private slots:
-		void slotCheckPrintSpool();
-		void slotRereadUsers();
-		void slotExtTimer();
-		void slotStartPGPAuth();
-		void slotScDaemonOut();
-		void slotScDaemonError();
-		void slotGpgFinished ( int exitCode,
-		                        QProcess::ExitStatus exitStatus );
-		void slotScDaemonFinished ( int exitCode,
-		                             QProcess::ExitStatus exitStatus );
-		void slotGpgError();
-		void slotCheckScDaemon();
-		void slotGpgAgentFinished ( int exitCode,
-		                             QProcess::ExitStatus exitStatus );
-		void slotCheckAgentProcess();
-		void slotExecXmodmap();
-		void slotSudoErr ( QString errstr, SshProcess* pr );
-		void slotCreateSessionIcon();
-		void slotFindProxyWin();
-		void slotAttachProxyWindow();
-		void slotEmbedIntoParentWindow();
-		void slotEmbedWindow();
-		void slotStartParec ();
-		void slotSndTunOk();
-		void slotPCookieReady (	bool result,QString output,
-		                        SshProcess* proc );
-		void slotEmbedToolBar();
-		void slotEmbedToolBarToolTip();
-		void slotHideEmbedToolBarToolTip();
-		void slotDesktopFilterChanged ( const QString& text ) ;
-		void slotDesktopFilterCb ( int state ) ;
-		void slotShadowViewSess();
-		void slotShadowSess();
-		void slotStartSshAgent ( QString key );
-		void slotReconnectSession();
-		void slotStartBroker();
-		void slotStartNewBrokerSession ();
-	private:
-		void addToAppNames ( QString intName, QString transName );
-		bool checkAgentProcess();
-		bool isColorDepthOk ( int disp, int sess );
-		void check_cmd_status();
-		int startSshFsTunnel();
-		void startX2goMount();
-		void cleanPrintSpool();
-		void cleanAskPass();
-		void initWidgetsEmbed();
-		void initWidgetsNormal();
-		QString getCurrentUname();
-		QString getCurrentPass();
-		void processSessionConfig();
-		void addKey2SshAgent ( const QString& keyName );
-		void finishSshAgent();
-		void processCfgLine ( QString line );
-		void initSelectSessDlg();
-		void initStatusDlg();
-		void initPassDlg();
-		void printSshDError();
-		void loadPulseModuleNativeProtocol();
-		void initEmbedToolBar();
-		bool isServerRunning ( int port );
-		void filterDesktops ( const QString& filter,
-		                      bool strict=false );
-		void generateHostDsaKey();
-		void generateEtcFiles();
-		QString u3DataPath();
-		void cleanPortable();
-		void removeDir ( QString path );
+    void addToAppNames ( QString intName, QString transName );
+    bool checkAgentProcess();
+    bool isColorDepthOk ( int disp, int sess );
+    void check_cmd_status();
+    int startSshFsTunnel();
+    void startX2goMount();
+    void cleanPrintSpool();
+    void cleanAskPass();
+    void initWidgetsEmbed();
+    void initWidgetsNormal();
+    QString getCurrentUname();
+    QString getCurrentPass();
+    void processSessionConfig();
+    void processCfgLine ( QString line );
+    void initSelectSessDlg();
+    void initStatusDlg();
+    void initPassDlg();
+    void printSshDError();
+    void loadPulseModuleNativeProtocol();
+    void initEmbedToolBar();
+    bool isServerRunning ( int port );
+    void filterDesktops ( const QString& filter,
+                          bool strict=false );
+    void generateHostDsaKey();
+    void generateEtcFiles();
+    QString u3DataPath();
+    void cleanPortable();
+    void removeDir ( QString path );
 #ifdef Q_OS_WIN
-		void saveCygnusSettings();
-		void restoreCygnusSettings();
+    void saveCygnusSettings();
+    void restoreCygnusSettings();
 #endif
 #if defined  (Q_OS_WIN) || defined (Q_OS_DARWIN)
-		QString getXDisplay();
+    QString getXDisplay();
 #endif
+
+////////////////plugin stuff////////////////////
+#ifdef CFGPLUGIN
+public slots:
+    void setX2goconfig ( const QString& text );
+public:
+    QString x2goconfig() const
+    {
+        return m_x2goconfig;
+    }
+
+#ifndef Q_OS_DARWIN
+public:
+    void embedWindow ( long wndId );
+    void detachClient();
+private:
+    long parentId;
+    long childId;
+    QSize oldParentSize;
+
+#ifdef Q_OS_LINUX
+    QX11EmbedContainer* embedContainer;
+#endif
+#ifdef Q_OS_WIN
+    QWidget* embedContainer;
+    QPoint oldParentPos;
+    QPoint oldChildPos;
+    QSize oldContainerSize;
+    QTimer *updateTimer;
+    int gcor;
+    long winFlags;
+#endif
+private:
+    QSize getWindowSize ( long winId );
+    void doPluginInit();
+
+#ifdef Q_OS_WIN
+private slots:
+    void slotUpdateEmbedWindow();
+#endif
+
+#endif //(Q_OS_DARWIN)
+#endif
+////////////////end of plugin stuff////////////////////
 };
 
 #endif

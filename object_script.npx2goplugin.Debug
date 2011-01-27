@@ -29,7 +29,8 @@ INPUT(
 ./debug/httpbrokerclient.o
 ./debug/ongetpass.o
 ./debug/x2gosettings.o
-./debug/x2goclient.o
+./debug/qtbrowserplugin.o
+./debug/qtbrowserplugin_win.o
 ./debug/moc_configdialog.o
 ./debug/moc_editconnectiondialog.o
 ./debug/moc_exportdialog.o

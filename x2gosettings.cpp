@@ -25,14 +25,14 @@ X2goSettings::X2goSettings ( QString group )
 	{
 		set=new QSettings ( "Obviously Nice","x2goclient" );
 		set->beginGroup ( group );
-		x2goDebug<<"settings in reg";
+// 		x2goDebug<<"settings in reg";
 	}
 	else
 	{
 		set=new QSettings ( ONMainWindow::getHomeDirectory() +
 		                    "/.x2goclient/"+group,
 		                    QSettings::IniFormat );
-		x2goDebug<<"settings in ini:"<<
+// 		x2goDebug<<"settings in ini:"<<
 		ONMainWindow::getHomeDirectory() +
 		"/.x2goclient/"+group;
 

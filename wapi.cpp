@@ -11,8 +11,6 @@
 #include "x2gologdebug.h"
 
 
-
-
 long wapiSetFSWindow ( HWND hWnd, const QRect& desktopGeometry )
 {
 	long style=GetWindowLong ( hWnd,GWL_STYLE );
@@ -33,6 +31,16 @@ long wapiSetFSWindow ( HWND hWnd, const QRect& desktopGeometry )
 	
 	SetForegroundWindow ( hWnd );
 	return style;
+}
+
+void wapiRestoreWindow( HWND hWnd, long style, const QRect& desktopGeometry )
+{
+	SetWindowLong ( hWnd, GWL_STYLE,style);	
+	SetWindowPos ( hWnd, HWND_TOP, desktopGeometry.x(),
+	               desktopGeometry.y(),
+	               desktopGeometry.width(),
+	               desktopGeometry.height(),
+	               SWP_FRAMECHANGED );
 }
 
 void wapiHideFromTaskBar ( HWND wnd )

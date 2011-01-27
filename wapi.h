@@ -38,18 +38,20 @@ bool wapiMoveWindow ( HWND wnd, int x, int y, int width, int height,
                       bool repaint );
 bool wapiGetBorders ( HWND wnd, int& vBorder, int& hBorder, int& barHeight );
 void wapiSetCallBackProc ( void ( *prc ) ( wapiBtnEvent, QPoint ) );
-void wapiHideFromTaskBar(HWND wnd);
+void wapiHideFromTaskBar ( HWND wnd );
 HWND wapiFindWindow ( const ushort * className, const ushort * text );
 QString wapiShortFileName ( const QString& longName );
 bool wapiAccountInfo ( QString* retSid, QString* retUname,
                        QString* primaryGroupSID, QString* primaryGroupName,
                        QString* retSysName );
-void wapiShellExecute(const QString& operation, const QString& file, 
-		      const QString& parameters,
-		      const QString& dir,HWND win=0);
+void wapiShellExecute ( const QString& operation, const QString& file,
+                        const QString& parameters,
+                        const QString& dir,HWND win=0 );
 QString wapiGetDefaultPrinter();
 QStringList wapiGetLocalPrinters();
-long wapiSetFSWindow(HWND hWnd, const QRect& desktopGeometry);
+long wapiSetFSWindow ( HWND hWnd, const QRect& desktopGeometry );
+void wapiRestoreWindow ( HWND hWnd, long style, const QRect& desktopGeometry );
+
 
 #endif
 #endif

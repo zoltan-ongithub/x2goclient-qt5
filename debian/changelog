@@ -1,3 +1,16 @@
+x2goclient (3.01-16) unstable; urgency=low
+
+  * qtbrowserplugin sources shipped with x2goclient
+  * removed x2goclient.pri, export "X2GO_CLIENT_TARGET=plugin" to configure x2goplugin
+
+ -- Oleksandr Shneyder <oleksandr.shneyder@obviously-nice.de>  Thu, 13 Jan 2011 19:24:50 +0100
+
+x2goclient (3.01-15) unstable; urgency=low
+
+  * add support for libssh-0.4.7
+
+ -- Oleksandr Shneyder <oleksandr.shneyder@obviously-nice.de>  Tue, 04 Jan 2011 18:48:43 +0100
+
 x2goclient (3.01-14) unstable; urgency=low
 
   * use libssh instead of ssh

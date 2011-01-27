@@ -15,6 +15,6 @@ Arguments=
 Dependencies=@Variant(\x00\x00\x00\t\x00\x00\x00\x00\x00)
 Dependency Action=Nothing
 EnvironmentGroup=default
-Executable=file:///usr/src/x2goclient-dev-libssh/x2goclient-3.01-libssh/x2goclient
+Executable=file:///usr/src.cur/db-builds/x2goclient/x2goclient-3.01/x2goclient
 Working Directory=
 isExecutable=true

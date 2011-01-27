@@ -10,8 +10,6 @@
 #export DH_VERBOSE=1
 
 
-
-
 CFLAGS = -Wall -g
 
 ifneq (,$(findstring noopt,$(DEB_BUILD_OPTIONS)))
@@ -20,17 +18,19 @@ else
 	CFLAGS += -O2
 endif
 
+SRC_DIR=$(PWD)
+CLIENT_DIR=$(SRC_DIR)/client_build
+PLUGIN_DIR=$(SRC_DIR)/plugin_build
+
 configure: configure-stamp
 configure-stamp:
 	dh_testdir
 	# Add here commands to configure the package.
-	
-	rm x2goclientconfig.pri
-	ln -s x2goclientconfig.pri.client x2goclientconfig.pri
-	qmake-qt4 x2goclient.pro
-
+	- mkdir $(CLIENT_DIR)
+	- mkdir $(PLUGIN_DIR)
+	cd $(CLIENT_DIR);qmake-qt4 ../x2goclient.pro
+	cd $(PLUGIN_DIR);X2GO_CLIENT_TARGET=plugin qmake-qt4 ../x2goclient.pro
 	touch configure-stamp
-
 
 build: build-stamp
 
@@ -38,7 +38,8 @@ build-stamp: configure-stamp
 	dh_testdir
 
 	# Add here commands to compile the package.
-	$(MAKE)
+	cd $(CLIENT_DIR);$(MAKE)
+	cd $(PLUGIN_DIR);$(MAKE)
 	#docbook-to-man debian/x2goclient.sgml > x2goclient.1
 
 	touch $@
@@ -49,8 +50,10 @@ clean: configure
 	rm -f build-stamp configure-stamp
 
 	# Add here commands to clean up after the build process.
-	-$(MAKE) clean
-	-$(MAKE) distclean
+	-cd $(CLIENT_DIR);$(MAKE) clean
+	-cd $(CLIENT_DIR);$(MAKE) distclean
+	-cd $(PLUGIN_DIR);$(MAKE) clean
+	-cd $(PLUGIN_DIR);$(MAKE) distclean
 	dh_clean 
 
 install: build
@@ -60,8 +63,11 @@ install: build
 	dh_installdirs
 
 	# Add here commands to install the package into debian/x2goclient.
-	strip x2goclient
-	install x2goclient $(CURDIR)/debian/x2goclient/usr/bin/
+	strip $(CLIENT_DIR)/x2goclient
+	strip $(PLUGIN_DIR)/libx2goplugin.so
+	install $(CLIENT_DIR)/x2goclient $(CURDIR)/debian/x2goclient/usr/bin/
+	mkdir --parents $(CURDIR)/debian/x2goplugin/usr/lib/mozilla/plugins/
+	install $(PLUGIN_DIR)/libx2goplugin.so $(CURDIR)/debian/x2goplugin/usr/lib/mozilla/plugins/
 	install x2goclient.desktop $(CURDIR)/debian/x2goclient/usr/share/applications/
 	install icons/128x128/x2goclient.png $(CURDIR)/debian/x2goclient/usr/share/x2goclient/icons/x2goclient.png
 	install icons/128x128/x2gosession.png $(CURDIR)/debian/x2goclient/usr/share/x2goclient/icons/x2gosession.png
@@ -105,6 +111,13 @@ binary-arch: build install
 	dh_gencontrol
 	dh_md5sums
 	dh_builddeb
+	-cd $(CLIENT_DIR);$(MAKE) clean
+	-cd $(CLIENT_DIR);$(MAKE) distclean
+	-cd $(PLUGIN_DIR);$(MAKE) clean
+	-cd $(PLUGIN_DIR);$(MAKE) distclean
+	-rmdir $(PLUGIN_DIR)
+	-rmdir $(CLIENT_DIR)
+
 
 binary: binary-indep binary-arch
-.PHONY: build clean binary-indep binary-arch binary install configure
+#.PHONY: build clean binary-indep binary-arch binary install configure

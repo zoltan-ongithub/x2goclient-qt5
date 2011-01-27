@@ -1,22 +1,16 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
 <!DOCTYPE KDevPrjSession>
 <KDevPrjSession>
- <DocsAndViews NumberOfDocuments="5" >
-  <Doc0 NumberOfViews="1" URL="file:///usr/src.cur/db-builds/x2goclient/x2goclient-3.01-libssh/sshmasterconnection.cpp" >
-   <View0 Encoding="" line="27" Type="Source" />
+ <DocsAndViews NumberOfDocuments="3" >
+  <Doc0 NumberOfViews="1" URL="file:///usr/src.cur/db-builds/x2goclient/x2goclient-3.01/sshmasterconnection.cpp" >
+   <View0 Encoding="" Type="Source" />
   </Doc0>
-  <Doc1 NumberOfViews="1" URL="file:///usr/src.cur/db-builds/x2goclient/x2goclient-3.01-libssh/onmainwindow.cpp" >
-   <View0 Encoding="" line="2751" Type="Source" />
+  <Doc1 NumberOfViews="1" URL="file:///usr/src.cur/db-builds/x2goclient/x2goclient-3.01/onmainwindow.cpp" >
+   <View0 Encoding="UTF-8" line="447" Type="Source" />
   </Doc1>
-  <Doc2 NumberOfViews="1" URL="file:///usr/src.cur/db-builds/x2goclient/x2goclient-3.01-libssh/sshprocess.cpp" >
-   <View0 Encoding="" line="10" Type="Source" />
+  <Doc2 NumberOfViews="1" URL="file:///usr/share/doc/qt4-doc/html/qx11embedcontainer.html#embedClient" >
+   <View0 Type="Documentation" />
   </Doc2>
-  <Doc3 NumberOfViews="1" URL="file:///usr/src.cur/db-builds/x2goclient/x2goclient-3.01-libssh/sshprocess.h" >
-   <View0 Encoding="" line="57" Type="Source" />
-  </Doc3>
-  <Doc4 NumberOfViews="1" URL="file:///usr/src.cur/db-builds/x2goclient/x2goclient-3.01-libssh/wapi.cpp" >
-   <View0 Encoding="UTF-8" line="0" Type="Source" />
-  </Doc4>
  </DocsAndViews>
  <pluginList>
   <kdevdebugger>

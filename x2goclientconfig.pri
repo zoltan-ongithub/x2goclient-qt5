@@ -1,1 +1,0 @@
-x2goclientconfig.pri.client

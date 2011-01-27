@@ -24,12 +24,12 @@ INPUT(
 ./debug/printwidget.o
 ./debug/printercmddialog.o
 ./debug/printdialog.o
+./debug/embedwidget.o
 ./debug/wapi.o
 ./debug/clicklineedit.o
 ./debug/httpbrokerclient.o
 ./debug/ongetpass.o
 ./debug/x2gosettings.o
-./debug/x2goclient.o
 ./debug/moc_configdialog.o
 ./debug/moc_editconnectiondialog.o
 ./debug/moc_exportdialog.o

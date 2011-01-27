@@ -3,7 +3,11 @@
 # Unterordner relativ zum Projektordner: .
 # Das Target ist eine Anwendung:  
 
-include (x2goclientconfig.pri)
+#include (x2goclientconfig.pri)
+
+
+CONFIG += $$(X2GO_CLIENT_TARGET)
+
 
 TRANSLATIONS += x2goclient_de.ts 
 TRANSLATIONS += x2goclient_ru.ts 
@@ -29,7 +33,6 @@ HEADERS += configdialog.h \
  printwidget.h \
  printercmddialog.h \
  printdialog.h \
- embedwidget.h \
  wapi.h \
  sessionwidget.h \
  configwidget.h \
@@ -66,21 +69,21 @@ SOURCES += sharewidget.cpp \
  printwidget.cpp \
  printercmddialog.cpp \
  printdialog.cpp \
- embedwidget.cpp \
  wapi.cpp \
  clicklineedit.cpp \
  httpbrokerclient.cpp \
  ongetpass.cpp \
  x2gosettings.cpp
 
-client{
+plugin {
+TARGET = x2goplugin
+RC_FILE = x2goclient.rc
+}
+else{
 SOURCES += x2goclient.cpp
 TARGET = x2goclient
 DEFINES += CFGCLIENT
-}
-else {
-TARGET = x2goplugin
-RC_FILE = x2goclient.rc
+message(if you want to build x2goplugin you should export X2GO_CLIENT_TARGET=plugin)
 }
 
 TEMPLATE = app
@@ -116,12 +119,12 @@ plugin{
 
 DEFINES += CFGPLUGIN
    linux-g++ {
-      include(../../../qtbrowserplugin-2.4_1-opensource/src/qtbrowserplugin.pri)
+      include(qtbrowserplugin-2.4_1-opensource/src/qtbrowserplugin.pri)
    }
    win32-* {
          DEFINES += QT_NODLL
          CONFIG += qaxserver
-         include(../qtbrowserplugin-2.4_1-opensource/src/qtbrowserplugin.pri)
+         include(qtbrowserplugin-2.4_1-opensource/src/qtbrowserplugin.pri)
    }
 RC_FILE = x2goplugin.rc
 }
