@@ -1,0 +1,188 @@
+<?xml version='1.0' encoding='iso-8859-1' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.4.7">
+  <compounddef id="classSessionManageDialog" kind="class" prot="public">
+    <compoundname>SessionManageDialog</compoundname>
+    <includes refid="sessionmanagedialog_8h" local="no">sessionmanagedialog.h</includes>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classSessionManageDialog_1022e15f3d83c03c3f4611ae8294cfb04" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>SessionManageDialog::SessionManageDialog</definition>
+        <argsstring>(QWidget *parent, Qt::WFlags f=0)</argsstring>
+        <name>SessionManageDialog</name>
+        <param>
+          <type>QWidget *</type>
+          <declname>parent</declname>
+        </param>
+        <param>
+          <type>Qt::WFlags</type>
+          <declname>f</declname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/sessionmanagedialog.h" line="28" bodyfile="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/sessionmanagedialog.cpp" bodystart="27" bodyend="77"/>
+      </memberdef>
+      <memberdef kind="function" id="classSessionManageDialog_1109b786f7ea91e0012fbfd58e58738d8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>SessionManageDialog::~SessionManageDialog</definition>
+        <argsstring>()</argsstring>
+        <name>~SessionManageDialog</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/sessionmanagedialog.h" line="29" bodyfile="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/sessionmanagedialog.cpp" bodystart="80" bodyend="81"/>
+      </memberdef>
+      <memberdef kind="function" id="classSessionManageDialog_10d632645bf27891af7b177483f831328" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void SessionManageDialog::loadSessions</definition>
+        <argsstring>()</argsstring>
+        <name>loadSessions</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/sessionmanagedialog.h" line="30" bodyfile="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/sessionmanagedialog.cpp" bodystart="84" bodyend="102"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classSessionManageDialog_17e3115a608d4b94fbb5bb213d912aa0c" prot="private" static="no" mutable="no">
+        <type>QListView *</type>
+        <definition>QListView* SessionManageDialog::sessions</definition>
+        <argsstring></argsstring>
+        <name>sessions</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/sessionmanagedialog.h" line="32" bodyfile="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/sessionmanagedialog.h" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classSessionManageDialog_1a41e57e0c5df0c9e7e957fad8ec1dbfc" prot="private" static="no" mutable="no">
+        <type>QPushButton *</type>
+        <definition>QPushButton* SessionManageDialog::editSession</definition>
+        <argsstring></argsstring>
+        <name>editSession</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/sessionmanagedialog.h" line="33" bodyfile="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/sessionmanagedialog.h" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classSessionManageDialog_116a3ca745825fb997bb778663c8e86eb" prot="private" static="no" mutable="no">
+        <type>QPushButton *</type>
+        <definition>QPushButton* SessionManageDialog::removeSession</definition>
+        <argsstring></argsstring>
+        <name>removeSession</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/sessionmanagedialog.h" line="34" bodyfile="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/sessionmanagedialog.h" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classSessionManageDialog_18f73b1c0cb4a84feb2dc12a9008a8a41" prot="private" static="no" mutable="no">
+        <type>ONMainWindow *</type>
+        <definition>ONMainWindow* SessionManageDialog::par</definition>
+        <argsstring></argsstring>
+        <name>par</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/sessionmanagedialog.h" line="35" bodyfile="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/sessionmanagedialog.h" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-slot">
+      <memberdef kind="slot" id="classSessionManageDialog_15406d0ef20e44adb46423f47ca10f8d3" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void SessionManageDialog::slot_activated</definition>
+        <argsstring>(const QModelIndex &amp;index)</argsstring>
+        <name>slot_activated</name>
+        <param>
+          <type>const QModelIndex &amp;</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/sessionmanagedialog.h" line="37" bodyfile="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/sessionmanagedialog.cpp" bodystart="105" bodyend="109"/>
+      </memberdef>
+      <memberdef kind="slot" id="classSessionManageDialog_18c90cb1a88c37c615ae2f8f5acc190bd" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void SessionManageDialog::slotNew</definition>
+        <argsstring>()</argsstring>
+        <name>slotNew</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/sessionmanagedialog.h" line="38" bodyfile="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/sessionmanagedialog.cpp" bodystart="112" bodyend="116"/>
+      </memberdef>
+      <memberdef kind="slot" id="classSessionManageDialog_139ae43141b6e2a1661846fe729ad9473" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void SessionManageDialog::slot_edit</definition>
+        <argsstring>()</argsstring>
+        <name>slot_edit</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/sessionmanagedialog.h" line="39" bodyfile="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/sessionmanagedialog.cpp" bodystart="119" bodyend="126"/>
+      </memberdef>
+      <memberdef kind="slot" id="classSessionManageDialog_15b5d83448683601bc03ed6c4d6084e5c" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void SessionManageDialog::slot_delete</definition>
+        <argsstring>()</argsstring>
+        <name>slot_delete</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/sessionmanagedialog.h" line="40" bodyfile="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/sessionmanagedialog.cpp" bodystart="129" bodyend="136"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="author"><para>Oleksandr Shneyder &lt;<ulink url="mailto:oleksandr.shneyder@treuchtlingen.de">oleksandr.shneyder@treuchtlingen.de</ulink>&gt; </para></simplesect>
+</para>    </detaileddescription>
+    <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/sessionmanagedialog.h" line="25" bodyfile="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/sessionmanagedialog.h" bodystart="24" bodyend="41"/>
+    <listofallmembers>
+      <member refid="classSessionManageDialog_1a41e57e0c5df0c9e7e957fad8ec1dbfc" prot="private" virt="non-virtual"><scope>SessionManageDialog</scope><name>editSession</name></member>
+      <member refid="classSessionManageDialog_10d632645bf27891af7b177483f831328" prot="public" virt="non-virtual"><scope>SessionManageDialog</scope><name>loadSessions</name></member>
+      <member refid="classSessionManageDialog_18f73b1c0cb4a84feb2dc12a9008a8a41" prot="private" virt="non-virtual"><scope>SessionManageDialog</scope><name>par</name></member>
+      <member refid="classSessionManageDialog_116a3ca745825fb997bb778663c8e86eb" prot="private" virt="non-virtual"><scope>SessionManageDialog</scope><name>removeSession</name></member>
+      <member refid="classSessionManageDialog_1022e15f3d83c03c3f4611ae8294cfb04" prot="public" virt="non-virtual"><scope>SessionManageDialog</scope><name>SessionManageDialog</name></member>
+      <member refid="classSessionManageDialog_17e3115a608d4b94fbb5bb213d912aa0c" prot="private" virt="non-virtual"><scope>SessionManageDialog</scope><name>sessions</name></member>
+      <member refid="classSessionManageDialog_15406d0ef20e44adb46423f47ca10f8d3" prot="private" virt="non-virtual"><scope>SessionManageDialog</scope><name>slot_activated</name></member>
+      <member refid="classSessionManageDialog_15b5d83448683601bc03ed6c4d6084e5c" prot="private" virt="non-virtual"><scope>SessionManageDialog</scope><name>slot_delete</name></member>
+      <member refid="classSessionManageDialog_139ae43141b6e2a1661846fe729ad9473" prot="private" virt="non-virtual"><scope>SessionManageDialog</scope><name>slot_edit</name></member>
+      <member refid="classSessionManageDialog_18c90cb1a88c37c615ae2f8f5acc190bd" prot="private" virt="non-virtual"><scope>SessionManageDialog</scope><name>slotNew</name></member>
+      <member refid="classSessionManageDialog_1109b786f7ea91e0012fbfd58e58738d8" prot="public" virt="non-virtual"><scope>SessionManageDialog</scope><name>~SessionManageDialog</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

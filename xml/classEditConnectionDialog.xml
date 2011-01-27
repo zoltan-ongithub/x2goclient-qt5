@@ -1,0 +1,594 @@
+<?xml version='1.0' encoding='iso-8859-1' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.4.7">
+  <compounddef id="classEditConnectionDialog" kind="class" prot="public">
+    <compoundname>EditConnectionDialog</compoundname>
+    <includes refid="editconnectiondialog_8h" local="no">editconnectiondialog.h</includes>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classEditConnectionDialog_14fcb4e47405b6ecd008f8977b297b5d7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>EditConnectionDialog::EditConnectionDialog</definition>
+        <argsstring>(QString id, QWidget *par, Qt::WFlags f=0)</argsstring>
+        <name>EditConnectionDialog</name>
+        <param>
+          <type>QString</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type>QWidget *</type>
+          <declname>par</declname>
+        </param>
+        <param>
+          <type>Qt::WFlags</type>
+          <declname>f</declname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/editconnectiondialog.h" line="37" bodyfile="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/editconnectiondialog.cpp" bodystart="34" bodyend="288"/>
+      </memberdef>
+      <memberdef kind="function" id="classEditConnectionDialog_1ccdaf9d78f969f4de367b88f1af4a12c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>EditConnectionDialog::~EditConnectionDialog</definition>
+        <argsstring>()</argsstring>
+        <name>~EditConnectionDialog</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/editconnectiondialog.h" line="38" bodyfile="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/editconnectiondialog.cpp" bodystart="291" bodyend="292"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classEditConnectionDialog_161f2907937ae3bccfbb94bdae6e13322" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void EditConnectionDialog::readConfig</definition>
+        <argsstring>()</argsstring>
+        <name>readConfig</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/editconnectiondialog.h" line="70" bodyfile="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/editconnectiondialog.cpp" bodystart="295" bodyend="353"/>
+      </memberdef>
+      <memberdef kind="function" id="classEditConnectionDialog_195962b4b8d0198e1a0b272bfc901e75c" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void EditConnectionDialog::loadPackMethods</definition>
+        <argsstring>()</argsstring>
+        <name>loadPackMethods</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/editconnectiondialog.h" line="71" bodyfile="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/editconnectiondialog.cpp" bodystart="362" bodyend="378"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classEditConnectionDialog_180d696037135dfe88937f8217ef6b799" prot="private" static="no" mutable="no">
+        <type>QLineEdit *</type>
+        <definition>QLineEdit* EditConnectionDialog::sessName</definition>
+        <argsstring></argsstring>
+        <name>sessName</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/editconnectiondialog.h" line="40" bodyfile="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/editconnectiondialog.h" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classEditConnectionDialog_1f216851a65b8979520668d4a9d6d65c3" prot="private" static="no" mutable="no">
+        <type>QLineEdit *</type>
+        <definition>QLineEdit* EditConnectionDialog::uname</definition>
+        <argsstring></argsstring>
+        <name>uname</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/editconnectiondialog.h" line="41" bodyfile="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/editconnectiondialog.h" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classEditConnectionDialog_194a5f4b4af9a8372a0b7f323c635341c" prot="private" static="no" mutable="no">
+        <type>QLineEdit *</type>
+        <definition>QLineEdit* EditConnectionDialog::server</definition>
+        <argsstring></argsstring>
+        <name>server</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/editconnectiondialog.h" line="42" bodyfile="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/editconnectiondialog.h" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classEditConnectionDialog_1549d316c1abb0be778834e906acd1e10" prot="private" static="no" mutable="no">
+        <type>QLineEdit *</type>
+        <definition>QLineEdit* EditConnectionDialog::key</definition>
+        <argsstring></argsstring>
+        <name>key</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/editconnectiondialog.h" line="43" bodyfile="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/editconnectiondialog.h" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classEditConnectionDialog_178de6adf27199ca6d04bdfd0a20b57ce" prot="private" static="no" mutable="no">
+        <type>QSpinBox *</type>
+        <definition>QSpinBox* EditConnectionDialog::width</definition>
+        <argsstring></argsstring>
+        <name>width</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/editconnectiondialog.h" line="44" bodyfile="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/editconnectiondialog.h" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classEditConnectionDialog_1f56a0984fa5049ad36da399eeb956424" prot="private" static="no" mutable="no">
+        <type>QSpinBox *</type>
+        <definition>QSpinBox* EditConnectionDialog::height</definition>
+        <argsstring></argsstring>
+        <name>height</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/editconnectiondialog.h" line="45" bodyfile="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/editconnectiondialog.h" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classEditConnectionDialog_16a5f057b3af473006f8a6ea9aa3fe622" prot="private" static="no" mutable="no">
+        <type>QLineEdit *</type>
+        <definition>QLineEdit* EditConnectionDialog::cmd</definition>
+        <argsstring></argsstring>
+        <name>cmd</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/editconnectiondialog.h" line="46" bodyfile="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/editconnectiondialog.h" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classEditConnectionDialog_132363577f642c4c41dd0de76257e9d1e" prot="private" static="no" mutable="no">
+        <type>QRadioButton *</type>
+        <definition>QRadioButton* EditConnectionDialog::fs</definition>
+        <argsstring></argsstring>
+        <name>fs</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/editconnectiondialog.h" line="47" bodyfile="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/editconnectiondialog.h" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classEditConnectionDialog_1628ae06226ff8412d08d12c4097acc7b" prot="private" static="no" mutable="no">
+        <type>QCheckBox *</type>
+        <definition>QCheckBox* EditConnectionDialog::kbd</definition>
+        <argsstring></argsstring>
+        <name>kbd</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/editconnectiondialog.h" line="48" bodyfile="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/editconnectiondialog.h" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classEditConnectionDialog_1e1ff6e36caf9e3022bc2860d1310ff8e" prot="private" static="no" mutable="no">
+        <type>QLineEdit *</type>
+        <definition>QLineEdit* EditConnectionDialog::layout</definition>
+        <argsstring></argsstring>
+        <name>layout</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/editconnectiondialog.h" line="49" bodyfile="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/editconnectiondialog.h" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classEditConnectionDialog_15ac9e2487a63ba2ccefabd2549f8bfa1" prot="private" static="no" mutable="no">
+        <type>QLineEdit *</type>
+        <definition>QLineEdit* EditConnectionDialog::type</definition>
+        <argsstring></argsstring>
+        <name>type</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/editconnectiondialog.h" line="50" bodyfile="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/editconnectiondialog.h" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classEditConnectionDialog_19cb1b65ec204a6b4c6abbe87c4af9aff" prot="private" static="no" mutable="no">
+        <type>QRadioButton *</type>
+        <definition>QRadioButton* EditConnectionDialog::custom</definition>
+        <argsstring></argsstring>
+        <name>custom</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/editconnectiondialog.h" line="51" bodyfile="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/editconnectiondialog.h" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classEditConnectionDialog_1fdaa6d4cedf3e6583fc1d641eb9bd6be" prot="private" static="no" mutable="no">
+        <type>QCheckBox *</type>
+        <definition>QCheckBox* EditConnectionDialog::sound</definition>
+        <argsstring></argsstring>
+        <name>sound</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/editconnectiondialog.h" line="52" bodyfile="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/editconnectiondialog.h" bodystart="52" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classEditConnectionDialog_1a7b1c054ff519f8a4e6b2b749caf6374" prot="private" static="no" mutable="no">
+        <type>QString</type>
+        <definition>QString EditConnectionDialog::sessIcon</definition>
+        <argsstring></argsstring>
+        <name>sessIcon</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/editconnectiondialog.h" line="53" bodyfile="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/editconnectiondialog.h" bodystart="53" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classEditConnectionDialog_1fa7d55270689834bd0008df6d0843d90" prot="private" static="no" mutable="no">
+        <type>QPushButton *</type>
+        <definition>QPushButton* EditConnectionDialog::icon</definition>
+        <argsstring></argsstring>
+        <name>icon</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/editconnectiondialog.h" line="54" bodyfile="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/editconnectiondialog.h" bodystart="54" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classEditConnectionDialog_174e9942009461974f628a529f1b87ca9" prot="private" static="no" mutable="no">
+        <type>QComboBox *</type>
+        <definition>QComboBox* EditConnectionDialog::packMethode</definition>
+        <argsstring></argsstring>
+        <name>packMethode</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/editconnectiondialog.h" line="55" bodyfile="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/editconnectiondialog.h" bodystart="55" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classEditConnectionDialog_11d51bb5d113f2721a1ff4dcaa9760606" prot="private" static="no" mutable="no">
+        <type>QComboBox *</type>
+        <definition>QComboBox* EditConnectionDialog::sessBox</definition>
+        <argsstring></argsstring>
+        <name>sessBox</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/editconnectiondialog.h" line="56" bodyfile="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/editconnectiondialog.h" bodystart="56" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classEditConnectionDialog_133eecfac25eb46c1b178607aaa0da042" prot="private" static="no" mutable="no">
+        <type>QSpinBox *</type>
+        <definition>QSpinBox* EditConnectionDialog::quali</definition>
+        <argsstring></argsstring>
+        <name>quali</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/editconnectiondialog.h" line="57" bodyfile="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/editconnectiondialog.h" bodystart="57" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classEditConnectionDialog_1ba9fa417e8f4e211e218eedae7dc80be" prot="private" static="no" mutable="no">
+        <type>QLabel *</type>
+        <definition>QLabel* EditConnectionDialog::qualiLabel</definition>
+        <argsstring></argsstring>
+        <name>qualiLabel</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/editconnectiondialog.h" line="58" bodyfile="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/editconnectiondialog.h" bodystart="58" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classEditConnectionDialog_1af19cc75996ba2717a91b5e21239b95c" prot="private" static="no" mutable="no">
+        <type>QSlider *</type>
+        <definition>QSlider* EditConnectionDialog::spd</definition>
+        <argsstring></argsstring>
+        <name>spd</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/editconnectiondialog.h" line="59" bodyfile="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/editconnectiondialog.h" bodystart="59" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classEditConnectionDialog_1df6ea15b37e21a2bbded15e7617f8e82" prot="private" static="no" mutable="no">
+        <type>QString</type>
+        <definition>QString EditConnectionDialog::sessionId</definition>
+        <argsstring></argsstring>
+        <name>sessionId</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/editconnectiondialog.h" line="60" bodyfile="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/editconnectiondialog.h" bodystart="60" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classEditConnectionDialog_1f78d5caf7644038f1e684db8708b4558" prot="private" static="no" mutable="no">
+        <type>QLabel *</type>
+        <definition>QLabel* EditConnectionDialog::widthLabel</definition>
+        <argsstring></argsstring>
+        <name>widthLabel</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/editconnectiondialog.h" line="61" bodyfile="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/editconnectiondialog.h" bodystart="61" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classEditConnectionDialog_10af6179047b997187dfd8c65879684f6" prot="private" static="no" mutable="no">
+        <type>QLabel *</type>
+        <definition>QLabel* EditConnectionDialog::heightLabel</definition>
+        <argsstring></argsstring>
+        <name>heightLabel</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/editconnectiondialog.h" line="62" bodyfile="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/editconnectiondialog.h" bodystart="62" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classEditConnectionDialog_1f86d115f1a989729dddb32b6c88bf2b7" prot="private" static="no" mutable="no">
+        <type>QLabel *</type>
+        <definition>QLabel* EditConnectionDialog::layoutLabel</definition>
+        <argsstring></argsstring>
+        <name>layoutLabel</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/editconnectiondialog.h" line="63" bodyfile="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/editconnectiondialog.h" bodystart="63" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classEditConnectionDialog_1684c32f6b0828376fff08c735972180f" prot="private" static="no" mutable="no">
+        <type>QLabel *</type>
+        <definition>QLabel* EditConnectionDialog::typeLabel</definition>
+        <argsstring></argsstring>
+        <name>typeLabel</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/editconnectiondialog.h" line="64" bodyfile="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/editconnectiondialog.h" bodystart="64" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classEditConnectionDialog_14d022a3142cf0404ee5fedf94a2d077a" prot="private" static="no" mutable="no">
+        <type>QStringList</type>
+        <definition>QStringList EditConnectionDialog::qualiList</definition>
+        <argsstring></argsstring>
+        <name>qualiList</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/editconnectiondialog.h" line="65" bodyfile="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/editconnectiondialog.h" bodystart="65" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classEditConnectionDialog_1808ce550e11c886f5490925f8a390ad9" prot="private" static="no" mutable="no">
+        <type>QTabWidget *</type>
+        <definition>QTabWidget* EditConnectionDialog::fr</definition>
+        <argsstring></argsstring>
+        <name>fr</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/editconnectiondialog.h" line="66" bodyfile="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/editconnectiondialog.h" bodystart="66" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classEditConnectionDialog_1efd2f660d97ececc4c2f105b22ff7707" prot="private" static="no" mutable="no">
+        <type>ONMainWindow *</type>
+        <definition>ONMainWindow* EditConnectionDialog::parent</definition>
+        <argsstring></argsstring>
+        <name>parent</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/editconnectiondialog.h" line="67" bodyfile="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/editconnectiondialog.h" bodystart="67" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-slot">
+      <memberdef kind="slot" id="classEditConnectionDialog_100011cd5283ed86506784a8d767b4009" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void EditConnectionDialog::slot_changeCaption</definition>
+        <argsstring>(const QString &amp;newName)</argsstring>
+        <name>slot_changeCaption</name>
+        <param>
+          <type>const QString &amp;</type>
+          <declname>newName</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/editconnectiondialog.h" line="73" bodyfile="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/editconnectiondialog.cpp" bodystart="356" bodyend="359"/>
+      </memberdef>
+      <memberdef kind="slot" id="classEditConnectionDialog_186af973723a3ecfc431e692ae18b843a" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void EditConnectionDialog::slot_changePack</definition>
+        <argsstring>(const QString &amp;pc)</argsstring>
+        <name>slot_changePack</name>
+        <param>
+          <type>const QString &amp;</type>
+          <declname>pc</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/editconnectiondialog.h" line="74" bodyfile="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/editconnectiondialog.cpp" bodystart="381" bodyend="386"/>
+      </memberdef>
+      <memberdef kind="slot" id="classEditConnectionDialog_15164faef306cd8291c9945d9056ed970" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void EditConnectionDialog::slot_getIcon</definition>
+        <argsstring>()</argsstring>
+        <name>slot_getIcon</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/editconnectiondialog.h" line="75" bodyfile="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/editconnectiondialog.cpp" bodystart="389" bodyend="401"/>
+      </memberdef>
+      <memberdef kind="slot" id="classEditConnectionDialog_15c35bc166ec4f90720acf9c4695571be" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void EditConnectionDialog::slot_getKey</definition>
+        <argsstring>()</argsstring>
+        <name>slot_getKey</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/editconnectiondialog.h" line="76" bodyfile="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/editconnectiondialog.cpp" bodystart="403" bodyend="414"/>
+      </memberdef>
+      <memberdef kind="slot" id="classEditConnectionDialog_16f1f2a383e89e30b352514f5cb2f8dcc" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void EditConnectionDialog::slot_accepted</definition>
+        <argsstring>()</argsstring>
+        <name>slot_accepted</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/editconnectiondialog.h" line="77" bodyfile="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/editconnectiondialog.cpp" bodystart="417" bodyend="448"/>
+      </memberdef>
+      <memberdef kind="slot" id="classEditConnectionDialog_1f72493a89bc6c6a790d6fd50995376c9" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void EditConnectionDialog::slot_default</definition>
+        <argsstring>()</argsstring>
+        <name>slot_default</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/editconnectiondialog.h" line="78" bodyfile="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/editconnectiondialog.cpp" bodystart="451" bodyend="486"/>
+      </memberdef>
+      <memberdef kind="slot" id="classEditConnectionDialog_104c68927eda7d53e49a1741ea214d6b7" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void EditConnectionDialog::slot_changeCmd</definition>
+        <argsstring>(int var)</argsstring>
+        <name>slot_changeCmd</name>
+        <param>
+          <type>int</type>
+          <declname>var</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/editconnectiondialog.h" line="79" bodyfile="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/editconnectiondialog.cpp" bodystart="488" bodyend="504"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="author"><para>Oleksandr Shneyder &lt;<ulink url="mailto:oleksandr.shneyder@treuchtlingen.de">oleksandr.shneyder@treuchtlingen.de</ulink>&gt; </para></simplesect>
+</para>    </detaileddescription>
+    <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/editconnectiondialog.h" line="34" bodyfile="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/editconnectiondialog.h" bodystart="33" bodyend="80"/>
+    <listofallmembers>
+      <member refid="classEditConnectionDialog_16a5f057b3af473006f8a6ea9aa3fe622" prot="private" virt="non-virtual"><scope>EditConnectionDialog</scope><name>cmd</name></member>
+      <member refid="classEditConnectionDialog_19cb1b65ec204a6b4c6abbe87c4af9aff" prot="private" virt="non-virtual"><scope>EditConnectionDialog</scope><name>custom</name></member>
+      <member refid="classEditConnectionDialog_14fcb4e47405b6ecd008f8977b297b5d7" prot="public" virt="non-virtual"><scope>EditConnectionDialog</scope><name>EditConnectionDialog</name></member>
+      <member refid="classEditConnectionDialog_1808ce550e11c886f5490925f8a390ad9" prot="private" virt="non-virtual"><scope>EditConnectionDialog</scope><name>fr</name></member>
+      <member refid="classEditConnectionDialog_132363577f642c4c41dd0de76257e9d1e" prot="private" virt="non-virtual"><scope>EditConnectionDialog</scope><name>fs</name></member>
+      <member refid="classEditConnectionDialog_1f56a0984fa5049ad36da399eeb956424" prot="private" virt="non-virtual"><scope>EditConnectionDialog</scope><name>height</name></member>
+      <member refid="classEditConnectionDialog_10af6179047b997187dfd8c65879684f6" prot="private" virt="non-virtual"><scope>EditConnectionDialog</scope><name>heightLabel</name></member>
+      <member refid="classEditConnectionDialog_1fa7d55270689834bd0008df6d0843d90" prot="private" virt="non-virtual"><scope>EditConnectionDialog</scope><name>icon</name></member>
+      <member refid="classEditConnectionDialog_1628ae06226ff8412d08d12c4097acc7b" prot="private" virt="non-virtual"><scope>EditConnectionDialog</scope><name>kbd</name></member>
+      <member refid="classEditConnectionDialog_1549d316c1abb0be778834e906acd1e10" prot="private" virt="non-virtual"><scope>EditConnectionDialog</scope><name>key</name></member>
+      <member refid="classEditConnectionDialog_1e1ff6e36caf9e3022bc2860d1310ff8e" prot="private" virt="non-virtual"><scope>EditConnectionDialog</scope><name>layout</name></member>
+      <member refid="classEditConnectionDialog_1f86d115f1a989729dddb32b6c88bf2b7" prot="private" virt="non-virtual"><scope>EditConnectionDialog</scope><name>layoutLabel</name></member>
+      <member refid="classEditConnectionDialog_195962b4b8d0198e1a0b272bfc901e75c" prot="private" virt="non-virtual"><scope>EditConnectionDialog</scope><name>loadPackMethods</name></member>
+      <member refid="classEditConnectionDialog_174e9942009461974f628a529f1b87ca9" prot="private" virt="non-virtual"><scope>EditConnectionDialog</scope><name>packMethode</name></member>
+      <member refid="classEditConnectionDialog_1efd2f660d97ececc4c2f105b22ff7707" prot="private" virt="non-virtual"><scope>EditConnectionDialog</scope><name>parent</name></member>
+      <member refid="classEditConnectionDialog_133eecfac25eb46c1b178607aaa0da042" prot="private" virt="non-virtual"><scope>EditConnectionDialog</scope><name>quali</name></member>
+      <member refid="classEditConnectionDialog_1ba9fa417e8f4e211e218eedae7dc80be" prot="private" virt="non-virtual"><scope>EditConnectionDialog</scope><name>qualiLabel</name></member>
+      <member refid="classEditConnectionDialog_14d022a3142cf0404ee5fedf94a2d077a" prot="private" virt="non-virtual"><scope>EditConnectionDialog</scope><name>qualiList</name></member>
+      <member refid="classEditConnectionDialog_161f2907937ae3bccfbb94bdae6e13322" prot="private" virt="non-virtual"><scope>EditConnectionDialog</scope><name>readConfig</name></member>
+      <member refid="classEditConnectionDialog_194a5f4b4af9a8372a0b7f323c635341c" prot="private" virt="non-virtual"><scope>EditConnectionDialog</scope><name>server</name></member>
+      <member refid="classEditConnectionDialog_11d51bb5d113f2721a1ff4dcaa9760606" prot="private" virt="non-virtual"><scope>EditConnectionDialog</scope><name>sessBox</name></member>
+      <member refid="classEditConnectionDialog_1a7b1c054ff519f8a4e6b2b749caf6374" prot="private" virt="non-virtual"><scope>EditConnectionDialog</scope><name>sessIcon</name></member>
+      <member refid="classEditConnectionDialog_1df6ea15b37e21a2bbded15e7617f8e82" prot="private" virt="non-virtual"><scope>EditConnectionDialog</scope><name>sessionId</name></member>
+      <member refid="classEditConnectionDialog_180d696037135dfe88937f8217ef6b799" prot="private" virt="non-virtual"><scope>EditConnectionDialog</scope><name>sessName</name></member>
+      <member refid="classEditConnectionDialog_16f1f2a383e89e30b352514f5cb2f8dcc" prot="private" virt="non-virtual"><scope>EditConnectionDialog</scope><name>slot_accepted</name></member>
+      <member refid="classEditConnectionDialog_100011cd5283ed86506784a8d767b4009" prot="private" virt="non-virtual"><scope>EditConnectionDialog</scope><name>slot_changeCaption</name></member>
+      <member refid="classEditConnectionDialog_104c68927eda7d53e49a1741ea214d6b7" prot="private" virt="non-virtual"><scope>EditConnectionDialog</scope><name>slot_changeCmd</name></member>
+      <member refid="classEditConnectionDialog_186af973723a3ecfc431e692ae18b843a" prot="private" virt="non-virtual"><scope>EditConnectionDialog</scope><name>slot_changePack</name></member>
+      <member refid="classEditConnectionDialog_1f72493a89bc6c6a790d6fd50995376c9" prot="private" virt="non-virtual"><scope>EditConnectionDialog</scope><name>slot_default</name></member>
+      <member refid="classEditConnectionDialog_15164faef306cd8291c9945d9056ed970" prot="private" virt="non-virtual"><scope>EditConnectionDialog</scope><name>slot_getIcon</name></member>
+      <member refid="classEditConnectionDialog_15c35bc166ec4f90720acf9c4695571be" prot="private" virt="non-virtual"><scope>EditConnectionDialog</scope><name>slot_getKey</name></member>
+      <member refid="classEditConnectionDialog_1fdaa6d4cedf3e6583fc1d641eb9bd6be" prot="private" virt="non-virtual"><scope>EditConnectionDialog</scope><name>sound</name></member>
+      <member refid="classEditConnectionDialog_1af19cc75996ba2717a91b5e21239b95c" prot="private" virt="non-virtual"><scope>EditConnectionDialog</scope><name>spd</name></member>
+      <member refid="classEditConnectionDialog_15ac9e2487a63ba2ccefabd2549f8bfa1" prot="private" virt="non-virtual"><scope>EditConnectionDialog</scope><name>type</name></member>
+      <member refid="classEditConnectionDialog_1684c32f6b0828376fff08c735972180f" prot="private" virt="non-virtual"><scope>EditConnectionDialog</scope><name>typeLabel</name></member>
+      <member refid="classEditConnectionDialog_1f216851a65b8979520668d4a9d6d65c3" prot="private" virt="non-virtual"><scope>EditConnectionDialog</scope><name>uname</name></member>
+      <member refid="classEditConnectionDialog_178de6adf27199ca6d04bdfd0a20b57ce" prot="private" virt="non-virtual"><scope>EditConnectionDialog</scope><name>width</name></member>
+      <member refid="classEditConnectionDialog_1f78d5caf7644038f1e684db8708b4558" prot="private" virt="non-virtual"><scope>EditConnectionDialog</scope><name>widthLabel</name></member>
+      <member refid="classEditConnectionDialog_1ccdaf9d78f969f4de367b88f1af4a12c" prot="public" virt="non-virtual"><scope>EditConnectionDialog</scope><name>~EditConnectionDialog</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

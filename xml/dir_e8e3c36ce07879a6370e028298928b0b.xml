@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='iso-8859-1' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.4.7">
+  <compounddef id="dir_e8e3c36ce07879a6370e028298928b0b" kind="dir">
+    <compoundname>/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/</compoundname>
+    <innerfile refid="configdialog_8cpp">configdialog.cpp</innerfile>
+    <innerfile refid="configdialog_8h">configdialog.h</innerfile>
+    <innerfile refid="editconnectiondialog_8cpp">editconnectiondialog.cpp</innerfile>
+    <innerfile refid="editconnectiondialog_8h">editconnectiondialog.h</innerfile>
+    <innerfile refid="LDAPSession_8cpp">LDAPSession.cpp</innerfile>
+    <innerfile refid="LDAPSession_8h">LDAPSession.h</innerfile>
+    <innerfile refid="moc__configdialog_8cpp">moc_configdialog.cpp</innerfile>
+    <innerfile refid="moc__editconnectiondialog_8cpp">moc_editconnectiondialog.cpp</innerfile>
+    <innerfile refid="moc__onmainwindow_8cpp">moc_onmainwindow.cpp</innerfile>
+    <innerfile refid="moc__sessionbutton_8cpp">moc_sessionbutton.cpp</innerfile>
+    <innerfile refid="moc__sessionmanagedialog_8cpp">moc_sessionmanagedialog.cpp</innerfile>
+    <innerfile refid="moc__SVGFrame_8cpp">moc_SVGFrame.cpp</innerfile>
+    <innerfile refid="moc__userbutton_8cpp">moc_userbutton.cpp</innerfile>
+    <innerfile refid="ongetpass_8cpp">ongetpass.cpp</innerfile>
+    <innerfile refid="onmainwindow_8cpp">onmainwindow.cpp</innerfile>
+    <innerfile refid="onmainwindow_8h">onmainwindow.h</innerfile>
+    <innerfile refid="qrc__resources_8cpp">qrc_resources.cpp</innerfile>
+    <innerfile refid="sessionbutton_8cpp">sessionbutton.cpp</innerfile>
+    <innerfile refid="sessionbutton_8h">sessionbutton.h</innerfile>
+    <innerfile refid="sessionmanagedialog_8cpp">sessionmanagedialog.cpp</innerfile>
+    <innerfile refid="sessionmanagedialog_8h">sessionmanagedialog.h</innerfile>
+    <innerfile refid="SVGFrame_8cpp">SVGFrame.cpp</innerfile>
+    <innerfile refid="SVGFrame_8h">SVGFrame.h</innerfile>
+    <innerfile refid="userbutton_8cpp">userbutton.cpp</innerfile>
+    <innerfile refid="userbutton_8h">userbutton.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/"/>
+  </compounddef>
+</doxygen>

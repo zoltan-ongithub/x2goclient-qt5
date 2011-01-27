@@ -1,0 +1,519 @@
+<?xml version='1.0' encoding='iso-8859-1' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.4.7">
+  <compounddef id="classSessionButton" kind="class" prot="public">
+    <compoundname>SessionButton</compoundname>
+    <includes refid="sessionbutton_8h" local="no">sessionbutton.h</includes>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classSessionButton_16a61509e5c9fb4c8c76ecda15289a7ba" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>SessionButton::SessionButton</definition>
+        <argsstring>(ONMainWindow *mw, QWidget *parent, QString id)</argsstring>
+        <name>SessionButton</name>
+        <param>
+          <type>ONMainWindow *</type>
+          <declname>mw</declname>
+        </param>
+        <param>
+          <type>QWidget *</type>
+          <declname>parent</declname>
+        </param>
+        <param>
+          <type>QString</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/sessionbutton.h" line="27" bodyfile="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/sessionbutton.cpp" bodystart="25" bodyend="233"/>
+      </memberdef>
+      <memberdef kind="function" id="classSessionButton_129c603b023758d11bb6988be77a3e037" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>SessionButton::~SessionButton</definition>
+        <argsstring>()</argsstring>
+        <name>~SessionButton</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/sessionbutton.h" line="28" bodyfile="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/sessionbutton.cpp" bodystart="235" bodyend="236"/>
+      </memberdef>
+      <memberdef kind="function" id="classSessionButton_1c8a06dda4a58a9ab8252d96581be595f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>QString</type>
+        <definition>QString SessionButton::id</definition>
+        <argsstring>()</argsstring>
+        <name>id</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/sessionbutton.h" line="29" bodyfile="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/sessionbutton.h" bodystart="29" bodyend="29"/>
+      </memberdef>
+      <memberdef kind="function" id="classSessionButton_1546db6e66f97df927efdebcf849e634f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void SessionButton::redraw</definition>
+        <argsstring>()</argsstring>
+        <name>redraw</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/sessionbutton.h" line="30" bodyfile="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/sessionbutton.cpp" bodystart="250" bodyend="330"/>
+      </memberdef>
+      <memberdef kind="function" id="classSessionButton_16f4398103a27b2e60bd4f3a0fd6b73a8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>QString</type>
+        <definition>QString SessionButton::name</definition>
+        <argsstring>()</argsstring>
+        <name>name</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/sessionbutton.h" line="32" bodyfile="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/sessionbutton.cpp" bodystart="489" bodyend="492"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="signal">
+      <memberdef kind="signal" id="classSessionButton_1a1b49cb51a3df82820f605640da92046" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void SessionButton::sessionSelected</definition>
+        <argsstring>(SessionButton *)</argsstring>
+        <name>sessionSelected</name>
+        <param>
+          <type><ref refid="classSessionButton" kindref="compound">SessionButton</ref> *</type>
+          <defname>_t1</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/sessionbutton.h" line="59" bodyfile="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/moc_sessionbutton.cpp" bodystart="94" bodyend="98"/>
+      </memberdef>
+      <memberdef kind="signal" id="classSessionButton_1a2c43541e4e2bece2147cde0ccd35fcc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void SessionButton::signal_edit</definition>
+        <argsstring>(SessionButton *)</argsstring>
+        <name>signal_edit</name>
+        <param>
+          <type><ref refid="classSessionButton" kindref="compound">SessionButton</ref> *</type>
+          <defname>_t1</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/sessionbutton.h" line="60" bodyfile="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/moc_sessionbutton.cpp" bodystart="101" bodyend="105"/>
+      </memberdef>
+      <memberdef kind="signal" id="classSessionButton_1dc47b3f4adecf50610ead7caeeb15193" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void SessionButton::signal_remove</definition>
+        <argsstring>(SessionButton *)</argsstring>
+        <name>signal_remove</name>
+        <param>
+          <type><ref refid="classSessionButton" kindref="compound">SessionButton</ref> *</type>
+          <defname>_t1</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/sessionbutton.h" line="61" bodyfile="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/moc_sessionbutton.cpp" bodystart="108" bodyend="112"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classSessionButton_1ef53e3f3f2549c9ed828bde7555e7ba7" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool SessionButton::lessThen</definition>
+        <argsstring>(const SessionButton *b1, const SessionButton *b2)</argsstring>
+        <name>lessThen</name>
+        <param>
+          <type>const <ref refid="classSessionButton" kindref="compound">SessionButton</ref> *</type>
+          <declname>b1</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classSessionButton" kindref="compound">SessionButton</ref> *</type>
+          <declname>b2</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/sessionbutton.h" line="31" bodyfile="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/sessionbutton.cpp" bodystart="476" bodyend="479"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classSessionButton_1bfb27518381e81c2444fc515379580a0" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void SessionButton::mouseMoveEvent</definition>
+        <argsstring>(QMouseEvent *event)</argsstring>
+        <name>mouseMoveEvent</name>
+        <param>
+          <type>QMouseEvent *</type>
+          <declname>event</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/sessionbutton.h" line="63" bodyfile="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/sessionbutton.cpp" bodystart="332" bodyend="414"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classSessionButton_18a5601c9b74f1b3eef2b64083a04ece1" prot="private" static="no" mutable="no">
+        <type>QString</type>
+        <definition>QString SessionButton::sid</definition>
+        <argsstring></argsstring>
+        <name>sid</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/sessionbutton.h" line="34" bodyfile="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/sessionbutton.h" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classSessionButton_1fa88ebb9a6bd40e8e0424c0380b0c5ba" prot="private" static="no" mutable="no">
+        <type>QLabel *</type>
+        <definition>QLabel* SessionButton::sessName</definition>
+        <argsstring></argsstring>
+        <name>sessName</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/sessionbutton.h" line="35" bodyfile="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/sessionbutton.h" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classSessionButton_18445a6275c871ce5c9b329d0d8753348" prot="private" static="no" mutable="no">
+        <type>QLabel *</type>
+        <definition>QLabel* SessionButton::icon</definition>
+        <argsstring></argsstring>
+        <name>icon</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/sessionbutton.h" line="36" bodyfile="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/sessionbutton.h" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classSessionButton_1235e8a67577072b916e2e6743a7e646e" prot="private" static="no" mutable="no">
+        <type>QComboBox *</type>
+        <definition>QComboBox* SessionButton::cmdBox</definition>
+        <argsstring></argsstring>
+        <name>cmdBox</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/sessionbutton.h" line="37" bodyfile="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/sessionbutton.h" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classSessionButton_16b2b7e5bce71b6a345a4a67001ba22ec" prot="private" static="no" mutable="no">
+        <type>QLabel *</type>
+        <definition>QLabel* SessionButton::cmd</definition>
+        <argsstring></argsstring>
+        <name>cmd</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/sessionbutton.h" line="38" bodyfile="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/sessionbutton.h" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classSessionButton_195ea15a5fb55df1e7ea0e2cf87d07a4d" prot="private" static="no" mutable="no">
+        <type>QLabel *</type>
+        <definition>QLabel* SessionButton::serverIcon</definition>
+        <argsstring></argsstring>
+        <name>serverIcon</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/sessionbutton.h" line="39" bodyfile="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/sessionbutton.h" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classSessionButton_184a270a3eac78683f3c59dac94891528" prot="private" static="no" mutable="no">
+        <type>QLabel *</type>
+        <definition>QLabel* SessionButton::geomIcon</definition>
+        <argsstring></argsstring>
+        <name>geomIcon</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/sessionbutton.h" line="40" bodyfile="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/sessionbutton.h" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classSessionButton_1301e27acd5791799c31c0573bee68a03" prot="private" static="no" mutable="no">
+        <type>QLabel *</type>
+        <definition>QLabel* SessionButton::cmdIcon</definition>
+        <argsstring></argsstring>
+        <name>cmdIcon</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/sessionbutton.h" line="41" bodyfile="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/sessionbutton.h" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classSessionButton_1a414df7f61a81149977102c570037a40" prot="private" static="no" mutable="no">
+        <type>QLabel *</type>
+        <definition>QLabel* SessionButton::server</definition>
+        <argsstring></argsstring>
+        <name>server</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/sessionbutton.h" line="42" bodyfile="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/sessionbutton.h" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classSessionButton_146606af5e37496c23562b9888429319a" prot="private" static="no" mutable="no">
+        <type>QPushButton *</type>
+        <definition>QPushButton* SessionButton::editBut</definition>
+        <argsstring></argsstring>
+        <name>editBut</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/sessionbutton.h" line="43" bodyfile="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/sessionbutton.h" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classSessionButton_130a671ebe2365fbfaeca6970a5d2196e" prot="private" static="no" mutable="no">
+        <type>QPushButton *</type>
+        <definition>QPushButton* SessionButton::rmBut</definition>
+        <argsstring></argsstring>
+        <name>rmBut</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/sessionbutton.h" line="44" bodyfile="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/sessionbutton.h" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classSessionButton_105d7b6c7b9762b75b3f8a49e77709f60" prot="private" static="no" mutable="no">
+        <type>QLabel *</type>
+        <definition>QLabel* SessionButton::geom</definition>
+        <argsstring></argsstring>
+        <name>geom</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/sessionbutton.h" line="45" bodyfile="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/sessionbutton.h" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classSessionButton_157a965a2da126ff038a088c165b74d41" prot="private" static="no" mutable="no">
+        <type>QComboBox *</type>
+        <definition>QComboBox* SessionButton::geomBox</definition>
+        <argsstring></argsstring>
+        <name>geomBox</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/sessionbutton.h" line="46" bodyfile="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/sessionbutton.h" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classSessionButton_17a9e020b6befad2d143edfd631b8dd52" prot="private" static="no" mutable="no">
+        <type>QPushButton *</type>
+        <definition>QPushButton* SessionButton::sound</definition>
+        <argsstring></argsstring>
+        <name>sound</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/sessionbutton.h" line="47" bodyfile="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/sessionbutton.h" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classSessionButton_1c6683ec3dd041b7ecc3b2268d787da97" prot="private" static="no" mutable="no">
+        <type>QLabel *</type>
+        <definition>QLabel* SessionButton::soundIcon</definition>
+        <argsstring></argsstring>
+        <name>soundIcon</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/sessionbutton.h" line="48" bodyfile="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/sessionbutton.h" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classSessionButton_1e226b9e479211d7a4f7d9493b3418c0b" prot="private" static="no" mutable="no">
+        <type>ONMainWindow *</type>
+        <definition>ONMainWindow* SessionButton::par</definition>
+        <argsstring></argsstring>
+        <name>par</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/sessionbutton.h" line="49" bodyfile="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/sessionbutton.h" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-slot">
+      <memberdef kind="slot" id="classSessionButton_19a045067c701c8715eebc45c06f5fce4" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void SessionButton::slotClicked</definition>
+        <argsstring>()</argsstring>
+        <name>slotClicked</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/sessionbutton.h" line="52" bodyfile="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/sessionbutton.cpp" bodystart="238" bodyend="241"/>
+      </memberdef>
+      <memberdef kind="slot" id="classSessionButton_1c034a8ebeccb0666bffb961481dd902c" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void SessionButton::slotEdit</definition>
+        <argsstring>()</argsstring>
+        <name>slotEdit</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/sessionbutton.h" line="53" bodyfile="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/sessionbutton.cpp" bodystart="243" bodyend="247"/>
+      </memberdef>
+      <memberdef kind="slot" id="classSessionButton_1fc4b879f1f63d222525eb002cbf658a7" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void SessionButton::slot_soundClicked</definition>
+        <argsstring>()</argsstring>
+        <name>slot_soundClicked</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/sessionbutton.h" line="54" bodyfile="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/sessionbutton.cpp" bodystart="417" bodyend="433"/>
+      </memberdef>
+      <memberdef kind="slot" id="classSessionButton_1710f37e89dbbb864381cf98204ed025f" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void SessionButton::slot_cmd_change</definition>
+        <argsstring>(const QString &amp;command)</argsstring>
+        <name>slot_cmd_change</name>
+        <param>
+          <type>const QString &amp;</type>
+          <declname>command</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/sessionbutton.h" line="55" bodyfile="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/sessionbutton.cpp" bodystart="435" bodyend="457"/>
+      </memberdef>
+      <memberdef kind="slot" id="classSessionButton_1eae821291f11963c553fc6154f6976d1" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void SessionButton::slot_geom_change</definition>
+        <argsstring>(const QString &amp;new_g)</argsstring>
+        <name>slot_geom_change</name>
+        <param>
+          <type>const QString &amp;</type>
+          <declname>new_g</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/sessionbutton.h" line="56" bodyfile="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/sessionbutton.cpp" bodystart="460" bodyend="474"/>
+      </memberdef>
+      <memberdef kind="slot" id="classSessionButton_142edffbc753772813062712c74f4ec24" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void SessionButton::slotRemove</definition>
+        <argsstring>()</argsstring>
+        <name>slotRemove</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/sessionbutton.h" line="57" bodyfile="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/sessionbutton.cpp" bodystart="483" bodyend="486"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="author"><para>Oleksandr Shneyder &lt;<ulink url="mailto:oleksandr.shneyder@treuchtlingen.de">oleksandr.shneyder@treuchtlingen.de</ulink>&gt; </para></simplesect>
+</para>    </detaileddescription>
+    <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/sessionbutton.h" line="24" bodyfile="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/sessionbutton.h" bodystart="23" bodyend="64"/>
+    <listofallmembers>
+      <member refid="classSessionButton_16b2b7e5bce71b6a345a4a67001ba22ec" prot="private" virt="non-virtual"><scope>SessionButton</scope><name>cmd</name></member>
+      <member refid="classSessionButton_1235e8a67577072b916e2e6743a7e646e" prot="private" virt="non-virtual"><scope>SessionButton</scope><name>cmdBox</name></member>
+      <member refid="classSessionButton_1301e27acd5791799c31c0573bee68a03" prot="private" virt="non-virtual"><scope>SessionButton</scope><name>cmdIcon</name></member>
+      <member refid="classSessionButton_146606af5e37496c23562b9888429319a" prot="private" virt="non-virtual"><scope>SessionButton</scope><name>editBut</name></member>
+      <member refid="classSessionButton_105d7b6c7b9762b75b3f8a49e77709f60" prot="private" virt="non-virtual"><scope>SessionButton</scope><name>geom</name></member>
+      <member refid="classSessionButton_157a965a2da126ff038a088c165b74d41" prot="private" virt="non-virtual"><scope>SessionButton</scope><name>geomBox</name></member>
+      <member refid="classSessionButton_184a270a3eac78683f3c59dac94891528" prot="private" virt="non-virtual"><scope>SessionButton</scope><name>geomIcon</name></member>
+      <member refid="classSessionButton_18445a6275c871ce5c9b329d0d8753348" prot="private" virt="non-virtual"><scope>SessionButton</scope><name>icon</name></member>
+      <member refid="classSessionButton_1c8a06dda4a58a9ab8252d96581be595f" prot="public" virt="non-virtual"><scope>SessionButton</scope><name>id</name></member>
+      <member refid="classSessionButton_1ef53e3f3f2549c9ed828bde7555e7ba7" prot="public" virt="non-virtual"><scope>SessionButton</scope><name>lessThen</name></member>
+      <member refid="classSessionButton_1bfb27518381e81c2444fc515379580a0" prot="protected" virt="virtual"><scope>SessionButton</scope><name>mouseMoveEvent</name></member>
+      <member refid="classSessionButton_16f4398103a27b2e60bd4f3a0fd6b73a8" prot="public" virt="non-virtual"><scope>SessionButton</scope><name>name</name></member>
+      <member refid="classSessionButton_1e226b9e479211d7a4f7d9493b3418c0b" prot="private" virt="non-virtual"><scope>SessionButton</scope><name>par</name></member>
+      <member refid="classSessionButton_1546db6e66f97df927efdebcf849e634f" prot="public" virt="non-virtual"><scope>SessionButton</scope><name>redraw</name></member>
+      <member refid="classSessionButton_130a671ebe2365fbfaeca6970a5d2196e" prot="private" virt="non-virtual"><scope>SessionButton</scope><name>rmBut</name></member>
+      <member refid="classSessionButton_1a414df7f61a81149977102c570037a40" prot="private" virt="non-virtual"><scope>SessionButton</scope><name>server</name></member>
+      <member refid="classSessionButton_195ea15a5fb55df1e7ea0e2cf87d07a4d" prot="private" virt="non-virtual"><scope>SessionButton</scope><name>serverIcon</name></member>
+      <member refid="classSessionButton_16a61509e5c9fb4c8c76ecda15289a7ba" prot="public" virt="non-virtual"><scope>SessionButton</scope><name>SessionButton</name></member>
+      <member refid="classSessionButton_1a1b49cb51a3df82820f605640da92046" prot="public" virt="non-virtual"><scope>SessionButton</scope><name>sessionSelected</name></member>
+      <member refid="classSessionButton_1fa88ebb9a6bd40e8e0424c0380b0c5ba" prot="private" virt="non-virtual"><scope>SessionButton</scope><name>sessName</name></member>
+      <member refid="classSessionButton_18a5601c9b74f1b3eef2b64083a04ece1" prot="private" virt="non-virtual"><scope>SessionButton</scope><name>sid</name></member>
+      <member refid="classSessionButton_1a2c43541e4e2bece2147cde0ccd35fcc" prot="public" virt="non-virtual"><scope>SessionButton</scope><name>signal_edit</name></member>
+      <member refid="classSessionButton_1dc47b3f4adecf50610ead7caeeb15193" prot="public" virt="non-virtual"><scope>SessionButton</scope><name>signal_remove</name></member>
+      <member refid="classSessionButton_1710f37e89dbbb864381cf98204ed025f" prot="private" virt="non-virtual"><scope>SessionButton</scope><name>slot_cmd_change</name></member>
+      <member refid="classSessionButton_1eae821291f11963c553fc6154f6976d1" prot="private" virt="non-virtual"><scope>SessionButton</scope><name>slot_geom_change</name></member>
+      <member refid="classSessionButton_1fc4b879f1f63d222525eb002cbf658a7" prot="private" virt="non-virtual"><scope>SessionButton</scope><name>slot_soundClicked</name></member>
+      <member refid="classSessionButton_19a045067c701c8715eebc45c06f5fce4" prot="private" virt="non-virtual"><scope>SessionButton</scope><name>slotClicked</name></member>
+      <member refid="classSessionButton_1c034a8ebeccb0666bffb961481dd902c" prot="private" virt="non-virtual"><scope>SessionButton</scope><name>slotEdit</name></member>
+      <member refid="classSessionButton_142edffbc753772813062712c74f4ec24" prot="private" virt="non-virtual"><scope>SessionButton</scope><name>slotRemove</name></member>
+      <member refid="classSessionButton_17a9e020b6befad2d143edfd631b8dd52" prot="private" virt="non-virtual"><scope>SessionButton</scope><name>sound</name></member>
+      <member refid="classSessionButton_1c6683ec3dd041b7ecc3b2268d787da97" prot="private" virt="non-virtual"><scope>SessionButton</scope><name>soundIcon</name></member>
+      <member refid="classSessionButton_129c603b023758d11bb6988be77a3e037" prot="public" virt="non-virtual"><scope>SessionButton</scope><name>~SessionButton</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

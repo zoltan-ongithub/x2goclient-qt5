@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='iso-8859-1' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.4.7">
+  <compounddef id="dir_89b9a6018dd9d56eed0453a00ae90b1e" kind="dir">
+    <compoundname>/mnt/nfs/</compoundname>
+    <innerdir refid="dir_39227c2caa4dcaf57c6bdbbe0a0469c0">/mnt/nfs/up/</innerdir>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/mnt/nfs/"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,83 @@
+x2goclient (2.0.1-12) unstable; urgency=low
+
+  * Client ssh port in settings dialog
+  * Sound system selections in session dialog
+  * "Mini mode" for modes < "800x600"
+
+ -- Oleksandr Shneyder <oleksandr.shneyder@treuchtlingen.de>  Fri, 14 Mar 2008 11:03:48 +0100
+
+x2goclient (2.0.1-11) unstable; urgency=low
+
+  * Mac OS X support
+  * Fixed Error '"visual != -1" in file itemviews/qheaderview.cpp' by compiling with qt >=4.3
+  * Fixed mouse tracking on SessionButton
+
+ -- Oleksandr Shneyder <oleksandr.shneyder@treuchtlingen.de>  Thu, 10 Jan 2008 13:54:24 +0100
+
+x2goclient (2.0.1-10) unstable; urgency=low
+
+  * russian translation
+
+ -- Oleksandr Shneyder <oleksandr.shneyder@treuchtlingen.de>  Mon,  1 Oct 2007 10:23:58 +0200
+
+x2goclient (2.0.1-9) unstable; urgency=low
+
+  * Added widget for ssh port select in editsessiondialog
+  * ssh port to connect in command line options
+  * client ssh port (for sshfs) in command line options
+
+ -- Oleksandr Shneyder <oleksandr.shneyder@treuchtlingen.de>  Fri, 21 Sep 2007 10:31:59 +0200
+
+x2goclient (2.0.1-8) unstable; urgency=low
+  
+  * Fixed export directories with " " in path
+  * Fixed SessionButton frame size by empty session
+  * Compare session and display color depth
+  * MS Windows support
+
+ -- Oleksandr Shneyder <oleksandr.shneyder@treuchtlingen.de>  Thu, 13 Sep 2007 09:30:59 +0200
+
+x2goclient (2.0.1-7) unstable; urgency=low
+
+  * esd support
+
+ -- Oleksandr Shneyder <oleksandr.shneyder@treuchtlingen.de>  Tue,  7 Aug 2007 15:33:32 +0200
+
+x2goclient (2.0.1-6) unstable; urgency=low
+
+  * OpenPGP smart cards support
+
+ -- Oleksandr Shneyder <oleksandr.shneyder@treuchtlingen.de>  Fri,  3 Aug 2007 07:40:27 +0200
+
+x2goclient (2.0.1-5) unstable; urgency=low
+
+  * extern auth (usb, smartcard) support
+
+ -- Oleksandr Shneyder <oleksandr.shneyder@treuchtlingen.de>  Tue, 26 Jun 2007 16:54:48 +0200
+
+x2goclient (2.0.1-4) unstable; urgency=low
+
+  * minimized reaction time by many LDAP users
+
+ -- Oleksandr Shneyder <oleksandr.shneyder@treuchtlingen.de>  Thu,  1 Mar 2007 15:15:14 +0100
+
+x2goclient (2.0.1-3) unstable; urgency=low
+
+  * Failover LDAP Server config
+  * reload new users from LDAP
+
+ -- Oleksandr Shneyder <oleksandr.shneyder@treuchtlingen.de>  Thu,  1 Mar 2007 15:15:14 +0100
+
+x2goclient (2.0.1-2) unstable; urgency=low
+
+  * Updated German translation
+  * Add "wrong password!" in ssh error message
+
+ -- Oleksandr Shneyder <oleksandr.shneyder@treuchtlingen.de>  Mon, 26 Feb 2007 10:25:02 +0100
+
+x2goclient (2.0.1-1) unstable; urgency=low
+
+  * Initial release (Closes: #nnnn)  <nnnn is the bug number of your ITP>
+
+ -- Oleksandr Shneyder <oleksandr.shneyder@treuchtlingen.de>  Fri,  2 Feb 2007 09:36:59 +0100
+

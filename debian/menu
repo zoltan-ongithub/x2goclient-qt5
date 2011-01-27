@@ -1,0 +1,4 @@
+?package(x2goclient):needs="X11" section="Apps/Net"\
+  title="X2GO QT Client" \
+  icon="/usr/share/x2goclient/icons/x2goclient.png"\
+  command="/usr/bin/x2goclient"

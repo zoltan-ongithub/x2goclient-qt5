@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='iso-8859-1' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.4.7">
+  <compounddef id="structuser" kind="struct" prot="public">
+    <compoundname>user</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structuser_149cb039f41dc3f38da0837fb75f1afc6" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int user::uin</definition>
+        <argsstring></argsstring>
+        <name>uin</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/onmainwindow.h" line="50" bodyfile="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/onmainwindow.h" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structuser_1cdac0331fba72833354f4f1c4456ef99" prot="public" static="no" mutable="no">
+        <type>QString</type>
+        <definition>QString user::uid</definition>
+        <argsstring></argsstring>
+        <name>uid</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/onmainwindow.h" line="51" bodyfile="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/onmainwindow.h" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structuser_12a73f0b87004cc1980f4b9d2afa1d998" prot="public" static="no" mutable="no">
+        <type>QString</type>
+        <definition>QString user::name</definition>
+        <argsstring></argsstring>
+        <name>name</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/onmainwindow.h" line="52" bodyfile="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/onmainwindow.h" bodystart="52" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structuser_1ca7882f25ccab346eae3af53c866370b" prot="public" static="no" mutable="no">
+        <type>QPixmap</type>
+        <definition>QPixmap user::foto</definition>
+        <argsstring></argsstring>
+        <name>foto</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/onmainwindow.h" line="53" bodyfile="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/onmainwindow.h" bodystart="53" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="structuser_1372ad022591bb471e4c2bf527b56774a" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool user::lessThen</definition>
+        <argsstring>(user u1, user u2)</argsstring>
+        <name>lessThen</name>
+        <param>
+          <type>user</type>
+          <declname>u1</declname>
+        </param>
+        <param>
+          <type>user</type>
+          <declname>u2</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/onmainwindow.h" line="54" bodyfile="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/onmainwindow.h" bodystart="54" bodyend="54"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/onmainwindow.h" line="49" bodyfile="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/onmainwindow.h" bodystart="48" bodyend="55"/>
+    <listofallmembers>
+      <member refid="structuser_1ca7882f25ccab346eae3af53c866370b" prot="public" virt="non-virtual"><scope>user</scope><name>foto</name></member>
+      <member refid="structuser_1372ad022591bb471e4c2bf527b56774a" prot="public" virt="non-virtual"><scope>user</scope><name>lessThen</name></member>
+      <member refid="structuser_12a73f0b87004cc1980f4b9d2afa1d998" prot="public" virt="non-virtual"><scope>user</scope><name>name</name></member>
+      <member refid="structuser_1cdac0331fba72833354f4f1c4456ef99" prot="public" virt="non-virtual"><scope>user</scope><name>uid</name></member>
+      <member refid="structuser_149cb039f41dc3f38da0837fb75f1afc6" prot="public" virt="non-virtual"><scope>user</scope><name>uin</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

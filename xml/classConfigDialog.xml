@@ -1,0 +1,156 @@
+<?xml version='1.0' encoding='iso-8859-1' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.4.7">
+  <compounddef id="classConfigDialog" kind="class" prot="public">
+    <compoundname>ConfigDialog</compoundname>
+    <includes refid="configdialog_8h" local="no">configdialog.h</includes>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classConfigDialog_1796cb9b0d5b50af3f1d5d31de53e8c69" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>ConfigDialog::ConfigDialog</definition>
+        <argsstring>(QWidget *parent, Qt::WFlags f=0)</argsstring>
+        <name>ConfigDialog</name>
+        <param>
+          <type>QWidget *</type>
+          <declname>parent</declname>
+        </param>
+        <param>
+          <type>Qt::WFlags</type>
+          <declname>f</declname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/configdialog.h" line="28" bodyfile="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/configdialog.cpp" bodystart="25" bodyend="105"/>
+      </memberdef>
+      <memberdef kind="function" id="classConfigDialog_1c8835ebf467f3a0d14079cc6c4889b42" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>ConfigDialog::~ConfigDialog</definition>
+        <argsstring>()</argsstring>
+        <name>~ConfigDialog</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/configdialog.h" line="29" bodyfile="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/configdialog.cpp" bodystart="108" bodyend="109"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-slot">
+      <memberdef kind="slot" id="classConfigDialog_19f04d8b7c801f239998cfa628f2183da" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConfigDialog::slot_accepted</definition>
+        <argsstring>()</argsstring>
+        <name>slot_accepted</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/configdialog.h" line="37" bodyfile="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/configdialog.cpp" bodystart="112" bodyend="121"/>
+      </memberdef>
+      <memberdef kind="slot" id="classConfigDialog_16b6b036fe8df7b347fd3772f4e7f6fef" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConfigDialog::slot_checkOkStat</definition>
+        <argsstring>()</argsstring>
+        <name>slot_checkOkStat</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/configdialog.h" line="38" bodyfile="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/configdialog.cpp" bodystart="124" bodyend="128"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classConfigDialog_1fd17382f544cfa68ef17ac65a2f5838a" prot="private" static="no" mutable="no">
+        <type>QCheckBox *</type>
+        <definition>QCheckBox* ConfigDialog::useldap</definition>
+        <argsstring></argsstring>
+        <name>useldap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/configdialog.h" line="31" bodyfile="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/configdialog.h" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classConfigDialog_19a43966c5e84cc5b207c4b8d2c326305" prot="private" static="no" mutable="no">
+        <type>QLineEdit *</type>
+        <definition>QLineEdit* ConfigDialog::ldapBase</definition>
+        <argsstring></argsstring>
+        <name>ldapBase</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/configdialog.h" line="32" bodyfile="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/configdialog.h" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classConfigDialog_18d4c767ebbe3f1e91ad42fdde47b53ff" prot="private" static="no" mutable="no">
+        <type>QLineEdit *</type>
+        <definition>QLineEdit* ConfigDialog::ldapServer</definition>
+        <argsstring></argsstring>
+        <name>ldapServer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/configdialog.h" line="33" bodyfile="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/configdialog.h" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classConfigDialog_1b6fa1b0f7b767a84a02e0080da1b7877" prot="private" static="no" mutable="no">
+        <type>QSpinBox *</type>
+        <definition>QSpinBox* ConfigDialog::port</definition>
+        <argsstring></argsstring>
+        <name>port</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/configdialog.h" line="34" bodyfile="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/configdialog.h" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classConfigDialog_1164c493f55df211b3ef9a0c8fcd828c4" prot="private" static="no" mutable="no">
+        <type>QPushButton *</type>
+        <definition>QPushButton* ConfigDialog::ok</definition>
+        <argsstring></argsstring>
+        <name>ok</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/configdialog.h" line="35" bodyfile="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/configdialog.h" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="author"><para>Oleksandr Shneyder &lt;<ulink url="mailto:oleksandr.shneyder@treuchtlingen.de">oleksandr.shneyder@treuchtlingen.de</ulink>&gt; </para></simplesect>
+</para>    </detaileddescription>
+    <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/configdialog.h" line="25" bodyfile="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/configdialog.h" bodystart="24" bodyend="39"/>
+    <listofallmembers>
+      <member refid="classConfigDialog_1796cb9b0d5b50af3f1d5d31de53e8c69" prot="public" virt="non-virtual"><scope>ConfigDialog</scope><name>ConfigDialog</name></member>
+      <member refid="classConfigDialog_19a43966c5e84cc5b207c4b8d2c326305" prot="private" virt="non-virtual"><scope>ConfigDialog</scope><name>ldapBase</name></member>
+      <member refid="classConfigDialog_18d4c767ebbe3f1e91ad42fdde47b53ff" prot="private" virt="non-virtual"><scope>ConfigDialog</scope><name>ldapServer</name></member>
+      <member refid="classConfigDialog_1164c493f55df211b3ef9a0c8fcd828c4" prot="private" virt="non-virtual"><scope>ConfigDialog</scope><name>ok</name></member>
+      <member refid="classConfigDialog_1b6fa1b0f7b767a84a02e0080da1b7877" prot="private" virt="non-virtual"><scope>ConfigDialog</scope><name>port</name></member>
+      <member refid="classConfigDialog_19f04d8b7c801f239998cfa628f2183da" prot="public" virt="non-virtual"><scope>ConfigDialog</scope><name>slot_accepted</name></member>
+      <member refid="classConfigDialog_16b6b036fe8df7b347fd3772f4e7f6fef" prot="public" virt="non-virtual"><scope>ConfigDialog</scope><name>slot_checkOkStat</name></member>
+      <member refid="classConfigDialog_1fd17382f544cfa68ef17ac65a2f5838a" prot="private" virt="non-virtual"><scope>ConfigDialog</scope><name>useldap</name></member>
+      <member refid="classConfigDialog_1c8835ebf467f3a0d14079cc6c4889b42" prot="public" virt="non-virtual"><scope>ConfigDialog</scope><name>~ConfigDialog</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

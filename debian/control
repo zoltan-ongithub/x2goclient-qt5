@@ -1,0 +1,24 @@
+Source: x2goclient
+Section: x11
+Priority: extra
+Maintainer: Oleksandr Shneyder <oleksandr.shneyder@treuchtlingen.de>
+Build-Depends: debhelper (>= 5),libqt4-dev,libldap2-dev
+Standards-Version: 3.7.2
+
+Package: x2goclient
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, nxproxy, libldap-2.4-2, libqt4-gui, gnupg-agent, pinentry-x2go, gpgsm
+Recommends: arts, esound
+Description: x2goclient qt4 client
+ x2go is a serverbased computing environment with
+ - session resuming
+ - low bandwith support
+ - LDAP support
+ - client side mass storage mounting support
+ - audio/arts support
+ - authentification by smartcard and usb-stick
+ - kde control-center modules for administration
+ - kde based tools for just in time messaging and client surveillance
+ .
+ x2goclient is a graphical client (qt4) for the x2go system.
+ You can use it to connect to running sessions and start new sessions. 

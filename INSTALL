@@ -1,0 +1,9 @@
+Basic Installation
+==================
+
+Before use this programm you need to install:
+
+qt4  http://www.trolltech.com
+nxcomp+nxproxy http://www.nomachine.com/sources.php
+
+You may want also install arts sound server to enable sound support http://multimedia.kde.org

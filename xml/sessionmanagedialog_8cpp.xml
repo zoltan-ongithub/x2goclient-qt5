@@ -1,0 +1,269 @@
+<?xml version='1.0' encoding='iso-8859-1' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.4.7">
+  <compounddef id="sessionmanagedialog_8cpp" kind="file">
+    <compoundname>sessionmanagedialog.cpp</compoundname>
+    <includes refid="sessionmanagedialog_8h" local="yes">sessionmanagedialog.h</includes>
+    <includes refid="onmainwindow_8h" local="yes">onmainwindow.h</includes>
+    <includes local="no">QPushButton</includes>
+    <includes local="no">QSettings</includes>
+    <includes local="no">QDir</includes>
+    <includes local="no">QFrame</includes>
+    <includes local="no">QBoxLayout</includes>
+    <includes local="no">QListView</includes>
+    <includes local="no">QStringListModel</includes>
+    <includes local="no">QShortcut</includes>
+    <includes refid="sessionbutton_8h" local="yes">sessionbutton.h</includes>
+    <incdepgraph>
+      <node id="212">
+        <label>list</label>
+      </node>
+      <node id="213">
+        <label>QSettings</label>
+      </node>
+      <node id="204">
+        <label>onmainwindow.h</label>
+        <link refid="onmainwindow_8h-source"/>
+        <childnode refid="205" relation="include">
+        </childnode>
+        <childnode refid="206" relation="include">
+        </childnode>
+        <childnode refid="207" relation="include">
+        </childnode>
+        <childnode refid="208" relation="include">
+        </childnode>
+        <childnode refid="209" relation="include">
+        </childnode>
+      </node>
+      <node id="202">
+        <label>sessionmanagedialog.h</label>
+        <link refid="sessionmanagedialog_8h-source"/>
+        <childnode refid="203" relation="include">
+        </childnode>
+      </node>
+      <node id="206">
+        <label>QList</label>
+      </node>
+      <node id="220">
+        <label>sessionbutton.h</label>
+        <link refid="sessionbutton_8h-source"/>
+        <childnode refid="207" relation="include">
+        </childnode>
+      </node>
+      <node id="210">
+        <label>ldap.h</label>
+      </node>
+      <node id="211">
+        <label>string</label>
+      </node>
+      <node id="205">
+        <label>QMainWindow</label>
+      </node>
+      <node id="219">
+        <label>QShortcut</label>
+      </node>
+      <node id="203">
+        <label>QDialog</label>
+      </node>
+      <node id="201">
+        <label>/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/sessionmanagedialog.cpp</label>
+        <link refid="sessionmanagedialog.cpp"/>
+        <childnode refid="202" relation="include">
+        </childnode>
+        <childnode refid="204" relation="include">
+        </childnode>
+        <childnode refid="207" relation="include">
+        </childnode>
+        <childnode refid="213" relation="include">
+        </childnode>
+        <childnode refid="214" relation="include">
+        </childnode>
+        <childnode refid="215" relation="include">
+        </childnode>
+        <childnode refid="216" relation="include">
+        </childnode>
+        <childnode refid="217" relation="include">
+        </childnode>
+        <childnode refid="218" relation="include">
+        </childnode>
+        <childnode refid="219" relation="include">
+        </childnode>
+        <childnode refid="220" relation="include">
+        </childnode>
+      </node>
+      <node id="207">
+        <label>QPushButton</label>
+      </node>
+      <node id="216">
+        <label>QBoxLayout</label>
+      </node>
+      <node id="208">
+        <label>QPixmap</label>
+      </node>
+      <node id="214">
+        <label>QDir</label>
+      </node>
+      <node id="217">
+        <label>QListView</label>
+      </node>
+      <node id="215">
+        <label>QFrame</label>
+      </node>
+      <node id="209">
+        <label>LDAPSession.h</label>
+        <link refid="LDAPSession_8h-source"/>
+        <childnode refid="210" relation="include">
+        </childnode>
+        <childnode refid="211" relation="include">
+        </childnode>
+        <childnode refid="212" relation="include">
+        </childnode>
+      </node>
+      <node id="218">
+        <label>QStringListModel</label>
+      </node>
+    </incdepgraph>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">//<sp/>C++<sp/>Implementation:<sp/>sessionmanagedialog</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Description:</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Author:<sp/>Oleksandr<sp/>Shneyder<sp/>&lt;oleksandr.shneyder@treuchtlingen.de&gt;,<sp/>(C)<sp/>2006</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Copyright:<sp/>See<sp/>COPYING<sp/>file<sp/>that<sp/>comes<sp/>with<sp/>this<sp/>distribution</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;sessionmanagedialog.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;onmainwindow.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;QPushButton&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;QSettings&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;QDir&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;QFrame&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;QBoxLayout&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;QListView&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;QStringListModel&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;QShortcut&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;sessionbutton.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal">SessionManageDialog::SessionManageDialog(QWidget<sp/>*<sp/>parent,<sp/>Qt::WFlags<sp/>f)</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>:<sp/>QDialog(parent,<sp/>f)</highlight></codeline>
+<codeline lineno="29"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/>QVBoxLayout*<sp/>ml=</highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>QVBoxLayout(</highlight><highlight class="keyword">this</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/>QFrame<sp/>*fr=</highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>QFrame(</highlight><highlight class="keyword">this</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/>QHBoxLayout*<sp/>frLay=</highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>QHBoxLayout(fr);</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/>QPushButton*<sp/>ok=</highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>QPushButton(tr(</highlight><highlight class="stringliteral">&quot;E&amp;xit&quot;</highlight><highlight class="normal">),</highlight><highlight class="keyword">this</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/>QHBoxLayout*<sp/>bLay=</highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>QHBoxLayout();</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/>sessions=</highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>QListView(fr);</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/>frLay-&gt;addWidget(sessions);</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/>QPushButton*<sp/>newSession=</highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>QPushButton(tr(</highlight><highlight class="stringliteral">&quot;&amp;New<sp/>Session&quot;</highlight><highlight class="normal">),fr);</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/>editSession=</highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>QPushButton(tr(</highlight><highlight class="stringliteral">&quot;&amp;Edit<sp/>Session&quot;</highlight><highlight class="normal">),fr);</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/>removeSession=</highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>QPushButton(tr(</highlight><highlight class="stringliteral">&quot;&amp;Delete<sp/>Session&quot;</highlight><highlight class="normal">),fr);</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/>par=(ONMainWindow*)parent;</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/>newSession-&gt;setIcon(QIcon(par-&gt;iconsPath(</highlight><highlight class="stringliteral">&quot;/16x16/actions/filenew.png&quot;</highlight><highlight class="normal">)));</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/>editSession-&gt;setIcon(QIcon(par-&gt;iconsPath(</highlight><highlight class="stringliteral">&quot;/16x16/actions/edit.png&quot;</highlight><highlight class="normal">)));</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/>removeSession-&gt;setIcon(QIcon(par-&gt;iconsPath(</highlight><highlight class="stringliteral">&quot;/16x16/actions/remove.png&quot;</highlight><highlight class="normal">)));</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/>QVBoxLayout*<sp/>actLay=</highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>QVBoxLayout();</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/>actLay-&gt;addWidget(newSession);</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/>actLay-&gt;addWidget(editSession);</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/>actLay-&gt;addWidget(removeSession);</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/>actLay-&gt;addStretch();</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/>frLay-&gt;addLayout(actLay);</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/>QShortcut*<sp/>sc=</highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>QShortcut(QKeySequence(tr(</highlight><highlight class="stringliteral">&quot;Delete&quot;</highlight><highlight class="normal">,</highlight><highlight class="stringliteral">&quot;Delete&quot;</highlight><highlight class="normal">)),</highlight><highlight class="keyword">this</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/>connect(ok,SIGNAL(clicked()),</highlight><highlight class="keyword">this</highlight><highlight class="normal">,SLOT(close()));</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/>connect(sc,SIGNAL(activated()),removeSession,SIGNAL(clicked()));</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/>connect(removeSession,SIGNAL(clicked()),</highlight><highlight class="keyword">this</highlight><highlight class="normal">,SLOT(slot_delete()));</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/>connect(editSession,SIGNAL(clicked()),</highlight><highlight class="keyword">this</highlight><highlight class="normal">,SLOT(slot_edit()));</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/>connect(newSession,SIGNAL(clicked()),</highlight><highlight class="keyword">this</highlight><highlight class="normal">,SLOT(slotNew()));</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/>bLay-&gt;setSpacing(5);</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/>bLay-&gt;addStretch();</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/>bLay-&gt;addWidget(ok);</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/>ml-&gt;addWidget(fr);</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/>ml-&gt;addLayout(bLay);</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/>fr-&gt;setFrameStyle(QFrame::StyledPanel<sp/>|<sp/>QFrame::Raised);</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/>fr-&gt;setLineWidth(2);</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/>setSizeGripEnabled<sp/>(<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal"><sp/>);</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/>setWindowIcon(QIcon(((ONMainWindow*)parent)-&gt;iconsPath(</highlight><highlight class="stringliteral">&quot;/32x32/actions/edit.png&quot;</highlight><highlight class="normal">)));</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/>setWindowTitle(tr(</highlight><highlight class="stringliteral">&quot;Manage<sp/>Sessions&quot;</highlight><highlight class="normal">));</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/>loadSessions();</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/>connect(sessions,SIGNAL(clicked(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>QModelIndex&amp;)),</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal">,SLOT(slot_activated(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>QModelIndex&amp;)));</highlight></codeline>
+<codeline lineno="77"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal">SessionManageDialog::~SessionManageDialog()</highlight></codeline>
+<codeline lineno="81"><highlight class="normal">{}</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>SessionManageDialog::loadSessions()</highlight></codeline>
+<codeline lineno="85"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/>QStringListModel<sp/>*model=(QStringListModel*)sessions-&gt;model();</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(!model)</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>model=</highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>QStringListModel();</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/>sessions-&gt;setModel(model);</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/>QStringList<sp/>lst;</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/>model-&gt;setStringList(lst);</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>QList&lt;SessionButton*&gt;<sp/>*sess=par-&gt;getSessionsList();</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i=0;i&lt;sess-&gt;size();++i)</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>lst&lt;&lt;sess-&gt;at(i)-&gt;name();</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"></highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/>model-&gt;setStringList(lst);</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/>removeSession-&gt;setEnabled(</highlight><highlight class="keyword">false</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/>editSession-&gt;setEnabled(</highlight><highlight class="keyword">false</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/>sessions-&gt;setEditTriggers(QAbstractItemView::NoEditTriggers);</highlight></codeline>
+<codeline lineno="102"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"></highlight></codeline>
+<codeline lineno="104"><highlight class="normal"></highlight></codeline>
+<codeline lineno="105"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>SessionManageDialog::slot_activated(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>QModelIndex&amp;<sp/>index)</highlight></codeline>
+<codeline lineno="106"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/>removeSession-&gt;setEnabled(</highlight><highlight class="keyword">true</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/>editSession-&gt;setEnabled(</highlight><highlight class="keyword">true</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="109"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"></highlight></codeline>
+<codeline lineno="112"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>SessionManageDialog::slotNew()</highlight></codeline>
+<codeline lineno="113"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/>par-&gt;slotNewSession();</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/>loadSessions();</highlight></codeline>
+<codeline lineno="116"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"></highlight></codeline>
+<codeline lineno="118"><highlight class="normal"></highlight></codeline>
+<codeline lineno="119"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>SessionManageDialog::slot_edit()</highlight></codeline>
+<codeline lineno="120"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>ind=sessions-&gt;currentIndex().row();</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(ind&lt;0)</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/>par-&gt;slot_edit(par-&gt;getSessionsList()-&gt;at(ind));</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/>loadSessions();</highlight></codeline>
+<codeline lineno="126"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"></highlight></codeline>
+<codeline lineno="128"><highlight class="normal"></highlight></codeline>
+<codeline lineno="129"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>SessionManageDialog::slot_delete()</highlight></codeline>
+<codeline lineno="130"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>ind=sessions-&gt;currentIndex().row();</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(ind&lt;0)</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/>par-&gt;slotDeleteButton(par-&gt;getSessionsList()-&gt;at(ind));</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/>loadSessions();</highlight></codeline>
+<codeline lineno="136"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/sessionmanagedialog.cpp"/>
+  </compounddef>
+</doxygen>

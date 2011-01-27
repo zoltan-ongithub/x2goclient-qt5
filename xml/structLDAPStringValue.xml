@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='iso-8859-1' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.4.7">
+  <compounddef id="structLDAPStringValue" kind="struct" prot="public">
+    <compoundname>LDAPStringValue</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structLDAPStringValue_187b7174c67f5b1baed356d751fe4e4f0" prot="public" static="no" mutable="no">
+        <type>string</type>
+        <definition>string LDAPStringValue::attr</definition>
+        <argsstring></argsstring>
+        <name>attr</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/LDAPSession.h" line="56" bodyfile="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/LDAPSession.h" bodystart="56" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structLDAPStringValue_1b4a2f120a8d70302464bf7ab41e88ca4" prot="public" static="no" mutable="no">
+        <type>list&lt; string &gt;</type>
+        <definition>list&lt;string&gt; LDAPStringValue::value</definition>
+        <argsstring></argsstring>
+        <name>value</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/LDAPSession.h" line="57" bodyfile="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/LDAPSession.h" bodystart="57" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/LDAPSession.h" line="55" bodyfile="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/LDAPSession.h" bodystart="54" bodyend="58"/>
+    <listofallmembers>
+      <member refid="structLDAPStringValue_187b7174c67f5b1baed356d751fe4e4f0" prot="public" virt="non-virtual"><scope>LDAPStringValue</scope><name>attr</name></member>
+      <member refid="structLDAPStringValue_1b4a2f120a8d70302464bf7ab41e88ca4" prot="public" virt="non-virtual"><scope>LDAPStringValue</scope><name>value</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>
