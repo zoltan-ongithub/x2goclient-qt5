@@ -5,6 +5,7 @@
 
 TRANSLATIONS += x2goclient_de.ts 
 TRANSLATIONS += x2goclient_ru.ts 
+TRANSLATIONS += x2goclient_nl.ts 
 HEADERS += configdialog.h \
            editconnectiondialog.h \
            exportdialog.h \

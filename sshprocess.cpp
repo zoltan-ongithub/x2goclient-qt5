@@ -56,7 +56,7 @@ sshProcess::sshProcess ( QObject* parent,const QString& user,
 	this->key=key;
 	autoAccept=acc;
 	env = QProcess::systemEnvironment();
-	cleanEnv();
+ 	cleanEnv ( true );
 #ifdef Q_OS_DARWIN
 	//run x2goclient from bundle
 	QDir dir ( QApplication::applicationDirPath() );
@@ -64,7 +64,7 @@ sshProcess::sshProcess ( QObject* parent,const QString& user,
 	dir.cd ( "MacOS" );
 	QString askpass_var="SSH_ASKPASS=";
 	askpass_var+=dir.absolutePath() +"/x2goclient";
-	env.insert ( 0, askpass_var);
+	env.insert ( 0, askpass_var );
 #else
 	env.insert ( 0, "SSH_ASKPASS=x2goclient" );
 #endif
@@ -72,7 +72,7 @@ sshProcess::sshProcess ( QObject* parent,const QString& user,
 #ifdef WINDOWS
 	env.insert ( 0, "DISPLAY=localhost:0" );
 	//don't care if real display is not 0
-	//we need it only to start winaskpass
+	//we need it only to start askpass
 	//which is not X application
 #endif
 	setEnvironment ( env );
@@ -146,7 +146,7 @@ void sshProcess::slot_stderr()
 {
 	QString reserr ( readAllStandardError() );
 	errorString+=reserr;
-// 	x2goDebug<<reserr<<endl;
+//  	x2goDebug<<reserr<<endl;
 	if ( reserr.indexOf (
 	            "Permission denied (publickey,keyboard-interactive)" ) !=-1
 	   )
@@ -178,7 +178,7 @@ void sshProcess::slot_stdout()
 	{
 		QString reserr ( readAllStandardOutput() );
 		outputString+=reserr;
-// 		x2goDebug<<reserr<<endl;
+//  		x2goDebug<<reserr<<endl;
 
 	}
 }
@@ -230,7 +230,7 @@ void sshProcess::startNormal ( bool accept )
 		printPass ( accept );
 #ifndef  WINDOWS
 
-		start ( setsid() +" ssh" +cmX+" -p "+sshPort+" "+user+"@"+host+
+		start ( setsid() +" ssh " +cmX+" -p "+sshPort+" "+user+"@"+host+
 		        " \""+command+"\"" );
 #else
 
@@ -458,17 +458,28 @@ QString sshProcess::cookie()
 }
 
 
-void sshProcess::cleanEnv()
+void sshProcess::cleanEnv ( bool all )
 {
 	for ( int i=env.count()-1;i>=0;--i )
 	{
-		if ( ( env[i].indexOf ( "X2GO_PCOOKIE" ) !=-1 ) ||
-		        ( env[i].indexOf ( "X2GO_PACCEPT" ) !=-1 ) ||
-		        ( env[i].indexOf ( "GPG_AGENT_INFO" ) !=-1 ) ||
-		        ( env[i].indexOf ( "SSH_AUTH_SOCK" ) !=-1 ) ||
-		        ( env[i].indexOf ( "SSH_AGENT_PID" ) !=-1 ) )
+		if ( all )
 		{
-			env.removeAt ( i );
+			if ( ( env[i].indexOf ( "X2GO_PCOOKIE" ) !=-1 ) ||
+			        ( env[i].indexOf ( "X2GO_PACCEPT" ) !=-1 ) ||
+			        ( env[i].indexOf ( "GPG_AGENT_INFO" ) !=-1 ) ||
+			        ( env[i].indexOf ( "SSH_AUTH_SOCK" ) !=-1 ) ||
+			        ( env[i].indexOf ( "SSH_AGENT_PID" ) !=-1 ) )
+			{
+				env.removeAt ( i );
+			}
+		}
+		else
+		{
+			if ( ( env[i].indexOf ( "X2GO_PCOOKIE" ) !=-1 ) ||
+			        ( env[i].indexOf ( "X2GO_PACCEPT" ) !=-1 ) )
+			{
+				env.removeAt ( i );
+			}
 		}
 	}
 }
@@ -503,4 +514,12 @@ void sshProcess::slot_read_cookie_from_socket()
 	}
 	localSocket->write ( pass.toAscii().data(),pass.toAscii().length() );
 	QTimer::singleShot ( 100, this, SLOT ( hidePass() ) );
+}
+
+
+
+void sshProcess::setEnvironment(QStringList newEnv)
+{
+	env+=newEnv;
+	QProcess::setEnvironment(env);	
 }

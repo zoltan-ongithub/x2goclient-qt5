@@ -1086,11 +1086,11 @@ void ONMainWindow::slotPassEnter()
 	          this,SLOT ( slot_getServers ( bool, QString,sshProcess* ) ) );
 	connect ( proc,SIGNAL ( sudoConfigError ( QString,sshProcess* ) ),
 	          this,SLOT ( slot_sudoErr ( QString,sshProcess* ) ) );
-	if ( cardReady )
+ 	if ( cardReady )
 	{
 		QStringList env=proc->environment();
 		env+=sshEnv;
-		proc->setEnvironment ( env );
+ 		proc->setEnvironment ( sshEnv );
 		cardStarted=true;
 	}
 
@@ -5775,7 +5775,7 @@ void ONMainWindow::slot_startPGPAuth()
 {
 	scDaemon=new QProcess ( this );
 	QStringList arguments;
-	arguments<<"--server";
+	arguments<<"--multi-server";
 	connect ( scDaemon,SIGNAL ( readyReadStandardError() ),this,
 	          SLOT ( slot_scDaemonError() ) );
 	connect ( scDaemon,SIGNAL ( readyReadStandardOutput() ),this,
@@ -5802,12 +5802,11 @@ void ONMainWindow::slot_scDaemonError()
 	QString stdOut ( scDaemon->readAllStandardError() );
 	stdOut=stdOut.simplified();
 	x2goDebug<<"SCDAEMON err:"<<stdOut<<endl;
-	if ( stdOut.indexOf ( "updating status of" ) !=-1 )
+	if ( stdOut.indexOf ( "updating slot" ) !=-1 )
 	{
-		isScDaemonOk=true;
-		QStringList lst=stdOut.split ( " " );
-		if ( lst[lst.count()-1]=="0x0002" ||
-		        lst[lst.count()-1]=="0x0007" ) //USABLE or PRESENT
+		isScDaemonOk=true;		
+		if ((stdOut.indexOf("->0x0002")!=-1) ||
+		        (stdOut.indexOf("->0x0007")!=-1) ) //USABLE or PRESENT
 		{
 			scDaemon->kill();
 		}
@@ -5936,7 +5935,8 @@ void ONMainWindow::startGPGAgent ( const QString& login, const QString& appId )
 		exit ( -1 );
 	}
 	QTextStream out ( &file );
-	out << "#!/bin/bash\n\nif [ \"$6\" != \"0x0002\" ] && [ \"$6\" != "
+	out << "#!/bin/bash\n\n"
+	"if [ \"$6\" != \"0x0002\" ] && [ \"$6\" != "
 	"\"0x0007\" ]\n\
 	then\n\
 	kill -9 $_assuan_pipe_connect_pid\n\
@@ -5950,8 +5950,7 @@ void ONMainWindow::startGPGAgent ( const QString& login, const QString& appId )
 	gpgAgent=new QProcess ( this );
 	QStringList arguments;
 	arguments<<"--pinentry-program"<<"/usr/bin/pinentry-x2go"<<
-	"--enable-ssh-support"<<"--daemon"
-	<<"--no-detach";
+	"--enable-ssh-support"<<"--daemon"<<"--no-detach";
 
 	connect ( gpgAgent,SIGNAL ( finished ( int,QProcess::ExitStatus ) ),
 	          this,
@@ -5979,7 +5978,7 @@ void ONMainWindow::slot_gpgAgentFinished ( int , QProcess::ExitStatus )
 	agentCheckTimer->start ( 1000 );
 	cardReady=true;
 
-	sshEnv=QProcess::systemEnvironment();
+/* 	sshEnv=QProcess::systemEnvironment();
 	for ( int i=sshEnv.count()-1;i>=0;--i ) //clear gpg variables
 	{
 		if ( ( sshEnv[i].indexOf (
@@ -5990,8 +5989,10 @@ void ONMainWindow::slot_gpgAgentFinished ( int , QProcess::ExitStatus )
 		{
 			sshEnv.removeAt ( i );
 		}
-	}
+	}*/
+	sshEnv.clear();
 	sshEnv<<envLst[0]<<envLst[2]<<envLst[4];
+	x2goDebug<<"sshenv:"<<sshEnv<<endl;
 
 	if ( !useLdap )
 	{

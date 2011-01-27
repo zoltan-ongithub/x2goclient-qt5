@@ -1,0 +1,129 @@
+x2goclient smartcard HOWTO:
+1. gpg card configuration:
+
+user@x2goclient$ gpg --card-edit
+
+Application ID ...: D2760001240102000000000000420000
+Version ..........: 2.0
+Manufacturer .....: test card
+Serial number ....: 00000042
+Name of cardholder: [not set]
+Language prefs ...: de
+Sex ..............: unspecified
+URL of public key : [not set]
+Login data .......: [not set]
+Private DO 1 .....: [not set]
+Private DO 2 .....: [not set]
+Signature PIN ....: forced
+Max. PIN lengths .: 24 24 24
+PIN retry counter : 3 0 3
+Signature counter : 0
+Signature key ....: [none]
+Encryption key....: [none]
+Authentication key: [none]
+General key info..: [none]
+
+Command> admin
+Admin commands are allowed
+
+Command> sex
+Sex ((M)ale, (F)emale or space): M
+gpg: 3 Admin PIN attempts remaining before card is permanently locked
+
+Admin PIN
+
+Command> login
+Login data (account name): beispielb
+
+Command> generate
+Make off-card backup of encryption key? (Y/n) n
+
+Please note that the factory settings of the PINs are
+   PIN = `123456'     Admin PIN = `12345678'
+You should change them using the command --change-pin
+
+
+PIN
+Please specify how long the key should be valid.
+         0 = key does not expire
+      <n>  = key expires in n days
+      <n>w = key expires in n weeks
+      <n>m = key expires in n months
+      <n>y = key expires in n years
+Key is valid for? (0)
+Key does not expire at all
+Is this correct? (y/N) y
+
+You need a user ID to identify your key; the software constructs the user ID
+from the Real Name, Comment and Email Address in this form:
+    "Heinrich Heine (Der Dichter) <heinrichh@duesseldorf.de>"
+
+Real name: Bert Beispiel
+Email address: bert.beispiel@x2go-test.org
+Comment: Test user
+You selected this USER-ID:
+    "Bert Beispiel (Test user) <bert.beispiel@x2go-test.org>"
+
+Change (N)ame, (C)omment, (E)mail or (O)kay/(Q)uit? O
+gpg: generating new key
+gpg: please wait while key is being generated ...
+gpg: key generation completed (17 seconds)
+gpg: signatures created so far: 0
+gpg: generating new key
+gpg: please wait while key is being generated ...
+gpg: key generation completed (14 seconds)
+gpg: signatures created so far: 1
+gpg: signatures created so far: 2
+gpg: generating new key
+gpg: please wait while key is being generated ...
+gpg: key generation completed (13 seconds)
+gpg: signatures created so far: 3
+gpg: signatures created so far: 4
+gpg: key 8CE52B35 marked as ultimately trusted
+public and secret key created and signed.
+
+gpg: checking the trustdb
+gpg: 3 marginal(s) needed, 1 complete(s) needed, classic trust model
+gpg: depth: 0  valid:   8  signed:   0  trust: 0-, 0q, 0n, 0m, 0f, 8u
+pub   1024R/8CE52B35 2009-09-24
+      Key fingerprint = 2475 8498 7FF4 2727 B476  F72E 7BF2 CFE9 8CE5 2B35
+uid                  Bert Beispiel (Test user) <bert.beispiel@x2go-test.org>
+sub   1024R/C7151669 2009-09-24
+sub   1024R/593801C0 2009-09-24
+
+
+Command> quit
+
+IMPORTANT: login Name is a name of user on remote system
+
+2. configuring ssh connection
+2.1 start gpg-agent with ssh support
+
+Be sure, that pinentry-x2go is installed. For test purposes you can use other pinentry program, but for
+x2goclient pinentry-x2go is requered (pinentry-x2go-gtk if you are using gtk version of x2goclient)
+
+user@x2goclient$ gpg-agent --enable-ssh-support --daemon --pinentry-program /usr/bin/pinentry-x2go
+GPG_AGENT_INFO=/tmp/gpg-Xh4lY7/S.gpg-agent:24620:1; export GPG_AGENT_INFO;
+SSH_AUTH_SOCK=/tmp/gpg-LO41WU/S.gpg-agent.ssh; export SSH_AUTH_SOCK;
+SSH_AGENT_PID=24620; export SSH_AGENT_PID;
+
+2.2 export SSH environment variables (copy gpg-agent output in console)
+user@x2goclient$ GPG_AGENT_INFO=/tmp/gpg-Xh4lY7/S.gpg-agent:24620:1; export GPG_AGENT_INFO;
+user@x2goclient$ SSH_AUTH_SOCK=/tmp/gpg-LO41WU/S.gpg-agent.ssh; export SSH_AUTH_SOCK;
+user@x2goclient$ SSH_AGENT_PID=24620; export SSH_AGENT_PID;
+
+2.3 You can check the key on your smartcard with command:
+user@x2goclient$ ssh-add -l
+1024 ef:d5:8c:37:cb:38:01:8d:c2:30:00:ac:93:a2:43:98 cardno:000000000042 (RSA)
+
+2.4 Copy public part of your key to remote computer
+user@x2goclient$ ssh-copy-id beispielb@x2goserver
+beispielb@x2goserver's password:
+Now try logging into the machine, with "ssh 'beispielb@x2goserver'", and check in:
+
+  .ssh/authorized_keys
+
+to make sure we haven't added extra keys that you weren't expecting.
+
+2.5 Testing ssh connection
+

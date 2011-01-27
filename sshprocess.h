@@ -39,6 +39,7 @@ class sshProcess : public QProcess
 		QString setsid();
 		void setErrorString ( const QString& str );
 		void setFwX ( bool s ) {fwX=s;}
+    virtual void setEnvironment(QStringList newEnv);
 	private:
 		QString askpass;
 		QString user;
@@ -79,7 +80,7 @@ class sshProcess : public QProcess
 		void printPass ( bool accept=false );
 		void printKey ( bool accept=false );
 		QString cookie();
-		void cleanEnv();
+		void cleanEnv(bool all=false);
 	signals:
 		void sshFinished ( bool,QString,sshProcess* );
 		void sudoConfigError ( QString,sshProcess* );

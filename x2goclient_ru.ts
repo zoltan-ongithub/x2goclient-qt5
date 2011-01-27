@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="ru">
-<defaultcodec></defaultcodec>
 <context>
     <name>CUPSPrintWidget</name>
     <message>
@@ -95,6 +94,7 @@
         <translation>Использовать LDAP</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>LDAP Settings</source>
         <translation type="obsolete">Установки LDAP</translation>
     </message>
@@ -109,14 +109,17 @@
         <translation>BaseDN:</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Failover Server 1 URL:</source>
         <translation type="obsolete">Failover Server 1 URL:</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Failover Server 2 URL:</source>
         <translation type="obsolete">Failover Server 2 URL:</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>X-Server Settings</source>
         <translation type="obsolete">Установки X-Сервера</translation>
     </message>
@@ -181,14 +184,17 @@
         <translation>Приложения (*.exe);;Все файлы (*.*)</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>X11 Application:</source>
         <translation type="obsolete">X11:</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>X11 Version:</source>
         <translation type="obsolete">Версия X11:</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Find X11 Application</source>
         <translation type="obsolete">Поиск X11</translation>
     </message>
@@ -218,6 +224,7 @@
         <translation>Приложение X11 не найдено в заданом каталоге</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Clientside SSH Port For File System Export Usage:</source>
         <translation type="obsolete">SSH порт на стороне клиента для экспорта файловой системы:</translation>
     </message>
@@ -363,6 +370,7 @@
         <translation>&amp;Установки</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>&amp;Shared Folders</source>
         <translation type="obsolete">&amp;Экспорт каталогов</translation>
     </message>
@@ -382,10 +390,12 @@
         <translation>По умолчанию</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Session Name:</source>
         <translation type="obsolete">Имя сессии:</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>&lt;&lt; change Icon</source>
         <translation type="obsolete">&lt;&lt; изменить значок</translation>
     </message>
@@ -405,6 +415,7 @@
         <translation>Пользователь:</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>SSH Port:</source>
         <translation type="obsolete">SSH порт:</translation>
     </message>
@@ -414,6 +425,7 @@
         <translation>RSA/DSA ключ для ssh соединения:</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>&amp;Desktop Session</source>
         <translation type="obsolete">&amp;Оконный менеджер</translation>
     </message>
@@ -428,6 +440,7 @@
         <translation>Команда:</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>&amp;Connection Speed</source>
         <translation type="obsolete">&amp;Тип соединения</translation>
     </message>
@@ -442,6 +455,7 @@
         <translation>Метод:</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Image Quality:</source>
         <translation type="obsolete">Качество изображения:</translation>
     </message>
@@ -471,14 +485,17 @@
         <translation>&amp;Клавиатура</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Keep current Keyboard Settings</source>
         <translation type="obsolete">Использовать текущие установки</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Keyboard Layout:</source>
         <translation type="obsolete">Раскладка Клавиатуры:</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Keyboard Model:</source>
         <translation type="obsolete">Модель клавиатуры:</translation>
     </message>
@@ -488,6 +505,7 @@
         <translation>Звук</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Enable Sound Support</source>
         <translation type="obsolete">Активировать звук</translation>
     </message>
@@ -522,14 +540,17 @@
         <translation>Расположение:</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>New Session</source>
         <translation type="obsolete">Новая сессия</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Session Preferences - </source>
         <translation type="obsolete">Установки сессии - </translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Open Picture</source>
         <translation type="obsolete">Открыть изображение</translation>
     </message>
@@ -539,10 +560,12 @@
         <translation>Изображения</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Open Key File</source>
         <translation type="obsolete">Открыть файл с ключом</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>All Files</source>
         <translation type="obsolete">Все файлы</translation>
     </message>
@@ -557,22 +580,27 @@
         <translation>pc105/ru</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Select Folder</source>
         <translation type="obsolete">Выбор каталога</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>&amp;Session Type</source>
         <translation type="obsolete">&amp;Тип сессии</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Session Type:</source>
         <translation type="obsolete">Тип сессии:</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Custom Desktop</source>
         <translation type="obsolete">Другой оконный менеджер</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Single Application</source>
         <translation type="obsolete">Приложение</translation>
     </message>
@@ -582,10 +610,12 @@
         <translation>Путь к исполняемому файлу</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Connection Speed:</source>
         <translation type="obsolete">Скорость соединения:</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Compression Method:</source>
         <translation type="obsolete">Метод комрессии:</translation>
     </message>
@@ -780,6 +810,7 @@ sound system connections through firewalls</source>
         <translation>&amp;Настройки ...</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>&amp;Custom Folder ...</source>
         <translation type="obsolete">&amp;Другой каталог ...</translation>
     </message>
@@ -790,10 +821,12 @@ sound system connections through firewalls</source>
         <translation>Удалить</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>share Folders</source>
         <translation type="obsolete">Экспорт каталогов</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Select Folder</source>
         <translation type="obsolete">Выбор каталога</translation>
     </message>
@@ -826,7 +859,7 @@ sound system connections through firewalls</source>
         <translation>pc105/ru</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="5647"/>
+        <location filename="onmainwindow.cpp" line="5680"/>
         <source>Session:</source>
         <translation>Сессия:</translation>
     </message>
@@ -846,6 +879,7 @@ sound system connections through firewalls</source>
         <translation>Выход</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>&amp;New Session ...</source>
         <translation type="obsolete">&amp;Новая сессия ...</translation>
     </message>
@@ -855,6 +889,7 @@ sound system connections through firewalls</source>
         <translation>Ctrl+N</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Session Management...</source>
         <translation type="obsolete">Управление сессиями...</translation>
     </message>
@@ -869,10 +904,12 @@ sound system connections through firewalls</source>
         <translation>&amp;Установки ...</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Show Toolbar</source>
         <translation type="obsolete">Панель инструментов</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>About X2GO Client</source>
         <translation type="obsolete">О программе &quot;X2GO Client&quot;</translation>
     </message>
@@ -903,236 +940,245 @@ sound system connections through firewalls</source>
         <translation>&amp;Опции</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="449"/>
+        <location filename="onmainwindow.cpp" line="451"/>
         <source>&amp;Help</source>
         <translation>&amp;Помощь</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="5640"/>
+        <location filename="onmainwindow.cpp" line="5673"/>
         <source>Login:</source>
         <translation>Пользователь:</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="1924"/>
+        <location filename="onmainwindow.cpp" line="1958"/>
         <source>Password:</source>
         <translation>Пароль:</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="1947"/>
+        <location filename="onmainwindow.cpp" line="1981"/>
         <source>Ok</source>
         <translation>ОК</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="2654"/>
+        <location filename="onmainwindow.cpp" line="2688"/>
         <source>Cancel</source>
         <translation>Отмена</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="6480"/>
+        <location filename="onmainwindow.cpp" line="6517"/>
         <source>Error</source>
         <translation>Ошибка</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="5593"/>
+        <location filename="onmainwindow.cpp" line="5626"/>
         <source>Please check LDAP Settings</source>
         <translation>Проверте настройки LDAP</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>no X2Go Server found in LDAP </source>
         <translation type="obsolete">Сервер X2Go не найден в LDAP </translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Are you sure you want to delete this Session?</source>
         <translation type="obsolete">Удалить сессию?</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="4197"/>
+        <location filename="onmainwindow.cpp" line="4231"/>
         <source>KDE</source>
         <translation>KDE</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="1918"/>
+        <location filename="onmainwindow.cpp" line="1952"/>
         <source> on </source>
         <translation> на </translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="6332"/>
+        <location filename="onmainwindow.cpp" line="6369"/>
         <source>&lt;b&gt;Connection failed&lt;/b&gt;
 </source>
         <translation>&lt;b&gt;Ошибка соединения&lt;/b&gt;&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="3180"/>
+        <location filename="onmainwindow.cpp" line="3214"/>
         <source>&lt;b&gt;Wrong Password!&lt;/b&gt;&lt;br&gt;&lt;br&gt;</source>
         <translation>&lt;b&gt;Неверный пароль!&lt;/b&gt;&lt;br&gt;&lt;br&gt;</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>No Server availabel</source>
         <translation type="obsolete">Не доступен ни один сервер</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="2650"/>
+        <location filename="onmainwindow.cpp" line="2684"/>
         <source>Select session:</source>
         <translation>Сессия:</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="2652"/>
+        <location filename="onmainwindow.cpp" line="2686"/>
         <source>Resume</source>
         <translation>Восстановить</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="3724"/>
+        <location filename="onmainwindow.cpp" line="3758"/>
         <source>Suspend</source>
         <translation>Прервать</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="3829"/>
+        <location filename="onmainwindow.cpp" line="3863"/>
         <source>Terminate</source>
         <translation>Завершить</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="2662"/>
+        <location filename="onmainwindow.cpp" line="2696"/>
         <source>New</source>
         <translation>Новая</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="2758"/>
+        <location filename="onmainwindow.cpp" line="2792"/>
         <source>Display</source>
         <translation>Дисплей</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="2760"/>
+        <location filename="onmainwindow.cpp" line="2794"/>
         <source>Status</source>
         <translation>Статус</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="2766"/>
+        <location filename="onmainwindow.cpp" line="2800"/>
         <source>Server</source>
         <translation>Сервер</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Creation Time</source>
         <translation type="obsolete">Время создания</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="2771"/>
+        <location filename="onmainwindow.cpp" line="2805"/>
         <source>Client IP</source>
         <translation>IP клиента</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="2773"/>
+        <location filename="onmainwindow.cpp" line="2807"/>
         <source>Session ID</source>
         <translation>ID сессии</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="3705"/>
+        <location filename="onmainwindow.cpp" line="3739"/>
         <source>running</source>
         <translation>активна</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="3820"/>
+        <location filename="onmainwindow.cpp" line="3854"/>
         <source>suspended</source>
         <translation>прервана</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="3614"/>
+        <location filename="onmainwindow.cpp" line="3648"/>
         <source>Warning</source>
         <translation>Предупреждение</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="2963"/>
+        <location filename="onmainwindow.cpp" line="2997"/>
         <source>Your current color depth is different to the color depth of your x2go-session. This may cause problems reconnecting to this session and in most cases &lt;b&gt;you will loose the session&lt;/b&gt; and have to start a new one! It&apos;s highly recommended to change the color depth of your Display to </source>
         <translation>Глубина цвета вашего дисплея не соответствует глубине цвета данной сессии. Это может помешать восстановлению сессии и в большинстве случаев&lt;b&gt;сессия будет утеряна&lt;/b&gt; Рекомендуется изменить глубину цвета вашего дисплея на(sp)</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="2944"/>
+        <location filename="onmainwindow.cpp" line="2978"/>
         <source>24 or 32</source>
         <translation>24 или 32</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="2967"/>
+        <location filename="onmainwindow.cpp" line="3001"/>
         <source> bit and restart your X-server before you reconnect to this x2go-session.&lt;br&gt;Resume this session anyway?</source>
         <translation> бит и перезапустить X-сервер до восстановления сессии.&lt;br&gt;Попробовать восстановить сессию не смотря на данное предупреждение?</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="2967"/>
+        <location filename="onmainwindow.cpp" line="3001"/>
         <source>Yes</source>
         <translation>Да</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="2968"/>
+        <location filename="onmainwindow.cpp" line="3002"/>
         <source>No</source>
         <translation>Нет</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="3023"/>
+        <location filename="onmainwindow.cpp" line="3057"/>
         <source>suspending</source>
         <translation>прерывается</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="3048"/>
+        <location filename="onmainwindow.cpp" line="3082"/>
         <source>terminating</source>
         <translation>завершается</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Unable to create Folder:</source>
         <translation type="obsolete">Невозможно создать каталог:</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Unable to write File:</source>
         <translation type="obsolete">Невозможно записать файл:</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="3613"/>
+        <location filename="onmainwindow.cpp" line="3647"/>
         <source>Unable to create SSL Tunnel:
 </source>
         <translation>Ошибка создания SSL тунеля:
 </translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="3690"/>
+        <location filename="onmainwindow.cpp" line="3724"/>
         <source>connecting</source>
         <translation>соединение</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="3697"/>
+        <location filename="onmainwindow.cpp" line="3731"/>
         <source>starting</source>
         <translation>запуск</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="3699"/>
+        <location filename="onmainwindow.cpp" line="3733"/>
         <source>resuming</source>
         <translation>восстановление</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="4148"/>
+        <location filename="onmainwindow.cpp" line="4182"/>
         <source>Connection timeout, aborting</source>
         <translation>Таймаут соединения, отмена</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="3745"/>
+        <location filename="onmainwindow.cpp" line="3779"/>
         <source>aborting</source>
         <translation>отмена</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>&lt;b&gt;Session ID:&lt;br&gt;Server:&lt;br&gt;Username:&lt;br&gt;Display:&lt;br&gt;Creation Time:&lt;br&gt;Status:&lt;/b&gt;</source>
         <translation type="obsolete">&lt;b&gt;ID сессии:&lt;br&gt;Сервер:&lt;br&gt;Пользователь:&lt;br&gt;Дисплей:&lt;br&gt;Время создания:&lt;br&gt;Статус:&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="3827"/>
+        <location filename="onmainwindow.cpp" line="3861"/>
         <source>Abort</source>
         <translation>Отмена</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Share Folder...</source>
         <translation type="obsolete">Экспорт каталога...</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Show Details</source>
         <translation type="obsolete">Показать детали</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="4325"/>
+        <location filename="onmainwindow.cpp" line="4359"/>
         <source>&lt;b&gt;Connection failed&lt;/b&gt;
 :
 </source>
@@ -1140,135 +1186,140 @@ sound system connections through firewalls</source>
 </translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="4497"/>
+        <location filename="onmainwindow.cpp" line="4531"/>
         <source>wrong value for argument&quot;--link&quot;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="4514"/>
+        <location filename="onmainwindow.cpp" line="4548"/>
         <source>wrong value for argument&quot;--sound&quot;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="4543"/>
+        <location filename="onmainwindow.cpp" line="4577"/>
         <source>wrong value for argument&quot;--geometry&quot;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="4561"/>
+        <location filename="onmainwindow.cpp" line="4595"/>
         <source>wrong value for argument&quot;--set-kbd&quot;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="4578"/>
+        <location filename="onmainwindow.cpp" line="4612"/>
         <source>wrong value for argument&quot;--ldap&quot;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="4600"/>
+        <location filename="onmainwindow.cpp" line="4634"/>
         <source>wrong value for argument&quot;--ldap1&quot;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="4619"/>
+        <location filename="onmainwindow.cpp" line="4653"/>
         <source>wrong value for argument&quot;--ldap2&quot;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="4672"/>
+        <location filename="onmainwindow.cpp" line="4706"/>
         <source>wrong value for argument&quot;--pack&quot;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="4679"/>
+        <location filename="onmainwindow.cpp" line="4713"/>
         <source>wrong parameter: </source>
         <translation>wrong parameter: </translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="4753"/>
+        <location filename="onmainwindow.cpp" line="4787"/>
         <source>Options</source>
         <translation>Опции</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="4733"/>
+        <location filename="onmainwindow.cpp" line="4767"/>
         <source>Available pack methodes:</source>
         <translation>Available pack methodes:</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="5180"/>
+        <location filename="onmainwindow.cpp" line="5213"/>
         <source>Can&apos;t read host rsa key:</source>
         <translation>Невозможно прочитать RSA ключ:</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="6454"/>
+        <location filename="onmainwindow.cpp" line="6491"/>
         <source>Unable to read :
 </source>
         <translation>Невозможно прочитать :
 </translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="6479"/>
+        <location filename="onmainwindow.cpp" line="6516"/>
         <source>Unable to write :
 </source>
         <translation>Невозможно записать :
 </translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>&lt;b&gt;X2Go Client V. </source>
         <translation type="obsolete">&lt;b&gt;X2Go Client V. </translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>&lt;/b&gt;&lt;br&gt; (C. 2006-2007 Oleksandr Shneyder, Heinz-Markus Graesing)&lt;br&gt;&lt;br&gt;Client for use with the X2Go network based computing environment. This Client will be able to connect to X2Go server(s) and start, stop, resume and terminate (running) desktop sessions. X2Go Client stores different server connections and may automatically request authentification data from LDAP directories. Furthermore it can be used as fullscreen loginscreen (replacement for loginmanager like xdm). Please visit x2go.org for further information.</source>
         <translation type="obsolete">&lt;/b&gt;&lt;br&gt; (C. 2006-2007 Oleksandr Shneyder, Heinz-Markus Graesing)&lt;br&gt;&lt;br&gt;Клиент сетевого окружения X2Go. Данный клиент предназначен для соединения с сервером (серверами) X2Go и запуска, восстановления или завершения удаленной сессии. Клиент X2Go сохраняет настройки соединений и может запрашивать информацию о пользователях из LDAP. В последнем случае клиент может использоваться как менеджер входа в систему (замена менеджера подобного xdm) для окружения &quot;тонких клиентов&quot; X2Go. Посетите http://x2go.org для получения более детальной информации.</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="5822"/>
+        <location filename="onmainwindow.cpp" line="5855"/>
         <source>No valid card found</source>
         <translation>Формат карты неизвестен</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>This card is unknown by X2Go System</source>
         <translation type="obsolete">Эта карта не сконфигурирована для использования с X2Go</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="5900"/>
+        <location filename="onmainwindow.cpp" line="5933"/>
         <source>Unable to create file: </source>
         <translation>Невозможно создать файл: </translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="6104"/>
+        <location filename="onmainwindow.cpp" line="6141"/>
         <source>Can&apos;t connect to X-Server</source>
         <translation>Невозможно присоединиться к X-серверу</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="6107"/>
+        <location filename="onmainwindow.cpp" line="6144"/>
         <source>Can&apos;t connect to X-Server
 Please check your settings</source>
         <translation>Невозможно присоединиться к X-серверу
 Проверьте настройки</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="6113"/>
+        <location filename="onmainwindow.cpp" line="6150"/>
         <source>Can&apos;t start X-Server</source>
         <translation>Невозможно запустить X-Сервер</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="6115"/>
+        <location filename="onmainwindow.cpp" line="6152"/>
         <source>Can&apos;t start X Server
 Please check your settings</source>
         <translation>Невозможно запустить X-Сервер
 Проверьте настройки</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="5550"/>
+        <location filename="onmainwindow.cpp" line="5583"/>
         <source>&lt;/b&gt;&lt;br&gt; (C. 2006-2008 &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing)&lt;br&gt;&lt;br&gt;Client for use with the X2Go network based computing environment. This Client will be able to connect to X2Go server(s) and start, stop, resume and terminate (running) desktop sessions. X2Go Client stores different server connections and may automatically request authentification data from LDAP directories. Furthermore it can be used as fullscreen loginscreen (replacement for loginmanager like xdm). Please visit x2go.org for further information.</source>
         <translation>&lt;/b&gt;&lt;br&gt; (C. 2006-2008 &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing)&lt;br&gt;&lt;br&gt;Клиент сетевого окружения X2Go. Данный клиент предназначен для соединения с сервером (серверами) X2Go и запуска, восстановления или завершения удаленной сессии. Клиент X2Go сохраняет настройки соединений и может запрашивать информацию о пользователях из LDAP. В последнем случае клиент может использоваться как менеджер входа в систему (замена менеджера подобного xdm) для окружения &quot;тонких клиентов&quot; X2Go. Посетите http://x2go.org для получения более детальной информации.</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Internet Browser</source>
         <translation type="obsolete">Веб-броузер</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Email Client</source>
         <translation type="obsolete">Почтовый клиент</translation>
     </message>
@@ -1283,42 +1334,42 @@ Please check your settings</source>
         <translation>Терминал</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="2243"/>
+        <location filename="onmainwindow.cpp" line="2277"/>
         <source>unknown</source>
         <translation>неизвестно</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="2762"/>
+        <location filename="onmainwindow.cpp" line="2796"/>
         <source>Command</source>
         <translation>Команда</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="2764"/>
+        <location filename="onmainwindow.cpp" line="2798"/>
         <source>Type</source>
         <translation>Тип</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="2810"/>
+        <location filename="onmainwindow.cpp" line="2844"/>
         <source>Desktop</source>
         <translation>Оконный менеджер</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="2812"/>
+        <location filename="onmainwindow.cpp" line="2846"/>
         <source>single application</source>
         <translation>приложение</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="2814"/>
+        <location filename="onmainwindow.cpp" line="2848"/>
         <source>shadow session</source>
         <translation>теневая сессия</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="6274"/>
+        <location filename="onmainwindow.cpp" line="6311"/>
         <source>&lt;br&gt;Sudo configuration error</source>
         <translation>&lt;br&gt;Ошибка настроек &quot;sudo&quot;</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="6355"/>
+        <location filename="onmainwindow.cpp" line="6392"/>
         <source>Unable to execute: </source>
         <translation>Невозможно выполнить: </translation>
     </message>
@@ -1353,84 +1404,84 @@ Please check your settings</source>
         <translation>Панель инструментов</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="5536"/>
+        <location filename="onmainwindow.cpp" line="5569"/>
         <source>About X2GO client</source>
         <translation>О программе &quot;X2GO Client&quot;</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="1212"/>
+        <location filename="onmainwindow.cpp" line="1216"/>
         <source>Please check LDAP settings</source>
         <translation>Проверьте настройки LDAP</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="1017"/>
+        <location filename="onmainwindow.cpp" line="1021"/>
         <source>no X2Go server found in LDAP </source>
         <translation>Сервер X2Go не найден в LDAP </translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="1545"/>
+        <location filename="onmainwindow.cpp" line="1579"/>
         <source>Are you sure you want to delete this session?</source>
         <translation>Удалить сессию?</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="6336"/>
+        <location filename="onmainwindow.cpp" line="6373"/>
         <source>&lt;b&gt;Wrong password!&lt;/b&gt;&lt;br&gt;&lt;br&gt;</source>
         <translation>&lt;b&gt;Неверный пароль!&lt;/b&gt;&lt;br&gt;&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="2303"/>
+        <location filename="onmainwindow.cpp" line="2337"/>
         <source>No server availabel</source>
         <translation>Не доступен ни один сервер</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="2769"/>
+        <location filename="onmainwindow.cpp" line="2803"/>
         <source>Creation time</source>
         <translation>Время создания</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="5097"/>
+        <location filename="onmainwindow.cpp" line="5130"/>
         <source>Unable to create folder:</source>
         <translation>Невозможно создать каталог:</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="3475"/>
+        <location filename="onmainwindow.cpp" line="3509"/>
         <source>Unable to write file:</source>
         <translation>Невозможно записать файл:</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="6428"/>
+        <location filename="onmainwindow.cpp" line="6465"/>
         <source>Unable to create SSL tunnel:
 </source>
         <translation>Ошибка создания SSL тунеля:
 </translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="3804"/>
+        <location filename="onmainwindow.cpp" line="3838"/>
         <source>&lt;b&gt;Session ID:&lt;br&gt;Server:&lt;br&gt;Username:&lt;br&gt;Display:&lt;br&gt;Creation time:&lt;br&gt;Status:&lt;/b&gt;</source>
         <translation>&lt;b&gt;ID сессии:&lt;br&gt;Сервер:&lt;br&gt;Пользователь:&lt;br&gt;Дисплей:&lt;br&gt;Время создания:&lt;br&gt;Статус:&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="3831"/>
+        <location filename="onmainwindow.cpp" line="3865"/>
         <source>Share folder...</source>
         <translation>Экспорт каталога...</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="3833"/>
+        <location filename="onmainwindow.cpp" line="3867"/>
         <source>Show details</source>
         <translation>Показать детали</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="5537"/>
+        <location filename="onmainwindow.cpp" line="5570"/>
         <source>&lt;b&gt;X2Go client V. </source>
         <translation>&lt;b&gt;X2Go Client V. </translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="5871"/>
+        <location filename="onmainwindow.cpp" line="5904"/>
         <source>This card is unknown by X2Go system</source>
         <translation>Эта карта не сконфигурирована для использования с X2Go</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="6377"/>
+        <location filename="onmainwindow.cpp" line="6414"/>
         <source>Remote server does not support file system export through SSH Tunnel
 Please update to a newer x2goserver package</source>
         <translation>Удаленный сервер не поддерживает экспорт файловой системы через SSH туннель
@@ -1442,12 +1493,12 @@ Please update to a newer x2goserver package</source>
         <translation>&amp;Создать ярлык сессии на рабочем столе...</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="1349"/>
+        <location filename="onmainwindow.cpp" line="1353"/>
         <source>Create session icon on desktop</source>
         <translation>Создать ярлык сессии на рабочем столе</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="1355"/>
+        <location filename="onmainwindow.cpp" line="1359"/>
         <source>Desktop icons can be configured not to show x2goclient (hidden mode). If you like to use this feature you&apos;ll need to configure login by a gpg key or gpg smart card.
 
 Use x2goclient hidden mode?</source>
@@ -1456,14 +1507,19 @@ Use x2goclient hidden mode?</source>
 Активировать скрытый режим?</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="1366"/>
+        <location filename="onmainwindow.cpp" line="1370"/>
         <source>New Session</source>
         <translation>Новая сессия</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="1914"/>
+        <location filename="onmainwindow.cpp" line="1948"/>
         <source>RDP connection</source>
         <translation>RDP соединение</translation>
+    </message>
+    <message>
+        <location filename="onmainwindow.cpp" line="1419"/>
+        <source>X2Go Link to session </source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1492,23 +1548,23 @@ Use x2goclient hidden mode?</source>
 <context>
     <name>PrintProcess</name>
     <message>
-        <location filename="printprocess.cpp" line="133"/>
+        <location filename="printprocess.cpp" line="146"/>
         <source>Save File</source>
         <translation>Сохранить файл</translation>
     </message>
     <message>
-        <location filename="printprocess.cpp" line="135"/>
+        <location filename="printprocess.cpp" line="148"/>
         <source>PDF Document (*.pdf)</source>
         <translation>Документ PDF (*.pdf)</translation>
     </message>
     <message>
-        <location filename="printprocess.cpp" line="243"/>
+        <location filename="printprocess.cpp" line="256"/>
         <source>Failed to execute command:
 </source>
         <translation>Невозможно выполнить команду:</translation>
     </message>
     <message>
-        <location filename="printprocess.cpp" line="241"/>
+        <location filename="printprocess.cpp" line="254"/>
         <source>Printing error</source>
         <translation>Ошибка печати</translation>
     </message>
@@ -1760,24 +1816,28 @@ Example:
         <translation>&amp;Выход</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>&amp;New Session</source>
         <translation type="obsolete">&amp;Новая сессия</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>&amp;Session Preferences</source>
         <translation type="obsolete">&amp;Установки сессии</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>&amp;Delete Session</source>
         <translation type="obsolete">У&amp;далить сессию</translation>
     </message>
     <message>
-        <location filename="sessionmanagedialog.cpp" line="74"/>
+        <location filename="sessionmanagedialog.cpp" line="79"/>
         <source>Delete</source>
         <comment>Delete</comment>
         <translation>Удалить</translation>
     </message>
     <message>
+        <location filename="" line="0"/>
         <source>Session Management</source>
         <translation type="obsolete">Управление сессиями</translation>
     </message>
@@ -1797,12 +1857,12 @@ Example:
         <translation>У&amp;далить сессию</translation>
     </message>
     <message>
-        <location filename="sessionmanagedialog.cpp" line="99"/>
+        <location filename="sessionmanagedialog.cpp" line="106"/>
         <source>Session management</source>
         <translation>Управление сессиями</translation>
     </message>
     <message>
-        <location filename="sessionmanagedialog.cpp" line="46"/>
+        <location filename="sessionmanagedialog.cpp" line="47"/>
         <source>&amp;Create session icon on desktop...</source>
         <translation>&amp;Создать ярлык сессии на рабочем столе...</translation>
     </message>
@@ -1810,24 +1870,24 @@ Example:
 <context>
     <name>sshProcess</name>
     <message>
-        <location filename="sshprocess.cpp" line="37"/>
+        <location filename="sshprocess.cpp" line="41"/>
         <source>Unable to create: </source>
         <translation>Невозможно создать: </translation>
     </message>
     <message>
-        <location filename="sshprocess.cpp" line="110"/>
+        <location filename="sshprocess.cpp" line="119"/>
         <source>Yes</source>
         <translation>Да</translation>
     </message>
     <message>
-        <location filename="sshprocess.cpp" line="111"/>
+        <location filename="sshprocess.cpp" line="120"/>
         <source>No</source>
         <translation>Нет</translation>
     </message>
     <message>
         <location filename="sshprocess.cpp" line="275"/>
         <source>Unable to write: </source>
-        <translation>Невозможно записать: </translation>
+        <translation type="obsolete">Невозможно записать: </translation>
     </message>
 </context>
 </TS>
