@@ -28,6 +28,9 @@ class ClickLineEdit : public QLineEdit
 #ifdef Q_OS_LINUX
 	protected:
 		virtual void mouseReleaseEvent ( QMouseEvent * event );
+/*		virtual void focusInEvent ( QFocusEvent * event );
+		virtual void focusOutEvent ( QFocusEvent * event );*/
+		
 #endif
 };
 

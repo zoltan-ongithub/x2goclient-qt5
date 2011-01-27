@@ -3,6 +3,8 @@
 # Unterordner relativ zum Projektordner: .
 # Das Target ist eine Anwendung:  
 
+include (x2goclientconfig.pri)
+
 TRANSLATIONS += x2goclient_de.ts 
 TRANSLATIONS += x2goclient_ru.ts 
 TRANSLATIONS += x2goclient_fr.ts 
@@ -14,6 +16,7 @@ HEADERS += configdialog.h \
            onmainwindow.h \
            sessionbutton.h \
            sessionmanagedialog.h \
+           sshmasterconnection.h \
            sshprocess.h \
            SVGFrame.h \
            userbutton.h \
@@ -34,7 +37,10 @@ HEADERS += configdialog.h \
  settingswidget.h \
  sharewidget.h \
  clicklineedit.h \
- httpbrokerclient.h
+ httpbrokerclient.h \
+ ongetpass.h \
+ x2gosettings.h
+
 SOURCES += sharewidget.cpp \
  settingswidget.cpp\
  configwidget.cpp \
@@ -45,10 +51,10 @@ SOURCES += sharewidget.cpp \
  exportdialog.cpp \
  imgframe.cpp \
  LDAPSession.cpp \
- ongetpass.cpp \
  onmainwindow.cpp \
  sessionbutton.cpp \
  sessionmanagedialog.cpp \
+ sshmasterconnection.cpp \
  sshprocess.cpp \
  SVGFrame.cpp \
  userbutton.cpp \
@@ -63,26 +69,39 @@ SOURCES += sharewidget.cpp \
  embedwidget.cpp \
  wapi.cpp \
  clicklineedit.cpp \
- httpbrokerclient.cpp
+ httpbrokerclient.cpp \
+ ongetpass.cpp \
+ x2gosettings.cpp
+
+client{
+SOURCES += x2goclient.cpp
+TARGET = x2goclient
+DEFINES += CFGCLIENT
+}
+else {
+TARGET = x2goplugin
+RC_FILE = x2goclient.rc
+}
+
 TEMPLATE = app
-TARGET =
 DEPENDPATH += .
 INCLUDEPATH += .
 RESOURCES += resources.rcc
-RC_FILE = x2goclient.rc
 
 linux-g++ {
-    message(building x2goclient with ldap and cups)
+    message(building $$TARGET with ldap and cups)
     LIBS += -lldap -lcups
 }
 macx {
-    message(building x2goclient with ldap and cups)
+    message(building $$TARGET with ldap and cups)
     LIBS += -lldap -lcups
 }
 win32-* {
+    message(building $$TARGET for windows without ldap and cups)
     LIBS += -lwinspool
     CONFIG += static
 }
+LIBS += -lssh
 QT += svg network
 ICON =icons/x2go-mac.icns
 QMAKE_MAC_SDK =/Developer/SDKs/MacOSX10.6.sdk
@@ -91,3 +110,18 @@ cupsprintwidget.ui \
 printwidget.ui \
 printercmddialog.ui \
 printdialog.ui
+
+
+plugin{
+
+DEFINES += CFGPLUGIN
+   linux-g++ {
+      include(../../../qtbrowserplugin-2.4_1-opensource/src/qtbrowserplugin.pri)
+   }
+   win32-* {
+         DEFINES += QT_NODLL
+         CONFIG += qaxserver
+         include(../qtbrowserplugin-2.4_1-opensource/src/qtbrowserplugin.pri)
+   }
+RC_FILE = x2goplugin.rc
+}

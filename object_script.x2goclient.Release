@@ -9,10 +9,10 @@ INPUT(
 ./release/exportdialog.o
 ./release/imgframe.o
 ./release/LDAPSession.o
-./release/ongetpass.o
 ./release/onmainwindow.o
 ./release/sessionbutton.o
 ./release/sessionmanagedialog.o
+./release/sshmasterconnection.o
 ./release/sshprocess.o
 ./release/SVGFrame.o
 ./release/userbutton.o
@@ -28,6 +28,9 @@ INPUT(
 ./release/wapi.o
 ./release/clicklineedit.o
 ./release/httpbrokerclient.o
+./release/ongetpass.o
+./release/x2gosettings.o
+./release/x2goclient.o
 ./release/moc_configdialog.o
 ./release/moc_editconnectiondialog.o
 ./release/moc_exportdialog.o
@@ -35,6 +38,7 @@ INPUT(
 ./release/moc_onmainwindow.o
 ./release/moc_sessionbutton.o
 ./release/moc_sessionmanagedialog.o
+./release/moc_sshmasterconnection.o
 ./release/moc_sshprocess.o
 ./release/moc_SVGFrame.o
 ./release/moc_userbutton.o

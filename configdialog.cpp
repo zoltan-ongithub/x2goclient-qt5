@@ -16,7 +16,7 @@
 #include <QGroupBox>
 #include <QPushButton>
 #include <QLabel>
-#include <QSettings>
+#include "x2gosettings.h"
 #include <QDir>
 #include <QFileDialog>
 #include "onmainwindow.h"
@@ -45,14 +45,7 @@ ConfigDialog::ConfigDialog ( QWidget * parent,  Qt::WFlags f )
 
 	embedMode= ( ( ONMainWindow* ) parent )->getEmbedMode();
 
-#ifndef Q_OS_WIN
-	QSettings st ( QDir::homePath() +"/.x2goclient/settings",
-	               QSettings::NativeFormat );
-#else
-
-	QSettings st ( "Obviously Nice","x2goclient" );
-	st.beginGroup ( "settings" );
-#endif
+	X2goSettings st ( "settings" );
 
 #ifdef USELDAP
 	if ( !embedMode )
@@ -124,31 +117,31 @@ ConfigDialog::ConfigDialog ( QWidget * parent,  Qt::WFlags f )
 		setLay->addLayout ( aLay2 );
 
 
-		useldap->setChecked ( st.value ( "LDAP/useldap",
+		useldap->setChecked ( st.setting()->value ( "LDAP/useldap",
 		                                 ( QVariant ) par->retUseLdap()
 		                               ).toBool() );
-		ldapServer->setText ( st.value (
+		ldapServer->setText ( st.setting()->value (
 		                          "LDAP/server",
 		                          ( QVariant ) par->retLdapServer()
 		                      ).toString() );
-		port->setValue ( st.value ( "LDAP/port",
+		port->setValue ( st.setting()->value ( "LDAP/port",
 		                            ( QVariant ) par->retLdapPort()
 		                          ).toInt() );
-		ldapServer1->setText ( st.value (
+		ldapServer1->setText ( st.setting()->value (
 		                           "LDAP/server1",
 		                           ( QVariant ) par->retLdapServer1()
 		                       ).toString() );
-		port1->setValue ( st.value ( "LDAP/port1",
+		port1->setValue ( st.setting()->value ( "LDAP/port1",
 		                             ( QVariant ) par->retLdapPort1()
 		                           ).toInt() );
-		ldapServer2->setText ( st.value (
+		ldapServer2->setText ( st.setting()->value (
 		                           "LDAP/server2",
 		                           ( QVariant ) par->retLdapServer2()
 		                       ).toString() );
-		port2->setValue ( st.value ( "LDAP/port2",
+		port2->setValue ( st.setting()->value ( "LDAP/port2",
 		                             ( QVariant ) par->retLdapPort2()
 		                           ).toInt() );
-		ldapBase->setText ( st.value ( "LDAP/basedn",
+		ldapBase->setText ( st.setting()->value ( "LDAP/basedn",
 		                               ( QVariant ) par->retLdapDn()
 		                             ).toString() );
 		gb->setEnabled ( useldap->isChecked() );
@@ -215,7 +208,7 @@ ConfigDialog::ConfigDialog ( QWidget * parent,  Qt::WFlags f )
 #ifndef Q_OS_WIN
 	clientSshPort=new QSpinBox ( fr );
 	clientSshPort->setMaximum ( 1000000 );
-	clientSshPort->setValue ( st.value ( "clientport",
+	clientSshPort->setValue ( st.setting()->value ( "clientport",
 	                                     ( QVariant ) 22 ).toInt() );
 
 	QHBoxLayout* sshLay=new QHBoxLayout();
@@ -249,15 +242,10 @@ ConfigDialog::ConfigDialog ( QWidget * parent,  Qt::WFlags f )
 		conWidg->hide();
 		setWidg->hide();
 
-#ifndef Q_OS_WIN
-		QSettings st ( QDir::homePath() +"/.x2goclient/sessions",
-		               QSettings::NativeFormat );
-#else
-		QSettings st ( "Obviously Nice","x2goclient" );
-		st.beginGroup ( "sessions" );
-#endif
+		X2goSettings st ( "sessions" );
 		cbStartEmbed->setChecked (
-		    st.value ( "embedded/startembed",true ).toBool() );
+		    st.setting()->value ( "embedded/startembed",
+			       true ).toBool() );
 	}
 #ifdef Q_OS_WIN
 	else
@@ -322,56 +310,48 @@ ConfigDialog::~ConfigDialog()
 
 void ConfigDialog::slot_accepted()
 {
-#ifndef Q_OS_WIN
-	QSettings st ( QDir::homePath() +"/.x2goclient/settings",
-	               QSettings::NativeFormat );
-#else
-
-	QSettings st ( "Obviously Nice","x2goclient" );
-	st.beginGroup ( "settings" );
-#endif
+	X2goSettings st ( "settings" );
 
 #ifdef USELDAP
 	if ( !embedMode )
 	{
-		st.setValue ( "LDAP/useldap",
+		st.setting()->setValue ( "LDAP/useldap",
 		              ( QVariant ) useldap->isChecked() );
-		st.setValue ( "LDAP/port", ( QVariant ) port->value() );
+		st.setting()->setValue ( "LDAP/port",
+			   ( QVariant ) port->value() );
 		if ( ldapServer->text().length() )
-			st.setValue ( "LDAP/server",
+			st.setting()->setValue ( "LDAP/server",
 			              ( QVariant ) ldapServer->text() );
-		st.setValue ( "LDAP/port1", ( QVariant ) port1->value() );
+		st.setting()->setValue ( "LDAP/port1",
+			   ( QVariant ) port1->value() );
 		if ( ldapServer1->text().length() )
-			st.setValue ( "LDAP/server1", ( QVariant )
+			st.setting()->setValue ( "LDAP/server1", ( QVariant )
 			              ldapServer1->text() );
-		st.setValue ( "LDAP/port2", ( QVariant ) port2->value() );
+		st.setting()->setValue ( "LDAP/port2", 
+			   ( QVariant ) port2->value() );
 		if ( ldapServer2->text().length() )
-			st.setValue ( "LDAP/server2", ( QVariant )
+			st.setting()->setValue ( "LDAP/server2", ( QVariant )
 			              ldapServer2->text() );
 		if ( ldapBase->text().length() )
-			st.setValue ( "LDAP/basedn",
+			st.setting()->setValue ( "LDAP/basedn",
 			              ( QVariant ) ldapBase->text() );
 	}
 #endif //USELDAP
 #ifdef Q_OS_DARWIN
-	st.setValue ( "xdarwin/directory", ( QVariant ) leXexec->text() );
+	st.setting()->setValue ( "xdarwin/directory",
+		    ( QVariant ) leXexec->text() );
 #endif
 #ifndef Q_OS_WIN
-	st.setValue ( "clientport", ( QVariant ) clientSshPort->value() );
+	st.setting()->setValue ( "clientport", 
+		   ( QVariant ) clientSshPort->value() );
 #endif
 	pwid->saveSettings();
 	if ( embedMode )
 	{
-#ifndef Q_OS_WIN
-		QSettings st ( QDir::homePath() +"/.x2goclient/sessions",
-		               QSettings::NativeFormat );
-#else
-		QSettings st ( "Obviously Nice","x2goclient" );
-		st.beginGroup ( "sessions" );
-#endif
-		st.setValue ( "embedded/startembed",
+		X2goSettings st ( "sessions" );
+		st.setting()->setValue ( "embedded/startembed",
 		              ( QVariant ) cbStartEmbed->isChecked() );
-		st.sync();
+		st.setting()->sync();
 		setWidg->saveSettings();
 		conWidg->saveSettings();
 	}
@@ -526,9 +506,9 @@ void ConfigDialog::slot_selectXDarwin()
 }
 QString ConfigDialog::getXDarwinDirectory()
 {
-	QSettings st ( QDir::homePath() +"/.x2goclient/settings",
-	               QSettings::NativeFormat );
-	return st.value ( "xdarwin/directory", ( QVariant ) "" ).toString() ;
+	X2goSettings st ("settings");
+	return st.setting()->value ( "xdarwin/directory",
+			   ( QVariant ) "" ).toString() ;
 }
 #endif
 

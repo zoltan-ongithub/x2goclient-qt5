@@ -2,12 +2,12 @@ Source: x2goclient
 Section: x11
 Priority: extra
 Maintainer: Oleksandr Shneyder <oleksandr.shneyder@obviously-nice.de>
-Build-Depends: debhelper (>= 5),libqt4-dev,libldap2-dev
+Build-Depends: debhelper (>= 5),libqt4-dev,libldap2-dev,libssh-x2go
 Standards-Version: 3.7.2
 
 Package: x2goclient
 Architecture: any
-Depends: ${misc:Depends}, nxproxy, libqt4-gui, gnupg-agent (>=2.0.9-3.1), pinentry-x2go, gpgsm, x-window-system, xorg, libldap-2.4-2 | libldap-2.3-0
+Depends: ${misc:Depends}, nxproxy, libqt4-gui, gnupg-agent (>=2.0.9-3.1), pinentry-x2go, gpgsm, x-window-system, xorg, libldap-2.4-2 | libldap-2.3-0, libssh-x2go
 Recommends: 
 Description: x2goclient qt4 client
  x2go is a serverbased computing environment with

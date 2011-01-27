@@ -1,3 +1,23 @@
+x2goclient (3.01-14) unstable; urgency=low
+
+  * use libssh instead of ssh
+
+ -- Oleksandr Shneyder <oleksandr.shneyder@obviously-nice.de>  Fri, 03 Dec 2010 18:31:45 +0000
+
+x2goclient (3.01-13) unstable; urgency=low
+
+  * workaround for "Full Screen" mode in windows
+  * x2goplugin based on qtbrowserplugin
+  * support for clipboard in windows
+
+ -- Oleksandr Shneyder <oleksandr.shneyder@obviously-nice.de>  Tue, 03 Aug 2010 17:12:05 +0200
+
+x2goclient (3.01-12) unstable; urgency=low
+
+  * portable mode
+
+ -- Oleksandr Shneyder <oleksandr.shneyder@obviously-nice.de>  Thu, 29 Jul 2010 17:43:06 +0200
+
 x2goclient (3.01-11) unstable; urgency=low
 
   * plugin config options sound, exportfs, adsl, compression, quality, dpi, kbdlayout, kbdtype  

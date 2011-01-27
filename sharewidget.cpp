@@ -22,12 +22,13 @@
 #include <QHeaderView>
 #include <QComboBox>
 #include <QTextStream>
+#include <QMessageBox>
 
 #include "x2gologdebug.h"
 
 #include <QFileDialog>
 #include <QDir>
-#include <QSettings>
+#include "x2gosettings.h"
 
 ShareWidget::ShareWidget ( QString id, ONMainWindow * mw,
                            QWidget * parent, Qt::WindowFlags f )
@@ -143,12 +144,42 @@ ShareWidget::~ShareWidget()
 
 void ShareWidget::slot_openDir()
 {
+	QString startDir=ONMainWindow::getHomeDirectory();
+#ifdef Q_OS_WIN
+	if ( ONMainWindow::getPortable() &&
+	        ONMainWindow::U3DevicePath().length() >0 )
+	{
+		startDir=ONMainWindow::U3DevicePath() +"/";
+	}
+#endif
+
 	QString path= QFileDialog::getExistingDirectory (
 	                  this,
 	                  tr ( "Select folder" ),
-	                  QDir::homePath() );
+	                  startDir );
 	if ( path!=QString::null )
 	{
+#ifdef Q_OS_WIN
+		if ( ONMainWindow::getPortable() &&
+		        ONMainWindow::U3DevicePath().length() >0 )
+		{
+			if ( path.indexOf ( ONMainWindow::U3DevicePath() ) !=0 )
+			{
+				QMessageBox::critical (
+				    0l,tr ( "Error" ),
+				    tr ( "x2goclient is running in "
+				         "portable mode. You should "
+				         "use a path on your usb device "
+				         "to be able to access your data "
+				         "whereever you are" ),
+				    QMessageBox::Ok,QMessageBox::NoButton );
+				slot_openDir();
+				return;
+			}
+			path.replace ( ONMainWindow::U3DevicePath(),
+			               "(U3)" );
+		}
+#endif
 		ldir->setText ( path );
 	}
 }
@@ -181,42 +212,36 @@ void ShareWidget::slot_delDir()
 void ShareWidget::readConfig()
 {
 
-#ifndef Q_OS_WIN
-	QSettings st ( QDir::homePath() +"/.x2goclient/sessions",
-	               QSettings::NativeFormat );
-#else
-	QSettings st ( "Obviously Nice","x2goclient" );
-	st.beginGroup ( "sessions" );
-#endif
+	X2goSettings st ( "sessions" );
 
-	QString exportDir=st.value ( sessionId+"/export",
-	                             ( QVariant ) QString::null ).toString();
+	QString exportDir=st.setting()->value ( sessionId+"/export",
+	                                        ( QVariant ) QString::null ).toString();
 
-	cbFsSshTun->setChecked ( st.value ( sessionId+"/fstunnel",
-	                                    true ).toBool() );
+	cbFsSshTun->setChecked ( st.setting()->value ( sessionId+"/fstunnel",
+	                         true ).toBool() );
 	QStringList lst=exportDir.split ( ";",QString::SkipEmptyParts );
 
-	QString toCode=st.value ( sessionId+"/iconvto",
-	                          ( QVariant ) "UTF-8" ).toString();
+	QString toCode=st.setting()->value ( sessionId+"/iconvto",
+	                                     ( QVariant ) "UTF-8" ).toString();
 
 #ifdef Q_OS_WIN
-	QString fromCode=st.value ( sessionId+"/iconvfrom",
-	                            ( QVariant ) tr (
-	                                "WINDOWS-1252" ) ).toString();
+	QString fromCode=st.setting()->value ( sessionId+"/iconvfrom",
+	                                       ( QVariant ) tr (
+	                                           "WINDOWS-1252" ) ).toString();
 #endif
 #ifdef Q_OS_DARWIN
-	QString fromCode=st.value ( sessionId+"/iconvfrom",
-	                            ( QVariant )
-	                            "UTF-8" ).toString();
+	QString fromCode=st.setting()->value ( sessionId+"/iconvfrom",
+	                                       ( QVariant )
+	                                       "UTF-8" ).toString();
 #endif
 #ifdef Q_OS_LINUX
-	QString fromCode=st.value ( sessionId+"/iconvfrom",
-	                            ( QVariant ) tr (
-	                                "ISO8859-1" ) ).toString();
+	QString fromCode=st.setting()->value ( sessionId+"/iconvfrom",
+	                                       ( QVariant ) tr (
+	                                           "ISO8859-1" ) ).toString();
 #endif
 
-	cbFsConv->setChecked ( st.value ( sessionId+"/useiconv",
-	                                  ( QVariant ) false ).toBool() );
+	cbFsConv->setChecked ( st.setting()->value ( sessionId+"/useiconv",
+	                       ( QVariant ) false ).toBool() );
 	slot_convClicked();
 
 	int ind=cbFrom->findText ( fromCode );
@@ -276,15 +301,9 @@ void ShareWidget::setDefaults()
 void ShareWidget::saveSettings()
 {
 
-#ifndef Q_OS_WIN
-	QSettings st ( QDir::homePath() +"/.x2goclient/sessions",
-	               QSettings::NativeFormat );
-#else
-	QSettings st ( "Obviously Nice","x2goclient" );
-	st.beginGroup ( "sessions" );
-#endif
-	st.setValue ( sessionId+"/fstunnel",
-	              ( QVariant ) cbFsSshTun->isChecked() );
+	X2goSettings st ( "sessions" );
+	st.setting()->setValue ( sessionId+"/fstunnel",
+	                         ( QVariant ) cbFsSshTun->isChecked() );
 
 	QString exportDirs;
 	for ( int i=0;i<model->rowCount();++i )
@@ -300,13 +319,13 @@ void ShareWidget::saveSettings()
 		else
 			exportDirs+="0;";
 	}
-	st.setValue ( sessionId+"/export", ( QVariant ) exportDirs );
-	
-	
-	st.setValue(sessionId+"/iconvto",cbTo->currentText());
-	st.setValue(sessionId+"/iconvfrom",cbFrom->currentText());
-	st.setValue(sessionId+"/useiconv",cbFsConv->isChecked());
-	st.sync();
+	st.setting()->setValue ( sessionId+"/export", ( QVariant ) exportDirs );
+
+
+	st.setting()->setValue ( sessionId+"/iconvto",cbTo->currentText() );
+	st.setting()->setValue ( sessionId+"/iconvfrom",cbFrom->currentText() );
+	st.setting()->setValue ( sessionId+"/useiconv",cbFsConv->isChecked() );
+	st.setting()->sync();
 }
 
 

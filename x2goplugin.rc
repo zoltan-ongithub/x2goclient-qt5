@@ -1,0 +1,37 @@
+1 TYPELIB "x2goplugin.rc"
+
+1 VERSIONINFO
+ FILEVERSION 3,0,1,13
+ PRODUCTVERSION 3,0,1,13
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x2L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904e4"
+        BEGIN
+            VALUE "CompanyName", "Obviously Nice\0"
+            VALUE "FileDescription", "Allows you to start X2Go session in a webbrowser\0"
+	    VALUE "FileExtents", "x2go\0"
+	    VALUE "FileOpenName", "Configuration File for X2Go Session (*.x2go)\0"
+            VALUE "FileVersion", "3, 0, 1, 13\0"
+            VALUE "InternalName", "x2goplugin\0"
+            VALUE "LegalCopyright", "Copyright © 2010 Obviously Nice\0"
+	    VALUE "MIMEType", "application/x2go\0"
+            VALUE "OriginalFilename", "npx2goplugin.dll\0"
+            VALUE "ProductName", "X2GoClient Plug-in 3.01-13\0"
+            VALUE "ProductVersion", "3, 0, 1, 13\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1252
+    END
+END

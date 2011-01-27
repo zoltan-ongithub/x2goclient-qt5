@@ -1,92 +1,87 @@
-//
-// C++ Interface: sshprocess
-//
-// Description:
-//
-//
-// Author: Oleksandr Shneyder <oleksandr.shneyder@obviously-nice.de>, (C) 2006
-//
-// Copyright: See COPYING file that comes with this distribution
-//
-//
-#include "x2goclientconfig.h"
+/*
+   This library is free software; you can redistribute it and/or
+   modify it under the terms of the GNU Library General Public
+   License version 2 as published by the Free Software Foundation.
+
+   This library is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+   Library General Public License for more details.
+
+   You should have received a copy of the GNU Library General Public License
+   along with this library; see the file COPYING.LIB.  If not, write to
+   the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+   Boston, MA 02110-1301, USA.
+*/
+
 #ifndef SSHPROCESS_H
 #define SSHPROCESS_H
 
-#include <QProcess>
+#include <libssh/libssh.h>
+#include <QObject>
 
-/**
-	@author Oleksandr Shneyder <oleksandr.shneyder@obviously-nice.de>
-*/
-class QLocalServer;
-class QLocalSocket;
-struct SshProxy;
-class sshProcess : public QProcess
+class SshMasterConnection;
+
+
+class SshProcess : public QObject
 {
-		Q_OBJECT
-	public:
-		sshProcess ( QObject* parent, const SshProxy* proxy,
-		             const QString& user,
-		             const QString& host,const QString& pt,
-		             const QString& cmd, const QString& pass,
-		             const QString& key=QString::null,
-		             bool acc=false );
-		virtual ~sshProcess();
-		void startNormal ( bool accept=false );
-		QString getResponce();
-		void startTunnel ( QString host,QString localPort,QString remotePort,
-		                   bool reverse=false,bool accept=false );
-		void start_cp ( QString src, QString dst, bool accept=false );
-		QString getSource() {return source;}
-		QString setsid();
-		void setErrorString ( const QString& str );
-		void setFwX ( bool s ) {fwX=s;}
-		virtual void setEnvironment ( QStringList newEnv );
-	private:
-		QString askpass;
-		QString user;
-		QString host;
-		QString command;
-		QString pass;
-		QString key;
-		QString errorString;
-		QString outputString;
-		QString passcookie;
-		QLocalServer* serverSocket;
-		QLocalSocket* localSocket;
-		bool needPass;
-		bool autoAccept;
-		bool isTunnel;
-		bool isCopy;
-		QString sshPort;
-		QString tunnelHost;
-		QString localPort;
-		QString source;
-		QString destination;
-		QString remotePort;
-		QStringList env;
-		bool reverse;
-		bool fwX;
-		bool sudoErr;
-		QString extraOptions;
+    Q_OBJECT
 
-	private slots:
-		void slot_error ( QProcess::ProcessError );
-		void slot_finished ( int, QProcess::ExitStatus );
-		void slot_stderr();
-		void slot_stdout();
-		void hidePass();
-		void slot_pass_connection();
-		void slot_read_cookie_from_socket();
-	private:
-		void printPass ( bool accept=false );
-		void printKey ( bool accept=false );
-		QString cookie();
-		void cleanEnv ( bool all=false );
-	signals:
-		void sshFinished ( bool,QString,sshProcess* );
-		void sudoConfigError ( QString,sshProcess* );
-		void sshTunnelOk();
+public:
+    SshProcess(SshMasterConnection* master, QObject* parent=0);
+    ~SshProcess();
+
+public:
+    void startNormal(const QString& cmd);
+    void startTunnel(const QString& forwardHost, uint forwardPort, const QString& localHost,
+                     uint localPort, bool reverse=false);
+    void start_cp(QString src, QString dst);
+    QString getSource() 
+    {
+        return scpSource;
+    }
+
+private:
+    void tunnelLoop();
+
+private:
+    SshMasterConnection* masterCon;
+    SshMasterConnection* tunnelConnection;
+    QString forwardHost;
+    QString localHost;
+    QString command;
+    QString scpSource;
+    quint16 forwardPort;
+    quint16 localPort;
+    uint serverSocket;
+    struct sockaddr_in address;
+#ifndef  Q_OS_WIN
+    socklen_t addrlen;
+#else
+    int addrlen;
+#endif
+    QString stdOutString;
+    QString stdErrString;
+    QString abortString;
+    bool tunnel;
+    bool normalExited;
+
+
+private slots:
+    void slotCheckNewConnection();
+    void slotStdErr(SshProcess* creator, QByteArray data);
+    void slotStdOut(SshProcess* creator, QByteArray data);
+    void slotIOerr(SshProcess* creator,QString message, QString sshSessionErr);
+    void slotChannelClosed(SshProcess* creator);
+    void slotReverseTunnelOk(SshProcess* creator);
+    void slotCopyOk(SshProcess* creator);
+    void slotCopyErr(SshProcess* creator,QString message, QString sshSessionErr);
+signals:
+    void sshFinished ( bool result, QString output, SshProcess* proc);
+    void sshTunnelOk();
+    /*
+        void sudoConfigError ( QString, SshProcess* );
+        */
 };
 
-#endif
+#endif // SSHPROCESS_H

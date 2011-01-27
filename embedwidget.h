@@ -19,7 +19,7 @@
 
 class QVBoxLayout;
 #ifndef Q_OS_WIN
-class QX11EmbedWidget;
+// class QX11EmbedWidget;
 class QX11EmbedContainer;
 #endif
 
@@ -30,8 +30,8 @@ class EmbedWidget
 	public:
 		EmbedWidget ();
 		~EmbedWidget();
-		void embedInto ( long winId );
-		void slotUpdateEmbed();
+/*		void embedInto ( long winId );
+		void slotUpdateEmbed();*/
 		long findWindow ( QString text );
 		void embedWindow ( long wndId );
 		void detachClient();
@@ -42,7 +42,7 @@ class EmbedWidget
 		QTimer *updateTimer;
 
 #ifdef Q_OS_LINUX
-		QX11EmbedWidget* qx11embedWidget;
+// 		QX11EmbedWidget* qx11embedWidget;
 		QX11EmbedContainer* embedContainer;
 		QVBoxLayout* mainLay;
 #endif
@@ -63,7 +63,7 @@ class EmbedWidget
 #endif
 	protected:
 		void initWidgets();
-		void closeEmbedWidget();
+// 		void closeEmbedWidget();
 };
 #endif //(Q_OS_DARWIN)
 #endif

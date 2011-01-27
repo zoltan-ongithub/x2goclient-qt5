@@ -10,6 +10,31 @@
 #include "wapi.h"
 #include "x2gologdebug.h"
 
+
+
+
+long wapiSetFSWindow ( HWND hWnd, const QRect& desktopGeometry )
+{
+	long style=GetWindowLong ( hWnd,GWL_STYLE );
+	SetWindowPos ( hWnd, HWND_TOP, desktopGeometry.x(),
+	               desktopGeometry.y(),
+	               desktopGeometry.width(),
+	               desktopGeometry.height(),
+	               SWP_FRAMECHANGED );
+	SetWindowLong ( hWnd, GWL_STYLE,
+	                WS_VISIBLE | WS_SYSMENU |
+	                WS_CLIPCHILDREN | WS_CLIPSIBLINGS );
+
+	SetWindowPos ( hWnd, HWND_TOP, desktopGeometry.x(),
+	               desktopGeometry.y(),
+	               desktopGeometry.width(),
+	               desktopGeometry.height(),
+	               SWP_FRAMECHANGED );
+	
+	SetForegroundWindow ( hWnd );
+	return style;
+}
+
 void wapiHideFromTaskBar ( HWND wnd )
 {
 	ShowWindow ( wnd, SW_HIDE ) ;

@@ -12,7 +12,7 @@
 #include "cupsprint.h"
 #ifndef Q_OS_WIN
 #include "x2gologdebug.h"
-#include <QSettings>
+#include "x2gosettings.h"
 #include <QDir>
 CUPSPrint::CUPSPrint()
 {
@@ -41,15 +41,10 @@ QStringList CUPSPrint::getPrinters()
 
 QString CUPSPrint::getDefaultUserPrinter()
 {
-#ifndef Q_OS_WIN
-	QSettings st ( QDir::homePath() +"/.x2goclient/printing",
-	               QSettings::NativeFormat );
-#else
+	X2goSettings st ( "printing" );
 
-	QSettings st ( "Obviously Nice","x2goclient" );
-	st.beginGroup ( "printing" );
-#endif
-	QString defPrint=st.value ( "CUPS/defaultprinter","" ). toString();
+	QString defPrint=st.setting()->value (
+	                     "CUPS/defaultprinter","" ). toString();
 	if ( defPrint.length() >0 )
 	{
 		cups_dest_t *dest = cupsGetDest ( defPrint.toAscii(),
@@ -67,15 +62,8 @@ QString CUPSPrint::getDefaultUserPrinter()
 
 void CUPSPrint::setDefaultUserPrinter ( QString printer )
 {
-#ifndef Q_OS_WIN
-	QSettings st ( QDir::homePath() +"/.x2goclient/printing",
-	               QSettings::NativeFormat );
-#else
-
-	QSettings st ( "Obviously Nice","x2goclient" );
-	st.beginGroup ( "printing" );
-#endif
-	st.setValue ( "CUPS/defaultprinter", QVariant ( printer ) );
+	X2goSettings st ( "printing" );
+	st.setting()->setValue ( "CUPS/defaultprinter", QVariant ( printer ) );
 }
 
 bool CUPSPrint::getPrinterInfo ( const QString& printerName, QString& info,
@@ -328,14 +316,7 @@ void CUPSPrint::saveOptions()
 {
 	if ( !ppd )
 		return;
-#ifndef Q_OS_WIN
-	QSettings st ( QDir::homePath() +"/.x2goclient/printing",
-	               QSettings::NativeFormat );
-#else
-
-	QSettings st ( "Obviously Nice","x2goclient" );
-	st.beginGroup ( "printing" );
-#endif
+	X2goSettings st( "printing" );
 
 	QStringList options;
 	for ( int i=0;i<ppd->num_groups;++i )
@@ -355,22 +336,15 @@ void CUPSPrint::saveOptions()
 			}
 		}
 	}
-	st.setValue ( "CUPS/options/"+currentPrinter,
+	st.setting()->setValue ( "CUPS/options/"+currentPrinter,
 	              QVariant ( options ) );
 }
 
 
 void CUPSPrint::loadUserOptions()
 {
-#ifndef Q_OS_WIN
-	QSettings st ( QDir::homePath() +"/.x2goclient/printing",
-	               QSettings::NativeFormat );
-#else
-
-	QSettings st ( "Obviously Nice","x2goclient" );
-	st.beginGroup ( "printing" );
-#endif
-	QStringList options=st.value (
+	X2goSettings st ( "printing" );
+	QStringList options=st.setting()->value (
 	                        "CUPS/options/"+currentPrinter ).toStringList();
 	for ( int i=0;i<options.size();++i )
 	{

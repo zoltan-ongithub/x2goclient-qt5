@@ -15,7 +15,7 @@
 #include <QFont>
 #include <QPixmap>
 #include <QLabel>
-#include <QSettings>
+#include "x2gosettings.h"
 #include <QDir>
 #include <QLayout>
 #include <QComboBox>
@@ -121,10 +121,10 @@ SessionButton::SessionButton ( ONMainWindow* mw,QWidget *parent, QString id )
 	               QIcon ( mw->iconsPath ( "/16x16/delete.png" ) ),
 	               tr ( "Delete session" ) );
 
-	
+
 	connect ( act_edit,SIGNAL ( triggered ( bool ) ),this,
 	          SLOT ( slotEdit() ) );
-	
+
 	connect ( act_remove,SIGNAL ( triggered ( bool ) ),this,
 	          SLOT ( slotRemove() ) );
 #if (!defined Q_WS_HILDON) && (!defined Q_OS_DARWIN)
@@ -223,22 +223,16 @@ void SessionButton::slotRemove()
 void SessionButton::redraw()
 {
 	bool snd;
-#ifndef Q_OS_WIN
-	QSettings st ( QDir::homePath() +"/.x2goclient/sessions",
-	               QSettings::NativeFormat );
-#else
-	QSettings st ( "Obviously Nice","x2goclient" );
-	st.beginGroup ( "sessions" );
-#endif
+	X2goSettings st ( "sessions" );
 	sessName->setText (
-	    st.value ( sid+"/name",
-	               ( QVariant ) tr ( "New Session" ) ).toString() );
-	QString sessIcon=st.value (
+	    st.setting()->value ( sid+"/name",
+	                          ( QVariant ) tr ( "New Session" ) ).toString() );
+	QString sessIcon=st.setting()->value (
 	                     sid+"/icon",
 	                     ( QVariant )
 	                     ":icons/128x128/x2gosession.png"
 	                 ).toString();
-	QPixmap pix(sessIcon);
+	QPixmap pix ( sessIcon );
 	if ( !par->retMiniMode() )
 		icon->setPixmap ( pix.scaled ( 64,64,Qt::IgnoreAspectRatio,
 		                               Qt::SmoothTransformation ) );
@@ -246,19 +240,19 @@ void SessionButton::redraw()
 		icon->setPixmap ( pix.scaled ( 48,48,Qt::IgnoreAspectRatio,
 		                               Qt::SmoothTransformation ) );
 
-	QString sv=st.value ( sid+"/host", ( QVariant )
-	                      QString::null ).toString();
-	QString uname=st.value ( sid+"/user", ( QVariant )
-	                         QString::null ).toString();
+	QString sv=st.setting()->value ( sid+"/host", ( QVariant )
+	                                 QString::null ).toString();
+	QString uname=st.setting()->value ( sid+"/user", ( QVariant )
+	                                    QString::null ).toString();
 	server->setText ( uname+"@"+sv );
 
-	QString command=st.value ( sid+"/command",
-	                           ( QVariant )
-	                           tr (
-	                               "KDE" ) ).
+	QString command=st.setting()->value ( sid+"/command",
+	                                      ( QVariant )
+	                                      tr (
+	                                          "KDE" ) ).
 	                toString();
-	rootless=st.value ( sid+"/rootless",
-	                    false ).toBool();
+	rootless=st.setting()->value ( sid+"/rootless",
+	                               false ).toBool();
 
 
 	cmdBox->clear();
@@ -271,43 +265,43 @@ void SessionButton::redraw()
 
 	cmdBox->addItems ( par->transApplicationsNames() );
 
- 	QPixmap cmdpix;
+	QPixmap cmdpix;
 	if ( command=="KDE" )
 	{
- 		cmdpix.load ( par->iconsPath ( "/16x16/kde.png" ) );
+		cmdpix.load ( par->iconsPath ( "/16x16/kde.png" ) );
 		cmdBox->setCurrentIndex ( KDE );
 	}
 	else if ( command =="GNOME" )
 	{
- 		cmdpix.load ( par->iconsPath ( "/16x16/gnome.png" ) );
+		cmdpix.load ( par->iconsPath ( "/16x16/gnome.png" ) );
 		cmdBox->setCurrentIndex ( GNOME );
 	}
 	else if ( command =="LXDE" )
 	{
- 		cmdpix.load ( par->iconsPath ( "/16x16/lxde.png" ) );
+		cmdpix.load ( par->iconsPath ( "/16x16/lxde.png" ) );
 		cmdBox->setCurrentIndex ( LXDE );
 	}
 	else if ( command =="SHADOW" )
 	{
- 		cmdpix.load ( par->iconsPath ( "/16x16/X.png" ) );
+		cmdpix.load ( par->iconsPath ( "/16x16/X.png" ) );
 		cmdBox->setCurrentIndex ( SHADOW );
-		command=tr("Connection to local desktop");
+		command=tr ( "Connection to local desktop" );
 	}
 	else if ( command =="RDP" )
 	{
- 		cmdpix.load ( par->iconsPath ( "/16x16/rdp.png" ) );
+		cmdpix.load ( par->iconsPath ( "/16x16/rdp.png" ) );
 		cmdBox->setCurrentIndex ( RDP );
-		command=tr("RDP connection");
+		command=tr ( "RDP connection" );
 	}
 	else if ( command =="XDMCP" )
 	{
- 		cmdpix.load ( par->iconsPath ( "/16x16/X.png" ) );
+		cmdpix.load ( par->iconsPath ( "/16x16/X.png" ) );
 		cmdBox->setCurrentIndex ( XDMCP );
-		command=tr("XDMCP");
+		command=tr ( "XDMCP" );
 	}
 	else
 	{
- 		cmdpix.load ( par->iconsPath ( "/16x16/X.png" ) );
+		cmdpix.load ( par->iconsPath ( "/16x16/X.png" ) );
 		command=par->transAppName ( command );
 		int id= cmdBox->findText ( command );
 		if ( id ==-1 )
@@ -320,7 +314,7 @@ void SessionButton::redraw()
 	}
 
 
- 	cmdIcon->setPixmap ( cmdpix );
+	cmdIcon->setPixmap ( cmdpix );
 	cmd->setText ( command );
 
 
@@ -334,15 +328,18 @@ void SessionButton::redraw()
 #else
 	geomBox->addItem ( tr ( "window" ) );
 #endif
-	if ( st.value ( sid+"/fullscreen", ( QVariant ) false ).toBool() )
+	if ( st.setting()->value ( sid+"/fullscreen",
+	                           ( QVariant ) false ).toBool() )
 	{
 		geom->setText ( tr ( "fullscreen" ) );
 	}
 	else
 	{
 #ifndef	Q_WS_HILDON
-		QString g=QString::number ( st.value ( sid+"/width" ).toInt() );
-		g+="x"+QString::number ( st.value ( sid+"/height" ).toInt() );
+		QString g=QString::number ( st.setting()->value (
+		                                sid+"/width" ).toInt() );
+		g+="x"+QString::number ( st.setting()->value (
+		                             sid+"/height" ).toInt() );
 		geom->setText ( g );
 		if ( geomBox->findText ( g ) ==-1 )
 			geomBox->addItem ( g );
@@ -354,7 +351,7 @@ void SessionButton::redraw()
 	}
 
 
-	snd=st.value ( sid+"/sound", ( QVariant ) true ).toBool();
+	snd=st.setting()->value ( sid+"/sound", ( QVariant ) true ).toBool();
 	if ( snd )
 		sound->setText ( tr ( "Enabled" ) );
 	else
@@ -490,15 +487,9 @@ void SessionButton::slot_soundClicked()
 	sound->setFixedSize ( fm.size ( Qt::TextSingleLine,sound->text() ) +
 	                      QSize ( 8,4 ) );
 
-#ifndef Q_OS_WIN
-	QSettings st ( QDir::homePath() +"/.x2goclient/sessions",
-	               QSettings::NativeFormat );
-#else
-	QSettings st ( "Obviously Nice","x2goclient" );
-	st.beginGroup ( "sessions" );
-#endif
-	st.setValue ( sid+"/sound", ( QVariant ) snd );
-	st.sync();
+	X2goSettings st ( "sessions" );
+	st.setting()->setValue ( sid+"/sound", ( QVariant ) snd );
+	st.setting()->sync();
 
 
 }
@@ -524,19 +515,19 @@ void SessionButton::slot_cmd_change ( const QString& command )
 		newRootless=false;
 		pix.load ( par->iconsPath ( "/16x16/lxde.png" ) );
 	}
-	else if ( command ==tr("Connection to local desktop"))
+	else if ( command ==tr ( "Connection to local desktop" ) )
 	{
 		newRootless=false;
 		pix.load ( par->iconsPath ( "/16x16/X.png" ) );
 		cmd="SHADOW";
 	}
-	else if ( command == tr("RDP connection") )
+	else if ( command == tr ( "RDP connection" ) )
 	{
 		newRootless=false;
 		pix.load ( par->iconsPath ( "/16x16/rdp.png" ) );
 		cmd="RDP";
 	}
-	else if ( command == tr("XDMCP") )
+	else if ( command == tr ( "XDMCP" ) )
 	{
 		newRootless=false;
 		pix.load ( par->iconsPath ( "/16x16/X.png" ) );
@@ -546,13 +537,7 @@ void SessionButton::slot_cmd_change ( const QString& command )
 		pix.load ( par->iconsPath ( "/16x16/X.png" ) );
 	cmdIcon->setPixmap ( pix );
 
-#ifndef Q_OS_WIN
-	QSettings st ( QDir::homePath() +"/.x2goclient/sessions",
-	               QSettings::NativeFormat );
-#else
-	QSettings st ( "Obviously Nice","x2goclient" );
-	st.beginGroup ( "sessions" );
-#endif
+	X2goSettings st ( "sessions" );
 	if ( command=="startkde" )
 	{
 		cmd="KDE";
@@ -572,9 +557,9 @@ void SessionButton::slot_cmd_change ( const QString& command )
 	cmd=par->internAppName ( cmd,&found );
 	if ( found )
 		newRootless=true;
-	st.setValue ( sid+"/command", ( QVariant ) cmd );
-	st.setValue ( sid+"/rootless", ( QVariant ) newRootless );
-	st.sync();
+	st.setting()->setValue ( sid+"/command", ( QVariant ) cmd );
+	st.setting()->setValue ( sid+"/rootless", ( QVariant ) newRootless );
+	st.setting()->sync();
 
 }
 
@@ -582,27 +567,22 @@ void SessionButton::slot_cmd_change ( const QString& command )
 void SessionButton::slot_geom_change ( const QString& new_g )
 {
 	geom->setText ( new_g );
-#ifndef Q_OS_WIN
-	QSettings st ( QDir::homePath() +"/.x2goclient/sessions",
-	               QSettings::NativeFormat );
-#else
-	QSettings st ( "Obviously Nice","x2goclient" );
-	st.beginGroup ( "sessions" );
-#endif
+	X2goSettings st ( "sessions" );
 	if ( new_g==tr ( "fullscreen" ) )
-		st.setValue ( sid+"/fullscreen", ( QVariant ) true );
+		st.setting()->setValue ( sid+"/fullscreen", ( QVariant ) true );
 	else
 	{
 		QString new_geom=new_g;
 #ifdef Q_WS_HILDON
 		new_geom="800x600";
 #endif
-		st.setValue ( sid+"/fullscreen", ( QVariant ) false );
+		st.setting()->setValue ( sid+"/fullscreen",
+		                         ( QVariant ) false );
 		QStringList lst=new_geom.split ( 'x' );
-		st.setValue ( sid+"/width", ( QVariant ) lst[0] );
-		st.setValue ( sid+"/height", ( QVariant ) lst[1] );
+		st.setting()->setValue ( sid+"/width", ( QVariant ) lst[0] );
+		st.setting()->setValue ( sid+"/height", ( QVariant ) lst[1] );
 	}
-	st.sync();
+	st.setting()->sync();
 }
 
 bool SessionButton::lessThen ( const SessionButton* b1,
@@ -633,5 +613,5 @@ void SessionButton::slotShowMenu()
 
 void SessionButton::slotCreateSessionIcon()
 {
-    par->slot_createDesktopIcon(this);
+	par->slotCreateDesktopIcon ( this );
 }

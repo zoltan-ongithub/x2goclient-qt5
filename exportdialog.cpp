@@ -16,7 +16,7 @@
 #include <QGroupBox>
 #include <QPushButton>
 #include <QLabel>
-#include <QSettings>
+#include "x2gosettings.h"
 #include <QListView>
 #include <QDir>
 #include <QStringListModel>
@@ -92,16 +92,10 @@ void ExportDialog::loadSessions()
 	QStringList dirs;
 	model->setStringList ( dirs );
 
-#ifndef Q_OS_WIN
-	QSettings st ( QDir::homePath() +"/.x2goclient/sessions",
-	               QSettings::NativeFormat );
-#else
-	QSettings st ( "Obviously Nice","x2goclient" );
-	st.beginGroup ( "sessions" );
-#endif
+	X2goSettings st ( "sessions" );
 
 
-	QString exports=st.value ( sessionId+"/export",
+	QString exports=st.setting()->value ( sessionId+"/export",
 	                           ( QVariant ) QString::null ).toString();
 
 	QStringList lst=exports.split ( ";",QString::SkipEmptyParts );

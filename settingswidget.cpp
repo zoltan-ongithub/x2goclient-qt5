@@ -19,7 +19,7 @@
 #include <QGroupBox>
 #include <QButtonGroup>
 #include <QLabel>
-#include <QSettings>
+#include "x2gosettings.h"
 #include <QDir>
 SettingsWidget::SettingsWidget ( QString id, ONMainWindow * mw,
                                  QWidget * parent, Qt::WindowFlags f )
@@ -333,61 +333,58 @@ void SettingsWidget::slot_sndDefPortChecked ( bool val )
 void SettingsWidget::readConfig()
 {
 
-#ifndef Q_OS_WIN
-	QSettings st ( QDir::homePath() +"/.x2goclient/sessions",
-	               QSettings::NativeFormat );
-#else
-	QSettings st ( "Obviously Nice","x2goclient" );
-	st.beginGroup ( "sessions" );
-#endif
+	X2goSettings st ( "sessions" );
 
 	fs->setChecked (
-	    st.value ( sessionId+"/fullscreen",
-	               ( QVariant ) mainWindow->getDefaultFullscreen() ).toBool() );
+	    st.setting()->value ( sessionId+"/fullscreen",
+	                          ( QVariant ) mainWindow->getDefaultFullscreen() ).toBool() );
 
-	custom->setChecked ( ! st.value (
+	custom->setChecked ( ! st.setting()->value (
 	                         sessionId+"/fullscreen",
 	                         ( QVariant ) mainWindow->getDefaultFullscreen()
 	                     ).toBool() );
 
 
 	width->setValue (
-	    st.value ( sessionId+"/width",
-	               ( QVariant ) mainWindow->getDefaultWidth() ).toInt() );
+	    st.setting()->value ( sessionId+"/width",
+	                          ( QVariant ) mainWindow->getDefaultWidth() ).toInt() );
 	height->setValue (
-	    st.value ( sessionId+"/height",
-	               ( QVariant ) mainWindow->getDefaultHeight() ).toInt() );
+	    st.setting()->value ( sessionId+"/height",
+	                          ( QVariant ) mainWindow->getDefaultHeight() ).toInt() );
 
 	cbSetDPI->setChecked (
-	    st.value ( sessionId+"/setdpi",
-	               ( QVariant ) mainWindow->getDefaultSetDPI() ).toBool() );
+	    st.setting()->value ( sessionId+"/setdpi",
+	                          ( QVariant ) mainWindow->getDefaultSetDPI() ).toBool() );
 	DPI->setEnabled ( cbSetDPI->isChecked() );
 	DPI->setValue (
-	    st.value ( sessionId+"/dpi",
-	               ( QVariant ) mainWindow->getDefaultDPI() ).toUInt() );
+	    st.setting()->value ( sessionId+"/dpi",
+	                          ( QVariant ) mainWindow->getDefaultDPI() ).toUInt() );
 
-	kbd->setChecked ( !st.value (
+	kbd->setChecked ( !st.setting()->value (
 	                      sessionId+"/usekbd",
 	                      ( QVariant ) mainWindow->getDefaultSetKbd()
 	                  ).toBool() );
 	layout->setText (
-	    st.value ( sessionId+"/layout",
-	               ( QVariant ) mainWindow->getDefaultLayout()
-	             ).toString() );
+	    st.setting()->value ( sessionId+"/layout",
+	                          ( QVariant ) mainWindow->getDefaultLayout()
+	                        ).toString() );
 	type->setText (
-	    st.value ( sessionId+"/type",
-	               ( QVariant ) mainWindow->getDefaultKbdType()
-	             ).toString() );
-	bool snd=st.value (
+	    st.setting()->value ( sessionId+"/type",
+	                          ( QVariant ) mainWindow->getDefaultKbdType()
+	                        ).toString() );
+	bool snd=st.setting()->value (
 	             sessionId+"/sound",
 	             ( QVariant ) mainWindow->getDefaultUseSound()
 	         ).toBool();
-	QString sndsys=st.value ( sessionId+"/soundsystem","pulse" ).toString();
-	bool startServ=st.value ( sessionId+"/startsoundsystem",
-	                          true ).toBool();
-	bool sndInTun=st.value ( sessionId+"/soundtunnel", true ).toBool();
-	bool defSndPort=st.value ( sessionId+"/defsndport", true ).toBool();
-	int sndPort= st.value ( sessionId+"/sndport",4713 ).toInt();
+	QString sndsys=st.setting()->value ( sessionId+"/soundsystem",
+	                                     "pulse" ).toString();
+	bool startServ=st.setting()->value ( sessionId+"/startsoundsystem",
+	                                     true ).toBool();
+	bool sndInTun=st.setting()->value ( sessionId+"/soundtunnel",
+	                                    true ).toBool();
+	bool defSndPort=st.setting()->value ( sessionId+"/defsndport",
+	                                      true ).toBool();
+	int sndPort= st.setting()->value ( sessionId+"/sndport",4713 ).toInt();
 	if ( startServ )
 		rbStartSnd->setChecked ( true );
 	else
@@ -424,7 +421,7 @@ void SettingsWidget::readConfig()
 	slot_sndToggled ( snd );
 	slot_sndStartClicked();
 
-	cbClientPrint->setChecked ( st.value ( sessionId+"/print",
+	cbClientPrint->setChecked ( st.setting()->value ( sessionId+"/print",
 	                                       true ).toBool() );
 }
 
@@ -439,7 +436,7 @@ void SettingsWidget::setDefaults()
 	DPI->setValue ( mainWindow->getDefaultDPI() );
 	DPI->setEnabled ( mainWindow->getDefaultSetDPI() );
 
-	kbd->setChecked (!mainWindow->getDefaultSetKbd());
+	kbd->setChecked ( !mainWindow->getDefaultSetKbd() );
 	layout->setText ( tr ( "us" ) );
 	type->setText ( tr ( "pc105/us" ) );
 	sound->setChecked ( true );
@@ -453,37 +450,45 @@ void SettingsWidget::setDefaults()
 
 void SettingsWidget::saveSettings()
 {
-#ifndef Q_OS_WIN
-	QSettings st ( QDir::homePath() +"/.x2goclient/sessions",
-	               QSettings::NativeFormat );
-#else
-	QSettings st ( "Obviously Nice","x2goclient" );
-	st.beginGroup ( "sessions" );
-#endif
-	st.setValue ( sessionId+"/fullscreen", ( QVariant ) fs->isChecked() );
-	st.setValue ( sessionId+"/width", ( QVariant ) width->value() );
-	st.setValue ( sessionId+"/height", ( QVariant ) height->value() );
-	st.setValue ( sessionId+"/dpi", ( QVariant ) DPI->value() );
-	st.setValue ( sessionId+"/setdpi", ( QVariant ) cbSetDPI->isChecked() );
-	st.setValue ( sessionId+"/usekbd", ( QVariant ) !kbd->isChecked() );
-	st.setValue ( sessionId+"/layout", ( QVariant ) layout->text() );
-	st.setValue ( sessionId+"/type", ( QVariant ) type->text() );
-	st.setValue ( sessionId+"/sound", ( QVariant ) sound->isChecked() );
-	if ( arts->isChecked() )
-		st.setValue ( sessionId+"/soundsystem", ( QVariant ) "arts" );
-	if ( esd->isChecked() )
-		st.setValue ( sessionId+"/soundsystem", ( QVariant ) "esd" );
-	if ( pulse->isChecked() )
-		st.setValue ( sessionId+"/soundsystem", ( QVariant ) "pulse" );
+	X2goSettings st ( "sessions" );
 
-	st.setValue ( sessionId+"/startsoundsystem",
-	              ( QVariant ) rbStartSnd->isChecked() );
-	st.setValue ( sessionId+"/soundtunnel",
-	              ( QVariant ) cbSndSshTun->isChecked() );
-	st.setValue ( sessionId+"/defsndport",
-	              ( QVariant ) cbDefSndPort->isChecked() );
-	st.setValue ( sessionId+"/sndport", ( QVariant ) sbSndPort->value() );
-	st.setValue ( sessionId+"/print",
-	              ( QVariant ) cbClientPrint->isChecked() );
-	st.sync();
+	st.setting()->setValue ( sessionId+"/fullscreen",
+	                         ( QVariant ) fs->isChecked() );
+	st.setting()->setValue ( sessionId+"/width",
+	                         ( QVariant ) width->value() );
+	st.setting()->setValue ( sessionId+"/height",
+	                         ( QVariant ) height->value() );
+	st.setting()->setValue ( sessionId+"/dpi",
+	                         ( QVariant ) DPI->value() );
+	st.setting()->setValue ( sessionId+"/setdpi",
+	                         ( QVariant ) cbSetDPI->isChecked() );
+	st.setting()->setValue ( sessionId+"/usekbd",
+	                         ( QVariant ) !kbd->isChecked() );
+	st.setting()->setValue ( sessionId+"/layout",
+	                         ( QVariant ) layout->text() );
+	st.setting()->setValue ( sessionId+"/type",
+	                         ( QVariant ) type->text() );
+	st.setting()->setValue ( sessionId+"/sound",
+	                         ( QVariant ) sound->isChecked() );
+	if ( arts->isChecked() )
+		st.setting()->setValue ( sessionId+"/soundsystem",
+		                         ( QVariant ) "arts" );
+	if ( esd->isChecked() )
+		st.setting()->setValue ( sessionId+"/soundsystem",
+		                         ( QVariant ) "esd" );
+	if ( pulse->isChecked() )
+		st.setting()->setValue ( sessionId+"/soundsystem",
+		                         ( QVariant ) "pulse" );
+
+	st.setting()->setValue ( sessionId+"/startsoundsystem",
+	                         ( QVariant ) rbStartSnd->isChecked() );
+	st.setting()->setValue ( sessionId+"/soundtunnel",
+	                         ( QVariant ) cbSndSshTun->isChecked() );
+	st.setting()->setValue ( sessionId+"/defsndport",
+	                         ( QVariant ) cbDefSndPort->isChecked() );
+	st.setting()->setValue ( sessionId+"/sndport",
+	                         ( QVariant ) sbSndPort->value() );
+	st.setting()->setValue ( sessionId+"/print",
+	                         ( QVariant ) cbClientPrint->isChecked() );
+	st.setting()->sync();
 }

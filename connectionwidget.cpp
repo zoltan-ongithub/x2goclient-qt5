@@ -19,7 +19,7 @@
 #include <QBoxLayout>
 #include <QSpinBox>
 #include <QComboBox>
-#include <QSettings>
+#include "x2gosettings.h"
 #include <QFile>
 #include <QTextStream>
 #include <QDir>
@@ -144,25 +144,19 @@ void ConnectionWidget::readConfig()
 {
 
 	loadPackMethods();
-#ifndef Q_OS_WIN
-	QSettings st ( QDir::homePath() +"/.x2goclient/sessions",
-	               QSettings::NativeFormat );
-#else
-	QSettings st ( "Obviously Nice","x2goclient" );
-	st.beginGroup ( "sessions" );
-#endif
+	X2goSettings st ( "sessions" );
 
-	spd->setValue ( st.value (
+	spd->setValue ( st.setting()->value (
 	                    sessionId+"/speed",
 	                    ( QVariant ) mainWindow->getDefaultLink()
 	                ).toInt() );
-	QString mt=st.value (
+	QString mt=st.setting()->value (
 	               sessionId+"/pack",
 	               ( QVariant ) mainWindow->getDefaultPack() ).toString();
 
 
 	packMethode->setCurrentIndex ( packMethode->findText ( mt ) );
-	quali->setValue ( st.value ( sessionId+"/quality",
+	quali->setValue ( st.setting()->value ( sessionId+"/quality",
 	                             mainWindow->getDefaultQuality() ).toInt() );
 	slot_changePack ( mt );
 }
@@ -180,16 +174,10 @@ void ConnectionWidget::setDefaults()
 void ConnectionWidget::saveSettings()
 {
 
-#ifndef Q_OS_WIN
-	QSettings st ( QDir::homePath() +"/.x2goclient/sessions",
-	               QSettings::NativeFormat );
-#else
-	QSettings st ( "Obviously Nice","x2goclient" );
-	st.beginGroup ( "sessions" );
-#endif
-	st.setValue ( sessionId+"/speed", ( QVariant ) spd->value() );
-	st.setValue ( sessionId+"/pack",
+	X2goSettings st ( "sessions" );
+	st.setting()->setValue ( sessionId+"/speed", ( QVariant ) spd->value() );
+	st.setting()->setValue ( sessionId+"/pack",
 	              ( QVariant ) packMethode->currentText() );
-	st.setValue ( sessionId+"/quality", ( QVariant ) quali->value() );
-	st.sync();
+	st.setting()->setValue ( sessionId+"/quality", ( QVariant ) quali->value() );
+	st.setting()->sync();
 }

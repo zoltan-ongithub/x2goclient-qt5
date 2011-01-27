@@ -19,7 +19,7 @@
 #include <QMessageBox>
 #include <QDateTime>
 #include "onmainwindow.h"
-#include <QSettings>
+#include "x2gosettings.h"
 #include <QDesktopWidget>
 #include <QTimer>
 #include "SVGFrame.h"
@@ -67,45 +67,38 @@ QString HttpBrokerClient::getSInfoFromBroker ( bool getKey )
 	QString layout;
 	QString type;
 	QString homeDir=QDir::homePath();
-#ifndef Q_OS_WIN
-	QSettings st ( homeDir +"/.x2goclient/sessions",
-	               QSettings::NativeFormat );
-#else
-
-	QSettings st ( "Obviously Nice","x2goclient" );
-	st.beginGroup ( "sessions" );
-#endif
+	X2goSettings st( "sessions" );
 
 	QString sid;
 	sid="embedded";
-	pack=st.value ( sid+"/pack",
+	pack=st.setting()->value ( sid+"/pack",
 	                ( QVariant ) "16m-jpeg" ).toString();
-	fullscreen=st.value ( sid+"/fullscreen",
+	fullscreen=st.setting()->value ( sid+"/fullscreen",
 	                      ( QVariant )
 	                      false ).toBool();
-	height=st.value ( sid+"/height",
+	height=st.setting()->value ( sid+"/height",
 	                  ( QVariant ) 600 ).toInt();
-	width=st.value ( sid+"/width",
+	width=st.setting()->value ( sid+"/width",
 	                 ( QVariant ) 800 ).toInt();
-	setDPI=st.value ( sid+"/setdpi",
+	setDPI=st.setting()->value ( sid+"/setdpi",
 	                  ( QVariant ) false ).toBool();
-	dpi=st.value ( sid+"/dpi",
+	dpi=st.setting()->value ( sid+"/dpi",
 	               ( QVariant ) 96 ).toUInt();
-	quality=st.value (
+	quality=st.setting()->value (
 	            sid+"/quality",
 	            ( QVariant ) 9 ).toInt();
-	speed=st.value ( sid+"/speed",
+	speed=st.setting()->value ( sid+"/speed",
 	                 ( QVariant ) 2 ).toInt();
-	usekbd=st.value ( sid+"/usekbd",
+	usekbd=st.setting()->value ( sid+"/usekbd",
 	                  ( QVariant ) true ).toBool();
-	layout=st.value ( sid+"/layout",
+	layout=st.setting()->value ( sid+"/layout",
 	                  ( QVariant )
 	                  tr ( "us" ) ).toString();
-	type=st.value ( sid+"/type",
+	type=st.setting()->value ( sid+"/type",
 	                ( QVariant )
 	                tr ( "pc105/us" ) ).toString();
 	bool startEmbedded=false;
-	if ( st.value ( sid+"/startembed",
+	if ( st.setting()->value ( sid+"/startembed",
 	                ( QVariant ) true ).toBool() )
 	{
 		startEmbedded=true;

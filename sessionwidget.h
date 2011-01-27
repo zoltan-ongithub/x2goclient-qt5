@@ -22,6 +22,7 @@ class QSpinBox;
 class QPushButton;
 class QComboBox;
 class QLabel;
+class QCheckBox;
 class SessionWidget : public ConfigWidget
 {
 		Q_OBJECT
@@ -45,6 +46,7 @@ class SessionWidget : public ConfigWidget
 		QLineEdit* server;
 		QSpinBox* sshPort;
 		QLineEdit* key;
+		QCheckBox* cbAutoLogin;
 		QString sessIcon;
 		QPushButton* icon;
 		QLineEdit* cmd;

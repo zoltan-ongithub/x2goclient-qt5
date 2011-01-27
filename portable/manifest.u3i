@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<u3manifest version="1.0">
+<application uuid="F9C45380-833B-424b-B70E-5023BCD51E79" version="3.01.12">
+<icon>x2goclient.ico</icon>
+<name>Portable X2Go Client for Windows</name> 
+<vendor url="http://x2go.org">x2go</vendor>
+<description>Portable X2Go Client for Windows</description>
+
+<options>
+<upgrade appData="add" deviceExec="overwrite"/>
+<minFreeSpace>3</minFreeSpace>
+</options>
+
+</application>
+<actions>
+<appStart cmd="%U3_HOST_EXEC_PATH%\x2goclient.exe"/>
+<appStop cmd="%U3_HOST_EXEC_PATH%\stopu3client.exe"/>
+</actions>
+</u3manifest>

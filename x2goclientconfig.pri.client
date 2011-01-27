@@ -1,0 +1,8 @@
+CONFIG += client
+
+#uncomment this line to build x2goclient plugin
+#CONFIG += plugin
+
+plugin {
+    CONFIG -= client
+}

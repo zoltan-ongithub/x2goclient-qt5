@@ -9,10 +9,10 @@ INPUT(
 ./debug/exportdialog.o
 ./debug/imgframe.o
 ./debug/LDAPSession.o
-./debug/ongetpass.o
 ./debug/onmainwindow.o
 ./debug/sessionbutton.o
 ./debug/sessionmanagedialog.o
+./debug/sshmasterconnection.o
 ./debug/sshprocess.o
 ./debug/SVGFrame.o
 ./debug/userbutton.o
@@ -28,6 +28,9 @@ INPUT(
 ./debug/wapi.o
 ./debug/clicklineedit.o
 ./debug/httpbrokerclient.o
+./debug/ongetpass.o
+./debug/x2gosettings.o
+./debug/x2goclient.o
 ./debug/moc_configdialog.o
 ./debug/moc_editconnectiondialog.o
 ./debug/moc_exportdialog.o
@@ -35,6 +38,7 @@ INPUT(
 ./debug/moc_onmainwindow.o
 ./debug/moc_sessionbutton.o
 ./debug/moc_sessionmanagedialog.o
+./debug/moc_sshmasterconnection.o
 ./debug/moc_sshprocess.o
 ./debug/moc_SVGFrame.o
 ./debug/moc_userbutton.o

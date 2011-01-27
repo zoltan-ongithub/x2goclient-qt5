@@ -14,7 +14,6 @@
 #include "onmainwindow.h"
 
 #include <QPushButton>
-#include <QSettings>
 #include <QDir>
 #include <QFrame>
 #include <QBoxLayout>
@@ -43,8 +42,9 @@ SessionManageDialog::SessionManageDialog ( QWidget * parent,
 	editSession=new QPushButton ( tr ( "&Session preferences" ),fr );
 	removeSession=new QPushButton ( tr ( "&Delete session" ),fr );
 #if (!defined Q_WS_HILDON) && (!defined Q_OS_DARWIN)
-	createSessionIcon=new QPushButton (
-	    tr ( "&Create session icon on desktop..." ),fr );
+	if ( !ONMainWindow::getPortable() )
+		createSessionIcon=new QPushButton (
+		    tr ( "&Create session icon on desktop..." ),fr );
 #endif
 	par= ( ONMainWindow* ) parent;
 	newSession->setIcon ( QIcon (
@@ -52,9 +52,10 @@ SessionManageDialog::SessionManageDialog ( QWidget * parent,
 	editSession->setIcon ( QIcon (
 	                           par->iconsPath ( "/16x16/edit.png" ) ) );
 #if (!defined Q_WS_HILDON) && (!defined Q_OS_DARWIN)
-	createSessionIcon->setIcon (
-	    QIcon ( par->iconsPath ( "/16x16/create_file.png" ) ) );
-#endif	
+	if ( !ONMainWindow::getPortable() )
+		createSessionIcon->setIcon (
+		    QIcon ( par->iconsPath ( "/16x16/create_file.png" ) ) );
+#endif
 	removeSession->setIcon (
 	    QIcon ( par->iconsPath ( "/16x16/delete.png" ) ) );
 
@@ -63,12 +64,13 @@ SessionManageDialog::SessionManageDialog ( QWidget * parent,
 	actLay->addWidget ( editSession );
 	actLay->addWidget ( removeSession );
 #if (!defined Q_WS_HILDON) && (!defined Q_OS_DARWIN)
-	actLay->addWidget ( createSessionIcon );
+	if ( !ONMainWindow::getPortable() )
+		actLay->addWidget ( createSessionIcon );
 #endif
 	actLay->addStretch();
 	frLay->addLayout ( actLay );
-	
-	if(onlyCreateIcon)
+
+	if ( onlyCreateIcon )
 	{
 		newSession->hide();
 		editSession->hide();
@@ -84,9 +86,10 @@ SessionManageDialog::SessionManageDialog ( QWidget * parent,
 	    removeSession,SIGNAL ( clicked() ),this,SLOT ( slot_delete() ) );
 	connect ( editSession,SIGNAL ( clicked() ),this,SLOT ( slot_edit() ) );
 #if (!defined Q_WS_HILDON) && (!defined Q_OS_DARWIN)
-	connect ( createSessionIcon,SIGNAL ( clicked() ),
-		  this,SLOT ( slot_createSessionIcon() ) );
-#endif	
+	if ( !ONMainWindow::getPortable() )
+		connect ( createSessionIcon,SIGNAL ( clicked() ),
+		          this,SLOT ( slot_createSessionIcon() ) );
+#endif
 	connect ( newSession,SIGNAL ( clicked() ),this,SLOT ( slotNew() ) );
 	bLay->setSpacing ( 5 );
 	bLay->addStretch();
@@ -102,7 +105,7 @@ SessionManageDialog::SessionManageDialog ( QWidget * parent,
 	    QIcon (
 	        ( ( ONMainWindow* ) parent )->iconsPath (
 	            "/32x32/edit.png" ) ) );
-	
+
 	setWindowTitle ( tr ( "Session management" ) );
 	loadSessions();
 	connect ( sessions,SIGNAL ( clicked ( const QModelIndex& ) ),
@@ -134,8 +137,9 @@ void SessionManageDialog::loadSessions()
 	removeSession->setEnabled ( false );
 	editSession->setEnabled ( false );
 #if (!defined Q_WS_HILDON) && (!defined Q_OS_DARWIN)
-	createSessionIcon->setEnabled ( false );
-#endif	
+	if ( !ONMainWindow::getPortable() )
+		createSessionIcon->setEnabled ( false );
+#endif
 	sessions->setEditTriggers ( QAbstractItemView::NoEditTriggers );
 }
 
@@ -145,7 +149,8 @@ void SessionManageDialog::slot_activated ( const QModelIndex& )
 	removeSession->setEnabled ( true );
 	editSession->setEnabled ( true );
 #if (!defined Q_WS_HILDON) && (!defined Q_OS_DARWIN)
-	createSessionIcon->setEnabled ( true );
+	if ( !ONMainWindow::getPortable() )
+		createSessionIcon->setEnabled ( true );
 #endif
 }
 
@@ -167,7 +172,7 @@ void SessionManageDialog::slot_edit()
 	int ind=sessions->currentIndex().row();
 	if ( ind<0 )
 		return;
-	par->slot_edit ( par->getSessionsList()->at ( ind ) );
+	par->slotEdit ( par->getSessionsList()->at ( ind ) );
 	loadSessions();
 }
 
@@ -176,7 +181,7 @@ void SessionManageDialog::slot_createSessionIcon()
 	int ind=sessions->currentIndex().row();
 	if ( ind<0 )
 		return;
-	par->slot_createDesktopIcon(  par->getSessionsList()->at ( ind ) );
+	par->slotCreateDesktopIcon ( par->getSessionsList()->at ( ind ) );
 }
 
 

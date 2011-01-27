@@ -13,7 +13,7 @@
 #include "printprocess.h"
 #include "x2gologdebug.h"
 #include <QFile>
-#include <QSettings>
+#include "x2gosettings.h"
 #include <QDir>
 #include "printdialog.h"
 #if (!defined Q_OS_WIN) && (!defined Q_WS_HILDON)
@@ -86,35 +86,28 @@ void PrintProcess::slot_processFinished ( int exitCode,
 
 bool PrintProcess::loadSettings()
 {
-#ifndef Q_OS_WIN
-	QSettings st ( QDir::homePath() +"/.x2goclient/printing",
-	               QSettings::NativeFormat );
-#else
+	X2goSettings st ( "printing" );
 
-	QSettings st ( "Obviously Nice","x2goclient" );
-	st.beginGroup ( "printing" );
-#endif
-
-	if ( st.value ( "showdialog",true ).toBool() )
+	if ( st.setting()->value ( "showdialog",true ).toBool() )
 	{
 		PrintDialog dlg;
-		if ( dlg.exec() ==QDialog::QDialog::Rejected )
+		if ( dlg.exec() ==QDialog::Rejected )
 			return false;
 	}
 
-	viewPdf=st.value ( "pdfview",false ).toBool();
-	customPrintCmd=st.value ( "print/startcmd",false ).toBool();
-	printCmd=st.value ( "print/command","lpr" ).toString();
-	printStdIn= st.value ( "print/stdin",false ).toBool();
-	printPs=st.value ( "print/ps",false ).toBool();
+	viewPdf=st.setting()->value ( "pdfview",false ).toBool();
+	customPrintCmd=st.setting()->value ( "print/startcmd",false ).toBool();
+	printCmd=st.setting()->value ( "print/command","lpr" ).toString();
+	printStdIn= st.setting()->value ( "print/stdin",false ).toBool();
+	printPs=st.setting()->value ( "print/ps",false ).toBool();
 
-	pdfOpen= st.value ( "view/open",true ).toBool();
+	pdfOpen= st.setting()->value ( "view/open",true ).toBool();
 
 #ifndef Q_OS_WIN
-	pdfOpenCmd=st.value ( "view/command","xpdf" ).toString();
+	pdfOpenCmd=st.setting()->value ( "view/command","xpdf" ).toString();
 #else
 	winX2goPrinter=
-	    st.value ( "print/defaultprinter",
+	    st.setting()->value ( "print/defaultprinter",
 	               wapiGetDefaultPrinter() ).toString();
 #endif
 #ifdef Q_WS_HILDON

@@ -14,7 +14,7 @@
 #include "cupsprintwidget.h"
 #endif
 #include "printercmddialog.h"
-#include <QSettings>
+#include "x2gosettings.h"
 #include "x2gologdebug.h"
 #include <QDir>
 #ifdef Q_OS_WIN
@@ -103,20 +103,13 @@ void PrintWidget::slot_editPrintCmd()
 
 void PrintWidget::loadSettings()
 {
-#ifndef Q_OS_WIN
-	QSettings st ( QDir::homePath() +"/.x2goclient/printing",
-	               QSettings::NativeFormat );
-#else
-
-	QSettings st ( "Obviously Nice","x2goclient" );
-	st.beginGroup ( "printing" );
-#endif
-	bool pdfView=st.value ( "pdfview",false ).toBool();
+	X2goSettings st ( "printing" );
+	bool pdfView=st.setting()->value ( "pdfview",false ).toBool();
 	QString prcmd=
-	    st.value ( "print/command","" ).toString();
+	    st.setting()->value ( "print/command","" ).toString();
 #ifdef Q_OS_WIN
 	defaultPrinter=
-	    st.value ( "print/defaultprinter",defaultPrinter ).toString();
+	    st.setting()->value ( "print/defaultprinter",defaultPrinter ).toString();
 	
 	int index=printers.indexOf ( defaultPrinter );
 	if ( index!=-1 )
@@ -136,14 +129,14 @@ void PrintWidget::loadSettings()
 	}
 #endif
 	ui.cbShowDialog->setChecked (
-	    st.value ( "showdialog",true ).toBool() );
+	    st.setting()->value ( "showdialog",true ).toBool() );
 
 	if ( pdfView )
 		ui.rbView->setChecked ( true );
 	else
 		ui.rbPrint->setChecked ( true );
 
-	ui.cbPrintCmd->setChecked ( st.value ( "print/startcmd",
+	ui.cbPrintCmd->setChecked ( st.setting()->value ( "print/startcmd",
 	                                       false ).toBool() );
 #ifndef Q_OS_WIN
 	if ( prcmd=="" )
@@ -151,51 +144,44 @@ void PrintWidget::loadSettings()
 #endif
 	ui.lePrintCmd->setText ( prcmd );
 
-	printStdIn= st.value ( "print/stdin",false ).toBool();
-	printPs=st.value ( "print/ps",false ).toBool();
+	printStdIn= st.setting()->value ( "print/stdin",false ).toBool();
+	printPs=st.setting()->value ( "print/ps",false ).toBool();
 
 #ifdef Q_OS_WIN
 	printPs=printPs&&isGsInstalled;
 #endif
 
-	if ( ( st.value ( "view/open",true ).toBool() ) )
+	if ( ( st.setting()->value ( "view/open",true ).toBool() ) )
 		ui.rbOpen->setChecked ( true );
 	else
 		ui.rbSave->setChecked ( true );
 	ui.leOpenCmd->setText (
-	    st.value ( "view/command","xpdf" ).toString() );
+	    st.setting()->value ( "view/command","xpdf" ).toString() );
 }
 
 void PrintWidget::saveSettings()
 {
-#ifndef Q_OS_WIN
-	QSettings st ( QDir::homePath() +"/.x2goclient/printing",
-	               QSettings::NativeFormat );
-#else
+	X2goSettings st ( "printing" );
 
-	QSettings st ( "Obviously Nice","x2goclient" );
-	st.beginGroup ( "printing" );
-#endif
-
-	st.setValue ( "showdialog",
+	st.setting()->setValue ( "showdialog",
 	              QVariant ( ui.cbShowDialog->isChecked () ) );
-	st.setValue ( "pdfview",
+	st.setting()->setValue ( "pdfview",
 	              QVariant ( ui.rbView->isChecked () ) );
-	st.setValue ( "print/startcmd",
+	st.setting()->setValue ( "print/startcmd",
 	              QVariant ( ui.cbPrintCmd->isChecked ( ) ) );
-	st.setValue ( "print/command",
+	st.setting()->setValue ( "print/command",
 	              QVariant ( ui.lePrintCmd->text () ) );
-	st.setValue ( "print/stdin",
+	st.setting()->setValue ( "print/stdin",
 	              QVariant ( printStdIn ) );
-	st.setValue ( "print/ps",
+	st.setting()->setValue ( "print/ps",
 	              QVariant ( printPs ) );
 
-	st.setValue ( "view/open",
+	st.setting()->setValue ( "view/open",
 	              QVariant ( ui.rbOpen->isChecked () ) );
-	st.setValue ( "view/command",
+	st.setting()->setValue ( "view/command",
 	              QVariant ( ui.leOpenCmd->text () ) );
 #ifdef Q_OS_WIN
-	st.setValue ( "print/defaultprinter",
+	st.setting()->setValue ( "print/defaultprinter",
 	              QVariant ( ui.cbWinPrinter->currentText()) );	
 #endif
 #if (!defined Q_OS_WIN) && (!defined Q_WS_HILDON)

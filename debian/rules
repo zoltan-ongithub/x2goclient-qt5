@@ -24,6 +24,9 @@ configure: configure-stamp
 configure-stamp:
 	dh_testdir
 	# Add here commands to configure the package.
+	
+	rm x2goclientconfig.pri
+	ln -s x2goclientconfig.pri.client x2goclientconfig.pri
 	qmake-qt4 x2goclient.pro
 
 	touch configure-stamp
@@ -48,7 +51,6 @@ clean: configure
 	# Add here commands to clean up after the build process.
 	-$(MAKE) clean
 	-$(MAKE) distclean
-
 	dh_clean 
 
 install: build
@@ -97,9 +99,9 @@ binary-arch: build install
 	dh_compress
 	dh_fixperms
 #	dh_perl
-#	dh_makeshlibs
+	dh_makeshlibs
 	dh_installdeb
-	dh_shlibdeps
+#	dh_shlibdeps
 	dh_gencontrol
 	dh_md5sums
 	dh_builddeb

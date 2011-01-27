@@ -22,7 +22,7 @@
 
 
 #ifdef Q_OS_LINUX
-#include <QX11EmbedWidget>
+// #include <QX11EmbedWidget>
 #include <QX11EmbedContainer>
 #include <QX11Info>
 #include <X11/Xlib.h>
@@ -50,16 +50,17 @@ EmbedWidget::~EmbedWidget()
 void EmbedWidget::initWidgets()
 {
 #ifdef Q_OS_LINUX
-	qx11embedWidget=new QX11EmbedWidget;
+/*	qx11embedWidget=new QX11EmbedWidget;
 	mainLay=new QVBoxLayout ( qx11embedWidget );
 	mainLay->setContentsMargins ( 0,0,0,0 );
 	( ( ONMainWindow* ) this )->setParent ( qx11embedWidget );
+	
 	mainLay->addWidget ( ( ONMainWindow* ) this );
 
 	qx11embedWidget->connect ( qx11embedWidget,
 	                           SIGNAL ( containerClosed () ),
 	                           ( ONMainWindow* ) this,
-	                           SLOT ( close() ) );
+	                           SLOT ( close() ) );*/
 
 	embedContainer=new QX11EmbedContainer (
 	    ( ( ONMainWindow* ) this )->mainWidget() );
@@ -85,7 +86,7 @@ void EmbedWidget::initWidgets()
 }
 
 
-void EmbedWidget::embedInto ( long winId )
+/*void EmbedWidget::embedInto ( long winId )
 {
 	parentId=winId;
 	oldParentSize=getWindowSize ( parentId );
@@ -166,7 +167,7 @@ void EmbedWidget::slotUpdateEmbed()
 	( ( ONMainWindow* ) this )->update();
 #endif
 }
-
+*/
 QSize EmbedWidget::getWindowSize ( long winId )
 {
 
@@ -286,7 +287,7 @@ void EmbedWidget::embedWindow ( long wndId )
 	                ( HWND ) ( embedContainer->winId() ) );
 	oldContainerSize=QSize ( 0,0 );
 	oldChildPos=QPoint ( 0,0 );
-	slotUpdateEmbed();
+// 	slotUpdateEmbed();
 #endif
 }
 
@@ -312,6 +313,7 @@ void EmbedWidget::detachClient()
 	childId=0;
 }
 
+/*
 void EmbedWidget::closeEmbedWidget()
 {
 #ifdef Q_OS_LINUX
@@ -322,5 +324,5 @@ void EmbedWidget::closeEmbedWidget()
 	}
 #endif
 }
-
+*/
 #endif //(Q_OS_DARWIN)

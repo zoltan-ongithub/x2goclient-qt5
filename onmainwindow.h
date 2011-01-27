@@ -20,6 +20,18 @@
 #ifndef ONMAINWINDOW_H
 #define ONMAINWINDOW_H
 
+#ifdef CFGPLUGIN
+#include <QMetaClassInfo>
+#include <qtbrowserplugin.h>
+
+#ifdef QAXSERVER
+#include <ActiveQt/QAxBindable>
+#include <ActiveQt/QAxFactory>
+#include <qt_windows.h>
+#endif
+
+#endif
+
 #include "x2goclientconfig.h"
 //#include "CallbackInterface.h"
 #include <QMainWindow>
@@ -55,7 +67,8 @@ class QAction;
 class QCheckBox;
 class QTreeView;
 class QModelIndex;
-class sshProcess;
+class SshProcess;
+class SshMasterConnection;
 class IMGFrame;
 class QStandardItemModel;
 class HttpBrokerClient;
@@ -77,7 +90,7 @@ struct directory
 	QString dstKey;
 	QString dirList;
 	bool isRemovable;
-	sshProcess* proc;
+	SshProcess* proc;
 };
 
 struct serv
@@ -184,15 +197,32 @@ class WinServerStarter: public QThread
 		ONMainWindow* parent;
 };
 #endif
-
 class ClickLineEdit;
 #ifndef Q_OS_DARWIN
 class ONMainWindow : public QMainWindow, public EmbedWidget
 #else
 class ONMainWindow : public QMainWindow
 #endif
+#ifdef CFGPLUGIN
+			, public QtNPBindable
+
+#ifdef QAXSERVER
+			, public QAxBindable
+#endif
+#endif
 {
 		friend class HttpBrokerClient;
+#ifdef CFGPLUGIN
+		Q_PROPERTY ( QString x2goconfig READ x2goconfig WRITE setX2goconfig )
+		Q_CLASSINFO ( "ClassID", "{5a20006d-118f-4185-9653-9f98958a0008}" )
+		Q_CLASSINFO ( "InterfaceID", "{2df000ba-da4f-4fb7-8f35-b8dfbf80009a}" )
+		Q_CLASSINFO ( "EventsID", "{44900013-f8bd-4d2e-a2cf-eab407c03005}" )
+		Q_CLASSINFO ( "MIME",
+		              "application/x2go:x2go:Configuration File "
+		              "for X2Go Session" )
+		Q_CLASSINFO ( "ToSuperClass", "ONMainWindow" )
+		Q_CLASSINFO ( "DefaultProperty","x2goconfig" )
+#endif
 		Q_OBJECT
 	public:
 		enum
@@ -230,6 +260,7 @@ class ONMainWindow : public QMainWindow
 			ARTS,
 			ESD
 		};
+		static bool portable;
 		ONMainWindow ( QWidget *parent = 0 );
 		~ONMainWindow();
 		QString iconsPath ( QString fname );
@@ -238,10 +269,8 @@ class ONMainWindow : public QMainWindow
 			return &sessions;
 		}
 		void startNewSession();
-		void suspendSession ( QString user,QString host,QString pass,
-		                      QString key, QString sessId );
-		bool termSession ( QString user,QString host,QString pass,
-		                   QString key, QString sessId,
+		void suspendSession (QString sessId );
+		bool termSession ( QString sessId,
 		                   bool warn=true );
 		void setStatStatus ( QString status=QString::null );
 		x2goSession getNewSessionFromString ( const QString& string );
@@ -257,8 +286,21 @@ class ONMainWindow : public QMainWindow
 		int retLdapPort2() {return ldapPort2;}
 		QHBoxLayout* mainLayout() {return mainL;}
 		QWidget* mainWidget() {return ( QWidget* ) fr;}
+#ifdef CFGPLUGIN
+		QString x2goconfig() const
+		{
+			return m_x2goconfig;
+		}
+#endif
 
-
+		static bool getPortable()
+		{
+			return portable;
+		}
+		static QString getHomeDirectory()
+		{
+			return homeDir;
+		}
 		bool getShowAdvOption()
 		{
 			return config.showextconfig;
@@ -352,11 +394,21 @@ class ONMainWindow : public QMainWindow
 		static QString cygwinPath ( const QString& winPath );
 		void startXOrg();
 		void startPulsed();
+		static bool haveCySolEntry();
+		static bool haveCygwinEntry();
+		static void removeCySolEntry();
+		static void removeCygwinEntry();
+		static QString U3DevicePath()
+		{
+			return u3Device;
+		}
 #endif
 
 	private:
+		QString m_x2goconfig;
 		QStringList _internApplicationsNames;
 		QStringList _transApplicationsNames;
+		QString portableDataPath;
 		bool drawMenu;
 		bool extStarted;
 		bool startMaximized;
@@ -370,7 +422,6 @@ class ONMainWindow : public QMainWindow
 		bool managedMode;
 		bool embedMode;
 		QString statusString;
-		QString sessionConfigFile;
 		int defaultLink;
 		int defaultQuality;
 		int defaultWidth;
@@ -386,6 +437,8 @@ class ONMainWindow : public QMainWindow
 		QString clientSshPort;
 		QString defaultSshPort;
 		QVBoxLayout* selectSesDlgLayout;
+		SshMasterConnection* sshConnection;
+		bool closeEventSent;
 		int shadowMode;
 		QString shadowUser;
 		QString shadowDisplay;
@@ -398,7 +451,7 @@ class ONMainWindow : public QMainWindow
 		QStringList listedSessions;
 		QString appDir;
 		QString localGraphicPort;
-		QString homeDir;
+		static QString homeDir;
 		int retSessions;
 		QList<serv> x2goServers;
 
@@ -534,7 +587,7 @@ class ONMainWindow : public QMainWindow
 		QString LDAPSndPort;
 		bool LDAPSndStartServer;
 
-		bool  LDAPPrintSupport;
+		bool  LDAPPrintSupport;		
 
 		QAction *act_edit;
 		QAction *act_new;
@@ -547,6 +600,7 @@ class ONMainWindow : public QMainWindow
 		QProcess *xorg;
 		PROCESS_INFORMATION sshd;
 		bool winSshdStarted;
+		static QString u3Device;
 
 		QProcess* pulseServer;
 		int xDisplay;
@@ -555,6 +609,10 @@ class ONMainWindow : public QMainWindow
 		QString oldEtcDir;
 		QString oldBinDir;
 		QString oldTmpDir;
+
+		bool cySolEntry;
+		bool cyEntry;
+
 		QString pulseDir;
 		int pulsePort;
 		int esdPort;
@@ -570,9 +628,9 @@ class ONMainWindow : public QMainWindow
 		QTextEdit* stInfo;
 
 		SVGFrame* ln;
-		sshProcess* tunnel;
-		sshProcess* sndTunnel;
-		sshProcess* fsTunnel;
+		SshProcess* tunnel;
+		SshProcess* sndTunnel;
+		SshProcess* fsTunnel;
 		QList<x2goSession> selectedSessions;
 		QStringList selectedDesktops;
 		x2goSession resumingSession;
@@ -588,6 +646,10 @@ class ONMainWindow : public QMainWindow
 		bool useSshAgent;
 		HttpBrokerClient* broker;
 
+#ifdef	CFGPLUGIN
+		void doPluginInit();
+#endif
+		void installTranslator();
 		void loadSettings();
 		void showPass ( UserButton* user );
 		void clean();
@@ -606,15 +668,15 @@ class ONMainWindow : public QMainWindow
 		void resumeSession ( const x2goSession& s );
 		void selectSession ( QStringList& sessions );
 		x2goSession getSelectedSession();
-		bool parseParam ( QString param );
-		bool link_par ( QString value );
+		bool parseParameter ( QString param );
+		bool linkParameter ( QString value );
 		bool geometry_par ( QString value );
 		bool setKbd_par ( QString value );
-		bool ldap_par ( QString value );
-		bool ldap1_par ( QString value );
-		bool ldap2_par ( QString value );
-		bool pack_par ( QString value );
-		bool sound_par ( QString val );
+		bool ldapParameter ( QString value );
+		bool ldap1Parameter ( QString value );
+		bool ldap2Parameter ( QString value );
+		bool packParameter ( QString value );
+		bool soundParameter ( QString val );
 		void printError ( QString param );
 		void exportDefaultDirs();
 		QString createRSAKey();
@@ -625,6 +687,10 @@ class ONMainWindow : public QMainWindow
 		void externalLogin ( const QString& loginDir );
 		void startGPGAgent ( const QString& login,
 		                     const QString& appId );
+		void closeClient();
+		void continueNormalSession();
+		void continueLDAPSession();
+		void startSshConnection(QString host, QString port, bool acceptUnknownHosts, QString login, QString password, bool autologin);
 
 	protected:
 		virtual void closeEvent ( QCloseEvent* event );
@@ -637,9 +703,9 @@ class ONMainWindow : public QMainWindow
 		void slotCheckXOrgLog();
 #endif
 	private slots:
-		void slot_showPassForm();
+		void slotShowPassForm();
 		void displayUsers();
-		void slot_resize ( const QSize sz );
+		void slotResize ( const QSize sz );
 		void slotUnameChanged ( const QString& text );
 		void slotPassEnter();
 
@@ -647,17 +713,24 @@ class ONMainWindow : public QMainWindow
 		void slotSelectedFromList ( UserButton* user );
 		void slotUnameEntered();
 		void slotClosePass();
-		void slot_readSessions();
-		void slot_manage();
+		void slotReadSessions();
+		void slotManage();
 		void displayToolBar ( bool );
 		void showSessionStatus();
+		void slotSshConnectionError(QString message, QString lastSessionError);
+		void slotSshServerAuthError(int error, QString sshMessage);
+		void slotSshUserAuthError(QString error);
+		void slotSshConnectionOk();
 
 	public slots:
-		void slot_config();
+#ifdef CFGPLUGIN
+		void setX2goconfig ( const QString& text );
+#endif
+		void slotConfig();
 		void slotNewSession();
 		void slotDeleteButton ( SessionButton * bt );
-		void slot_edit ( SessionButton* );
-		void slot_createDesktopIcon ( SessionButton* bt );
+		void slotEdit ( SessionButton* );
+		void slotCreateDesktopIcon ( SessionButton* bt );
 		void exportsEdit ( SessionButton* bt );
 		void slotUpdateEmbed();
 		void slotEmbedControlAction();
@@ -669,71 +742,71 @@ class ONMainWindow : public QMainWindow
 		void slotSelectedFromList ( SessionButton* session );
 		void slotSessEnter();
 		void slotCloseSelectDlg();
-		void slot_activated ( const QModelIndex& index );
+		void slotActivated ( const QModelIndex& index );
 		void slotResumeSess();
 		void slotSuspendSess();
 		void slotTermSessFromSt();
 		void slotSuspendSessFromSt();
 		void slotTermSess();
 		void slotNewSess();
-		void slot_cmdMessage ( bool result,QString output,
-		                       sshProcess* );
-		void slot_listSessions ( bool result,QString output,
-		                         sshProcess* );
-		void slot_retSuspSess ( bool value,QString message,
-		                        sshProcess* );
-		void slot_retTermSess ( bool result,QString output,
-		                        sshProcess* );
-		void slot_retResumeSess ( bool result,QString output,
-		                          sshProcess* );
-		void slot_tunnelFailed ( bool result,QString output,
-		                         sshProcess* );
-		void slot_fsTunnelFailed ( bool result,QString output,
-		                           sshProcess* );
-		void slot_sndTunnelFailed ( bool result,QString output,
-		                            sshProcess* );
-		void slot_copyKey ( bool result,QString output,sshProcess* );
-		void slot_tunnelOk();
-		void slot_fsTunnelOk();
-		void slot_proxyerror ( QProcess::ProcessError err );
-		void slot_proxyFinished ( int result,QProcess::ExitStatus st );
-		void slot_proxyStderr();
-		void slot_proxyStdout();
-		void slot_resumeDoubleClick ( const QModelIndex& );
+		void slotCmdMessage ( bool result,QString output,
+		                       SshProcess* );
+		void slotListSessions ( bool result,QString output,
+		                         SshProcess* );
+		void slotRetSuspSess ( bool value,QString message,
+		                        SshProcess* );
+		void slotRetTermSess ( bool result,QString output,
+		                        SshProcess* );
+		void slotRetResumeSess ( bool result,QString output,
+		                          SshProcess* );
+		void slotTunnelFailed ( bool result,QString output,
+		                         SshProcess* );
+		void slotFsTunnelFailed ( bool result,QString output,
+		                           SshProcess* );
+		void slotSndTunnelFailed ( bool result,QString output,
+		                            SshProcess* );
+		void slotCopyKey ( bool result,QString output,SshProcess* );
+		void slotTunnelOk();
+		void slotFsTunnelOk();
+		void slotProxyError ( QProcess::ProcessError err );
+		void slotProxyFinished ( int result,QProcess::ExitStatus st );
+		void slotProxyStderr();
+		void slotProxyStdout();
+		void slotResumeDoubleClick ( const QModelIndex& );
 		void slotShowAdvancedStat();
-		void slot_restartNxProxy();
-		void slot_testSessionStatus();
-		void slot_retRunCommand ( bool result, QString output,
-		                          sshProcess* );
-		void slot_getServers ( bool result, QString output,
-		                       sshProcess* );
-		void slot_listAllSessions ( bool result,QString output,
-		                            sshProcess* );
-		void slot_retExportDir ( bool result,QString output,
-		                         sshProcess* );
-		void slot_resize();
-		void slot_exportDirectory();
-		void slot_exportTimer();
-		void slot_about_qt();
-		void slot_about();
+		void slotRestartProxy();
+		void slotTestSessionStatus();
+		void slotRetRunCommand ( bool result, QString output,
+		                          SshProcess* );
+		void slotGetServers ( bool result, QString output,
+		                       SshProcess* );
+		void slotListAllSessions ( bool result,QString output,
+		                            SshProcess* );
+		void slotRetExportDir ( bool result,QString output,
+		                         SshProcess* );
+		void slotResize();
+		void slotExportDirectory();
+		void slotExportTimer();
+		void slotAboutQt();
+		void slotAbout();
 	private slots:
-		void slot_checkPrintSpool();
-		void slot_rereadUsers();
+		void slotCheckPrintSpool();
+		void slotRereadUsers();
 		void slotExtTimer();
-		void slot_startPGPAuth();
-		void slot_scDaemonOut();
-		void slot_scDaemonError();
-		void slot_gpgFinished ( int exitCode,
+		void slotStartPGPAuth();
+		void slotScDaemonOut();
+		void slotScDaemonError();
+		void slotGpgFinished ( int exitCode,
 		                        QProcess::ExitStatus exitStatus );
-		void slot_scDaemonFinished ( int exitCode,
+		void slotScDaemonFinished ( int exitCode,
 		                             QProcess::ExitStatus exitStatus );
-		void slot_gpgError();
-		void slot_checkScDaemon();
-		void slot_gpgAgentFinished ( int exitCode,
+		void slotGpgError();
+		void slotCheckScDaemon();
+		void slotGpgAgentFinished ( int exitCode,
 		                             QProcess::ExitStatus exitStatus );
-		void slot_checkAgentProcess();
-		void slot_execXmodmap();
-		void slot_sudoErr ( QString errstr, sshProcess* pr );
+		void slotCheckAgentProcess();
+		void slotExecXmodmap();
+		void slotSudoErr ( QString errstr, SshProcess* pr );
 		void slotCreateSessionIcon();
 		void slotFindProxyWin();
 		void slotAttachProxyWindow();
@@ -742,7 +815,7 @@ class ONMainWindow : public QMainWindow
 		void slotStartParec ();
 		void slotSndTunOk();
 		void slotPCookieReady (	bool result,QString output,
-		                        sshProcess* proc );
+		                        SshProcess* proc );
 		void slotEmbedToolBar();
 		void slotEmbedToolBarToolTip();
 		void slotHideEmbedToolBarToolTip();
@@ -768,7 +841,7 @@ class ONMainWindow : public QMainWindow
 		QString getCurrentUname();
 		QString getCurrentPass();
 		void processSessionConfig();
-		void addKey2SshAgent();
+		void addKey2SshAgent ( const QString& keyName );
 		void finishSshAgent();
 		void processCfgLine ( QString line );
 		void initSelectSessDlg();
@@ -782,6 +855,9 @@ class ONMainWindow : public QMainWindow
 		                      bool strict=false );
 		void generateHostDsaKey();
 		void generateEtcFiles();
+		QString u3DataPath();
+		void cleanPortable();
+		void removeDir ( QString path );
 #ifdef Q_OS_WIN
 		void saveCygnusSettings();
 		void restoreCygnusSettings();

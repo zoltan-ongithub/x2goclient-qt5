@@ -49,5 +49,7 @@ void wapiShellExecute(const QString& operation, const QString& file,
 		      const QString& dir,HWND win=0);
 QString wapiGetDefaultPrinter();
 QStringList wapiGetLocalPrinters();
+long wapiSetFSWindow(HWND hWnd, const QRect& desktopGeometry);
+
 #endif
 #endif
