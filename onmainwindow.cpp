@@ -945,7 +945,13 @@ void ONMainWindow::slotPassEnter()
 	{
 		serv server;
 		server.name=LDAPSession::getStringAttrValues ( *it,"cn" ).front().c_str();
-		QString sFactor=LDAPSession::getStringAttrValues ( *it,"serialNumber" ).front().c_str();
+		QString sFactor="1";
+		list<string> serialNumber=LDAPSession::getStringAttrValues ( *it,"serialNumber" );
+		if ( serialNumber.size() >0 )
+		{
+			sFactor=serialNumber.front().c_str();
+		}
+		x2goDebug<<server.name<<": factor is "<<sFactor;
 		server.factor=sFactor.toFloat();
 		server.sess=0;
 		server.connOk=true;
@@ -4064,7 +4070,10 @@ void ONMainWindow::slot_getServers ( bool result, QString output,sshProcess* pro
 			for ( int j=0;j<x2goServers.size();++j )
 				if ( x2goServers[j].name==lst[0] )
 				{
-					x2goServers[j].sess=lst[1].toInt();
+					x2goServers[j].sess=lst[1].toInt() *x2goServers[j].factor;
+					x2goDebug<<x2goServers[j].name<<": sessions "<<
+					lst[1].toInt() <<
+					", multiplied "<<x2goServers[j].sess;
 					break;
 				}
 		}
@@ -5423,7 +5432,7 @@ void ONMainWindow::slot_execXmodmap()
 //  	    "echo add shift = Shift_L ;"
 	    "echo add control = Control_R "
 //  	    "echo add mod5 = ISO_Level3_Shift"
-            ")| DISPLAY=:"
+	    ")| DISPLAY=:"
 	    +resumingSession.display+" xmodmap - ";
 	x2goDebug<<"cmd:"<<cmd;
 	sshProcess* xmodProc;

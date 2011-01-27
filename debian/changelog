@@ -1,3 +1,9 @@
+x2goclient (2.0.1-16) unstable; urgency=low
+
+  * LDAP factor
+
+ -- Oleksandr Shneyder <oleksandr.shneyder@treuchtlingen.de>  Thu, 09 Oct 2008 10:52:21 +0200
+
 x2goclient (2.0.1-15) unstable; urgency=low
 
   * Fixed sess_tv columns
