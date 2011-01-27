@@ -4,7 +4,7 @@
 // Description:
 //
 //
-// Author: Oleksandr Shneyder <oleksandr.shneyder@treuchtlingen.de>, (C) 2007
+// Author: Oleksandr Shneyder <oleksandr.shneyder@obviously-nice.de>, (C) 2007
 //
 // Copyright: See COPYING file that comes with this distribution
 //
@@ -13,7 +13,7 @@
 #define X2GOLOGDEBUG_H
 #include "x2goclientconfig.h"
 /**
-	@author Oleksandr Shneyder <oleksandr.shneyder@treuchtlingen.de>
+	@author Oleksandr Shneyder <oleksandr.shneyder@obviously-nice.de>
 */
 #ifdef LOGFILE
 #include <QTextStream>

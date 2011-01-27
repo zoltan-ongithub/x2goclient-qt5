@@ -4,7 +4,7 @@
 // Description:
 //
 //
-// Author: Oleksandr Shneyder <oleksandr.shneyder@treuchtlingen.de>, (C) 2006
+// Author: Oleksandr Shneyder <oleksandr.shneyder@obviously-nice.de>, (C) 2006
 //
 // Copyright: See COPYING file that comes with this distribution
 //
@@ -19,7 +19,7 @@ class QPushButton;
 class QModelIndex;
 class ONMainWindow;
 /**
-	@author Oleksandr Shneyder <oleksandr.shneyder@treuchtlingen.de>
+	@author Oleksandr Shneyder <oleksandr.shneyder@obviously-nice.de>
 */
 
 class SessionManageDialog : public QDialog

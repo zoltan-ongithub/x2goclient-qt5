@@ -4,7 +4,7 @@
 // Description:
 //
 //
-// Author: Oleksandr Shneyder <oleksandr.shneyder@treuchtlingen.de>, (C) 2006
+// Author: Oleksandr Shneyder <oleksandr.shneyder@obviously-nice.de>, (C) 2006
 //
 // Copyright: See COPYING file that comes with this distribution
 //
@@ -92,6 +92,7 @@ void sshProcess::slot_finished ( int exitCode, QProcess::ExitStatus status )
 	hidePass();
 // 	QString resout ( readAllStandardOutput() );
 	x2goDebug<<outputString<<endl;
+	x2goDebug<<errorString<<endl;
 	x2goDebug<<"exitCode: "<<exitCode<<" status:"<<status<<endl;
 	if ( ( exitCode!=0&&exitCode!=1 ) || status !=0 )
 	{

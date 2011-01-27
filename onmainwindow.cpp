@@ -1,6 +1,6 @@
 /***************************************************************************
 *   Copyright (C) 2005 by Oleksandr Shneyder   *
-*   oleksandr.shneyder@treuchtlingen.de   *
+*   oleksandr.shneyder@obviously-nice.de   *
 *                                                                         *
 *   This program is free software; you can redistribute it and/or modify  *
 *   it under the terms of the GNU General Public License as published by  *
@@ -4458,7 +4458,8 @@ void ONMainWindow::exportDirs ( QString exports,bool removable )
 	{
 		QString dst=dr.key;
 		dst.replace ( QDir::homePath() +"/.x2go/ssh/gen/","" );
-		dst="/home/"+login->text() +"/.x2go/ssh/"+dst;
+// 		dst="/home/"+login->text() +"/.x2go/ssh/"+dst;
+ 		dst="~"+login->text() +"/.x2go/ssh/"+dst;
 		dr.dstKey=dst;
 		dr.isRemovable=removable;
 		exportDir.append ( dr );

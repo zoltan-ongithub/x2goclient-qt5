@@ -9,10 +9,10 @@
    <View0 Encoding="" Type="Source" />
   </Doc1>
   <Doc2 NumberOfViews="1" URL="file:///usr/src.cur/db-builds/x2goclient/x2goclient-2.99/sshprocess.cpp" >
-   <View0 Encoding="" Type="Source" />
+   <View0 Encoding="" line="94" Type="Source" />
   </Doc2>
   <Doc3 NumberOfViews="1" URL="file:///usr/src.cur/db-builds/x2goclient/x2goclient-2.99/onmainwindow.cpp" >
-   <View0 Encoding="" line="4408" Type="Source" />
+   <View0 Encoding="" line="1891" Type="Source" />
   </Doc3>
  </DocsAndViews>
  <pluginList>
@@ -27,6 +27,12 @@
     <breakpoint2 location="/usr/src.cur/db-builds/x2goclient/x2goclient-2.0.1/onmainwindow.cpp:3701" type="1" tracingFormatString="" traceFormatStringEnabled="0" condition="" tracingEnabled="0" enabled="1" >
      <tracedExpressions/>
     </breakpoint2>
+    <breakpoint3 location="/usr/src.cur/db-builds/x2goclient/x2goclient-2.99/sshprocess.cpp:92" type="1" tracingFormatString="" traceFormatStringEnabled="0" condition="" tracingEnabled="0" enabled="1" >
+     <tracedExpressions/>
+    </breakpoint3>
+    <breakpoint4 location="/usr/src.cur/db-builds/x2goclient/x2goclient-2.99/sshprocess.cpp:99" type="1" tracingFormatString="" traceFormatStringEnabled="0" condition="" tracingEnabled="0" enabled="1" >
+     <tracedExpressions/>
+    </breakpoint4>
    </breakpointList>
    <showInternalCommands value="0" />
   </kdevdebugger>

@@ -5,7 +5,7 @@
 // Description: 
 //
 //
-// Author: Oleksandr Shneyder AKA nCryer <oleksandr.shneyder@treuchtlingen.de>, (C) 2006
+// Author: Oleksandr Shneyder AKA nCryer <oleksandr.shneyder@obviously-nice.de>, (C) 2006
 //
 // Copyright: See COPYING file that comes with this distribution
 //

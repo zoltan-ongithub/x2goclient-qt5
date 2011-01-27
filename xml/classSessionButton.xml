@@ -478,7 +478,7 @@
     <briefdescription>
     </briefdescription>
     <detaileddescription>
-<para><simplesect kind="author"><para>Oleksandr Shneyder &lt;<ulink url="mailto:oleksandr.shneyder@treuchtlingen.de">oleksandr.shneyder@treuchtlingen.de</ulink>&gt; </para></simplesect>
+<para><simplesect kind="author"><para>Oleksandr Shneyder &lt;<ulink url="mailto:oleksandr.shneyder@obviously-nice.de">oleksandr.shneyder@obviously-nice.de</ulink>&gt; </para></simplesect>
 </para>    </detaileddescription>
     <location file="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/sessionbutton.h" line="24" bodyfile="/mnt/nfs/up/portage/distfiles/src/X2GO-2/x2goclient/sessionbutton.h" bodystart="23" bodyend="64"/>
     <listofallmembers>

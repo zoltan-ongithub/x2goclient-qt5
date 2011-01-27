@@ -55,5 +55,5 @@ available via the Info system.
 .SH AUTHOR
 x2goclient was written by <upstream author>.
 .PP
-This manual page was written by Oleksandr Shneyder <oleksandr.shneyder@treuchtlingen.de>,
+This manual page was written by Oleksandr Shneyder <oleksandr.shneyder@obviously-nice.de>,
 for the Debian project (but may be used by others).
