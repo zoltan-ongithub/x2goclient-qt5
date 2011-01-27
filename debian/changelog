@@ -1,3 +1,12 @@
+x2goclient (3.01-1) unstable; urgency=low
+
+  * create desktop icon
+  * start rdesktop session
+  * start LXDE session
+  * fixed error "ssh password with special symbols" thank Phillip Krause
+
+ -- Oleksandr Shneyder <oleksandr.shneyder@obviously-nice.de>  Mon, 15 Jun 2009 08:35:38 +0200
+
 x2goclient (3.00-1) unstable; urgency=low
 
   * Client side printing support

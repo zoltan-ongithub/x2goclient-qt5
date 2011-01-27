@@ -13,6 +13,7 @@
 #include "x2goclientconfig.h"
 #include "x2gologdebug.h"
 
+#include <QInputDialog>
 #include <QSettings>
 #include <QFileDialog>
 #include <QDir>
@@ -178,15 +179,21 @@ EditConnectionDialog::EditConnectionDialog ( QString id, QWidget * par,
 	cmdCombo->setEditable ( true );
 	sessBox->addItem ( "KDE" );
 	sessBox->addItem ( "GNOME" );
+	sessBox->addItem ( "LXDE" );
+	sessBox->addItem ( tr ( "Connect to Windows terminal server" ) );
 	sessBox->addItem ( tr ( "Custom desktop" ) );
 	sessBox->addItem ( tr ( "Single application" ) );
 	cmdLay->addWidget ( sessBox );
-	cmdLay->addWidget ( new QLabel ( tr ( "Command:" ),deskSess ) );
+	leCmdIp=new QLabel ( tr ( "Command:" ),deskSess );
+	pbAdvanced=new QPushButton ( tr ( "Advanced options..." ),deskSess );
+	cmdLay->addWidget ( leCmdIp );
 	cmdLay->addWidget ( cmd );
 	cmdLay->addWidget ( cmdCombo );
+	cmdLay->addWidget ( pbAdvanced );
 	cmdCombo->setSizePolicy ( QSizePolicy::Expanding,
 	                          QSizePolicy::Preferred );
 	cmdCombo->hide();
+	pbAdvanced->hide();
 	cmdCombo->addItem ( "" );
 	cmdCombo->addItems ( parent->transApplicationsNames() );
 	cmdCombo->lineEdit()->setText ( tr ( "Path to executable" ) );
@@ -430,11 +437,11 @@ EditConnectionDialog::EditConnectionDialog ( QString id, QWidget * par,
 	setLay->addWidget ( dgb );
 	setLay->addWidget ( kgb );
 	setLay->addWidget ( sbgr );
-	setLay->addWidget ( cbClientPrint );
 #else
 	setLay->addWidget ( tabSettings );
-	cbClientPrint->hide();
+// 	cbClientPrint->hide();
 #endif
+	setLay->addWidget ( cbClientPrint );
 	setLay->addStretch();
 
 
@@ -531,6 +538,8 @@ EditConnectionDialog::EditConnectionDialog ( QString id, QWidget * par,
 	connect ( openDir,SIGNAL ( clicked() ),this,SLOT ( slot_openDir() ) );
 	connect ( addDir,SIGNAL ( clicked() ),this,SLOT ( slot_addDir() ) );
 	connect ( delDir,SIGNAL ( clicked() ),this,SLOT ( slot_delDir() ) );
+	connect ( pbAdvanced,SIGNAL ( clicked() ),this,
+	          SLOT ( slot_rdpOptions() ) );
 
 	connect ( custom,SIGNAL ( toggled ( bool ) ),width,
 	          SLOT ( setEnabled ( bool ) ) );
@@ -633,6 +642,12 @@ void EditConnectionDialog::readConfig()
 	QString
 	command=st.value ( sessionId+"/command",
 	                   ( QVariant ) parent->getDefaultCmd() ).toString();
+	
+	rdpOptions=st.value ( sessionId+"/rdpoptions",
+	                   ( QVariant ) "").toString();
+	rdpServer=st.value ( sessionId+"/rdpserver",
+	                   ( QVariant ) "" ).toString();
+	
 	for ( int i=0;i<appNames.count();++i )
 	{
 		QString app=parent->transAppName ( appNames[i] );
@@ -641,29 +656,40 @@ void EditConnectionDialog::readConfig()
 	}
 	if ( rootless )
 	{
-		sessBox->setCurrentIndex ( 3 );
+		sessBox->setCurrentIndex ( APPLICATION );
 		QString app=parent->transAppName ( command );
 		cmdCombo->lineEdit()->setText ( app );
-		slot_changeCmd ( 3 );
+		slot_changeCmd ( APPLICATION );
 	}
 	else
 	{
 		if ( command=="KDE" )
 		{
-			cmd->setText ( "startkde" );
-			sessBox->setCurrentIndex ( 0 );
+			sessBox->setCurrentIndex ( KDE );
 			cmd->setEnabled ( false );
 		}
 		else if ( command=="GNOME" )
 		{
-			cmd->setText ( "gnome-session" );
-			sessBox->setCurrentIndex ( 1 );
+			sessBox->setCurrentIndex ( GNOME );
 			cmd->setEnabled ( false );
+		}
+		else if ( command=="LXDE" )
+		{
+			sessBox->setCurrentIndex ( LXDE );
+			cmd->setEnabled ( false );
+		}
+		else if ( command=="RDP" )
+		{
+			leCmdIp->setText ( tr ( "Server:" ) );
+			sessBox->setCurrentIndex ( RDP );
+			cmd->setEnabled ( true );
+			cmd->setText(rdpServer);
+			pbAdvanced->show();
 		}
 		else
 		{
 			cmd->setText ( command );
-			sessBox->setCurrentIndex ( 2 );
+			sessBox->setCurrentIndex ( OTHER );
 			cmd->setEnabled ( true );
 		}
 	}
@@ -872,14 +898,16 @@ void EditConnectionDialog::slot_accepted()
 	bool rootless=false;
 
 
-	if ( sessBox->currentIndex() !=2 )
+	if ( sessBox->currentIndex() < OTHER )
 		command=sessBox->currentText();
 	else
 		command=cmd->text();
-	if ( command=="startkde" )
-		command="KDE";
-	if ( command=="gnome-session" )
-		command="GNOME";
+	if ( sessBox->currentIndex() == RDP )
+	{
+		command="RDP";
+		rdpServer=cmd->text();
+	}
+
 	QStringList appList;
 	for ( int i=-1;i<cmdCombo->count();++i )
 	{
@@ -895,7 +923,7 @@ void EditConnectionDialog::slot_accepted()
 			appList.append ( app );
 		}
 	}
-	if ( sessBox->currentIndex() ==3 )
+	if ( sessBox->currentIndex() ==APPLICATION )
 	{
 		rootless=true;
 		command=parent->internAppName ( cmdCombo->lineEdit()->text() );
@@ -903,6 +931,8 @@ void EditConnectionDialog::slot_accepted()
 	st.setValue ( sessionId+"/rootless", ( QVariant ) rootless );
 	st.setValue ( sessionId+"/applications", ( QVariant ) appList );
 	st.setValue ( sessionId+"/command", ( QVariant ) command );
+	st.setValue ( sessionId+"/rdpoptions", ( QVariant ) rdpOptions );
+	st.setValue ( sessionId+"/rdpserver", ( QVariant ) rdpServer );
 	st.setValue ( sessionId+"/speed", ( QVariant ) spd->value() );
 	st.setValue ( sessionId+"/pack",
 	              ( QVariant ) packMethode->currentText() );
@@ -959,8 +989,8 @@ void EditConnectionDialog::slot_default()
 	{
 		case 0:
 		{
-			cmd->setText ( "startkde" );
-			sessBox->setCurrentIndex ( 0 );
+			cmd->setText ( "" );
+			sessBox->setCurrentIndex ( KDE );
 			cmdCombo->clear();
 			cmdCombo->addItem ( "" );
 			cmdCombo->addItems ( parent->transApplicationsNames() );
@@ -1007,7 +1037,9 @@ void EditConnectionDialog::slot_default()
 
 void EditConnectionDialog::slot_changeCmd ( int var )
 {
-	if ( var==3 )
+	leCmdIp->setText ( tr ( "Command:" ) );
+	pbAdvanced->hide();
+	if ( var==APPLICATION )
 	{
 		cmd->hide();
 		cmdCombo->setVisible ( true );
@@ -1018,19 +1050,23 @@ void EditConnectionDialog::slot_changeCmd ( int var )
 	{
 		cmdCombo->hide();
 		cmd->setVisible ( true );
-		if ( var==2 )
+		if ( var==OTHER || var == RDP )
 		{
+			cmd->setText ( "" );
 			cmd->setEnabled ( true );
 			cmd->selectAll();
 			cmd->setFocus();
+			if ( var==RDP )
+			{
+				leCmdIp->setText ( tr ( "Server:" ) );
+				pbAdvanced->show();
+				cmd->setText(rdpServer);
+			}
 		}
 		else
 		{
-			if ( var==0 )
-				cmd->setText ( "startkde" );
-			else
-				cmd->setText ( "gnome-session" );
 			cmd->setEnabled ( false );
+			cmd->setText ( "" );
 		}
 	}
 }
@@ -1175,4 +1211,16 @@ void EditConnectionDialog::slot_sndDefPortChecked ( bool val )
 			sbSndPort->setValue ( 16001 );
 	}
 
+}
+
+void EditConnectionDialog::slot_rdpOptions()
+{
+	bool ok;
+	QString text = QInputDialog::getText (
+	                   this,
+	                   tr ( "Connect to Windows terminal server" ),
+	                   tr ( "rdesktop command line options:" ),
+	                   QLineEdit::Normal,
+	                   rdpOptions, &ok );
+		rdpOptions= text;
 }

@@ -24,49 +24,56 @@ class QPushButton;
 */
 class SessionButton : public SVGFrame
 {
-    Q_OBJECT
-public:
-    SessionButton(ONMainWindow* mw, QWidget* parent,QString id);
-    ~SessionButton();
-    QString id() {  return sid; }
-    void redraw();
-    static bool lessThen(const SessionButton* b1, const SessionButton* b2);
-    QString name();
-private:
-    QString sid;
-    QLabel* sessName;
-    QLabel* icon;
-    QComboBox* cmdBox;
-    QLabel* cmd;
-    QLabel* serverIcon;
-    QLabel* geomIcon;
-    QLabel* cmdIcon;
-    QLabel* server;
-    QPushButton* editBut;
-    QPushButton* rmBut;
-    QLabel* geom;
-    QComboBox* geomBox;
-    QPushButton* sound;
-    QLabel* soundIcon;
-    ONMainWindow* par;
-    bool rootless;
+		Q_OBJECT
+	public:
+		enum {KDE,GNOME,LXDE,RDP,OTHER,APPLICATION};
+		SessionButton ( ONMainWindow* mw, QWidget* parent,QString id );
+		~SessionButton();
+		QString id() {  return sid; }
+		void redraw();
+		static bool lessThen ( const SessionButton* b1, const SessionButton* b2 );
+		QString name();
+	private:
+		QString sid;
+		QLabel* sessName;
+		QLabel* icon;
+		QComboBox* cmdBox;
+		QLabel* cmd;
+		QLabel* serverIcon;
+		QLabel* geomIcon;
+		QLabel* cmdIcon;
+		QLabel* server;
+		QPushButton* editBut;
+		QLabel* geom;
+		QMenu* sessMenu;
+		QComboBox* geomBox;
+		QPushButton* sound;
+		QLabel* soundIcon;
+		ONMainWindow* par;
+		QAction* act_edit;
+		QAction* act_createIcon;
+		QAction* act_remove;
+		bool rootless;
 
-private slots:
-    void slotClicked();
-    void slotEdit();
-    void slot_soundClicked();
-    void slot_cmd_change(const QString& command);
-    void slot_geom_change(const QString& new_g);
-    void slotRemove();
-signals:
-    void sessionSelected(SessionButton*);
-    void signal_edit(SessionButton*);
-    void signal_remove(SessionButton*);
-    void clicked();
-protected:
-    virtual void mouseMoveEvent ( QMouseEvent * event );
-    virtual void mousePressEvent ( QMouseEvent * event );
-    virtual void mouseReleaseEvent ( QMouseEvent * event );
+	private slots:
+		void slotClicked();
+		void slotEdit();
+		void slot_soundClicked();
+		void slot_cmd_change ( const QString& command );
+		void slot_geom_change ( const QString& new_g );
+		void slotRemove();
+		void slotMenuHide();
+		void slotShowMenu();
+		void slotCreateSessionIcon();
+	signals:
+		void sessionSelected ( SessionButton* );
+		void signal_edit ( SessionButton* );
+		void signal_remove ( SessionButton* );
+		void clicked();
+	protected:
+		virtual void mouseMoveEvent ( QMouseEvent * event );
+		virtual void mousePressEvent ( QMouseEvent * event );
+		virtual void mouseReleaseEvent ( QMouseEvent * event );
 };
 
 #endif

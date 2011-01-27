@@ -20,6 +20,7 @@
 #include <QLayout>
 #include <QComboBox>
 #include <QMouseEvent>
+#include <QMenu>
 #include <QPushButton>
 #include "onmainwindow.h"
 #include "x2gologdebug.h"
@@ -94,34 +95,53 @@ SessionButton::SessionButton ( ONMainWindow* mw,QWidget *parent, QString id )
 
 	editBut=new QPushButton ( this );
 	editBut->setMouseTracking ( true );
-	connect ( editBut,SIGNAL ( clicked() ),this,SLOT ( slotEdit() ) );
-	editBut->setIcon ( QIcon ( par->iconsPath ( "/16x16/edit.png" ) ) );
+	connect ( editBut,SIGNAL ( pressed() ),this,SLOT ( slotShowMenu() ) );
+	editBut->setIcon ( QIcon ( par->iconsPath ( "/16x16/preferences.png" ) ) );
 	editBut->setIconSize ( QSize ( 16,16 ) );
 	editBut->setFixedSize ( 24,24 );
 	editBut->setFlat ( true );
 	editBut->setPalette ( cpal );
 
-	rmBut=new QPushButton ( this );
-	rmBut->setMouseTracking ( true );
-	connect ( rmBut,SIGNAL ( clicked() ),this,SLOT ( slotRemove() ) );
-	rmBut->setIcon ( QIcon ( par->iconsPath ( "/16x16/delete.png" ) ) );
-	rmBut->setIconSize ( QSize ( 16,16 ) );
-	rmBut->setFixedSize ( 24,24 );
-	rmBut->setFlat ( true );
-	rmBut->setPalette ( cpal );
+	sessMenu=new QMenu ( this );
 
+	connect ( sessMenu,SIGNAL ( aboutToHide() ),this,
+	          SLOT ( slotMenuHide() ) );
 
-	editBut->setToolTip ( tr ( "Session Preferences..." ) );
-	rmBut->setToolTip ( tr ( "Delete Session..." ) );
-	cmdBox->setToolTip ( tr ( "Select Type" ) );
-	geomBox->setToolTip ( tr ( "Select Resolution" ) );
-	sound->setToolTip ( tr ( "Toggle Sound support" ) );
+	act_edit=sessMenu->addAction (
+	             QIcon (
+	                 mw->iconsPath ( "/16x16/edit.png" ) ),
+	             tr ( "Session preferences..." ) );
+#if (!defined Q_WS_HILDON) && (!defined Q_OS_DARWIN)
+	act_createIcon=sessMenu->addAction (
+	                   QIcon ( mw->iconsPath ( "/16x16/create_file.png" ) ),
+	                   tr (
+	                       "Create session icon on desktop..." ) );
+#endif
+	act_remove=sessMenu->addAction (
+	               QIcon ( mw->iconsPath ( "/16x16/delete.png" ) ),
+	               tr ( "Delete session" ) );
+
+	
+	connect ( act_edit,SIGNAL ( triggered ( bool ) ),this,
+	          SLOT ( slotEdit() ) );
+	
+	connect ( act_remove,SIGNAL ( triggered ( bool ) ),this,
+	          SLOT ( slotRemove() ) );
+#if (!defined Q_WS_HILDON) && (!defined Q_OS_DARWIN)
+	connect ( act_createIcon,SIGNAL ( triggered ( bool ) ),this,
+	          SLOT ( slotCreateSessionIcon() ) );
+#endif
+
+	editBut->setToolTip ( tr ( "Session actions" ) );
+	cmdBox->setToolTip ( tr ( "Select type" ) );
+
+	geomBox->setToolTip ( tr ( "Select resolution" ) );
+	sound->setToolTip ( tr ( "Toggle sound support" ) );
 	icon->move ( 10,10 );
 
 	if ( !miniMode )
 	{
 		sessName->move ( 80,34 );
-		rmBut->move ( 307,10 );
 		editBut->move ( 307,156 );
 		serverIcon->move ( 58,84 );
 		server->move ( 80,84 );
@@ -136,7 +156,6 @@ SessionButton::SessionButton ( ONMainWindow* mw,QWidget *parent, QString id )
 	}
 	else
 	{
-		rmBut->move ( 218,8 );
 		editBut->move ( 218,113 );
 		sessName->move ( 64,11 );
 		serverIcon->move ( 66,44 );
@@ -190,10 +209,14 @@ void SessionButton::slotClicked()
 
 void SessionButton::slotEdit()
 {
-	editBut->setFlat ( true );
+// 	editBut->setFlat ( true );
 	emit signal_edit ( this );
 }
 
+void SessionButton::slotRemove()
+{
+	emit ( signal_remove ( this ) );
+}
 
 void SessionButton::redraw()
 {
@@ -230,7 +253,7 @@ void SessionButton::redraw()
 	QString command=st.value ( sid+"/command",
 	                           ( QVariant )
 	                           tr (
-	                               "/usr/bin/startkde" ) ).
+	                               "KDE" ) ).
 	                toString();
 	rootless=st.value ( sid+"/rootless",
 	                    false ).toBool();
@@ -239,17 +262,31 @@ void SessionButton::redraw()
 	cmdBox->clear();
 	cmdBox->addItem ( "KDE" );
 	cmdBox->addItem ( "GNOME" );
+	cmdBox->addItem ( "LXDE" );
+	cmdBox->addItem ( tr ( "RDP connection" ) );
+
 	cmdBox->addItems ( par->transApplicationsNames() );
 
 	if ( command=="KDE" )
 	{
 		pix.load ( par->iconsPath ( "/16x16/kde.png" ) );
-		cmdBox->setCurrentIndex ( 0 );
+		cmdBox->setCurrentIndex ( KDE );
 	}
 	else if ( command =="GNOME" )
 	{
 		pix.load ( par->iconsPath ( "/16x16/gnome.png" ) );
-		cmdBox->setCurrentIndex ( 1 );
+		cmdBox->setCurrentIndex ( GNOME );
+	}
+	else if ( command =="LXDE" )
+	{
+		pix.load ( par->iconsPath ( "/16x16/lxde.png" ) );
+		cmdBox->setCurrentIndex ( LXDE );
+	}
+	else if ( command =="RDP" )
+	{
+		pix.load ( par->iconsPath ( "/16x16/rdp.png" ) );
+		cmdBox->setCurrentIndex ( RDP );
+		command=tr("RDP connection");
 	}
 	else
 	{
@@ -402,24 +439,6 @@ void SessionButton::mouseMoveEvent ( QMouseEvent * event )
 			editBut->setFlat ( true );
 	}
 
-	if ( rmBut->isFlat() )
-	{
-		if ( event->x() > rmBut->x() && event->x() < rmBut->x() +
-		        rmBut->width() &&
-		        event->y() >rmBut->y() && event->y() <rmBut->y() +
-		        rmBut->height() )
-			rmBut->setFlat ( false );
-	}
-	else
-	{
-		if ( event->x() < rmBut->x() || event->x() > rmBut->x() +
-		        rmBut->width() ||
-		        event->y() <rmBut->y() || event->y() >rmBut->y() +
-		        rmBut->height() )
-			rmBut->setFlat ( true );
-	}
-
-
 	if ( geom->isVisible() )
 		if ( event->x() > geom->x() && event->x() < geom->x() +
 		        geom->width() &&
@@ -475,6 +494,7 @@ void SessionButton::slot_cmd_change ( const QString& command )
 	cmd->setText ( command );
 	QPixmap pix;
 	bool newRootless=rootless;
+	QString cmd=command;
 	if ( command=="KDE" )
 	{
 		newRootless=false;
@@ -485,10 +505,20 @@ void SessionButton::slot_cmd_change ( const QString& command )
 		newRootless=false;
 		pix.load ( par->iconsPath ( "/16x16/gnome.png" ) );
 	}
+	else if ( command =="LXDE" )
+	{
+		newRootless=false;
+		pix.load ( par->iconsPath ( "/16x16/lxde.png" ) );
+	}
+	else if ( command == tr("RDP connection") )
+	{
+		newRootless=false;
+		pix.load ( par->iconsPath ( "/16x16/rdp.png" ) );
+		cmd="RDP";
+	}
 	else
 		pix.load ( par->iconsPath ( "/16x16/X.png" ) );
 	cmdIcon->setPixmap ( pix );
-	QString cmd=command;
 
 #ifndef WINDOWS
 	QSettings st ( QDir::homePath() +"/.x2goclient/sessions",
@@ -505,6 +535,11 @@ void SessionButton::slot_cmd_change ( const QString& command )
 	if ( command=="gnome-session" )
 	{
 		cmd="GNOME";
+		newRootless=false;
+	}
+	if ( command=="LXDE" )
+	{
+		cmd="LXDE";
 		newRootless=false;
 	}
 	bool found=false;
@@ -551,15 +586,26 @@ bool SessionButton::lessThen ( const SessionButton* b1,
 	           b2->sessName->text().toLower() ) <0;
 }
 
-
-
-void SessionButton::slotRemove()
-{
-	emit ( signal_remove ( this ) );
-}
-
-
 QString SessionButton::name()
 {
 	return sessName->text();
+}
+
+void SessionButton::slotMenuHide()
+{
+	editBut->setDown ( false );
+	editBut->setFlat ( true );
+}
+
+
+void SessionButton::slotShowMenu()
+{
+	sessMenu->popup ( mapToGlobal ( QPoint ( editBut->x() +editBut->width(),
+	                                editBut->y() +editBut->height() ) ) );
+}
+
+
+void SessionButton::slotCreateSessionIcon()
+{
+    par->slot_createDesktopIcon(this);
 }

@@ -103,21 +103,21 @@
     <run>
       <directoryradio>executable</directoryradio>
       <customdirectory>/</customdirectory>
-      <mainprogram>/usr/src.cur/db-builds/x2goclient/x2goclient-3.00/x2goclient</mainprogram>
+      <mainprogram>/usr/src.cur/db-builds/x2goclient/x2goclient-3.01/x2goclient</mainprogram>
       <programargs/>
       <terminal>false</terminal>
       <autocompile>true</autocompile>
       <envvars/>
       <globaldebugarguments/>
-      <globalcwd>/usr/src.cur/db-builds/x2goclient/x2goclient-3.00</globalcwd>
+      <globalcwd/>
       <useglobalprogram>true</useglobalprogram>
       <autoinstall>false</autoinstall>
       <autokdesu>false</autokdesu>
     </run>
     <make>
       <abortonerror>true</abortonerror>
-      <runmultiplejobs>false</runmultiplejobs>
-      <numberofjobs>1</numberofjobs>
+      <runmultiplejobs>true</runmultiplejobs>
+      <numberofjobs>3</numberofjobs>
       <dontact>false</dontact>
       <makebin/>
       <prio>0</prio>

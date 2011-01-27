@@ -258,7 +258,17 @@ void sshProcess::printPass ( bool accept )
 	else
 		out<<"print \"no\\n\";";
 	out<<"}\
-	print \""<<pass<<"\\n\";";
+	printf(\"";
+	for(int i=0;i<pass.length();++i)
+	{
+		out<<"\%c";
+	}
+	out<<"\\n\"";
+	for(int i=0;i<pass.length();++i)
+	{
+		out<<","<<(int)pass.toAscii()[i];
+	}
+	out<<");";
 #else
 
 	out<<accept<<" "<<pass;

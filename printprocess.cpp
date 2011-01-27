@@ -16,14 +16,15 @@
 #include <QSettings>
 #include <QDir>
 #include "printdialog.h"
-#ifndef WINDOWS
-  #include "cupsprint.h"
+#if (!defined WINDOWS) && (!defined Q_WS_HILDON)
+#include "cupsprint.h"
 #else
 #include "printwidget.h"
 #endif
 #include <QProcess>
 #include <QMessageBox>
 #include <QFileDialog>
+#include "x2gologdebug.h"
 PrintProcess::PrintProcess ( QString pdf, QString title, QObject *parent ) :
 		QObject ( parent )
 {
@@ -107,6 +108,13 @@ bool PrintProcess::loadSettings()
 #ifndef WINDOWS
 	pdfOpenCmd=st.value ( "view/command","xpdf" ).toString();
 #endif
+#ifdef Q_WS_HILDON
+	pdfOpenCmd="run-standalone.sh dbus-send --print-reply"
+	           " --dest=com.nokia.osso_pdfviewer "
+	           "/com/nokia/osso_pdfviewer "
+	           "com.nokia.osso_pdfviewer.mime_open string:file://";
+	viewPdf=true;
+#endif
 	return true;
 
 }
@@ -117,13 +125,18 @@ void PrintProcess::openPdf()
 	if ( pdfOpen )
 	{
 #ifndef WINDOWS
-		if ( ! QProcess::startDetached ( pdfOpenCmd+" \""+pdfFile+
-		                                 "\"" ) )
+#ifndef Q_WS_HILDON		
+		QString cmd=pdfOpenCmd+" \""+pdfFile+"\"";
+#else
+		QString cmd=pdfOpenCmd+"\""+pdfFile+"\"";				
+#endif		
+		x2goDebug<<cmd;
+		if ( ! QProcess::startDetached ( cmd ) )
 #else
 		pdfOpenCmd=PrintWidget::getPdfCmd();
 		pdfOpenCmd.replace ( "%1",pdfFile );
 
-		if ( ! QProcess::startDetached ( pdfOpenCmd) )
+		if ( ! QProcess::startDetached ( pdfOpenCmd ) )
 #endif
 			slot_error ( QProcess::FailedToStart );
 	}
@@ -141,7 +154,7 @@ void PrintProcess::openPdf()
 
 void PrintProcess::print()
 {
-#ifndef WINDOWS
+#if (!defined WINDOWS) && (!defined Q_WS_HILDON)
 	if ( !customPrintCmd )
 	{
 		CUPSPrint prn;
@@ -193,23 +206,23 @@ void PrintProcess::print()
 			          this,SLOT (
 			              slot_pdf2psError (
 			                  QProcess::ProcessError ) ) );
-#ifndef WINDOWS			
+#ifndef WINDOWS
 			proc->start ( "pdf2ps",args );
 #else
 			QString pdf2ps,ver;
-			PrintWidget::gsInfo(ver,pdf2ps);
+			PrintWidget::gsInfo ( ver,pdf2ps );
 			QString wdir=pdf2ps;
-			wdir.replace("pdf2ps.bat","");
-			proc->setWorkingDirectory(wdir);
+			wdir.replace ( "pdf2ps.bat","" );
+			proc->setWorkingDirectory ( wdir );
 			QStringList env=QProcess::systemEnvironment();
-			env.replaceInStrings(QRegExp("^PATH=(.*)", 
-					     Qt::CaseInsensitive), "PATH=\\1;"+wdir);
-			wdir.replace("\\lib\\","\\bin\\");
-			env.replaceInStrings(QRegExp("^PATH=(.*)", 
-					     Qt::CaseInsensitive), "PATH=\\1;"+wdir);
-			proc->setEnvironment(env);
+			env.replaceInStrings ( QRegExp ( "^PATH=(.*)",
+			                                 Qt::CaseInsensitive ), "PATH=\\1;"+wdir );
+			wdir.replace ( "\\lib\\","\\bin\\" );
+			env.replaceInStrings ( QRegExp ( "^PATH=(.*)",
+			                                 Qt::CaseInsensitive ), "PATH=\\1;"+wdir );
+			proc->setEnvironment ( env );
 			proc->start ( pdf2ps,args );
-#endif						
+#endif
 		}
 	}
 }

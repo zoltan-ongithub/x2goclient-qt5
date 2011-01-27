@@ -10,7 +10,7 @@
 //
 //
 #include "printwidget.h"
-#ifndef WINDOWS
+#if (!defined WINDOWS) && (!defined Q_WS_HILDON)
 #include "cupsprintwidget.h"
 #endif
 #include "printercmddialog.h"
@@ -24,7 +24,7 @@ PrintWidget::PrintWidget ( QWidget* parent )
 	ui.rbPrint->setChecked ( true );
 	ui.gbView->setVisible ( false );
 	QVBoxLayout* lay= ( QVBoxLayout* ) ui.gbPrint->layout();
-#ifndef WINDOWS
+#if (!defined WINDOWS) && (!defined Q_WS_HILDON)
 	pwid=new CUPSPrintWidget ( ui.gbPrint );
 	lay->insertWidget ( 0,pwid );
 	connect ( ui.cbPrintCmd,SIGNAL ( toggled ( bool ) ),pwid,
@@ -54,10 +54,17 @@ PrintWidget::PrintWidget ( QWidget* parent )
 	loadSettings();
 	connect ( ui.cbShowDialog,SIGNAL ( toggled ( bool ) ),
 	          this, SIGNAL ( dialogShowEnabled ( bool ) ) );
-#ifdef WINDOWS
+#if (defined WINDOWS)
 	ui.line->hide();
 	ui.cbPrintCmd->setChecked ( true );
 	ui.cbPrintCmd->setEnabled ( false );
+	ui.label->hide();
+	ui.leOpenCmd->hide();
+#endif
+#ifdef Q_WS_HILDON
+	ui.rbView->setChecked(true);
+	ui.rbPrint->hide();
+	ui.rbView->hide();
 	ui.label->hide();
 	ui.leOpenCmd->hide();
 #endif
@@ -167,7 +174,7 @@ void PrintWidget::saveSettings()
 	              QVariant ( ui.rbOpen->isChecked () ) );
 	st.setValue ( "view/command",
 	              QVariant ( ui.leOpenCmd->text () ) );
-#ifndef WINDOWS
+#if (!defined WINDOWS) && (!defined Q_WS_HILDON)
 	pwid->savePrinter();
 #endif
 }

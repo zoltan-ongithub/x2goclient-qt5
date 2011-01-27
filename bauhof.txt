@@ -1,0 +1,7 @@
+[Desktop Entry]
+Exec[$e]=x2goclient --sessionid=20080117101426784
+Icon=/usr/share/x2goclient/icons/x2gosession.png
+Name=bauhof
+StartupNotify=true
+Terminal=false
+X-KDE-SubstituteUID=false

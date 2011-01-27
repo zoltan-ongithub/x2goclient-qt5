@@ -23,6 +23,7 @@
 #include "userbutton.h"
 #include "exportdialog.h"
 #include "printprocess.h"
+#include <QDesktopServices>
 #include <QApplication>
 #include <QScrollBar>
 #include <QVBoxLayout>
@@ -387,11 +388,14 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
 	act_new->setShortcut ( tr ( "Ctrl+N" ) );
 
 
+
 	setWindowIcon ( QIcon ( ":icons/128x128/x2go.png" ) );
 	act_edit=new QAction ( QIcon ( iconsPath ( "/32x32/edit.png" ) ),
 	                       tr ( "Session management..." ),this );
 	act_edit->setShortcut ( tr ( "Ctrl+E" ) );
 
+	act_sessicon=new QAction ( QIcon ( iconsPath ( "/32x32/create_file.png" ) ),
+	                           tr ( "&Create session icon on desktop..." ),this );
 
 	QAction *act_set=new QAction (
 	    QIcon ( iconsPath ( "/32x32/edit_settings.png" ) ),
@@ -415,6 +419,8 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
 	          SLOT ( slot_about_qt() ) );
 	connect ( act_new,SIGNAL ( triggered ( bool ) ),this,
 	          SLOT ( slotNewSession() ) );
+	connect ( act_sessicon,SIGNAL ( triggered ( bool ) ),this,
+	          SLOT ( slotCreateSessionIcon() ) );
 	connect ( act_edit,SIGNAL ( triggered ( bool ) ),this,
 	          SLOT ( slot_manage() ) );
 	connect ( act_exit,SIGNAL ( triggered ( bool ) ),this,
@@ -434,6 +440,9 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
 
 		menu_sess->addAction ( act_new );
 		menu_sess->addAction ( act_edit );
+#if (!defined Q_WS_HILDON) && (!defined Q_OS_DARWIN)
+		menu_sess->addAction ( act_sessicon );
+#endif		
 		menu_sess->addSeparator();
 		menu_sess->addAction ( act_exit );
 		menu_opts->addAction ( act_set );
@@ -445,6 +454,9 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
 
 		stb->addAction ( act_new );
 		stb->addAction ( act_edit );
+#if (!defined Q_WS_HILDON) && (!defined Q_OS_DARWIN)
+		stb->addAction ( act_sessicon );
+#endif		
 		stb->addSeparator();
 		stb->addAction ( act_set );
 
@@ -1334,6 +1346,88 @@ void ONMainWindow::slot_edit ( SessionButton* bt )
 	}
 }
 
+void ONMainWindow::slot_createDesktopIcon ( SessionButton* bt )
+{
+	bool crHidden= ( QMessageBox::question (
+	                     this,
+	                     tr ( "Create session icon on desktop" ),
+	                     tr ( "Desktop icons can be configured "
+	                          "not to show x2goclient (hidden mode). "
+	                          "If you like to use this feature you'll "
+	                          "need to configure login by a gpg key "
+	                          "or gpg smart card.\n\n"
+	                          "Use x2goclient hidden mode?" ),
+	                     QMessageBox::Yes|QMessageBox::No ) ==
+	                 QMessageBox::Yes );
+#ifndef WINDOWS
+	QSettings st ( QDir::homePath() +"/.x2goclient/sessions",
+	               QSettings::NativeFormat );
+#else
+	QSettings st ( "Obviously Nice","x2goclient" );
+	st.beginGroup ( "sessions" );
+#endif
+	QString name=st.value ( bt->id() +"/name",
+	                        ( QVariant ) tr ( "New Session" ) ).toString() ;
+	QString sessIcon=st.value (
+	                     bt->id() +"/icon",
+	                     ( QVariant )
+	                     ":icons/128x128/x2gosession.png"
+	                 ).toString();
+	if ( sessIcon.startsWith ( ":icons",Qt::CaseInsensitive ) ||
+	        !sessIcon.endsWith ( ".png",Qt::CaseInsensitive ) )
+	{
+		sessIcon="/usr/share/x2goclient/icons/x2gosession.png";
+	}
+#ifndef WINDOWS	
+	QFile file (
+	    QDesktopServices::storageLocation (
+	        QDesktopServices::DesktopLocation ) +"/"+name+".desktop" );
+	if ( !file.open ( QIODevice::WriteOnly | QIODevice::Text ) )
+		return;
+
+	QString cmd="x2goclient";
+	if ( crHidden )
+		cmd="x2goclient --hide";
+	QTextStream out ( &file );
+	out << "[Desktop Entry]\n"<<
+	"Exec[$e]="<<cmd<<" --sessionid="<<bt->id() <<"\n"<<
+	"Icon="<<sessIcon<<"\n"<<
+	"Name="<<name<<"\n"<<
+	"StartupNotify=true\n"<<
+	"Terminal=false\n"<<
+	"Type=Application\n"<<
+	"X-KDE-SubstituteUID=false\n";
+	file.close();
+#else
+	QString scrname=QDir::tempPath()+"\\mklnk.vbs";
+	QFile file (scrname);
+	if ( !file.open ( QIODevice::WriteOnly | QIODevice::Text ) )
+		return;
+
+	QSettings xst("HKEY_LOCAL_MACHINE\\SOFTWARE\\x2goclient",QSettings::NativeFormat);
+	QString workDir=xst.value("Default").toString();
+	workDir+="\\bin";
+	QString progname=workDir+"\\x2goclient.exe";
+	QString args="--sessionid="+bt->id();
+	if ( crHidden )
+		args+=" --hide";
+	QTextStream out ( &file );
+	out << "Set Shell = CreateObject(\"WScript.Shell\")\n"<<
+	"DesktopPath = Shell.SpecialFolders(\"Desktop\")\n"<<
+	"Set link = Shell.CreateShortcut(DesktopPath & \"\\"<<name<<".lnk\")\n"<<
+	"link.Arguments = \""<<args<<"\"\n"<<
+	"link.Description = \""<<tr("X2Go Link to session ")<<"--"<<name<<"--"<<"\"\n"<<
+	"link.TargetPath = \""<<progname<<"\"\n"<<
+	"link.iconLocation = \""<<progname<<"\"\n"<<
+	"link.WindowStyle = 1\n"<<
+	"link.WorkingDirectory = \""<<workDir<<"\"\n"<<
+	"link.Save\n";
+	file.close();
+	system(scrname.toAscii());
+	QFile::remove(scrname);
+#endif	
+}
+
 
 void ONMainWindow::slot_readSessions()
 {
@@ -1357,22 +1451,55 @@ void ONMainWindow::slot_readSessions()
 	             SLOT ( slotUnameChanged ( const QString& ) ) );
 	connect ( uname,SIGNAL ( textEdited ( const QString& ) ),this,
 	          SLOT ( slotSnameChanged ( const QString& ) ) );
+	if ( !defaultSession&& startHidden )
+	{
+		startHidden=false;
+		slot_resize();
+		show();
+		activateWindow();
+		raise();
+
+	}
 	if ( defaultSession )
 	{
+		bool sfound=false;
 		defaultSession=false;
-		for ( int i=0;i<sessions.size();++i )
+		if ( defaultSessionId.length() >0 )
 		{
-			if ( sessions[i]->name() ==defaultSessionName )
+			for ( int i=0;i<sessions.size();++i )
 			{
-				uname->setText ( defaultSessionName );
-				QTimer::singleShot (
-				    100, this,
-				    SLOT ( slotUnameEntered() ) );
-				slotSnameChanged ( defaultSessionName );
-				break;
+				if ( sessions[i]->id() ==defaultSessionId )
+				{
+					sfound=true;
+					slotSelectedFromList ( sessions[i] );
+					break;
+				}
 			}
 		}
-
+		else
+		{
+			for ( int i=0;i<sessions.size();++i )
+			{
+				if ( sessions[i]->name() ==defaultSessionName )
+				{
+					sfound=true;
+					uname->setText ( defaultSessionName );
+					QTimer::singleShot (
+					    100, this,
+					    SLOT ( slotUnameEntered() ) );
+					slotSnameChanged ( defaultSessionName );
+					break;
+				}
+			}
+		}
+		if ( !sfound && startHidden )
+		{
+			startHidden=false;
+			slot_resize();
+			show();
+			activateWindow();
+			raise();
+		}
 	}
 }
 
@@ -1393,6 +1520,12 @@ void ONMainWindow::slotNewSession()
 void ONMainWindow::slot_manage()
 {
 	SessionManageDialog dlg ( this );
+	dlg.exec();
+}
+
+void ONMainWindow::slotCreateSessionIcon()
+{
+	SessionManageDialog dlg ( this,true );
 	dlg.exec();
 }
 
@@ -1810,6 +1943,10 @@ void ONMainWindow::slotSelectedFromList ( SessionButton* session )
 	}
 
 
+	if(command=="RDP")
+	{
+		command=tr("RDP connection");
+	}
 
 	QString text="<b>"+session->name() +"</b><br>"+
 	             command+tr ( " on " ) +server;
@@ -1943,13 +2080,27 @@ void ONMainWindow::slotSelectedFromList ( SessionButton* session )
 
 	currentKey=st.value ( sid+"/key",
 	                      ( QVariant ) QString::null ).toString();
+	bool nopass=false;
 	if ( currentKey != QString::null && currentKey != "" )
+	{
+		nopass=true;
 		slotSessEnter();
+	}
 	if ( cardReady )
 	{
+		nopass=true;
 		login->setText ( cardLogin );
 		slotSessEnter();
 	}
+	if ( startHidden && nopass==false )
+	{
+		startHidden=false;
+		slot_resize();
+		show();
+		activateWindow();
+		raise();
+	}
+
 }
 
 
@@ -2227,6 +2378,8 @@ void ONMainWindow::startNewSession()
 		                ( QVariant ) defaultKbdType ).toString();
 		rootless=st.value ( sid+"/rootless",
 		                    ( QVariant ) false ).toBool();
+		if ( command=="RDP" )
+			rootless=true;
 	}
 
 
@@ -4064,6 +4217,10 @@ void ONMainWindow::runCommand()
 	QString host=resumingSession.server;
 	QString command;
 	QString sessionType="D";
+	QString rdpOpts,rdpServer;
+	bool rdpFS=false;
+	QString rdpWidth;
+	QString rdpHeight;
 	if ( useLdap )
 		command=sessionCmd;
 	else
@@ -4072,10 +4229,24 @@ void ONMainWindow::runCommand()
 		command=st.value (
 		            sid+"/command",
 		            ( QVariant ) tr ( "KDE" ) ).toString();
+		rdpOpts=st.value (
+		            sid+"/rdpoptions",
+		            ( QVariant ) "" ).toString();
+		rdpServer=st.value (
+		              sid+"/rdpserver",
+		              ( QVariant ) "" ).toString();
 		bool rootless=st.value ( sid+"/rootless",
 		                         ( QVariant ) false ).toBool();
 		if ( rootless )
 			sessionType="R";
+		
+		rdpFS=st.value ( sid+"/fullscreen",
+		                      ( QVariant ) defaultFullscreen ).toBool();
+		rdpHeight=st.value ( sid+"/height",
+		                  ( QVariant ) defaultHeight ).toString();
+		rdpWidth=st.value ( sid+"/width",
+		                 ( QVariant ) defaultWidth ).toString();
+
 	}
 
 	if ( command=="KDE" )
@@ -4085,6 +4256,21 @@ void ONMainWindow::runCommand()
 	else if ( command=="GNOME" )
 	{
 		command="gnome-session";
+	}
+	else if ( command=="LXDE" )
+	{
+		command="startlxde";
+	}
+	else if ( command=="RDP" )
+	{
+		command="rdesktop ";
+		if(rdpFS)
+			command+=" -f ";
+		else
+			command+=" -g "+rdpWidth+"x"+rdpHeight;
+		command+=" "+rdpOpts+ " "+rdpServer;
+
+		sessionType="R";
 	}
 
 
@@ -4259,6 +4445,12 @@ bool ONMainWindow::parseParam ( QString param )
 	{
 		defaultSession=true;
 		defaultSessionName=value;
+		return true;
+	}
+	if ( setting=="--sessionid" )
+	{
+		defaultSession=true;
+		defaultSessionId=value;
 		return true;
 	}
 	if ( setting=="--user" )
@@ -4525,46 +4717,46 @@ void ONMainWindow::printError ( QString param )
 void ONMainWindow::showHelp()
 {
 	QString helpMsg=
-	    tr (
-	        "Usage: x2goclient [Options]\n\
-	        Options:\n\
-	        --help                           show this message\n\
-	        --help-pack                      show available pack methods\n\
-	        --no-menu                        hide menu bar\n\
-	        --maximize                       start maximized\n\
-	        --hide                           start hidden\n\
-	        --pgp-card    			 use openPGP card "
-	        "authentification\n\
-	        --add-to-known-hosts             add RSA key fingerprint to "
-	        ".ssh/known_hosts if authenticity of server can't "
-	        "be established\n\
-	        --ldap=<host:port:dn>            start with LDAP support. "
-	        "Example:\n\
-	            				 --ldap=ldapserver:389:o="
-	        "organization,c=de\n\
-	        --ldap1=<host:port>              LDAP failover server #1 \n\
-	        --ldap2=<host:port>              LDAP failover server #2 \n\
-	        --ssh-port=<port>                connect to this port, default "
-	        "value 22\n\
-	        --client-ssh-port=<port>         local ssh port (for fs export)"
-	        ", default value 22\n\
-	        --command=<cmd>                  Set default command, default "
-	        "value 'KDE'\n\
-	        --session=<session>              Start session 'session'\n\
-	        --user=<username>                in LDAP mode, select user "
-	        "'username'\n\
-	        --geomerty=<W>x<H>|fullscreen    set default geometry, default "
-	        "value '800x600'\n\
-	        --link=<modem|isdn|adsl|wan|lan> set default link type, "
-	        "default 'lan'\n\
-	        --pack=<packmethod>              set default pack method, "
-	        "default '16m-jpeg-9'\n\
-	        --kbd-layout=<layout>            set default keyboard layout, "
-	        "default 'us'\n\
-	        --kbd-type=<typed>               set default keyboard type, "
-	        "default 'pc105/us'\n\
-	        --set-kbd=<0|1>                  overwrite current keyboard "
-	        "settings, default '0'\n" );
+
+	    "Usage: x2goclient [Options]\n\
+	    Options:\n\
+	    --help				show this message\n\
+	    --help-pack                      show available pack methods\n\
+	    --no-menu                        hide menu bar\n\
+	    --maximize                       start maximized\n\
+	    --hide                           start hidden\n\
+	    --pgp-card    			 use openPGP card "
+	    "authentification\n\
+	    --add-to-known-hosts             add RSA key fingerprint to "
+	    ".ssh/known_hosts if authenticity of server can't "
+	    "be established\n\
+	    --ldap=<host:port:dn>            start with LDAP support. "
+	    "Example:\n\
+	        				 --ldap=ldapserver:389:o="
+	    "organization,c=de\n\
+	    --ldap1=<host:port>              LDAP failover server #1 \n\
+	    --ldap2=<host:port>              LDAP failover server #2 \n\
+	    --ssh-port=<port>                connect to this port, default "
+	    "value 22\n\
+	    --client-ssh-port=<port>         local ssh port (for fs export)"
+	    ", default value 22\n\
+	    --command=<cmd>                  Set default command, default "
+	    "value 'KDE'\n\
+	    --session=<session>              Start session 'session'\n\
+	    --user=<username>                in LDAP mode, select user "
+	    "'username'\n\
+	    --geomerty=<W>x<H>|fullscreen    set default geometry, default "
+	    "value '800x600'\n\
+	    --link=<modem|isdn|adsl|wan|lan> set default link type, "
+	    "default 'lan'\n\
+	    --pack=<packmethod>              set default pack method, "
+	    "default '16m-jpeg-9'\n\
+	    --kbd-layout=<layout>            set default keyboard layout, "
+	    "default 'us'\n\
+	    --kbd-type=<typed>               set default keyboard type, "
+	    "default 'pc105/us'\n\
+	    --set-kbd=<0|1>                  overwrite current keyboard "
+	    "settings, default '0'\n" ;
 	qCritical ( "%s",helpMsg.toLocal8Bit().data() );
 	QMessageBox::information ( this,tr ( "Options" ),helpMsg );
 }
@@ -4892,10 +5084,9 @@ void ONMainWindow::exportDefaultDirs()
 		QSettings st ( "Obviously Nice","x2goclient" );
 		st.beginGroup ( "sessions" );
 #endif
-#ifndef Q_WS_HILDON
 		clientPrinting= st.value ( lastSession->id() +
 		                           "/print", true ).toBool();
-#endif
+		
 		QString exd=st.value ( lastSession->id() +"/export",
 		                       ( QVariant ) QString::null ).toString();
 		QStringList lst=exd.split ( ";",QString::SkipEmptyParts );
@@ -4950,8 +5141,8 @@ void ONMainWindow::exportDefaultDirs()
 
 		path+="__PRINT_SPOOL_";
 #ifdef WINDOWS
-		path=transform2cygwinPath(path);
-#endif				
+		path=transform2cygwinPath ( path );
+#endif
 		dirs+=path;
 		printSupport=true;
 		if ( spoolTimer )
@@ -5902,6 +6093,10 @@ QString ONMainWindow::getXDisplay()
 	xdir=ConfigDialog::getXDarwinDirectory();
 	xname=xdir+"/Contents/MacOS/X11";
 	xopt=" -rootless :0";
+	
+	//for newer versions of XQuartz start startx instead of X11.app
+        xname="/usr/X11/bin/startx";
+        xopt="";
 #endif
 	tcpSocket.connectToHost ( "127.0.0.1",6000+dispNumber );
 
@@ -6486,3 +6681,4 @@ void ONMainWindow::cleanPrintSpool()
 		QFile::remove ( spoolDir+"/"+list[i] );
 	}
 }
+

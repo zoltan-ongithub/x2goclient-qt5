@@ -365,6 +365,7 @@ class ONMainWindow : public QMainWindow
 
 		QAction *act_edit;
 		QAction *act_new;
+		QAction *act_sessicon;
 		QProcess *nxproxy;
 		QString lastFreeServer;
 		QString cardLogin;
@@ -387,6 +388,7 @@ class ONMainWindow : public QMainWindow
 		void clean();
 		bool defaultSession;
 		QString defaultSessionName;
+		QString defaultSessionId;
 		QString defaultUserName;
 		bool defaultUser;
 		SessionButton* createBut ( const QString& id );
@@ -443,6 +445,7 @@ class ONMainWindow : public QMainWindow
 		void slotNewSession();
 		void slotDeleteButton ( SessionButton * bt );
 		void slot_edit ( SessionButton* );
+		void slot_createDesktopIcon ( SessionButton* bt );
 		void exportsEdit ( SessionButton* bt );
 	private slots:
 		void slotSnameChanged ( const QString& );
@@ -516,6 +519,7 @@ class ONMainWindow : public QMainWindow
 		void slot_checkAgentProcess();
 		void slot_execXmodmap();
 		void slot_sudoErr ( QString errstr, sshProcess* pr );
+    void slotCreateSessionIcon();
 	private:
 		void cartReady();
 		void addToAppNames ( QString intName, QString transName );

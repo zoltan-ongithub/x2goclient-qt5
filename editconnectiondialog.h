@@ -41,6 +41,7 @@ class EditConnectionDialog : public QDialog
 		                       Qt::WFlags f = 0 );
 		~EditConnectionDialog();
 		enum {PULSE,ARTS,ESD};
+		enum {KDE,GNOME,LXDE,RDP,OTHER,APPLICATION};
 	private:
 		QLineEdit* sessName;
 		QLineEdit* uname;
@@ -54,6 +55,7 @@ class EditConnectionDialog : public QDialog
 		QRadioButton* fs;
 		QCheckBox* kbd;
 		QLineEdit* layout;
+		QLabel* leCmdIp;
 		QLineEdit* type;
 		QTreeView* expTv;
 		QRadioButton* custom;
@@ -71,9 +73,12 @@ class EditConnectionDialog : public QDialog
 		QSpinBox* sbSndPort;
 		QString sessIcon;
 		QPushButton* icon;
+		QPushButton* pbAdvanced;
 		QComboBox* packMethode;
 		QComboBox* sessBox;
 		QSpinBox* quali;
+		QString rdpOptions;
+		QString rdpServer;
 
 		QStandardItemModel* model;
 		QLabel *ldir;
@@ -108,6 +113,7 @@ class EditConnectionDialog : public QDialog
 		void slot_sndToggled ( bool val );
 		void slot_sndStartClicked();
 		void slot_sndDefPortChecked ( bool val );
+    void slot_rdpOptions();
 };
 
 #endif
