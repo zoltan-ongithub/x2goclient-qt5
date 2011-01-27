@@ -525,17 +525,17 @@ void ONMainWindow::slot_resize ( const QSize sz )
 	height=sz.height();
 	if ( !miniMode )
 	{
- 		usize=sz.width()-800;
- 		if ( usize<360 )
+		usize=sz.width()-800;
+		if ( usize<360 )
 			usize=360;
- 		if ( usize>500 )
- 			usize=500;
+		if ( usize>500 )
+			usize=500;
 	}
 	else
 	{
 // 		usize=sz.width()-648;
 // 		if ( usize<285 )
-			usize=285;
+		usize=285;
 // 		if ( usize>300 )
 // 			usize=300;
 	}
@@ -942,10 +942,17 @@ void ONMainWindow::slotPassEnter()
 	list<LDAPStringEntry>::iterator it=res.begin();
 	list<LDAPStringEntry>::iterator end=res.end();
 	QString freeServer;
+	QString firstServer;
+	bool isFirstServerSet=false;
 	for ( ;it!=end;++it )
 	{
 		serv server;
 		server.name=LDAPSession::getStringAttrValues ( *it,"cn" ).front().c_str();
+		if ( !isFirstServerSet )
+		{
+			isFirstServerSet=true;
+			firstServer=server.name;
+		}
 		QString sFactor="1";
 		list<string> serialNumber=LDAPSession::getStringAttrValues ( *it,"serialNumber" );
 		if ( serialNumber.size() >0 )
@@ -970,7 +977,9 @@ void ONMainWindow::slotPassEnter()
 	if ( !extLogin )
 		currentKey=QString::null;
 	QString user=login->text();
-	QString host=ldapServer;
+//      get x2gogetservers not from ldap server, but from first x2goserver
+// 	QString host=ldapServer;
+	QString host=firstServer;
 	passwd=pass->text();
 	sshProcess* proc;
 	try
@@ -3067,8 +3076,8 @@ void ONMainWindow::slot_proxyFinished ( int,QProcess::ExitStatus )
 	tunnel=sndTunnel=0l;
 	artsd=0l;
 	nxproxy=0l;
-	if(!usePGPCard)
-	   check_cmd_status();
+	if ( !usePGPCard )
+		check_cmd_status();
 
 	if ( readExportsFrom!=QString::null )
 	{
@@ -4000,6 +4009,8 @@ void ONMainWindow::showHelp()
 	        --ssh-port=<port>                connect to this port, default value 22\n\
 	        --client-ssh-port=<port>         local ssh port (for fs export), default value 22\n\
 	        --command=<cmd>                  Set default command, default value 'KDE'\n\
+	        --session=<session>              Start session 'session'\n\
+	        --user=<username>                    In LDAP mode, select user 'username'\n\
 	        --sound=<0|1>                    Enable sound, default value '1'\n\
 	        --esd                            Use ESD instead ARTS\n\
 	        --geomerty=<W>x<H>|fullscreen    Set default geometry, default value '800x600'\n\
@@ -4091,7 +4102,7 @@ void ONMainWindow::slot_getServers ( bool result, QString output,sshProcess* pro
 
 	listedSessions.clear();
 	retSessions=0;
-
+// TODO: should use x2golistsessions --all-servers to create less ssh sessions
 	for ( int j=0;j<x2goServers.size();++j )
 	{
 		QString passwd;
@@ -4805,12 +4816,9 @@ void ONMainWindow::slot_rereadUsers()
 		ld=0;
 	}
 
+	
 	if ( ! initLdapSession ( false ) )
 	{
-		QMessageBox::critical ( 0l,tr ( "Error" ),tr ( "Please check LDAP Settings" ),
-		                        QMessageBox::Ok,QMessageBox::NoButton );
-
-		slot_config();
 		return;
 	}
 
@@ -5497,7 +5505,7 @@ void ONMainWindow::check_cmd_status()
 	{
 		return;
 	}
-	
+
 	if ( cardReady )
 	{
 		QStringList env=proc->environment();
@@ -5541,13 +5549,13 @@ void ONMainWindow::slot_cmdMessage ( bool result,QString output,sshProcess* proc
 		pass->selectAll();
 		return;
 	}
-	if(output.indexOf("X2GORUNCOMMAND ERR NOEXEC:")!=-1)
+	if ( output.indexOf ( "X2GORUNCOMMAND ERR NOEXEC:" ) !=-1 )
 	{
 		QString cmd=output;
-		cmd.replace("X2GORUNCOMMAND ERR NOEXEC:","");
-		QMessageBox::critical ( 0l,tr ( "Error" ),tr("Unable to execute: ")+cmd,QMessageBox::Ok,
+		cmd.replace ( "X2GORUNCOMMAND ERR NOEXEC:","" );
+		QMessageBox::critical ( 0l,tr ( "Error" ),tr ( "Unable to execute: " ) +cmd,QMessageBox::Ok,
 		                        QMessageBox::NoButton );
 	}
-		
-	
+
+
 }
