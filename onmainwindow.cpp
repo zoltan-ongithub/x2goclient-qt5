@@ -525,19 +525,19 @@ void ONMainWindow::slot_resize ( const QSize sz )
 	height=sz.height();
 	if ( !miniMode )
 	{
-		usize=sz.width()-648;
-		if ( usize<360 )
+ 		usize=sz.width()-800;
+ 		if ( usize<360 )
 			usize=360;
-		if ( usize>500 )
-			usize=500;
+ 		if ( usize>500 )
+ 			usize=500;
 	}
 	else
 	{
-		usize=sz.width()-648;
-		if ( usize<285 )
+// 		usize=sz.width()-648;
+// 		if ( usize<285 )
 			usize=285;
-		if ( usize>300 )
-			usize=300;
+// 		if ( usize>300 )
+// 			usize=300;
 	}
 
 	if ( users->width() !=usize )
