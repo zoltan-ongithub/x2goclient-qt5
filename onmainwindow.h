@@ -214,6 +214,7 @@ class ONMainWindow : public QMainWindow
 		bool drawMenu;
 		bool extStarted;
 		bool startMaximized;
+		bool startHidden;
 		bool defaultUseSound;
 		bool cardStarted;
 		bool defaultSetKbd;
@@ -245,7 +246,7 @@ class ONMainWindow : public QMainWindow
 		QPushButton* bSusp;
 		QPushButton* sbExp;
 		QPushButton* bTerm;
-		QPushButton* bNew;
+		QPushButton* bNew;		
 
 		QLabel* selectSessionLabel;
 		QTreeView* sessTv;
@@ -352,16 +353,14 @@ class ONMainWindow : public QMainWindow
 		void loadSettings();
 		void showPass ( UserButton* user );
 		void clean();
-// 		void createTmpXconf ( QString );
-// 		void nxrun ( QString );
-// 		void startDirect ( QFile& );
-// 		int numOfSessions ( QString );
+ 		bool defaultSession;
+ 		QString defaultSessionName;
+		QString defaultUserName;
+		bool defaultUser;
 		SessionButton* createBut ( const QString& id );
 		void placeButtons();
-// 		QString getFreeServer ( QString server=QString() );
 		QString getKdeIconsPath();
 		QString findTheme ( QString theme );
-// 		void findSession();
 		bool initLdapSession ( bool showBox=true );
 		bool startSession ( const QString& id );
 		x2goSession getSessionFromString ( const QString& string );

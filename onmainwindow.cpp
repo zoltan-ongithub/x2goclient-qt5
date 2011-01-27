@@ -133,11 +133,11 @@ void x2goSession::operator = ( const x2goSession& s )
 ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
 {
 
-	hide();
 	drawMenu=true;
 	usePGPCard=false;
 	extLogin=false;
 	startMaximized=false;
+	startHidden=false;
 	defaultUseSound=true;
 	defaultSetKbd=false;
 	useEsd=false;
@@ -148,6 +148,8 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
 	cardStarted=false;
 	cardReady=false;
 	miniMode=false;
+	defaultSession=false;
+	defaultUser=false;
 	defaultWidth=800;
 	defaultHeight=600;
 	defaultPack="16m-jpeg";
@@ -520,6 +522,10 @@ QString ONMainWindow::getKdeIconsPath()
 
 void ONMainWindow::slot_resize ( const QSize sz )
 {
+	if ( startHidden )
+	{
+		return;
+	}
 	int height;
 	int usize;
 	height=sz.height();
@@ -580,12 +586,11 @@ void ONMainWindow::slot_resize ( const QSize sz )
 	uname->setMinimumWidth ( rwidth );
 	u->move ( upos,height/2 );
 	uname->move ( u->pos().x() +u->width() +5,u->pos().y() );
-
 }
 
 void ONMainWindow::closeEvent ( QCloseEvent* event )
 {
-	if ( !startMaximized )
+	if ( !startMaximized && !startHidden )
 	{
 #ifndef WINDOWS
 		QSettings st ( QDir::homePath() +"/.x2goclient/sizes",QSettings::NativeFormat );
@@ -1146,13 +1151,27 @@ void ONMainWindow::readUsers()
 	delete ld;
 	ld=0;
 	displayUsers();
+	if ( defaultUser )
+	{
+		defaultUser=false;
+		for ( int i=0;i<userList.size();++i )
+		{
+			if ( userList[i].uid ==defaultUserName )
+			{
+				uname->setText ( defaultUserName );
+				slotUnameChanged ( defaultUserName );
+				QTimer::singleShot ( 100, this, SLOT ( slotUnameEntered() ) );
+				break;
+			}
+		}
+	}
 #endif
 }
 
 
 void ONMainWindow::slot_config()
 {
-	if ( !startMaximized )
+	if ( !startMaximized && !startHidden)
 	{
 #ifndef WINDOWS
 		QSettings st ( QDir::homePath() +"/.x2goclient/sizes",QSettings::NativeFormat );
@@ -1245,6 +1264,21 @@ void ONMainWindow::slot_readSessions()
 	uname->setText ( "" );
 	disconnect ( uname,SIGNAL ( textEdited ( const QString& ) ),this,SLOT ( slotUnameChanged ( const QString& ) ) );
 	connect ( uname,SIGNAL ( textEdited ( const QString& ) ),this,SLOT ( slotSnameChanged ( const QString& ) ) );
+	if ( defaultSession )
+	{
+		defaultSession=false;
+		for ( int i=0;i<sessions.size();++i )
+		{
+			if ( sessions[i]->name() ==defaultSessionName )
+			{
+				uname->setText ( defaultSessionName );
+				QTimer::singleShot ( 100, this, SLOT ( slotUnameEntered() ) );
+				slotSnameChanged ( defaultSessionName );
+				break;
+			}
+		}
+
+	}
 }
 
 
@@ -1302,6 +1336,7 @@ void ONMainWindow::placeButtons()
 		else
 			uframe->setFixedHeight ( sessions.size() *155+ ( sessions.size()-1 ) *20 );
 	}
+
 }
 
 void ONMainWindow::slotDeleteButton ( SessionButton * bt )
@@ -1845,10 +1880,33 @@ void ONMainWindow::slot_listSessions ( bool result,QString output,sshProcess* pr
 		        &&s.command == selectedCommand )
 			resumeSession ( s );
 		else
-			selectSession ( sessions );
+		{
+			if ( startHidden )
+				startNewSession();
+			else
+				selectSession ( sessions );
+		}
 	}
 	else
-		selectSession ( sessions );
+	{
+		if ( !startHidden )
+			selectSession ( sessions );
+		else
+		{
+			for ( int i=0;i<sessions.size();++i )
+			{
+				x2goSession s=getSessionFromString ( sessions[i] );
+				QDesktopWidget wd;
+				if ( s.status=="S" && isColorDepthOk ( wd.depth(),s.colorDepth )
+				        &&s.command == selectedCommand )
+				{
+					resumeSession ( s );
+					return;
+				}
+			}
+			startNewSession();
+		}
+	}
 }
 
 
@@ -3078,6 +3136,8 @@ void ONMainWindow::slot_proxyFinished ( int,QProcess::ExitStatus )
 	nxproxy=0l;
 	if ( !usePGPCard )
 		check_cmd_status();
+	if ( startHidden )
+		close();
 
 	if ( readExportsFrom!=QString::null )
 	{
@@ -3702,6 +3762,11 @@ bool ONMainWindow::parseParam ( QString param )
 		startMaximized=true;
 		return true;
 	}
+	if ( param=="--hide" )
+	{
+		startHidden=true;
+		return true;
+	}
 	if ( param=="--esd" )
 	{
 		useEsd=true;
@@ -3747,6 +3812,18 @@ bool ONMainWindow::parseParam ( QString param )
 	if ( setting=="--kbd-layout" )
 	{
 		defaultKbdType=value;
+		return true;
+	}
+	if ( setting=="--session" )
+	{
+		defaultSession=true;
+		defaultSessionName=value;
+		return true;
+	}
+	if ( setting=="--user" )
+	{
+		defaultUser=true;
+		defaultUserName=value;
 		return true;
 	}
 	if ( setting=="--kbd-type" )
@@ -3999,7 +4076,8 @@ void ONMainWindow::showHelp()
 	        --help-pack                      Print availabel pack methods\n\
 	        --no-menu                        Hide menu bar\n\
 	        --maximize                       Start maximized\n\
-	        --pgp-card 			     Use openPGP Card authentification\n\
+	        --hide                           Start hidden\n\
+	        --pgp-card 			 Use openPGP Card authentification\n\
 	        --add-to-known-hosts             Add RSA key fingerprint to .ssh/known_hosts \n\
 	        if authenticity of server can't be established\n\
 	        --ldap=<host:port:dn>            Start with LDAP Support. Example:\n\
@@ -4010,7 +4088,7 @@ void ONMainWindow::showHelp()
 	        --client-ssh-port=<port>         local ssh port (for fs export), default value 22\n\
 	        --command=<cmd>                  Set default command, default value 'KDE'\n\
 	        --session=<session>              Start session 'session'\n\
-	        --user=<username>                    In LDAP mode, select user 'username'\n\
+	        --user=<username>                In LDAP mode, select user 'username'\n\
 	        --sound=<0|1>                    Enable sound, default value '1'\n\
 	        --esd                            Use ESD instead ARTS\n\
 	        --geomerty=<W>x<H>|fullscreen    Set default geometry, default value '800x600'\n\
@@ -4195,6 +4273,11 @@ void ONMainWindow::slot_listAllSessions ( bool result,QString output,sshProcess*
 
 void ONMainWindow::slot_resize()
 {
+	if ( startHidden )
+	{
+		hide();
+		return;
+	}
 	if ( !startMaximized && !mwMax )
 	{
 		resize ( mwSize );
@@ -4816,7 +4899,7 @@ void ONMainWindow::slot_rereadUsers()
 		ld=0;
 	}
 
-	
+
 	if ( ! initLdapSession ( false ) )
 	{
 		return;
