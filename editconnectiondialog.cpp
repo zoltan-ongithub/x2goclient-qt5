@@ -675,7 +675,7 @@ void EditConnectionDialog::readConfig()
 		slot_sndSysSelected ( ARTS );
 	}
 #ifdef	Q_OS_DARWIN
-	sndsys=esd;
+	sndsys="esd";
 #endif
 	if ( sndsys=="esd" )
 	{

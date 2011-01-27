@@ -1,3 +1,9 @@
+x2goclient (2.99-2) unstable; urgency=low
+
+  * fixed ssh key in path with <space>
+
+ -- Oleksandr Shneyder <oleksandr.shneyder@treuchtlingen.de>  Mon, 26 Jan 2009 09:15:46 +0100
+
 x2goclient (2.99-1) unstable; urgency=low
 
   * PulseAudio support

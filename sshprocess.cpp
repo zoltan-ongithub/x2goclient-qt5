@@ -196,11 +196,10 @@ void sshProcess::startNormal ( bool accept )
 		printKey ( accept );
 #ifndef  WINDOWS
 
-		start ( setsid() +" ssh "+cmX+"-i "+key+" -p "+sshPort+" "+user+"@"+host+" \""+command+"\"" );
+		start ( setsid() +" ssh "+cmX+"-i \""+key+"\" -p "+sshPort+" "+user+"@"+host+" \""+command+"\"" );
 #else
+		start ( "ssh "+cmX+"-i \""+key+"\" -p "+sshPort+" "+user+"@"+host+" \""+command+"\"" );
 #endif
-
-		start ( "ssh "+cmX+"-i "+key+" -p "+sshPort+" "+user+"@"+host+" \""+command+"\"" );
 	}
 	else
 	{
@@ -347,10 +346,10 @@ void sshProcess::startTunnel ( QString h,QString lp,QString rp,bool rev,bool acc
 		printKey ( accept );
 #ifndef  WINDOWS
 
-		start ( setsid() +" ssh -c blowfish -v -i "+key+" -p "+sshPort+" "+user+"@"+host+params );
+		start ( setsid() +" ssh -c blowfish -v -i \""+key+"\" -p "+sshPort+" "+user+"@"+host+params );
 #else
 
-		start ( "ssh -c blowfish -v -i "+key+" -p "+sshPort+" "+user+"@"+host+params );
+		start ( "ssh -c blowfish -v -i \""+key+"\" -p "+sshPort+" "+user+"@"+host+params );
 #endif
 
 	}
