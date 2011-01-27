@@ -16,7 +16,9 @@
 #include <QMessageBox>
 #include <QTemporaryFile>
 #include <QApplication>
-
+#include <QLocalServer>
+#include <QLocalSocket>
+#include <QTimer>
 sshProcess::sshProcess ( QObject* parent,const QString& user,
                          const QString& host,const QString& pt,
                          const QString& cmd,const QString& pass,
@@ -29,6 +31,8 @@ sshProcess::sshProcess ( QObject* parent,const QString& user,
 	isCopy=false;
 	fwX=false;
 	sshPort=pt;
+	localSocket=0l;
+	serverSocket=0l;
 	askpass=root+"/ssh";
 	QDir dr ( askpass );
 	if ( !dr.exists() )
@@ -38,40 +42,39 @@ sshProcess::sshProcess ( QObject* parent,const QString& user,
 			message+=askpass;
 			throw message;
 		}
-	askpass+="/askpass";
+	askpass+="/socaskpass";
 	QTemporaryFile fl ( askpass );
 	fl.open();
 	askpass=fl.fileName();
 	fl.setAutoRemove ( false );
 	fl.close();
+	QFile::remove ( askpass );
 	this->user=user;
 	this->host=host;
 	command=cmd;
 	this->pass=pass;
 	this->key=key;
 	autoAccept=acc;
-	QStringList env = QProcess::systemEnvironment();
-	for ( int i=env.count()-1;i>=0;--i ) //clear gpg variables
-	{
-		if ( ( env[i].indexOf ( "GPG_AGENT_INFO" ) !=-1 ) ||
-		        ( env[i].indexOf ( "SSH_AUTH_SOCK" ) !=-1 ) ||
-		        ( env[i].indexOf ( "SSH_AGENT_PID" ) !=-1 ) )
-		{
-			env.removeAt ( i );
-		}
-	}
-#ifndef WINDOWS
-	env.insert ( 0, "SSH_ASKPASS="+askpass );
+	env = QProcess::systemEnvironment();
+	cleanEnv();
+#ifdef Q_OS_DARWIN
+	//run x2goclient from bundle
+	QDir dir ( QApplication::applicationDirPath() );
+	dir.cdUp();
+	dir.cd ( "MacOS" );
+	QString askpass_var="SSH_ASKPASS=";
+	askpass_var+=dir.absolutePath() +"/x2goclient";
+	env.insert ( 0, askpass_var);
 #else
-
-	env.insert ( 0, "SSH_ASKPASS=winaskpass" );
-	env.insert ( 0, "SSH_PASSFILE="+askpass );
+	env.insert ( 0, "SSH_ASKPASS=x2goclient" );
+#endif
+	env.insert ( 0, "X2GO_PSOCKET="+askpass );
+#ifdef WINDOWS
 	env.insert ( 0, "DISPLAY=localhost:0" );
 	//don't care if real display is not 0
 	//we need it only to start winaskpass
 	//which is not X application
 #endif
-
 	setEnvironment ( env );
 }
 
@@ -84,6 +87,12 @@ sshProcess::~sshProcess()
 	( askpass+".log" );
 	if ( state() ==QProcess::Running )
 		kill();
+	if ( serverSocket )
+	{
+		serverSocket->close();
+		delete serverSocket;
+	}
+
 }
 
 
@@ -235,78 +244,36 @@ void sshProcess::startNormal ( bool accept )
 
 void sshProcess::printPass ( bool accept )
 {
-	QFile fl ( askpass );
-	if ( !fl.open ( QIODevice::WriteOnly | QIODevice::Text ) )
+	if ( serverSocket )
+		delete serverSocket;
+	serverSocket=new QLocalServer();
+	if ( serverSocket->listen ( askpass ) )
 	{
-		QString message=tr ( "Unable to write: " ) +askpass;
-		throw message;
+		QFile fl ( askpass );
+		fl.setPermissions (
+		    QFile::ReadOwner|QFile::WriteOwner );
+		cleanEnv();
+		passcookie=cookie();
+		env.insert ( 0, "X2GO_PCOOKIE="+passcookie );
+		if ( accept )
+			env.insert ( 0, "X2GO_PACCEPT=yes" );
+		else
+			env.insert ( 0, "X2GO_PACCEPT=no" );
+		setEnvironment ( env );
+		connect ( serverSocket,SIGNAL ( newConnection() ),
+		          this,SLOT ( slot_pass_connection() ) );
 	}
-	fl.setPermissions (
-	    QFile::ReadOwner|QFile::WriteOwner|QFile::ExeOwner );
-	QTextStream out ( &fl );
-#ifndef WINDOWS
-
-	out<<"#!/usr/bin/perl\n\
-	$param=shift;\n\
-	open (F, \">"<<askpass<<".log\");\
-	print F $param;\
-	close (F);\
-	if($param =~ m/RSA key/)\
-{";
-	if ( accept )
-		out<<"print \"yes\\n\";";
-	else
-		out<<"print \"no\\n\";";
-	out<<"}\
-	printf(\"";
-	for(int i=0;i<pass.length();++i)
-	{
-		out<<"\%c";
-	}
-	out<<"\\n\"";
-	for(int i=0;i<pass.length();++i)
-	{
-		out<<","<<(int)pass.toAscii()[i];
-	}
-	out<<");";
-#else
-
-	out<<accept<<" "<<pass;
-#endif
-
-	fl.close();
 }
 
 void sshProcess::printKey ( bool accept )
 {
-	QFile fl ( askpass );
-	if ( !fl.open ( QIODevice::WriteOnly | QIODevice::Text ) )
-	{
-		QString message=tr ( "Unable to write: " ) +askpass;
-		throw message;
-	}
-	fl.setPermissions (
-	    QFile::ReadOwner|QFile::WriteOwner|QFile::ExeOwner );
-	QTextStream out ( &fl );
-#ifndef WINDOWS
-
-	out<<"#!/usr/bin/perl\n\
-	$param=shift;\n\
-	open (F, \">"<<askpass<<".log\");\
-	print F $param;\
-	close (F);\
-	if($param =~ m/RSA key/)\
-{";
+	cleanEnv();
+	env.insert ( 0, "X2GO_PCOOKIE=X2GO_RSA_DSA_KEY_USED" );
 	if ( accept )
-		out<<"print \"yes\\n\";}";
+		env.insert ( 0, "X2GO_PACCEPT=yes" );
 	else
-		out<<"print \"no\\n\";}";
-#else
-
-	out<<accept<<" null";
-#endif
-
-	fl.close();
+		env.insert ( 0, "X2GO_PACCEPT=no" );
+	setEnvironment ( env );
 }
 
 QString sshProcess::getResponce()
@@ -322,17 +289,14 @@ QString sshProcess::getResponce()
 
 void sshProcess::hidePass()
 {
-	QFile fl ( askpass );
-	if ( !fl.open ( QIODevice::WriteOnly | QIODevice::Text ) )
+	if ( serverSocket )
 	{
-		return;
+		serverSocket->close();
+		delete serverSocket;
+		serverSocket=0l;
 	}
-	fl.setPermissions (
-	    QFile::ReadOwner|QFile::WriteOwner|QFile::ExeOwner );
-	QTextStream out ( &fl );
-	for ( int i=0;i<1024;++i )
-		out<<"X";
-	fl.close();
+	if ( QFile::exists ( askpass ) )
+		QFile::remove ( askpass );
 }
 
 void sshProcess::startTunnel ( QString h,QString lp,
@@ -479,4 +443,64 @@ void sshProcess::setErrorString ( const QString& str )
 {
 	if ( sudoErr )
 		errorString=str;
+}
+
+QString sshProcess::cookie()
+{
+	QString res;
+	for ( uint i=0;i<16;++i )
+	{
+		QString hex;
+		hex.sprintf ( "%02X",qrand() );
+		res+=hex;
+	}
+	return res;
+}
+
+
+void sshProcess::cleanEnv()
+{
+	for ( int i=env.count()-1;i>=0;--i )
+	{
+		if ( ( env[i].indexOf ( "X2GO_PCOOKIE" ) !=-1 ) ||
+		        ( env[i].indexOf ( "X2GO_PACCEPT" ) !=-1 ) ||
+		        ( env[i].indexOf ( "GPG_AGENT_INFO" ) !=-1 ) ||
+		        ( env[i].indexOf ( "SSH_AUTH_SOCK" ) !=-1 ) ||
+		        ( env[i].indexOf ( "SSH_AGENT_PID" ) !=-1 ) )
+		{
+			env.removeAt ( i );
+		}
+	}
+}
+
+void sshProcess::slot_pass_connection()
+{
+	if ( localSocket )
+		delete localSocket;
+	localSocket=serverSocket->nextPendingConnection ();
+	if ( localSocket )
+	{
+		connect ( localSocket,SIGNAL ( readyRead() ),this,
+		          SLOT ( slot_read_cookie_from_socket() ) );
+	}
+}
+
+void sshProcess::slot_read_cookie_from_socket()
+{
+	char buffer[140];
+	int read=localSocket->read ( buffer,139 );
+	if ( read<=0 )
+	{
+		QString message="Cannot get cookie from askpass program";
+		throw message;
+	}
+	buffer[read]=0;
+	QString cookie ( buffer );
+	if ( cookie!=passcookie )
+	{
+		QString message="Got wrong cookie from askpass program";
+		throw message;
+	}
+	localSocket->write ( pass.toAscii().data(),pass.toAscii().length() );
+	QTimer::singleShot ( 100, this, SLOT ( hidePass() ) );
 }

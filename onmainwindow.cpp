@@ -164,8 +164,8 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
 #ifdef WINDOWS
 	pulseServer=0l;
 #endif
-
-
+	
+	cleanAskPass();
 	setWindowTitle ( tr ( "X2Go client" ) );
 	ld=0;
 	tunnel=0l;
@@ -6682,3 +6682,16 @@ void ONMainWindow::cleanPrintSpool()
 	}
 }
 
+
+void ONMainWindow::cleanAskPass()
+{
+	QString path=QDir::homePath() +"/.x2go/ssh/";
+	QDir dir (path);
+	QStringList list = dir.entryList ( QDir::Files );
+	for ( int i=0;i<list.size();++i )
+	{
+		if ( list[i].startsWith ( "askpass" ) )
+			QFile::remove(path+list[i]);
+	}
+
+}

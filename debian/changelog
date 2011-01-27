@@ -1,3 +1,9 @@
+x2goclient (3.01-2) unstable; urgency=low
+
+  * Use x2goclient as SSH_ASKPASS program
+
+ -- Oleksandr Shneyder <oleksandr.shneyder@obviously-nice.de>  Fri, 31 Jul 2009 07:49:02 +0200
+
 x2goclient (3.01-1) unstable; urgency=low
 
   * create desktop icon

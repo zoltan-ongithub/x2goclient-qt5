@@ -30,9 +30,86 @@
 #include <onmainwindow.h>
 #include <QPlastiqueStyle>
 #include <QMessageBox>
+#include <iostream>
+#include <QFile>
+#include <QLocalSocket>
+#include "x2gologdebug.h"
 using namespace std;
+void askpass ( const QString& param, const QString& accept,
+               const QString& cookie, const QString& socketName )
+{
+	QFile fl ( socketName+".log" );
+	if ( !fl.open ( QIODevice::WriteOnly | QIODevice::Text ) )
+	{
+		QString message="Unable to write: " +socketName+".log";
+		cout<<message.toAscii().data() <<endl;
+		exit ( -1 );
+	}
+	fl.setPermissions (
+	    QFile::ReadOwner|QFile::WriteOwner );
+	QTextStream out ( &fl );
+	out<<param;
+	fl.close();
+	if ( param.indexOf ( "RSA key" ) !=-1 )
+	{
+		cout<<accept.toAscii().data() <<endl;
+		return;
+	}
+	if ( cookie=="X2GO_RSA_DSA_KEY_USED" )
+		return;
+	QLocalSocket sock;
+	sock.connectToServer ( socketName );
+	if ( !sock.waitForConnected ( 3000 ) )
+	{
+		QString message="Unable to connect: " +socketName;
+		cout<<message.toAscii().data() <<endl;
+		cerr<<message.toAscii().data() <<endl;
+		exit ( -1 );
+	}
+	sock.write ( cookie.toAscii().data(),cookie.toAscii().length() );
+	if ( !sock.waitForReadyRead() )
+	{
+		cout<<"Cannot read password from x2goclient"<<endl;
+		cerr<<"Cannot read password from x2goclient"<<endl;
+		exit ( -1 );
+	}
+	char buffer[256];
+	int read=sock.read ( buffer,255 );
+	if ( read<=0 )
+	{
+		cout<<"Cannot read password from x2goclient"<<endl;
+		cerr<<"Cannot read password from x2goclient"<<endl;
+		exit ( -1 );
+	}
+	buffer[read]=0;
+	cout<<buffer<<endl;
+}
+
 int main ( int argc, char *argv[] )
 {
+	QString envaccept,envcoockie,envsocket;
+	QStringList env = QProcess::systemEnvironment();
+	for ( int i=env.count()-1;i>=0;--i )
+	{
+		if ( env[i].indexOf ( "X2GO_PCOOKIE" ) !=-1 )
+		{
+			envcoockie=env[i].split ( "=" ) [1];
+		}
+		if ( env[i].indexOf ( "X2GO_PACCEPT" ) !=-1 )
+		{
+			envaccept=env[i].split ( "=" ) [1];
+		}
+		if ( env[i].indexOf ( "X2GO_PSOCKET" ) !=-1 )
+		{
+			envsocket=env[i].split ( "=" ) [1];
+		}
+	}
+	if ( envaccept.length() >0 && envcoockie.length() >0 )
+	{
+		askpass ( argv[1],envaccept,envcoockie,envsocket );
+		return 0;
+	}
+
 	QApplication app ( argc,argv );
 	QTranslator x2goclientTranslator;
 	QString filename=QString ( ":/x2goclient_%1" ).arg (
@@ -64,7 +141,6 @@ int main ( int argc, char *argv[] )
 	app.setStyle ( new QPlastiqueStyle() );
 #endif
 #endif
-
 	QStringList args;
 	if ( argc > 1 )
 		args=app.arguments();

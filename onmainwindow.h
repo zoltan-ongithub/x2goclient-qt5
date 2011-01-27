@@ -519,7 +519,7 @@ class ONMainWindow : public QMainWindow
 		void slot_checkAgentProcess();
 		void slot_execXmodmap();
 		void slot_sudoErr ( QString errstr, sshProcess* pr );
-    void slotCreateSessionIcon();
+		void slotCreateSessionIcon();
 	private:
 		void cartReady();
 		void addToAppNames ( QString intName, QString transName );
@@ -529,6 +529,7 @@ class ONMainWindow : public QMainWindow
 		int startSshFsTunnel();
 		void startX2goMount();
 		void cleanPrintSpool();
+		void cleanAskPass();
 #ifdef WINDOWS
 		QString transform2cygwinPath ( const QString& winPath,
 		                               bool trunc=false );

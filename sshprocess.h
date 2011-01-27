@@ -18,6 +18,8 @@
 /**
 	@author Oleksandr Shneyder <oleksandr.shneyder@obviously-nice.de>
 */
+class QLocalServer;
+class QLocalSocket;
 class sshProcess : public QProcess
 {
 		Q_OBJECT
@@ -30,7 +32,6 @@ class sshProcess : public QProcess
 		virtual ~sshProcess();
 		void startNormal ( bool accept=false );
 		QString getResponce();
-		void hidePass();
 		void startTunnel ( QString host,QString localPort,QString remotePort,
 		                   bool reverse=false,bool accept=false );
 		void start_cp ( QString src, QString dst, bool accept=false );
@@ -47,6 +48,9 @@ class sshProcess : public QProcess
 		QString key;
 		QString errorString;
 		QString outputString;
+		QString passcookie;
+		QLocalServer* serverSocket;
+		QLocalSocket* localSocket;
 		bool needPass;
 		bool autoAccept;
 		bool isTunnel;
@@ -57,6 +61,7 @@ class sshProcess : public QProcess
 		QString source;
 		QString destination;
 		QString remotePort;
+		QStringList env;
 		bool reverse;
 		bool fwX;
 		bool sudoErr;
@@ -67,9 +72,14 @@ class sshProcess : public QProcess
 		void slot_finished ( int, QProcess::ExitStatus );
 		void slot_stderr();
 		void slot_stdout();
+		void hidePass();
+		void slot_pass_connection();
+		void slot_read_cookie_from_socket();
 	private:
 		void printPass ( bool accept=false );
 		void printKey ( bool accept=false );
+		QString cookie();
+		void cleanEnv();
 	signals:
 		void sshFinished ( bool,QString,sshProcess* );
 		void sudoConfigError ( QString,sshProcess* );
