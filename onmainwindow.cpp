@@ -911,6 +911,7 @@ void ONMainWindow::slotPassEnter()
 
 	list<string> attr;
 	attr.push_back ( "cn" );
+	attr.push_back ( "serialNumber" );
 	list<LDAPStringEntry> res;
 	QString searchBase="ou=Servers,ou=ON,"+ldapDn;
 	try
@@ -944,6 +945,8 @@ void ONMainWindow::slotPassEnter()
 	{
 		serv server;
 		server.name=LDAPSession::getStringAttrValues ( *it,"cn" ).front().c_str();
+		QString sFactor=LDAPSession::getStringAttrValues ( *it,"serialNumber" ).front().c_str();
+		server.factor=sFactor.toFloat();
 		server.sess=0;
 		server.connOk=true;
 		x2goServers.append ( server );
@@ -1533,7 +1536,7 @@ void ONMainWindow::slotSelectedFromList ( SessionButton* session )
 	QString command=st.value ( sid+"/command",
 	                           ( QVariant ) tr ( "KDE" ) ).toString();
 	selectedCommand=command;
-	command=transAppName(command);
+	command=transAppName ( command );
 
 	QString server=st.value ( sid+"/host", ( QVariant ) QString::null ).toString();
 	QString userName=st.value ( sid+"/user", ( QVariant ) QString::null ).toString();
@@ -1819,8 +1822,8 @@ void ONMainWindow::slot_listSessions ( bool result,QString output,sshProcess* pr
 	{
 		x2goSession s=getSessionFromString ( sessions[0] );
 		QDesktopWidget wd;
-		if ( s.status=="S" && isColorDepthOk ( wd.depth(),s.colorDepth ) 
-		   &&s.command == selectedCommand)
+		if ( s.status=="S" && isColorDepthOk ( wd.depth(),s.colorDepth )
+		        &&s.command == selectedCommand )
 			resumeSession ( s );
 		else
 			selectSession ( sessions );
@@ -1850,18 +1853,18 @@ x2goSession ONMainWindow::getSessionFromString ( const QString& string )
 		s.colorDepth=s.sessionId.split ( "_dp" ) [1].toInt();
 	}
 	s.sessionType=x2goSession::DESKTOP;
-	s.command=tr("unknown");
-	if( s.sessionId.indexOf ( "_st" ) !=-1 )
+	s.command=tr ( "unknown" );
+	if ( s.sessionId.indexOf ( "_st" ) !=-1 )
 	{
-		QString cmdinfo=s.sessionId.split ( "_st" )[1];
+		QString cmdinfo=s.sessionId.split ( "_st" ) [1];
 		cmdinfo=cmdinfo.split ( "_" ) [0];
 		QChar st=cmdinfo[0];
-		if(st=='R')
+		if ( st=='R' )
 			s.sessionType=x2goSession::ROOTLESS;
-		if(st=='S')
+		if ( st=='S' )
 			s.sessionType=x2goSession::SHADOW;
-		QString command=cmdinfo.mid(1);
-		if(command.length()>0)
+		QString command=cmdinfo.mid ( 1 );
+		if ( command.length() >0 )
 			s.command=command;
 	}
 	return s;
@@ -2347,14 +2350,14 @@ void ONMainWindow::selectSession ( const QStringList& sessions )
 
 	QStandardItemModel* model=new QStandardItemModel ( sessions.size(), 8 );
 
-	model->setHeaderData ( 0,Qt::Horizontal,QVariant ( ( QString ) tr ( "Display" ) ) );
-	model->setHeaderData ( 1,Qt::Horizontal,QVariant ( ( QString ) tr ( "Status" ) ) );
-	model->setHeaderData ( 2,Qt::Horizontal,QVariant ( ( QString ) tr ( "Command" ) ) );
-	model->setHeaderData ( 3,Qt::Horizontal,QVariant ( ( QString ) tr ( "Type" ) ) );
-	model->setHeaderData ( 4,Qt::Horizontal,QVariant ( ( QString ) tr ( "Server" ) ) );
-	model->setHeaderData ( 5,Qt::Horizontal,QVariant ( ( QString ) tr ( "Creation Time" ) ) );
-	model->setHeaderData ( 6,Qt::Horizontal,QVariant ( ( QString ) tr ( "Client IP" ) ) );
-	model->setHeaderData ( 7,Qt::Horizontal,QVariant ( ( QString ) tr ( "Session ID" ) ) );
+	model->setHeaderData ( S_DISPLAY,Qt::Horizontal,QVariant ( ( QString ) tr ( "Display" ) ) );
+	model->setHeaderData ( S_STATUS,Qt::Horizontal,QVariant ( ( QString ) tr ( "Status" ) ) );
+	model->setHeaderData ( S_COMMAND,Qt::Horizontal,QVariant ( ( QString ) tr ( "Command" ) ) );
+	model->setHeaderData ( S_TYPE,Qt::Horizontal,QVariant ( ( QString ) tr ( "Type" ) ) );
+	model->setHeaderData ( S_SERVER,Qt::Horizontal,QVariant ( ( QString ) tr ( "Server" ) ) );
+	model->setHeaderData ( S_CRTIME,Qt::Horizontal,QVariant ( ( QString ) tr ( "Creation Time" ) ) );
+	model->setHeaderData ( S_IP,Qt::Horizontal,QVariant ( ( QString ) tr ( "Client IP" ) ) );
+	model->setHeaderData ( S_ID,Qt::Horizontal,QVariant ( ( QString ) tr ( "Session ID" ) ) );
 	sessTv->setModel ( ( QAbstractItemModel* ) model );
 	if ( !miniMode )
 	{
@@ -2380,34 +2383,34 @@ void ONMainWindow::selectSession ( const QStringList& sessions )
 		QStandardItem *item;
 
 		item= new QStandardItem ( s.display );
-		model->setItem ( row,0,item );
+		model->setItem ( row,S_DISPLAY,item );
 
 		if ( s.status=="R" )
 			item= new QStandardItem ( tr ( "running" ) );
 		else
 			item= new QStandardItem ( tr ( "suspended" ) );
-		model->setItem ( row,1,item );
-		
-		item= new QStandardItem ( transAppName(s.command) );
-		model->setItem ( row,2,item );
-		
-		QString type=tr("Desktop");
-		if(s.sessionType==x2goSession::ROOTLESS)
-			type=tr("single application");
-		if(s.sessionType==x2goSession::SHADOW)
-			type=tr("shadow session");
-		
+		model->setItem ( row,S_STATUS,item );
+
+		item= new QStandardItem ( transAppName ( s.command ) );
+		model->setItem ( row,S_COMMAND,item );
+
+		QString type=tr ( "Desktop" );
+		if ( s.sessionType==x2goSession::ROOTLESS )
+			type=tr ( "single application" );
+		if ( s.sessionType==x2goSession::SHADOW )
+			type=tr ( "shadow session" );
+
 		item= new QStandardItem ( type );
-		model->setItem ( row,3,item );
-		
+		model->setItem ( row,S_TYPE,item );
+
 		item= new QStandardItem ( s.crTime );
-		model->setItem ( row,5,item );
+		model->setItem ( row,S_CRTIME,item );
 		item= new QStandardItem ( s.server );
-		model->setItem ( row,4,item );
+		model->setItem ( row,S_SERVER,item );
 		item= new QStandardItem ( s.clientIp );
-		model->setItem ( row,6,item );
+		model->setItem ( row,S_IP,item );
 		item= new QStandardItem ( s.sessionId );
-		model->setItem ( row,7,item );
+		model->setItem ( row,S_ID,item );
 		for ( int j=0;j<8;++j )
 		{
 			QString txt=model->index ( row,j ).data().toString();
@@ -2477,7 +2480,7 @@ void ONMainWindow::slot_showSelectSessionWidgets()
 
 void ONMainWindow::slot_activated ( const QModelIndex& index )
 {
-	QString status=sessTv->model()->index ( index.row(),1 ).data().toString();
+	QString status=sessTv->model()->index ( index.row(),S_STATUS ).data().toString();
 	if ( status==tr ( "running" ) )
 	{
 		bSusp->setEnabled ( true );
@@ -2536,8 +2539,8 @@ void ONMainWindow::slotSuspendSess()
 	selectSessionDlg->setEnabled ( false );
 
 
-	QString sessId=sessTv->model()->index ( sessTv->currentIndex().row(),5 ).data().toString();
-	QString host=sessTv->model()->index ( sessTv->currentIndex().row(),2 ).data().toString();
+	QString sessId=sessTv->model()->index ( sessTv->currentIndex().row(),S_ID ).data().toString();
+	QString host=sessTv->model()->index ( sessTv->currentIndex().row(),S_SERVER ).data().toString();
 	if ( !useLdap )
 	{
 #ifndef WINDOWS
@@ -2610,7 +2613,7 @@ void ONMainWindow::slot_retSuspSess ( bool result, QString output,sshProcess* pr
 		if ( selectSessionDlg )
 		{
 			( ( QStandardItemModel* ) ( sessTv->model() ) )->item ( sessTv->currentIndex().row(),
-			        1 )->setData ( QVariant ( ( QString ) tr ( "suspended" ) ),Qt::DisplayRole );
+			        S_STATUS )->setData ( QVariant ( ( QString ) tr ( "suspended" ) ),Qt::DisplayRole );
 			bSusp->setEnabled ( false );
 			sOk->setEnabled ( true );
 
@@ -2635,9 +2638,9 @@ void ONMainWindow::slotTermSess()
 
 
 	QString sessId=sessTv->model()->index ( sessTv->currentIndex().row(),
-	                                        5 ).data().toString();
+	                                        S_ID ).data().toString();
 	QString host=sessTv->model()->index ( sessTv->currentIndex().row(),
-	                                      2 ).data().toString();
+	                                      S_SERVER ).data().toString();
 
 	if ( !useLdap )
 	{
@@ -2862,7 +2865,7 @@ void ONMainWindow::slot_retResumeSess ( bool result, QString output,sshProcess* 
 
 x2goSession ONMainWindow::getSelectedSession()
 {
-	QString sessId=sessTv->model()->index ( sessTv->currentIndex().row(),7 ).data().toString();
+	QString sessId=sessTv->model()->index ( sessTv->currentIndex().row(),S_ID ).data().toString();
 	for ( int i=0;i<selectedSessions.size();++i )
 	{
 		if ( selectedSessions[i].sessionId==sessId )
@@ -2924,6 +2927,7 @@ void ONMainWindow::slot_tunnelOk()
 #endif
 
 	file.close();
+	xmodExecuted=false;
 	nxproxy=new QProcess;
 	QStringList env = QProcess::systemEnvironment();
 	QString x2golibpath="/usr/lib/x2go";
@@ -3123,6 +3127,16 @@ void ONMainWindow::slot_proxyStderr()
 			runCommand();
 			newSession=false;
 		}
+#ifdef 	Q_WS_HILDON
+		else
+		{
+			if ( !xmodExecuted )
+			{
+				xmodExecuted=true;
+				QTimer::singleShot ( 2000, this, SLOT ( slot_execXmodmap() ) );
+			}
+		}
+#endif
 	}
 	if ( stInfo->toPlainText().indexOf ( tr ( "Connection timeout, aborting" ) ) !=-1 )
 		setStatStatus ( tr ( "aborting" ) );
@@ -3532,8 +3546,8 @@ void ONMainWindow::runCommand()
 	{
 		QString sid=lastSession->id();
 		command=st.value ( sid+"/command", ( QVariant ) tr ( "KDE" ) ).toString();
-		bool rootless=st.value ( sid+"/rootless", ( QVariant )false).toBool();
-		if(rootless)
+		bool rootless=st.value ( sid+"/rootless", ( QVariant ) false ).toBool();
+		if ( rootless )
 			sessionType="R";
 	}
 
@@ -3617,6 +3631,10 @@ void ONMainWindow::runCommand()
 		slot_retRunCommand ( false,message,0 );
 		return;
 	}
+#ifdef Q_WS_HILDON
+	//wait 5 seconds and execute xkbcomp
+	QTimer::singleShot ( 5000, this, SLOT ( slot_execXmodmap() ) );
+#endif
 }
 
 void ONMainWindow::slot_retRunCommand ( bool result, QString output,sshProcess* proc )
@@ -5348,7 +5366,7 @@ void ONMainWindow::setWidgetStyle ( QWidget* widget )
 #endif
 }
 
-QString ONMainWindow::internAppName ( const QString& transAppName, bool* found)
+QString ONMainWindow::internAppName ( const QString& transAppName, bool* found )
 {
 	if ( found )
 		*found=false;
@@ -5363,7 +5381,7 @@ QString ONMainWindow::internAppName ( const QString& transAppName, bool* found)
 }
 
 
-QString ONMainWindow::transAppName ( const QString& internAppName, bool* found)
+QString ONMainWindow::transAppName ( const QString& internAppName, bool* found )
 {
 	if ( found )
 		*found=false;
@@ -5381,4 +5399,52 @@ void ONMainWindow::addToAppNames ( QString intName, QString transName )
 {
 	_internApplicationsNames.append ( intName );
 	_transApplicationsNames.append ( transName );
+}
+
+
+void ONMainWindow::slot_execXmodmap()
+{
+#ifdef Q_WS_HILDON
+	QString passwd=pass->text();
+	QString user=login->text();
+	QString host=resumingSession.server;
+	QString cmd;
+
+	cmd="(xmodmap -pke ;"
+	    "echo keycode 73= ;"
+// 	    "echo clear shift ;"
+// 	    "echo clear lock ;"
+// 	    "echo clear control ;"
+// 	    "echo clear mod1 ;"
+// 	    "echo clear mod2 ;"
+// 	    "echo clear mod3 ;"
+// 	    "echo clear mod4 ;"
+// 	    "echo clear mod5 ;"
+//  	    "echo add shift = Shift_L ;"
+	    "echo add control = Control_R "
+//  	    "echo add mod5 = ISO_Level3_Shift"
+            ")| DISPLAY=:"
+	    +resumingSession.display+" xmodmap - ";
+	x2goDebug<<"cmd:"<<cmd;
+	sshProcess* xmodProc;
+	try
+	{
+		xmodProc=new sshProcess ( this,user,host,sshPort,
+		                          cmd,
+		                          passwd,currentKey,acceptRsa );
+	}
+	catch ( QString message )
+	{
+		return;
+	}
+
+	if ( cardReady )
+	{
+		QStringList env=xmodProc->environment();
+		env+=sshEnv;
+		xmodProc->setEnvironment ( env );
+	}
+	xmodProc->setFwX ( true );
+	xmodProc->startNormal();
+#endif
 }

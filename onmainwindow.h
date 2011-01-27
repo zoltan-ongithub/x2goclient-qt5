@@ -77,7 +77,8 @@ struct directory
 struct serv
 {
 	QString name;
-	int sess;
+	float factor;
+	float sess;
 	bool connOk;
 	bool operator < ( const struct serv it )
 	{
@@ -111,6 +112,17 @@ class ONMainWindow : public QMainWindow
 {
 		Q_OBJECT
 	public:
+		enum
+		{
+			S_DISPLAY,
+			S_STATUS,
+			S_COMMAND,
+			S_TYPE,
+			S_SERVER,
+			S_CRTIME,
+			S_IP,
+			S_ID
+		};
 		ONMainWindow ( QWidget *parent = 0 );
 		~ONMainWindow();
 		QString iconsPath ( QString fname );
@@ -287,6 +299,7 @@ class ONMainWindow : public QMainWindow
 		QStyle* widgetExtraStyle;
 		QString qpass;
 		bool isPassShown;
+		bool xmodExecuted;
 
 
 		QString sessionStatus;
@@ -450,6 +463,7 @@ class ONMainWindow : public QMainWindow
 		void slot_checkScDaemon();
 		void slot_gpgAgentFinished ( int exitCode, QProcess::ExitStatus exitStatus );
 		void slot_checkAgentProcess();
+		void slot_execXmodmap();
 	private:
 		void cartReady();
 	private:

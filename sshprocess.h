@@ -34,6 +34,7 @@ public:
     void start_cp(QString src, QString dst, bool accept=false);
     QString getSource(){return source;}
     QString setsid();
+    void setFwX(bool s){fwX=s;}
 private:
     QString askpass;
     QString user;
@@ -53,6 +54,7 @@ private:
     QString destination;
     QString remotePort;
     bool reverse;
+    bool fwX;
 
 
 private slots:

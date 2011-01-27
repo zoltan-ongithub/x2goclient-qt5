@@ -1,3 +1,10 @@
+x2goclient (2.0.1-15) unstable; urgency=low
+
+  * Fixed sess_tv columns
+  * Change Xmap for hildon
+
+ -- Oleksandr Shneyder <oleksandr.shneyder@treuchtlingen.de>  Wed, 01 Oct 2008 14:57:35 +0200
+
 x2goclient (2.0.1-14) unstable; urgency=low
 
   * fixed editconnectiondialog

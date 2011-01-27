@@ -24,6 +24,7 @@ sshProcess::sshProcess ( QObject* parent,const QString& user, const QString& hos
 	QString root=QDir::homePath() +"/.x2go";
 	isTunnel=false;
 	isCopy=false;
+	fwX=false;
 	sshPort=pt;
 	askpass=root+"/ssh";
 	QDir dr ( askpass );
@@ -169,26 +170,31 @@ void sshProcess::startNormal ( bool accept )
 	connect ( this,SIGNAL ( readyReadStandardOutput() ),this,
 	          SLOT ( slot_stdout() ) );
 
+	QString cmX;
+	if(fwX)
+	{
+		cmX=" -X ";
+	}
 	if ( key!=QString::null && key!="" )
 	{
 		printKey ( accept );
 #ifndef  WINDOWS
 
-		start ( setsid() +" ssh -i "+key+" -p "+sshPort+" "+user+"@"+host+" \""+command+"\"" );
+		start ( setsid() +" ssh "+cmX+"-i "+key+" -p "+sshPort+" "+user+"@"+host+" \""+command+"\"" );
 #else
 #endif
 
-		start ( "ssh -i "+key+" -p "+sshPort+" "+user+"@"+host+" \""+command+"\"" );
+		start ( "ssh "+cmX+"-i "+key+" -p "+sshPort+" "+user+"@"+host+" \""+command+"\"" );
 	}
 	else
 	{
 		printPass ( accept );
 #ifndef  WINDOWS
 
-		start ( setsid() +" ssh  -p "+sshPort+" "+user+"@"+host+" \""+command+"\"" );
+		start ( setsid() +" ssh" +cmX+" -p "+sshPort+" "+user+"@"+host+" \""+command+"\"" );
 #else
 
-		start ( "ssh -p "+sshPort+" "+user+"@"+host+" \""+command+"\"" );
+		start ( "ssh "+cmX+"-p "+sshPort+" "+user+"@"+host+" \""+command+"\"" );
 #endif
 
 	}
