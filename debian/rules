@@ -18,7 +18,7 @@ else
 	CFLAGS += -O2
 endif
 
-SRC_DIR=$(PWD)
+SRC_DIR=$(CURDIR)
 CLIENT_DIR=$(SRC_DIR)/client_build
 PLUGIN_DIR=$(SRC_DIR)/plugin_build
 
