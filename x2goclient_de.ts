@@ -109,12 +109,12 @@
         <translation>BaseDN:</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="266"/>
+        <location filename="configdialog.cpp" line="270"/>
         <source>&amp;OK</source>
         <translation>&amp;OK</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="267"/>
+        <location filename="configdialog.cpp" line="271"/>
         <source>&amp;Cancel</source>
         <translation>A&amp;bbrechen</translation>
     </message>
@@ -151,7 +151,7 @@
         <translation type="obsolete">Displaynummer:</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="290"/>
+        <location filename="configdialog.cpp" line="294"/>
         <source>Settings</source>
         <translation>Konfiguration</translation>
     </message>
@@ -183,27 +183,27 @@
         <translation type="obsolete">Suche X11 Applikation</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="508"/>
+        <location filename="configdialog.cpp" line="513"/>
         <source>Warning</source>
         <translation>Warnung</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="474"/>
+        <location filename="configdialog.cpp" line="479"/>
         <source>x2goclient could not find any suitable X11 Application. Please install Apple X11 or select the path to the application</source>
         <translation>x2goclient konnte keine passende X11 Installation finden. Bitte Installieren Sie Apple X11 oder wählen Sie den Pfad zu einer gültigen Installation</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="491"/>
+        <location filename="configdialog.cpp" line="496"/>
         <source>Your are using X11 (Apple X-Window Server) version </source>
         <translation>Sie verwenden die Apple X11 Umgebung in der Version </translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="494"/>
+        <location filename="configdialog.cpp" line="499"/>
         <source>. This version causes problems with X-application in 24bit color mode. You should update your X11 environment (http://trac.macosforge.org/projects/xquartz).</source>
         <translation>. Es ist bekannt, dass bei dieser Version Darstellungsprobleme bei 24 Farbtiefe auftreten. Wir empfehlen Ihnen ein Update auf eine neuere Version (http://trac.macosforge.org/projects/xquartz).</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="510"/>
+        <location filename="configdialog.cpp" line="515"/>
         <source>No suitable X11 application found in selected path</source>
         <translation>Unter dem angegebenden Pfad konnte keine gültige X11 Installation gefunden werden</translation>
     </message>
@@ -232,22 +232,22 @@
         <translation>X-Server Konfiguration</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="179"/>
+        <location filename="configdialog.cpp" line="180"/>
         <source>X11 application:</source>
         <translation>X11 Applikation:</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="190"/>
+        <location filename="configdialog.cpp" line="191"/>
         <source>X11 version:</source>
         <translation>X11 Version:</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="205"/>
+        <location filename="configdialog.cpp" line="206"/>
         <source>Find X11 application</source>
         <translation>Suche X11 Applikation</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="224"/>
+        <location filename="configdialog.cpp" line="225"/>
         <source>Clientside SSH port for file system export usage:</source>
         <translation>SSH Port für die Dateisystemfreigabe auf Clientseite:</translation>
     </message>
@@ -257,32 +257,32 @@
         <translation>Allgemein</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="309"/>
+        <location filename="configdialog.cpp" line="314"/>
         <source>Printing</source>
         <translation>Druck</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="233"/>
+        <location filename="configdialog.cpp" line="234"/>
         <source>Start session embedded inside website</source>
         <translation>Sitzung innerhalb einer Webseite anzeigen</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="547"/>
+        <location filename="configdialog.cpp" line="552"/>
         <source>Advanced options</source>
         <translation>Erweiterte Einstellungen</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="265"/>
+        <location filename="configdialog.cpp" line="269"/>
         <source>Defaults</source>
         <translation>Voreinstellungen</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="545"/>
+        <location filename="configdialog.cpp" line="550"/>
         <source>&amp;Connection</source>
         <translation>&amp;Verbindung</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="546"/>
+        <location filename="configdialog.cpp" line="551"/>
         <source>&amp;Settings</source>
         <translation>&amp;Einstellungen</translation>
     </message>
@@ -838,34 +838,150 @@ sound system connections through firewalls</source>
     </message>
 </context>
 <context>
-    <name>ONMainWindow</name>
+    <name>HttpBrokerClient</name>
     <message>
-        <location filename="onmainwindow.cpp" line="177"/>
+        <location filename="httpbrokerclient.cpp" line="103"/>
         <source>us</source>
         <translation>de</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="178"/>
+        <location filename="httpbrokerclient.cpp" line="106"/>
         <source>pc105/us</source>
         <translation>pc105/de</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="5626"/>
+        <location filename="httpbrokerclient.cpp" line="243"/>
+        <source>Error</source>
+        <translation>Fehler</translation>
+    </message>
+    <message>
+        <location filename="httpbrokerclient.cpp" line="332"/>
+        <source>&lt;br&gt;&lt;b&gt;Server uses an invalid security certificate.&lt;/b&gt;&lt;br&gt;&lt;br&gt;</source>
+        <translation>&lt;br&gt;&lt;b&gt;Server benutzt ein ungültiges Zertifikat.&lt;/b&gt;&lt;br&gt;&lt;br&gt;</translation>
+    </message>
+    <message>
+        <location filename="httpbrokerclient.cpp" line="338"/>
+        <source>&lt;p style=&apos;background:#FFFFDC;&apos;&gt;You should not add an exception if you are using an internet connection that you do not trust completely or if you are not used to seeing a warning for this server.&lt;/p&gt;</source>
+        <translation>&lt;p style=&apos;background:#FFFFDC;&apos;&gt;Sie sollten keine Ausnahme setzen, wenn Sie sich in einem Netzwerk befinden, dem sich nicht vertrauen oder wenn Sie für diese Verbindung bereits eine Ausnahme akzeptiert haben.&lt;/p&gt;</translation>
+    </message>
+    <message>
+        <location filename="httpbrokerclient.cpp" line="339"/>
+        <source>Secure connection failed</source>
+        <translation>Sichere Verbindung fehlgeschlagen</translation>
+    </message>
+    <message>
+        <location filename="httpbrokerclient.cpp" line="344"/>
+        <source>Issued to:
+</source>
+        <translation>Issued to:￼
+</translation>
+    </message>
+    <message>
+        <location filename="httpbrokerclient.cpp" line="357"/>
+        <source>Common Name(CN)<byte value="x9"/></source>
+        <translation>Common Name(CN)<byte value="x9"/></translation>
+    </message>
+    <message>
+        <location filename="httpbrokerclient.cpp" line="360"/>
+        <source>Organization(O)<byte value="x9"/></source>
+        <translation>Organization(O)￼<byte value="x9"/></translation>
+    </message>
+    <message>
+        <location filename="httpbrokerclient.cpp" line="363"/>
+        <source>Organizational Unit(OU)<byte value="x9"/></source>
+        <translation>Organizational Unit(OU)￼<byte value="x9"/></translation>
+    </message>
+    <message>
+        <location filename="httpbrokerclient.cpp" line="354"/>
+        <source>Serial Number<byte value="x9"/></source>
+        <translation>Serial Number￼<byte value="x9"/></translation>
+    </message>
+    <message>
+        <location filename="httpbrokerclient.cpp" line="356"/>
+        <source>Issued by:
+</source>
+        <translation>Issued by:￼
+</translation>
+    </message>
+    <message>
+        <location filename="httpbrokerclient.cpp" line="367"/>
+        <source>Validity:
+</source>
+        <translation>Validity:
+</translation>
+    </message>
+    <message>
+        <location filename="httpbrokerclient.cpp" line="368"/>
+        <source>Issued on<byte value="x9"/></source>
+        <translation>Issued on￼<byte value="x9"/></translation>
+    </message>
+    <message>
+        <location filename="httpbrokerclient.cpp" line="369"/>
+        <source>expires on<byte value="x9"/></source>
+        <translation>expires on<byte value="x9"/></translation>
+    </message>
+    <message>
+        <location filename="httpbrokerclient.cpp" line="370"/>
+        <source>Fingerprints:
+</source>
+        <translation>Fingerprints:￼
+</translation>
+    </message>
+    <message>
+        <location filename="httpbrokerclient.cpp" line="371"/>
+        <source>SHA1<byte value="x9"/></source>
+        <translation>SHA1￼<byte value="x9"/></translation>
+    </message>
+    <message>
+        <location filename="httpbrokerclient.cpp" line="373"/>
+        <source>MD5<byte value="x9"/></source>
+        <translation>MD5<byte value="x9"/></translation>
+    </message>
+    <message>
+        <location filename="httpbrokerclient.cpp" line="379"/>
+        <source>Exit X2Go Client</source>
+        <translation>X2Go Client beenden</translation>
+    </message>
+    <message>
+        <location filename="httpbrokerclient.cpp" line="381"/>
+        <source>Add exception</source>
+        <translation>Ausnahme hinzufügen</translation>
+    </message>
+    <message>
+        <location filename="httpbrokerclient.cpp" line="248"/>
+        <source>Your session was disconnected. To get access to your running session, please return to the login page or use the &quot;reload&quot; function of your browser.</source>
+        <translation>Die aktuelle Sitzung wurde unterbrochen. Um erneut Zugriff auf ihre Sitzung zu erhalten, kehren Sie zur Startseite zurück oder aktualisieren Sie die aktuelle Seite über den Browserbefehl &quot;Aktuelle Seite neu laden&quot;.</translation>
+    </message>
+</context>
+<context>
+    <name>ONMainWindow</name>
+    <message>
+        <location filename="onmainwindow.cpp" line="180"/>
+        <source>us</source>
+        <translation>de</translation>
+    </message>
+    <message>
+        <location filename="onmainwindow.cpp" line="181"/>
+        <source>pc105/us</source>
+        <translation>pc105/de</translation>
+    </message>
+    <message>
+        <location filename="onmainwindow.cpp" line="5979"/>
         <source>Session:</source>
         <translation>Sitzung:</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="552"/>
+        <location filename="onmainwindow.cpp" line="570"/>
         <source>&amp;Quit</source>
         <translation>&amp;Beenden</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="553"/>
+        <location filename="onmainwindow.cpp" line="571"/>
         <source>Ctrl+Q</source>
         <translation>Strg+Q</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="554"/>
+        <location filename="onmainwindow.cpp" line="572"/>
         <source>Quit</source>
         <translation>Beenden</translation>
     </message>
@@ -874,7 +990,7 @@ sound system connections through firewalls</source>
         <translation type="obsolete">&amp;Neue Sitzung ...</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="558"/>
+        <location filename="onmainwindow.cpp" line="576"/>
         <source>Ctrl+N</source>
         <translation>Strg+N</translation>
     </message>
@@ -883,7 +999,7 @@ sound system connections through firewalls</source>
         <translation type="obsolete">Sitzungsverwaltung...</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="565"/>
+        <location filename="onmainwindow.cpp" line="583"/>
         <source>Ctrl+E</source>
         <translation>Strg+E</translation>
     </message>
@@ -892,7 +1008,7 @@ sound system connections through firewalls</source>
         <translation type="obsolete">LDAP &amp;Konfiguration ...</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="7878"/>
+        <location filename="onmainwindow.cpp" line="8461"/>
         <source>Restore toolbar</source>
         <translation>Wergzeugleiste wieder anzeigen</translation>
     </message>
@@ -901,108 +1017,108 @@ sound system connections through firewalls</source>
         <translation type="obsolete">Über X2GO Client</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="577"/>
+        <location filename="onmainwindow.cpp" line="597"/>
         <source>About Qt</source>
         <translation>Über QT</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="4090"/>
+        <location filename="onmainwindow.cpp" line="4377"/>
         <source>Session</source>
         <translation>Sitzung</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="593"/>
+        <location filename="onmainwindow.cpp" line="613"/>
         <source>Ctrl+Q</source>
         <comment>exit</comment>
         <translation>Strg +Q</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="599"/>
+        <location filename="onmainwindow.cpp" line="619"/>
         <source>&amp;Session</source>
         <translation>&amp;Sitzung</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="600"/>
+        <location filename="onmainwindow.cpp" line="620"/>
         <source>&amp;Options</source>
         <translation>&amp;Einstellungen</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="612"/>
+        <location filename="onmainwindow.cpp" line="632"/>
         <source>&amp;Help</source>
         <translation>&amp;Hilfe</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="7313"/>
+        <location filename="onmainwindow.cpp" line="7837"/>
         <source>Password:</source>
         <translation>Password:</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="7340"/>
+        <location filename="onmainwindow.cpp" line="7866"/>
         <source>Ok</source>
         <translation>Ok</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="7623"/>
+        <location filename="onmainwindow.cpp" line="8153"/>
         <source>Cancel</source>
         <translation>Abbrechen</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="7790"/>
+        <location filename="onmainwindow.cpp" line="8373"/>
         <source>Error</source>
         <translation>Fehler</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="4186"/>
+        <location filename="onmainwindow.cpp" line="4476"/>
         <source>KDE</source>
         <translation>KDE</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="1982"/>
+        <location filename="onmainwindow.cpp" line="2024"/>
         <source> on </source>
         <translation> on </translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="7312"/>
+        <location filename="onmainwindow.cpp" line="7836"/>
         <source>Login:</source>
         <translation>Benutzername:</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="7619"/>
+        <location filename="onmainwindow.cpp" line="8147"/>
         <source>Select session:</source>
         <translation>Wähle Sitzung:</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="7621"/>
+        <location filename="onmainwindow.cpp" line="8149"/>
         <source>Resume</source>
         <translation>Fortfahren</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="7626"/>
+        <location filename="onmainwindow.cpp" line="8156"/>
         <source>Suspend</source>
         <translation>Anhalten</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="7628"/>
+        <location filename="onmainwindow.cpp" line="8158"/>
         <source>Terminate</source>
         <translation>Beenden</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="7631"/>
+        <location filename="onmainwindow.cpp" line="8161"/>
         <source>New</source>
         <translation>Neu</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="7690"/>
+        <location filename="onmainwindow.cpp" line="8250"/>
         <source>Display</source>
         <translation>Display</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="7692"/>
+        <location filename="onmainwindow.cpp" line="8230"/>
         <source>Status</source>
         <translation>Status</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="7698"/>
+        <location filename="onmainwindow.cpp" line="8236"/>
         <source>Server</source>
         <translation>Server</translation>
     </message>
@@ -1011,17 +1127,17 @@ sound system connections through firewalls</source>
         <translation type="obsolete">Startzeit</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="7703"/>
+        <location filename="onmainwindow.cpp" line="8241"/>
         <source>Client IP</source>
         <translation>Client IP</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="3799"/>
+        <location filename="onmainwindow.cpp" line="4073"/>
         <source>running</source>
         <translation>aktiv</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="2991"/>
+        <location filename="onmainwindow.cpp" line="3198"/>
         <source>suspended</source>
         <translation>angehalten</translation>
     </message>
@@ -1034,39 +1150,39 @@ sound system connections through firewalls</source>
         <translation type="obsolete">Datei kann nicht geschrieben werden:</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="3695"/>
+        <location filename="onmainwindow.cpp" line="3962"/>
         <source>Unable to create SSL Tunnel:
 </source>
         <translation>SSL Tunnel kann nicht erzeugt werden:
 </translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="4008"/>
+        <location filename="onmainwindow.cpp" line="4287"/>
         <source>Warning</source>
         <translation>Warnung</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="3784"/>
+        <location filename="onmainwindow.cpp" line="4057"/>
         <source>connecting</source>
         <translation>verbinde</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="3791"/>
+        <location filename="onmainwindow.cpp" line="4065"/>
         <source>starting</source>
         <translation>starte</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="3793"/>
+        <location filename="onmainwindow.cpp" line="4067"/>
         <source>resuming</source>
         <translation>aktiviere</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="4133"/>
+        <location filename="onmainwindow.cpp" line="4422"/>
         <source>Connection timeout, aborting</source>
         <translation>Zeitüberschreitung</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="3841"/>
+        <location filename="onmainwindow.cpp" line="4115"/>
         <source>aborting</source>
         <translation>Abbruch</translation>
     </message>
@@ -1075,7 +1191,7 @@ sound system connections through firewalls</source>
         <translation type="obsolete">&lt;b&gt;Sitzungs ID:&lt;br&gt;Server:&lt;br&gt;Login:&lt;br&gt;Display:&lt;br&gt;Startzeit:&lt;br&gt;Status:&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="7470"/>
+        <location filename="onmainwindow.cpp" line="7996"/>
         <source>Abort</source>
         <translation>Abbruch</translation>
     </message>
@@ -1084,47 +1200,47 @@ sound system connections through firewalls</source>
         <translation type="obsolete">Zeige Details</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="4517"/>
+        <location filename="onmainwindow.cpp" line="4821"/>
         <source>wrong value for argument&quot;--link&quot;</source>
         <translation>unerwarteter Wert &quot;--link&quot;</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="4534"/>
+        <location filename="onmainwindow.cpp" line="4838"/>
         <source>wrong value for argument&quot;--sound&quot;</source>
         <translation>unerwarteter Wert &quot;--sound&quot;</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="4563"/>
+        <location filename="onmainwindow.cpp" line="4867"/>
         <source>wrong value for argument&quot;--geometry&quot;</source>
         <translation>unerwarteter Wert &quot;--geometry&quot;</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="4581"/>
+        <location filename="onmainwindow.cpp" line="4885"/>
         <source>wrong value for argument&quot;--set-kbd&quot;</source>
         <translation>unerwarteter Wert &quot;--set-kbd&quot;</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="4598"/>
+        <location filename="onmainwindow.cpp" line="4902"/>
         <source>wrong value for argument&quot;--ldap&quot;</source>
         <translation>unerwarteter Wert &quot;--ldap&quot;</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="4692"/>
+        <location filename="onmainwindow.cpp" line="4996"/>
         <source>wrong value for argument&quot;--pack&quot;</source>
         <translation>unerwarteter Wert &quot;--pack&quot;</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="4702"/>
+        <location filename="onmainwindow.cpp" line="5006"/>
         <source>wrong parameter: </source>
         <translation>unerwarteter Wert: </translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="4747"/>
+        <location filename="onmainwindow.cpp" line="5052"/>
         <source>Available pack methodes:</source>
         <translation>Liste aller Packmethoden:</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="5572"/>
+        <location filename="onmainwindow.cpp" line="5925"/>
         <source>Please check LDAP Settings</source>
         <translation>Bitte überprüfen Sie die LDAP Einstellungen</translation>
     </message>
@@ -1137,7 +1253,7 @@ sound system connections through firewalls</source>
         <translation type="obsolete">Sind Sie sicher, dass Sie die Sitzung löschen wollen?</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="6260"/>
+        <location filename="onmainwindow.cpp" line="6620"/>
         <source>&lt;b&gt;Connection failed&lt;/b&gt;
 </source>
         <translation>&lt;b&gt;Verbindung fehlgeschlagen&lt;/b&gt;
@@ -1148,22 +1264,22 @@ sound system connections through firewalls</source>
         <translation type="obsolete">es konnte kein Server gefunden werden</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="7705"/>
+        <location filename="onmainwindow.cpp" line="8243"/>
         <source>Session ID</source>
         <translation>Sitzungs ID</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="2935"/>
+        <location filename="onmainwindow.cpp" line="3132"/>
         <source>suspending</source>
         <translation>anhalten</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="2961"/>
+        <location filename="onmainwindow.cpp" line="3163"/>
         <source>terminating</source>
         <translation>beende</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="4328"/>
+        <location filename="onmainwindow.cpp" line="4627"/>
         <source>&lt;b&gt;Connection failed&lt;/b&gt;
 :
 </source>
@@ -1198,14 +1314,14 @@ sound system connections through firewalls</source>
         <translation type="obsolete">Usage: x2goclient [Options]            Options:            --help                           Print this message            --help-pack                      Print availabel pack methods            --no-menu                        Hide menu bar            --maximize                       Start maximized            --add-to-known-hosts             Add RSA key fingerprint to .ssh/known_hosts <byte value="x9"/><byte value="x9"/>                             if authenticity of server can&apos;t be established            --ldap=&lt;host:port:dn&gt;            Start with LDAP Support. Example:            --ldap=ldapserver:389:o=organization,c=de            --command=&lt;cmd&gt;                  Set default command, default value &apos;KDE&apos;            --sound=&lt;0|1&gt;                    Enable sound, default value &apos;1&apos;            --geomerty=&lt;W&gt;x&lt;H&gt;|fullscreen    Set default geometry, default value &apos;800x600&apos;            --link=&lt;modem|isdn|adsl|wan|lan&gt; Set default link type, default &apos;lan&apos;            --pack=&lt;packmethod&gt;              Set default pack method, default &apos;16m-jpeg-9&apos;            --kbd-layout=&lt;layout&gt;            Set default keyboard layout, default &apos;us&apos;            --kbd-type=&lt;typed&gt;               Set default keyboard type, default &apos;pc105/us&apos;            --set-kbd=&lt;0|1&gt;                  Overwrite current keyboard settings, default &apos;0&apos;</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="6384"/>
+        <location filename="onmainwindow.cpp" line="6748"/>
         <source>Unable to read :
 </source>
         <translation>Lesefehler:
 </translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="6406"/>
+        <location filename="onmainwindow.cpp" line="6770"/>
         <source>Unable to write :
 </source>
         <translation>Schreibfehler:
@@ -1216,17 +1332,17 @@ sound system connections through firewalls</source>
         <translation type="obsolete">&lt;b&gt;X2Go Client V. 2.0.1&lt;/b&gt;&lt;br&gt; (C. 2006-2007 Oleksandr Shneyder, Heinz-Markus Graesing)&lt;br&gt;&lt;br&gt;Ein Client für den Zugriff auf die serverbasierende Anwendungsumgebung X2Go. Mit Hilfe dieser Anwendung können Sie Sitzungen eines X2Go Servers starten, stoppen, laufende Sitzungen fortführen oder anhalten und verschiedene Sitzungskonfigurationen verwalten. Die Authentifizierung kann über LDAP erfolgen und das Programm kann im Vollbildmodus (als Ersatz für XDM) gestartet werden. Weitere Informationen erhalten SIe auf x2go.org.</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="3096"/>
+        <location filename="onmainwindow.cpp" line="3305"/>
         <source>&lt;b&gt;Wrong Password!&lt;/b&gt;&lt;br&gt;&lt;br&gt;</source>
         <translation>&lt;b&gt;Falsches Passwort!&lt;/b&gt;&lt;br&gt;&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="4620"/>
+        <location filename="onmainwindow.cpp" line="4924"/>
         <source>wrong value for argument&quot;--ldap1&quot;</source>
         <translation>unerwarteter Wert &quot;--ldap1&quot;</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="4639"/>
+        <location filename="onmainwindow.cpp" line="4943"/>
         <source>wrong value for argument&quot;--ldap2&quot;</source>
         <translation>unerwarteter Wert &quot;--ldap2&quot;</translation>
     </message>
@@ -1255,12 +1371,12 @@ sound system connections through firewalls</source>
         <translation type="obsolete">Usage: x2goclient [Options]<byte value="x9"/><byte value="x9"/><byte value="x9"/>Options:<byte value="x9"/><byte value="x9"/><byte value="x9"/>--help                           Print this message<byte value="x9"/><byte value="x9"/><byte value="x9"/>--help-pack                      Print availabel pack methods<byte value="x9"/><byte value="x9"/><byte value="x9"/>--no-menu                        Hide menu bar<byte value="x9"/><byte value="x9"/><byte value="x9"/>--maximize                       Start maximized<byte value="x9"/><byte value="x9"/><byte value="x9"/>--add-to-known-hosts             Add RSA key fingerprint to .ssh/known_hosts <byte value="x9"/><byte value="x9"/><byte value="x9"/>if authenticity of server can&apos;t be established<byte value="x9"/><byte value="x9"/><byte value="x9"/>--ldap=&lt;host:port:dn&gt;            Start with LDAP Support. Example:<byte value="x9"/><byte value="x9"/><byte value="x9"/>--ldap=ldapserver:389:o=organization,c=de<byte value="x9"/><byte value="x9"/><byte value="x9"/>--ldap1=&lt;host:port&gt;              LDAP Failover Server #1 <byte value="x9"/><byte value="x9"/><byte value="x9"/>--ldap2=&lt;host:port&gt;              LDAP Failover Server #2 <byte value="x9"/><byte value="x9"/><byte value="x9"/>--command=&lt;cmd&gt;                  Set default command, default value &apos;KDE&apos;<byte value="x9"/><byte value="x9"/><byte value="x9"/>--sound=&lt;0|1&gt;                    Enable sound, default value &apos;1&apos;<byte value="x9"/><byte value="x9"/><byte value="x9"/>--geomerty=&lt;W&gt;x&lt;H&gt;|fullscreen    Set default geometry, default value &apos;800x600&apos;<byte value="x9"/><byte value="x9"/><byte value="x9"/>--link=&lt;modem|isdn|adsl|wan|lan&gt; Set default link type, default &apos;lan&apos;<byte value="x9"/><byte value="x9"/><byte value="x9"/>--pack=&lt;packmethod&gt;              Set default pack method, default &apos;16m-jpeg-9&apos;<byte value="x9"/><byte value="x9"/><byte value="x9"/>--kbd-layout=&lt;layout&gt;            Set default keyboard layout, default &apos;us&apos;<byte value="x9"/><byte value="x9"/><byte value="x9"/>--kbd-type=&lt;typed&gt;               Set default keyboard type, default &apos;pc105/us&apos;<byte value="x9"/><byte value="x9"/><byte value="x9"/>--set-kbd=&lt;0|1&gt;                  Overwrite current keyboard settings, default &apos;0&apos;</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="5878"/>
+        <location filename="onmainwindow.cpp" line="6233"/>
         <source>Unable to create file: </source>
         <translation>Datei konnte nicht erzeugt werden: </translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="5800"/>
+        <location filename="onmainwindow.cpp" line="6155"/>
         <source>No valid card found</source>
         <translation>Es wurde keine gültige Karte gefunden</translation>
     </message>
@@ -1269,12 +1385,12 @@ sound system connections through firewalls</source>
         <translation type="obsolete">Diese Karte ist dem X2Go System unbekannt</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="348"/>
+        <location filename="onmainwindow.cpp" line="358"/>
         <source>&amp;Settings ...</source>
         <translation>&amp;Konfiguration ...</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="4767"/>
+        <location filename="onmainwindow.cpp" line="5072"/>
         <source>Options</source>
         <translation>Einstellungen</translation>
     </message>
@@ -1284,12 +1400,12 @@ sound system connections through firewalls</source>
         <translation type="obsolete">RSA Schlüssel konnte nicht gelesen werden:</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="6057"/>
+        <location filename="onmainwindow.cpp" line="6417"/>
         <source>Can&apos;t connect to X-Server</source>
         <translation>Verbindung zu X-Server konnte nicht hergestellt werden</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="6060"/>
+        <location filename="onmainwindow.cpp" line="6420"/>
         <source>Can&apos;t connect to X-Server
 Please check your settings</source>
         <translation>Verbindung zu X-Server konnte nicht hergestellt werden
@@ -1301,34 +1417,34 @@ Please check your settings</source>
         <translation type="obsolete">X-Server konnte nicht gestartet werden</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="6067"/>
+        <location filename="onmainwindow.cpp" line="6427"/>
         <source>Can&apos;t start X Server
 Please check your settings</source>
         <translation>X-Server konnte nicht gestartet werden
 Überprüfen Sie Ihre Einstellungen</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="2873"/>
+        <location filename="onmainwindow.cpp" line="3070"/>
         <source>Your current color depth is different to the color depth of your x2go-session. This may cause problems reconnecting to this session and in most cases &lt;b&gt;you will loose the session&lt;/b&gt; and have to start a new one! It&apos;s highly recommended to change the color depth of your Display to </source>
         <translation>Die aktuell verwendete Farbtiefe unterscheidet sich von der der wiederherzustellenden Sitzung. Der Versuch, die Sitzung fortzuführen kann zu Fehlern führen, inbesondere dem &lt;b&gt;Verlust der ganzen Sitzung&lt;/b&gt;. Um Fehler zu vermeiden wird empfohlen, die aktuelle Farbtiefe auf </translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="2854"/>
+        <location filename="onmainwindow.cpp" line="3051"/>
         <source>24 or 32</source>
         <translation>24 oder 32</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="2877"/>
+        <location filename="onmainwindow.cpp" line="3074"/>
         <source> bit and restart your X-server before you reconnect to this x2go-session.&lt;br&gt;Resume this session anyway?</source>
         <translation>  bit zu ändern und den verwendeten X-server neu zu starten, bevor Sie sich mit der Sitzung verbinden. Trotzdem versuchen die Sitzung fortzuführen?</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="2877"/>
+        <location filename="onmainwindow.cpp" line="3074"/>
         <source>Yes</source>
         <translation>Ja</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="2878"/>
+        <location filename="onmainwindow.cpp" line="3075"/>
         <source>No</source>
         <translation>Nein</translation>
     </message>
@@ -1346,181 +1462,181 @@ Please check your settings</source>
         <translation type="obsolete">&lt;/b&gt;&lt;br&gt; (C. 2006-2008 &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing)&lt;br&gt;&lt;br&gt;Ein Client für den Zugriff auf die serverbasierende Anwendungsumgebung X2Go. Mit Hilfe dieser Anwendung können Sie Sitzungen eines X2Go Servers starten, stoppen, laufende Sitzungen fortführen oder anhalten und verschiedene Sitzungskonfigurationen verwalten. Die Authentifizierung kann über LDAP erfolgen und das Programm kann im Vollbildmodus (als Ersatz für XDM) gestartet werden. Weitere Informationen erhalten SIe auf x2go.org.</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="220"/>
+        <location filename="onmainwindow.cpp" line="230"/>
         <source>OpenOffice.org</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="221"/>
+        <location filename="onmainwindow.cpp" line="231"/>
         <source>Terminal</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="2238"/>
+        <location filename="onmainwindow.cpp" line="2332"/>
         <source>unknown</source>
         <translation>unbekannt</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="7694"/>
+        <location filename="onmainwindow.cpp" line="8232"/>
         <source>Command</source>
         <translation>Befehl</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="7696"/>
+        <location filename="onmainwindow.cpp" line="8234"/>
         <source>Type</source>
         <translation>Typ</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="2764"/>
+        <location filename="onmainwindow.cpp" line="2914"/>
         <source>Desktop</source>
         <translation>Desktopumgebung</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="2766"/>
+        <location filename="onmainwindow.cpp" line="2916"/>
         <source>single application</source>
         <translation>Anwendung</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="2768"/>
+        <location filename="onmainwindow.cpp" line="2918"/>
         <source>shadow session</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="6205"/>
+        <location filename="onmainwindow.cpp" line="6565"/>
         <source>&lt;br&gt;Sudo configuration error</source>
         <translation>&lt;br&gt;Fehler in der Sudo Konfiguration</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="6283"/>
+        <location filename="onmainwindow.cpp" line="6643"/>
         <source>Unable to execute: </source>
         <translation>Befehl konnte nicht ausgeführt werden:</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="195"/>
+        <location filename="onmainwindow.cpp" line="205"/>
         <source>X2Go client</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="218"/>
+        <location filename="onmainwindow.cpp" line="228"/>
         <source>Internet browser</source>
         <translation>Webbrowser</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="219"/>
+        <location filename="onmainwindow.cpp" line="229"/>
         <source>Email client</source>
         <translation>E-Mail-Programm</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="557"/>
+        <location filename="onmainwindow.cpp" line="575"/>
         <source>&amp;New session ...</source>
         <translation>&amp;Neue Sitzung ...</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="564"/>
+        <location filename="onmainwindow.cpp" line="582"/>
         <source>Session management...</source>
         <translation>Sitzungsverwaltung...</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="591"/>
+        <location filename="onmainwindow.cpp" line="611"/>
         <source>Show toolbar</source>
         <translation>Zeige Wergzeugleiste</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="5515"/>
+        <location filename="onmainwindow.cpp" line="5879"/>
         <source>About X2GO client</source>
         <translation>Über X2GO Client</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="1247"/>
+        <location filename="onmainwindow.cpp" line="1280"/>
         <source>Please check LDAP settings</source>
         <translation>Bitte überprüfen Sie die LDAP Einstellungen</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="1051"/>
+        <location filename="onmainwindow.cpp" line="1084"/>
         <source>no X2Go server found in LDAP </source>
         <translation>LDAP enthält keinen X2Go Server </translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="1616"/>
+        <location filename="onmainwindow.cpp" line="1650"/>
         <source>Are you sure you want to delete this session?</source>
         <translation>Sind Sie sicher, dass Sie die Sitzung löschen wollen?</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="6264"/>
+        <location filename="onmainwindow.cpp" line="6624"/>
         <source>&lt;b&gt;Wrong password!&lt;/b&gt;&lt;br&gt;&lt;br&gt;</source>
         <translation>&lt;b&gt;Falsches Passwort!&lt;/b&gt;&lt;br&gt;&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="2300"/>
+        <location filename="onmainwindow.cpp" line="2397"/>
         <source>No server availabel</source>
         <translation>es konnte kein Server gefunden werden</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="7701"/>
+        <location filename="onmainwindow.cpp" line="8239"/>
         <source>Creation time</source>
         <translation>Startzeit</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="5118"/>
+        <location filename="onmainwindow.cpp" line="5443"/>
         <source>Unable to create folder:</source>
         <translation>Ordner kann nicht erzeugt werden:</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="3562"/>
+        <location filename="onmainwindow.cpp" line="3810"/>
         <source>Unable to write file:</source>
         <translation>Datei kann nicht geschrieben werden:</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="6358"/>
+        <location filename="onmainwindow.cpp" line="6721"/>
         <source>Unable to create SSL tunnel:
 </source>
         <translation>SSL Tunnel kann nicht erzeugt werden:
 </translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="7464"/>
+        <location filename="onmainwindow.cpp" line="7990"/>
         <source>&lt;b&gt;Session ID:&lt;br&gt;Server:&lt;br&gt;Username:&lt;br&gt;Display:&lt;br&gt;Creation time:&lt;br&gt;Status:&lt;/b&gt;</source>
         <translation>&lt;b&gt;Sitzungs ID:&lt;br&gt;Server:&lt;br&gt;Login:&lt;br&gt;Display:&lt;br&gt;Startzeit:&lt;br&gt;Status:&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="7472"/>
+        <location filename="onmainwindow.cpp" line="7998"/>
         <source>Share folder...</source>
         <translation>Ordner freigeben...</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="7474"/>
+        <location filename="onmainwindow.cpp" line="8000"/>
         <source>Show details</source>
         <translation>Zeige Details</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="5516"/>
+        <location filename="onmainwindow.cpp" line="5880"/>
         <source>&lt;b&gt;X2Go client V. </source>
         <translation>&lt;b&gt;X2Go Client V. </translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="5849"/>
+        <location filename="onmainwindow.cpp" line="6204"/>
         <source>This card is unknown by X2Go system</source>
         <translation>Diese Karte ist dem X2Go System unbekannt</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="6305"/>
+        <location filename="onmainwindow.cpp" line="6664"/>
         <source>Remote server does not support file system export through SSH Tunnel
 Please update to a newer x2goserver package</source>
         <translation>Der gewählte server unterstützt kein Dateisystemexport via SSH Tunnel
 Bitte installieren sie eine neuere Version von x2goserver</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="568"/>
+        <location filename="onmainwindow.cpp" line="587"/>
         <source>&amp;Create session icon on desktop...</source>
         <translation>&amp;Desktopsymbol erzeugen...</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="1385"/>
+        <location filename="onmainwindow.cpp" line="1418"/>
         <source>Create session icon on desktop</source>
         <translation>Desktopsymbol erzeugen</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="1391"/>
+        <location filename="onmainwindow.cpp" line="1424"/>
         <source>Desktop icons can be configured not to show x2goclient (hidden mode). If you like to use this feature you&apos;ll need to configure login by a gpg key or gpg smart card.
 
 Use x2goclient hidden mode?</source>
@@ -1529,81 +1645,166 @@ Use x2goclient hidden mode?</source>
 Wollen SIe den versteckten Modus nutzen?</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="1402"/>
+        <location filename="onmainwindow.cpp" line="1435"/>
         <source>New Session</source>
         <translation>Neue Sitzung</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="1978"/>
+        <location filename="onmainwindow.cpp" line="2012"/>
         <source>RDP connection</source>
         <translation>RDP Verbindung</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="1452"/>
+        <location filename="onmainwindow.cpp" line="1486"/>
         <source>X2Go Link to session </source>
         <translation></translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="7072"/>
+        <location filename="onmainwindow.cpp" line="7482"/>
         <source>Detach X2Go window</source>
         <translation>Fenster abkoppeln</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="7048"/>
+        <location filename="onmainwindow.cpp" line="7457"/>
         <source>Attach X2Go window</source>
         <translation>Fenster einbetten</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="3772"/>
+        <location filename="onmainwindow.cpp" line="4042"/>
         <source>Finished</source>
         <translation>Beendet</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="4010"/>
+        <location filename="onmainwindow.cpp" line="4291"/>
         <source>Are you sure you want to terminate this session?
 Unsaved documents will be lost</source>
         <translation>Die Sitzung wird beendet. Sind Sie sicher?&lt;br&gt;Ungespeicherte Dokumente gehen verloren</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="5529"/>
-        <source>&lt;/b&gt;&lt;br&gt; (C. 2006-2009 &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing)&lt;br&gt;&lt;br&gt;Client for use with the X2Go network based computing environment. This Client will be able to connect to X2Go server(s) and start, stop, resume and terminate (running) desktop sessions. X2Go Client stores different server connections and may automatically request authentification data from LDAP directories. Furthermore it can be used as fullscreen loginscreen (replacement for loginmanager like xdm). Please visit x2go.org for further information.</source>
-        <translation>&lt;/b&gt;&lt;br&gt; (C. 2006-2009 &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing)&lt;br&gt;&lt;br&gt;Ein Client für den Zugriff auf die serverbasierende Anwendungsumgebung X2Go. Mit Hilfe dieser Anwendung können Sie Sitzungen eines X2Go Servers starten, stoppen, laufende Sitzungen fortführen oder anhalten und verschiedene Sitzungskonfigurationen verwalten. Die Authentifizierung kann über LDAP erfolgen und das Programm kann im Vollbildmodus (als Ersatz für XDM) gestartet werden. Weitere Informationen erhalten SIe auf x2go.org. </translation>
+        <location filename="onmainwindow.cpp" line="5850"/>
+        <source>&lt;/b&gt;&lt;br&gt; (C. 2006-2010 &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing)&lt;br&gt;&lt;br&gt;Client for use with the X2Go network based computing environment. This Client will be able to connect to X2Go server(s) and start, stop, resume and terminate (running) desktop sessions. X2Go Client stores different server connections and may automatically request authentification data from LDAP directories. Furthermore it can be used as fullscreen loginscreen (replacement for loginmanager like xdm). Please visit x2go.org for further information.</source>
+        <translation type="obsolete">&lt;/b&gt;&lt;br&gt; (C. 2006-2009 &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing)&lt;br&gt;&lt;br&gt;Ein Client für den Zugriff auf die serverbasierende Anwendungsumgebung X2Go. Mit Hilfe dieser Anwendung können Sie Sitzungen eines X2Go Servers starten, stoppen, laufende Sitzungen fortführen oder anhalten und verschiedene Sitzungskonfigurationen verwalten. Die Authentifizierung kann über LDAP erfolgen und das Programm kann im Vollbildmodus (als Ersatz für XDM) gestartet werden. Weitere Informationen erhalten SIe auf x2go.org. </translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="6703"/>
+        <location filename="onmainwindow.cpp" line="7057"/>
         <source>Can&apos;t start X Server
 Please check your installation</source>
         <translation>X-Server lässt sich nicht starten. 
 Bitte überprüfen Sie Ihre Installation</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="7129"/>
+        <location filename="onmainwindow.cpp" line="7554"/>
         <source>X2Go Session</source>
         <translation>X2Go Sitzung</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="7888"/>
+        <location filename="onmainwindow.cpp" line="8471"/>
         <source>Minimize toolbar</source>
         <translation>Symbole verstecken</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="7930"/>
+        <location filename="onmainwindow.cpp" line="8514"/>
         <source>&lt;br&gt;&lt;b&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;Click this button&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;to restore toolbar&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/b&gt;&lt;br&gt;</source>
         <translation>&lt;br&gt;&lt;b&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;zum Wiederherstellen&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;der Werkzeugleiste&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;hier klicken&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/b&gt;&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="7120"/>
+        <location filename="onmainwindow.cpp" line="7544"/>
         <source>Can&apos;t open config file: </source>
         <translation>Konfigurationsdatei lässt sich nicht öffnen:</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="7796"/>
+        <location filename="onmainwindow.cpp" line="8379"/>
         <source>sshd not started, you&apos;ll need sshd for printing and file sharing
 you can install sshd with
 &lt;b&gt;sudo apt-get install openssh-server&lt;/b&gt;</source>
         <translation>SSHD konnte nicht gefunden werden. SSHD wird für Dateifreigaben und Druck benötigt.
 Sie können SSHD über folgenden Befehl installieren:
 &lt;b&gt;sudo apt-get install openssh-server&lt;/b&gt;</translation>
+    </message>
+    <message>
+        <location filename="onmainwindow.cpp" line="2020"/>
+        <source>Connection to local desktop</source>
+        <translation>Zugriff auf lokalen Desktop</translation>
+    </message>
+    <message>
+        <location filename="onmainwindow.cpp" line="2951"/>
+        <source>Information</source>
+        <translation>Hinweis</translation>
+    </message>
+    <message>
+        <location filename="onmainwindow.cpp" line="8575"/>
+        <source>Filter</source>
+        <translation>Filter</translation>
+    </message>
+    <message>
+        <location filename="onmainwindow.cpp" line="2972"/>
+        <source>Select desktop:</source>
+        <translation>Desktopauswahl:</translation>
+    </message>
+    <message>
+        <location filename="onmainwindow.cpp" line="8167"/>
+        <source>View only</source>
+        <translation>Nur betrachten</translation>
+    </message>
+    <message>
+        <location filename="onmainwindow.cpp" line="8247"/>
+        <source>User</source>
+        <translation>Benutzer</translation>
+    </message>
+    <message>
+        <location filename="onmainwindow.cpp" line="2016"/>
+        <source>XDMCP</source>
+        <translation>XDMCP</translation>
+    </message>
+    <message>
+        <location filename="onmainwindow.cpp" line="2953"/>
+        <source>No accessible desktop found</source>
+        <translation>Kein freigegebener Desktop gefunden</translation>
+    </message>
+    <message>
+        <location filename="onmainwindow.cpp" line="8164"/>
+        <source>Full access</source>
+        <translation>Vollzugriff</translation>
+    </message>
+    <message>
+        <location filename="onmainwindow.cpp" line="8278"/>
+        <source>Only my desktops</source>
+        <translation>Nur eigene Desktops</translation>
+    </message>
+    <message>
+        <location filename="onmainwindow.cpp" line="431"/>
+        <source>Reconnect</source>
+        <translation>Neu verbinden</translation>
+    </message>
+    <message>
+        <location filename="onmainwindow.cpp" line="8651"/>
+        <source>Connecting to broker</source>
+        <translation>Verbinden mit Broker</translation>
+    </message>
+    <message>
+        <location filename="onmainwindow.cpp" line="5861"/>
+        <source>&lt;/b&gt;&lt;br&gt; (C. 2006-2010 &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing)&lt;br&gt;</source>
+        <translation>&lt;/b&gt;&lt;br&gt; (C. 2006-2010 &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing)&lt;br&gt;</translation>
+    </message>
+    <message>
+        <location filename="onmainwindow.cpp" line="5865"/>
+        <source>&lt;br&gt;x2goplugin mode was sponsored by &lt;a href=&quot;http://www.foss-group.de/&quot;&gt;FOSS-Group GmbH(Freiburg)&lt;/a&gt;&lt;br&gt;</source>
+        <translation>&lt;br&gt;x2goplugin Modus wurde gefördert durch &lt;a href=&quot;http://www.foss-group.de/&quot;&gt;FOSS-Group GmbH(Freiburg)&lt;/a&gt;&lt;br&gt;</translation>
+    </message>
+    <message>
+        <location filename="onmainwindow.cpp" line="5877"/>
+        <source>&lt;br&gt;Client for use with the X2Go network based computing environment. This Client will be able to connect to X2Go server(s) and start, stop, resume and terminate (running) desktop sessions. X2Go Client stores different server connections and may automatically request authentification data from LDAP directories. Furthermore it can be used as fullscreen loginscreen (replacement for loginmanager like xdm). Please visit x2go.org for further information.</source>
+        <translation>&lt;br&gt;Ein Client für den Zugriff auf die serverbasierende Anwendungsumgebung X2Go. Mit Hilfe dieser Anwendung können Sie Sitzungen eines X2Go Servers starten, stoppen, laufende Sitzungen fortführen oder anhalten und verschiedene Sitzungskonfigurationen verwalten. Die Authentifizierung kann über LDAP erfolgen und das Programm kann im Vollbildmodus (als Ersatz für XDM) gestartet werden. Weitere Informationen erhalten SIe auf x2go.org. </translation>
+    </message>
+    <message>
+        <location filename="onmainwindow.cpp" line="6861"/>
+        <source>WINDOWS-1252</source>
+        <translation>WINDOWS-1252</translation>
+    </message>
+    <message>
+        <location filename="onmainwindow.cpp" line="6871"/>
+        <source>ISO8859-1</source>
+        <translation>ISO8859-1</translation>
     </message>
 </context>
 <context>
@@ -1632,23 +1833,23 @@ Sie können SSHD über folgenden Befehl installieren:
 <context>
     <name>PrintProcess</name>
     <message>
-        <location filename="printprocess.cpp" line="155"/>
+        <location filename="printprocess.cpp" line="162"/>
         <source>Save File</source>
         <translation>Datei speichern</translation>
     </message>
     <message>
-        <location filename="printprocess.cpp" line="157"/>
+        <location filename="printprocess.cpp" line="164"/>
         <source>PDF Document (*.pdf)</source>
         <translation>PDF Dokument (*.pdf)</translation>
     </message>
     <message>
-        <location filename="printprocess.cpp" line="273"/>
+        <location filename="printprocess.cpp" line="282"/>
         <source>Failed to execute command:
 </source>
         <translation>Befehl konnte nicht ausgeführt werden:</translation>
     </message>
     <message>
-        <location filename="printprocess.cpp" line="271"/>
+        <location filename="printprocess.cpp" line="280"/>
         <source>Printing error</source>
         <translation>Druckfehler</translation>
     </message>
@@ -1711,7 +1912,7 @@ Sie können SSHD über folgenden Befehl installieren:
         <translation>Diesen Dialog vor Druckstart anzeigen</translation>
     </message>
     <message>
-        <location filename="printwidget.cpp" line="60"/>
+        <location filename="printwidget.cpp" line="61"/>
         <source>Please configure your client side printing settings.&lt;br&gt;&lt;br&gt;If you want to print the created file, you&apos;ll need an external application. Typically you can use &lt;a href=&quot;http://pages.cs.wisc.edu/~ghost/doc/GPL/index.htm&quot;&gt;ghostprint&lt;/a&gt; and &lt;a href=&quot;http://pages.cs.wisc.edu/~ghost/gsview/&quot;&gt;ghostview&lt;/a&gt;&lt;br&gt;You can find  further information &lt;a href=&quot;http://www.x2go.org/index.php?id=49&quot;&gt;here&lt;/a&gt;.</source>
         <translation>Legen Sie hier die Druckerkonfiguration für den clientseitigen Druck fest.&lt;br&gt;&lt;br&gt;Um die erzeugten Dateien auf einem Drucker ausgeben zu können, wird ein externes Programm benötigt. Typischerweise wird &lt;a href=&quot;http://pages.cs.wisc.edu/~ghost/doc/GPL/index.htm&quot;&gt;Ghostprint&lt;/a&gt; und &lt;a href=&quot;http://pages.cs.wisc.edu/~ghost/gsview/&quot;&gt;Ghostview&lt;/a&gt; verwendet&lt;br&gt;Weiterführende Infromationen erhalten Sie &lt;a href=&quot;http://www.x2go.org/index.php?id=6&quot;&gt;hier&lt;/a&gt;.</translation>
     </message>
@@ -1834,27 +2035,27 @@ Beispiel:
         <translation type="obsolete">Aktiviere Audiounterstützung</translation>
     </message>
     <message>
-        <location filename="sessionbutton.cpp" line="233"/>
+        <location filename="sessionbutton.cpp" line="235"/>
         <source>New Session</source>
         <translation>Neue Sitzung</translation>
     </message>
     <message>
-        <location filename="sessionbutton.cpp" line="256"/>
+        <location filename="sessionbutton.cpp" line="258"/>
         <source>KDE</source>
         <translation>KDE</translation>
     </message>
     <message>
-        <location filename="sessionbutton.cpp" line="563"/>
+        <location filename="sessionbutton.cpp" line="592"/>
         <source>fullscreen</source>
         <translation>Vollbild</translation>
     </message>
     <message>
-        <location filename="sessionbutton.cpp" line="469"/>
+        <location filename="sessionbutton.cpp" line="486"/>
         <source>Enabled</source>
         <translation>aktiviert</translation>
     </message>
     <message>
-        <location filename="sessionbutton.cpp" line="471"/>
+        <location filename="sessionbutton.cpp" line="488"/>
         <source>Disabled</source>
         <translation>deaktiviert</translation>
     </message>
@@ -1864,7 +2065,7 @@ Beispiel:
         <translation type="obsolete">/usr/bin/startkde</translation>
     </message>
     <message>
-        <location filename="sessionbutton.cpp" line="334"/>
+        <location filename="sessionbutton.cpp" line="351"/>
         <source>window</source>
         <translation>Fenster</translation>
     </message>
@@ -1904,9 +2105,19 @@ Beispiel:
         <translation>Sound</translation>
     </message>
     <message>
-        <location filename="sessionbutton.cpp" line="510"/>
+        <location filename="sessionbutton.cpp" line="533"/>
         <source>RDP connection</source>
         <translation>RDP Verbindung</translation>
+    </message>
+    <message>
+        <location filename="sessionbutton.cpp" line="527"/>
+        <source>Connection to local desktop</source>
+        <translation>Zugriff auf lokalen Desktop</translation>
+    </message>
+    <message>
+        <location filename="sessionbutton.cpp" line="539"/>
+        <source>XDMCP</source>
+        <translation>XDMCP</translation>
     </message>
 </context>
 <context>
@@ -2012,69 +2223,84 @@ Beispiel:
         <translation>Sitzungsart:</translation>
     </message>
     <message>
-        <location filename="sessionwidget.cpp" line="252"/>
+        <location filename="sessionwidget.cpp" line="259"/>
         <source>Connect to Windows terminal server</source>
         <translation>Verbindung mit Windows Terminalserver herstellen</translation>
     </message>
     <message>
-        <location filename="sessionwidget.cpp" line="123"/>
+        <location filename="sessionwidget.cpp" line="125"/>
         <source>Custom desktop</source>
         <translation>Andere Desktopumgebung</translation>
     </message>
     <message>
-        <location filename="sessionwidget.cpp" line="124"/>
+        <location filename="sessionwidget.cpp" line="126"/>
         <source>Single application</source>
         <translation>Anwendung</translation>
     </message>
     <message>
-        <location filename="sessionwidget.cpp" line="213"/>
+        <location filename="sessionwidget.cpp" line="215"/>
         <source>Command:</source>
         <translation>Befehl:</translation>
     </message>
     <message>
-        <location filename="sessionwidget.cpp" line="127"/>
+        <location filename="sessionwidget.cpp" line="129"/>
         <source>Advanced options...</source>
         <translation>Erweiterte Einstellungen...</translation>
     </message>
     <message>
-        <location filename="sessionwidget.cpp" line="412"/>
+        <location filename="sessionwidget.cpp" line="442"/>
         <source>Path to executable</source>
         <translation>Pfad zum Programm</translation>
     </message>
     <message>
-        <location filename="sessionwidget.cpp" line="187"/>
+        <location filename="sessionwidget.cpp" line="189"/>
         <source>Open picture</source>
         <translation>Öffne Bild</translation>
     </message>
     <message>
-        <location filename="sessionwidget.cpp" line="189"/>
+        <location filename="sessionwidget.cpp" line="191"/>
         <source>Pictures</source>
         <translation>Bilder</translation>
     </message>
     <message>
-        <location filename="sessionwidget.cpp" line="201"/>
+        <location filename="sessionwidget.cpp" line="203"/>
         <source>Open key file</source>
         <translation>Öffne Schlüssel</translation>
     </message>
     <message>
-        <location filename="sessionwidget.cpp" line="203"/>
+        <location filename="sessionwidget.cpp" line="205"/>
         <source>All files</source>
         <translation>Alle Dateien</translation>
     </message>
     <message>
-        <location filename="sessionwidget.cpp" line="333"/>
+        <location filename="sessionwidget.cpp" line="347"/>
         <source>Server:</source>
         <translation>Server:</translation>
     </message>
     <message>
-        <location filename="sessionwidget.cpp" line="253"/>
+        <location filename="sessionwidget.cpp" line="260"/>
         <source>rdesktop command line options:</source>
         <translation>rdesktop Kommandozeilenoptionen:</translation>
     </message>
     <message>
-        <location filename="sessionwidget.cpp" line="346"/>
+        <location filename="sessionwidget.cpp" line="367"/>
         <source>New session</source>
         <translation>Neue Sitzung</translation>
+    </message>
+    <message>
+        <location filename="sessionwidget.cpp" line="124"/>
+        <source>Connect to local desktop</source>
+        <translation>Zugriff auf lokalen Desktop</translation>
+    </message>
+    <message>
+        <location filename="sessionwidget.cpp" line="355"/>
+        <source>XDMCP server:</source>
+        <translation>XDMCP Server:</translation>
+    </message>
+    <message>
+        <location filename="sessionwidget.cpp" line="123"/>
+        <source>XDMCP</source>
+        <translation>XDMCP</translation>
     </message>
 </context>
 <context>
@@ -2190,60 +2416,85 @@ sound system connections through firewalls</source>
 <context>
     <name>ShareWidget</name>
     <message>
-        <location filename="sharewidget.cpp" line="33"/>
+        <location filename="sharewidget.cpp" line="36"/>
         <source>&amp;Folders</source>
         <translation>&amp;Ordner</translation>
     </message>
     <message>
-        <location filename="sharewidget.cpp" line="43"/>
+        <location filename="sharewidget.cpp" line="46"/>
         <source>Path</source>
         <translation>Pfad</translation>
     </message>
     <message>
-        <location filename="sharewidget.cpp" line="108"/>
+        <location filename="sharewidget.cpp" line="130"/>
         <source>Automount</source>
         <translation>automatisch verbinden</translation>
     </message>
     <message>
-        <location filename="sharewidget.cpp" line="54"/>
+        <location filename="sharewidget.cpp" line="57"/>
         <source>Add</source>
         <translation>Hinzufügen</translation>
     </message>
     <message>
-        <location filename="sharewidget.cpp" line="55"/>
+        <location filename="sharewidget.cpp" line="58"/>
         <source>Delete</source>
         <translation>Löschen</translation>
     </message>
     <message>
-        <location filename="sharewidget.cpp" line="65"/>
+        <location filename="sharewidget.cpp" line="68"/>
         <source>Path:</source>
         <translation>Pfad:</translation>
     </message>
     <message>
-        <location filename="sharewidget.cpp" line="74"/>
+        <location filename="sharewidget.cpp" line="95"/>
         <source>Use ssh port forwarding to tunnel file system connections through firewalls</source>
         <translation>Benutze SSH Port Weiterleitung über Tunnel um Dateisysteme über Firewalls zu verbinden</translation>
     </message>
     <message>
-        <location filename="sharewidget.cpp" line="124"/>
+        <location filename="sharewidget.cpp" line="148"/>
         <source>Select folder</source>
         <translation>Wähle Ordner</translation>
+    </message>
+    <message>
+        <location filename="sharewidget.cpp" line="76"/>
+        <source>Filename encoding</source>
+        <translation>Kodierung der Dateinamen</translation>
+    </message>
+    <message>
+        <location filename="sharewidget.cpp" line="255"/>
+        <source>WINDOWS-1252</source>
+        <translation>WINDOWS-1252</translation>
+    </message>
+    <message>
+        <location filename="sharewidget.cpp" line="261"/>
+        <source>ISO8859-1</source>
+        <translation>ISO8859-1</translation>
+    </message>
+    <message>
+        <location filename="sharewidget.cpp" line="81"/>
+        <source>local:</source>
+        <translation>lokal:</translation>
+    </message>
+    <message>
+        <location filename="sharewidget.cpp" line="82"/>
+        <source>remote:</source>
+        <translation>entfernt:</translation>
     </message>
 </context>
 <context>
     <name>sshProcess</name>
     <message>
-        <location filename="sshprocess.cpp" line="64"/>
+        <location filename="sshprocess.cpp" line="66"/>
         <source>Unable to create: </source>
         <translation>Erstellung fehlgeschlagen: </translation>
     </message>
     <message>
-        <location filename="sshprocess.cpp" line="133"/>
+        <location filename="sshprocess.cpp" line="152"/>
         <source>Yes</source>
         <translation>Ja</translation>
     </message>
     <message>
-        <location filename="sshprocess.cpp" line="134"/>
+        <location filename="sshprocess.cpp" line="153"/>
         <source>No</source>
         <translation>Nein</translation>
     </message>
@@ -2253,17 +2504,17 @@ sound system connections through firewalls</source>
         <translation type="obsolete">Schreibfehler: </translation>
     </message>
     <message>
-        <location filename="sshprocess.cpp" line="81"/>
+        <location filename="sshprocess.cpp" line="90"/>
         <source>Error</source>
         <translation>Fehler</translation>
     </message>
     <message>
-        <location filename="sshprocess.cpp" line="82"/>
+        <location filename="sshprocess.cpp" line="91"/>
         <source>Cannot create temporary file</source>
         <translation>Temporäre Datei konnte nicht angelegt werden</translation>
     </message>
     <message>
-        <location filename="sshprocess.cpp" line="131"/>
+        <location filename="sshprocess.cpp" line="150"/>
         <source>Host key verification failed</source>
         <translation>Host key verification failed</translation>
     </message>

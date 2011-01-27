@@ -173,17 +173,19 @@ SessionButton::SessionButton ( ONMainWindow* mw,QWidget *parent, QString id )
 
 	cmdBox->hide();
 	geomBox->hide();
-	QPixmap pix;
-	pix.load ( par->iconsPath ( "/16x16/session.png" ) );
-	serverIcon->setPixmap ( pix );
+	QPixmap spix;
+	spix.load ( par->iconsPath ( "/16x16/session.png" ) );
+	serverIcon->setPixmap ( spix );
 	serverIcon->setFixedSize ( 16,16 );
 
-	pix.load ( par->iconsPath ( "/16x16/resolution.png" ) );
-	geomIcon->setPixmap ( pix );
+	QPixmap rpix;
+	rpix.load ( par->iconsPath ( "/16x16/resolution.png" ) );
+	geomIcon->setPixmap ( rpix );
 	geomIcon->setFixedSize ( 16,16 );
 
-	pix.load ( par->iconsPath ( "/16x16/audio.png" ) );
-	soundIcon->setPixmap ( pix );
+	QPixmap apix;
+	apix.load ( par->iconsPath ( "/16x16/audio.png" ) );
+	soundIcon->setPixmap ( apix );
 	soundIcon->setFixedSize ( 16,16 );
 	redraw();
 
@@ -236,7 +238,7 @@ void SessionButton::redraw()
 	                     ( QVariant )
 	                     ":icons/128x128/x2gosession.png"
 	                 ).toString();
-	QPixmap pix ( sessIcon );
+	QPixmap pix(sessIcon);
 	if ( !par->retMiniMode() )
 		icon->setPixmap ( pix.scaled ( 64,64,Qt::IgnoreAspectRatio,
 		                               Qt::SmoothTransformation ) );
@@ -264,33 +266,48 @@ void SessionButton::redraw()
 	cmdBox->addItem ( "GNOME" );
 	cmdBox->addItem ( "LXDE" );
 	cmdBox->addItem ( tr ( "RDP connection" ) );
+	cmdBox->addItem ( tr ( "XDMCP" ) );
+	cmdBox->addItem ( tr ( "Connection to local desktop" ) );
 
 	cmdBox->addItems ( par->transApplicationsNames() );
 
+ 	QPixmap cmdpix;
 	if ( command=="KDE" )
 	{
-		pix.load ( par->iconsPath ( "/16x16/kde.png" ) );
+ 		cmdpix.load ( par->iconsPath ( "/16x16/kde.png" ) );
 		cmdBox->setCurrentIndex ( KDE );
 	}
 	else if ( command =="GNOME" )
 	{
-		pix.load ( par->iconsPath ( "/16x16/gnome.png" ) );
+ 		cmdpix.load ( par->iconsPath ( "/16x16/gnome.png" ) );
 		cmdBox->setCurrentIndex ( GNOME );
 	}
 	else if ( command =="LXDE" )
 	{
-		pix.load ( par->iconsPath ( "/16x16/lxde.png" ) );
+ 		cmdpix.load ( par->iconsPath ( "/16x16/lxde.png" ) );
 		cmdBox->setCurrentIndex ( LXDE );
+	}
+	else if ( command =="SHADOW" )
+	{
+ 		cmdpix.load ( par->iconsPath ( "/16x16/X.png" ) );
+		cmdBox->setCurrentIndex ( SHADOW );
+		command=tr("Connection to local desktop");
 	}
 	else if ( command =="RDP" )
 	{
-		pix.load ( par->iconsPath ( "/16x16/rdp.png" ) );
+ 		cmdpix.load ( par->iconsPath ( "/16x16/rdp.png" ) );
 		cmdBox->setCurrentIndex ( RDP );
 		command=tr("RDP connection");
 	}
+	else if ( command =="XDMCP" )
+	{
+ 		cmdpix.load ( par->iconsPath ( "/16x16/X.png" ) );
+		cmdBox->setCurrentIndex ( XDMCP );
+		command=tr("XDMCP");
+	}
 	else
 	{
-		pix.load ( par->iconsPath ( "/16x16/X.png" ) );
+ 		cmdpix.load ( par->iconsPath ( "/16x16/X.png" ) );
 		command=par->transAppName ( command );
 		int id= cmdBox->findText ( command );
 		if ( id ==-1 )
@@ -303,7 +320,7 @@ void SessionButton::redraw()
 	}
 
 
-	cmdIcon->setPixmap ( pix );
+ 	cmdIcon->setPixmap ( cmdpix );
 	cmd->setText ( command );
 
 
@@ -507,11 +524,23 @@ void SessionButton::slot_cmd_change ( const QString& command )
 		newRootless=false;
 		pix.load ( par->iconsPath ( "/16x16/lxde.png" ) );
 	}
+	else if ( command ==tr("Connection to local desktop"))
+	{
+		newRootless=false;
+		pix.load ( par->iconsPath ( "/16x16/X.png" ) );
+		cmd="SHADOW";
+	}
 	else if ( command == tr("RDP connection") )
 	{
 		newRootless=false;
 		pix.load ( par->iconsPath ( "/16x16/rdp.png" ) );
 		cmd="RDP";
+	}
+	else if ( command == tr("XDMCP") )
+	{
+		newRootless=false;
+		pix.load ( par->iconsPath ( "/16x16/X.png" ) );
+		cmd="XDMCP";
 	}
 	else
 		pix.load ( par->iconsPath ( "/16x16/X.png" ) );

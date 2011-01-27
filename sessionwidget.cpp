@@ -120,6 +120,8 @@ SessionWidget::SessionWidget ( QString id, ONMainWindow * mw,
 	sessBox->addItem ( "GNOME" );
 	sessBox->addItem ( "LXDE" );
 	sessBox->addItem ( tr ( "Connect to Windows terminal server" ) );
+	sessBox->addItem ( tr ( "XDMCP" ) );
+	sessBox->addItem ( tr ( "Connect to local desktop" ) );
 	sessBox->addItem ( tr ( "Custom desktop" ) );
 	sessBox->addItem ( tr ( "Single application" ) );
 	cmdLay->addWidget ( sessBox );
@@ -223,7 +225,7 @@ void SessionWidget::slot_changeCmd ( int var )
 	{
 		cmdCombo->hide();
 		cmd->setVisible ( true );
-		if ( var==OTHER || var == RDP )
+		if ( var==OTHER || var == RDP || var == XDMCP)
 		{
 			cmd->setText ( "" );
 			cmd->setEnabled ( true );
@@ -234,6 +236,11 @@ void SessionWidget::slot_changeCmd ( int var )
 				leCmdIp->setText ( tr ( "Server:" ) );
 				pbAdvanced->show();
 				cmd->setText ( rdpServer );
+			}
+			if(var== XDMCP)
+			{
+				leCmdIp->setText ( tr ( "XDMCP server:" ) );
+				cmd->setText ( xdmcpServer );
 			}
 		}
 		else
@@ -297,6 +304,8 @@ void SessionWidget::readConfig()
 	                      ( QVariant ) "" ).toString();
 	rdpServer=st.value ( sessionId+"/rdpserver",
 	                     ( QVariant ) "" ).toString();
+	xdmcpServer=st.value ( sessionId+"/xdmcpserver",
+	                     ( QVariant ) "localhost" ).toString();
 
 	for ( int i=0;i<appNames.count();++i )
 	{
@@ -328,6 +337,11 @@ void SessionWidget::readConfig()
 			sessBox->setCurrentIndex ( LXDE );
 			cmd->setEnabled ( false );
 		}
+		else if ( command=="SHADOW" )
+		{
+			sessBox->setCurrentIndex ( SHADOW );
+			cmd->setEnabled ( false );
+		}
 		else if ( command=="RDP" )
 		{
 			leCmdIp->setText ( tr ( "Server:" ) );
@@ -335,6 +349,13 @@ void SessionWidget::readConfig()
 			cmd->setEnabled ( true );
 			cmd->setText ( rdpServer );
 			pbAdvanced->show();
+		}
+		else if ( command=="XDMCP" )
+		{
+			leCmdIp->setText ( tr ( "XDMCP server:" ) );
+			sessBox->setCurrentIndex ( XDMCP );
+			cmd->setEnabled ( true );
+			cmd->setText ( xdmcpServer );
 		}
 		else
 		{
@@ -398,6 +419,15 @@ void SessionWidget::saveSettings()
 		command="RDP";
 		rdpServer=cmd->text();
 	}
+	if ( sessBox->currentIndex() == XDMCP )
+	{
+		command="XDMCP";
+		xdmcpServer=cmd->text();
+	}
+	if ( sessBox->currentIndex() == SHADOW )
+	{
+		command="SHADOW";
+	}
 
 	QStringList appList;
 	for ( int i=-1;i<cmdCombo->count();++i )
@@ -424,6 +454,7 @@ void SessionWidget::saveSettings()
 	st.setValue ( sessionId+"/command", ( QVariant ) command );
 	st.setValue ( sessionId+"/rdpoptions", ( QVariant ) rdpOptions );
 	st.setValue ( sessionId+"/rdpserver", ( QVariant ) rdpServer );
+	st.setValue ( sessionId+"/xdmcpserver", ( QVariant ) xdmcpServer );
 	st.sync();
 }
 

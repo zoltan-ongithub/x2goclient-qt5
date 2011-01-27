@@ -20,11 +20,13 @@
 */
 class QLocalServer;
 class QLocalSocket;
+struct SshProxy;
 class sshProcess : public QProcess
 {
 		Q_OBJECT
 	public:
-		sshProcess ( QObject* parent, const QString& user,
+		sshProcess ( QObject* parent, const SshProxy* proxy,
+		             const QString& user,
 		             const QString& host,const QString& pt,
 		             const QString& cmd, const QString& pass,
 		             const QString& key=QString::null,
@@ -39,7 +41,7 @@ class sshProcess : public QProcess
 		QString setsid();
 		void setErrorString ( const QString& str );
 		void setFwX ( bool s ) {fwX=s;}
-    virtual void setEnvironment(QStringList newEnv);
+		virtual void setEnvironment ( QStringList newEnv );
 	private:
 		QString askpass;
 		QString user;
@@ -80,7 +82,7 @@ class sshProcess : public QProcess
 		void printPass ( bool accept=false );
 		void printKey ( bool accept=false );
 		QString cookie();
-		void cleanEnv(bool all=false);
+		void cleanEnv ( bool all=false );
 	signals:
 		void sshFinished ( bool,QString,sshProcess* );
 		void sudoConfigError ( QString,sshProcess* );

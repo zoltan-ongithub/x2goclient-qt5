@@ -5,6 +5,7 @@
 
 TRANSLATIONS += x2goclient_de.ts 
 TRANSLATIONS += x2goclient_ru.ts 
+TRANSLATIONS += x2goclient_fr.ts 
 HEADERS += configdialog.h \
            editconnectiondialog.h \
            exportdialog.h \
@@ -32,7 +33,8 @@ HEADERS += configdialog.h \
  connectionwidget.h \
  settingswidget.h \
  sharewidget.h \
- clicklineedit.h
+ clicklineedit.h \
+ httpbrokerclient.h
 SOURCES += sharewidget.cpp \
  settingswidget.cpp\
  configwidget.cpp \
@@ -60,7 +62,8 @@ SOURCES += sharewidget.cpp \
  printdialog.cpp \
  embedwidget.cpp \
  wapi.cpp \
- clicklineedit.cpp
+ clicklineedit.cpp \
+ httpbrokerclient.cpp
 TEMPLATE = app
 TARGET =
 DEPENDPATH += .
@@ -76,13 +79,13 @@ macx {
     message(building x2goclient with ldap and cups)
     LIBS += -lldap -lcups
 }
-win32-*{
+win32-* {
     LIBS += -lwinspool
+    CONFIG += static
 }
 QT += svg network
 ICON =icons/x2go-mac.icns
-QMAKE_MAC_SDK =/Developer/SDKs/MacOSX10.5.sdk
-CONFIG +=x86 ppc
+QMAKE_MAC_SDK =/Developer/SDKs/MacOSX10.6.sdk
 FORMS += cupsprintsettingsdialog.ui \
 cupsprintwidget.ui \
 printwidget.ui \

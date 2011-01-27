@@ -16,7 +16,7 @@
 X2goLogDebug::X2goLogDebug():QTextStream()
 {
     logFile.setFileName(LOGFILE);
-    if(logFile.open(QIODevice::WriteOnly|QIODevice::Text|QIODevice::Append));
+    if(logFile.open(QIODevice::WriteOnly|QIODevice::Text|QIODevice::Append))
     {
           setDevice(&logFile);
     }

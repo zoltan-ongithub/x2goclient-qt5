@@ -238,6 +238,9 @@ ConfigDialog::ConfigDialog ( QWidget * parent,  Qt::WFlags f )
 		    this );
 		connect ( advancedOptions,SIGNAL ( clicked() ),this,
 		          SLOT ( slotAdvClicked() ) );
+		advancedOptions->setVisible ( (
+		                                  ( ONMainWindow* ) parent )->
+		                              getShowAdvOption() );
 		advOptionsShown=false;
 		conWidg=new ConnectionWidget ( QString::null,
 		                               ( ONMainWindow* ) parent,this );

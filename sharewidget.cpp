@@ -20,7 +20,10 @@
 #include <QCheckBox>
 #include <QBoxLayout>
 #include <QHeaderView>
+#include <QComboBox>
+#include <QTextStream>
 
+#include "x2gologdebug.h"
 
 #include <QFileDialog>
 #include <QDir>
@@ -68,6 +71,24 @@ ShareWidget::ShareWidget ( QString id, ONMainWindow * mw,
 
 	ldir->setFrameStyle ( QFrame::StyledPanel|QFrame::Sunken );
 
+	cbFsConv=new QCheckBox (
+	    tr ( "Filename encoding"
+	       ),egb );
+
+	QHBoxLayout* enclay=new QHBoxLayout;
+	cbFrom=new QComboBox ( egb );
+	cbTo=new QComboBox ( egb );
+	lFrom=new QLabel ( tr ( "local:" ),egb );
+	lTo=new QLabel ( tr ( "remote:" ),egb );
+
+	enclay->addWidget ( cbFsConv );
+	enclay->addWidget ( lFrom );
+	enclay->addWidget ( cbFrom );
+	enclay->addWidget ( lTo );
+	enclay->addWidget ( cbTo );
+	enclay->addStretch();
+	loadEnc ( cbFrom );
+	loadEnc ( cbTo );
 
 	cbFsSshTun=new QCheckBox (
 	    tr ( "Use ssh port forwarding to tunnel file system "
@@ -87,6 +108,7 @@ ShareWidget::ShareWidget ( QString id, ONMainWindow * mw,
 	leftLay->addLayout ( dirLAy );
 	leftLay->addSpacing ( 10 );
 	leftLay->addWidget ( expTv );
+	expLay->addLayout ( enclay );
 	expLay->addWidget ( cbFsSshTun );
 
 	QVBoxLayout* rightLay=new QVBoxLayout();
@@ -109,6 +131,8 @@ ShareWidget::ShareWidget ( QString id, ONMainWindow * mw,
 	connect ( openDir,SIGNAL ( clicked() ),this,SLOT ( slot_openDir() ) );
 	connect ( addDir,SIGNAL ( clicked() ),this,SLOT ( slot_addDir() ) );
 	connect ( delDir,SIGNAL ( clicked() ),this,SLOT ( slot_delDir() ) );
+	connect ( cbFsConv,SIGNAL ( clicked() ),this
+	          ,SLOT ( slot_convClicked() ) );
 	readConfig();
 }
 
@@ -171,6 +195,38 @@ void ShareWidget::readConfig()
 	cbFsSshTun->setChecked ( st.value ( sessionId+"/fstunnel",
 	                                    true ).toBool() );
 	QStringList lst=exportDir.split ( ";",QString::SkipEmptyParts );
+
+	QString toCode=st.value ( sessionId+"/iconvto",
+	                          ( QVariant ) "UTF-8" ).toString();
+
+#ifdef Q_OS_WIN
+	QString fromCode=st.value ( sessionId+"/iconvfrom",
+	                            ( QVariant ) tr (
+	                                "WINDOWS-1252" ) ).toString();
+#endif
+#ifdef Q_OS_DARWIN
+	QString fromCode=st.value ( sessionId+"/iconvfrom",
+	                            ( QVariant )
+	                            "UTF-8" ).toString();
+#endif
+#ifdef Q_OS_LINUX
+	QString fromCode=st.value ( sessionId+"/iconvfrom",
+	                            ( QVariant ) tr (
+	                                "ISO8859-1" ) ).toString();
+#endif
+
+	cbFsConv->setChecked ( st.value ( sessionId+"/useiconv",
+	                                  ( QVariant ) false ).toBool() );
+	slot_convClicked();
+
+	int ind=cbFrom->findText ( fromCode );
+	if ( ind !=-1 )
+		cbFrom->setCurrentIndex ( ind );
+
+	ind=cbTo->findText ( toCode );
+	if ( ind !=-1 )
+		cbTo->setCurrentIndex ( ind );
+
 	for ( int i=0;i<lst.size();++i )
 	{
 #ifndef Q_OS_WIN
@@ -192,6 +248,28 @@ void ShareWidget::readConfig()
 void ShareWidget::setDefaults()
 {
 	cbFsSshTun->setChecked ( true );
+
+	QString toCode="UTF-8";
+
+#ifdef Q_OS_WIN
+	QString fromCode=tr ( "WINDOWS-1252" );
+#endif
+#ifdef Q_OS_DARWIN
+	QString fromCode="UTF-8";
+#endif
+#ifdef Q_OS_LINUX
+	QString fromCode=tr ( "ISO8859-1" );
+#endif
+
+	cbFsConv->setChecked ( false );
+	slot_convClicked();
+
+	int ind=cbFrom->findText ( fromCode );
+	if ( ind !=-1 )
+		cbFrom->setCurrentIndex ( ind );
+	ind=cbTo->findText ( toCode );
+	if ( ind !=-1 )
+		cbTo->setCurrentIndex ( ind );
 }
 
 
@@ -223,5 +301,35 @@ void ShareWidget::saveSettings()
 			exportDirs+="0;";
 	}
 	st.setValue ( sessionId+"/export", ( QVariant ) exportDirs );
+	
+	
+	st.setValue(sessionId+"/iconvto",cbTo->currentText());
+	st.setValue(sessionId+"/iconvfrom",cbFrom->currentText());
+	st.setValue(sessionId+"/useiconv",cbFsConv->isChecked());
 	st.sync();
+}
+
+
+void ShareWidget::loadEnc ( QComboBox* cb )
+{
+	QFile file ( ":/txt/encodings" );
+	if ( !file.open ( QIODevice::ReadOnly | QIODevice::Text ) )
+		return;
+
+	QTextStream in ( &file );
+	while ( !in.atEnd() )
+	{
+		QString line = in.readLine();
+		line=line.replace ( "//","" );
+		cb->addItem ( line );
+	}
+}
+
+void ShareWidget::slot_convClicked()
+{
+	bool val=cbFsConv->isChecked();
+	cbTo->setEnabled ( val );
+	cbFrom->setEnabled ( val );
+	lTo->setEnabled ( val );
+	lFrom->setEnabled ( val );
 }

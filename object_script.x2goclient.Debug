@@ -27,6 +27,7 @@ INPUT(
 ./debug/embedwidget.o
 ./debug/wapi.o
 ./debug/clicklineedit.o
+./debug/httpbrokerclient.o
 ./debug/moc_configdialog.o
 ./debug/moc_editconnectiondialog.o
 ./debug/moc_exportdialog.o
@@ -48,5 +49,6 @@ INPUT(
 ./debug/moc_settingswidget.o
 ./debug/moc_sharewidget.o
 ./debug/moc_clicklineedit.o
+./debug/moc_httpbrokerclient.o
 ./debug/qrc_resources.o
 );

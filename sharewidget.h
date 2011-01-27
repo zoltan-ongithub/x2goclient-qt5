@@ -21,6 +21,7 @@ class QTreeView;
 class QStandardItemModel;
 class QLabel;
 class QCheckBox;
+class QComboBox;
 
 class ShareWidget : public ConfigWidget
 {
@@ -35,13 +36,21 @@ class ShareWidget : public ConfigWidget
 		void slot_openDir();
 		void slot_addDir();
 		void slot_delDir();
+		void slot_convClicked();
 	private:
 		QTreeView* expTv;
 		QStandardItemModel* model;
 		QLabel *ldir;
 		QCheckBox* cbFsSshTun;
+		QCheckBox* cbFsConv;
+		QComboBox* cbFrom;
+		QComboBox* cbTo;
+		QLabel* lFrom;
+		QLabel* lTo;
+
 	private:
 		void readConfig();
+		void loadEnc ( QComboBox* cb );
 
 };
 

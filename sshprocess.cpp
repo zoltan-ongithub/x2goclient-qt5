@@ -21,9 +21,11 @@
 #include <QTimer>
 #ifdef Q_OS_WIN
 #include "wapi.h"
-#include "onmainwindow.h"
 #endif
-sshProcess::sshProcess ( QObject* parent,const QString& user,
+#include "onmainwindow.h"
+sshProcess::sshProcess ( QObject* parent,
+                         const SshProxy* proxy,
+                         const QString& user,
                          const QString& host,const QString& pt,
                          const QString& cmd,const QString& pass,
                          const QString& key, bool acc )
@@ -76,6 +78,11 @@ sshProcess::sshProcess ( QObject* parent,const QString& user,
 #else
 	extraOptions=" -o ServerAliveInterval=300 ";
 #endif
+	if ( proxy->use )
+	{
+		extraOptions+=" -o ProxyCommand=\""+proxy->bin+" "+
+		              user+"@"+proxy->host+" -p "+proxy->port+"\" ";
+	}
 	askpass+="/socaskpass-XXXXXX";
 	QTemporaryFile fl ( askpass );
 	if ( !fl.open() )
@@ -116,13 +123,23 @@ void sshProcess::slot_error ( QProcess::ProcessError )
 void sshProcess::slot_finished ( int exitCode, QProcess::ExitStatus status )
 {
 	hidePass();
-// 	QString resout ( readAllStandardOutput() );
-	/*		x2goDebug<<outputString<<endl;
-			x2goDebug<<errorString<<endl;
-			x2goDebug<<"exitCode: "<<exitCode<<" status:"<<status<<endl;*/
+/*	x2goDebug<<outputString<<endl;
+	x2goDebug<<errorString<<endl;
+	x2goDebug<<"exitCode: "<<exitCode<<" status:"<<status<<endl;*/
 	if ( ( exitCode!=0&&exitCode!=1 ) || status !=0 )
 	{
 		QString resp=getResponce();
+
+		if ( (errorString.indexOf (
+		            "POSSIBLE DNS SPOOFING DETECTED" ) !=-1 )||
+		   ((errorString.indexOf (
+		            "REMOTE HOST IDENTIFICATION HAS CHANGED" ) !=-1 )))
+		{
+			emit sshFinished ( false,host+":\n"+
+			                   errorString+"\n"+
+			                   outputString,this );
+			return;
+		}
 		if ( errorString.indexOf (
 		            "Host key verification failed" ) !=-1 )
 		{
@@ -174,7 +191,7 @@ void sshProcess::slot_stderr()
 {
 	QString reserr ( readAllStandardError() );
 	errorString+=reserr;
-//  	x2goDebug<<reserr<<endl;
+//     	x2goDebug<<reserr<<endl;
 	if ( reserr.indexOf (
 	            "Permission denied (publickey,keyboard-interactive)" ) !=-1
 	   )
@@ -206,16 +223,16 @@ void sshProcess::slot_stdout()
 	{
 		QString reserr ( readAllStandardOutput() );
 		outputString+=reserr;
-//  		x2goDebug<<reserr<<endl;
+//     		x2goDebug<<reserr<<endl;
 
 	}
 }
 
 void sshProcess::startNormal ( bool accept )
 {
-	/*	x2goDebug<<"normal"<<endl;
-		x2goDebug<<command<<endl;
-		x2goDebug<<"host:"<<host<<endl;*/
+	/*		x2goDebug<<"normal"<<endl;
+			x2goDebug<<command<<endl;
+			x2goDebug<<"host:"<<host<<endl;*/
 	errorString="";
 	needPass=false;
 	disconnect ( this,SIGNAL ( error ( QProcess::ProcessError ) ),this,
@@ -344,7 +361,10 @@ void sshProcess::hidePass()
 void sshProcess::startTunnel ( QString h,QString lp,
                                QString rp,bool rev,bool accept )
 {
-	x2goDebug<<"tunnel :"<<h<<":"<<lp<<":"<<rp<<":"<<reverse<<endl;
+	if(!rev)
+	   x2goDebug<<"tunnel :"<<h<<":"<<lp<<":"<<rp<<endl;
+	else
+	   x2goDebug<<"reverse tunnel :"<<h<<":"<<lp<<":"<<rp<<endl;
 	isTunnel=true;
 	errorString="";
 	needPass=false;
@@ -398,6 +418,9 @@ void sshProcess::startTunnel ( QString h,QString lp,
 		printPass ( accept );
 #ifndef  Q_OS_WIN
 
+		/*		x2goDebug<<setsid() +" ssh -c blowfish -v "+user+"@"+host+params+
+				        " -p "+sshPort+
+				        extraOptions;*/
 		start ( setsid() +" ssh -c blowfish -v "+user+"@"+host+params+
 		        " -p "+sshPort+
 		        extraOptions );

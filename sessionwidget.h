@@ -39,7 +39,7 @@ class SessionWidget : public ConfigWidget
 		void slot_rdpOptions();
 
 	private:
-		enum {KDE,GNOME,LXDE,RDP,OTHER,APPLICATION};
+		enum {KDE,GNOME,LXDE,RDP,XDMCP,SHADOW,OTHER,APPLICATION};
 		QLineEdit* sessName;
 		QLineEdit* uname;
 		QLineEdit* server;
@@ -54,6 +54,7 @@ class SessionWidget : public ConfigWidget
 		QPushButton* pbAdvanced;
 		QString rdpOptions;
 		QString rdpServer;
+		QString xdmcpServer;
 	private:
 		void readConfig();
 	signals:

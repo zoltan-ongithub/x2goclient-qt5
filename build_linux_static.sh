@@ -1,6 +1,5 @@
 #!/bin/bash
 
 make distclean
-
-/usr/local/Trolltech/qtsdk-2009.04/qt/bin/qmake -spec linux-g++
+/usr/local/Trolltech/Qt-4.6.2/bin/qmake -config release -spec linux-g++
 
