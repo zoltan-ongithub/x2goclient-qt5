@@ -425,6 +425,7 @@ class ONMainWindow : public QMainWindow
 		void slotSuspendSessFromSt();
 		void slotTermSess();
 		void slotNewSess();
+		void slot_cmdMessage( bool result,QString output,sshProcess* );
 		void slot_listSessions ( bool result,QString output,sshProcess* );
 		void slot_retSuspSess ( bool value,QString message,sshProcess* );
 		void slot_retTermSess ( bool result,QString output,sshProcess* );
@@ -464,12 +465,14 @@ class ONMainWindow : public QMainWindow
 		void slot_gpgAgentFinished ( int exitCode, QProcess::ExitStatus exitStatus );
 		void slot_checkAgentProcess();
 		void slot_execXmodmap();
+    void slot_sudoErr ( QString stderr, sshProcess* proc );
 	private:
 		void cartReady();
 	private:
 		void addToAppNames ( QString intName, QString transName );
 		bool checkAgentProcess();
 		bool isColorDepthOk ( int disp, int sess );
+    void check_cmd_status();
 #ifdef WINDOWS
 		QString transform2cygwinPath ( const QString& winPath, bool trunc=false );
 		QString transform2winPath ( const QString& winPath );

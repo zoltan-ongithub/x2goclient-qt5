@@ -21,6 +21,7 @@ sshProcess::sshProcess ( QObject* parent,const QString& user, const QString& hos
                          const QString& cmd,const QString& pass, const QString& key, bool acc )
 		: QProcess ( parent )
 {
+	sudoErr=false;
 	QString root=QDir::homePath() +"/.x2go";
 	isTunnel=false;
 	isCopy=false;
@@ -77,6 +78,8 @@ sshProcess::~sshProcess()
 	( askpass );
 	QFile::remove
 	( askpass+".log" );
+	if ( state() ==QProcess::Running )
+		kill();
 }
 
 
@@ -87,8 +90,8 @@ void sshProcess::slot_error ( QProcess::ProcessError )
 void sshProcess::slot_finished ( int exitCode, QProcess::ExitStatus status )
 {
 	hidePass();
-	QString resout ( readAllStandardOutput() );
-	x2goDebug<<resout<<endl;
+// 	QString resout ( readAllStandardOutput() );
+	x2goDebug<<outputString<<endl;
 	x2goDebug<<"exitCode: "<<exitCode<<" status:"<<status<<endl;
 	if ( ( exitCode!=0&&exitCode!=1 ) || status !=0 )
 	{
@@ -116,7 +119,7 @@ void sshProcess::slot_finished ( int exitCode, QProcess::ExitStatus status )
 			emit sshFinished ( false,host+":\n"+errorString,this );
 	}
 	else
-		emit sshFinished ( true,resout,this );
+		emit sshFinished ( true,outputString,this );
 }
 
 
@@ -124,6 +127,7 @@ void sshProcess::slot_stderr()
 {
 	QString reserr ( readAllStandardError() );
 	errorString+=reserr;
+// 	x2goDebug<<reserr<<endl;
 	if ( reserr.indexOf ( "Permission denied (publickey,keyboard-interactive)" ) !=-1 )
 	{
 		needPass=true;
@@ -134,6 +138,11 @@ void sshProcess::slot_stderr()
 		hidePass();
 		emit sshTunnelOk();
 	}
+	if ( reserr.indexOf ( "Password:" ) !=-1 )
+	{
+		sudoErr=true;
+		emit sudoConfigError ( errorString, this );
+	}
 }
 
 
@@ -142,6 +151,13 @@ void sshProcess::slot_stdout()
 	if ( isTunnel )
 	{
 		QString resout ( readAllStandardOutput() );
+	}
+	else
+	{
+		QString reserr ( readAllStandardOutput() );
+		outputString+=reserr;
+// 		x2goDebug<<reserr<<endl;
+
 	}
 }
 
@@ -171,7 +187,7 @@ void sshProcess::startNormal ( bool accept )
 	          SLOT ( slot_stdout() ) );
 
 	QString cmX;
-	if(fwX)
+	if ( fwX )
 	{
 		cmX=" -X ";
 	}
@@ -412,11 +428,17 @@ QString sshProcess::setsid()
 	QDir dir ( QApplication::applicationDirPath() );
 	dir.cdUp();
 	dir.cd ( "exe" );
-	return "\""+dir.absolutePath()+"/setsid\"";
+	return "\""+dir.absolutePath() +"/setsid\"";
 #else
 #ifdef Q_WS_HILDON
 	return "/usr/lib/x2go/setsid";
 #endif
 	return "setsid";
 #endif
+}
+
+void sshProcess::setErrorString ( const QString& str )
+{
+	if ( sudoErr )
+		errorString=str;
 }

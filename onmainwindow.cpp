@@ -985,7 +985,8 @@ void ONMainWindow::slotPassEnter()
 	}
 	connect ( proc,SIGNAL ( sshFinished ( bool,QString,sshProcess* ) ),
 	          this,SLOT ( slot_getServers ( bool, QString,sshProcess* ) ) );
-
+	connect ( proc,SIGNAL ( sudoConfigError ( QString,sshProcess* ) ),
+	          this,SLOT ( slot_sudoErr ( QString,sshProcess* ) ) );
 	if ( cardReady )
 	{
 		QStringList env=proc->environment();
@@ -1772,6 +1773,8 @@ bool ONMainWindow::startSession ( const QString& sid )
 	}
 	connect ( proc,SIGNAL ( sshFinished ( bool,QString,sshProcess* ) ),
 	          this,SLOT ( slot_listSessions ( bool, QString,sshProcess* ) ) );
+	connect ( proc,SIGNAL ( sudoConfigError ( QString,sshProcess* ) ),
+	          this,SLOT ( slot_sudoErr ( QString,sshProcess* ) ) );
 
 	if ( cardReady )
 	{
@@ -3063,6 +3066,7 @@ void ONMainWindow::slot_proxyFinished ( int,QProcess::ExitStatus )
 	tunnel=sndTunnel=0l;
 	artsd=0l;
 	nxproxy=0l;
+	check_cmd_status();
 
 	if ( readExportsFrom!=QString::null )
 	{
@@ -3590,6 +3594,8 @@ void ONMainWindow::runCommand()
 		sound=st.value ( sid+"/sound",
 		                 ( QVariant ) defaultUseSound ).toBool();
 	}
+
+	command.replace ( " ","X2GO_SPACE_CHAR" );
 
 	if ( !sound )
 		cmd="setsid x2goruncommand "+resumingSession.display+" "+
@@ -5456,4 +5462,90 @@ void ONMainWindow::slot_execXmodmap()
 	xmodProc->setFwX ( true );
 	xmodProc->startNormal();
 #endif
+}
+
+void ONMainWindow::slot_sudoErr ( QString stderr, sshProcess* proc )
+{
+	/*	QMessageBox::critical ( 0l,tr ( "Error" ),tr("Check your sudo configuration"),
+		                        QMessageBox::Ok,QMessageBox::NoButton );*/
+	proc->setErrorString ( tr ( "<br>Sudo configuration error" ) );
+	proc->kill();
+
+}
+
+void ONMainWindow::check_cmd_status()
+{
+	QString passwd;
+	QString user=login->text();
+	QString host=resumingSession.server;
+	if ( currentKey==QString::null||currentKey=="" )
+	{
+		passwd=pass->text();
+	}
+
+	x2goDebug<<"check command message"<<endl;
+	sshProcess* proc;
+	try
+	{
+		proc=new sshProcess ( this,user,host,sshPort,
+		                      "x2gocmdexitmessage "+resumingSession.sessionId,
+		                      passwd,currentKey,acceptRsa );
+	}
+	catch ( QString message )
+	{
+		return;
+	}
+	
+	if ( cardReady )
+	{
+		QStringList env=proc->environment();
+		env+=sshEnv;
+		proc->setEnvironment ( env );
+	}
+	connect ( proc,SIGNAL ( sshFinished ( bool,QString,sshProcess* ) ),
+	          this,SLOT ( slot_cmdMessage ( bool, QString,sshProcess* ) ) );
+
+	try
+	{
+		proc->startNormal();
+	}
+	catch ( QString message )
+	{
+		return;
+	}
+
+}
+
+void ONMainWindow::slot_cmdMessage ( bool result,QString output,sshProcess* proc )
+{
+	if ( proc )
+		delete proc;
+	if ( result==false )
+	{
+		cardReady=false;
+		cardStarted=false;
+		QString message=tr ( "<b>Connection failed</b>\n" ) +output;
+		if ( message.indexOf ( "publickey,password" ) !=-1 )
+		{
+			message=tr ( "<b>Wrong Password!</b><br><br>" ) +message;
+		}
+
+		QMessageBox::critical ( 0l,tr ( "Error" ),message,QMessageBox::Ok,
+		                        QMessageBox::NoButton );
+		currentKey=QString::null;
+		setEnabled ( true );
+		passForm->setEnabled ( true );
+		pass->setFocus();
+		pass->selectAll();
+		return;
+	}
+	if(output.indexOf("X2GORUNCOMMAND ERR NOEXEC:")!=-1)
+	{
+		QString cmd=output;
+		cmd.replace("X2GORUNCOMMAND ERR NOEXEC:","");
+		QMessageBox::critical ( 0l,tr ( "Error" ),tr("Unable to execute: ")+cmd,QMessageBox::Ok,
+		                        QMessageBox::NoButton );
+	}
+		
+	
 }

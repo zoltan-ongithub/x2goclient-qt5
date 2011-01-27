@@ -64,6 +64,8 @@ install: build
 	install icons/128x128/x2goclient.png $(CURDIR)/debian/x2goclient/usr/share/x2goclient/icons/x2goclient.png
 	install icons/128x128/x2goclient.png $(CURDIR)/debian/x2goclient/usr/share/icons/hicolor/128x128/apps/x2goclient.png
 	install icons/16x16/x2goclient.png $(CURDIR)/debian/x2goclient/usr/share/icons/hicolor/16x16/apps/x2goclient.png
+	install icons/64x64/x2goclient.png $(CURDIR)/debian/x2goclient/usr/share/icons/hicolor/64x64/apps/x2goclient.png
+	install icons/32x32/x2goclient.png $(CURDIR)/debian/x2goclient/usr/share/icons/hicolor/32x32/apps/x2goclient.png
 
 
 # Build architecture-independent files here.
