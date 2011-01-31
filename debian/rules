@@ -1,123 +1,20 @@
 #!/usr/bin/make -f
-# -*- makefile -*-
-# Sample debian/rules that uses debhelper.
-# This file was originally written by Joey Hess and Craig Small.
-# As a special exception, when this file is copied by dh-make into a
-# dh-make output file, you may use that output file without restriction.
-# This special exception was added by Craig Small in version 0.37 of dh-make.
-
-# Uncomment this to turn on verbose mode.
-#export DH_VERBOSE=1
-
-
-CFLAGS = -Wall -g
-
-ifneq (,$(findstring noopt,$(DEB_BUILD_OPTIONS)))
-	CFLAGS += -O0
-else
-	CFLAGS += -O2
-endif
 
 SRC_DIR=$(CURDIR)
 CLIENT_DIR=$(SRC_DIR)/client_build
 PLUGIN_DIR=$(SRC_DIR)/plugin_build
 
-configure: configure-stamp
-configure-stamp:
-	dh_testdir
-	# Add here commands to configure the package.
-	- mkdir $(CLIENT_DIR)
-	- mkdir $(PLUGIN_DIR)
-	cd $(CLIENT_DIR);qmake-qt4 ../x2goclient.pro
-	cd $(PLUGIN_DIR);X2GO_CLIENT_TARGET=plugin qmake-qt4 ../x2goclient.pro
-	touch configure-stamp
+%:
+	dh $@
 
-build: build-stamp
+override_dh_auto_configure:
+	mkdir $(CLIENT_DIR) && cd $(CLIENT_DIR) && qmake-qt4 ../x2goclient.pro
+	mkdir $(PLUGIN_DIR) && cd $(PLUGIN_DIR) && X2GO_CLIENT_TARGET=plugin qmake-qt4 ../x2goclient.pro
 
-build-stamp: configure-stamp 
-	dh_testdir
+override_dh_auto_build:
+	$(MAKE) -C $(CLIENT_DIR)
+	$(MAKE) -C $(PLUGIN_DIR)
 
-	# Add here commands to compile the package.
-	cd $(CLIENT_DIR);$(MAKE)
-	cd $(PLUGIN_DIR);$(MAKE)
-	#docbook-to-man debian/x2goclient.sgml > x2goclient.1
-
-	touch $@
-
-clean: configure
-	dh_testdir
-	dh_testroot
-	rm -f build-stamp configure-stamp
-
-	# Add here commands to clean up after the build process.
-	-cd $(CLIENT_DIR);$(MAKE) clean
-	-cd $(CLIENT_DIR);$(MAKE) distclean
-	-cd $(PLUGIN_DIR);$(MAKE) clean
-	-cd $(PLUGIN_DIR);$(MAKE) distclean
-	dh_clean 
-
-install: build
-	dh_testdir
-	dh_testroot
-	dh_clean -k 
-	dh_installdirs
-
-	# Add here commands to install the package into debian/x2goclient.
-	strip $(CLIENT_DIR)/x2goclient
-	strip $(PLUGIN_DIR)/libx2goplugin.so
-	install $(CLIENT_DIR)/x2goclient $(CURDIR)/debian/x2goclient/usr/bin/
-	mkdir --parents $(CURDIR)/debian/x2goplugin/usr/lib/mozilla/plugins/
-	install $(PLUGIN_DIR)/libx2goplugin.so $(CURDIR)/debian/x2goplugin/usr/lib/mozilla/plugins/
-	install x2goclient.desktop $(CURDIR)/debian/x2goclient/usr/share/applications/
-	install icons/128x128/x2goclient.png $(CURDIR)/debian/x2goclient/usr/share/x2goclient/icons/x2goclient.png
-	install icons/128x128/x2gosession.png $(CURDIR)/debian/x2goclient/usr/share/x2goclient/icons/x2gosession.png
-	install icons/128x128/x2goclient.png $(CURDIR)/debian/x2goclient/usr/share/icons/hicolor/128x128/apps/x2goclient.png
-	install icons/16x16/x2goclient.png $(CURDIR)/debian/x2goclient/usr/share/icons/hicolor/16x16/apps/x2goclient.png
-	install icons/64x64/x2goclient.png $(CURDIR)/debian/x2goclient/usr/share/icons/hicolor/64x64/apps/x2goclient.png
-	install icons/32x32/x2goclient.png $(CURDIR)/debian/x2goclient/usr/share/icons/hicolor/32x32/apps/x2goclient.png
-
-
-# Build architecture-independent files here.
-binary-indep: build install
-# We have nothing to do by default.
-
-# Build architecture-dependent files here.
-binary-arch: build install
-	dh_testdir
-	dh_testroot
-	dh_installchangelogs 
-	dh_installdocs
-	dh_installexamples
-#	dh_install
-	dh_installmenu
-#	dh_installdebconf	
-#	dh_installlogrotate
-#	dh_installemacsen
-#	dh_installpam
-#	dh_installmime
-#	dh_python
-#	dh_installinit
-#	dh_installcron
-#	dh_installinfo
-	dh_installman
-	dh_link
-	dh_strip
-	dh_compress
-	dh_fixperms
-#	dh_perl
-	dh_makeshlibs
-	dh_installdeb
-#	dh_shlibdeps
-	dh_gencontrol
-	dh_md5sums
-	dh_builddeb
-	-cd $(CLIENT_DIR);$(MAKE) clean
-	-cd $(CLIENT_DIR);$(MAKE) distclean
-	-cd $(PLUGIN_DIR);$(MAKE) clean
-	-cd $(PLUGIN_DIR);$(MAKE) distclean
-	-rmdir $(PLUGIN_DIR)
-	-rmdir $(CLIENT_DIR)
-
-
-binary: binary-indep binary-arch
-#.PHONY: build clean binary-indep binary-arch binary install configure
+override_dh_auto_clean:
+	rm -fr $(CLIENT_DIR) $(PLUGIN_DIR)
+	dh_clean
