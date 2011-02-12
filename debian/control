@@ -8,7 +8,7 @@ Standards-Version: 3.7.2
 Package: x2goclient
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}, nxproxy
-Recommends: 
+Suggests: pinentry-x2go 
 Description: x2goclient qt4 client
  x2go is a serverbased computing environment with
  - session resuming
