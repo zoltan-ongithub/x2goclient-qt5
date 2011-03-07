@@ -399,6 +399,10 @@ public:
     {
         return defaultFullscreen;
     }
+    bool sessionEditEnabled()
+    {
+      return !noSessionEdit;
+    }
 
     void showHelp();
     void showHelpPack();
@@ -462,6 +466,7 @@ private:
     bool extLogin;
     bool printSupport;
     bool showTbTooltip;
+    bool noSessionEdit;
     struct SshProxy sshProxy;
     QString sshPort;
     QString clientSshPort;

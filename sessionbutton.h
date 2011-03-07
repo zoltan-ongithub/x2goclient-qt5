@@ -54,6 +54,7 @@ class SessionButton : public SVGFrame
 		QAction* act_createIcon;
 		QAction* act_remove;
 		bool rootless;
+		bool editable;
 
 	private slots:
 		void slotClicked();

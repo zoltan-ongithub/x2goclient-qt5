@@ -520,7 +520,7 @@ void ONMainWindow::startNewSession()
     }
 
     resumingSession.server=host;
-
+    
     QString geometry;
 #ifdef Q_OS_WIN
     x2goDebug<<"fullscreen: "<<fullscreen;

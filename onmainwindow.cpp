@@ -86,6 +86,7 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
     startEmbedded=false;
     sshConnection=0;
     sessionStatusDlg=0;
+    noSessionEdit=false;
 
 #ifdef Q_OS_WIN
     clientSshPort="7022";
@@ -612,6 +613,12 @@ void ONMainWindow::initWidgetsNormal()
     act_edit=new QAction ( QIcon ( iconsPath ( "/32x32/edit.png" ) ),
                            tr ( "Session management..." ),this );
     act_edit->setShortcut ( tr ( "Ctrl+E" ) );
+    
+    if(noSessionEdit)
+    {
+      act_edit->setEnabled(false);
+      act_new->setEnabled(false);
+    }
 
     act_sessicon=new QAction (
         QIcon ( iconsPath ( "/32x32/create_file.png" ) ),
@@ -739,24 +746,24 @@ void ONMainWindow::trayIconInit()
         {
             trayIconMenu = new QMenu(this);
             trayIconMenu->addAction(tr("Restore"),this, SLOT(showNormal()));
-	    
-	    
+
+
             trayIconActiveConnectionMenu = trayIconMenu->addMenu(tr("Not connected"));
 
-    
-	    trayIconActiveConnectionMenu->addAction(tr ("Share folder..." ),this, SLOT(slotExportDirectory()));
-	    trayIconActiveConnectionMenu->addAction(tr("Suspend"),this, SLOT(slotSuspendSessFromSt()));
-	    trayIconActiveConnectionMenu->addAction(tr("Terminate"),this, SLOT(slotTermSessFromSt()));
-	    
-            if(sessionStatusDlg && sessionStatusDlg->isVisible())
-	    {
-	       if(!useLdap)
-	          trayIconActiveConnectionMenu->setTitle(lastSession->name());
-	       else
-		  trayIconActiveConnectionMenu->setTitle(lastUser->username());
-	    }
-	    else
-	        trayIconActiveConnectionMenu->setEnabled(false);
+
+            trayIconActiveConnectionMenu->addAction(tr ("Share folder..." ),this, SLOT(slotExportDirectory()));
+            trayIconActiveConnectionMenu->addAction(tr("Suspend"),this, SLOT(slotSuspendSessFromSt()));
+            trayIconActiveConnectionMenu->addAction(tr("Terminate"),this, SLOT(slotTermSessFromSt()));
+
+            if (sessionStatusDlg && sessionStatusDlg->isVisible())
+            {
+                if (!useLdap)
+                    trayIconActiveConnectionMenu->setTitle(lastSession->name());
+                else
+                    trayIconActiveConnectionMenu->setTitle(lastUser->username());
+            }
+            else
+                trayIconActiveConnectionMenu->setEnabled(false);
             trayIconMenu->addSeparator();
             trayIconMenu->addAction(tr("Quit"),this, SLOT(trayQuit()));
 
@@ -1018,12 +1025,12 @@ void ONMainWindow::closeClient()
 void ONMainWindow::closeEvent ( QCloseEvent* event )
 {
     x2goDebug<<"close event";
-    if(trayNoclose)
+    if (trayNoclose)
     {
         hide();
         event->ignore();
     }
-    else    
+    else
     {
         trayQuit();
     }
@@ -1032,11 +1039,11 @@ void ONMainWindow::closeEvent ( QCloseEvent* event )
 
 void ONMainWindow::hideEvent(QHideEvent* event)
 {
-  
-  
+
+
     QMainWindow::hideEvent(event);
-    if(event->spontaneous() && trayMinToTray)
-      hide();
+    if (event->spontaneous() && trayMinToTray)
+        hide();
 }
 
 
@@ -1061,9 +1068,9 @@ void ONMainWindow::trayIconActivated(QSystemTrayIcon::ActivationReason reason )
         if (isVisible())
             hide();
         else
-	{
-	    showNormal();	    
-	}
+        {
+            showNormal();
+        }
         break;
     default:
         break;
@@ -1546,7 +1553,7 @@ void ONMainWindow::slotConfig()
             slotClosePass();
         if ( sessionStatusDlg->isVisible() || embedMode )
         {
-             trayIconInit();
+            trayIconInit();
             //if session is running or embed mode, save changes,
             //but not accept
             //

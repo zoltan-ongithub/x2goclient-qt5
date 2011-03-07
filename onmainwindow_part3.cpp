@@ -252,6 +252,11 @@ bool ONMainWindow::parseParameter ( QString param )
         acceptRsa=true;
         return true;
     }
+    if ( param=="--no-session-edit" )
+    {
+        noSessionEdit=true;
+        return true;
+    }
 
     QString setting,value;
     QStringList vals=param.split ( "=" );
@@ -580,6 +585,8 @@ void ONMainWindow::showHelp()
         "--help\t\t\t\t show this message\n"
         "--help-pack\t\t\t show available pack methods\n"
         "--no-menu\t\t\t hide menu bar\n"
+        "--no-session-edit\t\t not allow user to edit preconfigured\n"
+        "sessions\n"
         "--maximize\t\t\t start maximized\n"
         "--hide\t\t\t\t start hidden\n"
         "--portable\t\t\t start in \"portable\" mode\n"

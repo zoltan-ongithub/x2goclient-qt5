@@ -31,70 +31,70 @@ class QGroupBox;
 */
 class ConfigDialog : public QDialog
 {
-		Q_OBJECT
-	public:
-		ConfigDialog ( QWidget * parent,
-		               Qt::WFlags f = 0 );
-		~ConfigDialog();
+    Q_OBJECT
+public:
+    ConfigDialog ( QWidget * parent,
+                   Qt::WFlags f = 0 );
+    ~ConfigDialog();
 #ifdef Q_OS_DARWIN
-		static    QString findXDarwin ( QString& version,
-		                                QString path="" );
-		static    QString retMaxXDarwinVersion ( QString v1,
-		        QString v2 );
-		static    QString getXDarwinDirectory();
-		void    printXDarwinVersionWarning ( QString version );
+    static    QString findXDarwin ( QString& version,
+                                    QString path="" );
+    static    QString retMaxXDarwinVersion ( QString v1,
+            QString v2 );
+    static    QString getXDarwinDirectory();
+    void    printXDarwinVersionWarning ( QString version );
 #endif
 #ifdef Q_OS_WIN
-		static    QString getCygwinDir ( const QString& dir );
+    static    QString getCygwinDir ( const QString& dir );
 #endif
 
-	private:
-		QTabWidget* tabWidg;
-		QCheckBox* cbStartEmbed;
-		QLineEdit* ldapBase;
-		QLineEdit* ldapServer;
-		QSpinBox*  port;
-		QLineEdit* ldapServer1;
-		QSpinBox*  port1;
-		PrintWidget* pwid;
-		QLineEdit* ldapServer2;
-		bool embedMode;
-		QSpinBox*  port2;
-		QSpinBox*  clientSshPort;
-		QPushButton* ok;
-		bool advOptionsShown;
-		QGroupBox* gbLDAP;
+private:
+    QTabWidget* tabWidg;
+    QCheckBox* cbStartEmbed;
+    QLineEdit* ldapBase;
+    QLineEdit* ldapServer;
+    QSpinBox*  port;
+    QLineEdit* ldapServer1;
+    QSpinBox*  port1;
+    PrintWidget* pwid;
+    QLineEdit* ldapServer2;
+    bool embedMode;
+    QSpinBox*  port2;
+    QSpinBox*  clientSshPort;
+    QPushButton* ok;
+    bool advOptionsShown;
+    QGroupBox* gbLDAP;
 
-		QPushButton* defaults;
-		QPushButton* advancedOptions;
+    QPushButton* defaults;
+    QPushButton* advancedOptions;
 
-		QLineEdit* leXexec;
-		QLineEdit* leCmdOpt;
-		QSpinBox* sbDisp;
-		QLineEdit* leXexecDir;
-		QRadioButton* rbX[3];
-		QPushButton* pbOpenExec;
-		QButtonGroup* bgRadio;
-		ConnectionWidget* conWidg;
-		SettingsWidget* setWidg;
+    QLineEdit* leXexec;
+    QLineEdit* leCmdOpt;
+    QSpinBox* sbDisp;
+    QLineEdit* leXexecDir;
+    QRadioButton* rbX[3];
+    QPushButton* pbOpenExec;
+    QButtonGroup* bgRadio;
+    ConnectionWidget* conWidg;
+    SettingsWidget* setWidg;
 
-		QGroupBox *gbTrayIcon;
-		QCheckBox *cbMinimizeTray;
-		QCheckBox *cbMaxmizeTray;
-		QCheckBox *cbNoClose;
-		QCheckBox *cbMinToTray;
+    QGroupBox *gbTrayIcon;
+    QCheckBox *cbMinimizeTray;
+    QCheckBox *cbMaxmizeTray;
+    QCheckBox *cbNoClose;
+    QCheckBox *cbMinToTray;
 
-	public slots:
-		void slot_accepted();
-		void slot_checkOkStat();
-	private slots:
+public slots:
+    void slot_accepted();
+    void slot_checkOkStat();
+private slots:
 #ifdef Q_OS_DARWIN
-		void slot_selectXDarwin();
-		void slot_findXDarwin();
+    void slot_selectXDarwin();
+    void slot_findXDarwin();
 #endif
-	private slots:
-		void slotAdvClicked();
-		void slotDefaults();
+private slots:
+    void slotAdvClicked();
+    void slotDefaults();
 };
 
 #endif

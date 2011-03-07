@@ -279,27 +279,27 @@ void ONMainWindow::startXOrg ()
     while ( isServerRunning ( 6000+xDisplay ) )
         ++xDisplay;
     QString dispString;
-    QStringList env=QProcess::systemEnvironment();
-    env<<"GLWIN_ENABLE_DEBUG=0";
+        QStringList env=QProcess::systemEnvironment();
+        env<<"GLWIN_ENABLE_DEBUG=0";
     QTextStream ( &dispString ) <<":"<<xDisplay;
 
-    xorgLogMutex.lock();
-    xorgLogFile=homeDir+"/.x2go/xorg";
-    QDir dr ( homeDir );
-    dr.mkpath ( xorgLogFile );
-    xorgLogFile=wapiShortFileName ( xorgLogFile ) +"\\xorg.log."+
-                QString::number ( xDisplay );
-    if ( QFile::exists ( xorgLogFile ) )
-        QFile::remove ( xorgLogFile );
-    xorgLogMutex.unlock();
+        xorgLogMutex.lock();
+        xorgLogFile=homeDir+"/.x2go/xorg";
+        QDir dr ( homeDir );
+        dr.mkpath ( xorgLogFile );
+        xorgLogFile=wapiShortFileName ( xorgLogFile ) +"\\xorg.log."+
+                    QString::number ( xDisplay );
+        if ( QFile::exists ( xorgLogFile ) )
+            QFile::remove ( xorgLogFile );
+        xorgLogMutex.unlock();
     QStringList args;
 //run xming with clipboard support
-    args<<dispString<<"-multiwindow"<<"-notrayicon"<<"-clipboard"<<
-    "-logfile"<<xorgLogFile;
+        args<<dispString<<"-multiwindow"<<"-notrayicon"<<"-clipboard"<<
+        "-logfile"<<xorgLogFile;
 
     xorg=new QProcess ( 0 );
     xorg-> setWorkingDirectory ( appDir+"\\xming" );
-    xorg->setEnvironment ( env );
+        xorg->setEnvironment ( env );
     x2goDebug<<"starting "<<appDir+"\\xming"<<endl;
     xorg->start ( appDir+"\\xming\\Xming.exe",args );
     if ( !xorg->waitForStarted ( 3000 ) )
@@ -310,10 +310,10 @@ void ONMainWindow::startXOrg ()
                  "Please check your installation" ) );
         close();
     }
-}
+    }
 
 WinServerStarter::WinServerStarter ( daemon server, ONMainWindow * par ) :
-        QThread ( 0 )
+QThread ( 0 )
 {
     mode=server;
     parent=par;
@@ -368,11 +368,11 @@ void ONMainWindow::startWinServers()
         pulseStarter->start();
     }
 
-    xStarter->start();
-    xorgLogTimer=new QTimer ( this );
-    connect ( xorgLogTimer,SIGNAL ( timeout() ),this,
-              SLOT ( slotCheckXOrgLog() ) );
-    xorgLogTimer->start ( 500 );
+        xStarter->start();
+        xorgLogTimer=new QTimer ( this );
+        connect ( xorgLogTimer,SIGNAL ( timeout() ),this,
+                  SLOT ( slotCheckXOrgLog() ) );
+        xorgLogTimer->start ( 500 );
 }
 
 
@@ -1241,15 +1241,15 @@ void ONMainWindow::initPassDlg()
 
     pass->hide();
     passPrompt->hide();
-
-
+    
+    
     ok=new QPushButton ( tr ( "Ok" ),passForm );
     setWidgetStyle ( ok );
     cancel=new QPushButton ( tr ( "Cancel" ),passForm );
     setWidgetStyle ( cancel );
     ok->hide();
     cancel->hide();
-
+    
     pal.setColor ( QPalette::Button, QColor ( 255,255,255,0 ) );
     pal.setColor ( QPalette::Window, QColor ( 255,255,255,255 ) );
     pal.setColor ( QPalette::Base, QColor ( 255,255,255,255 ) );
