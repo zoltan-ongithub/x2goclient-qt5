@@ -279,10 +279,55 @@ void ONMainWindow::startXOrg ()
     while ( isServerRunning ( 6000+xDisplay ) )
         ++xDisplay;
     QString dispString;
-        QStringList env=QProcess::systemEnvironment();
-        env<<"GLWIN_ENABLE_DEBUG=0";
     QTextStream ( &dispString ) <<":"<<xDisplay;
 
+    QStringList args;
+    QString exec=appDir+"\\xming\\Xming.exe";
+    bool xming=true;
+    winServersReady=false;
+#ifdef CFGCLIENT
+    xming=useXming;
+    if (!xming)
+    {
+        exec=xorgExe;
+        QString cmdLine;
+        if (startXorgOnStart)
+            cmdLine=xorgOptions;
+        else
+        {
+            switch (xorgMode)
+            {
+            case FS:
+                cmdLine=xorgFSOptions;
+                break;
+            case SAPP:
+                cmdLine=xorgSAppOptions;
+                break;
+	    case WIN:
+                cmdLine=xorgWinOptions;
+		x2goDebug<<"WxH:"<<xorgWidth<<"x"<<xorgHeight<<endl;
+                cmdLine.replace("%w",xorgWidth);
+                cmdLine.replace("%h",xorgHeight);
+		x2goDebug<<cmdLine<<endl;
+                break;
+            }
+        }
+        QStringList options=cmdLine.split(" ",QString::SkipEmptyParts);
+        QString option;
+        foreach(option,options)
+        {
+            args<< option;
+        }
+        args<<dispString;
+    }
+#endif
+    xorg=new QProcess ( 0 );
+    if (xming)
+    {
+      
+        QString workingDir=appDir+"\\xming";
+        QStringList env=QProcess::systemEnvironment();
+        env<<"GLWIN_ENABLE_DEBUG=0";
         xorgLogMutex.lock();
         xorgLogFile=homeDir+"/.x2go/xorg";
         QDir dr ( homeDir );
@@ -292,16 +337,17 @@ void ONMainWindow::startXOrg ()
         if ( QFile::exists ( xorgLogFile ) )
             QFile::remove ( xorgLogFile );
         xorgLogMutex.unlock();
-    QStringList args;
 //run xming with clipboard support
         args<<dispString<<"-multiwindow"<<"-notrayicon"<<"-clipboard"<<
         "-logfile"<<xorgLogFile;
-
-    xorg=new QProcess ( 0 );
-    xorg-> setWorkingDirectory ( appDir+"\\xming" );
         xorg->setEnvironment ( env );
-    x2goDebug<<"starting "<<appDir+"\\xming"<<endl;
-    xorg->start ( appDir+"\\xming\\Xming.exe",args );
+        xorg-> setWorkingDirectory ( workingDir);
+    }
+    
+    x2goDebug<<"running"<<exec;
+    xorg->start ( exec, args );
+
+
     if ( !xorg->waitForStarted ( 3000 ) )
     {
         QMessageBox::critical (
@@ -310,7 +356,15 @@ void ONMainWindow::startXOrg ()
                  "Please check your installation" ) );
         close();
     }
+#ifdef CFGCLIENT
+    if (!xming)
+    {
+        x2goDebug<<"servers ready after"<<xorgDelay<<endl;
+        QTimer::singleShot(xorgDelay*1000, this, SLOT(slotSetWinServersReady()));
     }
+#endif
+}
+
 
 WinServerStarter::WinServerStarter ( daemon server, ONMainWindow * par ) :
 QThread ( 0 )
@@ -367,12 +421,26 @@ void ONMainWindow::startWinServers()
     {
         pulseStarter->start();
     }
-
+#ifdef CFGCLIENT
+        x2goDebug<<"xorg settings: "<<startXorgOnStart <<" "<< useXming<<endl;
+    if (useXming)
+    {
+#endif
         xStarter->start();
         xorgLogTimer=new QTimer ( this );
         connect ( xorgLogTimer,SIGNAL ( timeout() ),this,
                   SLOT ( slotCheckXOrgLog() ) );
         xorgLogTimer->start ( 500 );
+#ifdef CFGCLIENT
+    }
+    else
+    {
+        if (startXorgOnStart)
+        {
+            startXOrg();
+        }
+    }
+#endif
 }
 
 
@@ -610,6 +678,23 @@ void ONMainWindow::startPulsed()
 }
 
 
+#ifdef CFGCLIENT
+void ONMainWindow::xorgSettings()
+{
+    x2goDebug<<"getting xorg settings"<<endl;
+
+    X2goSettings st ( "settings" );
+    useXming=(st.setting()->value("usexming",true).toBool());
+    xorgExe=(st.setting()->value("xexec","C:\\program files\\vcxsrv\\vcxsrv.exe").toString());
+    xorgOptions=(st.setting()->value("options","-multiwindow -notrayicon -clipboard").toString());
+    startXorgOnStart=(st.setting()->value("onstart",true).toBool());
+    xorgWinOptions=(st.setting()->value("optionswin","-screen 0 %wx%h -notrayicon -clipboard").toString());
+    xorgFSOptions=(st.setting()->value("optionsfs","-fullscreen -notrayicon -clipboard").toString());
+    xorgSAppOptions=(st.setting()->value("optionssingle","-multiwindow -notrayicon -clipboard").toString());
+    xorgDelay=(st.setting()->value("delay",3).toInt());
+
+}
+#endif
 
 void ONMainWindow::slotSetWinServersReady()
 {
@@ -1255,6 +1340,7 @@ void ONMainWindow::initPassDlg()
     pal.setColor ( QPalette::Base, QColor ( 255,255,255,255 ) );
     ok->setPalette ( pal );
     cancel->setPalette ( pal );
+    
 
 
 #ifndef Q_WS_HILDON

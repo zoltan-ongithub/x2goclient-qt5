@@ -9,6 +9,8 @@
 CONFIG += $$(X2GO_CLIENT_TARGET)
 
 
+FORMS += cupsprintsettingsdialog.ui cupsprintwidget.ui printdialog.ui printercmddialog.ui printwidget.ui xsettingsui.ui
+
 TRANSLATIONS += x2goclient_de.ts 
 TRANSLATIONS += x2goclient_ru.ts 
 TRANSLATIONS += x2goclient_fr.ts 
@@ -43,7 +45,8 @@ HEADERS += configdialog.h \
  httpbrokerclient.h \
  ongetpass.h \
  onmainwindow_privat.h \
- x2gosettings.h
+ x2gosettings.h \
+ xsettingswidget.h
 
 SOURCES += sharewidget.cpp \
  settingswidget.cpp\
@@ -77,13 +80,14 @@ SOURCES += sharewidget.cpp \
  clicklineedit.cpp \
  httpbrokerclient.cpp \
  ongetpass.cpp \
- x2gosettings.cpp
+ x2gosettings.cpp \
+ xsettingswidget.cpp
 
 plugin {
 TARGET = x2goplugin
-RC_FILE = x2goclient.rc
 }
 else{
+RC_FILE = x2goclient.rc
 SOURCES += x2goclient.cpp
 TARGET = x2goclient
 DEFINES += CFGCLIENT
@@ -112,11 +116,6 @@ LIBS += -lssh
 QT += svg network
 ICON =icons/x2go-mac.icns
 QMAKE_MAC_SDK =/Developer/SDKs/MacOSX10.6.sdk
-FORMS += cupsprintsettingsdialog.ui \
-cupsprintwidget.ui \
-printwidget.ui \
-printercmddialog.ui \
-printdialog.ui
 
 
 plugin{

@@ -31,6 +31,12 @@
 #include "connectionwidget.h"
 #include "settingswidget.h"
 
+
+#if defined ( Q_OS_WIN) && defined (CFGCLIENT )
+#include "xsettingswidget.h"
+#endif
+
+
 ConfigDialog::ConfigDialog ( QWidget * parent,  Qt::WFlags f )
         : QDialog ( parent,f )
 {
@@ -328,6 +334,10 @@ ConfigDialog::ConfigDialog ( QWidget * parent,  Qt::WFlags f )
 
     pwid=new PrintWidget ( this );
     tabWidg->addTab ( pwid,tr ( "Printing" ) );
+#if defined ( Q_OS_WIN) && defined (CFGCLIENT )
+    xsetWidg=new XSettingsWidget(this);
+    tabWidg->addTab(xsetWidg, tr("X-Server settings"));
+#endif
 
 }
 
@@ -390,6 +400,9 @@ void ConfigDialog::slot_accepted()
         conWidg->saveSettings();
     }
 
+#if defined ( Q_OS_WIN) && defined (CFGCLIENT )
+    xsetWidg->saveSettings();
+#endif
 }
 
 
@@ -587,6 +600,13 @@ void ConfigDialog::slotDefaults()
 #endif
     }
     break;
+#if defined ( Q_OS_WIN) && defined (CFGCLIENT )
+    case 2:
+    {
+        xsetWidg->setDefaults();
+    }
+    break;
+#else
     case 1:
         break;
     case 2:
@@ -599,6 +619,7 @@ void ConfigDialog::slotDefaults()
         setWidg->setDefaults();
     }
     break;
+#endif
     }
 
 }

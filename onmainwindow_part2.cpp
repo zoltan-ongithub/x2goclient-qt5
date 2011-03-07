@@ -527,6 +527,17 @@ void ONMainWindow::startNewSession()
     maximizeProxyWin=false;
     proxyWinWidth=width;
     proxyWinHeight=height;
+#ifdef CFGCLIENT
+    xorgMode=WIN;
+    if(fullscreen)
+      xorgMode=FS;
+    if(rootless)
+      xorgMode=SAPP;
+    xorgWidth=QString::number(width);
+    xorgHeight=QString::number(height);
+    if(!useXming && ! startXorgOnStart)
+      startXOrg();
+#endif
 #endif
     if ( fullscreen )
     {
@@ -661,6 +672,7 @@ void ONMainWindow::resumeSession ( const x2goSession& s )
     QString passwd=getCurrentPass();
     QString user=getCurrentUname();
     QString host=s.server;
+    bool rootless=false;
 
     QString pack;
     bool fullscreen;
@@ -718,6 +730,9 @@ void ONMainWindow::resumeSession ( const x2goSession& s )
         type=st.setting()->value ( sid+"/type",
                                    ( QVariant )
                                    defaultKbdType ).toString();
+        rootless=st.setting()->value ( sid+"/rootless",
+                                     ( QVariant ) false ).toBool();
+
         if ( !embedMode )
         {
             host=st.setting()->value ( sid+"/host",
@@ -739,6 +754,7 @@ void ONMainWindow::resumeSession ( const x2goSession& s )
                     width=defaultWidth;
                 }
             }
+            rootless=config.rootless;
             host=config.server;
             if ( config.confConSpd )
                 speed=config.conSpeed;
@@ -759,6 +775,18 @@ void ONMainWindow::resumeSession ( const x2goSession& s )
     maximizeProxyWin=false;
     proxyWinWidth=width;
     proxyWinHeight=height;
+#ifdef CFGCLIENT
+    xorgMode=WIN;
+    if(fullscreen)
+      xorgMode=FS;
+    if(rootless)
+      xorgMode=SAPP;
+    xorgWidth=QString::number(width);
+    xorgHeight=QString::number(height);
+    if(!useXming && ! startXorgOnStart)
+      startXOrg();
+#endif
+    
 #endif
     if ( fullscreen )
     {
@@ -1778,7 +1806,12 @@ void ONMainWindow::slotTunnelOk()
     }
 #ifdef Q_OS_WIN
     else
+    {
+#ifdef CFGCLIENT
+        if(useXming)
+#endif
         proxyWinTimer->start ( 300 );
+    }
 #endif
 
     showSessionStatus();
@@ -1858,6 +1891,20 @@ void ONMainWindow::slotProxyFinished ( int,QProcess::ExitStatus )
 #ifdef Q_OS_WIN
     else
         proxyWinTimer->stop();
+#ifdef CFGCLIENT
+    if(!useXming && ! startXorgOnStart)
+    {
+      if(xorg)
+      {
+	if(xorg->state() ==QProcess::Running)
+	{
+	  xorg->terminate();
+	  delete xorg;
+	  xorg=0;
+	}
+      }
+    }
+#endif
 #endif
     if ( closeEventSent )
         return;

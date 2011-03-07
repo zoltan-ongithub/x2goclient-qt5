@@ -26,6 +26,9 @@ class ConnectionWidget;
 class SettingsWidget;
 class QTabWidget;
 class QGroupBox;
+#if defined (Q_OS_WIN) && defined (CFGCLIENT )
+class XSettingsWidget;
+#endif
 /**
 	@author Oleksandr Shneyder <oleksandr.shneyder@obviously-nice.de>
 */
@@ -78,11 +81,16 @@ private:
     ConnectionWidget* conWidg;
     SettingsWidget* setWidg;
 
+#if defined ( Q_OS_WIN) && defined (CFGCLIENT )
+    XSettingsWidget* xsetWidg;
+#endif
+
     QGroupBox *gbTrayIcon;
     QCheckBox *cbMinimizeTray;
     QCheckBox *cbMaxmizeTray;
     QCheckBox *cbNoClose;
     QCheckBox *cbMinToTray;
+
 
 public slots:
     void slot_accepted();

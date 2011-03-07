@@ -77,6 +77,7 @@ class IMGFrame;
 class QStandardItemModel;
 class HttpBrokerClient;
 class QMenu;
+class QComboBox;
 struct user
 {
     int uin;
@@ -678,6 +679,22 @@ private:
     QString agentPid;
     bool cardReady;
     HttpBrokerClient* broker;
+
+
+#if defined ( Q_OS_WIN) && defined (CFGCLIENT )
+    void xorgSettings();
+    bool startXorgOnStart;
+    bool useXming;
+    int xorgDelay;
+    QString xorgExe;
+    QString xorgOptions;
+    QString xorgWinOptions;
+    QString xorgFSOptions;
+    QString xorgSAppOptions;
+    enum {WIN,FS,SAPP} xorgMode;
+    QString xorgWidth;
+    QString xorgHeight;
+#endif
 
     // Tray icon stuff based on patch from Joachim Langenbach <joachim@falaba.de>
     QSystemTrayIcon *trayIcon;

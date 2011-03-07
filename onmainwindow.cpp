@@ -323,6 +323,12 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
     embedMode=false;
 #endif
 
+
+#if defined (Q_OS_WIN) && defined (CFGCLIENT )
+    xorgSettings();
+#endif
+
+
 #ifdef Q_OS_WIN
     winServersReady=false;
     saveCygnusSettings();
