@@ -348,7 +348,7 @@ public:
     {
         return defaultKbdType;
     }
-    QString getDefaultLayout()
+    QStringList getDefaultLayout()
     {
         return defaultLayout;
     }
@@ -479,7 +479,8 @@ private:
     QString shadowUser;
     QString shadowDisplay;
     QString defaultPack;
-    QString defaultLayout;
+    QStringList defaultLayout;
+    QString selectedLayout;
     QString defaultKbdType;
     QString defaultCmd;
     bool defaultSetDPI;
@@ -523,8 +524,10 @@ private:
     QLabel* nameLabel;
     QLabel* passPrompt;
     QLabel* loginPrompt;
+    QLabel* layoutPrompt;
     QLabel* slName;
     QLabel* slVal;
+    QComboBox* cbLayout;
     QPushButton* ok;
     QPushButton* cancel;
     QString readExportsFrom;
@@ -781,6 +784,7 @@ private slots:
     void slotSshServerAuthError ( int error, QString sshMessage );
     void slotSshUserAuthError ( QString error );
     void slotSshConnectionOk();
+    void slotChangeKbdLayout(const QString& layout);
 
 public slots:
     void slotConfig();

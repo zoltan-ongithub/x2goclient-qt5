@@ -1012,7 +1012,7 @@ void ONMainWindow::processSessionConfig()
     config.showtoolbar=true;
     config.showstatusbar=true;
     config.kbdType=getDefaultKbdType();
-    config.kbdLay=getDefaultLayout();
+    config.kbdLay=getDefaultLayout()[0];
 
 
     config.confSnd=false;
@@ -1260,6 +1260,15 @@ void ONMainWindow::processCfgLine ( QString line )
     }
 }
 
+void ONMainWindow::slotChangeKbdLayout(const QString& layout)
+{
+#ifdef Q_OS_LINUX
+    QStringList args;
+    args<<"-layout"<<layout;
+    x2goDebug<<"running setxkbmap with params: "<<args.join(" ");
+    QProcess::startDetached("setxkbmap",args);
+#endif
+}
 
 void ONMainWindow::initPassDlg()
 {
@@ -1300,6 +1309,7 @@ void ONMainWindow::initPassDlg()
 
     loginPrompt=new QLabel ( tr ( "Login:" ),passForm );
     passPrompt=new QLabel ( tr ( "Password:" ),passForm );
+    layoutPrompt=new QLabel ( tr ( "Keyboard layout:" ),passForm );
 
     login=new ClickLineEdit ( passForm );
     setWidgetStyle ( login );
@@ -1328,6 +1338,18 @@ void ONMainWindow::initPassDlg()
     passPrompt->hide();
     
     
+    cbLayout=new QComboBox(passForm);
+    cbLayout->addItems(defaultLayout);
+    cbLayout->setFocusPolicy(Qt::NoFocus);
+    cbLayout->setFrame(false);
+    setWidgetStyle(cbLayout);
+    cbLayout->hide();
+    layoutPrompt->hide();
+    QHBoxLayout* cbLayoutLay=new QHBoxLayout();
+    cbLayoutLay->addWidget(cbLayout);
+    cbLayoutLay->addStretch();
+
+    
     ok=new QPushButton ( tr ( "Ok" ),passForm );
     setWidgetStyle ( ok );
     cancel=new QPushButton ( tr ( "Cancel" ),passForm );
@@ -1335,9 +1357,12 @@ void ONMainWindow::initPassDlg()
     ok->hide();
     cancel->hide();
     
+    
+
     pal.setColor ( QPalette::Button, QColor ( 255,255,255,0 ) );
     pal.setColor ( QPalette::Window, QColor ( 255,255,255,255 ) );
     pal.setColor ( QPalette::Base, QColor ( 255,255,255,255 ) );
+    cbLayout->setPalette ( pal );
     ok->setPalette ( pal );
     cancel->setPalette ( pal );
     
@@ -1378,10 +1403,12 @@ void ONMainWindow::initPassDlg()
     QVBoxLayout* il1=new QVBoxLayout();
     il1->addWidget ( loginPrompt );
     il1->addWidget ( passPrompt );
+    il1->addWidget ( layoutPrompt );
 
     QVBoxLayout* il2=new QVBoxLayout();
     il2->addWidget ( login );
     il2->addWidget ( pass );
+    il2->addLayout ( cbLayoutLay );
     inputLay->addLayout ( il1 );
     inputLay->addLayout ( il2 );
     inputLay->addStretch();
@@ -1420,6 +1447,13 @@ void ONMainWindow::initPassDlg()
         QRect r;
         wapiWindowRect ( ok->winId(),r );
 #endif
+    }
+    if(defaultLayout.size()>1)
+    {
+      layoutPrompt->show();
+      cbLayout->show();
+      slotChangeKbdLayout(cbLayout->currentText());
+      connect (cbLayout,SIGNAL(currentIndexChanged(QString)),this,SLOT(slotChangeKbdLayout(QString)));
     }
 }
 

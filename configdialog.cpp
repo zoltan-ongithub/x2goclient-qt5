@@ -334,6 +334,7 @@ ConfigDialog::ConfigDialog ( QWidget * parent,  Qt::WFlags f )
 
     pwid=new PrintWidget ( this );
     tabWidg->addTab ( pwid,tr ( "Printing" ) );
+
 #if defined ( Q_OS_WIN) && defined (CFGCLIENT )
     xsetWidg=new XSettingsWidget(this);
     tabWidg->addTab(xsetWidg, tr("X-Server settings"));
@@ -399,7 +400,6 @@ void ConfigDialog::slot_accepted()
         setWidg->saveSettings();
         conWidg->saveSettings();
     }
-
 #if defined ( Q_OS_WIN) && defined (CFGCLIENT )
     xsetWidg->saveSettings();
 #endif

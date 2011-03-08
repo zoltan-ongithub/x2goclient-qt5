@@ -286,7 +286,9 @@ bool ONMainWindow::parseParameter ( QString param )
     }
     if ( setting=="--kbd-layout" )
     {
-        defaultKbdType=value;
+        defaultLayout=value.split(",",QString::SkipEmptyParts);
+	if(defaultLayout.size()==0)
+	  defaultLayout<<tr("us");
         return true;
     }
     if ( setting=="--session" )
@@ -612,7 +614,8 @@ void ONMainWindow::showHelp()
         "default 'adsl'\n"
         "--pack=<packmethod>\t\t set default pack method, default "
         "'16m-jpeg-9'\n"
-        "--kbd-layout=<layout>\t\t set default keyboard layout\n"
+        "--kbd-layout=<layout>\t\t set default keyboard layout or layouts\n"
+        "comma separated\n"
         "--kbd-type=<typed>\t\t set default keyboard type\n"
         "--set-kbd=<0|1>\t\t\t overwrite current keyboard settings\n" ;
     qCritical ( "%s",helpMsg.toLocal8Bit().data() );

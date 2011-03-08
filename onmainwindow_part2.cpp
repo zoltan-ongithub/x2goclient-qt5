@@ -396,7 +396,7 @@ void ONMainWindow::startNewSession()
         quality=defaultQuality;
         speed=defaultLink;
         usekbd=defaultSetKbd;
-        layout=defaultLayout;
+        layout=defaultLayout[0];
         type=defaultKbdType;
         command=defaultCmd;
         shadowSession=false;
@@ -448,7 +448,7 @@ void ONMainWindow::startNewSession()
                                      ( QVariant ) defaultSetKbd ).toBool();
         layout=st.setting()->value ( sid+"/layout",
                                      ( QVariant )
-                                     defaultLayout ).toString();
+                                     defaultLayout[0] ).toString();
         type=st.setting()->value ( sid+"/type",
                                    ( QVariant )
                                    defaultKbdType ).toString();
@@ -521,6 +521,10 @@ void ONMainWindow::startNewSession()
 
     resumingSession.server=host;
     
+    if(defaultLayout.size()>0)
+	  layout=cbLayout->currentText();
+
+
     QString geometry;
 #ifdef Q_OS_WIN
     x2goDebug<<"fullscreen: "<<fullscreen;
@@ -693,7 +697,7 @@ void ONMainWindow::resumeSession ( const x2goSession& s )
         quality=defaultQuality;
         speed=defaultLink;
         usekbd=defaultSetKbd;
-        layout=defaultLayout;
+        layout=defaultLayout[0];
         type=defaultKbdType;
 
     }
@@ -726,7 +730,7 @@ void ONMainWindow::resumeSession ( const x2goSession& s )
                                      ( QVariant ) defaultSetKbd ).toBool();
         layout=st.setting()->value ( sid+"/layout",
                                      ( QVariant )
-                                     defaultLayout ).toString();
+                                     defaultLayout[0] ).toString();
         type=st.setting()->value ( sid+"/type",
                                    ( QVariant )
                                    defaultKbdType ).toString();
@@ -770,6 +774,10 @@ void ONMainWindow::resumeSession ( const x2goSession& s )
             }
         }
     }
+    
+    if(defaultLayout.size()>0)
+	layout=cbLayout->currentText();
+
     QString geometry;
 #ifdef Q_OS_WIN
     maximizeProxyWin=false;

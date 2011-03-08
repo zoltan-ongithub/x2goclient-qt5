@@ -76,7 +76,7 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
     defaultHeight=600;
     defaultPack="16m-jpeg";
     defaultQuality=9;
-    defaultLayout=tr ( "us" );
+    defaultLayout<<tr ( "us" );
     defaultKbdType=tr ( "pc105/us" );
     defaultCmd="KDE";
     defaultSshPort=sshPort=clientSshPort="22";

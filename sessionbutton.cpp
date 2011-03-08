@@ -39,7 +39,6 @@ SessionButton::SessionButton ( ONMainWindow* mw,QWidget *parent, QString id )
         fnt.setPointSize ( 9 );
 #endif
     setFont ( fnt );
-	setMouseTracking ( true );
     setFocusPolicy ( Qt::NoFocus );
     bool miniMode=mw->retMiniMode();
     if ( !miniMode )
