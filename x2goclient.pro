@@ -97,7 +97,7 @@ RESOURCES += resources.rcc
 
 linux-g++ {
     message(building $$TARGET with ldap and cups)
-    LIBS += -lldap -lcups
+    LIBS += -lldap -lcups -lX11
 }
 macx {
     message(building $$TARGET with ldap and cups)
