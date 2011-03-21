@@ -26,7 +26,7 @@ BEGIN
             VALUE "LegalCopyright", "Copyright © 2010 Obviously Nice\0"
 	    VALUE "MIMEType", "application/x2go\0"
             VALUE "OriginalFilename", "npx2goplugin.dll\0"
-            VALUE "ProductName", "X2GoClient Plug-in 3.01-18\0"
+            VALUE "ProductName", "X2GoClient Plug-in 3.0.1.18\0"
             VALUE "ProductVersion", "3, 0, 1, 18\0"
         END
     END

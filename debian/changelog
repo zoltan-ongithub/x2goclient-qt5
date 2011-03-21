@@ -1,3 +1,9 @@
+x2goclient (3.0.1.18-0~x2go1) unstable; urgency=low
+
+  * Change of version numbering pattern
+
+ -- Mike Gabriel <mike.gabriel@das-netzwerkteam.de>  Mon, 21 Mar 2011 12:21:09 +0100
+
 x2goclient (3.01-18) unstable; urgency=low
 
   * Support for custom X-Servers under windows
