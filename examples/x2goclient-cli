@@ -1,0 +1,578 @@
+#!/usr/bin/perl
+
+############################################################################
+#    Copyright (C) 2006 by Oleksandr Shneyder                              #
+#    oleksandr.shneyder@obviously-nice.de                                   #
+#                                                                          #
+#    This program is free software; you can redistribute it and/or modify  #
+#    it under the terms of the GNU General Public License as published by  #
+#    the Free Software Foundation; either version 2 of the License, or     #
+#    (at your option) any later version.                                   #
+#                                                                          #
+#    This program is distributed in the hope that it will be useful,       #
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of        #
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         #
+#    GNU General Public License for more details.                          #
+#                                                                          #
+#    You should have received a copy of the GNU General Public License     #
+#    along with this program; if not, write to the                         #
+#    Free Software Foundation, Inc.,                                       #
+#    59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             #
+############################################################################
+
+
+
+use File::Path;
+use Proc::Simple;
+use Term::ReadPassword;
+use Getopt::Long;
+use strict;
+
+my $user;
+my $server;
+my $geometry="fullscreen";
+my $link="lan";
+my $pack="16m-jpeg-9";
+my $type="unix-kde";
+my $stype="desktop";
+my $kbdlay="us";
+my $kbdtype="pc105/us";
+my $setkbd="0";
+my $accept=0;
+my $sound=1;
+my $cmd="startkde";
+my $ssh_key=0;
+my $port="22";
+
+system ("rm -rf ~/.x2go/ssh/askpass*");
+
+sub printpass
+{
+    my $prog=shift;
+    my $pass=shift;
+    open (F,">$prog") or die "Couldn't open $prog for writing";
+    print F '#!/usr/bin/perl
+                $param=shift;';
+    print F "   open (F,\">$prog.log\");";
+    print F '   print F $param;
+                close (F);
+                if($param =~ m/RSA key/)
+                {';
+    if($accept){
+       print F     'print "yes\n";';}
+    else{
+       print F     'print "no\n";';}
+    print F '   }
+                else
+                {';
+    print F "      print \"$pass\\n\";
+                }";
+    close(F);
+    chmod (0700, $prog);
+}
+
+sub checkstat
+{
+    my $prog=shift;
+    open (F,"<$prog.log") or return;
+    my @outp;
+    my $ln=<F>;
+    for(my $i=0;$ln;$i++)
+    {
+       @outp[$i]=$ln;
+       $ln=<F>;
+    }
+    close(F);
+    if(join(" ",@outp) =~ m/Are you sure you want to continue connecting/)
+    {
+         print "@outp[0]@outp[1]";
+         print "If you are sure you want to continue connecting, please launch this programm with --add-to-known-hosts yes\n";
+         exit;
+    }
+}
+
+sub hidepass
+{
+    my $prog=shift;
+    open (F,">$prog") or die "Couldn't open $prog for writing";
+    print F "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
+    close(F);
+}
+
+
+my $pack_methods=
+"nopack
+8
+64
+256
+512
+4k
+32k
+64k
+256k
+2m
+16m
+256-rdp
+256-rdp-compressed
+32k-rdp
+32k-rdp-compressed
+64k-rdp
+64k-rdp-compressed
+16m-rdp
+16m-rdp-compressed
+rfb-hextile
+rfb-tight
+rfb-tight-compressed
+8-tight
+64-tight
+256-tight
+512-tight
+4k-tight
+32k-tight
+64k-tight
+256k-tight
+2m-tight
+16m-tight
+8-jpeg-%
+64-jpeg
+256-jpeg
+512-jpeg
+4k-jpeg
+32k-jpeg
+64k-jpeg
+256k-jpeg
+2m-jpeg
+16m-jpeg-%
+8-png-jpeg-%
+64-png-jpeg
+256-png-jpeg
+512-png-jpeg
+4k-png-jpeg
+32k-png-jpeg
+64k-png-jpeg
+256k-png-jpeg
+2m-png-jpeg
+16m-png-jpeg-%
+8-png-%
+64-png
+256-png
+512-png
+4k-png
+32k-png
+64k-png
+256k-png
+2m-png
+16m-png-%
+16m-rgb-%
+16m-rle-%";
+
+
+
+sub printargs
+{
+    print "Usage: $0 --user <username> --server <hostname> [Options]\nOptions:\
+    --help                              Print this message\
+    --help-pack                         Print availabel pack methods
+    --user <username>                   Connect as user 'username'\
+    --server <hostname>                 Connect to 'hostname'\
+    --command <cmd>                     Run command 'cmd', default value 'startkde'
+    --port                              SSH port, default 22
+    --ssh-key <fname>                   Us 'fname' as a key for ssh connection
+    --add-to-known-hosts <yes|no>       Add RSA key fingerprint to .ssh/known_hosts if authenticity of server can't be established, default value 'no'
+    --use-sound <yes|no>                Start sound server and ssh tunel for sound connections, default value 'yes'
+
+    nxagent options:
+    --geometry <Width>x<Height>         Set window size, default value 'fullscreen'
+    --link <modem|isdn|adsl|wan|lan>    Set link type, default 'lan'
+    --pack <packmethod>                 Use pack method, default '16m-jpeg-9'
+    --session-type <type>               Session type, 'desktop' or 'application' default 'desktop'
+    --kbd-layout <layout>               Use keyboard layout, default 'us'
+    --kbd-type <type>                   Set Keyboard type, default 'pc105/us'\n";
+exit;
+}
+
+sub printpack
+{ 
+    my $m=$pack_methods;
+    $m=~s/%/[0-9]/g;
+    print "$m\n";
+    exit;
+}
+
+sub check_pack
+{
+    my $p=shift;
+    if($p =~ m/%/)
+    {
+        return 0;
+    }
+    my @arr=split("-","$p");
+    my $pm=$pack_methods;
+
+    if(@arr>1)
+    {    
+       my $qa=@arr[@arr-1];
+       my @vals=unpack('cc',$qa);
+       if($qa ge '0' && $qa le '9' && @vals == 1)
+       {
+            $pm=~s/%/$qa/g;
+       }
+    }
+
+    my @met=split("\n","$pm");
+    for(my $i=0;$i<@met;$i++)
+    {
+        if(@met[$i] eq $p)
+        {
+             return 1;
+        }
+    }
+    return 0;
+}
+
+
+sub getindex
+{
+    my @sess=@_;
+    print("Number\tStatus\t\tCreation time\t\tDisplay\tClient IP\n");
+    for(my $i=1;$i<=@sess;$i++)
+    {
+         my @vals=split('\\|',"@sess[$i-1]");
+         my $status=@vals[4];
+         if(@vals[4] eq 'S')
+         {
+             $status='Suspended'
+         }
+         elsif(@vals[4] eq 'R')
+         {
+             $status='Running  '
+         }
+         print "$i)\t$status\t@vals[5]\t@vals[2]\t@vals[7]\n";
+    }
+    print "Enter numer of session to resume or 'n' to start new session: ";
+    my $answ=<STDIN>;
+    chomp($answ);
+    if($answ > 0 && $answ <= @sess)
+    {
+         my @vals=split('\\|',"@sess[$answ-1]");
+         if(@vals[4] eq 'R')
+         {
+              print("Session is already running on @vals[7], continue? (y/n):  ");
+              my $nansw=<STDIN>;
+              chomp($nansw);
+              if($nansw eq 'y')
+              {
+                  return $answ;
+              }
+              else
+              {
+                  return -1;
+              }
+         }
+         else
+         {
+              return $answ;
+         }
+    }
+    elsif ($answ eq "n")
+    {
+       return 0;
+    }
+    else
+    {
+       print "Input Error\n";
+       return -1;
+    }
+}
+
+
+
+
+GetOptions("user=s" => \$user,
+"server=s" => \$server,
+"command=s" => \$cmd,
+"port=s" => \$port,
+"ssh-key=s" => \$ssh_key,
+"add-to-known-hosts=s" => \$accept,
+"use-sound=s" => \$sound,
+"geometry=s" => \$geometry,
+"link=s" => \$link,
+"pack=s" => \$pack,
+"session-type=s" => \$stype,
+"kbd-layout=s" => \$kbdlay,
+"kbd-type=s" => \$kbdtype,
+'help-pack' => \&printpack,
+'help' => \&printargs) or printargs;
+printargs unless (($user and $server));
+
+
+   if($ssh_key)
+   {
+       if ( !  -e $ssh_key)
+       {
+              print "Error, $ssh_key not exists\n";
+              exit;
+       }
+   }
+   if($kbdlay or $kbdtype)
+   {
+       $setkbd=1;
+   }
+
+   if(($link ne "modem" )&&($link ne "isdn")&&($link ne "adsl")&&($link ne "wan")&&($link ne "lan"))
+   {
+           print "Error parsing command line, wrong \"link\" argument\n";
+           printargs;
+           exit;
+   }
+
+   if(! check_pack($pack) )
+   {
+       print "Error parsing command line, wrong \"pack\" argument\n";
+       printargs;
+       exit;
+   }
+
+   if($accept)
+   {
+        if($accept eq   "yes")
+        {
+           $accept=1;
+        }
+        elsif($accept eq "no")
+        {
+           $accept=0;
+        }
+        else
+        {
+           print "Error parsing command line, wrong \"add-to-known-hosts\" argument\n";
+           printargs;
+           exit;
+        }
+   }
+
+   if($sound != 1)
+   {
+        if($sound eq "yes")
+        {
+           $sound=1;
+        }
+        elsif($sound eq "no")
+        {
+           $sound=0;
+        }
+        else
+        {
+           print "Error parsing command line, wrong \"use-sound\" argument\n";
+           printargs;
+           exit;
+        }
+   }
+
+
+my $nxroot="$ENV{'HOME'}/.x2go";
+my $dirpath="$nxroot/ssh";
+eval
+{
+    mkpath($dirpath)
+};
+if ($@)
+{
+      print "Couldn't create $dirpath: $@";
+      exit;
+}
+
+my $askpass="$dirpath/askpass";
+my $pass;
+my $sessions;
+if(!$ssh_key)
+{
+  $pass=read_password('Password:');
+  printpass $askpass,$pass;
+  $sessions=`DISPLAY=:0 SSH_ASKPASS=$askpass setsid ssh -p $port $user\@$server "export HOSTNAME&&x2golistsessions"`;
+  hidepass $askpass;
+  checkstat $askpass;
+}
+else
+{
+  $sessions=`ssh -p $port -i $ssh_key $user\@$server "export HOSTNAME&&x2golistsessions"`;
+}
+
+my @sess=split("\n","$sessions");
+my $newses=0;
+
+
+my $snum=-1;#index of session+1,-1 - error, -0 - new session
+if (@sess == 0)
+{
+   $newses=1;
+}
+else
+{
+   my @lines=split('\\|',"@sess[0]");
+   my $status=@lines[4];
+   if($status eq 'S' && @sess == 1)
+   {
+       $snum=0;
+   }
+   else
+   {
+       while($snum==-1)
+       {
+            $snum=getindex(@sess);
+       }
+       if($snum == 0)
+       {
+            $newses=1;
+       }
+       else
+       {
+            $snum--;
+       }
+   }
+}
+
+my $disp;
+my $snd_port;
+my $gr_port;
+my $cookie;
+my $agentpid;
+my $sname;
+my $t="D";
+if( $stype eq "application" )
+{
+   $t="R";
+}
+if($newses)
+{
+   my $outp;
+   if(! $ssh_key)
+   {
+       printpass $askpass,$pass;
+       $outp=`DISPLAY=:0 SSH_ASKPASS=$askpass setsid ssh -p $port $user\@$server "x2gostartagent $geometry $link $pack $type $kbdlay $kbdtype $setkbd $t"`;
+       hidepass $askpass;
+       checkstat $askpass;
+   }
+   else
+   {
+       $outp=`ssh -p $port -i $ssh_key $user\@$server "x2gostartagent $geometry $link $pack $type $kbdlay $kbdtype $setkbd $t"`;
+   }
+   my @lines=split("\n","$outp");
+   $disp=@lines[0];
+   $cookie=@lines[1];
+   $agentpid=@lines[2];
+   $sname=@lines[3];
+   $gr_port=@lines[4];
+   $snd_port=@lines[5];
+#   print ":$disp $cookie $agentpid $sname $gr_port $snd_port\n";
+}
+else
+{
+   my @lines=split('\\|',"@sess[$snum]");
+   $agentpid=@lines[0];
+   $sname=@lines[1];
+   $disp=@lines[2];
+   my $status=@lines[4];
+   $cookie=@lines[6];
+   $gr_port=@lines[8];
+   $snd_port=@lines[9];
+
+   if($status eq 'R')
+   {
+      if(! $ssh_key)
+      {
+        printpass $askpass,$pass;
+        system("DISPLAY=:0 SSH_ASKPASS=$askpass setsid ssh -p $port $user\@$server \"setsid x2gosuspend-session $sname\"");
+        hidepass $askpass;
+        checkstat $askpass;
+      }
+      else
+      {
+        system("ssh -p $port -i $ssh_key $user\@$server \"setsid x2gosuspend-session $sname\"");
+      }
+      sleep (1);
+   }
+   if(! $ssh_key)
+   {
+     printpass $askpass,$pass;
+     system("DISPLAY=:0 SSH_ASKPASS=$askpass setsid ssh -p $port $user\@$server \"setsid x2goresume-session $sname $geometry $link $pack $kbdlay $kbdtype $setkbd\"");
+     hidepass $askpass;
+     checkstat $askpass;
+   }
+   else
+   {
+     system("ssh -p $port -i $ssh_key $user\@$server \"setsid x2goresume-session $sname $geometry $link $pack $kbdlay $kbdtype $setkbd\"");
+   }
+}
+my $tunnel = Proc::Simple->new();
+my $snd_tun;
+my $snd_server;
+if($sound)
+{
+   $snd_tun= Proc::Simple->new();
+   $snd_server= Proc::Simple->new();
+   $snd_server->start("artsd -u -N -p $snd_port");
+}
+if( !$ssh_key)
+{
+  printpass $askpass,$pass;
+  $tunnel->start("DISPLAY=:0 SSH_ASKPASS=$askpass setsid ssh -p $port -N -L $gr_port:localhost:$gr_port $user\@$server");
+  if($sound)
+  {
+      $snd_tun->start("DISPLAY=:0 SSH_ASKPASS=$askpass setsid ssh -p $port  -N -R $snd_port:localhost:$snd_port $user\@$server");
+  }
+}
+else
+{
+  $tunnel->start("ssh -p $port -i $ssh_key -N -L $gr_port:localhost:$gr_port $user\@$server");
+  if($sound)
+  {
+      $snd_tun->start("ssh -p $port -i $ssh_key -N -R $snd_port:localhost:$snd_port $user\@$server");
+  }
+}
+
+sleep 2;
+$dirpath="$nxroot/S-$sname";
+eval 
+{ 
+    mkpath($dirpath) 
+};
+if ($@) 
+{
+      print "Couldn't create $dirpath: $@";
+      hidepass $askpass;
+      exit;
+}  
+
+my $nx_host="nx/nx,composite=1,root=$nxroot,connect=localhost,cookie=$cookie,port=$gr_port,errors=$dirpath/session";
+
+open (FILE,">$dirpath/options")or die "Couldnt't open $dirpath/options for writing";
+print FILE "$nx_host:$disp";
+close (FILE);
+my $proxy = Proc::Simple->new();
+$proxy->start("LD_LIBRARY_PATH=\$X2GO_LIB nxproxy  -S nx/nx,options=$dirpath/options:$disp 2>>$dirpath/session");
+if($newses)
+{
+   if(! $ssh_key)
+   {
+    system("DISPLAY=:0 SSH_ASKPASS=$askpass setsid ssh -p $port $user\@$server \"setsid x2goruncommand $disp $agentpid $sname $snd_port $cmd arts $t >& /dev/null & exit \"");
+   }
+   else
+   {
+    system("ssh -p $port -i $ssh_key $user\@$server \"setsid x2goruncommand $disp $agentpid $sname $snd_port $cmd  arts $t>& /dev/null & exit \"");
+   }
+}
+
+#hidepass $askpass;
+#checkstat $askpass;
+while($proxy->poll())
+{
+  sleep(1);
+}
+$tunnel->kill();
+if($sound)
+{
+   $snd_server->kill();
+   $snd_tun->kill();
+}
+system ("rm -rf ~/.x2go/ssh/askpass*");
