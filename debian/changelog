@@ -1,8 +1,9 @@
 x2goclient (3.0.1.18-0~x2go1) unstable; urgency=low
 
-  * Change of version numbering pattern
+  * change of version numbering pattern
+  * adds x2goclient-cli project as example file to x2goclient package
 
- -- Mike Gabriel <mike.gabriel@das-netzwerkteam.de>  Mon, 21 Mar 2011 12:21:09 +0100
+ -- Mike Gabriel <mike.gabriel@das-netzwerkteam.de>  Tue, 22 Mar 2011 01:50:27 +0100
 
 x2goclient (3.01-18) unstable; urgency=low
 
@@ -106,8 +107,8 @@ x2goclient (3.01-4) unstable; urgency=low
   * warning by terminating session
   * fixed help message
   * save pulseaudio client.conf and cookie on server 
-  *	in session directory not in ~/.pulse/client.conf 
-  *	(do not owerwrite local pulse settings for remote user)
+  * in session directory not in ~/.pulse/client.conf 
+  * (do not owerwrite local pulse settings for remote user)
   * copy pulse cookie-file to remote system
   * try to load module-native-protocol-tcp
   * dependency for openssh-server in deb
@@ -115,13 +116,13 @@ x2goclient (3.01-4) unstable; urgency=low
   * add ssh option ServerAliveInterval=300
   * check if port free when starting tunnel for nxproxy
   * windows:
-  *	Start own build of X Server
-  *	Start one X server per x2goclient
-  *	Start own build of PulseAudio
-  *	Start one PulseAudio server per x2goclient
-  *	Start one sshd per x2goclient
-  *	printing and viewing pdf in windows using ShellExec
-  *	make x2goclient work if username have spaces and unicode symbols
+  * Start own build of X Server
+  * Start one X server per x2goclient
+  * Start own build of PulseAudio
+  * Start one PulseAudio server per x2goclient
+  * Start one sshd per x2goclient
+  * printing and viewing pdf in windows using ShellExec
+  * make x2goclient work if username have spaces and unicode symbols
 
  -- Oleksandr Shneyder <oleksandr.shneyder@obviously-nice.de>  Wed, 14 Oct 2009 10:10:25 +0200
 
@@ -176,9 +177,9 @@ x2goclient (2.99-1) unstable; urgency=low
 x2goclient (2.0.1-24) unstable; urgency=low
 
   * command line options:
-  * --session=<session>		start session "session"
-  * --user=<username> 		preselect user "username" (LDAP mode)
-  * --hide 			do not show x2goclient (start hidden)
+  * --session=<session>         start session "session"
+  * --user=<username>           preselect user "username" (LDAP mode)
+  * --hide                      do not show x2goclient (start hidden)
 
  -- Oleksandr Shneyder <oleksandr.shneyder@obviously-nice.de>  Tue, 09 Dec 2008 21:30:07 +0100
 
