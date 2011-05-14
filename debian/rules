@@ -1,20 +1,7 @@
 #!/usr/bin/make -f
 
-SRC_DIR=$(CURDIR)
-CLIENT_DIR=$(SRC_DIR)/client_build
-PLUGIN_DIR=$(SRC_DIR)/plugin_build
-
 %:
 	dh $@
 
-override_dh_auto_configure:
-	mkdir -p $(CLIENT_DIR) && cd $(CLIENT_DIR) && qmake-qt4 ../x2goclient.pro
-	mkdir -p $(PLUGIN_DIR) && cd $(PLUGIN_DIR) && X2GO_CLIENT_TARGET=plugin qmake-qt4 ../x2goclient.pro
+override_dh_auto_install:
 
-override_dh_auto_build:
-	$(MAKE) -C $(CLIENT_DIR)
-	$(MAKE) -C $(PLUGIN_DIR)
-
-override_dh_auto_clean:
-	rm -fr $(CLIENT_DIR) $(PLUGIN_DIR)
-	dh_clean
