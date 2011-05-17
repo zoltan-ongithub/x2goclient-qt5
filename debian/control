@@ -2,8 +2,8 @@ Source: x2goclient
 Section: x11
 Priority: extra
 Maintainer: Oleksandr Shneyder <oleksandr.shneyder@obviously-nice.de>
-Build-Depends: debhelper (>= 7), libqt4-dev, libldap2-dev, libssh-dev, libcups2-dev, libx11-dev
-Standards-Version: 3.7.2
+Build-Depends: debhelper (>= 7.0.50~), libqt4-dev, libldap2-dev, libssh-dev, libcups2-dev, libx11-dev
+Standards-Version: 3.9.1
 
 Package: x2goclient
 Architecture: any
