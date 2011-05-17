@@ -54,6 +54,7 @@ install_client:
 	$(INSTALL_DIR) $(DESTDIR)$(SHAREDIR)/icons/hicolor/32x32/apps
 	$(INSTALL_PROGRAM) $(CLIENT_DIR)/x2goclient $(DESTDIR)$(BINDIR)/x2goclient
 	$(INSTALL_FILE) x2goclient.desktop            $(DESTDIR)$(SHAREDIR)/applications/x2goclient.desktop
+	$(INSTALL_FILE) icons/x2goclient.xpm          $(DESTDIR)$(SHAREDIR)/x2goclient/icons/x2goclient.xpm
 	$(INSTALL_FILE) icons/128x128/x2goclient.png  $(DESTDIR)$(SHAREDIR)/x2goclient/icons/x2goclient.png
 	$(INSTALL_FILE) icons/128x128/x2gosession.png $(DESTDIR)$(SHAREDIR)/x2goclient/icons/x2gosession.png
 	$(INSTALL_FILE) icons/128x128/x2goclient.png  $(DESTDIR)$(SHAREDIR)/icons/hicolor/128x128/apps/x2goclient.png
@@ -71,6 +72,7 @@ uninstall_client:
 	$(RM_FILE) $(BINDIR)/x2goclient
 	$(RM_FILE) $(SHAREDIR)/applications/x2goclient.desktop
 	$(RM_FILE) $(SHAREDIR)/x2goclient/icons/x2goclient.png
+	$(RM_FILE) $(SHAREDIR)/x2goclient/icons/x2goclient.xpm
 	$(RM_FILE) $(SHAREDIR)/x2goclient/icons/x2gosession.png
 	$(RM_FILE) $(SHAREDIR)/icons/hicolor/128x128/apps/x2goclient.png
 	$(RM_FILE) $(SHAREDIR)/icons/hicolor/16x16/apps/x2goclient.png
