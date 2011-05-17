@@ -1,5 +1,6 @@
 client_build/x2goclient       usr/bin
-x2goclient.desktop            usr/share/applications/
+desktop/x2goclient.desktop    usr/share/applications/
+icons/x2goclient.xpm          usr/share/x2goclient/icons/
 icons/128x128/x2goclient.png  usr/share/x2goclient/icons/
 icons/128x128/x2gosession.png usr/share/x2goclient/icons/
 icons/128x128/x2goclient.png  usr/share/icons/hicolor/128x128/apps/

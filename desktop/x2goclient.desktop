@@ -1,12 +1,12 @@
 [Desktop Entry]
 Encoding=UTF-8
-Version=2.0.1-13
+Version=3.0.1.18
 Type=Application
 Name=X2Go Client
 Exec=/usr/bin/x2goclient
 Icon=x2goclient
 StartupWMClass=x2goclient
-X-Window-Icon=x2go
+X-Window-Icon=x2goclient
 X-HildonDesk-ShowInToolbar=true
 X-Osso-Type=application/x-executable
 Terminal=false

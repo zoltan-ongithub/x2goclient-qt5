@@ -11,34 +11,32 @@ Package: x2goclient
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}, nxproxy
 Suggests: pinentry-x2go 
-Description: x2goclient qt4 client
- x2go is a serverbased computing environment with
- - session resuming
- - low bandwith support
- - LDAP support
- - client side mass storage mounting support
- - audio/arts support
- - authentification by smartcard and usb-stick
- - kde control-center modules for administration
- - kde based tools for just in time messaging and client surveillance
+Description: X2go Client application (Qt4)
+ X2go is a serverbased computing environment with
+    - session resuming
+    - low bandwith support
+    - LDAP support
+    - client side mass storage mounting support
+    - audio support
+    - authentication by smartcard and USB stick
  .
- x2goclient is a graphical client (qt4) for the x2go system.
+ x2goclient is a graphical client (Qt4) for the X2go system.
  You can use it to connect to running sessions and start new sessions. 
 
 Package: x2goplugin
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}, nxproxy
 Recommends: 
-Description: x2goclient qt4 browser plugin
- x2go is a serverbased computing environment with
- - session resuming
- - low bandwith support
- - LDAP support
- - client side mass storage mounting support
- - audio/arts support
- - authentification by smartcard and usb-stick
- - kde control-center modules for administration
- - kde based tools for just in time messaging and client surveillance
+Description: X2go Client (Qt4) as browser plugin
+ X2go is a serverbased computing environment with
+    - session resuming
+    - low bandwith support
+    - LDAP support
+    - client side mass storage mounting support
+    - audio support
+    - authentication by smartcard and USB stick
  .
  x2goclient is a graphical client (qt4) for the x2go system.
  You can use it to connect to running sessions and start new sessions. 
+ .
+ This package provides x2goclient as Mozilla plugin.

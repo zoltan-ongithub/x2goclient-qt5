@@ -1,3 +1,10 @@
+x2goclient (3.0.1.18-0~x2go2) unstable; urgency=low
+
+  * adds man page skel (TODO: options)
+  * fixes all open lintian issues
+
+ -- Mike Gabriel <mike.gabriel@das-netzwerkteam.de>  Tue, 17 May 2011 20:16:55 +0200
+
 x2goclient (3.0.1.18-0~x2go1) unstable; urgency=low
 
   * change of version numbering pattern
@@ -332,7 +339,7 @@ x2goclient (2.0.1-2) unstable; urgency=low
 
 x2goclient (2.0.1-1) unstable; urgency=low
 
-  * Initial release (Closes: #nnnn)  <nnnn is the bug number of your ITP>
+  * Initial release
 
  -- Oleksandr Shneyder <oleksandr.shneyder@obviously-nice.de>  Fri,  2 Feb 2007 21:36:59 +0100
 
