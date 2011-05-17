@@ -101,7 +101,11 @@ RESOURCES += resources.rcc
 
 linux-g++ {
     message(building $$TARGET with ldap and cups)
-    LIBS += -lldap -lcups -lX11
+    LIBS += -lldap -lcups -lX11 -lXFree
+}
+linux-g++-64 {
+    message(building $$TARGET with ldap and cups)
+    LIBS += -lldap -lcups -lX11 -lXFree
 }
 macx {
     message(building $$TARGET with ldap and cups)
@@ -122,6 +126,9 @@ plugin{
 
 DEFINES += CFGPLUGIN
    linux-g++ {
+      include(qtbrowserplugin-2.4_1-opensource/src/qtbrowserplugin.pri)
+   }
+   linux-g++-64 {
       include(qtbrowserplugin-2.4_1-opensource/src/qtbrowserplugin.pri)
    }
    win32-* {

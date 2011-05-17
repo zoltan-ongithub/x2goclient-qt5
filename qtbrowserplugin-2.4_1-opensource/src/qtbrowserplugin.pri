@@ -11,7 +11,7 @@ win32-* {
 INCLUDEPATH     += $$PWD
 DEPENDPATH      += $$PWD
 
-SOURCES	       += $$PWD/qtbrowserplugin.cpp
+SOURCES        += $$PWD/qtbrowserplugin.cpp
 HEADERS        += $$PWD/qtbrowserplugin.h qtnpapi.h
 
 win32-* {
@@ -55,7 +55,7 @@ win32-* {
   #INSTALLS += target
 } else {
   SOURCES     += $$PWD/qtbrowserplugin_x11.cpp
-  INCLUDEPATH += /usr/X11R6/include
+  INCLUDEPATH += /usr/include/X11
   
   # Avoiding symbol clash with other instances of the Qt library
   # (ref. developingplugins.html in the doc.):
