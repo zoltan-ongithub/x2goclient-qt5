@@ -5,7 +5,7 @@
 \\$2 \(la\\$1\(ra\\$3
 ..
 .if \n(.g .mso www.tmac
-.TH x2goclient 1 "17 May 2011" "Version 3.0.1.x" "X2go Client (Qt4)"
+.TH x2goclient 1 "19 May 2011" "Version 3.0.1.x" "X2go Client (Qt4)"
 .SH NAME
 x2goclient \- Client application to launch server-side X2go sessions.
 .SH SYNOPSIS
@@ -18,7 +18,96 @@ x2goclient \- Client application to launch server-side X2go sessions.
 \fBx2goclient\fR is a GUI application for launching server-side X2go sessions.
 .PP
 .SH OPTIONS
-\fBx2goclient\fR has the following options: ... (TODO)
+\fBx2goclient\fR has the following options:
+.TP
+\*(T<\fB\-\-help-pack\fR\*(T>
+Show available pack methods and exit.
+.TP
+\*(T<\fB\-\-no-menu\fR\*(T>
+Hide menu-/toolbar (default: false).
+.TP
+\*(T<\fB\-\-maximize\fR\*(T>
+Start client maximized (default: false).
+.TP
+\*(T<\fB\-\-hide\fR\*(T>
+Hide client (start hidden, default: false).
+.TP
+\*(T<\fB\-\-pgp-card\fR\*(T>
+Use openPGP Card authentification (default: false).
+.TP
+\*(T<\fB\-\-add-to-known-hosts\fR\*(T>
+Add DSA/RSA host key fingerprint to .ssh/known_hosts in case of "authenticity of server can't be established".
+.TP
+\*(T<\fB\-\-ssh-port\fR\*(T>
+use this tcp/ip port for connection (default: 22).
+.TP
+\*(T<\fB\-\-client-ssh-port\fR\*(T>
+local ssh port (for filesystem export, default: 22).
+.TP
+\*(T<\fB\-\-command\fR\*(T>
+Default command for session startup.
+.TP
+\*(T<\fB\-\-session\fR\*(T>
+Pre-selection of session at client startup.
+.TP
+\*(T<\fB\-\-sessionid\fR\*(T>
+Pre-selection of session ID at client startup.
+.TP
+\*(T<\fB\-\-user\fR\*(T>
+Pre-selection of user at client startup (LDAP mode).
+.TP
+\*(T<\fB\-\-fullscreen\fR\*(T>
+Start session in fullscreen mode.
+.TP
+\*(T<\fB\-\-width\fR\*(T>
+Start session with this width (default: 800).
+.TP
+\*(T<\fB\-\-link\fR\*(T>
+Set default link type (modem,isdn,adsl,wan or lan, default: adsl).
+.TP
+\*(T<\fB\-\-pack\fR\*(T>
+Set default pack method (default: '16m-jpeg').
+.TP
+\*(T<\fB\-\-quality\fR\*(T>
+Set default image quality(0-9, default: 9).
+.TP
+\*(T<\fB\-\-set-kbd\fR\*(T>
+Overwrite current keyboard settings, no override by default.
+.TP
+\*(T<\fB\-\-kbd-layout\fR\*(T>
+Set keyboard layout (default: 'de').
+.TP
+\*(T<\fB\-\-kbd-type\fR\*(T>
+Set keyboard type (default: pc105/de).
+.TP
+\*(T<\fB\-\-sound\fR\*(T>
+Activate sound for session, not enabled by default.
+.TP
+\*(T<\fB\-\-sound-system\fR\*(T>
+Which soundsystem to use: arts, esd, pulse (default: arts).
+.SH LDAP OPTIONS
+In case you want to provide \fBx2goclient\fR session profiles from LDAP use the following options:
+.TP
+\*(T<\fB\-\-ldap\fR\*(T>
+Start with LDAP support (disabled by default).
+.TP
+\*(T<\fB\-\-basedn\fR\*(T>
+Base DN to search in LDAP.
+.TP
+\*(T<\fB\-\-ldap-server\fR\*(T>
+LDAP Server hostname.
+.TP
+\*(T<\fB\-\-ldap-port\fR\*(T>
+LDAP Server portnumber (default: 389).
+.TP
+\*(T<\fB\-\-ldap-server1\fR\*(T>
+Failover LDAP Server hostname.
+.TP
+\*(T<\fB\-\-ldap-port1\fR\*(T>
+Failover LDAP Server portnumber (default: 389).
+.TP
+\*(T<\fB\-\-ldap-server2\fR\*(T>
+Failover LDAP Server hostname.
 .PP
 .SH AUTHOR
 This manual has been written by Mike Gabriel <mike.gabriel@das-netzwerkteam.de> for the X2go project
