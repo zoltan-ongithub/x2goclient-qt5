@@ -53,7 +53,7 @@ install_client:
 	$(INSTALL_DIR) $(DESTDIR)$(SHAREDIR)/icons/hicolor/64x64/apps
 	$(INSTALL_DIR) $(DESTDIR)$(SHAREDIR)/icons/hicolor/32x32/apps
 	$(INSTALL_PROGRAM) $(CLIENT_DIR)/x2goclient $(DESTDIR)$(BINDIR)/x2goclient
-	$(INSTALL_FILE) x2goclient.desktop            $(DESTDIR)$(SHAREDIR)/applications/x2goclient.desktop
+	$(INSTALL_FILE) desktop/x2goclient.desktop    $(DESTDIR)$(SHAREDIR)/applications/x2goclient.desktop
 	$(INSTALL_FILE) icons/x2goclient.xpm          $(DESTDIR)$(SHAREDIR)/x2goclient/icons/x2goclient.xpm
 	$(INSTALL_FILE) icons/128x128/x2goclient.png  $(DESTDIR)$(SHAREDIR)/x2goclient/icons/x2goclient.png
 	$(INSTALL_FILE) icons/128x128/x2gosession.png $(DESTDIR)$(SHAREDIR)/x2goclient/icons/x2gosession.png
