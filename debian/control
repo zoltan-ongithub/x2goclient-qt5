@@ -10,7 +10,8 @@ Build-Depends:
  libldap2-dev,
  libssh-dev,
  libcups2-dev,
- libx11-dev
+ libx11-dev,
+ doxygen
 Standards-Version: 3.9.2
 Homepage: http://code.x2go.org/releases/source/x2goclient
 Vcs-Git: git://code.x2go.org/x2goclient.git
