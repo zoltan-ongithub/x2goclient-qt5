@@ -1,0 +1,123 @@
+Content-type: text/html
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML><HEAD><TITLE>Man page of x2goclient</TITLE>
+</HEAD><BODY>
+<H1>x2goclient</H1>
+Section: X2go Client (Qt4) (1)<BR>Updated: 19 May 2011<BR><A HREF="#index">Index</A>
+<A HREF="../index.html">Return to Main Contents</A><HR>
+
+<A NAME="lbAB">&nbsp;</A>
+<H2>NAME</H2>
+
+x2goclient - Client application to launch server-side X2go sessions.
+<A NAME="lbAC">&nbsp;</A>
+<H2>SYNOPSIS</H2>
+
+
+
+
+<B>x2goclient</B>  &lt;options&gt;
+<P>
+<A NAME="lbAD">&nbsp;</A>
+<H2>DESCRIPTION</H2>
+
+<B>x2goclient</B> is a GUI application for launching server-side X2go sessions.
+<P>
+
+<A NAME="lbAE">&nbsp;</A>
+<H2>OPTIONS</H2>
+
+<B>x2goclient</B> has the following options:
+<DL COMPACT>
+<DT><B>--help-pack</B><DD>
+Show available pack methods and exit.
+<DT><B>--no-menu</B><DD>
+Hide menu-/toolbar (default: false).
+<DT><B>--maximize</B><DD>
+Start client maximized (default: false).
+<DT><B>--hide</B><DD>
+Hide client (start hidden, default: false).
+<DT><B>--pgp-card</B><DD>
+Use openPGP Card authentification (default: false).
+<DT><B>--add-to-known-hosts</B><DD>
+Add DSA/RSA host key fingerprint to .ssh/known_hosts in case of &quot;authenticity of server can't be established&quot;.
+<DT><B>--ssh-port</B><DD>
+Use this TCP/IP port for connection (default: 22).
+<DT><B>--client-ssh-port</B><DD>
+Local ssh port (for filesystem export, default: 22).
+<DT><B>--command</B><DD>
+Default command for session startup.
+<DT><B>--session</B><DD>
+Pre-selection of session at client startup.
+<DT><B>--sessionid</B><DD>
+Pre-selection of session ID at client startup.
+<DT><B>--user</B><DD>
+Pre-selection of user at client startup (LDAP mode).
+<DT><B>--fullscreen</B><DD>
+Start session in fullscreen mode.
+<DT><B>--width</B><DD>
+Start session with this width (default: 800).
+<DT><B>--link</B><DD>
+Set default link type (modem,isdn,adsl,wan or lan, default: adsl).
+<DT><B>--pack</B><DD>
+Set default pack method (default: '16m-jpeg').
+<DT><B>--quality</B><DD>
+Set default image quality(0-9, default: 9).
+<DT><B>--set-kbd</B><DD>
+Overwrite current keyboard settings, no override by default.
+<DT><B>--kbd-layout</B><DD>
+Set keyboard layout (default: 'de').
+<DT><B>--kbd-type</B><DD>
+Set keyboard type (default: pc105/de).
+<DT><B>--sound</B><DD>
+Activate sound for session, not enabled by default.
+<DT><B>--sound-system</B><DD>
+Which soundsystem to use: arts, esd, pulse (default: arts).
+</DL>
+<A NAME="lbAF">&nbsp;</A>
+<H2>LDAP OPTIONS</H2>
+
+In case you want to provide <B>x2goclient</B> session profiles from LDAP use the following options:
+<DL COMPACT>
+<DT><B>--ldap</B><DD>
+Start with LDAP support (disabled by default).
+<DT><B>--basedn</B><DD>
+Base DN to search in LDAP.
+<DT><B>--ldap-server</B><DD>
+LDAP Server hostname.
+<DT><B>--ldap-port</B><DD>
+LDAP Server portnumber (default: 389).
+<DT><B>--ldap-server1</B><DD>
+Failover LDAP Server hostname.
+<DT><B>--ldap-port1</B><DD>
+Failover LDAP Server portnumber (default: 389).
+<DT><B>--ldap-server2</B><DD>
+Failover LDAP Server hostname.
+</DL>
+<P>
+
+<A NAME="lbAG">&nbsp;</A>
+<H2>AUTHOR</H2>
+
+This manual has been written by Mike Gabriel &lt;<A HREF="mailto:mike.gabriel@das-netzwerkteam.de">mike.gabriel@das-netzwerkteam.de</A>&gt; for the X2go project
+(<A HREF="http://www.x2go.org).">http://www.x2go.org).</A>
+<P>
+
+<HR>
+<A NAME="index">&nbsp;</A><H2>Index</H2>
+<DL>
+<DT><A HREF="#lbAB">NAME</A><DD>
+<DT><A HREF="#lbAC">SYNOPSIS</A><DD>
+<DT><A HREF="#lbAD">DESCRIPTION</A><DD>
+<DT><A HREF="#lbAE">OPTIONS</A><DD>
+<DT><A HREF="#lbAF">LDAP OPTIONS</A><DD>
+<DT><A HREF="#lbAG">AUTHOR</A><DD>
+</DL>
+<HR>
+This document was created by
+<A HREF="/cgi-bin/man/man2html">man2html</A>,
+using the manual pages.<BR>
+Time: 09:50:18 GMT, May 30, 2011
+</BODY>
+</HTML>

@@ -1,4 +1,4 @@
-BSource: x2goclient
+Source: x2goclient
 Section: x11
 Priority: extra
 Maintainer: Oleksandr Shneyder <oleksandr.shneyder@obviously-nice.de>

@@ -3,5 +3,10 @@
 %:
 	dh $@
 
+override_dh_installdocs:
+	make -f Makefile.man2html build
+	dh_installdocs
+
+
 override_dh_auto_install:
 
