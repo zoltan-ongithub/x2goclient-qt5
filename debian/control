@@ -11,7 +11,8 @@ Build-Depends:
  libssh-dev,
  libcups2-dev,
  libx11-dev,
- doxygen
+ doxygen,
+ man2html
 Standards-Version: 3.9.2
 Homepage: http://code.x2go.org/releases/source/x2goclient
 Vcs-Git: git://code.x2go.org/x2goclient.git
