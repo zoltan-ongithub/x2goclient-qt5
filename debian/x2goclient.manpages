@@ -1,1 +1,2 @@
 man/man1/x2goclient.1
+#.build_doxygen/man/man3/*.3
