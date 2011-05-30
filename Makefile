@@ -20,6 +20,7 @@ DESTDIR=
 PREFIX=/usr/local
 BINDIR=$(PREFIX)/bin
 SHAREDIR=$(PREFIX)/share
+MANDIR=$(SHAREDIR)/man
 MOZPLUGDIR=$(PREFIX)/lib/mozilla/plugins
 
 all: build
@@ -42,7 +43,7 @@ clean_client:
 clean_plugin:
 	rm -fr $(PLUGIN_DIR)
 
-install: install_client install_plugin
+install: install_client install_plugin install_man
 
 install_client:
 	$(INSTALL_DIR) $(DESTDIR)$(BINDIR)/
@@ -66,7 +67,13 @@ install_plugin:
 	$(INSTALL_DIR) $(DESTDIR)$(MOZPLUGDIR)/
 	$(INSTALL_PROGRAM) $(PLUGIN_DIR)/libx2goplugin.so $(DESTDIR)$(MOZPLUGDIR)/libx2goplugin.so
 
-uninstall: uninstall_client uninstall_plugin
+install_man:
+	$(INSTALL_DIR) $(DESTDIR)$(MANDIR)/
+	$(INSTALL_DIR) $(DESTDIR)$(MANDIR)/man1
+	$(INSTALL_FILE) man/man1/x2goclient.1    $(DESTDIR)$(MANDIR)/man1/x2goclient.1
+        gzip -f $(DESTDIR)$(MANDIR)/man1/x2goclient.1
+
+uninstall: uninstall_client uninstall_plugin uninstall_man
 
 uninstall_client:
 	$(RM_FILE) $(BINDIR)/x2goclient
@@ -88,3 +95,7 @@ uninstall_client:
 uninstall_plugin:
 	$(RM_FILE) $(MOZPLUGDIR)/libx2goplugin.so
 	$(RM_DIR) $(MOZPLUGDIR)/
+
+uninstall_man:
+	$(RM_FILE) $(MANDIR)/man1/x2goclient.1.gz
+	$(RM_DIR) $(MANDIR)/man1
