@@ -85,6 +85,14 @@ Activate sound for session, not enabled by default.
 .TP
 \*(T<\fB\-\-sound-system\fR\*(T>
 Which soundsystem to use: arts, esd, pulse (default: arts).
+.SH THIN CLIENT OPTIONS
+The following command line options are primarily interesting if \fBx2goclient\fR is used
+as a login manager on X2go thin clients.
+.TP
+\*(T<\fB\-\-read-exports-from\fR\*(T>
+Specifies a directory where some external mechanism (e.g. script) can notify \fBx2goclient\fR on
+new block devices (CD/DVDs, USB sticks, etc.).
+.PP
 .SH LDAP OPTIONS
 In case you want to provide \fBx2goclient\fR session profiles from LDAP use the following options:
 .TP
