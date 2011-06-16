@@ -23,6 +23,7 @@ Architecture: any
 Depends:
  ${shlibs:Depends},
  ${misc:Depends},
+ ssh,
  nxproxy
 Suggests:
  pinentry-x2go 

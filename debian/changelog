@@ -1,3 +1,9 @@
+x2goclient (3.0.1.18-0~x2go3) UNRELEASED; urgency=low
+
+  * add ssh (server) as runtime dependency
+
+ -- Mike Gabriel <mike.gabriel@das-netzwerkteam.de>  Thu, 16 Jun 2011 17:13:57 +0200
+
 x2goclient (3.0.1.18-0~x2go2) unstable; urgency=low
 
   * adds man page skel (TODO: options)
