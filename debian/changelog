@@ -1,6 +1,7 @@
 x2goclient (3.0.1.18-0~x2go3) UNRELEASED; urgency=low
 
-  * add ssh (server) as runtime dependency
+  * Add ssh (server) as runtime dependency
+  * React to bug #627990, prefer man2html-base over man2html.
 
  -- Mike Gabriel <mike.gabriel@das-netzwerkteam.de>  Thu, 16 Jun 2011 17:13:57 +0200
 

@@ -12,7 +12,7 @@ Build-Depends:
  libcups2-dev,
  libx11-dev,
  doxygen,
- man2html
+ man2html-base | man2html
 Standards-Version: 3.9.2
 Homepage: http://code.x2go.org/releases/source/x2goclient
 Vcs-Git: git://code.x2go.org/x2goclient.git
