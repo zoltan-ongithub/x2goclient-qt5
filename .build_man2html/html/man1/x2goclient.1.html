@@ -38,26 +38,22 @@ Hide menu-/toolbar (default: false).
 Start client maximized (default: false).
 <DT><B>--hide</B><DD>
 Hide client (start hidden, default: false).
-<DT><B>--pgp-card</B><DD>
-Use openPGP Card authentification (default: false).
-<DT><B>--add-to-known-hosts</B><DD>
-Add DSA/RSA host key fingerprint to .ssh/known_hosts in case of &quot;authenticity of server can't be established&quot;.
-<DT><B>--ssh-port</B><DD>
-Use this TCP/IP port for connection (default: 22).
 <DT><B>--client-ssh-port</B><DD>
 Local ssh port (for filesystem export, default: 22).
-<DT><B>--command</B><DD>
-Default command for session startup.
-<DT><B>--session</B><DD>
-Pre-selection of session at client startup.
-<DT><B>--sessionid</B><DD>
-Pre-selection of session ID at client startup.
 <DT><B>--user</B><DD>
 Pre-selection of user at client startup (LDAP mode).
-<DT><B>--fullscreen</B><DD>
-Start session in fullscreen mode.
-<DT><B>--width</B><DD>
-Start session with this width (default: 800).
+</DL>
+<A NAME="lbAF">&nbsp;</A>
+<H2>PROFILING SESSIONS GLOBALLY</H2>
+
+You can pre-profile sessions globally using the following options. They will override the options in the session profiles.
+<DL COMPACT>
+<DT><B>--command</B><DD>
+Default command for session startup.
+<DT><B>--sessionid</B><DD>
+Pre-selection of session ID at client startup.
+<DT><B>--ssh-port</B><DD>
+Use this TCP/IP port for connection (default: 22).
 <DT><B>--link</B><DD>
 Set default link type (modem,isdn,adsl,wan or lan, default: adsl).
 <DT><B>--pack</B><DD>
@@ -70,26 +66,39 @@ Overwrite current keyboard settings, no override by default.
 Set keyboard layout (default: 'de').
 <DT><B>--kbd-type</B><DD>
 Set keyboard type (default: pc105/de).
+<DT><B>--fullscreen</B><DD>
+Start session in fullscreen mode.
+<DT><B>--width</B><DD>
+Start session with this width (default: 800).
 <DT><B>--sound</B><DD>
 Activate sound for session, not enabled by default.
 <DT><B>--sound-system</B><DD>
 Which soundsystem to use: arts, esd, pulse (default: arts).
 </DL>
-<A NAME="lbAF">&nbsp;</A>
+<A NAME="lbAG">&nbsp;</A>
 <H2>THIN CLIENT OPTIONS</H2>
 
 The following command line options are primarily interesting if <B>x2goclient</B> is used
 as a login manager on X2go thin clients.
 <DL COMPACT>
+<DT><B>--session=&lt;session-profile-name&gt;</B><DD>
+Pre-selection of session at client startup.
+<DT><B>--no-session-edit</B><DD>
+Disable session editing.
+<DT><B>--pgp-card</B><DD>
+Use openPGP Card authentication (default: false).
+<DT><B>--external-login=&lt;smartcard-logins&gt;</B><DD>
+Authenticate via SMART card, path to login notification file.
+<DT><B>--add-to-known-hosts</B><DD>
+Add DSA/RSA host key fingerprint to .ssh/known_hosts in case of &quot;authenticity of server can't be established&quot;.
 <DT><B>--read-exports-from</B><DD>
 Specifies a directory where some external mechanism (e.g. script) can notify <B>x2goclient</B> on
 new block devices (CD/DVDs, USB sticks, etc.).
-</DL>
-<P>
-
-<A NAME="lbAG">&nbsp;</A>
+<DT></DL>
+<A NAME="lbAH">&nbsp;</A>
 <H2>LDAP OPTIONS</H2>
 
+<DD>
 In case you want to provide <B>x2goclient</B> session profiles from LDAP use the following options:
 <DL COMPACT>
 <DT><B>--ldap</B><DD>
@@ -109,7 +118,7 @@ Failover LDAP Server hostname.
 </DL>
 <P>
 
-<A NAME="lbAH">&nbsp;</A>
+<A NAME="lbAI">&nbsp;</A>
 <H2>AUTHOR</H2>
 
 This manual has been written by Mike Gabriel &lt;<A HREF="mailto:mike.gabriel@das-netzwerkteam.de">mike.gabriel@das-netzwerkteam.de</A>&gt; for the X2go project
@@ -123,14 +132,15 @@ This manual has been written by Mike Gabriel &lt;<A HREF="mailto:mike.gabriel@da
 <DT><A HREF="#lbAC">SYNOPSIS</A><DD>
 <DT><A HREF="#lbAD">DESCRIPTION</A><DD>
 <DT><A HREF="#lbAE">OPTIONS</A><DD>
-<DT><A HREF="#lbAF">THIN CLIENT OPTIONS</A><DD>
-<DT><A HREF="#lbAG">LDAP OPTIONS</A><DD>
-<DT><A HREF="#lbAH">AUTHOR</A><DD>
+<DT><A HREF="#lbAF">PROFILING SESSIONS GLOBALLY</A><DD>
+<DT><A HREF="#lbAG">THIN CLIENT OPTIONS</A><DD>
+<DT><A HREF="#lbAH">LDAP OPTIONS</A><DD>
+<DT><A HREF="#lbAI">AUTHOR</A><DD>
 </DL>
 <HR>
 This document was created by
 <A HREF="/cgi-bin/man/man2html">man2html</A>,
 using the manual pages.<BR>
-Time: 19:15:15 GMT, July 11, 2011
+Time: 19:40:48 GMT, July 11, 2011
 </BODY>
 </HTML>
