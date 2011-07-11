@@ -32,35 +32,22 @@ Start client maximized (default: false).
 \*(T<\fB\-\-hide\fR\*(T>
 Hide client (start hidden, default: false).
 .TP
-\*(T<\fB\-\-pgp-card\fR\*(T>
-Use openPGP Card authentification (default: false).
-.TP
-\*(T<\fB\-\-add-to-known-hosts\fR\*(T>
-Add DSA/RSA host key fingerprint to .ssh/known_hosts in case of "authenticity of server can't be established".
-.TP
-\*(T<\fB\-\-ssh-port\fR\*(T>
-Use this TCP/IP port for connection (default: 22).
-.TP
 \*(T<\fB\-\-client-ssh-port\fR\*(T>
 Local ssh port (for filesystem export, default: 22).
+.TP
+\*(T<\fB\-\-user\fR\*(T>
+Pre-selection of user at client startup (LDAP mode).
+.SH PROFILING SESSIONS GLOBALLY
+You can pre-profile sessions globally using the following options. They will override the options in the session profiles.
 .TP
 \*(T<\fB\-\-command\fR\*(T>
 Default command for session startup.
 .TP
-\*(T<\fB\-\-session\fR\*(T>
-Pre-selection of session at client startup.
-.TP
 \*(T<\fB\-\-sessionid\fR\*(T>
 Pre-selection of session ID at client startup.
 .TP
-\*(T<\fB\-\-user\fR\*(T>
-Pre-selection of user at client startup (LDAP mode).
-.TP
-\*(T<\fB\-\-fullscreen\fR\*(T>
-Start session in fullscreen mode.
-.TP
-\*(T<\fB\-\-width\fR\*(T>
-Start session with this width (default: 800).
+\*(T<\fB\-\-ssh-port\fR\*(T>
+Use this TCP/IP port for connection (default: 22).
 .TP
 \*(T<\fB\-\-link\fR\*(T>
 Set default link type (modem,isdn,adsl,wan or lan, default: adsl).
@@ -80,6 +67,12 @@ Set keyboard layout (default: 'de').
 \*(T<\fB\-\-kbd-type\fR\*(T>
 Set keyboard type (default: pc105/de).
 .TP
+\*(T<\fB\-\-fullscreen\fR\*(T>
+Start session in fullscreen mode.
+.TP
+\*(T<\fB\-\-width\fR\*(T>
+Start session with this width (default: 800).
+.TP
 \*(T<\fB\-\-sound\fR\*(T>
 Activate sound for session, not enabled by default.
 .TP
@@ -89,10 +82,25 @@ Which soundsystem to use: arts, esd, pulse (default: arts).
 The following command line options are primarily interesting if \fBx2goclient\fR is used
 as a login manager on X2go thin clients.
 .TP
+\*(T<\fB\-\-session=<session-profile-name>\fR\*(T>
+Pre-selection of session at client startup.
+.TP
+\*(T<\fB\-\-no-session-edit\fR\*(T>
+Disable session editing.
+.TP
+\*(T<\fB\-\-pgp-card\fR\*(T>
+Use openPGP Card authentication (default: false).
+.TP
+\*(T<\fB\-\-external-login=<smartcard-logins>\fR\*(T>
+Authenticate via SMART card, path to login notification file.
+.TP
+\*(T<\fB\-\-add-to-known-hosts\fR\*(T>
+Add DSA/RSA host key fingerprint to .ssh/known_hosts in case of "authenticity of server can't be established".
+.TP
 \*(T<\fB\-\-read-exports-from\fR\*(T>
 Specifies a directory where some external mechanism (e.g. script) can notify \fBx2goclient\fR on
 new block devices (CD/DVDs, USB sticks, etc.).
-.PP
+.TP
 .SH LDAP OPTIONS
 In case you want to provide \fBx2goclient\fR session profiles from LDAP use the following options:
 .TP
