@@ -1388,7 +1388,7 @@ void ONMainWindow::slotExportTimer()
     {
         SshProcess* sproc=new SshProcess (
             sshConnection, this );
-        sproc->startNormal ( "export HOSTNAME && x2goumount_session "+
+        sproc->startNormal ( "export HOSTNAME && x2goumount-session "+
                              sessionId+" "+args[i] );
     }
 }
