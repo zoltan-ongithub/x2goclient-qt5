@@ -177,6 +177,38 @@ QString wapiShortFileName ( const QString& longName )
 }
 
 
+QString wapiGetDriveByLabel(const QString& label)
+{
+  int len=GetLogicalDriveStrings(0,0);
+  if(len>0)
+  {
+    TCHAR* buf=new TCHAR[len+1];
+    len=GetLogicalDriveStrings(len,buf);
+    for(int i=0;i<len;i+=4)
+    {      
+       QString drive=QString::fromUtf16 ( ( const ushort* ) buf+i );
+       x2goDebug<<"drive:"<<drive;
+       TCHAR vol[MAX_PATH+1];
+       TCHAR fs[MAX_PATH+1];
+       GetVolumeInformation(buf+i,vol,MAX_PATH,0,0,0,fs,MAX_PATH);       
+       QString volume=QString::fromUtf16 ( ( const ushort* ) vol );
+       x2goDebug<<"vol:"<<volume<<
+       "fs:"<<QString::fromUtf16 ( ( const ushort* ) fs );
+       if(!volume.compare(label,Qt::CaseInsensitive))
+       {
+	 x2goDebug<<"matched! ";
+	 
+	 delete []buf;
+	 return drive.replace(":\\","");
+       }
+    }
+    delete []buf;
+  }
+  
+  return label;
+}
+
+
 QString getNameFromSid ( PSID psid, QString* systemName )
 {
 	DWORD length=0;

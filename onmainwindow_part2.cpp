@@ -136,6 +136,16 @@ void ONMainWindow::slotSessEnter()
         slotPassEnter();
         return;
     }
+    if(brokerMode)
+    {
+      if(!config.brokerAuthenticated)
+      {
+	x2goDebug<<"starting broker request";
+	slotStartBroker();
+	return;
+      }
+    }
+
     resumingSession.sessionId=QString::null;
     resumingSession.server=QString::null;
     resumingSession.display=QString::null;
@@ -150,11 +160,16 @@ void ONMainWindow::slotSessEnter()
 void ONMainWindow::continueNormalSession()
 {
     x2goDebug<<"continue normal x2go session"<<endl;
+    if(brokerMode)
+    {
+      slotListSessions(true,QString::null,0);
+      return;
+    }
     SshProcess* proc=new SshProcess ( sshConnection, this );
     connect ( proc,SIGNAL ( sshFinished ( bool,QString,SshProcess* ) ),
               this,SLOT ( slotListSessions ( bool, QString,
                                              SshProcess* ) ) );
-    if ( !shadowSession )
+    if ( !shadowSession )      
         proc->startNormal ( "export HOSTNAME && x2golistsessions" );
     else
         proc->startNormal ( "export HOSTNAME && x2golistdesktops" );
@@ -189,7 +204,7 @@ bool ONMainWindow::startSession ( const QString& sid )
         return true;
     }
 
-    if ( !embedMode )
+    if ( !embedMode && !brokerMode )
     {
 
         X2goSettings st ( "sessions" );
@@ -210,8 +225,20 @@ bool ONMainWindow::startSession ( const QString& sid )
         sshPort=config.sshport;
         selectedCommand=config.command;
     }
-
-    passwd=getCurrentPass();
+    if(!brokerMode)
+       passwd=getCurrentPass();
+    else
+    {
+      currentKey=config.key;
+      host=config.server;
+      X2goSettings st ( config.iniFile, QSettings::IniFormat );
+      passForm->setEnabled ( false );
+      user=st.setting()->value ( sid+"/user",
+                                   ( QVariant ) QString::null ).toString();
+      login->setText(user);
+      sshPort=st.setting()->value ( sid+"/sshport",
+                                   ( QVariant ) "22" ).toString();
+    }
     startSshConnection ( host,sshPort,acceptRsa,user,passwd,autologin );
 
     return true;
@@ -253,7 +280,7 @@ void ONMainWindow::slotListSessions ( bool result,QString output,
         uname->setEnabled ( false );
         u->setEnabled ( false );
     }
-    if ( managedMode )
+    if ( managedMode || brokerMode )
     {
         x2goDebug<<"sess data:"<<config.sessiondata;
         if ( config.sessiondata.indexOf ( "|S|" ) ==-1 )
@@ -419,51 +446,57 @@ void ONMainWindow::startNewSession()
     }
     else
     {
-        X2goSettings st ( "sessions" );
-        QString sid;
+        X2goSettings* st;
+	
+	if(!brokerMode)
+	  st=new X2goSettings( "sessions" );
+	else
+	  st= new X2goSettings(config.iniFile,QSettings::IniFormat);
+        
+	QString sid;
         if ( !embedMode )
             sid=lastSession->id();
         else
             sid="embedded";
-        pack=st.setting()->value ( sid+"/pack",
+        pack=st->setting()->value ( sid+"/pack",
                                    ( QVariant ) defaultPack ).toString();
-        fullscreen=st.setting()->value ( sid+"/fullscreen",
+        fullscreen=st->setting()->value ( sid+"/fullscreen",
                                          ( QVariant )
                                          defaultFullscreen ).toBool();
-        height=st.setting()->value ( sid+"/height",
+        height=st->setting()->value ( sid+"/height",
                                      ( QVariant ) defaultHeight ).toInt();
-        width=st.setting()->value ( sid+"/width",
+        width=st->setting()->value ( sid+"/width",
                                     ( QVariant ) defaultWidth ).toInt();
-        setDPI=st.setting()->value ( sid+"/setdpi",
+        setDPI=st->setting()->value ( sid+"/setdpi",
                                      ( QVariant ) defaultSetDPI ).toBool();
-        dpi=st.setting()->value ( sid+"/dpi",
+        dpi=st->setting()->value ( sid+"/dpi",
                                   ( QVariant ) defaultDPI ).toUInt();
-        quality=st.setting()->value (
+        quality=st->setting()->value (
                     sid+"/quality",
                     ( QVariant ) defaultQuality ).toInt();
-        speed=st.setting()->value ( sid+"/speed",
+        speed=st->setting()->value ( sid+"/speed",
                                     ( QVariant ) defaultLink ).toInt();
 
-        usekbd=st.setting()->value ( sid+"/usekbd",
+        usekbd=st->setting()->value ( sid+"/usekbd",
                                      ( QVariant ) defaultSetKbd ).toBool();
-        layout=st.setting()->value ( sid+"/layout",
+        layout=st->setting()->value ( sid+"/layout",
                                      ( QVariant )
                                      defaultLayout[0] ).toString();
-        type=st.setting()->value ( sid+"/type",
+        type=st->setting()->value ( sid+"/type",
                                    ( QVariant )
                                    defaultKbdType ).toString();
         if ( !embedMode )
         {
-            command=st.setting()->value ( sid+"/command",
+            command=st->setting()->value ( sid+"/command",
                                           ( QVariant ) defaultCmd ).toString();
-            host=st.setting()->value (
+            host=st->setting()->value (
                      sid+"/host",
                      ( QVariant )
                      ( QString ) "localhost" ).toString();
 
-            rootless=st.setting()->value ( sid+"/rootless",
+            rootless=st->setting()->value ( sid+"/rootless",
                                            ( QVariant ) false ).toBool();
-            xdmcpServer=st.setting()->value ( sid+"/xdmcpserver",
+            xdmcpServer=st->setting()->value ( sid+"/xdmcpserver",
                                               ( QVariant )
                                               "localhost" ).toString();
         }
@@ -473,7 +506,7 @@ void ONMainWindow::startNewSession()
             rootless= config.rootless;
             host=config.server;
             startEmbedded=false;
-            if ( st.setting()->value ( sid+"/startembed",
+            if ( st->setting()->value ( sid+"/startembed",
                                        ( QVariant ) true ).toBool() )
             {
                 startEmbedded=true;
@@ -511,6 +544,7 @@ void ONMainWindow::startNewSession()
         {
             runRemoteCommand=false;
         }
+        delete st;
     }
 
 
@@ -531,7 +565,7 @@ void ONMainWindow::startNewSession()
     maximizeProxyWin=false;
     proxyWinWidth=width;
     proxyWinHeight=height;
-#ifdef CFGCLIENT
+//#ifdef CFGCLIENT
     xorgMode=WIN;
     if(fullscreen)
       xorgMode=FS;
@@ -539,9 +573,9 @@ void ONMainWindow::startNewSession()
       xorgMode=SAPP;
     xorgWidth=QString::number(width);
     xorgHeight=QString::number(height);
-    if(!useXming && ! startXorgOnStart)
+    if(! startXorgOnStart)
       startXOrg();
-#endif
+//#endif
 #endif
     if ( fullscreen )
     {
@@ -709,43 +743,47 @@ void ONMainWindow::resumeSession ( const x2goSession& s )
             sid=lastSession->id();
         else
             sid="embedded";
-        X2goSettings st ( "sessions" );
+        X2goSettings* st;
+	if(!brokerMode)
+	  st=new X2goSettings( "sessions" );
+	else
+	  st=new X2goSettings(config.iniFile,QSettings::IniFormat);
 
-        pack=st.setting()->value ( sid+"/pack",
+        pack=st->setting()->value ( sid+"/pack",
                                    ( QVariant ) defaultPack ).toString();
 
-        fullscreen=st.setting()->value ( sid+"/fullscreen",
+        fullscreen=st->setting()->value ( sid+"/fullscreen",
                                          ( QVariant )
                                          defaultFullscreen ).toBool();
-        height=st.setting()->value ( sid+"/height",
+        height=st->setting()->value ( sid+"/height",
                                      ( QVariant ) defaultHeight ).toInt();
-        width=st.setting()->value ( sid+"/width",
+        width=st->setting()->value ( sid+"/width",
                                     ( QVariant ) defaultWidth ).toInt();
-        quality=st.setting()->value ( sid+"/quality",
+        quality=st->setting()->value ( sid+"/quality",
                                       ( QVariant )
                                       defaultQuality ).toInt();
-        speed=st.setting()->value ( sid+"/speed",
+        speed=st->setting()->value ( sid+"/speed",
                                     ( QVariant ) defaultLink ).toInt();
-        usekbd=st.setting()->value ( sid+"/usekbd",
+        usekbd=st->setting()->value ( sid+"/usekbd",
                                      ( QVariant ) defaultSetKbd ).toBool();
-        layout=st.setting()->value ( sid+"/layout",
+        layout=st->setting()->value ( sid+"/layout",
                                      ( QVariant )
                                      defaultLayout[0] ).toString();
-        type=st.setting()->value ( sid+"/type",
+        type=st->setting()->value ( sid+"/type",
                                    ( QVariant )
                                    defaultKbdType ).toString();
-        rootless=st.setting()->value ( sid+"/rootless",
+        rootless=st->setting()->value ( sid+"/rootless",
                                      ( QVariant ) false ).toBool();
 
         if ( !embedMode )
         {
-            host=st.setting()->value ( sid+"/host",
+            host=st->setting()->value ( sid+"/host",
                                        ( QVariant ) s.server ).toString();
         }
         else
         {
             startEmbedded=false;
-            if ( st.setting()->value ( sid+"/startembed",
+            if ( st->setting()->value ( sid+"/startembed",
                                        ( QVariant ) true ).toBool() )
             {
                 fullscreen=false;
@@ -773,6 +811,7 @@ void ONMainWindow::resumeSession ( const x2goSession& s )
                 usekbd=true;
             }
         }
+        delete st;
     }
     
     if(defaultLayout.size()>0)
@@ -783,7 +822,7 @@ void ONMainWindow::resumeSession ( const x2goSession& s )
     maximizeProxyWin=false;
     proxyWinWidth=width;
     proxyWinHeight=height;
-#ifdef CFGCLIENT
+// #ifdef CFGCLIENT
     xorgMode=WIN;
     if(fullscreen)
       xorgMode=FS;
@@ -791,9 +830,9 @@ void ONMainWindow::resumeSession ( const x2goSession& s )
       xorgMode=SAPP;
     xorgWidth=QString::number(width);
     xorgHeight=QString::number(height);
-    if(!useXming && ! startXorgOnStart)
+    if(! startXorgOnStart)
       startXOrg();
-#endif
+// #endif
     
 #endif
     if ( fullscreen )
@@ -1815,9 +1854,10 @@ void ONMainWindow::slotTunnelOk()
 #ifdef Q_OS_WIN
     else
     {
-#ifdef CFGCLIENT
-        if(useXming)
-#endif
+// #ifdef CFGCLIENT
+        // if using XMing, we must find proxy win for case, that we should make it fullscreen
+        if(useInternalX&& (internalX==XMING))
+// #endif
         proxyWinTimer->start ( 300 );
     }
 #endif
@@ -1899,8 +1939,8 @@ void ONMainWindow::slotProxyFinished ( int,QProcess::ExitStatus )
 #ifdef Q_OS_WIN
     else
         proxyWinTimer->stop();
-#ifdef CFGCLIENT
-    if(!useXming && ! startXorgOnStart)
+// #ifdef CFGCLIENT
+    if(! startXorgOnStart)
     {
       if(xorg)
       {
@@ -1912,7 +1952,7 @@ void ONMainWindow::slotProxyFinished ( int,QProcess::ExitStatus )
 	}
       }
     }
-#endif
+// #endif
 #endif
     if ( closeEventSent )
         return;
@@ -1993,9 +2033,16 @@ void ONMainWindow::slotProxyFinished ( int,QProcess::ExitStatus )
     {
         if ( !embedMode )
         {
+	  if(!brokerMode)
+	  {
             pass->setText ( "" );
             QTimer::singleShot ( 2000,this,
                                  SLOT ( slotShowPassForm() ) );
+	  }
+	  else
+	                QTimer::singleShot ( 2000,broker,
+                                 SLOT ( getUserSessions() ) );
+	    
         }
     }
     else

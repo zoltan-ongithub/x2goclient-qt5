@@ -74,6 +74,7 @@
 #include "clicklineedit.h"
 #include <QThread>
 
+#include "brokerpassdlg.h"
 
 #include "sshmasterconnection.h"
 

@@ -51,6 +51,8 @@ QString wapiGetDefaultPrinter();
 QStringList wapiGetLocalPrinters();
 long wapiSetFSWindow ( HWND hWnd, const QRect& desktopGeometry );
 void wapiRestoreWindow ( HWND hWnd, long style, const QRect& desktopGeometry );
+QString wapiGetDriveByLabel(const QString& label);
+
 
 
 #endif

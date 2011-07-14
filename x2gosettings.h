@@ -16,7 +16,7 @@
 
 #include <QSettings>
 
-
+class QTemporaryFile;
 /**
 	@author Oleksandr Shneyder <oleksandr.shneyder@obviously-nice.de>
 */
@@ -24,6 +24,7 @@ class X2goSettings
 {
 public:
     X2goSettings ( QString group );
+    X2goSettings ( QString fileContent, QSettings::Format format);
     ~X2goSettings();
 
     QSettings* setting()
@@ -33,6 +34,7 @@ public:
 
 private:
     QSettings* set;
+    QTemporaryFile* cfgFile;
 
 };
 

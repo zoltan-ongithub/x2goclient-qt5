@@ -32,6 +32,7 @@ INPUT(
 ./debug\httpbrokerclient.o
 ./debug\ongetpass.o
 ./debug\x2gosettings.o
+./debug\brokerpassdlg.o
 ./debug\xsettingswidget.o
 ./debug\x2goclient.o
 ./debug\moc_configdialog.o
@@ -57,6 +58,7 @@ INPUT(
 ./debug\moc_sharewidget.o
 ./debug\moc_clicklineedit.o
 ./debug\moc_httpbrokerclient.o
+./debug\moc_brokerpassdlg.o
 ./debug\moc_xsettingswidget.o
 ./debug\qrc_resources.o
 );

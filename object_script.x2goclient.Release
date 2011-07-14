@@ -32,6 +32,7 @@ INPUT(
 ./release\httpbrokerclient.o
 ./release\ongetpass.o
 ./release\x2gosettings.o
+./release\brokerpassdlg.o
 ./release\xsettingswidget.o
 ./release\x2goclient.o
 ./release\moc_configdialog.o
@@ -57,6 +58,7 @@ INPUT(
 ./release\moc_sharewidget.o
 ./release\moc_clicklineedit.o
 ./release\moc_httpbrokerclient.o
+./release\moc_brokerpassdlg.o
 ./release\moc_xsettingswidget.o
 ./release\qrc_resources.o
 );

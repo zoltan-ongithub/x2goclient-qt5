@@ -25,7 +25,7 @@
 #endif
 
 #undef DEBUG
-#define DEBUG
+// #define DEBUG
 
 SshProcess::SshProcess(SshMasterConnection* master, QObject* parent): QObject(parent)
 {

@@ -30,7 +30,7 @@ SessionButton::SessionButton ( ONMainWindow* mw,QWidget *parent, QString id )
         : SVGFrame ( ":/svg/sessionbut.svg",false,parent )
 {
     editable=mw->sessionEditEnabled();
-    
+
     QFont fnt=font();
     if ( mw->retMiniMode() )
 #ifdef Q_WS_HILDON
@@ -71,6 +71,7 @@ SessionButton::SessionButton ( ONMainWindow* mw,QWidget *parent, QString id )
     geomBox->setPalette ( cpal );
 
     sessName=new QLabel ( this );
+    sessStatus=new QLabel ( this );
     fnt=sessName->font();
     fnt.setBold ( true );
     sessName->setFont ( fnt );
@@ -142,6 +143,7 @@ SessionButton::SessionButton ( ONMainWindow* mw,QWidget *parent, QString id )
     if ( !miniMode )
     {
         sessName->move ( 80,34 );
+	sessStatus->move(80,50);
         editBut->move ( 307,156 );
         serverIcon->move ( 58,84 );
         server->move ( 80,84 );
@@ -158,6 +160,7 @@ SessionButton::SessionButton ( ONMainWindow* mw,QWidget *parent, QString id )
     {
         editBut->move ( 218,113 );
         sessName->move ( 64,11 );
+	sessStatus->hide();
         serverIcon->move ( 66,44 );
         server->move ( 88,44 );
         cmdIcon->move ( 66,68 );
@@ -168,6 +171,14 @@ SessionButton::SessionButton ( ONMainWindow* mw,QWidget *parent, QString id )
         geomBox->move ( 88,92 );
         soundIcon->move ( 66,116 );
         sound->move ( 86,116 );
+    }
+    
+    if(mw->brokerMode)
+    {
+      icon->move(10,30);
+      sessName->move(90,50);
+      sessStatus->move(90,70);
+      setFixedHeight(120);
     }
 
 
@@ -206,7 +217,18 @@ SessionButton::SessionButton ( ONMainWindow* mw,QWidget *parent, QString id )
         cmdBox->hide();
         geomBox->hide();
         sessMenu->hide();
-	sound->setEnabled(false);
+        sound->setEnabled(false);
+    }
+    if(mw->brokerMode)
+    {
+      cmd->hide();
+      cmdIcon->hide();
+      server->hide();
+      serverIcon->hide();
+      geom->hide();
+      geomIcon->hide();
+      sound->hide();
+      soundIcon->hide();
     }
 }
 
@@ -232,36 +254,66 @@ void SessionButton::slotRemove()
 void SessionButton::redraw()
 {
     bool snd;
-    X2goSettings st ( "sessions" );
+
+
+    X2goSettings *st;
+
+    if (par->brokerMode)
+        st=new X2goSettings(par->config.iniFile,QSettings::IniFormat);
+    else
+        st= new X2goSettings( "sessions" );
+
+
+
     sessName->setText (
-        st.setting()->value ( sid+"/name",
-                              ( QVariant ) tr ( "New Session" ) ).toString() );
-    QString sessIcon=st.setting()->value (
+        st->setting()->value ( sid+"/name",
+                               ( QVariant ) tr ( "New Session" ) ).toString());
+    QString status=st->setting()->value ( sid+"/status",
+                                          ( QVariant ) QString::null ).toString();
+    if (status == "R")
+    {
+        sessStatus->setText("("+tr("running")+")");
+    }
+    if (status == "S")
+    {
+        sessStatus->setText("("+tr("suspended")+")");
+    }
+
+    QString sessIcon=st->setting()->value (
                          sid+"/icon",
                          ( QVariant )
                          ":icons/128x128/x2gosession.png"
                      ).toString();
-    QPixmap pix ( sessIcon );
-    if ( !par->retMiniMode() )
-        icon->setPixmap ( pix.scaled ( 64,64,Qt::IgnoreAspectRatio,
-                                       Qt::SmoothTransformation ) );
-    else
-        icon->setPixmap ( pix.scaled ( 48,48,Qt::IgnoreAspectRatio,
-                                       Qt::SmoothTransformation ) );
+    QPixmap* pix;
 
-    QString sv=st.setting()->value ( sid+"/host", ( QVariant )
-                                     QString::null ).toString();
-    QString uname=st.setting()->value ( sid+"/user", ( QVariant )
-                                        QString::null ).toString();
+    if (!par->brokerMode || sessIcon == ":icons/128x128/x2gosession.png")
+        pix=new QPixmap( sessIcon );
+    else
+    {
+        pix=new QPixmap;
+        pix->loadFromData(QByteArray::fromBase64(sessIcon.toAscii()));
+    }
+    if ( !par->retMiniMode() )
+        icon->setPixmap ( pix->scaled ( 64,64,Qt::IgnoreAspectRatio,
+                                        Qt::SmoothTransformation ) );
+    else
+        icon->setPixmap ( pix->scaled ( 48,48,Qt::IgnoreAspectRatio,
+                                        Qt::SmoothTransformation ) );
+
+    delete pix;
+    QString sv=st->setting()->value ( sid+"/host", ( QVariant )
+                                      QString::null ).toString();
+    QString uname=st->setting()->value ( sid+"/user", ( QVariant )
+                                         QString::null ).toString();
     server->setText ( uname+"@"+sv );
 
-    QString command=st.setting()->value ( sid+"/command",
-                                          ( QVariant )
-                                          tr (
-                                              "KDE" ) ).
+    QString command=st->setting()->value ( sid+"/command",
+                                           ( QVariant )
+                                           tr (
+                                               "KDE" ) ).
                     toString();
-    rootless=st.setting()->value ( sid+"/rootless",
-                                   false ).toBool();
+    rootless=st->setting()->value ( sid+"/rootless",
+                                    false ).toBool();
 
 
     cmdBox->clear();
@@ -337,17 +389,17 @@ void SessionButton::redraw()
 #else
     geomBox->addItem ( tr ( "window" ) );
 #endif
-    if ( st.setting()->value ( sid+"/fullscreen",
-                               ( QVariant ) false ).toBool() )
+    if ( st->setting()->value ( sid+"/fullscreen",
+                                ( QVariant ) false ).toBool() )
     {
         geom->setText ( tr ( "fullscreen" ) );
     }
     else
     {
 #ifndef	Q_WS_HILDON
-        QString g=QString::number ( st.setting()->value (
+        QString g=QString::number ( st->setting()->value (
                                         sid+"/width" ).toInt() );
-        g+="x"+QString::number ( st.setting()->value (
+        g+="x"+QString::number ( st->setting()->value (
                                      sid+"/height" ).toInt() );
         geom->setText ( g );
         if ( geomBox->findText ( g ) ==-1 )
@@ -360,7 +412,7 @@ void SessionButton::redraw()
     }
 
 
-    snd=st.setting()->value ( sid+"/sound", ( QVariant ) true ).toBool();
+    snd=st->setting()->value ( sid+"/sound", ( QVariant ) true ).toBool();
     if ( snd )
         sound->setText ( tr ( "Enabled" ) );
     else
@@ -374,6 +426,7 @@ void SessionButton::redraw()
     geom->setMinimumSize ( geom->sizeHint() );
     cmd->setMinimumSize ( cmd->sizeHint() );
     server->setMinimumSize ( server->sizeHint() );
+    delete st;
 }
 
 void SessionButton::mousePressEvent ( QMouseEvent * event )
@@ -396,8 +449,8 @@ void SessionButton::mouseMoveEvent ( QMouseEvent * event )
 {
 
     SVGFrame::mouseMoveEvent ( event );
-    if(!editable)
-      return;
+    if (!editable)
+        return;
     if ( cmd->isVisible() )
         if ( event->x() > cmd->x() && event->x() < cmd->x() +
                 cmd->width() &&

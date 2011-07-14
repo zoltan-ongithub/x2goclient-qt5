@@ -26,8 +26,8 @@ XSettingsWidget::XSettingsWidget(QWidget* parent)
     setupUi(this);
 
     X2goSettings st ( "settings" );
-    rbXming->setChecked(st.setting()->value("usexming",true).toBool());
-    rbOther->setChecked(!(st.setting()->value("usexming",true).toBool()));
+    rbXming->setChecked(st.setting()->value("useintx",true).toBool());
+    rbOther->setChecked(!(st.setting()->value("useintx",true).toBool()));
     leExec->setText(st.setting()->value("xexec","C:\\program files\\vcxsrv\\vcxsrv.exe").toString());
     leCmdOptions->setText(st.setting()->value("options","-multiwindow -notrayicon -clipboard").toString());
 
@@ -37,7 +37,7 @@ XSettingsWidget::XSettingsWidget(QWidget* parent)
     leWinMod->setText(st.setting()->value("optionswin","-screen 0 %wx%h -notrayicon -clipboard").toString());
     leFSMod->setText(st.setting()->value("optionsfs","-fullscreen -notrayicon -clipboard").toString());
     leSingApp->setText(st.setting()->value("optionssingle","-multiwindow -notrayicon -clipboard").toString());
-    spDelay->setValue(st.setting()->value("delay",3).toInt());
+//     spDelay->setValue(st.setting()->value("delay",3).toInt());
     pbExec->setIcon( QPixmap ( ":/icons/16x16/file-open.png" ) );
 }
 
@@ -58,21 +58,21 @@ void XSettingsWidget::slotSetExecutable()
 
 void XSettingsWidget::setDefaults()
 {
-    rbXming->setChecked("usexming");
+    rbXming->setChecked(true);
     leExec->setText("C:\\program files\\vcxsrv\\vcxsrv.exe");
     leCmdOptions->setText("-multiwindow -notrayicon -clipboard");
     cbOnstart->setChecked(true);
     leWinMod->setText("-screen 0 %wx%h -notrayicon -clipboard");
     leFSMod->setText("-fullscreen -notrayicon -clipboard");
     leSingApp->setText("-multiwindow -notrayicon -clipboard");
-    spDelay->setValue(3);
+//     spDelay->setValue(3);
   
 }
 
 void XSettingsWidget::saveSettings()
 {
     X2goSettings st ( "settings" );
-    st.setting()->setValue("usexming",rbXming->isChecked());
+    st.setting()->setValue("useintx",rbXming->isChecked());
     st.setting()->setValue("xexec",leExec->text());
     st.setting()->setValue("options",leCmdOptions->text());
     st.setting()->setValue("onstart",cbOnstart->isChecked());
@@ -80,7 +80,7 @@ void XSettingsWidget::saveSettings()
     st.setting()->setValue("optionswin",leWinMod->text());
     st.setting()->setValue("optionsfs",leFSMod->text());    
     st.setting()->setValue("optionssingle",leSingApp->text());
-    st.setting()->setValue("delay",spDelay->value());
+//     st.setting()->setValue("delay",spDelay->value());
     st.setting()->sync();
 }
 

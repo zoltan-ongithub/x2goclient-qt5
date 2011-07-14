@@ -36,6 +36,7 @@ class SessionButton : public SVGFrame
 	private:
 		QString sid;
 		QLabel* sessName;
+		QLabel* sessStatus;
 		QLabel* icon;
 		QComboBox* cmdBox;
 		QLabel* cmd;

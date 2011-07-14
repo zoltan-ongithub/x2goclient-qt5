@@ -24,6 +24,7 @@
 #include <QThread>
 #include <QStringList>
 
+class ONMainWindow;
 class SshProcess;
 struct ChannelConnection
 {
@@ -72,7 +73,8 @@ public:
 private:
     SshMasterConnection(QString host, int port, bool acceptUnknownServers, QString user, QString pass, QString key,
                         bool autologin,
-                        int remotePort, QString localHost, int localPort, SshProcess* creator, QObject* parent = 0);
+                        int remotePort, QString localHost, int localPort, SshProcess* creator, 
+			QObject* parent, ONMainWindow* parWnd);
     bool sshConnect();
     bool userAuthWithPass();
     bool userAuthAuto();
@@ -105,7 +107,8 @@ private:
     int reverseTunnelLocalPort;
     bool acceptUnknownServers;
     QString reverseTunnelLocalHost;
-    SshProcess* reverseTunnelCreator;    
+    SshProcess* reverseTunnelCreator;   
+    ONMainWindow* mainWnd;
 
 signals:
     void stdErr(SshProcess* caller, QByteArray data);

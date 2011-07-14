@@ -51,7 +51,11 @@ void ONMainWindow::runCommand()
     bool rootless=false;
     if ( !embedMode )
     {
-        X2goSettings st ( "sessions" );
+        X2goSettings* st;
+	if(!brokerMode)
+	  st=new X2goSettings( "sessions" );
+	else
+	  st=new X2goSettings(config.iniFile, QSettings::IniFormat);
 
 
         if ( useLdap )
@@ -59,29 +63,30 @@ void ONMainWindow::runCommand()
         else
         {
             QString sid=lastSession->id();
-            command=st.setting()->value (
+            command=st->setting()->value (
                         sid+"/command",
                         ( QVariant ) tr ( "KDE" ) ).toString();
-            rdpOpts=st.setting()->value (
+            rdpOpts=st->setting()->value (
                         sid+"/rdpoptions",
                         ( QVariant ) "" ).toString();
-            rdpServer=st.setting()->value (
+            rdpServer=st->setting()->value (
                           sid+"/rdpserver",
                           ( QVariant ) "" ).toString();
-            rootless=st.setting()->value ( sid+"/rootless",
+            rootless=st->setting()->value ( sid+"/rootless",
                                            ( QVariant ) false ).toBool();
 
-            rdpFS=st.setting()->value (
+            rdpFS=st->setting()->value (
                       sid+"/fullscreen",
                       ( QVariant ) defaultFullscreen ).toBool();
-            rdpHeight=st.setting()->value (
+            rdpHeight=st->setting()->value (
                           sid+"/height",
                           ( QVariant ) defaultHeight ).toString();
-            rdpWidth=st.setting()->value (
+            rdpWidth=st->setting()->value (
                          sid+"/width",
                          ( QVariant ) defaultWidth ).toString();
 
         }
+        delete st;
     }
     else
     {
@@ -220,6 +225,11 @@ bool ONMainWindow::parseParameter ( QString param )
         ONMainWindow::portable=true;
         return true;
     }
+    if ( param == "--clean-all-files" )
+    {
+        cleanAllFiles=true;
+        return true;
+    }
 
     if ( param=="--no-menu" )
     {
@@ -257,6 +267,12 @@ bool ONMainWindow::parseParameter ( QString param )
         noSessionEdit=true;
         return true;
     }
+    if( param=="--change-broker-pass")
+    {
+      changeBrokerPass=true;
+      return true;
+    }
+    
 
     QString setting,value;
     QStringList vals=param.split ( "=" );
@@ -368,6 +384,86 @@ bool ONMainWindow::parseParameter ( QString param )
         embedParent=value.toLong();
         return true;
     }
+    if( setting == "--broker-url")
+    {
+      brokerMode=true;
+      noSessionEdit=true;
+      config.brokerurl=value;
+      return true;
+    }
+    if( setting == "--broker-name")
+    {
+      config.brokerName=value;
+      return true;
+    }
+    if( setting == "--auth-id")
+    {
+      QFile file(value);
+     if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+     {
+         printError ( param + tr(" (can't open file)"));
+         return false;
+     }
+         QTextStream in(&file);
+         config.brokerUserId = in.readLine();
+	 return true;
+    }
+    if(setting == "--support-menu")
+    {
+      if(! QFile::exists(value))
+      {
+	printError( param + tr(" (file not exists)"));
+	return false;
+      }
+      supportMenuFile=value;
+      return true;
+    }
+    if(setting == "--background")
+    {
+      if(! QFile::exists(value))
+      {
+	printError( param + tr(" (file not exists)"));
+	return false;
+      }
+      BGFile=value;
+      return true;
+    }
+    if(setting == "--session-icon")
+    {
+      if(! QFile::exists(value))
+      {
+	printError( param + tr(" (file not exists)"));
+	return false;
+      }
+      SPixFile=value;
+      return true;
+    }
+    if(setting == "--home")
+    {
+      QDir dr;
+      
+#ifdef Q_OS_WIN
+      int find=value.indexOf("(");
+      int lind=value.indexOf(")");
+      if(find!=-1 && lind !=-1)
+      {	
+	QString label=value.mid(find+1,lind-find-1);
+	x2goDebug<< "searching for drive with label: "<<label;
+	QString drive=wapiGetDriveByLabel(label);
+	value.replace("("+label+")",drive);
+	x2goDebug<<"new path: "<<value;
+      }
+#endif
+      if(! dr.exists(value))
+      {
+	printError( param + tr(" (directory not exists)"));
+	return false;
+      }
+      homeDir=value;
+      portableDataPath=value;
+      return true;
+    }
+
     printError ( param );
     return false;
 }
@@ -617,6 +713,7 @@ void ONMainWindow::showHelp()
         "--kbd-layout=<layout>\t\t set default keyboard layout or layouts\n"
         "comma separated\n"
         "--kbd-type=<typed>\t\t set default keyboard type\n"
+        "--home=<dir>\t\t set users home directory\n"
         "--set-kbd=<0|1>\t\t\t overwrite current keyboard settings\n" ;
     qCritical ( "%s",helpMsg.toLocal8Bit().data() );
     QMessageBox::information ( this,tr ( "Options" ),helpMsg );
@@ -1388,7 +1485,7 @@ void ONMainWindow::slotExportTimer()
     {
         SshProcess* sproc=new SshProcess (
             sshConnection, this );
-        sproc->startNormal ( "export HOSTNAME && x2goumount-session "+
+        sproc->startNormal ( "export HOSTNAME && x2goumount_session "+
                              sessionId+" "+args[i] );
     }
 }
@@ -1396,6 +1493,21 @@ void ONMainWindow::slotExportTimer()
 void ONMainWindow::slotAboutQt()
 {
     QMessageBox::aboutQt ( this );
+}
+
+void ONMainWindow::slotSupport()
+{
+    QFile file(supportMenuFile);
+     if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+         return;
+
+     QTextStream in(&file);
+     QString sup;
+     while (!in.atEnd()) 
+     {
+         sup+=in.readLine();
+     }     
+     QMessageBox::information (this,tr ( "Support" ),sup);
 }
 
 void ONMainWindow::slotAbout()

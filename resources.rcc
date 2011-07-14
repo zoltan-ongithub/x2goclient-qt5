@@ -40,6 +40,7 @@
        <file>icons/32x32/detach.png</file>
        <file>icons/32x32/suspend.png</file>
        <file>icons/32x32/stop.png</file>
+       <file>icons/32x32/auth.png</file>
        <file>icons/32x32/x2goclient.png</file>
        <file>icons/32x32/resolution.png</file>
        <file>icons/16x16/audio.png</file>

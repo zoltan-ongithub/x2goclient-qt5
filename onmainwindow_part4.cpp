@@ -282,14 +282,18 @@ void ONMainWindow::startXOrg ()
     QTextStream ( &dispString ) <<":"<<xDisplay;
 
     QStringList args;
-    QString exec=appDir+"\\xming\\Xming.exe";
-    bool xming=true;
+    QString exec;
+    if(internalX==XMING)
+       exec=appDir+"\\xming\\Xming.exe";
+    if(internalX==VCXSRV)
+       exec=appDir+"\\vcxsrv\\vcxsrv.exe";
     winServersReady=false;
-#ifdef CFGCLIENT
-    xming=useXming;
-    if (!xming)
+    x2goDebug<<"using internal X: "<<useInternalX;
+//#ifdef CFGCLIENT
+    if (!useInternalX || internalX!=XMING)
     {
-        exec=xorgExe;
+        if(!useInternalX)
+            exec=xorgExe;
         QString cmdLine;
         if (startXorgOnStart)
             cmdLine=xorgOptions;
@@ -320,9 +324,9 @@ void ONMainWindow::startXOrg ()
         }
         args<<dispString;
     }
-#endif
+//#endif
     xorg=new QProcess ( 0 );
-    if (xming)
+    if (useInternalX && (internalX==XMING))
     {
       
         QString workingDir=appDir+"\\xming";
@@ -344,7 +348,7 @@ void ONMainWindow::startXOrg ()
         xorg-> setWorkingDirectory ( workingDir);
     }
     
-    x2goDebug<<"running"<<exec;
+    x2goDebug<<"running"<<exec<<" "<<args.join(" ");
     xorg->start ( exec, args );
 
 
@@ -356,15 +360,41 @@ void ONMainWindow::startXOrg ()
                  "Please check your installation" ) );
         close();
     }
-#ifdef CFGCLIENT
-    if (!xming)
+// #ifdef CFGCLIENT
+    if ( !useInternalX || internalX!= XMING)
     {
-        x2goDebug<<"servers ready after"<<xorgDelay<<endl;
-        QTimer::singleShot(xorgDelay*1000, this, SLOT(slotSetWinServersReady()));
+	 //check connection in slot and launch setWinServerReady
+	 waitingForX=0;
+         QTimer::singleShot(1000, this, SLOT(slotCheckXOrgConnection()));
     }
-#endif
+// #endif
 }
 
+void ONMainWindow::slotCheckXOrgConnection()
+{
+    ++waitingForX;
+    if(isServerRunning(6000+xDisplay))
+    {
+      x2goDebug<<"X is started";
+      slotSetWinServersReady();
+    }
+    else
+    {
+      if(waitingForX > 10)
+      {
+         QMessageBox::critical (
+            0,QString::null,
+            tr ( "Can't start X Server\n"
+                 "Please check your installation" ) );
+         close();
+      }
+      else
+      {
+        x2goDebug<<"waiting for X";
+	QTimer::singleShot(1000, this, SLOT(slotCheckXOrgConnection()));	
+      }
+    }
+}
 
 WinServerStarter::WinServerStarter ( daemon server, ONMainWindow * par ) :
 QThread ( 0 )
@@ -421,17 +451,17 @@ void ONMainWindow::startWinServers()
     {
         pulseStarter->start();
     }
-#ifdef CFGCLIENT
-        x2goDebug<<"xorg settings: "<<startXorgOnStart <<" "<< useXming<<endl;
-    if (useXming)
+// #ifdef CFGCLIENT
+//     x2goDebug<<"xorg settings: "<<startXorgOnStart <<" "<< useXming<<endl;
+    if ( useInternalX && (internalX== XMING))
     {
-#endif
+// #endif
         xStarter->start();
         xorgLogTimer=new QTimer ( this );
         connect ( xorgLogTimer,SIGNAL ( timeout() ),this,
                   SLOT ( slotCheckXOrgLog() ) );
         xorgLogTimer->start ( 500 );
-#ifdef CFGCLIENT
+// #ifdef CFGCLIENT
     }
     else
     {
@@ -440,7 +470,7 @@ void ONMainWindow::startWinServers()
             startXOrg();
         }
     }
-#endif
+// #endif
 }
 
 
@@ -678,26 +708,45 @@ void ONMainWindow::startPulsed()
 }
 
 
-#ifdef CFGCLIENT
+// #ifdef CFGCLIENT
 void ONMainWindow::xorgSettings()
 {
     x2goDebug<<"getting xorg settings"<<endl;
 
     X2goSettings st ( "settings" );
-    useXming=(st.setting()->value("usexming",true).toBool());
+    
+    useInternalX=(st.setting()->value("useintx",true).toBool());
+    
     xorgExe=(st.setting()->value("xexec","C:\\program files\\vcxsrv\\vcxsrv.exe").toString());
     xorgOptions=(st.setting()->value("options","-multiwindow -notrayicon -clipboard").toString());
     startXorgOnStart=(st.setting()->value("onstart",true).toBool());
     xorgWinOptions=(st.setting()->value("optionswin","-screen 0 %wx%h -notrayicon -clipboard").toString());
     xorgFSOptions=(st.setting()->value("optionsfs","-fullscreen -notrayicon -clipboard").toString());
     xorgSAppOptions=(st.setting()->value("optionssingle","-multiwindow -notrayicon -clipboard").toString());
-    xorgDelay=(st.setting()->value("delay",3).toInt());
+    
+    if(QFile::exists(appDir+"\\vcxsrv"))
+      internalX=VCXSRV;
+    if(QFile::exists(appDir+"\\xming"))
+      internalX=XMING;
+    if(useInternalX)
+    {
+      startXorgOnStart=(internalX==XMING);
+      xorgOptions="-multiwindow -notrayicon -clipboard";
+      if(internalX==VCXSRV)
+      {
+// 	xorgWinOptions="-screen 0 %wx%h -notrayicon -clipboard";
+	xorgWinOptions="-multiwindow -notrayicon -clipboard";
+        xorgFSOptions="-fullscreen -notrayicon -clipboard";
+        xorgSAppOptions="-multiwindow -notrayicon -clipboard";
+      }
+    }
 
 }
-#endif
+// #endif
 
 void ONMainWindow::slotSetWinServersReady()
 {
+    x2goDebug<<"all winservers are started\n";
     winServersReady=true;
     restoreCygnusSettings();
 }
@@ -906,7 +955,7 @@ QString ONMainWindow::getCurrentUname()
 
 QString ONMainWindow::getCurrentPass()
 {
-    return pass->text();
+    return pass->text();   
 }
 
 void ONMainWindow::slotDetachProxyWindow()
@@ -2117,21 +2166,42 @@ QSize ONMainWindow::getEmbedAreaSize()
 
 void ONMainWindow::slotStartBroker()
 {
-    broker=new HttpBrokerClient ( this, &config );
-    connect ( broker,SIGNAL ( haveSshKey ( QString ) ),this,
-              SLOT ( slotStartSshAgent ( QString ) ) );
-    connect ( broker,SIGNAL ( haveAgentInfo () ),this,
-              SLOT ( slotStartNewBrokerSession () ) );
-    connect ( broker,SIGNAL ( fatalHttpError() ),this,
-              SLOT ( close() ) );
-    connect ( broker,SIGNAL ( cmdReconnect() ),this,
-              SLOT ( slotReconnectSession() ) );
+    config.brokerPass=pass->text();
+    config.brokerUser=login->text();
     setStatStatus ( tr ( "Connecting to broker" ) );
     stInfo->insertPlainText ( "broker url: "+config.brokerurl );
     setEnabled ( false );
-
+    broker->getUserSessions();
 }
 
+void ONMainWindow::slotGetBrokerSession(const QString& sinfo)
+{
+   //x2goDebug<<"broker session: "<<sinfo;
+   QStringList lst=sinfo.split("SERVER:",QString::SkipEmptyParts);
+   int keyStartPos=sinfo.indexOf("-----BEGIN DSA PRIVATE KEY-----");
+   QString endStr="-----END DSA PRIVATE KEY-----";
+   int keyEndPos=sinfo.indexOf(endStr);
+   if(keyEndPos == -1 || keyStartPos == -1 || lst.size()==0)
+   {
+     //throw error
+      QMessageBox::critical (
+                0,tr ( "Error" ),
+                tr ("Invalid reply from broker") +"<br>"+sinfo);
+
+     close();
+     return;
+   }
+   config.server=(lst[1].split("\n"))[0];
+   config.key=sinfo.mid(keyStartPos, keyEndPos+endStr.length()-keyStartPos);
+//    x2goDebug<<"server: "<<config.server<<endl<<" key: "<<config.key;
+   if(sinfo.indexOf("SESSION_INFO")!=-1)
+   {
+        QStringList lst=sinfo.split("SESSION_INFO:",QString::SkipEmptyParts);
+	config.sessiondata=(lst[1].split("\n"))[0];
+// 	x2goDebug<<"data: "<<config.sessiondata;
+   }
+   slotSessEnter();
+}
 
 void ONMainWindow::slotStartNewBrokerSession ( )
 {
@@ -2176,19 +2246,21 @@ QString ONMainWindow::u3DataPath()
 
 void ONMainWindow::cleanPortable()
 {
-    QDir dr;
-    dr.rmdir ( QDir::homePath() +"/.ssh" );
-    removeDir ( homeDir+"/.x2go/" );
+    removeDir ( homeDir +"/.ssh" );
+    removeDir ( homeDir +"/ssh" );
+    removeDir ( homeDir+"/.x2go" );
+    if(cleanAllFiles)
+      removeDir(homeDir+"/.x2goclient");
 }
 
 void ONMainWindow::removeDir ( QString path )
 {
-    x2goDebug<<"entering path";
+    x2goDebug<<"entering " <<path;
     QDir dr ( path );
     QStringList files=dr.entryList ( QDir::Files );
     for ( int i=0;i<files.size();++i )
     {
-        if ( files[i]!="known_hosts" )
+        if ( files[i]!="known_hosts" || cleanAllFiles)
         {
             x2goDebug<<"cleaning file:"<<path+"/"+files[i];
             dr.remove ( path+"/"+files[i] );

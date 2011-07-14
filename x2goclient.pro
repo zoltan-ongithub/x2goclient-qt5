@@ -7,9 +7,10 @@
 
 
 CONFIG += $$(X2GO_CLIENT_TARGET)
+CONFIG += $$(X2GO_LINUX_STATIC)
+#CONFIG += console
 
-
-FORMS += cupsprintsettingsdialog.ui cupsprintwidget.ui printdialog.ui printercmddialog.ui printwidget.ui xsettingsui.ui
+FORMS += cupsprintsettingsdialog.ui cupsprintwidget.ui printdialog.ui printercmddialog.ui printwidget.ui xsettingsui.ui brokerpassdialog.ui
 
 TRANSLATIONS += x2goclient_de.ts 
 TRANSLATIONS += x2goclient_ru.ts 
@@ -46,6 +47,7 @@ HEADERS += configdialog.h \
  ongetpass.h \
  onmainwindow_privat.h \
  x2gosettings.h \
+ brokerpassdlg.h \
  xsettingswidget.h
 
 SOURCES += sharewidget.cpp \
@@ -81,7 +83,10 @@ SOURCES += sharewidget.cpp \
  httpbrokerclient.cpp \
  ongetpass.cpp \
  x2gosettings.cpp \
+ brokerpassdlg.cpp \
  xsettingswidget.cpp
+
+LIBS += -lssh
 
 plugin {
 TARGET = x2goplugin
@@ -107,6 +112,13 @@ linux-g++-64 {
     message(building $$TARGET with ldap and cups)
     LIBS += -lldap -lcups -lX11
 }
+x2go_linux_static {
+    message (linking all libs statically)
+    LIBS -= -lssh
+    LIBS += -lssh_static -lssl
+    QMAKE_LFLAGS = -Bstatic $$QMAKE_LFLAGS
+}
+
 macx {
     message(building $$TARGET with ldap and cups)
     LIBS += -lldap -lcups
@@ -116,7 +128,6 @@ win32-* {
     LIBS += -lwinspool
     CONFIG += static
 }
-LIBS += -lssh
 QT += svg network
 ICON =icons/x2go-mac.icns
 QMAKE_MAC_SDK =/Developer/SDKs/MacOSX10.6.sdk

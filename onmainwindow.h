@@ -1,3 +1,4 @@
+
 /***************************************************************************
  *   Copyright (C) 2005-2011 by Oleksandr Shneyder   *
  *   oleksandr.shneyder@obviously-nice.de   *
@@ -54,6 +55,7 @@
 #if defined(CFGPLUGIN) && defined(Q_OS_LINUX)
 class QX11EmbedContainer;
 #endif
+class QTemporaryFile;
 class QLineEdit;
 class QFrame;
 class QVBoxLayout;
@@ -138,6 +140,12 @@ struct ConfigFile
 {
     QString session;
     QString user;
+    QString brokerUser;
+    QString brokerPass;
+    QString brokerUserId;
+    QString brokerName;
+    bool brokerAuthenticated;
+    QString iniFile; 
     QString server;
     QString sshport;
     QString proxy;
@@ -215,6 +223,7 @@ class ONMainWindow : public QMainWindow
 #endif
 {
     friend class HttpBrokerClient;
+    friend class SessionButton;
 #ifdef CFGPLUGIN
     Q_PROPERTY ( QString x2goconfig READ x2goconfig WRITE setX2goconfig )
     Q_CLASSINFO ( "ClassID", "{5a20006d-118f-4185-9653-9f98958a0008}" )
@@ -455,6 +464,8 @@ private:
     bool usePGPCard;
     bool miniMode;
     bool managedMode;
+    bool brokerMode;
+    bool changeBrokerPass;
     bool embedMode;
     QString statusString;
     int defaultLink;
@@ -468,6 +479,7 @@ private:
     bool printSupport;
     bool showTbTooltip;
     bool noSessionEdit;
+    bool cleanAllFiles;
     struct SshProxy sshProxy;
     QString sshPort;
     QString clientSshPort;
@@ -542,6 +554,7 @@ private:
     QScrollArea* users;
     QVBoxLayout* userl;
     QHBoxLayout* mainL;
+    QHBoxLayout* bgLay;
     QList<UserButton*> names;
     QList<SessionButton*> sessions;
     UserButton* lastUser;
@@ -569,12 +582,14 @@ private:
 
     QAction *act_set;
     QAction *act_abclient;
+    QAction *act_support;
     QAction *act_shareFolder;
     QAction *act_suspend;
     QAction *act_terminate;
     QAction *act_reconnect;
     QAction *act_embedContol;
     QAction *act_embedToolBar;
+    QAction *act_changeBrokerPass;
 
     QToolBar *stb;
 
@@ -620,6 +635,10 @@ private:
     int ldapPort2;
     QString ldapDn;
     QString sessionCmd;
+    
+    QString supportMenuFile;
+    QString BGFile;
+    QString SPixFile;
 
     QString LDAPSndSys;
     QString LDAPSndPort;
@@ -684,11 +703,11 @@ private:
     HttpBrokerClient* broker;
 
 
-#if defined ( Q_OS_WIN) && defined (CFGCLIENT )
+#if defined ( Q_OS_WIN) //&& defined (CFGCLIENT )
     void xorgSettings();
     bool startXorgOnStart;
-    bool useXming;
-    int xorgDelay;
+    bool useInternalX;
+    enum {VCXSRV, XMING} internalX;
     QString xorgExe;
     QString xorgOptions;
     QString xorgWinOptions;
@@ -697,6 +716,7 @@ private:
     enum {WIN,FS,SAPP} xorgMode;
     QString xorgWidth;
     QString xorgHeight;
+    int waitingForX;
 #endif
 
     // Tray icon stuff based on patch from Joachim Langenbach <joachim@falaba.de>
@@ -764,13 +784,17 @@ private slots:
     void slotSetWinServersReady();
     void startWinServers();
     void slotCheckXOrgLog();
+    void slotCheckXOrgConnection();
 #endif
 private slots:
     void slotShowPassForm();
     void displayUsers();
+    void slotPassChanged(const QString& result);
     void slotResize ( const QSize sz );
     void slotUnameChanged ( const QString& text );
     void slotPassEnter();
+    void slotChangeBrokerPass();
+    void slotCheckPortableDir();
 
     void readUsers();
     void slotSelectedFromList ( UserButton* user );
@@ -809,6 +833,8 @@ private slots:
     void slotSuspendSessFromSt();
     void slotTermSess();
     void slotNewSess();
+    void slotGetBrokerAuth();
+    void slotGetBrokerSession(const QString& sinfo);
     void slotCmdMessage ( bool result,QString output,
                           SshProcess* );
     void slotListSessions ( bool result,QString output,
@@ -849,6 +875,7 @@ private slots:
     void slotExportTimer();
     void slotAboutQt();
     void slotAbout();
+    void slotSupport();
 
     //trayIcon stuff
     void trayIconActivated(QSystemTrayIcon::ActivationReason reason);

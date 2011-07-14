@@ -28,8 +28,10 @@
 #include <arpa/inet.h>
 #endif
 
+#include "onmainwindow.h"
+
 #undef DEBUG
-#define DEBUG
+// #define DEBUG
 
 static bool isLibSshInited=false;
 
@@ -44,11 +46,13 @@ SshMasterConnection::SshMasterConnection ( QString host, int port, bool acceptUn
     this->autologin=autologin;
     this->acceptUnknownServers=acceptUnknownServers;
     reverseTunnel=false;
+    mainWnd=(ONMainWindow*) parent;
 }
 
 SshMasterConnection::SshMasterConnection ( QString host, int port, bool acceptUnknownServers, QString user,
         QString pass, QString key, bool autologin,
-        int remotePort, QString localHost, int localPort, SshProcess* creator, QObject* parent ) : QThread ( parent )
+        int remotePort, QString localHost, int localPort, SshProcess* creator, 
+					   QObject* parent, ONMainWindow* mwd ) : QThread ( parent )
 {
 
     this->host=host;
@@ -63,6 +67,7 @@ SshMasterConnection::SshMasterConnection ( QString host, int port, bool acceptUn
     reverseTunnelCreator=creator;
     reverseTunnel=true;
     reverseTunnelRemotePort=remotePort;
+    mainWnd=mwd;
 }
 
 SshMasterConnection* SshMasterConnection::reverseTunnelConnection ( SshProcess* creator,
@@ -70,7 +75,7 @@ SshMasterConnection* SshMasterConnection::reverseTunnelConnection ( SshProcess* 
 {
     SshMasterConnection* con=new SshMasterConnection ( host,port,acceptUnknownServers,user,pass,
             key,autologin, remotePort,localHost,
-            localPort,creator,this );
+            localPort,creator,this, mainWnd);
 
     connect ( con,SIGNAL ( ioErr ( SshProcess*,QString,QString ) ),this,SIGNAL ( ioErr ( SshProcess*,QString,QString ) ) );
     connect ( con,SIGNAL ( stdErr ( SshProcess*,QByteArray ) ),this,SIGNAL ( stdErr ( SshProcess*,QByteArray ) ) );
@@ -120,7 +125,9 @@ void SshMasterConnection::run()
         quit();
         return;
     }
-
+#ifdef Q_OS_WIN    
+    ssh_options_set ( my_ssh_session, SSH_OPTIONS_SSH_DIR, (mainWnd->getHomeDirectory()+"/ssh").toAscii());
+#endif
 //     ssh_options_set(my_ssh_session, SSH_OPTIONS_LOG_VERBOSITY, &verbosity);
     if ( !sshConnect() )
     {
@@ -146,9 +153,18 @@ void SshMasterConnection::run()
     }
 
     ssh_options_set ( my_ssh_session, SSH_OPTIONS_USER, user.toAscii() );
+#ifdef Q_OS_WIN    
+    ssh_options_set ( my_ssh_session, SSH_OPTIONS_SSH_DIR, (mainWnd->getHomeDirectory()+"/ssh").toAscii());
+#endif    
+    x2goDebug<<"setting SSH DIR to "<<mainWnd->getHomeDirectory()+"/ssh";
 
     if ( userAuth() )
+    {
+      #ifdef DEBUG
+        x2goDebug<<"user auth OK\n";
+      #endif
         emit connectionOk();
+    }
     else
     {
         QString err=ssh_get_error ( my_ssh_session );
@@ -317,7 +333,7 @@ bool SshMasterConnection::userAuthWithKey()
     if ( key.indexOf ( "PRIVATE KEY" ) !=-1 )
     {
         QDir dr;
-        QString keyPath=QDir::homePath() +"/.x2go/ssh/gen";
+        QString keyPath=mainWnd->getHomeDirectory() +"/.x2go/ssh/gen";
         dr.mkpath ( keyPath );
         QTemporaryFile fl ( keyPath+"/key" );
         fl.open();

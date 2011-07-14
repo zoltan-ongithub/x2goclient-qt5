@@ -48,6 +48,7 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
     x2goDebug<<"ONMainWindow constructor"<<endl;
     setFocusPolicy ( Qt::StrongFocus );
     installTranslator();
+    cleanAllFiles=false;
     drawMenu=true;
     usePGPCard=false;
     extLogin=false;
@@ -82,11 +83,14 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
     defaultSshPort=sshPort=clientSshPort="22";
     LDAPPrintSupport=false;
     managedMode=false;
+    brokerMode=false;
     sshProxy.use=false;
     startEmbedded=false;
     sshConnection=0;
     sessionStatusDlg=0;
     noSessionEdit=false;
+    lastSession=0l;
+    changeBrokerPass=false;
 
 #ifdef Q_OS_WIN
     clientSshPort="7022";
@@ -183,11 +187,17 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
     embedMode=true;
 #endif
 
+
+
+//set homedir as portable,etc
+
+
 #ifdef Q_OS_WIN
-    portableDataPath=u3DataPath();
+    QString u3Path=u3DataPath();
 //we have U3 System
-    if ( portableDataPath.length() >0 )
+    if ( u3Path.length() >0 )
     {
+        portableDataPath=u3Path;
         ONMainWindow::portable=true;
         setWindowTitle ( "X2Go client - U3" );
     }
@@ -201,6 +211,9 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
         homeDir=portableDataPath;
         x2goDebug<<"running in \"portable\" mode\n"<<
         "Data Dir is "<<portableDataPath;
+	QTimer *timer = new QTimer(this);
+        connect(timer, SIGNAL(timeout()), this, SLOT(slotCheckPortableDir()));
+        timer->start(1000);
     }
 
     loadSettings();
@@ -252,7 +265,10 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
 
 
 #ifndef Q_WS_HILDON
-    bgFrame=new SVGFrame ( ( QString ) ":/svg/bg.svg",true,fr );
+    if(BGFile.size())
+       bgFrame=new SVGFrame ( ( QString ) BGFile,true,fr );
+    else
+       bgFrame=new SVGFrame ( ( QString ) ":/svg/bg.svg",true,fr );
 #else
     bgFrame=new SVGFrame ( ( QString ) ":/svg/bg_hildon.svg",true,fr );
 #endif
@@ -291,7 +307,7 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
     x2golay->addWidget ( x2g );
 
 
-    QHBoxLayout* bgLay=new QHBoxLayout ( bgFrame );
+    bgLay=new QHBoxLayout ( bgFrame );
     bgLay->setSpacing ( 0 );
     bgLay->setMargin ( 0 );
     bgLay->addLayout ( onlay );
@@ -307,9 +323,19 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
     act_set=new QAction (
         QIcon ( iconsPath ( "/32x32/edit_settings.png" ) ),
         tr ( "&Settings ..." ),this );
-
+	
+    if(supportMenuFile!=QString::null)
+    {
+        act_support=new QAction ( tr ( "Support ..." ),this );
+        connect ( act_support,SIGNAL ( triggered ( bool ) ),this,
+              SLOT ( slotSupport() ) );
+      
+    }
+    
     act_abclient=new QAction ( QIcon ( ":icons/32x32/x2goclient.png" ),
                                tr ( "About X2GO client" ),this );
+			       
+
 
 
 
@@ -324,7 +350,7 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
 #endif
 
 
-#if defined (Q_OS_WIN) && defined (CFGCLIENT )
+#if defined (Q_OS_WIN) //&& defined (CFGCLIENT )
     xorgSettings();
 #endif
 
@@ -359,7 +385,27 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
     connect ( fr,SIGNAL ( resized ( const QSize ) ),this,
               SLOT ( slotResize ( const QSize ) ) );
     slotResize ( fr->size() );
-    x2goDebug<<"ONMainWindows constructor finished"<<endl;
+    
+    if(brokerMode)
+    {
+          broker=new HttpBrokerClient ( this, &config );
+    connect ( broker,SIGNAL ( haveSshKey ( QString ) ),this,
+              SLOT ( slotStartSshAgent ( QString ) ) );
+    connect ( broker,SIGNAL ( haveAgentInfo () ),this,
+              SLOT ( slotStartNewBrokerSession () ) );
+    connect ( broker,SIGNAL ( fatalHttpError() ),this,
+              SLOT ( close() ) );
+    connect ( broker,SIGNAL ( cmdReconnect() ),this,
+              SLOT ( slotReconnectSession() ) );
+    connect ( broker, SIGNAL ( authFailed()), this ,SLOT ( slotGetBrokerAuth()));
+    connect ( broker, SIGNAL( sessionsLoaded()), this, SLOT (slotReadSessions()));
+    connect ( broker, SIGNAL ( getSession(QString)), this, SLOT (slotGetBrokerSession(QString))); 
+    connect ( broker, SIGNAL ( passwordChanged(QString)), this, SLOT ( slotPassChanged(QString)));
+    
+
+    }
+    
+    x2goDebug<<"ONMainWindows constructor finished, home Directory is:"<<homeDir<<endl;
 }
 
 
@@ -370,8 +416,6 @@ ONMainWindow::~ONMainWindow()
         closeClient();
     x2goDebug<<"end of ONMainWindow destructor";
 }
-
-
 
 
 
@@ -630,6 +674,19 @@ void ONMainWindow::initWidgetsNormal()
         QIcon ( iconsPath ( "/32x32/create_file.png" ) ),
         tr ( "&Create session icon on desktop..." ),
         this );
+    if(brokerMode)
+      act_sessicon->setEnabled(false);
+    
+    if(changeBrokerPass)
+    {
+      act_changeBrokerPass=new QAction (
+        QIcon ( iconsPath ( "/32x32/auth.png" ) ),
+        tr ( "&Set broker password..." ),
+        this );
+      connect ( act_changeBrokerPass,SIGNAL ( triggered(bool)),this,
+              SLOT ( slotChangeBrokerPass()) );
+	      act_changeBrokerPass->setEnabled(false);
+    }
 
 
     QAction *act_tb=new QAction ( tr ( "Show toolbar" ),this );
@@ -652,6 +709,7 @@ void ONMainWindow::initWidgetsNormal()
               SLOT ( trayQuit()) ) ;
     connect ( act_tb,SIGNAL ( toggled ( bool ) ),this,
               SLOT ( displayToolBar ( bool ) ) );
+	      
     stb=addToolBar ( tr ( "Show toolbar" ) );
 
     QShortcut* ex=new QShortcut ( QKeySequence ( tr ( "Ctrl+Q","exit" ) ),
@@ -662,7 +720,8 @@ void ONMainWindow::initWidgetsNormal()
     {
         QMenu* menu_sess=menuBar()->addMenu ( tr ( "&Session" ) );
         QMenu* menu_opts=menuBar()->addMenu ( tr ( "&Options" ) );
-
+        if(!brokerMode)
+        {
         menu_sess->addAction ( act_new );
         menu_sess->addAction ( act_edit );
 #if (!defined Q_WS_HILDON) && (!defined Q_OS_DARWIN)
@@ -670,14 +729,21 @@ void ONMainWindow::initWidgetsNormal()
             menu_sess->addAction ( act_sessicon );
 #endif
         menu_sess->addSeparator();
+	}
         menu_sess->addAction ( act_exit );
         menu_opts->addAction ( act_set );
         menu_opts->addAction ( act_tb );
+	if(changeBrokerPass)
+	  menu_opts->addAction(act_changeBrokerPass);
 
         QMenu* menu_help=menuBar()->addMenu ( tr ( "&Help" ) );
+	if(supportMenuFile!=QString::null)
+	    menu_help->addAction ( act_support );
         menu_help->addAction ( act_abclient );
         menu_help->addAction ( act_abqt );
 
+        if(!brokerMode)
+	{
         stb->addAction ( act_new );
         stb->addAction ( act_edit );
 #if (!defined Q_WS_HILDON) && (!defined Q_OS_DARWIN)
@@ -685,7 +751,10 @@ void ONMainWindow::initWidgetsNormal()
             stb->addAction ( act_sessicon );
 #endif
         stb->addSeparator();
+	}
         stb->addAction ( act_set );
+	if(changeBrokerPass)
+	  stb->addAction(act_changeBrokerPass);
 
         if ( !showToolBar )
             stb->hide();
@@ -708,7 +777,14 @@ void ONMainWindow::initWidgetsNormal()
         QTimer::singleShot ( 1500, this, SLOT ( readUsers() ) );
     }
     else
+    {
+      if(!brokerMode)
         QTimer::singleShot ( 1, this, SLOT ( slotReadSessions() ) );
+      else
+      {
+	QTimer::singleShot(1, this,SLOT(slotGetBrokerAuth()));
+      }
+    }
     QTimer* t=new QTimer ( this );
     connect ( t,SIGNAL ( timeout() ),this,SLOT ( slotRereadUsers() ) );
     t->start ( 20000 );
@@ -718,6 +794,95 @@ void ONMainWindow::initWidgetsNormal()
               SLOT ( slotFindProxyWin() ) );
 #endif
 
+}
+
+
+
+void ONMainWindow::slotPassChanged(const QString& result)
+{
+  
+  if(result==QString::null)
+  {
+    QMessageBox::critical(this, tr("Error"),tr("Operation failed"));
+  }
+  else
+  {    
+    QMessageBox::information(this, tr("Password changed"),tr("Password changed"));
+    config.brokerPass=result;
+  }
+  setEnabled(true);
+  
+  slotClosePass();
+  sessionStatusDlg->hide();
+  
+}
+
+
+void ONMainWindow::slotChangeBrokerPass()
+{
+  x2goDebug<<"change broker pass";
+  BrokerPassDlg passDlg;
+  if(passDlg.exec()!=QDialog::Accepted)
+    return;
+  if(passDlg.oldPass()!=config.brokerPass)
+  {
+    QMessageBox::critical(this,tr("Error"),tr("Wrong password!"));
+    return;
+  }
+  broker->changePassword(passDlg.newPass());
+  setStatStatus ( tr ( "Connecting to broker" ) );
+  stInfo->insertPlainText ( "broker url: "+config.brokerurl );
+  setEnabled ( false );
+  uname->hide();
+  u->hide();
+  return;  
+}
+
+
+void ONMainWindow::slotCheckPortableDir()
+{
+  if(!QFile::exists(homeDir))
+  {
+    x2goDebug<<"portable dir not exists, close";
+    close();
+  }
+}
+
+void ONMainWindow::slotGetBrokerAuth()
+{
+        pass->clear();
+	login->clear();
+	QString pixFile=":icons/128x128/x2gosession.png";
+	if(SPixFile!=QString::null)
+	  pixFile=SPixFile;
+	QPixmap pix(pixFile);
+	if ( !miniMode )
+        {
+	  fotoLabel->setPixmap (
+          pix.scaled ( 64,64,
+                         Qt::IgnoreAspectRatio,
+                         Qt::SmoothTransformation ) );
+          fotoLabel->setFixedSize ( 64,64 );
+        }
+        else
+        {
+           fotoLabel->setPixmap (
+               pix.scaled ( 48,48,
+                         Qt::IgnoreAspectRatio,
+                         Qt::SmoothTransformation ) );
+           fotoLabel->setFixedSize ( 48,48 );
+         }
+         users->hide();
+	 ln->hide();
+	 bgLay->insertStretch(3);
+         QString text=tr("<b>Authentication</b>");
+	/* if(config.brokerName.length()>0)
+	   text+=config.brokerName;
+	 else
+	   text+=config.brokerurl;*/
+         nameLabel->setText ( text );
+	 slotShowPassForm();
+	 config.brokerAuthenticated=false;
 }
 
 
@@ -1241,6 +1406,11 @@ void ONMainWindow::slotSelectedFromList ( UserButton* user )
 
 void ONMainWindow::slotClosePass()
 {
+    if(brokerMode)
+    {
+      if(!config.brokerAuthenticated)
+	close();
+    }
     passForm->hide();
     if ( !embedMode )
     {
@@ -1256,8 +1426,11 @@ void ONMainWindow::slotClosePass()
         }
         else
         {
+	  if(lastSession)
+	  {
             lastSession->show();
             uname->setText ( lastSession->name() );
+	  }
         }
         uname->setEnabled ( true );
         u->setEnabled ( true );
@@ -1270,6 +1443,7 @@ void ONMainWindow::slotClosePass()
 
 void ONMainWindow::slotPassEnter()
 {
+      
     shadowSession=false;
 #if defined ( Q_OS_WIN ) || defined (Q_OS_DARWIN )
     QString disp=getXDisplay();
@@ -1664,7 +1838,6 @@ void ONMainWindow::slotCreateDesktopIcon ( SessionButton* bt )
     QSettings xst ( "HKEY_LOCAL_MACHINE\\SOFTWARE\\x2goclient",
                     QSettings::NativeFormat );
     QString workDir=xst.value ( "Default" ).toString();
-    workDir+="\\bin";
     QString progname=workDir+"\\x2goclient.exe";
     QString args="--sessionid="+bt->id();
     if ( crHidden )
@@ -1691,11 +1864,45 @@ void ONMainWindow::slotCreateDesktopIcon ( SessionButton* bt )
 
 void ONMainWindow::slotReadSessions()
 {
-    X2goSettings st ( "sessions" );
+  
+    users->show();
+    ln->show();
 
-    QStringList slst=st.setting()->childGroups();
-    for ( int i=0;i<slst.size();++i )
+    X2goSettings *st;
+    lastSession=0;
+    
+    if(brokerMode)
     {
+      if(changeBrokerPass)
+	act_changeBrokerPass->setEnabled(true);
+      config.key=QString::null;
+      config.user=QString::null;
+      config.sessiondata=QString::null;
+      for (int i=sessions.count()-1;i>=0;--i)
+      {
+        SessionButton* but=sessions.takeAt(i);
+	if(but)
+	   delete but;
+      }
+      
+      st=new X2goSettings(config.iniFile,QSettings::IniFormat);
+          sessionStatusDlg->hide();
+          selectSessionDlg->hide();
+          setEnabled ( true );
+	  slotClosePass();
+    }
+    else
+      st= new X2goSettings( "sessions" );
+
+    QStringList slst=st->setting()->childGroups();
+    x2goDebug<<"read "<<slst.size()<<" sessions from config file";
+    if(brokerMode && (slst.size()==0))
+    {
+      QMessageBox::critical(this,tr("Error"),tr("X2Go sessions not found"));
+      close();
+    }
+    for ( int i=0;i<slst.size();++i )
+    {      
         if ( slst[i]!="embedded" )
             createBut ( slst[i] );
     }
@@ -1757,6 +1964,7 @@ void ONMainWindow::slotReadSessions()
             raise();
         }
     }
+    delete st;
 }
 
 
@@ -1814,6 +2022,9 @@ void ONMainWindow::placeButtons()
         else
             sessions[i]->move ( ( users->width()-260 ) /2,
                                 i*155+i*20+5 );
+	if(brokerMode)
+            sessions[i]->move ( ( users->width()-360 ) /2,
+                                i*150+i*25+5 );
         sessions[i]->show();
     }
     if ( sessions.size() )
@@ -1824,6 +2035,9 @@ void ONMainWindow::placeButtons()
         else
             uframe->setFixedHeight (
                 sessions.size() *155+ ( sessions.size()-1 ) *20 );
+	if(brokerMode)
+            uframe->setFixedHeight (
+                sessions.size() *150+ ( sessions.size()-1 ) *25 );
     }
 
 }
@@ -2118,6 +2332,16 @@ void ONMainWindow::slotSelectedFromList ( SessionButton* session )
         sessionName=session->name();
 
         QString sid=session->id();
+        if(brokerMode)
+        {
+           broker->selectUserSession(session->id());
+           setStatStatus ( tr ( "Connecting to broker" ) );
+           stInfo->insertPlainText ( "broker url: "+config.brokerurl );
+           setEnabled ( false );
+	   uname->hide();
+	   u->hide();
+           return;
+        }
 
         X2goSettings st ( "sessions" );
 
