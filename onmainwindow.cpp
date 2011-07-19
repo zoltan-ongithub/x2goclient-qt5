@@ -785,9 +785,10 @@ void ONMainWindow::initWidgetsNormal()
 	QTimer::singleShot(1, this,SLOT(slotGetBrokerAuth()));
       }
     }
-    QTimer* t=new QTimer ( this );
+/*    QTimer* t=new QTimer ( this );
     connect ( t,SIGNAL ( timeout() ),this,SLOT ( slotRereadUsers() ) );
     t->start ( 20000 );
+*/
 #ifdef Q_OS_WIN
     proxyWinTimer=new QTimer ( this );
     connect ( proxyWinTimer, SIGNAL ( timeout() ), this,
