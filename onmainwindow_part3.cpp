@@ -2000,7 +2000,11 @@ void ONMainWindow::slotCheckAgentProcess()
         cardStarted=false;
         if ( nxproxy )
             if ( nxproxy->state() ==QProcess::Running )
-                nxproxy->terminate();
+	    {
+	          x2goDebug<<"Suspending session\n";
+	          slotSuspendSessFromSt();
+//                 nxproxy->terminate();
+	    }
     }
 
     x2goDebug<<"gpg-agent finished\n";
