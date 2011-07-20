@@ -1,6 +1,11 @@
 x2goclient (3.0.99.0-0~x2go1) UNRELEASED; urgency=low
 
+  [ Mike Gabriel ]
   * nothing yet.
+
+  [ Oleksandr Shneyder ]
+  * fixed loadbalancing in LDAP mode on multiply X2Go servers
+  * fixed session crash by pulling out of smart card
 
  -- Mike Gabriel <mike.gabriel@das-netzwerkteam.de>  Thu, 14 Jul 2011 09:08:10 +0200
 
