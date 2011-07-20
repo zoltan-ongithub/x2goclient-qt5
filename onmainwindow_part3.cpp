@@ -805,22 +805,21 @@ void ONMainWindow::slotGetServers ( bool result, QString output,
 
     listedSessions.clear();
     retSessions=0;
-// TODO: should use x2golistsessions --all-servers to create less ssh sessions
+    if(sshConnection)
+      sshConnection->disconnectSession();
+    QString passwd;
+    QString user=getCurrentUname();
+    passwd=getCurrentPass();
+    for(int i=0; i< serverSshConnections.count();++i)
+    {
+      if(serverSshConnections[i])
+	serverSshConnections[i]->disconnectSession();
+    }
+    serverSshConnections.clear();
     for ( int j=0;j<x2goServers.size();++j )
     {
-        QString passwd;
-        QString user=getCurrentUname();
         QString host=x2goServers[j].name;
-        passwd=getCurrentPass();
-
-        SshProcess* lproc;
-        lproc=new SshProcess ( sshConnection,  this );
-        connect ( lproc,SIGNAL ( sshFinished ( bool,
-                                               QString,SshProcess* ) ),
-                  this,SLOT (
-                      slotListAllSessions ( bool,
-                                            QString,SshProcess* ) ) );
-        lproc->startNormal ( "export HOSTNAME && x2golistsessions" );
+	serverSshConnections<<startSshConnection ( host,sshPort,acceptRsa,user,passwd,true,true);
     }
 }
 
@@ -829,12 +828,14 @@ void ONMainWindow::slotListAllSessions ( bool result,QString output,
         SshProcess* proc )
 {
     bool last=false;
+
     ++retSessions;
     if ( retSessions == x2goServers.size() )
         last=true;
     if ( proc )
         delete proc;
     proc=0;
+    
     if ( result==false )
     {
         QString message=tr ( "<b>Connection failed</b>\n" ) +output;
@@ -867,15 +868,15 @@ void ONMainWindow::slotListAllSessions ( bool result,QString output,
                 ( listedSessions.size() ==1 &&
                   listedSessions[0].length() <5 ) )
         {
-// 			x2goDebug<<"start New Session";
+// 	x2goDebug<<"start New Session";
             startNewSession();
         }
         else if ( listedSessions.size() ==1 )
         {
-// 			x2goDebug<<"have one session";
+// 	x2goDebug<<"have one session";
             x2goSession s=getSessionFromString (
                               listedSessions[0] );
-// 			x2goDebug<<"will procceed one session";
+// 		x2goDebug<<"will procceed one session";
             QDesktopWidget wd;
             if ( s.status=="S" && isColorDepthOk (
                         wd.depth(),s.colorDepth ) )

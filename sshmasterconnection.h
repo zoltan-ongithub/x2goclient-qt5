@@ -69,6 +69,7 @@ public:
       acceptUnknownServers=accept;
     }
     SshMasterConnection* reverseTunnelConnection(SshProcess* creator, int remotePort, QString localHost, int localPort);
+    QString getHost(){return host;}
 
 private:
     SshMasterConnection(QString host, int port, bool acceptUnknownServers, QString user, QString pass, QString key,
@@ -124,7 +125,7 @@ signals:
 
     void newReverceTunnelConnection(SshProcess* creator, void* newChannel);
     void reverseListenOk(SshProcess* creator);
-    void connectionOk();
+    void connectionOk( QString host);
 };
 
 

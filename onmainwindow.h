@@ -192,6 +192,8 @@ struct SshProxy
     QString port;
     QString bin;
 };
+
+
 //wrapper to send mouse events under windows in embedded mode
 #ifdef Q_OS_WIN
 class WWrapper : public QPushButton
@@ -413,6 +415,9 @@ public:
     {
       return !noSessionEdit;
     }
+    
+    
+    SshMasterConnection* findServerSshConnection(QString host);
 
     void showHelp();
     void showHelpPack();
@@ -486,6 +491,7 @@ private:
     QString defaultSshPort;
     QVBoxLayout* selectSesDlgLayout;
     SshMasterConnection* sshConnection;
+    QList<SshMasterConnection*> serverSshConnections;
     bool closeEventSent;
     int shadowMode;
     QString shadowUser;
@@ -617,6 +623,7 @@ private:
     bool ldapOnly;
     bool isScDaemonOk;
     bool parecTunnelOk;
+    
 
     bool startSessSound;
     int startSessSndSystem;
@@ -771,7 +778,9 @@ private:
     void closeClient();
     void continueNormalSession();
     void continueLDAPSession();
-    void startSshConnection ( QString host, QString port, bool acceptUnknownHosts, QString login, QString password, bool autologin );
+    SshMasterConnection* startSshConnection ( QString host, QString port, 
+					      bool acceptUnknownHosts, QString login, 
+					      QString password, bool autologin, bool getSrv=false);
 
 protected:
     virtual void closeEvent ( QCloseEvent* event );
@@ -808,6 +817,7 @@ private slots:
     void slotSshServerAuthError ( int error, QString sshMessage );
     void slotSshUserAuthError ( QString error );
     void slotSshConnectionOk();
+    void slotServSshConnectionOk(QString server);
     void slotChangeKbdLayout(const QString& layout);
 
 public slots:

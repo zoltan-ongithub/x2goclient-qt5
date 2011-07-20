@@ -163,7 +163,7 @@ void SshMasterConnection::run()
       #ifdef DEBUG
         x2goDebug<<"user auth OK\n";
       #endif
-        emit connectionOk();
+        emit connectionOk(host);
     }
     else
     {

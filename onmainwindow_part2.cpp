@@ -25,9 +25,41 @@ void ONMainWindow::slotSshConnectionOk()
     x2goDebug<<"ssh connection ok"<<endl;
     passForm->setEnabled ( true );
     if ( useLdap )
-        continueLDAPSession();
+    {
+	continueLDAPSession();
+    }
     else
         continueNormalSession();
+}
+
+
+SshMasterConnection*  ONMainWindow::findServerSshConnection(QString host)
+{
+  for(int i=0;i<serverSshConnections.count();++i)
+  {
+    if(serverSshConnections[i])
+    {
+      if(serverSshConnections[i]->getHost()==host)
+	return serverSshConnections[i];
+    }
+  }
+  return 0l;
+}
+
+void ONMainWindow::slotServSshConnectionOk(QString server)
+{
+        SshMasterConnection* con=findServerSshConnection(server);
+	if(!con)
+	  return;
+        SshProcess* lproc;
+        lproc=new SshProcess ( con,  this );
+        connect ( lproc,SIGNAL ( sshFinished ( bool,
+                                               QString,SshProcess* ) ),
+                  this,SLOT (
+                      slotListAllSessions ( bool,
+                                            QString,SshProcess* ) ) );
+	x2goDebug<<"getting sessions on "<<server<<endl;
+        lproc->startNormal ( "export HOSTNAME && x2golistsessions" );
 }
 
 void ONMainWindow::slotSshServerAuthError ( int error, QString sshMessage )
@@ -239,8 +271,9 @@ bool ONMainWindow::startSession ( const QString& sid )
       sshPort=st.setting()->value ( sid+"/sshport",
                                    ( QVariant ) "22" ).toString();
     }
-    startSshConnection ( host,sshPort,acceptRsa,user,passwd,autologin );
-
+    if(sshConnection)
+      sshConnection->disconnectSession();
+    sshConnection=startSshConnection ( host,sshPort,acceptRsa,user,passwd,autologin );
     return true;
 }
 
@@ -443,6 +476,15 @@ void ONMainWindow::startNewSession()
                                     QMessageBox::NoButton );
             return;
         }
+        sshConnection=findServerSshConnection(host);
+	if(!sshConnection)
+        {
+            QMessageBox::critical ( 0l,tr ( "Error" ),
+                                    tr ( "Server not availabel" ),
+                                    QMessageBox::Ok,
+                                    QMessageBox::NoButton );
+            return;
+        }	
     }
     else
     {
@@ -733,7 +775,15 @@ void ONMainWindow::resumeSession ( const x2goSession& s )
         usekbd=defaultSetKbd;
         layout=defaultLayout[0];
         type=defaultKbdType;
-
+        sshConnection=findServerSshConnection(host);
+	if(!sshConnection)
+        {
+            QMessageBox::critical ( 0l,tr ( "Error" ),
+                                    tr ( "Server not availabel" ),
+                                    QMessageBox::Ok,
+                                    QMessageBox::NoButton );
+            return;
+        }
     }
     else
     {
@@ -1174,6 +1224,20 @@ void ONMainWindow::slotSuspendSess()
             host=config.server;
         }
     }
+    else
+    {
+      sshConnection=findServerSshConnection(host);
+      if(!sshConnection)
+      {
+            QMessageBox::critical ( 0l,tr ( "Error" ),
+                                    tr ( "Server not availabel" ),
+                                    QMessageBox::Ok,
+                                    QMessageBox::NoButton );
+            return;
+      }
+    }
+
+     
     suspendSession ( sessId );
 }
 
@@ -1268,6 +1332,21 @@ void ONMainWindow::slotTermSess()
 
             QString sid=lastSession->id();
         }
+    }
+    else
+    {
+      QString host=sessTv->model()->index ( sessTv->currentIndex().row(),
+                                            S_SERVER ).data().toString();
+					    
+      sshConnection=findServerSshConnection(host);
+      if(!sshConnection)
+      {
+            QMessageBox::critical ( 0l,tr ( "Error" ),
+                                    tr ( "Server not availabel" ),
+                                    QMessageBox::Ok,
+                                    QMessageBox::NoButton );
+            return;
+      }
     }
 
     termSession ( sessId );

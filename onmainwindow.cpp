@@ -1072,12 +1072,25 @@ void ONMainWindow::closeClient()
         x2goDebug<<"done";
 
     }
-    if ( sshConnection )
+    if ( sshConnection && !useLdap)
     {
         sshConnection->disconnectSession();
         x2goDebug<<"waiting sshConnection to finish\n";
         sshConnection->wait ( 10000 );
         x2goDebug<<"sshConnection is closed\n";
+    }
+    if(useLdap)
+    {
+      for(int i=0;i<serverSshConnections.count();++i)
+      {
+	if(serverSshConnections[i])
+	{
+	  serverSshConnections[i]->disconnectSession();
+          x2goDebug<<"waiting sshConnection to finish\n";
+          serverSshConnections[i]->wait ( 10000 );
+          x2goDebug<<"sshConnection is closed\n";
+	}
+      }
     }
 
     /*	if ( tunnel!=0l )
@@ -1542,7 +1555,9 @@ void ONMainWindow::slotPassEnter()
 // 	QString host=ldapServer;
     QString host=firstServer;
     passwd=getCurrentPass();
-    startSshConnection ( host,sshPort,acceptRsa,user,passwd,true );
+    if(sshConnection)
+      sshConnection->disconnectSession();
+    sshConnection=startSshConnection ( host,sshPort,acceptRsa,user,passwd,true );
 
 #endif
 }
@@ -2497,12 +2512,13 @@ void ONMainWindow::slotSelectedFromList ( SessionButton* session )
 }
 
 
-void ONMainWindow::startSshConnection ( QString host, QString port, bool acceptUnknownHosts, QString login,
-                                        QString password, bool autologin )
+SshMasterConnection* ONMainWindow::startSshConnection ( QString host, QString port, bool acceptUnknownHosts, 
+					QString login,
+                                        QString password, bool autologin, bool getSrv)
 {
+    
+    SshMasterConnection* con;
     x2goDebug<<"start new ssh connection"<<endl;
-
-
     for ( int i=0;i<sshEnv.size();++i )
     {
 #ifndef Q_OS_WIN
@@ -2519,21 +2535,24 @@ void ONMainWindow::startSshConnection ( QString host, QString port, bool acceptU
         autologin=true;
     if ( cardReady )
         cardStarted=true;
-    if ( sshConnection )
-    {
-        sshConnection->disconnectSession();
-    }
+
 
     /////key/sshagent/env/
 
     passForm->setEnabled ( false );
-    sshConnection=new SshMasterConnection ( host, port.toInt(),acceptUnknownHosts,
+    con=new SshMasterConnection ( host, port.toInt(),acceptUnknownHosts,
                                             login, password,currentKey, autologin, this );
-    connect ( sshConnection,SIGNAL ( connectionOk() ), this, SLOT ( slotSshConnectionOk() ) );
-    connect ( sshConnection, SIGNAL ( serverAuthError ( int,QString ) ),this,SLOT ( slotSshServerAuthError ( int,QString ) ) );
-    connect ( sshConnection, SIGNAL ( userAuthError ( QString ) ),this,SLOT ( slotSshUserAuthError ( QString ) ) );
-    connect ( sshConnection, SIGNAL ( connectionError ( QString,QString ) ), this, SLOT ( slotSshConnectionError ( QString,QString ) ) );
-    sshConnection->start();
+    if(!getSrv)
+         connect ( con, SIGNAL ( connectionOk(QString) ), this, SLOT ( slotSshConnectionOk() ) );
+    else
+         connect ( con, SIGNAL ( connectionOk(QString)), this, SLOT ( slotServSshConnectionOk(QString) ) );
+    
+    connect ( con, SIGNAL ( serverAuthError ( int,QString ) ),this,SLOT ( slotSshServerAuthError ( int,QString ) ) );
+    connect ( con, SIGNAL ( userAuthError ( QString ) ),this,SLOT ( slotSshUserAuthError ( QString ) ) );
+    connect ( con, SIGNAL ( connectionError ( QString,QString ) ), this, 
+	      SLOT ( slotSshConnectionError ( QString,QString ) ) );
+    con->start();
+    return con;
 }
 
 void ONMainWindow::slotSshConnectionError ( QString message, QString lastSessionError )
