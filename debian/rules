@@ -17,5 +17,4 @@ override_dh_auto_install:
 
 override_dh_auto_clean:
 	rm -Rfv .build_doxygen
-	rm -Rfv .build_man2html
 	dh_auto_clean

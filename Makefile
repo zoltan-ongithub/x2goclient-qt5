@@ -35,13 +35,22 @@ build_plugin:
 	mkdir -p $(PLUGIN_DIR) && cd $(PLUGIN_DIR) && X2GO_CLIENT_TARGET=plugin qmake-qt4 ../x2goclient.pro
 	cd $(PLUGIN_DIR) && $(MAKE)
 
-clean: clean_client clean_plugin
+clean: clean_client clean_plugin clean_man
+	find . -type f -name '*.o' -exec rm -vf {} +
+	find . -type f -name 'moc_*.cpp' -exec rm -vf {} +
+	find . -type f -name 'ui_*.h' -exec rm -vf {} +
+	find . -type f -name 'qrc_*.cpp' -exec rm -vf {} +
+	rm -f x2goclient
+	rm -f x2goclient.tag
 
 clean_client:
 	rm -fr $(CLIENT_DIR)
 
 clean_plugin:
 	rm -fr $(PLUGIN_DIR)
+
+clean_man:
+	rm -Rfv .build_man2html
 
 install: install_client install_plugin install_man
 
