@@ -1,6 +1,7 @@
 x2goclient (3.99.0.0-0~x2go2) UNRELEASED; urgency=low
 
   * Explicitly use source format 3.0 (native).
+  * Build-depend on libssh-dev (>=0.4.7).
 
  -- Mike Gabriel <mike.gabriel@das-netzwerkteam.de>  Tue, 26 Jul 2011 14:37:20 +0200
 
