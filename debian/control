@@ -24,6 +24,7 @@ Depends:
  ${shlibs:Depends},
  ${misc:Depends},
  ssh,
+ libssh-4 (>= 0.4.7),
  nxproxy
 Suggests:
  pinentry-x2go 
