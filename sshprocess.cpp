@@ -88,6 +88,7 @@ void SshProcess::tunnelLoop()
     const char y=1;
 #endif
     setsockopt(serverSocket, SOL_SOCKET, SO_REUSEADDR,&y, sizeof(int));
+    setsockopt(serverSocket, IPPROTO_TCP, TCP_NODELAY,&y, sizeof(int));
 
     address.sin_family=AF_INET;
     address.sin_addr.s_addr=INADDR_ANY;
