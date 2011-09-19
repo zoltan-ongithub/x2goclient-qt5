@@ -22,6 +22,7 @@
 
 #ifndef Q_OS_WIN
 #include <arpa/inet.h>
+#include <netinet/tcp.h>
 #endif
 
 #undef DEBUG
