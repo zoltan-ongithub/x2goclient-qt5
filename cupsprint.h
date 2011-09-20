@@ -15,6 +15,7 @@
 #ifndef Q_OS_WIN
 #include <QStringList>
 #include <cups/cups.h>
+#include <cups/ppd.h>
 /**
 	@author Oleksandr Shneyder <oleksandr.shneyder@obviously-nice.de>
 */
@@ -51,7 +52,7 @@ class CUPSPrint
 	private:
 		cups_dest_t *dests;
 		int num_dests;
-		ppd_file_t* ppd;
+		ppd_file_t *ppd;
 		QString currentPrinter;
 	private:
 		void loadUserOptions();
