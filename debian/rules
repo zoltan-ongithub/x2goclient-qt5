@@ -9,10 +9,6 @@ override_dh_auto_build:
 	mkdir -p .build_doxygen/man
 	doxygen
 
-override_dh_installdocs:
-	make -f Makefile.man2html build
-	dh_installdocs
-
 override_dh_auto_install:
 
 override_dh_auto_clean:

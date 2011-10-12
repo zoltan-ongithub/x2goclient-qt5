@@ -4,9 +4,11 @@ x2goclient (3.99.0.1-0~x2go1) UNRELEASED; urgency=low
     - Set TCP_NODELAY (equals: turn Nagle off) for SSH graphical port forwarding
       tunnel.
     - Include cups/ppd.h in cupsprint.h, fixes build on Debian wheezy/sid.
+    - Add build_man/clean_man stanzas to Makefile.
   * Explicitly use source format 3.0 (native).
   * Build-depend on libssh-dev (>=0.4.7).
   * Update menu file in /debian folder (rename title to ,,X2go Client (Qt)'').
+  * Do not run man2html from rules file anymore.
 
  -- Mike Gabriel <mike.gabriel@das-netzwerkteam.de>  Tue, 26 Jul 2011 14:37:20 +0200
 

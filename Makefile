@@ -25,7 +25,7 @@ MOZPLUGDIR=$(PREFIX)/lib/mozilla/plugins
 
 all: build
 
-build: build_client build_plugin
+build: build_client build_plugin build_man
 
 build_client:
 	mkdir -p $(CLIENT_DIR) && cd $(CLIENT_DIR) && qmake-qt4 ../x2goclient.pro
@@ -34,6 +34,9 @@ build_client:
 build_plugin:
 	mkdir -p $(PLUGIN_DIR) && cd $(PLUGIN_DIR) && X2GO_CLIENT_TARGET=plugin qmake-qt4 ../x2goclient.pro
 	cd $(PLUGIN_DIR) && $(MAKE)
+
+build_man:
+	make -f Makefile.man2html build
 
 clean: clean_client clean_plugin clean_man
 	find . -type f -name '*.o' -exec rm -vf {} +
@@ -50,7 +53,7 @@ clean_plugin:
 	rm -fr $(PLUGIN_DIR)
 
 clean_man:
-	rm -Rfv .build_man2html
+	make -f Makefile.man2html clean
 
 install: install_client install_plugin install_man
 
