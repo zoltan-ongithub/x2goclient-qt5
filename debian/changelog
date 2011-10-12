@@ -1,4 +1,4 @@
-x2goclient (3.99.0.1-0~x2go1) UNRELEASED; urgency=low
+x2goclient (3.99.0.1-0~x2go1) unstable; urgency=low
 
   * New upstream version (3.99.0.1):
     - Set TCP_NODELAY (equals: turn Nagle off) for SSH graphical port forwarding
@@ -10,7 +10,7 @@ x2goclient (3.99.0.1-0~x2go1) UNRELEASED; urgency=low
   * Update menu file in /debian folder (rename title to ,,X2go Client (Qt)'').
   * Do not run man2html from rules file anymore.
 
- -- Mike Gabriel <mike.gabriel@das-netzwerkteam.de>  Tue, 26 Jul 2011 14:37:20 +0200
+ -- Mike Gabriel <mike.gabriel@das-netzwerkteam.de>  Wed, 12 Oct 2011 11:11:50 +0200
 
 x2goclient (3.99.0.0-0~x2go1) unstable; urgency=low
 
