@@ -1569,7 +1569,7 @@ void ONMainWindow::slotRetResumeSess ( bool result,
               this,SLOT ( slotTunnelOk() ) );
 
     localGraphicPort=resumingSession.grPort;
-    int iport=localGraphicPort.toInt() +1;
+    int iport=localGraphicPort.toInt() +1000;
     while ( iport == resumingSession.sndPort.toInt() ||
             iport == resumingSession.fsPort.toInt() ||
             isServerRunning ( iport ) )

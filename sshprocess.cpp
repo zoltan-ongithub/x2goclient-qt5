@@ -31,6 +31,7 @@
 SshProcess::SshProcess(SshMasterConnection* master, QObject* parent): QObject(parent)
 {
     masterCon=master;
+    serverSocket=0;
     connect(master,SIGNAL(stdErr(SshProcess*,QByteArray)),this,SLOT(slotStdErr(SshProcess*,QByteArray)));
     connect(master,SIGNAL(ioErr(SshProcess*,QString,QString)),this,SLOT(slotIOerr(SshProcess*,QString,QString)));
     tunnel=false;
@@ -39,9 +40,19 @@ SshProcess::SshProcess(SshMasterConnection* master, QObject* parent): QObject(pa
 
 SshProcess::~SshProcess()
 {
-#ifdef DEBUG      
+#ifdef DEBUG
     x2goDebug<<"ssh process destructor";
 #endif
+    if (serverSocket>0)
+    {
+#ifdef Q_OS_WIN
+        closesocket(serverSocket);
+        WSACleanup();
+
+#else
+        close(serverSocket);
+#endif
+    }
 }
 
 
@@ -59,12 +70,12 @@ void SshProcess::slotCheckNewConnection()
     if (select(serverSocket+1,&rfds,NULL,NULL,&tv)<=0)
         return;
 
-#ifdef DEBUG      
+#ifdef DEBUG
     x2goDebug<<"new tcp connection\n";
 #endif
     int tcpSocket=accept(serverSocket, (struct sockaddr*)&address,&addrlen);
 
-#ifdef DEBUG      
+#ifdef DEBUG
     x2goDebug<<"new socket:"<<tcpSocket<<endl;
 #endif
     masterCon->addChannelConnection(this, tcpSocket, forwardHost, forwardPort, localHost,
@@ -107,7 +118,7 @@ void SshProcess::tunnelLoop()
     connect(timer,SIGNAL(timeout()),this,SLOT(slotCheckNewConnection()));
     timer->start(500);
     emit sshTunnelOk();
-#ifdef DEBUG      
+#ifdef DEBUG
     x2goDebug<<"Direct tunnel: waiting for connections on "<<localHost<<":"<<localPort<<endl;
 #endif
 }
@@ -151,7 +162,7 @@ void SshProcess::slotStdErr(SshProcess* creator, QByteArray data)
 {
     if (creator!=this)
         return;
-#ifdef DEBUG      
+#ifdef DEBUG
     x2goDebug<<"new err data:"<<data<<endl;
 #endif
     stdErrString+=data;
@@ -169,7 +180,7 @@ void SshProcess::slotIOerr(SshProcess* creator, QString message, QString sshSess
 {
     if (creator!=this)
         return;
-#ifdef DEBUG      
+#ifdef DEBUG
     x2goDebug<<"io error:"<<message<<" - "<<sshSessionErr<<endl;
 #endif
     normalExited=false;
@@ -212,14 +223,14 @@ void SshProcess::slotChannelClosed(SshProcess* creator)
         {
             normalExited=false;
             output=stdErrString;
-#ifdef DEBUG      
+#ifdef DEBUG
             x2goDebug<<"have only stderr, something must be wrong"<<endl;
 #endif
-	}
+        }
         else
             output=stdOutString;
     }
-#ifdef DEBUG      
+#ifdef DEBUG
     x2goDebug<<"ssh finished:"<<normalExited<<" - "<<output<<endl;
 #endif
     emit sshFinished(normalExited, output, this);
