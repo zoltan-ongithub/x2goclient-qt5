@@ -471,6 +471,7 @@ private:
     bool managedMode;
     bool brokerMode;
     bool changeBrokerPass;
+    bool connTest;
     bool embedMode;
     QString statusString;
     int defaultLink;
@@ -596,6 +597,7 @@ private:
     QAction *act_embedContol;
     QAction *act_embedToolBar;
     QAction *act_changeBrokerPass;
+    QAction *act_testCon;
 
     QToolBar *stb;
 
@@ -803,6 +805,7 @@ private slots:
     void slotUnameChanged ( const QString& text );
     void slotPassEnter();
     void slotChangeBrokerPass();
+    void slotTestConnection();
     void slotCheckPortableDir();
 
     void readUsers();

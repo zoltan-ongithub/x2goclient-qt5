@@ -10,7 +10,7 @@ CONFIG += $$(X2GO_CLIENT_TARGET)
 CONFIG += $$(X2GO_LINUX_STATIC)
 #CONFIG += console
 
-FORMS += cupsprintsettingsdialog.ui cupsprintwidget.ui printdialog.ui printercmddialog.ui printwidget.ui xsettingsui.ui brokerpassdialog.ui
+FORMS += cupsprintsettingsdialog.ui cupsprintwidget.ui printdialog.ui printercmddialog.ui printwidget.ui xsettingsui.ui brokerpassdialog.ui contest.ui
 
 TRANSLATIONS += x2goclient_de.ts 
 TRANSLATIONS += x2goclient_ru.ts 
@@ -48,6 +48,7 @@ HEADERS += configdialog.h \
  onmainwindow_privat.h \
  x2gosettings.h \
  brokerpassdlg.h \
+ contest.h \
  xsettingswidget.h
 
 SOURCES += sharewidget.cpp \
@@ -84,6 +85,7 @@ SOURCES += sharewidget.cpp \
  ongetpass.cpp \
  x2gosettings.cpp \
  brokerpassdlg.cpp \
+ contest.cpp \
  xsettingswidget.cpp
 
 LIBS += -lssh

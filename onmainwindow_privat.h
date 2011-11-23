@@ -66,7 +66,7 @@
 #include <QFileDialog>
 #include <QHttp>
 #include <QUrl>
-#include <QtNetwork/QTcpSocket>
+#include <QTcpSocket>
 #include <QPlastiqueStyle>
 #include "sshprocess.h"
 #include "imgframe.h"
@@ -77,6 +77,7 @@
 #include "brokerpassdlg.h"
 
 #include "sshmasterconnection.h"
+#include "contest.h"
 
 #if !defined Q_OS_WIN
 #include <sys/mount.h>

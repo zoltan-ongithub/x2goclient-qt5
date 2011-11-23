@@ -15,6 +15,7 @@
 #include <QSslError>
 #include <QBuffer>
 #include <QObject>
+#include <QDateTime>
 /**
 	@author Oleksandr Shneyder <oleksandr.shneyder@obviously-nice.de>
 */
@@ -31,6 +32,7 @@ public:
     QString getSInfoFromBroker ( bool getKey=false );
     void selectUserSession(const QString& session );
     void changePassword(QString newPass);
+    void testConnection();
 private:
     QBuffer httpSIAnswer;
     QBuffer httpCmdAnswer;
@@ -42,10 +44,12 @@ private:
     int selSessRequest;
     int cmdRequest;
     int chPassRequest;
+    int testConRequest;
     QString newBrokerPass;
     ConfigFile* config;
     ONMainWindow* mainWindow;
     void createIniFile(const QString& content);
+    QTime requestTime;
 
 private slots:
     void slotRequestFinished ( int id, bool error );
@@ -64,6 +68,7 @@ signals:
     void sessionsLoaded();
     void getSession( QString );
     void passwordChanged( QString );
+    void connectionTime(int, int);
 };
 
 #endif

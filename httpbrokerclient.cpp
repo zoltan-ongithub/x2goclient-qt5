@@ -105,6 +105,20 @@ void HttpBrokerClient::changePassword(QString newPass)
 
 }
 
+void HttpBrokerClient::testConnection()
+{
+    QString req;
+    QTextStream ( &req ) <<
+    "task=testcon";
+    
+    QUrl lurl ( config->brokerurl );
+    httpSessionAnswer.close();
+    httpSessionAnswer.setData ( 0,0 );
+    requestTime.start();
+    testConRequest=http->post ( lurl.path(),req.toUtf8(),&httpSessionAnswer );
+
+}
+
 
 void HttpBrokerClient::createIniFile(const QString& content)
 {
@@ -296,8 +310,14 @@ void HttpBrokerClient::slotRequestFinished ( int id, bool error )
         return;
     }
 
-//  	QString answer ( httpSiAnswer.data() );
-//  	x2goDebug<<"cmd request answer: "<<answer;
+    if (id==testConRequest)
+    {
+        
+        //x2goDebug<<"cmd request answer: "<<answer;
+	x2goDebug<<"elapsed: "<<requestTime.elapsed()<<"recieved:"<<httpSessionAnswer.size()<<endl;
+	emit connectionTime(requestTime.elapsed(),httpSessionAnswer.size());
+        return;
+    }
     if ( id== sessionsRequest || id == selSessRequest || id==chPassRequest)
     {
         QString answer ( httpSessionAnswer.data() );
@@ -426,6 +446,7 @@ void HttpBrokerClient::slotSslErrors ( const QList<QSslError> & errors )
         if ( mcert==cert )
         {
             http->ignoreSslErrors();
+            requestTime.restart();
             return;
         }
     }
@@ -497,8 +518,8 @@ void HttpBrokerClient::slotSslErrors ( const QList<QSslError> & errors )
         fl.close();
         http->ignoreSslErrors();
         x2goDebug<<"store certificate in  "<<homeDir+"/ssl/exceptions/"+
-                   lurl.host() +"/"+fname;
-
+        lurl.host() +"/"+fname;
+        requestTime.restart();
     }
     else
         emit fatalHttpError();

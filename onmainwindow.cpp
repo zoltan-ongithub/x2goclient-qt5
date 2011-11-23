@@ -72,6 +72,7 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
     proxyWinId=0;
     embedParent=embedChild=0l;
     defaultSession=false;
+    connTest=false;
     defaultUser=false;
     defaultWidth=800;
     defaultHeight=600;
@@ -687,6 +688,16 @@ void ONMainWindow::initWidgetsNormal()
               SLOT ( slotChangeBrokerPass()) );
 	      act_changeBrokerPass->setEnabled(false);
     }
+    
+    if(connTest)
+    {
+      act_testCon=new QAction (
+        QIcon ( iconsPath ( "/32x32/contest.png" ) ),
+        tr ( "&Connectivity test..." ),
+        this );
+      connect ( act_testCon,SIGNAL ( triggered(bool)),this,
+              SLOT ( slotTestConnection()) );
+    }
 
 
     QAction *act_tb=new QAction ( tr ( "Show toolbar" ),this );
@@ -735,6 +746,8 @@ void ONMainWindow::initWidgetsNormal()
         menu_opts->addAction ( act_tb );
 	if(changeBrokerPass)
 	  menu_opts->addAction(act_changeBrokerPass);
+	if(connTest)
+	  menu_opts->addAction(act_testCon);
 
         QMenu* menu_help=menuBar()->addMenu ( tr ( "&Help" ) );
 	if(supportMenuFile!=QString::null)
@@ -755,6 +768,8 @@ void ONMainWindow::initWidgetsNormal()
         stb->addAction ( act_set );
 	if(changeBrokerPass)
 	  stb->addAction(act_changeBrokerPass);
+	if(connTest)
+	  stb->addAction(act_testCon);
 
         if ( !showToolBar )
             stb->hide();
@@ -818,6 +833,11 @@ void ONMainWindow::slotPassChanged(const QString& result)
   
 }
 
+void ONMainWindow::slotTestConnection()
+{
+  ConTest test( broker, config.brokerurl, this);
+  test.exec();
+}
 
 void ONMainWindow::slotChangeBrokerPass()
 {

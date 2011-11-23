@@ -230,6 +230,11 @@ bool ONMainWindow::parseParameter ( QString param )
         cleanAllFiles=true;
         return true;
     }
+    if(param == "--connectivity-test")
+    {
+      connTest=true;
+      return true;
+    }
 
     if ( param=="--no-menu" )
     {
@@ -1514,7 +1519,7 @@ void ONMainWindow::slotSupport()
 void ONMainWindow::slotAbout()
 {
     QString aboutStr=tr (
-                         "</b><br> (C. 2006-2010 <b>obviously nice</b>: "
+                         "</b><br> (C. 2006-2011 <b>obviously nice</b>: "
                          "Oleksandr Shneyder, Heinz-Markus Graesing)<br>" );
     if ( embedMode )
         aboutStr+=tr ( "<br>x2goplugin mode was sponsored by "
