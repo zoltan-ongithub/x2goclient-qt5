@@ -115,6 +115,7 @@ struct serv
     {
         return it.sess<it1.sess;
     }
+    QString sshPort;
 };
 
 struct x2goSession

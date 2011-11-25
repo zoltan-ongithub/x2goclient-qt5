@@ -1503,6 +1503,7 @@ void ONMainWindow::slotPassEnter()
     list<string> attr;
     attr.push_back ( "cn" );
     attr.push_back ( "serialNumber" );
+    attr.push_back ( "l" );
     list<LDAPStringEntry> res;
     QString searchBase="ou=Servers,ou=ON,"+ldapDn;
 
@@ -1541,11 +1542,17 @@ void ONMainWindow::slotPassEnter()
         serv server;
         server.name=LDAPSession::getStringAttrValues (
                         *it,"cn" ).front().c_str();
-        if ( !isFirstServerSet )
+
+        QString sPort="22";
+        list<string> sL=LDAPSession::getStringAttrValues (
+                                      *it,"l" );
+        if ( sL.size() >0 )
         {
-            isFirstServerSet=true;
-            firstServer=server.name;
+            sPort=sL.front().c_str();
         }
+        x2goDebug<<server.name<<": ssh port is "<<sPort;
+
+
         QString sFactor="1";
         list<string> serialNumber=LDAPSession::getStringAttrValues (
                                       *it,"serialNumber" );
@@ -1556,7 +1563,14 @@ void ONMainWindow::slotPassEnter()
         x2goDebug<<server.name<<": factor is "<<sFactor;
         server.factor=sFactor.toFloat();
         server.sess=0;
+	server.sshPort=sPort;
         server.connOk=true;
+        if ( !isFirstServerSet )
+        {
+            isFirstServerSet=true;
+            firstServer=server.name;
+	    sshPort=server.sshPort;
+        }
         x2goServers.append ( server );
     }
     if ( ld )
@@ -2538,7 +2552,7 @@ SshMasterConnection* ONMainWindow::startSshConnection ( QString host, QString po
 {
     
     SshMasterConnection* con;
-    x2goDebug<<"start new ssh connection"<<endl;
+    x2goDebug<<"start new ssh connection to server:"<<host<<":"<<port<<endl;
     for ( int i=0;i<sshEnv.size();++i )
     {
 #ifndef Q_OS_WIN

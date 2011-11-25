@@ -1,3 +1,10 @@
+x2goclient (3.99.0.2-0~x2go1.1) UNRELEASED; urgency=low
+
+  * Non-maintainer upload.
+  * LDAP: ssh port for every x2goserver can be specified in Server entry, parameter "l"
+
+ -- Oleksandr Shneyder <oleksandr.shneyder@treuchtlingen.de>  Fri, 25 Nov 2011 13:01:01 +0100
+
 x2goclient (3.99.0.2-0~x2go1) unstable; urgency=low
 
   [ Mike Gabriel ]

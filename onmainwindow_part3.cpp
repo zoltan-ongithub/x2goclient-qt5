@@ -824,6 +824,7 @@ void ONMainWindow::slotGetServers ( bool result, QString output,
     for ( int j=0;j<x2goServers.size();++j )
     {
         QString host=x2goServers[j].name;
+	sshPort=x2goServers[j].sshPort;
 	serverSshConnections<<startSshConnection ( host,sshPort,acceptRsa,user,passwd,true,true);
     }
 }
