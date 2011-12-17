@@ -23,9 +23,11 @@ Architecture: any
 Depends:
  ${shlibs:Depends},
  ${misc:Depends},
- ssh,
  libssh-4 (>= 0.4.7),
+ openssh-client,
  nxproxy
+Recommends:
+ openssh-server
 Suggests:
  pinentry-x2go 
 Description: X2go Client application (Qt4)
