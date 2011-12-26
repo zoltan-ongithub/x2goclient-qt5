@@ -3,6 +3,7 @@ x2goclient (3.99.0.3-0~x2go1) UNRELEASED; urgency=low
   [ Mike Gabriel ]
   * New upstream version (3.99.0.3):
     - Continue development...
+  * Rename icon title in /debian/menu file.
 
   [ Guido Günther ]
   * Split package dependencies for SSH server/client.
