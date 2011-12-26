@@ -47,7 +47,12 @@ Architecture: any
 Depends:
  ${shlibs:Depends},
  ${misc:Depends},
+ openssh-client,
  nxproxy
+Recommends:
+ openssh-server
+Suggests:
+ pinentry-x2go
 Description: X2Go Client (Qt4) as browser plugin
  X2Go is a serverbased computing environment with
     - session resuming
