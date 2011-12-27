@@ -11,6 +11,7 @@ Build-Depends:
  libssh-dev (>= 0.4.7),
  libcups2-dev,
  libx11-dev,
+ libxpm-dev,
  doxygen,
  man2html-base | man2html
 Standards-Version: 3.9.2
