@@ -8,7 +8,7 @@ x2goclient (3.99.0.3-0~x2go4) UNRELEASED; urgency=low
   * Split package dependencies for SSH server/client.
 
   [ Oleksandr Shneyder ]
-  * New upstream version (3.99.0.2):
+  * New upstream version (3.99.0.3):
     - LDAP: ssh port for every x2goserver can be specified in Server entry,
       parameter "l"
     - Change title of proxy window to session name
