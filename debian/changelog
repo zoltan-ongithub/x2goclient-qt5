@@ -1,8 +1,6 @@
 x2goclient (3.99.0.3-0~x2go4) UNRELEASED; urgency=low
 
   [ Mike Gabriel ]
-  * New upstream version (3.99.0.3):
-    - Continue development...
   * Rename icon title in /debian/menu file.
   * Also split package dependencies for x2goplugin.
 
@@ -11,11 +9,14 @@ x2goclient (3.99.0.3-0~x2go4) UNRELEASED; urgency=low
 
   [ Oleksandr Shneyder ]
   * New upstream version (3.99.0.2):
-    - LDAP: ssh port for every x2goserver can be specified in Server entry, parameter "l"
-  * changing title of proxy window to session name
-  * changing icon of proxy window (only on Linux)
-  * multi display support: x2goclient can be configured to fit proxy window on one of the existing displays
-  * multi display support: support for xinerama (temporary disabled - support in x2goagent needed)
+    - LDAP: ssh port for every x2goserver can be specified in Server entry,
+      parameter "l"
+    - Change title of proxy window to session name
+    - Change icon of proxy window (only on Linux)
+    - Multi-display support: x2goclient can be configured to fit proxy window
+      on one of the existing displays.
+    - Multi-display support: support for xinerama (temporarily disabled--support
+      in x2goagent needed)
 
  -- Oleksandr Shneyder <oleksandr.shneyder@treuchtlingen.de>  Tue, 27 Dec 2011 11:49:29 +0100
 
