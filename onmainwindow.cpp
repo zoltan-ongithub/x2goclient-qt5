@@ -45,6 +45,9 @@ QString ONMainWindow::u3Device;
 
 ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
 {
+#ifdef Q_OS_LINUX
+    image=shape=0;
+#endif
     x2goDebug<<"ONMainWindow constructor"<<endl;
     setFocusPolicy ( Qt::StrongFocus );
     installTranslator();
@@ -212,7 +215,7 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
         homeDir=portableDataPath;
         x2goDebug<<"running in \"portable\" mode\n"<<
         "Data Dir is "<<portableDataPath;
-	QTimer *timer = new QTimer(this);
+        QTimer *timer = new QTimer(this);
         connect(timer, SIGNAL(timeout()), this, SLOT(slotCheckPortableDir()));
         timer->start(1000);
     }
@@ -266,10 +269,10 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
 
 
 #ifndef Q_WS_HILDON
-    if(BGFile.size())
-       bgFrame=new SVGFrame ( ( QString ) BGFile,true,fr );
+    if (BGFile.size())
+        bgFrame=new SVGFrame ( ( QString ) BGFile,true,fr );
     else
-       bgFrame=new SVGFrame ( ( QString ) ":/svg/bg.svg",true,fr );
+        bgFrame=new SVGFrame ( ( QString ) ":/svg/bg.svg",true,fr );
 #else
     bgFrame=new SVGFrame ( ( QString ) ":/svg/bg_hildon.svg",true,fr );
 #endif
@@ -324,18 +327,18 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
     act_set=new QAction (
         QIcon ( iconsPath ( "/32x32/edit_settings.png" ) ),
         tr ( "&Settings ..." ),this );
-	
-    if(supportMenuFile!=QString::null)
+
+    if (supportMenuFile!=QString::null)
     {
         act_support=new QAction ( tr ( "Support ..." ),this );
         connect ( act_support,SIGNAL ( triggered ( bool ) ),this,
-              SLOT ( slotSupport() ) );
-      
+                  SLOT ( slotSupport() ) );
+
     }
-    
+
     act_abclient=new QAction ( QIcon ( ":icons/32x32/x2goclient.png" ),
                                tr ( "About X2GO client" ),this );
-			       
+
 
 
 
@@ -378,6 +381,8 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
 
 #endif
 
+
+
     mainL->setSpacing ( 0 );
     mainL->setMargin ( 0 );
     mainL->insertWidget ( 0, bgFrame );
@@ -386,26 +391,32 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
     connect ( fr,SIGNAL ( resized ( const QSize ) ),this,
               SLOT ( slotResize ( const QSize ) ) );
     slotResize ( fr->size() );
-    
-    if(brokerMode)
-    {
-          broker=new HttpBrokerClient ( this, &config );
-    connect ( broker,SIGNAL ( haveSshKey ( QString ) ),this,
-              SLOT ( slotStartSshAgent ( QString ) ) );
-    connect ( broker,SIGNAL ( haveAgentInfo () ),this,
-              SLOT ( slotStartNewBrokerSession () ) );
-    connect ( broker,SIGNAL ( fatalHttpError() ),this,
-              SLOT ( close() ) );
-    connect ( broker,SIGNAL ( cmdReconnect() ),this,
-              SLOT ( slotReconnectSession() ) );
-    connect ( broker, SIGNAL ( authFailed()), this ,SLOT ( slotGetBrokerAuth()));
-    connect ( broker, SIGNAL( sessionsLoaded()), this, SLOT (slotReadSessions()));
-    connect ( broker, SIGNAL ( getSession(QString)), this, SLOT (slotGetBrokerSession(QString))); 
-    connect ( broker, SIGNAL ( passwordChanged(QString)), this, SLOT ( slotPassChanged(QString)));
-    
 
+    if (brokerMode)
+    {
+        broker=new HttpBrokerClient ( this, &config );
+        connect ( broker,SIGNAL ( haveSshKey ( QString ) ),this,
+                  SLOT ( slotStartSshAgent ( QString ) ) );
+        connect ( broker,SIGNAL ( haveAgentInfo () ),this,
+                  SLOT ( slotStartNewBrokerSession () ) );
+        connect ( broker,SIGNAL ( fatalHttpError() ),this,
+                  SLOT ( close() ) );
+        connect ( broker,SIGNAL ( cmdReconnect() ),this,
+                  SLOT ( slotReconnectSession() ) );
+        connect ( broker, SIGNAL ( authFailed()), this ,SLOT ( slotGetBrokerAuth()));
+        connect ( broker, SIGNAL( sessionsLoaded()), this, SLOT (slotReadSessions()));
+        connect ( broker, SIGNAL ( getSession(QString)), this, SLOT (slotGetBrokerSession(QString)));
+        connect ( broker, SIGNAL ( passwordChanged(QString)), this, SLOT ( slotPassChanged(QString)));
     }
-    
+
+    proxyWinTimer=new QTimer ( this );
+    connect ( proxyWinTimer, SIGNAL ( timeout() ), this,
+              SLOT ( slotFindProxyWin() ) );
+
+    xineramaTimer=new QTimer (this);
+
+    connect( xineramaTimer, SIGNAL(timeout()), this, SLOT(slotConfigXinerama()));
+
     x2goDebug<<"ONMainWindows constructor finished, home Directory is:"<<homeDir<<endl;
 }
 
@@ -468,9 +479,6 @@ void ONMainWindow::initWidgetsEmbed()
 #ifndef Q_OS_WIN
     statusBar()->hide();
 #endif
-    proxyWinTimer=new QTimer ( this );
-    connect ( proxyWinTimer, SIGNAL ( timeout() ), this,
-              SLOT ( slotFindProxyWin() ) );
 
 
     act_shareFolder=new QAction ( QIcon ( ":icons/32x32/file-open.png" ),
@@ -664,39 +672,39 @@ void ONMainWindow::initWidgetsNormal()
     act_edit=new QAction ( QIcon ( iconsPath ( "/32x32/edit.png" ) ),
                            tr ( "Session management..." ),this );
     act_edit->setShortcut ( tr ( "Ctrl+E" ) );
-    
-    if(noSessionEdit)
+
+    if (noSessionEdit)
     {
-      act_edit->setEnabled(false);
-      act_new->setEnabled(false);
+        act_edit->setEnabled(false);
+        act_new->setEnabled(false);
     }
 
     act_sessicon=new QAction (
         QIcon ( iconsPath ( "/32x32/create_file.png" ) ),
         tr ( "&Create session icon on desktop..." ),
         this );
-    if(brokerMode)
-      act_sessicon->setEnabled(false);
-    
-    if(changeBrokerPass)
+    if (brokerMode)
+        act_sessicon->setEnabled(false);
+
+    if (changeBrokerPass)
     {
-      act_changeBrokerPass=new QAction (
-        QIcon ( iconsPath ( "/32x32/auth.png" ) ),
-        tr ( "&Set broker password..." ),
-        this );
-      connect ( act_changeBrokerPass,SIGNAL ( triggered(bool)),this,
-              SLOT ( slotChangeBrokerPass()) );
-	      act_changeBrokerPass->setEnabled(false);
+        act_changeBrokerPass=new QAction (
+            QIcon ( iconsPath ( "/32x32/auth.png" ) ),
+            tr ( "&Set broker password..." ),
+            this );
+        connect ( act_changeBrokerPass,SIGNAL ( triggered(bool)),this,
+                  SLOT ( slotChangeBrokerPass()) );
+        act_changeBrokerPass->setEnabled(false);
     }
-    
-    if(connTest)
+
+    if (connTest)
     {
-      act_testCon=new QAction (
-        QIcon ( iconsPath ( "/32x32/contest.png" ) ),
-        tr ( "&Connectivity test..." ),
-        this );
-      connect ( act_testCon,SIGNAL ( triggered(bool)),this,
-              SLOT ( slotTestConnection()) );
+        act_testCon=new QAction (
+            QIcon ( iconsPath ( "/32x32/contest.png" ) ),
+            tr ( "&Connectivity test..." ),
+            this );
+        connect ( act_testCon,SIGNAL ( triggered(bool)),this,
+                  SLOT ( slotTestConnection()) );
     }
 
 
@@ -720,7 +728,7 @@ void ONMainWindow::initWidgetsNormal()
               SLOT ( trayQuit()) ) ;
     connect ( act_tb,SIGNAL ( toggled ( bool ) ),this,
               SLOT ( displayToolBar ( bool ) ) );
-	      
+
     stb=addToolBar ( tr ( "Show toolbar" ) );
 
     QShortcut* ex=new QShortcut ( QKeySequence ( tr ( "Ctrl+Q","exit" ) ),
@@ -731,45 +739,45 @@ void ONMainWindow::initWidgetsNormal()
     {
         QMenu* menu_sess=menuBar()->addMenu ( tr ( "&Session" ) );
         QMenu* menu_opts=menuBar()->addMenu ( tr ( "&Options" ) );
-        if(!brokerMode)
+        if (!brokerMode)
         {
-        menu_sess->addAction ( act_new );
-        menu_sess->addAction ( act_edit );
+            menu_sess->addAction ( act_new );
+            menu_sess->addAction ( act_edit );
 #if (!defined Q_WS_HILDON) && (!defined Q_OS_DARWIN)
-        if ( !portable )
-            menu_sess->addAction ( act_sessicon );
+            if ( !portable )
+                menu_sess->addAction ( act_sessicon );
 #endif
-        menu_sess->addSeparator();
-	}
+            menu_sess->addSeparator();
+        }
         menu_sess->addAction ( act_exit );
         menu_opts->addAction ( act_set );
         menu_opts->addAction ( act_tb );
-	if(changeBrokerPass)
-	  menu_opts->addAction(act_changeBrokerPass);
-	if(connTest)
-	  menu_opts->addAction(act_testCon);
+        if (changeBrokerPass)
+            menu_opts->addAction(act_changeBrokerPass);
+        if (connTest)
+            menu_opts->addAction(act_testCon);
 
         QMenu* menu_help=menuBar()->addMenu ( tr ( "&Help" ) );
-	if(supportMenuFile!=QString::null)
-	    menu_help->addAction ( act_support );
+        if (supportMenuFile!=QString::null)
+            menu_help->addAction ( act_support );
         menu_help->addAction ( act_abclient );
         menu_help->addAction ( act_abqt );
 
-        if(!brokerMode)
-	{
-        stb->addAction ( act_new );
-        stb->addAction ( act_edit );
+        if (!brokerMode)
+        {
+            stb->addAction ( act_new );
+            stb->addAction ( act_edit );
 #if (!defined Q_WS_HILDON) && (!defined Q_OS_DARWIN)
-        if ( !portable )
-            stb->addAction ( act_sessicon );
+            if ( !portable )
+                stb->addAction ( act_sessicon );
 #endif
-        stb->addSeparator();
-	}
+            stb->addSeparator();
+        }
         stb->addAction ( act_set );
-	if(changeBrokerPass)
-	  stb->addAction(act_changeBrokerPass);
-	if(connTest)
-	  stb->addAction(act_testCon);
+        if (changeBrokerPass)
+            stb->addAction(act_changeBrokerPass);
+        if (connTest)
+            stb->addAction(act_testCon);
 
         if ( !showToolBar )
             stb->hide();
@@ -793,117 +801,107 @@ void ONMainWindow::initWidgetsNormal()
     }
     else
     {
-      if(!brokerMode)
-        QTimer::singleShot ( 1, this, SLOT ( slotReadSessions() ) );
-      else
-      {
-	QTimer::singleShot(1, this,SLOT(slotGetBrokerAuth()));
-      }
+        if (!brokerMode)
+            QTimer::singleShot ( 1, this, SLOT ( slotReadSessions() ) );
+        else
+        {
+            QTimer::singleShot(1, this,SLOT(slotGetBrokerAuth()));
+        }
     }
-/*    QTimer* t=new QTimer ( this );
-    connect ( t,SIGNAL ( timeout() ),this,SLOT ( slotRereadUsers() ) );
-    t->start ( 20000 );
-*/
-#ifdef Q_OS_WIN
-    proxyWinTimer=new QTimer ( this );
-    connect ( proxyWinTimer, SIGNAL ( timeout() ), this,
-              SLOT ( slotFindProxyWin() ) );
-#endif
-
 }
 
 
 
 void ONMainWindow::slotPassChanged(const QString& result)
 {
-  
-  if(result==QString::null)
-  {
-    QMessageBox::critical(this, tr("Error"),tr("Operation failed"));
-  }
-  else
-  {    
-    QMessageBox::information(this, tr("Password changed"),tr("Password changed"));
-    config.brokerPass=result;
-  }
-  setEnabled(true);
-  
-  slotClosePass();
-  sessionStatusDlg->hide();
-  
+
+    if (result==QString::null)
+    {
+        QMessageBox::critical(this, tr("Error"),tr("Operation failed"));
+    }
+    else
+    {
+        QMessageBox::information(this, tr("Password changed"),tr("Password changed"));
+        config.brokerPass=result;
+    }
+    setEnabled(true);
+
+    slotClosePass();
+    sessionStatusDlg->hide();
+
 }
 
 void ONMainWindow::slotTestConnection()
 {
-  ConTest test( broker, config.brokerurl, this);
-  test.exec();
+    ConTest test( broker, config.brokerurl, this);
+    test.exec();
 }
 
 void ONMainWindow::slotChangeBrokerPass()
 {
-  x2goDebug<<"change broker pass";
-  BrokerPassDlg passDlg;
-  if(passDlg.exec()!=QDialog::Accepted)
+    x2goDebug<<"change broker pass";
+    BrokerPassDlg passDlg;
+    if (passDlg.exec()!=QDialog::Accepted)
+        return;
+    if (passDlg.oldPass()!=config.brokerPass)
+    {
+        QMessageBox::critical(this,tr("Error"),tr("Wrong password!"));
+        return;
+    }
+    broker->changePassword(passDlg.newPass());
+    setStatStatus ( tr ( "Connecting to broker" ) );
+    stInfo->insertPlainText ( "broker url: "+config.brokerurl );
+    setEnabled ( false );
+    uname->hide();
+    u->hide();
     return;
-  if(passDlg.oldPass()!=config.brokerPass)
-  {
-    QMessageBox::critical(this,tr("Error"),tr("Wrong password!"));
-    return;
-  }
-  broker->changePassword(passDlg.newPass());
-  setStatStatus ( tr ( "Connecting to broker" ) );
-  stInfo->insertPlainText ( "broker url: "+config.brokerurl );
-  setEnabled ( false );
-  uname->hide();
-  u->hide();
-  return;  
 }
 
 
 void ONMainWindow::slotCheckPortableDir()
 {
-  if(!QFile::exists(homeDir))
-  {
-    x2goDebug<<"portable dir not exists, close";
-    close();
-  }
+    if (!QFile::exists(homeDir))
+    {
+        x2goDebug<<"portable dir not exists, close";
+        close();
+    }
 }
 
 void ONMainWindow::slotGetBrokerAuth()
 {
-        pass->clear();
-	login->clear();
-	QString pixFile=":icons/128x128/x2gosession.png";
-	if(SPixFile!=QString::null)
-	  pixFile=SPixFile;
-	QPixmap pix(pixFile);
-	if ( !miniMode )
-        {
-	  fotoLabel->setPixmap (
-          pix.scaled ( 64,64,
+    pass->clear();
+    login->clear();
+    QString pixFile=":icons/128x128/x2gosession.png";
+    if (SPixFile!=QString::null)
+        pixFile=SPixFile;
+    QPixmap pix(pixFile);
+    if ( !miniMode )
+    {
+        fotoLabel->setPixmap (
+            pix.scaled ( 64,64,
                          Qt::IgnoreAspectRatio,
                          Qt::SmoothTransformation ) );
-          fotoLabel->setFixedSize ( 64,64 );
-        }
-        else
-        {
-           fotoLabel->setPixmap (
-               pix.scaled ( 48,48,
+        fotoLabel->setFixedSize ( 64,64 );
+    }
+    else
+    {
+        fotoLabel->setPixmap (
+            pix.scaled ( 48,48,
                          Qt::IgnoreAspectRatio,
                          Qt::SmoothTransformation ) );
-           fotoLabel->setFixedSize ( 48,48 );
-         }
-         users->hide();
-	 ln->hide();
-	 bgLay->insertStretch(3);
-         QString text=tr("<b>Authentication</b>");
-	/* if(config.brokerName.length()>0)
-	   text+=config.brokerName;
-	 else
-	   text+=config.brokerurl;*/
-         nameLabel->setText ( text );
-	 slotShowPassForm();
-	 config.brokerAuthenticated=false;
+        fotoLabel->setFixedSize ( 48,48 );
+    }
+    users->hide();
+    ln->hide();
+    bgLay->insertStretch(3);
+    QString text=tr("<b>Authentication</b>");
+    /* if(config.brokerName.length()>0)
+       text+=config.brokerName;
+     else
+       text+=config.brokerurl;*/
+    nameLabel->setText ( text );
+    slotShowPassForm();
+    config.brokerAuthenticated=false;
 }
 
 
@@ -1078,6 +1076,12 @@ void ONMainWindow::closeClient()
                                  QVariant ( isMaximized() ) );
         st.setting()->sync();
         x2goDebug<<"done";
+#ifdef Q_OS_LINUX
+        if (image)
+            XFreePixmap(QX11Info::display(),image);
+        if (shape)
+            XFreePixmap(QX11Info::display(),shape);
+#endif
     }
     if ( nxproxy!=0l )
     {
@@ -1099,18 +1103,18 @@ void ONMainWindow::closeClient()
         sshConnection->wait ( 10000 );
         x2goDebug<<"sshConnection is closed\n";
     }
-    if(useLdap)
+    if (useLdap)
     {
-      for(int i=0;i<serverSshConnections.count();++i)
-      {
-	if(serverSshConnections[i])
-	{
-	  serverSshConnections[i]->disconnectSession();
-          x2goDebug<<"waiting sshConnection to finish\n";
-          serverSshConnections[i]->wait ( 10000 );
-          x2goDebug<<"sshConnection is closed\n";
-	}
-      }
+        for (int i=0;i<serverSshConnections.count();++i)
+        {
+            if (serverSshConnections[i])
+            {
+                serverSshConnections[i]->disconnectSession();
+                x2goDebug<<"waiting sshConnection to finish\n";
+                serverSshConnections[i]->wait ( 10000 );
+                x2goDebug<<"sshConnection is closed\n";
+            }
+        }
     }
 
     /*	if ( tunnel!=0l )
@@ -1440,10 +1444,10 @@ void ONMainWindow::slotSelectedFromList ( UserButton* user )
 
 void ONMainWindow::slotClosePass()
 {
-    if(brokerMode)
+    if (brokerMode)
     {
-      if(!config.brokerAuthenticated)
-	close();
+        if (!config.brokerAuthenticated)
+            close();
     }
     passForm->hide();
     if ( !embedMode )
@@ -1460,11 +1464,11 @@ void ONMainWindow::slotClosePass()
         }
         else
         {
-	  if(lastSession)
-	  {
-            lastSession->show();
-            uname->setText ( lastSession->name() );
-	  }
+            if (lastSession)
+            {
+                lastSession->show();
+                uname->setText ( lastSession->name() );
+            }
         }
         uname->setEnabled ( true );
         u->setEnabled ( true );
@@ -1477,7 +1481,7 @@ void ONMainWindow::slotClosePass()
 
 void ONMainWindow::slotPassEnter()
 {
-      
+
     shadowSession=false;
 #if defined ( Q_OS_WIN ) || defined (Q_OS_DARWIN )
     QString disp=getXDisplay();
@@ -1545,7 +1549,7 @@ void ONMainWindow::slotPassEnter()
 
         QString sPort="22";
         list<string> sL=LDAPSession::getStringAttrValues (
-                                      *it,"l" );
+                            *it,"l" );
         if ( sL.size() >0 )
         {
             sPort=sL.front().c_str();
@@ -1563,13 +1567,13 @@ void ONMainWindow::slotPassEnter()
         x2goDebug<<server.name<<": factor is "<<sFactor;
         server.factor=sFactor.toFloat();
         server.sess=0;
-	server.sshPort=sPort;
+        server.sshPort=sPort;
         server.connOk=true;
         if ( !isFirstServerSet )
         {
             isFirstServerSet=true;
             firstServer=server.name;
-	    sshPort=server.sshPort;
+            sshPort=server.sshPort;
         }
         x2goServers.append ( server );
     }
@@ -1589,9 +1593,9 @@ void ONMainWindow::slotPassEnter()
 // 	QString host=ldapServer;
     QString host=firstServer;
     passwd=getCurrentPass();
-    if(sshConnection)
-      sshConnection->disconnectSession();
-    sshConnection=startSshConnection ( host,sshPort,acceptRsa,user,passwd,true );
+    if (sshConnection)
+        sshConnection->disconnectSession();
+    sshConnection=startSshConnection ( host,sshPort,acceptRsa,user,passwd,true, false );
 
 #endif
 }
@@ -1914,45 +1918,45 @@ void ONMainWindow::slotCreateDesktopIcon ( SessionButton* bt )
 
 void ONMainWindow::slotReadSessions()
 {
-  
+
     users->show();
     ln->show();
 
     X2goSettings *st;
     lastSession=0;
-    
-    if(brokerMode)
+
+    if (brokerMode)
     {
-      if(changeBrokerPass)
-	act_changeBrokerPass->setEnabled(true);
-      config.key=QString::null;
-      config.user=QString::null;
-      config.sessiondata=QString::null;
-      for (int i=sessions.count()-1;i>=0;--i)
-      {
-        SessionButton* but=sessions.takeAt(i);
-	if(but)
-	   delete but;
-      }
-      
-      st=new X2goSettings(config.iniFile,QSettings::IniFormat);
-          sessionStatusDlg->hide();
-          selectSessionDlg->hide();
-          setEnabled ( true );
-	  slotClosePass();
+        if (changeBrokerPass)
+            act_changeBrokerPass->setEnabled(true);
+        config.key=QString::null;
+        config.user=QString::null;
+        config.sessiondata=QString::null;
+        for (int i=sessions.count()-1;i>=0;--i)
+        {
+            SessionButton* but=sessions.takeAt(i);
+            if (but)
+                delete but;
+        }
+
+        st=new X2goSettings(config.iniFile,QSettings::IniFormat);
+        sessionStatusDlg->hide();
+        selectSessionDlg->hide();
+        setEnabled ( true );
+        slotClosePass();
     }
     else
-      st= new X2goSettings( "sessions" );
+        st= new X2goSettings( "sessions" );
 
     QStringList slst=st->setting()->childGroups();
     x2goDebug<<"read "<<slst.size()<<" sessions from config file";
-    if(brokerMode && (slst.size()==0))
+    if (brokerMode && (slst.size()==0))
     {
-      QMessageBox::critical(this,tr("Error"),tr("X2Go sessions not found"));
-      close();
+        QMessageBox::critical(this,tr("Error"),tr("X2Go sessions not found"));
+        close();
     }
     for ( int i=0;i<slst.size();++i )
-    {      
+    {
         if ( slst[i]!="embedded" )
             createBut ( slst[i] );
     }
@@ -2072,7 +2076,7 @@ void ONMainWindow::placeButtons()
         else
             sessions[i]->move ( ( users->width()-260 ) /2,
                                 i*155+i*20+5 );
-	if(brokerMode)
+        if (brokerMode)
             sessions[i]->move ( ( users->width()-360 ) /2,
                                 i*150+i*25+5 );
         sessions[i]->show();
@@ -2085,7 +2089,7 @@ void ONMainWindow::placeButtons()
         else
             uframe->setFixedHeight (
                 sessions.size() *155+ ( sessions.size()-1 ) *20 );
-	if(brokerMode)
+        if (brokerMode)
             uframe->setFixedHeight (
                 sessions.size() *150+ ( sessions.size()-1 ) *25 );
     }
@@ -2371,6 +2375,7 @@ void ONMainWindow::slotSelectedFromList ( SessionButton* session )
     QString server;
     QString userName;
     bool autologin=false;
+    bool krblogin=false;
     QString sessIcon;
     QPalette pal;
     QString sessionName;
@@ -2382,15 +2387,15 @@ void ONMainWindow::slotSelectedFromList ( SessionButton* session )
         sessionName=session->name();
 
         QString sid=session->id();
-        if(brokerMode)
+        if (brokerMode)
         {
-           broker->selectUserSession(session->id());
-           setStatStatus ( tr ( "Connecting to broker" ) );
-           stInfo->insertPlainText ( "broker url: "+config.brokerurl );
-           setEnabled ( false );
-	   uname->hide();
-	   u->hide();
-           return;
+            broker->selectUserSession(session->id());
+            setStatStatus ( tr ( "Connecting to broker" ) );
+            stInfo->insertPlainText ( "broker url: "+config.brokerurl );
+            setEnabled ( false );
+            uname->hide();
+            u->hide();
+            return;
         }
 
         X2goSettings st ( "sessions" );
@@ -2419,7 +2424,10 @@ void ONMainWindow::slotSelectedFromList ( SessionButton* session )
                        ( QVariant ) QString::null ).toString();
         autologin=st.setting()->value (
                       sid+"/autologin",
-                      ( QVariant ) QString::null ).toBool();
+                      ( QVariant ) false ).toBool();
+        krblogin=st.setting()->value (
+                     sid+"/krblogin",
+                     ( QVariant ) false ).toBool();
 #ifdef Q_OS_WIN
         if ( portable &&
                 u3Device.length() >0 )
@@ -2522,7 +2530,7 @@ void ONMainWindow::slotSelectedFromList ( SessionButton* session )
         x2goDebug<<"Have key, starting session"<<endl;
         slotSessEnter();
     }
-    if ( cardReady ||/* useSshAgent ||*/ autologin )
+    if ( cardReady || autologin || krblogin )
     {
         nopass=true;
         if ( cardReady )
@@ -2546,13 +2554,13 @@ void ONMainWindow::slotSelectedFromList ( SessionButton* session )
 }
 
 
-SshMasterConnection* ONMainWindow::startSshConnection ( QString host, QString port, bool acceptUnknownHosts, 
-					QString login,
-                                        QString password, bool autologin, bool getSrv)
+SshMasterConnection* ONMainWindow::startSshConnection ( QString host, QString port, bool acceptUnknownHosts,
+        QString login,
+        QString password, bool autologin, bool krbLogin, bool getSrv)
 {
-    
+
     SshMasterConnection* con;
-    x2goDebug<<"start new ssh connection to server:"<<host<<":"<<port<<endl;
+    x2goDebug<<"start new ssh connection to server:"<<host<<":"<<port<<"krb: "<<krbLogin<<endl;
     for ( int i=0;i<sshEnv.size();++i )
     {
 #ifndef Q_OS_WIN
@@ -2575,16 +2583,16 @@ SshMasterConnection* ONMainWindow::startSshConnection ( QString host, QString po
 
     passForm->setEnabled ( false );
     con=new SshMasterConnection ( host, port.toInt(),acceptUnknownHosts,
-                                            login, password,currentKey, autologin, this );
-    if(!getSrv)
-         connect ( con, SIGNAL ( connectionOk(QString) ), this, SLOT ( slotSshConnectionOk() ) );
+                                  login, password,currentKey, autologin,krbLogin, this );
+    if (!getSrv)
+        connect ( con, SIGNAL ( connectionOk(QString) ), this, SLOT ( slotSshConnectionOk() ) );
     else
-         connect ( con, SIGNAL ( connectionOk(QString)), this, SLOT ( slotServSshConnectionOk(QString) ) );
-    
+        connect ( con, SIGNAL ( connectionOk(QString)), this, SLOT ( slotServSshConnectionOk(QString) ) );
+
     connect ( con, SIGNAL ( serverAuthError ( int,QString ) ),this,SLOT ( slotSshServerAuthError ( int,QString ) ) );
     connect ( con, SIGNAL ( userAuthError ( QString ) ),this,SLOT ( slotSshUserAuthError ( QString ) ) );
-    connect ( con, SIGNAL ( connectionError ( QString,QString ) ), this, 
-	      SLOT ( slotSshConnectionError ( QString,QString ) ) );
+    connect ( con, SIGNAL ( connectionError ( QString,QString ) ), this,
+              SLOT ( slotSshConnectionError ( QString,QString ) ) );
     con->start();
     return con;
 }

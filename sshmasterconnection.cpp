@@ -27,16 +27,18 @@
 #ifndef Q_OS_WIN
 #include <arpa/inet.h>
 #endif
+#include <math.h>
 
 #include "onmainwindow.h"
 
 #undef DEBUG
-// #define DEBUG
+//#define DEBUG
 
 static bool isLibSshInited=false;
 
+
 SshMasterConnection::SshMasterConnection ( QString host, int port, bool acceptUnknownServers, QString user,
-        QString pass, QString key,bool autologin, QObject* parent ) : QThread ( parent )
+        QString pass, QString key,bool autologin, bool krblogin, QObject* parent ) : QThread ( parent )
 {
     this->host=host;
     this->port=port;
@@ -47,12 +49,20 @@ SshMasterConnection::SshMasterConnection ( QString host, int port, bool acceptUn
     this->acceptUnknownServers=acceptUnknownServers;
     reverseTunnel=false;
     mainWnd=(ONMainWindow*) parent;
+    kerberos=krblogin;
+#ifdef DEBUG
+    if (kerberos)
+        x2goDebug<<"starting ssh connection with kerberos authentication"<<endl;
+    else
+        x2goDebug<<"starting ssh connection without kerberos authentication"<<endl;
+#endif
+kerberos=false;
 }
 
 SshMasterConnection::SshMasterConnection ( QString host, int port, bool acceptUnknownServers, QString user,
         QString pass, QString key, bool autologin,
-        int remotePort, QString localHost, int localPort, SshProcess* creator, 
-					   QObject* parent, ONMainWindow* mwd ) : QThread ( parent )
+        int remotePort, QString localHost, int localPort, SshProcess* creator,
+        QObject* parent, ONMainWindow* mwd ) : QThread ( parent )
 {
 
     this->host=host;
@@ -76,6 +86,7 @@ SshMasterConnection* SshMasterConnection::reverseTunnelConnection ( SshProcess* 
     SshMasterConnection* con=new SshMasterConnection ( host,port,acceptUnknownServers,user,pass,
             key,autologin, remotePort,localHost,
             localPort,creator,this, mainWnd);
+    con->kerberos=kerberos;
 
     connect ( con,SIGNAL ( ioErr ( SshProcess*,QString,QString ) ),this,SIGNAL ( ioErr ( SshProcess*,QString,QString ) ) );
     connect ( con,SIGNAL ( stdErr ( SshProcess*,QByteArray ) ),this,SIGNAL ( stdErr ( SshProcess*,QByteArray ) ) );
@@ -125,7 +136,7 @@ void SshMasterConnection::run()
         quit();
         return;
     }
-#ifdef Q_OS_WIN    
+#ifdef Q_OS_WIN
     ssh_options_set ( my_ssh_session, SSH_OPTIONS_SSH_DIR, (mainWnd->getHomeDirectory()+"/ssh").toAscii());
 #endif
 //     ssh_options_set(my_ssh_session, SSH_OPTIONS_LOG_VERBOSITY, &verbosity);
@@ -153,21 +164,26 @@ void SshMasterConnection::run()
     }
 
     ssh_options_set ( my_ssh_session, SSH_OPTIONS_USER, user.toAscii() );
-#ifdef Q_OS_WIN    
+#ifdef Q_OS_WIN
     ssh_options_set ( my_ssh_session, SSH_OPTIONS_SSH_DIR, (mainWnd->getHomeDirectory()+"/ssh").toAscii());
-#endif    
+
+#ifdef DEBUG
     x2goDebug<<"setting SSH DIR to "<<mainWnd->getHomeDirectory()+"/ssh";
+#endif
+#endif
 
     if ( userAuth() )
     {
-      #ifdef DEBUG
+#ifdef DEBUG
         x2goDebug<<"user auth OK\n";
-      #endif
+#endif
         emit connectionOk(host);
     }
     else
     {
-        QString err=ssh_get_error ( my_ssh_session );
+        QString err;
+        if (!kerberos)
+            err=ssh_get_error ( my_ssh_session );
         QString message=tr ( "Authentication failed" );
         x2goDebug<<message<<" - "<<err;
         emit userAuthError ( authErrors.join ( "\n" ) );
@@ -237,6 +253,8 @@ bool SshMasterConnection::sshConnect()
 
 }
 
+
+
 int SshMasterConnection::serverAuth ( QString& errorMsg )
 {
 #ifdef DEBUG
@@ -249,6 +267,7 @@ int SshMasterConnection::serverAuth ( QString& errorMsg )
 
     state = ssh_is_server_known ( my_ssh_session );
     hlen = ssh_get_pubkey_hash ( my_ssh_session, &hash );
+
 
     if ( hlen < 0 )
         return SSH_SERVER_ERROR;

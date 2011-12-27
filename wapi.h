@@ -6,34 +6,39 @@
 #include <QPoint>
 #include <QString>
 #include <QStringList>
+#include <QPixmap>
+
 enum wapiCmdShow
 {
-	WAPI_FORCEMINIMIZE,
-	WAPI_HIDE,
-	WAPI_MAXIMIZE,
-	WAPI_MINIMIZE,
-	WAPI_RESTORE,
-	WAPI_SHOW,
-	WAPI_SHOWDEFAULT,
-	WAPI_SHOWMAXIMIZED,
-	WAPI_SHOWMINIMIZED,
-	WAPI_SHOWMINNOACTIVE,
-	WAPI_SHOWNA,
-	WAPI_SHOWNOACTIVATE,
-	WAPI_SHOWNORMAL
+    WAPI_FORCEMINIMIZE,
+    WAPI_HIDE,
+    WAPI_MAXIMIZE,
+    WAPI_MINIMIZE,
+    WAPI_RESTORE,
+    WAPI_SHOW,
+    WAPI_SHOWDEFAULT,
+    WAPI_SHOWMAXIMIZED,
+    WAPI_SHOWMINIMIZED,
+    WAPI_SHOWMINNOACTIVE,
+    WAPI_SHOWNA,
+    WAPI_SHOWNOACTIVATE,
+    WAPI_SHOWNORMAL
 };
 
 enum wapiBtnEvent
 {
-	WAPI_LBUTTONUP,
-	WAPI_LBUTTONDOWN
+    WAPI_LBUTTONUP,
+    WAPI_LBUTTONDOWN
 };
 
 HWND wapiSetParent ( HWND child, HWND par );
 bool wapiClientRect ( HWND wnd, QRect& rect );
 bool wapiWindowRect ( HWND wnd, QRect& rect );
+bool wapiWindowRectWithoutDecoration(HWND wnd, QRect& rect) ;
 bool wapiShowWindow ( HWND wnd, wapiCmdShow nCmdShow );
 bool wapiUpdateWindow ( HWND wnd );
+bool wapiSetWindowText ( HWND wnd, const QString& text);
+void wapiSetWindowIcon ( HWND wnd, const QPixmap& icon);
 bool wapiMoveWindow ( HWND wnd, int x, int y, int width, int height,
                       bool repaint );
 bool wapiGetBorders ( HWND wnd, int& vBorder, int& hBorder, int& barHeight );

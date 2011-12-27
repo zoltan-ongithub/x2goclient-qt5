@@ -47,6 +47,7 @@ class SessionWidget : public ConfigWidget
 		QSpinBox* sshPort;
 		QLineEdit* key;
 		QCheckBox* cbAutoLogin;
+		QCheckBox* cbKrbLogin;
 		QString sessIcon;
 		QPushButton* icon;
 		QLineEdit* cmd;

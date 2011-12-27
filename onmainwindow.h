@@ -146,7 +146,7 @@ struct ConfigFile
     QString brokerUserId;
     QString brokerName;
     bool brokerAuthenticated;
-    QString iniFile; 
+    QString iniFile;
     QString server;
     QString sshport;
     QString proxy;
@@ -414,10 +414,10 @@ public:
     }
     bool sessionEditEnabled()
     {
-      return !noSessionEdit;
+        return !noSessionEdit;
     }
-    
-    
+
+
     SshMasterConnection* findServerSshConnection(QString host);
 
     void showHelp();
@@ -577,6 +577,10 @@ private:
     QTimer *agentCheckTimer;
     QTimer *spoolTimer;
     QTimer *proxyWinTimer;
+    QTimer *xineramaTimer;
+    short xinSizeInc;
+    QRect lastDisplayGeometry;
+    QList <QRect> xineramaScreens;
     QStyle* widgetExtraStyle;
     bool isPassShown;
     bool xmodExecuted;
@@ -626,7 +630,7 @@ private:
     bool ldapOnly;
     bool isScDaemonOk;
     bool parecTunnelOk;
-    
+
 
     bool startSessSound;
     int startSessSndSystem;
@@ -645,7 +649,7 @@ private:
     int ldapPort2;
     QString ldapDn;
     QString sessionCmd;
-    
+
     QString supportMenuFile;
     QString BGFile;
     QString SPixFile;
@@ -727,6 +731,11 @@ private:
     QString xorgWidth;
     QString xorgHeight;
     int waitingForX;
+    QRect dispGeometry;
+#endif
+
+#ifdef Q_OS_LINUX
+    long image, shape;
 #endif
 
     // Tray icon stuff based on patch from Joachim Langenbach <joachim@falaba.de>
@@ -781,9 +790,12 @@ private:
     void closeClient();
     void continueNormalSession();
     void continueLDAPSession();
-    SshMasterConnection* startSshConnection ( QString host, QString port, 
-					      bool acceptUnknownHosts, QString login, 
-					      QString password, bool autologin, bool getSrv=false);
+    SshMasterConnection* startSshConnection ( QString host, QString port,
+            bool acceptUnknownHosts, QString login,
+            QString password, bool autologin, bool krbLogin, bool getSrv=false);
+    void setProxyWinTitle();
+    QRect proxyWinGeometry();
+
 
 protected:
     virtual void closeEvent ( QCloseEvent* event );
@@ -899,6 +911,7 @@ private slots:
 
 
 private slots:
+    void slotSetProxyWinFullscreen();
     void slotCheckPrintSpool();
     void slotRereadUsers();
     void slotExtTimer();
@@ -917,6 +930,8 @@ private slots:
     void slotExecXmodmap();
     void slotCreateSessionIcon();
     void slotFindProxyWin();
+    void slotConfigXinerama();
+    void slotXineramaConfigured();
     void slotAttachProxyWindow();
     void slotEmbedIntoParentWindow();
     void slotEmbedWindow();
@@ -934,7 +949,9 @@ private slots:
     void slotReconnectSession();
     void slotStartBroker();
     void slotStartNewBrokerSession ();
+
 private:
+    void resizeProxyWinOnDisplay(int display);
 #ifdef Q_OS_LINUX
     long X11FindWindow ( QString text, long rootWin=0 );
 #endif

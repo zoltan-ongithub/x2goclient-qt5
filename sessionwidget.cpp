@@ -105,7 +105,9 @@ SessionWidget::SessionWidget ( QString id, ONMainWindow * mw,
     sgbLay->addLayout ( suLay );
     sgbLay->addLayout ( keyLay );
     cbAutoLogin=new QCheckBox(tr("Try auto login (ssh-agent or default ssh key)"),sgb);
+    cbKrbLogin=new QCheckBox(tr("Kerberos 5 (GSSAPI) authentication"),sgb);
     sgbLay->addWidget(cbAutoLogin);
+    sgbLay->addWidget(cbKrbLogin);
 
 #ifndef Q_WS_HILDON
     QGroupBox *deskSess=new QGroupBox ( tr ( "&Session type" ),this );
@@ -178,6 +180,8 @@ SessionWidget::SessionWidget ( QString id, ONMainWindow * mw,
     connect ( sessName,SIGNAL ( textChanged ( const QString & ) ),this,
               SIGNAL ( nameChanged ( const QString & ) ) );
     readConfig();
+    cbKrbLogin->setChecked(false);
+    cbKrbLogin->setVisible(false);
 }
 
 SessionWidget::~SessionWidget()
@@ -320,7 +324,10 @@ void SessionWidget::readConfig()
                        ( QVariant ) QString::null ).toString() );
     cbAutoLogin->setChecked(st.setting()->value (
                                 sessionId+"/autologin",
-                                ( QVariant ) QString::null ).toBool());
+                                ( QVariant ) false ).toBool());
+    cbKrbLogin->setChecked(st.setting()->value (
+                                sessionId+"/krblogin",
+                                ( QVariant ) false ).toBool());
     sshPort->setValue (
         st.setting()->value (
             sessionId+"/sshport",
@@ -416,7 +423,9 @@ void SessionWidget::setDefaults()
     cmdCombo->addItem ( "" );
     cmdCombo->addItems ( mainWindow->transApplicationsNames() );
     cbAutoLogin->setChecked(false);
+    cbKrbLogin->setChecked(false);
     cmdCombo->lineEdit()->setText (
+    
         tr ( "Path to executable" ) );
     cmdCombo->lineEdit()->selectAll();
     slot_changeCmd ( 0 );
@@ -446,6 +455,7 @@ void SessionWidget::saveSettings()
     st.setting()->setValue ( sessionId+"/sshport",
                              ( QVariant ) sshPort->value() );
     st.setting()->setValue(sessionId+"/autologin",( QVariant ) cbAutoLogin->isChecked());
+    st.setting()->setValue(sessionId+"/krblogin",( QVariant ) cbKrbLogin->isChecked());
     QString command;
     bool rootless=false;
 

@@ -226,6 +226,7 @@ bool ONMainWindow::startSession ( const QString& sid )
     QString user;
     QString host;
     bool autologin=false;
+    bool krblogin=false;
     user=getCurrentUname();
     runRemoteCommand=true;
     shadowSession=false;
@@ -247,7 +248,9 @@ bool ONMainWindow::startSession ( const QString& sid )
         QString cmd=st.setting()->value ( sid+"/command",
                                           ( QVariant ) QString::null ).toString();
         autologin=st.setting()->value ( sid+"/autologin",
-                                        ( QVariant ) QString::null ).toBool();
+                                        ( QVariant ) false ).toBool();
+        krblogin=st.setting()->value ( sid+"/krblogin",
+                                        ( QVariant ) false ).toBool();
         if ( cmd=="SHADOW" )
             shadowSession=true;
     }
@@ -273,7 +276,7 @@ bool ONMainWindow::startSession ( const QString& sid )
     }
     if(sshConnection)
       sshConnection->disconnectSession();
-    sshConnection=startSshConnection ( host,sshPort,acceptRsa,user,passwd,autologin );
+    sshConnection=startSshConnection ( host,sshPort,acceptRsa,user,passwd,autologin, krblogin );
     return true;
 }
 
@@ -1920,10 +1923,11 @@ void ONMainWindow::slotTunnelOk()
 #endif //Q_OS_DARWIN
     x2goDebug<<"starting nxproxy with: "<<proxyCmd<<endl;
     nxproxy->start ( proxyCmd );
-
+//always search for proxyWin
+    proxyWinTimer->start ( 300 );
     if ( embedMode )
     {
-        proxyWinTimer->start ( 300 );
+//         proxyWinTimer->start ( 300 );
         if ( !startEmbedded )
         {
             act_embedContol->setText (
@@ -1934,10 +1938,10 @@ void ONMainWindow::slotTunnelOk()
     else
     {
 // #ifdef CFGCLIENT
-        // if using XMing, we must find proxy win for case, that we should make it fullscreen
-        if(useInternalX&& (internalX==XMING))
+//         // if using XMing, we must find proxy win for case, that we should make it fullscreen
+        //         if(useInternalX&& (internalX==XMING))
 // #endif
-        proxyWinTimer->start ( 300 );
+//         proxyWinTimer->start ( 300 );
     }
 #endif
 

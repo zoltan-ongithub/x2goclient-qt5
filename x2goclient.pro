@@ -108,7 +108,7 @@ RESOURCES += resources.rcc
 
 linux-g++ {
     message(building $$TARGET with ldap and cups)
-    LIBS += -lldap -lcups -lX11
+    LIBS += -lldap -lcups -lX11 -lXpm
 }
 linux-g++-64 {
     message(building $$TARGET with ldap and cups)
@@ -127,8 +127,8 @@ macx {
 }
 win32-* {
     message(building $$TARGET for windows without ldap and cups)
-    LIBS += -lwinspool
-    CONFIG += static
+    LIBS += -lwinspool -lws2_32
+    CONFIG += static release
 }
 QT += svg network
 ICON =icons/x2go-mac.icns

@@ -56,7 +56,7 @@ class SshMasterConnection: public QThread
 public:
     void run();
     SshMasterConnection(QString host, int port, bool acceptUnknownServers, QString user,
-                        QString pass, QString key,bool autologin, QObject* parent = 0);
+                        QString pass, QString key, bool autologin, bool krblogin, QObject* parent = 0);
     ~SshMasterConnection();
     static void finalizeLibSsh();
     void addChannelConnection(SshProcess* creator, int sock, QString forwardHost,
@@ -66,16 +66,33 @@ public:
     void disconnectSession();
     void setAcceptUnknownServers(bool accept)
     {
-      acceptUnknownServers=accept;
+        acceptUnknownServers=accept;
     }
-    SshMasterConnection* reverseTunnelConnection(SshProcess* creator, int remotePort, QString localHost, int localPort);
-    QString getHost(){return host;}
+    SshMasterConnection* reverseTunnelConnection(SshProcess* creator, int remotePort,
+            QString localHost, int localPort);
+    QString getHost()
+    {
+        return host;
+    }
+    QString getUser()
+    {
+        return user;
+    }
+    int getPort()
+    {
+        return port;
+    }
+    bool useKerberos()
+    {
+        return kerberos;
+    };
+
 
 private:
     SshMasterConnection(QString host, int port, bool acceptUnknownServers, QString user, QString pass, QString key,
                         bool autologin,
-                        int remotePort, QString localHost, int localPort, SshProcess* creator, 
-			QObject* parent, ONMainWindow* parWnd);
+                        int remotePort, QString localHost, int localPort, SshProcess* creator,
+                        QObject* parent, ONMainWindow* parWnd);
     bool sshConnect();
     bool userAuthWithPass();
     bool userAuthAuto();
@@ -85,6 +102,9 @@ private:
     void finalize(int arg1);
     void copy();
     int serverAuth(QString& errorMsg);
+#ifdef Q_OS_WIN
+    void parseKnownHosts();
+#endif
 
 private:
     ssh_session my_ssh_session;
@@ -108,8 +128,10 @@ private:
     int reverseTunnelLocalPort;
     bool acceptUnknownServers;
     QString reverseTunnelLocalHost;
-    SshProcess* reverseTunnelCreator;   
+    SshProcess* reverseTunnelCreator;
     ONMainWindow* mainWnd;
+    bool kerberos;
+    QString sshProcErrString;
 
 signals:
     void stdErr(SshProcess* caller, QByteArray data);

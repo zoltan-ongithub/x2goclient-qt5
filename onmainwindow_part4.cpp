@@ -246,32 +246,32 @@ bool ONMainWindow::isServerRunning ( int port )
     char* localIP;
     int iResult;
     WSADATA wsaData;
-    
+
     struct in_addr addr = { 0 };
-    
+
     iResult = WSAStartup(MAKEWORD(2, 2), &wsaData);
-    if (iResult != 0) 
+    if (iResult != 0)
     {
         x2goDebug<<"WARNING: WSAStartup failed: "<< iResult<<endl;
         return false;
     }
-    
+
     addr.s_addr = inet_addr("127.0.0.1");
-    if (addr.s_addr == INADDR_NONE) 
+    if (addr.s_addr == INADDR_NONE)
     {
-            x2goDebug<< "WARNING:  The IPv4 address entered must be a legal address\n";
-            return false;
+        x2goDebug<< "WARNING:  The IPv4 address entered must be a legal address\n";
+        return false;
     }
-    
+
 
     localHost = gethostbyaddr((char*)&addr,4, AF_INET);
-    if(!localHost)
+    if (!localHost)
     {
-      x2goDebug<<"WARNING: gethostbyaddr failed: "<<WSAGetLastError()<<endl;
-      return false;
+        x2goDebug<<"WARNING: gethostbyaddr failed: "<<WSAGetLastError()<<endl;
+        return false;
     }
     x2goDebug<<"got localhost"<<endl;
-    
+
     localIP = inet_ntoa (*(struct in_addr *)*localHost->h_addr_list);
 
     saServer.sin_family = AF_INET;
@@ -961,20 +961,254 @@ void ONMainWindow::startSshd()
 #endif
 }
 
+void ONMainWindow::setProxyWinTitle()
+{
+
+    QString title;
+
+    if (!useLdap)
+        title=lastSession->name();
+    else
+        title=getCurrentUname()+"@"+resumingSession.server;
+
+    QPixmap pixmap;
+
+    if (useLdap)
+        pixmap=lastUser->foto();
+    else
+        pixmap=*(lastSession->sessIcon());
+
+#ifdef Q_OS_LINUX
+
+    XStoreName(QX11Info::display(), proxyWinId, title.toLocal8Bit().data());
+
+    XWMHints* win_hints;
+
+
+    QByteArray bytes;
+    QBuffer buffer(&bytes);
+    buffer.open(QIODevice::WriteOnly);
+    pixmap.save(&buffer, "XPM");
+
+
+    int rez;
+
+    if (image)
+        XFreePixmap(QX11Info::display(),image);
+    if (shape)
+        XFreePixmap(QX11Info::display(),shape);
+
+
+    rez=XpmCreatePixmapFromBuffer(QX11Info::display(), proxyWinId, bytes.data(),
+                                  (Pixmap *) &image, (Pixmap *) &shape, NULL);
+    if (!rez)
+    {
+
+        win_hints = XAllocWMHints();
+        if (win_hints)
+        {
+            win_hints->flags = IconPixmapHint|IconMaskHint;
+            win_hints->icon_pixmap = image;
+            win_hints->icon_mask = shape;
+            XSetWMHints(QX11Info::display(), proxyWinId, win_hints);
+            XFree(win_hints);
+        }
+    }
+
+#endif
+#ifdef Q_OS_WIN
+    wapiSetWindowText((HWND)proxyWinId, title);
+//       wapiSetWindowIcon((HWND)proxyWinId, pixmap);
+#endif
+}
+
+void ONMainWindow::slotSetProxyWinFullscreen()
+{
+
+#ifdef Q_OS_LINUX
+    XSync(QX11Info::display(),false);
+    XEvent event;
+    long emask = StructureNotifyMask | ResizeRedirectMask;
+    event.xclient.type = ClientMessage;
+    event.xclient.serial = 0;
+    event.xclient.send_event = True;
+    event.xclient.display = QX11Info::display();
+    event.xclient.window = proxyWinId;
+    event.xclient.message_type = XInternAtom(QX11Info::display(),"_NET_WM_STATE",False);
+    event.xclient.format = 32;
+    event.xclient.data.l[0] = 1;
+    event.xclient.data.l[1] = XInternAtom(QX11Info::display(),"_NET_WM_STATE_FULLSCREEN",False);
+    event.xclient.data.l[2] = 0;
+    event.xclient.data.l[3] = 0;
+    event.xclient.data.l[4] = 0;
+    Status st;
+    st=XSendEvent(QX11Info::display(), DefaultRootWindow(QX11Info::display()),
+                  False, emask,&event);
+    XSync(QX11Info::display(),false);
+#endif
+#ifdef Q_OS_WIN
+    wapiSetFSWindow ( ( HWND ) proxyWinId,
+                      dispGeometry );
+
+#endif
+}
+
+
+void ONMainWindow::resizeProxyWinOnDisplay(int disp)
+{
+    QRect geom=QApplication::desktop()->screenGeometry(disp-1);
+    x2goDebug<<"resizing proxy win to fit display "<<disp<<"("<<geom<<")"<<endl;
+#ifdef Q_OS_LINUX
+    XSync(QX11Info::display(),false);
+    XMoveWindow(QX11Info::display(), proxyWinId,geom.x(),geom.y());
+#endif
+#ifdef Q_OS_WIN
+    dispGeometry=geom;
+#endif
+    QTimer::singleShot(500, this, SLOT(slotSetProxyWinFullscreen()));
+}
+
+
+QRect ONMainWindow::proxyWinGeometry()
+{
+#ifdef Q_OS_WIN
+    QRect proxyRect;
+    if (!wapiWindowRectWithoutDecoration((HWND)proxyWinId,proxyRect))
+        return QRect();
+    return proxyRect;
+#endif
+#ifdef Q_OS_LINUX
+    QRect proxyRect;
+    Window root;
+    int x,y;
+    uint w,h,border,depth;
+    if (XGetGeometry(QX11Info::display(), proxyWinId, &root,&x,&y,&w,&h,&border,&depth))
+    {
+
+        int realx,realy;
+        Window child;
+        XTranslateCoordinates(QX11Info::display(), proxyWinId, root, 0, 0, &realx, &realy, &child);
+        proxyRect.setRect(realx, realy, w,h);
+    }
+    return proxyRect;
+#endif
+    return QRect();
+}
+
+void ONMainWindow::slotConfigXinerama()
+{
+    QRect newGeometry=proxyWinGeometry();
+    if (newGeometry.isNull())
+    {
+//     x2goDebug<<"error getting window geometry (window closed?)\n";
+        xineramaTimer->stop();
+        return;
+    }
+    if (newGeometry==lastDisplayGeometry)
+        return;
+    lastDisplayGeometry=newGeometry;
+   x2goDebug<<"New proxy geometry: "<<lastDisplayGeometry<<endl;
+    QDesktopWidget* root=QApplication::desktop();
+    QList<QRect> newXineramaScreens;
+    for (int i=0; i< root->numScreens();++i)
+    {
+        QRect intersection=root->screenGeometry(i).intersected(lastDisplayGeometry);
+        if (!intersection.isNull())
+        {
+       x2goDebug<<"intersected with "<<i<<": "<<intersection<<endl;
+            intersection.moveLeft(intersection.x()-lastDisplayGeometry.x());
+            intersection.moveTop(intersection.y()-lastDisplayGeometry.y());
+       x2goDebug<<"xinerama screen: "<<intersection<<endl;
+            newXineramaScreens<<intersection;
+        }
+    }
+    if (xineramaScreens != newXineramaScreens)
+    {
+        xineramaScreens=newXineramaScreens;
+        x2goDebug<<"xinerama screen changed, new screens: "<<xineramaScreens<<endl;
+        SshProcess* proc=new SshProcess(sshConnection, this);
+        xineramaTimer->stop();
+        connect (proc, SIGNAL(sshFinished(bool,QString,SshProcess*)), this, SLOT(slotXineramaConfigured()));
+        QStringList screens;
+        foreach (QRect disp, xineramaScreens)
+        screens<<QString::number(disp.x())+" "+QString::number(disp.y())+" "+QString::number(disp.width())+
+        " "+QString::number(disp.height());
+        QString cmd="export DISPLAY=:"+resumingSession.display+";echo -e "+screens.join("\\\\n")+" >  ~/.x2go/C-"+
+                    resumingSession.sessionId+"/xinerama.conf";
+
+        x2goDebug<<cmd<<endl;
+        proc->startNormal(cmd);
+    }
+}
+
+void ONMainWindow::slotXineramaConfigured()
+{
+    if (xinSizeInc == -1)
+        xinSizeInc=1;
+    else
+        xinSizeInc=-1;
+#ifdef Q_OS_LINUX
+    XSync(QX11Info::display(),false);
+    XResizeWindow(QX11Info::display(), proxyWinId,
+                  lastDisplayGeometry.width()+xinSizeInc,lastDisplayGeometry.height());
+    XSync(QX11Info::display(),false);
+    lastDisplayGeometry=proxyWinGeometry();
+#endif
+#ifdef Q_OS_WIN
+    QRect geom;
+    wapiWindowRect ( (HWND) proxyWinId, geom );
+    wapiMoveWindow( (HWND) proxyWinId, geom.x(), geom.y(), geom.width()+xinSizeInc, geom.height(),true);
+    lastDisplayGeometry=proxyWinGeometry();
+#endif
+    xineramaTimer->start(500);
+}
 
 void ONMainWindow::slotFindProxyWin()
 {
-    x2goDebug<<"search proxy win: "<<"X2GO-"+resumingSession.sessionId;
 #ifndef Q_OS_DARWIN
+    x2goDebug<<"search proxy win: "<<"X2GO-"+resumingSession.sessionId;
 
-//#ifdef CFGPLUGIN
     proxyWinId=findWindow ( "X2GO-"+resumingSession.sessionId );
-//#endif
-
     if ( proxyWinId )
     {
         x2goDebug<<"proxy win found:"<<proxyWinId;
+        setProxyWinTitle();
         proxyWinTimer->stop();
+        if (!useLdap)
+        {
+            X2goSettings *st;
+            QString sid;
+            if ( !embedMode )
+                sid=lastSession->id();
+            else
+                sid="embedded";
+
+            if (brokerMode)
+                st=new X2goSettings(config.iniFile,QSettings::IniFormat);
+            else
+                st= new X2goSettings( "sessions" );
+            uint displays=QApplication::desktop()->numScreens();
+            if (st->setting()->value ( sid+"/xinerama",
+                                       ( QVariant ) false ).toBool())
+            {
+                x2goDebug<<"Starting xinerama timer\n";
+                lastDisplayGeometry=QRect();
+                xineramaScreens.clear();
+                xineramaTimer->start(500);
+            }
+            if (st->setting()->value ( sid+"/multidisp",
+                                       ( QVariant ) false ).toBool())
+            {
+                uint disp=st->setting()->value ( sid+"/display",
+                                                 ( QVariant ) 1 ).toUInt();
+                if (disp>displays)
+                {
+                    disp=1;
+                }
+                resizeProxyWinOnDisplay(disp);
+                return;
+            }
+        }
         if ( embedMode )
         {
             if ( config.rootless )

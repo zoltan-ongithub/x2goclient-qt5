@@ -24,6 +24,8 @@
 #include <QPushButton>
 #include "onmainwindow.h"
 #include "x2gologdebug.h"
+#include <QApplication>
+#include <QDesktopWidget>
 
 
 SessionButton::SessionButton ( ONMainWindow* mw,QWidget *parent, QString id )
@@ -143,7 +145,7 @@ SessionButton::SessionButton ( ONMainWindow* mw,QWidget *parent, QString id )
     if ( !miniMode )
     {
         sessName->move ( 80,34 );
-	sessStatus->move(80,50);
+        sessStatus->move(80,50);
         editBut->move ( 307,156 );
         serverIcon->move ( 58,84 );
         server->move ( 80,84 );
@@ -160,7 +162,7 @@ SessionButton::SessionButton ( ONMainWindow* mw,QWidget *parent, QString id )
     {
         editBut->move ( 218,113 );
         sessName->move ( 64,11 );
-	sessStatus->hide();
+        sessStatus->hide();
         serverIcon->move ( 66,44 );
         server->move ( 88,44 );
         cmdIcon->move ( 66,68 );
@@ -172,13 +174,13 @@ SessionButton::SessionButton ( ONMainWindow* mw,QWidget *parent, QString id )
         soundIcon->move ( 66,116 );
         sound->move ( 86,116 );
     }
-    
-    if(mw->brokerMode)
+
+    if (mw->brokerMode)
     {
-      icon->move(10,30);
-      sessName->move(90,50);
-      sessStatus->move(90,70);
-      setFixedHeight(120);
+        icon->move(10,30);
+        sessName->move(90,50);
+        sessStatus->move(90,70);
+        setFixedHeight(120);
     }
 
 
@@ -219,16 +221,16 @@ SessionButton::SessionButton ( ONMainWindow* mw,QWidget *parent, QString id )
         sessMenu->hide();
         sound->setEnabled(false);
     }
-    if(mw->brokerMode)
+    if (mw->brokerMode)
     {
-      cmd->hide();
-      cmdIcon->hide();
-      server->hide();
-      serverIcon->hide();
-      geom->hide();
-      geomIcon->hide();
-      sound->hide();
-      soundIcon->hide();
+        cmd->hide();
+        cmdIcon->hide();
+        server->hide();
+        serverIcon->hide();
+        geom->hide();
+        geomIcon->hide();
+        sound->hide();
+        soundIcon->hide();
     }
 }
 
@@ -381,6 +383,11 @@ void SessionButton::redraw()
 
     geomBox->clear();
     geomBox->addItem ( tr ( "fullscreen" ) );
+    uint displays=QApplication::desktop()->numScreens();
+    for (uint i=0;i<displays;++i)
+    {
+        geomBox->addItem ( tr( "Display " )+QString::number(i+1));
+    }
 #ifndef Q_WS_HILDON
     geomBox->addItem ( "1440x900" );
     geomBox->addItem ( "1280x1024" );
@@ -395,21 +402,42 @@ void SessionButton::redraw()
         geom->setText ( tr ( "fullscreen" ) );
     }
     else
-    {
+        if (st->setting()->value ( sid+"/multidisp",
+                                   ( QVariant ) false ).toBool())
+        {
+            uint disp=st->setting()->value ( sid+"/display",
+                                             ( QVariant ) 1 ).toUInt();
+            if (disp<=displays)
+            {
+                geom->setText( tr( "Display " )+QString::number(disp));
+            }
+            else
+            {
+                geom->setText( tr( "Display " )+QString::number(1));
+            }
+            for (int i=0;i<geomBox->count();++i)
+                if (geomBox->itemText(i)==geom->text())
+                {
+                    geomBox->setCurrentIndex(i);
+                    break;
+                }
+        }
+        else
+        {
 #ifndef	Q_WS_HILDON
-        QString g=QString::number ( st->setting()->value (
-                                        sid+"/width" ).toInt() );
-        g+="x"+QString::number ( st->setting()->value (
-                                     sid+"/height" ).toInt() );
-        geom->setText ( g );
-        if ( geomBox->findText ( g ) ==-1 )
-            geomBox->addItem ( g );
-        geomBox->setCurrentIndex ( geomBox->findText ( g ) );
+            QString g=QString::number ( st->setting()->value (
+                                            sid+"/width" ).toInt() );
+            g+="x"+QString::number ( st->setting()->value (
+                                         sid+"/height" ).toInt() );
+            geom->setText ( g );
+            if ( geomBox->findText ( g ) ==-1 )
+                geomBox->addItem ( g );
+            geomBox->setCurrentIndex ( geomBox->findText ( g ) );
 #else
-        geom->setText ( tr ( "window" ) );
-        geomBox->setCurrentIndex ( 1 );
+            geom->setText ( tr ( "window" ) );
+            geomBox->setCurrentIndex ( 1 );
 #endif
-    }
+        }
 
 
     snd=st->setting()->value ( sid+"/sound", ( QVariant ) true ).toBool();
@@ -633,19 +661,31 @@ void SessionButton::slot_geom_change ( const QString& new_g )
     geom->setText ( new_g );
     X2goSettings st ( "sessions" );
     if ( new_g==tr ( "fullscreen" ) )
-        st.setting()->setValue ( sid+"/fullscreen", ( QVariant ) true );
-    else
     {
-        QString new_geom=new_g;
-#ifdef Q_WS_HILDON
-        new_geom="800x600";
-#endif
-        st.setting()->setValue ( sid+"/fullscreen",
-                                 ( QVariant ) false );
-        QStringList lst=new_geom.split ( 'x' );
-        st.setting()->setValue ( sid+"/width", ( QVariant ) lst[0] );
-        st.setting()->setValue ( sid+"/height", ( QVariant ) lst[1] );
+        st.setting()->setValue ( sid+"/fullscreen", ( QVariant ) true );
+        st.setting()->setValue ( sid+"/multidisp", ( QVariant ) false );
     }
+    else
+        if (new_g.indexOf(tr("Display "))==0)
+        {
+            QString g= new_g;
+            g.replace(tr("Display "),"");
+            st.setting()->setValue ( sid+"/multidisp", ( QVariant ) true );
+            st.setting()->setValue ( sid+"/display", ( QVariant ) g.toUInt());
+            st.setting()->setValue ( sid+"/fullscreen", ( QVariant ) false );
+        }
+        else
+        {
+            QString new_geom=new_g;
+#ifdef Q_WS_HILDON
+            new_geom="800x600";
+#endif
+            st.setting()->setValue ( sid+"/fullscreen", ( QVariant ) false );
+            st.setting()->setValue ( sid+"/multidisp", ( QVariant ) false );
+            QStringList lst=new_geom.split ( 'x' );
+            st.setting()->setValue ( sid+"/width", ( QVariant ) lst[0] );
+            st.setting()->setValue ( sid+"/height", ( QVariant ) lst[1] );
+        }
     st.setting()->sync();
 }
 

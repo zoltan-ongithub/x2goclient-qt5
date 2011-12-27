@@ -1,4 +1,4 @@
-x2goclient (3.99.0.3-0~x2go1) UNRELEASED; urgency=low
+x2goclient (3.99.0.3-0~x2go4) UNRELEASED; urgency=low
 
   [ Mike Gabriel ]
   * New upstream version (3.99.0.3):
@@ -12,8 +12,12 @@ x2goclient (3.99.0.3-0~x2go1) UNRELEASED; urgency=low
   [ Oleksandr Shneyder ]
   * New upstream version (3.99.0.2):
     - LDAP: ssh port for every x2goserver can be specified in Server entry, parameter "l"
+  * changing title of proxy window to session name
+  * changing icon of proxy window (only on Linux)
+  * multi display support: x2goclient can be configured to fit proxy window on one of the existing displays
+  * multi display support: support for xinerama (temporary disabled - support in x2goagent needed)
 
- -- Oleksandr Shneyder <oleksandr.shneyder@treuchtlingen.de>  Fri, 25 Nov 2011 13:01:01 +0100
+ -- Oleksandr Shneyder <oleksandr.shneyder@treuchtlingen.de>  Tue, 27 Dec 2011 11:49:29 +0100
 
 x2goclient (3.99.0.2-0~x2go1) unstable; urgency=low
 

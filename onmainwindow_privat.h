@@ -82,6 +82,8 @@
 #if !defined Q_OS_WIN
 #include <sys/mount.h>
 #ifdef Q_OS_LINUX
+#include <X11/Xatom.h>
+#include <X11/xpm.h>
 #include <linux/fs.h>
 #endif // Q_OS_LINUX
 #endif // !defined Q_OS_WIN
