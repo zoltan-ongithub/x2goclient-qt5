@@ -112,12 +112,12 @@ linux-g++ {
 }
 linux-g++-64 {
     message(building $$TARGET with ldap and cups)
-    LIBS += -lldap -lcups -lX11
+    LIBS += -lldap -lcups -lX11 -lXpm
 }
 x2go_linux_static {
     message (linking all libs statically)
     LIBS -= -lssh
-    LIBS += -lssh_static -lssl
+    LIBS += -lssh_static -lssl -lXpm
     QMAKE_LFLAGS = -Bstatic $$QMAKE_LFLAGS
 }
 
