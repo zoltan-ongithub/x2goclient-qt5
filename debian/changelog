@@ -1,4 +1,4 @@
-x2goclient (3.99.0.3-0~x2go4) UNRELEASED; urgency=low
+x2goclient (3.99.0.3-0~x2go4) unstable; urgency=low
 
   [ Mike Gabriel ]
   * Rename icon title in /debian/menu file.
@@ -21,7 +21,7 @@ x2goclient (3.99.0.3-0~x2go4) UNRELEASED; urgency=low
       in x2goagent needed)
     - Add -lXpm in project file.
 
- -- Oleksandr Shneyder <oleksandr.shneyder@treuchtlingen.de>  Tue, 27 Dec 2011 11:49:29 +0100
+ -- Mike Gabriel <mike.gabriel@das-netzwerkteam.de>  Tue, 27 Dec 2011 16:17:46 +0100
 
 x2goclient (3.99.0.2-0~x2go1) unstable; urgency=low
 
