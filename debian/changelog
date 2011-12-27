@@ -4,6 +4,7 @@ x2goclient (3.99.0.3-0~x2go4) UNRELEASED; urgency=low
   * Rename icon title in /debian/menu file.
   * Also split package dependencies for x2goplugin.
   * Add libxpm-dev as build-dependency.
+  * Revert version number in version.h and x2goplugin.rc to 3.99.0.3.
 
   [ Guido Günther ]
   * Split package dependencies for SSH server/client.
