@@ -1,6 +1,6 @@
 
 /***************************************************************************
- *   Copyright (C) 2005-2011 by Oleksandr Shneyder   *
+ *   Copyright (C) 2005-2012 by Oleksandr Shneyder   *
  *   oleksandr.shneyder@obviously-nice.de   *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
