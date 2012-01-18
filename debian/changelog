@@ -1,3 +1,11 @@
+x2goclient (3.99.0.4-0~x2go1) unstable; urgency=low
+
+  [ Oleksandr Shneyder ]
+  * New upstream version (3.99.0.4):
+    - Enabled support for Xinerama
+
+ -- Mike Gabriel <mike.gabriel@das-netzwerkteam.de>  Wed, 18 Jan 2012 14:53:20 +0100
+
 x2goclient (3.99.0.3-0~x2go4) unstable; urgency=low
 
   [ Mike Gabriel ]
@@ -20,9 +28,8 @@ x2goclient (3.99.0.3-0~x2go4) unstable; urgency=low
     - Multi-display support: support for xinerama (temporarily disabled--support
       in x2goagent needed)
     - Add -lXpm in project file.
-    - Enabled support for Xinerama
 
- -- Mike Gabriel <mike.gabriel@das-netzwerkteam.de>  Tue, 27 Dec 2011 16:17:46 +0100
+ -- Mike Gabriel <mike.gabriel@das-netzwerkteam.de>  Wed, 18 Jan 2012 14:50:31 +0100
 
 x2goclient (3.99.0.2-0~x2go1) unstable; urgency=low
 
