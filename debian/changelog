@@ -20,6 +20,8 @@ x2goclient (3.99.0.3-0~x2go4) unstable; urgency=low
     - Multi-display support: support for xinerama (temporarily disabled--support
       in x2goagent needed)
     - Add -lXpm in project file.
+  * Enabled support for Xinerama
+
 
  -- Mike Gabriel <mike.gabriel@das-netzwerkteam.de>  Tue, 27 Dec 2011 16:17:46 +0100
 

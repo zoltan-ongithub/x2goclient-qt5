@@ -1148,11 +1148,11 @@ void ONMainWindow::slotXineramaConfigured()
     else
         xinSizeInc=-1;
 #ifdef Q_OS_LINUX
+    lastDisplayGeometry.setWidth(lastDisplayGeometry.width()+xinSizeInc);
     XSync(QX11Info::display(),false);
     XResizeWindow(QX11Info::display(), proxyWinId,
-                  lastDisplayGeometry.width()+xinSizeInc,lastDisplayGeometry.height());
+                  lastDisplayGeometry.width(),lastDisplayGeometry.height());
     XSync(QX11Info::display(),false);
-    lastDisplayGeometry=proxyWinGeometry();
 #endif
 #ifdef Q_OS_WIN
     QRect geom;

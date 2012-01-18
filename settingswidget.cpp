@@ -270,9 +270,6 @@ SettingsWidget::SettingsWidget ( QString id, ONMainWindow * mw,
     kbd->setChecked ( true );
     custom->setChecked ( true );
     readConfig();
-    
-    cbXinerama->setVisible(false);
-    cbXinerama->setChecked(false);
 }
 
 
