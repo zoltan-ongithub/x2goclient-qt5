@@ -2093,7 +2093,7 @@ Sie können SSHD über folgenden Befehl installieren:
     <message>
         <location filename="printdialog.ui" line="16"/>
         <source>Print - X2Go client</source>
-        <translation>Drucken - X2go Client</translation>
+        <translation>Drucken - X2Go Client</translation>
     </message>
 </context>
 <context>
@@ -2920,7 +2920,7 @@ sound system connections through firewalls</source>
     </message>
     <message>
         <location filename="xsettingsui.ui" line="27"/>
-        <source>You must restart the X2go Client for the changes to take effect</source>
+        <source>You must restart the X2Go Client for the changes to take effect</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

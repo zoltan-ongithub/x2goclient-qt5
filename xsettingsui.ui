@@ -24,7 +24,7 @@
       </font>
      </property>
      <property name="text">
-      <string>You must restart the X2go Client for the changes to take effect</string>
+      <string>You must restart the X2Go Client for the changes to take effect</string>
      </property>
      <property name="wordWrap">
       <bool>true</bool>

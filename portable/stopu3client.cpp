@@ -19,7 +19,7 @@
 ***************************************************************************/
 /* 
 
-     this is helper program to stop running in "portable" mode X2go Client
+     this is helper program to stop running in "portable" mode X2Go Client
      before U3 USB-drive will be unmounted
 
 */

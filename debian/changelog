@@ -2,7 +2,7 @@ x2goclient (3.99.0.5-0~x2go1) UNRELEASED; urgency=low
 
   [ Mike Gabriel ]
   * New upstream version (3.99.0.5):
-    - Continue development...
+    - Rename in human readable text strings ,,X2go'' to ,,X2Go''.
 
  -- Mike Gabriel <mike.gabriel@das-netzwerkteam.de>  Wed, 18 Jan 2012 15:18:16 +0100
 
@@ -57,7 +57,7 @@ x2goclient (3.99.0.1-0~x2go1) unstable; urgency=low
     - Add build_man/clean_man stanzas to Makefile.
   * Explicitly use source format 3.0 (native).
   * Build-depend on libssh-dev (>=0.4.7).
-  * Update menu file in /debian folder (rename title to ,,X2go Client (Qt)'').
+  * Update menu file in /debian folder (rename title to ,,X2Go Client (Qt)'').
   * Do not run man2html from rules file anymore.
 
  -- Mike Gabriel <mike.gabriel@das-netzwerkteam.de>  Wed, 12 Oct 2011 11:11:50 +0200
@@ -121,7 +121,7 @@ x2goclient (3.01-18) unstable; urgency=low
 
 x2goclient (3.01-17) unstable; urgency=low
 
-  * Minimize X2go Client to system tray thank Joachim Langenbach <joachim@falaba.de> for patch
+  * Minimize X2Go Client to system tray thank Joachim Langenbach <joachim@falaba.de> for patch
 
  -- Oleksandr Shneyder <oleksandr.shneyder@obviously-nice.de>  Thu, 27 Jan 2011 12:32:29 +0100
 
