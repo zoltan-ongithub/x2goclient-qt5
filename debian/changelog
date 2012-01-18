@@ -1,3 +1,11 @@
+x2goclient (3.99.0.5-0~x2go1) UNRELEASED; urgency=low
+
+  [ Mike Gabriel ]
+  * New upstream version (3.99.0.5):
+    - Continue development...
+
+ -- Mike Gabriel <mike.gabriel@das-netzwerkteam.de>  Wed, 18 Jan 2012 15:18:16 +0100
+
 x2goclient (3.99.0.4-0~x2go1) unstable; urgency=low
 
   [ Oleksandr Shneyder ]
