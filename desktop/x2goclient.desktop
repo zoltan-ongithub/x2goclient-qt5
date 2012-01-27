@@ -1,6 +1,6 @@
 [Desktop Entry]
 Encoding=UTF-8
-Version=3.99.0.5
+Version=3.99.0.6
 Type=Application
 Name=X2Go Client
 Exec=/usr/bin/x2goclient
