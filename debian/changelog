@@ -1,4 +1,4 @@
-x2goclient (3.99.0.5-0~x2go1) UNRELEASED; urgency=low
+x2goclient (3.99.0.5-0~x2go1.1) UNRELEASED; urgency=low
 
   [ Mike Gabriel ]
   * New upstream version (3.99.0.5):
@@ -6,7 +6,10 @@ x2goclient (3.99.0.5-0~x2go1) UNRELEASED; urgency=low
     - Fix version string on man page.
 
 
- -- Mike Gabriel <mike.gabriel@das-netzwerkteam.de>  Wed, 18 Jan 2012 15:18:16 +0100
+  [ Oleksandr Shneyder ]
+  * Waiting for SshMasterConnection thread to be finished before deleting it (segfault by wrong authentication fix)
+
+ -- Oleksandr Shneyder <oleksandr.shneyder@treuchtlingen.de>  Fri, 27 Jan 2012 09:52:20 +0100
 
 x2goclient (3.99.0.4-0~x2go1) unstable; urgency=low
 

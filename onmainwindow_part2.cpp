@@ -26,7 +26,7 @@ void ONMainWindow::slotSshConnectionOk()
     passForm->setEnabled ( true );
     if ( useLdap )
     {
-	continueLDAPSession();
+        continueLDAPSession();
     }
     else
         continueNormalSession();
@@ -35,31 +35,31 @@ void ONMainWindow::slotSshConnectionOk()
 
 SshMasterConnection*  ONMainWindow::findServerSshConnection(QString host)
 {
-  for(int i=0;i<serverSshConnections.count();++i)
-  {
-    if(serverSshConnections[i])
+    for (int i=0;i<serverSshConnections.count();++i)
     {
-      if(serverSshConnections[i]->getHost()==host)
-	return serverSshConnections[i];
+        if (serverSshConnections[i])
+        {
+            if (serverSshConnections[i]->getHost()==host)
+                return serverSshConnections[i];
+        }
     }
-  }
-  return 0l;
+    return 0l;
 }
 
 void ONMainWindow::slotServSshConnectionOk(QString server)
 {
-        SshMasterConnection* con=findServerSshConnection(server);
-	if(!con)
-	  return;
-        SshProcess* lproc;
-        lproc=new SshProcess ( con,  this );
-        connect ( lproc,SIGNAL ( sshFinished ( bool,
-                                               QString,SshProcess* ) ),
-                  this,SLOT (
-                      slotListAllSessions ( bool,
-                                            QString,SshProcess* ) ) );
-	x2goDebug<<"getting sessions on "<<server<<endl;
-        lproc->startNormal ( "export HOSTNAME && x2golistsessions" );
+    SshMasterConnection* con=findServerSshConnection(server);
+    if (!con)
+        return;
+    SshProcess* lproc;
+    lproc=new SshProcess ( con,  this );
+    connect ( lproc,SIGNAL ( sshFinished ( bool,
+                                           QString,SshProcess* ) ),
+              this,SLOT (
+                  slotListAllSessions ( bool,
+                                        QString,SshProcess* ) ) );
+    x2goDebug<<"getting sessions on "<<server<<endl;
+    lproc->startNormal ( "export HOSTNAME && x2golistsessions" );
 }
 
 void ONMainWindow::slotSshServerAuthError ( int error, QString sshMessage )
@@ -80,6 +80,7 @@ void ONMainWindow::slotSshServerAuthError ( int error, QString sshMessage )
                tr ( "For security reasons, connection will be stopped" );
         if ( sshConnection )
         {
+            sshConnection->wait();
             delete sshConnection;
             sshConnection=0l;
         }
@@ -92,6 +93,7 @@ void ONMainWindow::slotSshServerAuthError ( int error, QString sshMessage )
                     "confuse your client into thinking the key does not exist" );
         if ( sshConnection )
         {
+            sshConnection->wait();
             delete sshConnection;
             sshConnection=0l;
         }
@@ -101,6 +103,7 @@ void ONMainWindow::slotSshServerAuthError ( int error, QString sshMessage )
     case SSH_SERVER_ERROR:
         if ( sshConnection )
         {
+            sshConnection->wait();
             delete sshConnection;
             sshConnection=0l;
         }
@@ -120,6 +123,7 @@ void ONMainWindow::slotSshServerAuthError ( int error, QString sshMessage )
     {
         if ( sshConnection )
         {
+            sshConnection->wait();
             delete sshConnection;
             sshConnection=0l;
         }
@@ -134,6 +138,7 @@ void ONMainWindow::slotSshUserAuthError ( QString error )
 {
     if ( sshConnection )
     {
+        sshConnection->wait();
         delete sshConnection;
         sshConnection=0l;
     }
@@ -168,14 +173,14 @@ void ONMainWindow::slotSessEnter()
         slotPassEnter();
         return;
     }
-    if(brokerMode)
+    if (brokerMode)
     {
-      if(!config.brokerAuthenticated)
-      {
-	x2goDebug<<"starting broker request";
-	slotStartBroker();
-	return;
-      }
+        if (!config.brokerAuthenticated)
+        {
+            x2goDebug<<"starting broker request";
+            slotStartBroker();
+            return;
+        }
     }
 
     resumingSession.sessionId=QString::null;
@@ -192,16 +197,16 @@ void ONMainWindow::slotSessEnter()
 void ONMainWindow::continueNormalSession()
 {
     x2goDebug<<"continue normal x2go session"<<endl;
-    if(brokerMode)
+    if (brokerMode)
     {
-      slotListSessions(true,QString::null,0);
-      return;
+        slotListSessions(true,QString::null,0);
+        return;
     }
     SshProcess* proc=new SshProcess ( sshConnection, this );
     connect ( proc,SIGNAL ( sshFinished ( bool,QString,SshProcess* ) ),
               this,SLOT ( slotListSessions ( bool, QString,
                                              SshProcess* ) ) );
-    if ( !shadowSession )      
+    if ( !shadowSession )
         proc->startNormal ( "export HOSTNAME && x2golistsessions" );
     else
         proc->startNormal ( "export HOSTNAME && x2golistdesktops" );
@@ -250,7 +255,7 @@ bool ONMainWindow::startSession ( const QString& sid )
         autologin=st.setting()->value ( sid+"/autologin",
                                         ( QVariant ) false ).toBool();
         krblogin=st.setting()->value ( sid+"/krblogin",
-                                        ( QVariant ) false ).toBool();
+                                       ( QVariant ) false ).toBool();
         if ( cmd=="SHADOW" )
             shadowSession=true;
     }
@@ -260,22 +265,22 @@ bool ONMainWindow::startSession ( const QString& sid )
         sshPort=config.sshport;
         selectedCommand=config.command;
     }
-    if(!brokerMode)
-       passwd=getCurrentPass();
+    if (!brokerMode)
+        passwd=getCurrentPass();
     else
     {
-      currentKey=config.key;
-      host=config.server;
-      X2goSettings st ( config.iniFile, QSettings::IniFormat );
-      passForm->setEnabled ( false );
-      user=st.setting()->value ( sid+"/user",
+        currentKey=config.key;
+        host=config.server;
+        X2goSettings st ( config.iniFile, QSettings::IniFormat );
+        passForm->setEnabled ( false );
+        user=st.setting()->value ( sid+"/user",
                                    ( QVariant ) QString::null ).toString();
-      login->setText(user);
-      sshPort=st.setting()->value ( sid+"/sshport",
-                                   ( QVariant ) "22" ).toString();
+        login->setText(user);
+        sshPort=st.setting()->value ( sid+"/sshport",
+                                      ( QVariant ) "22" ).toString();
     }
-    if(sshConnection)
-      sshConnection->disconnectSession();
+    if (sshConnection)
+        sshConnection->disconnectSession();
     sshConnection=startSshConnection ( host,sshPort,acceptRsa,user,passwd,autologin, krblogin );
     return true;
 }
@@ -480,70 +485,70 @@ void ONMainWindow::startNewSession()
             return;
         }
         sshConnection=findServerSshConnection(host);
-	if(!sshConnection)
+        if (!sshConnection)
         {
             QMessageBox::critical ( 0l,tr ( "Error" ),
                                     tr ( "Server not availabel" ),
                                     QMessageBox::Ok,
                                     QMessageBox::NoButton );
             return;
-        }	
+        }
     }
     else
     {
         X2goSettings* st;
-	
-	if(!brokerMode)
-	  st=new X2goSettings( "sessions" );
-	else
-	  st= new X2goSettings(config.iniFile,QSettings::IniFormat);
-        
-	QString sid;
+
+        if (!brokerMode)
+            st=new X2goSettings( "sessions" );
+        else
+            st= new X2goSettings(config.iniFile,QSettings::IniFormat);
+
+        QString sid;
         if ( !embedMode )
             sid=lastSession->id();
         else
             sid="embedded";
         pack=st->setting()->value ( sid+"/pack",
-                                   ( QVariant ) defaultPack ).toString();
+                                    ( QVariant ) defaultPack ).toString();
         fullscreen=st->setting()->value ( sid+"/fullscreen",
-                                         ( QVariant )
-                                         defaultFullscreen ).toBool();
+                                          ( QVariant )
+                                          defaultFullscreen ).toBool();
         height=st->setting()->value ( sid+"/height",
-                                     ( QVariant ) defaultHeight ).toInt();
+                                      ( QVariant ) defaultHeight ).toInt();
         width=st->setting()->value ( sid+"/width",
-                                    ( QVariant ) defaultWidth ).toInt();
+                                     ( QVariant ) defaultWidth ).toInt();
         setDPI=st->setting()->value ( sid+"/setdpi",
-                                     ( QVariant ) defaultSetDPI ).toBool();
+                                      ( QVariant ) defaultSetDPI ).toBool();
         dpi=st->setting()->value ( sid+"/dpi",
-                                  ( QVariant ) defaultDPI ).toUInt();
+                                   ( QVariant ) defaultDPI ).toUInt();
         quality=st->setting()->value (
                     sid+"/quality",
                     ( QVariant ) defaultQuality ).toInt();
         speed=st->setting()->value ( sid+"/speed",
-                                    ( QVariant ) defaultLink ).toInt();
+                                     ( QVariant ) defaultLink ).toInt();
 
         usekbd=st->setting()->value ( sid+"/usekbd",
-                                     ( QVariant ) defaultSetKbd ).toBool();
+                                      ( QVariant ) defaultSetKbd ).toBool();
         layout=st->setting()->value ( sid+"/layout",
-                                     ( QVariant )
-                                     defaultLayout[0] ).toString();
+                                      ( QVariant )
+                                      defaultLayout[0] ).toString();
         type=st->setting()->value ( sid+"/type",
-                                   ( QVariant )
-                                   defaultKbdType ).toString();
+                                    ( QVariant )
+                                    defaultKbdType ).toString();
         if ( !embedMode )
         {
             command=st->setting()->value ( sid+"/command",
-                                          ( QVariant ) defaultCmd ).toString();
+                                           ( QVariant ) defaultCmd ).toString();
             host=st->setting()->value (
                      sid+"/host",
                      ( QVariant )
                      ( QString ) "localhost" ).toString();
 
             rootless=st->setting()->value ( sid+"/rootless",
-                                           ( QVariant ) false ).toBool();
+                                            ( QVariant ) false ).toBool();
             xdmcpServer=st->setting()->value ( sid+"/xdmcpserver",
-                                              ( QVariant )
-                                              "localhost" ).toString();
+                                               ( QVariant )
+                                               "localhost" ).toString();
         }
         else
         {
@@ -552,7 +557,7 @@ void ONMainWindow::startNewSession()
             host=config.server;
             startEmbedded=false;
             if ( st->setting()->value ( sid+"/startembed",
-                                       ( QVariant ) true ).toBool() )
+                                        ( QVariant ) true ).toBool() )
             {
                 startEmbedded=true;
                 fullscreen=false;
@@ -599,9 +604,9 @@ void ONMainWindow::startNewSession()
     }
 
     resumingSession.server=host;
-    
-    if(defaultLayout.size()>0)
-	  layout=cbLayout->currentText();
+
+    if (defaultLayout.size()>0)
+        layout=cbLayout->currentText();
 
 
     QString geometry;
@@ -612,14 +617,14 @@ void ONMainWindow::startNewSession()
     proxyWinHeight=height;
 //#ifdef CFGCLIENT
     xorgMode=WIN;
-    if(fullscreen)
-      xorgMode=FS;
-    if(rootless)
-      xorgMode=SAPP;
+    if (fullscreen)
+        xorgMode=FS;
+    if (rootless)
+        xorgMode=SAPP;
     xorgWidth=QString::number(width);
     xorgHeight=QString::number(height);
-    if(! startXorgOnStart)
-      startXOrg();
+    if (! startXorgOnStart)
+        startXOrg();
 //#endif
 #endif
     if ( fullscreen )
@@ -779,7 +784,7 @@ void ONMainWindow::resumeSession ( const x2goSession& s )
         layout=defaultLayout[0];
         type=defaultKbdType;
         sshConnection=findServerSshConnection(host);
-	if(!sshConnection)
+        if (!sshConnection)
         {
             QMessageBox::critical ( 0l,tr ( "Error" ),
                                     tr ( "Server not availabel" ),
@@ -797,47 +802,47 @@ void ONMainWindow::resumeSession ( const x2goSession& s )
         else
             sid="embedded";
         X2goSettings* st;
-	if(!brokerMode)
-	  st=new X2goSettings( "sessions" );
-	else
-	  st=new X2goSettings(config.iniFile,QSettings::IniFormat);
+        if (!brokerMode)
+            st=new X2goSettings( "sessions" );
+        else
+            st=new X2goSettings(config.iniFile,QSettings::IniFormat);
 
         pack=st->setting()->value ( sid+"/pack",
-                                   ( QVariant ) defaultPack ).toString();
+                                    ( QVariant ) defaultPack ).toString();
 
         fullscreen=st->setting()->value ( sid+"/fullscreen",
-                                         ( QVariant )
-                                         defaultFullscreen ).toBool();
+                                          ( QVariant )
+                                          defaultFullscreen ).toBool();
         height=st->setting()->value ( sid+"/height",
-                                     ( QVariant ) defaultHeight ).toInt();
+                                      ( QVariant ) defaultHeight ).toInt();
         width=st->setting()->value ( sid+"/width",
-                                    ( QVariant ) defaultWidth ).toInt();
+                                     ( QVariant ) defaultWidth ).toInt();
         quality=st->setting()->value ( sid+"/quality",
-                                      ( QVariant )
-                                      defaultQuality ).toInt();
+                                       ( QVariant )
+                                       defaultQuality ).toInt();
         speed=st->setting()->value ( sid+"/speed",
-                                    ( QVariant ) defaultLink ).toInt();
+                                     ( QVariant ) defaultLink ).toInt();
         usekbd=st->setting()->value ( sid+"/usekbd",
-                                     ( QVariant ) defaultSetKbd ).toBool();
+                                      ( QVariant ) defaultSetKbd ).toBool();
         layout=st->setting()->value ( sid+"/layout",
-                                     ( QVariant )
-                                     defaultLayout[0] ).toString();
+                                      ( QVariant )
+                                      defaultLayout[0] ).toString();
         type=st->setting()->value ( sid+"/type",
-                                   ( QVariant )
-                                   defaultKbdType ).toString();
+                                    ( QVariant )
+                                    defaultKbdType ).toString();
         rootless=st->setting()->value ( sid+"/rootless",
-                                     ( QVariant ) false ).toBool();
+                                        ( QVariant ) false ).toBool();
 
         if ( !embedMode )
         {
             host=st->setting()->value ( sid+"/host",
-                                       ( QVariant ) s.server ).toString();
+                                        ( QVariant ) s.server ).toString();
         }
         else
         {
             startEmbedded=false;
             if ( st->setting()->value ( sid+"/startembed",
-                                       ( QVariant ) true ).toBool() )
+                                        ( QVariant ) true ).toBool() )
             {
                 fullscreen=false;
                 startEmbedded=true;
@@ -866,9 +871,9 @@ void ONMainWindow::resumeSession ( const x2goSession& s )
         }
         delete st;
     }
-    
-    if(defaultLayout.size()>0)
-	layout=cbLayout->currentText();
+
+    if (defaultLayout.size()>0)
+        layout=cbLayout->currentText();
 
     QString geometry;
 #ifdef Q_OS_WIN
@@ -877,16 +882,16 @@ void ONMainWindow::resumeSession ( const x2goSession& s )
     proxyWinHeight=height;
 // #ifdef CFGCLIENT
     xorgMode=WIN;
-    if(fullscreen)
-      xorgMode=FS;
-    if(rootless)
-      xorgMode=SAPP;
+    if (fullscreen)
+        xorgMode=FS;
+    if (rootless)
+        xorgMode=SAPP;
     xorgWidth=QString::number(width);
     xorgHeight=QString::number(height);
-    if(! startXorgOnStart)
-      startXOrg();
+    if (! startXorgOnStart)
+        startXOrg();
 // #endif
-    
+
 #endif
     if ( fullscreen )
     {
@@ -1229,18 +1234,18 @@ void ONMainWindow::slotSuspendSess()
     }
     else
     {
-      sshConnection=findServerSshConnection(host);
-      if(!sshConnection)
-      {
+        sshConnection=findServerSshConnection(host);
+        if (!sshConnection)
+        {
             QMessageBox::critical ( 0l,tr ( "Error" ),
                                     tr ( "Server not availabel" ),
                                     QMessageBox::Ok,
                                     QMessageBox::NoButton );
             return;
-      }
+        }
     }
 
-     
+
     suspendSession ( sessId );
 }
 
@@ -1338,18 +1343,18 @@ void ONMainWindow::slotTermSess()
     }
     else
     {
-      QString host=sessTv->model()->index ( sessTv->currentIndex().row(),
-                                            S_SERVER ).data().toString();
-					    
-      sshConnection=findServerSshConnection(host);
-      if(!sshConnection)
-      {
+        QString host=sessTv->model()->index ( sessTv->currentIndex().row(),
+                                              S_SERVER ).data().toString();
+
+        sshConnection=findServerSshConnection(host);
+        if (!sshConnection)
+        {
             QMessageBox::critical ( 0l,tr ( "Error" ),
                                     tr ( "Server not availabel" ),
                                     QMessageBox::Ok,
                                     QMessageBox::NoButton );
             return;
-      }
+        }
     }
 
     termSession ( sessId );
@@ -2023,17 +2028,17 @@ void ONMainWindow::slotProxyFinished ( int,QProcess::ExitStatus )
     else
         proxyWinTimer->stop();
 // #ifdef CFGCLIENT
-    if(! startXorgOnStart)
+    if (! startXorgOnStart)
     {
-      if(xorg)
-      {
-	if(xorg->state() ==QProcess::Running)
-	{
-	  xorg->terminate();
-	  delete xorg;
-	  xorg=0;
-	}
-      }
+        if (xorg)
+        {
+            if (xorg->state() ==QProcess::Running)
+            {
+                xorg->terminate();
+                delete xorg;
+                xorg=0;
+            }
+        }
     }
 // #endif
 #endif
@@ -2116,16 +2121,16 @@ void ONMainWindow::slotProxyFinished ( int,QProcess::ExitStatus )
     {
         if ( !embedMode )
         {
-	  if(!brokerMode)
-	  {
-            pass->setText ( "" );
-            QTimer::singleShot ( 2000,this,
-                                 SLOT ( slotShowPassForm() ) );
-	  }
-	  else
-	                QTimer::singleShot ( 2000,broker,
-                                 SLOT ( getUserSessions() ) );
-	    
+            if (!brokerMode)
+            {
+                pass->setText ( "" );
+                QTimer::singleShot ( 2000,this,
+                                     SLOT ( slotShowPassForm() ) );
+            }
+            else
+                QTimer::singleShot ( 2000,broker,
+                                     SLOT ( getUserSessions() ) );
+
         }
     }
     else
@@ -2169,10 +2174,10 @@ void ONMainWindow::slotProxyStderr()
 #ifndef CFGPLUGIN
         if (trayEnabled)
         {
-	       if(!useLdap)
-	          trayIconActiveConnectionMenu->setTitle(lastSession->name());
-	       else
-		  trayIconActiveConnectionMenu->setTitle(lastUser->username());
+            if (!useLdap)
+                trayIconActiveConnectionMenu->setTitle(lastSession->name());
+            else
+                trayIconActiveConnectionMenu->setTitle(lastUser->username());
             trayIconActiveConnectionMenu->setEnabled(true);
             if (trayMinCon && !trayAutoHidden)
             {
