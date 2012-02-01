@@ -1553,7 +1553,28 @@ void ONMainWindow::slotRetResumeSess ( bool result,
         }
     }
     else
+    {
         host=resumingSession.server;
+        QStringList outputLines=output.split("\n",QString::SkipEmptyParts);
+        foreach(QString line,outputLines)
+        {
+            if (line.indexOf("gr_port=")!=-1)
+            {
+                resumingSession.grPort=line.replace("gr_port=","");
+                x2goDebug<<"new gr_port: "<<resumingSession.grPort<<endl;
+            }
+            if (line.indexOf("sound_port=")!=-1)
+            {
+                resumingSession.sndPort=line.replace("sound_port=","");
+                x2goDebug<<"new sound_port: "<<resumingSession.sndPort<<endl;
+            }
+            if (line.indexOf("fs_port=")!=-1)
+            {
+                resumingSession.fsPort=line.replace("fs_port=","");
+                x2goDebug<<"new fs_port: "<<resumingSession.fsPort<<endl;
+            }
+        }
+    }
     if ( !useLdap )
     {
         if ( !embedMode )
