@@ -1,17 +1,13 @@
-x2goclient (3.99.0.6-0~x2go1) UNRELEASED; urgency=low
-
-  [ Mike Gabriel ]
-  * New upstream version (3.99.0.5):
-    - Continue development...
+x2goclient (3.99.0.6-0~x2go1) unstable; urgency=low
 
   [ Oleksandr Shneyder ]
-  * New upstream version (3.99.0.5):
+  * New upstream version (3.99.0.6):
     - Update copyright section in ssmasterconnection.h/cpp and
       sshprocess.h/cpp.
     - Traditional Chinese(zh_TW) translation for x2goclient from
       Liu Arlo <arlo.liu@atrustcorp.com>.
 
- -- Oleksandr Shneyder <oleksandr.shneyder@treuchtlingen.de>  Mon, 30 Jan 2012 10:31:18 +0100
+ -- Mike Gabriel <mike.gabriel@das-netzwerkteam.de>  Wed, 01 Feb 2012 13:52:40 +0100
 
 x2goclient (3.99.0.5-0~x2go1) unstable; urgency=low
 
