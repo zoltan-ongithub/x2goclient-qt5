@@ -2601,6 +2601,7 @@ void ONMainWindow::slotSshConnectionError ( QString message, QString lastSession
 {
     if ( sshConnection )
     {
+        sshConnection->wait();
         delete sshConnection;
         sshConnection=0l;
     }
