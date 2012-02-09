@@ -1,12 +1,13 @@
 x2goclient (3.99.1.0-0~x2go1) UNRELEASED; urgency=low
 
   [ Mike Gabriel ]
-  * New upstream version (3.99.0.6):
+  * New upstream version (3.99.1.0):
     - Update German translation file (thanks to Stefan Baur).
 
   [ Oleksandr Shneyder ]
-  * Get new ports from x2goresume-session if reserved ports are busy
-  * Fixed segmentation fault by failed SSH connection to X2Go server
+  * New upstream version (3.99.1.0):
+    - Get new ports from x2goresume-session if reserved ports are busy
+    - Fix segmentation fault by failed SSH connection to X2Go server
 
  -- Mike Gabriel <mike.gabriel@das-netzwerkteam.de>  Wed, 01 Feb 2012 14:07:55 +0100
 
