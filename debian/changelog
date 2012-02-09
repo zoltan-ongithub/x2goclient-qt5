@@ -1,7 +1,8 @@
 x2goclient (3.99.1.0-0~x2go1) UNRELEASED; urgency=low
 
   [ Mike Gabriel ]
-  * Continue development...
+  * New upstream version (3.99.0.6):
+    - Update German translation file (thanks to Stefan Baur).
 
   [ Oleksandr Shneyder ]
   * Get new ports from x2goresume-session if reserved ports are busy

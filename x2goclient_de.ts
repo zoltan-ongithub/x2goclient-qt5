@@ -240,7 +240,7 @@
     </message>
     <message>
         <source>Clientside SSH Port For File System Export Usage:</source>
-        <translation type="obsolete">SSH Port für die Dateisystemfreigabe auf Clientseite:</translation>
+        <translation type="obsolete">SSH-Port für die Dateisystemfreigabe auf Clientseite:</translation>
     </message>
     <message>
         <source>LDAP settings</source>
@@ -280,7 +280,7 @@
     <message>
         <location filename="configdialog.cpp" line="250"/>
         <source>Clientside SSH port for file system export usage:</source>
-        <translation>SSH Port für die Dateisystemfreigabe auf Clientseite:</translation>
+        <translation>SSH-Port für die Dateisystemfreigabe auf Clientseite:</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="50"/>
@@ -501,7 +501,7 @@
     </message>
     <message>
         <source>Use RSA/DSA key for ssh connection:</source>
-        <translation type="obsolete">RSA/DSA Schlüssel verwenden (ssh):</translation>
+        <translation type="obsolete">RSA-/DSA-Schlüssel verwenden (ssh):</translation>
     </message>
     <message>
         <source>&amp;Desktop Session</source>
@@ -641,7 +641,7 @@
     </message>
     <message>
         <source>SSH Port:</source>
-        <translation type="obsolete">SSH Port:</translation>
+        <translation type="obsolete">SSH-Port:</translation>
     </message>
     <message>
         <source>Path to executable</source>
@@ -666,7 +666,7 @@
     </message>
     <message>
         <source>SSH port:</source>
-        <translation type="obsolete">SSH Port:</translation>
+        <translation type="obsolete">SSH-Port:</translation>
     </message>
     <message>
         <source>&amp;Session type</source>
@@ -727,7 +727,7 @@
     <message>
         <source>Use SSH port forwarding to tunnel
 sound system connections through firewalls</source>
-        <translation type="obsolete">Benutze Port Weiterleitung über Tunnel
+        <translation type="obsolete">Benutze Port-Weiterleitung über Tunnel
  um Audiosignale über Firewalls zu verbinden</translation>
     </message>
     <message>
@@ -740,7 +740,7 @@ sound system connections through firewalls</source>
     </message>
     <message>
         <source>Use ssh port forwarding to tunnel file system connections through firewalls</source>
-        <translation type="obsolete">Benutze SSH Port Weiterleitung über Tunnel um Dateisysteme über Firewalls zu verbinden</translation>
+        <translation type="obsolete">Benutze SSH-Port-Weiterleitung über Tunnel um Dateisysteme über Firewalls zu verbinden</translation>
     </message>
     <message>
         <source>New session</source>
@@ -1035,7 +1035,7 @@ sound system connections through firewalls</source>
     </message>
     <message>
         <source>About X2GO Client</source>
-        <translation type="obsolete">Über X2GO Client</translation>
+        <translation type="obsolete">Über X2GoClient</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="698"/>
@@ -1374,7 +1374,7 @@ sound system connections through firewalls</source>
     </message>
     <message>
         <source>no X2Go Server found in LDAP </source>
-        <translation type="obsolete">LDAP enthält keinen X2Go Server </translation>
+        <translation type="obsolete">LDAP enthält keinen X2GoServer </translation>
     </message>
     <message>
         <source>Are you sure you want to delete this Session?</source>
@@ -1465,7 +1465,7 @@ sound system connections through firewalls</source>
     </message>
     <message>
         <source>&lt;b&gt;X2Go Client V. 2.0.1&lt;/b&gt;&lt;br&gt; (C. 2006-2007 Oleksandr Shneyder, Heinz-Markus Graesing)&lt;br&gt;&lt;br&gt;Client for use with the X2Go network based computing environment. This Client will be able to connect to X2Go server(s) and start, stop, resume and terminate (running) desktop sessions. X2Go Client stores different server connections and may automatically request authentification data from LDAP directories. Furthermore it can be used as fullscreen loginscreen (replacement for loginmanager like xdm). Please visit x2go.org for further information.</source>
-        <translation type="obsolete">&lt;b&gt;X2Go Client V. 2.0.1&lt;/b&gt;&lt;br&gt; (C. 2006-2007 Oleksandr Shneyder, Heinz-Markus Graesing)&lt;br&gt;&lt;br&gt;Ein Client für den Zugriff auf die serverbasierende Anwendungsumgebung X2Go. Mit Hilfe dieser Anwendung können Sie Sitzungen eines X2Go Servers starten, stoppen, laufende Sitzungen fortführen oder anhalten und verschiedene Sitzungskonfigurationen verwalten. Die Authentifizierung kann über LDAP erfolgen und das Programm kann im Vollbildmodus (als Ersatz für XDM) gestartet werden. Weitere Informationen erhalten SIe auf x2go.org.</translation>
+        <translation type="obsolete">&lt;b&gt;X2GoClient V. 2.0.1&lt;/b&gt;&lt;br&gt; (C. 2006-2007 Oleksandr Shneyder, Heinz-Markus Graesing)&lt;br&gt;&lt;br&gt;Ein Client für den Zugriff auf die serverbasierende Anwendungsumgebung X2Go. Mit Hilfe dieser Anwendung können Sie Sitzungen eines X2GoServers starten, stoppen, laufende Sitzungen fortführen oder anhalten und verschiedene Sitzungskonfigurationen verwalten. Die Authentifizierung kann über LDAP erfolgen und das Programm kann im Vollbildmodus (als Ersatz für XDM) gestartet werden. Weitere Informationen erhalten Sie auf x2go.org.</translation>
     </message>
     <message>
         <location filename="onmainwindow_part2.cpp" line="1406"/>
@@ -1518,7 +1518,7 @@ sound system connections through firewalls</source>
     </message>
     <message>
         <source>This card is unknown by X2Go System</source>
-        <translation type="obsolete">Diese Karte ist dem X2Go System unbekannt</translation>
+        <translation type="obsolete">Diese Karte ist dem X2Go-System unbekannt</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="325"/>
@@ -1593,15 +1593,15 @@ Please check your settings</source>
     </message>
     <message>
         <source>&lt;b&gt;X2Go Client V. </source>
-        <translation type="obsolete">&lt;b&gt;X2Go Client V. </translation>
+        <translation type="obsolete">&lt;b&gt;X2GoClient V. </translation>
     </message>
     <message>
         <source>&lt;/b&gt;&lt;br&gt; (C. 2006-2007 Oleksandr Shneyder, Heinz-Markus Graesing)&lt;br&gt;&lt;br&gt;Client for use with the X2Go network based computing environment. This Client will be able to connect to X2Go server(s) and start, stop, resume and terminate (running) desktop sessions. X2Go Client stores different server connections and may automatically request authentification data from LDAP directories. Furthermore it can be used as fullscreen loginscreen (replacement for loginmanager like xdm). Please visit x2go.org for further information.</source>
-        <translation type="obsolete">&lt;/b&gt;&lt;br&gt; (C. 2006-2007 Oleksandr Shneyder, Heinz-Markus Graesing)&lt;br&gt;&lt;br&gt;Ein Client für den Zugriff auf die serverbasierende Anwendungsumgebung X2Go. Mit Hilfe dieser Anwendung können Sie Sitzungen eines X2Go Servers starten, stoppen, laufende Sitzungen fortführen oder anhalten und verschiedene Sitzungskonfigurationen verwalten. Die Authentifizierung kann über LDAP erfolgen und das Programm kann im Vollbildmodus (als Ersatz für XDM) gestartet werden. Weitere Informationen erhalten SIe auf x2go.org.</translation>
+        <translation type="obsolete">&lt;/b&gt;&lt;br&gt; (C. 2006-2007 Oleksandr Shneyder, Heinz-Markus Graesing)&lt;br&gt;&lt;br&gt;Ein Client für den Zugriff auf die serverbasierende Anwendungsumgebung X2Go. Mit Hilfe dieser Anwendung können Sie Sitzungen eines X2GoServers starten, stoppen, laufende Sitzungen fortführen oder anhalten und verschiedene Sitzungskonfigurationen verwalten. Die Authentifizierung kann über LDAP erfolgen und das Programm kann im Vollbildmodus (als Ersatz für XDM) gestartet werden. Weitere Informationen erhalten SIe auf x2go.org.</translation>
     </message>
     <message>
         <source>&lt;/b&gt;&lt;br&gt; (C. 2006-2008 &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing)&lt;br&gt;&lt;br&gt;Client for use with the X2Go network based computing environment. This Client will be able to connect to X2Go server(s) and start, stop, resume and terminate (running) desktop sessions. X2Go Client stores different server connections and may automatically request authentification data from LDAP directories. Furthermore it can be used as fullscreen loginscreen (replacement for loginmanager like xdm). Please visit x2go.org for further information.</source>
-        <translation type="obsolete">&lt;/b&gt;&lt;br&gt; (C. 2006-2008 &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing)&lt;br&gt;&lt;br&gt;Ein Client für den Zugriff auf die serverbasierende Anwendungsumgebung X2Go. Mit Hilfe dieser Anwendung können Sie Sitzungen eines X2Go Servers starten, stoppen, laufende Sitzungen fortführen oder anhalten und verschiedene Sitzungskonfigurationen verwalten. Die Authentifizierung kann über LDAP erfolgen und das Programm kann im Vollbildmodus (als Ersatz für XDM) gestartet werden. Weitere Informationen erhalten SIe auf x2go.org.</translation>
+        <translation type="obsolete">&lt;/b&gt;&lt;br&gt; (C. 2006-2008 &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing)&lt;br&gt;&lt;br&gt;Ein Client für den Zugriff auf die serverbasierende Anwendungsumgebung X2Go. Mit Hilfe dieser Anwendung können Sie Sitzungen eines X2GoServers starten, stoppen, laufende Sitzungen fortführen oder anhalten und verschiedene Sitzungskonfigurationen verwalten. Die Authentifizierung kann über LDAP erfolgen und das Programm kann im Vollbildmodus (als Ersatz für XDM) gestartet werden. Weitere Informationen erhalten SIe auf x2go.org.</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="152"/>
@@ -1687,7 +1687,7 @@ Please check your settings</source>
         <location filename="onmainwindow.cpp" line="336"/>
         <location filename="onmainwindow_part3.cpp" line="1536"/>
         <source>About X2GO client</source>
-        <translation>Über X2GO Client</translation>
+        <translation>Über X2GoClient</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="1472"/>
@@ -1699,7 +1699,7 @@ Please check your settings</source>
     <message>
         <location filename="onmainwindow.cpp" line="1506"/>
         <source>no X2Go server found in LDAP </source>
-        <translation>LDAP enthält keinen X2Go Server </translation>
+        <translation>LDAP enthält keinen X2GoServer </translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="2065"/>
@@ -1822,12 +1822,12 @@ Public key hash: </source>
     <message>
         <location filename="onmainwindow_part3.cpp" line="1537"/>
         <source>&lt;b&gt;X2Go client V. </source>
-        <translation>&lt;b&gt;X2Go Client V. </translation>
+        <translation>&lt;b&gt;X2GoClient V. </translation>
     </message>
     <message>
         <location filename="onmainwindow_part3.cpp" line="1860"/>
         <source>This card is unknown by X2Go system</source>
-        <translation>Diese Karte ist dem X2Go System unbekannt</translation>
+        <translation>Diese Karte ist dem X2Go-System unbekannt</translation>
     </message>
     <message>
         <location filename="onmainwindow_part3.cpp" line="2289"/>
@@ -1869,13 +1869,13 @@ Bitte installieren sie eine neuere Version von x2goserver</translation>
     <message>
         <location filename="onmainwindow.cpp" line="920"/>
         <source>Restore</source>
-        <translation>Wiederhestellen</translation>
+        <translation>Wiederherstellen</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="951"/>
         <source>Left mouse button to hide/restore - Right mouse button to display context menu</source>
         <oldsource>Left click to open the X2GoClient window or right click to get the context menu.</oldsource>
-        <translation>Linke Mousetaste: verstecken/wiederherstellen  -  rechte Mousetaste: Kontextmenü</translation>
+        <translation>Linke Maustaste: verstecken/wiederherstellen  -  rechte Maustaste: Kontextmenü</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="1805"/>
@@ -1887,9 +1887,9 @@ Bitte installieren sie eine neuere Version von x2goserver</translation>
         <source>Desktop icons can be configured not to show x2goclient (hidden mode). If you like to use this feature you&apos;ll need to configure login by a gpg key or gpg smart card.
 
 Use x2goclient hidden mode?</source>
-        <translation>Der Aufruf über Desktopsymbole kann erfolgen, ohne das x2goclient sichtbar wird (versteckter Modus). Diesen Modus können Sie nutzen, wenn Sie den Loginvorgang über einen GPG Schlüssel oder eine GPG Smartcard konfiguriert haben.
+        <translation>Der Aufruf über Desktopsymbole kann erfolgen, ohne dass der X2GoClient sichtbar wird (versteckter Modus). Diesen Modus können Sie nutzen, wenn Sie den Loginvorgang über einen GPG-Schlüssel oder eine GPG-Smartcard konfiguriert haben.
 
-Wollen SIe den versteckten Modus nutzen?</translation>
+Wollen Sie den versteckten Modus nutzen?</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="1817"/>
@@ -1936,7 +1936,7 @@ Unsaved documents will be lost</source>
     </message>
     <message>
         <source>&lt;/b&gt;&lt;br&gt; (C. 2006-2010 &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing)&lt;br&gt;&lt;br&gt;Client for use with the X2Go network based computing environment. This Client will be able to connect to X2Go server(s) and start, stop, resume and terminate (running) desktop sessions. X2Go Client stores different server connections and may automatically request authentification data from LDAP directories. Furthermore it can be used as fullscreen loginscreen (replacement for loginmanager like xdm). Please visit x2go.org for further information.</source>
-        <translation type="obsolete">&lt;/b&gt;&lt;br&gt; (C. 2006-2009 &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing)&lt;br&gt;&lt;br&gt;Ein Client für den Zugriff auf die serverbasierende Anwendungsumgebung X2Go. Mit Hilfe dieser Anwendung können Sie Sitzungen eines X2Go Servers starten, stoppen, laufende Sitzungen fortführen oder anhalten und verschiedene Sitzungskonfigurationen verwalten. Die Authentifizierung kann über LDAP erfolgen und das Programm kann im Vollbildmodus (als Ersatz für XDM) gestartet werden. Weitere Informationen erhalten SIe auf x2go.org. </translation>
+        <translation type="obsolete">&lt;/b&gt;&lt;br&gt; (C. 2006-2009 &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing)&lt;br&gt;&lt;br&gt;Ein Client für den Zugriff auf die serverbasierende Anwendungsumgebung X2Go. Mit Hilfe dieser Anwendung können Sie Sitzungen eines X2GoServers starten, stoppen, laufende Sitzungen fortführen oder anhalten und verschiedene Sitzungskonfigurationen verwalten. Die Authentifizierung kann über LDAP erfolgen und das Programm kann im Vollbildmodus (als Ersatz für XDM) gestartet werden. Weitere Informationen erhalten SIe auf x2go.org. </translation>
     </message>
     <message>
         <location filename="onmainwindow_part3.cpp" line="2101"/>
@@ -1950,7 +1950,7 @@ Bitte überprüfen Sie Ihre Installation</translation>
     <message>
         <location filename="onmainwindow_part4.cpp" line="1118"/>
         <source>X2Go Session</source>
-        <translation>X2Go Sitzung</translation>
+        <translation>X2Go-Sitzung</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="491"/>
@@ -2051,7 +2051,7 @@ Sie können SSHD über folgenden Befehl installieren:
     <message>
         <location filename="onmainwindow_part3.cpp" line="1524"/>
         <source>&lt;br&gt;Client for use with the X2Go network based computing environment. This Client will be able to connect to X2Go server(s) and start, stop, resume and terminate (running) desktop sessions. X2Go Client stores different server connections and may automatically request authentification data from LDAP directories. Furthermore it can be used as fullscreen loginscreen (replacement for loginmanager like xdm). Please visit x2go.org for further information.</source>
-        <translation>&lt;br&gt;Ein Client für den Zugriff auf die serverbasierende Anwendungsumgebung X2Go. Mit Hilfe dieser Anwendung können Sie Sitzungen eines X2Go Servers starten, stoppen, laufende Sitzungen fortführen oder anhalten und verschiedene Sitzungskonfigurationen verwalten. Die Authentifizierung kann über LDAP erfolgen und das Programm kann im Vollbildmodus (als Ersatz für XDM) gestartet werden. Weitere Informationen erhalten SIe auf x2go.org. </translation>
+        <translation>&lt;br&gt;Ein Client für den Zugriff auf die serverbasierende Anwendungsumgebung X2Go. Mit Hilfe dieser Anwendung können Sie Sitzungen eines X2GoServers starten, stoppen, laufende Sitzungen fortführen oder anhalten und verschiedene Sitzungskonfigurationen verwalten. Die Authentifizierung kann über LDAP erfolgen und das Programm kann im Vollbildmodus (als Ersatz für XDM) gestartet werden. Weitere Informationen erhalten SIe auf x2go.org. </translation>
     </message>
     <message>
         <location filename="onmainwindow_part4.cpp" line="141"/>
@@ -2070,7 +2070,7 @@ Sie können SSHD über folgenden Befehl installieren:
     </message>
     <message>
         <source>application/x2go:x2go:Configuration File for X2Go Session</source>
-        <translation type="obsolete">application/x2go:x2go:Konfiguration Datei für eine X2Go Sitzung</translation>
+        <translation type="obsolete">application/x2go:x2go:Konfigurationsdatei für eine X2Go-Sitzung</translation>
     </message>
 </context>
 <context>
@@ -2093,7 +2093,7 @@ Sie können SSHD über folgenden Befehl installieren:
     <message>
         <location filename="printdialog.ui" line="16"/>
         <source>Print - X2Go client</source>
-        <translation>Drucken - X2Go Client</translation>
+        <translation>Drucken - X2GoClient</translation>
     </message>
 </context>
 <context>
@@ -2488,12 +2488,12 @@ Beispiel:
     <message>
         <location filename="sessionwidget.cpp" line="89"/>
         <source>SSH port:</source>
-        <translation>SSH Port:</translation>
+        <translation>SSH-Port:</translation>
     </message>
     <message>
         <location filename="sessionwidget.cpp" line="101"/>
         <source>Use RSA/DSA key for ssh connection:</source>
-        <translation>RSA/DSA Schlüssel verwenden (ssh):</translation>
+        <translation>RSA-/DSA-Schlüssel verwenden (ssh):</translation>
     </message>
     <message>
         <location filename="sessionwidget.cpp" line="107"/>
@@ -2646,7 +2646,7 @@ Beispiel:
     <message>
         <location filename="settingswidget.cpp" line="61"/>
         <source>Set display DPI</source>
-        <translation>DPI Auflösung festlegen</translation>
+        <translation>Auflösung festlegen (DPI)</translation>
     </message>
     <message>
         <location filename="settingswidget.cpp" line="79"/>
@@ -2692,7 +2692,7 @@ Beispiel:
         <location filename="settingswidget.cpp" line="137"/>
         <source>Use SSH port forwarding to tunnel
 sound system connections through firewalls</source>
-        <translation>Benutze Port Weiterleitung über Tunnel
+        <translation>Benutze Port-Weiterleitung über Tunnel
  um Audiosignale über Firewalls zu verbinden</translation>
     </message>
     <message>
@@ -2757,7 +2757,7 @@ sound system connections through firewalls</source>
     <message>
         <location filename="sharewidget.cpp" line="95"/>
         <source>Use ssh port forwarding to tunnel file system connections through firewalls</source>
-        <translation>Benutze SSH Port Weiterleitung über Tunnel um Dateisysteme über Firewalls zu verbinden</translation>
+        <translation>Benutze SSH-Port-Weiterleitung über Tunnel um Dateisysteme über Firewalls zu verbinden</translation>
     </message>
     <message>
         <location filename="sharewidget.cpp" line="158"/>
