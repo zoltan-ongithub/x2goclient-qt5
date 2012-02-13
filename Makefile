@@ -36,7 +36,7 @@ build_plugin:
 	cd $(PLUGIN_DIR) && $(MAKE)
 
 build_man:
-	make -f Makefile.man2html build
+	${MAKE} -f Makefile.man2html build
 
 clean: clean_client clean_plugin clean_man
 	find . -type f -name '*.o' -exec rm -vf {} +
