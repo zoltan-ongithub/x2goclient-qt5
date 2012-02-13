@@ -8,6 +8,8 @@ x2goclient (3.99.1.0-0~x2go1) UNRELEASED; urgency=low
   * New upstream version (3.99.1.0):
     - Use /cgi-bin/man/ path in web'ified man pages.
     - Use ,,${MAKE}'' instead of ,,make'' in Makefile.
+    - Include <netinet/in.h> in sshprocess.h to fix missing
+      struct sockaddr_in.
 
   [ Oleksandr Shneyder ]
   * New upstream version (3.99.1.0):

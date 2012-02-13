@@ -22,6 +22,7 @@
 #ifndef SSHPROCESS_H
 #define SSHPROCESS_H
 
+#include <netinet/in.h>
 #include <libssh/libssh.h>
 #include <QObject>
 
