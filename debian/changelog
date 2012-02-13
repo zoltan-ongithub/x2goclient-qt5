@@ -4,6 +4,10 @@ x2goclient (3.99.1.0-0~x2go1) UNRELEASED; urgency=low
   * New upstream version (3.99.1.0):
     - Update German translation file (thanks to Stefan Baur).
 
+  [ Jan Engelhard ]
+  * New upstream version (3.99.1.0):
+    - Use /cgi-bin/man/ path in web'ified man pages.
+
   [ Oleksandr Shneyder ]
   * New upstream version (3.99.1.0):
     - Get new ports from x2goresume-session if reserved ports are busy
