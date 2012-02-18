@@ -71,5 +71,7 @@
        <file>qt_de.qm</file>
        <file>qt_ru.qm</file>
        <file>qt_fr.qm</file>
+       <file>qt_sv.qm</file>
+       <file>qt_zh_tw.qm</file>
    </qresource>
 </RCC>
