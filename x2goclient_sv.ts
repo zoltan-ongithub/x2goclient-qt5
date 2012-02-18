@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="sv">
+<TS version="2.0" language="sv_SE">
 <context>
     <name>BrokerPassDialogUi</name>
     <message>
@@ -128,7 +128,7 @@
     <message>
         <location filename="contest.ui" line="14"/>
         <source>Connectivity test</source>
-        <transl
+        <translation>Anslutningstest</translation>
     </message>
     <message>
         <location filename="contest.ui" line="24"/>
@@ -578,25 +578,25 @@
     <message>
         <location filename="httpbrokerclient.cpp" line="468"/>
         <location filename="httpbrokerclient.cpp" line="480"/>
-        <source>Common Name(CN)</source>
-        <translation>Common Name(CN)</translation>
+        <source>Common Name(CN)	</source>
+        <translation>Common Name(CN)	</translation>
     </message>
     <message>
         <location filename="httpbrokerclient.cpp" line="471"/>
         <location filename="httpbrokerclient.cpp" line="483"/>
-        <source>Organization(O)</source>
-        <translation>Organization(O)</translation>
+        <source>Organization(O)	</source>
+        <translation>Organization(O)	</translation>
     </message>
     <message>
         <location filename="httpbrokerclient.cpp" line="474"/>
         <location filename="httpbrokerclient.cpp" line="486"/>
-        <source>Organizational Unit(OU)</source>
-        <translation>Organizational Unit(OU)</translation>
+        <source>Organizational Unit(OU)	</source>
+        <translation>Organizational Unit(OU)	</translation>
     </message>
     <message>
         <location filename="httpbrokerclient.cpp" line="477"/>
-        <source>Serial Number</source>
-        <translation>Serienummer</translation>
+        <source>Serial Number	</source>
+        <translation>Serienummer	</translation>
     </message>
     <message>
         <location filename="httpbrokerclient.cpp" line="479"/>
@@ -613,13 +613,13 @@
     </message>
     <message>
         <location filename="httpbrokerclient.cpp" line="491"/>
-        <source>Issued on</source>
-        <translation>Utgivningsdatum</translation>
+        <source>Issued on	</source>
+        <translation>Utgivningsdatum	</translation>
     </message>
-    <m
+    <message>
         <location filename="httpbrokerclient.cpp" line="492"/>
-        <source>expires on</source>
-        <translation>giltigt till</translation>
+        <source>expires on	</source>
+        <translation>giltigt till	</translation>
     </message>
     <message>
         <location filename="httpbrokerclient.cpp" line="493"/>
@@ -630,13 +630,13 @@
     </message>
     <message>
         <location filename="httpbrokerclient.cpp" line="494"/>
-        <source>SHA1</source>
-        <translation>SHA1</translation>
+        <source>SHA1	</source>
+        <translation>SHA1	</translation>
     </message>
     <message>
         <location filename="httpbrokerclient.cpp" line="496"/>
-        <source>MD5</source>
-        <translation>MD5</translation>
+        <source>MD5	</source>
+        <translation>MD5	</translation>
     </message>
     <message>
         <location filename="httpbrokerclient.cpp" line="502"/>
@@ -748,7 +748,7 @@
         <location filename="onmainwindow.cpp" line="500"/>
         <location filename="onmainwindow_part4.cpp" line="2298"/>
         <source>Minimize toolbar</source>
-        <translation>Minimera verktygsrad</translati
+        <translation>Minimera verktygsrad</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="610"/>
@@ -820,7 +820,7 @@
         <translation>Om Qt</translation>
     </message>
     <message>
-        <locati
+        <location filename="onmainwindow.cpp" line="734"/>
         <source>Ctrl+Q</source>
         <comment>exit</comment>
         <translation>Ctrl+Q</translation>
@@ -865,7 +865,7 @@
         <location filename="onmainwindow.cpp" line="2284"/>
         <location filename="onmainwindow_part2.cpp" line="305"/>
         <location filename="onmainwindow_part2.cpp" line="481"/>
-        <location 
+        <location filename="onmainwindow_part2.cpp" line="490"/>
         <location filename="onmainwindow_part2.cpp" line="789"/>
         <location filename="onmainwindow_part2.cpp" line="1240"/>
         <location filename="onmainwindow_part2.cpp" line="1301"/>
@@ -879,7 +879,7 @@
         <location filename="onmainwindow_part3.cpp" line="773"/>
         <location filename="onmainwindow_part3.cpp" line="854"/>
         <location filename="onmainwindow_part3.cpp" line="1098"/>
-        <location filename=
+        <location filename="onmainwindow_part3.cpp" line="1226"/>
         <location filename="onmainwindow_part3.cpp" line="1279"/>
         <location filename="onmainwindow_part3.cpp" line="1585"/>
         <location filename="onmainwindow_part3.cpp" line="1587"/>
@@ -892,7 +892,7 @@
         <location filename="onmainwindow_part4.cpp" line="29"/>
         <location filename="onmainwindow_part4.cpp" line="54"/>
         <location filename="onmainwindow_part4.cpp" line="2214"/>
-        <location filename="onmainwindow_pa
+        <location filename="onmainwindow_part4.cpp" line="2485"/>
         <source>Error</source>
         <translation>Fel</translation>
     </message>
@@ -909,7 +909,7 @@
     <message>
         <location filename="onmainwindow.cpp" line="848"/>
         <source>Wrong password!</source>
-        <translation>Fel lösenord!</tr
+        <translation>Fel lösenord!</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="852"/>
@@ -1002,7 +1002,7 @@ Använd dolt läge?</translation>
         <translation>XDMCP</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="2
+        <location filename="onmainwindow.cpp" line="2481"/>
         <source>Connection to local desktop</source>
         <translation>Anslutning till lokalt Skrivbord</translation>
     </message>
@@ -1017,7 +1017,7 @@ Använd dolt läge?</translation>
 It is now: </source>
         <translation>Nyckel för server har ändrats.
 Den är nu: </translation>
-    <
+    </message>
     <message>
         <location filename="onmainwindow_part2.cpp" line="80"/>
         <source>For security reasons, connection will be stopped</source>
@@ -1044,7 +1044,7 @@ Publik nyckel: </translation>
         <location filename="onmainwindow_part2.cpp" line="122"/>
         <location filename="onmainwindow_part2.cpp" line="130"/>
         <source>Host key verification failed</source>
-        <translation>Verifiering 
+        <translation>Verifiering av serverns nyckel misslyckades</translation>
     </message>
     <message>
         <location filename="onmainwindow_part2.cpp" line="122"/>
@@ -1177,7 +1177,7 @@ Publik nyckel: </translation>
     <message>
         <location filename="onmainwindow_part2.cpp" line="1162"/>
         <location filename="onmainwindow_part2.cpp" line="1182"/>
-        <source>Your current color depth is different to the color depth of your x2go-session. This may cause problems reconnecting to this session and in most cases &lt;b&gt;you will loose the session&lt;/b&gt; and have to start a new one! It&apos;s h
+        <source>Your current color depth is different to the color depth of your x2go-session. This may cause problems reconnecting to this session and in most cases &lt;b&gt;you will loose the session&lt;/b&gt; and have to start a new one! It&apos;s highly recommended to change the color depth of your Display to </source>
         <translation>Ditt nuvarande färgdjup matchar inte X2Go-sessionens färgdjup. Det kan orsaka problem vid återanslutning av sessionen och i de flesta fall &lt;b&gt;förlorar du sessionen&lt;/b&gt; och måste starta en ny! Det är starkt rekommenderat att du ändrar färdgjup till </translation>
     </message>
     <message>
@@ -1345,7 +1345,7 @@ Data som ej sparats kommer att förloras</translation>
     <message>
         <location filename="onmainwindow_part3.cpp" line="595"/>
         <source>wrong value for argument&quot;--ldap1&quot;</source>
-        <tra
+        <translation>fel värde för &quot;--ldap1&quot;</translation>
     </message>
     <message>
         <location filename="onmainwindow_part3.cpp" line="614"/>
@@ -1364,7 +1364,7 @@ Data som ej sparats kommer att förloras</translation>
         <translation>felaktig parameter:</translation>
     </message>
     <message>
-        <location filename="
+        <location filename="onmainwindow_part3.cpp" line="724"/>
         <location filename="onmainwindow_part3.cpp" line="750"/>
         <source>Options</source>
         <translation>Alternativ</translation>
@@ -1377,7 +1377,7 @@ Data som ej sparats kommer att förloras</translation>
     <message>
         <location filename="onmainwindow_part3.cpp" line="1517"/>
         <source>Support</source>
-        <translation>Hjälp</transl
+        <translation>Hjälp</translation>
     </message>
     <message>
         <location filename="onmainwindow_part3.cpp" line="1522"/>
@@ -1525,7 +1525,7 @@ Uppdatera till en nyare version av x2goserver</translation>
     </message>
     <message>
         <location filename="onmainwindow_part4.cpp" line="1842"/>
-        <source>Ab
+        <source>Abort</source>
         <translation>Avbryt</translation>
     </message>
     <message>
@@ -1541,7 +1541,7 @@ Uppdatera till en nyare version av x2goserver</translation>
     <message>
         <location filename="onmainwindow_part4.cpp" line="2000"/>
         <source>New</source>
-        <tra
+        <translation>Ny</translation>
     </message>
     <message>
         <location filename="onmainwindow_part4.cpp" line="2003"/>
@@ -1636,7 +1636,7 @@ du kan installera sshd med (Debian/Ubuntu)
         <translation>Du har inaktiverat utskriftsdialogen i X2Go.</translation>
     </message>
     <message>
-     
+        <location filename="printdialog.cpp" line="56"/>
         <source>You may reactivate this dialog using the x2goclient settings dialog (Menu -&gt; Options -&gt; Settings)</source>
         <translation>Du kan återaktivera denna dialog via X2Go-klientens inställningar (Meny -&gt; Alternativ -&gt; Inställningar)</translation>
     </message>
@@ -1724,7 +1724,7 @@ du kan installera sshd med (Debian/Ubuntu)
     </message>
     <message>
         <location filename="printwidget.ui" line="165"/>
-        <so
+        <source>Command:</source>
         <translation>Kommando:</translation>
     </message>
     <message>
@@ -1740,7 +1740,7 @@ du kan installera sshd med (Debian/Ubuntu)
     <message>
         <location filename="printwidget.cpp" line="53"/>
         <source>Please configure your client side printing settings.&lt;br&gt;&lt;br&gt;If you want to print the created file, you&apos;ll need an external application. Typically you can use &lt;a href=&quot;http://pages.cs.wisc.edu/~ghost/doc/GPL/index.htm&quot;&gt;ghostprint&lt;/a&gt; and &lt;a href=&quot;http://pages.cs.wisc.edu/~ghost/gsview/&quot;&gt;ghostview&lt;/a&gt;&lt;br&gt;You can find  further information &lt;a href=&quot;http://www.x2go.org/index.php?id=49&quot;&gt;here&lt;/a&gt;.</source>
-        <translation>Konfigurera utskriftsinställningar för klienten.&lt;br&gt;&lt;br&gt;Om du vill skriva ut den skapade filen så behöver du en extern applikation. Du kan oftast använda &lt;a href=&quot;http://pages.cs.wisc.edu/~ghost/doc/GPL/index.htm&quot;&gt;ghostprint&lt;/a&gt; och&lt;a href=&q
+        <translation>Konfigurera utskriftsinställningar för klienten.&lt;br&gt;&lt;br&gt;Om du vill skriva ut den skapade filen så behöver du en extern applikation. Du kan oftast använda &lt;a href=&quot;http://pages.cs.wisc.edu/~ghost/doc/GPL/index.htm&quot;&gt;ghostprint&lt;/a&gt; och&lt;a href=&quot;http://pages.cs.wisc.edu/~ghost/gsview/&quot;&gt;ghostview&lt;/a&gt;&lt;br&gt;Mer information finns &lt;a href=&quot;http://www.x2go.org/index.php?id=49&quot;&gt;här&lt;/a&gt;.</translation>
     </message>
 </context>
 <context>
@@ -1749,7 +1749,7 @@ du kan installera sshd med (Debian/Ubuntu)
         <location filename="printercmddialog.ui" line="13"/>
         <source>Printer command</source>
         <translation>Utskriftskommando</translation>
-    </
+    </message>
     <message>
         <location filename="printercmddialog.ui" line="19"/>
         <source>Command</source>
@@ -1772,13 +1772,13 @@ lpr -P hp_laserjet</translation>
     </message>
     <message>
         <location filename="printercmddialog.ui" line="50"/>
-        <source>Please choose the printin
+        <source>Please choose the printing file format (regarding to your printing environment - if you use CUPS you may use PDF)</source>
         <translation>Välj filformat för utskrift (om du använder CUPS så kan du använda PDF)</translation>
     </message>
     <message>
         <location filename="printercmddialog.ui" line="66"/>
         <source>PDF</source>
-        <translation>PDF<
+        <translation>PDF</translation>
     </message>
     <message>
         <location filename="printercmddialog.ui" line="73"/>
@@ -1787,17 +1787,17 @@ lpr -P hp_laserjet</translation>
     </message>
     <message>
         <location filename="printercmddialog.ui" line="86"/>
-        <sourc
+        <source>Data structure</source>
         <translation>Datastruktur</translation>
     </message>
     <message>
         <location filename="printercmddialog.ui" line="92"/>
-        <source>Please choose the method of printing file input (some commands accepting printing files as program o
+        <source>Please choose the method of printing file input (some commands accepting printing files as program options, some are awaiting data on standard input):</source>
         <translation>Välj metod för utskrift av fil (vissa kommandon har egna parametrar för utskrift, andra väntar på indata):</translation>
     </message>
     <message>
         <location filename="printercmddialog.ui" line="108"/>
-        <source>stan
+        <source>standard input (STDIN)</source>
         <translation>Indata (STDIN)</translation>
     </message>
     <message>
@@ -1893,7 +1893,7 @@ Example:
     <message>
         <location filename="sessionbutton.cpp" line="327"/>
         <location filename="sessionbutton.cpp" line="351"/>
-
+        <location filename="sessionbutton.cpp" line="610"/>
         <source>Connection to local desktop</source>
         <translation>Anslutning till lokalt Skrivbord</translation>
     </message>
@@ -1934,7 +1934,7 @@ Example:
 </context>
 <context>
     <name>SessionManageDialog</name>
-
+    <message>
         <location filename="sessionmanagedialog.cpp" line="35"/>
         <source>E&amp;xit</source>
         <translation>&amp;Avsluta</translation>
@@ -1947,7 +1947,7 @@ Example:
     <message>
         <location filename="sessionmanagedialog.cpp" line="42"/>
         <source>&amp;Session preferences</source>
-        <transla
+        <translation>&amp;Sessionspreferenser</translation>
     </message>
     <message>
         <location filename="sessionmanagedialog.cpp" line="43"/>
@@ -2010,7 +2010,7 @@ Example:
     </message>
     <message>
         <location filename="sessionwidget.cpp" line="107"/>
-        <source>T
+        <source>Try auto login (ssh-agent or default ssh key)</source>
         <translation>Prova automatisk inloggning (ssh-agent eller standard SSH-nyckel)</translation>
     </message>
     <message>
@@ -2022,7 +2022,7 @@ Example:
         <location filename="sessionwidget.cpp" line="113"/>
         <source>&amp;Session type</source>
         <translation>&amp;Sessionstyp</translation>
-
+    </message>
     <message>
         <location filename="sessionwidget.cpp" line="118"/>
         <source>Session type:</source>
@@ -2055,7 +2055,7 @@ Example:
         <translation>Applikation</translation>
     </message>
     <message>
-        <location filename="sessionw
+        <location filename="sessionwidget.cpp" line="133"/>
         <location filename="sessionwidget.cpp" line="252"/>
         <source>Command:</source>
         <translation>Kommando:</translation>
@@ -2088,7 +2088,7 @@ Example:
         <translation>Öppna nyckelfil</translation>
     </message>
     <message>
-        <location filename="ses
+        <location filename="sessionwidget.cpp" line="221"/>
         <source>All files</source>
         <translation>Alla filer</translation>
     </message>
@@ -2100,7 +2100,7 @@ Example:
     <message>
         <location filename="sessionwidget.cpp" line="232"/>
         <source>x2goclient is running in portable mode. You should use a path on your usb device to be able to access your data whereever you are</source>
-        <translation>X2
+        <translation>X2Go-klienten körs i portabelt läge. Du bör använda en sökväg till en USB-enhet för att möjliggöra flyttbara inställningar</translation>
     </message>
     <message>
         <location filename="sessionwidget.cpp" line="273"/>
@@ -2132,7 +2132,7 @@ Example:
         <location filename="settingswidget.cpp" line="40"/>
         <location filename="settingswidget.cpp" line="44"/>
         <source>&amp;Display</source>
-        <translation>&amp
+        <translation>&amp;Skärm</translation>
     </message>
     <message>
         <location filename="settingswidget.cpp" line="41"/>
@@ -2208,7 +2208,7 @@ Example:
     </message>
     <message>
         <location filename="settingswidget.cpp" line="154"/>
-        <source>Keyboard mod
+        <source>Keyboard model:</source>
         <translation>Tangentbordsmodell:</translation>
     </message>
     <message>
@@ -2228,7 +2228,7 @@ Example:
     </message>
     <message>
         <location filename="settingswidget.cpp" line="178"/>
-        <s
+        <source>Use SSH port forwarding to tunnel
 sound system connections through firewalls</source>
         <translatorcomment>Hittade ingen bra översättning för &quot;port forwarding&quot;</translatorcomment>
         <translation>Använd SSH port forwarding för att tunnla
@@ -2246,7 +2246,7 @@ ljudström genom brandväggar</translation>
     </message>
     <message>
         <location filename="settingswidget.cpp" line="214"/>
-
+        <source>Client side printing support</source>
         <translation>Stöd för utskrifter från klienten</translation>
     </message>
     <message>
@@ -2263,7 +2263,7 @@ ljudström genom brandväggar</translation>
 <context>
     <name>ShareWidget</name>
     <message>
-        <location 
+        <location filename="sharewidget.cpp" line="37"/>
         <source>&amp;Folders</source>
         <translation>&amp;Mappar</translation>
     </message>
@@ -2299,7 +2299,7 @@ ljudström genom brandväggar</translation>
         <translation>Kodtabell för filnamn</translation>
     </message>
     <message>
-        <lo
+        <location filename="sharewidget.cpp" line="82"/>
         <source>local:</source>
         <translation>lokal:</translation>
     </message>
@@ -2317,7 +2317,7 @@ ljudström genom brandväggar</translation>
         <location filename="sharewidget.cpp" line="158"/>
         <source>Select folder</source>
         <translation>Välj mapp</translation>
-    <
+    </message>
     <message>
         <location filename="sharewidget.cpp" line="169"/>
         <source>Error</source>
@@ -2326,7 +2326,7 @@ ljudström genom brandväggar</translation>
     <message>
         <location filename="sharewidget.cpp" line="170"/>
         <source>x2goclient is running in portable mode. You should use a path on your usb device to be able to access your data whereever you are</source>
-        <translation>X2Go-klienten körs i portabelt läge. Du bör använda en sökväg till en USB-e
+        <translation>X2Go-klienten körs i portabelt läge. Du bör använda en sökväg till en USB-enhet för att möjliggöra flyttbara inställningar</translation>
     </message>
     <message>
         <location filename="sharewidget.cpp" line="229"/>
@@ -2399,7 +2399,7 @@ ljudström genom brandväggar</translation>
         <translation>channel_open_session misslyckades</translation>
     </message>
     <message>
-        <location filename="sshmasterconnect
+        <location filename="sshmasterconnection.cpp" line="733"/>
         <source>channel_request_exec failed</source>
         <translation>channel_request_exec misslyckades</translation>
     </message>
@@ -2414,7 +2414,7 @@ ljudström genom brandväggar</translation>
         <translation>ett fel uppstod när kanal skulle läsas</translation>
     </message>
     <message>
-        <location filename="sshmasterconnection.cpp" line
+        <location filename="sshmasterconnection.cpp" line="846"/>
         <source>channel_write failed</source>
         <translation>channel_write misslyckades</translation>
     </message>
@@ -2469,7 +2469,7 @@ ljudström genom brandväggar</translation>
     </message>
     <message>
         <location filename="xsettingsui.ui" line="60"/>
-        <source>use custom X-Ser
+        <source>use custom X-Server</source>
         <translation>Använd anpassad X-server</translation>
     </message>
     <message>
