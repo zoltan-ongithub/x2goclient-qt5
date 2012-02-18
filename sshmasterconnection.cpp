@@ -46,6 +46,11 @@ static bool isLibSshInited=false;
 SshMasterConnection::SshMasterConnection ( QString host, int port, bool acceptUnknownServers, QString user,
         QString pass, QString key,bool autologin, bool krblogin, QObject* parent ) : QThread ( parent )
 {
+#if defined ( Q_OS_DARWIN )
+    // Mac OS X provides only 512KB stack space for secondary threads.
+    // As we put a 512KB buffer on the stack later on, we need a bigger stack space.
+    setStackSize (sizeof (char) * 1024 * 1024 * 2);
+#endif
     this->host=host;
     this->port=port;
     this->user=user;
@@ -62,7 +67,7 @@ SshMasterConnection::SshMasterConnection ( QString host, int port, bool acceptUn
     else
         x2goDebug<<"starting ssh connection without kerberos authentication"<<endl;
 #endif
-kerberos=false;
+    kerberos=false;
 }
 
 SshMasterConnection::SshMasterConnection ( QString host, int port, bool acceptUnknownServers, QString user,
@@ -70,7 +75,9 @@ SshMasterConnection::SshMasterConnection ( QString host, int port, bool acceptUn
         int remotePort, QString localHost, int localPort, SshProcess* creator,
         QObject* parent, ONMainWindow* mwd ) : QThread ( parent )
 {
-
+#if defined ( Q_OS_DARWIN )
+    setStackSize (sizeof (char) * 1024 * 1024 * 2);
+#endif
     this->host=host;
     this->port=port;
     this->user=user;

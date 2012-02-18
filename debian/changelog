@@ -11,6 +11,11 @@ x2goclient (3.99.1.0-0~x2go1) UNRELEASED; urgency=low
     - Update all translation files (lupdate), translate unfinished translation
       tags in x2goclient_de.ts.
 
+  [ Mihai Moldovan ]
+  * New upstream version (3.99.1.0):
+    - Mac OS patch: Raise the stack space to 2MB for secondary threads. It
+      previously used the 512KB system default.
+
   [ Daniel Lindgren ]
   * New upstream version (3.99.1.0):
     -  Add swedish translation file.
