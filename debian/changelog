@@ -6,6 +6,10 @@ x2goclient (3.99.1.0-0~x2go1) UNRELEASED; urgency=low
     - Build .qm translation files on the fly during build.
     - Fix for zh_TW translation: add qt_zh_TW.qm file from Qt4.8.
 
+  [ Daniel Lindgren ]
+  * New upstream version (3.99.1.0):
+    -  Add swedish translation file.
+
   [ Terje Andersen ]
   * New upstream version (3.99.1.0):
     - Add Norwegian (Bokmal) translation. Qt4 lacks Norwegian/Bokmal
