@@ -14,7 +14,7 @@ FORMS += cupsprintsettingsdialog.ui cupsprintwidget.ui printdialog.ui printercmd
 
 TRANSLATIONS += x2goclient_de.ts 
 TRANSLATIONS += x2goclient_ru.ts 
-TRANSLATIONS += x2goclient_nb.ts 
+TRANSLATIONS += x2goclient_nb_no.ts 
 TRANSLATIONS += x2goclient_sv.ts 
 TRANSLATIONS += x2goclient_fr.ts 
 TRANSLATIONS += x2goclient_zh_tw.ts
