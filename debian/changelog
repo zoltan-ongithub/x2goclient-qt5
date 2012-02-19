@@ -25,6 +25,7 @@ x2goclient (3.99.1.0-0~x2go1) UNRELEASED; urgency=low
   * New upstream version (3.99.1.0):
     - Add Norwegian (Bokmal) translation. Qt4 lacks Norwegian/Bokmal
       support, so some of the widgets may stay in English.
+    - Fine-tune/fix Norwegian (Bokmal) translation.
 
   [ Jan Engelhardt ]
   * New upstream version (3.99.1.0):
