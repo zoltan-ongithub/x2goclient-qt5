@@ -205,7 +205,7 @@
     <message>
         <location filename="configdialog.cpp" line="69"/>
         <source>Restore from system tray after session is disconnected</source>
-        <translation>Återställ från systemfältet när session avslutats</translation>
+        <translation>Återställ från systemfältet när session kopplats från</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="87"/>
@@ -503,7 +503,7 @@
     <message>
         <location filename="exportdialog.cpp" line="46"/>
         <source>&amp;Custom folder ...</source>
-        <translation>&amp;Anpassad mapp ...</translation>
+        <translation>&amp;Anpassad mapp...</translation>
     </message>
     <message>
         <location filename="exportdialog.cpp" line="56"/>
@@ -697,7 +697,7 @@
     <message>
         <location filename="onmainwindow.cpp" line="329"/>
         <source>&amp;Settings ...</source>
-        <translation>&amp;Inställningar ...</translation>
+        <translation>&amp;Inställningar...</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="333"/>
@@ -776,7 +776,7 @@
     <message>
         <location filename="onmainwindow.cpp" line="667"/>
         <source>&amp;New session ...</source>
-        <translation>&amp;Ny session ...</translation>
+        <translation>&amp;Ny session...</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="668"/>
@@ -846,7 +846,7 @@
         <location filename="onmainwindow_part3.cpp" line="1635"/>
         <location filename="onmainwindow_part4.cpp" line="1656"/>
         <source>Login:</source>
-        <translation>Inloggning:</translation>
+        <translation>Användare:</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="820"/>
@@ -2032,7 +2032,7 @@ Example:
         <location filename="sessionwidget.cpp" line="127"/>
         <location filename="sessionwidget.cpp" line="296"/>
         <source>Connect to Windows terminal server</source>
-        <translation>Anslut till Windows terminal server (RDP)</translation>
+        <translation>Anslut till Windows Terminal Server (RDP)</translation>
     </message>
     <message>
         <location filename="sessionwidget.cpp" line="128"/>
@@ -2247,7 +2247,7 @@ ljudström genom brandväggar</translation>
     <message>
         <location filename="settingswidget.cpp" line="214"/>
         <source>Client side printing support</source>
-        <translation>Stöd för utskrifter från klienten</translation>
+        <translation>Stöd för utskrifter via klienten</translation>
     </message>
     <message>
         <location filename="settingswidget.cpp" line="554"/>

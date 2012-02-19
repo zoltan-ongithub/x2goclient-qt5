@@ -19,6 +19,7 @@ x2goclient (3.99.1.0-0~x2go1) UNRELEASED; urgency=low
   [ Daniel Lindgren ]
   * New upstream version (3.99.1.0):
     -  Add Swedish translation file.
+    - Fine-tune Swedish translation file.
 
   [ Terje Andersen ]
   * New upstream version (3.99.1.0):
