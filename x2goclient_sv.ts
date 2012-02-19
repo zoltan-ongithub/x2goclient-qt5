@@ -2344,82 +2344,82 @@ ljudström genom brandväggar</translation>
 <context>
     <name>SshMasterConnection</name>
     <message>
-        <location filename="sshmasterconnection.cpp" line="117"/>
+        <location filename="sshmasterconnection.cpp" line="124"/>
         <source>Can not initialize libssh</source>
         <translation>Kan ej initialisera libssh</translation>
     </message>
     <message>
-        <location filename="sshmasterconnection.cpp" line="137"/>
+        <location filename="sshmasterconnection.cpp" line="144"/>
         <source>Can not create ssh session</source>
         <translation>Kan ej skapa SSH-session</translation>
     </message>
     <message>
-        <location filename="sshmasterconnection.cpp" line="152"/>
+        <location filename="sshmasterconnection.cpp" line="159"/>
         <source>Can not connect to </source>
         <translation>Kan inte ansluta till </translation>
     </message>
     <message>
-        <location filename="sshmasterconnection.cpp" line="193"/>
+        <location filename="sshmasterconnection.cpp" line="200"/>
         <source>Authentication failed</source>
         <translation>Autentisering misslyckades</translation>
     </message>
     <message>
-        <location filename="sshmasterconnection.cpp" line="209"/>
+        <location filename="sshmasterconnection.cpp" line="216"/>
         <source>channel_forward_listen failed</source>
         <translation>channel_forward_listen misslyckades</translation>
     </message>
     <message>
-        <location filename="sshmasterconnection.cpp" line="523"/>
+        <location filename="sshmasterconnection.cpp" line="530"/>
         <source>Can not open file </source>
         <translation>Kan inte öppna fil </translation>
     </message>
     <message>
-        <location filename="sshmasterconnection.cpp" line="535"/>
+        <location filename="sshmasterconnection.cpp" line="542"/>
         <source>Can not create remote file </source>
         <translation>Kan inte skapa fjärrfil </translation>
     </message>
     <message>
-        <location filename="sshmasterconnection.cpp" line="548"/>
+        <location filename="sshmasterconnection.cpp" line="555"/>
         <source>Can not write to remote file </source>
         <translation>Kan inte skriva till fjärrfil </translation>
     </message>
     <message>
-        <location filename="sshmasterconnection.cpp" line="598"/>
+        <location filename="sshmasterconnection.cpp" line="605"/>
         <source>can not connect to </source>
         <translation>kan inte ansluta till </translation>
     </message>
     <message>
-        <location filename="sshmasterconnection.cpp" line="707"/>
+        <location filename="sshmasterconnection.cpp" line="714"/>
         <source>channel_open_forward failed</source>
         <translation>channel_open_forward misslyckades</translation>
     </message>
     <message>
-        <location filename="sshmasterconnection.cpp" line="726"/>
+        <location filename="sshmasterconnection.cpp" line="733"/>
         <source>channel_open_session failed</source>
         <translation>channel_open_session misslyckades</translation>
     </message>
     <message>
-        <location filename="sshmasterconnection.cpp" line="733"/>
+        <location filename="sshmasterconnection.cpp" line="740"/>
         <source>channel_request_exec failed</source>
         <translation>channel_request_exec misslyckades</translation>
     </message>
     <message>
-        <location filename="sshmasterconnection.cpp" line="798"/>
+        <location filename="sshmasterconnection.cpp" line="805"/>
         <source>error writing to socket</source>
         <translation>ett fel uppstod vid skrivning till socket</translation>
     </message>
     <message>
-        <location filename="sshmasterconnection.cpp" line="816"/>
+        <location filename="sshmasterconnection.cpp" line="823"/>
         <source>error reading channel</source>
         <translation>ett fel uppstod när kanal skulle läsas</translation>
     </message>
     <message>
-        <location filename="sshmasterconnection.cpp" line="846"/>
+        <location filename="sshmasterconnection.cpp" line="853"/>
         <source>channel_write failed</source>
         <translation>channel_write misslyckades</translation>
     </message>
     <message>
-        <location filename="sshmasterconnection.cpp" line="858"/>
+        <location filename="sshmasterconnection.cpp" line="865"/>
         <source>error reading tcp socket</source>
         <translation>ett fel uppstod när tcp socket skulle läsas</translation>
     </message>

@@ -12,6 +12,7 @@ CONFIG += $$(X2GO_LINUX_STATIC)
 
 FORMS += cupsprintsettingsdialog.ui cupsprintwidget.ui printdialog.ui printercmddialog.ui printwidget.ui xsettingsui.ui brokerpassdialog.ui contest.ui
 
+TRANSLATIONS += x2goclient_en.ts 
 TRANSLATIONS += x2goclient_de.ts 
 TRANSLATIONS += x2goclient_ru.ts 
 TRANSLATIONS += x2goclient_nb_no.ts 

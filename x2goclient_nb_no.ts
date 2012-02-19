@@ -2518,85 +2518,85 @@ lydsystem forbindelser gjennom brannmurer</translation>
 <context>
     <name>SshMasterConnection</name>
     <message>
-        <location filename="sshmasterconnection.cpp" line="117"/>
+        <location filename="sshmasterconnection.cpp" line="124"/>
         <source>Can not initialize libssh</source>
         <translatorcomment>I need to revisit the word &apos;initiere&apos;, a better word could be &apos;klargjøre&apos;</translatorcomment>
         <translation>Klarer ikke å initiere libssh</translation>
     </message>
     <message>
-        <location filename="sshmasterconnection.cpp" line="137"/>
+        <location filename="sshmasterconnection.cpp" line="144"/>
         <source>Can not create ssh session</source>
         <translation>Klarer ikke å opprette ssh sesjon</translation>
     </message>
     <message>
-        <location filename="sshmasterconnection.cpp" line="152"/>
+        <location filename="sshmasterconnection.cpp" line="159"/>
         <source>Can not connect to </source>
         <translation>Klarer ikke å koble til </translation>
     </message>
     <message>
-        <location filename="sshmasterconnection.cpp" line="193"/>
+        <location filename="sshmasterconnection.cpp" line="200"/>
         <source>Authentication failed</source>
         <translation>Autentisering feilet</translation>
     </message>
     <message>
-        <location filename="sshmasterconnection.cpp" line="209"/>
+        <location filename="sshmasterconnection.cpp" line="216"/>
         <source>channel_forward_listen failed</source>
         <translatorcomment>I&apos;m not sure if this is a static variable which shouldn&apos;t be translated or not, but I left it as I believe it&apos;s a variable.</translatorcomment>
         <translation>channel_forward_listen feilet</translation>
     </message>
     <message>
-        <location filename="sshmasterconnection.cpp" line="523"/>
+        <location filename="sshmasterconnection.cpp" line="530"/>
         <source>Can not open file </source>
         <translation>Kan ikke åpne filen </translation>
     </message>
     <message>
-        <location filename="sshmasterconnection.cpp" line="535"/>
+        <location filename="sshmasterconnection.cpp" line="542"/>
         <source>Can not create remote file </source>
         <translation>Klarer ikke å opprette fil over nettverket </translation>
     </message>
     <message>
-        <location filename="sshmasterconnection.cpp" line="548"/>
+        <location filename="sshmasterconnection.cpp" line="555"/>
         <source>Can not write to remote file </source>
         <translation>Klarer ikke å skrive til filen over nettverket </translation>
     </message>
     <message>
-        <location filename="sshmasterconnection.cpp" line="598"/>
+        <location filename="sshmasterconnection.cpp" line="605"/>
         <source>can not connect to </source>
         <translation>Klarer ikke å koble til </translation>
     </message>
     <message>
-        <location filename="sshmasterconnection.cpp" line="707"/>
+        <location filename="sshmasterconnection.cpp" line="714"/>
         <source>channel_open_forward failed</source>
         <translation>channel_open_forward feilet</translation>
     </message>
     <message>
-        <location filename="sshmasterconnection.cpp" line="726"/>
+        <location filename="sshmasterconnection.cpp" line="733"/>
         <source>channel_open_session failed</source>
         <translation>channel_open_session feilet</translation>
     </message>
     <message>
-        <location filename="sshmasterconnection.cpp" line="733"/>
+        <location filename="sshmasterconnection.cpp" line="740"/>
         <source>channel_request_exec failed</source>
         <translation>channel_request_exec feilet</translation>
     </message>
     <message>
-        <location filename="sshmasterconnection.cpp" line="798"/>
+        <location filename="sshmasterconnection.cpp" line="805"/>
         <source>error writing to socket</source>
         <translatorcomment>Really not any great words to best translate socket into...</translatorcomment>
         <translation>feil ved skriving til sokkelen</translation>
     </message>
     <message>
-        <location filename="sshmasterconnection.cpp" line="816"/>
+        <location filename="sshmasterconnection.cpp" line="823"/>
         <source>error reading channel</source>
         <translation>feil under lesing av kanalen</translation>
     </message>
     <message>
-        <location filename="sshmasterconnection.cpp" line="846"/>
+        <location filename="sshmasterconnection.cpp" line="853"/>
         <source>channel_write failed</source>
         <translation>channel_write feilet</translation>
     </message>
     <message>
-        <location filename="sshmasterconnection.cpp" line="858"/>
+        <location filename="sshmasterconnection.cpp" line="865"/>
         <source>error reading tcp socket</source>
         <translation>feil ved lesing av tcp sokkelen</translation>
     </message>

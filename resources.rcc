@@ -62,6 +62,7 @@
        <file>icons/16x16/rdp.png</file>
        <file>txt/packs</file>
        <file>txt/encodings</file>
+       <file>x2goclient_en.qm</file>
        <file>x2goclient_de.qm</file>
        <file>x2goclient_fr.qm</file>
        <file>x2goclient_nb_no.qm</file>
