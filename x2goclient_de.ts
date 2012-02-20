@@ -1829,7 +1829,7 @@ Public key hash: </source>
     </message>
     <message>
         <location filename="onmainwindow_part2.cpp" line="146"/>
-        <source>Authentification failed</source>
+        <source>Authentication failed</source>
         <translation>Anmeldung fehlgeschlagen</translation>
     </message>
     <message>

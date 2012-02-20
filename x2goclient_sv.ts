@@ -1062,7 +1062,7 @@ Publik nyckel: </translation>
     </message>
     <message>
         <location filename="onmainwindow_part2.cpp" line="146"/>
-        <source>Authentification failed</source>
+        <source>Authentication failed</source>
         <translation>Autentisering misslyckades</translation>
     </message>
     <message>

@@ -143,7 +143,7 @@ void ONMainWindow::slotSshUserAuthError ( QString error )
         sshConnection=0l;
     }
 
-    QMessageBox::critical ( 0l,tr ( "Authentification failed" ),error,
+    QMessageBox::critical ( 0l,tr ( "Authentication failed" ),error,
                             QMessageBox::Ok,
                             QMessageBox::NoButton );
 // 	currentKey=QString::null;

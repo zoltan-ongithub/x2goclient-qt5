@@ -1479,7 +1479,7 @@ Offentlig nøkkel: </translation>
     </message>
     <message>
         <location filename="onmainwindow_part2.cpp" line="146"/>
-        <source>Authentification failed</source>
+        <source>Authentication failed</source>
         <translation>Pålogging feilet</translation>
     </message>
     <message>
