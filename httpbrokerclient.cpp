@@ -314,7 +314,7 @@ void HttpBrokerClient::slotRequestFinished ( int id, bool error )
     {
         
         //x2goDebug<<"cmd request answer: "<<answer;
-	x2goDebug<<"elapsed: "<<requestTime.elapsed()<<"recieved:"<<httpSessionAnswer.size()<<endl;
+	x2goDebug<<"elapsed: "<<requestTime.elapsed()<<"received:"<<httpSessionAnswer.size()<<endl;
 	emit connectionTime(requestTime.elapsed(),httpSessionAnswer.size());
         return;
     }
