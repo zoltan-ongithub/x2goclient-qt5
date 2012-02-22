@@ -22,9 +22,12 @@
 #ifndef SSHPROCESS_H
 #define SSHPROCESS_H
 
-#include <netinet/in.h>
 #include <libssh/libssh.h>
 #include <QObject>
+
+#ifndef Q_OS_WIN
+#include <netinet/in.h>
+#endif
 
 class SshMasterConnection;
 
