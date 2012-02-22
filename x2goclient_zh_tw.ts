@@ -1372,7 +1372,7 @@ Unsaved documents will be lost</source>
     </message>
     <message>
         <location filename="onmainwindow_part3.cpp" line="1522"/>
-        <source>&lt;/b&gt;&lt;br&gt; (C. 2006-2011 &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing)&lt;br&gt;</source>
+        <source>&lt;/b&gt;&lt;br&gt; (C. 2006-2012 &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing)&lt;br&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

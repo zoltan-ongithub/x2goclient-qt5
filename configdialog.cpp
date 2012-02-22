@@ -4,7 +4,7 @@
 // Description:
 //
 //
-// Author: Oleksandr Shneyder <oleksandr.shneyder@obviously-nice.de>, (C) 2006-2011
+// Author: Oleksandr Shneyder <oleksandr.shneyder@obviously-nice.de>, (C) 2006-2012
 //
 // Copyright: See COPYING file that comes with this distribution
 //
