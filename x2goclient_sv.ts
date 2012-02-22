@@ -165,7 +165,7 @@
     <message>
         <location filename="contest.cpp" line="150"/>
         <source>Socket operation timed out</source>
-        <translatorcomment>Hittade ingen bra översättning för socket</translatorcomment>
+        <translatorcomment>Couldn&apos;t find a good translation for socket</translatorcomment>
         <translation>Socketoperation överskred tidsgräns</translation>
     </message>
     <message>
@@ -479,7 +479,7 @@
     <message>
         <location filename="editconnectiondialog.cpp" line="109"/>
         <source>Session preferences - </source>
-        <translation>Sessionspreferenser - </translation>
+        <translation>Sessionsinställningar - </translation>
     </message>
 </context>
 <context>
@@ -497,8 +497,7 @@
     <message>
         <location filename="exportdialog.cpp" line="45"/>
         <source>&amp;Preferences ...</source>
-        <translatorcomment>Kanske skulle &quot;Egna inställningar&quot; vara bättre.</translatorcomment>
-        <translation>&amp;Preferenser...</translation>
+        <translation>&amp;Inställningar...</translation>
     </message>
     <message>
         <location filename="exportdialog.cpp" line="46"/>
@@ -527,13 +526,13 @@
     <message>
         <location filename="httpbrokerclient.cpp" line="178"/>
         <source>us</source>
-        <translatorcomment>Språkkod för svenska i X.org</translatorcomment>
+        <translatorcomment>Swedish keyboard layout</translatorcomment>
         <translation>se</translation>
     </message>
     <message>
         <location filename="httpbrokerclient.cpp" line="181"/>
         <source>pc105/us</source>
-        <translatorcomment>Svenskt tangentbord</translatorcomment>
+        <translatorcomment>Swedish keyboard model</translatorcomment>
         <translation>pc105/se</translation>
     </message>
     <message>
@@ -786,6 +785,7 @@
     <message>
         <location filename="onmainwindow.cpp" line="673"/>
         <source>Session management...</source>
+        <translatorcomment>Added Alt shortcut, same letter as Ctrl shortcut (like &amp;New session...)</translatorcomment>
         <translation>S&amp;essionshantering...</translation>
     </message>
     <message>
@@ -973,7 +973,7 @@ Använd dolt läge?</translation>
     <message>
         <location filename="onmainwindow.cpp" line="1905"/>
         <source>X2Go Link to session </source>
-        <translation>X2Go Länk till session</translation>
+        <translation>Länk till X2Go-session</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="1955"/>
@@ -1096,7 +1096,7 @@ Publik nyckel: </translation>
     <message>
         <location filename="onmainwindow_part2.cpp" line="417"/>
         <source>unknown</source>
-        <translation>okänd</translation>
+        <translation>okänt</translation>
     </message>
     <message>
         <location filename="onmainwindow_part2.cpp" line="482"/>
@@ -1183,13 +1183,13 @@ Publik nyckel: </translation>
     <message>
         <location filename="onmainwindow_part2.cpp" line="1170"/>
         <source>24 or 32</source>
-        <translation>24- eller 32-</translation>
+        <translation>24 eller 32</translation>
     </message>
     <message>
         <location filename="onmainwindow_part2.cpp" line="1171"/>
         <location filename="onmainwindow_part2.cpp" line="1191"/>
         <source> bit and restart your X-server before you reconnect to this x2go-session.&lt;br&gt;Resume this session anyway?</source>
-        <translation>bitar och startar om X-servern innan du återansluter till denna X2Go-session.&lt;br&gt;Återanslut session ändå?</translation>
+        <translation> bitar och startar om X-servern innan du återansluter till denna X2Go-session.&lt;br&gt;Återanslut session ändå?</translation>
     </message>
     <message>
         <location filename="onmainwindow_part2.cpp" line="1258"/>
@@ -1382,7 +1382,7 @@ Data som ej sparats kommer att förloras</translation>
     <message>
         <location filename="onmainwindow_part3.cpp" line="1522"/>
         <source>&lt;/b&gt;&lt;br&gt; (C. 2006-2012 &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing)&lt;br&gt;</source>
-        <translation>&lt;/b&gt;&lt;br&gt; (C. 2006-2012 &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing)&lt;br&gt;</translation>
+        <translation>&lt;/b&gt;&lt;br&gt; (&amp;copy; 2006-2012 &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing)&lt;br&gt;</translation>
     </message>
     <message>
         <location filename="onmainwindow_part3.cpp" line="1526"/>
@@ -1503,7 +1503,7 @@ Uppdatera till en nyare version av x2goserver</translation>
     <message>
         <location filename="onmainwindow_part4.cpp" line="1658"/>
         <source>Keyboard layout:</source>
-        <translatorcomment>Verkar vara vanligt förekommande &quot;svengelskt&quot; ord</translatorcomment>
+        <translatorcomment>Swenglish, but commonly used.</translatorcomment>
         <translation>Tangentbordslayout:</translation>
     </message>
     <message>
@@ -1740,7 +1740,7 @@ du kan installera sshd med (Debian/Ubuntu)
     <message>
         <location filename="printwidget.cpp" line="53"/>
         <source>Please configure your client side printing settings.&lt;br&gt;&lt;br&gt;If you want to print the created file, you&apos;ll need an external application. Typically you can use &lt;a href=&quot;http://pages.cs.wisc.edu/~ghost/doc/GPL/index.htm&quot;&gt;ghostprint&lt;/a&gt; and &lt;a href=&quot;http://pages.cs.wisc.edu/~ghost/gsview/&quot;&gt;ghostview&lt;/a&gt;&lt;br&gt;You can find  further information &lt;a href=&quot;http://www.x2go.org/index.php?id=49&quot;&gt;here&lt;/a&gt;.</source>
-        <translation>Konfigurera utskriftsinställningar för klienten.&lt;br&gt;&lt;br&gt;Om du vill skriva ut den skapade filen så behöver du en extern applikation. Du kan oftast använda &lt;a href=&quot;http://pages.cs.wisc.edu/~ghost/doc/GPL/index.htm&quot;&gt;ghostprint&lt;/a&gt; och&lt;a href=&quot;http://pages.cs.wisc.edu/~ghost/gsview/&quot;&gt;ghostview&lt;/a&gt;&lt;br&gt;Mer information finns &lt;a href=&quot;http://www.x2go.org/index.php?id=49&quot;&gt;här&lt;/a&gt;.</translation>
+        <translation>Konfigurera utskriftsinställningar för klienten.&lt;br&gt;&lt;br&gt;Om du vill skriva ut den skapade filen så behöver du en extern applikation. Du kan oftast använda &lt;a href=&quot;http://pages.cs.wisc.edu/~ghost/doc/GPL/index.htm&quot;&gt;ghostprint&lt;/a&gt; och &lt;a href=&quot;http://pages.cs.wisc.edu/~ghost/gsview/&quot;&gt;ghostview&lt;/a&gt;&lt;br&gt;Mer information finns &lt;a href=&quot;http://www.x2go.org/index.php?id=49&quot;&gt;här&lt;/a&gt;.</translation>
     </message>
 </context>
 <context>
@@ -1824,7 +1824,7 @@ Example:
     <message>
         <location filename="sessionbutton.cpp" line="116"/>
         <source>Session preferences...</source>
-        <translation>Sessionspreferenser...</translation>
+        <translation>Sessionsinställningar...</translation>
     </message>
     <message>
         <location filename="sessionbutton.cpp" line="120"/>
@@ -1937,7 +1937,7 @@ Example:
     <message>
         <location filename="sessionmanagedialog.cpp" line="35"/>
         <source>E&amp;xit</source>
-        <translation>&amp;Avsluta</translation>
+        <translation>&amp;Avbryt</translation>
     </message>
     <message>
         <location filename="sessionmanagedialog.cpp" line="41"/>
@@ -1947,7 +1947,8 @@ Example:
     <message>
         <location filename="sessionmanagedialog.cpp" line="42"/>
         <source>&amp;Session preferences</source>
-        <translation>&amp;Sessionspreferenser</translation>
+        <translatorcomment>There are &quot;...&quot; on every other button so why not here ...</translatorcomment>
+        <translation>&amp;Sessionsinställningar...</translation>
     </message>
     <message>
         <location filename="sessionmanagedialog.cpp" line="43"/>
@@ -1981,7 +1982,7 @@ Example:
     <message>
         <location filename="sessionwidget.cpp" line="57"/>
         <source>&lt;&lt; change icon</source>
-        <translation>&lt;&lt; ändra ikon</translation>
+        <translation>&lt;&lt; klicka för att ändra ikon</translation>
     </message>
     <message>
         <location filename="sessionwidget.cpp" line="60"/>
@@ -2230,7 +2231,7 @@ Example:
         <location filename="settingswidget.cpp" line="178"/>
         <source>Use SSH port forwarding to tunnel
 sound system connections through firewalls</source>
-        <translatorcomment>Hittade ingen bra översättning för &quot;port forwarding&quot;</translatorcomment>
+        <translatorcomment>Couldn&apos;t find a good translation for port forwarding.</translatorcomment>
         <translation>Använd SSH port forwarding för att tunnla
 ljudström genom brandväggar</translation>
     </message>

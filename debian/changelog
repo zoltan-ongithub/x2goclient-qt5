@@ -8,6 +8,10 @@ x2goclient (3.99.1.1-0~x2go1) UNRELEASED; urgency=low
   * New upstream version (3.99.1.1):
     - Update copyright year in about window. Including all translations.
 
+  [ Daniel Lindgren ]
+  * New upstream version (3.99.1.1):
+    - Update/improve Swedish translation after testing x2goclient on Windows.
+
  -- Mike Gabriel <mike.gabriel@das-netzwerkteam.de>  Wed, 22 Feb 2012 15:11:58 +0100
 
 x2goclient (3.99.1.0-0~x2go1) unstable; urgency=low
