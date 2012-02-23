@@ -247,6 +247,11 @@ bool ONMainWindow::parseParameter ( QString param )
         startMaximized=true;
         return true;
     }
+    if ( param=="--xinerama" )
+    {
+        defaultXinerama=true;
+        return true;
+    }
     if ( param=="--hide" )
     {
         startHidden=true;
@@ -694,6 +699,7 @@ void ONMainWindow::showHelp()
         "--hide\t\t\t\t start hidden\n"
         "--portable\t\t\t start in \"portable\" mode\n"
         "--pgp-card\t\t\t use openPGP card authentication\n"
+        "--xinerama\t\t\t use Xinerama by default\n"
         "--ldap-printing\t\t\t allow client side printing in LDAP mode\n"
         "--add-to-known-hosts\t\t add RSA key fingerprint to "
         ".ssh/known_hosts\n"

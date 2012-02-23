@@ -465,6 +465,7 @@ private:
     bool startMaximized;
     bool startHidden;
     bool defaultUseSound;
+    bool defaultXinerama;
     bool cardStarted;
     bool defaultSetKbd;
     bool showExport;

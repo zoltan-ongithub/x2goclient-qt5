@@ -64,6 +64,7 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
     extStarted=false;
     defaultLink=2;
     defaultFullscreen=false;
+    defaultXinerama=false;
     acceptRsa=false;
     cardStarted=false;
     cardReady=false;

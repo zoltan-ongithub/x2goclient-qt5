@@ -1147,8 +1147,8 @@ void ONMainWindow::slotConfigXinerama()
 
 void ONMainWindow::slotXineramaConfigured()
 {
-    if(resumingSession.fullscreen)
-      return;
+    if (resumingSession.fullscreen)
+        return;
     if (xinSizeInc == -1)
         xinSizeInc=1;
     else
@@ -1173,8 +1173,8 @@ void ONMainWindow::slotFindProxyWin()
 {
 #ifndef Q_OS_DARWIN
     x2goDebug<<"search proxy win: "<<"X2GO-"+resumingSession.sessionId;
-
     proxyWinId=findWindow ( "X2GO-"+resumingSession.sessionId );
+    bool xinerama=defaultXinerama;
     if ( proxyWinId )
     {
         x2goDebug<<"proxy win found:"<<proxyWinId;
@@ -1194,14 +1194,8 @@ void ONMainWindow::slotFindProxyWin()
             else
                 st= new X2goSettings( "sessions" );
             uint displays=QApplication::desktop()->numScreens();
-            if (st->setting()->value ( sid+"/xinerama",
-                                       ( QVariant ) false ).toBool())
-            {
-                x2goDebug<<"Starting xinerama timer\n";
-                lastDisplayGeometry=QRect();
-                xineramaScreens.clear();
-                xineramaTimer->start(500);
-            }
+            xinerama=st->setting()->value ( sid+"/xinerama",
+                                            ( QVariant ) defaultXinerama ).toBool();
             if (st->setting()->value ( sid+"/multidisp",
                                        ( QVariant ) false ).toBool())
             {
@@ -1215,6 +1209,14 @@ void ONMainWindow::slotFindProxyWin()
                 return;
             }
         }
+        if (xinerama)
+        {
+            x2goDebug<<"Starting xinerama timer\n";
+            lastDisplayGeometry=QRect();
+            xineramaScreens.clear();
+            xineramaTimer->start(500);
+        }
+
         if ( embedMode )
         {
             if ( config.rootless )
