@@ -730,6 +730,7 @@ void ONMainWindow::startNewSession()
         cmd+=sessTypeStr+QString::number ( shadowMode ) +"XSHAD"+
              shadowUser+"XSHAD"+shadowDisplay;
     }
+    resumingSession.fullscreen=fullscreen;
     x2goDebug<<cmd<<endl;
     if ( managedMode )
     {
@@ -908,6 +909,7 @@ void ONMainWindow::resumeSession ( const x2goSession& s )
         geometry=QString::number ( width ) +"x"+
                  QString::number ( height );
     }
+    resumingSession.fullscreen=fullscreen;
     QString link;
     switch ( speed )
     {

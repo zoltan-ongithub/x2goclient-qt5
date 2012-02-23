@@ -1107,18 +1107,22 @@ void ONMainWindow::slotConfigXinerama()
     if (newGeometry==lastDisplayGeometry)
         return;
     lastDisplayGeometry=newGeometry;
-   x2goDebug<<"New proxy geometry: "<<lastDisplayGeometry<<endl;
+    x2goDebug<<"New proxy geometry: "<<lastDisplayGeometry<<endl;
     QDesktopWidget* root=QApplication::desktop();
     QList<QRect> newXineramaScreens;
     for (int i=0; i< root->numScreens();++i)
     {
-        QRect intersection=root->screenGeometry(i).intersected(lastDisplayGeometry);
+        QRect intersection;
+        if (resumingSession.fullscreen)
+            intersection=root->screenGeometry(i);
+        else
+            intersection=root->screenGeometry(i).intersected(lastDisplayGeometry);
         if (!intersection.isNull())
         {
-       x2goDebug<<"intersected with "<<i<<": "<<intersection<<endl;
+            x2goDebug<<"intersected with "<<i<<": "<<intersection<<endl;
             intersection.moveLeft(intersection.x()-lastDisplayGeometry.x());
             intersection.moveTop(intersection.y()-lastDisplayGeometry.y());
-       x2goDebug<<"xinerama screen: "<<intersection<<endl;
+            x2goDebug<<"xinerama screen: "<<intersection<<endl;
             newXineramaScreens<<intersection;
         }
     }
@@ -1143,6 +1147,8 @@ void ONMainWindow::slotConfigXinerama()
 
 void ONMainWindow::slotXineramaConfigured()
 {
+    if(resumingSession.fullscreen)
+      return;
     if (xinSizeInc == -1)
         xinSizeInc=1;
     else

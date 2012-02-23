@@ -132,6 +132,7 @@ struct x2goSession
     QString sndPort;
     QString fsPort;
     int colorDepth;
+    bool fullscreen;
     enum {DESKTOP,ROOTLESS,SHADOW} sessionType;
     QString command;
     void operator = ( const x2goSession& s );
