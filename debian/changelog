@@ -12,6 +12,8 @@ x2goclient (3.99.1.1-0~x2go1) UNRELEASED; urgency=low
   [ Mike Gabriel ]
   * New upstream version (3.99.1.1):
     - Update copyright year in about window. Including all translations.
+    - Power button icon: make inner part transparent. Needed for people
+      with a dark GUI theme.
 
   [ Daniel Lindgren ]
   * New upstream version (3.99.1.1):
