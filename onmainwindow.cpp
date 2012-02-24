@@ -57,6 +57,8 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
     extLogin=false;
     startMaximized=false;
     startHidden=false;
+    thinMode=false;
+    showHaltBtn=false;
     defaultUseSound=true;
     defaultSetKbd=true;
     defaultSetDPI=false;
@@ -393,6 +395,28 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
               SLOT ( slotResize ( const QSize ) ) );
     slotResize ( fr->size() );
 
+
+
+#ifdef Q_OS_LINUX
+    if (thinMode)
+    {
+        QTimer *timer = new QTimer(this);
+        connect(timer, SIGNAL(timeout()), this, SLOT(slotSyncX()));
+        timer->start(200);
+    }
+#endif
+    if (showHaltBtn)
+    {
+        QPushButton* bHalt=new QPushButton(bgFrame);
+        QPixmap p(":/png/power-button.png");
+        bHalt->setIcon(p);
+        bHalt->setFocusPolicy(Qt::NoFocus);
+        bHalt->setFixedSize(32,32);
+        bHalt->move(10,10);
+        bHalt->show();
+        connect(bHalt,SIGNAL(clicked()),this, SLOT(slotShutdownThinClient()));
+    }
+
     if (brokerMode)
     {
         broker=new HttpBrokerClient ( this, &config );
@@ -419,6 +443,12 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
     connect( xineramaTimer, SIGNAL(timeout()), this, SLOT(slotConfigXinerama()));
 
     x2goDebug<<"ONMainWindows constructor finished, home Directory is:"<<homeDir<<endl;
+    if (thinMode)
+    {
+        showMaximized();
+        activateWindow();
+        raise();
+    }
 }
 
 
@@ -430,8 +460,38 @@ ONMainWindow::~ONMainWindow()
     x2goDebug<<"end of ONMainWindow destructor";
 }
 
+void ONMainWindow::slotShutdownThinClient()
+{
+    QFile file(QDir::homePath()+"/.halt");
+    if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
+        return;
+
+    QTextStream out(&file);
+    out << "\n";
+    file.close();
+}
 
 
+void ONMainWindow::slotSyncX()
+{
+    if (proxyWinId)
+    {
+        if (!isHidden())
+            hide();
+#ifdef Q_OS_LINUX
+        XSync(QX11Info::display(),false);
+#endif
+    }
+    else
+    {
+        if (isHidden())
+        {
+            showMaximized();
+            activateWindow();
+            raise();
+        }
+    }
+}
 
 
 void ONMainWindow::installTranslator()

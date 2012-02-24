@@ -476,6 +476,7 @@ private:
     bool changeBrokerPass;
     bool connTest;
     bool embedMode;
+    bool thinMode;
     QString statusString;
     int defaultLink;
     int defaultQuality;
@@ -628,6 +629,7 @@ private:
     bool proxyWinEmbedded;
     bool useLdap;
     bool showToolBar;
+    bool showHaltBtn;
     bool newSession;
     bool ldapOnly;
     bool isScDaemonOk;
@@ -822,7 +824,6 @@ private slots:
     void slotChangeBrokerPass();
     void slotTestConnection();
     void slotCheckPortableDir();
-
     void readUsers();
     void slotSelectedFromList ( UserButton* user );
     void slotUnameEntered();
@@ -837,6 +838,8 @@ private slots:
     void slotSshConnectionOk();
     void slotServSshConnectionOk(QString server);
     void slotChangeKbdLayout(const QString& layout);
+    void slotSyncX();
+    void slotShutdownThinClient();
 
 public slots:
     void slotConfig();

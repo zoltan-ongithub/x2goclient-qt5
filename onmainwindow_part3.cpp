@@ -252,6 +252,17 @@ bool ONMainWindow::parseParameter ( QString param )
         defaultXinerama=true;
         return true;
     }
+    if (param == "--thinclient")
+    {
+      thinMode=true;
+      startMaximized=true;
+      return true;
+    }
+    if (param == "--haltbt")
+    {
+      showHaltBtn=true;
+      return true;
+    }
     if ( param=="--hide" )
     {
         startHidden=true;
@@ -701,6 +712,8 @@ void ONMainWindow::showHelp()
         "--pgp-card\t\t\t use openPGP card authentication\n"
         "--xinerama\t\t\t use Xinerama by default\n"
         "--ldap-printing\t\t\t allow client side printing in LDAP mode\n"
+        "--thinclient\t\t\t run without window manager\n"
+        "--haltbt\t\t\t show shutdown button\n"
         "--add-to-known-hosts\t\t add RSA key fingerprint to "
         ".ssh/known_hosts\n"
         "\t\t\t\t if authenticity of server can't be established\n\n"

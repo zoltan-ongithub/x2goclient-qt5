@@ -5,6 +5,9 @@ x2goclient (3.99.1.1-0~x2go1) UNRELEASED; urgency=low
     - not including <netinet/in.h> on Q_OS_WIN platform.
     - not updating Xinerama configuration in "fullscreen" mode.
     - command line argument "--xinerama": use Xinerama by default.
+    - improved support for use in TCE
+      command line argument --thinclient - running without window manager
+      command line argument --haltbt - button to shutdown the thin client
 
   [ Mike Gabriel ]
   * New upstream version (3.99.1.1):
