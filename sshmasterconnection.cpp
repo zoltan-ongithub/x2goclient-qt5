@@ -137,6 +137,7 @@ void SshMasterConnection::run()
 #endif
 
 //     int verbosity=SSH_LOG_PROTOCOL;
+    long timeout = 60;
 
     my_ssh_session = ssh_new();
     if ( my_ssh_session == NULL )
@@ -153,6 +154,9 @@ void SshMasterConnection::run()
     ssh_options_set ( my_ssh_session, SSH_OPTIONS_SSH_DIR, (mainWnd->getHomeDirectory()+"/ssh").toAscii());
 #endif
 //     ssh_options_set(my_ssh_session, SSH_OPTIONS_LOG_VERBOSITY, &verbosity);
+
+    ssh_options_set(my_ssh_session, SSH_OPTIONS_TIMEOUT, &timeout);
+
     if ( !sshConnect() )
     {
         QString err=ssh_get_error ( my_ssh_session );
