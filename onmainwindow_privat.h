@@ -66,7 +66,7 @@
 #include <QFileDialog>
 #include <QHttp>
 #include <QUrl>
-#include <QTcpSocket>
+#include <QLocalSocket>
 #include <QPlastiqueStyle>
 #include "sshprocess.h"
 #include "imgframe.h"

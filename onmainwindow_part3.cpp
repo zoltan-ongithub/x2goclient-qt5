@@ -2054,63 +2054,29 @@ bool ONMainWindow::checkAgentProcess()
 #if defined ( Q_OS_DARWIN )
 QString ONMainWindow::getXDisplay()
 {
-    QTcpSocket tcpSocket ( this );
-    uint dispNumber=0;
-    QString xname,xdir,xopt;
-    dispNumber=0;
-    xdir=ConfigDialog::getXDarwinDirectory();
-    xname=xdir+"/Contents/MacOS/X11";
-    xopt=" -rootless :0";
+    QLocalSocket unixSocket (this);
+    QString xsocket (getenv ("DISPLAY"));
 
-    //for newer versions of XQuartz start startx instead of X11.app
-    xname="/usr/X11/bin/startx";
-    xopt="";
-    tcpSocket.connectToHost ( "127.0.0.1",6000+dispNumber );
+    // OS X starts the X11 server automatically, as soon as the launchd UNIX socket
+    // is accessed.
+    // On user login, the DISPLAY environment variable is set to this said existing
+    // socket.
+    // By now, we should have a socket. Test, if connecting works.
+    if ((!xsocket.isEmpty ()))
+    {
+        unixSocket.connectToServer (xsocket);
 
-    if ( tcpSocket.waitForConnected ( 3000 ) )
-    {
-        tcpSocket.close();
-        return QString::number ( dispNumber );
-    }
-    if ( xname==QString::null )
-    {
-        QMessageBox::critical (
-            this,tr ( "Can't connect to X-Server" ),
-            tr (
-                "Can't connect to X-Server\nPlease check your settings"
-            ) );
-        slotConfig();
-        return QString::null;
-    }
-    QProcess* pr=new QProcess ( this );
-    pr->setWorkingDirectory ( xdir );
-    pr->start ( xname+" "+xopt,QIODevice::NotOpen );
-    if ( pr->waitForStarted ( 3000 ) )
-    {
-#ifdef Q_OS_DARWIN
-        //FIXME: the call of unistd.h sleep() do not work on all
-        // Mac OS X systems
-        system ( "sleep 3" );
-#endif
-
-        tcpSocket.connectToHost ( "127.0.0.1",6000+dispNumber );
-        if ( tcpSocket.waitForConnected ( 1000 ) )
+        if (unixSocket.waitForConnected (10000))
         {
-            tcpSocket.close();
-            return QString::number ( dispNumber );
+            unixSocket.disconnectFromServer ();
+            return (xsocket);
         }
-        QMessageBox::critical (
-            this,tr ( "Can't connect to X-Server" ),
-            tr (
-                "Can't connect to X-Server\nPlease check your settings"
-            ) );
-        slotConfig();
-        return QString::null;
     }
+    // And if not, error out.
     QMessageBox::critical (
-        this,QString::null,
+        this,tr ( "Can't connect to X server\nPlease check your settings" ),
         tr (
-            "Can't start X Server\nPlease check your settings" ) );
+            "Can't start X server\nPlease check your settings" ) );
     slotConfig();
     return QString::null;
 }
