@@ -25,6 +25,7 @@ x2goclient (3.99.1.1-0~x2go1) UNRELEASED; urgency=low
       especially when using tcp_wrappers with the identd option turned on.
       Wait for a 60 seconds timeout.
     - On Mac OS X connect to Xserver via Unix file socket.
+    - Properly set DISPLAY environment variable on Mac OS X.
 
   [ Daniel Lindgren ]
   * New upstream version (3.99.1.1):

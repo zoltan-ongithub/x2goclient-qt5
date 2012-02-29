@@ -1900,12 +1900,17 @@ void ONMainWindow::slotTunnelOk()
     env << "NX_CLIENT="+QCoreApplication::applicationFilePath ();
 
 #if defined ( Q_OS_WIN ) || defined ( Q_OS_DARWIN )
+    // On Mac OS X, we want to make sure that DISPLAY is set to a proper value,
+    // but at the same time don't want to set the value ourselves but keep
+    // the provided one.
     QString disp=getXDisplay();
     if ( disp==QString::null )
     {
         //slotProxyerror ( QProcess::FailedToStart );
         return;
     }
+#endif // Q_OS_WIN || Q_OS_DARWIN
+#if defined ( Q_OS_WIN )
     if ( dispInd==-1 )
     {
         env <<"DISPLAY=localhost:"+disp;
@@ -1917,8 +1922,8 @@ void ONMainWindow::slotTunnelOk()
         /*		x2goDebug<<"existing env DISPLAY("<<dispInd<<
         		") DISPLAY=localhost:"+disp<<endl;*/
     }
-#endif
-#ifdef Q_OS_DARWIN
+#endif // Q_OS_WIN
+#if defined ( Q_OS_DARWIN )
     //setting /usr/X11/bin to find xauth
     env.insert (
         0,
