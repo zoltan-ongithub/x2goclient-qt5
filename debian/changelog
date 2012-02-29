@@ -20,6 +20,7 @@ x2goclient (3.99.1.1-0~x2go1) UNRELEASED; urgency=low
   * New upstream version (3.99.1.1):
     - Use the Mac OS X 10.5 SDK instead 10.6 to remain compatible with
       Leopard.
+    - Add .gitignore file.
 
   [ Daniel Lindgren ]
   * New upstream version (3.99.1.1):
