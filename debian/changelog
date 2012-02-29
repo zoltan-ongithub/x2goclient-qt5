@@ -16,6 +16,11 @@ x2goclient (3.99.1.1-0~x2go1) UNRELEASED; urgency=low
       with a dark GUI theme.
     - Prettify x2goclient.pro.
 
+  [ Mihai Moldovan ]
+  * New upstream version (3.99.1.1):
+    - Use the Mac OS X 10.5 SDK instead 10.6 to remain compatible with
+      Leopard.
+
   [ Daniel Lindgren ]
   * New upstream version (3.99.1.1):
     - Update/improve Swedish translation after testing x2goclient on Windows.
