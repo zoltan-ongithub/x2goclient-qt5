@@ -8,6 +8,7 @@ x2goclient (3.99.1.1-0~x2go1) UNRELEASED; urgency=low
     - improved support for use in TCE
       command line argument --thinclient - running without window manager
       command line argument --haltbt - button to shutdown the thin client
+    - Fix comments in copyright headers.
 
   [ Mike Gabriel ]
   * New upstream version (3.99.1.1):
