@@ -28,12 +28,12 @@ all: build
 build: build_client build_plugin build_man
 
 build_client:
-	lrelease-qt4 x2goclient.pro
+	lrelease x2goclient.pro
 	mkdir -p $(CLIENT_DIR) && cd $(CLIENT_DIR) && qmake-qt4 ../x2goclient.pro
 	cd $(CLIENT_DIR) && $(MAKE)
 
 build_plugin:
-	lrelease-qt4 x2goclient.pro
+	lrelease x2goclient.pro
 	mkdir -p $(PLUGIN_DIR) && cd $(PLUGIN_DIR) && X2GO_CLIENT_TARGET=plugin qmake-qt4 ../x2goclient.pro
 	cd $(PLUGIN_DIR) && $(MAKE)
 

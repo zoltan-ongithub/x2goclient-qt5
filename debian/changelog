@@ -1,4 +1,4 @@
-x2goclient (3.99.1.1-0~x2go1) UNRELEASED; urgency=low
+x2goclient (3.99.1.1-0~x2go1) unstable; urgency=low
 
   [ Oleksandr Shneyder ]
   * New upstream version (3.99.1.1):
@@ -32,7 +32,7 @@ x2goclient (3.99.1.1-0~x2go1) UNRELEASED; urgency=low
   * New upstream version (3.99.1.1):
     - Update/improve Swedish translation after testing x2goclient on Windows.
 
- -- Mike Gabriel <mike.gabriel@das-netzwerkteam.de>  Wed, 22 Feb 2012 15:11:58 +0100
+ -- Mike Gabriel <mike.gabriel@das-netzwerkteam.de>  Wed, 07 Mar 2012 20:42:36 +0100
 
 x2goclient (3.99.1.0-0~x2go1) unstable; urgency=low
 
