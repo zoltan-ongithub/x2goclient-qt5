@@ -2,9 +2,9 @@ x2goclient (3.99.2.0-0~x2go1) UNRELEASED; urgency=low
 
   [ Oleksandr Shneyder ]
   * New upstream version (3.99.1.2):
-    - support for "published applications". 
-      Sponsored by Stefan Baur <postmaster@stefanbaur.de>
-    - command line argumnet "--session-conf=<file>": path to alternative
+    - Support for "published applications". 
+      Sponsored by Stefan Baur (http://www.baur-itcs.de).
+    - Command line argument "--session-conf=<file>": path to alternative
       session config.
 
  -- Mike Gabriel <mike.gabriel@das-netzwerkteam.de>  Wed, 07 Mar 2012 21:02:15 +0100
