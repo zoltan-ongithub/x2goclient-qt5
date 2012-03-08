@@ -25,43 +25,43 @@ class QLabel;
 class QCheckBox;
 class SessionWidget : public ConfigWidget
 {
-		Q_OBJECT
-	public:
-		SessionWidget ( QString id, ONMainWindow * mv,
-		                QWidget * parent = 0, Qt::WindowFlags f = 0 );
-		~SessionWidget();
-		void setDefaults();
-		void saveSettings();
-		QString sessionName();
-	private slots:
-		void slot_getIcon();
-		void slot_getKey();
-		void slot_changeCmd ( int var );
-		void slot_rdpOptions();
+    Q_OBJECT
+public:
+    SessionWidget ( QString id, ONMainWindow * mv,
+                    QWidget * parent = 0, Qt::WindowFlags f = 0 );
+    ~SessionWidget();
+    void setDefaults();
+    void saveSettings();
+    QString sessionName();
+private slots:
+    void slot_getIcon();
+    void slot_getKey();
+    void slot_changeCmd ( int var );
+    void slot_rdpOptions();
 
-	private:
-		enum {KDE,GNOME,LXDE,RDP,XDMCP,SHADOW,OTHER,APPLICATION};
-		QLineEdit* sessName;
-		QLineEdit* uname;
-		QLineEdit* server;
-		QSpinBox* sshPort;
-		QLineEdit* key;
-		QCheckBox* cbAutoLogin;
-		QCheckBox* cbKrbLogin;
-		QString sessIcon;
-		QPushButton* icon;
-		QLineEdit* cmd;
-		QComboBox* cmdCombo;
-		QComboBox* sessBox;
-		QLabel* leCmdIp;
-		QPushButton* pbAdvanced;
-		QString rdpOptions;
-		QString rdpServer;
-		QString xdmcpServer;
-	private:
-		void readConfig();
-	signals:
-		void nameChanged ( const QString & );
+private:
+    enum {KDE,GNOME,LXDE,RDP,XDMCP,SHADOW,OTHER,APPLICATION,PUBLISHED};
+    QLineEdit* sessName;
+    QLineEdit* uname;
+    QLineEdit* server;
+    QSpinBox* sshPort;
+    QLineEdit* key;
+    QCheckBox* cbAutoLogin;
+    QCheckBox* cbKrbLogin;
+    QString sessIcon;
+    QPushButton* icon;
+    QLineEdit* cmd;
+    QComboBox* cmdCombo;
+    QComboBox* sessBox;
+    QLabel* leCmdIp;
+    QPushButton* pbAdvanced;
+    QString rdpOptions;
+    QString rdpServer;
+    QString xdmcpServer;
+private:
+    void readConfig();
+signals:
+    void nameChanged ( const QString & );
 };
 
 #endif

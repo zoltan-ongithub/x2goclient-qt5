@@ -1,7 +1,7 @@
 
 /***************************************************************************
- *   Copyright (C) 2005-2012 by Oleksandr Shneyder   *
- *   oleksandr.shneyder@obviously-nice.de   *
+ *   Copyright (C) 2005-2012 by Oleksandr Shneyder                         *
+ *   oleksandr.shneyder@obviously-nice.de                                  *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -118,6 +118,18 @@ struct serv
     QString sshPort;
 };
 
+struct Application
+{
+    QString name;
+    QString comment;
+    QString exec;
+    QPixmap icon;
+    enum {MULTIMEDIA, DEVELOPMENT, EDUCATION, GAME,
+          GRAPHICS, NETWORK, OFFICE,
+          SETTINGS, SYSTEM, UTILITY, OTHER
+         } category;
+};
+
 struct x2goSession
 {
     QString agentPid;
@@ -131,6 +143,7 @@ struct x2goSession
     QString grPort;
     QString sndPort;
     QString fsPort;
+    bool published;
     int colorDepth;
     bool fullscreen;
     enum {DESKTOP,ROOTLESS,SHADOW} sessionType;
@@ -417,6 +430,12 @@ public:
     {
         return !noSessionEdit;
     }
+    const QList<Application>& getApplications()
+    {
+        return applications;
+    }
+
+    void runApplication(QString exec);
 
 
     SshMasterConnection* findServerSshConnection(QString host);
@@ -514,6 +533,7 @@ private:
     static QString homeDir;
     int retSessions;
     QList<serv> x2goServers;
+    QList<Application> applications;
 
     QPushButton* bSusp;
     QPushButton* sbExp;
@@ -558,6 +578,7 @@ private:
     QPushButton* sOk;
     QPushButton* sbSusp;
     QPushButton* sbTerm;
+    QPushButton* sbApps;
     QCheckBox* sbAdv;
     QPushButton* sCancel;
     QString resolution;
@@ -746,6 +767,10 @@ private:
     QSystemTrayIcon *trayIcon;
     QMenu *trayIconMenu;
     QMenu *trayIconActiveConnectionMenu;
+
+    QAction* appSeparator;
+    QMenu* appMenu[Application::OTHER+1];
+
     bool trayEnabled;
     bool trayMinToTray;
     bool trayNoclose;
@@ -799,6 +824,10 @@ private:
             QString password, bool autologin, bool krbLogin, bool getSrv=false);
     void setProxyWinTitle();
     QRect proxyWinGeometry();
+    void readApplications();
+    void removeAppsFromTray();
+    void plugAppsInTray();
+    QMenu* initTrayAppMenu(QString text, QPixmap icon);
 
 
 protected:
@@ -815,8 +844,10 @@ private slots:
     void slotCheckXOrgConnection();
 #endif
 private slots:
+    void slotAppDialog();
     void slotShowPassForm();
     void displayUsers();
+    void slotAppMenuTriggered ( QAction * action );
     void slotPassChanged(const QString& result);
     void slotResize ( const QSize sz );
     void slotUnameChanged ( const QString& text );
@@ -840,6 +871,7 @@ private slots:
     void slotChangeKbdLayout(const QString& layout);
     void slotSyncX();
     void slotShutdownThinClient();
+    void slotReadApplications(bool result, QString output, SshProcess* proc );
 
 public slots:
     void slotConfig();

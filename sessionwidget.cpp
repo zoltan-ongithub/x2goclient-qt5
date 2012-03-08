@@ -129,6 +129,7 @@ SessionWidget::SessionWidget ( QString id, ONMainWindow * mw,
     sessBox->addItem ( tr ( "Connect to local desktop" ) );
     sessBox->addItem ( tr ( "Custom desktop" ) );
     sessBox->addItem ( tr ( "Single application" ) );
+    sessBox->addItem ( tr ( "Published applications" ) );
     cmdLay->addWidget ( sessBox );
     leCmdIp=new QLabel ( tr ( "Command:" ),deskSess );
     pbAdvanced=new QPushButton ( tr ( "Advanced options..." ),deskSess );
@@ -255,6 +256,7 @@ void SessionWidget::slot_changeCmd ( int var )
     {
         cmd->hide();
         cmdCombo->setVisible ( true );
+        cmdCombo->setEnabled(true);
         cmdCombo->lineEdit()->selectAll();
         cmdCombo->lineEdit()->setFocus();
     }
@@ -326,8 +328,8 @@ void SessionWidget::readConfig()
                                 sessionId+"/autologin",
                                 ( QVariant ) false ).toBool());
     cbKrbLogin->setChecked(st.setting()->value (
-                                sessionId+"/krblogin",
-                                ( QVariant ) false ).toBool());
+                               sessionId+"/krblogin",
+                               ( QVariant ) false ).toBool());
     sshPort->setValue (
         st.setting()->value (
             sessionId+"/sshport",
@@ -338,6 +340,8 @@ void SessionWidget::readConfig()
                              sessionId+"/applications" ).toStringList();
     bool rootless=st.setting()->value (
                       sessionId+"/rootless",false ).toBool();
+    bool published=st.setting()->value (
+                       sessionId+"/published",false ).toBool();
 
     QString
     command=st.setting()->value (
@@ -357,7 +361,13 @@ void SessionWidget::readConfig()
         if ( cmdCombo->findText ( app ) ==-1 )
             cmdCombo->addItem ( app );
     }
-    if ( rootless )
+    if ( published )
+    {
+        sessBox->setCurrentIndex( PUBLISHED );
+        cmdCombo->setDisabled(true);
+        slot_changeCmd(PUBLISHED);
+    }
+    else if ( rootless )
     {
         sessBox->setCurrentIndex ( APPLICATION );
         QString app=mainWindow->transAppName ( command );
@@ -425,7 +435,7 @@ void SessionWidget::setDefaults()
     cbAutoLogin->setChecked(false);
     cbKrbLogin->setChecked(false);
     cmdCombo->lineEdit()->setText (
-    
+
         tr ( "Path to executable" ) );
     cmdCombo->lineEdit()->selectAll();
     slot_changeCmd ( 0 );
@@ -458,6 +468,7 @@ void SessionWidget::saveSettings()
     st.setting()->setValue(sessionId+"/krblogin",( QVariant ) cbKrbLogin->isChecked());
     QString command;
     bool rootless=false;
+    bool published=false;
 
 
     if ( sessBox->currentIndex() < OTHER )
@@ -499,7 +510,11 @@ void SessionWidget::saveSettings()
         rootless=true;
         command=mainWindow->internAppName ( cmdCombo->lineEdit()->text() );
     }
+    if ( sessBox->currentIndex() == PUBLISHED)
+        published=true;
+
     st.setting()->setValue ( sessionId+"/rootless", ( QVariant ) rootless );
+    st.setting()->setValue ( sessionId+"/published", ( QVariant ) published );
     st.setting()->setValue ( sessionId+"/applications",
                              ( QVariant ) appList );
     st.setting()->setValue ( sessionId+"/command",

@@ -20,6 +20,11 @@
 
 #include "onmainwindow_privat.h"
 
+bool ltApp(Application t1, Application t2)
+{
+    return (t1.name.compare(t2.name,Qt::CaseInsensitive)<0);
+}
+
 
 x2goSession ONMainWindow::getNewSessionFromString ( const QString& string )
 {
@@ -37,6 +42,12 @@ x2goSession ONMainWindow::getNewSessionFromString ( const QString& string )
 }
 
 
+void ONMainWindow::slotAppDialog()
+{
+    AppDialog dlg(this);
+    dlg.exec();
+}
+
 void ONMainWindow::runCommand()
 {
     QString passwd=getCurrentPass();
@@ -49,13 +60,14 @@ void ONMainWindow::runCommand()
     QString rdpWidth;
     QString rdpHeight;
     bool rootless=false;
+    resumingSession.published=false;
     if ( !embedMode )
     {
         X2goSettings* st;
-	if(!brokerMode)
-	  st=new X2goSettings( "sessions" );
-	else
-	  st=new X2goSettings(config.iniFile, QSettings::IniFormat);
+        if (!brokerMode)
+            st=new X2goSettings( "sessions" );
+        else
+            st=new X2goSettings(config.iniFile, QSettings::IniFormat);
 
 
         if ( useLdap )
@@ -73,7 +85,9 @@ void ONMainWindow::runCommand()
                           sid+"/rdpserver",
                           ( QVariant ) "" ).toString();
             rootless=st->setting()->value ( sid+"/rootless",
-                                           ( QVariant ) false ).toBool();
+                                            ( QVariant ) false ).toBool();
+            resumingSession.published=st->setting()->value ( sid+"/published",
+                                      ( QVariant ) false ).toBool();
 
             rdpFS=st->setting()->value (
                       sid+"/fullscreen",
@@ -95,6 +109,11 @@ void ONMainWindow::runCommand()
     }
     if ( rootless )
         sessionType="R";
+    if ( resumingSession.published )
+    {
+        sessionType="P";
+        command="PUBLISHED";
+    }
 
     if ( command=="KDE" )
     {
@@ -186,6 +205,13 @@ void ONMainWindow::runCommand()
 #endif
 }
 
+
+void ONMainWindow::runApplication(QString exec)
+{
+    SshProcess* proc=new SshProcess ( sshConnection, this );
+    proc->startNormal ("DISPLAY=:"+resumingSession.display+" setsid "+exec+">& /dev/null & exit");
+}
+
 void ONMainWindow::slotRetRunCommand ( bool result, QString output,
                                        SshProcess* proc )
 {
@@ -203,6 +229,134 @@ void ONMainWindow::slotRetRunCommand ( bool result, QString output,
                                 QMessageBox::Ok,
                                 QMessageBox::NoButton );
     }
+    else
+    {
+        if (resumingSession.published)
+            readApplications();
+    }
+}
+
+void ONMainWindow::readApplications()
+{
+    SshProcess* proc=new SshProcess ( sshConnection, this );
+    connect ( proc,SIGNAL ( sshFinished ( bool, QString,
+                                          SshProcess* ) ),
+              this,SLOT ( slotReadApplications ( bool,
+                                                 QString,
+                                                 SshProcess* ) ) );
+    proc->startNormal ( "x2gogetapps" );
+    sbApps->setEnabled(false);
+}
+
+void ONMainWindow::slotReadApplications(bool result, QString output,
+                                        SshProcess* proc )
+{
+    if ( proc )
+        delete proc;
+    if ( result==false )
+    {
+        QString message=tr ( "<b>Connection failed</b>\n:\n" ) +output;
+        if ( message.indexOf ( "publickey,password" ) !=-1 )
+        {
+            message=tr ( "<b>Wrong password!</b><br><br>" ) +
+                    message;
+        }
+        QMessageBox::critical ( 0l,tr ( "Error" ),message,
+                                QMessageBox::Ok,
+                                QMessageBox::NoButton );
+        return;
+    }
+    sbApps->setEnabled(true);
+    applications.clear();
+    QString locallong=QLocale::system().name();
+    QString localshort=QLocale::system().name().split("_")[0];
+
+    foreach(QString appstr, output.split("</desktop>",QString::SkipEmptyParts))
+    {
+        bool localcomment=false;
+        bool localname=false;
+        Application app;
+        app.category=Application::OTHER;
+        QStringList lines=appstr.split("\n", QString::SkipEmptyParts);
+        for (int i=0; i<lines.count(); ++i)
+        {
+            QString line=lines[i];
+            if (line.indexOf("Name["+localshort+"]=")!=-1  || line.indexOf("Name["+locallong+"]=")!=-1)
+            {
+                app.name=QString::fromUtf8(line.split("=")[1].toAscii());
+//                 x2goDebug<<"local name: "<<app.name<<endl;
+                localname=true;
+            }
+            if (line.indexOf("Comment["+localshort+"]=")!=-1 || line.indexOf("Comment["+locallong+"]=")!=-1)
+            {
+                app.comment=QString::fromUtf8(line.split("=")[1].toAscii());
+//                 x2goDebug<<"local comment: "<<app.comment<<endl;
+                localcomment=true;
+            }
+            if (line.indexOf("Name=")!=-1 && !localname)
+            {
+                app.name=line.split("=")[1];
+//                 x2goDebug<<"name: "<<app.name<<endl;
+            }
+            if (line.indexOf("Comment=")!=-1 && !localcomment)
+            {
+                app.comment=line.split("=")[1];
+//                 x2goDebug<<"comment: "<<app.comment<<endl;
+            }
+            if (line.indexOf("Exec=")!=-1)
+            {
+                app.exec=line.split("=")[1];
+                app.exec.replace("%f","",Qt::CaseInsensitive);
+                app.exec.replace("%u","",Qt::CaseInsensitive);
+//                 x2goDebug<<"exec: "<<app.exec<<endl;
+            }
+            if (line.indexOf("Categories=")!=-1)
+            {
+                if (line.indexOf("Audio")!=-1)
+                    app.category=Application::MULTIMEDIA;
+                if (line.indexOf("Vide")!=-1)
+                    app.category=Application::MULTIMEDIA;
+                if (line.indexOf("Development")!=-1)
+                    app.category=Application::DEVELOPMENT;
+                if (line.indexOf("Education")!=-1)
+                    app.category=Application::EDUCATION;
+                if (line.indexOf("Game")!=-1)
+                    app.category=Application::GAME;
+                if (line.indexOf("Graphics")!=-1)
+                    app.category=Application::GRAPHICS;
+                if (line.indexOf("Network")!=-1)
+                    app.category=Application::NETWORK;
+                if (line.indexOf("Office")!=-1)
+                    app.category=Application::OFFICE;
+                if (line.indexOf("Settings")!=-1)
+                    app.category=Application::SETTINGS;
+                if (line.indexOf("System")!=-1)
+                    app.category=Application::SYSTEM;
+                if (line.indexOf("Utility")!=-1)
+                    app.category=Application::UTILITY;
+            }
+            if (line.indexOf("<icon>")!=-1)
+            {
+                line=lines[++i];
+                QString pic;
+                while (line.indexOf("</icon>")==-1)
+                {
+                    pic+=line;
+                    line=lines[++i];
+                }
+                app.icon.loadFromData(QByteArray::fromBase64(pic.toAscii()));
+            }
+        }
+        if (app.name.length()>0)
+        {
+            if (app.comment.length()<=0)
+                app.comment=app.name;
+            applications.append(app);
+        }
+    }
+
+    qSort(applications.begin(), applications.end(), ltApp);
+    plugAppsInTray();
 }
 
 
@@ -230,10 +384,10 @@ bool ONMainWindow::parseParameter ( QString param )
         cleanAllFiles=true;
         return true;
     }
-    if(param == "--connectivity-test")
+    if (param == "--connectivity-test")
     {
-      connTest=true;
-      return true;
+        connTest=true;
+        return true;
     }
 
     if ( param=="--no-menu" )
@@ -254,14 +408,14 @@ bool ONMainWindow::parseParameter ( QString param )
     }
     if (param == "--thinclient")
     {
-      thinMode=true;
-      startMaximized=true;
-      return true;
+        thinMode=true;
+        startMaximized=true;
+        return true;
     }
     if (param == "--haltbt")
     {
-      showHaltBtn=true;
-      return true;
+        showHaltBtn=true;
+        return true;
     }
     if ( param=="--hide" )
     {
@@ -288,12 +442,12 @@ bool ONMainWindow::parseParameter ( QString param )
         noSessionEdit=true;
         return true;
     }
-    if( param=="--change-broker-pass")
+    if ( param=="--change-broker-pass")
     {
-      changeBrokerPass=true;
-      return true;
+        changeBrokerPass=true;
+        return true;
     }
-    
+
 
     QString setting,value;
     QStringList vals=param.split ( "=" );
@@ -324,8 +478,8 @@ bool ONMainWindow::parseParameter ( QString param )
     if ( setting=="--kbd-layout" )
     {
         defaultLayout=value.split(",",QString::SkipEmptyParts);
-	if(defaultLayout.size()==0)
-	  defaultLayout<<tr("us");
+        if (defaultLayout.size()==0)
+            defaultLayout<<tr("us");
         return true;
     }
     if ( setting=="--session" )
@@ -405,84 +559,84 @@ bool ONMainWindow::parseParameter ( QString param )
         embedParent=value.toLong();
         return true;
     }
-    if( setting == "--broker-url")
+    if ( setting == "--broker-url")
     {
-      brokerMode=true;
-      noSessionEdit=true;
-      config.brokerurl=value;
-      return true;
+        brokerMode=true;
+        noSessionEdit=true;
+        config.brokerurl=value;
+        return true;
     }
-    if( setting == "--broker-name")
+    if ( setting == "--broker-name")
     {
-      config.brokerName=value;
-      return true;
+        config.brokerName=value;
+        return true;
     }
-    if( setting == "--auth-id")
+    if ( setting == "--auth-id")
     {
-      QFile file(value);
-     if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
-     {
-         printError ( param + tr(" (can't open file)"));
-         return false;
-     }
-         QTextStream in(&file);
-         config.brokerUserId = in.readLine();
-	 return true;
+        QFile file(value);
+        if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+        {
+            printError ( param + tr(" (can't open file)"));
+            return false;
+        }
+        QTextStream in(&file);
+        config.brokerUserId = in.readLine();
+        return true;
     }
-    if(setting == "--support-menu")
+    if (setting == "--support-menu")
     {
-      if(! QFile::exists(value))
-      {
-	printError( param + tr(" (file not exists)"));
-	return false;
-      }
-      supportMenuFile=value;
-      return true;
+        if (! QFile::exists(value))
+        {
+            printError( param + tr(" (file not exists)"));
+            return false;
+        }
+        supportMenuFile=value;
+        return true;
     }
-    if(setting == "--background")
+    if (setting == "--background")
     {
-      if(! QFile::exists(value))
-      {
-	printError( param + tr(" (file not exists)"));
-	return false;
-      }
-      BGFile=value;
-      return true;
+        if (! QFile::exists(value))
+        {
+            printError( param + tr(" (file not exists)"));
+            return false;
+        }
+        BGFile=value;
+        return true;
     }
-    if(setting == "--session-icon")
+    if (setting == "--session-icon")
     {
-      if(! QFile::exists(value))
-      {
-	printError( param + tr(" (file not exists)"));
-	return false;
-      }
-      SPixFile=value;
-      return true;
+        if (! QFile::exists(value))
+        {
+            printError( param + tr(" (file not exists)"));
+            return false;
+        }
+        SPixFile=value;
+        return true;
     }
-    if(setting == "--home")
+    if (setting == "--home")
     {
-      QDir dr;
-      
+        QDir dr;
+
 #ifdef Q_OS_WIN
-      int find=value.indexOf("(");
-      int lind=value.indexOf(")");
-      if(find!=-1 && lind !=-1)
-      {	
-	QString label=value.mid(find+1,lind-find-1);
-	x2goDebug<< "searching for drive with label: "<<label;
-	QString drive=wapiGetDriveByLabel(label);
-	value.replace("("+label+")",drive);
-	x2goDebug<<"new path: "<<value;
-      }
+        int find=value.indexOf("(");
+        int lind=value.indexOf(")");
+        if (find!=-1 && lind !=-1)
+        {
+            QString label=value.mid(find+1,lind-find-1);
+            x2goDebug<< "searching for drive with label: "<<label;
+            QString drive=wapiGetDriveByLabel(label);
+            value.replace("("+label+")",drive);
+            x2goDebug<<"new path: "<<value;
+        }
 #endif
-      if(! dr.exists(value))
-      {
-	printError( param + tr(" (directory not exists)"));
-	return false;
-      }
-      homeDir=value;
-      portableDataPath=value;
-      return true;
+        if (! dr.exists(value))
+        {
+            printError( param + tr(" (directory not exists)"));
+            return false;
+        }
+        homeDir=value;
+        portableDataPath=value;
+        return true;
     }
 
     printError ( param );
@@ -829,22 +983,22 @@ void ONMainWindow::slotGetServers ( bool result, QString output,
 
     listedSessions.clear();
     retSessions=0;
-    if(sshConnection)
-      sshConnection->disconnectSession();
+    if (sshConnection)
+        sshConnection->disconnectSession();
     QString passwd;
     QString user=getCurrentUname();
     passwd=getCurrentPass();
-    for(int i=0; i< serverSshConnections.count();++i)
+    for (int i=0; i< serverSshConnections.count();++i)
     {
-      if(serverSshConnections[i])
-	serverSshConnections[i]->disconnectSession();
+        if (serverSshConnections[i])
+            serverSshConnections[i]->disconnectSession();
     }
     serverSshConnections.clear();
     for ( int j=0;j<x2goServers.size();++j )
     {
         QString host=x2goServers[j].name;
-	sshPort=x2goServers[j].sshPort;
-	serverSshConnections<<startSshConnection ( host,sshPort,acceptRsa,user,passwd,true,false,true);
+        sshPort=x2goServers[j].sshPort;
+        serverSshConnections<<startSshConnection ( host,sshPort,acceptRsa,user,passwd,true,false,true);
     }
 }
 
@@ -860,7 +1014,7 @@ void ONMainWindow::slotListAllSessions ( bool result,QString output,
     if ( proc )
         delete proc;
     proc=0;
-    
+
     if ( result==false )
     {
         QString message=tr ( "<b>Connection failed</b>\n" ) +output;
@@ -942,10 +1096,10 @@ void ONMainWindow::slotExportDirectory()
         return;
 
     bool hide_after=false;
-    if(isHidden())
+    if (isHidden())
     {
-      showNormal();
-      hide_after=true;
+        showNormal();
+        hide_after=true;
     }
     QString path;
     if ( !useLdap && !embedMode )
@@ -955,12 +1109,12 @@ void ONMainWindow::slotExportDirectory()
             path=dlg.getExport();
     }
     else
-           
+
         path= QFileDialog::getExistingDirectory (
                   this,QString::null,
                   homeDir );
-     if(hide_after)
-       hide();
+    if (hide_after)
+        hide();
 #ifdef Q_OS_WIN
     if ( ONMainWindow::getPortable() &&
             ONMainWindow::U3DevicePath().length() >0 )
@@ -1524,16 +1678,16 @@ void ONMainWindow::slotAboutQt()
 void ONMainWindow::slotSupport()
 {
     QFile file(supportMenuFile);
-     if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
-         return;
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+        return;
 
-     QTextStream in(&file);
-     QString sup;
-     while (!in.atEnd()) 
-     {
-         sup+=in.readLine();
-     }     
-     QMessageBox::information (this,tr ( "Support" ),sup);
+    QTextStream in(&file);
+    QString sup;
+    while (!in.atEnd())
+    {
+        sup+=in.readLine();
+    }
+    QMessageBox::information (this,tr ( "Support" ),sup);
 }
 
 void ONMainWindow::slotAbout()
@@ -2025,11 +2179,11 @@ void ONMainWindow::slotCheckAgentProcess()
         cardStarted=false;
         if ( nxproxy )
             if ( nxproxy->state() ==QProcess::Running )
-	    {
-	          x2goDebug<<"Suspending session\n";
-	          slotSuspendSessFromSt();
+            {
+                x2goDebug<<"Suspending session\n";
+                slotSuspendSessFromSt();
 //                 nxproxy->terminate();
-	    }
+            }
     }
 
     x2goDebug<<"gpg-agent finished\n";

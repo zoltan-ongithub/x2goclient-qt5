@@ -316,6 +316,8 @@ void SessionButton::redraw()
                     toString();
     rootless=st->setting()->value ( sid+"/rootless",
                                     false ).toBool();
+    published=st->setting()->value ( sid+"/published",
+                                     false ).toBool();
 
 
     cmdBox->clear();
@@ -325,6 +327,7 @@ void SessionButton::redraw()
     cmdBox->addItem ( tr ( "RDP connection" ) );
     cmdBox->addItem ( tr ( "XDMCP" ) );
     cmdBox->addItem ( tr ( "Connection to local desktop" ) );
+    cmdBox->addItem ( tr ( "Published applications" ) );
 
     cmdBox->addItems ( par->transApplicationsNames() );
 
@@ -362,6 +365,12 @@ void SessionButton::redraw()
         cmdBox->setCurrentIndex ( XDMCP );
         command=tr ( "XDMCP" );
     }
+    else if (published)
+    {
+        cmdpix.load ( par->iconsPath ( "/16x16/X.png" ) );
+        command=tr ("Published applications");
+        cmdBox->setCurrentIndex (PUBLISHED);
+    }
     else
     {
         cmdpix.load ( par->iconsPath ( "/16x16/X.png" ) );
@@ -375,6 +384,7 @@ void SessionButton::redraw()
         else
             cmdBox->setCurrentIndex ( id );
     }
+
 
 
     cmdIcon->setPixmap ( cmdpix );
@@ -591,6 +601,7 @@ void SessionButton::slot_cmd_change ( const QString& command )
     cmd->setText ( command );
     QPixmap pix;
     bool newRootless=rootless;
+    published=false;
     QString cmd=command;
     if ( command=="KDE" )
     {
@@ -645,12 +656,18 @@ void SessionButton::slot_cmd_change ( const QString& command )
         cmd="LXDE";
         newRootless=false;
     }
+    if(command== tr("Published applications"))
+    {
+      published=true;
+      cmd="PUBLISHED";
+    }
     bool found=false;
     cmd=par->internAppName ( cmd,&found );
     if ( found )
         newRootless=true;
     st.setting()->setValue ( sid+"/command", ( QVariant ) cmd );
     st.setting()->setValue ( sid+"/rootless", ( QVariant ) newRootless );
+    st.setting()->setValue ( sid+"/published", ( QVariant ) published );
     st.setting()->sync();
 
 }

@@ -1,9 +1,9 @@
-/***************************************************************************
-*   Copyright (C) 2005-2012 by Oleksandr Shneyder   *
-*   oleksandr.shneyder@obviously-nice.de   *
+/**************************************************************************
+*   Copyright (C) 2005-2012 by Oleksandr Shneyder                         *
+*   oleksandr.shneyder@obviously-nice.de                                  *
 *                                                                         *
 *   This program is free software; you can redistribute it and/or modify  *
-*   it under the terms of the GNU General Public License as published by  F*
+*   it under the terms of the GNU General Public License as published by  *
 *   the Free Software Foundation; either version 2 of the License, or     *
 *   (at your option) any later version.                                   *
 *                                                                         *
@@ -1847,18 +1847,22 @@ void ONMainWindow::initStatusDlg()
 
     slVal->hide();
     slVal->setFixedHeight ( slName->sizeHint().height() );
-    sbSusp=new QPushButton ( tr ( "Abort" ),sessionStatusDlg );
-    sbTerm=new QPushButton ( tr ( "Terminate" ),sessionStatusDlg );
+    sbApps=new QPushButton ( tr ( "Applications..." ),
+                            sessionStatusDlg );
     sbExp=new QPushButton ( tr ( "Share folder..." ),
                             sessionStatusDlg );
+    sbSusp=new QPushButton ( tr ( "Abort" ),sessionStatusDlg );
+    sbTerm=new QPushButton ( tr ( "Terminate" ),sessionStatusDlg );
     sbAdv=new QCheckBox ( tr ( "Show details" ),sessionStatusDlg );
     setWidgetStyle ( sbTerm );
+    setWidgetStyle ( sbApps );
     setWidgetStyle ( sbExp );
     setWidgetStyle ( sbSusp );
     setWidgetStyle ( sbAdv );
 
     sbAdv->setFixedSize ( sbAdv->sizeHint() );
 #ifndef Q_WS_HILDON
+    sbApps->setFixedSize ( sbApps->sizeHint() );
     sbSusp->setFixedSize ( sbSusp->sizeHint() );
     sbTerm->setFixedSize ( sbTerm->sizeHint() );
     sbExp->setFixedSize ( sbExp->sizeHint() );
@@ -1875,11 +1879,16 @@ void ONMainWindow::initStatusDlg()
     sz.setWidth ( ( int ) ( sz.width() /1.5 ) );
     sz.setHeight ( ( int ) ( sz.height() /1.5 ) );
     sbTerm->setFixedSize ( sz );
+    sz=sbApps->sizeHint();
+    sz.setWidth ( ( int ) ( sz.width() ) );
+    sz.setHeight ( ( int ) ( sz.height() /1.5 ) );
+    sbApps->setFixedSize ( sz );
 #endif
     sbAdv->hide();
     sbSusp->hide();
     sbTerm->hide();
     sbExp->hide();
+    sbApps->hide();
 
 
     pal.setColor ( QPalette::Button, QColor ( 255,255,255,0 ) );
@@ -1887,6 +1896,7 @@ void ONMainWindow::initStatusDlg()
     pal.setColor ( QPalette::Base, QColor ( 255,255,255,255 ) );
 
     sbAdv->setPalette ( pal );
+    sbApps->setPalette ( pal );
     sbSusp->setPalette ( pal );
     sbTerm->setPalette ( pal );
     sbExp->setPalette ( pal );
@@ -1909,6 +1919,8 @@ void ONMainWindow::initStatusDlg()
               SLOT ( slotShowAdvancedStat() ) );
     connect ( sbExp,SIGNAL ( clicked() ),this,
               SLOT ( slotExportDirectory() ) );
+    connect ( sbApps,SIGNAL ( clicked() ),this,
+              SLOT ( slotAppDialog()) );
 
     QVBoxLayout* layout=new QVBoxLayout ( sessionStatusDlg );
     QHBoxLayout* ll=new QHBoxLayout();
@@ -1923,6 +1935,7 @@ void ONMainWindow::initStatusDlg()
 
     QHBoxLayout* bl=new QHBoxLayout();
     bl->addStretch();
+    bl->addWidget ( sbApps );
     bl->addWidget ( sbExp );
     bl->addWidget ( sbSusp );
     bl->addWidget ( sbTerm );

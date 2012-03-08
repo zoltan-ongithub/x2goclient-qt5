@@ -99,6 +99,9 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
     lastSession=0l;
     changeBrokerPass=false;
 
+    appSeparator=0;
+
+
 #ifdef Q_OS_WIN
     clientSshPort="7022";
     pulsePort=4713;
@@ -988,7 +991,6 @@ void ONMainWindow::trayIconInit()
             delete trayIconMenu;
             trayIcon=0l;
             trayIconMenu=0l;
-
         }
     }
     else
@@ -998,8 +1000,36 @@ void ONMainWindow::trayIconInit()
             trayIconMenu = new QMenu(this);
             trayIconMenu->addAction(tr("Restore"),this, SLOT(showNormal()));
 
-
             trayIconActiveConnectionMenu = trayIconMenu->addMenu(tr("Not connected"));
+
+            appMenu[Application::MULTIMEDIA]=initTrayAppMenu(tr("Multimedia"),
+                                             QPixmap(":/icons/22x22/applications-multimedia.png"));
+            appMenu[Application::DEVELOPMENT]=initTrayAppMenu(tr("Development"),
+                                              QPixmap(":/icons/22x22/applications-development.png"));
+            appMenu[Application::EDUCATION]=initTrayAppMenu(tr("Education"),
+                                            QPixmap(":/icons/22x22/applications-education.png"));
+            appMenu[Application::GAME]=initTrayAppMenu(tr("Game"),
+                                       QPixmap(":/icons/22x22/applications-games.png"));
+            appMenu[Application::GRAPHICS]=initTrayAppMenu(tr("Graphics"),
+                                           QPixmap(":/icons/22x22/applications-graphics.png"));
+            appMenu[Application::NETWORK]=initTrayAppMenu(tr("Network"),
+                                          QPixmap(":/icons/22x22/applications-internet.png"));
+            appMenu[Application::OFFICE]=initTrayAppMenu(tr("Office"),
+                                         QPixmap(":/icons/22x22/applications-office.png"));
+            appMenu[Application::SETTINGS]=initTrayAppMenu(tr("Settings"),
+                                           QPixmap(":/icons/22x22/preferences-system.png"));
+            appMenu[Application::SYSTEM]=initTrayAppMenu(tr("System"),
+                                         QPixmap(":/icons/22x22/applications-system.png"));
+            appMenu[Application::UTILITY]=initTrayAppMenu(tr("Utility"),
+                                          QPixmap(":/icons/22x22/applications-utilities.png"));
+            appMenu[Application::OTHER]=initTrayAppMenu(tr("Other"),
+                                        QPixmap(":/icons/22x22/applications-other.png"));
+            appSeparator=trayIconActiveConnectionMenu->addSeparator();
+
+            for (int i=0;i<=Application::OTHER;++i)
+            {
+                connect (appMenu[i], SIGNAL(triggered(QAction*)), this, SLOT(slotAppMenuTriggered(QAction*)));
+            }
 
 
             trayIconActiveConnectionMenu->addAction(tr ("Share folder..." ),this, SLOT(slotExportDirectory()));
@@ -1014,7 +1044,9 @@ void ONMainWindow::trayIconInit()
                     trayIconActiveConnectionMenu->setTitle(lastUser->username());
             }
             else
+            {
                 trayIconActiveConnectionMenu->setEnabled(false);
+            }
             trayIconMenu->addSeparator();
             trayIconMenu->addAction(tr("Quit"),this, SLOT(trayQuit()));
 
@@ -1030,8 +1062,55 @@ void ONMainWindow::trayIconInit()
             trayIcon->setToolTip(tr("Left mouse button to hide/restore - Right mouse button to display context menu"));
         }
         trayIcon->show();
+        plugAppsInTray();
     }
 #endif
+}
+
+QMenu* ONMainWindow::initTrayAppMenu(QString text, QPixmap icon)
+{
+    QMenu* menu=trayIconActiveConnectionMenu->addMenu(text);
+    menu->setIcon(icon);
+    return menu;
+}
+
+
+void ONMainWindow::slotAppMenuTriggered(QAction* action)
+{
+    runApplication(action->data().toString());
+}
+
+void ONMainWindow::plugAppsInTray()
+{
+    if (!trayIcon)
+        return;
+    removeAppsFromTray();
+    x2goDebug<<"plugging apps\n";
+    bool empty=true;
+    foreach(Application app, applications)
+    {
+        QAction* act=appMenu[app.category]->addAction(app.icon,app.name);
+        act->setToolTip(app.comment);
+        act->setData(app.exec);
+        appMenu[app.category]->menuAction()->setVisible(true);
+        empty=false;
+    }
+    if (!empty)
+        appSeparator->setVisible(true);
+}
+
+
+void ONMainWindow::removeAppsFromTray()
+{
+    if (!trayIcon)
+        return;
+    x2goDebug<<"remove apps\n";
+    for (int i=0;i<=Application::OTHER;++i)
+    {
+        appMenu[i]->clear();
+        appMenu[i]->menuAction()->setVisible(false);
+    }
+    appSeparator->setVisible(false);
 }
 
 

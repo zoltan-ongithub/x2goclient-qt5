@@ -235,6 +235,8 @@ bool ONMainWindow::startSession ( const QString& sid )
     user=getCurrentUname();
     runRemoteCommand=true;
     shadowSession=false;
+    applications.clear();
+    removeAppsFromTray();
 
     if ( managedMode )
     {
@@ -446,6 +448,7 @@ void ONMainWindow::startNewSession()
     int speed;
     bool usekbd;
     bool rootless=false;
+    resumingSession.published=false;
     bool setDPI=defaultSetDPI;
     uint dpi=defaultDPI;
     QString layout;
@@ -454,7 +457,7 @@ void ONMainWindow::startNewSession()
     QString xdmcpServer;
     runRemoteCommand=true;
     QString host=QString::null;
-
+    removeAppsFromTray();
     if ( useLdap )
     {
         pack=defaultPack;
@@ -546,6 +549,8 @@ void ONMainWindow::startNewSession()
 
             rootless=st->setting()->value ( sid+"/rootless",
                                             ( QVariant ) false ).toBool();
+            resumingSession.published=st->setting()->value ( sid+"/published",
+                                      ( QVariant ) false ).toBool();
             xdmcpServer=st->setting()->value ( sid+"/xdmcpserver",
                                                ( QVariant )
                                                "localhost" ).toString();
@@ -707,6 +712,11 @@ void ONMainWindow::startNewSession()
         sessTypeStr="R ";
     if ( shadowSession )
         sessTypeStr="S ";
+    if ( resumingSession.published)
+    {
+        sessTypeStr="P ";
+        command="PUBLISHED";
+    }
     QString dpiEnv;
     QString xdmcpEnv;
     if ( runRemoteCommand==false && command=="XDMCP" )
@@ -757,7 +767,8 @@ void ONMainWindow::startNewSession()
 void ONMainWindow::resumeSession ( const x2goSession& s )
 {
     newSession=false;
-
+    applications.clear();
+    removeAppsFromTray();
     QString passwd=getCurrentPass();
     QString user=getCurrentUname();
     QString host=s.server;
@@ -772,6 +783,7 @@ void ONMainWindow::resumeSession ( const x2goSession& s )
     bool usekbd;
     QString layout;
     QString type;
+    removeAppsFromTray();
 
     if ( useLdap )
     {
@@ -953,6 +965,15 @@ void ONMainWindow::resumeSession ( const x2goSession& s )
     usekbd=0;
     type="query";
 #endif
+
+    if (s.sessionId.indexOf("RPUBLISHED")!=-1)
+    {
+        resumingSession.published=true;
+        sbApps->setDisabled(true);
+    }
+    else
+        resumingSession.published=false;
+
 
 
     if ( selectSessionDlg->isVisible() )
@@ -1576,6 +1597,8 @@ void ONMainWindow::slotRetResumeSess ( bool result,
                 x2goDebug<<"new fs_port: "<<resumingSession.fsPort<<endl;
             }
         }
+        if (resumingSession.published)
+            readApplications();
     }
     if ( !useLdap )
     {
@@ -2483,6 +2506,10 @@ void ONMainWindow::setStatStatus ( QString status )
 
         slVal->setFixedSize ( slVal->sizeHint() );
         sessionStatusDlg->show();
+        if (resumingSession.published)
+            sbApps->show();
+        else
+            sbApps->hide();
     }
     else
     {

@@ -61,6 +61,17 @@
        <file>icons/16x16/lxde.png</file>
        <file>icons/16x16/preferences.png</file>
        <file>icons/16x16/rdp.png</file>
+       <file>icons/22x22/applications-development.png</file>
+       <file>icons/22x22/applications-education.png</file>
+       <file>icons/22x22/applications-games.png</file>
+       <file>icons/22x22/applications-graphics.png</file>
+       <file>icons/22x22/applications-internet.png</file>
+       <file>icons/22x22/applications-multimedia.png</file>
+       <file>icons/22x22/applications-office.png</file>
+       <file>icons/22x22/applications-other.png</file>
+       <file>icons/22x22/applications-system.png</file>
+       <file>icons/22x22/applications-utilities.png</file>
+       <file>icons/22x22/preferences-system.png</file>
        <file>txt/packs</file>
        <file>txt/encodings</file>
        <file>x2goclient_en.qm</file>

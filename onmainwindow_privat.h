@@ -30,6 +30,7 @@
 #include "userbutton.h"
 #include "exportdialog.h"
 #include "printprocess.h"
+#include "appdialog.h"
 #include <QDesktopServices>
 #include <QApplication>
 #include <QScrollBar>

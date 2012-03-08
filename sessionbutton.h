@@ -26,7 +26,7 @@ class SessionButton : public SVGFrame
 {
     Q_OBJECT
 public:
-    enum {KDE,GNOME,LXDE,RDP,XDMCP,SHADOW,OTHER,APPLICATION};
+    enum {KDE,GNOME,LXDE,RDP,XDMCP,SHADOW,PUBLISHED,OTHER,APPLICATION};
     SessionButton ( ONMainWindow* mw, QWidget* parent,QString id );
     ~SessionButton();
     QString id() {
@@ -60,6 +60,7 @@ private:
     QAction* act_createIcon;
     QAction* act_remove;
     bool rootless;
+    bool published;
     bool editable;
 
 private slots:
