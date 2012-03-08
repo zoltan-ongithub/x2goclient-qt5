@@ -37,6 +37,8 @@ void x2goSession::operator = ( const x2goSession& s )
 
 bool	ONMainWindow::portable=false;
 QString ONMainWindow::homeDir;
+QString ONMainWindow::sessionCfg;
+
 
 #ifdef Q_OS_WIN
 QString ONMainWindow::u3Device;

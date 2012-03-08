@@ -128,6 +128,10 @@ struct Application
           GRAPHICS, NETWORK, OFFICE,
           SETTINGS, SYSTEM, UTILITY, OTHER
          } category;
+    static bool lessThen(Application t1, Application t2)
+    {
+        return (t1.name.compare(t2.name,Qt::CaseInsensitive)<0);
+    }
 };
 
 struct x2goSession
@@ -434,6 +438,10 @@ public:
     {
         return applications;
     }
+    static QString getSessionConf()
+    {
+        return sessionCfg;
+    }
 
     void runApplication(QString exec);
 
@@ -639,6 +647,7 @@ private:
     QString nick;
     QString nfsPort;
     QString mntPort;
+    static QString sessionCfg;
     QProcess* ssh;
     QProcess* soundServer;
     QProcess* scDaemon;

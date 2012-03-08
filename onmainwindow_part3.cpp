@@ -20,12 +20,6 @@
 
 #include "onmainwindow_privat.h"
 
-bool ltApp(Application t1, Application t2)
-{
-    return (t1.name.compare(t2.name,Qt::CaseInsensitive)<0);
-}
-
-
 x2goSession ONMainWindow::getNewSessionFromString ( const QString& string )
 {
     QStringList lst=string.split ( '|' );
@@ -355,7 +349,7 @@ void ONMainWindow::slotReadApplications(bool result, QString output,
         }
     }
 
-    qSort(applications.begin(), applications.end(), ltApp);
+    qSort(applications.begin(), applications.end(),Application::lessThen);
     plugAppsInTray();
 }
 
@@ -486,6 +480,11 @@ bool ONMainWindow::parseParameter ( QString param )
     {
         defaultSession=true;
         defaultSessionName=value;
+        return true;
+    }
+    if ( setting=="--session-conf" )
+    {
+        ONMainWindow::sessionCfg=value;
         return true;
     }
     if ( setting=="--sessionid" )
@@ -859,7 +858,7 @@ void ONMainWindow::showHelp()
         "--help-pack\t\t\t show available pack methods\n"
         "--no-menu\t\t\t hide menu bar\n"
         "--no-session-edit\t\t not allow user to edit preconfigured\n"
-        "sessions\n"
+        "\t\t\t\t sessions\n"
         "--maximize\t\t\t start maximized\n"
         "--hide\t\t\t\t start hidden\n"
         "--portable\t\t\t start in \"portable\" mode\n"
@@ -889,10 +888,11 @@ void ONMainWindow::showHelp()
         "--pack=<packmethod>\t\t set default pack method, default "
         "'16m-jpeg-9'\n"
         "--kbd-layout=<layout>\t\t set default keyboard layout or layouts\n"
-        "comma separated\n"
+        "\t\t\t\t comma separated\n"
         "--kbd-type=<typed>\t\t set default keyboard type\n"
-        "--home=<dir>\t\t set users home directory\n"
-        "--set-kbd=<0|1>\t\t\t overwrite current keyboard settings\n" ;
+        "--home=<dir>\t\t\t set users home directory\n"
+        "--set-kbd=<0|1>\t\t\t overwrite current keyboard settings\n" 
+        "--session-conf=<file>\t\t\t path to alternative session config\n";
     qCritical ( "%s",helpMsg.toLocal8Bit().data() );
     QMessageBox::information ( this,tr ( "Options" ),helpMsg );
 }

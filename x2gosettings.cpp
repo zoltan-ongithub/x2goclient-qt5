@@ -30,6 +30,12 @@ X2goSettings::X2goSettings(QString fileContent, QSettings::Format format)
 X2goSettings::X2goSettings ( QString group )
 {
     cfgFile=0l;
+    if (group=="sessions" && ONMainWindow::getSessionConf().length()>0)
+    {
+        set=new QSettings ( ONMainWindow::getSessionConf(),
+                            QSettings::IniFormat );
+        return;
+    }
 #ifndef Q_OS_WIN
     set=new QSettings ( ONMainWindow::getHomeDirectory() +
                         "/.x2goclient/"+group,
@@ -39,17 +45,12 @@ X2goSettings::X2goSettings ( QString group )
     {
         set=new QSettings ( "Obviously Nice","x2goclient" );
         set->beginGroup ( group );
-// 		x2goDebug<<"settings in reg";
     }
     else
     {
         set=new QSettings ( ONMainWindow::getHomeDirectory() +
                             "/.x2goclient/"+group,
                             QSettings::IniFormat );
-// 		x2goDebug<<"settings in ini:"<<
-        ONMainWindow::getHomeDirectory() +
-        "/.x2goclient/"+group;
-
     }
 #endif
 
