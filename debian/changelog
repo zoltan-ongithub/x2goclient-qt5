@@ -7,6 +7,7 @@ x2goclient (3.99.2.0-0~x2go1) UNRELEASED; urgency=low
     - Command line argument "--session-conf=<file>": path to alternative
       session config.
     - Fixed bug "light font colour on light background" by dark colour schema.
+    - Make X2Go system tray icon not transparent.
 
  -- Mike Gabriel <mike.gabriel@das-netzwerkteam.de>  Wed, 07 Mar 2012 21:02:15 +0100
 
