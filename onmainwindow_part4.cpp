@@ -1640,11 +1640,18 @@ void ONMainWindow::initPassDlg()
         passForm->setFixedSize ( 310,180 );
     QPalette pal=passForm->palette();
     pal.setBrush ( QPalette::Window, QColor ( 255,255,255,0 ) );
+    pal.setColor ( QPalette::Active, QPalette::WindowText, QPalette::Mid );
+    pal.setColor ( QPalette::Active, QPalette::ButtonText, QPalette::Mid );
+    pal.setColor ( QPalette::Active, QPalette::Text, QPalette::Mid );
+    pal.setColor ( QPalette::Inactive, QPalette::WindowText, QPalette::Mid );
+    pal.setColor ( QPalette::Inactive, QPalette::ButtonText, QPalette::Mid );
+    pal.setColor ( QPalette::Inactive, QPalette::Text, QPalette::Mid );
     passForm->setPalette ( pal );
 
     pal.setColor ( QPalette::Button, QColor ( 255,255,255,0 ) );
     pal.setColor ( QPalette::Window, QColor ( 255,255,255,255 ) );
     pal.setColor ( QPalette::Base, QColor ( 255,255,255,255 ) );
+
 
     QFont fnt=passForm->font();
     if ( miniMode )
@@ -1713,9 +1720,6 @@ void ONMainWindow::initPassDlg()
 
 
 
-    pal.setColor ( QPalette::Button, QColor ( 255,255,255,0 ) );
-    pal.setColor ( QPalette::Window, QColor ( 255,255,255,255 ) );
-    pal.setColor ( QPalette::Base, QColor ( 255,255,255,255 ) );
     cbLayout->setPalette ( pal );
     ok->setPalette ( pal );
     cancel->setPalette ( pal );
@@ -1833,6 +1837,13 @@ void ONMainWindow::initStatusDlg()
     username->addWidget ( sessionStatusDlg );
     QPalette pal=sessionStatusDlg->palette();
     pal.setBrush ( QPalette::Window, QColor ( 0,0,0,0 ) );
+    pal.setColor ( QPalette::Active, QPalette::WindowText, QPalette::Mid );
+    pal.setColor ( QPalette::Active, QPalette::ButtonText, QPalette::Mid );
+    pal.setColor ( QPalette::Active, QPalette::Text, QPalette::Mid );
+    pal.setColor ( QPalette::Inactive, QPalette::WindowText, QPalette::Mid );
+    pal.setColor ( QPalette::Inactive, QPalette::ButtonText, QPalette::Mid );
+    pal.setColor ( QPalette::Inactive, QPalette::Text, QPalette::Mid );
+
     sessionStatusDlg->setPalette ( pal );
 
     slName=new QLabel ( sessionStatusDlg );
@@ -1990,6 +2001,13 @@ void ONMainWindow::initSelectSessDlg()
         selectSessionDlg->setFixedSize ( 310,180 );
     QPalette pal=selectSessionDlg->palette();
     pal.setBrush ( QPalette::Window, QColor ( 255,255,255,0 ) );
+    pal.setColor ( QPalette::Active, QPalette::WindowText, QPalette::Mid );
+    pal.setColor ( QPalette::Active, QPalette::ButtonText, QPalette::Mid );
+    pal.setColor ( QPalette::Active, QPalette::Text, QPalette::Mid );
+    pal.setColor ( QPalette::Inactive, QPalette::WindowText, QPalette::Mid );
+    pal.setColor ( QPalette::Inactive, QPalette::ButtonText, QPalette::Mid );
+    pal.setColor ( QPalette::Inactive, QPalette::Text, QPalette::Mid );
+
     selectSessionDlg->setPalette ( pal );
 
     pal.setColor ( QPalette::Button, QColor ( 255,255,255,0 ) );

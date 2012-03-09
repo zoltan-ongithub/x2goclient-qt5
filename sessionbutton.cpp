@@ -33,6 +33,19 @@ SessionButton::SessionButton ( ONMainWindow* mw,QWidget *parent, QString id )
 {
     editable=mw->sessionEditEnabled();
 
+
+    QPalette pal=palette();
+    pal.setColor ( QPalette::Active, QPalette::WindowText, QPalette::Mid );
+    pal.setColor ( QPalette::Active, QPalette::ButtonText, QPalette::Mid );
+    pal.setColor ( QPalette::Active, QPalette::Text, QPalette::Mid );
+    pal.setColor ( QPalette::Inactive, QPalette::WindowText, QPalette::Mid );
+    pal.setColor ( QPalette::Inactive, QPalette::ButtonText, QPalette::Mid );
+    pal.setColor ( QPalette::Inactive, QPalette::Text, QPalette::Mid );
+
+    setPalette(pal);
+
+
+
     QFont fnt=font();
     if ( mw->retMiniMode() )
 #ifdef Q_WS_HILDON
@@ -57,8 +70,8 @@ SessionButton::SessionButton ( ONMainWindow* mw,QWidget *parent, QString id )
     cmdBox=new QComboBox ( this );
     cmdBox->setMouseTracking ( true );
     cmdBox->setFrame ( false );
-// 	cmdBox->setEditable ( true );
     QPalette cpal=cmdBox->palette();
+
     cpal.setColor ( QPalette::Button,QColor ( 255,255,255 ) );
     cpal.setColor ( QPalette::Base,QColor ( 255,255,255 ) );
     cpal.setColor ( QPalette::Window,QColor ( 255,255,255 ) );
@@ -656,10 +669,10 @@ void SessionButton::slot_cmd_change ( const QString& command )
         cmd="LXDE";
         newRootless=false;
     }
-    if(command== tr("Published applications"))
+    if (command== tr("Published applications"))
     {
-      published=true;
-      cmd="PUBLISHED";
+        published=true;
+        cmd="PUBLISHED";
     }
     bool found=false;
     cmd=par->internAppName ( cmd,&found );

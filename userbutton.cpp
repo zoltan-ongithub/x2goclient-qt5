@@ -26,44 +26,49 @@
 UserButton::UserButton ( ONMainWindow* wnd, QWidget *par, QString name,
                          QString fullName, QPixmap& foto, QPalette& bgpal,
                          int width,int height )
-		: QPushButton ( par )
+        : QPushButton ( par )
 {
-	user=name;
-	fname=fullName;
-	image=foto;
-	setFocusPolicy ( Qt::NoFocus );
-	setAutoFillBackground ( true );
-	setFlat ( true );
-	setPalette ( bgpal );
+    user=name;
+    fname=fullName;
+    image=foto;
+    setFocusPolicy ( Qt::NoFocus );
+    setAutoFillBackground ( true );
+    setFlat ( true );
+    bgpal.setColor ( QPalette::Active, QPalette::WindowText, QPalette::Mid );
+    bgpal.setColor ( QPalette::Active, QPalette::ButtonText, QPalette::Mid );
+    bgpal.setColor ( QPalette::Inactive, QPalette::WindowText, QPalette::Mid );
+    bgpal.setColor ( QPalette::Inactive, QPalette::ButtonText, QPalette::Mid );
 
-	bool miniMode=wnd->retMiniMode();
-	if ( width==0 || height==0 )
-	{
-		if ( !miniMode )
-		{
-			setFixedSize ( 340,100 );
-		}
-		else
-			setFixedSize ( 250,100 );
-	}
-	else
-	{
-		setFixedSize ( width,height );
-	}
-	QLabel* f=new QLabel ( this );
-	QString text=name+"\n("+fullName+")";
-	QLabel* n=new QLabel ( text,this );
-	if ( !miniMode )
-		n->move ( 110,25 );
-	else
-		n->move ( 90,25 );
-	f->setPixmap ( foto );
-	f->setMaximumSize ( 80,80 );
-	if ( !miniMode )
-		f->move ( 10,10 );
-	else
-		f->move ( 5,10 );
-	connect ( this,SIGNAL ( clicked() ),this,SLOT ( slotClicked() ) );
+    setPalette ( bgpal );
+
+    bool miniMode=wnd->retMiniMode();
+    if ( width==0 || height==0 )
+    {
+        if ( !miniMode )
+        {
+            setFixedSize ( 340,100 );
+        }
+        else
+            setFixedSize ( 250,100 );
+    }
+    else
+    {
+        setFixedSize ( width,height );
+    }
+    QLabel* f=new QLabel ( this );
+    QString text=name+"\n("+fullName+")";
+    QLabel* n=new QLabel ( text,this );
+    if ( !miniMode )
+        n->move ( 110,25 );
+    else
+        n->move ( 90,25 );
+    f->setPixmap ( foto );
+    f->setMaximumSize ( 80,80 );
+    if ( !miniMode )
+        f->move ( 10,10 );
+    else
+        f->move ( 5,10 );
+    connect ( this,SIGNAL ( clicked() ),this,SLOT ( slotClicked() ) );
 }
 
 UserButton::~UserButton()
@@ -71,5 +76,5 @@ UserButton::~UserButton()
 
 void UserButton::slotClicked()
 {
-	emit userSelected ( this );
+    emit userSelected ( this );
 }
