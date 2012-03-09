@@ -23,6 +23,8 @@
 
 #include <QTextStream>
 #include <QTranslator>
+#include <QToolButton>
+#include <QPainter>
 
 #include "version.h"
 #include "x2goclientconfig.h"

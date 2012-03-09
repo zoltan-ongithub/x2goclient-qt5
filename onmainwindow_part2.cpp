@@ -20,6 +20,7 @@
 
 #include "onmainwindow_privat.h"
 
+
 void ONMainWindow::slotSshConnectionOk()
 {
     x2goDebug<<"ssh connection ok"<<endl;
@@ -2257,7 +2258,7 @@ void ONMainWindow::slotProxyStderr()
                 exportTimer->start ( 2000 );
             }
         }
-        sbSusp->setText ( tr ( "Suspend" ) );
+        sbSusp->setToolTip ( tr ( "Suspend" ) );
         if ( newSession )
         {
             runCommand();

@@ -1858,12 +1858,27 @@ void ONMainWindow::initStatusDlg()
 
     slVal->hide();
     slVal->setFixedHeight ( slName->sizeHint().height() );
-    sbApps=new QPushButton ( tr ( "Applications..." ),
-                            sessionStatusDlg );
-    sbExp=new QPushButton ( tr ( "Share folder..." ),
-                            sessionStatusDlg );
-    sbSusp=new QPushButton ( tr ( "Abort" ),sessionStatusDlg );
-    sbTerm=new QPushButton ( tr ( "Terminate" ),sessionStatusDlg );
+
+    sbApps=new QToolButton (sessionStatusDlg );
+    sbApps->setToolTip(tr ( "Applications..." ));
+    sbApps->setIcon(QPixmap(":/icons/32x32/apps.png"));
+    sbApps->setAutoRaise(true);
+
+    sbExp=new QToolButton (sessionStatusDlg );
+    sbExp->setIcon(QPixmap(":/icons/32x32/open_dir.png"));
+    sbExp->setToolTip (tr ("Share folder..." ));
+    sbExp->setAutoRaise(true);
+
+    sbSusp=new QToolButton (sessionStatusDlg );
+    sbSusp->setIcon(QPixmap(":/icons/32x32/suspend_session.png"));
+    sbSusp->setToolTip(tr ( "Abort" ));
+    sbSusp->setAutoRaise(true);
+
+    sbTerm=new QToolButton (sessionStatusDlg );
+    sbTerm->setIcon(QPixmap(":/icons/32x32/stop_session.png"));
+    sbTerm->setToolTip(tr ( "Terminate" ));
+    sbTerm->setAutoRaise(true);
+
     sbAdv=new QCheckBox ( tr ( "Show details" ),sessionStatusDlg );
     setWidgetStyle ( sbTerm );
     setWidgetStyle ( sbApps );
@@ -1872,29 +1887,17 @@ void ONMainWindow::initStatusDlg()
     setWidgetStyle ( sbAdv );
 
     sbAdv->setFixedSize ( sbAdv->sizeHint() );
-#ifndef Q_WS_HILDON
-    sbApps->setFixedSize ( sbApps->sizeHint() );
-    sbSusp->setFixedSize ( sbSusp->sizeHint() );
-    sbTerm->setFixedSize ( sbTerm->sizeHint() );
-    sbExp->setFixedSize ( sbExp->sizeHint() );
-#else
-    QSize sz=sbSusp->sizeHint();
-    sz.setWidth ( ( int ) ( sz.width() /1.5 ) );
-    sz.setHeight ( ( int ) ( sz.height() /1.5 ) );
-    sbSusp->setFixedSize ( sz );
-    sz=sbExp->sizeHint();
-    sz.setWidth ( ( int ) ( sz.width() ) );
-    sz.setHeight ( ( int ) ( sz.height() /1.5 ) );
-    sbExp->setFixedSize ( sz );
-    sz=sbTerm->sizeHint();
-    sz.setWidth ( ( int ) ( sz.width() /1.5 ) );
-    sz.setHeight ( ( int ) ( sz.height() /1.5 ) );
-    sbTerm->setFixedSize ( sz );
-    sz=sbApps->sizeHint();
-    sz.setWidth ( ( int ) ( sz.width() ) );
-    sz.setHeight ( ( int ) ( sz.height() /1.5 ) );
-    sbApps->setFixedSize ( sz );
-#endif
+    sbApps->setFixedSize ( 32,32 );
+    sbSusp->setFixedSize ( 32,32 );
+    sbTerm->setFixedSize ( 32,32 );
+    sbExp->setFixedSize ( 32,32 );
+
+    /*
+        sbApps->setFocusPolicy(Qt::NoFocus);
+        sbSusp->setFocusPolicy(Qt::NoFocus);
+        sbTerm->setFocusPolicy(Qt::NoFocus);
+        sbExp->setFocusPolicy(Qt::NoFocus);*/
+
     sbAdv->hide();
     sbSusp->hide();
     sbTerm->hide();
@@ -1950,7 +1953,7 @@ void ONMainWindow::initStatusDlg()
     bl->addWidget ( sbExp );
     bl->addWidget ( sbSusp );
     bl->addWidget ( sbTerm );
-    bl->addStretch();
+//     bl->addStretch();
     layout->addLayout ( ll );
     layout->addStretch();
     layout->addWidget ( stInfo );

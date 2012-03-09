@@ -331,14 +331,28 @@ void ONMainWindow::slotReadApplications(bool result, QString output,
             }
             if (line.indexOf("<icon>")!=-1)
             {
+                bool isSvg=false;
                 line=lines[++i];
-                QString pic;
+                QByteArray pic;
                 while (line.indexOf("</icon>")==-1)
                 {
-                    pic+=line;
+                    pic+=QByteArray::fromBase64(line.toAscii());
                     line=lines[++i];
+                    if (QString(QByteArray::fromBase64(line.toAscii())).indexOf("</svg>",Qt::CaseInsensitive)!=-1)
+                    {
+                        isSvg=true;
+                    }
                 }
-                app.icon.loadFromData(QByteArray::fromBase64(pic.toAscii()));
+                if (!isSvg)
+                    app.icon.loadFromData(pic);
+                else
+                {
+                    QPixmap pix(32,32);
+                    QSvgRenderer svgRenderer( pic );
+                    QPainter pixPainter(&pix);
+                    svgRenderer.render(&pixPainter);
+                    app.icon=pix;
+                }
             }
         }
         if (app.name.length()>0)
@@ -891,7 +905,7 @@ void ONMainWindow::showHelp()
         "\t\t\t\t comma separated\n"
         "--kbd-type=<typed>\t\t set default keyboard type\n"
         "--home=<dir>\t\t\t set users home directory\n"
-        "--set-kbd=<0|1>\t\t\t overwrite current keyboard settings\n" 
+        "--set-kbd=<0|1>\t\t\t overwrite current keyboard settings\n"
         "--session-conf=<file>\t\t\t path to alternative session config\n";
     qCritical ( "%s",helpMsg.toLocal8Bit().data() );
     QMessageBox::information ( this,tr ( "Options" ),helpMsg );

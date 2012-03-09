@@ -55,6 +55,7 @@
 #if defined(CFGPLUGIN) && defined(Q_OS_LINUX)
 class QX11EmbedContainer;
 #endif
+class QToolButton;
 class QTemporaryFile;
 class QLineEdit;
 class QFrame;
@@ -544,7 +545,6 @@ private:
     QList<Application> applications;
 
     QPushButton* bSusp;
-    QPushButton* sbExp;
     QPushButton* bTerm;
     QPushButton* bNew;
     QPushButton* bShadow;
@@ -584,9 +584,10 @@ private:
     QString readExportsFrom;
     QString readLoginsFrom;
     QPushButton* sOk;
-    QPushButton* sbSusp;
-    QPushButton* sbTerm;
-    QPushButton* sbApps;
+    QToolButton* sbSusp;
+    QToolButton* sbExp;
+    QToolButton* sbTerm;
+    QToolButton* sbApps;
     QCheckBox* sbAdv;
     QPushButton* sCancel;
     QString resolution;

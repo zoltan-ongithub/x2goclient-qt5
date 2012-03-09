@@ -8,6 +8,9 @@ x2goclient (3.99.2.0-0~x2go1) UNRELEASED; urgency=low
       session config.
     - Fixed bug "light font colour on light background" by dark colour schema.
     - Make X2Go system tray icon not transparent.
+    - Replace text on buttons "Application", "Share folder", "Suspend",
+      "Terminate" with icons to fit in dialog window.
+    - Support for SVG icons for published applications
 
  -- Mike Gabriel <mike.gabriel@das-netzwerkteam.de>  Wed, 07 Mar 2012 21:02:15 +0100
 
