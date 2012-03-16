@@ -169,16 +169,6 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
     widgetExtraStyle =new QPlastiqueStyle();
 #endif
 
-    QDesktopWidget wd;
-// 	x2goDebug<<"Desktop geometry:"<<wd.screenGeometry();
-    if ( wd.screenGeometry().width() <1024 ||
-            wd.screenGeometry().height() <768 )
-    {
-        miniMode=true;
-        x2goDebug<<"Switching to \"mini\" mode";
-    }
-
-
     agentCheckTimer=new QTimer ( this );
     connect ( agentCheckTimer,SIGNAL ( timeout() ),this,
               SLOT ( slotCheckAgentProcess() ) );
@@ -264,6 +254,19 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
     {
         QTimer::singleShot ( 10, this, SLOT ( slotResize() ) );
     }
+
+
+    QDesktopWidget wd;
+
+    x2goDebug<<"primary screen geometry: "<<wd.screenGeometry(wd.screenNumber(this));
+
+    if ( wd.screenGeometry(wd.screenNumber(this)).width() <1024 ||
+            wd.screenGeometry(wd.screenNumber(this)).height() <768 )
+    {
+        miniMode=true;
+        x2goDebug<<"Switching to \"mini\" mode";
+    }
+
 
     if ( usePGPCard )
     {
@@ -1439,16 +1442,12 @@ void ONMainWindow::loadSettings()
 {
 
     X2goSettings st ( "sizes" );
-
     mwSize=st.setting()->value ( "mainwindow/size",
                                  ( QVariant ) QSize ( 800,600 ) ).toSize();
     mwPos=st.setting()->value ( "mainwindow/pos",
                                 ( QVariant ) QPoint ( 20,20 ) ).toPoint();
     mwMax=st.setting()->value ( "mainwindow/maximized",
                                 ( QVariant ) false ).toBool();
-    // tray stuff
-// 	trayQuitInfoShown = st1.value( "trayQuitInfoShown", false ).toBool();
-
 
 
     X2goSettings st1 ( "settings" );

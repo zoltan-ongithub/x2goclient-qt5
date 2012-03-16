@@ -1863,21 +1863,27 @@ void ONMainWindow::initStatusDlg()
     sbApps->setToolTip(tr ( "Applications..." ));
     sbApps->setIcon(QPixmap(":/icons/32x32/apps.png"));
     sbApps->setAutoRaise(true);
+    sbApps->setFocusPolicy(Qt::NoFocus);
 
     sbExp=new QToolButton (sessionStatusDlg );
     sbExp->setIcon(QPixmap(":/icons/32x32/open_dir.png"));
     sbExp->setToolTip (tr ("Share folder..." ));
     sbExp->setAutoRaise(true);
+    sbExp->setFocusPolicy(Qt::NoFocus);
 
     sbSusp=new QToolButton (sessionStatusDlg );
     sbSusp->setIcon(QPixmap(":/icons/32x32/suspend_session.png"));
     sbSusp->setToolTip(tr ( "Abort" ));
     sbSusp->setAutoRaise(true);
+    sbSusp->setFocusPolicy(Qt::NoFocus);
+
 
     sbTerm=new QToolButton (sessionStatusDlg );
     sbTerm->setIcon(QPixmap(":/icons/32x32/stop_session.png"));
     sbTerm->setToolTip(tr ( "Terminate" ));
     sbTerm->setAutoRaise(true);
+    sbTerm->setFocusPolicy(Qt::NoFocus);
+
 
     sbAdv=new QCheckBox ( tr ( "Show details" ),sessionStatusDlg );
     setWidgetStyle ( sbTerm );
