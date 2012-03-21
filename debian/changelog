@@ -12,6 +12,7 @@ x2goclient (3.99.2.0-0~x2go1) UNRELEASED; urgency=low
       "Terminate" with icons to fit in dialog window.
     - Support for SVG icons for published applications
     - Set "nofocus" policy for tool buttons.
+    - Some improvements when using pgp card.
 
  -- Mike Gabriel <mike.gabriel@das-netzwerkteam.de>  Wed, 07 Mar 2012 21:02:15 +0100
 

@@ -279,8 +279,9 @@ bool ONMainWindow::startSession ( const QString& sid )
         user=st.setting()->value ( sid+"/user",
                                    ( QVariant ) QString::null ).toString();
         login->setText(user);
-        sshPort=st.setting()->value ( sid+"/sshport",
-                                      ( QVariant ) "22" ).toString();
+        sshPort=config.sshport;
+        /*        sshPort=st.setting()->value ( sid+"/sshport",
+                                              ( QVariant ) "22" ).toString();*/
     }
     if (sshConnection)
         sshConnection->disconnectSession();

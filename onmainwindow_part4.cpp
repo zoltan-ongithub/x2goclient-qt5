@@ -2526,18 +2526,13 @@ void ONMainWindow::slotGetBrokerSession(const QString& sinfo)
     int keyStartPos=sinfo.indexOf("-----BEGIN DSA PRIVATE KEY-----");
     QString endStr="-----END DSA PRIVATE KEY-----";
     int keyEndPos=sinfo.indexOf(endStr);
-    if (keyEndPos == -1 || keyStartPos == -1 || lst.size()==0)
-    {
-        //throw error
-        QMessageBox::critical (
-            0,tr ( "Error" ),
-            tr ("Invalid reply from broker") +"<br>"+sinfo);
-
-        close();
-        return;
-    }
-    config.server=(lst[1].split("\n"))[0];
-    config.key=sinfo.mid(keyStartPos, keyEndPos+endStr.length()-keyStartPos);
+    if (! (keyEndPos == -1 || keyStartPos == -1 || lst.size()==0))
+        config.key=sinfo.mid(keyStartPos, keyEndPos+endStr.length()-keyStartPos);
+    QString serverLine=(lst[1].split("\n"))[0];
+    QStringList words=serverLine.split(":",QString::SkipEmptyParts);
+    config.server=words[0];
+    if (words.count()>1)
+        config.sshport=words[1];
 //    x2goDebug<<"server: "<<config.server<<endl<<" key: "<<config.key;
     if (sinfo.indexOf("SESSION_INFO")!=-1)
     {

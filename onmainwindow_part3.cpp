@@ -2135,7 +2135,7 @@ void ONMainWindow::slotGpgAgentFinished ( int , QProcess::ExitStatus )
 
     if ( !useLdap )
     {
-        if ( passForm->isVisible() )
+        if ( passForm->isVisible() && !brokerMode)
         {
             if ( passForm->isEnabled() )
             {
