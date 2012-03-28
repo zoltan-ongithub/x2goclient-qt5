@@ -35,6 +35,12 @@
 #endif
 #include <math.h>
 
+#ifndef Q_OS_WIN
+#include <arpa/inet.h>
+#include <netinet/tcp.h>
+#endif
+
+
 #include "onmainwindow.h"
 
 #undef DEBUG
@@ -211,6 +217,16 @@ void SshMasterConnection::run()
         quit();
         return;
     }
+
+
+#ifndef Q_OS_WIN
+    const int y=1;
+#else
+    const char y=1;
+#endif
+    socket_t session_sock=ssh_get_fd(my_ssh_session);
+    setsockopt(session_sock, IPPROTO_TCP, TCP_NODELAY,&y, sizeof(int));
+
 
     if ( reverseTunnel )
     {
@@ -591,6 +607,13 @@ void SshMasterConnection::channelLoop()
                 x2goDebug<<"new forward connection"<<endl;
 #endif
                 int sock=socket ( AF_INET, SOCK_STREAM,0 );
+#ifndef Q_OS_WIN
+                const int y=1;
+#else
+                const char y=1;
+#endif
+                setsockopt(sock, IPPROTO_TCP, TCP_NODELAY,&y, sizeof(int));
+
                 struct sockaddr_in address;
                 address.sin_family=AF_INET;
                 address.sin_port=htons ( reverseTunnelLocalPort );
