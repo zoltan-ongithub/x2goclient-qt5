@@ -203,7 +203,10 @@ void ONMainWindow::runCommand()
 void ONMainWindow::runApplication(QString exec)
 {
     SshProcess* proc=new SshProcess ( sshConnection, this );
-    proc->startNormal ("DISPLAY=:"+resumingSession.display+" setsid "+exec+">& /dev/null & exit");
+    proc->startNormal ("PULSE_CLIENTCONFIG=~/.x2go/C-"+
+                       resumingSession.sessionId+"/.pulse-client.conf DISPLAY=:"+
+                       resumingSession.display+
+                       " setsid "+exec+">& /dev/null & exit");
 }
 
 void ONMainWindow::slotRetRunCommand ( bool result, QString output,
@@ -328,6 +331,8 @@ void ONMainWindow::slotReadApplications(bool result, QString output,
                     app.category=Application::SYSTEM;
                 if (line.indexOf("Utility")!=-1)
                     app.category=Application::UTILITY;
+                if (line.indexOf("X2Go-Top",0,Qt::CaseInsensitive)!=-1)
+                    app.category=Application::TOP;
             }
             if (line.indexOf("<icon>")!=-1)
             {

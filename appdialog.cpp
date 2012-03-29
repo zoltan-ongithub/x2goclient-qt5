@@ -150,7 +150,7 @@ void AppDialog::loadApps()
                 util=initTopItem(tr("Utility"), QPixmap(":/icons/22x22/applications-utilities.png"));
             parent=util;
             break;
-        default:
+        case Application::OTHER:
             if (!other)
                 other=initTopItem(tr("Other"), QPixmap(":/icons/22x22/applications-other.png"));
             parent=other;
@@ -158,7 +158,10 @@ void AppDialog::loadApps()
         }
 
         QTreeWidgetItem* it;
-        it=new QTreeWidgetItem(parent);
+        if (app.category==Application::TOP)
+            it=new QTreeWidgetItem(treeWidget);
+        else
+            it=new QTreeWidgetItem(parent);
         it->setText(0, app.name);
         it->setToolTip(0,app.comment);
         it->setIcon(0,app.icon);

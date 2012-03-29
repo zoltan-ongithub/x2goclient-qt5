@@ -127,7 +127,7 @@ struct Application
     QPixmap icon;
     enum {MULTIMEDIA, DEVELOPMENT, EDUCATION, GAME,
           GRAPHICS, NETWORK, OFFICE,
-          SETTINGS, SYSTEM, UTILITY, OTHER
+          SETTINGS, SYSTEM, UTILITY, OTHER, TOP
          } category;
     static bool lessThen(Application t1, Application t2)
     {
@@ -636,6 +636,7 @@ private:
     QAction *act_embedToolBar;
     QAction *act_changeBrokerPass;
     QAction *act_testCon;
+    QList <QAction*> topActions;
 
     QToolBar *stb;
 

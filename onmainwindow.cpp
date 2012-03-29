@@ -1031,15 +1031,13 @@ void ONMainWindow::trayIconInit()
                                         QPixmap(":/icons/22x22/applications-other.png"));
             appSeparator=trayIconActiveConnectionMenu->addSeparator();
 
-            for (int i=0;i<=Application::OTHER;++i)
-            {
-                connect (appMenu[i], SIGNAL(triggered(QAction*)), this, SLOT(slotAppMenuTriggered(QAction*)));
-            }
-
 
             trayIconActiveConnectionMenu->addAction(tr ("Share folder..." ),this, SLOT(slotExportDirectory()));
             trayIconActiveConnectionMenu->addAction(tr("Suspend"),this, SLOT(slotSuspendSessFromSt()));
             trayIconActiveConnectionMenu->addAction(tr("Terminate"),this, SLOT(slotTermSessFromSt()));
+            connect (trayIconActiveConnectionMenu, SIGNAL(triggered(QAction*)), this, 
+		     SLOT(slotAppMenuTriggered(QAction*)));
+
 
             if (sessionStatusDlg && sessionStatusDlg->isVisible())
             {
@@ -1082,7 +1080,9 @@ QMenu* ONMainWindow::initTrayAppMenu(QString text, QPixmap icon)
 
 void ONMainWindow::slotAppMenuTriggered(QAction* action)
 {
-    runApplication(action->data().toString());
+    x2goDebug<<"slotAppMenuTriggered :"<<action->data().toString()<<endl;
+    if(action->data().toString() != "")
+      runApplication(action->data().toString());
 }
 
 void ONMainWindow::plugAppsInTray()
@@ -1092,12 +1092,23 @@ void ONMainWindow::plugAppsInTray()
     removeAppsFromTray();
     x2goDebug<<"plugging apps\n";
     bool empty=true;
+    topActions.clear();
     foreach(Application app, applications)
     {
-        QAction* act=appMenu[app.category]->addAction(app.icon,app.name);
+      QAction* act;
+      if(app.category==Application::TOP)
+      {
+	 act=new QAction(app.icon,app.name,trayIconActiveConnectionMenu);
+         trayIconActiveConnectionMenu->insertAction(appSeparator, act);
+	 topActions.append(act);
+      }
+      else
+      {
+        act=appMenu[app.category]->addAction(app.icon,app.name);
+        appMenu[app.category]->menuAction()->setVisible(true);
+      }
         act->setToolTip(app.comment);
         act->setData(app.exec);
-        appMenu[app.category]->menuAction()->setVisible(true);
         empty=false;
     }
     if (!empty)
@@ -1115,6 +1126,12 @@ void ONMainWindow::removeAppsFromTray()
         appMenu[i]->clear();
         appMenu[i]->menuAction()->setVisible(false);
     }
+    foreach (QAction* act, topActions)
+    {
+      trayIconActiveConnectionMenu->removeAction(act);
+      delete act;
+    }
+    topActions.clear();
     appSeparator->setVisible(false);
 }
 
