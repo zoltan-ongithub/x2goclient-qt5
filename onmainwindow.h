@@ -518,6 +518,7 @@ private:
     bool showTbTooltip;
     bool noSessionEdit;
     bool cleanAllFiles;
+    bool PGPInited;
     struct SshProxy sshProxy;
     QString sshPort;
     QString clientSshPort;

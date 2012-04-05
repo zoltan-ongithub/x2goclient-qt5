@@ -1,6 +1,8 @@
 x2goclient (3.99.2.1-0~x2go1) UNRELEASED; urgency=low
 
-  * Continue development...
+  [ Oleksandr Shneyder ]
+  * New upstream version (3.99.2.1):
+    - Not starting smart card daemon before users are loaded in LDAP mode.
 
  -- Mike Gabriel <mike.gabriel@das-netzwerkteam.de>  Wed, 04 Apr 2012 11:55:57 +0200
 

@@ -56,6 +56,7 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
     cleanAllFiles=false;
     drawMenu=true;
     usePGPCard=false;
+    PGPInited=false;
     extLogin=false;
     startMaximized=false;
     startHidden=false;
@@ -268,7 +269,7 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
     }
 
 
-    if ( usePGPCard )
+    if ( usePGPCard  && !useLdap)
     {
         QTimer::singleShot ( 10, this, SLOT ( slotStartPGPAuth() ) );
     }
@@ -1035,8 +1036,8 @@ void ONMainWindow::trayIconInit()
             trayIconActiveConnectionMenu->addAction(tr ("Share folder..." ),this, SLOT(slotExportDirectory()));
             trayIconActiveConnectionMenu->addAction(tr("Suspend"),this, SLOT(slotSuspendSessFromSt()));
             trayIconActiveConnectionMenu->addAction(tr("Terminate"),this, SLOT(slotTermSessFromSt()));
-            connect (trayIconActiveConnectionMenu, SIGNAL(triggered(QAction*)), this, 
-		     SLOT(slotAppMenuTriggered(QAction*)));
+            connect (trayIconActiveConnectionMenu, SIGNAL(triggered(QAction*)), this,
+                     SLOT(slotAppMenuTriggered(QAction*)));
 
 
             if (sessionStatusDlg && sessionStatusDlg->isVisible())
@@ -1081,8 +1082,8 @@ QMenu* ONMainWindow::initTrayAppMenu(QString text, QPixmap icon)
 void ONMainWindow::slotAppMenuTriggered(QAction* action)
 {
     x2goDebug<<"slotAppMenuTriggered :"<<action->data().toString()<<endl;
-    if(action->data().toString() != "")
-      runApplication(action->data().toString());
+    if (action->data().toString() != "")
+        runApplication(action->data().toString());
 }
 
 void ONMainWindow::plugAppsInTray()
@@ -1095,18 +1096,18 @@ void ONMainWindow::plugAppsInTray()
     topActions.clear();
     foreach(Application app, applications)
     {
-      QAction* act;
-      if(app.category==Application::TOP)
-      {
-	 act=new QAction(app.icon,app.name,trayIconActiveConnectionMenu);
-         trayIconActiveConnectionMenu->insertAction(appSeparator, act);
-	 topActions.append(act);
-      }
-      else
-      {
-        act=appMenu[app.category]->addAction(app.icon,app.name);
-        appMenu[app.category]->menuAction()->setVisible(true);
-      }
+        QAction* act;
+        if (app.category==Application::TOP)
+        {
+            act=new QAction(app.icon,app.name,trayIconActiveConnectionMenu);
+            trayIconActiveConnectionMenu->insertAction(appSeparator, act);
+            topActions.append(act);
+        }
+        else
+        {
+            act=appMenu[app.category]->addAction(app.icon,app.name);
+            appMenu[app.category]->menuAction()->setVisible(true);
+        }
         act->setToolTip(app.comment);
         act->setData(app.exec);
         empty=false;
@@ -1128,8 +1129,8 @@ void ONMainWindow::removeAppsFromTray()
     }
     foreach (QAction* act, topActions)
     {
-      trayIconActiveConnectionMenu->removeAction(act);
-      delete act;
+        trayIconActiveConnectionMenu->removeAction(act);
+        delete act;
     }
     topActions.clear();
     appSeparator->setVisible(false);
@@ -1555,6 +1556,12 @@ void ONMainWindow::displayUsers()
                  SLOT ( slotSnameChanged ( const QString& ) ) );
     connect ( uname,SIGNAL ( textEdited ( const QString& ) ),this,
               SLOT ( slotUnameChanged ( const QString& ) ) );
+    if ( usePGPCard  && !PGPInited)
+    {
+        PGPInited=true;
+        x2goDebug<<"Users loaded, starting smart card daemon\n";
+        QTimer::singleShot ( 10, this, SLOT ( slotStartPGPAuth() ) );
+    }
 }
 
 void ONMainWindow::showPass ( UserButton* user )
