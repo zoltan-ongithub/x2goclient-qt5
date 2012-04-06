@@ -6,77 +6,77 @@
     <message>
         <location filename="appdialog.ui" line="14"/>
         <source>Published Applications</source>
-        <translation type="unfinished"></translation>
+        <translation>Publicerade applikationer</translation>
     </message>
     <message>
         <location filename="appdialog.ui" line="60"/>
         <source>Search:</source>
-        <translation type="unfinished"></translation>
+        <translation>Sök:</translation>
     </message>
     <message>
         <location filename="appdialog.ui" line="76"/>
         <source>&amp;Start</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Starta</translation>
     </message>
     <message>
         <location filename="appdialog.ui" line="96"/>
         <source>&amp;Close</source>
-        <translation type="unfinished"></translation>
+        <translation>S&amp;täng</translation>
     </message>
     <message>
         <location filename="appdialog.cpp" line="105"/>
         <source>Multimedia</source>
-        <translation type="unfinished"></translation>
+        <translation>Ljud och video</translation>
     </message>
     <message>
         <location filename="appdialog.cpp" line="110"/>
         <source>Development</source>
-        <translation type="unfinished"></translation>
+        <translation>Programmering</translation>
     </message>
     <message>
         <location filename="appdialog.cpp" line="115"/>
         <source>Education</source>
-        <translation type="unfinished"></translation>
+        <translation>Utbildning</translation>
     </message>
     <message>
         <location filename="appdialog.cpp" line="120"/>
         <source>Game</source>
-        <translation type="unfinished"></translation>
+        <translation>Spel</translation>
     </message>
     <message>
         <location filename="appdialog.cpp" line="125"/>
         <source>Graphics</source>
-        <translation type="unfinished"></translation>
+        <translation>Grafik</translation>
     </message>
     <message>
         <location filename="appdialog.cpp" line="130"/>
         <source>Network</source>
-        <translation type="unfinished"></translation>
+        <translation>Nätverk</translation>
     </message>
     <message>
         <location filename="appdialog.cpp" line="135"/>
         <source>Office</source>
-        <translation type="unfinished"></translation>
+        <translation>Kontor</translation>
     </message>
     <message>
         <location filename="appdialog.cpp" line="140"/>
         <source>Settings</source>
-        <translation type="unfinished">Inställningar</translation>
+        <translation>Inställningar</translation>
     </message>
     <message>
         <location filename="appdialog.cpp" line="145"/>
         <source>System</source>
-        <translation type="unfinished"></translation>
+        <translation>System</translation>
     </message>
     <message>
         <location filename="appdialog.cpp" line="150"/>
         <source>Utility</source>
-        <translation type="unfinished"></translation>
+        <translation>Verktyg</translation>
     </message>
     <message>
         <location filename="appdialog.cpp" line="155"/>
         <source>Other</source>
-        <translation type="unfinished"></translation>
+        <translation>Övrigt</translation>
     </message>
 </context>
 <context>
@@ -591,7 +591,7 @@
     <message>
         <location filename="exportdialog.cpp" line="73"/>
         <source>share folders</source>
-        <translation>dela mappar</translation>
+        <translation>Dela mappar</translation>
     </message>
     <message>
         <location filename="exportdialog.cpp" line="139"/>
@@ -1016,57 +1016,57 @@
     <message>
         <location filename="onmainwindow.cpp" line="1005"/>
         <source>Multimedia</source>
-        <translation type="unfinished"></translation>
+        <translation>Ljud och video</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="1007"/>
         <source>Development</source>
-        <translation type="unfinished"></translation>
+        <translation>Programmering</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="1009"/>
         <source>Education</source>
-        <translation type="unfinished"></translation>
+        <translation>Utbildning</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="1011"/>
         <source>Game</source>
-        <translation type="unfinished"></translation>
+        <translation>Spel</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="1013"/>
         <source>Graphics</source>
-        <translation type="unfinished"></translation>
+        <translation>Grafik</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="1015"/>
         <source>Network</source>
-        <translation type="unfinished"></translation>
+        <translation>Nätverk</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="1017"/>
         <source>Office</source>
-        <translation type="unfinished"></translation>
+        <translation>Kontor</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="1019"/>
         <source>Settings</source>
-        <translation type="unfinished">Inställningar</translation>
+        <translation>Inställningar</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="1021"/>
         <source>System</source>
-        <translation type="unfinished"></translation>
+        <translation>System</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="1023"/>
         <source>Utility</source>
-        <translation type="unfinished"></translation>
+        <translation>Verktyg</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="1025"/>
         <source>Other</source>
-        <translation type="unfinished"></translation>
+        <translation>Övrigt</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="1062"/>
@@ -1559,7 +1559,8 @@ Data som ej sparats kommer att förloras</translation>
         <location filename="onmainwindow_part3.cpp" line="2232"/>
         <source>Can&apos;t start X server
 Please check your settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Kan ej starta X-server
+Kontrollera dina inställningar</translation>
     </message>
     <message>
         <source>Can&apos;t connect to X-Server</source>
@@ -1571,7 +1572,7 @@ Please check your settings</source>
 Please check your settings</source>
         <oldsource>Can&apos;t connect to X-Server
 Please check your settings</oldsource>
-        <translation type="unfinished">Kan ej ansluta till X-server
+        <translation>Kan ej ansluta till X-server
 Kontrollera dina inställningar</translation>
     </message>
     <message>
@@ -1666,7 +1667,7 @@ Uppdatera till en nyare version av x2goserver</translation>
     <message>
         <location filename="onmainwindow_part4.cpp" line="1850"/>
         <source>Applications...</source>
-        <translation type="unfinished"></translation>
+        <translation>Applikationer...</translation>
     </message>
     <message>
         <location filename="onmainwindow_part4.cpp" line="1854"/>
@@ -2047,7 +2048,7 @@ Example:
         <location filename="sessionbutton.cpp" line="371"/>
         <location filename="sessionbutton.cpp" line="659"/>
         <source>Published applications</source>
-        <translation type="unfinished"></translation>
+        <translation>Publicerade applikationer</translation>
     </message>
     <message>
         <location filename="sessionbutton.cpp" line="395"/>
@@ -2210,7 +2211,7 @@ Example:
     <message>
         <location filename="sessionwidget.cpp" line="132"/>
         <source>Published applications</source>
-        <translation type="unfinished"></translation>
+        <translation>Publicerade applikationer</translation>
     </message>
     <message>
         <location filename="sessionwidget.cpp" line="134"/>
