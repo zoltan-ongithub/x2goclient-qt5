@@ -6,77 +6,77 @@
     <message>
         <location filename="appdialog.ui" line="14"/>
         <source>Published Applications</source>
-        <translation type="unfinished"></translation>
+        <translation>Veröffentlichte Anwendungen</translation>
     </message>
     <message>
         <location filename="appdialog.ui" line="60"/>
         <source>Search:</source>
-        <translation type="unfinished"></translation>
+        <translation>Suche:</translation>
     </message>
     <message>
         <location filename="appdialog.ui" line="76"/>
         <source>&amp;Start</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Starten</translation>
     </message>
     <message>
         <location filename="appdialog.ui" line="96"/>
         <source>&amp;Close</source>
-        <translation type="unfinished"></translation>
+        <translation>S&amp;chließen</translation>
     </message>
     <message>
         <location filename="appdialog.cpp" line="105"/>
         <source>Multimedia</source>
-        <translation type="unfinished"></translation>
+        <translation>Unterhaltungsmedien</translation>
     </message>
     <message>
         <location filename="appdialog.cpp" line="110"/>
         <source>Development</source>
-        <translation type="unfinished"></translation>
+        <translation>Entwicklung</translation>
     </message>
     <message>
         <location filename="appdialog.cpp" line="115"/>
         <source>Education</source>
-        <translation type="unfinished"></translation>
+        <translation>Bildung</translation>
     </message>
     <message>
         <location filename="appdialog.cpp" line="120"/>
         <source>Game</source>
-        <translation type="unfinished"></translation>
+        <translation>Spiele</translation>
     </message>
     <message>
         <location filename="appdialog.cpp" line="125"/>
         <source>Graphics</source>
-        <translation type="unfinished"></translation>
+        <translation>Grafik</translation>
     </message>
     <message>
         <location filename="appdialog.cpp" line="130"/>
         <source>Network</source>
-        <translation type="unfinished"></translation>
+        <translation>Internet</translation>
     </message>
     <message>
         <location filename="appdialog.cpp" line="135"/>
         <source>Office</source>
-        <translation type="unfinished"></translation>
+        <translation>Büroprogramme</translation>
     </message>
     <message>
         <location filename="appdialog.cpp" line="140"/>
         <source>Settings</source>
-        <translation type="unfinished">Konfiguration</translation>
+        <translation>Einstellungen</translation>
     </message>
     <message>
         <location filename="appdialog.cpp" line="145"/>
         <source>System</source>
-        <translation type="unfinished"></translation>
+        <translation>Systemwerkzeuge</translation>
     </message>
     <message>
         <location filename="appdialog.cpp" line="150"/>
         <source>Utility</source>
-        <translation type="unfinished"></translation>
+        <translation>Dienstprogramme</translation>
     </message>
     <message>
         <location filename="appdialog.cpp" line="155"/>
         <source>Other</source>
-        <translation type="unfinished"></translation>
+        <translation>Sonstige</translation>
     </message>
 </context>
 <context>
@@ -1011,7 +1011,7 @@ sound system connections through firewalls</source>
         <location filename="httpbrokerclient.cpp" line="467"/>
         <source>Issued to:
 </source>
-        <translation>Issued to:￼
+        <translation>Ausgestellt für:￼
 </translation>
     </message>
     <message>
@@ -1041,7 +1041,7 @@ sound system connections through firewalls</source>
         <location filename="httpbrokerclient.cpp" line="479"/>
         <source>Issued by:
 </source>
-        <translation>Issued by:￼
+        <translation>Ausgestellt von:￼
 </translation>
     </message>
     <message>
@@ -1065,7 +1065,7 @@ sound system connections through firewalls</source>
         <location filename="httpbrokerclient.cpp" line="493"/>
         <source>Fingerprints:
 </source>
-        <translation>Fingerprints:￼
+        <translation>Fingerabdrücke:￼
 </translation>
     </message>
     <message>
@@ -1681,8 +1681,8 @@ sound system connections through firewalls</source>
 Please check your settings</source>
         <oldsource>Can&apos;t connect to X-Server
 Please check your settings</oldsource>
-        <translation type="unfinished">Verbindung zu X-Server konnte nicht hergestellt werden
-Überprüfen Sie Ihre Einstellungen</translation>
+        <translation>Verbindung zu X-Server konnte nicht hergestellt werden
+Bitte überprüfen Sie Ihre Einstellungen</translation>
     </message>
     <message>
         <source>Can&apos;t start X-Server</source>
@@ -1968,7 +1968,8 @@ Public key hash: </source>
         <location filename="onmainwindow_part3.cpp" line="2232"/>
         <source>Can&apos;t start X server
 Please check your settings</source>
-        <translation type="unfinished"></translation>
+        <translation>X-Server lässt sich nicht starten. 
+Bitte überprüfen Sie Ihre Installation</translation>
     </message>
     <message>
         <location filename="onmainwindow_part3.cpp" line="2434"/>
@@ -2020,57 +2021,57 @@ Bitte installieren sie eine neuere Version von x2goserver</translation>
     <message>
         <location filename="onmainwindow.cpp" line="1005"/>
         <source>Multimedia</source>
-        <translation type="unfinished"></translation>
+        <translation>Unterhaltungsmedien</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="1007"/>
         <source>Development</source>
-        <translation type="unfinished"></translation>
+        <translation>Entwicklung</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="1009"/>
         <source>Education</source>
-        <translation type="unfinished"></translation>
+        <translation>Bildung</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="1011"/>
         <source>Game</source>
-        <translation type="unfinished"></translation>
+        <translation>Spiele</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="1013"/>
         <source>Graphics</source>
-        <translation type="unfinished"></translation>
+        <translation>Grafik</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="1015"/>
         <source>Network</source>
-        <translation type="unfinished"></translation>
+        <translation>Internet</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="1017"/>
         <source>Office</source>
-        <translation type="unfinished"></translation>
+        <translation>Büroprogramme</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="1019"/>
         <source>Settings</source>
-        <translation type="unfinished">Konfiguration</translation>
+        <translation>Einstellungen</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="1021"/>
         <source>System</source>
-        <translation type="unfinished"></translation>
+        <translation>Systemwerkzeuge</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="1023"/>
         <source>Utility</source>
-        <translation type="unfinished"></translation>
+        <translation>Dienstprogramme</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="1025"/>
         <source>Other</source>
-        <translation type="unfinished"></translation>
+        <translation>Sonstige</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="1062"/>
@@ -2284,7 +2285,7 @@ Sie können SSHD über folgenden Befehl installieren:
     <message>
         <location filename="printdialog.cpp" line="54"/>
         <source>You&apos;ve deactivated the x2go client printing dialog.</source>
-        <translation>Sie haben den clientseitigen Druckdialog deaktiviert</translation>
+        <translation>Sie haben den clientseitigen Druckdialog deaktiviert.</translation>
     </message>
     <message>
         <location filename="printdialog.cpp" line="56"/>
@@ -2513,7 +2514,7 @@ Beispiel:
         <location filename="sessionbutton.cpp" line="371"/>
         <location filename="sessionbutton.cpp" line="659"/>
         <source>Published applications</source>
-        <translation type="unfinished"></translation>
+        <translation>Veröffentlichte Anwendungen</translation>
     </message>
     <message>
         <location filename="sessionbutton.cpp" line="395"/>
@@ -2751,7 +2752,7 @@ Beispiel:
     <message>
         <location filename="sessionwidget.cpp" line="132"/>
         <source>Published applications</source>
-        <translation type="unfinished"></translation>
+        <translation>Veröffentlichte Anwendungen</translation>
     </message>
     <message>
         <location filename="sessionwidget.cpp" line="134"/>
@@ -2832,7 +2833,7 @@ Beispiel:
     <message>
         <location filename="sessionwidget.cpp" line="233"/>
         <source>x2goclient is running in portable mode. You should use a path on your usb device to be able to access your data whereever you are</source>
-        <translation>x2goclient befindet sich im portablen Ausführungsmodus. Wenn Sie einen Pfad ausserhalb des USB Geräts wählen, können sie auf die Daten nicht von überall aus zugreifen.</translation>
+        <translation>x2goclient wird gerade als portable Anwendung ausgeführt. Sie sollten einen Pfad auf dem USB-Medium wählen, um von überall aus auf Ihre Daten zugreifen zu können.</translation>
     </message>
 </context>
 <context>
