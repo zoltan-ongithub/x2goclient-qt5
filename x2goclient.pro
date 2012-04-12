@@ -76,9 +76,6 @@ SOURCES += sharewidget.cpp \
            imgframe.cpp \
            LDAPSession.cpp \
            onmainwindow.cpp \
-           onmainwindow_part2.cpp \
-           onmainwindow_part3.cpp \
-           onmainwindow_part4.cpp \
            sessionbutton.cpp \
            sessionmanagedialog.cpp \
            sshmasterconnection.cpp \
