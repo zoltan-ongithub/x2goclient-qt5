@@ -144,6 +144,7 @@
 
 #ifdef Q_OS_WIN
 #include "wapi.h"
+#include <QHostInfo>
 #endif
 
 #ifdef Q_OS_LINUX

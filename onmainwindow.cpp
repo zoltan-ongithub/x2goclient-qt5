@@ -8582,7 +8582,15 @@ void ONMainWindow::startPulsed()
     pulseServer=new QProcess ( 0 );
     pulseServer->setEnvironment ( pEnv );
     QStringList args;
-    args<<"-n"<<"-F"<<pulseDir+"/config.pa";
+#ifdef Q_OS_WIN
+    QDir drr(homeDir+"/.x2go/pulse/.pulse/"+QHostInfo::localHostName ()+"-runtime");
+    if (!drr.exists())
+        drr.mkpath(drr.path());
+    pulseDir.replace("/","\\");
+    args<<"--exit-idle-time=-1"<<"-n"<<"-F"<<pulseDir+"\\config.pa";
+#else
+    args<<"--exit-idle-time=-1"<<"-n"<<"-F"<<pulseDir+"/config.pa";
+#endif
     pulseServer->setWorkingDirectory ( wapiShortFileName (
                                            appDir+"\\pulse" ) );
     pulseServer->start ( "pulse\\pulseaudio.exe",args );
