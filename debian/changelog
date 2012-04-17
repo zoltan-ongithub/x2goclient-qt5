@@ -5,6 +5,8 @@ x2goclient (3.99.2.1-0~x2go1) UNRELEASED; urgency=low
     - Not starting smart card daemon before users are loaded in LDAP mode.
     - Merging onmainwindow_part*.cpp into onmainwindow.cpp
     - Support recent pulseuadio on windows
+    - removing %USERPROFILE%\.x2go\pulse\.pulse\%COMPUTERNAME%-runtime\pid
+      if exists under windows
 
   [ Daniel Lindgren ]
   * New upstream version (3.99.2.1):

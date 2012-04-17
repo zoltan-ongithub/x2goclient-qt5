@@ -8586,6 +8586,8 @@ void ONMainWindow::startPulsed()
     QDir drr(homeDir+"/.x2go/pulse/.pulse/"+QHostInfo::localHostName ()+"-runtime");
     if (!drr.exists())
         drr.mkpath(drr.path());
+    if (QFile::exists(homeDir+"/.x2go/pulse/.pulse/"+QHostInfo::localHostName ()+"-runtime/pid"))
+        QFile::remove(homeDir+"/.x2go/pulse/.pulse/"+QHostInfo::localHostName ()+"-runtime/pid");
     pulseDir.replace("/","\\");
     args<<"--exit-idle-time=-1"<<"-n"<<"-F"<<pulseDir+"\\config.pa";
 #else
