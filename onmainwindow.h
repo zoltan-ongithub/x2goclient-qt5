@@ -506,6 +506,7 @@ private:
     bool embedMode;
     bool thinMode;
     QString statusString;
+    QString autostartApp;
     int defaultLink;
     int defaultQuality;
     int defaultWidth;
@@ -664,6 +665,7 @@ private:
     bool showToolBar;
     bool showHaltBtn;
     bool newSession;
+    bool runStartApp;
     bool ldapOnly;
     bool isScDaemonOk;
     bool parecTunnelOk;

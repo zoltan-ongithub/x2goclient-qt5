@@ -7,6 +7,10 @@ x2goclient (3.99.2.1-0~x2go1) UNRELEASED; urgency=low
     - Support recent pulseuadio on windows
     - removing %USERPROFILE%\.x2go\pulse\.pulse\%COMPUTERNAME%-runtime\pid
       if exists under windows
+    - --user=<username> set username in session mode if this field is blank
+      in session settings.
+    - --autostart=<app> launch "app" by session start in "published
+      applications" mode
 
   [ Daniel Lindgren ]
   * New upstream version (3.99.2.1):

@@ -2581,6 +2581,9 @@ void ONMainWindow::slotSelectedFromList ( SessionButton* session )
         userName=st.setting()->value (
                      sid+"/user",
                      ( QVariant ) QString::null ).toString();
+        if (defaultUser && userName.length()<1)
+            userName=defaultUserName;
+
         sshPort=st.setting()->value (
                     sid+"/sshport",
                     ( QVariant ) defaultSshPort ).toString();
@@ -3235,6 +3238,7 @@ void ONMainWindow::startNewSession()
     QString xdmcpServer;
     runRemoteCommand=true;
     QString host=QString::null;
+    runStartApp=true;
     removeAppsFromTray();
     if ( useLdap )
     {
@@ -3545,6 +3549,7 @@ void ONMainWindow::startNewSession()
 void ONMainWindow::resumeSession ( const x2goSession& s )
 {
     newSession=false;
+    runStartApp=false;
     applications.clear();
     removeAppsFromTray();
     QString passwd=getCurrentPass();
@@ -4991,9 +4996,13 @@ void ONMainWindow::slotProxyStderr()
                 localGraphicPort+"' established" ) !=-1 )
     {
         if ( newSession )
+        {
             setStatStatus ( tr ( "starting" ) );
+        }
         else
+        {
             setStatStatus ( tr ( "resuming" ) );
+        }
     }
 
     if ( stInfo->toPlainText().indexOf (
@@ -5599,6 +5608,7 @@ void ONMainWindow::slotReadApplications(bool result, QString output,
     applications.clear();
     QString locallong=QLocale::system().name();
     QString localshort=QLocale::system().name().split("_")[0];
+    bool startAppFound=false;
 
     foreach(QString appstr, output.split("</desktop>",QString::SkipEmptyParts))
     {
@@ -5625,6 +5635,8 @@ void ONMainWindow::slotReadApplications(bool result, QString output,
             if (line.indexOf("Name=")!=-1 && !localname)
             {
                 app.name=line.split("=")[1];
+                if (app.name==autostartApp)
+                    startAppFound=true;
 //                 x2goDebug<<"name: "<<app.name<<endl;
             }
             if (line.indexOf("Comment=")!=-1 && !localcomment)
@@ -5635,8 +5647,12 @@ void ONMainWindow::slotReadApplications(bool result, QString output,
             if (line.indexOf("Exec=")!=-1)
             {
                 app.exec=line.split("=")[1];
+                app.exec.replace(" %f","",Qt::CaseInsensitive);
+                app.exec.replace(" %u","",Qt::CaseInsensitive);
                 app.exec.replace("%f","",Qt::CaseInsensitive);
                 app.exec.replace("%u","",Qt::CaseInsensitive);
+                if (app.exec==autostartApp)
+                    startAppFound=true;
 //                 x2goDebug<<"exec: "<<app.exec<<endl;
             }
             if (line.indexOf("Categories=")!=-1)
@@ -5702,6 +5718,13 @@ void ONMainWindow::slotReadApplications(bool result, QString output,
 
     qSort(applications.begin(), applications.end(),Application::lessThen);
     plugAppsInTray();
+    if (runStartApp && autostartApp.length()>1)
+    {
+        if (!startAppFound)
+            x2goDebug<<"Autostart application "<<autostartApp<< " not found in Desktop files"<<endl;
+        else
+            runApplication(autostartApp);
+    }
 }
 
 
@@ -5919,6 +5942,11 @@ bool ONMainWindow::parseParameter ( QString param )
     if ( setting == "--broker-name")
     {
         config.brokerName=value;
+        return true;
+    }
+    if ( setting == "--autostart")
+    {
+        autostartApp=value;
         return true;
     }
     if ( setting == "--auth-id")
@@ -6230,7 +6258,7 @@ void ONMainWindow::showHelp()
         "default 22\n"
         "--command=<cmd>\t\t\t Set default command, default value 'KDE'\n"
         "--session=<session>\t\t Start session 'session'\n"
-        "--user=<username>\t\t in LDAP mode, select user 'username'\n"
+        "--user=<username>\t\t select user 'username'\n"
         "--geomerty=<W>x<H>|fullscreen\t set default geometry, default "
         "value '800x600'\n"
         "--dpi=<dpi>\t\t\t set dpi of x2goagent to dpi, default not set\n"
@@ -6243,7 +6271,9 @@ void ONMainWindow::showHelp()
         "--kbd-type=<typed>\t\t set default keyboard type\n"
         "--home=<dir>\t\t\t set users home directory\n"
         "--set-kbd=<0|1>\t\t\t overwrite current keyboard settings\n"
-        "--session-conf=<file>\t\t\t path to alternative session config\n";
+        "--autostart=<app> \t\t launch \"app\" by session start in \"published "
+        "applications\" mode\n"
+        "--session-conf=<file>\t\t path to alternative session config\n";
     qCritical ( "%s",helpMsg.toLocal8Bit().data() );
     QMessageBox::information ( this,tr ( "Options" ),helpMsg );
 }
