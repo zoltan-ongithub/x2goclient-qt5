@@ -105,7 +105,7 @@ LIBS += -lssh
 plugin {
 	TARGET = x2goplugin
 }
-else{
+else {
 	RC_FILE = x2goclient.rc
 	SOURCES += x2goclient.cpp
 	TARGET = x2goclient
@@ -162,12 +162,11 @@ win32-* {
 	CONFIG += static release
 }
 QT += svg network
-ICON =icons/x2go-mac.icns
+ICON = icons/x2go-mac.icns
 QMAKE_MAC_SDK = /Developer/SDKs/MacOSX10.5.sdk
 QMAKE_MACOSX_DEPLOYMENT_TARGET = 10.5
 
-plugin{
-
+plugin {
 	DEFINES += CFGPLUGIN
 	linux-g++ {
 		include(qtbrowserplugin-2.4_1-opensource/src/qtbrowserplugin.pri)
@@ -179,7 +178,6 @@ plugin{
 		DEFINES += QT_NODLL
 		CONFIG += qaxserver
 		include(qtbrowserplugin-2.4_1-opensource/src/qtbrowserplugin.pri)
-		}
+	}
 	RC_FILE = x2goplugin.rc
-
 }
