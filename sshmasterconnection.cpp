@@ -277,7 +277,8 @@ void SshMasterConnection::finalizeLibSsh()
 bool SshMasterConnection::sshConnect()
 {
     int rc;
-    ssh_options_set ( my_ssh_session, SSH_OPTIONS_HOST, host.toAscii() );
+    QByteArray tmpBA = host.toLocal8Bit();
+    ssh_options_set ( my_ssh_session, SSH_OPTIONS_HOST, tmpBA.data() );
     ssh_options_set ( my_ssh_session, SSH_OPTIONS_PORT, &port );
     rc = ssh_connect ( my_ssh_session );
     if ( rc != SSH_OK )
