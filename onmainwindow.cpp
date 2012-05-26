@@ -4730,10 +4730,22 @@ void ONMainWindow::slotTunnelOk()
     }
 #endif // Q_OS_WIN
 #if defined ( Q_OS_DARWIN )
-    //setting /usr/X11/bin to find xauth
+    // setting /usr/X11/bin to find xauth
+    // /usr/X11R6/bin is added for compatibility reasons with OS X 10.4.
     env.insert (
         0,
-        "PATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin" );
+        "PATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/usr/X11R6/bin" );
+    // Set the NX base dir to bundle/exe/, used for finding nxauth.
+    {
+        QDir tmpDir (appDir);
+        tmpDir.cd ("../exe");
+        env.append ("NX_SYSTEM=" + tmpDir.absolutePath ());
+    }
+    if (dispInd == -1)
+    {
+        x2goDebug << "No DISPLAY variable found in global environment, using autodetected setting.";
+        env.append ("DISPLAY=" + disp);
+    }
 #endif
     nxproxy->setEnvironment ( env );
     /*	x2goDebug<<"new env:"<<endl;
@@ -7592,19 +7604,123 @@ QString ONMainWindow::getXDisplay()
     QLocalSocket unixSocket (this);
     QString xsocket (getenv ("DISPLAY"));
 
-    // OS X starts the X11 server automatically, as soon as the launchd UNIX socket
-    // is accessed.
+    if (xsocket.isEmpty ())
+    {
+        // Mac OS X 10.4 compatibility mode.
+        // There, it is possible no $DISPLAY variable is set.
+        // Start X11 manually. First, find a free display number.
+        x2goDebug << "entering 10.4 compat mode, checking for free X11 display";
+
+        int xFreeDisp = 0;
+        QDir xtmpdir ("/tmp/.X11-unix");
+
+        if (xtmpdir.exists ())
+        {
+            xtmpdir.setFilter (QDir::Files | QDir::System | QDir::NoSymLinks | QDir::NoDotAndDotDot);
+            xtmpdir.setSorting (QDir::Name);
+
+            QFileInfoList xtmpdirList = xtmpdir.entryInfoList ();
+            bool foundFreeDisp = FALSE;
+            xFreeDisp = -1;
+
+            for (int i = 0; (i < 2000) && (!foundFreeDisp); ++i)
+            {
+                QFileInfo xtmpdirFile (xtmpdir.absolutePath () + "/X" + QString::number (i));
+
+                if ((!xtmpdirFile.exists ()) && (!xtmpdirFile.isSymLink ()))
+                {
+                    xFreeDisp = i;
+                    foundFreeDisp = TRUE;
+                }
+            }
+        }
+
+        // Control flow will go to error condition if no free display port has been found.
+        if (xFreeDisp != -1)
+        {
+            xsocket = "/tmp/.X11-unix/X" + QString::number (xFreeDisp);
+            x2goDebug << "Successfully detected free socket " << xsocket << ".";
+        }
+
+        if (!(xsocket.isEmpty ()))
+        {
+            QString xname = ConfigDialog::getXDarwinDirectory () + "/Contents/MacOS/X11";
+            QString xopt = ":" + QString::number (xFreeDisp);
+            QProcessEnvironment env = QProcessEnvironment::systemEnvironment ();
+            QProcess* startx = new QProcess (this);
+
+            x2goDebug << "Starting the X server on free display port.";
+            env.insert (0, "PATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11R6/bin");
+
+            startx->setProcessEnvironment (env);
+            startx->start (xname + QString (" ") + xopt, QIODevice::NotOpen);
+            if (startx->waitForStarted (3000))
+            {
+                x2goDebug << "sleeping for three seconds";
+                int sleeptime = 3;
+                while ((sleeptime = sleep (sleeptime))) {};
+
+                x2goDebug << "Leaving OS X 10.4 compat mode.";
+            }
+        }
+    }
+
+    // OS X >= 10.5 starts the X11 server automatically, as soon as the
+    // launchd UNIX socket is accessed.
     // On user login, the DISPLAY environment variable is set to this said existing
     // socket.
-    // By now, we should have a socket. Test, if connecting works.
-    if ((!xsocket.isEmpty ()))
+    // By now, we should have a socket, even on 10.4. Test, if connecting works.
+    // Note: common sense may tell you to change this if into an else. Don't.
+    // We do not want to skip this part, if coming from the compat section above.
+    if (!(xsocket.isEmpty ()))
     {
+        if (xsocket[0] == ':')
+        {
+            // Be backwards compatible with 10.4.
+            // Delete the ":" character.
+            xsocket.remove (0, 1);
+            // xsocket may now contain the display value (one integer),
+            // or something like "0.0" - we're only interested in the
+            // display value, so keep the first char only.
+            if (xsocket.indexOf (".") != -1)
+            {
+                xsocket = xsocket.left (xsocket.indexOf ("."));
+            }
+            // Prepend the well-known socket path.
+            xsocket.prepend ("/tmp/.X11-unix/X");
+            x2goDebug << "xsocket in compat mode: " << xsocket;
+        }
+
         unixSocket.connectToServer (xsocket);
 
         if (unixSocket.waitForConnected (10000))
         {
             unixSocket.disconnectFromServer ();
-            return (xsocket);
+
+            // Mac OS X 10.4 compat: nxproxy expects
+            // a DISPLAY variable like ":0", passing
+            // an UNIX socket will just make it error out.
+            // Instead of altering the nxproxy code, which does
+            // already try to connect to "/tmp/.X11-unix/Xi" with
+            // i = display number, pass ":i" as DISPLAY.
+            if (xsocket.left (16).compare ("/tmp/.x11-unix/x", Qt::CaseInsensitive) == 0)
+            {
+                bool ok = FALSE;
+                int tmp = -1;
+
+                xsocket = xsocket.mid (16);
+                tmp = xsocket.toInt (&ok);
+
+                if (ok)
+                {
+                    x2goDebug << "Returning" << QString (":") + xsocket;
+                    return (QString (":") + xsocket);
+                }
+            }
+            else
+            {
+              return (xsocket);
+            }
         }
     }
     // And if not, error out.
