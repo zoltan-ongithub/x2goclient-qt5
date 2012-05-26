@@ -46,6 +46,9 @@
 #undef DEBUG
 //#define DEBUG
 
+//#define SSH_DEBUG
+#undef SSH_DEBUG
+
 static bool isLibSshInited=false;
 
 
@@ -142,7 +145,12 @@ void SshMasterConnection::run()
     }
 #endif
 
-//     int verbosity=SSH_LOG_PROTOCOL;
+#ifdef SSH_DEBUG
+    int verbosity=SSH_LOG_PACKET;
+#else
+    int verbosity=SSH_LOG_NOLOG;
+#endif
+
     long timeout = 60;
 
     my_ssh_session = ssh_new();
@@ -159,7 +167,7 @@ void SshMasterConnection::run()
 #ifdef Q_OS_WIN
     ssh_options_set ( my_ssh_session, SSH_OPTIONS_SSH_DIR, (mainWnd->getHomeDirectory()+"/ssh").toAscii());
 #endif
-//     ssh_options_set(my_ssh_session, SSH_OPTIONS_LOG_VERBOSITY, &verbosity);
+    ssh_options_set(my_ssh_session, SSH_OPTIONS_LOG_VERBOSITY, &verbosity);
 
     ssh_options_set(my_ssh_session, SSH_OPTIONS_TIMEOUT, &timeout);
 
