@@ -337,6 +337,7 @@ void SessionButton::redraw()
     cmdBox->addItem ( "KDE" );
     cmdBox->addItem ( "GNOME" );
     cmdBox->addItem ( "LXDE" );
+    cmdBox->addItem ( "UNITY" );
     cmdBox->addItem ( tr ( "RDP connection" ) );
     cmdBox->addItem ( tr ( "XDMCP" ) );
     cmdBox->addItem ( tr ( "Connection to local desktop" ) );
@@ -354,6 +355,11 @@ void SessionButton::redraw()
     {
         cmdpix.load ( par->iconsPath ( "/16x16/gnome.png" ) );
         cmdBox->setCurrentIndex ( GNOME );
+    }
+    else if ( command =="UNITY" )
+    {
+        cmdpix.load ( par->iconsPath ( "/16x16/unity.png" ) );
+        cmdBox->setCurrentIndex ( UNITY );
     }
     else if ( command =="LXDE" )
     {
@@ -631,6 +637,11 @@ void SessionButton::slot_cmd_change ( const QString& command )
         newRootless=false;
         pix.load ( par->iconsPath ( "/16x16/lxde.png" ) );
     }
+    else if ( command =="UNITY" )
+    {
+        newRootless=false;
+        pix.load ( par->iconsPath ( "/16x16/unity.png" ) );
+    }
     else if ( command ==tr ( "Connection to local desktop" ) )
     {
         newRootless=false;
@@ -667,6 +678,11 @@ void SessionButton::slot_cmd_change ( const QString& command )
     if ( command=="LXDE" )
     {
         cmd="LXDE";
+        newRootless=false;
+    }
+    if ( command=="unity" )
+    {
+        cmd="UNITY";
         newRootless=false;
     }
     if (command== tr("Published applications"))

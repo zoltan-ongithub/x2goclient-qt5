@@ -5470,6 +5470,10 @@ void ONMainWindow::runCommand()
     {
         command="gnome-session";
     }
+    else if ( command=="UNITY" )
+    {
+        command="unity";
+    }
     else if ( command=="LXDE" )
     {
         command="startlxde";

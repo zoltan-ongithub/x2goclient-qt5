@@ -40,7 +40,7 @@ private slots:
     void slot_rdpOptions();
 
 private:
-    enum {KDE,GNOME,LXDE,RDP,XDMCP,SHADOW,OTHER,APPLICATION,PUBLISHED};
+    enum {KDE,GNOME,LXDE,UNITY,RDP,XDMCP,SHADOW,OTHER,APPLICATION,PUBLISHED};
     QLineEdit* sessName;
     QLineEdit* uname;
     QLineEdit* server;
