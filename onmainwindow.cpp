@@ -7103,7 +7103,7 @@ void ONMainWindow::slotAbout()
             "to connect to X2Go server(s) and start, stop, "
             "resume and terminate (running) desktop sessions. "
             "X2Go Client stores different server connections "
-            "and may automatically request authentification "
+            "and may automatically request authentication "
             "data from LDAP directories. Furthermore it can be "
             "used as fullscreen loginscreen (replacement for "
             "loginmanager like xdm). Please visit x2go.org for "
