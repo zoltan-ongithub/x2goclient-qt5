@@ -1,6 +1,8 @@
 x2goclient (3.99.2.2-0~x2go1) UNRELEASED; urgency=low
 
-  * Continue development...
+  * New upstream version (3.99.2.2):
+    - Drop Encoding key from .desktop file (as it is deprecated
+      according to latest FreeDesktop.org specs).
 
  -- Mike Gabriel <mike.gabriel@das-netzwerkteam.de>  Fri, 08 Jun 2012 23:17:02 +0200
 
