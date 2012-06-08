@@ -29,12 +29,12 @@ build: build_client build_plugin build_man
 
 build_client:
 	lrelease x2goclient.pro
-	mkdir -p $(CLIENT_DIR) && cd $(CLIENT_DIR) && qmake-qt4 ../x2goclient.pro
+	mkdir -p $(CLIENT_DIR) && cd $(CLIENT_DIR) && qmake-qt4 QMAKE_CFLAGS="${CFLAGS}" QMAKE_CXXFLAGS="${CXXFLAGS} ${CPPFLAGS}" QMAKE_LFLAGS="${LDFLAGS}" ../x2goclient.pro
 	cd $(CLIENT_DIR) && $(MAKE)
 
 build_plugin:
 	lrelease x2goclient.pro
-	mkdir -p $(PLUGIN_DIR) && cd $(PLUGIN_DIR) && X2GO_CLIENT_TARGET=plugin qmake-qt4 ../x2goclient.pro
+	mkdir -p $(PLUGIN_DIR) && cd $(PLUGIN_DIR) && X2GO_CLIENT_TARGET=plugin qmake-qt4 QMAKE_CFLAGS="${CFLAGS}" QMAKE_CXXFLAGS="${CXXFLAGS} ${CPPFLAGS}" QMAKE_LFLAGS="${LDFLAGS}" ../x2goclient.pro
 	cd $(PLUGIN_DIR) && $(MAKE)
 
 build_man:

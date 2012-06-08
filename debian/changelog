@@ -4,6 +4,8 @@ x2goclient (3.99.2.2-0~x2go1) UNRELEASED; urgency=low
     - Drop Encoding key from .desktop file (as it is deprecated
       according to latest FreeDesktop.org specs).
     - Correct spelling for mis-spelled work ,,authentication''.
+    - Allow QMAKE_* parameters that are needed for hardening x2goclient
+      (see http://wiki.debian.org/Hardening).
 
  -- Mike Gabriel <mike.gabriel@das-netzwerkteam.de>  Fri, 08 Jun 2012 23:17:02 +0200
 
