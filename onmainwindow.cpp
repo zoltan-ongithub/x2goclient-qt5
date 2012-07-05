@@ -382,6 +382,7 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
 #if defined(CFGPLUGIN) && defined(Q_OS_LINUX)
     x2goDebug<<"create embedContainer"<<endl;
     embedContainer=new QX11EmbedContainer ( fr );
+
 #endif
     if ( !embedMode )
     {
@@ -7723,7 +7724,7 @@ QString ONMainWindow::getXDisplay()
             }
             else
             {
-              return (xsocket);
+                return (xsocket);
             }
         }
     }
@@ -8944,6 +8945,8 @@ void ONMainWindow::startSshd()
 
 void ONMainWindow::setProxyWinTitle()
 {
+  if(embedMode)
+    return;
 
     QString title;
 
@@ -9161,45 +9164,49 @@ void ONMainWindow::slotFindProxyWin()
         x2goDebug<<"proxy win found:"<<proxyWinId;
         setProxyWinTitle();
         proxyWinTimer->stop();
-        if (!useLdap)
+        if (!embedMode)
         {
-            X2goSettings *st;
-            QString sid;
-            if ( !embedMode )
-                sid=lastSession->id();
-            else
-                sid="embedded";
-
-            if (brokerMode)
-                st=new X2goSettings(config.iniFile,QSettings::IniFormat);
-            else
-                st= new X2goSettings( "sessions" );
-            uint displays=QApplication::desktop()->numScreens();
-            xinerama=st->setting()->value ( sid+"/xinerama",
-                                            ( QVariant ) defaultXinerama ).toBool();
-            if (st->setting()->value ( sid+"/multidisp",
-                                       ( QVariant ) false ).toBool())
+            if (!useLdap)
             {
-                uint disp=st->setting()->value ( sid+"/display",
-                                                 ( QVariant ) 1 ).toUInt();
-                if (disp>displays)
+                X2goSettings *st;
+                QString sid;
+                if ( !embedMode )
+                    sid=lastSession->id();
+                else
+                    sid="embedded";
+
+                if (brokerMode)
+                    st=new X2goSettings(config.iniFile,QSettings::IniFormat);
+                else
+                    st= new X2goSettings( "sessions" );
+                uint displays=QApplication::desktop()->numScreens();
+                xinerama=st->setting()->value ( sid+"/xinerama",
+                                                ( QVariant ) defaultXinerama ).toBool();
+                if (st->setting()->value ( sid+"/multidisp",
+                                           ( QVariant ) false ).toBool())
                 {
-                    disp=1;
+                    uint disp=st->setting()->value ( sid+"/display",
+                                                     ( QVariant ) 1 ).toUInt();
+                    if (disp>displays)
+                    {
+                        disp=1;
+                    }
+                    resizeProxyWinOnDisplay(disp);
+                    return;
                 }
-                resizeProxyWinOnDisplay(disp);
-                return;
             }
-        }
-        if (xinerama)
-        {
-            x2goDebug<<"Starting xinerama timer\n";
-            lastDisplayGeometry=QRect();
-            xineramaScreens.clear();
-            xineramaTimer->start(500);
+            if (xinerama)
+            {
+                x2goDebug<<"Starting xinerama timer\n";
+                lastDisplayGeometry=QRect();
+                xineramaScreens.clear();
+                xineramaTimer->start(500);
+            }
         }
 
         if ( embedMode )
         {
+            x2goDebug<<"checking rootless config";
             if ( config.rootless )
             {
                 x2goDebug<<"win is rootless";
