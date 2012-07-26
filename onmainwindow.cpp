@@ -3956,10 +3956,15 @@ void ONMainWindow::slotResumeSess()
 {
     x2goSession s=getSelectedSession();
     QDesktopWidget wd;
-    if ( isColorDepthOk ( wd.depth(),s.colorDepth ) )
+    if ( isColorDepthOk ( wd.depth(),s.colorDepth ) ) {
+        if ( s.status=="R" ) {
+            suspendSession ( s.sessionId );
+            x2goDebug << "sleeping for two seconds between suspending and resuming";
+            int sleeptime = 2;
+            while ((sleeptime = sleep (sleeptime))) {};
+        }
         resumeSession ( s );
-    else
-    {
+    } else {
         QString depth=QString::number ( s.colorDepth );
         int res;
         if ( s.colorDepth==24 || s.colorDepth==32 )

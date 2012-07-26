@@ -12,6 +12,9 @@ x2goclient (3.99.2.2-0~x2go1) UNRELEASED; urgency=low
     - Allow x2goclient to connect to user accounts that have other shells than
       /bin/sh and alike configured as default shell. Also: removal bashisms in
       shell execution commands.
+    - X2Go resume session slot: double click on a selected session is supposed
+      to resume that session. To make this feature functional for running
+      sessions the session has to be suspended first.
 
   [ Oleksandr Shneyder ]
   * Fixing X2Go Plugin
