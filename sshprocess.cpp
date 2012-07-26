@@ -130,7 +130,11 @@ void SshProcess::tunnelLoop()
 
 void SshProcess::startNormal(const QString& cmd)
 {
-    masterCon->addChannelConnection(this, cmd);
+    QString shcmd = "sh -c \""+cmd+"\"";
+// #ifdef DEBUG
+    x2goDebug<<"executing remote command: "<<shcmd<<endl;
+// #endif
+    masterCon->addChannelConnection(this, shcmd);
     connect(masterCon,SIGNAL(stdOut(SshProcess*,QByteArray)),this,SLOT(slotStdOut(SshProcess*,QByteArray)));
     connect(masterCon,SIGNAL(channelClosed(SshProcess*)), this,SLOT(slotChannelClosed(SshProcess*)));
 }

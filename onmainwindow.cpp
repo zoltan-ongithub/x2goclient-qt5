@@ -5506,7 +5506,7 @@ void ONMainWindow::runCommand()
             resumingSession.agentPid + " " +
             resumingSession.sessionId+" "+
             resumingSession.sndPort+ " "+ command+" nosnd "+
-            sessionType +">& /dev/null & exit";
+            sessionType +" 1> /dev/null 2>/dev/null & exit";
         if ( startSessSndSystem ==PULSE )
         {
             cmd="PULSE_CLIENTCONFIG=~/.x2go/C-"+
@@ -5525,7 +5525,7 @@ void ONMainWindow::runCommand()
                 resumingSession.sessionId+" "+
                 resumingSession.sndPort+ " "+
                 command+" esd "+
-                sessionType +">& /dev/null & exit";
+                sessionType +" 1> /dev/null 2>/dev/null & exit";
             break;
         case ARTS:
             cmd="setsid x2goruncommand "+
@@ -5534,7 +5534,7 @@ void ONMainWindow::runCommand()
                 resumingSession.sessionId+" "+
                 resumingSession.sndPort+ " "+
                 command+" arts "+
-                sessionType +">& /dev/null & exit";
+                sessionType +" 1> /dev/null 2>/dev/null & exit";
             break;
 
         }
@@ -5564,7 +5564,7 @@ void ONMainWindow::runApplication(QString exec)
     proc->startNormal ("PULSE_CLIENTCONFIG=~/.x2go/C-"+
                        resumingSession.sessionId+"/.pulse-client.conf DISPLAY=:"+
                        resumingSession.display+
-                       " setsid "+exec+">& /dev/null & exit");
+                       " setsid "+exec+" 1> /dev/null 2>/dev/null & exit");
 }
 
 void ONMainWindow::slotRetRunCommand ( bool result, QString output,
@@ -10272,7 +10272,7 @@ void ONMainWindow::slotStartParec ()
     QString scmd="PULSE_CLIENTCONFIG=~/.x2go/C-"+
                  resumingSession.sessionId+
                  "/.pulse-client.conf "+
-                 "parec > /dev/null &sleep 1 && kill %1";
+                 "parec 1> /dev/null & sleep 1 && kill %1";
 
     paProc=new SshProcess ( sshConnection, this );
     paProc->startNormal ( scmd );

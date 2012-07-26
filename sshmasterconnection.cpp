@@ -498,6 +498,7 @@ void SshMasterConnection::addChannelConnection ( SshProcess* creator, int sock, 
 
 void SshMasterConnection::addChannelConnection ( SshProcess* creator, QString cmd )
 {
+
     ChannelConnection con;
     con.channel=NULL;
     con.sock=-1;

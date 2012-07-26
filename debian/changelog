@@ -9,6 +9,9 @@ x2goclient (3.99.2.2-0~x2go1) UNRELEASED; urgency=low
       (see http://wiki.debian.org/Hardening).
     - Provide CPPFLAGS for QMAKE_CFLAGS _and_ QMAKE_CXXFLAGS. Provide them as
       first build parameters.
+    - Allow x2goclient to connect to user accounts that have other shells than
+      /bin/sh and alike configured as default shell. Also: removal bashisms in
+      shell execution commands.
 
   [ Oleksandr Shneyder ]
   * Fixing X2Go Plugin
