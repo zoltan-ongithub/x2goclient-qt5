@@ -101,6 +101,7 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
     noSessionEdit=false;
     lastSession=0l;
     changeBrokerPass=false;
+    resumeAfterSuspending=false;
 
     appSeparator=0;
 
@@ -3956,15 +3957,19 @@ void ONMainWindow::slotResumeSess()
 {
     x2goSession s=getSelectedSession();
     QDesktopWidget wd;
-    if ( isColorDepthOk ( wd.depth(),s.colorDepth ) ) {
-        if ( s.status=="R" ) {
-            suspendSession ( s.sessionId );
-            x2goDebug << "sleeping for two seconds between suspending and resuming";
-            int sleeptime = 2;
-            while ((sleeptime = sleep (sleeptime))) {};
+    if ( isColorDepthOk ( wd.depth(),s.colorDepth ) )
+    {
+        if ( s.status=="R" && ! resumeAfterSuspending)
+        {
+            resumeAfterSuspending=true;
+            slotSuspendSess();
+            return;
         }
+        resumeAfterSuspending=false;
         resumeSession ( s );
-    } else {
+    }
+    else
+    {
         QString depth=QString::number ( s.colorDepth );
         int res;
         if ( s.colorDepth==24 || s.colorDepth==32 )
@@ -4131,6 +4136,10 @@ void ONMainWindow::slotRetSuspSess ( bool result, QString output,
     }
     if ( selectSessionDlg->isVisible() )
         selectSessionDlg->setEnabled ( true );
+    if (resumeAfterSuspending)
+    {
+        slotResumeSess();
+    }
 }
 
 
@@ -8950,8 +8959,8 @@ void ONMainWindow::startSshd()
 
 void ONMainWindow::setProxyWinTitle()
 {
-  if(embedMode)
-    return;
+    if (embedMode)
+        return;
 
     QString title;
 

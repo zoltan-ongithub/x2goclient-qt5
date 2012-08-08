@@ -520,6 +520,7 @@ private:
     bool noSessionEdit;
     bool cleanAllFiles;
     bool PGPInited;
+    bool resumeAfterSuspending;
     struct SshProxy sshProxy;
     QString sshPort;
     QString clientSshPort;
