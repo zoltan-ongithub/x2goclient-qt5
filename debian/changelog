@@ -1,4 +1,4 @@
-x2goclient (3.99.2.2-0~x2go2) UNRELEASED; urgency=low
+x2goclient (3.99.2.2-0~x2go1) UNRELEASED; urgency=low
 
   [ Mike Gabriel ]
   * New upstream version (3.99.2.2):
@@ -17,9 +17,10 @@ x2goclient (3.99.2.2-0~x2go2) UNRELEASED; urgency=low
       sessions the session has to be suspended first.
 
   [ Oleksandr Shneyder ]
-  * Fixing X2Go Plugin
-  * Cleaning code: double click on running session. Instead of using function "sleep"
-    starting resume-session after suspend-session is returned
+  * New upstream version (3.99.2.2):
+    - Fixing X2Go Plugin
+    - Cleaning code: double click on running session. Instead of using function
+      "sleep" starting resume-session after suspend-session is returned.
 
  -- Oleksandr Shneyder <oleksandr.shneyder@obviously-nice.de>  Wed, 08 Aug 2012 11:32:08 +0200
 
