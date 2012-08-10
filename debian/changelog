@@ -1,4 +1,4 @@
-x2goclient (3.99.2.2-0~x2go1) UNRELEASED; urgency=low
+x2goclient (3.99.2.2-0~x2go1) unstable; urgency=low
 
   [ Mike Gabriel ]
   * New upstream version (3.99.2.2):
@@ -22,7 +22,7 @@ x2goclient (3.99.2.2-0~x2go1) UNRELEASED; urgency=low
     - Cleaning code: double click on running session. Instead of using function
       "sleep" starting resume-session after suspend-session is returned.
 
- -- Oleksandr Shneyder <oleksandr.shneyder@obviously-nice.de>  Wed, 08 Aug 2012 11:32:08 +0200
+ -- Mike Gabriel <mike.gabriel@das-netzwerkteam.de>  Fri, 10 Aug 2012 10:08:52 +0200
 
 x2goclient (3.99.2.1-0~x2go1) unstable; urgency=low
 
