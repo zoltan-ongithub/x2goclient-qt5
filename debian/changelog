@@ -1,3 +1,9 @@
+x2goclient (3.99.2.2-0~x2go2) unstable; urgency=low
+
+  * Add Conflicts/Replaces for x2goclient-gtk.
+
+ -- Mike Gabriel <mike.gabriel@das-netzwerkteam.de>  Mon, 20 Aug 2012 09:58:47 +0200
+
 x2goclient (3.99.2.2-0~x2go1) unstable; urgency=low
 
   [ Mike Gabriel ]

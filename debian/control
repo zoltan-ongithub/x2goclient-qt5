@@ -30,7 +30,11 @@ Depends:
 Recommends:
  openssh-server
 Suggests:
- pinentry-x2go 
+ pinentry-x2go
+Conflicts:
+ x2goclient-gtk
+Replaces:
+ x2goclient-gtk
 Description: X2Go Client application (Qt4)
  X2Go is a serverbased computing environment with
     - session resuming
