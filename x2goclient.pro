@@ -22,6 +22,7 @@ FORMS += cupsprintsettingsdialog.ui \
 
 TRANSLATIONS += x2goclient_en.ts \
            x2goclient_de.ts \
+           x2goclient_dk.ts \
            x2goclient_ru.ts \
            x2goclient_nb_no.ts \
            x2goclient_sv.ts \

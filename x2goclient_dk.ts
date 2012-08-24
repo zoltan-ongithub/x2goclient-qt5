@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="fr">
+<TS version="2.0">
 <context>
     <name>AppDialog</name>
     <message>
@@ -118,31 +118,6 @@
 <context>
     <name>CUPSPrintWidget</name>
     <message>
-        <location filename="cupsprintwidget.cpp" line="65"/>
-        <source>Idle</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="cupsprintwidget.cpp" line="68"/>
-        <source>Printing</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="cupsprintwidget.cpp" line="71"/>
-        <source>Stopped</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="cupsprintwidget.cpp" line="81"/>
-        <source>Yes</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="cupsprintwidget.cpp" line="81"/>
-        <source>No</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="cupsprintwidget.ui" line="19"/>
         <source>Form</source>
         <translation type="unfinished"></translation>
@@ -180,6 +155,31 @@
     <message>
         <location filename="cupsprintwidget.ui" line="105"/>
         <source>Comment:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="cupsprintwidget.cpp" line="65"/>
+        <source>Idle</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="cupsprintwidget.cpp" line="68"/>
+        <source>Printing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="cupsprintwidget.cpp" line="71"/>
+        <source>Stopped</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="cupsprintwidget.cpp" line="81"/>
+        <source>Yes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="cupsprintwidget.cpp" line="81"/>
+        <source>No</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -921,6 +921,54 @@
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="892"/>
+        <location filename="onmainwindow.cpp" line="920"/>
+        <location filename="onmainwindow.cpp" line="1662"/>
+        <location filename="onmainwindow.cpp" line="1691"/>
+        <location filename="onmainwindow.cpp" line="1699"/>
+        <location filename="onmainwindow.cpp" line="1845"/>
+        <location filename="onmainwindow.cpp" line="1872"/>
+        <location filename="onmainwindow.cpp" line="1875"/>
+        <location filename="onmainwindow.cpp" line="2122"/>
+        <location filename="onmainwindow.cpp" line="2345"/>
+        <location filename="onmainwindow.cpp" line="2359"/>
+        <location filename="onmainwindow.cpp" line="2372"/>
+        <location filename="onmainwindow.cpp" line="2406"/>
+        <location filename="onmainwindow.cpp" line="2451"/>
+        <location filename="onmainwindow.cpp" line="3090"/>
+        <location filename="onmainwindow.cpp" line="3268"/>
+        <location filename="onmainwindow.cpp" line="3277"/>
+        <location filename="onmainwindow.cpp" line="3587"/>
+        <location filename="onmainwindow.cpp" line="4057"/>
+        <location filename="onmainwindow.cpp" line="4118"/>
+        <location filename="onmainwindow.cpp" line="4173"/>
+        <location filename="onmainwindow.cpp" line="4206"/>
+        <location filename="onmainwindow.cpp" line="4250"/>
+        <location filename="onmainwindow.cpp" line="4653"/>
+        <location filename="onmainwindow.cpp" line="4679"/>
+        <location filename="onmainwindow.cpp" line="4828"/>
+        <location filename="onmainwindow.cpp" line="5597"/>
+        <location filename="onmainwindow.cpp" line="5633"/>
+        <location filename="onmainwindow.cpp" line="6358"/>
+        <location filename="onmainwindow.cpp" line="6439"/>
+        <location filename="onmainwindow.cpp" line="6683"/>
+        <location filename="onmainwindow.cpp" line="6811"/>
+        <location filename="onmainwindow.cpp" line="6864"/>
+        <location filename="onmainwindow.cpp" line="7170"/>
+        <location filename="onmainwindow.cpp" line="7172"/>
+        <location filename="onmainwindow.cpp" line="7402"/>
+        <location filename="onmainwindow.cpp" line="7450"/>
+        <location filename="onmainwindow.cpp" line="7478"/>
+        <location filename="onmainwindow.cpp" line="7918"/>
+        <location filename="onmainwindow.cpp" line="7933"/>
+        <location filename="onmainwindow.cpp" line="7987"/>
+        <location filename="onmainwindow.cpp" line="8015"/>
+        <location filename="onmainwindow.cpp" line="8040"/>
+        <location filename="onmainwindow.cpp" line="10264"/>
+        <source>Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="onmainwindow.cpp" line="892"/>
         <source>Operation failed</source>
         <translation type="unfinished"></translation>
     </message>
@@ -932,6 +980,13 @@
     <message>
         <location filename="onmainwindow.cpp" line="920"/>
         <source>Wrong password!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="onmainwindow.cpp" line="924"/>
+        <location filename="onmainwindow.cpp" line="2560"/>
+        <location filename="onmainwindow.cpp" line="10518"/>
+        <source>Connecting to broker</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1008,55 +1063,6 @@
     <message>
         <location filename="onmainwindow.cpp" line="1068"/>
         <source>Left mouse button to hide/restore - Right mouse button to display context menu</source>
-        <oldsource>Left click to open the X2GoClient window or right click to get the context menu.</oldsource>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="onmainwindow.cpp" line="892"/>
-        <location filename="onmainwindow.cpp" line="920"/>
-        <location filename="onmainwindow.cpp" line="1662"/>
-        <location filename="onmainwindow.cpp" line="1691"/>
-        <location filename="onmainwindow.cpp" line="1699"/>
-        <location filename="onmainwindow.cpp" line="1845"/>
-        <location filename="onmainwindow.cpp" line="1872"/>
-        <location filename="onmainwindow.cpp" line="1875"/>
-        <location filename="onmainwindow.cpp" line="2122"/>
-        <location filename="onmainwindow.cpp" line="2345"/>
-        <location filename="onmainwindow.cpp" line="2359"/>
-        <location filename="onmainwindow.cpp" line="2372"/>
-        <location filename="onmainwindow.cpp" line="2406"/>
-        <location filename="onmainwindow.cpp" line="2451"/>
-        <location filename="onmainwindow.cpp" line="3090"/>
-        <location filename="onmainwindow.cpp" line="3268"/>
-        <location filename="onmainwindow.cpp" line="3277"/>
-        <location filename="onmainwindow.cpp" line="3587"/>
-        <location filename="onmainwindow.cpp" line="4057"/>
-        <location filename="onmainwindow.cpp" line="4118"/>
-        <location filename="onmainwindow.cpp" line="4173"/>
-        <location filename="onmainwindow.cpp" line="4206"/>
-        <location filename="onmainwindow.cpp" line="4250"/>
-        <location filename="onmainwindow.cpp" line="4653"/>
-        <location filename="onmainwindow.cpp" line="4679"/>
-        <location filename="onmainwindow.cpp" line="4828"/>
-        <location filename="onmainwindow.cpp" line="5597"/>
-        <location filename="onmainwindow.cpp" line="5633"/>
-        <location filename="onmainwindow.cpp" line="6358"/>
-        <location filename="onmainwindow.cpp" line="6439"/>
-        <location filename="onmainwindow.cpp" line="6683"/>
-        <location filename="onmainwindow.cpp" line="6811"/>
-        <location filename="onmainwindow.cpp" line="6864"/>
-        <location filename="onmainwindow.cpp" line="7170"/>
-        <location filename="onmainwindow.cpp" line="7172"/>
-        <location filename="onmainwindow.cpp" line="7402"/>
-        <location filename="onmainwindow.cpp" line="7450"/>
-        <location filename="onmainwindow.cpp" line="7478"/>
-        <location filename="onmainwindow.cpp" line="7918"/>
-        <location filename="onmainwindow.cpp" line="7933"/>
-        <location filename="onmainwindow.cpp" line="7987"/>
-        <location filename="onmainwindow.cpp" line="8015"/>
-        <location filename="onmainwindow.cpp" line="8040"/>
-        <location filename="onmainwindow.cpp" line="10264"/>
-        <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1130,6 +1136,58 @@ Use x2goclient hidden mode?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="onmainwindow.cpp" line="2861"/>
+        <source>Host key for server changed.
+It is now: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="onmainwindow.cpp" line="2862"/>
+        <source>For security reasons, connection will be stopped</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="onmainwindow.cpp" line="2873"/>
+        <source>The host key for this server was not found but an othertype of key exists.An attacker might change the default server key toconfuse your client into thinking the key does not exist</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="onmainwindow.cpp" line="2895"/>
+        <source>Could not find known host file.If you accept the host key here, the file will be automatically created</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="onmainwindow.cpp" line="2900"/>
+        <source>The server is unknown. Do you trust the host key?
+Public key hash: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="onmainwindow.cpp" line="2904"/>
+        <location filename="onmainwindow.cpp" line="2912"/>
+        <source>Host key verification failed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="onmainwindow.cpp" line="2904"/>
+        <location filename="onmainwindow.cpp" line="3991"/>
+        <location filename="onmainwindow.cpp" line="4011"/>
+        <source>Yes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="onmainwindow.cpp" line="2904"/>
+        <location filename="onmainwindow.cpp" line="3992"/>
+        <location filename="onmainwindow.cpp" line="4012"/>
+        <source>No</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="onmainwindow.cpp" line="2928"/>
+        <source>Authentication failed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="onmainwindow.cpp" line="3083"/>
         <location filename="onmainwindow.cpp" line="4111"/>
         <location filename="onmainwindow.cpp" line="4199"/>
@@ -1165,6 +1223,14 @@ Use x2goclient hidden mode?</source>
     <message>
         <location filename="onmainwindow.cpp" line="3269"/>
         <source>No server availabel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="onmainwindow.cpp" line="3278"/>
+        <location filename="onmainwindow.cpp" line="3588"/>
+        <location filename="onmainwindow.cpp" line="4058"/>
+        <location filename="onmainwindow.cpp" line="4174"/>
+        <source>Server not availabel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1245,66 +1311,6 @@ Use x2goclient hidden mode?</source>
         <location filename="onmainwindow.cpp" line="3988"/>
         <location filename="onmainwindow.cpp" line="4008"/>
         <source> bit and restart your X-server before you reconnect to this x2go-session.&lt;br&gt;Resume this session anyway?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="onmainwindow.cpp" line="2904"/>
-        <location filename="onmainwindow.cpp" line="3991"/>
-        <location filename="onmainwindow.cpp" line="4011"/>
-        <source>Yes</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="onmainwindow.cpp" line="2861"/>
-        <source>Host key for server changed.
-It is now: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="onmainwindow.cpp" line="2862"/>
-        <source>For security reasons, connection will be stopped</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="onmainwindow.cpp" line="2873"/>
-        <source>The host key for this server was not found but an othertype of key exists.An attacker might change the default server key toconfuse your client into thinking the key does not exist</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="onmainwindow.cpp" line="2895"/>
-        <source>Could not find known host file.If you accept the host key here, the file will be automatically created</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="onmainwindow.cpp" line="2900"/>
-        <source>The server is unknown. Do you trust the host key?
-Public key hash: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="onmainwindow.cpp" line="2904"/>
-        <location filename="onmainwindow.cpp" line="3992"/>
-        <location filename="onmainwindow.cpp" line="4012"/>
-        <source>No</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="onmainwindow.cpp" line="2904"/>
-        <location filename="onmainwindow.cpp" line="2912"/>
-        <source>Host key verification failed</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="onmainwindow.cpp" line="2928"/>
-        <source>Authentication failed</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="onmainwindow.cpp" line="3278"/>
-        <location filename="onmainwindow.cpp" line="3588"/>
-        <location filename="onmainwindow.cpp" line="4058"/>
-        <location filename="onmainwindow.cpp" line="4174"/>
-        <source>Server not availabel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1532,17 +1538,15 @@ Unsaved documents will be lost</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="7748"/>
-        <source>Can&apos;t start X server
+        <location filename="onmainwindow.cpp" line="7747"/>
+        <source>Can&apos;t connect to X server
 Please check your settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="7747"/>
-        <source>Can&apos;t connect to X server
+        <location filename="onmainwindow.cpp" line="7748"/>
+        <source>Can&apos;t start X server
 Please check your settings</source>
-        <oldsource>Can&apos;t connect to X-Server
-Please check your settings</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1577,8 +1581,23 @@ Please update to a newer x2goserver package</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="onmainwindow.cpp" line="8127"/>
+        <source>WINDOWS-1252</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="onmainwindow.cpp" line="8139"/>
+        <source>ISO8859-1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="onmainwindow.cpp" line="9362"/>
         <source>X2Go Session</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="onmainwindow.cpp" line="9544"/>
+        <source>wrong value for argument&quot;speed&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1700,31 +1719,14 @@ you can install sshd with
         <source>&lt;br&gt;&lt;b&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;Click this button&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;to restore toolbar&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/b&gt;&lt;br&gt;</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <location filename="onmainwindow.cpp" line="924"/>
-        <location filename="onmainwindow.cpp" line="2560"/>
-        <location filename="onmainwindow.cpp" line="10518"/>
-        <source>Connecting to broker</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="onmainwindow.cpp" line="8127"/>
-        <source>WINDOWS-1252</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="onmainwindow.cpp" line="8139"/>
-        <source>ISO8859-1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="onmainwindow.cpp" line="9544"/>
-        <source>wrong value for argument&quot;speed&quot;</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>PrintDialog</name>
+    <message>
+        <location filename="printdialog.ui" line="16"/>
+        <source>Print - X2Go client</source>
+        <translation type="unfinished"></translation>
+    </message>
     <message>
         <location filename="printdialog.cpp" line="25"/>
         <source>Print</source>
@@ -1738,11 +1740,6 @@ you can install sshd with
     <message>
         <location filename="printdialog.cpp" line="56"/>
         <source>You may reactivate this dialog using the x2goclient settings dialog (Menu -&gt; Options -&gt; Settings)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="printdialog.ui" line="16"/>
-        <source>Print - X2Go client</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1774,11 +1771,6 @@ you can install sshd with
 </context>
 <context>
     <name>PrintWidget</name>
-    <message>
-        <location filename="printwidget.cpp" line="53"/>
-        <source>Please configure your client side printing settings.&lt;br&gt;&lt;br&gt;If you want to print the created file, you&apos;ll need an external application. Typically you can use &lt;a href=&quot;http://pages.cs.wisc.edu/~ghost/doc/GPL/index.htm&quot;&gt;ghostprint&lt;/a&gt; and &lt;a href=&quot;http://pages.cs.wisc.edu/~ghost/gsview/&quot;&gt;ghostview&lt;/a&gt;&lt;br&gt;You can find  further information &lt;a href=&quot;http://www.x2go.org/index.php?id=49&quot;&gt;here&lt;/a&gt;.</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
         <location filename="printwidget.ui" line="13"/>
         <source>Form</source>
@@ -1845,21 +1837,14 @@ you can install sshd with
         <source>Show this dialog before start printing</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="printwidget.cpp" line="53"/>
+        <source>Please configure your client side printing settings.&lt;br&gt;&lt;br&gt;If you want to print the created file, you&apos;ll need an external application. Typically you can use &lt;a href=&quot;http://pages.cs.wisc.edu/~ghost/doc/GPL/index.htm&quot;&gt;ghostprint&lt;/a&gt; and &lt;a href=&quot;http://pages.cs.wisc.edu/~ghost/gsview/&quot;&gt;ghostview&lt;/a&gt;&lt;br&gt;You can find  further information &lt;a href=&quot;http://www.x2go.org/index.php?id=49&quot;&gt;here&lt;/a&gt;.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PrinterCmdDialog</name>
-    <message>
-        <location filename="printercmddialog.cpp" line="37"/>
-        <source>Please enter your customized or individual printing command.
-Example:
-</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="printercmddialog.cpp" line="45"/>
-        <source>&lt;Path to gsprint.exe&gt; -query -color</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
         <location filename="printercmddialog.ui" line="13"/>
         <source>Printer command</source>
@@ -1916,6 +1901,18 @@ lpr -P hp_laserjet</source>
     <message>
         <location filename="printercmddialog.ui" line="115"/>
         <source>Specify path as program parameter</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="printercmddialog.cpp" line="37"/>
+        <source>Please enter your customized or individual printing command.
+Example:
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="printercmddialog.cpp" line="45"/>
+        <source>&lt;Path to gsprint.exe&gt; -query -color</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2205,6 +2202,16 @@ lpr -P hp_laserjet</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="sessionwidget.cpp" line="233"/>
+        <source>Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="sessionwidget.cpp" line="234"/>
+        <source>x2goclient is running in portable mode. You should use a path on your usb device to be able to access your data whereever you are</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="sessionwidget.cpp" line="276"/>
         <location filename="sessionwidget.cpp" line="407"/>
         <source>Server:</source>
@@ -2225,16 +2232,6 @@ lpr -P hp_laserjet</source>
         <location filename="sessionwidget.cpp" line="313"/>
         <location filename="sessionwidget.cpp" line="427"/>
         <source>New session</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="sessionwidget.cpp" line="233"/>
-        <source>Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="sessionwidget.cpp" line="234"/>
-        <source>x2goclient is running in portable mode. You should use a path on your usb device to be able to access your data whereever you are</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2404,30 +2401,8 @@ sound system connections through firewalls</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="sharewidget.cpp" line="95"/>
-        <source>Use ssh port forwarding to tunnel file system connections through firewalls</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="sharewidget.cpp" line="158"/>
-        <source>Select folder</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="sharewidget.cpp" line="76"/>
         <source>Filename encoding</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="sharewidget.cpp" line="229"/>
-        <location filename="sharewidget.cpp" line="280"/>
-        <source>WINDOWS-1252</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="sharewidget.cpp" line="239"/>
-        <location filename="sharewidget.cpp" line="286"/>
-        <source>ISO8859-1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2441,6 +2416,16 @@ sound system connections through firewalls</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="sharewidget.cpp" line="95"/>
+        <source>Use ssh port forwarding to tunnel file system connections through firewalls</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="sharewidget.cpp" line="158"/>
+        <source>Select folder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="sharewidget.cpp" line="169"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
@@ -2448,6 +2433,18 @@ sound system connections through firewalls</source>
     <message>
         <location filename="sharewidget.cpp" line="170"/>
         <source>x2goclient is running in portable mode. You should use a path on your usb device to be able to access your data whereever you are</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="sharewidget.cpp" line="229"/>
+        <location filename="sharewidget.cpp" line="280"/>
+        <source>WINDOWS-1252</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="sharewidget.cpp" line="239"/>
+        <location filename="sharewidget.cpp" line="286"/>
+        <source>ISO8859-1</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
