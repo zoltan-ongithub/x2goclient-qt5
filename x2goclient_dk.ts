@@ -1,82 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0">
+<TS version="2.0" language="da_DK">
 <context>
     <name>AppDialog</name>
     <message>
         <location filename="appdialog.ui" line="14"/>
         <source>Published Applications</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Not sure if this is the best name for it.</translatorcomment>
+        <translation>Udgivne Programmer</translation>
     </message>
     <message>
         <location filename="appdialog.ui" line="60"/>
         <source>Search:</source>
-        <translation type="unfinished"></translation>
+        <translation>Søg:</translation>
     </message>
     <message>
         <location filename="appdialog.ui" line="76"/>
         <source>&amp;Start</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Start</translation>
     </message>
     <message>
         <location filename="appdialog.ui" line="96"/>
         <source>&amp;Close</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Luk</translation>
     </message>
     <message>
         <location filename="appdialog.cpp" line="105"/>
         <source>Multimedia</source>
-        <translation type="unfinished"></translation>
+        <translation>Multimedie</translation>
     </message>
     <message>
         <location filename="appdialog.cpp" line="110"/>
         <source>Development</source>
-        <translation type="unfinished"></translation>
+        <translation>Udvikling</translation>
     </message>
     <message>
         <location filename="appdialog.cpp" line="115"/>
         <source>Education</source>
-        <translation type="unfinished"></translation>
+        <translation>Undervisning</translation>
     </message>
     <message>
         <location filename="appdialog.cpp" line="120"/>
         <source>Game</source>
-        <translation type="unfinished"></translation>
+        <translation>Spil</translation>
     </message>
     <message>
         <location filename="appdialog.cpp" line="125"/>
         <source>Graphics</source>
-        <translation type="unfinished"></translation>
+        <translation>Grafik</translation>
     </message>
     <message>
         <location filename="appdialog.cpp" line="130"/>
         <source>Network</source>
-        <translation type="unfinished"></translation>
+        <translation>Netværk</translation>
     </message>
     <message>
         <location filename="appdialog.cpp" line="135"/>
         <source>Office</source>
-        <translation type="unfinished"></translation>
+        <translation>Kontor</translation>
     </message>
     <message>
         <location filename="appdialog.cpp" line="140"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Indstillinger</translation>
     </message>
     <message>
         <location filename="appdialog.cpp" line="145"/>
         <source>System</source>
-        <translation type="unfinished"></translation>
+        <translation>System</translation>
     </message>
     <message>
         <location filename="appdialog.cpp" line="150"/>
         <source>Utility</source>
-        <translation type="unfinished"></translation>
+        <translation>Tilbehør</translation>
     </message>
     <message>
         <location filename="appdialog.cpp" line="155"/>
         <source>Other</source>
-        <translation type="unfinished"></translation>
+        <translation>Andet</translation>
     </message>
 </context>
 <context>
@@ -84,27 +85,27 @@
     <message>
         <location filename="brokerpassdialog.ui" line="14"/>
         <source>Dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Dialog</translation>
     </message>
     <message>
         <location filename="brokerpassdialog.ui" line="22"/>
         <source>Old password:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nuværende Kodeord:</translation>
     </message>
     <message>
         <location filename="brokerpassdialog.ui" line="36"/>
         <source>New password:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nyt Kodeord:</translation>
     </message>
     <message>
         <location filename="brokerpassdialog.ui" line="50"/>
         <source>Confirm password:</source>
-        <translation type="unfinished"></translation>
+        <translation>Bekræft Kodeord:</translation>
     </message>
     <message>
         <location filename="brokerpassdialog.ui" line="79"/>
         <source>TextLabel</source>
-        <translation type="unfinished"></translation>
+        <translation>TekstMærkat</translation>
     </message>
 </context>
 <context>
@@ -112,7 +113,7 @@
     <message>
         <location filename="brokerpassdlg.cpp" line="41"/>
         <source>Passwords do not match</source>
-        <translation type="unfinished"></translation>
+        <translation>Kodeordene passer ikke sammen</translation>
     </message>
 </context>
 <context>
@@ -120,67 +121,67 @@
     <message>
         <location filename="cupsprintwidget.ui" line="19"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation>Formular</translation>
     </message>
     <message>
         <location filename="cupsprintwidget.ui" line="25"/>
         <source>Name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Navn:</translation>
     </message>
     <message>
         <location filename="cupsprintwidget.ui" line="42"/>
         <source>Properties</source>
-        <translation type="unfinished"></translation>
+        <translation>Egenskaber</translation>
     </message>
     <message>
         <location filename="cupsprintwidget.ui" line="49"/>
         <source>State:</source>
-        <translation type="unfinished"></translation>
+        <translation>Status:</translation>
     </message>
     <message>
         <location filename="cupsprintwidget.ui" line="63"/>
         <source>Accepting jobs:</source>
-        <translation type="unfinished"></translation>
+        <translation>Accepterer jobs:</translation>
     </message>
     <message>
         <location filename="cupsprintwidget.ui" line="77"/>
         <source>Type:</source>
-        <translation type="unfinished"></translation>
+        <translation>Type:</translation>
     </message>
     <message>
         <location filename="cupsprintwidget.ui" line="91"/>
         <source>Location:</source>
-        <translation type="unfinished"></translation>
+        <translation>Placering:</translation>
     </message>
     <message>
         <location filename="cupsprintwidget.ui" line="105"/>
         <source>Comment:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kommentar:</translation>
     </message>
     <message>
         <location filename="cupsprintwidget.cpp" line="65"/>
         <source>Idle</source>
-        <translation type="unfinished"></translation>
+        <translation>Ledig</translation>
     </message>
     <message>
         <location filename="cupsprintwidget.cpp" line="68"/>
         <source>Printing</source>
-        <translation type="unfinished"></translation>
+        <translation>Printer</translation>
     </message>
     <message>
         <location filename="cupsprintwidget.cpp" line="71"/>
         <source>Stopped</source>
-        <translation type="unfinished"></translation>
+        <translation>Stoppet</translation>
     </message>
     <message>
         <location filename="cupsprintwidget.cpp" line="81"/>
         <source>Yes</source>
-        <translation type="unfinished"></translation>
+        <translation>Ja</translation>
     </message>
     <message>
         <location filename="cupsprintwidget.cpp" line="81"/>
         <source>No</source>
-        <translation type="unfinished"></translation>
+        <translation>Nej</translation>
     </message>
 </context>
 <context>
@@ -188,17 +189,17 @@
     <message>
         <location filename="cupsprintersettingsdialog.cpp" line="104"/>
         <source>No option selected</source>
-        <translation type="unfinished"></translation>
+        <translation>Ingen indstilling valgt</translation>
     </message>
     <message>
         <location filename="cupsprintersettingsdialog.cpp" line="265"/>
         <source>This value is in conflict with other option</source>
-        <translation type="unfinished"></translation>
+        <translation>Denne værdi konflikter med en anden indstilling</translation>
     </message>
     <message>
         <location filename="cupsprintersettingsdialog.cpp" line="275"/>
         <source>Options conflict</source>
-        <translation type="unfinished"></translation>
+        <translation>Indstillings konflikt</translation>
     </message>
 </context>
 <context>
@@ -206,50 +207,51 @@
     <message>
         <location filename="contest.ui" line="14"/>
         <source>Connectivity test</source>
-        <translation type="unfinished"></translation>
+        <translation>Forbindelses test</translation>
     </message>
     <message>
         <location filename="contest.ui" line="24"/>
         <source>HTTPS connection:</source>
-        <translation type="unfinished"></translation>
+        <translation>HTTPS forbindelse:</translation>
     </message>
     <message>
         <location filename="contest.ui" line="31"/>
         <source>SSH connection:</source>
-        <translation type="unfinished"></translation>
+        <translation>SSH forbindelse:</translation>
     </message>
     <message>
         <location filename="contest.ui" line="38"/>
         <source>Connection speed:</source>
-        <translation type="unfinished"></translation>
+        <translation>Forbindelseshastighed:</translation>
     </message>
     <message>
         <location filename="contest.ui" line="123"/>
         <location filename="contest.ui" line="167"/>
         <source>Failed</source>
-        <translation type="unfinished"></translation>
+        <translation>Fejlet</translation>
     </message>
     <message>
         <location filename="contest.ui" line="211"/>
         <source>0 Kb/s</source>
-        <translation type="unfinished"></translation>
+        <translation>0 Kb/s</translation>
     </message>
     <message>
         <location filename="contest.cpp" line="108"/>
         <location filename="contest.cpp" line="115"/>
         <source>OK</source>
-        <translation type="unfinished"></translation>
+        <translation>OK</translation>
     </message>
     <message>
         <location filename="contest.cpp" line="150"/>
         <source>Socket operation timed out</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Cannot be adquately translated</translatorcomment>
+        <translation></translation>
     </message>
     <message>
         <location filename="contest.cpp" line="162"/>
         <location filename="contest.cpp" line="168"/>
         <source>Failed: </source>
-        <translation type="unfinished"></translation>
+        <translation>Fejlet:</translation>
     </message>
 </context>
 <context>
@@ -257,157 +259,157 @@
     <message>
         <location filename="configdialog.cpp" line="50"/>
         <source>General</source>
-        <translation type="unfinished"></translation>
+        <translation>Generelt</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="59"/>
         <source>Display icon in system tray</source>
-        <translation type="unfinished"></translation>
+        <translation>Vis ikon i statusområde</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="66"/>
         <source>Hide to system tray when minimized</source>
-        <translation type="unfinished"></translation>
+        <translation>Minimer til statusområde</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="67"/>
         <source>Hide to system tray when closed</source>
-        <translation type="unfinished"></translation>
+        <translation>Skjul i statusområde når programmet lukkes </translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="68"/>
         <source>Hide to system tray after connection is established</source>
-        <translation type="unfinished"></translation>
+        <translation>Minimer til statusområde efter forbindelse til server</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="69"/>
         <source>Restore from system tray after session is disconnected</source>
-        <translation type="unfinished"></translation>
+        <translation>Vis hovedvindue efter forbindelse er afbrudt</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="87"/>
         <source>Use LDAP</source>
-        <translation type="unfinished"></translation>
+        <translation>Brug LDAP</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="111"/>
         <source>Server URL:</source>
-        <translation type="unfinished"></translation>
+        <translation>Server URL:</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="112"/>
         <source>BaseDN:</source>
-        <translation type="unfinished"></translation>
+        <translation>BasisDN:</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="114"/>
         <source>Failover server 1 URL:</source>
-        <translation type="unfinished"></translation>
+        <translation>Failover server 1 URL:</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="116"/>
         <source>Failover server 2 URL:</source>
-        <translation type="unfinished"></translation>
+        <translation>Failover server 2 URL:</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="198"/>
         <location filename="configdialog.cpp" line="340"/>
         <source>X-Server settings</source>
-        <translation type="unfinished"></translation>
+        <translation>X-server instillinger</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="207"/>
         <source>X11 application:</source>
-        <translation type="unfinished"></translation>
+        <translation>X11 applikation:</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="218"/>
         <source>X11 version:</source>
-        <translation type="unfinished"></translation>
+        <translation>X11 version:</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="233"/>
         <source>Find X11 application</source>
-        <translation type="unfinished"></translation>
+        <translation>Find X11 applikation</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="250"/>
         <source>Clientside SSH port for file system export usage:</source>
-        <translation type="unfinished"></translation>
+        <translation>Klientens SSH port til filsystem-exportering:</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="260"/>
         <source>Start session embedded inside website</source>
-        <translation type="unfinished"></translation>
+        <translation>Start session indlagt i et website</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="264"/>
         <location filename="configdialog.cpp" line="567"/>
         <location filename="configdialog.cpp" line="579"/>
         <source>Advanced options</source>
-        <translation type="unfinished"></translation>
+        <translation>Avancerede instillinger</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="291"/>
         <source>Defaults</source>
-        <translation type="unfinished"></translation>
+        <translation>Standardinstillinger</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="292"/>
         <source>&amp;OK</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;OK</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="293"/>
         <source>&amp;Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Annuller</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="316"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Instillinger</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="336"/>
         <source>Printing</source>
-        <translation type="unfinished"></translation>
+        <translation>Udskrift</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="503"/>
         <location filename="configdialog.cpp" line="521"/>
         <location filename="configdialog.cpp" line="540"/>
         <source>Warning</source>
-        <translation type="unfinished"></translation>
+        <translation>Advarsel</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="504"/>
         <source>x2goclient could not find any suitable X11 Application. Please install Apple X11 or select the path to the application</source>
-        <translation type="unfinished"></translation>
+        <translation>x2goclient kunne ikke finde nogen X11 Applikationer. Installer venligtst Apple X11 eller skriv stien til applikationen</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="522"/>
         <source>Your are using X11 (Apple X-Window Server) version </source>
-        <translation type="unfinished"></translation>
+        <translation>Du bruger X11 (Apple X Window Server) version</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="524"/>
         <source>. This version causes problems with X-application in 24bit color mode. You should update your X11 environment (http://trac.macosforge.org/projects/xquartz).</source>
-        <translation type="unfinished"></translation>
+        <translation>. Denne version forårsager problemer med X applikationer i 24bit farver. Du bør opdatere dit X11 miljø (http://trac.macosforge.org/projects/xquartz). </translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="541"/>
         <source>No suitable X11 application found in selected path</source>
-        <translation type="unfinished"></translation>
+        <translation>Der blev ikke fundet en X11 applikation i den valgte sti</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="577"/>
         <source>&amp;Connection</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Forbindelse</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="578"/>
         <source>&amp;Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Instillinger</translation>
     </message>
 </context>
 <context>
@@ -415,32 +417,32 @@
     <message>
         <location filename="connectionwidget.cpp" line="33"/>
         <source>&amp;Connection speed</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Forbindelseshastighed</translation>
     </message>
     <message>
         <location filename="connectionwidget.cpp" line="38"/>
         <source>Connection speed:</source>
-        <translation type="unfinished"></translation>
+        <translation>Forbindelseshastighed:</translation>
     </message>
     <message>
         <location filename="connectionwidget.cpp" line="68"/>
         <source>C&amp;ompression</source>
-        <translation type="unfinished"></translation>
+        <translation>K&amp;omprimering</translation>
     </message>
     <message>
         <location filename="connectionwidget.cpp" line="85"/>
         <source>Method:</source>
-        <translation type="unfinished"></translation>
+        <translation>Metode:</translation>
     </message>
     <message>
         <location filename="connectionwidget.cpp" line="87"/>
         <source>Compression method:</source>
-        <translation type="unfinished"></translation>
+        <translation>Komprimeringsmetode:</translation>
     </message>
     <message>
         <location filename="connectionwidget.cpp" line="89"/>
         <source>Image quality:</source>
-        <translation type="unfinished"></translation>
+        <translation>Billedkvalitet:</translation>
     </message>
 </context>
 <context>
@@ -448,72 +450,72 @@
     <message>
         <location filename="cupsprintsettingsdialog.ui" line="19"/>
         <source>Dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Dialog</translation>
     </message>
     <message>
         <location filename="cupsprintsettingsdialog.ui" line="35"/>
         <source>General</source>
-        <translation type="unfinished"></translation>
+        <translation>Generelt</translation>
     </message>
     <message>
         <location filename="cupsprintsettingsdialog.ui" line="45"/>
         <source>Page size:</source>
-        <translation type="unfinished"></translation>
+        <translation>Sidestørrelse:</translation>
     </message>
     <message>
         <location filename="cupsprintsettingsdialog.ui" line="62"/>
         <source>Paper type:</source>
-        <translation type="unfinished"></translation>
+        <translation>Papirtype:</translation>
     </message>
     <message>
         <location filename="cupsprintsettingsdialog.ui" line="72"/>
         <source>Paper source:</source>
-        <translation type="unfinished"></translation>
+        <translation>Papirkilde:</translation>
     </message>
     <message>
         <location filename="cupsprintsettingsdialog.ui" line="99"/>
         <source>Duplex Printing</source>
-        <translation type="unfinished"></translation>
+        <translation>Duplex Udskrivning</translation>
     </message>
     <message>
         <location filename="cupsprintsettingsdialog.ui" line="105"/>
         <source>None</source>
-        <translation type="unfinished"></translation>
+        <translation>Intet</translation>
     </message>
     <message>
         <location filename="cupsprintsettingsdialog.ui" line="112"/>
         <source>Long side</source>
-        <translation type="unfinished"></translation>
+        <translation>Lang side</translation>
     </message>
     <message>
         <location filename="cupsprintsettingsdialog.ui" line="119"/>
         <source>Short side</source>
-        <translation type="unfinished"></translation>
+        <translation>Kort side</translation>
     </message>
     <message>
         <location filename="cupsprintsettingsdialog.ui" line="143"/>
         <source>Driver settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Driver instillinger</translation>
     </message>
     <message>
         <location filename="cupsprintsettingsdialog.ui" line="175"/>
         <source>Option</source>
-        <translation type="unfinished"></translation>
+        <translation>Option</translation>
     </message>
     <message>
         <location filename="cupsprintsettingsdialog.ui" line="180"/>
         <source>Value</source>
-        <translation type="unfinished"></translation>
+        <translation>Værdi</translation>
     </message>
     <message>
         <location filename="cupsprintsettingsdialog.ui" line="186"/>
         <source>No option selected</source>
-        <translation type="unfinished"></translation>
+        <translation>Ingen mulighed valgt</translation>
     </message>
     <message>
         <location filename="cupsprintsettingsdialog.ui" line="205"/>
         <source>text</source>
-        <translation type="unfinished"></translation>
+        <translation>tekst</translation>
     </message>
 </context>
 <context>
@@ -521,42 +523,42 @@
     <message>
         <location filename="editconnectiondialog.cpp" line="52"/>
         <source>&amp;Session</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Session</translation>
     </message>
     <message>
         <location filename="editconnectiondialog.cpp" line="53"/>
         <source>&amp;Connection</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Forbindelse</translation>
     </message>
     <message>
         <location filename="editconnectiondialog.cpp" line="54"/>
         <source>&amp;Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Instillinger</translation>
     </message>
     <message>
         <location filename="editconnectiondialog.cpp" line="55"/>
         <source>&amp;Shared folders</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Delte mapper</translation>
     </message>
     <message>
         <location filename="editconnectiondialog.cpp" line="57"/>
         <source>&amp;OK</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;OK</translation>
     </message>
     <message>
         <location filename="editconnectiondialog.cpp" line="58"/>
         <source>&amp;Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Annuller</translation>
     </message>
     <message>
         <location filename="editconnectiondialog.cpp" line="59"/>
         <source>Defaults</source>
-        <translation type="unfinished"></translation>
+        <translation>Standard</translation>
     </message>
     <message>
         <location filename="editconnectiondialog.cpp" line="109"/>
         <source>Session preferences - </source>
-        <translation type="unfinished"></translation>
+        <translation>Sessionsinstillinger</translation>
     </message>
 </context>
 <context>
@@ -564,38 +566,38 @@
     <message>
         <location filename="exportdialog.cpp" line="38"/>
         <source>&amp;Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Annuller</translation>
     </message>
     <message>
         <location filename="exportdialog.cpp" line="44"/>
         <source>&amp;share</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;del</translation>
     </message>
     <message>
         <location filename="exportdialog.cpp" line="45"/>
         <source>&amp;Preferences ...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Instilliger ...</translation>
     </message>
     <message>
         <location filename="exportdialog.cpp" line="46"/>
         <source>&amp;Custom folder ...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Brugerspecificeret Mappe ...</translation>
     </message>
     <message>
         <location filename="exportdialog.cpp" line="56"/>
         <source>Delete</source>
         <comment>Delete</comment>
-        <translation type="unfinished"></translation>
+        <translation>Slet</translation>
     </message>
     <message>
         <location filename="exportdialog.cpp" line="73"/>
         <source>share folders</source>
-        <translation type="unfinished"></translation>
+        <translation>del mapper</translation>
     </message>
     <message>
         <location filename="exportdialog.cpp" line="139"/>
         <source>Select folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Vælg mappe</translation>
     </message>
 </context>
 <context>
@@ -603,121 +605,121 @@
     <message>
         <location filename="httpbrokerclient.cpp" line="178"/>
         <source>us</source>
-        <translation type="unfinished"></translation>
+        <translation>us</translation>
     </message>
     <message>
         <location filename="httpbrokerclient.cpp" line="181"/>
         <source>pc105/us</source>
-        <translation type="unfinished"></translation>
+        <translation>pc105/us</translation>
     </message>
     <message>
         <location filename="httpbrokerclient.cpp" line="308"/>
         <location filename="httpbrokerclient.cpp" line="328"/>
         <location filename="httpbrokerclient.cpp" line="365"/>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Fejl</translation>
     </message>
     <message>
         <location filename="httpbrokerclient.cpp" line="329"/>
         <source>Login failed!&lt;br&gt;Please try again</source>
-        <translation type="unfinished"></translation>
+        <translation>Login fejlede&lt;br&gt;Forsøg igen</translation>
     </message>
     <message>
         <location filename="httpbrokerclient.cpp" line="366"/>
         <source>Your session was disconnected. To get access to your running session, please return to the login page or use the &quot;reload&quot; function of your browser.</source>
-        <translation type="unfinished"></translation>
+        <translation>Din session blev frakoblet. For at få adgang til din igangværende session, skal du gå til loginsiden eller trykke på &quot;opdater&quot; i din browser.</translation>
     </message>
     <message>
         <location filename="httpbrokerclient.cpp" line="454"/>
         <source>&lt;br&gt;&lt;b&gt;Server uses an invalid security certificate.&lt;/b&gt;&lt;br&gt;&lt;br&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;br&gt;&lt;b&gt;Serveren bruger et ugyldigt sikkerhedscertifikat&lt;/b&gt;&lt;br&gt;&lt;br&gt;</translation>
     </message>
     <message>
         <location filename="httpbrokerclient.cpp" line="457"/>
         <source>&lt;p style=&apos;background:#FFFFDC;&apos;&gt;You should not add an exception if you are using an internet connection that you do not trust completely or if you are not used to seeing a warning for this server.&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p style=&apos;background:#FFFFDC;&apos;&gt;Du bør ikke tilføje en undtagelse hvis du bruger en ubeskyttet internetforbindelse, eller hvis du ikke er vant til at se advarsler fra denne server.&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="httpbrokerclient.cpp" line="462"/>
         <source>Secure connection failed</source>
-        <translation type="unfinished"></translation>
+        <translation>Der kunne ikke skabes en sikker forbindelse</translation>
     </message>
     <message>
         <location filename="httpbrokerclient.cpp" line="467"/>
         <source>Issued to:
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Udstedt til:</translation>
     </message>
     <message>
         <location filename="httpbrokerclient.cpp" line="468"/>
         <location filename="httpbrokerclient.cpp" line="480"/>
         <source>Common Name(CN)	</source>
-        <translation type="unfinished"></translation>
+        <translation>Common Name(CN)</translation>
     </message>
     <message>
         <location filename="httpbrokerclient.cpp" line="471"/>
         <location filename="httpbrokerclient.cpp" line="483"/>
         <source>Organization(O)	</source>
-        <translation type="unfinished"></translation>
+        <translation>Organization(O)	</translation>
     </message>
     <message>
         <location filename="httpbrokerclient.cpp" line="474"/>
         <location filename="httpbrokerclient.cpp" line="486"/>
         <source>Organizational Unit(OU)	</source>
-        <translation type="unfinished"></translation>
+        <translation>Organizational Unit(OU)	</translation>
     </message>
     <message>
         <location filename="httpbrokerclient.cpp" line="477"/>
         <source>Serial Number	</source>
-        <translation type="unfinished"></translation>
+        <translation>Serienummer	</translation>
     </message>
     <message>
         <location filename="httpbrokerclient.cpp" line="479"/>
         <source>Issued by:
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Udstedt af:</translation>
     </message>
     <message>
         <location filename="httpbrokerclient.cpp" line="490"/>
         <source>Validity:
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Gyldighed:</translation>
     </message>
     <message>
         <location filename="httpbrokerclient.cpp" line="491"/>
         <source>Issued on	</source>
-        <translation type="unfinished"></translation>
+        <translation>Udstedt den</translation>
     </message>
     <message>
         <location filename="httpbrokerclient.cpp" line="492"/>
         <source>expires on	</source>
-        <translation type="unfinished"></translation>
+        <translation>udløber den	</translation>
     </message>
     <message>
         <location filename="httpbrokerclient.cpp" line="493"/>
         <source>Fingerprints:
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Fingeraftryk:</translation>
     </message>
     <message>
         <location filename="httpbrokerclient.cpp" line="494"/>
         <source>SHA1	</source>
-        <translation type="unfinished"></translation>
+        <translation>SHA1</translation>
     </message>
     <message>
         <location filename="httpbrokerclient.cpp" line="496"/>
         <source>MD5	</source>
-        <translation type="unfinished"></translation>
+        <translation>MD5</translation>
     </message>
     <message>
         <location filename="httpbrokerclient.cpp" line="502"/>
         <source>Exit X2Go Client</source>
-        <translation type="unfinished"></translation>
+        <translation>Luk X2go-Klienten</translation>
     </message>
     <message>
         <location filename="httpbrokerclient.cpp" line="504"/>
         <source>Add exception</source>
-        <translation type="unfinished"></translation>
+        <translation>Tilføj undtagelse</translation>
     </message>
 </context>
 <context>
@@ -726,67 +728,67 @@
         <location filename="onmainwindow.cpp" line="90"/>
         <location filename="onmainwindow.cpp" line="5881"/>
         <source>us</source>
-        <translation type="unfinished"></translation>
+        <translation>us</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="91"/>
         <source>pc105/us</source>
-        <translation type="unfinished"></translation>
+        <translation>pc105/us</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="140"/>
         <source>X2Go client</source>
-        <translation type="unfinished"></translation>
+        <translation>X2go klient</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="157"/>
         <location filename="onmainwindow.cpp" line="2971"/>
         <location filename="onmainwindow.cpp" line="5018"/>
         <source>connecting</source>
-        <translation type="unfinished"></translation>
+        <translation>forbinder</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="164"/>
         <source>Internet browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Internet browser</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="165"/>
         <source>Email client</source>
-        <translation type="unfinished"></translation>
+        <translation>Email klient</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="166"/>
         <source>OpenOffice.org</source>
-        <translation type="unfinished"></translation>
+        <translation>OpenOffice.org</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="167"/>
         <source>Terminal</source>
-        <translation type="unfinished"></translation>
+        <translation>Terminal</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="342"/>
         <source>&amp;Settings ...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Instillinger ...</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="346"/>
         <source>Support ...</source>
-        <translation type="unfinished"></translation>
+        <translation>Support ...</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="353"/>
         <location filename="onmainwindow.cpp" line="7127"/>
         <source>About X2GO client</source>
-        <translation type="unfinished"></translation>
+        <translation>om X2GO klient</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="557"/>
         <location filename="onmainwindow.cpp" line="1038"/>
         <location filename="onmainwindow.cpp" line="9872"/>
         <source>Share folder...</source>
-        <translation type="unfinished"></translation>
+        <translation>Del mappe...</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="560"/>
@@ -794,7 +796,7 @@
         <location filename="onmainwindow.cpp" line="5074"/>
         <location filename="onmainwindow.cpp" line="10045"/>
         <source>Suspend</source>
-        <translation type="unfinished"></translation>
+        <translation>Suspender</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="563"/>
@@ -802,114 +804,114 @@
         <location filename="onmainwindow.cpp" line="9885"/>
         <location filename="onmainwindow.cpp" line="10047"/>
         <source>Terminate</source>
-        <translation type="unfinished"></translation>
+        <translation>Afbryd</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="565"/>
         <source>Reconnect</source>
-        <translation type="unfinished"></translation>
+        <translation>Genoptag</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="569"/>
         <location filename="onmainwindow.cpp" line="9298"/>
         <source>Detach X2Go window</source>
-        <translation type="unfinished"></translation>
+        <translation>Løsriv X2go vindue</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="572"/>
         <location filename="onmainwindow.cpp" line="10348"/>
         <source>Minimize toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Minimer værktøjslinie</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="682"/>
         <location filename="onmainwindow.cpp" line="1987"/>
         <location filename="onmainwindow.cpp" line="7227"/>
         <source>Session:</source>
-        <translation type="unfinished"></translation>
+        <translation>Session:</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="734"/>
         <source>&amp;Quit</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Afslut</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="735"/>
         <source>Ctrl+Q</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Q</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="736"/>
         <location filename="onmainwindow.cpp" line="1057"/>
         <source>Quit</source>
-        <translation type="unfinished"></translation>
+        <translation>Afslut</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="739"/>
         <source>&amp;New session ...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Ny session ...</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="740"/>
         <source>Ctrl+N</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+N</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="745"/>
         <source>Session management...</source>
-        <translation type="unfinished"></translation>
+        <translation>Sessionshåndtering...</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="746"/>
         <source>Ctrl+E</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+E</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="756"/>
         <source>&amp;Create session icon on desktop...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Opret sessionsikon på skrivebordet...</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="765"/>
         <source>&amp;Set broker password...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Sæt broker kodeord...</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="776"/>
         <source>&amp;Connectivity test...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;forbindelsestest...</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="783"/>
         <location filename="onmainwindow.cpp" line="804"/>
         <source>Show toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Vis værktøjslinie</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="789"/>
         <source>About Qt</source>
-        <translation type="unfinished"></translation>
+        <translation>Om Qt</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="806"/>
         <source>Ctrl+Q</source>
         <comment>exit</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Q</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="812"/>
         <source>&amp;Session</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Session</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="813"/>
         <source>&amp;Options</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Instillinger</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="832"/>
         <source>&amp;Help</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Hjælp</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="871"/>
@@ -917,7 +919,7 @@
         <location filename="onmainwindow.cpp" line="7220"/>
         <location filename="onmainwindow.cpp" line="9673"/>
         <source>Login:</source>
-        <translation type="unfinished"></translation>
+        <translation>Login:</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="892"/>
@@ -965,227 +967,230 @@
         <location filename="onmainwindow.cpp" line="8040"/>
         <location filename="onmainwindow.cpp" line="10264"/>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Fejl</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="892"/>
         <source>Operation failed</source>
-        <translation type="unfinished"></translation>
+        <translation>Handling fejlede</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="896"/>
         <source>Password changed</source>
-        <translation type="unfinished"></translation>
+        <translation>Kodeord er ændret</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="920"/>
         <source>Wrong password!</source>
-        <translation type="unfinished"></translation>
+        <translation>Forkert kodeord!</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="924"/>
         <location filename="onmainwindow.cpp" line="2560"/>
         <location filename="onmainwindow.cpp" line="10518"/>
         <source>Connecting to broker</source>
-        <translation type="unfinished"></translation>
+        <translation>Forbinder til broker</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="969"/>
         <source>&lt;b&gt;Authentication&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Autentifikation&lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="1009"/>
         <source>Restore</source>
-        <translation type="unfinished"></translation>
+        <translation>Gendan</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="1011"/>
         <location filename="onmainwindow.cpp" line="4931"/>
         <source>Not connected</source>
-        <translation type="unfinished"></translation>
+        <translation>Ikke forbundet</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="1013"/>
         <source>Multimedia</source>
-        <translation type="unfinished"></translation>
+        <translation>Multimedie</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="1015"/>
         <source>Development</source>
-        <translation type="unfinished"></translation>
+        <translation>Udvikling</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="1017"/>
         <source>Education</source>
-        <translation type="unfinished"></translation>
+        <translation>Undervisning</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="1019"/>
         <source>Game</source>
-        <translation type="unfinished"></translation>
+        <translation>Spil</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="1021"/>
         <source>Graphics</source>
-        <translation type="unfinished"></translation>
+        <translation>Grafik</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="1023"/>
         <source>Network</source>
-        <translation type="unfinished"></translation>
+        <translation>Netværk</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="1025"/>
         <source>Office</source>
-        <translation type="unfinished"></translation>
+        <translation>Kontor</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="1027"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Indstillinger</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="1029"/>
         <source>System</source>
-        <translation type="unfinished"></translation>
+        <translation>System</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="1031"/>
         <source>Utility</source>
-        <translation type="unfinished"></translation>
+        <translation>Tilbehør</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="1033"/>
         <source>Other</source>
-        <translation type="unfinished"></translation>
+        <translation>Andet</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="1068"/>
         <source>Left mouse button to hide/restore - Right mouse button to display context menu</source>
-        <translation type="unfinished"></translation>
+        <translation>Venstre museknap skjuler/gendanner - Højre museknap viser kontekst menu</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="1663"/>
         <location filename="onmainwindow.cpp" line="1846"/>
         <location filename="onmainwindow.cpp" line="1876"/>
         <source>Please check LDAP settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Undersøg LDAP instillinger</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="1698"/>
         <source>no X2Go server found in LDAP </source>
-        <translation type="unfinished"></translation>
+        <translation>ingen X2go server fundet i LDAP</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="2010"/>
         <source>Create session icon on desktop</source>
-        <translation type="unfinished"></translation>
+        <translation>Opret sessionsikon på skrivebord</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="2011"/>
         <source>Desktop icons can be configured not to show x2goclient (hidden mode). If you like to use this feature you&apos;ll need to configure login by a gpg key or gpg smart card.
 
 Use x2goclient hidden mode?</source>
-        <translation type="unfinished"></translation>
+        <translation>Skrivebordsikoner kan instilles til ikke at vise x2goklienten (skjult tilstand). Hvis du vil bruge denne feature skal du konfigurere login med gpg nøgle eller gpg smart card.
+Slå skjult tilstand til?</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="2022"/>
         <source>New Session</source>
-        <translation type="unfinished"></translation>
+        <translation>Ny Session</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="2072"/>
         <source>X2Go Link to session </source>
-        <translation type="unfinished"></translation>
+        <translation>X2go Link til session</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="2122"/>
         <source>X2Go sessions not found</source>
-        <translation type="unfinished"></translation>
+        <translation>X2go sessioner blev ikke fundet</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="2270"/>
         <source>Are you sure you want to delete this session?</source>
-        <translation type="unfinished"></translation>
+        <translation>Er du sikker på at du vil slette denne session?</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="2578"/>
         <location filename="onmainwindow.cpp" line="5442"/>
         <source>KDE</source>
-        <translation type="unfinished"></translation>
+        <translation>KDE</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="2643"/>
         <source>RDP connection</source>
-        <translation type="unfinished"></translation>
+        <translation>RDP forbindelse</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="2647"/>
         <source>XDMCP</source>
-        <translation type="unfinished"></translation>
+        <translation>XDMCP</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="2651"/>
         <source>Connection to local desktop</source>
-        <translation type="unfinished"></translation>
+        <translation>Forbindelse til lokalt skrivebord</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="2655"/>
         <source> on </source>
-        <translation type="unfinished"></translation>
+        <translation> på </translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="2861"/>
         <source>Host key for server changed.
 It is now: </source>
-        <translation type="unfinished"></translation>
+        <translation>Serverens Host key er ændret.
+Den er nu: </translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="2862"/>
         <source>For security reasons, connection will be stopped</source>
-        <translation type="unfinished"></translation>
+        <translation>Forbindelsen afbrydes af sikkerhedsårsager</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="2873"/>
         <source>The host key for this server was not found but an othertype of key exists.An attacker might change the default server key toconfuse your client into thinking the key does not exist</source>
-        <translation type="unfinished"></translation>
+        <translation>Serverens host key blev fundet, men en anden type nøgle eksisterer. En angriber kan ændre standardnøglen på serveren for at narre din klient til at tro at nøglen ikke eksisterer</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="2895"/>
         <source>Could not find known host file.If you accept the host key here, the file will be automatically created</source>
-        <translation type="unfinished"></translation>
+        <translation>Kunne ikke finde known host fil. Hvis du accepterer serverens host key, vil filen automatisk blive skabt</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="2900"/>
         <source>The server is unknown. Do you trust the host key?
 Public key hash: </source>
-        <translation type="unfinished"></translation>
+        <translation>Serveren er ukendt. Stoler du på denne host key?
+Public key hash: </translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="2904"/>
         <location filename="onmainwindow.cpp" line="2912"/>
         <source>Host key verification failed</source>
-        <translation type="unfinished"></translation>
+        <translation>Host key bekræftelsen fejlede</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="2904"/>
         <location filename="onmainwindow.cpp" line="3991"/>
         <location filename="onmainwindow.cpp" line="4011"/>
         <source>Yes</source>
-        <translation type="unfinished"></translation>
+        <translation>Ja</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="2904"/>
         <location filename="onmainwindow.cpp" line="3992"/>
         <location filename="onmainwindow.cpp" line="4012"/>
         <source>No</source>
-        <translation type="unfinished"></translation>
+        <translation>Nej</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="2928"/>
         <source>Authentication failed</source>
-        <translation type="unfinished"></translation>
+        <translation>Autentifikationen fejlede</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="3083"/>
@@ -1199,7 +1204,7 @@ Public key hash: </source>
         <location filename="onmainwindow.cpp" line="7911"/>
         <source>&lt;b&gt;Connection failed&lt;/b&gt;
 </source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Forbindelsen fejlede&lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="3086"/>
@@ -1213,17 +1218,17 @@ Public key hash: </source>
         <location filename="onmainwindow.cpp" line="6860"/>
         <location filename="onmainwindow.cpp" line="7914"/>
         <source>&lt;b&gt;Wrong password!&lt;/b&gt;&lt;br&gt;&lt;br&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Forkert Kodeord!&lt;/b&gt;&lt;br&gt;&lt;br&gt;</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="3202"/>
         <source>unknown</source>
-        <translation type="unfinished"></translation>
+        <translation>ukendt</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="3269"/>
         <source>No server availabel</source>
-        <translation type="unfinished"></translation>
+        <translation>Ingen server tilgængelig</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="3278"/>
@@ -1231,62 +1236,62 @@ Public key hash: </source>
         <location filename="onmainwindow.cpp" line="4058"/>
         <location filename="onmainwindow.cpp" line="4174"/>
         <source>Server not availabel</source>
-        <translation type="unfinished"></translation>
+        <translation>Server er ikke tilgængelig</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="3818"/>
         <location filename="onmainwindow.cpp" line="10036"/>
         <source>Select session:</source>
-        <translation type="unfinished"></translation>
+        <translation>Vælg session:</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="3834"/>
         <location filename="onmainwindow.cpp" line="3928"/>
         <location filename="onmainwindow.cpp" line="5038"/>
         <source>running</source>
-        <translation type="unfinished"></translation>
+        <translation>kører</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="3836"/>
         <location filename="onmainwindow.cpp" line="4130"/>
         <source>suspended</source>
-        <translation type="unfinished"></translation>
+        <translation>suspenderet</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="3842"/>
         <source>Desktop</source>
-        <translation type="unfinished"></translation>
+        <translation>Skrivebord</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="3844"/>
         <source>single application</source>
-        <translation type="unfinished"></translation>
+        <translation>enkelt applikation</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="3846"/>
         <source>shadow session</source>
-        <translation type="unfinished"></translation>
+        <translation>skygge session</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="3879"/>
         <source>Information</source>
-        <translation type="unfinished"></translation>
+        <translation>Information</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="3880"/>
         <source>No accessible desktop found</source>
-        <translation type="unfinished"></translation>
+        <translation>Intet tilgængeligt skrivebord fundet</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="3893"/>
         <location filename="onmainwindow.cpp" line="10449"/>
         <source>Filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Filter</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="3900"/>
         <source>Select desktop:</source>
-        <translation type="unfinished"></translation>
+        <translation>Vælg skrivebord:</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="3978"/>
@@ -1294,120 +1299,121 @@ Public key hash: </source>
         <location filename="onmainwindow.cpp" line="4857"/>
         <location filename="onmainwindow.cpp" line="5250"/>
         <source>Warning</source>
-        <translation type="unfinished"></translation>
+        <translation>Advarsel</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="3979"/>
         <location filename="onmainwindow.cpp" line="3999"/>
         <source>Your current color depth is different to the color depth of your x2go-session. This may cause problems reconnecting to this session and in most cases &lt;b&gt;you will loose the session&lt;/b&gt; and have to start a new one! It&apos;s highly recommended to change the color depth of your Display to </source>
-        <translation type="unfinished"></translation>
+        <translation>Din nuværende farvedybde er anderledes end din x2go sessions farvedybde. Dette kan skabe problemer med at genoptage sessionen og i de fleste tilfælde &lt;b&gt;vil du miste din session&lt;/b&gt; og være nød til at starte påny! det anbefales kraftigt at skifte farvedybden på dit Display til </translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="3987"/>
         <source>24 or 32</source>
-        <translation type="unfinished"></translation>
+        <translation>24 eller 32</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="3988"/>
         <location filename="onmainwindow.cpp" line="4008"/>
         <source> bit and restart your X-server before you reconnect to this x2go-session.&lt;br&gt;Resume this session anyway?</source>
-        <translation type="unfinished"></translation>
+        <translation> bit og genstarte din X server før du genoptager din x2go session.&lt;br&gt;Vil du fortsætte alligevel?</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="4075"/>
         <source>suspending</source>
-        <translation type="unfinished"></translation>
+        <translation>suspenderer</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="4097"/>
         <source>terminating</source>
-        <translation type="unfinished"></translation>
+        <translation>afslutter</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="4235"/>
         <source>&lt;b&gt;Wrong Password!&lt;/b&gt;&lt;br&gt;&lt;br&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Forkert Kodeord!&lt;/b&gt;&lt;br&gt;&lt;br&gt;</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="4651"/>
         <location filename="onmainwindow.cpp" line="6681"/>
         <source>Unable to create folder:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kunne ikke oprette mappe:</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="4677"/>
         <source>Unable to write file:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kunne ikke skrive fil:</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="4800"/>
         <location filename="onmainwindow.cpp" line="9273"/>
         <source>Attach X2Go window</source>
-        <translation type="unfinished"></translation>
+        <translation>Tilkobl X2Go vindue</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="4826"/>
         <location filename="onmainwindow.cpp" line="7985"/>
         <source>Unable to create SSL tunnel:
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Kunne ikke oprette SSL tunnel:</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="4855"/>
         <source>Unable to create SSL Tunnel:
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Kunne ikke oprette SSL Tunnel:</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="5003"/>
         <source>Finished</source>
-        <translation type="unfinished"></translation>
+        <translation>Afsluttet</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="5027"/>
         <source>starting</source>
-        <translation type="unfinished"></translation>
+        <translation>starter</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="5031"/>
         <source>resuming</source>
-        <translation type="unfinished"></translation>
+        <translation>fortsætter</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="5094"/>
         <location filename="onmainwindow.cpp" line="5366"/>
         <location filename="onmainwindow.cpp" line="5384"/>
         <source>Connection timeout, aborting</source>
-        <translation type="unfinished"></translation>
+        <translation>Forbindelsestimeout, aflsutter</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="5095"/>
         <source>aborting</source>
-        <translation type="unfinished"></translation>
+        <translation>afslutter</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="5251"/>
         <source>Are you sure you want to terminate this session?
 Unsaved documents will be lost</source>
-        <translation type="unfinished"></translation>
+        <translation>Er du sikker på du vil afslutte denne session?
+Ugemte dokumenter vil gå tabt</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="5334"/>
         <source>Session</source>
-        <translation type="unfinished"></translation>
+        <translation>Session</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="5336"/>
         <location filename="onmainwindow.cpp" line="10117"/>
         <location filename="onmainwindow.cpp" line="10139"/>
         <source>Display</source>
-        <translation type="unfinished"></translation>
+        <translation>Display</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="5338"/>
         <location filename="onmainwindow.cpp" line="10128"/>
         <source>Creation time</source>
-        <translation type="unfinished"></translation>
+        <translation>Skabelsestid</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="5591"/>
@@ -1415,139 +1421,143 @@ Unsaved documents will be lost</source>
         <source>&lt;b&gt;Connection failed&lt;/b&gt;
 :
 </source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Forbindelse fejlede&lt;/b&gt;
+:
+</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="5988"/>
         <source> (can&apos;t open file)</source>
-        <translation type="unfinished"></translation>
+        <translation> (kan ikke åbne fil)</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="5999"/>
         <location filename="onmainwindow.cpp" line="6009"/>
         <location filename="onmainwindow.cpp" line="6019"/>
         <source> (file not exists)</source>
-        <translation type="unfinished"></translation>
+        <translation> (fil eksisterer ikke)</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="6043"/>
         <source> (directory not exists)</source>
-        <translation type="unfinished"></translation>
+        <translation> (mappe eksisterer ikke)</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="6071"/>
         <source>wrong value for argument&quot;--link&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Ugyldig værdi for &quot;--link&quot; argumentet</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="6089"/>
         <source>wrong value for argument&quot;--sound&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Ugyldig værdi for &quot;--sound&quot; argumentet</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="6106"/>
         <location filename="onmainwindow.cpp" line="6117"/>
         <source>wrong value for argument&quot;--geometry&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Ugyldig værdi for &quot;--geometry&quot; argumentet</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="6135"/>
         <source>wrong value for argument&quot;--set-kbd&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Ugyldig værdi for &quot;--set-kbd&quot; argumentet</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="6152"/>
         <source>wrong value for argument&quot;--ldap&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Ugyldig værdi for &quot;--ldap&quot; argumentet</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="6174"/>
         <source>wrong value for argument&quot;--ldap1&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Ugyldig værdi for &quot;--ldap1&quot; argumentet</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="6193"/>
         <source>wrong value for argument&quot;--ldap2&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Ugyldig værdi for &quot;--ldap2&quot; argumentet</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="6247"/>
         <source>wrong value for argument&quot;--pack&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Ugyldig værdi for &quot;--pack&quot; argumentet</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="6255"/>
         <location filename="onmainwindow.cpp" line="6258"/>
         <source>wrong parameter: </source>
-        <translation type="unfinished"></translation>
+        <translation>Forkert parameter: </translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="6309"/>
         <location filename="onmainwindow.cpp" line="6335"/>
         <source>Options</source>
-        <translation type="unfinished"></translation>
+        <translation>Instillinger</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="6314"/>
         <source>Available pack methodes:</source>
-        <translation type="unfinished"></translation>
+        <translation>Tilgængelige pakkemetoder:</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="7102"/>
         <source>Support</source>
-        <translation type="unfinished"></translation>
+        <translation>Support</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="7107"/>
         <source>&lt;/b&gt;&lt;br&gt; (C. 2006-2012 &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing)&lt;br&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;/b&gt;&lt;br&gt; (C. 2006-2012 &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing)&lt;br&gt;</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="7111"/>
         <source>&lt;br&gt;x2goplugin mode was sponsored by &lt;a href=&quot;http://www.foss-group.de/&quot;&gt;FOSS-Group GmbH(Freiburg)&lt;/a&gt;&lt;br&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;br&gt;x2goplugin mode blev sponsoreret af &lt;a href=&quot;http://www.foss-group.de/&quot;&gt;FOSS-Group GmbH(Freiburg)&lt;/a&gt;&lt;br&gt;</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="7115"/>
         <source>&lt;br&gt;Client for use with the X2Go network based computing environment. This Client will be able to connect to X2Go server(s) and start, stop, resume and terminate (running) desktop sessions. X2Go Client stores different server connections and may automatically request authentication data from LDAP directories. Furthermore it can be used as fullscreen loginscreen (replacement for loginmanager like xdm). Please visit x2go.org for further information.</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;br&gt;Klient til brug med X2go&apos;s netværksbaserede computermiljø. Denne klient vil kunne forbinde til X2go servere og starte, stoppe, fortsætte og afslutte (igangværende) skrivebordssessioner. X2Go-klienten lagrer forskellige server forbindelser og kan automatisk lave forespørgsler til LDAP tjenester om autentificeringsdata. Den kan desuden bruges som fuldskærmslogin (erstatning for loginmanagers som xdm) Besøg venligst x2go.org for yderligere information.</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="7128"/>
         <source>&lt;b&gt;X2Go client V. </source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;X2Go client V. </translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="7173"/>
         <source>Please check LDAP Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Undersøg venligst dine LDAP instillinger</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="7403"/>
         <source>No valid card found</source>
-        <translation type="unfinished"></translation>
+        <translation>Intet gyldigt kort fundet</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="7451"/>
         <source>This card is unknown by X2Go system</source>
-        <translation type="unfinished"></translation>
+        <translation>X2Go systemet kan ikke genkende dette kort</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="7479"/>
         <source>Unable to create file: </source>
-        <translation type="unfinished"></translation>
+        <translation>Ikke i stand til at skabe fil: </translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="7747"/>
         <source>Can&apos;t connect to X server
 Please check your settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Kan ikke forbinde til x server
+Undersøg venligst instillingerne</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="7748"/>
         <source>Can&apos;t start X server
 Please check your settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Kan ikke starte x server
+Undersøg venligst instillingerne</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="7762"/>
@@ -1555,169 +1565,173 @@ Please check your settings</source>
         <location filename="onmainwindow.cpp" line="8436"/>
         <source>Can&apos;t start X Server
 Please check your installation</source>
-        <translation type="unfinished"></translation>
+        <translation>Kan ikke starte x server
+Undersøg venligst din installation</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="7934"/>
         <source>Unable to execute: </source>
-        <translation type="unfinished"></translation>
+        <translation>Kunne ikke eksekvere: </translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="7950"/>
         <source>Remote server does not support file system export through SSH Tunnel
 Please update to a newer x2goserver package</source>
-        <translation type="unfinished"></translation>
+        <translation>Fjernserveren understøtter ikke filsystemseksportering igennem en SSH Tunnel
+Opdater venligst til en nyere version af x2goserver pakken</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="8014"/>
         <source>Unable to read :
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Kunne ikke læse :</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="8039"/>
         <source>Unable to write :
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Kunne ikke skrive :</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="8127"/>
         <source>WINDOWS-1252</source>
-        <translation type="unfinished"></translation>
+        <translation>WINDOWS-1252</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="8139"/>
         <source>ISO8859-1</source>
-        <translation type="unfinished"></translation>
+        <translation>ISO8859-1</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="9362"/>
         <source>X2Go Session</source>
-        <translation type="unfinished"></translation>
+        <translation>X2Go Session</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="9544"/>
         <source>wrong value for argument&quot;speed&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Ugyldig værdi for &quot;speed&quot; argumentet</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="9674"/>
         <source>Password:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kodeord:</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="9675"/>
         <source>Keyboard layout:</source>
-        <translation type="unfinished"></translation>
+        <translation>Tastatur layout:</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="9716"/>
         <source>Ok</source>
-        <translation type="unfinished"></translation>
+        <translation>Ok</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="9718"/>
         <location filename="onmainwindow.cpp" line="10040"/>
         <location filename="onmainwindow.cpp" line="10042"/>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>Annuller</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="9855"/>
         <source>&lt;b&gt;Session ID:&lt;br&gt;Server:&lt;br&gt;Username:&lt;br&gt;Display:&lt;br&gt;Creation time:&lt;br&gt;Status:&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Sessions ID:&lt;br&gt;Server:&lt;br&gt;Brugernavn:&lt;br&gt;Display:&lt;br&gt;Skabelsestid:&lt;br&gt;Status:&lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="9865"/>
         <source>Applications...</source>
-        <translation type="unfinished"></translation>
+        <translation>Applikationer...</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="9878"/>
         <source>Abort</source>
-        <translation type="unfinished"></translation>
+        <translation>Afbryd</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="9890"/>
         <source>Show details</source>
-        <translation type="unfinished"></translation>
+        <translation>Vis detaljer</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="10038"/>
         <source>Resume</source>
-        <translation type="unfinished"></translation>
+        <translation>Fortsæt</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="10050"/>
         <source>New</source>
-        <translation type="unfinished"></translation>
+        <translation>Ny</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="10053"/>
         <source>Full access</source>
-        <translation type="unfinished"></translation>
+        <translation>Fuld adgang</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="10056"/>
         <source>View only</source>
-        <translation type="unfinished"></translation>
+        <translation>Kun synlig</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="10119"/>
         <source>Status</source>
-        <translation type="unfinished"></translation>
+        <translation>Status</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="10121"/>
         <source>Command</source>
-        <translation type="unfinished"></translation>
+        <translation>Kommando</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="10123"/>
         <source>Type</source>
-        <translation type="unfinished"></translation>
+        <translation>Type</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="10125"/>
         <source>Server</source>
-        <translation type="unfinished"></translation>
+        <translation>Server</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="10130"/>
         <source>Client IP</source>
-        <translation type="unfinished"></translation>
+        <translation>Klient IP</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="10132"/>
         <source>Session ID</source>
-        <translation type="unfinished"></translation>
+        <translation>Sessions ID</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="10136"/>
         <source>User</source>
-        <translation type="unfinished"></translation>
+        <translation>Bruger</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="10167"/>
         <source>Only my desktops</source>
-        <translation type="unfinished"></translation>
+        <translation>Kun mine skriveborde</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="10265"/>
         <source>sshd not started, you&apos;ll need sshd for printing and file sharing
 you can install sshd with
 &lt;b&gt;sudo apt-get install openssh-server&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>sshd er ikke startet, du får brug for sshd til udskrifter og fildeling
+du kan installere sshd med
+&lt;b&gt;sudo apt-get install openssh-server&lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="10336"/>
         <source>Restore toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Gendan værktøjslinie</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="10381"/>
         <source>&lt;br&gt;&lt;b&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;Click this button&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;to restore toolbar&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/b&gt;&lt;br&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;br&gt;&lt;b&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;Klik på denne knap&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;for at gendanne værktøjslinien&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/b&gt;&lt;br&gt;</translation>
     </message>
 </context>
 <context>
@@ -1725,22 +1739,22 @@ you can install sshd with
     <message>
         <location filename="printdialog.ui" line="16"/>
         <source>Print - X2Go client</source>
-        <translation type="unfinished"></translation>
+        <translation>Udskrift - X2Go klient</translation>
     </message>
     <message>
         <location filename="printdialog.cpp" line="25"/>
         <source>Print</source>
-        <translation type="unfinished"></translation>
+        <translation>Udskrift</translation>
     </message>
     <message>
         <location filename="printdialog.cpp" line="54"/>
         <source>You&apos;ve deactivated the x2go client printing dialog.</source>
-        <translation type="unfinished"></translation>
+        <translation>Du har deaktiveret x2go klientens udskriftsdialog.</translation>
     </message>
     <message>
         <location filename="printdialog.cpp" line="56"/>
         <source>You may reactivate this dialog using the x2goclient settings dialog (Menu -&gt; Options -&gt; Settings)</source>
-        <translation type="unfinished"></translation>
+        <translation>Du kan reaktivere denne dialog i x2goclient instillingsdialogen (Menu -&gt; Instinger -&gt; Instillinger</translation>
     </message>
 </context>
 <context>
@@ -1748,25 +1762,25 @@ you can install sshd with
     <message>
         <location filename="printprocess.cpp" line="155"/>
         <source>Save File</source>
-        <translation type="unfinished"></translation>
+        <translation>Gem Fil</translation>
     </message>
     <message>
         <location filename="printprocess.cpp" line="157"/>
         <source>PDF Document (*.pdf)</source>
-        <translation type="unfinished"></translation>
+        <translation>PDF Dokument (*.pdf)</translation>
     </message>
     <message>
         <location filename="printprocess.cpp" line="251"/>
         <location filename="printprocess.cpp" line="274"/>
         <source>Failed to execute command:
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Eksekvering af kommando fejlede:</translation>
     </message>
     <message>
         <location filename="printprocess.cpp" line="266"/>
         <location filename="printprocess.cpp" line="273"/>
         <source>Printing error</source>
-        <translation type="unfinished"></translation>
+        <translation>Udskriftsfejl</translation>
     </message>
 </context>
 <context>
@@ -1774,73 +1788,74 @@ you can install sshd with
     <message>
         <location filename="printwidget.ui" line="13"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation>Formel</translation>
     </message>
     <message>
         <location filename="printwidget.ui" line="23"/>
         <source>Print</source>
-        <translation type="unfinished"></translation>
+        <translation>Udskriv</translation>
     </message>
     <message>
         <location filename="printwidget.ui" line="33"/>
         <source>View as PDF</source>
-        <translation type="unfinished"></translation>
+        <translation>Se som PDF</translation>
     </message>
     <message>
         <location filename="printwidget.ui" line="63"/>
         <source>Print settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Printerinstillinger</translation>
     </message>
     <message>
         <location filename="printwidget.ui" line="69"/>
         <source>Printer:</source>
-        <translation type="unfinished"></translation>
+        <translation>Printer:</translation>
     </message>
     <message>
         <location filename="printwidget.ui" line="79"/>
         <source>Print using default Windows PDF Viewer
 (Viewer application needs to be installed)</source>
-        <translation type="unfinished"></translation>
+        <translation>Print med Windows standard PDF Viewer
+(Viewer applikationen skal være installeret)</translation>
     </message>
     <message>
         <location filename="printwidget.ui" line="94"/>
         <source>Printer command:</source>
-        <translation type="unfinished"></translation>
+        <translation>Printer kommando:</translation>
     </message>
     <message>
         <location filename="printwidget.ui" line="116"/>
         <source>...</source>
-        <translation type="unfinished"></translation>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="printwidget.ui" line="147"/>
         <source>Viewer settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Fremviser instillinger</translation>
     </message>
     <message>
         <location filename="printwidget.ui" line="153"/>
         <source>Open in viewer application</source>
-        <translation type="unfinished"></translation>
+        <translation>Åben i fremviserapplikation</translation>
     </message>
     <message>
         <location filename="printwidget.ui" line="165"/>
         <source>Command:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kommando:</translation>
     </message>
     <message>
         <location filename="printwidget.ui" line="177"/>
         <source>Save to disk</source>
-        <translation type="unfinished"></translation>
+        <translation>Gem til disk</translation>
     </message>
     <message>
         <location filename="printwidget.ui" line="207"/>
         <source>Show this dialog before start printing</source>
-        <translation type="unfinished"></translation>
+        <translation>Vis denne dialog før udskrift starter</translation>
     </message>
     <message>
         <location filename="printwidget.cpp" line="53"/>
         <source>Please configure your client side printing settings.&lt;br&gt;&lt;br&gt;If you want to print the created file, you&apos;ll need an external application. Typically you can use &lt;a href=&quot;http://pages.cs.wisc.edu/~ghost/doc/GPL/index.htm&quot;&gt;ghostprint&lt;/a&gt; and &lt;a href=&quot;http://pages.cs.wisc.edu/~ghost/gsview/&quot;&gt;ghostview&lt;/a&gt;&lt;br&gt;You can find  further information &lt;a href=&quot;http://www.x2go.org/index.php?id=49&quot;&gt;here&lt;/a&gt;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Konfigurer venligst dine printerinstillinger på klientsiden.&lt;br&gt;&lt;br&gt;Hvis du vil udskrive den skabte fil, vil du få brug for en ekstern applikation. Du kan typisk bruge &lt;a href=&quot;http://pages.cs.wisc.edu/~ghost/doc/GPL/index.htm&quot;&gt;ghostprint&lt;/a&gt; og &lt;a href=&quot;http://pages.cs.wisc.edu/~ghost/gsview/&quot;&gt;ghostview&lt;/a&gt;&lt;br&gt;Du kan finde yderligere informationer &lt;a href=&quot;http://www.x2go.org/index.php?id=49&quot;&gt;her&lt;/a&gt;.</translation>
     </message>
 </context>
 <context>
@@ -1848,12 +1863,12 @@ you can install sshd with
     <message>
         <location filename="printercmddialog.ui" line="13"/>
         <source>Printer command</source>
-        <translation type="unfinished"></translation>
+        <translation>Printer kommando</translation>
     </message>
     <message>
         <location filename="printercmddialog.ui" line="19"/>
         <source>Command</source>
-        <translation type="unfinished"></translation>
+        <translation>Kommando</translation>
     </message>
     <message>
         <location filename="printercmddialog.ui" line="25"/>
@@ -1861,59 +1876,65 @@ you can install sshd with
 Examples:
 kprinter
 lpr -P hp_laserjet</source>
-        <translation type="unfinished"></translation>
+        <translation>Indtast din specialiserede printer kommando.
+f.eks.:
+kprinter
+lpr -P hp_laserjet</translation>
     </message>
     <message>
         <location filename="printercmddialog.ui" line="44"/>
         <source>Output format</source>
-        <translation type="unfinished"></translation>
+        <translation>Output format</translation>
     </message>
     <message>
         <location filename="printercmddialog.ui" line="50"/>
         <source>Please choose the printing file format (regarding to your printing environment - if you use CUPS you may use PDF)</source>
-        <translation type="unfinished"></translation>
+        <translation>Vælg venligst det rette format til udskriftsfil (i forhold til dit udskriftsmiljø - Hvis du bruger CUPS kan du bruge PDF)</translation>
     </message>
     <message>
         <location filename="printercmddialog.ui" line="66"/>
         <source>PDF</source>
-        <translation type="unfinished"></translation>
+        <translation>PDF</translation>
     </message>
     <message>
         <location filename="printercmddialog.ui" line="73"/>
         <source>PS</source>
-        <translation type="unfinished"></translation>
+        <translation>PS</translation>
     </message>
     <message>
         <location filename="printercmddialog.ui" line="86"/>
         <source>Data structure</source>
-        <translation type="unfinished"></translation>
+        <translation>Datastruktur</translation>
     </message>
     <message>
         <location filename="printercmddialog.ui" line="92"/>
         <source>Please choose the method of printing file input (some commands accepting printing files as program options, some are awaiting data on standard input):</source>
-        <translation type="unfinished"></translation>
+        <translation>vælg venligst den rette metode til udskriftsfilinput (nogle kommandoer accepterer udskriftsfiler som programoptioner, nogle venter på data på standard input):</translation>
     </message>
     <message>
         <location filename="printercmddialog.ui" line="108"/>
         <source>standard input (STDIN)</source>
-        <translation type="unfinished"></translation>
+        <translation>standard input (STDIN)</translation>
     </message>
     <message>
         <location filename="printercmddialog.ui" line="115"/>
         <source>Specify path as program parameter</source>
-        <translation type="unfinished"></translation>
+        <translation>Specifier sti som programparameter</translation>
     </message>
     <message>
         <location filename="printercmddialog.cpp" line="37"/>
         <source>Please enter your customized or individual printing command.
 Example:
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Indtaste venligst din specialiserede/ individuelle udskriftskommando
+f.eks:
+</translation>
     </message>
     <message>
         <location filename="printercmddialog.cpp" line="45"/>
         <source>&lt;Path to gsprint.exe&gt; -query -color</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>?</translatorcomment>
+        <translation>&lt;Path to gsprint.exe&gt; -query -color</translation>
     </message>
 </context>
 <context>
@@ -1921,92 +1942,92 @@ Example:
     <message>
         <location filename="sessionbutton.cpp" line="129"/>
         <source>Session preferences...</source>
-        <translation type="unfinished"></translation>
+        <translation>Sessionspreferencer...</translation>
     </message>
     <message>
         <location filename="sessionbutton.cpp" line="133"/>
         <source>Create session icon on desktop...</source>
-        <translation type="unfinished"></translation>
+        <translation>Opret sessionsikon på skrivebordet...</translation>
     </message>
     <message>
         <location filename="sessionbutton.cpp" line="138"/>
         <source>Delete session</source>
-        <translation type="unfinished"></translation>
+        <translation>Slet session</translation>
     </message>
     <message>
         <location filename="sessionbutton.cpp" line="151"/>
         <source>Session actions</source>
-        <translation type="unfinished"></translation>
+        <translation>Sessionshandlinger</translation>
     </message>
     <message>
         <location filename="sessionbutton.cpp" line="152"/>
         <source>Select type</source>
-        <translation type="unfinished"></translation>
+        <translation>Vælg type</translation>
     </message>
     <message>
         <location filename="sessionbutton.cpp" line="154"/>
         <source>Select resolution</source>
-        <translation type="unfinished"></translation>
+        <translation>Vælg opløsningen</translation>
     </message>
     <message>
         <location filename="sessionbutton.cpp" line="155"/>
         <source>Toggle sound support</source>
-        <translation type="unfinished"></translation>
+        <translation>Til/fravælg lydunderstøttelse</translation>
     </message>
     <message>
         <location filename="sessionbutton.cpp" line="285"/>
         <source>New Session</source>
-        <translation type="unfinished"></translation>
+        <translation>Ny session</translation>
     </message>
     <message>
         <location filename="sessionbutton.cpp" line="290"/>
         <source>running</source>
-        <translation type="unfinished"></translation>
+        <translation>kører</translation>
     </message>
     <message>
         <location filename="sessionbutton.cpp" line="294"/>
         <source>suspended</source>
-        <translation type="unfinished"></translation>
+        <translation>suspenderet</translation>
     </message>
     <message>
         <location filename="sessionbutton.cpp" line="327"/>
         <source>KDE</source>
-        <translation type="unfinished"></translation>
+        <translation>KDE</translation>
     </message>
     <message>
         <location filename="sessionbutton.cpp" line="341"/>
         <location filename="sessionbutton.cpp" line="379"/>
         <location filename="sessionbutton.cpp" line="651"/>
         <source>RDP connection</source>
-        <translation type="unfinished"></translation>
+        <translation>RDP forbindelse</translation>
     </message>
     <message>
         <location filename="sessionbutton.cpp" line="342"/>
         <location filename="sessionbutton.cpp" line="385"/>
         <location filename="sessionbutton.cpp" line="657"/>
         <source>XDMCP</source>
-        <translation type="unfinished"></translation>
+        <translation>XDMCP</translation>
     </message>
     <message>
         <location filename="sessionbutton.cpp" line="343"/>
         <location filename="sessionbutton.cpp" line="373"/>
         <location filename="sessionbutton.cpp" line="645"/>
         <source>Connection to local desktop</source>
-        <translation type="unfinished"></translation>
+        <translation>Forbindelse til lokalt skrivebord</translation>
     </message>
     <message>
         <location filename="sessionbutton.cpp" line="344"/>
         <location filename="sessionbutton.cpp" line="390"/>
         <location filename="sessionbutton.cpp" line="688"/>
         <source>Published applications</source>
-        <translation type="unfinished"></translation>
+        <translation>Udgivne Programmer</translation>
     </message>
     <message>
         <location filename="sessionbutton.cpp" line="414"/>
         <location filename="sessionbutton.cpp" line="431"/>
         <location filename="sessionbutton.cpp" line="709"/>
         <source>fullscreen</source>
-        <translation type="unfinished"></translation>
+        <translation>Fuldskærm</translation>
     </message>
     <message>
         <location filename="sessionbutton.cpp" line="418"/>
@@ -2015,25 +2036,25 @@ Example:
         <location filename="sessionbutton.cpp" line="715"/>
         <location filename="sessionbutton.cpp" line="718"/>
         <source>Display </source>
-        <translation type="unfinished"></translation>
+        <translation>Display </translation>
     </message>
     <message>
         <location filename="sessionbutton.cpp" line="426"/>
         <location filename="sessionbutton.cpp" line="466"/>
         <source>window</source>
-        <translation type="unfinished"></translation>
+        <translation>vindue</translation>
     </message>
     <message>
         <location filename="sessionbutton.cpp" line="474"/>
         <location filename="sessionbutton.cpp" line="604"/>
         <source>Enabled</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktiveret</translation>
     </message>
     <message>
         <location filename="sessionbutton.cpp" line="476"/>
         <location filename="sessionbutton.cpp" line="606"/>
         <source>Disabled</source>
-        <translation type="unfinished"></translation>
+        <translation>Deaktiveret</translation>
     </message>
 </context>
 <context>
@@ -2041,38 +2062,38 @@ Example:
     <message>
         <location filename="sessionmanagedialog.cpp" line="35"/>
         <source>E&amp;xit</source>
-        <translation type="unfinished"></translation>
+        <translation>E&amp;xit</translation>
     </message>
     <message>
         <location filename="sessionmanagedialog.cpp" line="41"/>
         <source>&amp;New session</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Ny session</translation>
     </message>
     <message>
         <location filename="sessionmanagedialog.cpp" line="42"/>
         <source>&amp;Session preferences</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Sessionsinstilliger</translation>
     </message>
     <message>
         <location filename="sessionmanagedialog.cpp" line="43"/>
         <source>&amp;Delete session</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Slet session</translation>
     </message>
     <message>
         <location filename="sessionmanagedialog.cpp" line="47"/>
         <source>&amp;Create session icon on desktop...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Opret sessionsikon på skrivebordet...</translation>
     </message>
     <message>
         <location filename="sessionmanagedialog.cpp" line="81"/>
         <source>Delete</source>
         <comment>Delete</comment>
-        <translation type="unfinished"></translation>
+        <translation>Slet</translation>
     </message>
     <message>
         <location filename="sessionmanagedialog.cpp" line="109"/>
         <source>Session management</source>
-        <translation type="unfinished"></translation>
+        <translation>Sessionshåndtering</translation>
     </message>
 </context>
 <context>
@@ -2080,159 +2101,159 @@ Example:
     <message>
         <location filename="sessionwidget.cpp" line="52"/>
         <source>Session name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Sessionsnavn:</translation>
     </message>
     <message>
         <location filename="sessionwidget.cpp" line="57"/>
         <source>&lt;&lt; change icon</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;&lt; skift ikon</translation>
     </message>
     <message>
         <location filename="sessionwidget.cpp" line="60"/>
         <source>&amp;Server</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Server</translation>
     </message>
     <message>
         <location filename="sessionwidget.cpp" line="87"/>
         <source>Host:</source>
-        <translation type="unfinished"></translation>
+        <translation>Host:</translation>
     </message>
     <message>
         <location filename="sessionwidget.cpp" line="88"/>
         <source>Login:</source>
-        <translation type="unfinished"></translation>
+        <translation>Login:</translation>
     </message>
     <message>
         <location filename="sessionwidget.cpp" line="89"/>
         <source>SSH port:</source>
-        <translation type="unfinished"></translation>
+        <translation>SSH port:</translation>
     </message>
     <message>
         <location filename="sessionwidget.cpp" line="101"/>
         <source>Use RSA/DSA key for ssh connection:</source>
-        <translation type="unfinished"></translation>
+        <translation>Brug RSA/DSA nøgle til ssh forbindelse:</translation>
     </message>
     <message>
         <location filename="sessionwidget.cpp" line="107"/>
         <source>Try auto login (ssh-agent or default ssh key)</source>
-        <translation type="unfinished"></translation>
+        <translation>Prøv automatisk login (ssh-agent eller standard ssh nøgle)</translation>
     </message>
     <message>
         <location filename="sessionwidget.cpp" line="108"/>
         <source>Kerberos 5 (GSSAPI) authentication</source>
-        <translation type="unfinished"></translation>
+        <translation>Kerberos 5 (GSSAPI) autentificering</translation>
     </message>
     <message>
         <location filename="sessionwidget.cpp" line="113"/>
         <source>&amp;Session type</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Sessionstype</translation>
     </message>
     <message>
         <location filename="sessionwidget.cpp" line="118"/>
         <source>Session type:</source>
-        <translation type="unfinished"></translation>
+        <translation>Sessionstype:</translation>
     </message>
     <message>
         <location filename="sessionwidget.cpp" line="128"/>
         <location filename="sessionwidget.cpp" line="299"/>
         <source>Connect to Windows terminal server</source>
-        <translation type="unfinished"></translation>
+        <translation>Forbind til Windows terminalserver</translation>
     </message>
     <message>
         <location filename="sessionwidget.cpp" line="129"/>
         <source>XDMCP</source>
-        <translation type="unfinished"></translation>
+        <translation>XDMCP</translation>
     </message>
     <message>
         <location filename="sessionwidget.cpp" line="130"/>
         <source>Connect to local desktop</source>
-        <translation type="unfinished"></translation>
+        <translation>Forbindelse til lokalt skrivebord</translation>
     </message>
     <message>
         <location filename="sessionwidget.cpp" line="131"/>
         <source>Custom desktop</source>
-        <translation type="unfinished"></translation>
+        <translation>Specialiseret skrivebord</translation>
     </message>
     <message>
         <location filename="sessionwidget.cpp" line="132"/>
         <source>Single application</source>
-        <translation type="unfinished"></translation>
+        <translation>Enkelt applikation</translation>
     </message>
     <message>
         <location filename="sessionwidget.cpp" line="133"/>
         <source>Published applications</source>
-        <translation type="unfinished"></translation>
+        <translation>Udgivne applikationer</translation>
     </message>
     <message>
         <location filename="sessionwidget.cpp" line="135"/>
         <location filename="sessionwidget.cpp" line="254"/>
         <source>Command:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kommando:</translation>
     </message>
     <message>
         <location filename="sessionwidget.cpp" line="136"/>
         <source>Advanced options...</source>
-        <translation type="unfinished"></translation>
+        <translation>Avancerede instillinger...</translation>
     </message>
     <message>
         <location filename="sessionwidget.cpp" line="147"/>
         <location filename="sessionwidget.cpp" line="445"/>
         <location filename="sessionwidget.cpp" line="509"/>
         <source>Path to executable</source>
-        <translation type="unfinished"></translation>
+        <translation>Sti til Program</translation>
     </message>
     <message>
         <location filename="sessionwidget.cpp" line="198"/>
         <source>Open picture</source>
-        <translation type="unfinished"></translation>
+        <translation>Åben billede</translation>
     </message>
     <message>
         <location filename="sessionwidget.cpp" line="200"/>
         <source>Pictures</source>
-        <translation type="unfinished"></translation>
+        <translation>Billeder</translation>
     </message>
     <message>
         <location filename="sessionwidget.cpp" line="221"/>
         <source>Open key file</source>
-        <translation type="unfinished"></translation>
+        <translation>Åben nøglefil</translation>
     </message>
     <message>
         <location filename="sessionwidget.cpp" line="223"/>
         <source>All files</source>
-        <translation type="unfinished"></translation>
+        <translation>Alle filer</translation>
     </message>
     <message>
         <location filename="sessionwidget.cpp" line="233"/>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Fejl</translation>
     </message>
     <message>
         <location filename="sessionwidget.cpp" line="234"/>
         <source>x2goclient is running in portable mode. You should use a path on your usb device to be able to access your data whereever you are</source>
-        <translation type="unfinished"></translation>
+        <translation>x2go klienten kører i portable mode. Du bør bruge en sti på din usb enhed så du kan få adgang til dine data uanset hvor du er</translation>
     </message>
     <message>
         <location filename="sessionwidget.cpp" line="276"/>
         <location filename="sessionwidget.cpp" line="407"/>
         <source>Server:</source>
-        <translation type="unfinished"></translation>
+        <translation>Server:</translation>
     </message>
     <message>
         <location filename="sessionwidget.cpp" line="282"/>
         <location filename="sessionwidget.cpp" line="415"/>
         <source>XDMCP server:</source>
-        <translation type="unfinished"></translation>
+        <translation>XDMCP server:</translation>
     </message>
     <message>
         <location filename="sessionwidget.cpp" line="300"/>
         <source>rdesktop command line options:</source>
-        <translation type="unfinished"></translation>
+        <translation>rdesktop kommandolinie parametre:</translation>
     </message>
     <message>
         <location filename="sessionwidget.cpp" line="313"/>
         <location filename="sessionwidget.cpp" line="427"/>
         <source>New session</source>
-        <translation type="unfinished"></translation>
+        <translation>Ny session</translation>
     </message>
 </context>
 <context>
@@ -2241,130 +2262,131 @@ Example:
         <location filename="settingswidget.cpp" line="40"/>
         <location filename="settingswidget.cpp" line="44"/>
         <source>&amp;Display</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Display</translation>
     </message>
     <message>
         <location filename="settingswidget.cpp" line="41"/>
         <location filename="settingswidget.cpp" line="45"/>
         <source>&amp;Keyboard</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Tastatur</translation>
     </message>
     <message>
         <location filename="settingswidget.cpp" line="42"/>
         <location filename="settingswidget.cpp" line="46"/>
         <source>Sound</source>
-        <translation type="unfinished"></translation>
+        <translation>Lyd</translation>
     </message>
     <message>
         <location filename="settingswidget.cpp" line="57"/>
         <source>Fullscreen</source>
-        <translation type="unfinished"></translation>
+        <translation>Fuldskærm</translation>
     </message>
     <message>
         <location filename="settingswidget.cpp" line="59"/>
         <source>Custom</source>
-        <translation type="unfinished"></translation>
+        <translation>Tilpasset</translation>
     </message>
     <message>
         <location filename="settingswidget.cpp" line="61"/>
         <source>Window</source>
-        <translation type="unfinished"></translation>
+        <translation>Vindue</translation>
     </message>
     <message>
         <location filename="settingswidget.cpp" line="63"/>
         <source>Use whole display</source>
-        <translation type="unfinished"></translation>
+        <translation>Bruge hele displayet</translation>
     </message>
     <message>
         <location filename="settingswidget.cpp" line="71"/>
         <source>Set display DPI</source>
-        <translation type="unfinished"></translation>
+        <translation>Sæt display DPI</translation>
     </message>
     <message>
         <location filename="settingswidget.cpp" line="76"/>
         <source>Xinerama extension (support for two or more physical displays)</source>
-        <translation type="unfinished"></translation>
+        <translation>Xinerama udvidelse (understøtter to eller flere fysiske displays)</translation>
     </message>
     <message>
         <location filename="settingswidget.cpp" line="92"/>
         <source>Width:</source>
-        <translation type="unfinished"></translation>
+        <translation>Bredde:</translation>
     </message>
     <message>
         <location filename="settingswidget.cpp" line="95"/>
         <source>Height:</source>
-        <translation type="unfinished"></translation>
+        <translation>Højde:</translation>
     </message>
     <message>
         <location filename="settingswidget.cpp" line="102"/>
         <source>&amp;Display:</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Display:</translation>
     </message>
     <message>
         <location filename="settingswidget.cpp" line="104"/>
         <source>&amp;Identify all displays</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Identificer alle displays</translation>
     </message>
     <message>
         <location filename="settingswidget.cpp" line="142"/>
         <source>Keep current keyboard Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Behold nuværende tastaturinstillinger</translation>
     </message>
     <message>
         <location filename="settingswidget.cpp" line="152"/>
         <source>Keyboard layout:</source>
-        <translation type="unfinished"></translation>
+        <translation>Tastatur layout:</translation>
     </message>
     <message>
         <location filename="settingswidget.cpp" line="154"/>
         <source>Keyboard model:</source>
-        <translation type="unfinished"></translation>
+        <translation>Tastaturmodel:</translation>
     </message>
     <message>
         <location filename="settingswidget.cpp" line="165"/>
         <source>Enable sound support</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktiver lydsupport</translation>
     </message>
     <message>
         <location filename="settingswidget.cpp" line="174"/>
         <source>Start sound daemon</source>
-        <translation type="unfinished"></translation>
+        <translation>Start lyddaemon</translation>
     </message>
     <message>
         <location filename="settingswidget.cpp" line="176"/>
         <source>Use running sound daemon</source>
-        <translation type="unfinished"></translation>
+        <translation>Brug kørende lyddaemon</translation>
     </message>
     <message>
         <location filename="settingswidget.cpp" line="178"/>
         <source>Use SSH port forwarding to tunnel
 sound system connections through firewalls</source>
-        <translation type="unfinished"></translation>
+        <translation>brug SSH port forwarding til at føre
+lydsystemets forbindelse igennem firewalls</translation>
     </message>
     <message>
         <location filename="settingswidget.cpp" line="180"/>
         <source>Use default sound port</source>
-        <translation type="unfinished"></translation>
+        <translation>Brug standard lydport</translation>
     </message>
     <message>
         <location filename="settingswidget.cpp" line="187"/>
         <source>Sound port:</source>
-        <translation type="unfinished"></translation>
+        <translation>Lydport:</translation>
     </message>
     <message>
         <location filename="settingswidget.cpp" line="214"/>
         <source>Client side printing support</source>
-        <translation type="unfinished"></translation>
+        <translation>Support til udskrifter på klientsiden</translation>
     </message>
     <message>
         <location filename="settingswidget.cpp" line="554"/>
         <source>us</source>
-        <translation type="unfinished"></translation>
+        <translation>us</translation>
     </message>
     <message>
         <location filename="settingswidget.cpp" line="555"/>
         <source>pc105/us</source>
-        <translation type="unfinished"></translation>
+        <translation>pc105/us</translation>
     </message>
 </context>
 <context>
@@ -2372,80 +2394,80 @@ sound system connections through firewalls</source>
     <message>
         <location filename="sharewidget.cpp" line="37"/>
         <source>&amp;Folders</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Mapper</translation>
     </message>
     <message>
         <location filename="sharewidget.cpp" line="47"/>
         <source>Path</source>
-        <translation type="unfinished"></translation>
+        <translation>Sti</translation>
     </message>
     <message>
         <location filename="sharewidget.cpp" line="49"/>
         <location filename="sharewidget.cpp" line="131"/>
         <source>Automount</source>
-        <translation type="unfinished"></translation>
+        <translation>Automonter</translation>
     </message>
     <message>
         <location filename="sharewidget.cpp" line="58"/>
         <source>Add</source>
-        <translation type="unfinished"></translation>
+        <translation>Tilføj</translation>
     </message>
     <message>
         <location filename="sharewidget.cpp" line="59"/>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>Slet</translation>
     </message>
     <message>
         <location filename="sharewidget.cpp" line="69"/>
         <source>Path:</source>
-        <translation type="unfinished"></translation>
+        <translation>Sti:</translation>
     </message>
     <message>
         <location filename="sharewidget.cpp" line="76"/>
         <source>Filename encoding</source>
-        <translation type="unfinished"></translation>
+        <translation>Encoding af filnavne</translation>
     </message>
     <message>
         <location filename="sharewidget.cpp" line="82"/>
         <source>local:</source>
-        <translation type="unfinished"></translation>
+        <translation>Lokal:</translation>
     </message>
     <message>
         <location filename="sharewidget.cpp" line="83"/>
         <source>remote:</source>
-        <translation type="unfinished"></translation>
+        <translation>Fjern:</translation>
     </message>
     <message>
         <location filename="sharewidget.cpp" line="95"/>
         <source>Use ssh port forwarding to tunnel file system connections through firewalls</source>
-        <translation type="unfinished"></translation>
+        <translation>Brug ssh port forwarding til at føre filsystemsforbindelsen igennem firewalls</translation>
     </message>
     <message>
         <location filename="sharewidget.cpp" line="158"/>
         <source>Select folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Vælg mappe</translation>
     </message>
     <message>
         <location filename="sharewidget.cpp" line="169"/>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Fejl</translation>
     </message>
     <message>
         <location filename="sharewidget.cpp" line="170"/>
         <source>x2goclient is running in portable mode. You should use a path on your usb device to be able to access your data whereever you are</source>
-        <translation type="unfinished"></translation>
+        <translation>x2go klienten kører i portable mode. Du bør bruge en sti på din usb enhed så du kan få adgang til dine data uanset hvor du er</translation>
     </message>
     <message>
         <location filename="sharewidget.cpp" line="229"/>
         <location filename="sharewidget.cpp" line="280"/>
         <source>WINDOWS-1252</source>
-        <translation type="unfinished"></translation>
+        <translation>WINDOWS-1252</translation>
     </message>
     <message>
         <location filename="sharewidget.cpp" line="239"/>
         <location filename="sharewidget.cpp" line="286"/>
         <source>ISO8859-1</source>
-        <translation type="unfinished"></translation>
+        <translation>ISO8859-1</translation>
     </message>
 </context>
 <context>
@@ -2453,82 +2475,82 @@ sound system connections through firewalls</source>
     <message>
         <location filename="sshmasterconnection.cpp" line="133"/>
         <source>Can not initialize libssh</source>
-        <translation type="unfinished"></translation>
+        <translation>Kunne ikke starte libssh</translation>
     </message>
     <message>
         <location filename="sshmasterconnection.cpp" line="159"/>
         <source>Can not create ssh session</source>
-        <translation type="unfinished"></translation>
+        <translation>Kunne ikke skabe ssh session</translation>
     </message>
     <message>
         <location filename="sshmasterconnection.cpp" line="177"/>
         <source>Can not connect to </source>
-        <translation type="unfinished"></translation>
+        <translation>Kunne ikke forbinde til</translation>
     </message>
     <message>
         <location filename="sshmasterconnection.cpp" line="218"/>
         <source>Authentication failed</source>
-        <translation type="unfinished"></translation>
+        <translation>Autentifikation fejlede</translation>
     </message>
     <message>
         <location filename="sshmasterconnection.cpp" line="244"/>
         <source>channel_forward_listen failed</source>
-        <translation type="unfinished"></translation>
+        <translation>channel_forward_listen fejlede</translation>
     </message>
     <message>
         <location filename="sshmasterconnection.cpp" line="560"/>
         <source>Can not open file </source>
-        <translation type="unfinished"></translation>
+        <translation>Kan ikke åbne fil</translation>
     </message>
     <message>
         <location filename="sshmasterconnection.cpp" line="572"/>
         <source>Can not create remote file </source>
-        <translation type="unfinished"></translation>
+        <translation>Kan ikke skabe fjern fil</translation>
     </message>
     <message>
         <location filename="sshmasterconnection.cpp" line="585"/>
         <source>Can not write to remote file </source>
-        <translation type="unfinished"></translation>
+        <translation>Kan ikke skrive i fjern fil</translation>
     </message>
     <message>
         <location filename="sshmasterconnection.cpp" line="642"/>
         <source>can not connect to </source>
-        <translation type="unfinished"></translation>
+        <translation>kan ikke forbinde til</translation>
     </message>
     <message>
         <location filename="sshmasterconnection.cpp" line="751"/>
         <source>channel_open_forward failed</source>
-        <translation type="unfinished"></translation>
+        <translation>channel_open_forward fejlede</translation>
     </message>
     <message>
         <location filename="sshmasterconnection.cpp" line="770"/>
         <source>channel_open_session failed</source>
-        <translation type="unfinished"></translation>
+        <translation>channel_open_sesion fejlede</translation>
     </message>
     <message>
         <location filename="sshmasterconnection.cpp" line="777"/>
         <source>channel_request_exec failed</source>
-        <translation type="unfinished"></translation>
+        <translation>channel_request_exec fejlede</translation>
     </message>
     <message>
         <location filename="sshmasterconnection.cpp" line="842"/>
         <source>error writing to socket</source>
-        <translation type="unfinished"></translation>
+        <translation>Fejl ved skriven til socket</translation>
     </message>
     <message>
         <location filename="sshmasterconnection.cpp" line="860"/>
         <source>error reading channel</source>
-        <translation type="unfinished"></translation>
+        <translation>fejl ved læsning af channel</translation>
     </message>
     <message>
         <location filename="sshmasterconnection.cpp" line="890"/>
         <source>channel_write failed</source>
-        <translation type="unfinished"></translation>
+        <translation>channel_write fejlede</translation>
     </message>
     <message>
         <location filename="sshmasterconnection.cpp" line="902"/>
         <source>error reading tcp socket</source>
-        <translation type="unfinished"></translation>
+        <translation>fejl i læsning af tcp socket</translation>
     </message>
 </context>
 <context>
@@ -2536,12 +2558,12 @@ sound system connections through firewalls</source>
     <message>
         <location filename="sshprocess.cpp" line="97"/>
         <source>Error creating socket</source>
-        <translation type="unfinished"></translation>
+        <translation>fejl i skabelse af socket</translation>
     </message>
     <message>
         <location filename="sshprocess.cpp" line="115"/>
         <source>Error binding </source>
-        <translation type="unfinished"></translation>
+        <translation>fejl i binding</translation>
     </message>
 </context>
 <context>
@@ -2549,12 +2571,12 @@ sound system connections through firewalls</source>
     <message>
         <location filename="xsettingswidget.cpp" line="50"/>
         <source>Open File</source>
-        <translation type="unfinished"></translation>
+        <translation>Åben Fil</translation>
     </message>
     <message>
         <location filename="xsettingswidget.cpp" line="52"/>
         <source>Executable (*.exe)</source>
-        <translation type="unfinished"></translation>
+        <translation>Eksekverbar (*.exe)</translation>
     </message>
 </context>
 <context>
@@ -2562,62 +2584,62 @@ sound system connections through firewalls</source>
     <message>
         <location filename="xsettingsui.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation>Formel</translation>
     </message>
     <message>
         <location filename="xsettingsui.ui" line="27"/>
         <source>You must restart the X2Go Client for the changes to take effect</source>
-        <translation type="unfinished"></translation>
+        <translation>Du skal genstarte X2Go klienten før ændringerne træder i kraft</translation>
     </message>
     <message>
         <location filename="xsettingsui.ui" line="50"/>
         <source>use integrated X-Server</source>
-        <translation type="unfinished"></translation>
+        <translation>brug integreret X-Server</translation>
     </message>
     <message>
         <location filename="xsettingsui.ui" line="60"/>
         <source>use custom X-Server</source>
-        <translation type="unfinished"></translation>
+        <translation>brug tilpasset X-Server</translation>
     </message>
     <message>
         <location filename="xsettingsui.ui" line="70"/>
         <source>custom X-Server</source>
-        <translation type="unfinished"></translation>
+        <translation>tilpasser X-Server</translation>
     </message>
     <message>
         <location filename="xsettingsui.ui" line="78"/>
         <source>executable:</source>
-        <translation type="unfinished"></translation>
+        <translation>Eksekverbar fil:</translation>
     </message>
     <message>
         <location filename="xsettingsui.ui" line="101"/>
         <source>start X-Server on X2Go client start</source>
-        <translation type="unfinished"></translation>
+        <translation>start X-Server sammen med X2Go klient</translation>
     </message>
     <message>
         <location filename="xsettingsui.ui" line="113"/>
         <source>command line options:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kommandolinie parametre:</translation>
     </message>
     <message>
         <location filename="xsettingsui.ui" line="125"/>
         <source>X-Server command line options</source>
-        <translation type="unfinished"></translation>
+        <translation>X-Server kommandolinie parametre</translation>
     </message>
     <message>
         <location filename="xsettingsui.ui" line="131"/>
         <source>window mode:</source>
-        <translation type="unfinished"></translation>
+        <translation>Vindue:</translation>
     </message>
     <message>
         <location filename="xsettingsui.ui" line="141"/>
         <source>fullscreen mode:</source>
-        <translation type="unfinished"></translation>
+        <translation>Fuldskærm:</translation>
     </message>
     <message>
         <location filename="xsettingsui.ui" line="151"/>
         <source>single application:</source>
-        <translation type="unfinished"></translation>
+        <translation>Enkelt applikation:</translation>
     </message>
 </context>
 </TS>
