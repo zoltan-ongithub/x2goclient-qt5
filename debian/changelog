@@ -1,4 +1,4 @@
-x2goclient (3.99.2.3-0~x2go1) UNRELEASED; urgency=low
+x2goclient (3.99.2.3-0~x2go2) UNRELEASED; urgency=low
 
   [ Mike Gabriel ]
   * New upstream version (3.99.2.2):
@@ -8,7 +8,10 @@ x2goclient (3.99.2.3-0~x2go1) UNRELEASED; urgency=low
   [ Christoffer Krakou ]
     - Add Danish translation to x2goclient.
 
- -- Mike Gabriel <mike.gabriel@das-netzwerkteam.de>  Wed, 15 Aug 2012 15:14:05 +0200
+  [ Oleksandr Shneyder ]
+  * Add settings for direct RDP connection 
+
+ -- Oleksandr Shneyder <oleksandr.shneyder@obviously-nice.de>  Thu, 30 Aug 2012 18:10:57 +0300
 
 x2goclient (3.99.2.2-0~x2go2) unstable; urgency=low
 

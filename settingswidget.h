@@ -25,6 +25,7 @@ class QSpinBox;
 class QLabel;
 class QPushButton;
 class QMainWindow;
+class QGroupBox;
 
 
 class SettingsWidget : public ConfigWidget
@@ -36,6 +37,10 @@ public:
     ~SettingsWidget();
     void setDefaults();
     void saveSettings();
+    void setDirectRdp(bool direct);
+public slots:
+    void setServerSettings(QString server, QString port, QString user);
+    void updateCmdLine();
 private slots:
     void slot_sndSysSelected ( int system );
     void slot_sndToggled ( bool val );
@@ -54,6 +59,7 @@ private:
     QLineEdit* type;
     QRadioButton* custom;
     QRadioButton* display;
+    QRadioButton* maxRes;
     QRadioButton* arts;
     QRadioButton* pulse;
     QRadioButton* esd;
@@ -76,6 +82,19 @@ private:
     bool multiDisp;
     QPushButton* pbIdentDisp;
     QList <QMainWindow*> identWins;
+    QGroupBox *kgb;
+    QGroupBox *sbgr;
+    QGroupBox *rdpBox;
+    QRadioButton* rRdesktop;
+    QRadioButton* rXfreeRDP;
+    QLineEdit* cmdLine;
+    QLineEdit* params;
+    QFrame* hLine1;
+    QFrame* hLine2;
+    QString server;
+    QString user;
+    QString port;
+
 private:
     void readConfig();
 };

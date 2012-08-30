@@ -23,6 +23,7 @@ class QPushButton;
 class QComboBox;
 class QLabel;
 class QCheckBox;
+class QGroupBox;
 class SessionWidget : public ConfigWidget
 {
     Q_OBJECT
@@ -38,6 +39,9 @@ private slots:
     void slot_getKey();
     void slot_changeCmd ( int var );
     void slot_rdpOptions();
+public slots:
+    void slot_rdpDirectClicked();
+    void slot_emitSettings();
 
 private:
     enum {KDE,GNOME,LXDE,UNITY,RDP,XDMCP,SHADOW,OTHER,APPLICATION,PUBLISHED};
@@ -45,23 +49,30 @@ private:
     QLineEdit* uname;
     QLineEdit* server;
     QSpinBox* sshPort;
+    QSpinBox* rdpPort;
     QLineEdit* key;
     QCheckBox* cbAutoLogin;
     QCheckBox* cbKrbLogin;
+    QCheckBox* cbDirectRDP;
     QString sessIcon;
     QPushButton* icon;
     QLineEdit* cmd;
     QComboBox* cmdCombo;
     QComboBox* sessBox;
     QLabel* leCmdIp;
+    QLabel* lPort;
+    QLabel* lKey;
     QPushButton* pbAdvanced;
     QString rdpOptions;
     QString rdpServer;
     QString xdmcpServer;
+    QPushButton* openKey;
 private:
     void readConfig();
 signals:
     void nameChanged ( const QString & );
+    void directRDP(bool);
+    void settingsChanged(const QString &, const QString &, const QString &);
 };
 
 #endif
