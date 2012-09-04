@@ -670,6 +670,7 @@ private:
     bool ldapOnly;
     bool isScDaemonOk;
     bool parecTunnelOk;
+    bool directRDP;
 
 
     bool startSessSound;
@@ -1027,6 +1028,7 @@ private:
     void printSshDError();
     void loadPulseModuleNativeProtocol();
     void initEmbedToolBar();
+    void startDirectRDP();
     bool isServerRunning ( int port );
     void filterDesktops ( const QString& filter,
                           bool strict=false );

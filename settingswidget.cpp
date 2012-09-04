@@ -739,7 +739,7 @@ void SettingsWidget::updateCmdLine()
     }
     if (maxRes->isChecked())
     {
-        grOpt=" -g <maxW>x<maxH>";
+        grOpt=" -D -g <maxW>x<maxH>";
     }
     if (custom->isChecked())
     {

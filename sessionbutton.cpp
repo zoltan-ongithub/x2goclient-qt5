@@ -345,6 +345,7 @@ void SessionButton::redraw()
 
     cmdBox->addItems ( par->transApplicationsNames() );
 
+    bool directRDP=false;
     QPixmap cmdpix;
     if ( command=="KDE" )
     {
@@ -374,6 +375,9 @@ void SessionButton::redraw()
     }
     else if ( command =="RDP" )
     {
+        if (st->setting()->value ( sid+"/directrdp",
+                                   ( QVariant ) false ).toBool())
+            directRDP=true;
         cmdpix.load ( par->iconsPath ( "/16x16/rdp.png" ) );
         cmdBox->setCurrentIndex ( RDP );
         command=tr ( "RDP connection" );
@@ -413,10 +417,11 @@ void SessionButton::redraw()
     geomBox->clear();
     geomBox->addItem ( tr ( "fullscreen" ) );
     uint displays=QApplication::desktop()->numScreens();
-    for (uint i=0;i<displays;++i)
-    {
-        geomBox->addItem ( tr( "Display " )+QString::number(i+1));
-    }
+    if (!directRDP)
+        for (uint i=0;i<displays;++i)
+        {
+            geomBox->addItem ( tr( "Display " )+QString::number(i+1));
+        }
 #ifndef Q_WS_HILDON
     geomBox->addItem ( "1440x900" );
     geomBox->addItem ( "1280x1024" );
@@ -432,7 +437,7 @@ void SessionButton::redraw()
     }
     else
         if (st->setting()->value ( sid+"/multidisp",
-                                   ( QVariant ) false ).toBool())
+                                   ( QVariant ) false ).toBool() && !directRDP)
         {
             uint disp=st->setting()->value ( sid+"/display",
                                              ( QVariant ) 1 ).toUInt();
@@ -467,6 +472,17 @@ void SessionButton::redraw()
             geomBox->setCurrentIndex ( 1 );
 #endif
         }
+
+    if (directRDP)
+    {
+        geomBox->addItem ( tr("Maximum") );
+        if (st->setting()->value ( sid+"/maxdim",
+                                   ( QVariant ) false ).toBool())
+        {
+            geom->setText ( tr("Maximum") );
+            geomBox->setCurrentIndex ( geomBox->findText ( tr("Maximum") ));
+        }
+    }
 
 
     snd=st->setting()->value ( sid+"/sound", ( QVariant ) true ).toBool();
@@ -710,6 +726,13 @@ void SessionButton::slot_geom_change ( const QString& new_g )
     {
         st.setting()->setValue ( sid+"/fullscreen", ( QVariant ) true );
         st.setting()->setValue ( sid+"/multidisp", ( QVariant ) false );
+        st.setting()->setValue ( sid+"/maxdim", ( QVariant ) false );
+    }
+    else if ( new_g==tr ( "Maximum" ))
+    {
+        st.setting()->setValue ( sid+"/fullscreen", ( QVariant ) false );
+        st.setting()->setValue ( sid+"/multidisp", ( QVariant ) false );
+        st.setting()->setValue ( sid+"/maxdim", ( QVariant ) true );
     }
     else
         if (new_g.indexOf(tr("Display "))==0)
@@ -719,6 +742,7 @@ void SessionButton::slot_geom_change ( const QString& new_g )
             st.setting()->setValue ( sid+"/multidisp", ( QVariant ) true );
             st.setting()->setValue ( sid+"/display", ( QVariant ) g.toUInt());
             st.setting()->setValue ( sid+"/fullscreen", ( QVariant ) false );
+            st.setting()->setValue ( sid+"/maxdim", ( QVariant ) false );
         }
         else
         {
@@ -728,6 +752,7 @@ void SessionButton::slot_geom_change ( const QString& new_g )
 #endif
             st.setting()->setValue ( sid+"/fullscreen", ( QVariant ) false );
             st.setting()->setValue ( sid+"/multidisp", ( QVariant ) false );
+            st.setting()->setValue ( sid+"/maxdim", ( QVariant ) false );
             QStringList lst=new_geom.split ( 'x' );
             st.setting()->setValue ( sid+"/width", ( QVariant ) lst[0] );
             st.setting()->setValue ( sid+"/height", ( QVariant ) lst[1] );

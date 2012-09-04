@@ -2950,6 +2950,7 @@ void ONMainWindow::slotSshUserAuthError ( QString error )
 
 void ONMainWindow::slotSessEnter()
 {
+
     if ( useLdap )
     {
         slotPassEnter();
@@ -3005,10 +3006,102 @@ void ONMainWindow::continueLDAPSession()
     proc->startNormal ( "x2gogetservers" );
 }
 
+void ONMainWindow::startDirectRDP()
+{
+
+    X2goSettings st ( "sessions" );
+    QString sid;
+    if ( !embedMode )
+        sid=lastSession->id();
+    else
+        sid="embedded";
+
+
+    bool fullscreen=st.setting()->value ( sid+"/fullscreen",
+                                          ( QVariant )
+                                          defaultFullscreen ).toBool();
+    bool maxRes=st.setting()->value ( sid+"/maxdim",
+                                      ( QVariant )
+                                      false ).toBool();
+    int height=st.setting()->value ( sid+"/height",
+                                     ( QVariant ) defaultHeight ).toInt();
+    int width=st.setting()->value ( sid+"/width",
+                                    ( QVariant ) defaultWidth ).toInt();
+
+    QString client=st.setting()->value ( sid+"/rdpclient",
+                                         ( QVariant ) "rdesktop").toString();
+    QString host=st.setting()->value ( sid+"/host",
+                                       ( QVariant ) "").toString();
+    QString port=st.setting()->value ( sid+"/rdpport",
+                                       ( QVariant ) "3389").toString();
+    QString params=st.setting()->value ( sid+"/directrdpsettings",
+                                         ( QVariant ) "").toString();
+    QString user=login->text();
+    QString password=pass->text();
+
+    nxproxy=new QProcess;
+    connect ( nxproxy,SIGNAL ( error ( QProcess::ProcessError ) ),this,
+              SLOT ( slotProxyError ( QProcess::ProcessError ) ) );
+    connect ( nxproxy,SIGNAL ( finished ( int,QProcess::ExitStatus ) ),this,
+              SLOT ( slotProxyFinished ( int,QProcess::ExitStatus ) ) );
+    connect ( nxproxy,SIGNAL ( readyReadStandardError() ),this,
+              SLOT ( slotProxyStderr() ) );
+    connect ( nxproxy,SIGNAL ( readyReadStandardOutput() ),this,
+              SLOT ( slotProxyStdout() ) );
+
+
+    QString userOpt;
+    if (user.length()>0)
+    {
+        userOpt=" -u ";
+        userOpt+=user+" ";
+    }
+
+    QString passOpt;
+    if (password.length()>0)
+    {
+        passOpt=" -p \"";
+        passOpt+=password+"\" ";
+    }
+
+    QString grOpt;
+
+    if (fullscreen)
+    {
+        grOpt=" -f ";
+    }
+    else if (maxRes)
+    {
+        QDesktopWidget wd;
+        grOpt=" -D -g "+QString::number( wd.screenGeometry().width())+"x"+QString::number(wd.screenGeometry().height())+" ";
+    }
+    else
+    {
+        grOpt=" -g "+QString::number(width)+"x"+QString::number(height);
+    }
+
+    QString proxyCmd=client +" "+params+ grOpt +userOpt+passOpt + host +":"+port ;
+    nxproxy->start ( proxyCmd );
+
+    resumingSession.display="RDP";
+    resumingSession.server=host;
+    resumingSession.sessionId=lastSession->name();
+    resumingSession.crTime=QDateTime::currentDateTime().toString("dd.MM.yy HH:mm:ss");
+
+    showSessionStatus();
+//     QTimer::singleShot ( 30000,this,SLOT ( slotRestartProxy() ) );
+
+}
+
+
+
+
+
 
 bool ONMainWindow::startSession ( const QString& sid )
 {
     setEnabled ( false );
+    directRDP=false;
     QString passwd;
     QString user;
     QString host;
@@ -3040,6 +3133,13 @@ bool ONMainWindow::startSession ( const QString& sid )
                                         ( QVariant ) false ).toBool();
         krblogin=st.setting()->value ( sid+"/krblogin",
                                        ( QVariant ) false ).toBool();
+        directRDP=st.setting()->value ( sid+"/directrdp",
+                                        ( QVariant ) false ).toBool();
+        if (cmd =="RDP" && directRDP)
+        {
+            startDirectRDP();
+            return true;
+        }
         if ( cmd=="SHADOW" )
             shadowSession=true;
     }
@@ -4021,6 +4121,12 @@ void ONMainWindow::slotResumeSess()
 void ONMainWindow::slotSuspendSess()
 {
 
+    if (directRDP)
+    {
+        nxproxy->terminate();
+        return;
+    }
+
     QString passwd;
     QString user=getCurrentUname();
 
@@ -4069,6 +4175,12 @@ void ONMainWindow::slotSuspendSess()
 
 void ONMainWindow::slotSuspendSessFromSt()
 {
+    x2goDebug<<"suspend from st";
+    if (directRDP)
+    {
+        nxproxy->terminate();
+        return;
+    }
     QString passwd;
     QString user=getCurrentUname();
     passwd=getCurrentPass();
@@ -4085,7 +4197,12 @@ void ONMainWindow::slotSuspendSessFromSt()
 
 void ONMainWindow::slotTermSessFromSt()
 {
-
+    x2goDebug<<"term from st";
+    if (directRDP)
+    {
+        nxproxy->terminate();
+        return;
+    }
     /*	x2goDebug <<"disconnect export"<<endl;
     	disconnect ( sbExp,SIGNAL ( clicked() ),this,
     	             SLOT ( slot_exportDirectory() ) );*/
@@ -4146,6 +4263,13 @@ void ONMainWindow::slotRetSuspSess ( bool result, QString output,
 
 void ONMainWindow::slotTermSess()
 {
+
+    if (directRDP)
+    {
+        nxproxy->terminate();
+        return;
+    }
+
 
     selectSessionDlg->setEnabled ( false );
 
@@ -4950,7 +5074,10 @@ void ONMainWindow::slotProxyFinished ( int,QProcess::ExitStatus )
             }
         }
         x2goDebug<<"nxproxy not running"<<endl;
-        delete nxproxy;
+        if (!directRDP)
+            delete nxproxy;
+        else
+            nxproxy=0;
     }
 #endif
     x2goDebug<<"proxy deleted"<<endl;
@@ -4959,6 +5086,14 @@ void ONMainWindow::slotProxyFinished ( int,QProcess::ExitStatus )
     soundServer=0l;
     nxproxy=0l;
     proxyWinId=0;
+
+    if (directRDP)
+    {
+        pass->setText ( "" );
+        QTimer::singleShot ( 2000,this,
+                             SLOT ( slotShowPassForm() ) );
+        return;
+    }
 
     if ( !shadowSession && !usePGPCard && ! ( embedMode &&
             ( config.checkexitstatus==false ) ) )
