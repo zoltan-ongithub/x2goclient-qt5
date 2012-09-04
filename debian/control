@@ -55,7 +55,8 @@ Depends:
  openssh-client,
  nxproxy
 Recommends:
- openssh-server
+ openssh-server,
+ rdesktop
 Suggests:
  pinentry-x2go
 Description: X2Go Client (Qt4) as browser plugin
