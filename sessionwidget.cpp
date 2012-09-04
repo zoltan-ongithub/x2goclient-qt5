@@ -67,10 +67,12 @@ SessionWidget::SessionWidget ( QString id, ONMainWindow * mw,
     sshPort->setValue ( mainWindow->getDefaultSshPort().toInt() );
     sshPort->setMinimum ( 1 );
     sshPort->setMaximum ( 999999999 );
+#ifdef Q_OS_LINUX
     rdpPort=new QSpinBox ( sgb );
     rdpPort->setValue ( mainWindow->getDefaultSshPort().toInt() );
     rdpPort->setMinimum ( 1 );
     rdpPort->setMaximum ( 999999999 );
+#endif
     key=new QLineEdit ( sgb );
 
 #ifndef Q_WS_HILDON
@@ -95,7 +97,9 @@ SessionWidget::SessionWidget ( QString id, ONMainWindow * mw,
     elLay->addWidget ( server );
     elLay->addWidget ( uname );
     elLay->addWidget ( sshPort );
+#ifdef Q_OS_LINUX
     elLay->addWidget ( rdpPort );
+#endif
     suLay->addLayout ( slLay );
     suLay->addLayout ( elLay );
 #ifdef Q_WS_HILDON
@@ -197,7 +201,9 @@ SessionWidget::SessionWidget ( QString id, ONMainWindow * mw,
               SIGNAL ( nameChanged ( const QString & ) ) );
     connect (server, SIGNAL(textChanged(const QString&)),this, SLOT(slot_emitSettings()));
     connect (uname, SIGNAL(textChanged(const QString&)),this, SLOT(slot_emitSettings()));
+#ifdef Q_OS_LINUX
     connect (rdpPort, SIGNAL(valueChanged(int)),this, SLOT(slot_emitSettings()));
+#endif
     readConfig();
     cbKrbLogin->setChecked(false);
     cbKrbLogin->setVisible(false);
@@ -207,7 +213,7 @@ SessionWidget::~SessionWidget()
 {
 }
 
-
+#ifdef Q_OS_LINUX
 void SessionWidget::slot_rdpDirectClicked()
 {
     bool isDirectRDP=cbDirectRDP->isChecked();
@@ -234,6 +240,7 @@ void SessionWidget::slot_rdpDirectClicked()
     emit directRDP(isDirectRDP);
     slot_emitSettings();
 }
+#endif
 
 void SessionWidget::slot_getIcon()
 {
@@ -297,7 +304,9 @@ void SessionWidget::slot_changeCmd ( int var )
 {
     leCmdIp->setText ( tr ( "Command:" ) );
     pbAdvanced->hide();
+#ifdef Q_OS_LINUX
     cbDirectRDP->hide();
+#endif
     leCmdIp->show();
     cmd->show();
     if ( var==APPLICATION )
@@ -323,7 +332,9 @@ void SessionWidget::slot_changeCmd ( int var )
                 leCmdIp->setText ( tr ( "Server:" ) );
                 pbAdvanced->show();
                 cmd->setText ( rdpServer );
+#ifdef Q_OS_LINUX
                 cbDirectRDP->show();
+#endif
             }
             if ( var== XDMCP )
             {
@@ -337,7 +348,9 @@ void SessionWidget::slot_changeCmd ( int var )
             cmd->setText ( "" );
         }
     }
+#ifdef Q_OS_LINUX
     slot_rdpDirectClicked();
+#endif
 }
 
 void SessionWidget::slot_rdpOptions()
@@ -385,11 +398,12 @@ void SessionWidget::readConfig()
             sessionId+"/sshport",
             ( QVariant ) mainWindow->getDefaultSshPort().toInt()
         ).toInt() );
+#ifdef Q_OS_LINUX
     rdpPort->setValue (
         st.setting()->value (
             sessionId+"/rdpport",3389
         ).toInt() );
-
+#endif
     QStringList appNames=st.setting()->value (
                              sessionId+"/applications" ).toStringList();
     bool rootless=st.setting()->value (
@@ -408,10 +422,10 @@ void SessionWidget::readConfig()
                                     ( QVariant ) "" ).toString();
     xdmcpServer=st.setting()->value ( sessionId+"/xdmcpserver",
                                       ( QVariant ) "localhost" ).toString();
-
+#ifdef Q_OS_LINUX
     cbDirectRDP->setChecked(st.setting()->value (
                                 sessionId+"/directrdp",false ).toBool());
-
+#endif
 
     for ( int i=0;i<appNames.count();++i )
     {
@@ -466,8 +480,10 @@ void SessionWidget::readConfig()
             cmd->setEnabled ( true );
             cmd->setText ( rdpServer );
             pbAdvanced->show();
+#ifdef Q_OS_LINUX
             cbDirectRDP->show();
             slot_rdpDirectClicked();
+#endif
         }
         else if ( command=="XDMCP" )
         {
@@ -488,7 +504,9 @@ void SessionWidget::readConfig()
         sessName->selectAll();
         sessName->setFocus();
     }
+#ifdef Q_OS_LINUX
     slot_rdpDirectClicked();
+#endif
 }
 
 void SessionWidget::setDefaults()
@@ -510,7 +528,9 @@ void SessionWidget::setDefaults()
     icon->setIcon ( QIcon ( sessIcon ) );
     sshPort->setValue (
         mainWindow->getDefaultSshPort().toInt() );
+#ifdef Q_OS_LINUX
     rdpPort->setValue (3389);
+#endif
 }
 
 
@@ -529,14 +549,17 @@ void SessionWidget::saveSettings()
 
     st.setting()->setValue ( sessionId+"/key",
                              ( QVariant ) key->text() );
+#ifdef Q_OS_LINUX
     st.setting()->setValue ( sessionId+"/rdpport",
                              ( QVariant ) rdpPort->value() );
-
+#endif
     st.setting()->setValue ( sessionId+"/sshport",
                              ( QVariant ) sshPort->value() );
     st.setting()->setValue(sessionId+"/autologin",( QVariant ) cbAutoLogin->isChecked());
     st.setting()->setValue(sessionId+"/krblogin",( QVariant ) cbKrbLogin->isChecked());
+#ifdef Q_OS_LINUX
     st.setting()->setValue(sessionId+"/directrdp",( QVariant ) cbDirectRDP->isChecked());
+#endif
     QString command;
     bool rootless=false;
     bool published=false;
@@ -604,8 +627,9 @@ QString SessionWidget::sessionName()
     return sessName->text();
 }
 
+#ifdef Q_OS_LINUX
 void SessionWidget::slot_emitSettings()
 {
     emit settingsChanged(server->text(), QString::number( rdpPort->value()), uname->text());
 }
-
+#endif

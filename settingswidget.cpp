@@ -45,7 +45,9 @@ SettingsWidget::SettingsWidget ( QString id, ONMainWindow * mw,
     QGroupBox *dgb=new QGroupBox ( tr ( "&Display" ),this );
     kgb=new QGroupBox ( tr ( "&Keyboard" ),this );
     sbgr=new QGroupBox ( tr ( "Sound" ),this );
+#ifdef Q_OS_LINUX
     rdpBox=new QGroupBox ( tr ( "RDP Client" ),this );
+#endif
 #endif
     QVBoxLayout *dbLay = new QVBoxLayout ( dgb );
     QVBoxLayout  *sndLay=new QVBoxLayout ( sbgr );
@@ -63,13 +65,16 @@ SettingsWidget::SettingsWidget ( QString id, ONMainWindow * mw,
     custom=new QRadioButton ( tr ( "Window" ),dgb );
 #endif
     display=new QRadioButton ( tr ( "Use whole display" ),dgb );
+#ifdef Q_OS_LINUX
     maxRes=new QRadioButton ( tr ( "Maximum available" ),dgb );
-
+#endif
     radio->addButton ( fs );
     radio->addButton ( custom );
     radio->setExclusive ( true );
     radio->addButton(display);
+#ifdef Q_OS_LINUX
     radio->addButton(maxRes);
+#endif
     width=new QSpinBox ( dgb );
     height=new QSpinBox ( dgb );
     cbSetDPI=new QCheckBox ( tr ( "Set display DPI" ),dgb );
@@ -102,7 +107,9 @@ SettingsWidget::SettingsWidget ( QString id, ONMainWindow * mw,
     dwLay->addStretch();
 
     dispLay->addWidget(display);
+#ifdef Q_OS_LINUX
     dispLay->addWidget(maxRes);
+#endif
     dispLay->addSpacing(15);
     dispLay->addWidget(lDisplay=new QLabel(tr("&Display:"),dgb));
     dispLay->addWidget(displayNumber=new QSpinBox(dgb));
@@ -230,13 +237,11 @@ SettingsWidget::SettingsWidget ( QString id, ONMainWindow * mw,
     setLay->addWidget ( dgb );
     setLay->addWidget ( kgb );
     setLay->addWidget ( sbgr );
+#ifdef Q_OS_LINUX
     setLay->addWidget ( rdpBox );
-
-
     rRdesktop=new QRadioButton ("rdesktop",rdpBox );
     rRdesktop->setChecked(true);
     rXfreeRDP=new QRadioButton ( "xfreerdp",rdpBox);
-
     QButtonGroup* rClient=new QButtonGroup(rdpBox);
     rClient->addButton ( rRdesktop );
     rClient->addButton ( rXfreeRDP );
@@ -251,6 +256,7 @@ SettingsWidget::SettingsWidget ( QString id, ONMainWindow * mw,
     params=new QLineEdit(rdpBox);
     rdpLay->addWidget(cmdLine,4,0,1,2);
     rdpLay->addWidget(params,2,1);
+#endif //Q_OS_LINUX
 #else
     setLay->addWidget ( tabSettings );
 // 	cbClientPrint->hide();
@@ -296,11 +302,13 @@ SettingsWidget::SettingsWidget ( QString id, ONMainWindow * mw,
     connect ( cbDefSndPort,SIGNAL ( toggled ( bool ) ),this,
               SLOT ( slot_sndDefPortChecked ( bool ) ) );
 
+#ifdef Q_OS_LINUX
     connect (rClient, SIGNAL(buttonClicked(int)), this, SLOT(updateCmdLine()));
     connect (radio, SIGNAL(buttonClicked(int)), this, SLOT(updateCmdLine()));
     connect (params, SIGNAL(textChanged(QString)), this, SLOT(updateCmdLine()));
     connect (width, SIGNAL(valueChanged(int)), this, SLOT(updateCmdLine()));
     connect (height, SIGNAL(valueChanged(int)), this, SLOT(updateCmdLine()));
+#endif
     kbd->setChecked ( true );
     custom->setChecked ( true );
     readConfig();
@@ -311,6 +319,7 @@ SettingsWidget::~SettingsWidget()
 {
 }
 
+#ifdef Q_OS_LINUX
 void SettingsWidget::setDirectRdp(bool direct)
 {
     cbClientPrint->setVisible(!direct);
@@ -344,6 +353,7 @@ void SettingsWidget::setDirectRdp(bool direct)
         }
     }
 }
+#endif
 
 void SettingsWidget::slot_identDisplays()
 {
@@ -524,18 +534,15 @@ void SettingsWidget::readConfig()
             displayNumber->setValue(1);
     }
 
-
+#ifdef Q_OS_LINUX
     maxRes->setChecked(st.setting()->value ( sessionId+"/maxdim", false).toBool());
-
     QString client=st.setting()->value ( sessionId+"/rdpclient","rdesktop").toString();
-    
     if(client=="rdesktop")
       rRdesktop->setChecked(true);
     else
       rXfreeRDP->setChecked(true);
-
     params->setText(st.setting()->value ( sessionId+"/directrdpsettings","").toString());
-
+#endif
 
 
     cbSetDPI->setChecked (
@@ -657,6 +664,7 @@ void SettingsWidget::saveSettings()
     st.setting()->setValue ( sessionId+"/display",
                              ( QVariant ) displayNumber->value() );
 
+#ifdef Q_OS_LINUX
     st.setting()->setValue ( sessionId+"/maxdim",
                              ( QVariant ) maxRes->isChecked() );
 
@@ -668,7 +676,7 @@ void SettingsWidget::saveSettings()
                                  ( QVariant ) "rdesktop" );
     st.setting()->setValue ( sessionId+"/directrdpsettings",
                              ( QVariant ) params->text());
-
+#endif
     st.setting()->setValue ( sessionId+"/height",
                              ( QVariant ) height->value() );
     st.setting()->setValue ( sessionId+"/dpi",
@@ -709,6 +717,7 @@ void SettingsWidget::saveSettings()
     st.setting()->sync();
 }
 
+#ifdef Q_OS_LINUX
 void SettingsWidget::setServerSettings(QString server, QString port, QString user)
 {
     this->server=server;
@@ -747,3 +756,4 @@ void SettingsWidget::updateCmdLine()
     }
     cmdLine->setText(client +" "+params->text()+ grOpt +userOpt+" -p <"+tr("password")+"> "+ server+":"+port );
 }
+#endif

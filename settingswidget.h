@@ -37,10 +37,13 @@ public:
     ~SettingsWidget();
     void setDefaults();
     void saveSettings();
+#ifdef Q_OS_LINUX
     void setDirectRdp(bool direct);
 public slots:
     void setServerSettings(QString server, QString port, QString user);
     void updateCmdLine();
+#endif
+
 private slots:
     void slot_sndSysSelected ( int system );
     void slot_sndToggled ( bool val );
@@ -59,7 +62,9 @@ private:
     QLineEdit* type;
     QRadioButton* custom;
     QRadioButton* display;
+#ifdef Q_OS_LINUX
     QRadioButton* maxRes;
+#endif
     QRadioButton* arts;
     QRadioButton* pulse;
     QRadioButton* esd;
@@ -84,16 +89,18 @@ private:
     QList <QMainWindow*> identWins;
     QGroupBox *kgb;
     QGroupBox *sbgr;
+#ifdef Q_OS_LINUX
     QGroupBox *rdpBox;
     QRadioButton* rRdesktop;
     QRadioButton* rXfreeRDP;
     QLineEdit* cmdLine;
     QLineEdit* params;
-    QFrame* hLine1;
-    QFrame* hLine2;
     QString server;
     QString user;
     QString port;
+#endif
+    QFrame* hLine1;
+    QFrame* hLine2;
 
 private:
     void readConfig();

@@ -40,8 +40,10 @@ private slots:
     void slot_changeCmd ( int var );
     void slot_rdpOptions();
 public slots:
+#ifdef Q_OS_LINUX
     void slot_rdpDirectClicked();
     void slot_emitSettings();
+#endif
 
 private:
     enum {KDE,GNOME,LXDE,UNITY,RDP,XDMCP,SHADOW,OTHER,APPLICATION,PUBLISHED};
@@ -49,11 +51,15 @@ private:
     QLineEdit* uname;
     QLineEdit* server;
     QSpinBox* sshPort;
+#ifdef Q_OS_LINUX
     QSpinBox* rdpPort;
+#endif
     QLineEdit* key;
     QCheckBox* cbAutoLogin;
     QCheckBox* cbKrbLogin;
+#ifdef Q_OS_LINUX
     QCheckBox* cbDirectRDP;
+#endif
     QString sessIcon;
     QPushButton* icon;
     QLineEdit* cmd;
@@ -71,8 +77,10 @@ private:
     void readConfig();
 signals:
     void nameChanged ( const QString & );
+#ifdef Q_OS_LINUX
     void directRDP(bool);
     void settingsChanged(const QString &, const QString &, const QString &);
+#endif
 };
 
 #endif

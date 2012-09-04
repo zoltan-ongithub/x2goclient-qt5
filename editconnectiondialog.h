@@ -57,7 +57,9 @@ class EditConnectionDialog : public QDialog
 		void slot_changeCaption ( const QString& newName );
 		void slot_accepted();
 		void slot_default();
+#ifdef Q_OS_LINUX		
 		void slot_directRDP(bool direct);
+#endif
 };
 
 #endif

@@ -101,7 +101,9 @@ EditConnectionDialog::EditConnectionDialog ( QString id, QWidget * par,
         setContentsMargins ( 3,3,3,3 );
     fr->setCurrentIndex ( ind );
     slot_changeCaption(sessSet->sessionName());
+#ifdef Q_OS_LINUX
     sessSet->slot_rdpDirectClicked();
+#endif
 }
 
 
@@ -152,11 +154,11 @@ void EditConnectionDialog::slot_default()
     }
 }
 
+#ifdef Q_OS_LINUX
 void EditConnectionDialog::slot_directRDP(bool direct)
 {
     fr->setTabEnabled(1,!direct);
     fr->setTabEnabled(3,!direct);
     otherSet->setDirectRdp(direct);
 }
-
-
+#endif

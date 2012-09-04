@@ -3006,6 +3006,7 @@ void ONMainWindow::continueLDAPSession()
     proc->startNormal ( "x2gogetservers" );
 }
 
+#ifdef Q_OS_LINUX
 void ONMainWindow::startDirectRDP()
 {
 
@@ -3093,7 +3094,7 @@ void ONMainWindow::startDirectRDP()
 
 }
 
-
+#endif
 
 
 
@@ -3101,7 +3102,9 @@ void ONMainWindow::startDirectRDP()
 bool ONMainWindow::startSession ( const QString& sid )
 {
     setEnabled ( false );
+#ifdef Q_OS_LINUX
     directRDP=false;
+#endif
     QString passwd;
     QString user;
     QString host;
@@ -3133,6 +3136,7 @@ bool ONMainWindow::startSession ( const QString& sid )
                                         ( QVariant ) false ).toBool();
         krblogin=st.setting()->value ( sid+"/krblogin",
                                        ( QVariant ) false ).toBool();
+#ifdef Q_OS_LINUX
         directRDP=st.setting()->value ( sid+"/directrdp",
                                         ( QVariant ) false ).toBool();
         if (cmd =="RDP" && directRDP)
@@ -3140,6 +3144,7 @@ bool ONMainWindow::startSession ( const QString& sid )
             startDirectRDP();
             return true;
         }
+#endif
         if ( cmd=="SHADOW" )
             shadowSession=true;
     }
@@ -4121,12 +4126,13 @@ void ONMainWindow::slotResumeSess()
 void ONMainWindow::slotSuspendSess()
 {
 
+#ifdef Q_OS_LINUX
     if (directRDP)
     {
         nxproxy->terminate();
         return;
     }
-
+#endif
     QString passwd;
     QString user=getCurrentUname();
 
@@ -4175,12 +4181,14 @@ void ONMainWindow::slotSuspendSess()
 
 void ONMainWindow::slotSuspendSessFromSt()
 {
-    x2goDebug<<"suspend from st";
+
+#ifdef Q_OS_LINUX
     if (directRDP)
     {
         nxproxy->terminate();
         return;
     }
+#endif
     QString passwd;
     QString user=getCurrentUname();
     passwd=getCurrentPass();
@@ -4197,12 +4205,13 @@ void ONMainWindow::slotSuspendSessFromSt()
 
 void ONMainWindow::slotTermSessFromSt()
 {
-    x2goDebug<<"term from st";
+#ifdef Q_OS_LINUX
     if (directRDP)
     {
         nxproxy->terminate();
         return;
     }
+#endif
     /*	x2goDebug <<"disconnect export"<<endl;
     	disconnect ( sbExp,SIGNAL ( clicked() ),this,
     	             SLOT ( slot_exportDirectory() ) );*/
@@ -4264,12 +4273,13 @@ void ONMainWindow::slotRetSuspSess ( bool result, QString output,
 void ONMainWindow::slotTermSess()
 {
 
+#ifdef Q_OS_LINUX
     if (directRDP)
     {
         nxproxy->terminate();
         return;
     }
-
+#endif
 
     selectSessionDlg->setEnabled ( false );
 
@@ -5074,10 +5084,13 @@ void ONMainWindow::slotProxyFinished ( int,QProcess::ExitStatus )
             }
         }
         x2goDebug<<"nxproxy not running"<<endl;
-        if (!directRDP)
-            delete nxproxy;
-        else
+
+#ifdef Q_OS_LINUX
+        if (directRDP)
             nxproxy=0;
+        else
+#endif
+            delete nxproxy;
     }
 #endif
     x2goDebug<<"proxy deleted"<<endl;
@@ -5087,6 +5100,7 @@ void ONMainWindow::slotProxyFinished ( int,QProcess::ExitStatus )
     nxproxy=0l;
     proxyWinId=0;
 
+#ifdef Q_OS_LINUX
     if (directRDP)
     {
         pass->setText ( "" );
@@ -5094,7 +5108,7 @@ void ONMainWindow::slotProxyFinished ( int,QProcess::ExitStatus )
                              SLOT ( slotShowPassForm() ) );
         return;
     }
-
+#endif
     if ( !shadowSession && !usePGPCard && ! ( embedMode &&
             ( config.checkexitstatus==false ) ) )
         check_cmd_status();
