@@ -228,7 +228,7 @@
         <location filename="contest.ui" line="123"/>
         <location filename="contest.ui" line="167"/>
         <source>Failed</source>
-        <translation>Fejlet</translation>
+        <translation>Mislykket</translation>
     </message>
     <message>
         <location filename="contest.ui" line="211"/>
@@ -251,7 +251,7 @@
         <location filename="contest.cpp" line="162"/>
         <location filename="contest.cpp" line="168"/>
         <source>Failed: </source>
-        <translation>Fejlet:</translation>
+        <translation>Mislykket: </translation>
     </message>
 </context>
 <context>
@@ -315,7 +315,7 @@
         <location filename="configdialog.cpp" line="198"/>
         <location filename="configdialog.cpp" line="340"/>
         <source>X-Server settings</source>
-        <translation>X-server instillinger</translation>
+        <translation>X-server indstillinger</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="207"/>
@@ -347,12 +347,12 @@
         <location filename="configdialog.cpp" line="567"/>
         <location filename="configdialog.cpp" line="579"/>
         <source>Advanced options</source>
-        <translation>Avancerede instillinger</translation>
+        <translation>Avancerede indstillinger</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="291"/>
         <source>Defaults</source>
-        <translation>Standardinstillinger</translation>
+        <translation>Standardindstillinger</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="292"/>
@@ -367,7 +367,7 @@
     <message>
         <location filename="configdialog.cpp" line="316"/>
         <source>Settings</source>
-        <translation>Instillinger</translation>
+        <translation>Indstillinger</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="336"/>
@@ -384,7 +384,7 @@
     <message>
         <location filename="configdialog.cpp" line="504"/>
         <source>x2goclient could not find any suitable X11 Application. Please install Apple X11 or select the path to the application</source>
-        <translation>x2goclient kunne ikke finde nogen X11 Applikationer. Installer venligtst Apple X11 eller skriv stien til applikationen</translation>
+        <translation>x2goclient kunne ikke finde nogen X11 Applikationer. Installer venligtst Apple X11 eller specificer stien til applikationen</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="522"/>
@@ -399,7 +399,7 @@
     <message>
         <location filename="configdialog.cpp" line="541"/>
         <source>No suitable X11 application found in selected path</source>
-        <translation>Der blev ikke fundet en X11 applikation i den valgte sti</translation>
+        <translation>Der blev ikke fundet en X11 applikation i den specificerede sti</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="577"/>
@@ -409,7 +409,7 @@
     <message>
         <location filename="configdialog.cpp" line="578"/>
         <source>&amp;Settings</source>
-        <translation>&amp;Instillinger</translation>
+        <translation>&amp;Indstillinger</translation>
     </message>
 </context>
 <context>
@@ -495,12 +495,12 @@
     <message>
         <location filename="cupsprintsettingsdialog.ui" line="143"/>
         <source>Driver settings</source>
-        <translation>Driver instillinger</translation>
+        <translation>Driver indstillinger</translation>
     </message>
     <message>
         <location filename="cupsprintsettingsdialog.ui" line="175"/>
         <source>Option</source>
-        <translation>Option</translation>
+        <translation>Indstilling</translation>
     </message>
     <message>
         <location filename="cupsprintsettingsdialog.ui" line="180"/>
@@ -533,7 +533,7 @@
     <message>
         <location filename="editconnectiondialog.cpp" line="54"/>
         <source>&amp;Settings</source>
-        <translation>&amp;Instillinger</translation>
+        <translation>&amp;Indstillinger</translation>
     </message>
     <message>
         <location filename="editconnectiondialog.cpp" line="55"/>
@@ -556,9 +556,9 @@
         <translation>Standard</translation>
     </message>
     <message>
-        <location filename="editconnectiondialog.cpp" line="117"/>
+        <location filename="editconnectiondialog.cpp" line="115"/>
         <source>Session preferences - </source>
-        <translation>Sessionsinstillinger</translation>
+        <translation>Sessionsindstillinger</translation>
     </message>
 </context>
 <context>
@@ -576,7 +576,7 @@
     <message>
         <location filename="exportdialog.cpp" line="45"/>
         <source>&amp;Preferences ...</source>
-        <translation>&amp;Instilliger ...</translation>
+        <translation>&amp;Indstilliger ...</translation>
     </message>
     <message>
         <location filename="exportdialog.cpp" line="46"/>
@@ -627,7 +627,7 @@
     <message>
         <location filename="httpbrokerclient.cpp" line="366"/>
         <source>Your session was disconnected. To get access to your running session, please return to the login page or use the &quot;reload&quot; function of your browser.</source>
-        <translation>Din session blev frakoblet. For at få adgang til din igangværende session, skal du gå til loginsiden eller trykke på &quot;opdater&quot; i din browser.</translation>
+        <translation>Din session blev frakoblet. For at få adgang til din igangværende session, skal du gå til login siden eller trykke på &quot;opdater&quot; i din browser.</translation>
     </message>
     <message>
         <location filename="httpbrokerclient.cpp" line="454"/>
@@ -726,7 +726,7 @@
     <name>ONMainWindow</name>
     <message>
         <location filename="onmainwindow.cpp" line="90"/>
-        <location filename="onmainwindow.cpp" line="6030"/>
+        <location filename="onmainwindow.cpp" line="5881"/>
         <source>us</source>
         <translation>us</translation>
     </message>
@@ -742,8 +742,8 @@
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="157"/>
-        <location filename="onmainwindow.cpp" line="2972"/>
-        <location filename="onmainwindow.cpp" line="5167"/>
+        <location filename="onmainwindow.cpp" line="2971"/>
+        <location filename="onmainwindow.cpp" line="5018"/>
         <source>connecting</source>
         <translation>forbinder</translation>
     </message>
@@ -770,7 +770,7 @@
     <message>
         <location filename="onmainwindow.cpp" line="342"/>
         <source>&amp;Settings ...</source>
-        <translation>&amp;Instillinger ...</translation>
+        <translation>&amp;Indstillinger ...</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="346"/>
@@ -779,30 +779,30 @@
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="353"/>
-        <location filename="onmainwindow.cpp" line="7276"/>
+        <location filename="onmainwindow.cpp" line="7127"/>
         <source>About X2GO client</source>
         <translation>om X2GO klient</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="557"/>
         <location filename="onmainwindow.cpp" line="1038"/>
-        <location filename="onmainwindow.cpp" line="10021"/>
+        <location filename="onmainwindow.cpp" line="9872"/>
         <source>Share folder...</source>
         <translation>Del mappe...</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="560"/>
         <location filename="onmainwindow.cpp" line="1039"/>
-        <location filename="onmainwindow.cpp" line="5223"/>
-        <location filename="onmainwindow.cpp" line="10194"/>
+        <location filename="onmainwindow.cpp" line="5074"/>
+        <location filename="onmainwindow.cpp" line="10045"/>
         <source>Suspend</source>
         <translation>Suspender</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="563"/>
         <location filename="onmainwindow.cpp" line="1040"/>
-        <location filename="onmainwindow.cpp" line="10034"/>
-        <location filename="onmainwindow.cpp" line="10196"/>
+        <location filename="onmainwindow.cpp" line="9885"/>
+        <location filename="onmainwindow.cpp" line="10047"/>
         <source>Terminate</source>
         <translation>Afbryd</translation>
     </message>
@@ -813,20 +813,20 @@
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="569"/>
-        <location filename="onmainwindow.cpp" line="9447"/>
+        <location filename="onmainwindow.cpp" line="9298"/>
         <source>Detach X2Go window</source>
         <translation>Løsriv X2go vindue</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="572"/>
-        <location filename="onmainwindow.cpp" line="10497"/>
+        <location filename="onmainwindow.cpp" line="10348"/>
         <source>Minimize toolbar</source>
         <translation>Minimer værktøjslinie</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="682"/>
         <location filename="onmainwindow.cpp" line="1987"/>
-        <location filename="onmainwindow.cpp" line="7376"/>
+        <location filename="onmainwindow.cpp" line="7227"/>
         <source>Session:</source>
         <translation>Session:</translation>
     </message>
@@ -906,7 +906,7 @@
     <message>
         <location filename="onmainwindow.cpp" line="813"/>
         <source>&amp;Options</source>
-        <translation>&amp;Instillinger</translation>
+        <translation>&amp;Indstillinger</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="832"/>
@@ -916,8 +916,8 @@
     <message>
         <location filename="onmainwindow.cpp" line="871"/>
         <location filename="onmainwindow.cpp" line="1980"/>
-        <location filename="onmainwindow.cpp" line="7369"/>
-        <location filename="onmainwindow.cpp" line="9822"/>
+        <location filename="onmainwindow.cpp" line="7220"/>
+        <location filename="onmainwindow.cpp" line="9673"/>
         <source>Login:</source>
         <translation>Login:</translation>
     </message>
@@ -936,36 +936,36 @@
         <location filename="onmainwindow.cpp" line="2372"/>
         <location filename="onmainwindow.cpp" line="2406"/>
         <location filename="onmainwindow.cpp" line="2451"/>
-        <location filename="onmainwindow.cpp" line="3195"/>
-        <location filename="onmainwindow.cpp" line="3373"/>
-        <location filename="onmainwindow.cpp" line="3382"/>
-        <location filename="onmainwindow.cpp" line="3692"/>
-        <location filename="onmainwindow.cpp" line="4169"/>
-        <location filename="onmainwindow.cpp" line="4244"/>
-        <location filename="onmainwindow.cpp" line="4307"/>
-        <location filename="onmainwindow.cpp" line="4340"/>
-        <location filename="onmainwindow.cpp" line="4384"/>
-        <location filename="onmainwindow.cpp" line="4787"/>
-        <location filename="onmainwindow.cpp" line="4813"/>
-        <location filename="onmainwindow.cpp" line="4962"/>
-        <location filename="onmainwindow.cpp" line="5746"/>
-        <location filename="onmainwindow.cpp" line="5782"/>
-        <location filename="onmainwindow.cpp" line="6507"/>
-        <location filename="onmainwindow.cpp" line="6588"/>
-        <location filename="onmainwindow.cpp" line="6832"/>
-        <location filename="onmainwindow.cpp" line="6960"/>
-        <location filename="onmainwindow.cpp" line="7013"/>
-        <location filename="onmainwindow.cpp" line="7319"/>
-        <location filename="onmainwindow.cpp" line="7321"/>
-        <location filename="onmainwindow.cpp" line="7551"/>
-        <location filename="onmainwindow.cpp" line="7599"/>
-        <location filename="onmainwindow.cpp" line="7627"/>
-        <location filename="onmainwindow.cpp" line="8067"/>
-        <location filename="onmainwindow.cpp" line="8082"/>
-        <location filename="onmainwindow.cpp" line="8136"/>
-        <location filename="onmainwindow.cpp" line="8164"/>
-        <location filename="onmainwindow.cpp" line="8189"/>
-        <location filename="onmainwindow.cpp" line="10413"/>
+        <location filename="onmainwindow.cpp" line="3090"/>
+        <location filename="onmainwindow.cpp" line="3268"/>
+        <location filename="onmainwindow.cpp" line="3277"/>
+        <location filename="onmainwindow.cpp" line="3587"/>
+        <location filename="onmainwindow.cpp" line="4057"/>
+        <location filename="onmainwindow.cpp" line="4118"/>
+        <location filename="onmainwindow.cpp" line="4173"/>
+        <location filename="onmainwindow.cpp" line="4206"/>
+        <location filename="onmainwindow.cpp" line="4250"/>
+        <location filename="onmainwindow.cpp" line="4653"/>
+        <location filename="onmainwindow.cpp" line="4679"/>
+        <location filename="onmainwindow.cpp" line="4828"/>
+        <location filename="onmainwindow.cpp" line="5597"/>
+        <location filename="onmainwindow.cpp" line="5633"/>
+        <location filename="onmainwindow.cpp" line="6358"/>
+        <location filename="onmainwindow.cpp" line="6439"/>
+        <location filename="onmainwindow.cpp" line="6683"/>
+        <location filename="onmainwindow.cpp" line="6811"/>
+        <location filename="onmainwindow.cpp" line="6864"/>
+        <location filename="onmainwindow.cpp" line="7170"/>
+        <location filename="onmainwindow.cpp" line="7172"/>
+        <location filename="onmainwindow.cpp" line="7402"/>
+        <location filename="onmainwindow.cpp" line="7450"/>
+        <location filename="onmainwindow.cpp" line="7478"/>
+        <location filename="onmainwindow.cpp" line="7918"/>
+        <location filename="onmainwindow.cpp" line="7933"/>
+        <location filename="onmainwindow.cpp" line="7987"/>
+        <location filename="onmainwindow.cpp" line="8015"/>
+        <location filename="onmainwindow.cpp" line="8040"/>
+        <location filename="onmainwindow.cpp" line="10264"/>
         <source>Error</source>
         <translation>Fejl</translation>
     </message>
@@ -987,7 +987,7 @@
     <message>
         <location filename="onmainwindow.cpp" line="924"/>
         <location filename="onmainwindow.cpp" line="2560"/>
-        <location filename="onmainwindow.cpp" line="10667"/>
+        <location filename="onmainwindow.cpp" line="10518"/>
         <source>Connecting to broker</source>
         <translation>Forbinder til broker</translation>
     </message>
@@ -1003,7 +1003,7 @@
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="1011"/>
-        <location filename="onmainwindow.cpp" line="5065"/>
+        <location filename="onmainwindow.cpp" line="4931"/>
         <source>Not connected</source>
         <translation>Ikke forbundet</translation>
     </message>
@@ -1072,7 +1072,7 @@
         <location filename="onmainwindow.cpp" line="1846"/>
         <location filename="onmainwindow.cpp" line="1876"/>
         <source>Please check LDAP settings</source>
-        <translation>Undersøg LDAP instillinger</translation>
+        <translation>Undersøg LDAP indstillinger</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="1698"/>
@@ -1089,7 +1089,7 @@
         <source>Desktop icons can be configured not to show x2goclient (hidden mode). If you like to use this feature you&apos;ll need to configure login by a gpg key or gpg smart card.
 
 Use x2goclient hidden mode?</source>
-        <translation>Skrivebordsikoner kan instilles til ikke at vise x2goklienten (skjult tilstand). Hvis du vil bruge denne feature skal du konfigurere login med gpg nøgle eller gpg smart card.
+        <translation>Skrivebordsikoner kan indstilles til ikke at vise x2goklienten (skjult tilstand). Hvis du vil bruge denne feature skal du konfigurere login med gpg nøgle eller gpg smart card.
 Slå skjult tilstand til?</translation>
     </message>
     <message>
@@ -1114,7 +1114,7 @@ Slå skjult tilstand til?</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="2578"/>
-        <location filename="onmainwindow.cpp" line="5591"/>
+        <location filename="onmainwindow.cpp" line="5442"/>
         <source>KDE</source>
         <translation>KDE</translation>
     </message>
@@ -1175,15 +1175,15 @@ Public key hash: </translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="2904"/>
-        <location filename="onmainwindow.cpp" line="4096"/>
-        <location filename="onmainwindow.cpp" line="4116"/>
+        <location filename="onmainwindow.cpp" line="3991"/>
+        <location filename="onmainwindow.cpp" line="4011"/>
         <source>Yes</source>
         <translation>Ja</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="2904"/>
-        <location filename="onmainwindow.cpp" line="4097"/>
-        <location filename="onmainwindow.cpp" line="4117"/>
+        <location filename="onmainwindow.cpp" line="3992"/>
+        <location filename="onmainwindow.cpp" line="4012"/>
         <source>No</source>
         <translation>Nej</translation>
     </message>
@@ -1193,529 +1193,529 @@ Public key hash: </translation>
         <translation>Autentifikationen fejlede</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="3188"/>
-        <location filename="onmainwindow.cpp" line="4237"/>
-        <location filename="onmainwindow.cpp" line="4333"/>
-        <location filename="onmainwindow.cpp" line="4366"/>
-        <location filename="onmainwindow.cpp" line="6500"/>
-        <location filename="onmainwindow.cpp" line="6581"/>
-        <location filename="onmainwindow.cpp" line="6953"/>
-        <location filename="onmainwindow.cpp" line="7006"/>
-        <location filename="onmainwindow.cpp" line="8060"/>
+        <location filename="onmainwindow.cpp" line="3083"/>
+        <location filename="onmainwindow.cpp" line="4111"/>
+        <location filename="onmainwindow.cpp" line="4199"/>
+        <location filename="onmainwindow.cpp" line="4232"/>
+        <location filename="onmainwindow.cpp" line="6351"/>
+        <location filename="onmainwindow.cpp" line="6432"/>
+        <location filename="onmainwindow.cpp" line="6804"/>
+        <location filename="onmainwindow.cpp" line="6857"/>
+        <location filename="onmainwindow.cpp" line="7911"/>
         <source>&lt;b&gt;Connection failed&lt;/b&gt;
 </source>
-        <translation>&lt;b&gt;Forbindelsen fejlede&lt;/b&gt;</translation>
+        <translation>&lt;b&gt;Forbindelsen mislykkedes&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="3191"/>
-        <location filename="onmainwindow.cpp" line="4240"/>
-        <location filename="onmainwindow.cpp" line="4336"/>
-        <location filename="onmainwindow.cpp" line="5743"/>
-        <location filename="onmainwindow.cpp" line="5779"/>
-        <location filename="onmainwindow.cpp" line="6503"/>
-        <location filename="onmainwindow.cpp" line="6584"/>
-        <location filename="onmainwindow.cpp" line="6956"/>
-        <location filename="onmainwindow.cpp" line="7009"/>
-        <location filename="onmainwindow.cpp" line="8063"/>
+        <location filename="onmainwindow.cpp" line="3086"/>
+        <location filename="onmainwindow.cpp" line="4114"/>
+        <location filename="onmainwindow.cpp" line="4202"/>
+        <location filename="onmainwindow.cpp" line="5594"/>
+        <location filename="onmainwindow.cpp" line="5630"/>
+        <location filename="onmainwindow.cpp" line="6354"/>
+        <location filename="onmainwindow.cpp" line="6435"/>
+        <location filename="onmainwindow.cpp" line="6807"/>
+        <location filename="onmainwindow.cpp" line="6860"/>
+        <location filename="onmainwindow.cpp" line="7914"/>
         <source>&lt;b&gt;Wrong password!&lt;/b&gt;&lt;br&gt;&lt;br&gt;</source>
         <translation>&lt;b&gt;Forkert Kodeord!&lt;/b&gt;&lt;br&gt;&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="3307"/>
+        <location filename="onmainwindow.cpp" line="3202"/>
         <source>unknown</source>
         <translation>ukendt</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="3374"/>
+        <location filename="onmainwindow.cpp" line="3269"/>
         <source>No server availabel</source>
         <translation>Ingen server tilgængelig</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="3383"/>
-        <location filename="onmainwindow.cpp" line="3693"/>
-        <location filename="onmainwindow.cpp" line="4170"/>
-        <location filename="onmainwindow.cpp" line="4308"/>
+        <location filename="onmainwindow.cpp" line="3278"/>
+        <location filename="onmainwindow.cpp" line="3588"/>
+        <location filename="onmainwindow.cpp" line="4058"/>
+        <location filename="onmainwindow.cpp" line="4174"/>
         <source>Server not availabel</source>
         <translation>Server er ikke tilgængelig</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="3923"/>
-        <location filename="onmainwindow.cpp" line="10185"/>
+        <location filename="onmainwindow.cpp" line="3818"/>
+        <location filename="onmainwindow.cpp" line="10036"/>
         <source>Select session:</source>
         <translation>Vælg session:</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="3939"/>
-        <location filename="onmainwindow.cpp" line="4033"/>
-        <location filename="onmainwindow.cpp" line="5187"/>
+        <location filename="onmainwindow.cpp" line="3834"/>
+        <location filename="onmainwindow.cpp" line="3928"/>
+        <location filename="onmainwindow.cpp" line="5038"/>
         <source>running</source>
         <translation>kører</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="3941"/>
-        <location filename="onmainwindow.cpp" line="4256"/>
+        <location filename="onmainwindow.cpp" line="3836"/>
+        <location filename="onmainwindow.cpp" line="4130"/>
         <source>suspended</source>
         <translation>suspenderet</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="3947"/>
+        <location filename="onmainwindow.cpp" line="3842"/>
         <source>Desktop</source>
         <translation>Skrivebord</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="3949"/>
+        <location filename="onmainwindow.cpp" line="3844"/>
         <source>single application</source>
         <translation>enkelt applikation</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="3951"/>
+        <location filename="onmainwindow.cpp" line="3846"/>
         <source>shadow session</source>
         <translation>skygge session</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="3984"/>
+        <location filename="onmainwindow.cpp" line="3879"/>
         <source>Information</source>
         <translation>Information</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="3985"/>
+        <location filename="onmainwindow.cpp" line="3880"/>
         <source>No accessible desktop found</source>
         <translation>Intet tilgængeligt skrivebord fundet</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="3998"/>
-        <location filename="onmainwindow.cpp" line="10598"/>
+        <location filename="onmainwindow.cpp" line="3893"/>
+        <location filename="onmainwindow.cpp" line="10449"/>
         <source>Filter</source>
-        <translation>Filter</translation>
+        <translation>Filtrer</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="4005"/>
+        <location filename="onmainwindow.cpp" line="3900"/>
         <source>Select desktop:</source>
         <translation>Vælg skrivebord:</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="4083"/>
-        <location filename="onmainwindow.cpp" line="4103"/>
-        <location filename="onmainwindow.cpp" line="4991"/>
-        <location filename="onmainwindow.cpp" line="5399"/>
+        <location filename="onmainwindow.cpp" line="3978"/>
+        <location filename="onmainwindow.cpp" line="3998"/>
+        <location filename="onmainwindow.cpp" line="4857"/>
+        <location filename="onmainwindow.cpp" line="5250"/>
         <source>Warning</source>
         <translation>Advarsel</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="4084"/>
-        <location filename="onmainwindow.cpp" line="4104"/>
+        <location filename="onmainwindow.cpp" line="3979"/>
+        <location filename="onmainwindow.cpp" line="3999"/>
         <source>Your current color depth is different to the color depth of your x2go-session. This may cause problems reconnecting to this session and in most cases &lt;b&gt;you will loose the session&lt;/b&gt; and have to start a new one! It&apos;s highly recommended to change the color depth of your Display to </source>
-        <translation>Din nuværende farvedybde er anderledes end din x2go sessions farvedybde. Dette kan skabe problemer med at genoptage sessionen og i de fleste tilfælde &lt;b&gt;vil du miste din session&lt;/b&gt; og være nød til at starte påny! det anbefales kraftigt at skifte farvedybden på dit Display til </translation>
+        <translation>Din nuværende farvedybde er anderledes end din x2go sessions farvedybde. Dette kan skabe problemer med at genoptage sessionen og i de fleste tilfælde &lt;b&gt;vil du miste din session&lt;/b&gt; og være nødt til at starte en ny! det anbefales kraftigt at skifte farvedybden på dit Display til </translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="4092"/>
+        <location filename="onmainwindow.cpp" line="3987"/>
         <source>24 or 32</source>
         <translation>24 eller 32</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="4093"/>
-        <location filename="onmainwindow.cpp" line="4113"/>
+        <location filename="onmainwindow.cpp" line="3988"/>
+        <location filename="onmainwindow.cpp" line="4008"/>
         <source> bit and restart your X-server before you reconnect to this x2go-session.&lt;br&gt;Resume this session anyway?</source>
-        <translation> bit og genstarte din X server før du genoptager din x2go session.&lt;br&gt;Vil du fortsætte alligevel?</translation>
+        <translation> bit og genstart din X server før du genoptager din x2go session.&lt;br&gt;Vil du fortsætte alligevel?</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="4195"/>
+        <location filename="onmainwindow.cpp" line="4075"/>
         <source>suspending</source>
         <translation>suspenderer</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="4223"/>
+        <location filename="onmainwindow.cpp" line="4097"/>
         <source>terminating</source>
         <translation>afslutter</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="4369"/>
+        <location filename="onmainwindow.cpp" line="4235"/>
         <source>&lt;b&gt;Wrong Password!&lt;/b&gt;&lt;br&gt;&lt;br&gt;</source>
         <translation>&lt;b&gt;Forkert Kodeord!&lt;/b&gt;&lt;br&gt;&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="4785"/>
-        <location filename="onmainwindow.cpp" line="6830"/>
+        <location filename="onmainwindow.cpp" line="4651"/>
+        <location filename="onmainwindow.cpp" line="6681"/>
         <source>Unable to create folder:</source>
         <translation>Kunne ikke oprette mappe:</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="4811"/>
+        <location filename="onmainwindow.cpp" line="4677"/>
         <source>Unable to write file:</source>
         <translation>Kunne ikke skrive fil:</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="4934"/>
-        <location filename="onmainwindow.cpp" line="9422"/>
+        <location filename="onmainwindow.cpp" line="4800"/>
+        <location filename="onmainwindow.cpp" line="9273"/>
         <source>Attach X2Go window</source>
         <translation>Tilkobl X2Go vindue</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="4960"/>
-        <location filename="onmainwindow.cpp" line="8134"/>
+        <location filename="onmainwindow.cpp" line="4826"/>
+        <location filename="onmainwindow.cpp" line="7985"/>
         <source>Unable to create SSL tunnel:
 </source>
         <translation>Kunne ikke oprette SSL tunnel:</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="4989"/>
+        <location filename="onmainwindow.cpp" line="4855"/>
         <source>Unable to create SSL Tunnel:
 </source>
         <translation>Kunne ikke oprette SSL Tunnel:</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="5152"/>
+        <location filename="onmainwindow.cpp" line="5003"/>
         <source>Finished</source>
         <translation>Afsluttet</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="5176"/>
+        <location filename="onmainwindow.cpp" line="5027"/>
         <source>starting</source>
         <translation>starter</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="5180"/>
+        <location filename="onmainwindow.cpp" line="5031"/>
         <source>resuming</source>
         <translation>fortsætter</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="5243"/>
-        <location filename="onmainwindow.cpp" line="5515"/>
-        <location filename="onmainwindow.cpp" line="5533"/>
+        <location filename="onmainwindow.cpp" line="5094"/>
+        <location filename="onmainwindow.cpp" line="5366"/>
+        <location filename="onmainwindow.cpp" line="5384"/>
         <source>Connection timeout, aborting</source>
-        <translation>Forbindelsestimeout, aflsutter</translation>
+        <translation>Forbindelsestimeout, afslutter</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="5244"/>
+        <location filename="onmainwindow.cpp" line="5095"/>
         <source>aborting</source>
         <translation>afslutter</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="5400"/>
+        <location filename="onmainwindow.cpp" line="5251"/>
         <source>Are you sure you want to terminate this session?
 Unsaved documents will be lost</source>
         <translation>Er du sikker på du vil afslutte denne session?
 Ugemte dokumenter vil gå tabt</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="5483"/>
+        <location filename="onmainwindow.cpp" line="5334"/>
         <source>Session</source>
         <translation>Session</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="5485"/>
-        <location filename="onmainwindow.cpp" line="10266"/>
-        <location filename="onmainwindow.cpp" line="10288"/>
+        <location filename="onmainwindow.cpp" line="5336"/>
+        <location filename="onmainwindow.cpp" line="10117"/>
+        <location filename="onmainwindow.cpp" line="10139"/>
         <source>Display</source>
         <translation>Display</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="5487"/>
-        <location filename="onmainwindow.cpp" line="10277"/>
+        <location filename="onmainwindow.cpp" line="5338"/>
+        <location filename="onmainwindow.cpp" line="10128"/>
         <source>Creation time</source>
         <translation>Skabelsestid</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="5740"/>
-        <location filename="onmainwindow.cpp" line="5776"/>
+        <location filename="onmainwindow.cpp" line="5591"/>
+        <location filename="onmainwindow.cpp" line="5627"/>
         <source>&lt;b&gt;Connection failed&lt;/b&gt;
 :
 </source>
-        <translation>&lt;b&gt;Forbindelse fejlede&lt;/b&gt;
+        <translation>&lt;b&gt;Forbindelse mislykkedes&lt;/b&gt;
 :
 </translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="6137"/>
+        <location filename="onmainwindow.cpp" line="5988"/>
         <source> (can&apos;t open file)</source>
         <translation> (kan ikke åbne fil)</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="6148"/>
-        <location filename="onmainwindow.cpp" line="6158"/>
-        <location filename="onmainwindow.cpp" line="6168"/>
+        <location filename="onmainwindow.cpp" line="5999"/>
+        <location filename="onmainwindow.cpp" line="6009"/>
+        <location filename="onmainwindow.cpp" line="6019"/>
         <source> (file not exists)</source>
         <translation> (fil eksisterer ikke)</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="6192"/>
+        <location filename="onmainwindow.cpp" line="6043"/>
         <source> (directory not exists)</source>
         <translation> (mappe eksisterer ikke)</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="6220"/>
+        <location filename="onmainwindow.cpp" line="6071"/>
         <source>wrong value for argument&quot;--link&quot;</source>
         <translation>Ugyldig værdi for &quot;--link&quot; argumentet</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="6238"/>
+        <location filename="onmainwindow.cpp" line="6089"/>
         <source>wrong value for argument&quot;--sound&quot;</source>
         <translation>Ugyldig værdi for &quot;--sound&quot; argumentet</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="6255"/>
-        <location filename="onmainwindow.cpp" line="6266"/>
+        <location filename="onmainwindow.cpp" line="6106"/>
+        <location filename="onmainwindow.cpp" line="6117"/>
         <source>wrong value for argument&quot;--geometry&quot;</source>
         <translation>Ugyldig værdi for &quot;--geometry&quot; argumentet</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="6284"/>
+        <location filename="onmainwindow.cpp" line="6135"/>
         <source>wrong value for argument&quot;--set-kbd&quot;</source>
         <translation>Ugyldig værdi for &quot;--set-kbd&quot; argumentet</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="6301"/>
+        <location filename="onmainwindow.cpp" line="6152"/>
         <source>wrong value for argument&quot;--ldap&quot;</source>
         <translation>Ugyldig værdi for &quot;--ldap&quot; argumentet</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="6323"/>
+        <location filename="onmainwindow.cpp" line="6174"/>
         <source>wrong value for argument&quot;--ldap1&quot;</source>
         <translation>Ugyldig værdi for &quot;--ldap1&quot; argumentet</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="6342"/>
+        <location filename="onmainwindow.cpp" line="6193"/>
         <source>wrong value for argument&quot;--ldap2&quot;</source>
         <translation>Ugyldig værdi for &quot;--ldap2&quot; argumentet</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="6396"/>
+        <location filename="onmainwindow.cpp" line="6247"/>
         <source>wrong value for argument&quot;--pack&quot;</source>
         <translation>Ugyldig værdi for &quot;--pack&quot; argumentet</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="6404"/>
-        <location filename="onmainwindow.cpp" line="6407"/>
+        <location filename="onmainwindow.cpp" line="6255"/>
+        <location filename="onmainwindow.cpp" line="6258"/>
         <source>wrong parameter: </source>
         <translation>Forkert parameter: </translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="6458"/>
-        <location filename="onmainwindow.cpp" line="6484"/>
+        <location filename="onmainwindow.cpp" line="6309"/>
+        <location filename="onmainwindow.cpp" line="6335"/>
         <source>Options</source>
-        <translation>Instillinger</translation>
+        <translation>Indstillinger</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="6463"/>
+        <location filename="onmainwindow.cpp" line="6314"/>
         <source>Available pack methodes:</source>
         <translation>Tilgængelige pakkemetoder:</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="7251"/>
+        <location filename="onmainwindow.cpp" line="7102"/>
         <source>Support</source>
         <translation>Support</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="7256"/>
+        <location filename="onmainwindow.cpp" line="7107"/>
         <source>&lt;/b&gt;&lt;br&gt; (C. 2006-2012 &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing)&lt;br&gt;</source>
         <translation>&lt;/b&gt;&lt;br&gt; (C. 2006-2012 &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing)&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="7260"/>
+        <location filename="onmainwindow.cpp" line="7111"/>
         <source>&lt;br&gt;x2goplugin mode was sponsored by &lt;a href=&quot;http://www.foss-group.de/&quot;&gt;FOSS-Group GmbH(Freiburg)&lt;/a&gt;&lt;br&gt;</source>
         <translation>&lt;br&gt;x2goplugin mode blev sponsoreret af &lt;a href=&quot;http://www.foss-group.de/&quot;&gt;FOSS-Group GmbH(Freiburg)&lt;/a&gt;&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="7264"/>
+        <location filename="onmainwindow.cpp" line="7115"/>
         <source>&lt;br&gt;Client for use with the X2Go network based computing environment. This Client will be able to connect to X2Go server(s) and start, stop, resume and terminate (running) desktop sessions. X2Go Client stores different server connections and may automatically request authentication data from LDAP directories. Furthermore it can be used as fullscreen loginscreen (replacement for loginmanager like xdm). Please visit x2go.org for further information.</source>
         <translation>&lt;br&gt;Klient til brug med X2go&apos;s netværksbaserede computermiljø. Denne klient vil kunne forbinde til X2go servere og starte, stoppe, fortsætte og afslutte (igangværende) skrivebordssessioner. X2Go-klienten lagrer forskellige server forbindelser og kan automatisk lave forespørgsler til LDAP tjenester om autentificeringsdata. Den kan desuden bruges som fuldskærmslogin (erstatning for loginmanagers som xdm) Besøg venligst x2go.org for yderligere information.</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="7277"/>
+        <location filename="onmainwindow.cpp" line="7128"/>
         <source>&lt;b&gt;X2Go client V. </source>
         <translation>&lt;b&gt;X2Go client V. </translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="7322"/>
+        <location filename="onmainwindow.cpp" line="7173"/>
         <source>Please check LDAP Settings</source>
-        <translation>Undersøg venligst dine LDAP instillinger</translation>
+        <translation>Undersøg venligst dine LDAP indstillinger</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="7552"/>
+        <location filename="onmainwindow.cpp" line="7403"/>
         <source>No valid card found</source>
         <translation>Intet gyldigt kort fundet</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="7600"/>
+        <location filename="onmainwindow.cpp" line="7451"/>
         <source>This card is unknown by X2Go system</source>
         <translation>X2Go systemet kan ikke genkende dette kort</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="7628"/>
+        <location filename="onmainwindow.cpp" line="7479"/>
         <source>Unable to create file: </source>
         <translation>Ikke i stand til at skabe fil: </translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="7896"/>
+        <location filename="onmainwindow.cpp" line="7747"/>
         <source>Can&apos;t connect to X server
 Please check your settings</source>
         <translation>Kan ikke forbinde til x server
-Undersøg venligst instillingerne</translation>
+Undersøg venligst dine indstillinger</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="7897"/>
+        <location filename="onmainwindow.cpp" line="7748"/>
         <source>Can&apos;t start X server
 Please check your settings</source>
         <translation>Kan ikke starte x server
-Undersøg venligst instillingerne</translation>
+Undersøg venligst dine indstillinger</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="7911"/>
-        <location filename="onmainwindow.cpp" line="8557"/>
-        <location filename="onmainwindow.cpp" line="8585"/>
+        <location filename="onmainwindow.cpp" line="7762"/>
+        <location filename="onmainwindow.cpp" line="8408"/>
+        <location filename="onmainwindow.cpp" line="8436"/>
         <source>Can&apos;t start X Server
 Please check your installation</source>
         <translation>Kan ikke starte x server
 Undersøg venligst din installation</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="8083"/>
+        <location filename="onmainwindow.cpp" line="7934"/>
         <source>Unable to execute: </source>
         <translation>Kunne ikke eksekvere: </translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="8099"/>
+        <location filename="onmainwindow.cpp" line="7950"/>
         <source>Remote server does not support file system export through SSH Tunnel
 Please update to a newer x2goserver package</source>
         <translation>Fjernserveren understøtter ikke filsystemseksportering igennem en SSH Tunnel
 Opdater venligst til en nyere version af x2goserver pakken</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="8163"/>
+        <location filename="onmainwindow.cpp" line="8014"/>
         <source>Unable to read :
 </source>
         <translation>Kunne ikke læse :</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="8188"/>
+        <location filename="onmainwindow.cpp" line="8039"/>
         <source>Unable to write :
 </source>
         <translation>Kunne ikke skrive :</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="8276"/>
+        <location filename="onmainwindow.cpp" line="8127"/>
         <source>WINDOWS-1252</source>
         <translation>WINDOWS-1252</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="8288"/>
+        <location filename="onmainwindow.cpp" line="8139"/>
         <source>ISO8859-1</source>
         <translation>ISO8859-1</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="9511"/>
+        <location filename="onmainwindow.cpp" line="9362"/>
         <source>X2Go Session</source>
         <translation>X2Go Session</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="9693"/>
+        <location filename="onmainwindow.cpp" line="9544"/>
         <source>wrong value for argument&quot;speed&quot;</source>
         <translation>Ugyldig værdi for &quot;speed&quot; argumentet</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="9823"/>
+        <location filename="onmainwindow.cpp" line="9674"/>
         <source>Password:</source>
         <translation>Kodeord:</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="9824"/>
+        <location filename="onmainwindow.cpp" line="9675"/>
         <source>Keyboard layout:</source>
         <translation>Tastatur layout:</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="9865"/>
+        <location filename="onmainwindow.cpp" line="9716"/>
         <source>Ok</source>
         <translation>Ok</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="9867"/>
-        <location filename="onmainwindow.cpp" line="10189"/>
-        <location filename="onmainwindow.cpp" line="10191"/>
+        <location filename="onmainwindow.cpp" line="9718"/>
+        <location filename="onmainwindow.cpp" line="10040"/>
+        <location filename="onmainwindow.cpp" line="10042"/>
         <source>Cancel</source>
         <translation>Annuller</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="10004"/>
+        <location filename="onmainwindow.cpp" line="9855"/>
         <source>&lt;b&gt;Session ID:&lt;br&gt;Server:&lt;br&gt;Username:&lt;br&gt;Display:&lt;br&gt;Creation time:&lt;br&gt;Status:&lt;/b&gt;</source>
         <translation>&lt;b&gt;Sessions ID:&lt;br&gt;Server:&lt;br&gt;Brugernavn:&lt;br&gt;Display:&lt;br&gt;Skabelsestid:&lt;br&gt;Status:&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="10014"/>
+        <location filename="onmainwindow.cpp" line="9865"/>
         <source>Applications...</source>
         <translation>Applikationer...</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="10027"/>
+        <location filename="onmainwindow.cpp" line="9878"/>
         <source>Abort</source>
         <translation>Afbryd</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="10039"/>
+        <location filename="onmainwindow.cpp" line="9890"/>
         <source>Show details</source>
         <translation>Vis detaljer</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="10187"/>
+        <location filename="onmainwindow.cpp" line="10038"/>
         <source>Resume</source>
         <translation>Fortsæt</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="10199"/>
+        <location filename="onmainwindow.cpp" line="10050"/>
         <source>New</source>
         <translation>Ny</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="10202"/>
+        <location filename="onmainwindow.cpp" line="10053"/>
         <source>Full access</source>
         <translation>Fuld adgang</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="10205"/>
+        <location filename="onmainwindow.cpp" line="10056"/>
         <source>View only</source>
         <translation>Kun synlig</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="10268"/>
+        <location filename="onmainwindow.cpp" line="10119"/>
         <source>Status</source>
         <translation>Status</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="10270"/>
+        <location filename="onmainwindow.cpp" line="10121"/>
         <source>Command</source>
         <translation>Kommando</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="10272"/>
+        <location filename="onmainwindow.cpp" line="10123"/>
         <source>Type</source>
         <translation>Type</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="10274"/>
+        <location filename="onmainwindow.cpp" line="10125"/>
         <source>Server</source>
         <translation>Server</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="10279"/>
+        <location filename="onmainwindow.cpp" line="10130"/>
         <source>Client IP</source>
         <translation>Klient IP</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="10281"/>
+        <location filename="onmainwindow.cpp" line="10132"/>
         <source>Session ID</source>
         <translation>Sessions ID</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="10285"/>
+        <location filename="onmainwindow.cpp" line="10136"/>
         <source>User</source>
         <translation>Bruger</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="10316"/>
+        <location filename="onmainwindow.cpp" line="10167"/>
         <source>Only my desktops</source>
         <translation>Kun mine skriveborde</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="10414"/>
+        <location filename="onmainwindow.cpp" line="10265"/>
         <source>sshd not started, you&apos;ll need sshd for printing and file sharing
 you can install sshd with
 &lt;b&gt;sudo apt-get install openssh-server&lt;/b&gt;</source>
@@ -1724,12 +1724,12 @@ du kan installere sshd med
 &lt;b&gt;sudo apt-get install openssh-server&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="10485"/>
+        <location filename="onmainwindow.cpp" line="10336"/>
         <source>Restore toolbar</source>
         <translation>Gendan værktøjslinie</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="10530"/>
+        <location filename="onmainwindow.cpp" line="10381"/>
         <source>&lt;br&gt;&lt;b&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;Click this button&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;to restore toolbar&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/b&gt;&lt;br&gt;</source>
         <translation>&lt;br&gt;&lt;b&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;Klik på denne knap&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;for at gendanne værktøjslinien&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/b&gt;&lt;br&gt;</translation>
     </message>
@@ -1754,7 +1754,7 @@ du kan installere sshd med
     <message>
         <location filename="printdialog.cpp" line="56"/>
         <source>You may reactivate this dialog using the x2goclient settings dialog (Menu -&gt; Options -&gt; Settings)</source>
-        <translation>Du kan reaktivere denne dialog i x2goclient instillingsdialogen (Menu -&gt; Instinger -&gt; Instillinger</translation>
+        <translation>Du kan reaktivere denne dialog i x2goclient indstillingsdialogen (Menu -&gt; Instinger -&gt; Indstillinger</translation>
     </message>
 </context>
 <context>
@@ -1803,7 +1803,7 @@ du kan installere sshd med
     <message>
         <location filename="printwidget.ui" line="63"/>
         <source>Print settings</source>
-        <translation>Printerinstillinger</translation>
+        <translation>Printerindstillinger</translation>
     </message>
     <message>
         <location filename="printwidget.ui" line="69"/>
@@ -1830,7 +1830,7 @@ du kan installere sshd med
     <message>
         <location filename="printwidget.ui" line="147"/>
         <source>Viewer settings</source>
-        <translation>Fremviser instillinger</translation>
+        <translation>Fremviser indstillinger</translation>
     </message>
     <message>
         <location filename="printwidget.ui" line="153"/>
@@ -1855,7 +1855,7 @@ du kan installere sshd med
     <message>
         <location filename="printwidget.cpp" line="53"/>
         <source>Please configure your client side printing settings.&lt;br&gt;&lt;br&gt;If you want to print the created file, you&apos;ll need an external application. Typically you can use &lt;a href=&quot;http://pages.cs.wisc.edu/~ghost/doc/GPL/index.htm&quot;&gt;ghostprint&lt;/a&gt; and &lt;a href=&quot;http://pages.cs.wisc.edu/~ghost/gsview/&quot;&gt;ghostview&lt;/a&gt;&lt;br&gt;You can find  further information &lt;a href=&quot;http://www.x2go.org/index.php?id=49&quot;&gt;here&lt;/a&gt;.</source>
-        <translation>Konfigurer venligst dine printerinstillinger på klientsiden.&lt;br&gt;&lt;br&gt;Hvis du vil udskrive den skabte fil, vil du få brug for en ekstern applikation. Du kan typisk bruge &lt;a href=&quot;http://pages.cs.wisc.edu/~ghost/doc/GPL/index.htm&quot;&gt;ghostprint&lt;/a&gt; og &lt;a href=&quot;http://pages.cs.wisc.edu/~ghost/gsview/&quot;&gt;ghostview&lt;/a&gt;&lt;br&gt;Du kan finde yderligere informationer &lt;a href=&quot;http://www.x2go.org/index.php?id=49&quot;&gt;her&lt;/a&gt;.</translation>
+        <translation>Konfigurer venligst dine printerindstillinger på klientsiden.&lt;br&gt;&lt;br&gt;Hvis du vil udskrive den skabte fil, vil du få brug for en ekstern applikation. Du kan typisk bruge &lt;a href=&quot;http://pages.cs.wisc.edu/~ghost/doc/GPL/index.htm&quot;&gt;ghostprint&lt;/a&gt; og &lt;a href=&quot;http://pages.cs.wisc.edu/~ghost/gsview/&quot;&gt;ghostview&lt;/a&gt;&lt;br&gt;Du kan finde yderligere informationer &lt;a href=&quot;http://www.x2go.org/index.php?id=49&quot;&gt;her&lt;/a&gt;.</translation>
     </message>
 </context>
 <context>
@@ -1919,7 +1919,7 @@ lpr -P hp_laserjet</translation>
     <message>
         <location filename="printercmddialog.ui" line="115"/>
         <source>Specify path as program parameter</source>
-        <translation>Specifier sti som programparameter</translation>
+        <translation>Specificer sti som programparameter</translation>
     </message>
     <message>
         <location filename="printercmddialog.cpp" line="37"/>
@@ -1996,71 +1996,63 @@ f.eks:
     </message>
     <message>
         <location filename="sessionbutton.cpp" line="341"/>
-        <location filename="sessionbutton.cpp" line="383"/>
-        <location filename="sessionbutton.cpp" line="667"/>
+        <location filename="sessionbutton.cpp" line="379"/>
+        <location filename="sessionbutton.cpp" line="651"/>
         <source>RDP connection</source>
         <translation>RDP forbindelse</translation>
     </message>
     <message>
         <location filename="sessionbutton.cpp" line="342"/>
-        <location filename="sessionbutton.cpp" line="389"/>
-        <location filename="sessionbutton.cpp" line="673"/>
+        <location filename="sessionbutton.cpp" line="385"/>
+        <location filename="sessionbutton.cpp" line="657"/>
         <source>XDMCP</source>
         <translation>XDMCP</translation>
     </message>
     <message>
         <location filename="sessionbutton.cpp" line="343"/>
-        <location filename="sessionbutton.cpp" line="374"/>
-        <location filename="sessionbutton.cpp" line="661"/>
+        <location filename="sessionbutton.cpp" line="373"/>
+        <location filename="sessionbutton.cpp" line="645"/>
         <source>Connection to local desktop</source>
         <translation>Forbindelse til lokalt skrivebord</translation>
     </message>
     <message>
         <location filename="sessionbutton.cpp" line="344"/>
-        <location filename="sessionbutton.cpp" line="394"/>
-        <location filename="sessionbutton.cpp" line="704"/>
+        <location filename="sessionbutton.cpp" line="390"/>
+        <location filename="sessionbutton.cpp" line="688"/>
         <source>Published applications</source>
         <translation>Udgivne Programmer</translation>
     </message>
     <message>
-        <location filename="sessionbutton.cpp" line="418"/>
-        <location filename="sessionbutton.cpp" line="436"/>
-        <location filename="sessionbutton.cpp" line="725"/>
+        <location filename="sessionbutton.cpp" line="414"/>
+        <location filename="sessionbutton.cpp" line="431"/>
+        <location filename="sessionbutton.cpp" line="709"/>
         <source>fullscreen</source>
         <translation>Fuldskærm</translation>
     </message>
     <message>
-        <location filename="sessionbutton.cpp" line="423"/>
-        <location filename="sessionbutton.cpp" line="446"/>
-        <location filename="sessionbutton.cpp" line="450"/>
-        <location filename="sessionbutton.cpp" line="738"/>
-        <location filename="sessionbutton.cpp" line="741"/>
+        <location filename="sessionbutton.cpp" line="418"/>
+        <location filename="sessionbutton.cpp" line="441"/>
+        <location filename="sessionbutton.cpp" line="445"/>
+        <location filename="sessionbutton.cpp" line="715"/>
+        <location filename="sessionbutton.cpp" line="718"/>
         <source>Display </source>
         <translation>Display </translation>
     </message>
     <message>
-        <location filename="sessionbutton.cpp" line="431"/>
-        <location filename="sessionbutton.cpp" line="471"/>
+        <location filename="sessionbutton.cpp" line="426"/>
+        <location filename="sessionbutton.cpp" line="466"/>
         <source>window</source>
         <translation>vindue</translation>
     </message>
     <message>
-        <location filename="sessionbutton.cpp" line="478"/>
-        <location filename="sessionbutton.cpp" line="482"/>
-        <location filename="sessionbutton.cpp" line="483"/>
-        <location filename="sessionbutton.cpp" line="731"/>
-        <source>Maximum</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="sessionbutton.cpp" line="490"/>
-        <location filename="sessionbutton.cpp" line="620"/>
+        <location filename="sessionbutton.cpp" line="474"/>
+        <location filename="sessionbutton.cpp" line="604"/>
         <source>Enabled</source>
         <translation>Aktiveret</translation>
     </message>
     <message>
-        <location filename="sessionbutton.cpp" line="492"/>
-        <location filename="sessionbutton.cpp" line="622"/>
+        <location filename="sessionbutton.cpp" line="476"/>
+        <location filename="sessionbutton.cpp" line="606"/>
         <source>Disabled</source>
         <translation>Deaktiveret</translation>
     </message>
@@ -2080,7 +2072,7 @@ f.eks:
     <message>
         <location filename="sessionmanagedialog.cpp" line="42"/>
         <source>&amp;Session preferences</source>
-        <translation>&amp;Sessionsinstilliger</translation>
+        <translation>&amp;Sessionsindstilliger</translation>
     </message>
     <message>
         <location filename="sessionmanagedialog.cpp" line="43"/>
@@ -2202,7 +2194,7 @@ f.eks:
     <message>
         <location filename="sessionwidget.cpp" line="146"/>
         <source>Advanced options...</source>
-        <translation>Avancerede instillinger...</translation>
+        <translation>Avancerede indstillinger...</translation>
     </message>
     <message>
         <location filename="sessionwidget.cpp" line="158"/>
@@ -2291,139 +2283,139 @@ f.eks:
         <translation>Lyd</translation>
     </message>
     <message>
-        <location filename="settingswidget.cpp" line="49"/>
+        <location filename="settingswidget.cpp" line="48"/>
         <source>RDP Client</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingswidget.cpp" line="61"/>
+        <location filename="settingswidget.cpp" line="59"/>
         <source>Fullscreen</source>
         <translation>Fuldskærm</translation>
     </message>
     <message>
-        <location filename="settingswidget.cpp" line="63"/>
+        <location filename="settingswidget.cpp" line="61"/>
         <source>Custom</source>
         <translation>Tilpasset</translation>
     </message>
     <message>
-        <location filename="settingswidget.cpp" line="65"/>
+        <location filename="settingswidget.cpp" line="63"/>
         <source>Window</source>
         <translation>Vindue</translation>
     </message>
     <message>
-        <location filename="settingswidget.cpp" line="67"/>
+        <location filename="settingswidget.cpp" line="65"/>
         <source>Use whole display</source>
         <translation>Bruge hele displayet</translation>
     </message>
     <message>
-        <location filename="settingswidget.cpp" line="69"/>
+        <location filename="settingswidget.cpp" line="66"/>
         <source>Maximum available</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingswidget.cpp" line="80"/>
+        <location filename="settingswidget.cpp" line="75"/>
         <source>Set display DPI</source>
         <translation>Sæt display DPI</translation>
     </message>
     <message>
-        <location filename="settingswidget.cpp" line="85"/>
+        <location filename="settingswidget.cpp" line="80"/>
         <source>Xinerama extension (support for two or more physical displays)</source>
         <translation>Xinerama udvidelse (understøtter to eller flere fysiske displays)</translation>
     </message>
     <message>
-        <location filename="settingswidget.cpp" line="101"/>
+        <location filename="settingswidget.cpp" line="96"/>
         <source>Width:</source>
         <translation>Bredde:</translation>
     </message>
     <message>
-        <location filename="settingswidget.cpp" line="104"/>
+        <location filename="settingswidget.cpp" line="99"/>
         <source>Height:</source>
         <translation>Højde:</translation>
     </message>
     <message>
-        <location filename="settingswidget.cpp" line="114"/>
+        <location filename="settingswidget.cpp" line="107"/>
         <source>&amp;Display:</source>
         <translation>&amp;Display:</translation>
     </message>
     <message>
-        <location filename="settingswidget.cpp" line="116"/>
+        <location filename="settingswidget.cpp" line="109"/>
         <source>&amp;Identify all displays</source>
         <translation>&amp;Identificer alle displays</translation>
     </message>
     <message>
-        <location filename="settingswidget.cpp" line="156"/>
+        <location filename="settingswidget.cpp" line="149"/>
         <source>Keep current keyboard Settings</source>
-        <translation>Behold nuværende tastaturinstillinger</translation>
+        <translation>Behold nuværende tastaturindstillinger</translation>
     </message>
     <message>
-        <location filename="settingswidget.cpp" line="166"/>
+        <location filename="settingswidget.cpp" line="159"/>
         <source>Keyboard layout:</source>
         <translation>Tastatur layout:</translation>
     </message>
     <message>
-        <location filename="settingswidget.cpp" line="168"/>
+        <location filename="settingswidget.cpp" line="161"/>
         <source>Keyboard model:</source>
         <translation>Tastaturmodel:</translation>
     </message>
     <message>
-        <location filename="settingswidget.cpp" line="179"/>
+        <location filename="settingswidget.cpp" line="172"/>
         <source>Enable sound support</source>
         <translation>Aktiver lydsupport</translation>
     </message>
     <message>
-        <location filename="settingswidget.cpp" line="188"/>
+        <location filename="settingswidget.cpp" line="181"/>
         <source>Start sound daemon</source>
-        <translation>Start lyddaemon</translation>
+        <translation>Start Lyddaemon</translation>
     </message>
     <message>
-        <location filename="settingswidget.cpp" line="190"/>
+        <location filename="settingswidget.cpp" line="183"/>
         <source>Use running sound daemon</source>
-        <translation>Brug kørende lyddaemon</translation>
+        <translation>Brug kørende Lyddaemon</translation>
     </message>
     <message>
-        <location filename="settingswidget.cpp" line="192"/>
+        <location filename="settingswidget.cpp" line="185"/>
         <source>Use SSH port forwarding to tunnel
 sound system connections through firewalls</source>
         <translation>brug SSH port forwarding til at føre
 lydsystemets forbindelse igennem firewalls</translation>
     </message>
     <message>
-        <location filename="settingswidget.cpp" line="194"/>
+        <location filename="settingswidget.cpp" line="187"/>
         <source>Use default sound port</source>
         <translation>Brug standard lydport</translation>
     </message>
     <message>
-        <location filename="settingswidget.cpp" line="201"/>
+        <location filename="settingswidget.cpp" line="194"/>
         <source>Sound port:</source>
         <translation>Lydport:</translation>
     </message>
     <message>
-        <location filename="settingswidget.cpp" line="228"/>
+        <location filename="settingswidget.cpp" line="221"/>
         <source>Client side printing support</source>
         <translation>Support til udskrifter på klientsiden</translation>
     </message>
     <message>
-        <location filename="settingswidget.cpp" line="252"/>
+        <location filename="settingswidget.cpp" line="247"/>
         <source>Additional parameters:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingswidget.cpp" line="253"/>
+        <location filename="settingswidget.cpp" line="248"/>
         <source>Command line:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingswidget.cpp" line="642"/>
+        <location filename="settingswidget.cpp" line="635"/>
         <source>us</source>
         <translation>us</translation>
     </message>
     <message>
-        <location filename="settingswidget.cpp" line="643"/>
+        <location filename="settingswidget.cpp" line="636"/>
         <source>pc105/us</source>
         <translation>pc105/us</translation>
     </message>
     <message>
-        <location filename="settingswidget.cpp" line="757"/>
+        <location filename="settingswidget.cpp" line="748"/>
         <source>password</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2597,12 +2589,12 @@ lydsystemets forbindelse igennem firewalls</translation>
     <message>
         <location filename="sshprocess.cpp" line="97"/>
         <source>Error creating socket</source>
-        <translation>fejl i skabelse af socket</translation>
+        <translation>Fejl i skabelse af socket</translation>
     </message>
     <message>
         <location filename="sshprocess.cpp" line="115"/>
         <source>Error binding </source>
-        <translation>fejl i binding</translation>
+        <translation>Fejl i binding</translation>
     </message>
 </context>
 <context>
@@ -2663,7 +2655,7 @@ lydsystemets forbindelse igennem firewalls</translation>
     <message>
         <location filename="xsettingsui.ui" line="125"/>
         <source>X-Server command line options</source>
-        <translation>X-Server kommandolinie parametre</translation>
+        <translation>X-Server Kommandolinie parametre</translation>
     </message>
     <message>
         <location filename="xsettingsui.ui" line="131"/>
