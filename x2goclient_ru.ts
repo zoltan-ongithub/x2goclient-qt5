@@ -2517,7 +2517,7 @@ Example:
         <location filename="sessionbutton.cpp" line="483"/>
         <location filename="sessionbutton.cpp" line="731"/>
         <source>Maximum</source>
-        <translation type="unfinished"></translation>
+        <translation>Максимальное</translation>
     </message>
     <message>
         <location filename="sessionbutton.cpp" line="490"/>
@@ -2764,7 +2764,7 @@ Example:
     <message>
         <location filename="sessionwidget.cpp" line="233"/>
         <source>RDP port:</source>
-        <translation type="unfinished"></translation>
+        <translation>RDP порт:</translation>
     </message>
     <message>
         <location filename="sessionwidget.cpp" line="249"/>
@@ -2853,7 +2853,7 @@ Example:
     <message>
         <location filename="settingswidget.cpp" line="49"/>
         <source>RDP Client</source>
-        <translation type="unfinished"></translation>
+        <translation>Клиент RDP</translation>
     </message>
     <message>
         <location filename="settingswidget.cpp" line="61"/>
@@ -2878,7 +2878,7 @@ Example:
     <message>
         <location filename="settingswidget.cpp" line="69"/>
         <source>Maximum available</source>
-        <translation type="unfinished"></translation>
+        <translation>Максимально доступное</translation>
     </message>
     <message>
         <location filename="settingswidget.cpp" line="80"/>
@@ -2965,12 +2965,12 @@ sound system connections through firewalls</source>
     <message>
         <location filename="settingswidget.cpp" line="252"/>
         <source>Additional parameters:</source>
-        <translation type="unfinished"></translation>
+        <translation>Дополнительные параметры:</translation>
     </message>
     <message>
         <location filename="settingswidget.cpp" line="253"/>
         <source>Command line:</source>
-        <translation type="unfinished"></translation>
+        <translation>Командная строка:</translation>
     </message>
     <message>
         <location filename="settingswidget.cpp" line="642"/>
@@ -2985,7 +2985,7 @@ sound system connections through firewalls</source>
     <message>
         <location filename="settingswidget.cpp" line="757"/>
         <source>password</source>
-        <translation type="unfinished"></translation>
+        <translation>пароль</translation>
     </message>
 </context>
 <context>
