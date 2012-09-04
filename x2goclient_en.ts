@@ -2193,10 +2193,8 @@ Example:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="sessionwidget.cpp" line="95"/>
-        <location filename="sessionwidget.cpp" line="237"/>
-        <source>SSH port:</source>
-        <oldsource>SSH port</oldsource>
+        <location filename="sessionwidget.cpp" line="233"/>
+        <source>RDP port:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

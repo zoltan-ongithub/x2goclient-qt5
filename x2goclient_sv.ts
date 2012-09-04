@@ -2239,11 +2239,9 @@ Example:
         <translation>Sökväg till exekverbar fil</translation>
     </message>
     <message>
-        <location filename="sessionwidget.cpp" line="95"/>
-        <location filename="sessionwidget.cpp" line="237"/>
-        <source>SSH port:</source>
-        <oldsource>SSH port</oldsource>
-        <translation type="unfinished">SSH-port:</translation>
+        <location filename="sessionwidget.cpp" line="233"/>
+        <source>RDP port:</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="sessionwidget.cpp" line="249"/>
