@@ -2693,6 +2693,7 @@ Example:
     </message>
     <message>
         <location filename="sessionwidget.cpp" line="95"/>
+        <location filename="sessionwidget.cpp" line="237"/>
         <source>SSH port:</source>
         <translation>SSH порт:</translation>
     </message>
@@ -2761,9 +2762,11 @@ Example:
         <translation>Путь к исполняемому файлу</translation>
     </message>
     <message>
+        <location filename="sessionwidget.cpp" line="95"/>
         <location filename="sessionwidget.cpp" line="237"/>
-        <source>SSH port</source>
-        <translation type="unfinished"></translation>
+        <source>SSH port:</source>
+        <oldsource>SSH port</oldsource>
+        <translation type="unfinished">SSH порт:</translation>
     </message>
     <message>
         <location filename="sessionwidget.cpp" line="249"/>

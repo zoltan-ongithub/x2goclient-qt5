@@ -230,11 +230,11 @@ void SessionWidget::slot_rdpDirectClicked()
     rdpPort->setVisible(isDirectRDP);
     if (isDirectRDP)
     {
-        lPort->setText(("RDP port"));
+        lPort->setText(("RDP port:"));
     }
     else
     {
-        lPort->setText(tr("SSH port"));
+        lPort->setText(tr("SSH port:"));
     }
 
     emit directRDP(isDirectRDP);

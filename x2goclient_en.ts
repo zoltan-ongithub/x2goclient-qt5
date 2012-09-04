@@ -2114,6 +2114,7 @@ Example:
     </message>
     <message>
         <location filename="sessionwidget.cpp" line="95"/>
+        <location filename="sessionwidget.cpp" line="237"/>
         <source>SSH port:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2192,8 +2193,10 @@ Example:
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="sessionwidget.cpp" line="95"/>
         <location filename="sessionwidget.cpp" line="237"/>
-        <source>SSH port</source>
+        <source>SSH port:</source>
+        <oldsource>SSH port</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
