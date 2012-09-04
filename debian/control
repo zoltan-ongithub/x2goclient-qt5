@@ -28,7 +28,8 @@ Depends:
  openssh-client,
  nxproxy
 Recommends:
- openssh-server
+ openssh-server,
+ rdesktop | xfreerdp
 Suggests:
  pinentry-x2go
 Conflicts:
@@ -56,7 +57,7 @@ Depends:
  nxproxy
 Recommends:
  openssh-server,
- rdesktop
+ rdesktop | xfreerdp
 Suggests:
  pinentry-x2go
 Description: X2Go Client (Qt4) as browser plugin
