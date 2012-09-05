@@ -177,7 +177,7 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
 
 #ifdef CFGCLIENT
     QStringList args=QCoreApplication::arguments();
-    for ( int i=1;i<args.size();++i )
+    for ( int i=1; i<args.size(); ++i )
     {
         if ( !parseParameter ( args[i] ) )
         {
@@ -214,7 +214,7 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
 
         homeDir=portableDataPath;
         x2goDebug<<"running in \"portable\" mode\n"<<
-        "Data Dir is "<<portableDataPath;
+                 "Data Dir is "<<portableDataPath;
         QTimer *timer = new QTimer(this);
         connect(timer, SIGNAL(timeout()), this, SLOT(slotCheckPortableDir()));
         timer->start(1000);
@@ -528,7 +528,7 @@ void ONMainWindow::installTranslator()
     if ( !qtTranslator->load ( filename ) )
     {
         x2goDebug<< "Can't load translator "<<
-        filename.toLocal8Bit().data() ;
+                 filename.toLocal8Bit().data() ;
     }
     else
     {
@@ -1124,7 +1124,7 @@ void ONMainWindow::removeAppsFromTray()
     if (!trayIcon)
         return;
     x2goDebug<<"remove apps\n";
-    for (int i=0;i<=Application::OTHER;++i)
+    for (int i=0; i<=Application::OTHER; ++i)
     {
         appMenu[i]->clear();
         appMenu[i]->menuAction()->setVisible(false);
@@ -1180,7 +1180,7 @@ void ONMainWindow::slotResize ( const QSize sz )
             {
                 QList<UserButton*>::iterator it;
                 QList<UserButton*>::iterator end=names.end();
-                for ( it=names.begin();it!=end;it++ )
+                for ( it=names.begin(); it!=end; it++ )
                 {
                     if ( !miniMode )
                         ( *it )->move (
@@ -1197,7 +1197,7 @@ void ONMainWindow::slotResize ( const QSize sz )
                 QList<SessionButton*>::iterator it;
                 QList<SessionButton*>::iterator end=
                     sessions.end();
-                for ( it=sessions.begin();it!=end;it++ )
+                for ( it=sessions.begin(); it!=end; it++ )
                 {
                     if ( !miniMode )
                         ( *it )->move (
@@ -1270,7 +1270,7 @@ void ONMainWindow::closeClient()
     }
     if (useLdap)
     {
-        for (int i=0;i<serverSshConnections.count();++i)
+        for (int i=0; i<serverSshConnections.count(); ++i)
         {
             if (serverSshConnections[i])
             {
@@ -1334,6 +1334,8 @@ void ONMainWindow::closeClient()
 #ifdef Q_OS_WIN
     if ( pulseServer )
     {
+        delete pulseTimer;
+
         x2goDebug<<"terminate pulse";
         pulseServer->kill();
         x2goDebug<<"done\ndelete pulse process";
@@ -1529,7 +1531,7 @@ void ONMainWindow::displayUsers()
     QList<user>::iterator it;
     QList<user>::iterator end=userList.end();
     int i=0;
-    for ( it=userList.begin();it!=end;it++ )
+    for ( it=userList.begin(); it!=end; it++ )
     {
         int val=i+1;
         UserButton* l;
@@ -1708,7 +1710,7 @@ void ONMainWindow::slotPassEnter()
     QString freeServer;
     QString firstServer;
     bool isFirstServerSet=false;
-    for ( ;it!=end;++it )
+    for ( ; it!=end; ++it )
     {
         serv server;
         server.name=LDAPSession::getStringAttrValues (
@@ -1776,7 +1778,7 @@ void ONMainWindow::slotUnameChanged ( const QString& text )
         return;
     QList<UserButton*>::iterator it;
     QList<UserButton*>::iterator endit=names.end();
-    for ( it=names.begin();it!=endit;it++ )
+    for ( it=names.begin(); it!=endit; it++ )
     {
         QString username= ( *it )->username();
         if ( username.indexOf ( text,0,Qt::CaseInsensitive ) ==0 )
@@ -1806,7 +1808,7 @@ void ONMainWindow::slotUnameEntered()
         UserButton* user=NULL;
         QList<UserButton*>::iterator it;
         QList<UserButton*>::iterator endit=names.end();
-        for ( it=names.begin();it!=endit;it++ )
+        for ( it=names.begin(); it!=endit; it++ )
         {
             QString username= ( *it )->username();
             if ( username==text )
@@ -1822,7 +1824,7 @@ void ONMainWindow::slotUnameEntered()
         SessionButton* sess=NULL;
         QList<SessionButton*>::iterator it;
         QList<SessionButton*>::iterator endit=sessions.end();
-        for ( it=sessions.begin();it!=endit;it++ )
+        for ( it=sessions.begin(); it!=endit; it++ )
         {
             QString name= ( *it )->name();
             if ( name==text )
@@ -1882,7 +1884,7 @@ void ONMainWindow::readUsers()
     list<LDAPBinEntry>::iterator it=result.begin();
     list<LDAPBinEntry>::iterator end=result.end();
 
-    for ( ;it!=end;++it )
+    for ( ; it!=end; ++it )
     {
         user u;
         QString uin=LDAPSession::getBinAttrValues (
@@ -1913,7 +1915,7 @@ void ONMainWindow::readUsers()
     if ( defaultUser )
     {
         defaultUser=false;
-        for ( int i=0;i<userList.size();++i )
+        for ( int i=0; i<userList.size(); ++i )
         {
             if ( userList[i].uid ==defaultUserName )
             {
@@ -1963,9 +1965,9 @@ void ONMainWindow::slotConfig()
         if ( !embedMode )
         {
 
-            for ( i=0;i<names.size();++i )
+            for ( i=0; i<names.size(); ++i )
                 names[i]->close();
-            for ( i=0;i<sessions.size();++i )
+            for ( i=0; i<sessions.size(); ++i )
                 sessions[i]->close();
 
             userList.clear();
@@ -2042,13 +2044,13 @@ void ONMainWindow::slotCreateDesktopIcon ( SessionButton* bt )
         cmd="x2goclient --hide";
     QTextStream out ( &file );
     out << "[Desktop Entry]\n"<<
-    "Exec[$e]="<<cmd<<" --sessionid="<<bt->id() <<"\n"<<
-    "Icon="<<sessIcon<<"\n"<<
-    "Name="<<name<<"\n"<<
-    "StartupNotify=true\n"<<
-    "Terminal=false\n"<<
-    "Type=Application\n"<<
-    "X-KDE-SubstituteUID=false\n";
+        "Exec[$e]="<<cmd<<" --sessionid="<<bt->id() <<"\n"<<
+        "Icon="<<sessIcon<<"\n"<<
+        "Name="<<name<<"\n"<<
+        "StartupNotify=true\n"<<
+        "Terminal=false\n"<<
+        "Type=Application\n"<<
+        "X-KDE-SubstituteUID=false\n";
     file.close();
 #else
     QString scrname=QDir::tempPath() +"\\mklnk.vbs";
@@ -2065,17 +2067,17 @@ void ONMainWindow::slotCreateDesktopIcon ( SessionButton* bt )
         args+=" --hide";
     QTextStream out ( &file );
     out << "Set Shell = CreateObject(\"WScript.Shell\")\n"<<
-    "DesktopPath = Shell.SpecialFolders(\"Desktop\")\n"<<
-    "Set link = Shell.CreateShortcut(DesktopPath & \"\\"<<name<<
-    ".lnk\")\n"<<
-    "link.Arguments = \""<<args<<"\"\n"<<
-    "link.Description = \""<<tr ( "X2Go Link to session " ) <<
-    "--"<<name<<"--"<<"\"\n"<<
-    "link.TargetPath = \""<<progname<<"\"\n"<<
-    "link.iconLocation = \""<<progname<<"\"\n"<<
-    "link.WindowStyle = 1\n"<<
-    "link.WorkingDirectory = \""<<workDir<<"\"\n"<<
-    "link.Save\n";
+        "DesktopPath = Shell.SpecialFolders(\"Desktop\")\n"<<
+        "Set link = Shell.CreateShortcut(DesktopPath & \"\\"<<name<<
+        ".lnk\")\n"<<
+        "link.Arguments = \""<<args<<"\"\n"<<
+        "link.Description = \""<<tr ( "X2Go Link to session " ) <<
+        "--"<<name<<"--"<<"\"\n"<<
+        "link.TargetPath = \""<<progname<<"\"\n"<<
+        "link.iconLocation = \""<<progname<<"\"\n"<<
+        "link.WindowStyle = 1\n"<<
+        "link.WorkingDirectory = \""<<workDir<<"\"\n"<<
+        "link.Save\n";
     file.close();
     system ( scrname.toAscii() );
     QFile::remove ( scrname );
@@ -2099,7 +2101,7 @@ void ONMainWindow::slotReadSessions()
         config.key=QString::null;
         config.user=QString::null;
         config.sessiondata=QString::null;
-        for (int i=sessions.count()-1;i>=0;--i)
+        for (int i=sessions.count()-1; i>=0; --i)
         {
             SessionButton* but=sessions.takeAt(i);
             if (but)
@@ -2122,7 +2124,7 @@ void ONMainWindow::slotReadSessions()
         QMessageBox::critical(this,tr("Error"),tr("X2Go sessions not found"));
         close();
     }
-    for ( int i=0;i<slst.size();++i )
+    for ( int i=0; i<slst.size(); ++i )
     {
         if ( slst[i]!="embedded" )
             createBut ( slst[i] );
@@ -2150,7 +2152,7 @@ void ONMainWindow::slotReadSessions()
         defaultSession=false;
         if ( defaultSessionId.length() >0 )
         {
-            for ( int i=0;i<sessions.size();++i )
+            for ( int i=0; i<sessions.size(); ++i )
             {
                 if ( sessions[i]->id() ==defaultSessionId )
                 {
@@ -2162,7 +2164,7 @@ void ONMainWindow::slotReadSessions()
         }
         else
         {
-            for ( int i=0;i<sessions.size();++i )
+            for ( int i=0; i<sessions.size(); ++i )
             {
                 if ( sessions[i]->name() ==defaultSessionName )
                 {
@@ -2235,7 +2237,7 @@ SessionButton* ONMainWindow::createBut ( const QString& id )
 void ONMainWindow::placeButtons()
 {
     qSort ( sessions.begin(),sessions.end(),SessionButton::lessThen );
-    for ( int i=0;i<sessions.size();++i )
+    for ( int i=0; i<sessions.size(); ++i )
     {
         if ( !miniMode )
             sessions[i]->move ( ( users->width()-360 ) /2,
@@ -2511,7 +2513,7 @@ void ONMainWindow::slotSnameChanged ( const QString& text )
         return;
     QList<SessionButton*>::iterator it;
     QList<SessionButton*>::iterator endit=sessions.end();
-    for ( it=sessions.begin();it!=endit;it++ )
+    for ( it=sessions.begin(); it!=endit; it++ )
     {
         QString name= ( *it )->name();
         if ( name.indexOf ( text,0,Qt::CaseInsensitive ) ==0 )
@@ -2731,7 +2733,7 @@ SshMasterConnection* ONMainWindow::startSshConnection ( QString host, QString po
 
     SshMasterConnection* con;
     x2goDebug<<"start new ssh connection to server:"<<host<<":"<<port<<"krb: "<<krbLogin<<endl;
-    for ( int i=0;i<sshEnv.size();++i )
+    for ( int i=0; i<sshEnv.size(); ++i )
     {
 #ifndef Q_OS_WIN
         QStringList args=sshEnv[i].split ( "=" );
@@ -2817,7 +2819,7 @@ void ONMainWindow::slotSshConnectionOk()
 
 SshMasterConnection*  ONMainWindow::findServerSshConnection(QString host)
 {
-    for (int i=0;i<serverSshConnections.count();++i)
+    for (int i=0; i<serverSshConnections.count(); ++i)
     {
         if (serverSshConnections[i])
         {
@@ -2988,7 +2990,7 @@ void ONMainWindow::continueNormalSession()
     SshProcess* proc=new SshProcess ( sshConnection, this );
     connect ( proc,SIGNAL ( sshFinished ( bool,QString,SshProcess* ) ),
               this,SLOT ( slotListSessions ( bool, QString,
-                                             SshProcess* ) ) );
+                          SshProcess* ) ) );
     if ( !shadowSession )
         proc->startNormal ( "export HOSTNAME && x2golistsessions" );
     else
@@ -3262,7 +3264,7 @@ void ONMainWindow::slotListSessions ( bool result,QString output,
                 selectSession ( sessions );
             else
             {
-                for ( int i=0;i<sessions.size();++i )
+                for ( int i=0; i<sessions.size(); ++i )
                 {
                     x2goSession s=getSessionFromString (
                                       sessions[i] );
@@ -3360,7 +3362,7 @@ void ONMainWindow::startNewSession()
         type=defaultKbdType;
         command=defaultCmd;
         shadowSession=false;
-        for ( int j=0;j<x2goServers.size();++j )
+        for ( int j=0; j<x2goServers.size(); ++j )
         {
             if ( x2goServers[j].connOk )
             {
@@ -3645,7 +3647,7 @@ void ONMainWindow::startNewSession()
 
     connect ( proc,SIGNAL ( sshFinished ( bool, QString,SshProcess* ) ),
               this,SLOT ( slotRetResumeSess ( bool,
-                                              QString,SshProcess* ) ) );
+                          QString,SshProcess* ) ) );
 
     proc->startNormal ( cmd );
     passForm->hide();
@@ -3886,7 +3888,7 @@ void ONMainWindow::resumeSession ( const x2goSession& s )
 
     connect ( proc,SIGNAL ( sshFinished ( bool, QString,SshProcess* ) ),
               this,SLOT ( slotRetResumeSess ( bool, QString,
-                                              SshProcess* ) ) );
+                          SshProcess* ) ) );
 
     proc->startNormal ( cmd );
     resumingSession=s;
@@ -3961,7 +3963,7 @@ void ONMainWindow::selectSession ( QStringList& sessions )
             model->setItem ( row,S_IP,item );
             item= new QStandardItem ( s.sessionId );
             model->setItem ( row,S_ID,item );
-            for ( int j=0;j<8;++j )
+            for ( int j=0; j<8; ++j )
             {
                 QString txt=
                     model->index ( row,j ).data().toString();
@@ -4550,7 +4552,7 @@ void ONMainWindow::slotRetResumeSess ( bool result,
 
     connect ( tunnel,SIGNAL ( sshFinished ( bool,  QString,SshProcess* ) ),
               this,SLOT ( slotTunnelFailed ( bool,
-                                             QString,SshProcess* ) ) );
+                          QString,SshProcess* ) ) );
     connect ( tunnel,SIGNAL ( sshTunnelOk() ),
               this,SLOT ( slotTunnelOk() ) );
 
@@ -4753,7 +4755,7 @@ x2goSession ONMainWindow::getSelectedSession()
 {
     QString sessId=sessTv->model()->index ( sessTv->currentIndex().row(),
                                             S_ID ).data().toString();
-    for ( int i=0;i<selectedSessions.size();++i )
+    for ( int i=0; i<selectedSessions.size(); ++i )
     {
         if ( selectedSessions[i].sessionId==sessId )
             return selectedSessions[i];
@@ -4823,10 +4825,10 @@ void ONMainWindow::slotTunnelOk()
     nxroot=cygwinPath ( nxroot );
 #endif
     out << "nx/nx,root="<<nxroot<<",connect=localhost,cookie="<<
-    resumingSession.cookie<<",port="
-    <<localGraphicPort/*resumingSession.grPort*/<<
-    ",errors="<<dirpath<<"/sessions:"<<
-    resumingSession.display;
+        resumingSession.cookie<<",port="
+        <<localGraphicPort/*resumingSession.grPort*/<<
+        ",errors="<<dirpath<<"/sessions:"<<
+        resumingSession.display;
     file.close();
     xmodExecuted=false;
 
@@ -4837,7 +4839,7 @@ void ONMainWindow::slotTunnelOk()
 #if defined ( Q_OS_WIN ) || defined ( Q_OS_DARWIN )
     int dispInd=-1;
 #endif
-    for ( int l=0;l<env.size();++l )
+    for ( int l=0; l<env.size(); ++l )
     {
 // 		x2goDebug<<env[l]<<endl;
         if ( env[l].indexOf ( "X2GO_LIB" ) ==0 )
@@ -5709,8 +5711,8 @@ void ONMainWindow::runCommand()
         connect ( proc,SIGNAL ( sshFinished ( bool, QString,
                                               SshProcess* ) ),
                   this,SLOT ( slotRetRunCommand ( bool,
-                                                  QString,
-                                                  SshProcess* ) ) );
+                              QString,
+                              SshProcess* ) ) );
 
         proc->startNormal ( cmd );
     }
@@ -5760,8 +5762,8 @@ void ONMainWindow::readApplications()
     connect ( proc,SIGNAL ( sshFinished ( bool, QString,
                                           SshProcess* ) ),
               this,SLOT ( slotReadApplications ( bool,
-                                                 QString,
-                                                 SshProcess* ) ) );
+                          QString,
+                          SshProcess* ) ) );
     proc->startNormal ( "x2gogetapps" );
     sbApps->setEnabled(false);
 }
@@ -6520,21 +6522,21 @@ void ONMainWindow::slotGetServers ( bool result, QString output,
     uname->setEnabled ( false );
     u->setEnabled ( false );
     QStringList servers=output.trimmed().split ( '\n' );
-    for ( int i=0;i<servers.size();++i )
+    for ( int i=0; i<servers.size(); ++i )
     {
         QStringList lst=servers[i].simplified().split ( ' ' );
         if ( lst.size() >1 )
         {
-            for ( int j=0;j<x2goServers.size();++j )
+            for ( int j=0; j<x2goServers.size(); ++j )
                 if ( x2goServers[j].name==lst[0] )
                 {
                     x2goServers[j].sess=
                         lst[1].toInt() *
                         x2goServers[j].factor;
                     x2goDebug<<x2goServers[j].name<<
-                    ": sessions "<<
-                    lst[1].toInt() <<
-                    ", multiplied "<<x2goServers[j].sess;
+                             ": sessions "<<
+                             lst[1].toInt() <<
+                             ", multiplied "<<x2goServers[j].sess;
                     break;
                 }
         }
@@ -6549,13 +6551,13 @@ void ONMainWindow::slotGetServers ( bool result, QString output,
     QString passwd;
     QString user=getCurrentUname();
     passwd=getCurrentPass();
-    for (int i=0; i< serverSshConnections.count();++i)
+    for (int i=0; i< serverSshConnections.count(); ++i)
     {
         if (serverSshConnections[i])
             serverSshConnections[i]->disconnectSession();
     }
     serverSshConnections.clear();
-    for ( int j=0;j<x2goServers.size();++j )
+    for ( int j=0; j<x2goServers.size(); ++j )
     {
         QString host=x2goServers[j].name;
         sshPort=x2goServers[j].sshPort;
@@ -6589,7 +6591,7 @@ void ONMainWindow::slotListAllSessions ( bool result,QString output,
                                 QMessageBox::Ok,
                                 QMessageBox::NoButton );
         QString sv=output.split ( ":" ) [0];
-        for ( int j=0;j<x2goServers.size();++j )
+        for ( int j=0; j<x2goServers.size(); ++j )
         {
             if ( x2goServers[j].name==sv )
             {
@@ -6774,7 +6776,7 @@ void ONMainWindow::exportDefaultDirs()
                             ( QVariant ) QString::null ).toString();
             QStringList lst=exd.split ( ";",
                                         QString::SkipEmptyParts );
-            for ( int i=0;i<lst.size();++i )
+            for ( int i=0; i<lst.size(); ++i )
             {
 #ifndef Q_OS_WIN
                 QStringList tails=lst[i].split (
@@ -6974,7 +6976,7 @@ void ONMainWindow::slotCopyKey ( bool result, QString output, SshProcess* proc )
 
 directory* ONMainWindow::getExpDir ( QString key )
 {
-    for ( int i=0;i<exportDir.size();++i )
+    for ( int i=0; i<exportDir.size(); ++i )
     {
         if ( exportDir[i].key==key )
             return &exportDir[i];
@@ -6990,7 +6992,7 @@ void ONMainWindow::slotRetExportDir ( bool result,QString output,
 {
 
     QString key;
-    for ( int i=0;i<exportDir.size();++i )
+    for ( int i=0; i<exportDir.size(); ++i )
         if ( exportDir[i].proc==proc )
         {
             key=exportDir[i].key;
@@ -7088,10 +7090,10 @@ void ONMainWindow::slotExtTimer()
         x2goDebug <<"Wrong permissions on "<<readLoginsFrom <<":"<<endl;
         x2goDebug << ( int ) ( QFile::permissions (
                                    readLoginsFrom+"/." ) )
-        <<"must be"<< ( int ) ( QFile::ReadUser|QFile::WriteUser
-                                |QFile::ExeUser|QFile::ReadOwner|
-                                QFile::WriteOwner|
-                                QFile::ExeOwner ) <<endl;
+                  <<"must be"<< ( int ) ( QFile::ReadUser|QFile::WriteUser
+                                          |QFile::ExeUser|QFile::ReadOwner|
+                                          QFile::WriteOwner|
+                                          QFile::ExeOwner ) <<endl;
         if ( extLogin )
             extTimer->stop();
         return;
@@ -7100,7 +7102,7 @@ void ONMainWindow::slotExtTimer()
     QString logoutDir;
     QDir dir ( readLoginsFrom );
     QStringList list = dir.entryList ( QDir::Files );
-    for ( int i=0;i<list.size();++i )
+    for ( int i=0; i<list.size(); ++i )
     {
         QFile file ( readLoginsFrom+"/"+list[i] );
         if ( !file.open ( QIODevice::ReadOnly | QIODevice::Text ) )
@@ -7122,8 +7124,8 @@ void ONMainWindow::slotExtTimer()
                 if ( args[0]=="logout" )
                 {
                     x2goDebug <<
-                    " I HAVE external logout"<<
-                    endl;
+                              " I HAVE external logout"<<
+                              endl;
                     args[1].replace ( "\n","" );
                     if ( args[1].size() )
                         logoutDir=args[1];
@@ -7161,13 +7163,13 @@ void ONMainWindow::slotExportTimer()
             QFile::ReadOwner|QFile::WriteOwner|QFile::ExeOwner ) )
     {
         x2goDebug <<"Wrong permissions on "<<
-        readExportsFrom <<":"<<endl;
+                  readExportsFrom <<":"<<endl;
         x2goDebug << ( int ) ( QFile::permissions (
                                    readExportsFrom+"/." ) )
-        <<"must be"<< ( int ) ( QFile::ReadUser|QFile::WriteUser
-                                |QFile::ExeUser|QFile::ReadOwner|
-                                QFile::WriteOwner|
-                                QFile::ExeOwner ) <<endl;
+                  <<"must be"<< ( int ) ( QFile::ReadUser|QFile::WriteUser
+                                          |QFile::ExeUser|QFile::ReadOwner|
+                                          QFile::WriteOwner|
+                                          QFile::ExeOwner ) <<endl;
         exportTimer->stop();
         return;
     }
@@ -7178,7 +7180,7 @@ void ONMainWindow::slotExportTimer()
     QString unexpList;
     QString loginDir;
     QString logoutDir;
-    for ( int i=0;i<list.size();++i )
+    for ( int i=0; i<list.size(); ++i )
     {
         QFile file ( readExportsFrom+"/"+list[i] );
         if ( !file.open ( QIODevice::ReadOnly | QIODevice::Text ) )
@@ -7222,7 +7224,7 @@ void ONMainWindow::slotExportTimer()
     QString host=resumingSession.server;
     QString sessionId=resumingSession.sessionId;
 
-    for ( int i=0;i<args.size();++i )
+    for ( int i=0; i<args.size(); ++i )
     {
         SshProcess* sproc=new SshProcess (
             sshConnection, this );
@@ -7328,7 +7330,7 @@ void ONMainWindow::slotRereadUsers()
     list<LDAPBinEntry>::iterator it=result.begin();
     list<LDAPBinEntry>::iterator end=result.end();
 
-    for ( ;it!=end;++it )
+    for ( ; it!=end; ++it )
     {
         user u;
         QString uin=LDAPSession::getBinAttrValues (
@@ -7352,9 +7354,9 @@ void ONMainWindow::slotRereadUsers()
 void ONMainWindow::reloadUsers()
 {
     int i;
-    for ( i=0;i<names.size();++i )
+    for ( i=0; i<names.size(); ++i )
         names[i]->close();
-    for ( i=0;i<sessions.size();++i )
+    for ( i=0; i<sessions.size(); ++i )
         sessions[i]->close();
 
     userList.clear();
@@ -7382,7 +7384,7 @@ void ONMainWindow::reloadUsers()
 
 bool ONMainWindow::findInList ( const QString& uid )
 {
-    for ( int i=0;i<userList.size();++i )
+    for ( int i=0; i<userList.size(); ++i )
     {
         if ( userList[i].uid==uid )
             return true;
@@ -7404,7 +7406,7 @@ void ONMainWindow::setUsersEnabled ( bool enable )
         QList<UserButton*>::iterator endit=names.end();
         if ( !enable )
         {
-            for ( it=names.begin();it!=endit;it++ )
+            for ( it=names.begin(); it!=endit; it++ )
             {
                 QPoint pos= ( *it )->pos();
                 if ( ( pos.y() >upos-height ) &&
@@ -7416,7 +7418,7 @@ void ONMainWindow::setUsersEnabled ( bool enable )
         }
         else
         {
-            for ( it=names.begin();it!=endit;it++ )
+            for ( it=names.begin(); it!=endit; it++ )
             {
                 if ( ! ( *it )->isEnabled() )
                     ( *it )->setEnabled ( true );
@@ -7561,7 +7563,7 @@ void ONMainWindow::slotGpgFinished ( int exitCode,
                                      QProcess::ExitStatus exitStatus )
 {
     x2goDebug<<"gpg finished, exit code:"<<exitCode<<" exit status:"<<
-    exitStatus<<endl;
+             exitStatus<<endl;
     if ( exitStatus==0 )
     {
         QString stdOut ( gpg->readAllStandardOutput() );
@@ -7571,7 +7573,7 @@ void ONMainWindow::slotGpgFinished ( int exitCode,
         QString login;
         QString appId;
         QString authKey;
-        for ( int i=0;i<lines.count();++i )
+        for ( int i=0; i<lines.count(); ++i )
         {
             if ( lines[i].indexOf ( "Application ID" ) !=-1 )
             {
@@ -7634,8 +7636,8 @@ void ONMainWindow::startGPGAgent ( const QString& login, const QString& appId )
     }
     QTextStream out ( &file );
     out << "#!/bin/bash\n\n"
-    "if [ \"$6\" != \"0x0002\" ] && [ \"$6\" != "
-    "\"0x0007\" ]\n\
+        "if [ \"$6\" != \"0x0002\" ] && [ \"$6\" != "
+        "\"0x0007\" ]\n\
 	then\n\
 	kill -9 $_assuan_pipe_connect_pid\n\
 	fi"<<endl;
@@ -7648,7 +7650,7 @@ void ONMainWindow::startGPGAgent ( const QString& login, const QString& appId )
     gpgAgent=new QProcess ( this );
     QStringList arguments;
     arguments<<"--pinentry-program"<<"/usr/bin/pinentry-x2go"<<
-    "--enable-ssh-support"<<"--daemon"<<"--no-detach";
+             "--enable-ssh-support"<<"--daemon"<<"--no-detach";
 
     connect ( gpgAgent,SIGNAL ( finished ( int,QProcess::ExitStatus ) ),
               this,
@@ -8092,7 +8094,7 @@ int ONMainWindow::startSshFsTunnel()
 {
     fsTunReady=false;
     x2goDebug<<"starting fs tunnel for:"<<resumingSession.sessionId<<
-    "\nfs port: "<<resumingSession.fsPort;
+             "\nfs port: "<<resumingSession.fsPort;
 
     if ( resumingSession.fsPort.length() <=0 )
     {
@@ -8113,7 +8115,7 @@ int ONMainWindow::startSshFsTunnel()
     connect ( fsTunnel,SIGNAL ( sshFinished ( bool,
                                 QString,SshProcess* ) ),
               this,SLOT ( slotFsTunnelFailed ( bool,
-                                               QString,SshProcess* ) ) );
+                          QString,SshProcess* ) ) );
 
     connect ( fsTunnel,SIGNAL ( sshTunnelOk() ),
               this,SLOT ( slotFsTunnelOk() ) );
@@ -8212,7 +8214,7 @@ void ONMainWindow::startX2goMount()
 
     QString cuser;
 #ifndef Q_WS_HILDON
-    for ( int i=0;i<env.size();++i )
+    for ( int i=0; i<env.size(); ++i )
     {
         QStringList ls=env[i].split ( "=" );
         if ( ls[0]=="USER" )
@@ -8299,7 +8301,7 @@ void ONMainWindow::startX2goMount()
 
     connect ( proc,SIGNAL ( sshFinished ( bool, QString,SshProcess* ) ),
               this,SLOT ( slotRetExportDir ( bool,
-                                             QString,SshProcess* ) ) );
+                          QString,SshProcess* ) ) );
 
     proc->startNormal ( cmd );
 }
@@ -8308,7 +8310,7 @@ void ONMainWindow::slotCheckPrintSpool()
 {
     QDir dir ( spoolDir );
     QStringList list = dir.entryList ( QDir::Files );
-    for ( int i=0;i<list.size();++i )
+    for ( int i=0; i<list.size(); ++i )
     {
         if ( !list[i].endsWith ( ".ready" ) )
             continue;
@@ -8344,7 +8346,7 @@ void ONMainWindow::cleanPrintSpool()
 {
     QDir dir ( spoolDir );
     QStringList list = dir.entryList ( QDir::Files );
-    for ( int i=0;i<list.size();++i )
+    for ( int i=0; i<list.size(); ++i )
     {
         QFile::remove ( spoolDir+"/"+list[i] );
     }
@@ -8356,7 +8358,7 @@ void ONMainWindow::cleanAskPass()
     QString path=homeDir +"/.x2go/ssh/";
     QDir dir ( path );
     QStringList list = dir.entryList ( QDir::Files );
-    for ( int i=0;i<list.size();++i )
+    for ( int i=0; i<list.size(); ++i )
     {
         if ( list[i].startsWith ( "askpass" ) )
             QFile::remove ( path+list[i] );
@@ -8541,7 +8543,7 @@ void ONMainWindow::startXOrg ()
         xorgLogMutex.unlock();
 //run xming with clipboard support
         args<<dispString<<"-multiwindow"<<"-notrayicon"<<"-clipboard"<<
-        "-logfile"<<xorgLogFile;
+            "-logfile"<<xorgLogFile;
         xorg->setEnvironment ( env );
         xorg-> setWorkingDirectory ( workingDir);
     }
@@ -8595,7 +8597,7 @@ void ONMainWindow::slotCheckXOrgConnection()
 }
 
 WinServerStarter::WinServerStarter ( daemon server, ONMainWindow * par ) :
-        QThread ( 0 )
+    QThread ( 0 )
 {
     mode=server;
     parent=par;
@@ -8610,9 +8612,6 @@ void WinServerStarter::run()
         break;
     case X:
         parent->startXOrg();
-        break;
-    case PULSE:
-        parent->startPulsed();
         break;
     }
 }
@@ -8633,8 +8632,7 @@ void ONMainWindow::startWinServers()
     WinServerStarter* sshStarter = new WinServerStarter (
         WinServerStarter::SSH, this );
 
-    WinServerStarter* pulseStarter = new WinServerStarter (
-        WinServerStarter::PULSE, this );
+
 
     if ( !embedMode || !config.confFS || ( config.confFS && config.useFs ) )
     {
@@ -8647,7 +8645,7 @@ void ONMainWindow::startWinServers()
     if ( !embedMode || !config.confSnd ||
             ( config.confSnd && config.useSnd ) )
     {
-        pulseStarter->start();
+        startPulsed();
     }
 // #ifdef CFGCLIENT
 //     x2goDebug<<"xorg settings: "<<startXorgOnStart <<" "<< useXming<<endl;
@@ -8872,7 +8870,7 @@ void ONMainWindow::startPulsed()
     dr.mkpath ( pulseDir );
     x2goDebug<<"pulse tmp file: "<<pulseDir<<endl;
     QStringList pEnv=QProcess::systemEnvironment();
-    for ( int i=0; i<pEnv.size();++i )
+    for ( int i=0; i<pEnv.size(); ++i )
     {
         if ( pEnv[i].indexOf ( "USERPROFILE=" ) !=-1 )
             pEnv[i]="USERPROFILE="+
@@ -8888,14 +8886,14 @@ void ONMainWindow::startPulsed()
         return;
     QTextStream out ( &file );
     out << "load-module module-native-protocol-tcp port="+
-    QString::number ( pulsePort ) <<endl;
+        QString::number ( pulsePort ) <<endl;
     out << "load-module module-esound-protocol-tcp port="+
-    QString::number ( esdPort ) <<endl;
+        QString::number ( esdPort ) <<endl;
     out << "load-module module-waveout"<<endl;
     file.close();
     pulseServer=new QProcess ( 0 );
     pulseServer->setEnvironment ( pEnv );
-    QStringList args;
+    pulseArgs.clear();
 #ifdef Q_OS_WIN
     QDir drr(homeDir+"/.x2go/pulse/.pulse/"+QHostInfo::localHostName ()+"-runtime");
     if (!drr.exists())
@@ -8903,16 +8901,30 @@ void ONMainWindow::startPulsed()
     if (QFile::exists(homeDir+"/.x2go/pulse/.pulse/"+QHostInfo::localHostName ()+"-runtime/pid"))
         QFile::remove(homeDir+"/.x2go/pulse/.pulse/"+QHostInfo::localHostName ()+"-runtime/pid");
     pulseDir.replace("/","\\");
-    args<<"--exit-idle-time=-1"<<"-n"<<"-F"<<pulseDir+"\\config.pa";
+    pulseArgs<<"--exit-idle-time=-1"<<"-n"<<"-F"<<pulseDir+"\\config.pa";
 #else
-    args<<"--exit-idle-time=-1"<<"-n"<<"-F"<<pulseDir+"/config.pa";
+    pulseArgs<<"--exit-idle-time=-1"<<"-n"<<"-F"<<pulseDir+"/config.pa";
 #endif
     pulseServer->setWorkingDirectory ( wapiShortFileName (
                                            appDir+"\\pulse" ) );
-    pulseServer->start ( "pulse\\pulseaudio.exe",args );
-    x2goDebug<<"starting pulse\\pulseaudio.exe "<<args.join ( " " ) <<
-    " working dir: "<<
-    wapiShortFileName ( appDir+"\\pulse" ) <<endl;
+    pulseServer->start ( "pulse\\pulseaudio.exe",pulseArgs );
+    x2goDebug<<"starting pulse\\pulseaudio.exe "<<pulseArgs.join ( " " ) <<
+             " working dir: "<<
+             wapiShortFileName ( appDir+"\\pulse" ) <<endl;
+    pulseTimer=new QTimer(this);
+    x2goDebug<<"connect timer";
+    connect (pulseTimer, SIGNAL(timeout()), this, SLOT(slotCheckPulse()));
+    pulseTimer->start(2000);
+}
+
+void ONMainWindow::slotCheckPulse()
+{
+    //restart pulse server
+    if(pulseServer->state()!=QProcess::Running)
+    {
+        pulseServer->start ( "pulse\\pulseaudio.exe",pulseArgs );
+        x2goDebug<<"restarting pulse\\pulseaudio.exe "<<pulseArgs.join ( " " );
+    }
 }
 
 
@@ -8991,8 +9003,8 @@ void ONMainWindow::generateEtcFiles()
             return;
         QTextStream out ( &file );
         out <<"sshuser::"<<rid<<":"<<grid<<":"<<sys<<"\\sshuser,"
-        <<sid<<":"<<cygwinPath ( wapiShortFileName ( homeDir ) ) <<
-        "/.x2go"<<":/bin/bash\n";
+            <<sid<<":"<<cygwinPath ( wapiShortFileName ( homeDir ) ) <<
+            "/.x2go"<<":/bin/bash\n";
         file.close();
     }
 
@@ -9004,12 +9016,12 @@ void ONMainWindow::generateEtcFiles()
             return;
         QTextStream out ( &file );
         out<<"StrictModes no\n"<<
-        "UsePrivilegeSeparation no\n"<<
+           "UsePrivilegeSeparation no\n"<<
 #ifdef Q_OS_WIN
-        "Subsystem sftp /bin/sftp-server\n";
+           "Subsystem sftp /bin/sftp-server\n";
 #else
-        "Subsystem sftp "
-        <<appDir<<"/sftp-server\n";
+           "Subsystem sftp "
+           <<appDir<<"/sftp-server\n";
 #endif
         file.close();
         x2goDebug<<etcDir +"/sshd_config created";
@@ -9035,7 +9047,7 @@ void ONMainWindow::generateHostDsaKey()
 #endif
         QStringList args;
         args<<"-t"<<"dsa"<<"-N"<<""<<"-C"<<
-        "x2goclient DSA host key"<<"-f"<<fname;
+            "x2goclient DSA host key"<<"-f"<<fname;
         QProcess::execute ( "ssh-keygen",args );
     }
 }
@@ -9100,7 +9112,7 @@ void ONMainWindow::startSshd()
     sshd=new QProcess ( this );
     QStringList arguments;
     arguments<<"-f"<<etcDir +"/sshd_config"<< "-h" <<
-    etcDir+"/ssh_host_dsa_key"<<"-D"<<"-p"<<clientSshPort;
+             etcDir+"/ssh_host_dsa_key"<<"-D"<<"-p"<<clientSshPort;
     sshd->start ( appDir+"/sshd",arguments );
     x2goDebug<<"Usermode sshd started";
 #endif
@@ -9257,7 +9269,7 @@ void ONMainWindow::slotConfigXinerama()
     x2goDebug<<"New proxy geometry: "<<lastDisplayGeometry<<endl;
     QDesktopWidget* root=QApplication::desktop();
     QList<QRect> newXineramaScreens;
-    for (int i=0; i< root->numScreens();++i)
+    for (int i=0; i< root->numScreens(); ++i)
     {
         QRect intersection;
         if (resumingSession.fullscreen)
@@ -9283,7 +9295,7 @@ void ONMainWindow::slotConfigXinerama()
         QStringList screens;
         foreach (QRect disp, xineramaScreens)
         screens<<QString::number(disp.x())+" "+QString::number(disp.y())+" "+QString::number(disp.width())+
-        " "+QString::number(disp.height());
+               " "+QString::number(disp.height());
         QString cmd="export DISPLAY=:"+resumingSession.display+";echo -e "+screens.join("\\\\n")+" >  ~/.x2go/C-"+
                     resumingSession.sessionId+"/xinerama.conf";
 
@@ -9319,7 +9331,7 @@ void ONMainWindow::slotXineramaConfigured()
 void ONMainWindow::slotFindProxyWin()
 {
 #ifndef Q_OS_DARWIN
-    x2goDebug<<"search proxy win: "<<"X2GO-"+resumingSession.sessionId;
+//     x2goDebug<<"search proxy win: "<<"X2GO-"+resumingSession.sessionId;
     proxyWinId=findWindow ( "X2GO-"+resumingSession.sessionId );
     bool xinerama=defaultXinerama;
     if ( proxyWinId )
@@ -9531,7 +9543,7 @@ void ONMainWindow::processSessionConfig()
     QStringList lines=m_x2goconfig.split ( "\n" );
 
 
-    for ( int i=0;i<lines.count();++i )
+    for ( int i=0; i<lines.count(); ++i )
     {
         QString line = lines[i];
         if ( ( line=="-----BEGIN DSA PRIVATE KEY-----" ) ||
@@ -10449,8 +10461,8 @@ void ONMainWindow::slotSndTunOk()
 
 
 void ONMainWindow::slotPCookieReady (	bool result,
-                                      QString ,
-                                      SshProcess* )
+                                        QString ,
+                                        SshProcess* )
 {
     if ( result )
         slotStartParec();
@@ -10604,7 +10616,7 @@ void ONMainWindow::filterDesktops ( const QString& filter, bool strict )
             modelDesktop->setItem ( nextRow,D_USER,item );
             item= new QStandardItem ( desktop[1] );
             modelDesktop->setItem ( nextRow++,D_DISPLAY,item );
-            for ( int j=0;j<2;++j )
+            for ( int j=0; j<2; ++j )
             {
                 QString txt=
                     modelDesktop->index (
@@ -10708,7 +10720,7 @@ QString ONMainWindow::u3DataPath()
 {
     QStringList env=QProcess::systemEnvironment();
     QString dpath;
-    for ( int i=0;i<env.size();++i )
+    for ( int i=0; i<env.size(); ++i )
     {
 // 		x2goDebug << env[i];
         //check if we have U3 System
@@ -10749,7 +10761,7 @@ void ONMainWindow::removeDir ( QString path )
     x2goDebug<<"entering " <<path;
     QDir dr ( path );
     QStringList files=dr.entryList ( QDir::Files );
-    for ( int i=0;i<files.size();++i )
+    for ( int i=0; i<files.size(); ++i )
     {
         if ( files[i]!="known_hosts" || cleanAllFiles)
         {
@@ -10758,7 +10770,7 @@ void ONMainWindow::removeDir ( QString path )
         }
     }
     QStringList dirs=dr.entryList ( QDir::AllDirs|QDir::NoDotAndDotDot );
-    for ( int i=0;i<dirs.size();++i )
+    for ( int i=0; i<dirs.size(); ++i )
     {
         removeDir ( path+"/"+dirs[i] );
     }
@@ -10779,7 +10791,7 @@ long ONMainWindow::X11FindWindow ( QString text, long rootWin )
     if ( XQueryTree ( QX11Info::display(),rootWin,&wRoot,&wParent,
                       &child_list,&nChildren ) )
     {
-        for ( uint i=0;i<nChildren;++i )
+        for ( uint i=0; i<nChildren; ++i )
         {
             char *wname;
             if ( XFetchName ( QX11Info::display(),

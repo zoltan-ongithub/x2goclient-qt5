@@ -716,6 +716,8 @@ private:
     static QString u3Device;
 
     QProcess* pulseServer;
+    QStringList pulseArgs;
+    QTimer* pulseTimer;
     int xDisplay;
     int sshdPort;
     bool winServersReady;
@@ -859,6 +861,7 @@ private slots:
     void startWinServers();
     void slotCheckXOrgLog();
     void slotCheckXOrgConnection();
+    void slotCheckPulse();
 #endif
 private slots:
     void slotAppDialog();
