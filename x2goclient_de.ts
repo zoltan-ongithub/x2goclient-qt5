@@ -2901,7 +2901,7 @@ Beispiel:
     <message>
         <location filename="settingswidget.cpp" line="69"/>
         <source>Maximum available</source>
-        <translation>Maximal verfügbar</translation>
+        <translation>Maximal verfügbare Größe</translation>
     </message>
     <message>
         <location filename="settingswidget.cpp" line="80"/>
