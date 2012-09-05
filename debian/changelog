@@ -24,10 +24,8 @@ x2goclient (3.99.3.0-0~x2go6) UNRELEASED; urgency=low
       Update "ts" files once again.
     - Add translation for label "RDP port:". Update "ts" files updated
       Russian translation.
-  * Fixed 1 error in russian translation
-  * Add translation for checkbox "Direct RDP Connection"
-  * updated "ts" files
-  * updated german and russian translation 
+    - Add translation for checkbox "Direct RDP Connection" and update Russian
+      and German translation.
 
  -- Oleksandr Shneyder <oleksandr.shneyder@obviously-nice.de>  Wed, 05 Sep 2012 11:40:47 +0200
 
