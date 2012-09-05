@@ -165,7 +165,7 @@ SessionWidget::SessionWidget ( QString id, ONMainWindow * mw,
     sessLay->addWidget ( sgb );
     sessLay->addWidget ( deskSess );
 #ifdef Q_OS_LINUX
-    cbDirectRDP=new QCheckBox("Direct RDP Connection", deskSess);
+    cbDirectRDP=new QCheckBox(tr("Direct RDP Connection"), deskSess);
     cmdLay->addWidget(cbDirectRDP,1,0,1,6);
     cbDirectRDP->hide();
     connect(cbDirectRDP,SIGNAL(clicked()), this, SLOT(slot_rdpDirectClicked()));
