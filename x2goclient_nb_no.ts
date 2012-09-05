@@ -2411,6 +2411,11 @@ Eksempel:
         <translation>Sti til programfil</translation>
     </message>
     <message>
+        <location filename="sessionwidget.cpp" line="168"/>
+        <source>Direct RDP Connection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="sessionwidget.cpp" line="233"/>
         <source>RDP port:</source>
         <translation type="unfinished"></translation>

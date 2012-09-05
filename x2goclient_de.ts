@@ -2780,6 +2780,11 @@ Beispiel:
         <translation>Pfad zum Programm</translation>
     </message>
     <message>
+        <location filename="sessionwidget.cpp" line="168"/>
+        <source>Direct RDP Connection</source>
+        <translation>Direkte RDP Verbindung</translation>
+    </message>
+    <message>
         <location filename="sessionwidget.cpp" line="233"/>
         <source>RDP port:</source>
         <translation>RDP port:</translation>
