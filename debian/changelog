@@ -1,4 +1,4 @@
-x2goclient (3.99.3.0-0~x2go1) UNRELEASED; urgency=low
+x2goclient (3.99.3.0-0~x2go2) UNRELEASED; urgency=low
 
   [ Mike Gabriel ]
   * New upstream version (3.99.3.0):
@@ -24,8 +24,9 @@ x2goclient (3.99.3.0-0~x2go1) UNRELEASED; urgency=low
       Update "ts" files once again.
     - Add translation for label "RDP port:". Update "ts" files updated
       Russian translation.
+  * Fixed 1 error in russian translation
 
- -- Oleksandr Shneyder <oleksandr.shneyder@obviously-nice.de>  Tue, 04 Sep 2012 15:53:42 +0200
+ -- Oleksandr Shneyder <oleksandr.shneyder@obviously-nice.de>  Wed, 05 Sep 2012 10:55:40 +0200
 
 x2goclient (3.99.2.2-0~x2go2) unstable; urgency=low
 

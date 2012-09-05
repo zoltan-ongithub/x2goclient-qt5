@@ -3034,7 +3034,7 @@ sound system connections through firewalls</source>
     <message>
         <location filename="sharewidget.cpp" line="76"/>
         <source>Filename encoding</source>
-        <translation>Кодировка имен файлоф</translation>
+        <translation>Кодировка имен файлов</translation>
     </message>
     <message>
         <location filename="sharewidget.cpp" line="229"/>
