@@ -212,12 +212,12 @@
     <message>
         <location filename="contest.ui" line="24"/>
         <source>HTTPS connection:</source>
-        <translation>HTTPS tilkobling</translation>
+        <translation>HTTPS tilkobling:</translation>
     </message>
     <message>
         <location filename="contest.ui" line="31"/>
         <source>SSH connection:</source>
-        <translation>SSH tilkobling</translation>
+        <translation>SSH tilkobling:</translation>
     </message>
     <message>
         <location filename="contest.ui" line="38"/>
@@ -2248,7 +2248,7 @@ Eksempel:
         <location filename="sessionbutton.cpp" line="483"/>
         <location filename="sessionbutton.cpp" line="731"/>
         <source>Maximum</source>
-        <translation type="unfinished"></translation>
+        <translation>Maksimalt</translation>
     </message>
     <message>
         <location filename="sessionbutton.cpp" line="490"/>
@@ -2413,12 +2413,12 @@ Eksempel:
     <message>
         <location filename="sessionwidget.cpp" line="168"/>
         <source>Direct RDP Connection</source>
-        <translation type="unfinished"></translation>
+        <translation>Direktekobling med RDP</translation>
     </message>
     <message>
         <location filename="sessionwidget.cpp" line="233"/>
         <source>RDP port:</source>
-        <translation type="unfinished"></translation>
+        <translation>RDP port:</translation>
     </message>
     <message>
         <location filename="sessionwidget.cpp" line="249"/>
@@ -2497,7 +2497,7 @@ Eksempel:
     <message>
         <location filename="settingswidget.cpp" line="49"/>
         <source>RDP Client</source>
-        <translation type="unfinished"></translation>
+        <translation>RDP klient</translation>
     </message>
     <message>
         <location filename="settingswidget.cpp" line="61"/>
@@ -2522,7 +2522,7 @@ Eksempel:
     <message>
         <location filename="settingswidget.cpp" line="69"/>
         <source>Maximum available</source>
-        <translation type="unfinished"></translation>
+        <translation>Maksimalt tilgjengelig</translation>
     </message>
     <message>
         <location filename="settingswidget.cpp" line="80"/>
@@ -2610,12 +2610,12 @@ lydsystem forbindelser gjennom brannmurer</translation>
     <message>
         <location filename="settingswidget.cpp" line="252"/>
         <source>Additional parameters:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ekstra parametere:</translation>
     </message>
     <message>
         <location filename="settingswidget.cpp" line="253"/>
         <source>Command line:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kommandolinje:</translation>
     </message>
     <message>
         <location filename="settingswidget.cpp" line="642"/>
@@ -2630,7 +2630,7 @@ lydsystem forbindelser gjennom brannmurer</translation>
     <message>
         <location filename="settingswidget.cpp" line="757"/>
         <source>password</source>
-        <translation type="unfinished"></translation>
+        <translation>passord</translation>
     </message>
 </context>
 <context>
