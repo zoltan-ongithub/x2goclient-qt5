@@ -7,6 +7,10 @@ x2goclient (3.99.3.0-0~x2go1) UNRELEASED; urgency=low
     - Update German translation.
   * Add rdesktop and xfreerdp to Recommends.
 
+  [ Daniel Lindgren ]
+  * New upstream version (3.99.3.0):
+    - Update Swedish translation.
+
   [ Terje Andersen ]
   * New upstream version (3.99.3.0):
     - Update Norwegian Bokmal translation.
