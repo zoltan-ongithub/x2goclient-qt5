@@ -35,6 +35,7 @@ x2goclient (3.99.3.0-0~x2go1) UNRELEASED; urgency=low
     - Add translation for checkbox "Direct RDP Connection" and update Russian
       and German translation.
     - Restart pulse server on windows if it crashed.
+    - Show "Advanced Options" button only if RDP session chosen
 
  -- Oleksandr Shneyder <oleksandr.shneyder@obviously-nice.de>  Wed, 05 Sep 2012 11:40:47 +0200
 

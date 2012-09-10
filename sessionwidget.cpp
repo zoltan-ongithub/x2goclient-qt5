@@ -219,7 +219,7 @@ void SessionWidget::slot_rdpDirectClicked()
     bool isDirectRDP=cbDirectRDP->isChecked();
     if (cbDirectRDP->isHidden())
         isDirectRDP=false;
-    pbAdvanced->setVisible(!isDirectRDP);
+    pbAdvanced->setVisible((!isDirectRDP) && (sessBox->currentIndex()==RDP));
     leCmdIp->setVisible(!isDirectRDP);
     cmd->setVisible(!isDirectRDP);
     key->setVisible(!isDirectRDP);
