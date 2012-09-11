@@ -5,6 +5,8 @@ x2goclient (3.99.3.0-0~x2go1) UNRELEASED; urgency=low
     - Rebuild i18n files, add x2goclient_dk.ts for the new
       Danish translator (Christoffer Krakou).
     - Update German translation.
+    - Run X2Go-proxied RDP session with fullscreen mode as sessions
+      of X2Go session type "D". Closes upstream issue #22.
   * Add rdesktop and xfreerdp to Recommends.
 
   [ Daniel Lindgren ]

@@ -3485,7 +3485,13 @@ void ONMainWindow::startNewSession()
             }
         }
         if ( command=="RDP" )
-            rootless=true;
+        {
+            if (fullscreen) {
+                rootless=false;
+            } else {
+                rootless=true;
+            }
+        }
         if ( command=="XDMCP" )
         {
             runRemoteCommand=false;
@@ -5649,11 +5655,13 @@ void ONMainWindow::runCommand()
         command="rdesktop ";
         if ( rdpFS )
             command+=" -f ";
+            sessionType="D";
+            rootless=false;
         else
             command+=" -g "+rdpWidth+"x"+rdpHeight;
+            rootless=true;
         command+=" "+rdpOpts+ " "+rdpServer;
 
-        sessionType="R";
     }
 
     if ( managedMode )
