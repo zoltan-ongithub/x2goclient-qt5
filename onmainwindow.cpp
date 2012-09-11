@@ -5654,12 +5654,14 @@ void ONMainWindow::runCommand()
     {
         command="rdesktop ";
         if ( rdpFS )
+        {
             command+=" -f ";
             sessionType="D";
             rootless=false;
-        else
+        } else {
             command+=" -g "+rdpWidth+"x"+rdpHeight;
             rootless=true;
+        }
         command+=" "+rdpOpts+ " "+rdpServer;
 
     }
