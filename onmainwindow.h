@@ -488,6 +488,7 @@ private:
     QStringList _internApplicationsNames;
     QStringList _transApplicationsNames;
     QString portableDataPath;
+    bool proxyRunning;
     bool drawMenu;
     bool extStarted;
     bool startMaximized;

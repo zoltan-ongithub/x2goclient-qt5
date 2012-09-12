@@ -73,6 +73,7 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
     acceptRsa=false;
     cardStarted=false;
     cardReady=false;
+    proxyRunning=false;
 // 	useSshAgent=false;
     closeEventSent=false;
     miniMode=false;
@@ -485,7 +486,7 @@ void ONMainWindow::slotShutdownThinClient()
 
 void ONMainWindow::slotSyncX()
 {
-    if (proxyWinId)
+    if (proxyRunning)
     {
         if (!isHidden())
             hide();
@@ -3093,7 +3094,7 @@ void ONMainWindow::startDirectRDP()
 
     showSessionStatus();
 //     QTimer::singleShot ( 30000,this,SLOT ( slotRestartProxy() ) );
-
+    proxyRunning=true;
 }
 
 #endif
@@ -4138,6 +4139,7 @@ void ONMainWindow::slotSuspendSess()
     if (directRDP)
     {
         nxproxy->terminate();
+	proxyRunning=false;
         return;
     }
 #endif
@@ -4194,6 +4196,7 @@ void ONMainWindow::slotSuspendSessFromSt()
     if (directRDP)
     {
         nxproxy->terminate();
+	proxyRunning=false;
         return;
     }
 #endif
@@ -4217,6 +4220,7 @@ void ONMainWindow::slotTermSessFromSt()
     if (directRDP)
     {
         nxproxy->terminate();
+	proxyRunning=false;
         return;
     }
 #endif
@@ -4285,6 +4289,7 @@ void ONMainWindow::slotTermSess()
     if (directRDP)
     {
         nxproxy->terminate();
+	proxyRunning=false;
         return;
     }
 #endif
@@ -4931,6 +4936,7 @@ void ONMainWindow::slotTunnelOk()
 #endif //Q_OS_DARWIN
     x2goDebug<<"starting nxproxy with: "<<proxyCmd<<endl;
     nxproxy->start ( proxyCmd );
+    proxyRunning=true;
 //always search for proxyWin
     proxyWinTimer->start ( 300 );
     if ( embedMode )
@@ -4982,6 +4988,7 @@ void ONMainWindow::slotTunnelFailed ( bool result,  QString output,
         tunnel=sndTunnel=fsTunnel=0l;
         soundServer=0l;
         nxproxy=0l;
+	proxyRunning=false;
         if ( !managedMode )
             slotShowPassForm();
     }
@@ -5067,6 +5074,7 @@ void ONMainWindow::slotProxyFinished ( int,QProcess::ExitStatus )
                  SLOT ( slotProxyStderr() ) );
     disconnect ( nxproxy,SIGNAL ( readyReadStandardOutput() ),this,
                  SLOT ( slotProxyStdout() ) );
+    proxyRunning=false;
 #ifndef CFGPLUGIN
     if (trayEnabled)
     {
@@ -5434,6 +5442,7 @@ bool ONMainWindow::termSession ( QString sessId, bool warn )
                                             QString,SshProcess* ) ) );
 
     proc->startNormal ( "x2goterminate-session "+sessId );
+    proxyRunning=false;
     return true;
 }
 
@@ -5524,6 +5533,7 @@ void ONMainWindow::slotRestartProxy()
                 "Connection timeout, aborting" ) );
         if ( nxproxy )
             nxproxy->terminate();
+	proxyRunning=false;
         restartResume=true;
     }
 }
@@ -5541,6 +5551,7 @@ void ONMainWindow::slotTestSessionStatus()
             tr ( "Connection timeout, aborting" ) );
         if ( nxproxy )
             nxproxy->terminate();
+	proxyRunning=false;
     }
 }
 
@@ -7475,6 +7486,7 @@ void ONMainWindow::externalLogout ( const QString& )
         if ( nxproxy )
             if ( nxproxy->state() ==QProcess::Running )
                 nxproxy->terminate();
+	    proxyRunning=false;
     }
 }
 
