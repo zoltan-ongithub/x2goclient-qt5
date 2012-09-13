@@ -10,7 +10,8 @@ x2goclient (3.99.3.0-0~x2go1) UNRELEASED; urgency=low
     - Allow pass-through of username and password for X2Go-proxied RDP
       sessions. The strings X2GO_USER and X2GO_PASSWORD in rdpoptions
       will be replaced by username+password enter into X2Go Clients
-      login dialog.
+      login dialog. Only replace username+password if they received a
+      value from the login widget of the main window.
   * Add rdesktop and xfreerdp to Recommends.
 
   [ Daniel Lindgren ]
