@@ -132,7 +132,8 @@ void SshProcess::startNormal(const QString& cmd)
 {
     QString shcmd = "sh -c \""+cmd+"\"";
 // #ifdef DEBUG
-    x2goDebug<<"executing remote command: "<<shcmd<<endl;
+// ONLY UNCOMMENT FOR TESTING, MIGHT REVEAL PASSWORD WHEN command=RDP
+//    x2goDebug<<"executing remote command: "<<shcmd<<endl;
 // #endif
     masterCon->addChannelConnection(this, shcmd);
     connect(masterCon,SIGNAL(stdOut(SshProcess*,QByteArray)),this,SLOT(slotStdOut(SshProcess*,QByteArray)));

@@ -5611,6 +5611,8 @@ void ONMainWindow::runCommand()
             rdpOpts=st->setting()->value (
                         sid+"/rdpoptions",
                         ( QVariant ) "" ).toString();
+            rdpOpts.replace("X2GO_USER", user);
+            rdpOpts.replace("X2GO_PASSWORD", passwd);
             rdpServer=st->setting()->value (
                           sid+"/rdpserver",
                           ( QVariant ) "" ).toString();
