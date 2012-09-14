@@ -20,7 +20,7 @@ FORMS += cupsprintsettingsdialog.ui \
            contest.ui \
            appdialog.ui
 
-TRANSLATIONS += x2goclient_en.ts \
+TRANSLATIONS += \
            x2goclient_de.ts \
            x2goclient_dk.ts \
            x2goclient_es.ts \
