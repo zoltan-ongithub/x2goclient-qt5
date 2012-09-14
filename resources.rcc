@@ -80,7 +80,7 @@
        <file>txt/packs</file>
        <file>txt/encodings</file>
        <file>x2goclient_de.qm</file>
-       <file>x2goclient_dk.qm</file>
+       <file>x2goclient_da.qm</file>
        <file>x2goclient_es.qm</file>
        <file>x2goclient_fr.qm</file>
        <file>x2goclient_nb_no.qm</file>
@@ -88,7 +88,7 @@
        <file>x2goclient_sv.qm</file>
        <file>x2goclient_zh_tw.qm</file>
        <file>qt_de.qm</file>
-       <file>qt_dk.qm</file>
+       <file>qt_da.qm</file>
        <file>qt_es.qm</file>
        <file>qt_fr.qm</file>
        <file>qt_ru.qm</file>
