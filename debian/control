@@ -1,6 +1,6 @@
 Source: x2goclient
 Section: x11
-Priority: extra
+Priority: optional
 Maintainer: X2Go Developers <x2go-dev@lists.berlios.de>.
 Uploaders:
  Oleksandr Shneyder <oleksandr.shneyder@obviously-nice.de>,
