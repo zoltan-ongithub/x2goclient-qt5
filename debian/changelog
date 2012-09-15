@@ -14,6 +14,7 @@ x2goclient (3.99.3.0-0~x2go1) UNRELEASED; urgency=low
       value from the login widget of the main window.
     - Drop i18n idea to translate English to English.
   * Add rdesktop and xfreerdp to Recommends.
+  * Maintainer change in package: X2Go Developers <x2go-dev@lists.berlios.de>.
 
   [ Daniel Lindgren ]
   * New upstream version (3.99.3.0):
