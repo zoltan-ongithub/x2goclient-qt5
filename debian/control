@@ -40,7 +40,7 @@ Replaces:
 Description: X2Go Client application (Qt4)
  X2Go is a serverbased computing environment with
     - session resuming
-    - low bandwith support
+    - low bandwidth support
     - LDAP support
     - client side mass storage mounting support
     - audio support
@@ -64,7 +64,7 @@ Suggests:
 Description: X2Go Client (Qt4) as browser plugin
  X2Go is a serverbased computing environment with
     - session resuming
-    - low bandwith support
+    - low bandwidth support
     - LDAP support
     - client side mass storage mounting support
     - audio support
