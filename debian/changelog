@@ -30,6 +30,7 @@ x2goclient (3.99.3.0-0~x2go1) UNRELEASED; urgency=low
   * New upstream version (3.99.3.0):
     - Add Danish translation to x2goclient.
     - Proof read Danish translation.
+    - Update DirectRDP in Danish translation.
 
   [ Oleksandr Shneyder ]
   * New upstream version (3.99.3.0):

@@ -90,17 +90,17 @@
     <message>
         <location filename="brokerpassdialog.ui" line="22"/>
         <source>Old password:</source>
-        <translation>Nuværende Kodeord:</translation>
+        <translation>Nuværende kodeord:</translation>
     </message>
     <message>
         <location filename="brokerpassdialog.ui" line="36"/>
         <source>New password:</source>
-        <translation>Nyt Kodeord:</translation>
+        <translation>Nyt kodeord:</translation>
     </message>
     <message>
         <location filename="brokerpassdialog.ui" line="50"/>
         <source>Confirm password:</source>
-        <translation>Bekræft Kodeord:</translation>
+        <translation>Bekræft kodeord:</translation>
     </message>
     <message>
         <location filename="brokerpassdialog.ui" line="79"/>
@@ -113,7 +113,7 @@
     <message>
         <location filename="brokerpassdlg.cpp" line="41"/>
         <source>Passwords do not match</source>
-        <translation>Kodeordene passer ikke sammen</translation>
+        <translation>Kodeord er ikke ens</translation>
     </message>
 </context>
 <context>
@@ -136,7 +136,7 @@
     <message>
         <location filename="cupsprintwidget.ui" line="49"/>
         <source>State:</source>
-        <translation>Status:</translation>
+        <translation>Tilstand:</translation>
     </message>
     <message>
         <location filename="cupsprintwidget.ui" line="63"/>
@@ -161,7 +161,7 @@
     <message>
         <location filename="cupsprintwidget.cpp" line="65"/>
         <source>Idle</source>
-        <translation>Ledig</translation>
+        <translation>Inaktiv</translation>
     </message>
     <message>
         <location filename="cupsprintwidget.cpp" line="68"/>
@@ -194,7 +194,7 @@
     <message>
         <location filename="cupsprintersettingsdialog.cpp" line="265"/>
         <source>This value is in conflict with other option</source>
-        <translation>Denne værdi konflikter med en anden indstilling</translation>
+        <translation>Denne værdi er I strid med en anden indstilling</translation>
     </message>
     <message>
         <location filename="cupsprintersettingsdialog.cpp" line="275"/>
@@ -251,7 +251,7 @@
         <location filename="contest.cpp" line="162"/>
         <location filename="contest.cpp" line="168"/>
         <source>Failed: </source>
-        <translation>Mislykket: </translation>
+        <translation>Mislykkedes: </translation>
     </message>
 </context>
 <context>
@@ -264,22 +264,22 @@
     <message>
         <location filename="configdialog.cpp" line="59"/>
         <source>Display icon in system tray</source>
-        <translation>Vis ikon i statusområde</translation>
+        <translation>Vis ikon i meddelelsesområde</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="66"/>
         <source>Hide to system tray when minimized</source>
-        <translation>Minimer til statusområde</translation>
+        <translation>Minimer til meddelelsesområde </translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="67"/>
         <source>Hide to system tray when closed</source>
-        <translation>Skjul i statusområde når programmet lukkes </translation>
+        <translation>Skjul imeddelelsesområde  når programmet lukkes </translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="68"/>
         <source>Hide to system tray after connection is established</source>
-        <translation>Minimer til statusområde efter forbindelse til server</translation>
+        <translation>Minimer til meddelelsesområde efter forbindelse til server</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="69"/>
@@ -335,7 +335,7 @@
     <message>
         <location filename="configdialog.cpp" line="250"/>
         <source>Clientside SSH port for file system export usage:</source>
-        <translation>Klientens SSH port til filsystem-exportering:</translation>
+        <translation>Klientens SSH port til filsystem-eksportering:</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="260"/>
@@ -558,7 +558,7 @@
     <message>
         <location filename="editconnectiondialog.cpp" line="117"/>
         <source>Session preferences - </source>
-        <translation>Sessionsindstillinger</translation>
+        <translation>Sessions indstillinger</translation>
     </message>
 </context>
 <context>
@@ -576,7 +576,7 @@
     <message>
         <location filename="exportdialog.cpp" line="45"/>
         <source>&amp;Preferences ...</source>
-        <translation>&amp;Indstilliger ...</translation>
+        <translation>&amp;Indstillinger ...</translation>
     </message>
     <message>
         <location filename="exportdialog.cpp" line="46"/>
@@ -2050,7 +2050,7 @@ f.eks:
         <location filename="sessionbutton.cpp" line="483"/>
         <location filename="sessionbutton.cpp" line="731"/>
         <source>Maximum</source>
-        <translation type="unfinished"></translation>
+        <translation>Maximum</translation>
     </message>
     <message>
         <location filename="sessionbutton.cpp" line="490"/>
@@ -2214,12 +2214,12 @@ f.eks:
     <message>
         <location filename="sessionwidget.cpp" line="168"/>
         <source>Direct RDP Connection</source>
-        <translation type="unfinished"></translation>
+        <translation>Direkte RDP Forbindelse</translation>
     </message>
     <message>
         <location filename="sessionwidget.cpp" line="233"/>
         <source>RDP port:</source>
-        <translation type="unfinished"></translation>
+        <translation>RDP port:</translation>
     </message>
     <message>
         <location filename="sessionwidget.cpp" line="249"/>
@@ -2298,7 +2298,7 @@ f.eks:
     <message>
         <location filename="settingswidget.cpp" line="49"/>
         <source>RDP Client</source>
-        <translation type="unfinished"></translation>
+        <translation>RDP Klient</translation>
     </message>
     <message>
         <location filename="settingswidget.cpp" line="61"/>
@@ -2323,7 +2323,7 @@ f.eks:
     <message>
         <location filename="settingswidget.cpp" line="69"/>
         <source>Maximum available</source>
-        <translation type="unfinished"></translation>
+        <translation>Maximalt tilgængelige</translation>
     </message>
     <message>
         <location filename="settingswidget.cpp" line="80"/>
@@ -2410,12 +2410,12 @@ lydsystemets forbindelse igennem firewalls</translation>
     <message>
         <location filename="settingswidget.cpp" line="252"/>
         <source>Additional parameters:</source>
-        <translation type="unfinished"></translation>
+        <translation>Yderligere paramentre:</translation>
     </message>
     <message>
         <location filename="settingswidget.cpp" line="253"/>
         <source>Command line:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kommandolinje:</translation>
     </message>
     <message>
         <location filename="settingswidget.cpp" line="642"/>
@@ -2430,7 +2430,7 @@ lydsystemets forbindelse igennem firewalls</translation>
     <message>
         <location filename="settingswidget.cpp" line="757"/>
         <source>password</source>
-        <translation type="unfinished"></translation>
+        <translation>kodeord</translation>
     </message>
 </context>
 <context>
@@ -2484,7 +2484,7 @@ lydsystemets forbindelse igennem firewalls</translation>
     <message>
         <location filename="sharewidget.cpp" line="95"/>
         <source>Use ssh port forwarding to tunnel file system connections through firewalls</source>
-        <translation>Brug ssh port forwarding til at føre filsystemsforbindelsen igennem firewalls</translation>
+        <translation>Brug ssh port forwarding til at føre filsystemsforbindelser igennem firewalls</translation>
     </message>
     <message>
         <location filename="sharewidget.cpp" line="158"/>
@@ -2653,7 +2653,7 @@ lydsystemets forbindelse igennem firewalls</translation>
     <message>
         <location filename="xsettingsui.ui" line="78"/>
         <source>executable:</source>
-        <translation>Eksekverbar fil:</translation>
+        <translation>eksekverbar:</translation>
     </message>
     <message>
         <location filename="xsettingsui.ui" line="101"/>
@@ -2663,12 +2663,12 @@ lydsystemets forbindelse igennem firewalls</translation>
     <message>
         <location filename="xsettingsui.ui" line="113"/>
         <source>command line options:</source>
-        <translation>Kommandolinie parametre:</translation>
+        <translation>Kommandolinje parametre:</translation>
     </message>
     <message>
         <location filename="xsettingsui.ui" line="125"/>
         <source>X-Server command line options</source>
-        <translation>X-Server Kommandolinie parametre</translation>
+        <translation>X-Server Kommandolinje parametre</translation>
     </message>
     <message>
         <location filename="xsettingsui.ui" line="131"/>
