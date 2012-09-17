@@ -2023,6 +2023,10 @@ void ONMainWindow::slotCreateDesktopIcon ( SessionButton* bt )
 
     QString name=st.setting()->value ( bt->id() +"/name",
                                        ( QVariant ) tr ( "New Session" ) ).toString() ;
+
+    // PyHoca-GUI uses the slash as separator for cascaded menus, so let's handle these on the file system
+    name.replace("/","::");
+
     QString sessIcon=st.setting()->value (
                          bt->id() +"/icon",
                          ( QVariant )
@@ -2045,13 +2049,14 @@ void ONMainWindow::slotCreateDesktopIcon ( SessionButton* bt )
         cmd="x2goclient --hide";
     QTextStream out ( &file );
     out << "[Desktop Entry]\n"<<
-        "Exec[$e]="<<cmd<<" --sessionid="<<bt->id() <<"\n"<<
+        "Exec="<<cmd<<" --sessionid="<<bt->id() <<"\n"<<
         "Icon="<<sessIcon<<"\n"<<
         "Name="<<name<<"\n"<<
         "StartupNotify=true\n"<<
         "Terminal=false\n"<<
         "Type=Application\n"<<
         "X-KDE-SubstituteUID=false\n";
+    file.setPermissions(QFile::ReadOwner|QFile::WriteOwner|QFile::ExeOwner);
     file.close();
 #else
     QString scrname=QDir::tempPath() +"\\mklnk.vbs";
