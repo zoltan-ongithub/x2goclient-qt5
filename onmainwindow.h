@@ -237,10 +237,10 @@ private:
 class ClickLineEdit;
 class ONMainWindow : public QMainWindow
 #ifdef CFGPLUGIN
-            , public QtNPBindable
+    , public QtNPBindable
 
 #ifdef QAXSERVER
-            , public QAxBindable
+    , public QAxBindable
 #endif
 #endif
 {
@@ -508,6 +508,8 @@ private:
     bool thinMode;
     QString statusString;
     QString autostartApp;
+    bool cmdAutologin;
+    QString cmdSshKey;
     int defaultLink;
     int defaultQuality;
     int defaultWidth;

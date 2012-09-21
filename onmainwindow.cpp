@@ -67,6 +67,7 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
     defaultSetDPI=false;
     defaultDPI=96;
     extStarted=false;
+    cmdAutologin=false;
     defaultLink=2;
     defaultFullscreen=false;
     defaultXinerama=false;
@@ -2760,6 +2761,14 @@ SshMasterConnection* ONMainWindow::startSshConnection ( QString host, QString po
     /////key/sshagent/env/
 
     passForm->setEnabled ( false );
+    if(cmdSshKey.length()>0)
+    {
+        currentKey=cmdSshKey;
+    }
+    if(cmdAutologin)
+    {
+        autologin=true;
+    }
     con=new SshMasterConnection ( host, port.toInt(),acceptUnknownHosts,
                                   login, password,currentKey, autologin,krbLogin, this );
     if (!getSrv)
@@ -4144,7 +4153,7 @@ void ONMainWindow::slotSuspendSess()
     if (directRDP)
     {
         nxproxy->terminate();
-	proxyRunning=false;
+        proxyRunning=false;
         return;
     }
 #endif
@@ -4201,7 +4210,7 @@ void ONMainWindow::slotSuspendSessFromSt()
     if (directRDP)
     {
         nxproxy->terminate();
-	proxyRunning=false;
+        proxyRunning=false;
         return;
     }
 #endif
@@ -4225,7 +4234,7 @@ void ONMainWindow::slotTermSessFromSt()
     if (directRDP)
     {
         nxproxy->terminate();
-	proxyRunning=false;
+        proxyRunning=false;
         return;
     }
 #endif
@@ -4294,7 +4303,7 @@ void ONMainWindow::slotTermSess()
     if (directRDP)
     {
         nxproxy->terminate();
-	proxyRunning=false;
+        proxyRunning=false;
         return;
     }
 #endif
@@ -4993,7 +5002,7 @@ void ONMainWindow::slotTunnelFailed ( bool result,  QString output,
         tunnel=sndTunnel=fsTunnel=0l;
         soundServer=0l;
         nxproxy=0l;
-	proxyRunning=false;
+        proxyRunning=false;
         if ( !managedMode )
             slotShowPassForm();
     }
@@ -5538,7 +5547,7 @@ void ONMainWindow::slotRestartProxy()
                 "Connection timeout, aborting" ) );
         if ( nxproxy )
             nxproxy->terminate();
-	proxyRunning=false;
+        proxyRunning=false;
         restartResume=true;
     }
 }
@@ -5556,7 +5565,7 @@ void ONMainWindow::slotTestSessionStatus()
             tr ( "Connection timeout, aborting" ) );
         if ( nxproxy )
             nxproxy->terminate();
-	proxyRunning=false;
+        proxyRunning=false;
     }
 }
 
@@ -6029,6 +6038,12 @@ bool ONMainWindow::parseParameter ( QString param )
         changeBrokerPass=true;
         return true;
     }
+    if ( param == "--autologin")
+    {
+        cmdAutologin=true;
+        return true;
+    }
+
 
 
     QString setting,value;
@@ -6151,6 +6166,11 @@ bool ONMainWindow::parseParameter ( QString param )
         brokerMode=true;
         noSessionEdit=true;
         config.brokerurl=value;
+        return true;
+    }
+    if ( setting == "--ssh-key")
+    {
+        cmdSshKey=value;
         return true;
     }
     if ( setting == "--broker-name")
@@ -7497,7 +7517,7 @@ void ONMainWindow::externalLogout ( const QString& )
         if ( nxproxy )
             if ( nxproxy->state() ==QProcess::Running )
                 nxproxy->terminate();
-	    proxyRunning=false;
+        proxyRunning=false;
     }
 }
 
