@@ -30,7 +30,7 @@
 
 SettingsWidget::SettingsWidget ( QString id, ONMainWindow * mw,
                                  QWidget * parent, Qt::WindowFlags f )
-        : ConfigWidget ( id,mw,parent,f )
+    : ConfigWidget ( id,mw,parent,f )
 {
     multiDisp=(QApplication::desktop()->screenCount()>1);
 #ifdef Q_WS_HILDON
@@ -359,7 +359,7 @@ void SettingsWidget::slot_identDisplays()
 {
     pbIdentDisp->setEnabled(false);
     identWins.clear();
-    for (int i=0;i<QApplication::desktop()->screenCount();++i)
+    for (int i=0; i<QApplication::desktop()->screenCount(); ++i)
     {
         QMainWindow *mw=new QMainWindow(
             this, Qt::FramelessWindowHint|Qt::X11BypassWindowManagerHint|Qt::WindowStaysOnTopHint);
@@ -467,7 +467,7 @@ void SettingsWidget::slot_sndStartClicked()
     {
         lSndPort->setEnabled ( true );
         sbSndPort->setEnabled ( true );
-        cbDefSndPort->setEnabled ( true );
+        cbDefSndPort->setEnabled ( true &&sound->isChecked());
     }
     else
     {
@@ -538,9 +538,9 @@ void SettingsWidget::readConfig()
     maxRes->setChecked(st.setting()->value ( sessionId+"/maxdim", false).toBool());
     QString client=st.setting()->value ( sessionId+"/rdpclient","rdesktop").toString();
     if(client=="rdesktop")
-      rRdesktop->setChecked(true);
+        rRdesktop->setChecked(true);
     else
-      rXfreeRDP->setChecked(true);
+        rXfreeRDP->setChecked(true);
     params->setText(st.setting()->value ( sessionId+"/directrdpsettings","").toString());
 #endif
 
@@ -619,6 +619,9 @@ void SettingsWidget::readConfig()
         cbDefSndPort->setChecked ( false );
     slot_sndToggled ( snd );
     slot_sndStartClicked();
+
+    if(!sound)
+        cbDefSndPort->setEnabled(false);
 
     cbClientPrint->setChecked ( st.setting()->value ( sessionId+"/print",
                                 true ).toBool() );
