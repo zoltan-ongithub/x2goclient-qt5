@@ -55,6 +55,7 @@ x2goclient (3.99.3.0-0~x2go1) UNRELEASED; urgency=low
     - Fixing kbd focus issue for all kinds of sessions in thinclient mode 
     - Add command line parameter --ssh-key and --autologin 
     - disable check box "use default sound port" if sound disabled
+    - add support for HTTP proxy - developed by Heinrich Schuchardt (xypron.glpk@gmx.de)
 
   [ Ricardo Diaz ]
   * New upstream version (3.99.3.0):

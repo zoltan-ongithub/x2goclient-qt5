@@ -28,6 +28,8 @@
 #include <QMutex>
 #include <QThread>
 #include <QStringList>
+#include <QTcpSocket>
+#include <QNetworkProxy>
 
 class ONMainWindow;
 class SshProcess;
@@ -54,14 +56,16 @@ struct CopyRequest
     QString dst;
 };
 
-
 class SshMasterConnection: public QThread
 {
     Q_OBJECT
 public:
     void run();
     SshMasterConnection(QString host, int port, bool acceptUnknownServers, QString user,
-                        QString pass, QString key, bool autologin, bool krblogin, QObject* parent = 0);
+                        QString pass, QString key, bool autologin, bool krblogin,
+                        bool useproxy, QString proxyserver, quint16 proxyport,
+                        QString proxylogin, QString proxypassword,
+                        QObject* parent = 0);
     ~SshMasterConnection();
     static void finalizeLibSsh();
     void addChannelConnection(SshProcess* creator, int sock, QString forwardHost,
@@ -92,11 +96,12 @@ public:
         return kerberos;
     };
 
-
 private:
-    SshMasterConnection(QString host, int port, bool acceptUnknownServers, QString user, QString pass, QString key,
-                        bool autologin,
+    SshMasterConnection(QString host, int port, bool acceptUnknownServers,
+                        QString user, QString pass, QString key,bool autologin,
                         int remotePort, QString localHost, int localPort, SshProcess* creator,
+                        bool useproxy, QString proxyserver, quint16 proxyport,
+                        QString proxylogin, QString proxypassword,
                         QObject* parent, ONMainWindow* parWnd);
     bool sshConnect();
     bool userAuthWithPass();
@@ -125,6 +130,11 @@ private:
     QString user;
     QString pass;
     QString key;
+    bool useproxy;
+    QString proxyserver;
+    quint16 proxyport;
+    QString proxylogin;
+    QString proxypassword;
     QStringList authErrors;
     bool autologin;
     bool disconnectSessionFlag;
@@ -137,6 +147,8 @@ private:
     ONMainWindow* mainWnd;
     bool kerberos;
     QString sshProcErrString;
+    QTcpSocket *tcpProxySocket = NULL;
+    QNetworkProxy *tcpNetworkProxy = NULL;
 
 signals:
     void stdErr(SshProcess* caller, QByteArray data);
@@ -157,3 +169,5 @@ signals:
 
 
 #endif // SSHMASTERCONNECTION_H
+
+
