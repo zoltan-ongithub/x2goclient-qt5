@@ -20,15 +20,18 @@
 #include <QComboBox>
 #include <QFileDialog>
 #include <QDir>
+#include <QTimer>
 #include <QInputDialog>
 #include <QCheckBox>
 #include "onmainwindow.h"
 #include "x2gosettings.h"
 #include <QMessageBox>
+#include <QButtonGroup>
+#include <QRadioButton>
 
 SessionWidget::SessionWidget ( QString id, ONMainWindow * mw,
                                QWidget * parent, Qt::WindowFlags f )
-        : ConfigWidget ( id,mw,parent,f )
+    : ConfigWidget ( id,mw,parent,f )
 {
     QVBoxLayout* sessLay=new QVBoxLayout ( this );
 #ifdef Q_WS_HILDON
@@ -118,6 +121,50 @@ SessionWidget::SessionWidget ( QString id, ONMainWindow * mw,
     cbKrbLogin=new QCheckBox(tr("Kerberos 5 (GSSAPI) authentication"),sgb);
     sgbLay->addWidget(cbAutoLogin);
     sgbLay->addWidget(cbKrbLogin);
+    cbProxy=new QCheckBox(tr("Use Proxy server for SSH connection"),sgb);
+    proxyBox=new QGroupBox(tr("Proxy server"),sgb);
+    sgbLay->addWidget(cbProxy);
+    sgbLay->addWidget(proxyBox);
+    QGridLayout* proxyLaout=new QGridLayout(proxyBox);
+    QButtonGroup* proxyType=new QButtonGroup(proxyBox);
+    proxyType->setExclusive(true);
+    rbSshProxy=new QRadioButton(tr("SSH"),proxyBox);
+    rbHttpProxy=new QRadioButton(tr("HTTP"),proxyBox);
+    proxyType->addButton(rbSshProxy);
+    proxyType->addButton(rbHttpProxy);
+    proxyHost=new QLineEdit(proxyBox);
+    proxyPort=new QSpinBox(proxyBox);
+    proxyPort->setMinimum ( 1 );
+    proxyPort->setMaximum ( 999999999 );
+
+    cbProxySameUser=new QCheckBox(tr("Same login as on X2Go Server"), proxyBox);
+    proxyLogin=new QLineEdit(proxyBox);
+    cbProxySamePass=new QCheckBox(tr("Same password as on X2Go Server"), proxyBox);
+
+    proxyKeyLabel=new QLabel( tr ( "RSA/DSA key:" ), proxyBox);
+    proxyKey=new QLineEdit(proxyBox);
+    pbOpenProxyKey=new QPushButton (
+        QIcon ( mainWindow->iconsPath ( "/16x16/file-open.png" ) ),
+        QString::null,proxyBox );
+    cbProxyAutologin=new QCheckBox(tr("ssh-agent or default ssh key"),proxyBox);
+
+    proxyLaout->addWidget(new QLabel(tr("Type:"),proxyBox),0,0,1,2);
+    proxyLaout->addWidget(rbSshProxy,1,0,1,2);
+    proxyLaout->addWidget(rbHttpProxy,2,0,1,2);
+    proxyLaout->addWidget(new QLabel(tr("Host:"),proxyBox),3,0);
+    proxyLaout->addWidget(new QLabel(tr("Port:"),proxyBox),4,0);
+    proxyLaout->addWidget(proxyHost,3,1);
+    proxyLaout->addWidget(proxyPort,4,1);
+
+    proxyLaout->addWidget(cbProxySameUser,0,3,1,3);
+    proxyLaout->addWidget(lProxyLogin=new QLabel(tr("Login:"),proxyBox),1,3,1,1);
+    proxyLaout->addWidget(proxyLogin,1,4,1,2);
+    proxyLaout->addWidget(cbProxySamePass,2,3,1,3);
+    proxyLaout->addWidget(proxyKeyLabel,3,3,1,1);
+    proxyLaout->addWidget(proxyKey,3,4,1,1);
+    proxyLaout->addWidget(pbOpenProxyKey,3,5,1,1);
+    proxyLaout->addWidget(cbProxyAutologin,4,3,1,3);
+
 
 #ifndef Q_WS_HILDON
     QGroupBox *deskSess=new QGroupBox ( tr ( "&Session type" ),this );
@@ -204,14 +251,86 @@ SessionWidget::SessionWidget ( QString id, ONMainWindow * mw,
 #ifdef Q_OS_LINUX
     connect (rdpPort, SIGNAL(valueChanged(int)),this, SLOT(slot_emitSettings()));
 #endif
+
+    connect ( pbOpenProxyKey,SIGNAL ( clicked() ),this,SLOT ( slot_proxyGetKey()) );
+    connect ( proxyType, SIGNAL ( buttonClicked(int)) ,this,SLOT ( slot_proxyType()));
+    connect (cbProxy, SIGNAL(clicked(bool)), this, SLOT(slot_proxyOptions()));
+    connect (cbProxySameUser, SIGNAL(clicked(bool)), this, SLOT(slot_proxySameLogin()));
+
     readConfig();
     cbKrbLogin->setChecked(false);
     cbKrbLogin->setVisible(false);
 }
 
+
 SessionWidget::~SessionWidget()
 {
 }
+
+void SessionWidget::slot_proxyGetKey()
+{
+    QString path;
+    QString startDir=ONMainWindow::getHomeDirectory();
+#ifdef Q_OS_WIN
+    if ( ONMainWindow::getPortable() &&
+            ONMainWindow::U3DevicePath().length() >0 )
+    {
+        startDir=ONMainWindow::U3DevicePath() +"/";
+    }
+#endif
+    path = QFileDialog::getOpenFileName (
+               this,
+               tr ( "Open key file" ),
+               startDir,
+               tr ( "All files" ) +" (*)" );
+    if ( path!=QString::null )
+    {
+#ifdef Q_OS_WIN
+        if ( ONMainWindow::getPortable() &&
+                ONMainWindow::U3DevicePath().length() >0 )
+        {
+            if ( path.indexOf ( ONMainWindow::U3DevicePath() ) !=0 )
+            {
+                QMessageBox::critical (
+                    0l,tr ( "Error" ),
+                    tr ( "x2goclient is running in "
+                         "portable mode. You should "
+                         "use a path on your usb device "
+                         "to be able to access your data "
+                         "whereever you are" ),
+                    QMessageBox::Ok,QMessageBox::NoButton );
+                slot_getKey();
+                return;
+            }
+            path.replace ( ONMainWindow::U3DevicePath(),
+                           "(U3)" );
+        }
+#endif
+        proxyKey->setText ( path );
+    }
+
+}
+
+void SessionWidget::slot_proxyOptions()
+{
+    proxyBox->setVisible(cbProxy->isChecked());
+}
+
+void SessionWidget::slot_proxySameLogin()
+{
+    lProxyLogin->setDisabled(cbProxySameUser->isChecked());
+    proxyLogin->setDisabled(cbProxySameUser->isChecked());
+}
+
+void SessionWidget::slot_proxyType()
+{
+    bool isSsh=rbSshProxy->isChecked();
+    cbProxyAutologin->setVisible(isSsh);
+    proxyKey->setVisible(isSsh);
+    proxyKeyLabel->setVisible(isSsh);
+    pbOpenProxyKey->setVisible(isSsh);
+}
+
 
 #ifdef Q_OS_LINUX
 void SessionWidget::slot_rdpDirectClicked()
@@ -228,6 +347,10 @@ void SessionWidget::slot_rdpDirectClicked()
     openKey->setVisible(!isDirectRDP);
     sshPort->setVisible(!isDirectRDP);
     rdpPort->setVisible(isDirectRDP);
+
+    cbProxy->setVisible(!isDirectRDP);
+    proxyBox->setVisible(!isDirectRDP);
+
     if (isDirectRDP)
     {
         lPort->setText(tr("RDP port:"));
@@ -404,6 +527,73 @@ void SessionWidget::readConfig()
             sessionId+"/rdpport",3389
         ).toInt() );
 #endif
+
+
+    cbProxy->setChecked(st.setting()->value (
+                            sessionId+"/usesshproxy",
+                            false
+                        ).toBool() );
+
+    QString prtype= st.setting()->value (
+                        sessionId+"/sshproxytype",
+                        "SSH"
+                    ).toString() ;
+
+    if(prtype=="HTTP")
+    {
+        rbHttpProxy->setChecked(true);
+    }
+    else
+    {
+        rbSshProxy->setChecked(true);
+    }
+
+    proxyLogin->setText(st.setting()->value (
+                            sessionId+"/sshproxyuser",
+                            QString()
+                        ).toString() );
+
+    proxyKey->setText(st.setting()->value (
+                          sessionId+"/sshproxykeyfile",
+                          QString()
+                      ).toString() );
+
+    proxyHost->setText(st.setting()->value (
+                           sessionId+"/sshproxyhost",
+                           QString()
+                       ).toString() );
+
+    proxyPort->setValue(st.setting()->value (
+                            sessionId+"/sshproxyport",
+                            22
+                        ).toInt() );
+
+    cbProxySamePass->setChecked(st.setting()->value (
+                                    sessionId+"/sshproxysamepass",
+                                    false
+                                ).toBool() );
+    cbProxySameUser->setChecked(st.setting()->value (
+                                    sessionId+"/sshproxysameuser",
+                                    false
+                                ).toBool() );
+    cbProxyAutologin->setChecked(st.setting()->value (
+                                     sessionId+"/sshproxyautologin",
+                                     false
+                                 ).toBool() );
+
+    if(proxyHost->text().indexOf(":")!=-1)
+    {
+        QStringList parts=proxyHost->text().split(":");
+        proxyHost->setText(parts[0]);
+        proxyPort->setValue(parts[1].toInt());
+    }
+
+
+    QTimer::singleShot(1, this,SLOT(slot_proxySameLogin()));
+    QTimer::singleShot(2, this,SLOT(slot_proxyType()));
+    QTimer::singleShot(3, this,SLOT(slot_proxyOptions()));
+
+
     QStringList appNames=st.setting()->value (
                              sessionId+"/applications" ).toStringList();
     bool rootless=st.setting()->value (
@@ -427,7 +617,7 @@ void SessionWidget::readConfig()
                                 sessionId+"/directrdp",false ).toBool());
 #endif
 
-    for ( int i=0;i<appNames.count();++i )
+    for ( int i=0; i<appNames.count(); ++i )
     {
         QString app=mainWindow->transAppName ( appNames[i] );
         if ( cmdCombo->findText ( app ) ==-1 )
@@ -531,6 +721,27 @@ void SessionWidget::setDefaults()
 #ifdef Q_OS_LINUX
     rdpPort->setValue (3389);
 #endif
+
+
+
+    cbProxy->setChecked(false);
+
+    rbSshProxy->setChecked(true);
+
+
+    proxyKey->setText(QString::null);
+
+
+    proxyPort->setValue(22);
+
+    cbProxySamePass->setChecked(false);
+    cbProxySameUser->setChecked(false);
+    cbProxyAutologin->setChecked(false);
+
+    QTimer::singleShot(1, this,SLOT(slot_proxySameLogin()));
+    QTimer::singleShot(2, this,SLOT(slot_proxyType()));
+    QTimer::singleShot(3, this,SLOT(slot_proxyOptions()));
+
 }
 
 
@@ -585,7 +796,7 @@ void SessionWidget::saveSettings()
     }
 
     QStringList appList;
-    for ( int i=-1;i<cmdCombo->count();++i )
+    for ( int i=-1; i<cmdCombo->count(); ++i )
     {
         QString app;
         if ( i==-1 )
@@ -619,6 +830,28 @@ void SessionWidget::saveSettings()
                              ( QVariant ) rdpServer );
     st.setting()->setValue ( sessionId+"/xdmcpserver",
                              ( QVariant ) xdmcpServer );
+
+
+    st.setting()->setValue (
+        sessionId+"/usesshproxy",cbProxy->isChecked());
+
+
+    if(rbHttpProxy->isChecked())
+    {
+        st.setting()->setValue ( sessionId+"/sshproxytype","HTTP");
+    }
+    else
+    {
+        st.setting()->setValue ( sessionId+"/sshproxytype","SSH");
+    }
+    st.setting()->setValue (sessionId+"/sshproxyuser",proxyLogin->text());
+    st.setting()->setValue (sessionId+"/sshproxykeyfile",proxyKey->text());
+    st.setting()->setValue (sessionId+"/sshproxyhost",proxyHost->text());
+    st.setting()->setValue (sessionId+"/sshproxyport",proxyPort->value());
+    st.setting()->setValue (sessionId+"/sshproxysamepass",cbProxySamePass->isChecked());
+    st.setting()->setValue (sessionId+"/sshproxysameuser",cbProxySameUser->isChecked());
+    st.setting()->setValue (sessionId+"/sshproxyautologin",cbProxyAutologin->isChecked());
+
     st.setting()->sync();
 }
 

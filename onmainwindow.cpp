@@ -2708,7 +2708,11 @@ void ONMainWindow::slotSelectedFromList ( SessionButton* session )
 
 SshMasterConnection* ONMainWindow::startSshConnection ( QString host, QString port, bool acceptUnknownHosts,
         QString login,
-        QString password, bool autologin, bool krbLogin, bool getSrv)
+        QString password, bool autologin, bool krbLogin, bool getSrv, bool useproxy,
+        SshMasterConnection::ProxyType type,
+        QString proxyserver, quint16 proxyport,
+        QString proxylogin, QString proxypassword, QString proxyKey,
+        bool proxyAutologin)
 {
 
     SshMasterConnection* con;
@@ -2745,7 +2749,8 @@ SshMasterConnection* ONMainWindow::startSshConnection ( QString host, QString po
 
 
     con=new SshMasterConnection (this, host, port.toInt(),acceptUnknownHosts,
-                                 login, password,currentKey, autologin, krbLogin);
+                                 login, password,currentKey, autologin, krbLogin,useproxy,
+                                 type, proxyserver, proxyport, proxylogin, proxypassword, proxyKey,proxyAutologin);
     if (!getSrv)
         connect ( con, SIGNAL ( connectionOk(QString) ), this, SLOT ( slotSshConnectionOk() ) );
     else
@@ -3132,6 +3137,16 @@ bool ONMainWindow::startSession ( const QString& sid )
     QString host;
     bool autologin=false;
     bool krblogin=false;
+
+    bool useproxy=false;
+    SshMasterConnection::ProxyType proxyType= SshMasterConnection::PROXYHTTP;
+    QString proxyserver;
+    int proxyport=22;
+    QString proxylogin;
+    QString proxypassword;
+    QString proxyKey;
+    bool proxyAutologin=false;
+
     user=getCurrentUname();
     runRemoteCommand=true;
     shadowSession=false;
@@ -3193,7 +3208,93 @@ bool ONMainWindow::startSession ( const QString& sid )
     }
     if (sshConnection)
         sshConnection->disconnectSession();
-    sshConnection=startSshConnection ( host,sshPort,acceptRsa,user,passwd,autologin, krblogin );
+
+
+    X2goSettings* st;
+    if(!brokerMode)
+        st=new  X2goSettings( "sessions" );
+    else
+        st=new X2goSettings(config.iniFile, QSettings::IniFormat);
+
+
+
+
+    useproxy=(st->setting()->value (
+                  sid+"/usesshproxy",
+                  false
+              ).toBool() );
+
+    QString prtype= st->setting()->value (
+                        sid+"/sshproxytype",
+                        "SSH"
+                    ).toString() ;
+
+    if(prtype=="HTTP")
+    {
+        proxyType=SshMasterConnection::PROXYHTTP;
+    }
+    else
+    {
+        proxyType=SshMasterConnection::PROXYSSH;
+    }
+
+    proxylogin=(st->setting()->value (
+                    sid+"/sshproxyuser",
+                    QString()
+                ).toString() );
+
+    proxyKey=(st->setting()->value (
+                  sid+"/sshproxykeyfile",
+                  QString()
+              ).toString() );
+
+    proxyserver=(st->setting()->value (
+                     sid+"/sshproxyhost",
+                     QString()
+                 ).toString() );
+
+    proxyport=(st->setting()->value (
+                   sid+"/sshproxyport",
+                   22
+               ).toInt() );
+    if(proxyserver.indexOf(":")!=-1)
+    {
+        QStringList parts=proxyserver.split(":");
+        proxyserver=parts[0];
+        proxyport=parts[1].toInt();
+    }
+
+    bool proxySamePass=(st->setting()->value (
+                            sid+"/sshproxysamepass",
+                            false
+                        ).toBool() );
+    bool proxySameUser (st->setting()->value (
+                            sid+"/sshproxysameuser",
+                            false
+                        ).toBool() );
+    proxyAutologin=(st->setting()->value (
+                        sid+"/sshproxyautologin",
+                        false
+                    ).toBool() );
+
+    if(proxySameUser)
+        proxylogin=user;
+    if(proxySamePass)
+        proxypassword=passwd;
+    else
+    {
+        if(useproxy && !proxyAutologin && proxyKey.length()<=0)
+        {
+            bool ok;
+            proxypassword=QInputDialog::getText(0,proxylogin+"@"+proxyserver+":"+QString::number(proxyport),
+                                                tr("Enter passwort for SSH proxy"),QLineEdit::Password,QString::null, &ok);
+        }
+    }
+
+    delete st;
+
+    sshConnection=startSshConnection ( host,sshPort,acceptRsa,user,passwd,autologin, krblogin, false, useproxy,proxyType,proxyserver,
+                                       proxyport, proxylogin, proxypassword, proxyKey,proxyAutologin);
     return true;
 }
 

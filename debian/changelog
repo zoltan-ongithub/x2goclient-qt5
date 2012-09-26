@@ -59,6 +59,7 @@ x2goclient (3.99.3.0-0~x2go1) UNRELEASED; urgency=low
     - add support for SSH proxy in class SshMasterConnection 
     - SshMasterConnection emit signal to GUI thread if it need a passphrase to decrypt a ssh key.
       GUI thread use input dialog to read a passphrase from user
+    - Add support for SSH proxy (HTTP and SSH) to X2Go Client Gui
 
   [ Ricardo Diaz ]
   * New upstream version (3.99.3.0):

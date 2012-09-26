@@ -24,6 +24,7 @@ class QComboBox;
 class QLabel;
 class QCheckBox;
 class QGroupBox;
+class QRadioButton;
 class SessionWidget : public ConfigWidget
 {
     Q_OBJECT
@@ -39,6 +40,10 @@ private slots:
     void slot_getKey();
     void slot_changeCmd ( int var );
     void slot_rdpOptions();
+    void slot_proxyOptions();
+    void slot_proxyType();
+    void slot_proxySameLogin();
+    void slot_proxyGetKey();
 public slots:
 #ifdef Q_OS_LINUX
     void slot_rdpDirectClicked();
@@ -73,6 +78,20 @@ private:
     QString rdpServer;
     QString xdmcpServer;
     QPushButton* openKey;
+    QGroupBox* proxyBox;
+    QCheckBox* cbProxy;
+    QRadioButton* rbSshProxy;
+    QRadioButton* rbHttpProxy;
+    QLineEdit* proxyHost;
+    QSpinBox* proxyPort;
+    QLineEdit* proxyLogin;
+    QLabel* lProxyLogin;
+    QCheckBox* cbProxySameUser;
+    QCheckBox* cbProxySamePass;
+    QCheckBox* cbProxyAutologin;
+    QLineEdit* proxyKey;
+    QPushButton* pbOpenProxyKey;
+    QLabel* proxyKeyLabel;
 private:
     void readConfig();
 signals:

@@ -43,6 +43,7 @@
 #include "LDAPSession.h"
 #include <QToolBar>
 #include <QSystemTrayIcon>
+#include "sshmasterconnection.h"
 
 
 #ifdef Q_OS_WIN
@@ -168,8 +169,6 @@ struct ConfigFile
     QString iniFile;
     QString server;
     QString sshport;
-    QString proxy;
-    QString proxyport;
     QString command;
     QString key;
     bool rootless;
@@ -203,6 +202,15 @@ struct ConfigFile
     QString kbdLay;
     QString kbdType;
     //
+    bool useproxy;
+    SshMasterConnection::ProxyType proxyType;
+    QString proxyserver;
+    int proxyport;
+    QString proxylogin;
+    QString proxypassword;
+    QString proxyKey;
+    bool proxyAutologin;
+
 };
 
 
@@ -835,7 +843,11 @@ private:
     void continueLDAPSession();
     SshMasterConnection* startSshConnection ( QString host, QString port,
             bool acceptUnknownHosts, QString login,
-            QString password, bool autologin, bool krbLogin, bool getSrv=false);
+            QString password, bool autologin, bool krbLogin, bool getSrv=false, bool useproxy=false,
+            SshMasterConnection::ProxyType type=SshMasterConnection::PROXYSSH,
+            QString proxyserver=QString::null, quint16 proxyport=0,
+            QString proxylogin=QString::null, QString proxypassword=QString::null, QString proxyKey=QString::null,
+            bool proxyAutologin=false );
     void setProxyWinTitle();
     QRect proxyWinGeometry();
     void readApplications();
