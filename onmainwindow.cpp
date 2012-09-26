@@ -96,7 +96,6 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
     LDAPPrintSupport=false;
     managedMode=false;
     brokerMode=false;
-    sshProxy.use=false;
     startEmbedded=false;
     sshConnection=0;
     sessionStatusDlg=0;
@@ -1269,6 +1268,7 @@ void ONMainWindow::closeClient()
         x2goDebug<<"waiting sshConnection to finish\n";
         sshConnection->wait ( 10000 );
         x2goDebug<<"sshConnection is closed\n";
+        sshConnection=0;
     }
     if (useLdap)
     {
@@ -2769,14 +2769,17 @@ SshMasterConnection* ONMainWindow::startSshConnection ( QString host, QString po
     {
         autologin=true;
     }
-    con=new SshMasterConnection ( host, port.toInt(),acceptUnknownHosts,
-                                  login, password,currentKey, autologin,krbLogin, this );
+
+
+    con=new SshMasterConnection (this, host, port.toInt(),acceptUnknownHosts,
+                                 login, password,currentKey, autologin, krbLogin);
     if (!getSrv)
         connect ( con, SIGNAL ( connectionOk(QString) ), this, SLOT ( slotSshConnectionOk() ) );
     else
         connect ( con, SIGNAL ( connectionOk(QString)), this, SLOT ( slotServSshConnectionOk(QString) ) );
 
-    connect ( con, SIGNAL ( serverAuthError ( int,QString ) ),this,SLOT ( slotSshServerAuthError ( int,QString ) ) );
+    connect ( con, SIGNAL ( serverAuthError ( int,QString, SshMasterConnection* ) ),this,
+              SLOT ( slotSshServerAuthError ( int,QString, SshMasterConnection* ) ) );
     connect ( con, SIGNAL ( userAuthError ( QString ) ),this,SLOT ( slotSshUserAuthError ( QString ) ) );
     connect ( con, SIGNAL ( connectionError ( QString,QString ) ), this,
               SLOT ( slotSshConnectionError ( QString,QString ) ) );
@@ -2861,7 +2864,7 @@ void ONMainWindow::slotServSshConnectionOk(QString server)
     lproc->startNormal ( "export HOSTNAME && x2golistsessions" );
 }
 
-void ONMainWindow::slotSshServerAuthError ( int error, QString sshMessage )
+void ONMainWindow::slotSshServerAuthError ( int error, QString sshMessage, SshMasterConnection* connection )
 {
     if ( startHidden )
     {
@@ -2877,12 +2880,14 @@ void ONMainWindow::slotSshServerAuthError ( int error, QString sshMessage )
     case SSH_SERVER_KNOWN_CHANGED:
         errMsg=tr ( "Host key for server changed.\nIt is now: " ) +sshMessage+"\n"+
                tr ( "For security reasons, connection will be stopped" );
-        if ( sshConnection )
+        connection->writeKnownHosts(false);
+        connection->wait();
+        if(sshConnection && sshConnection !=connection)
         {
             sshConnection->wait();
             delete sshConnection;
-            sshConnection=0l;
         }
+        sshConnection=0;
         slotSshUserAuthError ( errMsg );
         return;
 
@@ -2890,23 +2895,27 @@ void ONMainWindow::slotSshServerAuthError ( int error, QString sshMessage )
         errMsg=tr ( "The host key for this server was not found but an other"
                     "type of key exists.An attacker might change the default server key to"
                     "confuse your client into thinking the key does not exist" );
-        if ( sshConnection )
+        connection->writeKnownHosts(false);
+        connection->wait();
+        if(sshConnection && sshConnection !=connection)
         {
             sshConnection->wait();
             delete sshConnection;
-            sshConnection=0l;
         }
+        sshConnection=0;
         slotSshUserAuthError ( errMsg );
         return ;
 
     case SSH_SERVER_ERROR:
-        if ( sshConnection )
+        connection->writeKnownHosts(false);
+        connection->wait();
+        if(sshConnection && sshConnection !=connection)
         {
             sshConnection->wait();
             delete sshConnection;
-            sshConnection=0l;
         }
-        slotSshUserAuthError ( errMsg );
+        sshConnection=0;
+        slotSshUserAuthError ( sshMessage );
         return ;
     case SSH_SERVER_FILE_NOT_FOUND:
         errMsg=tr ( "Could not find known host file."
@@ -2920,17 +2929,20 @@ void ONMainWindow::slotSshServerAuthError ( int error, QString sshMessage )
 
     if ( QMessageBox::warning ( this, tr ( "Host key verification failed" ),errMsg,tr ( "Yes" ), tr ( "No" ) ) !=0 )
     {
-        if ( sshConnection )
+        connection->writeKnownHosts(false);
+        connection->wait();
+        if(sshConnection && sshConnection !=connection)
         {
             sshConnection->wait();
             delete sshConnection;
-            sshConnection=0l;
         }
+        sshConnection=0;
         slotSshUserAuthError ( tr ( "Host key verification failed" ) );
         return;
     }
-    sshConnection->setAcceptUnknownServers ( true );
-    sshConnection->start();
+    connection->writeKnownHosts(true);
+    connection->wait();
+    connection->start();
 }
 
 void ONMainWindow::slotSshUserAuthError ( QString error )
@@ -5124,6 +5136,8 @@ void ONMainWindow::slotProxyFinished ( int,QProcess::ExitStatus )
     }
 #endif
     x2goDebug<<"proxy deleted"<<endl;
+    sshConnection->disconnectSession();
+    sshConnection=0;
     spoolTimer=0l;
     tunnel=sndTunnel=fsTunnel=0l;
     soundServer=0l;
@@ -5143,7 +5157,10 @@ void ONMainWindow::slotProxyFinished ( int,QProcess::ExitStatus )
             ( config.checkexitstatus==false ) ) )
         check_cmd_status();
     else
+    {
         sshConnection->disconnectSession();
+        sshConnection=0;
+    }
     if ( startHidden )
         close();
 
@@ -6599,7 +6616,10 @@ void ONMainWindow::slotGetServers ( bool result, QString output,
     listedSessions.clear();
     retSessions=0;
     if (sshConnection)
+    {
         sshConnection->disconnectSession();
+        sshConnection=0;
+    }
     QString passwd;
     QString user=getCurrentUname();
     passwd=getCurrentPass();
@@ -8128,6 +8148,7 @@ void ONMainWindow::slotCmdMessage ( bool result,QString output,
         pass->setFocus();
         pass->selectAll();
         sshConnection->disconnectSession();
+        sshConnection=0;
         return;
     }
     if ( output.indexOf ( "X2GORUNCOMMAND ERR NOEXEC:" ) !=-1 )
@@ -8140,6 +8161,7 @@ void ONMainWindow::slotCmdMessage ( bool result,QString output,
                                 QMessageBox::NoButton );
     }
     sshConnection->disconnectSession();
+    sshConnection=0;
 }
 
 
@@ -9568,7 +9590,6 @@ void ONMainWindow::slotEmbedIntoParentWindow()
 
 void ONMainWindow::processSessionConfig()
 {
-    sshProxy.use=false;
     bool haveKey=false;
 
     config.command="KDE";
@@ -9796,22 +9817,6 @@ void ONMainWindow::processCfgLine ( QString line )
         config.brokerurl=lst[1];
         managedMode=true;
         acceptRsa=true;
-    }
-    if ( lst[0]=="proxy" )
-    {
-        config.proxy=sshProxy.host=lst[1];
-        sshProxy.use=true;
-#ifdef Q_OS_WIN
-        sshProxy.bin=cygwinPath ( wapiShortFileName ( appDir ) ) +"/ssh";
-#else
-        sshProxy.bin="ssh";
-#endif
-        return;
-    }
-    if ( lst[0]=="proxysshport" )
-    {
-        config.proxyport=sshProxy.port=lst[1];
-        return;
     }
     if ( lst[0]=="cookie" )
     {

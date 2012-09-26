@@ -56,6 +56,7 @@ x2goclient (3.99.3.0-0~x2go1) UNRELEASED; urgency=low
     - Add command line parameter --ssh-key and --autologin 
     - disable check box "use default sound port" if sound disabled
     - add support for HTTP proxy - developed by Heinrich Schuchardt (xypron.glpk@gmx.de)
+    - add support for SSH proxy in class SshMasterConnection 
 
   [ Ricardo Diaz ]
   * New upstream version (3.99.3.0):

@@ -48,6 +48,9 @@
 
 #include "onmainwindow.h"
 
+
+#define PROXYTUNNELPORT 44444
+
 #undef DEBUG
 //#define DEBUG
 
@@ -56,17 +59,23 @@
 
 static bool isLibSshInited=false;
 
-SshMasterConnection::SshMasterConnection ( QString host, int port,
-        bool acceptUnknownServers, QString user, QString pass, QString key,
-        bool autologin, bool krblogin, bool useproxy, QString proxyserver,
-        quint16 proxyport, QString proxylogin, QString proxypassword,
-        QObject* parent ) : QThread ( parent )
+SshMasterConnection::SshMasterConnection (QObject* parent, QString host, int port, bool acceptUnknownServers, QString user,
+        QString pass, QString key, bool autologin, bool krblogin,
+        bool useproxy, ProxyType type, QString proxyserver, quint16 proxyport,
+        QString proxylogin, QString proxypassword, QString proxykey,
+        bool proxyautologin ) : QThread ( parent )
 {
 #if defined ( Q_OS_DARWIN )
     // Mac OS X provides only 512KB stack space for secondary threads.
     // As we put a 512KB buffer on the stack later on, we need a bigger stack space.
     setStackSize (sizeof (char) * 1024 * 1024 * 2);
 #endif
+    tcpProxySocket = NULL;
+    tcpNetworkProxy = NULL;
+    sshProxy= NULL;
+    sshProxyReady=false;
+
+    breakLoop=false;
     this->host=host;
     this->port=port;
     this->user=user;
@@ -75,6 +84,9 @@ SshMasterConnection::SshMasterConnection ( QString host, int port,
     this->autologin=autologin;
     this->acceptUnknownServers=acceptUnknownServers;
     this->useproxy=useproxy;
+    this->proxytype=type;
+    this->proxyautologin=proxyautologin;
+    this->proxykey=proxykey;
     this->proxyserver=proxyserver;
     this->proxyport=proxyport;
     this->proxylogin=proxylogin;
@@ -89,18 +101,24 @@ SshMasterConnection::SshMasterConnection ( QString host, int port,
         x2goDebug<<"starting ssh connection without kerberos authentication"<<endl;
 #endif
     kerberos=false;
+
 }
 
-SshMasterConnection::SshMasterConnection ( QString host, int port,
-        bool acceptUnknownServers, QString user, QString pass, QString key,
-        bool autologin, int remotePort, QString localHost, int localPort,
-        SshProcess* creator, bool useproxy, QString proxyserver,
-        quint16 proxyport, QString proxylogin, QString proxypassword,
-        QObject* parent, ONMainWindow* mwd ) : QThread ( parent )
+SshMasterConnection::SshMasterConnection (QObject* parent, ONMainWindow* mwd, QString host, int port, bool acceptUnknownServers,
+        QString user, QString pass, QString key,bool autologin,
+        int remotePort, QString localHost, int localPort, SshProcess* creator,
+        bool useproxy, ProxyType type, QString proxyserver, quint16 proxyport,
+        QString proxylogin, QString proxypassword, QString proxykey,
+        bool proxyautologin, int localProxyPort) : QThread ( parent )
 {
 #if defined ( Q_OS_DARWIN )
     setStackSize (sizeof (char) * 1024 * 1024 * 2);
 #endif
+    tcpProxySocket = NULL;
+    tcpNetworkProxy = NULL;
+    sshProxy= NULL;
+    sshProxyReady=false;
+    breakLoop=false;
     this->host=host;
     this->port=port;
     this->user=user;
@@ -113,6 +131,10 @@ SshMasterConnection::SshMasterConnection ( QString host, int port,
     this->proxyport=proxyport;
     this->proxylogin=proxylogin;
     this->proxypassword=proxypassword;
+    this->proxytype=type;
+    this->proxyautologin=proxyautologin;
+    this->proxykey=proxykey;
+    this->localProxyPort=localProxyPort;
     reverseTunnelLocalHost=localHost;
     reverseTunnelLocalPort=localPort;
     reverseTunnelCreator=creator;
@@ -121,13 +143,68 @@ SshMasterConnection::SshMasterConnection ( QString host, int port,
     mainWnd=mwd;
 }
 
+void SshMasterConnection::slotSshProxyConnectionOk()
+{
+#ifdef DEBUG
+    x2goDebug<<"sshproxy connected";
+#endif
+    SshProcess* tunnel=new SshProcess ( sshProxy, this );
+
+    connect ( tunnel,SIGNAL ( sshFinished ( bool,  QString, SshProcess* ) ),
+              this,SLOT ( slotSshProxyTunnelFailed(bool,QString,SshProcess*)));
+    connect ( tunnel,SIGNAL ( sshTunnelOk() ),
+              this,SLOT ( slotSshProxyTunnelOk()) );
+
+    localProxyPort=PROXYTUNNELPORT;
+    while ( ONMainWindow::isServerRunning ( localProxyPort ) )
+        ++localProxyPort;
+
+    tunnel->startTunnel ( host, port, "localhost",localProxyPort);
+
+}
+
+
+void SshMasterConnection::slotSshProxyConnectionError(QString err1, QString err2)
+{
+    breakLoop=true;
+    emit connectionError(tr("SSH proxy connection error"),err1+" "+err2);
+}
+
+void SshMasterConnection::slotSshProxyServerAuthError(int errCode, QString err, SshMasterConnection* con)
+{
+    emit serverAuthError(errCode, tr("SSH proxy connection error: ")+err, con);
+}
+
+void SshMasterConnection::slotSshProxyUserAuthError(QString err)
+{
+    breakLoop=true;
+    emit userAuthError(tr("SSH proxy connection error: ")+err);
+}
+
+
+void SshMasterConnection::slotSshProxyTunnelOk()
+{
+#ifdef DEBUG
+    x2goDebug<<"Ssh proxy tunnel established";
+#endif
+    sshProxyReady=true;
+}
+
+void SshMasterConnection::slotSshProxyTunnelFailed(bool ,  QString output,
+        SshProcess*)
+{
+    breakLoop=true;
+    emit connectionError(tr("Failed to create SSH proxy tunnel"), output);
+}
+
+
 SshMasterConnection* SshMasterConnection::reverseTunnelConnection ( SshProcess* creator,
         int remotePort, QString localHost, int localPort )
 {
-    SshMasterConnection* con=new SshMasterConnection ( host,port,acceptUnknownServers,user,pass,
+    SshMasterConnection* con=new SshMasterConnection (this, mainWnd, host,port,acceptUnknownServers,user,pass,
             key,autologin, remotePort,localHost,
-            localPort,creator, useproxy, proxyserver, proxyport, proxylogin,
-            proxypassword, this, mainWnd);
+            localPort,creator, useproxy, proxytype, proxyserver, proxyport, proxylogin,
+            proxypassword, proxykey, proxyautologin, localProxyPort );
     con->kerberos=kerberos;
 
     connect ( con,SIGNAL ( ioErr ( SshProcess*,QString,QString ) ),this,SIGNAL ( ioErr ( SshProcess*,QString,QString ) ) );
@@ -140,8 +217,41 @@ SshMasterConnection* SshMasterConnection::reverseTunnelConnection ( SshProcess* 
     return con;
 }
 
+void SshMasterConnection::slotSshProxyServerAuthAborted()
+{
+    breakLoop=true;
+}
+
 void SshMasterConnection::run()
 {
+    if(useproxy && proxytype==PROXYSSH && !reverseTunnel)
+    {
+
+        sshProxy=new SshMasterConnection (0, proxyserver, proxyport,acceptUnknownServers,
+                                          proxylogin, proxypassword, proxykey, proxyautologin, kerberos, false);
+        connect ( sshProxy, SIGNAL ( connectionOk(QString) ), this, SLOT ( slotSshProxyConnectionOk() ) );
+
+        connect ( sshProxy, SIGNAL ( serverAuthError ( int,QString,SshMasterConnection* ) ),this,
+                  SLOT ( slotSshProxyServerAuthError ( int,QString, SshMasterConnection* ) ) );
+        connect ( sshProxy, SIGNAL ( serverAuthAborted()),this,
+                  SLOT ( slotSshProxyServerAuthAborted()) );
+        connect ( sshProxy, SIGNAL ( userAuthError ( QString ) ),this,SLOT ( slotSshProxyUserAuthError ( QString ) ) );
+        connect ( sshProxy, SIGNAL ( connectionError ( QString,QString ) ), this,
+                  SLOT ( slotSshProxyConnectionError ( QString,QString ) ) );
+
+        sshProxyReady=false;
+        sshProxy->start();
+
+        while(! sshProxyReady)
+        {
+            if(breakLoop)
+            {
+                quit();
+                return;
+            }
+            this->usleep(200);
+        }
+    }
     disconnectSessionFlag=false;
     if ( !isLibSshInited )
     {
@@ -192,7 +302,8 @@ void SshMasterConnection::run()
 
     ssh_options_set(my_ssh_session, SSH_OPTIONS_TIMEOUT, &timeout);
 
-    if (useproxy) {
+    if (useproxy && proxytype == PROXYHTTP)
+    {
         socket_t proxysocket = SSH_INVALID_SOCKET;
 
         tcpNetworkProxy = new QNetworkProxy( QNetworkProxy::HttpProxy,
@@ -201,7 +312,8 @@ void SshMasterConnection::run()
         tcpProxySocket->setProxy( *tcpNetworkProxy );
         tcpProxySocket->connectToHost(host, port);
         proxysocket = tcpProxySocket->socketDescriptor();
-        if (!tcpProxySocket->waitForConnected(30000)) {
+        if (!tcpProxySocket->waitForConnected(30000))
+        {
             QString message=tr ( "Can not connect to proxy server" );
             x2goDebug<<message<<endl;
             emit connectionError ( "Proxy", message );
@@ -209,12 +321,15 @@ void SshMasterConnection::run()
             quit();
             return;
         }
-
-        x2goDebug <<  "Created socket " << proxysocket << endl;
+#ifdef DEBUG
+        x2goDebug <<  "Created HTTP proxy socket " << proxysocket << endl;
+#endif
         ssh_options_set( my_ssh_session, SSH_OPTIONS_FD, &proxysocket);
-        ssh_set_fd_toread( my_ssh_session),
-                           x2goDebug<<"Connected to proxy server " << proxyserver << ":"
-                           << proxyport <<endl;
+        ssh_set_fd_toread( my_ssh_session);
+#ifdef DEBUG
+        x2goDebug<<"Connected to HTTP proxy server " << proxyserver << ":"
+                 << proxyport <<endl;
+#endif
     }
 
     if ( !sshConnect() )
@@ -233,10 +348,23 @@ void SshMasterConnection::run()
     int state=serverAuth ( errMsg );
     if ( state != SSH_SERVER_KNOWN_OK )
     {
-        emit serverAuthError ( state,errMsg );
+        writeHostKey=writeHostKeyReady=false;
+        emit serverAuthError ( state,errMsg, this );
+        for(;;)
+        {
+            this->usleep(100);
+            writeHostKeyMutex.lock();
+            if(writeHostKeyReady)
+            {
+                if(writeHostKey)
+                    ssh_write_knownhost(my_ssh_session);
+                writeHostKeyMutex.unlock();
+                break;
+            }
+            writeHostKeyMutex.unlock();
+        }
         ssh_disconnect ( my_ssh_session );
         ssh_free ( my_ssh_session );
-        quit();
         return;
     }
 
@@ -307,8 +435,11 @@ void SshMasterConnection::run()
 
 SshMasterConnection::~SshMasterConnection()
 {
-    if (tcpProxySocket != NULL) delete tcpProxySocket;
-    if (tcpNetworkProxy != NULL) delete tcpNetworkProxy;
+
+    if (tcpProxySocket != NULL)
+        delete tcpProxySocket;
+    if (tcpNetworkProxy != NULL)
+        delete tcpNetworkProxy;
 }
 
 
@@ -332,15 +463,46 @@ bool SshMasterConnection::sshConnect()
 {
     int rc;
     QByteArray tmpBA = host.toLocal8Bit();
-    ssh_options_set ( my_ssh_session, SSH_OPTIONS_HOST, tmpBA.data() );
-    ssh_options_set ( my_ssh_session, SSH_OPTIONS_PORT, &port );
+    if(useproxy && proxytype==PROXYSSH)
+    {
+        ssh_options_set ( my_ssh_session, SSH_OPTIONS_HOST, "localhost" );
+        ssh_options_set ( my_ssh_session, SSH_OPTIONS_PORT, &localProxyPort );
+
+    }
+    else
+    {
+        ssh_options_set ( my_ssh_session, SSH_OPTIONS_HOST, tmpBA.data() );
+        ssh_options_set ( my_ssh_session, SSH_OPTIONS_PORT, &port );
+    }
     rc = ssh_connect ( my_ssh_session );
     if ( rc != SSH_OK )
+    {
         return false;
-    return true;
+    }
+//set values for remote host for proper server authentication
+    if(useproxy && proxytype==PROXYSSH)
+    {
+        ssh_options_set ( my_ssh_session, SSH_OPTIONS_HOST, tmpBA.data() );
+        ssh_options_set ( my_ssh_session, SSH_OPTIONS_PORT, &port );
 
+    }
+    return true;
 }
 
+
+void SshMasterConnection::writeKnownHosts(bool write)
+{
+    writeHostKeyMutex.lock();
+    writeHostKeyReady=true;
+    writeHostKey=write;
+    if(!write)
+    {
+        breakLoop=true;
+        emit serverAuthAborted();
+    }
+    writeHostKeyMutex.unlock();
+
+}
 
 
 int SshMasterConnection::serverAuth ( QString& errorMsg )
@@ -372,7 +534,7 @@ int SshMasterConnection::serverAuth ( QString& errorMsg )
 
     case SSH_SERVER_KNOWN_CHANGED:
         hexa = ssh_get_hexa ( hash, hlen );
-        errorMsg=hexa;
+        errorMsg=host+":"+QString::number(port)+" - "+hexa;
         free ( hexa );
         break;
     case SSH_SERVER_FOUND_OTHER:
@@ -382,7 +544,7 @@ int SshMasterConnection::serverAuth ( QString& errorMsg )
         if ( !acceptUnknownServers )
         {
             hexa = ssh_get_hexa ( hash, hlen );
-            errorMsg=hexa;
+            errorMsg=host+":"+QString::number(port)+" - "+hexa;
             free ( hexa );
             break;
         }
@@ -391,7 +553,7 @@ int SshMasterConnection::serverAuth ( QString& errorMsg )
         break;
 
     case SSH_SERVER_ERROR:
-        errorMsg=ssh_get_error ( my_ssh_session );
+        errorMsg=host+":"+QString::number(port)+" - "+ssh_get_error ( my_ssh_session );
         break;
     }
     free ( hash );
@@ -570,9 +732,11 @@ void SshMasterConnection::addCopyRequest ( SshProcess* creator, QString src, QSt
 
 void SshMasterConnection::disconnectSession()
 {
+
     disconnectFlagMutex.lock();
     disconnectSessionFlag=true;
     disconnectFlagMutex.unlock();
+
 }
 
 void SshMasterConnection::copy()
@@ -722,6 +886,14 @@ void SshMasterConnection::channelLoop()
 
         if ( disconnect )
         {
+
+            if (useproxy && proxytype==PROXYSSH&&sshProxy)
+            {
+                sshProxy->disconnectSession();
+                sshProxy->wait ( 10000 );
+                sshProxy=0;
+            }
+
 #ifdef DEBUG
             if ( !reverseTunnel )
                 x2goDebug<<"Disconnecting..."<<endl;
@@ -983,9 +1155,11 @@ void SshMasterConnection::finalize ( int item )
     }
     if ( tcpSocket>0 )
     {
+        shutdown(tcpSocket, SHUT_RDWR);
         close ( tcpSocket );
     }
     SshProcess* proc=channelConnections[item].creator;
+    proc->shutdownSocket();
     channelConnections.removeAt ( item );
     emit channelClosed ( proc );
 }

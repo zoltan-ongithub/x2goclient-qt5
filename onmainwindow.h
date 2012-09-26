@@ -205,14 +205,6 @@ struct ConfigFile
     //
 };
 
-struct SshProxy
-{
-    bool use;
-    QString host;
-    QString port;
-    QString bin;
-};
-
 
 //wrapper to send mouse events under windows in embedded mode
 #ifdef Q_OS_WIN
@@ -302,6 +294,7 @@ public:
     {
         return &sessions;
     }
+    static bool isServerRunning ( int port );
     void startNewSession();
     void suspendSession ( QString sessId );
     bool termSession ( QString sessId,
@@ -524,7 +517,6 @@ private:
     bool cleanAllFiles;
     bool PGPInited;
     bool resumeAfterSuspending;
-    struct SshProxy sshProxy;
     QString sshPort;
     QString clientSshPort;
     QString defaultSshPort;
@@ -887,7 +879,7 @@ private slots:
     void displayToolBar ( bool );
     void showSessionStatus();
     void slotSshConnectionError ( QString message, QString lastSessionError );
-    void slotSshServerAuthError ( int error, QString sshMessage );
+    void slotSshServerAuthError ( int error, QString sshMessage, SshMasterConnection* connection );
     void slotSshUserAuthError ( QString error );
     void slotSshConnectionOk();
     void slotServSshConnectionOk(QString server);
@@ -1038,7 +1030,6 @@ private:
 #ifdef Q_OS_LINUX
     void startDirectRDP();
 #endif
-    bool isServerRunning ( int port );
     void filterDesktops ( const QString& filter,
                           bool strict=false );
     void generateHostDsaKey();

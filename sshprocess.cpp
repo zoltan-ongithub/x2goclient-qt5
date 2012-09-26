@@ -60,6 +60,21 @@ SshProcess::~SshProcess()
     }
 }
 
+void SshProcess::shutdownSocket()
+{
+    if (serverSocket>0)
+    {
+#ifdef Q_OS_WIN
+        closesocket(serverSocket);
+        WSACleanup();
+
+#else
+        close(serverSocket);
+#endif
+        serverSocket=0;
+
+    }
+}
 
 void SshProcess::slotCheckNewConnection()
 {

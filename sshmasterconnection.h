@@ -60,12 +60,13 @@ class SshMasterConnection: public QThread
 {
     Q_OBJECT
 public:
+    enum ProxyType {PROXYSSH, PROXYHTTP};
     void run();
-    SshMasterConnection(QString host, int port, bool acceptUnknownServers, QString user,
-                        QString pass, QString key, bool autologin, bool krblogin,
-                        bool useproxy, QString proxyserver, quint16 proxyport,
-                        QString proxylogin, QString proxypassword,
-                        QObject* parent = 0);
+    SshMasterConnection(QObject* parent, QString host, int port, bool acceptUnknownServers, QString user,
+                        QString pass, QString key, bool autologin, bool krblogin=false,
+                        bool useproxy=false, ProxyType type=PROXYSSH, QString proxyserver=QString::null, quint16 proxyport=0,
+                        QString proxylogin=QString::null, QString proxypassword=QString::null, QString proxyKey=QString::null,
+                        bool proxyAutologin=false);
     ~SshMasterConnection();
     static void finalizeLibSsh();
     void addChannelConnection(SshProcess* creator, int sock, QString forwardHost,
@@ -73,6 +74,7 @@ public:
     void addChannelConnection(SshProcess* creator, QString cmd);
     void addCopyRequest(SshProcess* creator, QString src, QString dst);
     void disconnectSession();
+    void writeKnownHosts(bool);
     void setAcceptUnknownServers(bool accept)
     {
         acceptUnknownServers=accept;
@@ -97,12 +99,12 @@ public:
     };
 
 private:
-    SshMasterConnection(QString host, int port, bool acceptUnknownServers,
+    SshMasterConnection(QObject* parent, ONMainWindow* parWnd, QString host, int port, bool acceptUnknownServers,
                         QString user, QString pass, QString key,bool autologin,
                         int remotePort, QString localHost, int localPort, SshProcess* creator,
-                        bool useproxy, QString proxyserver, quint16 proxyport,
-                        QString proxylogin, QString proxypassword,
-                        QObject* parent, ONMainWindow* parWnd);
+                        bool useproxy=false, ProxyType type=PROXYSSH, QString proxyserver=QString::null, quint16 proxyport=0,
+                        QString proxylogin=QString::null, QString proxypassword=QString::null, QString proxyKey=QString::null,
+                        bool proxyAutologin=false, int localProxyPort=0);
     bool sshConnect();
     bool userAuthWithPass();
     bool userAuthAuto();
@@ -116,6 +118,19 @@ private:
     void parseKnownHosts();
 #endif
 
+private slots:
+
+    void slotSshProxyServerAuthError ( int,QString, SshMasterConnection* );
+    void slotSshProxyServerAuthAborted ();
+    void slotSshProxyUserAuthError ( QString );
+    void slotSshProxyConnectionError ( QString,QString );
+
+
+    void slotSshProxyConnectionOk();
+    void slotSshProxyTunnelOk();
+    void slotSshProxyTunnelFailed(bool result,  QString output,
+                                  SshProcess*);
+
 private:
     ssh_session my_ssh_session;
     QList<ChannelConnection> channelConnections;
@@ -125,6 +140,10 @@ private:
     QMutex copyRequestMutex;
     QMutex disconnectFlagMutex;
     QMutex reverseTunnelConnectionsMutex;
+    QMutex writeHostKeyMutex;
+    bool writeHostKey;
+    bool writeHostKeyReady;
+
     QString host;
     int port;
     QString user;
@@ -135,11 +154,15 @@ private:
     quint16 proxyport;
     QString proxylogin;
     QString proxypassword;
+    ProxyType proxytype;
+    bool proxyautologin;
+    QString proxykey;
     QStringList authErrors;
     bool autologin;
     bool disconnectSessionFlag;
     bool reverseTunnel;
     int reverseTunnelRemotePort;
+    int localProxyPort;
     int reverseTunnelLocalPort;
     bool acceptUnknownServers;
     QString reverseTunnelLocalHost;
@@ -147,8 +170,11 @@ private:
     ONMainWindow* mainWnd;
     bool kerberos;
     QString sshProcErrString;
-    QTcpSocket *tcpProxySocket = NULL;
-    QNetworkProxy *tcpNetworkProxy = NULL;
+    QTcpSocket *tcpProxySocket;
+    QNetworkProxy *tcpNetworkProxy;
+    SshMasterConnection* sshProxy;
+    bool sshProxyReady;
+    bool breakLoop;
 
 signals:
     void stdErr(SshProcess* caller, QByteArray data);
@@ -159,7 +185,8 @@ signals:
     void channelClosed(SshProcess* caller);
 
     void connectionError(QString message, QString lastSessionError);
-    void serverAuthError(int errCode, QString lastSessionError);
+    void serverAuthError(int errCode, QString lastSessionError, SshMasterConnection*);
+    void serverAuthAborted();
     void userAuthError(QString error);
 
     void newReverceTunnelConnection(SshProcess* creator, void* newChannel);
@@ -169,5 +196,3 @@ signals:
 
 
 #endif // SSHMASTERCONNECTION_H
-
-
