@@ -2675,34 +2675,7 @@ void ONMainWindow::slotSelectedFromList ( SessionButton* session )
 
     if ( currentKey.length() >0 )
     {
-        if ( currentKey.indexOf ( "PRIVATE KEY" ) !=-1 )
-        {
-            if ( currentKey.indexOf ( "ENCRYPTED" ) ==-1 )
-                nopass=true;
-            else
-                nopass=false;
-        }
-        else
-        {
-            QFile file ( currentKey );
-            if ( file.open ( QIODevice::ReadOnly | QIODevice::Text ) )
-            {
-                nopass=true;
-                while ( !file.atEnd() )
-                {
-                    QString line = file.readLine();
-                    if ( line.indexOf ( "ENCRYPTED" ) !=-1 )
-                    {
-                        nopass=false;
-                        break;
-                    }
-
-                }
-                file.close();
-            }
-            else
-                currentKey=QString::null;
-        }
+        nopass=true;
     }
     if ( currentKey != QString::null && currentKey != "" && nopass )
     {
@@ -2780,6 +2753,8 @@ SshMasterConnection* ONMainWindow::startSshConnection ( QString host, QString po
 
     connect ( con, SIGNAL ( serverAuthError ( int,QString, SshMasterConnection* ) ),this,
               SLOT ( slotSshServerAuthError ( int,QString, SshMasterConnection* ) ) );
+    connect ( con, SIGNAL ( needPassPhrase(SshMasterConnection*)),this,
+              SLOT ( slotSshServerAuthPassphrase(SshMasterConnection*)) );
     connect ( con, SIGNAL ( userAuthError ( QString ) ),this,SLOT ( slotSshUserAuthError ( QString ) ) );
     connect ( con, SIGNAL ( connectionError ( QString,QString ) ), this,
               SLOT ( slotSshConnectionError ( QString,QString ) ) );
@@ -2863,6 +2838,24 @@ void ONMainWindow::slotServSshConnectionOk(QString server)
     x2goDebug<<"getting sessions on "<<server<<endl;
     lproc->startNormal ( "export HOSTNAME && x2golistsessions" );
 }
+
+void ONMainWindow::slotSshServerAuthPassphrase(SshMasterConnection* connection)
+{
+    bool ok;
+    QString phrase=QInputDialog::getText(0,connection->getUser()+"@"+connection->getHost()+":"+QString::number(connection->getPort()),
+                                         tr("Enter passphrase to decrypt a key"),QLineEdit::Password,QString::null, &ok);
+    if(!ok)
+    {
+        phrase=QString::null;
+    }
+    else
+    {
+        if(phrase==QString::null)
+            phrase="";
+    }
+    connection->setKeyPhrase(phrase);
+}
+
 
 void ONMainWindow::slotSshServerAuthError ( int error, QString sshMessage, SshMasterConnection* connection )
 {
@@ -5136,8 +5129,6 @@ void ONMainWindow::slotProxyFinished ( int,QProcess::ExitStatus )
     }
 #endif
     x2goDebug<<"proxy deleted"<<endl;
-    sshConnection->disconnectSession();
-    sshConnection=0;
     spoolTimer=0l;
     tunnel=sndTunnel=fsTunnel=0l;
     soundServer=0l;

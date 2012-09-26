@@ -880,6 +880,7 @@ private slots:
     void showSessionStatus();
     void slotSshConnectionError ( QString message, QString lastSessionError );
     void slotSshServerAuthError ( int error, QString sshMessage, SshMasterConnection* connection );
+    void slotSshServerAuthPassphrase ( SshMasterConnection* connection );
     void slotSshUserAuthError ( QString error );
     void slotSshConnectionOk();
     void slotServSshConnectionOk(QString server);

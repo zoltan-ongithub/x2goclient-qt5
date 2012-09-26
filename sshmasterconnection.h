@@ -75,6 +75,7 @@ public:
     void addCopyRequest(SshProcess* creator, QString src, QString dst);
     void disconnectSession();
     void writeKnownHosts(bool);
+    void setKeyPhrase(QString);
     void setAcceptUnknownServers(bool accept)
     {
         acceptUnknownServers=accept;
@@ -144,6 +145,10 @@ private:
     bool writeHostKey;
     bool writeHostKeyReady;
 
+    QString keyPhrase;
+    bool keyPhraseReady;
+    QMutex keyPhraseMutex;
+
     QString host;
     int port;
     QString user;
@@ -192,6 +197,8 @@ signals:
     void newReverceTunnelConnection(SshProcess* creator, void* newChannel);
     void reverseListenOk(SshProcess* creator);
     void connectionOk( QString host);
+
+    void needPassPhrase(SshMasterConnection*);
 };
 
 

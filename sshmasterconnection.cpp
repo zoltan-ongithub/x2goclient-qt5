@@ -52,10 +52,10 @@
 #define PROXYTUNNELPORT 44444
 
 #undef DEBUG
-//#define DEBUG
+// #define DEBUG
 
-//#define SSH_DEBUG
 #undef SSH_DEBUG
+// #define SSH_DEBUG
 
 static bool isLibSshInited=false;
 
@@ -233,6 +233,8 @@ void SshMasterConnection::run()
 
         connect ( sshProxy, SIGNAL ( serverAuthError ( int,QString,SshMasterConnection* ) ),this,
                   SLOT ( slotSshProxyServerAuthError ( int,QString, SshMasterConnection* ) ) );
+        connect ( sshProxy, SIGNAL ( needPassPhrase(SshMasterConnection*)),this,
+                  SIGNAL ( needPassPhrase(SshMasterConnection*)) );
         connect ( sshProxy, SIGNAL ( serverAuthAborted()),this,
                   SLOT ( slotSshProxyServerAuthAborted()) );
         connect ( sshProxy, SIGNAL ( userAuthError ( QString ) ),this,SLOT ( slotSshProxyUserAuthError ( QString ) ) );
@@ -579,7 +581,32 @@ bool SshMasterConnection::userAuthWithPass()
 
 bool SshMasterConnection::userAuthAuto()
 {
-    int rc = ssh_userauth_autopubkey ( my_ssh_session, NULL );
+    int rc = ssh_userauth_autopubkey ( my_ssh_session, "" );
+    int i=0;
+    while(rc != SSH_AUTH_SUCCESS)
+    {
+        keyPhraseReady=false;
+        emit needPassPhrase(this);
+        for(;;)
+        {
+            bool ready=false;
+            this->usleep(200);
+            keyPhraseMutex.lock();
+            if(keyPhraseReady)
+                ready=true;
+            keyPhraseMutex.unlock();
+            if(ready)
+                break;
+        }
+        if(keyPhrase==QString::null)
+            break;
+        rc = ssh_userauth_autopubkey ( my_ssh_session, keyPhrase.toAscii() );
+        if(i++==2)
+        {
+            break;
+        }
+    }
+
     if ( rc != SSH_AUTH_SUCCESS )
     {
         QString err=ssh_get_error ( my_ssh_session );
@@ -591,6 +618,15 @@ bool SshMasterConnection::userAuthAuto()
     }
     return true;
 }
+
+void SshMasterConnection::setKeyPhrase(QString phrase)
+{
+    keyPhraseMutex.lock();
+    keyPhrase=phrase;
+    keyPhraseReady=true;
+    keyPhraseMutex.unlock();
+}
+
 
 bool SshMasterConnection::userAuthWithKey()
 {
@@ -617,7 +653,31 @@ bool SshMasterConnection::userAuthWithKey()
 #endif
     }
 
-    ssh_private_key prkey=privatekey_from_file(my_ssh_session, keyName.toAscii(), 0, pass.toAscii());
+    ssh_private_key prkey=privatekey_from_file(my_ssh_session, keyName.toAscii(), 0,"");
+    int i=0;
+    while(!prkey)
+    {
+        keyPhraseReady=false;
+        emit needPassPhrase(this);
+        for(;;)
+        {
+            bool ready=false;
+            this->usleep(200);
+            keyPhraseMutex.lock();
+            if(keyPhraseReady)
+                ready=true;
+            keyPhraseMutex.unlock();
+            if(ready)
+                break;
+        }
+        if(keyPhrase==QString::null)
+            break;
+        prkey=privatekey_from_file(my_ssh_session, keyName.toAscii(), 0,keyPhrase.toAscii());
+        if(i++==2)
+        {
+            break;
+        }
+    }
     if (!prkey)
     {
 #ifdef DEBUG
