@@ -969,6 +969,13 @@ void ONMainWindow::slotGetBrokerAuth()
     nameLabel->setText ( text );
     slotShowPassForm();
     config.brokerAuthenticated=false;
+    if(config.brokerUser.length()>=0)
+    {
+        login->setText(config.brokerUser);
+        pass->setFocus();
+    }
+    if(config.brokerNoAuth)
+        slotSessEnter();
 }
 
 
@@ -6203,6 +6210,11 @@ bool ONMainWindow::parseParameter ( QString param )
         return true;
     }
 
+    if ( param == "--broker-noauth")
+    {
+        config.brokerNoAuth=true;
+        return true;
+    }
 
 
     QString setting,value;
@@ -6325,6 +6337,11 @@ bool ONMainWindow::parseParameter ( QString param )
         brokerMode=true;
         noSessionEdit=true;
         config.brokerurl=value;
+        return true;
+    }
+    if ( setting == "--broker-user")
+    {
+        config.brokerUser=value;
         return true;
     }
     if ( setting == "--ssh-key")

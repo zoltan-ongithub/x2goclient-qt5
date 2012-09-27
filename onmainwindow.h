@@ -166,6 +166,7 @@ struct ConfigFile
     QString brokerUserId;
     QString brokerName;
     bool brokerAuthenticated;
+    bool brokerNoAuth;
     QString iniFile;
     QString server;
     QString serverIp;//Can be different from server (use for loadballancing)
@@ -217,10 +218,10 @@ struct ConfigFile
 
 struct sshKey
 {
-  QString server;
-  QString port;
-  QString user;
-  QString key;
+    QString server;
+    QString port;
+    QString user;
+    QString key;
 };
 
 
