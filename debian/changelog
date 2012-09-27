@@ -61,6 +61,9 @@ x2goclient (3.99.3.0-0~x2go1) UNRELEASED; urgency=low
       GUI thread use input dialog to read a passphrase from user
     - Add support for SSH proxy (HTTP and SSH) to X2Go Client Gui
     - clean some broker code 
+    - it is possible to add several ssh keys from commandline in form:
+      --ssh-key=[user@][server:][port:]<path to key>
+      it can be usefull for TCE or login over broker   
 
   [ Ricardo Diaz ]
   * New upstream version (3.99.3.0):

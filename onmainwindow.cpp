@@ -2644,6 +2644,11 @@ void ONMainWindow::slotSelectedFromList ( SessionButton* session )
         fotoLabel->setFixedSize ( 48,48 );
     }
 
+    if(currentKey.length()<=0)
+    {
+        currentKey=findSshKeyForServer(userName, server, sshPort);
+    }
+
 
     if ( command=="RDP" )
     {
@@ -2736,10 +2741,6 @@ SshMasterConnection* ONMainWindow::startSshConnection ( QString host, QString po
     /////key/sshagent/env/
 
     passForm->setEnabled ( false );
-    if(cmdSshKey.length()>0)
-    {
-        currentKey=cmdSshKey;
-    }
     if(cmdAutologin)
     {
         autologin=true;
@@ -2777,7 +2778,6 @@ void ONMainWindow::slotSshConnectionError ( QString message, QString lastSession
     QMessageBox::critical ( 0l,message,lastSessionError,
                             QMessageBox::Ok,
                             QMessageBox::NoButton );
-// 	currentKey=QString::null;
     setEnabled ( true );
     passForm->setEnabled ( true );
     slotShowPassForm();
@@ -2953,7 +2953,6 @@ void ONMainWindow::slotSshUserAuthError ( QString error )
     QMessageBox::critical ( 0l,tr ( "Authentication failed" ),error,
                             QMessageBox::Ok,
                             QMessageBox::NoButton );
-// 	currentKey=QString::null;
     setEnabled ( true );
     passForm->setEnabled ( true );
     slotShowPassForm();
@@ -3122,6 +3121,38 @@ void ONMainWindow::startDirectRDP()
 #endif
 
 
+QString ONMainWindow::findSshKeyForServer(QString user, QString server, QString port)
+{
+    foreach (sshKey key, cmdSshKeys)
+    {
+        if(key.server == server && key.user == user && key.port == port)
+            return key.key;
+    }
+    foreach (sshKey key, cmdSshKeys)
+    {
+        if(key.server == server && key.user == user && key.port.length()<=0)
+            return key.key;
+    }
+
+    foreach (sshKey key, cmdSshKeys)
+    {
+        if(key.server == server && key.user.length()<=0 && key.port==port)
+            return key.key;
+    }
+
+    foreach (sshKey key, cmdSshKeys)
+    {
+        if(key.server == server && key.user.length()<=0 && key.port.length()<=0)
+            return key.key;
+    }
+
+    foreach (sshKey key, cmdSshKeys)
+    {
+        if(key.server.length()<=0 && key.user.length()<=0 && key.port.length()<=0)
+            return key.key;
+    }
+    return QString::null;
+}
 
 
 bool ONMainWindow::startSession ( const QString& sid )
@@ -3214,7 +3245,10 @@ bool ONMainWindow::startSession ( const QString& sid )
     else
         st=new X2goSettings(config.iniFile, QSettings::IniFormat);
 
-
+    if(currentKey.length()<=0)
+    {
+        currentKey=findSshKeyForServer(user, host, sshPort);
+    }
 
 
     useproxy=(st->setting()->value (
@@ -3275,6 +3309,11 @@ bool ONMainWindow::startSession ( const QString& sid )
                         false
                     ).toBool() );
 
+    if(proxyKey.length()<=0 && proxyType==SshMasterConnection::PROXYSSH)
+    {
+        proxyKey=findSshKeyForServer(proxylogin, proxyserver, QString::number(proxyport));
+    }
+
     if(proxySameUser)
         proxylogin=user;
     if(proxySamePass)
@@ -3290,6 +3329,7 @@ bool ONMainWindow::startSession ( const QString& sid )
     }
 
     delete st;
+
 
     sshConnection=startSshConnection ( host,sshPort,acceptRsa,user,passwd,autologin, krblogin, false, useproxy,proxyType,proxyserver,
                                        proxyport, proxylogin, proxypassword, proxyKey,proxyAutologin);
@@ -6277,7 +6317,35 @@ bool ONMainWindow::parseParameter ( QString param )
     }
     if ( setting == "--ssh-key")
     {
-        cmdSshKey=value;
+        sshKey key;
+        QStringList parts=value.split(":");
+        QString authPart;
+        switch(parts.length())
+        {
+        case 1:
+            key.key=parts[0];
+            break;
+        case 2:
+            key.key=parts[1];
+            authPart=parts[0];
+            break;
+        case 3:
+            authPart=parts[0];
+            key.key=parts[2];
+            key.port=parts[1];
+            break;
+        }
+        if(authPart.length()>0)
+        {
+            if(authPart.indexOf("@")!=-1)
+            {
+                key.user=authPart.split("@")[0];
+                key.server=authPart.split("@")[1];
+            }
+            else
+                key.server=authPart;
+        }
+        cmdSshKeys<<key;
         return true;
     }
     if ( setting == "--broker-name")
@@ -6668,7 +6736,6 @@ void ONMainWindow::slotGetServers ( bool result, QString output,
         QMessageBox::critical ( 0l,tr ( "Error" ),message,
                                 QMessageBox::Ok,
                                 QMessageBox::NoButton );
-// 		currentKey=QString::null;
         setEnabled ( true );
         passForm->setEnabled ( true );
         pass->setFocus();
@@ -8232,7 +8299,6 @@ void ONMainWindow::slotCmdMessage ( bool result,QString output,
         QMessageBox::critical ( 0l,tr ( "Error" ),message,
                                 QMessageBox::Ok,
                                 QMessageBox::NoButton );
-// 		currentKey=QString::null;
         setEnabled ( true );
         passForm->setEnabled ( true );
         pass->setFocus();

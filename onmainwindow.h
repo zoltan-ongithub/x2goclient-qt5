@@ -214,6 +214,16 @@ struct ConfigFile
 
 };
 
+
+struct sshKey
+{
+  QString server;
+  QString port;
+  QString user;
+  QString key;
+};
+
+
 //wrapper to send mouse events under windows in embedded mode
 #ifdef Q_OS_WIN
 class WWrapper : public QPushButton
@@ -510,7 +520,6 @@ private:
     QString statusString;
     QString autostartApp;
     bool cmdAutologin;
-    QString cmdSshKey;
     int defaultLink;
     int defaultQuality;
     int defaultWidth;
@@ -549,6 +558,7 @@ private:
     int retSessions;
     QList<serv> x2goServers;
     QList<Application> applications;
+    QList<sshKey> cmdSshKeys;
 
     QPushButton* bSusp;
     QPushButton* bTerm;
@@ -800,6 +810,7 @@ private:
     bool trayMaxDiscon;
     bool trayAutoHidden;
 
+    QString findSshKeyForServer(QString user, QString server, QString port);
     void installTranslator();
     void loadSettings();
     void showPass ( UserButton* user );
