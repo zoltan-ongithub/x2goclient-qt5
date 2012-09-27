@@ -55,10 +55,10 @@ void HttpBrokerClient::getUserSessions()
 {
     QString req;
     QTextStream ( &req ) <<
-    "task=listsessions&"<<
-    "user="<<config->brokerUser<<"&"<<
-    "password="<<config->brokerPass<<"&"<<
-    "authid="<<config->brokerUserId;
+                         "task=listsessions&"<<
+                         "user="<<config->brokerUser<<"&"<<
+                         "password="<<config->brokerPass<<"&"<<
+                         "authid="<<config->brokerUserId;
     QUrl lurl ( config->brokerurl );
     httpSessionAnswer.close();
     httpSessionAnswer.setData ( 0,0 );
@@ -72,11 +72,11 @@ void HttpBrokerClient::selectUserSession(const QString& session)
 //     x2goDebug<<"selected sid: "<<session;
     QString req;
     QTextStream ( &req ) <<
-    "task=selectsession&"<<
-    "sid="<<session<<"&"<<
-    "user="<<config->brokerUser<<"&"<<
-    "password="<<config->brokerPass<<"&"<<
-    "authid="<<config->brokerUserId;
+                         "task=selectsession&"<<
+                         "sid="<<session<<"&"<<
+                         "user="<<config->brokerUser<<"&"<<
+                         "password="<<config->brokerPass<<"&"<<
+                         "authid="<<config->brokerUserId;
     QUrl lurl ( config->brokerurl );
     httpSessionAnswer.close();
     httpSessionAnswer.setData ( 0,0 );
@@ -89,11 +89,11 @@ void HttpBrokerClient::changePassword(QString newPass)
     newBrokerPass=newPass;
     QString req;
     QTextStream ( &req ) <<
-    "task=setpass&"<<
-    "newpass="<<newPass<<"&"<<
-    "user="<<config->brokerUser<<"&"<<
-    "password="<<config->brokerPass<<"&"<<
-    "authid="<<config->brokerUserId;
+                         "task=setpass&"<<
+                         "newpass="<<newPass<<"&"<<
+                         "user="<<config->brokerUser<<"&"<<
+                         "password="<<config->brokerPass<<"&"<<
+                         "authid="<<config->brokerUserId;
     QUrl lurl ( config->brokerurl );
     httpSessionAnswer.close();
     httpSessionAnswer.setData ( 0,0 );
@@ -105,8 +105,8 @@ void HttpBrokerClient::testConnection()
 {
     QString req;
     QTextStream ( &req ) <<
-    "task=testcon";
-    
+                         "task=testcon";
+
     QUrl lurl ( config->brokerurl );
     httpSessionAnswer.close();
     httpSessionAnswer.setData ( 0,0 );
@@ -144,10 +144,10 @@ void HttpBrokerClient::slotRequestFinished ( int id, bool error )
 
     if (id==testConRequest)
     {
-        
+
         //x2goDebug<<"cmd request answer: "<<answer;
-	x2goDebug<<"elapsed: "<<requestTime.elapsed()<<"received:"<<httpSessionAnswer.size()<<endl;
-	emit connectionTime(requestTime.elapsed(),httpSessionAnswer.size());
+        x2goDebug<<"elapsed: "<<requestTime.elapsed()<<"received:"<<httpSessionAnswer.size()<<endl;
+        emit connectionTime(requestTime.elapsed(),httpSessionAnswer.size());
         return;
     }
     if ( id== sessionsRequest || id == selSessRequest || id==chPassRequest)
@@ -171,7 +171,8 @@ void HttpBrokerClient::slotRequestFinished ( int id, bool error )
         }
         if (id == selSessRequest)
         {
-            emit getSession(answer);
+            parseSession(answer);
+
         }
         if ( id == chPassRequest)
         {
@@ -188,12 +189,33 @@ void HttpBrokerClient::slotRequestFinished ( int id, bool error )
     }
 }
 
+void HttpBrokerClient::parseSession(QString sinfo)
+{
+    QStringList lst=sinfo.split("SERVER:",QString::SkipEmptyParts);
+    int keyStartPos=sinfo.indexOf("-----BEGIN DSA PRIVATE KEY-----");
+    QString endStr="-----END DSA PRIVATE KEY-----";
+    int keyEndPos=sinfo.indexOf(endStr);
+    if (! (keyEndPos == -1 || keyStartPos == -1 || lst.size()==0))
+        config->key=sinfo.mid(keyStartPos, keyEndPos+endStr.length()-keyStartPos);
+    QString serverLine=(lst[1].split("\n"))[0];
+    QStringList words=serverLine.split(":",QString::SkipEmptyParts);
+    config->serverIp=words[0];
+    if (words.count()>1)
+        config->sshport=words[1];
+    if (sinfo.indexOf("SESSION_INFO")!=-1)
+    {
+        QStringList lst=sinfo.split("SESSION_INFO:",QString::SkipEmptyParts);
+        config->sessiondata=(lst[1].split("\n"))[0];
+    }
+    emit sessionSelected();
+}
+
 
 void HttpBrokerClient::slotSslErrors ( const QList<QSslError> & errors )
 {
     QStringList err;
     QSslCertificate cert;
-    for ( int i=0;i<errors.count();++i )
+    for ( int i=0; i<errors.count(); ++i )
     {
         x2goDebug<<"sslError ,code:"<<errors[i].error() <<":";
         err<<errors[i].errorString();
@@ -234,37 +256,37 @@ void HttpBrokerClient::slotSslErrors ( const QList<QSslError> & errors )
                      text );
     text=QString::null;
     QTextStream ( &text ) <<err.join ( "\n" ) <<"\n"<<
-    "------------\n"<<
-    tr ( "Issued to:\n" ) <<
-    tr ( "Common Name(CN)\t" ) <<
-    cert.issuerInfo ( QSslCertificate::CommonName )
-    <<endl<<
-    tr ( "Organization(O)\t" ) <<
-    cert.issuerInfo ( QSslCertificate::Organization )
-    <<endl<<
-    tr ( "Organizational Unit(OU)\t" ) <<
-    cert.issuerInfo ( QSslCertificate::OrganizationalUnitName )
-    <<endl<<
-    tr ( "Serial Number\t" ) <<getHexVal ( cert.serialNumber() )
-    <<endl<<endl<<
-    tr ( "Issued by:\n" ) <<
-    tr ( "Common Name(CN)\t" ) <<
-    cert.subjectInfo ( QSslCertificate::CommonName )
-    <<endl<<
-    tr ( "Organization(O)\t" ) <<
-    cert.subjectInfo ( QSslCertificate::Organization )
-    <<endl<<
-    tr ( "Organizational Unit(OU)\t" ) <<
-    cert.subjectInfo ( QSslCertificate::OrganizationalUnitName )
-    <<endl<<endl<<
+                          "------------\n"<<
+                          tr ( "Issued to:\n" ) <<
+                          tr ( "Common Name(CN)\t" ) <<
+                          cert.issuerInfo ( QSslCertificate::CommonName )
+                          <<endl<<
+                          tr ( "Organization(O)\t" ) <<
+                          cert.issuerInfo ( QSslCertificate::Organization )
+                          <<endl<<
+                          tr ( "Organizational Unit(OU)\t" ) <<
+                          cert.issuerInfo ( QSslCertificate::OrganizationalUnitName )
+                          <<endl<<
+                          tr ( "Serial Number\t" ) <<getHexVal ( cert.serialNumber() )
+                          <<endl<<endl<<
+                          tr ( "Issued by:\n" ) <<
+                          tr ( "Common Name(CN)\t" ) <<
+                          cert.subjectInfo ( QSslCertificate::CommonName )
+                          <<endl<<
+                          tr ( "Organization(O)\t" ) <<
+                          cert.subjectInfo ( QSslCertificate::Organization )
+                          <<endl<<
+                          tr ( "Organizational Unit(OU)\t" ) <<
+                          cert.subjectInfo ( QSslCertificate::OrganizationalUnitName )
+                          <<endl<<endl<<
 
-    tr ( "Validity:\n" ) <<
-    tr ( "Issued on\t" ) <<cert.effectiveDate().toString() <<endl<<
-    tr ( "expires on\t" ) <<cert.expiryDate().toString() <<endl<<endl<<
-    tr ( "Fingerprints:\n" ) <<
-    tr ( "SHA1\t" ) <<
-    getHexVal ( cert.digest ( QCryptographicHash::Sha1 ) ) <<endl<<
-    tr ( "MD5\t" ) <<md5;
+                          tr ( "Validity:\n" ) <<
+                          tr ( "Issued on\t" ) <<cert.effectiveDate().toString() <<endl<<
+                          tr ( "expires on\t" ) <<cert.expiryDate().toString() <<endl<<endl<<
+                          tr ( "Fingerprints:\n" ) <<
+                          tr ( "SHA1\t" ) <<
+                          getHexVal ( cert.digest ( QCryptographicHash::Sha1 ) ) <<endl<<
+                          tr ( "MD5\t" ) <<md5;
 
 
 
@@ -289,7 +311,7 @@ void HttpBrokerClient::slotSslErrors ( const QList<QSslError> & errors )
         fl.close();
         http->ignoreSslErrors();
         x2goDebug<<"store certificate in  "<<homeDir+"/ssl/exceptions/"+
-        lurl.host() +"/"+fname;
+                 lurl.host() +"/"+fname;
         requestTime.restart();
     }
     else
@@ -300,7 +322,7 @@ void HttpBrokerClient::slotSslErrors ( const QList<QSslError> & errors )
 QString HttpBrokerClient::getHexVal ( const QByteArray& ba )
 {
     QStringList val;
-    for ( int i=0;i<ba.size();++i )
+    for ( int i=0; i<ba.size(); ++i )
     {
         QString bt;
         bt.sprintf ( "%02X", ( unsigned char ) ba[i] );

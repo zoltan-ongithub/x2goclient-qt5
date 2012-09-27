@@ -44,6 +44,7 @@ private:
     ConfigFile* config;
     ONMainWindow* mainWindow;
     void createIniFile(const QString& content);
+    void parseSession(QString sInfo);
     QTime requestTime;
 
 private slots:
@@ -58,7 +59,7 @@ signals:
     void fatalHttpError();
     void authFailed();
     void sessionsLoaded();
-    void getSession( QString );
+    void sessionSelected( );
     void passwordChanged( QString );
     void connectionTime(int, int);
 };

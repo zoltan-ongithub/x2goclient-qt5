@@ -432,15 +432,11 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
     if (brokerMode)
     {
         broker=new HttpBrokerClient ( this, &config );
-        connect ( broker,SIGNAL ( haveAgentInfo () ),this,
-                  SLOT ( slotStartNewBrokerSession () ) );
         connect ( broker,SIGNAL ( fatalHttpError() ),this,
                   SLOT ( close() ) );
-        connect ( broker,SIGNAL ( cmdReconnect() ),this,
-                  SLOT ( slotReconnectSession() ) );
         connect ( broker, SIGNAL ( authFailed()), this ,SLOT ( slotGetBrokerAuth()));
         connect ( broker, SIGNAL( sessionsLoaded()), this, SLOT (slotReadSessions()));
-        connect ( broker, SIGNAL ( getSession(QString)), this, SLOT (slotGetBrokerSession(QString)));
+        connect ( broker, SIGNAL ( sessionSelected()), this, SLOT (slotGetBrokerSession()));
         connect ( broker, SIGNAL ( passwordChanged(QString)), this, SLOT ( slotPassChanged(QString)));
     }
 
@@ -2550,6 +2546,7 @@ void ONMainWindow::slotSelectedFromList ( SessionButton* session )
     QString userName;
     bool autologin=false;
     bool krblogin=false;
+    bool usebrokerpass=false;
     QString sessIcon;
     QPalette pal;
     QString sessionName;
@@ -2561,50 +2558,56 @@ void ONMainWindow::slotSelectedFromList ( SessionButton* session )
         sessionName=session->name();
 
         QString sid=session->id();
+        X2goSettings* st;
         if (brokerMode)
         {
-            broker->selectUserSession(session->id());
-            setStatStatus ( tr ( "Connecting to broker" ) );
-            stInfo->insertPlainText ( "broker url: "+config.brokerurl );
-            setEnabled ( false );
-            uname->hide();
-            u->hide();
-            return;
+            st=new X2goSettings( config.iniFile, QSettings::IniFormat );
+        }
+        else
+        {
+            st = new X2goSettings( "sessions" );
         }
 
-        X2goSettings st ( "sessions" );
 
-        sessIcon=st.setting()->value (
+
+        sessIcon=st->setting()->value (
                      sid+"/icon",
                      ( QVariant ) ":icons/128x128/x2gosession.png"
                  ).toString();
 
 
-        command=st.setting()->value (
+        command=st->setting()->value (
                     sid+"/command",
                     ( QVariant ) tr ( "KDE" ) ).toString();
 
-        server=st.setting()->value ( sid+"/host",
-                                     ( QVariant ) QString::null
-                                   ).toString();
-        userName=st.setting()->value (
+        server=st->setting()->value ( sid+"/host",
+                                      ( QVariant ) QString::null
+                                    ).toString();
+        userName=st->setting()->value (
                      sid+"/user",
                      ( QVariant ) QString::null ).toString();
         if (defaultUser && userName.length()<1)
             userName=defaultUserName;
 
-        sshPort=st.setting()->value (
+        if(brokerMode)
+            usebrokerpass=st->setting()->value (
+                              sid+"/usebrokerpass",
+                              false ).toBool();
+
+
+        sshPort=st->setting()->value (
                     sid+"/sshport",
                     ( QVariant ) defaultSshPort ).toString();
-        currentKey=st.setting()->value (
+        currentKey=st->setting()->value (
                        sid+"/key",
                        ( QVariant ) QString::null ).toString();
-        autologin=st.setting()->value (
+        autologin=st->setting()->value (
                       sid+"/autologin",
                       ( QVariant ) false ).toBool();
-        krblogin=st.setting()->value (
+        krblogin=st->setting()->value (
                      sid+"/krblogin",
                      ( QVariant ) false ).toBool();
+        delete st;
 #ifdef Q_OS_WIN
         if ( portable &&
                 u3Device.length() >0 )
@@ -2623,6 +2626,7 @@ void ONMainWindow::slotSelectedFromList ( SessionButton* session )
         sessionName=config.session;
         currentKey=config.key;
     }
+
     selectedCommand=command;
     command=transAppName ( command );
     login->setText ( userName );
@@ -2676,6 +2680,12 @@ void ONMainWindow::slotSelectedFromList ( SessionButton* session )
 
 ///////////////////////////////////////////////////
 
+    if(brokerMode &&usebrokerpass)
+    {
+        pass->setText(config.brokerPass);
+        slotSessEnter();
+    }
+
     if ( currentKey.length() >0 )
     {
         nopass=true;
@@ -2685,7 +2695,7 @@ void ONMainWindow::slotSelectedFromList ( SessionButton* session )
         x2goDebug<<"Have key, starting session"<<endl;
         slotSessEnter();
     }
-    if ( cardReady || autologin || krblogin )
+    if ( cardReady || autologin || krblogin  )
     {
         nopass=true;
         if ( cardReady )
@@ -2990,10 +3000,24 @@ void ONMainWindow::slotSessEnter()
         }
     }
 
+
+
     resumingSession.sessionId=QString::null;
     resumingSession.server=QString::null;
     resumingSession.display=QString::null;
     setStatStatus ( tr ( "connecting" ) );
+
+    if(brokerMode)
+    {
+        broker->selectUserSession(lastSession->id());
+        config.session=lastSession->id();
+        setStatStatus ( tr ( "Connecting to broker" ) );
+        stInfo->insertPlainText ( "broker url: "+config.brokerurl );
+        setEnabled ( false );
+        uname->hide();
+        u->hide();
+        return;
+    }
 
     QString sid="";
     if ( !embedMode )
@@ -3188,68 +3212,51 @@ bool ONMainWindow::startSession ( const QString& sid )
         return true;
     }
 
-    if ( !embedMode && !brokerMode )
-    {
-
-        X2goSettings st ( "sessions" );
-
-        passForm->setEnabled ( false );
-        host=st.setting()->value ( sid+"/host",
-                                   ( QVariant ) QString::null ).toString();
-        QString cmd=st.setting()->value ( sid+"/command",
-                                          ( QVariant ) QString::null ).toString();
-        autologin=st.setting()->value ( sid+"/autologin",
-                                        ( QVariant ) false ).toBool();
-        krblogin=st.setting()->value ( sid+"/krblogin",
-                                       ( QVariant ) false ).toBool();
-#ifdef Q_OS_LINUX
-        directRDP=st.setting()->value ( sid+"/directrdp",
-                                        ( QVariant ) false ).toBool();
-        if (cmd =="RDP" && directRDP)
-        {
-            startDirectRDP();
-            return true;
-        }
-#endif
-        if ( cmd=="SHADOW" )
-            shadowSession=true;
-    }
-    else
-    {
-        host=config.server;
-        sshPort=config.sshport;
-        selectedCommand=config.command;
-    }
-    if (!brokerMode)
-        passwd=getCurrentPass();
-    else
-    {
-        currentKey=config.key;
-        host=config.server;
-        X2goSettings st ( config.iniFile, QSettings::IniFormat );
-        passForm->setEnabled ( false );
-        user=st.setting()->value ( sid+"/user",
-                                   ( QVariant ) QString::null ).toString();
-        login->setText(user);
-        sshPort=config.sshport;
-        /*        sshPort=st.setting()->value ( sid+"/sshport",
-                                              ( QVariant ) "22" ).toString();*/
-    }
-    if (sshConnection)
-        sshConnection->disconnectSession();
-
-
     X2goSettings* st;
     if(!brokerMode)
         st=new  X2goSettings( "sessions" );
     else
         st=new X2goSettings(config.iniFile, QSettings::IniFormat);
 
+    passForm->setEnabled ( false );
+    host=st->setting()->value ( sid+"/host",
+                                ( QVariant ) QString::null ).toString();
+    if(brokerMode)
+    {
+        sshPort=config.sshport;
+        x2goDebug<<"server: "<<host;
+    }
+
+    QString cmd=st->setting()->value ( sid+"/command",
+                                       ( QVariant ) QString::null ).toString();
+    autologin=st->setting()->value ( sid+"/autologin",
+                                     ( QVariant ) false ).toBool();
+    krblogin=st->setting()->value ( sid+"/krblogin",
+                                    ( QVariant ) false ).toBool();
+#ifdef Q_OS_LINUX
+    directRDP=st->setting()->value ( sid+"/directrdp",
+                                     ( QVariant ) false ).toBool();
+    if (cmd =="RDP" && directRDP)
+    {
+        startDirectRDP();
+        return true;
+    }
+#endif
+    if ( cmd=="SHADOW" )
+        shadowSession=true;
+    passwd=getCurrentPass();
+    if(brokerMode)
+    {
+        currentKey=config.key;
+        sshPort=config.sshport;
+    }
+    if (sshConnection)
+        sshConnection->disconnectSession();
+
     if(currentKey.length()<=0)
     {
         currentKey=findSshKeyForServer(user, host, sshPort);
     }
-
 
     useproxy=(st->setting()->value (
                   sid+"/usesshproxy",
@@ -3324,11 +3331,16 @@ bool ONMainWindow::startSession ( const QString& sid )
         {
             bool ok;
             proxypassword=QInputDialog::getText(0,proxylogin+"@"+proxyserver+":"+QString::number(proxyport),
-                                                tr("Enter passwort for SSH proxy"),QLineEdit::Password,QString::null, &ok);
+                                                tr("Enter password for SSH proxy"),QLineEdit::Password,QString::null, &ok);
         }
     }
 
     delete st;
+
+    if(brokerMode)
+    {
+        host=config.serverIp;
+    }
 
 
     sshConnection=startSshConnection ( host,sshPort,acceptRsa,user,passwd,autologin, krblogin, false, useproxy,proxyType,proxyserver,
@@ -10895,28 +10907,9 @@ void ONMainWindow::slotStartBroker()
     broker->getUserSessions();
 }
 
-void ONMainWindow::slotGetBrokerSession(const QString& sinfo)
+void ONMainWindow::slotGetBrokerSession()
 {
-    //x2goDebug<<"broker session: "<<sinfo;
-    QStringList lst=sinfo.split("SERVER:",QString::SkipEmptyParts);
-    int keyStartPos=sinfo.indexOf("-----BEGIN DSA PRIVATE KEY-----");
-    QString endStr="-----END DSA PRIVATE KEY-----";
-    int keyEndPos=sinfo.indexOf(endStr);
-    if (! (keyEndPos == -1 || keyStartPos == -1 || lst.size()==0))
-        config.key=sinfo.mid(keyStartPos, keyEndPos+endStr.length()-keyStartPos);
-    QString serverLine=(lst[1].split("\n"))[0];
-    QStringList words=serverLine.split(":",QString::SkipEmptyParts);
-    config.server=words[0];
-    if (words.count()>1)
-        config.sshport=words[1];
-//    x2goDebug<<"server: "<<config.server<<endl<<" key: "<<config.key;
-    if (sinfo.indexOf("SESSION_INFO")!=-1)
-    {
-        QStringList lst=sinfo.split("SESSION_INFO:",QString::SkipEmptyParts);
-        config.sessiondata=(lst[1].split("\n"))[0];
-// 	x2goDebug<<"data: "<<config.sessiondata;
-    }
-    slotSessEnter();
+    startSession ( config.session);
 }
 
 void ONMainWindow::slotStartNewBrokerSession ( )

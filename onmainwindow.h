@@ -936,7 +936,7 @@ private slots:
     void slotTermSess();
     void slotNewSess();
     void slotGetBrokerAuth();
-    void slotGetBrokerSession(const QString& sinfo);
+    void slotGetBrokerSession();
     void slotCmdMessage ( bool result,QString output,
                           SshProcess* );
     void slotListSessions ( bool result,QString output,
