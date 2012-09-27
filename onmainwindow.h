@@ -168,6 +168,7 @@ struct ConfigFile
     bool brokerAuthenticated;
     QString iniFile;
     QString server;
+    QString serverIp;//Can be different from server (use for loadballancing)
     QString sshport;
     QString command;
     QString key;
@@ -212,7 +213,6 @@ struct ConfigFile
     bool proxyAutologin;
 
 };
-
 
 //wrapper to send mouse events under windows in embedded mode
 #ifdef Q_OS_WIN

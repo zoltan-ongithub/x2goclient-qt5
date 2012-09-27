@@ -432,8 +432,6 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
     if (brokerMode)
     {
         broker=new HttpBrokerClient ( this, &config );
-        connect ( broker,SIGNAL ( haveSshKey ( QString ) ),this,
-                  SLOT ( slotStartSshAgent ( QString ) ) );
         connect ( broker,SIGNAL ( haveAgentInfo () ),this,
                   SLOT ( slotStartNewBrokerSession () ) );
         connect ( broker,SIGNAL ( fatalHttpError() ),this,
@@ -10805,7 +10803,6 @@ void ONMainWindow::slotReconnectSession()
         slotSelectedFromList ( ( SessionButton* ) 0 );
     else
     {
-        broker->getSInfoFromBroker();
         setEnabled ( false );
     }
 }
