@@ -54,20 +54,23 @@ x2goclient (3.99.3.0-0~x2go1) UNRELEASED; urgency=low
     - Show "Advanced Options" button only if RDP session chosen
     - Fixing kbd focus issue for all kinds of sessions in thinclient mode 
     - Add command line parameter --ssh-key and --autologin 
-    - disable check box "use default sound port" if sound disabled
-    - add support for HTTP proxy - developed by Heinrich Schuchardt (xypron.glpk@gmx.de)
-    - add support for SSH proxy in class SshMasterConnection 
-    - SshMasterConnection emit signal to GUI thread if it need a passphrase to decrypt a ssh key.
-      GUI thread use input dialog to read a passphrase from user
-    - Add support for SSH proxy (HTTP and SSH) to X2Go Client Gui
-    - clean some broker code 
-    - it is possible to add several ssh keys from commandline in form:
+    - Disable check box "use default sound port" if sound disabled.
+    - Add support for HTTP proxy - developed by Heinrich Schuchardt
+      (xypron.glpk@gmx.de). Closes upstream issue #34.
+    - Add support for SSH proxy in class SshMasterConnection.
+    - SshMasterConnection emit signal to GUI thread if it need a passphrase
+      to decrypt a ssh key. GUI thread use input dialog to read a passphrase
+      from user.
+    - Add support for SSH proxy (HTTP and SSH) to X2Go Client Gui.
+    - Clean some broker code.
+    - It is possible to add several ssh keys from commandline in form:
       --ssh-key=[user@][server:][port:]<path to key>
-      it can be usefull for TCE or login over broker   
-    - improve brocker code
-      add support for "usebrockerpass" config variable to use brocker pass for ssh auth on X2Go server 
-    - commandline options --broker-user and --broker-noauth
-    - support for SSH broker. --broker-user removed, use username in broker url instead 
+      it can be usefull for TCE or login over broker.
+    - Improve brocker code add support for "usebrokerpass" config variable to
+      use broker pass for ssh auth on X2Go server 
+    - Commandline options --broker-noauth.
+    - Support for SSH broker. --broker-user removed, use username in broker url
+      instead.
 
   [ Ricardo Diaz ]
   * New upstream version (3.99.3.0):
