@@ -67,6 +67,7 @@ x2goclient (3.99.3.0-0~x2go1) UNRELEASED; urgency=low
     - improve brocker code
       add support for "usebrockerpass" config variable to use brocker pass for ssh auth on X2Go server 
     - commandline options --broker-user and --broker-noauth
+    - support for SSH broker. --broker-user removed, use username in broker url instead 
 
   [ Ricardo Diaz ]
   * New upstream version (3.99.3.0):

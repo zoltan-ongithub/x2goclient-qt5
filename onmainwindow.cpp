@@ -969,12 +969,14 @@ void ONMainWindow::slotGetBrokerAuth()
     nameLabel->setText ( text );
     slotShowPassForm();
     config.brokerAuthenticated=false;
-    if(config.brokerUser.length()>=0)
+    if(config.brokerUser.length()>0)
     {
         login->setText(config.brokerUser);
         pass->setFocus();
     }
     if(config.brokerNoAuth)
+        slotSessEnter();
+    if(config.brokerurl.indexOf("ssh://")==0 && (config.brokerAutologin || config.brokerSshKey.length()>0))
         slotSessEnter();
 }
 
@@ -6210,6 +6212,12 @@ bool ONMainWindow::parseParameter ( QString param )
         return true;
     }
 
+    if ( param == "--broker-autologin")
+    {
+        config.brokerAutologin=true;
+        return true;
+    }
+
     if ( param == "--broker-noauth")
     {
         config.brokerNoAuth=true;
@@ -6339,9 +6347,9 @@ bool ONMainWindow::parseParameter ( QString param )
         config.brokerurl=value;
         return true;
     }
-    if ( setting == "--broker-user")
+    if ( setting == "--broker-ssh-key")
     {
-        config.brokerUser=value;
+        config.brokerSshKey=value;
         return true;
     }
     if ( setting == "--ssh-key")

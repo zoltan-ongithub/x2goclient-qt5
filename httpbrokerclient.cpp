@@ -25,25 +25,42 @@
 #include "SVGFrame.h"
 #include "onmainwindow.h"
 #include <QTemporaryFile>
+#include <QInputDialog>
+#include <sshprocess.h>
 
 HttpBrokerClient::HttpBrokerClient ( ONMainWindow* wnd, ConfigFile* cfg )
 {
     config=cfg;
     mainWindow=wnd;
+    sshConnection=0;
     QUrl lurl ( config->brokerurl );
-    http=new QHttp ( this );
-
-    if ( config->brokerurl.indexOf ( "https://" ) !=-1 )
-        http->setHost ( lurl.host(),QHttp::ConnectionModeHttps,
-                        lurl.port ( 443 ) );
+    if(lurl.userName().length()>0)
+        config->brokerUser=lurl.userName();
+    if(config->brokerurl.indexOf("ssh://")==0)
+    {
+        sshBroker=true;
+        x2goDebug<<"host:"<<lurl.host();
+        x2goDebug<<"port:"<<lurl.port(22);
+        x2goDebug<<"uname:"<<lurl.userName();
+        x2goDebug<<"path:"<<lurl.path();
+        config->sshBrokerBin=lurl.path();
+    }
     else
-        http->setHost ( lurl.host(),QHttp::ConnectionModeHttp,
-                        lurl.port ( 80 ) );
+    {
+        sshBroker=false;
+        http=new QHttp ( this );
+        if ( config->brokerurl.indexOf ( "https://" ) ==0 )
+            http->setHost ( lurl.host(),QHttp::ConnectionModeHttps,
+                            lurl.port ( 443 ) );
+        else
+            http->setHost ( lurl.host(),QHttp::ConnectionModeHttp,
+                            lurl.port ( 80 ) );
 
-    connect ( http,SIGNAL ( requestFinished ( int,bool ) ),this,
-              SLOT ( slotRequestFinished ( int,bool ) ) );
-    connect ( http,SIGNAL ( sslErrors ( const QList<QSslError>& ) ),this,
-              SLOT ( slotSslErrors ( const QList<QSslError>& ) ) );
+        connect ( http,SIGNAL ( requestFinished ( int,bool ) ),this,
+                  SLOT ( slotRequestFinished ( int,bool ) ) );
+        connect ( http,SIGNAL ( sslErrors ( const QList<QSslError>& ) ),this,
+                  SLOT ( slotSslErrors ( const QList<QSslError>& ) ) );
+    }
 }
 
 
@@ -51,67 +68,254 @@ HttpBrokerClient::~HttpBrokerClient()
 {
 }
 
+void HttpBrokerClient::createSshConnection()
+{
+    QUrl lurl ( config->brokerurl );
+    sshConnection=new SshMasterConnection (this, lurl.host(), lurl.port(22),false,
+                                           config->brokerUser, config->brokerPass,config->brokerSshKey,config->brokerAutologin, false,false);
+
+    connect ( sshConnection, SIGNAL ( connectionOk(QString)), this, SLOT ( slotSshConnectionOk() ) );
+    connect ( sshConnection, SIGNAL ( serverAuthError ( int,QString, SshMasterConnection* ) ),this,
+              SLOT ( slotSshServerAuthError ( int,QString, SshMasterConnection* ) ) );
+    connect ( sshConnection, SIGNAL ( needPassPhrase(SshMasterConnection*)),this,
+              SLOT ( slotSshServerAuthPassphrase(SshMasterConnection*)) );
+    connect ( sshConnection, SIGNAL ( userAuthError ( QString ) ),this,SLOT ( slotSshUserAuthError ( QString ) ) );
+    connect ( sshConnection, SIGNAL ( connectionError(QString,QString)), this,
+              SLOT ( slotSshConnectionError ( QString,QString ) ) );
+    sshConnection->start();
+
+}
+
+void HttpBrokerClient::slotSshConnectionError(QString message, QString lastSessionError)
+{
+    if ( sshConnection )
+    {
+        sshConnection->wait();
+        delete sshConnection;
+        sshConnection=0l;
+    }
+
+    QMessageBox::critical ( 0l,message,lastSessionError,
+                            QMessageBox::Ok,
+                            QMessageBox::NoButton );
+}
+
+void HttpBrokerClient::slotSshConnectionOk()
+{
+    getUserSessions();
+}
+
+void HttpBrokerClient::slotSshServerAuthError(int error, QString sshMessage, SshMasterConnection* connection)
+{
+    QString errMsg;
+    switch ( error )
+    {
+    case SSH_SERVER_KNOWN_CHANGED:
+        errMsg=tr ( "Host key for server changed.\nIt is now: " ) +sshMessage+"\n"+
+               tr ( "For security reasons, connection will be stopped" );
+        connection->writeKnownHosts(false);
+        connection->wait();
+        if(sshConnection && sshConnection !=connection)
+        {
+            sshConnection->wait();
+            delete sshConnection;
+        }
+        sshConnection=0;
+        slotSshUserAuthError ( errMsg );
+        return;
+
+    case SSH_SERVER_FOUND_OTHER:
+        errMsg=tr ( "The host key for this server was not found but an other"
+                    "type of key exists.An attacker might change the default server key to"
+                    "confuse your client into thinking the key does not exist" );
+        connection->writeKnownHosts(false);
+        connection->wait();
+        if(sshConnection && sshConnection !=connection)
+        {
+            sshConnection->wait();
+            delete sshConnection;
+        }
+        sshConnection=0;
+        slotSshUserAuthError ( errMsg );
+        return ;
+
+    case SSH_SERVER_ERROR:
+        connection->writeKnownHosts(false);
+        connection->wait();
+        if(sshConnection && sshConnection !=connection)
+        {
+            sshConnection->wait();
+            delete sshConnection;
+        }
+        sshConnection=0;
+        slotSshUserAuthError ( sshMessage );
+        return ;
+    case SSH_SERVER_FILE_NOT_FOUND:
+        errMsg=tr ( "Could not find known host file."
+                    "If you accept the host key here, the file will be automatically created" );
+        break;
+
+    case SSH_SERVER_NOT_KNOWN:
+        errMsg=tr ( "The server is unknown. Do you trust the host key?\nPublic key hash: " ) +sshMessage;
+        break;
+    }
+
+    if ( QMessageBox::warning ( 0, tr ( "Host key verification failed" ),errMsg,tr ( "Yes" ), tr ( "No" ) ) !=0 )
+    {
+        connection->writeKnownHosts(false);
+        connection->wait();
+        if(sshConnection && sshConnection !=connection)
+        {
+            sshConnection->wait();
+            delete sshConnection;
+        }
+        sshConnection=0;
+        slotSshUserAuthError ( tr ( "Host key verification failed" ) );
+        return;
+    }
+    connection->writeKnownHosts(true);
+    connection->wait();
+    connection->start();
+
+}
+
+void HttpBrokerClient::slotSshServerAuthPassphrase(SshMasterConnection* connection)
+{
+    bool ok;
+    QString phrase=QInputDialog::getText(0,connection->getUser()+"@"+connection->getHost()+":"+QString::number(connection->getPort()),
+                                         tr("Enter passphrase to decrypt a key"),QLineEdit::Password,QString::null, &ok);
+    if(!ok)
+    {
+        phrase=QString::null;
+    }
+    else
+    {
+        if(phrase==QString::null)
+            phrase="";
+    }
+    connection->setKeyPhrase(phrase);
+
+}
+
+void HttpBrokerClient::slotSshUserAuthError(QString error)
+{
+    if ( sshConnection )
+    {
+        sshConnection->wait();
+        delete sshConnection;
+        sshConnection=0l;
+    }
+
+    QMessageBox::critical ( 0l,tr ( "Authentication failed" ),error,
+                            QMessageBox::Ok,
+                            QMessageBox::NoButton );
+    emit authFailed();
+    return;
+}
+
 void HttpBrokerClient::getUserSessions()
 {
-    QString req;
-    QTextStream ( &req ) <<
-                         "task=listsessions&"<<
-                         "user="<<config->brokerUser<<"&"<<
-                         "password="<<config->brokerPass<<"&"<<
-                         "authid="<<config->brokerUserId;
-    QUrl lurl ( config->brokerurl );
-    httpSessionAnswer.close();
-    httpSessionAnswer.setData ( 0,0 );
-    sessionsRequest=http->post ( lurl.path(),req.toUtf8(),&httpSessionAnswer );
     config->sessiondata=QString::null;
-
+    if(!sshBroker)
+    {
+        QString req;
+        QTextStream ( &req ) <<
+                             "task=listsessions&"<<
+                             "user="<<config->brokerUser<<"&"<<
+                             "password="<<config->brokerPass<<"&"<<
+                             "authid="<<config->brokerUserId;
+        QUrl lurl ( config->brokerurl );
+        httpSessionAnswer.close();
+        httpSessionAnswer.setData ( 0,0 );
+        sessionsRequest=http->post ( lurl.path(),req.toUtf8(),&httpSessionAnswer );
+    }
+    else
+    {
+        if(!sshConnection)
+        {
+            createSshConnection();
+            return;
+        }
+        SshProcess* proc=new SshProcess ( sshConnection, this );
+        connect ( proc,SIGNAL ( sshFinished ( bool,QString,SshProcess* ) ),
+                  this,SLOT ( slotListSessions ( bool, QString,
+                              SshProcess* ) ) );
+        proc->startNormal ( config->sshBrokerBin+" --authid "+config->brokerUserId+ " --task listsessions" );
+    }
 }
 
 void HttpBrokerClient::selectUserSession(const QString& session)
 {
-//     x2goDebug<<"selected sid: "<<session;
-    QString req;
-    QTextStream ( &req ) <<
-                         "task=selectsession&"<<
-                         "sid="<<session<<"&"<<
-                         "user="<<config->brokerUser<<"&"<<
-                         "password="<<config->brokerPass<<"&"<<
-                         "authid="<<config->brokerUserId;
-    QUrl lurl ( config->brokerurl );
-    httpSessionAnswer.close();
-    httpSessionAnswer.setData ( 0,0 );
-    selSessRequest=http->post ( lurl.path(),req.toUtf8(),&httpSessionAnswer );
+    if(!sshBroker)
+    {
+        QString req;
+        QTextStream ( &req ) <<
+                             "task=selectsession&"<<
+                             "sid="<<session<<"&"<<
+                             "user="<<config->brokerUser<<"&"<<
+                             "password="<<config->brokerPass<<"&"<<
+                             "authid="<<config->brokerUserId;
+        QUrl lurl ( config->brokerurl );
+        httpSessionAnswer.close();
+        httpSessionAnswer.setData ( 0,0 );
+        selSessRequest=http->post ( lurl.path(),req.toUtf8(),&httpSessionAnswer );
+    }
+    else
+    {
+        SshProcess* proc=new SshProcess ( sshConnection, this );
+        connect ( proc,SIGNAL ( sshFinished ( bool,QString,SshProcess* ) ),
+                  this,SLOT ( slotSelectSession(bool,QString,SshProcess*)));
+        proc->startNormal ( config->sshBrokerBin+" --authid "+config->brokerUserId+ " --task selectsession --sid "+session );
+    }
 
 }
 
 void HttpBrokerClient::changePassword(QString newPass)
 {
     newBrokerPass=newPass;
-    QString req;
-    QTextStream ( &req ) <<
-                         "task=setpass&"<<
-                         "newpass="<<newPass<<"&"<<
-                         "user="<<config->brokerUser<<"&"<<
-                         "password="<<config->brokerPass<<"&"<<
-                         "authid="<<config->brokerUserId;
-    QUrl lurl ( config->brokerurl );
-    httpSessionAnswer.close();
-    httpSessionAnswer.setData ( 0,0 );
-    chPassRequest=http->post ( lurl.path(),req.toUtf8(),&httpSessionAnswer );
-
+    if(!sshBroker)
+    {
+        QString req;
+        QTextStream ( &req ) <<
+                             "task=setpass&"<<
+                             "newpass="<<newPass<<"&"<<
+                             "user="<<config->brokerUser<<"&"<<
+                             "password="<<config->brokerPass<<"&"<<
+                             "authid="<<config->brokerUserId;
+        QUrl lurl ( config->brokerurl );
+        httpSessionAnswer.close();
+        httpSessionAnswer.setData ( 0,0 );
+        chPassRequest=http->post ( lurl.path(),req.toUtf8(),&httpSessionAnswer );
+    }
+    else
+    {
+        SshProcess* proc=new SshProcess ( sshConnection, this );
+        connect ( proc,SIGNAL ( sshFinished ( bool,QString,SshProcess* ) ),
+                  this,SLOT ( slotPassChanged(bool,QString,SshProcess*)));
+        proc->startNormal ( config->sshBrokerBin+" --authid "+config->brokerUserId+ " --task setpass --newpass "+newPass );
+    }
 }
 
 void HttpBrokerClient::testConnection()
 {
-    QString req;
-    QTextStream ( &req ) <<
-                         "task=testcon";
-
-    QUrl lurl ( config->brokerurl );
-    httpSessionAnswer.close();
-    httpSessionAnswer.setData ( 0,0 );
-    requestTime.start();
-    testConRequest=http->post ( lurl.path(),req.toUtf8(),&httpSessionAnswer );
+    if(!sshBroker)
+    {
+        QString req;
+        QTextStream ( &req ) <<
+                             "task=testcon";
+        QUrl lurl ( config->brokerurl );
+        httpSessionAnswer.close();
+        httpSessionAnswer.setData ( 0,0 );
+        requestTime.start();
+        testConRequest=http->post ( lurl.path(),req.toUtf8(),&httpSessionAnswer );
+    }
+    else
+    {
+        SshProcess* proc=new SshProcess ( sshConnection, this );
+        connect ( proc,SIGNAL ( sshFinished ( bool,QString,SshProcess* ) ),
+                  this,SLOT ( slotSelectSession(bool,QString,SshProcess*)));
+        proc->startNormal ( config->sshBrokerBin+" --authid "+config->brokerUserId+ " --task testcon" );
+    }
 }
 
 
@@ -130,6 +334,95 @@ void HttpBrokerClient::createIniFile(const QString& content)
 }
 
 
+bool HttpBrokerClient::checkAccess(QString answer )
+{
+    if (answer.indexOf("Access granted")==-1)
+    {
+        QMessageBox::critical (
+            0,tr ( "Error" ),
+            tr ( "Login failed!<br>"
+                 "Please try again" ) );
+        emit authFailed();
+        return false;
+    }
+    config->brokerAuthenticated=true;
+    return true;
+}
+
+
+void HttpBrokerClient::slotConnectionTest(bool success, QString answer, SshProcess* proc)
+{
+    if(proc)
+        delete proc;
+    if(!success)
+    {
+        x2goDebug<<answer;
+        QMessageBox::critical(0,tr("Error"),answer);
+        emit fatalHttpError();
+        return;
+    }
+    if(!checkAccess(answer))
+        return;
+    if(!sshBroker)
+    {
+        x2goDebug<<"elapsed: "<<requestTime.elapsed()<<"received:"<<httpSessionAnswer.size()<<endl;
+        emit connectionTime(requestTime.elapsed(),httpSessionAnswer.size());
+    }
+    return;
+
+}
+
+void HttpBrokerClient::slotListSessions(bool success, QString answer, SshProcess* proc)
+{
+    if(proc)
+        delete proc;
+    if(!success)
+    {
+        x2goDebug<<answer;
+        QMessageBox::critical(0,tr("Error"),answer);
+        emit fatalHttpError();
+        return;
+    }
+    if(!checkAccess(answer))
+        return;
+    createIniFile(answer);
+    emit sessionsLoaded();
+}
+
+void HttpBrokerClient::slotPassChanged(bool success, QString answer, SshProcess* proc)
+{
+    if(proc)
+        delete proc;
+    if(!success)
+    {
+        x2goDebug<<answer;
+        QMessageBox::critical(0,tr("Error"),answer);
+        emit fatalHttpError();
+        return;
+    }
+    if(!checkAccess(answer))
+        return;
+
+}
+
+void HttpBrokerClient::slotSelectSession(bool success, QString answer, SshProcess* proc)
+{
+    if(proc)
+        delete proc;
+    if(!success)
+    {
+        x2goDebug<<answer;
+        QMessageBox::critical(0,tr("Error"),answer);
+        emit fatalHttpError();
+        return;
+    }
+    if(!checkAccess(answer))
+        return;
+    x2goDebug<<"parsing "<<answer;
+    parseSession(answer);
+}
+
+
 void HttpBrokerClient::slotRequestFinished ( int id, bool error )
 {
 //   	x2goDebug<<"http request "<<id<<", finished with: "<<error;
@@ -142,50 +435,23 @@ void HttpBrokerClient::slotRequestFinished ( int id, bool error )
         return;
     }
 
+    QString answer ( httpSessionAnswer.data() );
+    x2goDebug<<"cmd request answer: "<<answer;
     if (id==testConRequest)
     {
-
-        //x2goDebug<<"cmd request answer: "<<answer;
-        x2goDebug<<"elapsed: "<<requestTime.elapsed()<<"received:"<<httpSessionAnswer.size()<<endl;
-        emit connectionTime(requestTime.elapsed(),httpSessionAnswer.size());
-        return;
+        slotConnectionTest(true,answer,0);
     }
-    if ( id== sessionsRequest || id == selSessRequest || id==chPassRequest)
+    if (id == sessionsRequest)
     {
-        QString answer ( httpSessionAnswer.data() );
-        x2goDebug<<"cmd request answer: "<<answer;
-        if (answer.indexOf("Access granted")==-1)
-        {
-            QMessageBox::critical (
-                0,tr ( "Error" ),
-                tr ( "Login failed!<br>"
-                     "Please try again" ) );
-            emit authFailed();
-            return;
-        }
-        config->brokerAuthenticated=true;
-        if (id == sessionsRequest)
-        {
-            createIniFile(answer);
-            emit sessionsLoaded();
-        }
-        if (id == selSessRequest)
-        {
-            parseSession(answer);
-
-        }
-        if ( id == chPassRequest)
-        {
-            if (answer.indexOf("CHANGING PASS OK")!=-1)
-            {
-                emit passwordChanged(newBrokerPass);
-            }
-            else
-            {
-                emit passwordChanged(QString::null);
-            }
-
-        }
+        slotListSessions(true, answer,0);
+    }
+    if (id == selSessRequest)
+    {
+        slotSelectSession(true,answer,0);
+    }
+    if ( id == chPassRequest)
+    {
+        slotPassChanged(true,answer,0);
     }
 }
 

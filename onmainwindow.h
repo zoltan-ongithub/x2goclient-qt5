@@ -165,8 +165,11 @@ struct ConfigFile
     QString brokerPass;
     QString brokerUserId;
     QString brokerName;
+    QString sshBrokerBin;
     bool brokerAuthenticated;
     bool brokerNoAuth;
+    bool brokerAutologin;
+    QString brokerSshKey;
     QString iniFile;
     QString server;
     QString serverIp;//Can be different from server (use for loadballancing)
