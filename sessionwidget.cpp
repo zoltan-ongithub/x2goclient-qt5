@@ -313,7 +313,7 @@ void SessionWidget::slot_proxyGetKey()
 
 void SessionWidget::slot_proxyOptions()
 {
-    proxyBox->setVisible(cbProxy->isChecked());
+    proxyBox->setVisible(cbProxy->isChecked() && cbProxy->isVisible());
 }
 
 void SessionWidget::slot_proxySameLogin()
