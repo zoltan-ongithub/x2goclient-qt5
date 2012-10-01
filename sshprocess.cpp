@@ -136,7 +136,7 @@ void SshProcess::tunnelLoop()
     addrlen=sizeof(struct sockaddr_in);
     QTimer* timer=new QTimer();
     connect(timer,SIGNAL(timeout()),this,SLOT(slotCheckNewConnection()));
-    timer->start(500);
+    timer->start(100);
     emit sshTunnelOk();
 #ifdef DEBUG
     x2goDebug<<"Direct tunnel: waiting for connections on "<<localHost<<":"<<localPort<<endl;
