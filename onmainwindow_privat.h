@@ -71,7 +71,6 @@
 #include <QUrl>
 #include <QLocalSocket>
 #include <QPlastiqueStyle>
-#include "sshprocess.h"
 #include "imgframe.h"
 #include <QToolTip>
 #include "clicklineedit.h"

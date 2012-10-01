@@ -75,7 +75,6 @@ class QAction;
 class QCheckBox;
 class QTreeView;
 class QModelIndex;
-class SshProcess;
 class SshMasterConnection;
 class IMGFrame;
 class QStandardItemModel;
@@ -100,7 +99,7 @@ struct directory
     QString dstKey;
     QString dirList;
     bool isRemovable;
-    SshProcess* proc;
+    int pid;
 };
 
 struct serv
@@ -760,9 +759,9 @@ private:
     QTextEdit* stInfo;
 
     SVGFrame* ln;
-    SshProcess* tunnel;
-    SshProcess* sndTunnel;
-    SshProcess* fsTunnel;
+    int tunnel;
+    int sndTunnel;
+    int fsTunnel;
     QList<x2goSession> selectedSessions;
     QStringList selectedDesktops;
     x2goSession resumingSession;
@@ -914,7 +913,7 @@ private slots:
     void slotChangeKbdLayout(const QString& layout);
     void slotSyncX();
     void slotShutdownThinClient();
-    void slotReadApplications(bool result, QString output, SshProcess* proc );
+    void slotReadApplications(bool result, QString output, int pid );
 
 public slots:
     void slotConfig();
@@ -942,24 +941,24 @@ private slots:
     void slotGetBrokerAuth();
     void slotGetBrokerSession();
     void slotCmdMessage ( bool result,QString output,
-                          SshProcess* );
+                          int );
     void slotListSessions ( bool result,QString output,
-                            SshProcess* );
+                            int );
     void slotRetSuspSess ( bool value,QString message,
-                           SshProcess* );
+                           int );
     void slotRetTermSess ( bool result,QString output,
-                           SshProcess* );
+                           int );
     void slotRetResumeSess ( bool result,QString output,
-                             SshProcess* );
+                             int );
     void slotTunnelFailed ( bool result,QString output,
-                            SshProcess* );
+                            int );
     void slotFsTunnelFailed ( bool result,QString output,
-                              SshProcess* );
+                              int );
     void slotSndTunnelFailed ( bool result,QString output,
-                               SshProcess* );
-    void slotCopyKey ( bool result,QString output,SshProcess* );
-    void slotTunnelOk();
-    void slotFsTunnelOk();
+                               int );
+    void slotCopyKey ( bool result,QString output,int );
+    void slotTunnelOk(int );
+    void slotFsTunnelOk(int );
     void slotProxyError ( QProcess::ProcessError err );
     void slotProxyFinished ( int result,QProcess::ExitStatus st );
     void slotProxyStderr();
@@ -969,13 +968,13 @@ private slots:
     void slotRestartProxy();
     void slotTestSessionStatus();
     void slotRetRunCommand ( bool result, QString output,
-                             SshProcess* );
+                             int );
     void slotGetServers ( bool result, QString output,
-                          SshProcess* );
+                          int );
     void slotListAllSessions ( bool result,QString output,
-                               SshProcess* );
+                               int );
     void slotRetExportDir ( bool result,QString output,
-                            SshProcess* );
+                            int );
     void slotResize();
     void slotExportDirectory();
     void slotExportTimer();
@@ -1018,7 +1017,7 @@ private slots:
     void slotStartParec ();
     void slotSndTunOk();
     void slotPCookieReady (	bool result,QString output,
-                            SshProcess* proc );
+                            int proc );
     void slotEmbedToolBar();
     void slotEmbedToolBarToolTip();
     void slotHideEmbedToolBarToolTip();

@@ -26,7 +26,6 @@
 #include "onmainwindow.h"
 #include <QTemporaryFile>
 #include <QInputDialog>
-#include <sshprocess.h>
 
 HttpBrokerClient::HttpBrokerClient ( ONMainWindow* wnd, ConfigFile* cfg )
 {
@@ -236,11 +235,8 @@ void HttpBrokerClient::getUserSessions()
             createSshConnection();
             return;
         }
-        SshProcess* proc=new SshProcess ( sshConnection, this );
-        connect ( proc,SIGNAL ( sshFinished ( bool,QString,SshProcess* ) ),
-                  this,SLOT ( slotListSessions ( bool, QString,
-                              SshProcess* ) ) );
-        proc->startNormal ( config->sshBrokerBin+" --authid "+config->brokerUserId+ " --task listsessions" );
+        sshConnection->executeCommand ( config->sshBrokerBin+" --authid "+config->brokerUserId+ " --task listsessions",
+                                        this, SLOT ( slotListSessions ( bool, QString,int ) ));
     }
 }
 
@@ -262,10 +258,8 @@ void HttpBrokerClient::selectUserSession(const QString& session)
     }
     else
     {
-        SshProcess* proc=new SshProcess ( sshConnection, this );
-        connect ( proc,SIGNAL ( sshFinished ( bool,QString,SshProcess* ) ),
-                  this,SLOT ( slotSelectSession(bool,QString,SshProcess*)));
-        proc->startNormal ( config->sshBrokerBin+" --authid "+config->brokerUserId+ " --task selectsession --sid "+session );
+        sshConnection->executeCommand ( config->sshBrokerBin+" --authid "+config->brokerUserId+ " --task selectsession --sid "+session,
+                                        this,SLOT ( slotSelectSession(bool,QString,int)));
     }
 
 }
@@ -289,10 +283,8 @@ void HttpBrokerClient::changePassword(QString newPass)
     }
     else
     {
-        SshProcess* proc=new SshProcess ( sshConnection, this );
-        connect ( proc,SIGNAL ( sshFinished ( bool,QString,SshProcess* ) ),
-                  this,SLOT ( slotPassChanged(bool,QString,SshProcess*)));
-        proc->startNormal ( config->sshBrokerBin+" --authid "+config->brokerUserId+ " --task setpass --newpass "+newPass );
+        sshConnection->executeCommand ( config->sshBrokerBin+" --authid "+config->brokerUserId+ " --task setpass --newpass "+newPass, this,
+	  SLOT ( slotPassChanged(bool,QString,int)));
     }
 }
 
@@ -311,10 +303,8 @@ void HttpBrokerClient::testConnection()
     }
     else
     {
-        SshProcess* proc=new SshProcess ( sshConnection, this );
-        connect ( proc,SIGNAL ( sshFinished ( bool,QString,SshProcess* ) ),
-                  this,SLOT ( slotSelectSession(bool,QString,SshProcess*)));
-        proc->startNormal ( config->sshBrokerBin+" --authid "+config->brokerUserId+ " --task testcon" );
+        sshConnection->executeCommand(config->sshBrokerBin+" --authid "+config->brokerUserId+ " --task testcon",
+                                      this, SLOT ( slotSelectSession(bool,QString,int)));
     }
 }
 
@@ -350,10 +340,8 @@ bool HttpBrokerClient::checkAccess(QString answer )
 }
 
 
-void HttpBrokerClient::slotConnectionTest(bool success, QString answer, SshProcess* proc)
+void HttpBrokerClient::slotConnectionTest(bool success, QString answer, int)
 {
-    if(proc)
-        delete proc;
     if(!success)
     {
         x2goDebug<<answer;
@@ -372,10 +360,8 @@ void HttpBrokerClient::slotConnectionTest(bool success, QString answer, SshProce
 
 }
 
-void HttpBrokerClient::slotListSessions(bool success, QString answer, SshProcess* proc)
+void HttpBrokerClient::slotListSessions(bool success, QString answer, int)
 {
-    if(proc)
-        delete proc;
     if(!success)
     {
         x2goDebug<<answer;
@@ -389,10 +375,8 @@ void HttpBrokerClient::slotListSessions(bool success, QString answer, SshProcess
     emit sessionsLoaded();
 }
 
-void HttpBrokerClient::slotPassChanged(bool success, QString answer, SshProcess* proc)
+void HttpBrokerClient::slotPassChanged(bool success, QString answer, int)
 {
-    if(proc)
-        delete proc;
     if(!success)
     {
         x2goDebug<<answer;
@@ -405,10 +389,8 @@ void HttpBrokerClient::slotPassChanged(bool success, QString answer, SshProcess*
 
 }
 
-void HttpBrokerClient::slotSelectSession(bool success, QString answer, SshProcess* proc)
+void HttpBrokerClient::slotSelectSession(bool success, QString answer, int)
 {
-    if(proc)
-        delete proc;
     if(!success)
     {
         x2goDebug<<answer;

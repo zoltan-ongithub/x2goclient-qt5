@@ -29,34 +29,33 @@
 #include <netinet/in.h>
 #endif
 
-class SshMasterConnection;
+#include "sshmasterconnection.h"
 
 
 class SshProcess : public QObject
 {
     Q_OBJECT
+    friend class SshMasterConnection;
+private:
 
-public:
-    SshProcess(SshMasterConnection* master, QObject* parent=0);
+    SshProcess(SshMasterConnection* master, int pid);
     ~SshProcess();
 
-public:
     void startNormal(const QString& cmd);
     void startTunnel(const QString& forwardHost, uint forwardPort, const QString& localHost,
                      uint localPort, bool reverse=false);
     void start_cp(QString src, QString dst);
-    void shutdownSocket();
-    QString getSource() 
+    QString getSource()
     {
         return scpSource;
     }
 
-private:
     void tunnelLoop();
 
 private:
     SshMasterConnection* masterCon;
     SshMasterConnection* tunnelConnection;
+    int pid;
     QString forwardHost;
     QString localHost;
     QString command;
@@ -87,11 +86,8 @@ private slots:
     void slotCopyOk(SshProcess* creator);
     void slotCopyErr(SshProcess* creator,QString message, QString sshSessionErr);
 signals:
-    void sshFinished ( bool result, QString output, SshProcess* proc);
-    void sshTunnelOk();
-    /*
-        void sudoConfigError ( QString, SshProcess* );
-        */
+    void sshFinished ( bool result, QString output, int processId);
+    void sshTunnelOk(int processId);
 };
 
 #endif // SSHPROCESS_H

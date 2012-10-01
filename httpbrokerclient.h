@@ -62,10 +62,10 @@ private slots:
     void slotSshServerAuthPassphrase ( SshMasterConnection* connection );
     void slotSshUserAuthError ( QString error );
     void slotSshConnectionOk();
-    void slotListSessions ( bool success, QString answer, SshProcess* proc);
-    void slotSelectSession ( bool success, QString answer, SshProcess* proc);
-    void slotPassChanged ( bool success, QString answer, SshProcess* proc);
-    void slotConnectionTest( bool success, QString answer, SshProcess* proc);
+    void slotListSessions ( bool success, QString answer, int pid);
+    void slotSelectSession ( bool success, QString answer, int pid);
+    void slotPassChanged ( bool success, QString answer, int pid);
+    void slotConnectionTest( bool success, QString answer, int pid);
 
 public slots:
     void getUserSessions();

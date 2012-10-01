@@ -33,7 +33,8 @@
 #undef DEBUG
 // #define DEBUG
 
-SshProcess::SshProcess(SshMasterConnection* master, QObject* parent): QObject(parent)
+
+SshProcess::SshProcess(SshMasterConnection* master, int pid): QObject(0)
 {
     masterCon=master;
     serverSocket=0;
@@ -41,6 +42,7 @@ SshProcess::SshProcess(SshMasterConnection* master, QObject* parent): QObject(pa
     connect(master,SIGNAL(ioErr(SshProcess*,QString,QString)),this,SLOT(slotIOerr(SshProcess*,QString,QString)));
     tunnel=false;
     normalExited=true;
+    this->pid=pid;
 }
 
 SshProcess::~SshProcess()
@@ -60,21 +62,6 @@ SshProcess::~SshProcess()
     }
 }
 
-void SshProcess::shutdownSocket()
-{
-    if (serverSocket>0)
-    {
-#ifdef Q_OS_WIN
-        closesocket(serverSocket);
-        WSACleanup();
-
-#else
-        close(serverSocket);
-#endif
-        serverSocket=0;
-
-    }
-}
 
 void SshProcess::slotCheckNewConnection()
 {
@@ -111,7 +98,7 @@ void SshProcess::tunnelLoop()
     {
         QString err=tr("Error creating socket");
         x2goDebug<<err<<endl;
-        emit sshFinished(false,err,this);
+        emit sshFinished(false,err,pid);
         return;
     }
 #ifndef Q_OS_WIN
@@ -129,7 +116,7 @@ void SshProcess::tunnelLoop()
     {
         QString err=tr("Error binding ")+localHost+":"+QString::number(localPort);
         x2goDebug<<err<<endl;
-        emit sshFinished(false,err,this);
+        emit sshFinished(false,err,pid);
         return;
     }
     listen(serverSocket,5);
@@ -137,7 +124,7 @@ void SshProcess::tunnelLoop()
     QTimer* timer=new QTimer();
     connect(timer,SIGNAL(timeout()),this,SLOT(slotCheckNewConnection()));
     timer->start(100);
-    emit sshTunnelOk();
+    emit sshTunnelOk(pid);
 #ifdef DEBUG
     x2goDebug<<"Direct tunnel: waiting for connections on "<<localHost<<":"<<localPort<<endl;
 #endif
@@ -216,20 +203,20 @@ void SshProcess::slotCopyErr(SshProcess* creator, QString message, QString sshSe
 {
     if (creator!=this)
         return;
-    emit sshFinished(false, message+" - "+sshSessionErr, this);
+    emit sshFinished(false, message+" - "+sshSessionErr, pid);
 }
 
 void SshProcess::slotCopyOk(SshProcess* creator)
 {
     if (creator!=this)
         return;
-    emit sshFinished(true,"", this);
+    emit sshFinished(true,"", pid);
 }
 
 void SshProcess::slotReverseTunnelOk(SshProcess* creator)
 {
     if (creator==this)
-        emit sshTunnelOk();
+        emit sshTunnelOk(pid);
 }
 
 
@@ -258,5 +245,5 @@ void SshProcess::slotChannelClosed(SshProcess* creator)
 #ifdef DEBUG
     x2goDebug<<"ssh finished:"<<normalExited<<" - "<<output<<endl;
 #endif
-    emit sshFinished(normalExited, output, this);
+    emit sshFinished(normalExited, output, pid);
 }

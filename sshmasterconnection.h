@@ -73,9 +73,15 @@ public:
                               int forwardPort, QString localHost, int localPort, void* channel=0l);
     void addChannelConnection(SshProcess* creator, QString cmd);
     void addCopyRequest(SshProcess* creator, QString src, QString dst);
-    void disconnectSession();
     void writeKnownHosts(bool);
     void setKeyPhrase(QString);
+
+    int executeCommand(const QString& command, QObject* receiver=0, const char* slotFinished=0);
+    int startTunnel(const QString& forwardHost, uint forwardPort, const QString& localHost,
+                    uint localPort, bool reverse=false, QObject* receiver=0, const char* slotTunnelOk=0, const char* slotFinished=0);
+    int copyFile(const QString& src, const QString dst, QObject* receiver=0, const char* slotFinished=0);
+    QString getSourceFile(int pid);
+
     void setAcceptUnknownServers(bool accept)
     {
         acceptUnknownServers=accept;
@@ -128,9 +134,9 @@ private slots:
 
 
     void slotSshProxyConnectionOk();
-    void slotSshProxyTunnelOk();
+    void slotSshProxyTunnelOk(int);
     void slotSshProxyTunnelFailed(bool result,  QString output,
-                                  SshProcess*);
+                                  int);
 
 private:
     ssh_session my_ssh_session;
@@ -144,6 +150,8 @@ private:
     QMutex writeHostKeyMutex;
     bool writeHostKey;
     bool writeHostKeyReady;
+    int nextPid;
+    QList<SshProcess*> processes;
 
     QString keyPhrase;
     bool keyPhraseReady;

@@ -74,6 +74,7 @@ SshMasterConnection::SshMasterConnection (QObject* parent, QString host, int por
     tcpNetworkProxy = NULL;
     sshProxy= NULL;
     sshProxyReady=false;
+    nextPid=0;
 
     breakLoop=false;
     this->host=host;
@@ -101,7 +102,9 @@ SshMasterConnection::SshMasterConnection (QObject* parent, QString host, int por
         x2goDebug<<"starting ssh connection without kerberos authentication"<<endl;
 #endif
     kerberos=false;
-
+#ifdef DEBUG
+    x2goDebug<<"SshMasterConnection, instance "<<this<<" created";
+#endif
 }
 
 SshMasterConnection::SshMasterConnection (QObject* parent, ONMainWindow* mwd, QString host, int port, bool acceptUnknownServers,
@@ -141,6 +144,9 @@ SshMasterConnection::SshMasterConnection (QObject* parent, ONMainWindow* mwd, QS
     reverseTunnel=true;
     reverseTunnelRemotePort=remotePort;
     mainWnd=mwd;
+#ifdef DEBUG
+    x2goDebug<<"SshMasterConnection, instance "<<this<<" created (reverse tunnel)";
+#endif
 }
 
 void SshMasterConnection::slotSshProxyConnectionOk()
@@ -148,19 +154,69 @@ void SshMasterConnection::slotSshProxyConnectionOk()
 #ifdef DEBUG
     x2goDebug<<"sshproxy connected";
 #endif
-    SshProcess* tunnel=new SshProcess ( sshProxy, this );
 
-    connect ( tunnel,SIGNAL ( sshFinished ( bool,  QString, SshProcess* ) ),
-              this,SLOT ( slotSshProxyTunnelFailed(bool,QString,SshProcess*)));
-    connect ( tunnel,SIGNAL ( sshTunnelOk() ),
-              this,SLOT ( slotSshProxyTunnelOk()) );
 
     localProxyPort=PROXYTUNNELPORT;
     while ( ONMainWindow::isServerRunning ( localProxyPort ) )
         ++localProxyPort;
 
-    tunnel->startTunnel ( host, port, "localhost",localProxyPort);
+    sshProxy->startTunnel ( host, port, "localhost",localProxyPort,false,this, SLOT ( slotSshProxyTunnelOk(int)),
+                            SLOT ( slotSshProxyTunnelFailed(bool,QString,int)));
 
+}
+
+
+int SshMasterConnection::copyFile(const QString& src, const QString dst, QObject* receiver, const char* slotFinished)
+{
+    SshProcess* proc=new SshProcess(this, nextPid++);
+    if(receiver && slotFinished)
+    {
+        connect(proc, SIGNAL(sshFinished(bool,QString,int)), receiver, slotFinished);
+    }
+    proc->start_cp(src,dst);
+    processes<<proc;
+    return proc->pid;
+}
+
+int SshMasterConnection::executeCommand(const QString& command, QObject* receiver, const char* slotFinished)
+{
+    SshProcess* proc=new SshProcess(this, nextPid++);
+    if(receiver && slotFinished)
+    {
+        connect(proc, SIGNAL(sshFinished(bool,QString,int)), receiver, slotFinished);
+    }
+    proc->startNormal(command);
+    processes<<proc;
+    return proc->pid;
+
+}
+
+QString SshMasterConnection::getSourceFile(int pid)
+{
+    foreach (SshProcess* proc, processes)
+    {
+        if(proc->pid==pid)
+            return proc->getSource();
+    }
+    return QString ::null;
+}
+
+
+int SshMasterConnection::startTunnel(const QString& forwardHost, uint forwardPort, const QString& localHost, uint localPort, bool reverse,
+                                     QObject* receiver, const char* slotTunnelOk, const char* slotFinished)
+{
+    SshProcess* proc=new SshProcess(this, nextPid++);
+    if(receiver && slotFinished)
+    {
+        connect(proc, SIGNAL(sshFinished(bool,QString,int)), receiver, slotFinished);
+    }
+    if(receiver && slotTunnelOk)
+    {
+        connect(proc, SIGNAL(sshTunnelOk(int)), receiver, slotTunnelOk);
+    }
+    proc->startTunnel(forwardHost, forwardPort, localHost, localPort, reverse);
+    processes<<proc;
+    return proc->pid;
 }
 
 
@@ -182,7 +238,7 @@ void SshMasterConnection::slotSshProxyUserAuthError(QString err)
 }
 
 
-void SshMasterConnection::slotSshProxyTunnelOk()
+void SshMasterConnection::slotSshProxyTunnelOk(int)
 {
 #ifdef DEBUG
     x2goDebug<<"Ssh proxy tunnel established";
@@ -191,7 +247,7 @@ void SshMasterConnection::slotSshProxyTunnelOk()
 }
 
 void SshMasterConnection::slotSshProxyTunnelFailed(bool ,  QString output,
-        SshProcess*)
+        int)
 {
     breakLoop=true;
     emit connectionError(tr("Failed to create SSH proxy tunnel"), output);
@@ -224,6 +280,9 @@ void SshMasterConnection::slotSshProxyServerAuthAborted()
 
 void SshMasterConnection::run()
 {
+#ifdef DEBUG
+    x2goDebug<<"SshMasterConnection, instance "<<this<<" entering thread";
+#endif
     if(useproxy && proxytype==PROXYSSH && !reverseTunnel)
     {
 
@@ -438,10 +497,23 @@ void SshMasterConnection::run()
 SshMasterConnection::~SshMasterConnection()
 {
 
-    if (tcpProxySocket != NULL)
-        delete tcpProxySocket;
-    if (tcpNetworkProxy != NULL)
-        delete tcpNetworkProxy;
+    disconnectFlagMutex.lock();
+    disconnectSessionFlag=true;
+    disconnectFlagMutex.unlock();
+#ifdef DEBUG
+    x2goDebug<<"SshMasterConnection, instance "<<this<<" waiting for thread to finish";
+#endif
+    wait();
+#ifdef DEBUG
+    x2goDebug<<"SshMasterConnection, instance "<<this<<" thread finished";
+#endif
+    for(int i=processes.count()-1; i>=0; --i)
+    {
+        delete processes[i];
+    }
+#ifdef DEBUG
+    x2goDebug<<"SshMasterConnection, instance "<<this<<" SshMasterConnection, instance  SshMasterConnection(0x7fce7c008aa0) deleted";
+#endif
 }
 
 
@@ -790,14 +862,6 @@ void SshMasterConnection::addCopyRequest ( SshProcess* creator, QString src, QSt
     copyRequestMutex.unlock();
 }
 
-void SshMasterConnection::disconnectSession()
-{
-
-    disconnectFlagMutex.lock();
-    disconnectSessionFlag=true;
-    disconnectFlagMutex.unlock();
-
-}
 
 void SshMasterConnection::copy()
 {
@@ -949,8 +1013,7 @@ void SshMasterConnection::channelLoop()
 
             if (useproxy && proxytype==PROXYSSH&&sshProxy)
             {
-                sshProxy->disconnectSession();
-                sshProxy->wait ( 10000 );
+                delete sshProxy;
                 sshProxy=0;
             }
 
@@ -959,11 +1022,9 @@ void SshMasterConnection::channelLoop()
                 x2goDebug<<"Disconnecting..."<<endl;
 #endif
             reverseTunnelConnectionsMutex.lock();
-            for ( int i=0; i<reverseTunnelConnections.size(); ++i )
+            for ( int i=reverseTunnelConnections.size()-1; i>=0; --i)
             {
-                reverseTunnelConnections[i]->disconnectSession();
-                reverseTunnelConnections[i]->wait ( 10000 );
-
+                delete reverseTunnelConnections[i];
             }
             reverseTunnelConnectionsMutex.unlock();
 
@@ -973,9 +1034,13 @@ void SshMasterConnection::channelLoop()
                 finalize ( i );
             }
             channelConnectionsMutex.unlock();
-
             ssh_disconnect ( my_ssh_session );
             ssh_free ( my_ssh_session );
+
+            if (tcpProxySocket != NULL)
+                delete tcpProxySocket;
+            if (tcpNetworkProxy != NULL)
+                delete tcpNetworkProxy;
 #ifdef DEBUG
             if ( !reverseTunnel )
                 x2goDebug<<"All channels closed, session disconnected, quiting session loop"<<endl;
@@ -1219,7 +1284,6 @@ void SshMasterConnection::finalize ( int item )
         close ( tcpSocket );
     }
     SshProcess* proc=channelConnections[item].creator;
-    proc->shutdownSocket();
     channelConnections.removeAt ( item );
     emit channelClosed ( proc );
 }

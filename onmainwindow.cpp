@@ -1267,9 +1267,8 @@ void ONMainWindow::closeClient()
     }
     if ( sshConnection && !useLdap)
     {
-        sshConnection->disconnectSession();
         x2goDebug<<"waiting sshConnection to finish\n";
-        sshConnection->wait ( 10000 );
+        delete sshConnection;
         x2goDebug<<"sshConnection is closed\n";
         sshConnection=0;
     }
@@ -1279,9 +1278,8 @@ void ONMainWindow::closeClient()
         {
             if (serverSshConnections[i])
             {
-                serverSshConnections[i]->disconnectSession();
                 x2goDebug<<"waiting sshConnection to finish\n";
-                serverSshConnections[i]->wait ( 10000 );
+                delete serverSshConnections[i];
                 x2goDebug<<"sshConnection is closed\n";
             }
         }
@@ -1768,7 +1766,7 @@ void ONMainWindow::slotPassEnter()
     QString host=firstServer;
     passwd=getCurrentPass();
     if (sshConnection)
-        sshConnection->disconnectSession();
+        delete sshConnection;
     sshConnection=startSshConnection ( host,sshPort,acceptRsa,user,passwd,true, false );
 
 #endif
@@ -2850,15 +2848,8 @@ void ONMainWindow::slotServSshConnectionOk(QString server)
     SshMasterConnection* con=findServerSshConnection(server);
     if (!con)
         return;
-    SshProcess* lproc;
-    lproc=new SshProcess ( con,  this );
-    connect ( lproc,SIGNAL ( sshFinished ( bool,
-                                           QString,SshProcess* ) ),
-              this,SLOT (
-                  slotListAllSessions ( bool,
-                                        QString,SshProcess* ) ) );
     x2goDebug<<"getting sessions on "<<server<<endl;
-    lproc->startNormal ( "export HOSTNAME && x2golistsessions" );
+    con->executeCommand( "export HOSTNAME && x2golistsessions", this, SLOT (slotListAllSessions ( bool,QString,int ) ));
 }
 
 void ONMainWindow::slotSshServerAuthPassphrase(SshMasterConnection* connection)
@@ -3042,25 +3033,16 @@ void ONMainWindow::continueNormalSession()
         slotListSessions(true,QString::null,0);
         return;
     }
-    SshProcess* proc=new SshProcess ( sshConnection, this );
-    connect ( proc,SIGNAL ( sshFinished ( bool,QString,SshProcess* ) ),
-              this,SLOT ( slotListSessions ( bool, QString,
-                          SshProcess* ) ) );
     if ( !shadowSession )
-        proc->startNormal ( "export HOSTNAME && x2golistsessions" );
+        sshConnection->executeCommand ( "export HOSTNAME && x2golistsessions", this,SLOT ( slotListSessions ( bool, QString,int )));
     else
-        proc->startNormal ( "export HOSTNAME && x2golistdesktops" );
+        sshConnection->executeCommand ( "export HOSTNAME && x2golistdesktops", this,SLOT ( slotListSessions ( bool, QString,int )));
 
 }
 
 void ONMainWindow::continueLDAPSession()
 {
-
-
-    SshProcess* proc=new SshProcess ( sshConnection,this );
-    connect ( proc,SIGNAL ( sshFinished ( bool,QString,SshProcess* ) ),
-              this,SLOT ( slotGetServers ( bool, QString,SshProcess* ) ) );
-    proc->startNormal ( "x2gogetservers" );
+    sshConnection->executeCommand ( "x2gogetservers", this, SLOT ( slotGetServers ( bool, QString,int ) ));
 }
 
 #ifdef Q_OS_LINUX
@@ -3243,8 +3225,10 @@ bool ONMainWindow::startSession ( const QString& sid )
     krblogin=st->setting()->value ( sid+"/krblogin",
                                     ( QVariant ) false ).toBool();
 #ifdef Q_OS_LINUX
-    directRDP=st->setting()->value ( sid+"/directrdp",
-                                     ( QVariant ) false ).toBool();
+    directRDP=(st->setting()->value ( sid+"/directrdp",
+                                      ( QVariant ) false ).toBool() && cmd == "RDP");
+
+
     if (cmd =="RDP" && directRDP)
     {
         startDirectRDP();
@@ -3260,7 +3244,7 @@ bool ONMainWindow::startSession ( const QString& sid )
         sshPort=config.sshport;
     }
     if (sshConnection)
-        sshConnection->disconnectSession();
+        delete sshConnection;
 
     if(currentKey.length()<=0)
     {
@@ -3359,10 +3343,8 @@ bool ONMainWindow::startSession ( const QString& sid )
 
 
 void ONMainWindow::slotListSessions ( bool result,QString output,
-                                      SshProcess* proc )
+                                      int  )
 {
-    if ( proc )
-        delete proc;
     if ( result==false )
     {
         cardReady=false;
@@ -3826,16 +3808,8 @@ void ONMainWindow::startNewSession()
         return;
     }
 
-    SshProcess* proc=0l;
-
-    proc=new SshProcess ( sshConnection, this ) ;
-
-
-    connect ( proc,SIGNAL ( sshFinished ( bool, QString,SshProcess* ) ),
-              this,SLOT ( slotRetResumeSess ( bool,
-                          QString,SshProcess* ) ) );
-
-    proc->startNormal ( cmd );
+    sshConnection->executeCommand ( cmd, this, SLOT ( slotRetResumeSess ( bool,
+                                    QString,int ) ) );
     passForm->hide();
 }
 
@@ -4069,14 +4043,8 @@ void ONMainWindow::resumeSession ( const x2goSession& s )
     else
         cmd += "0";
 
-    SshProcess* proc=0l;
-    proc=new SshProcess ( sshConnection, this );
-
-    connect ( proc,SIGNAL ( sshFinished ( bool, QString,SshProcess* ) ),
-              this,SLOT ( slotRetResumeSess ( bool, QString,
-                          SshProcess* ) ) );
-
-    proc->startNormal ( cmd );
+    sshConnection->executeCommand ( cmd, this,  SLOT ( slotRetResumeSess ( bool, QString,
+                                    int ) ));
     resumingSession=s;
     passForm->hide();
 }
@@ -4398,6 +4366,7 @@ void ONMainWindow::slotTermSessFromSt()
 #ifdef Q_OS_LINUX
     if (directRDP)
     {
+        x2goDebug<<"terminating direct RDP session";
         nxproxy->terminate();
         proxyRunning=false;
         return;
@@ -4419,10 +4388,8 @@ void ONMainWindow::slotTermSessFromSt()
 
 
 void ONMainWindow::slotRetSuspSess ( bool result, QString output,
-                                     SshProcess* proc )
+                                     int )
 {
-    if ( proc )
-        delete proc;
     if ( result==false )
     {
         QString message=tr ( "<b>Connection failed</b>\n" ) +output;
@@ -4515,11 +4482,8 @@ void ONMainWindow::slotNewSess()
 
 
 void ONMainWindow::slotRetTermSess ( bool result,  QString output,
-                                     SshProcess* proc )
+                                     int )
 {
-    bool nodel= ( proc==0 );
-    if ( proc )
-        delete proc;
     if ( result==false )
     {
         QString message=tr ( "<b>Connection failed</b>\n" ) +output;
@@ -4535,7 +4499,7 @@ void ONMainWindow::slotRetTermSess ( bool result,  QString output,
     }
     else
     {
-        if ( selectSessionDlg->isVisible() &&!nodel )
+        if ( selectSessionDlg->isVisible()  )
         {
             sessTv->model()->removeRow (
                 sessTv->currentIndex().row() );
@@ -4548,10 +4512,8 @@ void ONMainWindow::slotRetTermSess ( bool result,  QString output,
 
 void ONMainWindow::slotRetResumeSess ( bool result,
                                        QString output,
-                                       SshProcess* proc )
+                                       int )
 {
-    if ( proc )
-        delete proc;
     x2goDebug<<"Agent output:"<<output;
     if ( result==false )
     {
@@ -4738,13 +4700,7 @@ void ONMainWindow::slotRetResumeSess ( bool result,
             host=config.server;
         resumingSession.server=host;
     }
-    tunnel=new SshProcess ( sshConnection, this );
 
-    connect ( tunnel,SIGNAL ( sshFinished ( bool,  QString,SshProcess* ) ),
-              this,SLOT ( slotTunnelFailed ( bool,
-                          QString,SshProcess* ) ) );
-    connect ( tunnel,SIGNAL ( sshTunnelOk() ),
-              this,SLOT ( slotTunnelOk() ) );
 
     localGraphicPort=resumingSession.grPort;
     int iport=localGraphicPort.toInt() +1000;
@@ -4754,8 +4710,9 @@ void ONMainWindow::slotRetResumeSess ( bool result,
         ++iport;
     localGraphicPort=QString::number ( iport );
 
-    tunnel->startTunnel ( "localhost",resumingSession.grPort.toInt(),"localhost",
-                          localGraphicPort.toInt() );
+    sshConnection->startTunnel ( "localhost",resumingSession.grPort.toInt(),"localhost",
+                                 localGraphicPort.toInt(), false, this,  SLOT ( slotTunnelOk(int) ), SLOT ( slotTunnelFailed ( bool,
+                                         QString,int ) ) );
     if ( shadowSession )
         return;
 
@@ -4791,9 +4748,8 @@ void ONMainWindow::slotRetResumeSess ( bool result,
                      "\">> ~/.x2go/C-"+
                      resumingSession.sessionId+
                      "/.pulse-client.conf";
-            SshProcess* paProc;
-            paProc=new SshProcess ( sshConnection, this );
-            paProc->startNormal ( scmd );
+
+            sshConnection->executeCommand(scmd);
 
             bool sysPulse=false;
 #ifdef Q_OS_LINUX
@@ -4825,18 +4781,20 @@ void ONMainWindow::slotRetResumeSess ( bool result,
             }
 #endif
             if ( sysPulse )
-                paProc->start_cp (
+
+                sshConnection->copyFile(
                     "/var/run/pulse/.pulse-cookie",
                     "~/.x2go/C-"+
                     resumingSession.sessionId+
-                    "/.pulse-cookie" );
+                    "/.pulse-cookie", this, SLOT ( slotPCookieReady ( bool, QString,int )));
+
             else
             {
 #ifndef Q_OS_WIN
-                paProc->start_cp ( homeDir+"/.pulse-cookie",
-                                   "~/.x2go/C-"+
-                                   resumingSession.sessionId+
-                                   "/.pulse-cookie" );
+                sshConnection->copyFile(homeDir+"/.pulse-cookie",
+                                        "~/.x2go/C-"+
+                                        resumingSession.sessionId+
+                                        "/.pulse-cookie", this, SLOT ( slotPCookieReady ( bool, QString,int )));
 #else
                 QString cooFile=
                     wapiShortFileName ( homeDir )  +
@@ -4844,41 +4802,25 @@ void ONMainWindow::slotRetResumeSess ( bool result,
                 QString destFile="~/.x2go/C-"+
                                  resumingSession.sessionId+
                                  "/.pulse-cookie";
-                paProc->start_cp ( cooFile,
-                                   destFile );
-
-                /*x2goDebug<<"cookie file: "<<cooFile
-                <<" remote:"<<
-                destFile<<endl;*/
-                connect ( paProc,
-                          SIGNAL (
-                              sshFinished ( bool,
-                                            QString,
-                                            SshProcess* ) ),
-                          this,
-                          SLOT (
-                              slotPCookieReady ( bool,
-                                                 QString,
-                                                 SshProcess* )
-                          ) );
-                parecTunnelOk=true;
+                sshConnection->copyFile(cooFile,
+                                        destFile, this, SLOT ( slotPCookieReady ( bool, QString,int ));
+                                        parecTunnelOk=true;
 #endif
             }
         }
         if ( sndSystem==ESD )
         {
-            SshProcess* paProc;
-            paProc=new SshProcess ( sshConnection, this );
 #ifndef Q_OS_WIN
-            paProc->start_cp ( homeDir+"/.esd_auth",
-                               "~/.esd_auth" );
+            sshConnection->copyFile(homeDir+"/.esd_auth",
+                                    "~/.esd_auth" );
 #else
             QString cooFile=
                 wapiShortFileName ( homeDir )  +
                 "/.x2go/pulse/.esd_auth";
             QString destFile="~/.esd_auth";
-            paProc->start_cp ( cooFile,
-                               destFile );
+            sshConnection->copyFile(cooFile,
+                                    destFile );
+
 #endif
         }
 #ifndef Q_OS_WIN
@@ -4909,32 +4851,21 @@ void ONMainWindow::slotRetResumeSess ( bool result,
 #endif //Q_OS_WIN
         if ( sshSndTunnel )
         {
-            sndTunnel=new SshProcess ( sshConnection, this );
-
+            char* okSlot=0;
 #ifdef Q_OS_WIN
             if ( sndSystem==PULSE )
             {
                 parecTunnelOk=false;
-                connect ( sndTunnel,SIGNAL ( sshTunnelOk() ),
-                          this,SLOT ( slotSndTunOk() ) );
+                okSlot=SLOT ( slotSndTunOk(int) );
             }
 #endif
-            connect ( sndTunnel,SIGNAL ( sshFinished ( bool,
-                                         QString,
-                                         SshProcess* ) ),
-                      this,SLOT (
-                          slotSndTunnelFailed ( bool,
-                                                QString,
-                                                SshProcess* ) ) );
-
-            sndTunnel->startTunnel (
-                "localhost",
-                resumingSession.sndPort.toInt(),"127.0.0.1",
-                sndPort.toInt(),true );
-            /*x2goDebug<<"starting tunnel, local port:"<<
-            	sndPort<<", remote: "<<
-            	resumingSession.sndPort<<
-            	endl;*/
+            sndTunnel=sshConnection->startTunnel (
+                          "localhost",
+                          resumingSession.sndPort.toInt(),"127.0.0.1",
+                          sndPort.toInt(),true,this,okSlot, SLOT (
+                              slotSndTunnelFailed ( bool,
+                                                    QString,
+                                                    int ) ));
         }
     }
 }
@@ -4954,7 +4885,7 @@ x2goSession ONMainWindow::getSelectedSession()
 }
 
 
-void ONMainWindow::slotTunnelOk()
+void ONMainWindow::slotTunnelOk(int)
 {
 
 #ifdef Q_OS_WIN
@@ -4980,14 +4911,14 @@ void ONMainWindow::slotTunnelOk()
                                     QMessageBox::Ok,
                                     QMessageBox::NoButton );
             slotShowPassForm();
-            if ( tunnel )
-                delete tunnel;
-            if ( sndTunnel )
-                delete sndTunnel;
-            if ( fsTunnel )
-                delete fsTunnel;
-            if ( soundServer )
-                delete soundServer;
+//             if ( tunnel )
+//                 delete tunnel;
+//             if ( sndTunnel )
+//                 delete sndTunnel;
+//             if ( fsTunnel )
+//                 delete fsTunnel;
+//             if ( soundServer )
+//                 delete soundServer;
             tunnel=sndTunnel=fsTunnel=0l;
             soundServer=0l;
             nxproxy=0l;
@@ -5144,7 +5075,7 @@ void ONMainWindow::slotTunnelOk()
 }
 
 void ONMainWindow::slotTunnelFailed ( bool result,  QString output,
-                                      SshProcess* )
+                                      int )
 {
     if ( result==false )
     {
@@ -5156,14 +5087,14 @@ void ONMainWindow::slotTunnelFailed ( bool result,  QString output,
                                     QMessageBox::Ok,
                                     QMessageBox::NoButton );
         }
-        if ( tunnel )
-            delete tunnel;
-        if ( sndTunnel )
-            delete sndTunnel;
-        if ( fsTunnel )
-            delete fsTunnel;
-        if ( soundServer )
-            delete soundServer;
+//         if ( tunnel )
+//             delete tunnel;
+//         if ( sndTunnel )
+//             delete sndTunnel;
+//         if ( fsTunnel )
+//             delete fsTunnel;
+//         if ( soundServer )
+//             delete soundServer;
         tunnel=sndTunnel=fsTunnel=0l;
         soundServer=0l;
         nxproxy=0l;
@@ -5174,7 +5105,7 @@ void ONMainWindow::slotTunnelFailed ( bool result,  QString output,
 }
 
 void ONMainWindow::slotSndTunnelFailed ( bool result,  QString output,
-        SshProcess* )
+        int )
 {
     if ( result==false )
     {
@@ -5186,8 +5117,6 @@ void ONMainWindow::slotSndTunnelFailed ( bool result,  QString output,
                                    QMessageBox::Ok,
                                    QMessageBox::NoButton );
         }
-        if ( sndTunnel )
-            delete sndTunnel;
         sndTunnel=0l;
     }
 }
@@ -5233,12 +5162,12 @@ void ONMainWindow::slotProxyFinished ( int,QProcess::ExitStatus )
 #endif
     if ( closeEventSent )
         return;
-    if ( tunnel )
-        delete tunnel;
-    if ( sndTunnel )
-        delete sndTunnel;
-    if ( fsTunnel )
-        delete fsTunnel;
+//     if ( tunnel )
+//         delete tunnel;
+//     if ( sndTunnel )
+//         delete sndTunnel;
+//     if ( fsTunnel )
+//         delete fsTunnel;
     if ( soundServer )
         delete soundServer;
     if ( spoolTimer )
@@ -5306,10 +5235,14 @@ void ONMainWindow::slotProxyFinished ( int,QProcess::ExitStatus )
 #endif
     if ( !shadowSession && !usePGPCard && ! ( embedMode &&
             ( config.checkexitstatus==false ) ) )
+    {
+        x2goDebug<<"checking exit status";
         check_cmd_status();
+    }
     else
     {
-        sshConnection->disconnectSession();
+        x2goDebug<<"deleting sshConnection instance: "<<sshConnection;
+        delete sshConnection;
         sshConnection=0;
     }
     if ( startHidden )
@@ -5572,14 +5505,9 @@ void ONMainWindow::slotResumeDoubleClick ( const QModelIndex& )
 
 void ONMainWindow::suspendSession ( QString sessId )
 {
-    SshProcess* proc=0l;
-    proc=new SshProcess ( sshConnection, this );
 
-    connect ( proc,SIGNAL ( sshFinished ( bool,  QString,SshProcess* ) ),
-              this,SLOT ( slotRetSuspSess ( bool,  QString,
-                                            SshProcess* ) ) );
-
-    proc->startNormal ( "x2gosuspend-session "+sessId );
+    sshConnection->executeCommand ( "x2gosuspend-session "+sessId, this,  SLOT ( slotRetSuspSess ( bool,  QString,
+                                    int ) ) );
 }
 
 
@@ -5616,14 +5544,8 @@ bool ONMainWindow::termSession ( QString sessId, bool warn )
         return true;
     }
 
-    SshProcess* proc=0l;
-    proc=new SshProcess ( sshConnection,  this );
-
-    connect ( proc,SIGNAL ( sshFinished ( bool,  QString,SshProcess* ) ),
-              this,SLOT ( slotRetTermSess ( bool,
-                                            QString,SshProcess* ) ) );
-
-    proc->startNormal ( "x2goterminate-session "+sessId );
+    sshConnection->executeCommand ( "x2goterminate-session "+sessId, this, SLOT ( slotRetTermSess ( bool,
+                                    QString,int) )  );
     proxyRunning=false;
     return true;
 }
@@ -5868,7 +5790,6 @@ void ONMainWindow::runCommand()
     if ( managedMode )
         return;
 
-    SshProcess *proc=0l;
 
     QString cmd;
 
@@ -5916,14 +5837,9 @@ void ONMainWindow::runCommand()
 
     if ( runRemoteCommand )
     {
-        proc=new SshProcess ( sshConnection, this );
-        connect ( proc,SIGNAL ( sshFinished ( bool, QString,
-                                              SshProcess* ) ),
-                  this,SLOT ( slotRetRunCommand ( bool,
-                              QString,
-                              SshProcess* ) ) );
-
-        proc->startNormal ( cmd );
+        sshConnection->executeCommand ( cmd, this,  SLOT ( slotRetRunCommand ( bool,
+                                        QString,
+                                        int ) ));
     }
 #ifdef Q_WS_HILDON
     //wait 5 seconds and execute xkbcomp
@@ -5934,18 +5850,15 @@ void ONMainWindow::runCommand()
 
 void ONMainWindow::runApplication(QString exec)
 {
-    SshProcess* proc=new SshProcess ( sshConnection, this );
-    proc->startNormal ("PULSE_CLIENTCONFIG=~/.x2go/C-"+
-                       resumingSession.sessionId+"/.pulse-client.conf DISPLAY=:"+
-                       resumingSession.display+
-                       " setsid "+exec+" 1> /dev/null 2>/dev/null & exit");
+    sshConnection->executeCommand ("PULSE_CLIENTCONFIG=~/.x2go/C-"+
+                                   resumingSession.sessionId+"/.pulse-client.conf DISPLAY=:"+
+                                   resumingSession.display+
+                                   " setsid "+exec+" 1> /dev/null 2>/dev/null & exit");
 }
 
 void ONMainWindow::slotRetRunCommand ( bool result, QString output,
-                                       SshProcess* proc )
+                                       int )
 {
-    if ( proc )
-        delete proc;
     if ( result==false )
     {
         QString message=tr ( "<b>Connection failed</b>\n:\n" ) +output;
@@ -5967,21 +5880,15 @@ void ONMainWindow::slotRetRunCommand ( bool result, QString output,
 
 void ONMainWindow::readApplications()
 {
-    SshProcess* proc=new SshProcess ( sshConnection, this );
-    connect ( proc,SIGNAL ( sshFinished ( bool, QString,
-                                          SshProcess* ) ),
-              this,SLOT ( slotReadApplications ( bool,
-                          QString,
-                          SshProcess* ) ) );
-    proc->startNormal ( "x2gogetapps" );
+    sshConnection->executeCommand ( "x2gogetapps", this,  SLOT ( slotReadApplications ( bool,
+                                    QString,
+                                    int) ));
     sbApps->setEnabled(false);
 }
 
 void ONMainWindow::slotReadApplications(bool result, QString output,
-                                        SshProcess* proc )
+                                        int)
 {
-    if ( proc )
-        delete proc;
     if ( result==false )
     {
         QString message=tr ( "<b>Connection failed</b>\n:\n" ) +output;
@@ -6753,11 +6660,8 @@ void ONMainWindow::showHelpPack()
 }
 
 void ONMainWindow::slotGetServers ( bool result, QString output,
-                                    SshProcess* proc )
+                                    int )
 {
-    if ( proc )
-        delete proc;
-    proc=0;
     if ( result==false )
     {
         cardReady=false;
@@ -6811,7 +6715,7 @@ void ONMainWindow::slotGetServers ( bool result, QString output,
     retSessions=0;
     if (sshConnection)
     {
-        sshConnection->disconnectSession();
+        delete sshConnection;
         sshConnection=0;
     }
     QString passwd;
@@ -6820,7 +6724,7 @@ void ONMainWindow::slotGetServers ( bool result, QString output,
     for (int i=0; i< serverSshConnections.count(); ++i)
     {
         if (serverSshConnections[i])
-            serverSshConnections[i]->disconnectSession();
+            delete serverSshConnections[i];
     }
     serverSshConnections.clear();
     for ( int j=0; j<x2goServers.size(); ++j )
@@ -6833,16 +6737,13 @@ void ONMainWindow::slotGetServers ( bool result, QString output,
 
 
 void ONMainWindow::slotListAllSessions ( bool result,QString output,
-        SshProcess* proc )
+        int )
 {
     bool last=false;
 
     ++retSessions;
     if ( retSessions == x2goServers.size() )
         last=true;
-    if ( proc )
-        delete proc;
-    proc=0;
 
     if ( result==false )
     {
@@ -7001,11 +6902,9 @@ void ONMainWindow::exportDirs ( QString exports,bool removable )
             if ( startSshFsTunnel() )
                 return;
     }
-    SshProcess* lproc;
+
+
     QString uname=getCurrentUname();
-    lproc=new SshProcess ( sshConnection, this );
-    connect ( lproc,SIGNAL ( sshFinished ( bool,QString,SshProcess* ) ),
-              this,SLOT ( slotCopyKey ( bool, QString,SshProcess* ) ) );
     QString dst=dr.key;
     QString dhdir=homeDir+"/.x2go";
 #ifdef Q_OS_WIN
@@ -7017,7 +6916,7 @@ void ONMainWindow::exportDirs ( QString exports,bool removable )
     dr.isRemovable=removable;
     exportDir.append ( dr );
     QString keyFile=dr.key;
-    lproc->start_cp ( keyFile,dst );
+    sshConnection->copyFile ( keyFile,dst, this,  SLOT ( slotCopyKey ( bool, QString,int ) ));
 
 }
 
@@ -7207,12 +7106,9 @@ QString ONMainWindow::createRSAKey()
     return keyName;
 }
 
-void ONMainWindow::slotCopyKey ( bool result, QString output, SshProcess* proc )
+void ONMainWindow::slotCopyKey ( bool result, QString output, int pid)
 {
-    fsExportKey=proc->getSource();
-    if ( proc )
-        delete proc;
-    proc=0;
+    fsExportKey=sshConnection->getSourceFile(pid);
     x2goDebug<<"exported key "<<fsExportKey;
     QFile::remove ( fsExportKey );
     x2goDebug<<"key removed";
@@ -7254,20 +7150,18 @@ directory* ONMainWindow::getExpDir ( QString key )
 
 
 void ONMainWindow::slotRetExportDir ( bool result,QString output,
-                                      SshProcess* proc )
+                                      int pid)
 {
 
     QString key;
     for ( int i=0; i<exportDir.size(); ++i )
-        if ( exportDir[i].proc==proc )
+        if ( exportDir[i].pid==pid )
         {
             key=exportDir[i].key;
             exportDir.removeAt ( i );
             break;
         }
 
-    if ( proc )
-        delete proc;
 
     if ( result==false )
     {
@@ -7492,10 +7386,8 @@ void ONMainWindow::slotExportTimer()
 
     for ( int i=0; i<args.size(); ++i )
     {
-        SshProcess* sproc=new SshProcess (
-            sshConnection, this );
-        sproc->startNormal ( "export HOSTNAME && x2goumount_session "+
-                             sessionId+" "+args[i] );
+        sshConnection->executeCommand ( "export HOSTNAME && x2goumount_session "+
+                                        sessionId+" "+args[i] );
     }
 }
 
@@ -8308,20 +8200,13 @@ void ONMainWindow::check_cmd_status()
     passwd=getCurrentPass();
 
     x2goDebug<<"check command message"<<endl;
-    SshProcess* proc;
-    proc=new SshProcess ( sshConnection, this );
-    connect ( proc,SIGNAL ( sshFinished ( bool,QString,SshProcess* ) ),
-              this,SLOT ( slotCmdMessage ( bool, QString,SshProcess* ) ) );
-
-    proc->startNormal ( "x2gocmdexitmessage "+
-                        resumingSession.sessionId );
+    sshConnection->executeCommand ( "x2gocmdexitmessage "+
+                                    resumingSession.sessionId , this, SLOT(slotCmdMessage(bool, QString, int)));
 }
 
 void ONMainWindow::slotCmdMessage ( bool result,QString output,
-                                    SshProcess* proc )
+                                    int)
 {
-    if ( proc )
-        delete proc;
     if ( result==false )
     {
         cardReady=false;
@@ -8340,7 +8225,7 @@ void ONMainWindow::slotCmdMessage ( bool result,QString output,
         passForm->setEnabled ( true );
         pass->setFocus();
         pass->selectAll();
-        sshConnection->disconnectSession();
+        delete sshConnection;
         sshConnection=0;
         return;
     }
@@ -8353,7 +8238,7 @@ void ONMainWindow::slotCmdMessage ( bool result,QString output,
                                 cmd,QMessageBox::Ok,
                                 QMessageBox::NoButton );
     }
-    sshConnection->disconnectSession();
+    delete sshConnection;
     sshConnection=0;
 }
 
@@ -8378,23 +8263,14 @@ int ONMainWindow::startSshFsTunnel()
     QString passwd=getCurrentPass();
     QString uname=getCurrentUname();
 
-    fsTunnel=new SshProcess ( sshConnection, this );
-
-    connect ( fsTunnel,SIGNAL ( sshFinished ( bool,
-                                QString,SshProcess* ) ),
-              this,SLOT ( slotFsTunnelFailed ( bool,
-                          QString,SshProcess* ) ) );
-
-    connect ( fsTunnel,SIGNAL ( sshTunnelOk() ),
-              this,SLOT ( slotFsTunnelOk() ) );
-
-    fsTunnel->startTunnel ( "localhost",resumingSession.fsPort.toUInt(),"127.0.0.1",
-                            clientSshPort.toInt(), true );
+    fsTunnel=sshConnection->startTunnel ( "localhost",resumingSession.fsPort.toUInt(),"127.0.0.1",
+                                          clientSshPort.toInt(), true, this, SLOT ( slotFsTunnelOk(int)), SLOT ( slotFsTunnelFailed ( bool,
+                                                  QString,int ) ) );
     return 0;
 }
 
 void ONMainWindow::slotFsTunnelFailed ( bool result,  QString output,
-                                        SshProcess* )
+                                        int)
 {
     if ( result==false )
     {
@@ -8407,15 +8283,13 @@ void ONMainWindow::slotFsTunnelFailed ( bool result,  QString output,
                                     QMessageBox::Ok,
                                     QMessageBox::NoButton );
         }
-        if ( fsTunnel )
-            delete fsTunnel;
         fsTunnel=0l;
         fsTunReady=false;
     }
 }
 
 
-void ONMainWindow::slotFsTunnelOk()
+void ONMainWindow::slotFsTunnelOk(int)
 {
     fsTunReady=true;
     //start reverse mounting if RSA Key and FS tunnel are ready
@@ -8498,7 +8372,6 @@ void ONMainWindow::startX2goMount()
 #ifdef Q_OS_WIN
     cuser="sshuser";
 #endif
-    SshProcess* proc=0l;
     QString cmd;
     QString dirs=dir->dirList;
 
@@ -8564,14 +8437,9 @@ void ONMainWindow::startX2goMount()
         }
     }
 
-    proc=new SshProcess ( sshConnection, this );
-    dir->proc=proc;
+    dir->pid=sshConnection->executeCommand(cmd,this,SLOT ( slotRetExportDir ( bool,
+                                           QString,int) ));
 
-    connect ( proc,SIGNAL ( sshFinished ( bool, QString,SshProcess* ) ),
-              this,SLOT ( slotRetExportDir ( bool,
-                          QString,SshProcess* ) ) );
-
-    proc->startNormal ( cmd );
 }
 
 void ONMainWindow::slotCheckPrintSpool()
@@ -9557,9 +9425,7 @@ void ONMainWindow::slotConfigXinerama()
     {
         xineramaScreens=newXineramaScreens;
         x2goDebug<<"xinerama screen changed, new screens: "<<xineramaScreens<<endl;
-        SshProcess* proc=new SshProcess(sshConnection, this);
         xineramaTimer->stop();
-        connect (proc, SIGNAL(sshFinished(bool,QString,SshProcess*)), this, SLOT(slotXineramaConfigured()));
         QStringList screens;
         foreach (QRect disp, xineramaScreens)
         screens<<QString::number(disp.x())+" "+QString::number(disp.y())+" "+QString::number(disp.width())+
@@ -9568,7 +9434,7 @@ void ONMainWindow::slotConfigXinerama()
                     resumingSession.sessionId+"/xinerama.conf";
 
         x2goDebug<<cmd<<endl;
-        proc->startNormal(cmd);
+        sshConnection->executeCommand(cmd, this, SLOT(slotXineramaConfigured()));
     }
 }
 
@@ -10691,7 +10557,6 @@ void ONMainWindow::slotStartParec ()
         QTimer::singleShot ( 1000, this, SLOT ( slotStartParec() ) );
         return;
     }
-    SshProcess* paProc;
     QString passwd=getCurrentPass();
     QString user=getCurrentUname();
     QString host=resumingSession.server;
@@ -10700,8 +10565,7 @@ void ONMainWindow::slotStartParec ()
                  "/.pulse-client.conf "+
                  "parec 1> /dev/null & sleep 1 && kill %1";
 
-    paProc=new SshProcess ( sshConnection, this );
-    paProc->startNormal ( scmd );
+    sshConnection->executeCommand ( scmd );
 }
 
 
@@ -10713,7 +10577,7 @@ void ONMainWindow::slotSndTunOk()
 
 void ONMainWindow::slotPCookieReady (	bool result,
                                         QString ,
-                                        SshProcess* )
+                                        int )
 {
     if ( result )
         slotStartParec();
