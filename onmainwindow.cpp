@@ -1231,6 +1231,8 @@ void ONMainWindow::slotResize ( const QSize sz )
 
 void ONMainWindow::closeClient()
 {
+    if(trayIcon)
+        trayIcon->hide();
     closeEventSent=true;
     if ( !startMaximized && !startHidden && !embedMode )
     {
@@ -4804,7 +4806,7 @@ void ONMainWindow::slotRetResumeSess ( bool result,
                                  "/.pulse-cookie";
                 sshConnection->copyFile(cooFile,
                                         destFile, this, SLOT ( slotPCookieReady ( bool, QString,int )));
-                                        parecTunnelOk=true;
+                parecTunnelOk=true;
 #endif
             }
         }

@@ -75,6 +75,7 @@ x2goclient (3.99.3.0-0~x2go1) UNRELEASED; urgency=low
     - fixed visibility of SSH-proxy box with direct RDP sessions 
     - SshProcess is only usable over SshMasterConnection 
     - Fixing SSH proxy support for Windows 
+    - Hide system tray icon before close 
 
   [ Ricardo Diaz ]
   * New upstream version (3.99.3.0):
