@@ -4803,7 +4803,7 @@ void ONMainWindow::slotRetResumeSess ( bool result,
                                  resumingSession.sessionId+
                                  "/.pulse-cookie";
                 sshConnection->copyFile(cooFile,
-                                        destFile, this, SLOT ( slotPCookieReady ( bool, QString,int ));
+                                        destFile, this, SLOT ( slotPCookieReady ( bool, QString,int )));
                                         parecTunnelOk=true;
 #endif
             }

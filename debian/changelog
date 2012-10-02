@@ -74,6 +74,7 @@ x2goclient (3.99.3.0-0~x2go1) UNRELEASED; urgency=low
     - reduce listen interval for ssh-tunnell to 100 msec
     - fixed visibility of SSH-proxy box with direct RDP sessions 
     - SshProcess is only usable over SshMasterConnection 
+    - Fixing SSH proxy support for Windows 
 
   [ Ricardo Diaz ]
   * New upstream version (3.99.3.0):

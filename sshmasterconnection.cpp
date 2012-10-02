@@ -27,8 +27,6 @@
 #include <stdio.h>
 #include "sshprocess.h"
 
-#include <sys/socket.h> /* for socket(), connect(), send(), and recv() */
-#include <arpa/inet.h>  /* for sockaddr_in and inet_addr() */
 
 #include <QStringList>
 #include <QFile>
@@ -40,6 +38,8 @@
 #include <math.h>
 
 #ifndef Q_OS_WIN
+#include <sys/socket.h> /* for socket(), connect(), send(), and recv() */
+#include <arpa/inet.h>  /* for sockaddr_in and inet_addr() */
 #include <arpa/inet.h>
 #include <netinet/tcp.h>
 #include <qt4/QtNetwork/qabstractsocket.h>
@@ -539,7 +539,11 @@ bool SshMasterConnection::sshConnect()
     QByteArray tmpBA = host.toLocal8Bit();
     if(useproxy && proxytype==PROXYSSH)
     {
+#ifdef Q_OS_WIN
+        ssh_options_set ( my_ssh_session, SSH_OPTIONS_HOST, "127.0.0.1" );
+#else
         ssh_options_set ( my_ssh_session, SSH_OPTIONS_HOST, "localhost" );
+#endif
         ssh_options_set ( my_ssh_session, SSH_OPTIONS_PORT, &localProxyPort );
 
     }
@@ -1280,7 +1284,9 @@ void SshMasterConnection::finalize ( int item )
     }
     if ( tcpSocket>0 )
     {
+#ifndef Q_OS_WIN
         shutdown(tcpSocket, SHUT_RDWR);
+#endif
         close ( tcpSocket );
     }
     SshProcess* proc=channelConnections[item].creator;
