@@ -9432,7 +9432,7 @@ void ONMainWindow::slotConfigXinerama()
         foreach (QRect disp, xineramaScreens)
         screens<<QString::number(disp.x())+" "+QString::number(disp.y())+" "+QString::number(disp.width())+
                " "+QString::number(disp.height());
-        QString cmd="export DISPLAY=:"+resumingSession.display+";printf "+screens.join("\\\\n")+" >  ~/.x2go/C-"+
+        QString cmd="export DISPLAY=:"+resumingSession.display+";printf '"+screens.join("\\\\n")+"' >  ~/.x2go/C-"+
                     resumingSession.sessionId+"/xinerama.conf";
 
         x2goDebug<<cmd<<endl;
