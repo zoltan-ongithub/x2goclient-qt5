@@ -17,6 +17,8 @@ x2goclient (3.99.3.0-0~x2go1) UNRELEASED; urgency=low
       files need the x-bit set. Also: add a compatibility profile name
       rewrite for PyHoca-GUI profile names containing a slash, PyHoca-GUI
       uses a slash as separator character for submenu cascades.
+    - Use ,,printf'' instead of ,,echo -e'' (Bashism). Fixes occurences of
+      xinerama.conf files.
   * /debian/control:
     + Maintainer change in package: X2Go Developers <x2go-dev@lists.berlios.de>.
     + Add rdesktop and xfreerdp to Recommends.
