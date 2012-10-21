@@ -182,6 +182,7 @@ SessionWidget::SessionWidget ( QString id, ONMainWindow * mw,
     sessBox->addItem ( "GNOME" );
     sessBox->addItem ( "LXDE" );
     sessBox->addItem ( "UNITY" );
+    sessBox->addItem ( "XFCE" );
     sessBox->addItem ( tr ( "Connect to Windows terminal server" ) );
     sessBox->addItem ( tr ( "XDMCP" ) );
     sessBox->addItem ( tr ( "Connect to local desktop" ) );
@@ -656,6 +657,11 @@ void SessionWidget::readConfig()
         else if ( command=="UNITY" )
         {
             sessBox->setCurrentIndex ( UNITY );
+            cmd->setEnabled ( false );
+        }
+        else if ( command=="XFCE" )
+        {
+            sessBox->setCurrentIndex ( XFCE );
             cmd->setEnabled ( false );
         }
         else if ( command=="SHADOW" )

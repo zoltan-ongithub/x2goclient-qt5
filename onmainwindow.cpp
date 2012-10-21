@@ -5769,6 +5769,10 @@ void ONMainWindow::runCommand()
     {
         command="unity";
     }
+    else if ( command=="XFCE" )
+    {
+	command="xfce4-session";
+    }
     else if ( command=="LXDE" )
     {
         command="startlxde";
