@@ -337,8 +337,8 @@ void SessionButton::redraw()
     cmdBox->addItem ( "KDE" );
     cmdBox->addItem ( "GNOME" );
     cmdBox->addItem ( "LXDE" );
-    cmdBox->addItem ( "UNITY" );
     cmdBox->addItem ( "XFCE" );
+    cmdBox->addItem ( "UNITY" );
     cmdBox->addItem ( tr ( "RDP connection" ) );
     cmdBox->addItem ( tr ( "XDMCP" ) );
     cmdBox->addItem ( tr ( "Connection to local desktop" ) );

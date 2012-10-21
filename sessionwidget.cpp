@@ -181,8 +181,8 @@ SessionWidget::SessionWidget ( QString id, ONMainWindow * mw,
     sessBox->addItem ( "KDE" );
     sessBox->addItem ( "GNOME" );
     sessBox->addItem ( "LXDE" );
-    sessBox->addItem ( "UNITY" );
     sessBox->addItem ( "XFCE" );
+    sessBox->addItem ( "UNITY" );
     sessBox->addItem ( tr ( "Connect to Windows terminal server" ) );
     sessBox->addItem ( tr ( "XDMCP" ) );
     sessBox->addItem ( tr ( "Connect to local desktop" ) );
