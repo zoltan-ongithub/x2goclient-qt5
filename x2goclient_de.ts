@@ -1200,7 +1200,7 @@ sound system connections through firewalls</source>
     <message>
         <location filename="onmainwindow.cpp" line="9985"/>
         <source>Password:</source>
-        <translation>Password:</translation>
+        <translation>Passwort:</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="9986"/>
