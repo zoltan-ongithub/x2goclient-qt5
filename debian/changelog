@@ -71,7 +71,7 @@ x2goclient (3.99.3.0-0~x2go1) UNRELEASED; urgency=low
     - Clean some broker code.
     - It is possible to add several ssh keys from commandline in form:
       --ssh-key=[user@][server:][port:]<path to key>
-      it can be usefull for TCE or login over broker.
+      it can be useful for TCE or login over broker.
     - Improve brocker code add support for "usebrokerpass" config variable to
       use broker pass for ssh auth on X2Go server 
     - Commandline options --broker-noauth.

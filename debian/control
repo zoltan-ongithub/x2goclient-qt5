@@ -43,6 +43,7 @@ Description: X2Go Client application (Qt4)
     - low bandwidth support
     - LDAP support
     - client side mass storage mounting support
+    - client side printing support
     - audio support
     - authentication by smartcard and USB stick
  .
@@ -67,6 +68,7 @@ Description: X2Go Client (Qt4) as browser plugin
     - low bandwidth support
     - LDAP support
     - client side mass storage mounting support
+    - client side printing support
     - audio support
     - authentication by smartcard and USB stick
  .
@@ -87,6 +89,7 @@ Description: Provide X2Go Plugin via Apache webserver
     - low bandwidth support
     - LDAP support
     - client side mass storage mounting support
+    - client side printing support
     - audio support
     - authentication by smartcard and USB stick
  .
