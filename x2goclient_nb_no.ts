@@ -677,7 +677,7 @@
         <location filename="httpbrokerclient.cpp" line="479"/>
         <source>Issued by:
 </source>
-        <translation>Utstedet av:￼
+        <translation>Utstedet av:
 </translation>
     </message>
     <message>
@@ -1303,7 +1303,7 @@
         <location filename="onmainwindow.cpp" line="343"/>
         <source>&amp;Settings ...</source>
         <translatorcomment>Need to revisit the keybindings in all the Norwegian strings to check for consistency and collisions</translatorcomment>
-        <translation>&amp;Innstillinger</translation>
+        <translation>&amp;Innstillinger ...</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="6621"/>
@@ -1527,7 +1527,7 @@ Vennligst sjekk instillingene dine</translation>
     <message>
         <location filename="onmainwindow.cpp" line="2851"/>
         <source>Enter passphrase to decrypt a key</source>
-        <translation type="unfinished"></translation>
+        <translation>Oppgi passordfrase for dekryptere en nøkkel</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="2879"/>
@@ -1572,7 +1572,7 @@ Offentlig nøkkel: </translation>
     <message>
         <location filename="onmainwindow.cpp" line="3290"/>
         <source>Enter passwort for SSH proxy</source>
-        <translation type="unfinished"></translation>
+        <translation>Oppgi passord for SSH proxy</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="3506"/>
@@ -2365,52 +2365,52 @@ Eksempel:
     <message>
         <location filename="sessionwidget.cpp" line="124"/>
         <source>Use Proxy server for SSH connection</source>
-        <translation type="unfinished"></translation>
+        <translation>Bruk proxyserver for SSH tilkobling</translation>
     </message>
     <message>
         <location filename="sessionwidget.cpp" line="125"/>
         <source>Proxy server</source>
-        <translation type="unfinished"></translation>
+        <translation>Proxyserver</translation>
     </message>
     <message>
         <location filename="sessionwidget.cpp" line="131"/>
         <source>SSH</source>
-        <translation type="unfinished"></translation>
+        <translation>SSH</translation>
     </message>
     <message>
         <location filename="sessionwidget.cpp" line="132"/>
         <source>HTTP</source>
-        <translation type="unfinished"></translation>
+        <translation>HTTP</translation>
     </message>
     <message>
         <location filename="sessionwidget.cpp" line="140"/>
         <source>Same login as on X2Go Server</source>
-        <translation type="unfinished"></translation>
+        <translation>Samme innlogging som på X2Go Server</translation>
     </message>
     <message>
         <location filename="sessionwidget.cpp" line="142"/>
         <source>Same password as on X2Go Server</source>
-        <translation type="unfinished"></translation>
+        <translation>Samme passord som på X2Go Server</translation>
     </message>
     <message>
         <location filename="sessionwidget.cpp" line="144"/>
         <source>RSA/DSA key:</source>
-        <translation type="unfinished"></translation>
+        <translation>RSA/DSA nøkkel:</translation>
     </message>
     <message>
         <location filename="sessionwidget.cpp" line="149"/>
         <source>ssh-agent or default ssh key</source>
-        <translation type="unfinished"></translation>
+        <translation>SSH-agent, eller standard SSH nøkkel</translation>
     </message>
     <message>
         <location filename="sessionwidget.cpp" line="151"/>
         <source>Type:</source>
-        <translation type="unfinished">Type:</translation>
+        <translation>Type:</translation>
     </message>
     <message>
         <location filename="sessionwidget.cpp" line="155"/>
         <source>Port:</source>
-        <translation type="unfinished"></translation>
+        <translation>Port:</translation>
     </message>
     <message>
         <location filename="sessionwidget.cpp" line="170"/>
@@ -2786,18 +2786,18 @@ lydsystem forbindelser gjennom brannmurer</translation>
     <message>
         <location filename="sshmasterconnection.cpp" line="170"/>
         <source>SSH proxy connection error</source>
-        <translation type="unfinished"></translation>
+        <translation>SSH proxy tilkoblingsfeil</translation>
     </message>
     <message>
         <location filename="sshmasterconnection.cpp" line="175"/>
         <location filename="sshmasterconnection.cpp" line="181"/>
         <source>SSH proxy connection error: </source>
-        <translation type="unfinished"></translation>
+        <translation>SSH proxy tilkoblingsfeil:</translation>
     </message>
     <message>
         <location filename="sshmasterconnection.cpp" line="197"/>
         <source>Failed to create SSH proxy tunnel</source>
-        <translation type="unfinished"></translation>
+        <translation>Klarte ikke å opprette SSH proxy tunnel</translation>
     </message>
     <message>
         <location filename="sshmasterconnection.cpp" line="265"/>
@@ -2813,7 +2813,7 @@ lydsystem forbindelser gjennom brannmurer</translation>
     <message>
         <location filename="sshmasterconnection.cpp" line="319"/>
         <source>Can not connect to proxy server</source>
-        <translation type="unfinished"></translation>
+        <translation>Klarte ikke å koble til proxyserver</translation>
     </message>
     <message>
         <location filename="sshmasterconnection.cpp" line="340"/>
@@ -2955,7 +2955,7 @@ lydsystem forbindelser gjennom brannmurer</translation>
         <location filename="xsettingsui.ui" line="113"/>
         <source>command line options:</source>
         <translatorcomment>Not sure if this is the best translation, but I&apos;ll stick to this for now</translatorcomment>
-        <translation>kommandolinjevalg</translation>
+        <translation>kommandolinjevalg:</translation>
     </message>
     <message>
         <location filename="xsettingsui.ui" line="125"/>
