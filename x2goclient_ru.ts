@@ -1525,7 +1525,7 @@ Public key hash: </translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="3290"/>
-        <source>Enter passwort for SSH proxy</source>
+        <source>Enter password for SSH proxy</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
