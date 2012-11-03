@@ -9685,6 +9685,11 @@ void ONMainWindow::processSessionConfig()
     for ( int i=0; i<lines.count(); ++i )
     {
         QString line = lines[i];
+
+        // strip left/right whitespaces, important for plugin settings via x2goconfig
+        line.remove(QRegExp("^\\s+"));
+        line.remove(QRegExp("\\s+$"));
+
         if ( ( line=="-----BEGIN DSA PRIVATE KEY-----" ) ||
                 ( line=="-----BEGIN RSA PRIVATE KEY-----" ) )
         {

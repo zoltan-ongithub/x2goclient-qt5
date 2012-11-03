@@ -1,0 +1,2 @@
+provider/etc/x2goplugin-apache.conf etc/x2go/
+provider/share/x2goplugin.html usr/share/x2go/plugin/

@@ -74,3 +74,21 @@ Description: X2Go Client (Qt4) as browser plugin
  You can use it to connect to running sessions and start new sessions. 
  .
  This package provides x2goclient as Mozilla plugin.
+
+Package: x2goplugin-provider
+Architecture: all
+Depends:
+ ${misc:Depends},
+Recommends:
+ httpd | apache2,
+Description: Provide X2Go Plugin via Apache webserver
+ X2Go is a serverbased computing environment with
+    - session resuming
+    - low bandwidth support
+    - LDAP support
+    - client side mass storage mounting support
+    - audio support
+    - authentication by smartcard and USB stick
+ .
+ This package provides an example configuration for providing
+ the X2Go Plugin via an Apache webserver.
