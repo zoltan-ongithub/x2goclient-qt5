@@ -26,6 +26,7 @@ x2goclient (3.99.3.0-0~x2go1) UNRELEASED; urgency=low
     + Priority: optional.
   * New bin:package (all): x2goplugin-provider. Provide basic Apache2
     configuration for a demo x2goplugin website.
+  * Bump Standards version to 3.9.3.
 
   [ Daniel Lindgren ]
   * New upstream version (3.99.3.0):
