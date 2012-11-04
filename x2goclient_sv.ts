@@ -1147,7 +1147,7 @@ Använd dolt läge?</translation>
     <message>
         <location filename="onmainwindow.cpp" line="2851"/>
         <source>Enter passphrase to decrypt a key</source>
-        <translation type="unfinished"></translation>
+        <translation>Ange lösenord för att dekryptera nyckel</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="2879"/>
@@ -1164,7 +1164,7 @@ Den är nu: </translation>
     <message>
         <location filename="onmainwindow.cpp" line="2893"/>
         <source>The host key for this server was not found but an othertype of key exists.An attacker might change the default server key toconfuse your client into thinking the key does not exist</source>
-        <translation>Servern svarade inte med förväntad nyckeltyp. Det kan innebära att servern är komprommeterad</translation>
+        <translation>Servern svarade inte med förväntad nyckeltyp. Det kan innebära att servern är komprometterad</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="2919"/>
@@ -1206,7 +1206,7 @@ Publik nyckel: </translation>
     <message>
         <location filename="onmainwindow.cpp" line="3290"/>
         <source>Enter password for SSH proxy</source>
-        <translation type="unfinished"></translation>
+        <translation>Ange lösenord för SSH-proxy</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="3311"/>
@@ -2179,7 +2179,7 @@ Example:
     <message>
         <location filename="sessionwidget.cpp" line="113"/>
         <source>Use RSA/DSA key for ssh connection:</source>
-        <translation>Använd denna RSA/DSA-nyckel för SSH-anslutning:</translation>
+        <translation>Använd denna RSA-/DSA-nyckel för SSH-anslutning:</translation>
     </message>
     <message>
         <location filename="sessionwidget.cpp" line="120"/>
@@ -2194,52 +2194,52 @@ Example:
     <message>
         <location filename="sessionwidget.cpp" line="124"/>
         <source>Use Proxy server for SSH connection</source>
-        <translation type="unfinished"></translation>
+        <translation>Använd proxyserver för SSH-anslutning</translation>
     </message>
     <message>
         <location filename="sessionwidget.cpp" line="125"/>
         <source>Proxy server</source>
-        <translation type="unfinished"></translation>
+        <translation>Proxyserver</translation>
     </message>
     <message>
         <location filename="sessionwidget.cpp" line="131"/>
         <source>SSH</source>
-        <translation type="unfinished"></translation>
+        <translation>SSH</translation>
     </message>
     <message>
         <location filename="sessionwidget.cpp" line="132"/>
         <source>HTTP</source>
-        <translation type="unfinished"></translation>
+        <translation>HTTP</translation>
     </message>
     <message>
         <location filename="sessionwidget.cpp" line="140"/>
         <source>Same login as on X2Go Server</source>
-        <translation type="unfinished"></translation>
+        <translation>Samma inloggning som för X2Go Server</translation>
     </message>
     <message>
         <location filename="sessionwidget.cpp" line="142"/>
         <source>Same password as on X2Go Server</source>
-        <translation type="unfinished"></translation>
+        <translation>Samma lösenord som för X2Go Server</translation>
     </message>
     <message>
         <location filename="sessionwidget.cpp" line="144"/>
         <source>RSA/DSA key:</source>
-        <translation type="unfinished"></translation>
+        <translation>RSA-/DSA-nyckel:</translation>
     </message>
     <message>
         <location filename="sessionwidget.cpp" line="149"/>
         <source>ssh-agent or default ssh key</source>
-        <translation type="unfinished"></translation>
+        <translation>ssh-agent eller standard SSH-nyckel</translation>
     </message>
     <message>
         <location filename="sessionwidget.cpp" line="151"/>
         <source>Type:</source>
-        <translation type="unfinished">Typ:</translation>
+        <translation>Typ:</translation>
     </message>
     <message>
         <location filename="sessionwidget.cpp" line="155"/>
         <source>Port:</source>
-        <translation type="unfinished"></translation>
+        <translation>Port:</translation>
     </message>
     <message>
         <location filename="sessionwidget.cpp" line="170"/>
@@ -2613,18 +2613,18 @@ ljudström genom brandväggar</translation>
     <message>
         <location filename="sshmasterconnection.cpp" line="170"/>
         <source>SSH proxy connection error</source>
-        <translation type="unfinished"></translation>
+        <translation>Anslutningsfel SSH-proxy</translation>
     </message>
     <message>
         <location filename="sshmasterconnection.cpp" line="175"/>
         <location filename="sshmasterconnection.cpp" line="181"/>
         <source>SSH proxy connection error: </source>
-        <translation type="unfinished"></translation>
+        <translation>Anslutningsfel SSH-proxy:</translation>
     </message>
     <message>
         <location filename="sshmasterconnection.cpp" line="197"/>
         <source>Failed to create SSH proxy tunnel</source>
-        <translation type="unfinished"></translation>
+        <translation>Kunde ej skapa SSH-proxytunnel</translation>
     </message>
     <message>
         <location filename="sshmasterconnection.cpp" line="265"/>
@@ -2639,7 +2639,7 @@ ljudström genom brandväggar</translation>
     <message>
         <location filename="sshmasterconnection.cpp" line="319"/>
         <source>Can not connect to proxy server</source>
-        <translation type="unfinished"></translation>
+        <translation>Kan ej ansluta till proxyserver</translation>
     </message>
     <message>
         <location filename="sshmasterconnection.cpp" line="340"/>
