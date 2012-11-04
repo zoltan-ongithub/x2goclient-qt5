@@ -29,7 +29,6 @@ x2goclient (3.99.3.0-0~x2go1) UNRELEASED; urgency=low
     configuration for a demo x2goplugin website.
   * Bump Standards version to 3.9.3.
 
-
   [ Daniel Lindgren ]
   * New upstream version (3.99.3.0):
     - Update Swedish translation.
@@ -88,6 +87,7 @@ x2goclient (3.99.3.0-0~x2go1) UNRELEASED; urgency=low
   [ Ricardo Diaz ]
   * New upstream version (3.99.3.0):
     - Add Spanish translation file.
+    - Update Spanish translation file.
 
  -- Oleksandr Shneyder <oleksandr.shneyder@obviously-nice.de>  Wed, 05 Sep 2012 11:40:47 +0200
 
