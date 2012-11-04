@@ -81,6 +81,7 @@ Package: x2goplugin-provider
 Architecture: all
 Depends:
  ${misc:Depends},
+ x2goplugin,
 Recommends:
  httpd | apache2,
 Description: Provide X2Go Plugin via Apache webserver
