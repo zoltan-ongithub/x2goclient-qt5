@@ -3212,8 +3212,11 @@ bool ONMainWindow::startSession ( const QString& sid )
         st=new X2goSettings(config.iniFile, QSettings::IniFormat);
 
     passForm->setEnabled ( false );
-    host=st->setting()->value ( sid+"/host",
-                                ( QVariant ) QString::null ).toString();
+    if(!embedMode)
+        host=st->setting()->value ( sid+"/host",
+                                    ( QVariant ) QString::null ).toString();
+    else
+        host=config.server;
     if(brokerMode)
     {
         sshPort=config.sshport;
@@ -5771,7 +5774,7 @@ void ONMainWindow::runCommand()
     }
     else if ( command=="XFCE" )
     {
-	command="xfce4-session";
+        command="xfce4-session";
     }
     else if ( command=="LXDE" )
     {

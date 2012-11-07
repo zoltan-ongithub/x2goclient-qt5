@@ -1,4 +1,4 @@
-x2goclient (3.99.3.0-0~x2go1) UNRELEASED; urgency=low
+x2goclient (3.99.3.0-0~x2go2) UNRELEASED; urgency=low
 
   [ Mike Gabriel ]
   * New upstream version (3.99.3.0):
@@ -83,13 +83,14 @@ x2goclient (3.99.3.0-0~x2go1) UNRELEASED; urgency=low
     - SshProcess is only usable over SshMasterConnection 
     - Fixing SSH proxy support for Windows 
     - Hide system tray icon before close 
+    - fixing error "Failed to resolve hostname" in plugin mode
 
   [ Ricardo Diaz ]
   * New upstream version (3.99.3.0):
     - Add Spanish translation file.
     - Update Spanish translation file.
 
- -- Oleksandr Shneyder <oleksandr.shneyder@obviously-nice.de>  Wed, 05 Sep 2012 11:40:47 +0200
+ -- Oleksandr Shneyder <oleksandr.shneyder@obviously-nice.de>  Wed, 07 Nov 2012 10:34:53 +0100
 
 x2goclient (3.99.2.2-0~x2go2) unstable; urgency=low
 
