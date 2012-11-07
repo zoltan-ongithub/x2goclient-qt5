@@ -1,4 +1,4 @@
-x2goclient (3.99.3.0-0~x2go3) UNRELEASED; urgency=low
+x2goclient (3.99.3.0-0~x2go1) unstable; urgency=low
 
   [ Mike Gabriel ]
   * New upstream version (3.99.3.0):
@@ -6,7 +6,7 @@ x2goclient (3.99.3.0-0~x2go3) UNRELEASED; urgency=low
       Danish translator (Christoffer Krakou).
     - Update German translation.
     - Run X2Go-proxied RDP session with fullscreen mode as sessions
-      of X2Go session type "D". Closes upstream issue #22.
+      of X2Go session type "D". (Closes upstream issue #22)
     - Allow pass-through of username and password for X2Go-proxied RDP
       sessions. The strings X2GO_USER and X2GO_PASSWORD in rdpoptions
       will be replaced by username+password enter into X2Go Clients
@@ -17,9 +17,9 @@ x2goclient (3.99.3.0-0~x2go3) UNRELEASED; urgency=low
       files need the x-bit set. Also: add a compatibility profile name
       rewrite for PyHoca-GUI profile names containing a slash, PyHoca-GUI
       uses a slash as separator character for submenu cascades.
-    - Use ,,printf'' instead of ,,echo -e'' (Bashism). Fixes occurences of
+    - Use ,,printf'' instead of ,,echo -e'' (Bashism). Fixes creation of
       xinerama.conf files.
-    - Add XFCE as possible session type (closes upstream issue: #51).
+    - Add XFCE as possible session type. (Closes upstream issue: #51)
   * /debian/control:
     + Maintainer change in package: X2Go Developers <x2go-dev@lists.berlios.de>.
     + Add rdesktop and xfreerdp to Recommends.
@@ -58,9 +58,10 @@ x2goclient (3.99.3.0-0~x2go3) UNRELEASED; urgency=low
     - Add translation for checkbox "Direct RDP Connection" and update Russian
       and German translation.
     - Restart pulse server on windows if it crashed.
-    - Show "Advanced Options" button only if RDP session chosen
-    - Fixing kbd focus issue for all kinds of sessions in thinclient mode 
-    - Add command line parameter --ssh-key and --autologin 
+    - Show "Advanced Options" button only if RDP session chosen.
+    - Fixing kbd focus issue for all kinds of sessions in thinclient mode.
+      (Closes upstream issue #20).
+    - Add command line parameter --ssh-key and --autologin.
     - Disable check box "use default sound port" if sound disabled.
     - Add support for HTTP proxy - developed by Heinrich Schuchardt
       (xypron.glpk@gmx.de). Closes upstream issue #34.
@@ -68,30 +69,32 @@ x2goclient (3.99.3.0-0~x2go3) UNRELEASED; urgency=low
     - SshMasterConnection emit signal to GUI thread if it need a passphrase
       to decrypt a ssh key. GUI thread use input dialog to read a passphrase
       from user.
-    - Add support for SSH proxy (HTTP and SSH) to X2Go Client Gui.
+    - Add support for SSH proxy (HTTP and SSH) to X2Go Client GUI.
     - Clean some broker code.
     - It is possible to add several ssh keys from commandline in form:
       --ssh-key=[user@][server:][port:]<path to key>
       it can be useful for TCE or login over broker.
-    - Improve brocker code add support for "usebrokerpass" config variable to
-      use broker pass for ssh auth on X2Go server 
+    - Improve broker code, add support for "usebrokerpass" config variable to
+      use broker pass for ssh auth on X2Go server.
     - Commandline options --broker-noauth.
     - Support for SSH broker. --broker-user removed, use username in broker url
       instead.
-    - reduce listen interval for ssh-tunnell to 100 msec
-    - fixed visibility of SSH-proxy box with direct RDP sessions 
-    - SshProcess is only usable over SshMasterConnection 
-    - Fixing SSH proxy support for Windows 
-    - Hide system tray icon before close 
-    - fixing error "Failed to resolve hostname" in plugin mode
-    - do not show "RDP Settings" group box in plugin mode
+    - Reduce listen interval for ssh-tunnel to 100 msec.
+    - Fix visibility of SSH-proxy box with direct RDP sessions.
+    - SshProcess is only usable over SshMasterConnection.
+    - Fixing SSH proxy support for Windows.
+    - Hide system tray icon before close.
+    - Fix error "Failed to resolve hostname" in plugin mode (Closes upstream
+      issue #55).
+    - Do not show "RDP Settings" group box in plugin mode (Closes upstream issue
+      #56).
 
   [ Ricardo Diaz ]
   * New upstream version (3.99.3.0):
     - Add Spanish translation file.
     - Update Spanish translation file.
 
- -- Oleksandr Shneyder <oleksandr.shneyder@obviously-nice.de>  Wed, 07 Nov 2012 10:54:38 +0100
+ -- Mike Gabriel <mike.gabriel@das-netzwerkteam.de>  Wed, 07 Nov 2012 16:07:43 +0100
 
 x2goclient (3.99.2.2-0~x2go2) unstable; urgency=low
 
