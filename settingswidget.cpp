@@ -45,9 +45,6 @@ SettingsWidget::SettingsWidget ( QString id, ONMainWindow * mw,
     QGroupBox *dgb=new QGroupBox ( tr ( "&Display" ),this );
     kgb=new QGroupBox ( tr ( "&Keyboard" ),this );
     sbgr=new QGroupBox ( tr ( "Sound" ),this );
-#ifdef Q_OS_LINUX
-    rdpBox=new QGroupBox ( tr ( "RDP Client" ),this );
-#endif
 #endif
     QVBoxLayout *dbLay = new QVBoxLayout ( dgb );
     QVBoxLayout  *sndLay=new QVBoxLayout ( sbgr );
@@ -232,12 +229,13 @@ SettingsWidget::SettingsWidget ( QString id, ONMainWindow * mw,
     pulse->hide();
     esd->setChecked ( true );
 #endif
-
 #ifndef Q_WS_HILDON
     setLay->addWidget ( dgb );
     setLay->addWidget ( kgb );
     setLay->addWidget ( sbgr );
 #ifdef Q_OS_LINUX
+#ifdef CFGCLIENT
+    rdpBox=new QGroupBox ( tr ( "RDP Client" ),this );
     setLay->addWidget ( rdpBox );
     rRdesktop=new QRadioButton ("rdesktop",rdpBox );
     rRdesktop->setChecked(true);
@@ -256,11 +254,17 @@ SettingsWidget::SettingsWidget ( QString id, ONMainWindow * mw,
     params=new QLineEdit(rdpBox);
     rdpLay->addWidget(cmdLine,4,0,1,2);
     rdpLay->addWidget(params,2,1);
+    connect (rClient, SIGNAL(buttonClicked(int)), this, SLOT(updateCmdLine()));
+    connect (radio, SIGNAL(buttonClicked(int)), this, SLOT(updateCmdLine()));
+    connect (params, SIGNAL(textChanged(QString)), this, SLOT(updateCmdLine()));
+    connect (width, SIGNAL(valueChanged(int)), this, SLOT(updateCmdLine()));
+    connect (height, SIGNAL(valueChanged(int)), this, SLOT(updateCmdLine()));
+#endif //CFGCLIENT
 #endif //Q_OS_LINUX
 #else
     setLay->addWidget ( tabSettings );
 // 	cbClientPrint->hide();
-#endif
+#endif //Q_WS_HILDON
     setLay->addWidget ( cbClientPrint );
     setLay->addStretch();
 
@@ -302,13 +306,6 @@ SettingsWidget::SettingsWidget ( QString id, ONMainWindow * mw,
     connect ( cbDefSndPort,SIGNAL ( toggled ( bool ) ),this,
               SLOT ( slot_sndDefPortChecked ( bool ) ) );
 
-#ifdef Q_OS_LINUX
-    connect (rClient, SIGNAL(buttonClicked(int)), this, SLOT(updateCmdLine()));
-    connect (radio, SIGNAL(buttonClicked(int)), this, SLOT(updateCmdLine()));
-    connect (params, SIGNAL(textChanged(QString)), this, SLOT(updateCmdLine()));
-    connect (width, SIGNAL(valueChanged(int)), this, SLOT(updateCmdLine()));
-    connect (height, SIGNAL(valueChanged(int)), this, SLOT(updateCmdLine()));
-#endif
     kbd->setChecked ( true );
     custom->setChecked ( true );
     readConfig();
@@ -535,6 +532,7 @@ void SettingsWidget::readConfig()
     }
 
 #ifdef Q_OS_LINUX
+#ifdef CFGCLIENT
     maxRes->setChecked(st.setting()->value ( sessionId+"/maxdim", false).toBool());
     QString client=st.setting()->value ( sessionId+"/rdpclient","rdesktop").toString();
     if(client=="rdesktop")
@@ -542,6 +540,7 @@ void SettingsWidget::readConfig()
     else
         rXfreeRDP->setChecked(true);
     params->setText(st.setting()->value ( sessionId+"/directrdpsettings","").toString());
+#endif
 #endif
 
 
@@ -668,6 +667,7 @@ void SettingsWidget::saveSettings()
                              ( QVariant ) displayNumber->value() );
 
 #ifdef Q_OS_LINUX
+#ifdef CFGCLIENT
     st.setting()->setValue ( sessionId+"/maxdim",
                              ( QVariant ) maxRes->isChecked() );
 
@@ -679,6 +679,7 @@ void SettingsWidget::saveSettings()
                                  ( QVariant ) "rdesktop" );
     st.setting()->setValue ( sessionId+"/directrdpsettings",
                              ( QVariant ) params->text());
+#endif
 #endif
     st.setting()->setValue ( sessionId+"/height",
                              ( QVariant ) height->value() );
@@ -731,6 +732,7 @@ void SettingsWidget::setServerSettings(QString server, QString port, QString use
 
 void SettingsWidget::updateCmdLine()
 {
+#ifdef CFGCLIENT
     QString client="xfreerdp";
     QString userOpt;
     if (user.length()>0)
@@ -758,5 +760,6 @@ void SettingsWidget::updateCmdLine()
         grOpt=" -g "+QString::number(width->value())+"x"+QString::number(height->value());
     }
     cmdLine->setText(client +" "+params->text()+ grOpt +userOpt+" -p <"+tr("password")+"> "+ server+":"+port );
+#endif
 }
 #endif
