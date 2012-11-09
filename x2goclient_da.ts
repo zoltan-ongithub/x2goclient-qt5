@@ -1141,7 +1141,7 @@ Slå skjult tilstand til?</translation>
     <message>
         <location filename="onmainwindow.cpp" line="2851"/>
         <source>Enter passphrase to decrypt a key</source>
-        <translation type="unfinished"></translation>
+        <translation>Indtast kodeord for at dekryptere en nøgle</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="2879"/>
@@ -1200,7 +1200,7 @@ Public key hash: </translation>
     <message>
         <location filename="onmainwindow.cpp" line="3290"/>
         <source>Enter password for SSH proxy</source>
-        <translation type="unfinished"></translation>
+        <translation>Indtast password til SSH proxy</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="3311"/>
@@ -2167,52 +2167,52 @@ f.eks:
     <message>
         <location filename="sessionwidget.cpp" line="124"/>
         <source>Use Proxy server for SSH connection</source>
-        <translation type="unfinished"></translation>
+        <translation>Brug Proxy Server til SSH-forbindelse</translation>
     </message>
     <message>
         <location filename="sessionwidget.cpp" line="125"/>
         <source>Proxy server</source>
-        <translation type="unfinished"></translation>
+        <translation>Proxy server</translation>
     </message>
     <message>
         <location filename="sessionwidget.cpp" line="131"/>
         <source>SSH</source>
-        <translation type="unfinished"></translation>
+        <translation>SSH</translation>
     </message>
     <message>
         <location filename="sessionwidget.cpp" line="132"/>
         <source>HTTP</source>
-        <translation type="unfinished"></translation>
+        <translation>HTTP</translation>
     </message>
     <message>
         <location filename="sessionwidget.cpp" line="140"/>
         <source>Same login as on X2Go Server</source>
-        <translation type="unfinished"></translation>
+        <translation>Samme login som på X2Go Server</translation>
     </message>
     <message>
         <location filename="sessionwidget.cpp" line="142"/>
         <source>Same password as on X2Go Server</source>
-        <translation type="unfinished"></translation>
+        <translation>Samme password som på X2Go Server</translation>
     </message>
     <message>
         <location filename="sessionwidget.cpp" line="144"/>
         <source>RSA/DSA key:</source>
-        <translation type="unfinished"></translation>
+        <translation>RSA/DSA nøgle:</translation>
     </message>
     <message>
         <location filename="sessionwidget.cpp" line="149"/>
         <source>ssh-agent or default ssh key</source>
-        <translation type="unfinished"></translation>
+        <translation>ssh-agent eller standard ssh nøgle</translation>
     </message>
     <message>
         <location filename="sessionwidget.cpp" line="151"/>
         <source>Type:</source>
-        <translation type="unfinished">Type:</translation>
+        <translation>Type:</translation>
     </message>
     <message>
         <location filename="sessionwidget.cpp" line="155"/>
         <source>Port:</source>
-        <translation type="unfinished"></translation>
+        <translation>Port:</translation>
     </message>
     <message>
         <location filename="sessionwidget.cpp" line="170"/>
@@ -2585,18 +2585,18 @@ lydsystemets forbindelse igennem firewalls</translation>
     <message>
         <location filename="sshmasterconnection.cpp" line="170"/>
         <source>SSH proxy connection error</source>
-        <translation type="unfinished"></translation>
+        <translation>SSH proxy forbindelsesfejl</translation>
     </message>
     <message>
         <location filename="sshmasterconnection.cpp" line="175"/>
         <location filename="sshmasterconnection.cpp" line="181"/>
         <source>SSH proxy connection error: </source>
-        <translation type="unfinished"></translation>
+        <translation>SSH proxy forbindelsesfejl:</translation>
     </message>
     <message>
         <location filename="sshmasterconnection.cpp" line="197"/>
         <source>Failed to create SSH proxy tunnel</source>
-        <translation type="unfinished"></translation>
+        <translation>SSH proxy tunnel kunne ikke etableres</translation>
     </message>
     <message>
         <location filename="sshmasterconnection.cpp" line="265"/>
@@ -2611,7 +2611,7 @@ lydsystemets forbindelse igennem firewalls</translation>
     <message>
         <location filename="sshmasterconnection.cpp" line="319"/>
         <source>Can not connect to proxy server</source>
-        <translation type="unfinished"></translation>
+        <translation>Kan ikke forbinde til proxy server</translation>
     </message>
     <message>
         <location filename="sshmasterconnection.cpp" line="340"/>
