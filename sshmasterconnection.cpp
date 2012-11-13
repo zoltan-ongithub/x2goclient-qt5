@@ -42,7 +42,7 @@
 #include <arpa/inet.h>  /* for sockaddr_in and inet_addr() */
 #include <arpa/inet.h>
 #include <netinet/tcp.h>
-#include <qt4/QtNetwork/qabstractsocket.h>
+#include <QtNetwork/qabstractsocket.h>
 #endif
 
 
