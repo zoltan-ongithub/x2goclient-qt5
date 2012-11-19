@@ -8,6 +8,9 @@ x2goclient (3.99.3.1-0~x2go1) UNRELEASED; urgency=low
   * New upstream version (3.99.3.1):
     - Fix Debian-like Qt path (qmake will handle it internally).
 
+  [ Oleksandr Shneyder ]
+  * Translation files updated.  Russian translation updated
+
  -- Mike Gabriel <mike.gabriel@das-netzwerkteam.de>  Wed, 07 Nov 2012 16:26:49 +0100
 
 x2goclient (3.99.3.0-0~x2go1) unstable; urgency=low
