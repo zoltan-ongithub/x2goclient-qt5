@@ -634,56 +634,56 @@
         <location filename="httpbrokerclient.cpp" line="113"/>
         <source>Host key for server changed.
 It is now: </source>
-        <translation type="unfinished">Nyckel för server har ändrats.
+        <translation>Nyckel för server har ändrats.
 Den är nu: </translation>
     </message>
     <message>
         <location filename="httpbrokerclient.cpp" line="114"/>
         <source>For security reasons, connection will be stopped</source>
-        <translation type="unfinished">Anslutningen avbryts av säkerhetsskäl</translation>
+        <translation>Anslutningen avbryts av säkerhetsskäl</translation>
     </message>
     <message>
         <location filename="httpbrokerclient.cpp" line="127"/>
         <source>The host key for this server was not found but an othertype of key exists.An attacker might change the default server key toconfuse your client into thinking the key does not exist</source>
-        <translation type="unfinished">Servern svarade inte med förväntad nyckeltyp. Det kan innebära att servern är komprometterad</translation>
+        <translation>Servern svarade inte med förväntad nyckeltyp. Det kan innebära att servern är komprometterad</translation>
     </message>
     <message>
         <location filename="httpbrokerclient.cpp" line="153"/>
         <source>Could not find known host file.If you accept the host key here, the file will be automatically created</source>
-        <translation type="unfinished">Hittar ej fil för kända servrar. Om du accepterar serverns nyckel så kommer filen att skapas automatiskt</translation>
+        <translation>Hittar ej fil för kända servrar. Om du accepterar serverns nyckel så kommer filen att skapas automatiskt</translation>
     </message>
     <message>
         <location filename="httpbrokerclient.cpp" line="158"/>
         <source>The server is unknown. Do you trust the host key?
 Public key hash: </source>
-        <translation type="unfinished">Okänd server. Litar du på denna nyckel?
+        <translation>Okänd server. Litar du på denna nyckel?
 Publik nyckel: </translation>
     </message>
     <message>
         <location filename="httpbrokerclient.cpp" line="162"/>
         <location filename="httpbrokerclient.cpp" line="172"/>
         <source>Host key verification failed</source>
-        <translation type="unfinished">Verifiering av serverns nyckel misslyckades</translation>
+        <translation>Verifiering av serverns nyckel misslyckades</translation>
     </message>
     <message>
         <location filename="httpbrokerclient.cpp" line="162"/>
         <source>Yes</source>
-        <translation type="unfinished">Ja</translation>
+        <translation>Ja</translation>
     </message>
     <message>
         <location filename="httpbrokerclient.cpp" line="162"/>
         <source>No</source>
-        <translation type="unfinished">Nej</translation>
+        <translation>Nej</translation>
     </message>
     <message>
         <location filename="httpbrokerclient.cpp" line="185"/>
         <source>Enter passphrase to decrypt a key</source>
-        <translation type="unfinished">Ange lösenord för att dekryptera nyckel</translation>
+        <translation>Ange lösenord för att dekryptera nyckel</translation>
     </message>
     <message>
         <location filename="httpbrokerclient.cpp" line="208"/>
         <source>Authentication failed</source>
-        <translation type="unfinished">Autentisering misslyckades</translation>
+        <translation>Autentisering misslyckades</translation>
     </message>
     <message>
         <location filename="httpbrokerclient.cpp" line="495"/>
