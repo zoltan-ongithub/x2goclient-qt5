@@ -982,54 +982,56 @@ sound system connections through firewalls</source>
         <location filename="httpbrokerclient.cpp" line="113"/>
         <source>Host key for server changed.
 It is now: </source>
-        <translation type="unfinished">Host-Key des Servers hat sich geändert. Er lautet jetzt: </translation>
+        <translation>Host-Key des Servers hat sich geändert.
+Er lautet jetzt: </translation>
     </message>
     <message>
         <location filename="httpbrokerclient.cpp" line="114"/>
         <source>For security reasons, connection will be stopped</source>
-        <translation type="unfinished">Aus Sicherheitsgründen wird der Verbindungsaufbau abgebrochen</translation>
+        <translation>Aus Sicherheitsgründen wird der Verbindungsaufbau abgebrochen</translation>
     </message>
     <message>
         <location filename="httpbrokerclient.cpp" line="127"/>
         <source>The host key for this server was not found but an othertype of key exists.An attacker might change the default server key toconfuse your client into thinking the key does not exist</source>
-        <translation type="unfinished">Der Host-Key des Servers konnte nicht gefunden werden aber ein anderer Schlüsseltyp existiert. Ein Angreifer kann den Schlüssel verändert haben, um dem Client vorzutäuschen, dass der Schlüssel nicht existiert</translation>
+        <translation>Der Hostkey des Servers konnte nicht gefunden werden aber ein anderer Schlüsseltyp existiert. Ein Angreifer kann den Schlüssel verändert haben, um dem Client vorzutäuschen, dass der Schlüssel nicht existiert</translation>
     </message>
     <message>
         <location filename="httpbrokerclient.cpp" line="153"/>
         <source>Could not find known host file.If you accept the host key here, the file will be automatically created</source>
-        <translation type="unfinished">Die ,,Known Host&apos;&apos;-Datei konnte nicht gefunden werden. Wenn Sie den Host-Key hier akzeptieren, dann wird die Datei automatisch erstellt.</translation>
+        <translation>Die ,,Known Host&apos;&apos;-Datei konnte nicht gefunden werden. Wenn Sie den Host-Key hier akzeptieren, dann wird die Datei automatisch erstellt.</translation>
     </message>
     <message>
         <location filename="httpbrokerclient.cpp" line="158"/>
         <source>The server is unknown. Do you trust the host key?
 Public key hash: </source>
-        <translation type="unfinished">Der Server ist unbekannt. Vertrauen Sie diesem Host-Key? Öffentlicher Schlüssel: </translation>
+        <translation>Der Server ist unbekannt. Vertrauen Sie diesem Host-Key?
+Öffentlicher Schlüssel: </translation>
     </message>
     <message>
         <location filename="httpbrokerclient.cpp" line="162"/>
         <location filename="httpbrokerclient.cpp" line="172"/>
         <source>Host key verification failed</source>
-        <translation type="unfinished"></translation>
+        <translation>Hostkey Überprüfung fehlgeschlagen</translation>
     </message>
     <message>
         <location filename="httpbrokerclient.cpp" line="162"/>
         <source>Yes</source>
-        <translation type="unfinished">Ja</translation>
+        <translation>Ja</translation>
     </message>
     <message>
         <location filename="httpbrokerclient.cpp" line="162"/>
         <source>No</source>
-        <translation type="unfinished">Nein</translation>
+        <translation>Nein</translation>
     </message>
     <message>
         <location filename="httpbrokerclient.cpp" line="185"/>
         <source>Enter passphrase to decrypt a key</source>
-        <translation type="unfinished"></translation>
+        <translation>Bitte Kennwort eingeben, um den Key zu entschlüsseln</translation>
     </message>
     <message>
         <location filename="httpbrokerclient.cpp" line="208"/>
         <source>Authentication failed</source>
-        <translation type="unfinished">Anmeldung fehlgeschlagen</translation>
+        <translation>Anmeldung fehlgeschlagen</translation>
     </message>
     <message>
         <location filename="httpbrokerclient.cpp" line="332"/>
@@ -1932,7 +1934,7 @@ Please check your settings</source>
     <message>
         <location filename="onmainwindow.cpp" line="2861"/>
         <source>Enter passphrase to decrypt a key</source>
-        <translation type="unfinished"></translation>
+        <translation>Bitte Kennwort eingeben, um den Schlüssel zu öffnen</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="2889"/>
@@ -1975,7 +1977,7 @@ Public key hash: </source>
     <message>
         <location filename="onmainwindow.cpp" line="3332"/>
         <source>Enter password for SSH proxy</source>
-        <translation type="unfinished"></translation>
+        <translation>Kennwort für SSH Proxy eingeben</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="3552"/>
@@ -2798,52 +2800,52 @@ Beispiel:
     <message>
         <location filename="sessionwidget.cpp" line="124"/>
         <source>Use Proxy server for SSH connection</source>
-        <translation type="unfinished"></translation>
+        <translation>Proxy Server für SSH Verbindung verwenden</translation>
     </message>
     <message>
         <location filename="sessionwidget.cpp" line="125"/>
         <source>Proxy server</source>
-        <translation type="unfinished"></translation>
+        <translation>Proxy-Server</translation>
     </message>
     <message>
         <location filename="sessionwidget.cpp" line="131"/>
         <source>SSH</source>
-        <translation type="unfinished"></translation>
+        <translation>SSH</translation>
     </message>
     <message>
         <location filename="sessionwidget.cpp" line="132"/>
         <source>HTTP</source>
-        <translation type="unfinished"></translation>
+        <translation>HTTP</translation>
     </message>
     <message>
         <location filename="sessionwidget.cpp" line="140"/>
         <source>Same login as on X2Go Server</source>
-        <translation type="unfinished"></translation>
+        <translation>Gleiche Anmeldung wie für X2Go-Server</translation>
     </message>
     <message>
         <location filename="sessionwidget.cpp" line="142"/>
         <source>Same password as on X2Go Server</source>
-        <translation type="unfinished"></translation>
+        <translation>Gleiches Kennwort wie für X2Go-Server</translation>
     </message>
     <message>
         <location filename="sessionwidget.cpp" line="144"/>
         <source>RSA/DSA key:</source>
-        <translation type="unfinished"></translation>
+        <translation>RSA/DSA-Schlüssel:</translation>
     </message>
     <message>
         <location filename="sessionwidget.cpp" line="149"/>
         <source>ssh-agent or default ssh key</source>
-        <translation type="unfinished"></translation>
+        <translation>SSH-Agent oder SSH-Standardschlüssel</translation>
     </message>
     <message>
         <location filename="sessionwidget.cpp" line="151"/>
         <source>Type:</source>
-        <translation type="unfinished">Typ:</translation>
+        <translation>Typ:</translation>
     </message>
     <message>
         <location filename="sessionwidget.cpp" line="155"/>
         <source>Port:</source>
-        <translation type="unfinished"></translation>
+        <translation>Port:</translation>
     </message>
     <message>
         <location filename="sessionwidget.cpp" line="170"/>
@@ -3216,18 +3218,18 @@ sound system connections through firewalls</source>
     <message>
         <location filename="sshmasterconnection.cpp" line="226"/>
         <source>SSH proxy connection error</source>
-        <translation type="unfinished"></translation>
+        <translation>Verbindungsfehler SSH-Proxy</translation>
     </message>
     <message>
         <location filename="sshmasterconnection.cpp" line="231"/>
         <location filename="sshmasterconnection.cpp" line="237"/>
         <source>SSH proxy connection error: </source>
-        <translation type="unfinished"></translation>
+        <translation>SSH-Proxy Verbindungsfehler: </translation>
     </message>
     <message>
         <location filename="sshmasterconnection.cpp" line="253"/>
         <source>Failed to create SSH proxy tunnel</source>
-        <translation type="unfinished"></translation>
+        <translation>Aufbau des SSH-Proxy-Tunnels fehlgeschlagen</translation>
     </message>
     <message>
         <location filename="sshmasterconnection.cpp" line="324"/>
@@ -3242,7 +3244,7 @@ sound system connections through firewalls</source>
     <message>
         <location filename="sshmasterconnection.cpp" line="378"/>
         <source>Can not connect to proxy server</source>
-        <translation type="unfinished"></translation>
+        <translation>Verbindung zu Proxy-Server nicht möglich</translation>
     </message>
     <message>
         <location filename="sshmasterconnection.cpp" line="399"/>
