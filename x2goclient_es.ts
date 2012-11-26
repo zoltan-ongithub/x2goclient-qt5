@@ -631,56 +631,56 @@
         <location filename="httpbrokerclient.cpp" line="113"/>
         <source>Host key for server changed.
 It is now: </source>
-        <translation type="unfinished">La clave del servidor ha cambiado.
+        <translation>La clave del servidor ha cambiado.
 Ahora es: </translation>
     </message>
     <message>
         <location filename="httpbrokerclient.cpp" line="114"/>
         <source>For security reasons, connection will be stopped</source>
-        <translation type="unfinished">Se ha detenido la conexión por razones de seguridad</translation>
+        <translation>La conexión ha finalizado por razones de seguridad</translation>
     </message>
     <message>
         <location filename="httpbrokerclient.cpp" line="127"/>
         <source>The host key for this server was not found but an othertype of key exists.An attacker might change the default server key toconfuse your client into thinking the key does not exist</source>
-        <translation type="unfinished">No se ha encontrado la clave para este servidor aunque se han econtrado otras. Un hacker podría cambiar la clave por defecto del servidor para hacer creer al cliente que la clave no existe</translation>
+        <translation>No se ha encontrado la clave para este servidor aunque se han encontrado claves de otro tipo. Un hacker podría cambiar la clave por defecto del servidor para hacer creer al cliente que la clave no existe</translation>
     </message>
     <message>
         <location filename="httpbrokerclient.cpp" line="153"/>
         <source>Could not find known host file.If you accept the host key here, the file will be automatically created</source>
-        <translation type="unfinished">No se encontró el archivos de claves en este equipo. Si aceptas se creará en nuevo archivo de claves</translation>
+        <translation>No se encontró el archivos de claves conocidas en este equipo. Si aceptas se creará en nuevo archivo de claves</translation>
     </message>
     <message>
         <location filename="httpbrokerclient.cpp" line="158"/>
         <source>The server is unknown. Do you trust the host key?
 Public key hash: </source>
-        <translation type="unfinished">Este servidor es desconocido. ¿Confiar en su clave?
+        <translation>Este servidor es desconocido. ¿Confiar en su clave?
 Hash de su clave pública: </translation>
     </message>
     <message>
         <location filename="httpbrokerclient.cpp" line="162"/>
         <location filename="httpbrokerclient.cpp" line="172"/>
         <source>Host key verification failed</source>
-        <translation type="unfinished">Falló la comprobación de la clave del equipo</translation>
+        <translation>Falló la comprobación de la clave del equipo</translation>
     </message>
     <message>
         <location filename="httpbrokerclient.cpp" line="162"/>
         <source>Yes</source>
-        <translation type="unfinished">Si</translation>
+        <translation>Si</translation>
     </message>
     <message>
         <location filename="httpbrokerclient.cpp" line="162"/>
         <source>No</source>
-        <translation type="unfinished">No</translation>
+        <translation>No</translation>
     </message>
     <message>
         <location filename="httpbrokerclient.cpp" line="185"/>
         <source>Enter passphrase to decrypt a key</source>
-        <translation type="unfinished">Introduce la frase de paso para desencriptar la clave</translation>
+        <translation>Introduce la frase de paso para desencriptar la clave</translation>
     </message>
     <message>
         <location filename="httpbrokerclient.cpp" line="208"/>
         <source>Authentication failed</source>
-        <translation type="unfinished"></translation>
+        <translation>Fallo de autenticación</translation>
     </message>
     <message>
         <location filename="httpbrokerclient.cpp" line="495"/>
