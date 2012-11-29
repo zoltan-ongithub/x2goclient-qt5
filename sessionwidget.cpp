@@ -350,7 +350,7 @@ void SessionWidget::slot_rdpDirectClicked()
     rdpPort->setVisible(isDirectRDP);
 
     cbProxy->setVisible(!isDirectRDP);
-    proxyBox->setVisible(!isDirectRDP);
+    proxyBox->setVisible(!isDirectRDP && cbProxy->isChecked());
 
     if (isDirectRDP)
     {
