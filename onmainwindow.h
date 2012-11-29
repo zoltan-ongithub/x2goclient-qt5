@@ -381,6 +381,14 @@ public:
     {
         return config.showextconfig;
     }
+    bool getUsePGPCard()
+    {
+        return usePGPCard;
+    }
+    QString getCardLogin()
+    {
+        return cardLogin;
+    }
     QString getDefaultCmd()
     {
         return defaultCmd;

@@ -2147,6 +2147,15 @@ void ONMainWindow::slotReadSessions()
                  SLOT ( slotUnameChanged ( const QString& ) ) );
     connect ( uname,SIGNAL ( textEdited ( const QString& ) ),this,
               SLOT ( slotSnameChanged ( const QString& ) ) );
+
+    if(usePGPCard &&brokerMode&&cardReady)
+    {
+        if(sessions.count()==1)
+        {
+            slotSelectedFromList(sessions[0]);
+        }
+    }
+
     if ( !defaultSession&& startHidden )
     {
         startHidden=false;
@@ -7873,6 +7882,10 @@ void ONMainWindow::slotGpgAgentFinished ( int , QProcess::ExitStatus )
         QString sshout ( sshadd.readAllStandardOutput() );
         sshout=sshout.simplified();
         x2goDebug<<"SSH-ADD out:"<<sshout<<endl;
+        if(brokerMode)
+        {
+            broker->getUserSessions();
+        }
     }
     else
     {
@@ -7890,6 +7903,7 @@ void ONMainWindow::slotGpgAgentFinished ( int , QProcess::ExitStatus )
             x2goDebug<<"SSH-ADD out:"<<sshout<<endl;
             return;
         }
+
         if ( passForm->isVisible() )
             slotClosePass();
         uname->setText ( cardLogin );
@@ -10807,7 +10821,8 @@ void ONMainWindow::slotStartBroker()
     setStatStatus ( tr ( "Connecting to broker" ) );
     stInfo->insertPlainText ( "broker url: "+config.brokerurl );
     setEnabled ( false );
-    broker->getUserSessions();
+    if(!usePGPCard)
+        broker->getUserSessions();
 }
 
 void ONMainWindow::slotGetBrokerSession()

@@ -82,7 +82,6 @@ void HttpBrokerClient::createSshConnection()
     connect ( sshConnection, SIGNAL ( connectionError(QString,QString)), this,
               SLOT ( slotSshConnectionError ( QString,QString ) ) );
     sshConnection->start();
-
 }
 
 void HttpBrokerClient::slotSshConnectionError(QString message, QString lastSessionError)
@@ -214,13 +213,16 @@ void HttpBrokerClient::slotSshUserAuthError(QString error)
 
 void HttpBrokerClient::getUserSessions()
 {
+    QString brokerUser=config->brokerUser;
+    if(mainWindow->getUsePGPCard())
+        brokerUser=mainWindow->getCardLogin();
     config->sessiondata=QString::null;
     if(!sshBroker)
     {
         QString req;
         QTextStream ( &req ) <<
                              "task=listsessions&"<<
-                             "user="<<config->brokerUser<<"&"<<
+                             "user="<<brokerUser<<"&"<<
                              "password="<<config->brokerPass<<"&"<<
                              "authid="<<config->brokerUserId;
         QUrl lurl ( config->brokerurl );
@@ -235,20 +237,24 @@ void HttpBrokerClient::getUserSessions()
             createSshConnection();
             return;
         }
-        sshConnection->executeCommand ( config->sshBrokerBin+" --authid "+config->brokerUserId+ " --task listsessions",
+        sshConnection->executeCommand ( config->sshBrokerBin+" --user "+ brokerUser +" --authid "+config->brokerUserId+ " --task listsessions",
                                         this, SLOT ( slotListSessions ( bool, QString,int ) ));
     }
 }
 
 void HttpBrokerClient::selectUserSession(const QString& session)
 {
+      QString brokerUser=config->brokerUser;
+    if(mainWindow->getUsePGPCard())
+        brokerUser=mainWindow->getCardLogin();
+
     if(!sshBroker)
     {
         QString req;
         QTextStream ( &req ) <<
                              "task=selectsession&"<<
                              "sid="<<session<<"&"<<
-                             "user="<<config->brokerUser<<"&"<<
+                             "user="<<brokerUser<<"&"<<
                              "password="<<config->brokerPass<<"&"<<
                              "authid="<<config->brokerUserId;
         QUrl lurl ( config->brokerurl );
@@ -258,7 +264,7 @@ void HttpBrokerClient::selectUserSession(const QString& session)
     }
     else
     {
-        sshConnection->executeCommand ( config->sshBrokerBin+" --authid "+config->brokerUserId+ " --task selectsession --sid "+session,
+        sshConnection->executeCommand ( config->sshBrokerBin+" --user "+ brokerUser +" --authid "+config->brokerUserId+ " --task selectsession --sid "+session,
                                         this,SLOT ( slotSelectSession(bool,QString,int)));
     }
 
@@ -267,13 +273,17 @@ void HttpBrokerClient::selectUserSession(const QString& session)
 void HttpBrokerClient::changePassword(QString newPass)
 {
     newBrokerPass=newPass;
+        QString brokerUser=config->brokerUser;
+    if(mainWindow->getUsePGPCard())
+        brokerUser=mainWindow->getCardLogin();
+
     if(!sshBroker)
     {
         QString req;
         QTextStream ( &req ) <<
                              "task=setpass&"<<
                              "newpass="<<newPass<<"&"<<
-                             "user="<<config->brokerUser<<"&"<<
+                             "user="<<brokerUser<<"&"<<
                              "password="<<config->brokerPass<<"&"<<
                              "authid="<<config->brokerUserId;
         QUrl lurl ( config->brokerurl );
@@ -283,8 +293,8 @@ void HttpBrokerClient::changePassword(QString newPass)
     }
     else
     {
-        sshConnection->executeCommand ( config->sshBrokerBin+" --authid "+config->brokerUserId+ " --task setpass --newpass "+newPass, this,
-	  SLOT ( slotPassChanged(bool,QString,int)));
+        sshConnection->executeCommand ( config->sshBrokerBin+" --user "+ brokerUser +" --authid "+config->brokerUserId+ " --task setpass --newpass "+newPass, this,
+                                        SLOT ( slotPassChanged(bool,QString,int)));
     }
 }
 
