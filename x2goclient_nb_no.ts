@@ -618,56 +618,56 @@
         <location filename="httpbrokerclient.cpp" line="113"/>
         <source>Host key for server changed.
 It is now: </source>
-        <translation type="unfinished">Vertsnøkkel for serveren har endret seg.
+        <translation>Vertsnøkkel for serveren har endret seg.
 Den er nå: </translation>
     </message>
     <message>
         <location filename="httpbrokerclient.cpp" line="114"/>
         <source>For security reasons, connection will be stopped</source>
-        <translation type="unfinished">Av hensyn til sikkerheten vil tilkoblingen bli stoppet</translation>
+        <translation>Av hensyn til sikkerheten vil tilkoblingen bli stoppet</translation>
     </message>
     <message>
         <location filename="httpbrokerclient.cpp" line="127"/>
         <source>The host key for this server was not found but an othertype of key exists.An attacker might change the default server key toconfuse your client into thinking the key does not exist</source>
-        <translation type="unfinished">Vertsnøkkelen for denne serveren ble ikke funnet, men en annen type av nøkkel eksisterer. En angriper kan endre standard server nøkkel for å lure klienten din til å tro at nøkkelen ikke finnes</translation>
+        <translation>Vertsnøkkelen for denne serveren ble ikke funnet, men en annen type av nøkkel eksisterer. En angriper kan endre standard server nøkkel for å lure klienten din til å tro at nøkkelen ikke finnes</translation>
     </message>
     <message>
         <location filename="httpbrokerclient.cpp" line="153"/>
         <source>Could not find known host file.If you accept the host key here, the file will be automatically created</source>
-        <translation type="unfinished">Kan ikke finne &quot;known host&quot; filen. Om du aksepterer vertsnøkkelen her vil filen automatisk bli opprettet</translation>
+        <translation>Kan ikke finne &quot;known host&quot; filen. Om du aksepterer vertsnøkkelen her vil filen automatisk bli opprettet</translation>
     </message>
     <message>
         <location filename="httpbrokerclient.cpp" line="158"/>
         <source>The server is unknown. Do you trust the host key?
 Public key hash: </source>
-        <translation type="unfinished">Serveren er ukjent. Stoler du på vertsnøkkelen?
+        <translation>Serveren er ukjent. Stoler du på vertsnøkkelen?
 Offentlig nøkkel: </translation>
     </message>
     <message>
         <location filename="httpbrokerclient.cpp" line="162"/>
         <location filename="httpbrokerclient.cpp" line="172"/>
         <source>Host key verification failed</source>
-        <translation type="unfinished">Verifiseringen av vertsnøkkelen feilet</translation>
+        <translation>Verifiseringen av vertsnøkkelen feilet</translation>
     </message>
     <message>
         <location filename="httpbrokerclient.cpp" line="162"/>
         <source>Yes</source>
-        <translation type="unfinished">Ja</translation>
+        <translation>Ja</translation>
     </message>
     <message>
         <location filename="httpbrokerclient.cpp" line="162"/>
         <source>No</source>
-        <translation type="unfinished">Nei</translation>
+        <translation>Nei</translation>
     </message>
     <message>
         <location filename="httpbrokerclient.cpp" line="185"/>
         <source>Enter passphrase to decrypt a key</source>
-        <translation type="unfinished">Oppgi passordfrase for dekryptere en nøkkel</translation>
+        <translation>Oppgi passordfrase for dekryptere en nøkkel</translation>
     </message>
     <message>
         <location filename="httpbrokerclient.cpp" line="208"/>
         <source>Authentication failed</source>
-        <translation type="unfinished"></translation>
+        <translation>Autentisering feilet</translation>
     </message>
     <message>
         <location filename="httpbrokerclient.cpp" line="332"/>
