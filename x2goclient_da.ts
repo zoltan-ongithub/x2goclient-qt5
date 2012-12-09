@@ -633,56 +633,56 @@
         <location filename="httpbrokerclient.cpp" line="113"/>
         <source>Host key for server changed.
 It is now: </source>
-        <translation type="unfinished">Serverens Host key er ændret.
+        <translation>Serverens Host key er ændret.
 Den er nu: </translation>
     </message>
     <message>
         <location filename="httpbrokerclient.cpp" line="114"/>
         <source>For security reasons, connection will be stopped</source>
-        <translation type="unfinished">Forbindelsen afbrydes af sikkerhedsårsager</translation>
+        <translation>Forbindelsen afbrydes af sikkerhedsårsager</translation>
     </message>
     <message>
         <location filename="httpbrokerclient.cpp" line="127"/>
         <source>The host key for this server was not found but an othertype of key exists.An attacker might change the default server key toconfuse your client into thinking the key does not exist</source>
-        <translation type="unfinished">Serverens host key blev fundet, men en anden type nøgle eksisterer. En angriber kan ændre standardnøglen på serveren for at narre din klient til at tro at nøglen ikke eksisterer</translation>
+        <translation>Serverens host key blev fundet, men en anden type nøgle eksisterer. En angriber kan ændre standardnøglen på serveren for at narre din klient til at tro at nøglen ikke eksisterer</translation>
     </message>
     <message>
         <location filename="httpbrokerclient.cpp" line="153"/>
         <source>Could not find known host file.If you accept the host key here, the file will be automatically created</source>
-        <translation type="unfinished">Kunne ikke finde known host fil. Hvis du accepterer serverens host key, vil filen automatisk blive skabt</translation>
+        <translation>Kunne ikke finde known host fil. Hvis du accepterer serverens host key, vil filen automatisk blive skabt</translation>
     </message>
     <message>
         <location filename="httpbrokerclient.cpp" line="158"/>
         <source>The server is unknown. Do you trust the host key?
 Public key hash: </source>
-        <translation type="unfinished">Serveren er ukendt. Stoler du på denne host key?
+        <translation>Serveren er ukendt. Stoler du på denne host key?
 Public key hash: </translation>
     </message>
     <message>
         <location filename="httpbrokerclient.cpp" line="162"/>
         <location filename="httpbrokerclient.cpp" line="172"/>
         <source>Host key verification failed</source>
-        <translation type="unfinished">Host key bekræftelsen fejlede</translation>
+        <translation>Host key bekræftelsen fejlede</translation>
     </message>
     <message>
         <location filename="httpbrokerclient.cpp" line="162"/>
         <source>Yes</source>
-        <translation type="unfinished">Ja</translation>
+        <translation>Ja</translation>
     </message>
     <message>
         <location filename="httpbrokerclient.cpp" line="162"/>
         <source>No</source>
-        <translation type="unfinished">Nej</translation>
+        <translation>Nej</translation>
     </message>
     <message>
         <location filename="httpbrokerclient.cpp" line="185"/>
         <source>Enter passphrase to decrypt a key</source>
-        <translation type="unfinished">Indtast kodeord for at dekryptere en nøgle</translation>
+        <translation>Indtast kodeord for at dekryptere en nøgle</translation>
     </message>
     <message>
         <location filename="httpbrokerclient.cpp" line="208"/>
         <source>Authentication failed</source>
-        <translation type="unfinished"></translation>
+        <translation>Autentificering fejlede</translation>
     </message>
     <message>
         <location filename="httpbrokerclient.cpp" line="495"/>

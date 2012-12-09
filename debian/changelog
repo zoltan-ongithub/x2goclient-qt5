@@ -3,6 +3,7 @@ x2goclient (3.99.3.1-0~x2go1) UNRELEASED; urgency=low
   [ Christoffer Krakou ]
   * New upstream version (3.99.3.1):
     - Update Danish translation.
+    - Update Danish translation (SSH proxy feature).
 
   [ Daniel Lindgren ]
   * New upstream version (3.99.3.1):
