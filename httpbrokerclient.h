@@ -48,7 +48,7 @@ private:
     bool sshBroker;
     SshMasterConnection* sshConnection;
 private:
-    void createIniFile(const QString& content);
+    void createIniFile(const QString& raw_content);
     void parseSession(QString sInfo);
     void createSshConnection();
     bool checkAccess(QString answer);

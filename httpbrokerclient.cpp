@@ -319,16 +319,18 @@ void HttpBrokerClient::testConnection()
 }
 
 
-void HttpBrokerClient::createIniFile(const QString& content)
+void HttpBrokerClient::createIniFile(const QString& raw_content)
 {
+    QString content;
+    content = raw_content;
+    content.replace("<br>","\n");
+    x2goDebug<<"inifile content: "<<content<<"\n";
     QString cont;
-    QStringList lines=content.split("START_USER_SESSIONS<br>");
+    QStringList lines=content.split("START_USER_SESSIONS\n");
     if (lines.count()>1)
     {
         cont=lines[1];
-        cont=cont.split("END_USER_SESSIONS")[0];
-        cont.replace("\n","");
-        cont.replace("<br>","\n");
+        cont=cont.split("END_USER_SESSIONS\n")[0];
     }
     mainWindow->config.iniFile=cont;
 }
@@ -449,6 +451,7 @@ void HttpBrokerClient::slotRequestFinished ( int id, bool error )
 
 void HttpBrokerClient::parseSession(QString sinfo)
 {
+    x2goDebug<<"starting parser\n";
     QStringList lst=sinfo.split("SERVER:",QString::SkipEmptyParts);
     int keyStartPos=sinfo.indexOf("-----BEGIN DSA PRIVATE KEY-----");
     QString endStr="-----END DSA PRIVATE KEY-----";
@@ -460,11 +463,15 @@ void HttpBrokerClient::parseSession(QString sinfo)
     config->serverIp=words[0];
     if (words.count()>1)
         config->sshport=words[1];
+    x2goDebug<<"server IP: "<<config->serverIp<<"\n";
+    x2goDebug<<"server port: "<<config->sshport<<"\n";
     if (sinfo.indexOf("SESSION_INFO")!=-1)
     {
         QStringList lst=sinfo.split("SESSION_INFO:",QString::SkipEmptyParts);
         config->sessiondata=(lst[1].split("\n"))[0];
+        x2goDebug<<"session data: "<<config->sessiondata<<"\n";
     }
+    x2goDebug<<"parsing has finished\n";
     emit sessionSelected();
 }
 
