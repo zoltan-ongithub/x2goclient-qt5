@@ -1408,7 +1408,7 @@ void ONMainWindow::closeClient()
 void ONMainWindow::closeEvent ( QCloseEvent* event )
 {
     x2goDebug<<"close event";
-    if (trayNoclose)
+    if (trayNoclose && !brokerMode)
     {
         hide();
         event->ignore();
@@ -2135,6 +2135,7 @@ void ONMainWindow::slotReadSessions()
     {
         QMessageBox::critical(this,tr("Error"),tr("X2Go sessions not found"));
         close();
+        return;
     }
     for ( int i=0; i<slst.size(); ++i )
     {
