@@ -51,7 +51,7 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
     image=shape=0;
 #endif
     x2goDebug<<"ONMainWindow constructor"<<endl;
-    setFocusPolicy ( Qt::StrongFocus );
+    setFocusPolicy ( Qt::NoFocus );
     installTranslator();
     cleanAllFiles=false;
     drawMenu=true;
@@ -4177,6 +4177,9 @@ void ONMainWindow::selectSession ( QStringList& sessions )
         desktopFilter->setFocus();
         desktopFilter->selectAll();
     }
+
+    sessTv->setCurrentIndex ( sessTv->model()->index ( 0, 0 ) );
+    sessTv->setFocus();
     selectSessionDlg->show();
 }
 
@@ -10411,7 +10414,7 @@ void ONMainWindow::initSelectSessDlg()
     selectSessionDlg->setEnabled ( true );
     setEnabled ( true );
 
-    sessTv=new QTreeView ( selectSessionDlg );
+    sessTv=new SessTreeView ( selectSessionDlg );
     setWidgetStyle ( sessTv );
     setWidgetStyle ( sessTv->horizontalScrollBar() );
     setWidgetStyle ( sessTv->verticalScrollBar() );
@@ -10518,10 +10521,9 @@ void ONMainWindow::initSelectSessDlg()
     bSusp->hide();
     bTerm->hide();
 
-    connect ( sessTv,SIGNAL ( clicked ( const QModelIndex& ) ),
+    connect ( sessTv,SIGNAL ( selected ( const QModelIndex& ) ),
               this,SLOT ( slotActivated ( const QModelIndex& ) ) );
-
-    connect ( sessTv,SIGNAL ( doubleClicked ( const QModelIndex& ) ),
+    connect ( sessTv,SIGNAL ( activated ( const QModelIndex& ) ),
               this,SLOT ( slotResumeDoubleClick ( const QModelIndex& ) ) );
 
     connect ( sOk,SIGNAL ( clicked() ),this, SLOT ( slotResumeSess() ) );

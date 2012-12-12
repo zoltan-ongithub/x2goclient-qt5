@@ -40,6 +40,7 @@
 #include <QPushButton>
 #include <QPixmap>
 #include <QProcess>
+#include <QTreeView>
 #include "LDAPSession.h"
 #include <QToolBar>
 #include <QSystemTrayIcon>
@@ -73,7 +74,6 @@ class SVGFrame;
 class SessionButton;
 class QAction;
 class QCheckBox;
-class QTreeView;
 class QModelIndex;
 class SshMasterConnection;
 class IMGFrame;
@@ -247,6 +247,26 @@ private:
     ONMainWindow* parent;
 };
 #endif
+
+
+class SessTreeView : public QTreeView
+{
+    Q_OBJECT
+
+public:
+    SessTreeView ( QWidget* parent = 0 ) : QTreeView ( parent ) {}
+
+    virtual void selectionChanged ( const QItemSelection& selected,
+                                    const QItemSelection& deselected ) {
+        emit this->selected ( currentIndex() );
+        QTreeView::selectionChanged ( selected, deselected );
+    }
+
+Q_SIGNALS:
+    void selected ( const QModelIndex& index );
+};
+
+
 class ClickLineEdit;
 class ONMainWindow : public QMainWindow
 #ifdef CFGPLUGIN
@@ -580,7 +600,7 @@ private:
 
 
     QLabel* selectSessionLabel;
-    QTreeView* sessTv;
+    SessTreeView* sessTv;
 
     QLineEdit* desktopFilter;
     QCheckBox* desktopFilterCb;

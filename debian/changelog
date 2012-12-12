@@ -9,6 +9,13 @@ x2goclient (3.99.3.1-0~x2go1) UNRELEASED; urgency=low
   * New upstream version (3.99.3.1):
     - Update Swedish translation.
 
+  [ Ezra Bühler ]
+  * New upstream version (3.99.3.1):
+    - Make it possible to resume a session using the keyboard only.
+      Also fix the tab order in the resume session dialog by
+      changing the focus policy of the main window. (Closes
+      upstream issue #80).
+
   [ Jan Engelhardt ]
   * New upstream version (3.99.3.1):
     - Fix Debian-like Qt path (qmake will handle it internally).
