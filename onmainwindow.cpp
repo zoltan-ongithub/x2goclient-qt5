@@ -261,7 +261,7 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
 
     QDesktopWidget wd;
 
-    x2goDebug<<"primary screen geometry: "<<wd.screenGeometry(wd.screenNumber(this));
+    //x2goDebug<<"primary screen geometry: "<<wd.screenGeometry(wd.screenNumber(this));
 
     if ( wd.screenGeometry(wd.screenNumber(this)).width() <1024 ||
             wd.screenGeometry(wd.screenNumber(this)).height() <768 )
@@ -9375,7 +9375,7 @@ void ONMainWindow::slotSetProxyWinFullscreen()
 void ONMainWindow::resizeProxyWinOnDisplay(int disp)
 {
     QRect geom=QApplication::desktop()->screenGeometry(disp-1);
-    x2goDebug<<"resizing proxy win to fit display "<<disp<<"("<<geom<<")"<<endl;
+    //x2goDebug<<"resizing proxy win to fit display "<<disp<<"("<<geom<<")"<<endl;
 #ifdef Q_OS_LINUX
     XSync(QX11Info::display(),false);
     XMoveWindow(QX11Info::display(), proxyWinId,geom.x(),geom.y());
@@ -9425,7 +9425,7 @@ void ONMainWindow::slotConfigXinerama()
     if (newGeometry==lastDisplayGeometry)
         return;
     lastDisplayGeometry=newGeometry;
-    x2goDebug<<"New proxy geometry: "<<lastDisplayGeometry<<endl;
+//    x2goDebug<<"New proxy geometry: "<<lastDisplayGeometry<<endl;
     QDesktopWidget* root=QApplication::desktop();
     QList<QRect> newXineramaScreens;
     for (int i=0; i< root->numScreens(); ++i)
@@ -9437,17 +9437,17 @@ void ONMainWindow::slotConfigXinerama()
             intersection=root->screenGeometry(i).intersected(lastDisplayGeometry);
         if (!intersection.isNull())
         {
-            x2goDebug<<"intersected with "<<i<<": "<<intersection<<endl;
+//            x2goDebug<<"intersected with "<<i<<": "<<intersection<<endl;
             intersection.moveLeft(intersection.x()-lastDisplayGeometry.x());
             intersection.moveTop(intersection.y()-lastDisplayGeometry.y());
-            x2goDebug<<"xinerama screen: "<<intersection<<endl;
+//            x2goDebug<<"xinerama screen: "<<intersection<<endl;
             newXineramaScreens<<intersection;
         }
     }
     if (xineramaScreens != newXineramaScreens)
     {
         xineramaScreens=newXineramaScreens;
-        x2goDebug<<"xinerama screen changed, new screens: "<<xineramaScreens<<endl;
+//        x2goDebug<<"xinerama screen changed, new screens: "<<xineramaScreens<<endl;
         xineramaTimer->stop();
         QStringList screens;
         foreach (QRect disp, xineramaScreens)
