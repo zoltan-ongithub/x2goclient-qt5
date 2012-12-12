@@ -27,6 +27,7 @@ x2goclient (3.99.3.1-0~x2go1) UNRELEASED; urgency=low
     - Add support for pgp cards in broker mode.
     - Fix displaying ssh proxy box in session settings if sessions type
       changed. (Closes upstream issue: #61).
+    - init config.brokerAutologin with false 
 
   [ Ricardo Diaz ]
   * New upstream version (3.99.3.1):

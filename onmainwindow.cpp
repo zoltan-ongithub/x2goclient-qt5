@@ -105,6 +105,7 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
     resumeAfterSuspending=false;
 
     appSeparator=0;
+    config.brokerNoAuth=false;
 
 
 #ifdef Q_OS_WIN
@@ -969,6 +970,7 @@ void ONMainWindow::slotGetBrokerAuth()
     nameLabel->setText ( text );
     slotShowPassForm();
     config.brokerAuthenticated=false;
+
     if(config.brokerUser.length()>0)
     {
         login->setText(config.brokerUser);
@@ -9678,6 +9680,7 @@ void ONMainWindow::processSessionConfig()
     bool haveKey=false;
 
     config.command="KDE";
+    config.brokerNoAuth=false;
     config.sshport="22";
     config.session=tr ( "X2Go Session" );
     config.checkexitstatus=true;
