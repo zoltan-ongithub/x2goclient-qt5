@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
+ <author>Oleksandr Shneyder(o.shneyder@phoca-gmbh.de)</author>
  <class>AppDialog</class>
  <widget class="QDialog" name="AppDialog">
   <property name="geometry">
@@ -39,9 +40,6 @@
        <property name="expandsOnDoubleClick">
         <bool>false</bool>
        </property>
-       <attribute name="headerVisible">
-        <bool>false</bool>
-       </attribute>
        <attribute name="headerVisible">
         <bool>false</bool>
        </attribute>

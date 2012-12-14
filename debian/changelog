@@ -32,6 +32,7 @@ x2goclient (3.99.3.1-0~x2go1) UNRELEASED; urgency=low
       appearing session profile dialog if client is configured to
       minimize to systray. (Closes upstream issue #73).
     - Update license headers 
+    - Add "author" entry in UI files
 
   [ Ricardo Diaz ]
   * New upstream version (3.99.3.1):

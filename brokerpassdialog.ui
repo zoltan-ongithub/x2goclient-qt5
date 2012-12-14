@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
+ <author>Oleksandr Shneyder(o.shneyder@phoca-gmbh.de)</author>
  <class>BrokerPassDialogUi</class>
  <widget class="QDialog" name="BrokerPassDialogUi">
   <property name="geometry">
@@ -7,7 +8,7 @@
     <x>0</x>
     <y>0</y>
     <width>311</width>
-    <height>160</height>
+    <height>176</height>
    </rect>
   </property>
   <property name="windowTitle">

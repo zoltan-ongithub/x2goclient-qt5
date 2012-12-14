@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
+ <author>Oleksandr Shneyder(o.shneyder@phoca-gmbh.de)</author>
  <class>XSettingsWidgetUI</class>
  <widget class="QWidget" name="XSettingsWidgetUI">
   <property name="geometry">
@@ -7,7 +8,7 @@
     <x>0</x>
     <y>0</y>
     <width>521</width>
-    <height>380</height>
+    <height>386</height>
    </rect>
   </property>
   <property name="windowTitle">

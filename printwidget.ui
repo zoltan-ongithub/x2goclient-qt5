@@ -1,7 +1,9 @@
-<ui version="4.0" >
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <author>Oleksandr Shneyder(o.shneyder@phoca-gmbh.de)</author>
  <class>PrintWidget</class>
- <widget class="QWidget" name="PrintWidget" >
-  <property name="geometry" >
+ <widget class="QWidget" name="PrintWidget">
+  <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
@@ -9,37 +11,37 @@
     <height>497</height>
    </rect>
   </property>
-  <property name="windowTitle" >
+  <property name="windowTitle">
    <string>Form</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout_5" >
+  <layout class="QVBoxLayout" name="verticalLayout_5">
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout" >
+    <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
-      <layout class="QVBoxLayout" name="verticalLayout" >
+      <layout class="QVBoxLayout" name="verticalLayout">
        <item>
-        <widget class="QRadioButton" name="rbPrint" >
-         <property name="text" >
+        <widget class="QRadioButton" name="rbPrint">
+         <property name="text">
           <string>Print</string>
          </property>
-         <property name="checked" >
+         <property name="checked">
           <bool>true</bool>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QRadioButton" name="rbView" >
-         <property name="text" >
+        <widget class="QRadioButton" name="rbView">
+         <property name="text">
           <string>View as PDF</string>
          </property>
         </widget>
        </item>
        <item>
-        <spacer name="verticalSpacer" >
-         <property name="orientation" >
+        <spacer name="verticalSpacer">
+         <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
-         <property name="sizeHint" stdset="0" >
+         <property name="sizeHint" stdset="0">
           <size>
            <width>20</width>
            <height>40</height>
@@ -50,69 +52,69 @@
       </layout>
      </item>
      <item>
-      <layout class="QVBoxLayout" name="verticalLayout_4" >
+      <layout class="QVBoxLayout" name="verticalLayout_4">
        <item>
-        <widget class="QGroupBox" name="gbPrint" >
-         <property name="sizePolicy" >
-          <sizepolicy vsizetype="Expanding" hsizetype="Expanding" >
+        <widget class="QGroupBox" name="gbPrint">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
-         <property name="title" >
+         <property name="title">
           <string>Print settings</string>
          </property>
-         <layout class="QVBoxLayout" name="verticalLayout_3" >
+         <layout class="QVBoxLayout" name="verticalLayout_3">
           <item>
-           <widget class="QLabel" name="lWinPrinter" >
-            <property name="text" >
+           <widget class="QLabel" name="lWinPrinter">
+            <property name="text">
              <string>Printer:</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QComboBox" name="cbWinPrinter" />
+           <widget class="QComboBox" name="cbWinPrinter"/>
           </item>
           <item>
-           <widget class="QLabel" name="lWinInfo" >
-            <property name="text" >
+           <widget class="QLabel" name="lWinInfo">
+            <property name="text">
              <string>Print using default Windows PDF Viewer
 (Viewer application needs to be installed)</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="Line" name="line" >
-            <property name="orientation" >
+           <widget class="Line" name="line">
+            <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QCheckBox" name="cbPrintCmd" >
-            <property name="text" >
+           <widget class="QCheckBox" name="cbPrintCmd">
+            <property name="text">
              <string>Printer command:</string>
             </property>
            </widget>
           </item>
           <item>
-           <layout class="QHBoxLayout" name="horizontalLayout_3" >
+           <layout class="QHBoxLayout" name="horizontalLayout_3">
             <item>
-             <widget class="QLineEdit" name="lePrintCmd" >
-              <property name="enabled" >
+             <widget class="QLineEdit" name="lePrintCmd">
+              <property name="enabled">
                <bool>false</bool>
               </property>
-              <property name="readOnly" >
+              <property name="readOnly">
                <bool>true</bool>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="pbPrintCmd" >
-              <property name="enabled" >
+             <widget class="QPushButton" name="pbPrintCmd">
+              <property name="enabled">
                <bool>false</bool>
               </property>
-              <property name="text" >
+              <property name="text">
                <string>...</string>
               </property>
              </widget>
@@ -120,11 +122,11 @@
            </layout>
           </item>
           <item>
-           <spacer name="verticalSpacer_3" >
-            <property name="orientation" >
+           <spacer name="verticalSpacer_3">
+            <property name="orientation">
              <enum>Qt::Vertical</enum>
             </property>
-            <property name="sizeHint" stdset="0" >
+            <property name="sizeHint" stdset="0">
              <size>
               <width>325</width>
               <height>2</height>
@@ -136,57 +138,57 @@
         </widget>
        </item>
        <item>
-        <widget class="QGroupBox" name="gbView" >
-         <property name="sizePolicy" >
-          <sizepolicy vsizetype="Expanding" hsizetype="Expanding" >
+        <widget class="QGroupBox" name="gbView">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
-         <property name="title" >
+         <property name="title">
           <string>Viewer settings</string>
          </property>
-         <layout class="QVBoxLayout" name="verticalLayout_2" >
+         <layout class="QVBoxLayout" name="verticalLayout_2">
           <item>
-           <widget class="QRadioButton" name="rbOpen" >
-            <property name="text" >
+           <widget class="QRadioButton" name="rbOpen">
+            <property name="text">
              <string>Open in viewer application</string>
             </property>
-            <property name="checked" >
+            <property name="checked">
              <bool>true</bool>
             </property>
            </widget>
           </item>
           <item>
-           <layout class="QHBoxLayout" name="horizontalLayout_2" >
+           <layout class="QHBoxLayout" name="horizontalLayout_2">
             <item>
-             <widget class="QLabel" name="label" >
-              <property name="text" >
+             <widget class="QLabel" name="label">
+              <property name="text">
                <string>Command:</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="leOpenCmd" />
+             <widget class="QLineEdit" name="leOpenCmd"/>
             </item>
            </layout>
           </item>
           <item>
-           <widget class="QRadioButton" name="rbSave" >
-            <property name="text" >
+           <widget class="QRadioButton" name="rbSave">
+            <property name="text">
              <string>Save to disk</string>
             </property>
-            <property name="checked" >
+            <property name="checked">
              <bool>false</bool>
             </property>
            </widget>
           </item>
           <item>
-           <spacer name="verticalSpacer_2" >
-            <property name="orientation" >
+           <spacer name="verticalSpacer_2">
+            <property name="orientation">
              <enum>Qt::Vertical</enum>
             </property>
-            <property name="sizeHint" stdset="0" >
+            <property name="sizeHint" stdset="0">
              <size>
               <width>20</width>
               <height>18</height>
@@ -202,11 +204,11 @@
     </layout>
    </item>
    <item>
-    <widget class="QCheckBox" name="cbShowDialog" >
-     <property name="text" >
+    <widget class="QCheckBox" name="cbShowDialog">
+     <property name="text">
       <string>Show this dialog before start printing</string>
      </property>
-     <property name="checked" >
+     <property name="checked">
       <bool>true</bool>
      </property>
     </widget>
@@ -221,11 +223,11 @@
    <receiver>label</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
-    <hint type="sourcelabel" >
+    <hint type="sourcelabel">
      <x>249</x>
      <y>120</y>
     </hint>
-    <hint type="destinationlabel" >
+    <hint type="destinationlabel">
      <x>165</x>
      <y>150</y>
     </hint>
@@ -237,11 +239,11 @@
    <receiver>leOpenCmd</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
-    <hint type="sourcelabel" >
+    <hint type="sourcelabel">
      <x>249</x>
      <y>120</y>
     </hint>
-    <hint type="destinationlabel" >
+    <hint type="destinationlabel">
      <x>284</x>
      <y>150</y>
     </hint>
@@ -253,11 +255,11 @@
    <receiver>lePrintCmd</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
-    <hint type="sourcelabel" >
+    <hint type="sourcelabel">
      <x>248</x>
      <y>56</y>
     </hint>
-    <hint type="destinationlabel" >
+    <hint type="destinationlabel">
      <x>206</x>
      <y>88</y>
     </hint>
@@ -269,11 +271,11 @@
    <receiver>pbPrintCmd</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
-    <hint type="sourcelabel" >
+    <hint type="sourcelabel">
      <x>248</x>
      <y>56</y>
     </hint>
-    <hint type="destinationlabel" >
+    <hint type="destinationlabel">
      <x>327</x>
      <y>88</y>
     </hint>
@@ -285,11 +287,11 @@
    <receiver>gbPrint</receiver>
    <slot>setVisible(bool)</slot>
    <hints>
-    <hint type="sourcelabel" >
+    <hint type="sourcelabel">
      <x>62</x>
      <y>22</y>
     </hint>
-    <hint type="destinationlabel" >
+    <hint type="destinationlabel">
      <x>296</x>
      <y>64</y>
     </hint>
@@ -301,11 +303,11 @@
    <receiver>gbView</receiver>
    <slot>setVisible(bool)</slot>
    <hints>
-    <hint type="sourcelabel" >
+    <hint type="sourcelabel">
      <x>62</x>
      <y>46</y>
     </hint>
-    <hint type="destinationlabel" >
+    <hint type="destinationlabel">
      <x>296</x>
      <y>188</y>
     </hint>

@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
+ <author>Oleksandr Shneyder(o.shneyder@phoca-gmbh.de)</author>
  <class>ConTest</class>
  <widget class="QDialog" name="ConTest">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>291</width>
-    <height>147</height>
+    <width>336</width>
+    <height>161</height>
    </rect>
   </property>
   <property name="windowTitle">
