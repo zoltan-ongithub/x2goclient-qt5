@@ -31,6 +31,7 @@ x2goclient (3.99.3.1-0~x2go1) UNRELEASED; urgency=low
     - Make sure x2goclient closes if broker has no sessions. Fixes
       appearing session profile dialog if client is configured to
       minimize to systray. (Closes upstream issue #73).
+    - Update license headers 
 
   [ Ricardo Diaz ]
   * New upstream version (3.99.3.1):
