@@ -13,15 +13,14 @@ x2goclient (3.99.3.1-0~x2go1) UNRELEASED; urgency=low
   * New upstream version (3.99.3.1):
     - Make it possible to resume a session using the keyboard only.
       Also fix the tab order in the resume session dialog by
-      changing the focus policy of the main window. (Closes
-      upstream issue #80).
+      changing the focus policy of the main window. (Fixes: #80).
 
   [ Heinz-M. Graesing ]
   * New upstream version (3.99.3.1):
     - Update refurbished X2Go Logo set. License for the X2Go Logos is GPL-2.0+.
       The inner X2Go logo background is now white (non-transparent) which should
       fix poor display results for X2Go icons in application menus using a dark
-      theme. (Closes upstream issue: #59).
+      theme. (Fixes: #59).
 
   [ Jan Engelhardt ]
   * New upstream version (3.99.3.1):
@@ -33,11 +32,11 @@ x2goclient (3.99.3.1-0~x2go1) UNRELEASED; urgency=low
     - Russian translation updated.
     - Add support for pgp cards in broker mode.
     - Fix displaying ssh proxy box in session settings if sessions type
-      changed. (Closes upstream issue: #61).
-    - Init config.brokerAutologin with false. (Closes upstream issue #72).
+      changed. (Fixes: #61).
+    - Init config.brokerAutologin with false. (Fixes: #72).
     - Make sure x2goclient closes if broker has no sessions. Fixes
       appearing session profile dialog if client is configured to
-      minimize to systray. (Closes upstream issue #73).
+      minimize to systray. (Fixes: #73).
     - Update license headers.
     - Add "author" entry in UI files.
     - Add OpenSSL license exception.
@@ -49,8 +48,7 @@ x2goclient (3.99.3.1-0~x2go1) UNRELEASED; urgency=low
   [ Mike Gabriel ]
   * New upstream version (3.99.3.1):
     - Update German translation file.
-    - Get rid of br html tags in client<->broker communication (closes
-      upstream issue #81).
+    - Get rid of br html tags in client<->broker communication (Fixes: #81).
 
   [ Terje Andersen ]
   * New upstream version (3.99.3.1):
@@ -66,7 +64,7 @@ x2goclient (3.99.3.0-0~x2go1) unstable; urgency=low
       Danish translator (Christoffer Krakou).
     - Update German translation.
     - Run X2Go-proxied RDP session with fullscreen mode as sessions
-      of X2Go session type "D". (Closes upstream issue #22)
+      of X2Go session type "D". (Fixes: #22)
     - Allow pass-through of username and password for X2Go-proxied RDP
       sessions. The strings X2GO_USER and X2GO_PASSWORD in rdpoptions
       will be replaced by username+password enter into X2Go Clients
@@ -79,7 +77,7 @@ x2goclient (3.99.3.0-0~x2go1) unstable; urgency=low
       uses a slash as separator character for submenu cascades.
     - Use ,,printf'' instead of ,,echo -e'' (Bashism). Fixes creation of
       xinerama.conf files.
-    - Add XFCE as possible session type. (Closes upstream issue: #51)
+    - Add XFCE as possible session type. (Fixes: #51)
   * /debian/control:
     + Maintainer change in package: X2Go Developers <x2go-dev@lists.berlios.de>.
     + Add rdesktop and xfreerdp to Recommends.
@@ -120,11 +118,11 @@ x2goclient (3.99.3.0-0~x2go1) unstable; urgency=low
     - Restart pulse server on windows if it crashed.
     - Show "Advanced Options" button only if RDP session chosen.
     - Fixing kbd focus issue for all kinds of sessions in thinclient mode.
-      (Closes upstream issue #20).
+      (Fixes: #20).
     - Add command line parameter --ssh-key and --autologin.
     - Disable check box "use default sound port" if sound disabled.
     - Add support for HTTP proxy - developed by Heinrich Schuchardt
-      (xypron.glpk@gmx.de). Closes upstream issue #34.
+      (xypron.glpk@gmx.de). (Fixes: #34).
     - Add support for SSH proxy in class SshMasterConnection.
     - SshMasterConnection emit signal to GUI thread if it need a passphrase
       to decrypt a ssh key. GUI thread use input dialog to read a passphrase
@@ -144,10 +142,8 @@ x2goclient (3.99.3.0-0~x2go1) unstable; urgency=low
     - SshProcess is only usable over SshMasterConnection.
     - Fixing SSH proxy support for Windows.
     - Hide system tray icon before close.
-    - Fix error "Failed to resolve hostname" in plugin mode (Closes upstream
-      issue #55).
-    - Do not show "RDP Settings" group box in plugin mode (Closes upstream issue
-      #56).
+    - Fix error "Failed to resolve hostname" in plugin mode (Fixes: #55).
+    - Do not show "RDP Settings" group box in plugin mode (Fixes: #56).
 
   [ Ricardo Diaz ]
   * New upstream version (3.99.3.0):
@@ -438,7 +434,7 @@ x2goclient (3.0.1.19-0~x2go1) unstable; urgency=low
 x2goclient (3.0.1.18-0~x2go3) unstable; urgency=low
 
   * Add ssh (server) as runtime dependency
-  * React to bug #627990, prefer man2html-base over man2html.
+  * React to Debian bug #627990, prefer man2html-base over man2html.
   * Use x2goumount-session instead of old x2goumount_session command.
 
  -- Mike Gabriel <mike.gabriel@das-netzwerkteam.de>  Thu, 14 Jul 2011 09:07:59 +0200
