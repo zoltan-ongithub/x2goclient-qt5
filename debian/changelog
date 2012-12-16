@@ -16,6 +16,13 @@ x2goclient (3.99.3.1-0~x2go1) UNRELEASED; urgency=low
       changing the focus policy of the main window. (Closes
       upstream issue #80).
 
+  [ Heinz-M. Graesing ]
+  * New upstream version (3.99.3.1):
+    - Update refurbished X2Go Logo set. License for the X2Go Logos is GPL-2.0+.
+      The inner X2Go logo background is now white (non-transparent) which should
+      fix poor display results for X2Go icons in application menus using a dark
+      theme. (Closes upstream issue: #59).
+
   [ Jan Engelhardt ]
   * New upstream version (3.99.3.1):
     - Fix Debian-like Qt path (qmake will handle it internally).
