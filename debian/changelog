@@ -1,4 +1,4 @@
-x2goclient (4.0.0.0-0~x2go1) UNRELEASED; urgency=low
+x2goclient (4.0.0.0-0~x2go1) unstable; urgency=low
 
   [ Christoffer Krakou ]
   * New upstream version (4.0.0.0):
@@ -55,7 +55,7 @@ x2goclient (4.0.0.0-0~x2go1) UNRELEASED; urgency=low
   * New upstream version (4.0.0.0):
     - Update Bokmal (Norway) translation file.
 
- -- Mike Gabriel <mike.gabriel@das-netzwerkteam.de>  Wed, 07 Nov 2012 16:26:49 +0100
+ -- Mike Gabriel <mike.gabriel@das-netzwerkteam.de>  Sun, 30 Dec 2012 15:34:02 +0100
 
 x2goclient (3.99.3.0-0~x2go1) unstable; urgency=low
 
