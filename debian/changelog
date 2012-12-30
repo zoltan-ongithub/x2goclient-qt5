@@ -1,33 +1,33 @@
-x2goclient (3.99.3.1-0~x2go1) UNRELEASED; urgency=low
+x2goclient (4.0.0.0-0~x2go1) UNRELEASED; urgency=low
 
   [ Christoffer Krakou ]
-  * New upstream version (3.99.3.1):
+  * New upstream version (4.0.0.0):
     - Update Danish translation.
     - Update Danish translation (SSH proxy feature).
 
   [ Daniel Lindgren ]
-  * New upstream version (3.99.3.1):
+  * New upstream version (4.0.0.0):
     - Update Swedish translation.
 
   [ Ezra Bühler ]
-  * New upstream version (3.99.3.1):
+  * New upstream version (4.0.0.0):
     - Make it possible to resume a session using the keyboard only.
       Also fix the tab order in the resume session dialog by
       changing the focus policy of the main window. (Fixes: #80).
 
   [ Heinz-M. Graesing ]
-  * New upstream version (3.99.3.1):
+  * New upstream version (4.0.0.0):
     - Update refurbished X2Go Logo set. License for the X2Go Logos is GPL-2.0+.
       The inner X2Go logo background is now white (non-transparent) which should
       fix poor display results for X2Go icons in application menus using a dark
       theme. (Fixes: #59).
 
   [ Jan Engelhardt ]
-  * New upstream version (3.99.3.1):
+  * New upstream version (4.0.0.0):
     - Fix Debian-like Qt path (qmake will handle it internally).
 
   [ Oleksandr Shneyder ]
-  * New upstream version (3.99.3.1):
+  * New upstream version (4.0.0.0):
     - Translation files updated.
     - Russian translation updated.
     - Add support for pgp cards in broker mode.
@@ -42,16 +42,17 @@ x2goclient (3.99.3.1-0~x2go1) UNRELEASED; urgency=low
     - Add OpenSSL license exception.
 
   [ Ricardo Diaz ]
-  * New upstream version (3.99.3.1):
+  * New upstream version (4.0.0.0):
     - Update Spanish translation file.
 
   [ Mike Gabriel ]
-  * New upstream version (3.99.3.1):
+  * New upstream version (4.0.0.0):
     - Update German translation file.
     - Get rid of br html tags in client<->broker communication (Fixes: #81).
+    - Bump version to 4.0.0.0 (for Baikal bundle release).
 
   [ Terje Andersen ]
-  * New upstream version (3.99.3.1):
+  * New upstream version (4.0.0.0):
     - Update Bokmal (Norway) translation file.
 
  -- Mike Gabriel <mike.gabriel@das-netzwerkteam.de>  Wed, 07 Nov 2012 16:26:49 +0100

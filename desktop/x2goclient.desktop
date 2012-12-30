@@ -1,8 +1,8 @@
 [Desktop Entry]
-Version=3.99.3.1
+Version=1.0
 Type=Application
 Name=X2Go Client
-Exec=/usr/bin/x2goclient
+Exec=x2goclient
 Icon=x2goclient
 StartupWMClass=x2goclient
 X-Window-Icon=x2goclient
