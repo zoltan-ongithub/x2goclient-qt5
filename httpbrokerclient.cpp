@@ -250,7 +250,7 @@ void HttpBrokerClient::getUserSessions()
 
 void HttpBrokerClient::selectUserSession(const QString& session)
 {
-      QString brokerUser=config->brokerUser;
+    QString brokerUser=config->brokerUser;
     if(mainWindow->getUsePGPCard())
         brokerUser=mainWindow->getCardLogin();
 
@@ -279,7 +279,7 @@ void HttpBrokerClient::selectUserSession(const QString& session)
 void HttpBrokerClient::changePassword(QString newPass)
 {
     newBrokerPass=newPass;
-        QString brokerUser=config->brokerUser;
+    QString brokerUser=config->brokerUser;
     if(mainWindow->getUsePGPCard())
         brokerUser=mainWindow->getCardLogin();
 
@@ -460,8 +460,15 @@ void HttpBrokerClient::parseSession(QString sinfo)
     x2goDebug<<"starting parser\n";
     QStringList lst=sinfo.split("SERVER:",QString::SkipEmptyParts);
     int keyStartPos=sinfo.indexOf("-----BEGIN DSA PRIVATE KEY-----");
+    if(keyStartPos==-1)
+        keyStartPos=sinfo.indexOf("-----BEGIN RSA PRIVATE KEY-----");
     QString endStr="-----END DSA PRIVATE KEY-----";
     int keyEndPos=sinfo.indexOf(endStr);
+    if(keyEndPos==-1)
+    {
+        endStr="-----END RSA PRIVATE KEY-----";
+        keyEndPos=sinfo.indexOf(endStr);
+    }
     if (! (keyEndPos == -1 || keyStartPos == -1 || lst.size()==0))
         config->key=sinfo.mid(keyStartPos, keyEndPos+endStr.length()-keyStartPos);
     QString serverLine=(lst[1].split("\n"))[0];
