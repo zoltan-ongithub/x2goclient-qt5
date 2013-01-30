@@ -10,6 +10,7 @@ x2goclient (4.0.1.0-0~x2go1) UNRELEASED; urgency=low
     - Set autologin as false by default. Quote session ID in SSH broker code
     - support for session key "usebrokerpassforproxy" - use broker pass for
       authentication on proxy
+    - Fix X2Go Logo
 
  -- Mike Gabriel <mike.gabriel@das-netzwerkteam.de>  Sun, 30 Dec 2012 15:41:04 +0100
 
