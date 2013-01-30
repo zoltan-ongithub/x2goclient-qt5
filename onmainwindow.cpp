@@ -3340,8 +3340,18 @@ bool ONMainWindow::startSession ( const QString& sid )
         if(useproxy && !proxyAutologin && proxyKey.length()<=0)
         {
             bool ok;
-            proxypassword=QInputDialog::getText(0,proxylogin+"@"+proxyserver+":"+QString::number(proxyport),
-                                                tr("Enter password for SSH proxy"),QLineEdit::Password,QString::null, &ok);
+            bool useBrokerPassForProxy=false;
+            if(brokerMode)
+            {
+                useBrokerPassForProxy=(st->setting()->value (
+                                           sid+"/usebrokerpassforproxy", false
+                                       ).toBool() );
+            }
+            if(useBrokerPassForProxy)
+                proxypassword=config.brokerPass;
+            else
+                proxypassword=QInputDialog::getText(0,proxylogin+"@"+proxyserver+":"+QString::number(proxyport),
+                                                    tr("Enter password for SSH proxy"),QLineEdit::Password,QString::null, &ok);
         }
     }
 
