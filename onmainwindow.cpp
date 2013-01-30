@@ -103,6 +103,9 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
 
     appSeparator=0;
     config.brokerNoAuth=false;
+    config.brokerAutologin=false;
+    cmdAutologin=false;
+
 
 
 #ifdef Q_OS_WIN

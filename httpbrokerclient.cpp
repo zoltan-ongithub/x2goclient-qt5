@@ -270,7 +270,7 @@ void HttpBrokerClient::selectUserSession(const QString& session)
     }
     else
     {
-        sshConnection->executeCommand ( config->sshBrokerBin+" --user "+ brokerUser +" --authid "+config->brokerUserId+ " --task selectsession --sid "+session,
+        sshConnection->executeCommand ( config->sshBrokerBin+" --user "+ brokerUser +" --authid "+config->brokerUserId+ " --task selectsession --sid \\\""+session+"\\\"",
                                         this,SLOT ( slotSelectSession(bool,QString,int)));
     }
 
