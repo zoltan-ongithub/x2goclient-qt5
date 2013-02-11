@@ -9,4 +9,4 @@ X-Window-Icon=x2goclient
 X-HildonDesk-ShowInToolbar=true
 X-Osso-Type=application/x-executable
 Terminal=false
-Categories=Qt;KDE;Network
+Categories=Qt;KDE;Network;
