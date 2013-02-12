@@ -60,7 +60,9 @@ int x2goMain ( int argc, char *argv[] )
         args=app.arguments();
     if ( args.count() >1 && args[1]=="--dialog" )
     {
+#ifdef CFGCLIENT
         ONMainWindow::installTranslator();
+#endif
         QString type=args[2];
         QString caption=args[4];
         caption=caption.replace ( "NX","X2Go" );
