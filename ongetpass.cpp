@@ -30,6 +30,12 @@
 #include <onmainwindow.h>
 #endif
 
+#ifndef Q_OS_WIN
+#include <sys/types.h>
+#include <signal.h>
+#endif
+
+
 #include <QPlastiqueStyle>
 #include <QMessageBox>
 #include <iostream>
@@ -54,6 +60,7 @@ int x2goMain ( int argc, char *argv[] )
         args=app.arguments();
     if ( args.count() >1 && args[1]=="--dialog" )
     {
+        ONMainWindow::installTranslator();
         QString type=args[2];
         QString caption=args[4];
         caption=caption.replace ( "NX","X2Go" );
@@ -63,9 +70,30 @@ int x2goMain ( int argc, char *argv[] )
         if ( type=="ok" )
             return QMessageBox::information ( 0, caption,text );
         if ( type=="yesno" )
-            return  QMessageBox::question ( 0, caption,text,
-                                            QMessageBox::Yes,
-                                            QMessageBox::No );
+        {
+            if(text.indexOf("No response received from the remote server")!=-1 &&
+                    text.indexOf("Do you want to terminate the current session")!=-1)
+            {
+                text=QObject::tr("No response received from the remote server. Do you want to terminate the current session?");
+                int rez=QMessageBox::question ( 0, caption,text,
+                                                QMessageBox::Yes,
+                                                QMessageBox::No );
+                if(rez==QMessageBox::Yes && args.count()>9)
+                {
+#ifndef Q_OS_WIN
+                    int pid=args[9].toUInt();
+                    kill(pid, SIGKILL);
+#else
+                    QProcess::execute("bash -c \"kill -9 "+args[9]+"\"");
+#endif
+                }
+                return rez;
+            }
+            else
+                return  QMessageBox::question ( 0, caption,text,
+                                                QMessageBox::Yes,
+                                                QMessageBox::No );
+        }
         return -1;
     }
 

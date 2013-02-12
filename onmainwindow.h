@@ -327,6 +327,7 @@ public:
     static bool portable;
     ONMainWindow ( QWidget *parent = 0 );
     ~ONMainWindow();
+    static void installTranslator();
     QString iconsPath ( QString fname );
     const QList<SessionButton*> * getSessionsList()
     {
@@ -527,6 +528,7 @@ private:
     QStringList _internApplicationsNames;
     QStringList _transApplicationsNames;
     QString portableDataPath;
+    QString proxyErrString;
     bool proxyRunning;
     bool drawMenu;
     bool extStarted;
@@ -839,7 +841,6 @@ private:
     bool trayAutoHidden;
 
     QString findSshKeyForServer(QString user, QString server, QString port);
-    void installTranslator();
     void loadSettings();
     void showPass ( UserButton* user );
     void clean();

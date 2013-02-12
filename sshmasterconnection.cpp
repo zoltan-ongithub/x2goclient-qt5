@@ -390,6 +390,11 @@ void SshMasterConnection::run()
 
     if ( !sshConnect() )
     {
+        if(disconnectSessionFlag)
+        {
+            x2goDebug<<"session already disconnected, exiting"<<endl;
+            return;
+        }
         QString err=ssh_get_error ( my_ssh_session );
         QString message=tr ( "Can not connect to " ) +host+":"+QString::number ( port );
         x2goDebug<<message<<" - "<<err;
@@ -400,10 +405,20 @@ void SshMasterConnection::run()
         quit();
         return;
     }
+    if(disconnectSessionFlag)
+    {
+        x2goDebug<<"session already disconnected, exiting"<<endl;
+        return;
+    }
     QString errMsg;
     int state=serverAuth ( errMsg );
     if ( state != SSH_SERVER_KNOWN_OK )
     {
+        if(disconnectSessionFlag)
+        {
+            x2goDebug<<"session already disconnected, exiting"<<endl;
+            return;
+        }
         writeHostKey=writeHostKeyReady=false;
         emit serverAuthError ( state,errMsg, this );
         for(;;)
@@ -424,6 +439,11 @@ void SshMasterConnection::run()
         return;
     }
 
+    if(disconnectSessionFlag)
+    {
+        x2goDebug<<"session already disconnected, exiting"<<endl;
+        return;
+    }
     ssh_options_set ( my_ssh_session, SSH_OPTIONS_USER, user.toAscii() );
 #ifdef Q_OS_WIN
     ssh_options_set ( my_ssh_session, SSH_OPTIONS_SSH_DIR, (mainWnd->getHomeDirectory()+"/ssh").toAscii());
@@ -435,6 +455,11 @@ void SshMasterConnection::run()
 
     if ( userAuth() )
     {
+        if(disconnectSessionFlag)
+        {
+            x2goDebug<<"session already disconnected, exiting"<<endl;
+            return;
+        }
 #ifdef DEBUG
         x2goDebug<<"user auth OK\n";
 #endif
@@ -442,6 +467,11 @@ void SshMasterConnection::run()
     }
     else
     {
+        if(disconnectSessionFlag)
+        {
+            x2goDebug<<"session already disconnected, exiting"<<endl;
+            return;
+        }
         QString err;
         if (!kerberos)
             err=ssh_get_error ( my_ssh_session );
@@ -470,6 +500,11 @@ void SshMasterConnection::run()
     {
         if ( channel_forward_listen ( my_ssh_session, NULL, reverseTunnelRemotePort,  NULL ) !=SSH_OK )
         {
+            if(disconnectSessionFlag)
+            {
+                x2goDebug<<"session already disconnected, exiting"<<endl;
+                return;
+            }
             QString err=ssh_get_error ( my_ssh_session );
             QString message=tr ( "channel_forward_listen failed" );
             x2goDebug<<message<<" - "<<err;
@@ -498,7 +533,10 @@ SshMasterConnection::~SshMasterConnection()
 #ifdef DEBUG
     x2goDebug<<"SshMasterConnection, instance "<<this<<" waiting for thread to finish";
 #endif
-    wait();
+    if(!reverseTunnel)
+        wait(15000);
+    else
+        wait(3000);
 #ifdef DEBUG
     x2goDebug<<"SshMasterConnection, instance "<<this<<" thread finished";
 #endif
@@ -937,6 +975,61 @@ void SshMasterConnection::channelLoop()
 {
     forever
     {
+        disconnectFlagMutex.lock();
+        bool disconnect=disconnectSessionFlag;
+        disconnectFlagMutex.unlock();
+
+        if ( disconnect )
+        {
+#ifdef DEBUG
+            x2goDebug<<"Disconnecting..."<<endl;
+#endif
+
+            if (useproxy && proxytype==PROXYSSH&&sshProxy)
+            {
+                delete sshProxy;
+                sshProxy=0;
+            }
+
+            reverseTunnelConnectionsMutex.lock();
+#ifdef DEBUG
+            x2goDebug<<"Deleting reverse tunnel connections"<<endl;
+#endif
+            for ( int i=reverseTunnelConnections.size()-1; i>=0; --i)
+            {
+                delete reverseTunnelConnections[i];
+            }
+            reverseTunnelConnectionsMutex.unlock();
+
+            channelConnectionsMutex.lock();
+#ifdef DEBUG
+            x2goDebug<<"Deleting channel connections"<<endl;
+#endif
+            for ( int i=0; i<channelConnections.size(); ++i )
+            {
+                finalize ( i );
+            }
+            channelConnectionsMutex.unlock();
+#ifdef DEBUG
+            x2goDebug<<"Disconnect session"<<endl;
+#endif
+            ssh_disconnect ( my_ssh_session );
+            ssh_free ( my_ssh_session );
+
+#ifdef DEBUG
+            x2goDebug<<"Delete sockets"<<endl;
+#endif
+            if (tcpProxySocket != NULL)
+                delete tcpProxySocket;
+            if (tcpNetworkProxy != NULL)
+                delete tcpNetworkProxy;
+#ifdef DEBUG
+            if ( !reverseTunnel )
+                x2goDebug<<"All channels closed, session disconnected, quiting session loop"<<endl;
+#endif
+            quit();
+            return;
+        }
         copyRequestMutex.lock();
         if ( copyRequests.size() >0 )
             copy();
@@ -967,13 +1060,13 @@ void SshMasterConnection::channelLoop()
                 inet_aton ( reverseTunnelLocalHost.toAscii(), &address.sin_addr );
 #else
                 address.sin_addr.s_addr=inet_addr (
-                    reverseTunnelLocalHost.toAscii() );
+                                            reverseTunnelLocalHost.toAscii() );
 #endif
 
                 if ( ::connect ( sock, ( struct sockaddr * ) &address,sizeof ( address ) ) !=0 )
                 {
                     QString errMsg=tr ( "can not connect to " ) +
-                    reverseTunnelLocalHost+":"+QString::number ( reverseTunnelLocalPort );
+                                   reverseTunnelLocalHost+":"+QString::number ( reverseTunnelLocalPort );
                     x2goDebug<<errMsg<<endl;
                     emit ioErr ( reverseTunnelCreator, errMsg, "" );
                     continue;
@@ -1002,51 +1095,6 @@ void SshMasterConnection::channelLoop()
 
         int retval;
         int maxsock=-1;
-
-        disconnectFlagMutex.lock();
-        bool disconnect=disconnectSessionFlag;
-        disconnectFlagMutex.unlock();
-
-        if ( disconnect )
-        {
-
-            if (useproxy && proxytype==PROXYSSH&&sshProxy)
-            {
-                delete sshProxy;
-                sshProxy=0;
-            }
-
-#ifdef DEBUG
-            if ( !reverseTunnel )
-                x2goDebug<<"Disconnecting..."<<endl;
-#endif
-            reverseTunnelConnectionsMutex.lock();
-            for ( int i=reverseTunnelConnections.size()-1; i>=0; --i)
-            {
-                delete reverseTunnelConnections[i];
-            }
-            reverseTunnelConnectionsMutex.unlock();
-
-            channelConnectionsMutex.lock();
-            for ( int i=0; i<channelConnections.size(); ++i )
-            {
-                finalize ( i );
-            }
-            channelConnectionsMutex.unlock();
-            ssh_disconnect ( my_ssh_session );
-            ssh_free ( my_ssh_session );
-
-            if (tcpProxySocket != NULL)
-                delete tcpProxySocket;
-            if (tcpNetworkProxy != NULL)
-                delete tcpNetworkProxy;
-#ifdef DEBUG
-            if ( !reverseTunnel )
-                x2goDebug<<"All channels closed, session disconnected, quiting session loop"<<endl;
-#endif
-            quit();
-            return;
-        }
 
 
         channelConnectionsMutex.lock();

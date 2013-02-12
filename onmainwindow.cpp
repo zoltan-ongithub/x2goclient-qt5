@@ -3094,6 +3094,7 @@ void ONMainWindow::startDirectRDP()
     QString password=pass->text();
 
     nxproxy=new QProcess;
+    proxyErrString="";
     connect ( nxproxy,SIGNAL ( error ( QProcess::ProcessError ) ),this,
               SLOT ( slotProxyError ( QProcess::ProcessError ) ) );
     connect ( nxproxy,SIGNAL ( finished ( int,QProcess::ExitStatus ) ),this,
@@ -4985,6 +4986,7 @@ void ONMainWindow::slotTunnelOk(int)
 
 
     nxproxy=new QProcess;
+    proxyErrString="";
     QStringList env = QProcess::systemEnvironment();
     QString x2golibpath="/usr/lib/x2go";
 #if defined ( Q_OS_WIN ) || defined ( Q_OS_DARWIN )
@@ -5175,7 +5177,6 @@ void ONMainWindow::slotProxyFinished ( int,QProcess::ExitStatus )
 #ifdef Q_OS_WIN
     else
         proxyWinTimer->stop();
-// #ifdef CFGCLIENT
     if (! startXorgOnStart)
     {
         if (xorg)
@@ -5188,16 +5189,9 @@ void ONMainWindow::slotProxyFinished ( int,QProcess::ExitStatus )
             }
         }
     }
-// #endif
 #endif
     if ( closeEventSent )
         return;
-//     if ( tunnel )
-//         delete tunnel;
-//     if ( sndTunnel )
-//         delete sndTunnel;
-//     if ( fsTunnel )
-//         delete fsTunnel;
     if ( soundServer )
         delete soundServer;
     if ( spoolTimer )
@@ -5223,13 +5217,20 @@ void ONMainWindow::slotProxyFinished ( int,QProcess::ExitStatus )
     }
     trayAutoHidden=false;
 #endif
+    bool emergencyExit=false;
 
+    if(proxyErrString.indexOf("No data received from remote proxy")!=-1)
+    {
+        emergencyExit=true;
+        x2goDebug<<"Emergency exit"<<endl;
+    }
 
-#if ! (defined(Q_OS_WIN) && defined (CFGPLUGIN))
+#if ! (defined (CFGPLUGIN))
     if ( nxproxy )
     {
         if ( nxproxy->state() ==QProcess::Running )
         {
+            emergencyExit=true;
             x2goDebug<<"waiting for proxy to exit"<<endl;
             if ( !nxproxy->waitForFinished ( 3000 ) )
             {
@@ -5238,13 +5239,10 @@ void ONMainWindow::slotProxyFinished ( int,QProcess::ExitStatus )
             }
         }
         x2goDebug<<"nxproxy not running"<<endl;
-
 #ifdef Q_OS_LINUX
         if (directRDP)
             nxproxy=0;
-        else
 #endif
-            delete nxproxy;
     }
 #endif
     x2goDebug<<"proxy deleted"<<endl;
@@ -5263,7 +5261,7 @@ void ONMainWindow::slotProxyFinished ( int,QProcess::ExitStatus )
         return;
     }
 #endif
-    if ( !shadowSession && !usePGPCard && ! ( embedMode &&
+    if ( !emergencyExit && !shadowSession && !usePGPCard && ! ( embedMode &&
             ( config.checkexitstatus==false ) ) )
     {
         x2goDebug<<"checking exit status";
@@ -5271,8 +5269,9 @@ void ONMainWindow::slotProxyFinished ( int,QProcess::ExitStatus )
     }
     else
     {
-        x2goDebug<<"deleting sshConnection instance: "<<sshConnection;
+        x2goDebug<<"deleting sshConnection instance: "<<endl;
         delete sshConnection;
+        x2goDebug<<"done"<<endl;
         sshConnection=0;
     }
     if ( startHidden )
@@ -5319,6 +5318,7 @@ void ONMainWindow::slotProxyStderr()
     QString reserr;
     if ( nxproxy )
         reserr= nxproxy->readAllStandardError();
+    proxyErrString+=reserr;
     x2goDebug<<reserr<<endl;
     stInfo->insertPlainText ( reserr );
     stInfo->ensureCursorVisible();
