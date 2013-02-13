@@ -4,13 +4,16 @@ x2goclient (4.0.1.0-0~x2go1) UNRELEASED; urgency=low
   * New upstream version (4.0.1.0):
     - Add French translation file.
 
-  [ Mike Gabriel ]
-  * Continue new feature development...
-
   [ Oleksandr Shneyder ]
   * Launching parec to init pulseaudio input only on Windows
 
  -- Mike Gabriel <mike.gabriel@das-netzwerkteam.de>  Sun, 30 Dec 2012 15:41:04 +0100
+
+x2goclient (4.0.0.3-0~x2go1) unstable; urgency=low
+
+   * Fix version in version.h, VERSION and x2goplugin.rc.
+
+ -- Mike Gabriel <mike.gabriel@das-netzwerkteam.de>  Wed, 13 Feb 2013 14:37:24 +0100
 
 x2goclient (4.0.0.2-0~x2go1) unstable; urgency=low
 
