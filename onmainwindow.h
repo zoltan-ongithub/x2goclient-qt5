@@ -909,6 +909,7 @@ private slots:
     void slotCheckXOrgLog();
     void slotCheckXOrgConnection();
     void slotCheckPulse();
+    void slotStartParec ();
 #endif
 private slots:
     void slotAppDialog();
@@ -1040,7 +1041,6 @@ private slots:
     void slotAttachProxyWindow();
     void slotEmbedIntoParentWindow();
     void slotEmbedWindow();
-    void slotStartParec ();
     void slotSndTunOk();
     void slotPCookieReady (	bool result,QString output,
                             int proc );

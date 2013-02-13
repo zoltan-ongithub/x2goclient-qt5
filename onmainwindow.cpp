@@ -10593,8 +10593,10 @@ void ONMainWindow::printSshDError()
                             QMessageBox::Ok,QMessageBox::NoButton );
 }
 
+#ifdef Q_OS_WIN
 void ONMainWindow::slotStartParec ()
 {
+
     if ( !parecTunnelOk )
     {
 // 		wait 1 sec and try again
@@ -10611,7 +10613,7 @@ void ONMainWindow::slotStartParec ()
 
     sshConnection->executeCommand ( scmd );
 }
-
+#endif
 
 void ONMainWindow::slotSndTunOk()
 {
@@ -10623,8 +10625,10 @@ void ONMainWindow::slotPCookieReady (	bool result,
                                         QString ,
                                         int )
 {
+#ifdef Q_OS_WIN
     if ( result )
         slotStartParec();
+#endif
 }
 
 
