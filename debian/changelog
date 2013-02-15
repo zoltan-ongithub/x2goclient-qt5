@@ -1,5 +1,9 @@
 x2goclient (4.0.1.0-0~x2go1) UNRELEASED; urgency=low
 
+  [ Frédéric Motte ]
+  * New upstream version (4.0.1.0):
+    - Add French translation file.
+
   [ Mike Gabriel ]
   * Continue new feature development...
 
