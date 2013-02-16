@@ -1373,7 +1373,7 @@ you can install sshd with
     </message>
     <message>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Formulaire</translation>
     </message>
     <message>
         <source>Print</source>
@@ -1486,6 +1486,13 @@ lpr -P hp_laserjet</source>
     </message>
 </context>
 <context>
+    <name>QObject</name>
+    <message>
+        <source>No response received from the remote server. Do you want to terminate the current session?</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>SessionButton</name>
     <message>
         <source>Session preferences...</source>
@@ -1517,15 +1524,15 @@ lpr -P hp_laserjet</source>
     </message>
     <message>
         <source>New Session</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Nouvelle session</translation>
     </message>
     <message>
         <source>running</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">en cours</translation>
     </message>
     <message>
         <source>suspended</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">suspendue</translation>
     </message>
     <message>
         <source>KDE</source>
@@ -1533,7 +1540,7 @@ lpr -P hp_laserjet</source>
     </message>
     <message>
         <source>RDP connection</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Connection RDP</translation>
     </message>
     <message>
         <source>XDMCP</source>
@@ -1541,7 +1548,7 @@ lpr -P hp_laserjet</source>
     </message>
     <message>
         <source>Connection to local desktop</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Connection au bureau local</translation>
     </message>
     <message>
         <source>Published applications</source>
@@ -1592,12 +1599,12 @@ lpr -P hp_laserjet</source>
     </message>
     <message>
         <source>&amp;Create session icon on desktop...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&amp;Créer une icone de session sur le bureau...</translation>
     </message>
     <message>
         <source>Delete</source>
         <comment>Delete</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Effacer</translation>
     </message>
     <message>
         <source>Session management</source>
@@ -1624,7 +1631,7 @@ lpr -P hp_laserjet</source>
     </message>
     <message>
         <source>Login:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Identifiant:</translation>
     </message>
     <message>
         <source>SSH port:</source>
@@ -1676,7 +1683,7 @@ lpr -P hp_laserjet</source>
     </message>
     <message>
         <source>Type:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Type:</translation>
     </message>
     <message>
         <source>Port:</source>
@@ -1768,7 +1775,7 @@ lpr -P hp_laserjet</source>
     </message>
     <message>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Erreur</translation>
     </message>
     <message>
         <source>x2goclient is running in portable mode. You should use a path on your usb device to be able to access your data whereever you are</source>
@@ -1888,11 +1895,11 @@ sound system connections through firewalls</source>
     </message>
     <message>
         <source>us</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">us</translation>
     </message>
     <message>
         <source>pc105/us</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">pc105/us</translation>
     </message>
     <message>
         <source>password</source>
@@ -1919,7 +1926,7 @@ sound system connections through firewalls</source>
     </message>
     <message>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Effacer</translation>
     </message>
     <message>
         <source>Path:</source>
@@ -1931,7 +1938,7 @@ sound system connections through firewalls</source>
     </message>
     <message>
         <source>Select folder</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Choisir un dossier</translation>
     </message>
     <message>
         <source>Filename encoding</source>
@@ -1955,7 +1962,7 @@ sound system connections through firewalls</source>
     </message>
     <message>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Erreur</translation>
     </message>
     <message>
         <source>x2goclient is running in portable mode. You should use a path on your usb device to be able to access your data whereever you are</source>
@@ -2071,7 +2078,7 @@ sound system connections through firewalls</source>
     <name>XSettingsWidgetUI</name>
     <message>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Formulaire</translation>
     </message>
     <message>
         <source>You must restart the X2Go Client for the changes to take effect</source>
