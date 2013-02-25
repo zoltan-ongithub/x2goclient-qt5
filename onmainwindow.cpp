@@ -959,6 +959,13 @@ void ONMainWindow::slotGetBrokerAuth()
                          Qt::SmoothTransformation ) );
         fotoLabel->setFixedSize ( 48,48 );
     }
+
+    if(users->isVisible())
+    {
+        users->hide();
+        ln->hide();
+        bgLay->insertStretch(3);
+    }
     QString text=tr("<b>Authentication</b>");
     /* if(config.brokerName.length()>0)
        text+=config.brokerName;
