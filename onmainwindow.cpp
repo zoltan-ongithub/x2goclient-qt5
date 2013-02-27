@@ -2107,6 +2107,12 @@ void ONMainWindow::slotReadSessions()
     users->show();
     ln->show();
 
+    if(brokerMode)
+    {
+        bgLay->removeItem(bgLay->itemAt(3));
+        slotResize(QSize(width(), height()));
+    }
+
     X2goSettings *st;
     lastSession=0;
 

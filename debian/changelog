@@ -8,6 +8,7 @@ x2goclient (4.0.1.0-0~x2go1) UNRELEASED; urgency=low
   * New upstream version (4.0.1.0):
     - Launching parec to init pulseaudio input only on Windows.
     - Hide profilecard area on broker authentication
+    - fix ONMainWindow layout in broker mode
 
   [ Mike Gabriel ]
   * New upstream version (4.0.1.0):
