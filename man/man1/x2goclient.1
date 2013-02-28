@@ -100,8 +100,34 @@ Add DSA/RSA host key fingerprint to .ssh/known_hosts in case of "authenticity of
 \*(T<\fB\-\-read-exports-from\fR\*(T>
 Specifies a directory where some external mechanism (e.g. script) can notify \fBx2goclient\fR on
 new block devices (CD/DVDs, USB sticks, etc.).
-.SH LDAP OPTIONS
-In case you want to provide \fBx2goclient\fR session profiles from LDAP use the following options:
+.SH BROKER OPTIONS
+In case you want to retrieve \fBx2goclient\fR session profiles from an X2Go Session Broker use the following options:
+.TP
+\*(T<\fB\-\-broker-url=<URL>\fR\*(T>
+Specify the <URL> of the X2Go Session Broker. X2Go Client can access http:// and ssh:// style URLs.
+.TP
+\*(T<\fB\-\-broker-noauth\fR\*(T>
+The X2Go Session Broker is accessible without authentication.
+.TP
+\*(T<\fB\-\-auth-id=<USERNAME>\fR\*(T>
+Use this <USERNAME> for authenticating against the X2Go Session Broker. This option mostly makes sense together
+with \fI--broker-autologin\fR or \fI--broker-ssh-key\fR.
+.TP
+\*(T<\fB\-\-broker-autologin\fR\*(T>
+For SSH based X2Go Session Brokers. If an SSH agent is available or default key files exist then
+try those for authentication against the X2Go Session Broker.
+.TP
+\*(T<\fB\-\-broker-ssh-key=<SSHPRIVKEY>\fR\*(T>
+For SSH based X2Go Session Brokers. Full path to a valid SSH private key file.
+.TP
+\*(T<\fB\-\-broker-name=<NAME>\fR\*(T>
+Currently unused...
+
+.SH LDAP OPTIONS (deprecated)
+NOTE: LDAP support won't be continued in X2Go Client 2 (next generation of X2Go Client). The LDAP
+functionality already is fully available via the X2Go Session Brokerage feature.
+.PP
+In case you want to retrieve \fBx2goclient\fR session profiles from an LDAP server use the following options:
 .TP
 \*(T<\fB\-\-ldap\fR\*(T>
 Start with LDAP support (disabled by default).
