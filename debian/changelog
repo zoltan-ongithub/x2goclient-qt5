@@ -20,7 +20,10 @@ x2goclient (4.0.1.0-0~x2go1) UNRELEASED; urgency=low
 
 x2goclient (4.0.0.4-0~x2go1) UNRELEASED; urgency=low
 
-  * Continue development...
+  [ Clemens Lang ]
+  * New upstream version (4.0.0.4):
+    - Add scripts and additional files for building X2Go Client
+      disk images for Mac OS X. (Fixes: #131).
 
  -- Mike Gabriel <mike.gabriel@das-netzwerkteam.de>  Fri, 01 Mar 2013 21:20:27 +0100
 

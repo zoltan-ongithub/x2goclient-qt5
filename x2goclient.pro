@@ -159,7 +159,6 @@ x2go_linux_static {
 macx {
 	message(building $$TARGET with ldap and cups)
 	LIBS += -framework LDAP -lcups -lcrypto -lssl -lz
-	CONFIG += x86 x86_64 ppc
 }
 win32-* {
 	message(building $$TARGET for windows without ldap and cups)
@@ -169,8 +168,6 @@ win32-* {
 QT += svg network
 ICON = icons/x2go-mac.icns
 QMAKE_INFO_PLIST = Info.plist
-QMAKE_MAC_SDK = /Developer/SDKs/MacOSX10.5.sdk
-QMAKE_MACOSX_DEPLOYMENT_TARGET = 10.5
 
 plugin {
 	DEFINES += CFGPLUGIN
