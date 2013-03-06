@@ -261,6 +261,8 @@ SshMasterConnection* SshMasterConnection::reverseTunnelConnection ( SshProcess* 
     connect ( con,SIGNAL ( ioErr ( SshProcess*,QString,QString ) ),this,SIGNAL ( ioErr ( SshProcess*,QString,QString ) ) );
     connect ( con,SIGNAL ( stdErr ( SshProcess*,QByteArray ) ),this,SIGNAL ( stdErr ( SshProcess*,QByteArray ) ) );
     connect ( con,SIGNAL ( reverseListenOk ( SshProcess* ) ), this, SIGNAL ( reverseListenOk ( SshProcess* ) ) );
+    con->keyPhrase=keyPhrase;
+    con->keyPhraseReady=true;
     con->start();
     reverseTunnelConnectionsMutex.lock();
     reverseTunnelConnections.append ( con );
@@ -536,7 +538,7 @@ SshMasterConnection::~SshMasterConnection()
     if(!reverseTunnel)
         wait(15000);
     else
-        wait(3000);
+        wait(5000);
 #ifdef DEBUG
     x2goDebug<<"SshMasterConnection, instance "<<this<<" thread finished";
 #endif
@@ -694,18 +696,21 @@ bool SshMasterConnection::userAuthAuto()
     int i=0;
     while(rc != SSH_AUTH_SUCCESS)
     {
-        keyPhraseReady=false;
-        emit needPassPhrase(this);
-        for(;;)
+        if(!reverseTunnel)
         {
-            bool ready=false;
-            this->usleep(200);
-            keyPhraseMutex.lock();
-            if(keyPhraseReady)
-                ready=true;
-            keyPhraseMutex.unlock();
-            if(ready)
-                break;
+            keyPhraseReady=false;
+            emit needPassPhrase(this);
+            for(;;)
+            {
+                bool ready=false;
+                this->usleep(200);
+                keyPhraseMutex.lock();
+                if(keyPhraseReady)
+                    ready=true;
+                keyPhraseMutex.unlock();
+                if(ready)
+                    break;
+            }
         }
         if(keyPhrase==QString::null)
             break;
@@ -766,18 +771,21 @@ bool SshMasterConnection::userAuthWithKey()
     int i=0;
     while(!prkey)
     {
-        keyPhraseReady=false;
-        emit needPassPhrase(this);
-        for(;;)
+        if(!reverseTunnel)
         {
-            bool ready=false;
-            this->usleep(200);
-            keyPhraseMutex.lock();
-            if(keyPhraseReady)
-                ready=true;
-            keyPhraseMutex.unlock();
-            if(ready)
-                break;
+            keyPhraseReady=false;
+            emit needPassPhrase(this);
+            for(;;)
+            {
+                bool ready=false;
+                this->usleep(200);
+                keyPhraseMutex.lock();
+                if(keyPhraseReady)
+                    ready=true;
+                keyPhraseMutex.unlock();
+                if(ready)
+                    break;
+            }
         }
         if(keyPhrase==QString::null)
             break;

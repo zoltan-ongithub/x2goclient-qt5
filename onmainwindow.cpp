@@ -2891,6 +2891,11 @@ void ONMainWindow::slotSshServerAuthPassphrase(SshMasterConnection* connection)
             phrase="";
     }
     connection->setKeyPhrase(phrase);
+    if(isHidden())
+    {
+        show();
+        QTimer::singleShot(1, this, SLOT(hide()));
+    }
 }
 
 
@@ -8243,11 +8248,6 @@ void ONMainWindow::slotExecXmodmap()
 
 void ONMainWindow::check_cmd_status()
 {
-    QString passwd;
-    QString user=getCurrentUname();
-    QString host=resumingSession.server;
-    passwd=getCurrentPass();
-
     x2goDebug<<"check command message"<<endl;
     sshConnection->executeCommand ( "x2gocmdexitmessage "+
                                     resumingSession.sessionId , this, SLOT(slotCmdMessage(bool, QString, int)));
