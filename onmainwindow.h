@@ -513,9 +513,7 @@ public:
     static QString cygwinPath ( const QString& winPath );
     void startXOrg();
     void startPulsed();
-    static bool haveCySolEntry();
     static bool haveCygwinEntry();
-    static void removeCySolEntry();
     static void removeCygwinEntry();
     static QString U3DevicePath()
     {
@@ -768,7 +766,6 @@ private:
     QString oldBinDir;
     QString oldTmpDir;
 
-    bool cySolEntry;
     bool cyEntry;
 
     QString pulseDir;

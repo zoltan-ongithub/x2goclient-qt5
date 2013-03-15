@@ -11,6 +11,7 @@ x2goclient (4.0.1.0-0~x2go1) UNRELEASED; urgency=low
     - fix ONMainWindow layout in broker mode
     - set passphrase for key to reverse ssh connection
       fix closing client after getting passphrase (Fixes #137) 
+    - support for recent cygwin API on Windows 
 
   [ Mike Gabriel ]
   * New upstream version (4.0.1.0):

@@ -1399,10 +1399,6 @@ void ONMainWindow::closeClient()
         {
             removeCygwinEntry();
         }
-        if ( !cySolEntry )
-        {
-            removeCySolEntry();
-        }
 #endif
         cleanPortable();
     }
@@ -8419,7 +8415,7 @@ void ONMainWindow::startX2goMount()
     cuser="user";
 #endif
 #ifdef Q_OS_WIN
-    cuser="sshuser";
+    cuser=wapiGetUserName();
 #endif
     QString cmd;
     QString dirs=dir->dirList;
@@ -8854,20 +8850,10 @@ void ONMainWindow::startWinServers()
 // #endif
 }
 
-
-bool ONMainWindow::haveCySolEntry()
-{
-    QSettings CySolSt ( "HKEY_CURRENT_USER\\Software"
-                        "\\Cygnus Solutions",
-                        QSettings::NativeFormat );
-    return ( CySolSt.childGroups().count() > 0 ||
-             CySolSt.childKeys().count() > 0 );
-}
-
 bool ONMainWindow::haveCygwinEntry()
 {
     QSettings CygwSt ( "HKEY_CURRENT_USER\\Software"
-                       "\\Cygnus Solutions\\Cygwin",
+                       "\\Cygwin",
                        QSettings::NativeFormat );
     return ( CygwSt.childGroups().count() >0||CygwSt.childKeys().count() );
 }
@@ -8878,17 +8864,6 @@ void ONMainWindow::saveCygnusSettings()
 {
     if ( ONMainWindow::portable )
     {
-        if ( haveCySolEntry() )
-        {
-            x2goDebug<<"Cygnus Solutions entry exist";
-            cySolEntry=true;
-        }
-        else
-        {
-            cySolEntry=false;
-            x2goDebug<<"Cygnus Solutions entry not exist";
-        }
-
         if ( haveCygwinEntry() )
         {
             x2goDebug<<"Cygwin entry exist";
@@ -8900,114 +8875,15 @@ void ONMainWindow::saveCygnusSettings()
             cyEntry=false;
         }
     }
-
-    QSettings etcst ( "HKEY_CURRENT_USER\\Software"
-                      "\\Cygnus Solutions\\Cygwin\\mounts v2\\/etc",
-                      QSettings::NativeFormat );
-    oldEtcDir=QString::null;
-    oldEtcDir=etcst.value ( "native",oldEtcDir ).toString();
-    x2goDebug<<"old etc:"<<oldEtcDir<<endl;
-    QString newEtc=homeDir+"/.x2go/etc";
-    QDir d ( newEtc );
-    if ( !d.exists() )
-        d.mkpath ( newEtc );
-    newEtc.replace ( "/","\\" );
-
-    etcst.setValue ( "native",wapiShortFileName ( newEtc ) );
-    etcst.sync();
-    x2goDebug<<"new etc:"<<wapiShortFileName ( newEtc ) <<endl;
-
-    QSettings binst ( "HKEY_CURRENT_USER\\Software"
-                      "\\Cygnus Solutions\\Cygwin\\mounts v2\\/bin",
-                      QSettings::NativeFormat );
-    oldBinDir=QString::null;
-    oldBinDir=binst.value ( "native",oldBinDir ).toString();
-    x2goDebug<<"old bin:"<<oldBinDir<<endl;
-    QString newBin=appDir;
-    newBin.replace ( "/","\\" );
-    binst.setValue ( "native",wapiShortFileName ( newBin ) );
-    binst.sync();
-    x2goDebug<<"new bin:"<<newBin<<endl;
-
-    QSettings tmpst ( "HKEY_CURRENT_USER\\Software"
-                      "\\Cygnus Solutions\\Cygwin\\mounts v2\\/tmp",
-                      QSettings::NativeFormat );
-    oldTmpDir=QString::null;
-    oldTmpDir=tmpst.value ( "native",oldTmpDir ).toString();
-    x2goDebug<<"old tmp:"<<oldTmpDir<<endl;
-    QString newTmp=QDir::tempPath();
-    newTmp.replace ( "/","\\" );
-    tmpst.setValue ( "native",wapiShortFileName ( newTmp ) );
-    tmpst.sync();
-    x2goDebug<<"new tmp:"<<newTmp<<endl;
 }
 
 void ONMainWindow::restoreCygnusSettings()
 {
-
-    if ( oldEtcDir==QString::null )
-    {
-        QSettings st ( "HKEY_CURRENT_USER\\Software"
-                       "\\Cygnus Solutions\\Cygwin\\mounts v2\\/etc",
-                       QSettings::NativeFormat );
-        x2goDebug<<"Removing /etc from cygwin mounts\n";
-        st.remove ( "" );
-        st.sync();
-    }
-    else
-    {
-        QSettings st ( "HKEY_CURRENT_USER\\Software"
-                       "\\Cygnus Solutions\\Cygwin\\mounts v2\\/etc",
-                       QSettings::NativeFormat );
-        st.setValue ( "native",oldEtcDir );
-        st.sync();
-        x2goDebug<<"Restoring /etc in cygwin mounts\n";
-    }
-    if ( oldBinDir==QString::null )
-    {
-        QSettings st ( "HKEY_CURRENT_USER\\Software"
-                       "\\Cygnus Solutions\\Cygwin\\mounts v2\\/bin",
-                       QSettings::NativeFormat );
-        x2goDebug<<"Removing /bin from cygwin mounts\n";
-        st.remove ( "" );
-        st.sync();
-    }
-    else
-    {
-        QSettings st ( "HKEY_CURRENT_USER\\Software"
-                       "\\Cygnus Solutions\\Cygwin\\mounts v2\\/bin",
-                       QSettings::NativeFormat );
-        st.setValue ( "native",oldBinDir );
-        st.sync();
-        x2goDebug<<"Restoring /bin in cygwin mounts\n";
-    }
-    if ( oldTmpDir==QString::null )
-    {
-        QSettings st ( "HKEY_CURRENT_USER\\Software"
-                       "\\Cygnus Solutions\\Cygwin\\mounts v2\\/tmp",
-                       QSettings::NativeFormat );
-        x2goDebug<<"Removing /tmp from cygwin mounts\n";
-        st.remove ( "" );
-        st.sync();
-    }
-    else
-    {
-        QSettings st ( "HKEY_CURRENT_USER\\Software"
-                       "\\Cygnus Solutions\\Cygwin\\mounts v2\\/tmp",
-                       QSettings::NativeFormat );
-        st.setValue ( "native",oldTmpDir );
-        st.sync();
-        x2goDebug<<"Restoring /tmp in cygwin mounts\n";
-    }
     if ( ONMainWindow::portable )
     {
         if ( !cyEntry )
         {
             removeCygwinEntry();
-        }
-        if ( !cySolEntry )
-        {
-            removeCySolEntry();
         }
     }
 }
@@ -9015,22 +8891,12 @@ void ONMainWindow::restoreCygnusSettings()
 void ONMainWindow::removeCygwinEntry()
 {
     QSettings st ( "HKEY_CURRENT_USER\\Software"
-                   "\\Cygnus Solutions\\Cygwin",
+                   "\\Cygwin",
                    QSettings::NativeFormat );
-    x2goDebug<<"Removing cygwin\n";
+    x2goDebug<<"Removing cygwin from registry\n";
     st.remove ( "" );
     st.sync();
 
-}
-
-void ONMainWindow::removeCySolEntry()
-{
-    QSettings st ( "HKEY_CURRENT_USER\\Software"
-                   "\\Cygnus Solutions",
-                   QSettings::NativeFormat );
-    x2goDebug<<"Removing cygnus solutions\n";
-    st.remove ( "" );
-    st.sync();
 }
 
 void ONMainWindow::startPulsed()
@@ -9165,54 +9031,26 @@ void ONMainWindow::generateEtcFiles()
     QString etcDir=homeDir+"/.x2go/etc";
     QDir dr ( homeDir );
     dr.mkpath ( etcDir );
+    QFile file ( etcDir +"/sshd_config" );
+    if ( !file.open ( QIODevice::WriteOnly | QIODevice::Text ) )
+        return;
 #ifdef Q_OS_WIN
-    if ( !QFile::exists ( etcDir+"/passwd" ) )
-    {
-        QString sid, sys, user, grsid, grname;
-        if ( !wapiAccountInfo ( &sid,&user,&grsid, &grname, &sys ) )
-        {
-// 			x2goDebug<<"Get account info failed\n";
-            close();
-        }
-
-// 		x2goDebug<<"sid: "<<sid <<" system:"<<
-// 		sys<< " user: "<<user<<" group sid:"<<grsid<<
-// 		"group name: "<<grname<<endl;
-
-        QStringList sidList=sid.split ( '-' );
-        QString rid=sidList[sidList.count()-1];
-        QStringList grsidList=grsid.split ( '-' );
-        QString grid=grsidList[grsidList.count()-1];
-        QFile file ( etcDir +"/passwd" );
-        if ( !file.open ( QIODevice::WriteOnly | QIODevice::Text ) )
-            return;
-        QTextStream out ( &file );
-        out <<"sshuser::"<<rid<<":"<<grid<<":"<<sys<<"\\sshuser,"
-            <<sid<<":"<<cygwinPath ( wapiShortFileName ( homeDir ) ) <<
-            "/.x2go"<<":/bin/bash\n";
-        file.close();
-    }
-
-    if ( !QFile::exists ( etcDir+"/sshd_config" ) )
-    {
+    QString authKeyPath=cygwinPath ( homeDir+"/.x2go/.ssh/authorized_keys" );
+    authKeyPath.replace(wapiGetUserName(),"%u");
 #endif
-        QFile file ( etcDir +"/sshd_config" );
-        if ( !file.open ( QIODevice::WriteOnly | QIODevice::Text ) )
-            return;
-        QTextStream out ( &file );
-        out<<"StrictModes no\n"<<
-           "UsePrivilegeSeparation no\n"<<
+    QTextStream out ( &file );
+    out<<"StrictModes no\n"<<
+       "UsePrivilegeSeparation no\n"<<
 #ifdef Q_OS_WIN
-           "Subsystem sftp /bin/sftp-server\n";
+       "Subsystem shell "<< wapiShortFileName ( appDir) +"/sh"+"\n"<<
+       "Subsystem sftp "<< wapiShortFileName ( appDir) +"/sftp-server"+"\n"<<
+       "AuthorizedKeysFile \""<<authKeyPath<<"\"";
 #else
-           "Subsystem sftp "
-           <<appDir<<"/sftp-server\n";
+       "Subsystem sftp "
+       <<appDir<<"/sftp-server\n";
 #endif
-        file.close();
-        x2goDebug<<etcDir +"/sshd_config created";
-#ifdef Q_OS_WIN
-    }
-#endif
+    file.close();
+    x2goDebug<<etcDir +"/sshd_config created";
 }
 
 void ONMainWindow::generateHostDsaKey()
@@ -9255,7 +9093,10 @@ void ONMainWindow::startSshd()
 #ifdef Q_OS_WIN
     std::string clientdir=wapiShortFileName ( appDir ).toStdString();
     std::stringstream strm;
-    strm<<clientdir<<"\\sshd.exe -D -p"<<clientSshPort.toInt();
+    std::string config=cygwinPath(etcDir+"/sshd_config").toStdString();
+    std::string key=cygwinPath(etcDir+"/ssh_host_dsa_key").toStdString();
+
+    strm<<clientdir<<"\\sshd.exe -D -p "<<clientSshPort.toInt()<<" -f "<< config <<" -h "<<key;
 
     STARTUPINFOA si;
     std::string desktopName="x2go_";

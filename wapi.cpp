@@ -274,7 +274,7 @@ QString wapiGetDriveByLabel(const QString& label)
     {
         TCHAR* buf=new TCHAR[len+1];
         len=GetLogicalDriveStrings(len,buf);
-        for (int i=0;i<len;i+=4)
+        for (int i=0; i<len; i+=4)
         {
             QString drive=QString::fromUtf16 ( ( const ushort* ) buf+i );
             x2goDebug<<"drive:"<<drive;
@@ -283,7 +283,7 @@ QString wapiGetDriveByLabel(const QString& label)
             GetVolumeInformation(buf+i,vol,MAX_PATH,0,0,0,fs,MAX_PATH);
             QString volume=QString::fromUtf16 ( ( const ushort* ) vol );
             x2goDebug<<"vol:"<<volume<<
-            "fs:"<<QString::fromUtf16 ( ( const ushort* ) fs );
+                     "fs:"<<QString::fromUtf16 ( ( const ushort* ) fs );
             if (!volume.compare(label,Qt::CaseInsensitive))
             {
                 x2goDebug<<"matched! ";
@@ -506,12 +506,22 @@ QStringList wapiGetLocalPrinters()
         delete []info_array;
         return printers;
     }
-    for ( uint i=0;i<sizeOfArray;++i )
+    for ( uint i=0; i<sizeOfArray; ++i )
     {
         printers<<QString::fromUtf16 (
-            ( const ushort* ) ( info_array[i].pPrinterName ) );
+                    ( const ushort* ) ( info_array[i].pPrinterName ) );
     }
     delete []info_array;
     return printers;
+}
+
+#define INFO_BUFFER_SIZE 32767
+QString wapiGetUserName()
+{
+    TCHAR  infoBuf[INFO_BUFFER_SIZE];
+    DWORD bufCharCount=INFO_BUFFER_SIZE;
+    if( !GetUserName( infoBuf, &bufCharCount ) )
+        return QString::null;
+    return QString::fromUtf16 ( ( const ushort* ) infoBuf);
 }
 #endif
