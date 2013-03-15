@@ -8995,20 +8995,27 @@ void ONMainWindow::xorgSettings()
     xorgFSOptions=(st.setting()->value("optionsfs","-fullscreen -notrayicon -clipboard").toString());
     xorgSAppOptions=(st.setting()->value("optionssingle","-multiwindow -notrayicon -clipboard").toString());
 
+
+
     if (QFile::exists(appDir+"\\vcxsrv"))
         internalX=VCXSRV;
     if (QFile::exists(appDir+"\\xming"))
         internalX=XMING;
+
+    QString primClip;
+    if(st.setting()->value("noprimaryclip",false).toBool() && internalX==VCXSRV)
+        primClip=" -noclipboardprimary";
+
     if (useInternalX)
     {
         startXorgOnStart=(internalX==XMING);
-        xorgOptions="-multiwindow -notrayicon -clipboard";
+        xorgOptions="-multiwindow -notrayicon -clipboard"+primClip;
         if (internalX==VCXSRV)
         {
 // 	xorgWinOptions="-screen 0 %wx%h -notrayicon -clipboard";
-            xorgWinOptions="-multiwindow -notrayicon -clipboard";
-            xorgFSOptions="-fullscreen -notrayicon -clipboard";
-            xorgSAppOptions="-multiwindow -notrayicon -clipboard";
+            xorgWinOptions="-multiwindow -notrayicon -clipboard"+primClip;
+            xorgFSOptions="-fullscreen -notrayicon -clipboard"+primClip;
+            xorgSAppOptions="-multiwindow -notrayicon -clipboard"+primClip;
         }
     }
 

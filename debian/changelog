@@ -12,6 +12,7 @@ x2goclient (4.0.1.0-0~x2go1) UNRELEASED; urgency=low
     - set passphrase for key to reverse ssh connection
       fix closing client after getting passphrase (Fixes #137) 
     - support for recent cygwin API on Windows 
+    - add checkbox for -noclipboardprimary argument for internal vcxsrv
 
   [ Mike Gabriel ]
   * New upstream version (4.0.1.0):

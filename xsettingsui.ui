@@ -7,8 +7,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>521</width>
-    <height>386</height>
+    <width>583</width>
+    <height>495</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -52,6 +52,13 @@
      </property>
      <property name="checked">
       <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QCheckBox" name="cbNoPrimary">
+     <property name="text">
+      <string> do not use primary clipboard</string>
      </property>
     </widget>
    </item>
@@ -173,12 +180,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>133</x>
-     <y>43</y>
+     <x>142</x>
+     <y>198</y>
     </hint>
     <hint type="destinationlabel">
-     <x>187</x>
-     <y>163</y>
+     <x>196</x>
+     <y>373</y>
     </hint>
    </hints>
   </connection>
@@ -189,12 +196,12 @@
    <slot>setVisible(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>63</x>
-     <y>125</y>
+     <x>83</x>
+     <y>300</y>
     </hint>
     <hint type="destinationlabel">
-     <x>67</x>
-     <y>146</y>
+     <x>88</x>
+     <y>332</y>
     </hint>
    </hints>
   </connection>
@@ -205,12 +212,12 @@
    <slot>setVisible(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>132</x>
-     <y>124</y>
+     <x>152</x>
+     <y>300</y>
     </hint>
     <hint type="destinationlabel">
-     <x>204</x>
-     <y>149</y>
+     <x>406</x>
+     <y>332</y>
     </hint>
    </hints>
   </connection>
@@ -221,12 +228,12 @@
    <slot>setHidden(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>53</x>
-     <y>124</y>
+     <x>73</x>
+     <y>300</y>
     </hint>
     <hint type="destinationlabel">
-     <x>33</x>
-     <y>186</y>
+     <x>53</x>
+     <y>474</y>
     </hint>
    </hints>
   </connection>
@@ -237,12 +244,28 @@
    <slot>slotSetExecutable()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>481</x>
-     <y>98</y>
+     <x>561</x>
+     <y>269</y>
     </hint>
     <hint type="destinationlabel">
      <x>498</x>
      <y>333</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>rbXming</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>cbNoPrimary</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>68</x>
+     <y>132</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>129</x>
+     <y>162</y>
     </hint>
    </hints>
   </connection>

@@ -26,6 +26,7 @@ XSettingsWidget::XSettingsWidget(QWidget* parent)
     X2goSettings st ( "settings" );
     rbXming->setChecked(st.setting()->value("useintx",true).toBool());
     rbOther->setChecked(!(st.setting()->value("useintx",true).toBool()));
+    cbNoPrimary->setChecked(st.setting()->value("noprimaryclip",false).toBool());
     leExec->setText(st.setting()->value("xexec","C:\\program files\\vcxsrv\\vcxsrv.exe").toString());
     leCmdOptions->setText(st.setting()->value("options","-multiwindow -notrayicon -clipboard").toString());
 
@@ -64,7 +65,7 @@ void XSettingsWidget::setDefaults()
     leFSMod->setText("-fullscreen -notrayicon -clipboard");
     leSingApp->setText("-multiwindow -notrayicon -clipboard");
 //     spDelay->setValue(3);
-  
+
 }
 
 void XSettingsWidget::saveSettings()
@@ -74,9 +75,10 @@ void XSettingsWidget::saveSettings()
     st.setting()->setValue("xexec",leExec->text());
     st.setting()->setValue("options",leCmdOptions->text());
     st.setting()->setValue("onstart",cbOnstart->isChecked());
+    st.setting()->setValue("noprimaryclip", cbNoPrimary->isChecked());
 
     st.setting()->setValue("optionswin",leWinMod->text());
-    st.setting()->setValue("optionsfs",leFSMod->text());    
+    st.setting()->setValue("optionsfs",leFSMod->text());
     st.setting()->setValue("optionssingle",leSingApp->text());
 //     st.setting()->setValue("delay",spDelay->value());
     st.setting()->sync();
