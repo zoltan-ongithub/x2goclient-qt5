@@ -1,4 +1,4 @@
-x2goclient (4.0.1.0-0~x2go1) UNRELEASED; urgency=low
+x2goclient (4.0.1.0-0~x2go1) unstable; urgency=low
 
   [ Frédéric Motte ]
   * New upstream version (4.0.1.0):
@@ -7,19 +7,19 @@ x2goclient (4.0.1.0-0~x2go1) UNRELEASED; urgency=low
   [ Oleksandr Shneyder ]
   * New upstream version (4.0.1.0):
     - Launching parec to init pulseaudio input only on Windows.
-    - Hide profilecard area on broker authentication
-    - fix ONMainWindow layout in broker mode
-    - set passphrase for key to reverse ssh connection
-      fix closing client after getting passphrase (Fixes #137) 
-    - support for recent cygwin API on Windows 
-    - add checkbox for -noclipboardprimary argument for internal vcxsrv
+    - Hide profilecard area on broker authentication.
+    - Fix ONMainWindow layout in broker mode.
+    - Set passphrase for key to reverse SSH connection.
+      Fix closing client after getting passphrase (Fixes #137) 
+    - Support for recent cygwin API on Windows.
+    - Add checkbox for -noclipboardprimary argument for internal vcxsrv.
 
   [ Mike Gabriel ]
   * New upstream version (4.0.1.0):
     - Fix position shifts of broker login widget on repetetive authentication
       failures. (Fixes: #71).
 
- -- Mike Gabriel <mike.gabriel@das-netzwerkteam.de>  Sun, 30 Dec 2012 15:41:04 +0100
+ -- Mike Gabriel <mike.gabriel@das-netzwerkteam.de>  Fri, 22 Mar 2013 23:15:45 +0100
 
 x2goclient (4.0.0.4-0~x2go1) unstable; urgency=low
 
