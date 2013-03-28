@@ -155,7 +155,7 @@ void SshMasterConnection::slotSshProxyConnectionOk()
     while ( ONMainWindow::isServerRunning ( localProxyPort ) )
         ++localProxyPort;
 
-    sshProxy->startTunnel ( host, port, "localhost",localProxyPort,false,this, SLOT ( slotSshProxyTunnelOk(int)),
+    sshProxy->startTunnel ( host, port, "127.0.0.1",localProxyPort,false,this, SLOT ( slotSshProxyTunnelOk(int)),
                             SLOT ( slotSshProxyTunnelFailed(bool,QString,int)));
 
 }
@@ -574,11 +574,7 @@ bool SshMasterConnection::sshConnect()
     QByteArray tmpBA = host.toLocal8Bit();
     if(useproxy && proxytype==PROXYSSH)
     {
-#ifdef Q_OS_WIN
         ssh_options_set ( my_ssh_session, SSH_OPTIONS_HOST, "127.0.0.1" );
-#else
-        ssh_options_set ( my_ssh_session, SSH_OPTIONS_HOST, "localhost" );
-#endif
         ssh_options_set ( my_ssh_session, SSH_OPTIONS_PORT, &localProxyPort );
 
     }
