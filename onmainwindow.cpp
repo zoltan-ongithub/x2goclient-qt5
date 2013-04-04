@@ -5284,9 +5284,11 @@ void ONMainWindow::slotProxyFinished ( int,QProcess::ExitStatus )
         delete sshConnection;
         x2goDebug<<"done"<<endl;
         sshConnection=0;
+        if ( startHidden )
+        {
+            close();
+        }
     }
-    if ( startHidden )
-        close();
 
     if ( readExportsFrom!=QString::null )
     {
@@ -8270,9 +8272,6 @@ void ONMainWindow::slotCmdMessage ( bool result,QString output,
         passForm->setEnabled ( true );
         pass->setFocus();
         pass->selectAll();
-        delete sshConnection;
-        sshConnection=0;
-        return;
     }
     if ( output.indexOf ( "X2GORUNCOMMAND ERR NOEXEC:" ) !=-1 )
     {
@@ -8283,8 +8282,13 @@ void ONMainWindow::slotCmdMessage ( bool result,QString output,
                                 cmd,QMessageBox::Ok,
                                 QMessageBox::NoButton );
     }
-    delete sshConnection;
+    if(sshConnection)
+        delete sshConnection;
     sshConnection=0;
+    if ( startHidden )
+    {
+        close();
+    }
 }
 
 

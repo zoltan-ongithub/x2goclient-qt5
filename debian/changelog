@@ -3,6 +3,7 @@ x2goclient (4.0.1.1-0~x2go1) UNRELEASED; urgency=low
   [ Oleksandr Shneyder ]
   * Use "127.0.0.1" instead of localhost to avoid wrong IPv6 hostname
     resolution. (Fixes: #151).
+    - waiting for x2gocmdexitmessage to return before closing in hidden mode
 
  -- Mike Gabriel <mike.gabriel@das-netzwerkteam.de>  Fri, 22 Mar 2013 23:21:11 +0100
 
