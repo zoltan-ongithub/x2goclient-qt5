@@ -790,7 +790,7 @@ Public key hash: </source>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="142"/>
-        <source>X2Go client</source>
+        <source>X2Go Client</source>
         <translation>X2Go用戶端</translation>
     </message>
     <message>
@@ -1587,7 +1587,7 @@ Unsaved documents will be lost</source>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="7463"/>
-        <source>&lt;b&gt;X2Go client V. </source>
+        <source>&lt;b&gt;X2Go Client V. </source>
         <translation>&lt;b&gt;X2Go 客戶端 V. </translation>
     </message>
     <message>
@@ -1819,7 +1819,7 @@ you can install sshd with
     <name>PrintDialog</name>
     <message>
         <location filename="printdialog.ui" line="18"/>
-        <source>Print - X2Go client</source>
+        <source>Print - X2Go Client</source>
         <translation>列印 - X2Go用戶端</translation>
     </message>
     <message>
@@ -2822,7 +2822,7 @@ sound system connections through firewalls</source>
     </message>
     <message>
         <location filename="xsettingsui.ui" line="102"/>
-        <source>start X-Server on X2Go client start</source>
+        <source>start X-Server on X2Go Client start</source>
         <translation>當X2Go用戶端啟動時啟動X伺服器</translation>
     </message>
     <message>

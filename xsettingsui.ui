@@ -106,7 +106,7 @@
       <item>
        <widget class="QCheckBox" name="cbOnstart">
         <property name="text">
-         <string>start X-Server on X2Go client start</string>
+         <string>start X-Server on X2Go Client start</string>
         </property>
         <property name="checked">
          <bool>false</bool>

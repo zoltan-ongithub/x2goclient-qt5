@@ -618,7 +618,7 @@ Public key hash: </source>
         <translation>pc105/us</translation>
     </message>
     <message>
-        <source>X2Go client</source>
+        <source>X2Go Client</source>
         <translation>X2Go Client</translation>
     </message>
     <message>
@@ -1158,7 +1158,7 @@ Unsaved documents will be lost</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&lt;b&gt;X2Go client V. </source>
+        <source>&lt;b&gt;X2Go Client V. </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1341,7 +1341,7 @@ you can install sshd with
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Print - X2Go client</source>
+        <source>Print - X2Go Client</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2101,7 +2101,7 @@ sound system connections through firewalls</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>start X-Server on X2Go client start</source>
+        <source>start X-Server on X2Go Client start</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

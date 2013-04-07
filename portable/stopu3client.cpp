@@ -27,11 +27,11 @@
 int main()
 {
 
-       HWND wid=FindWindowEx(0,0,0,"X2Go client - U3");
+       HWND wid=FindWindowEx(0,0,0,"X2Go Client - U3");
        while(wid)
        {
            HWND prevWid=wid;
-           wid=FindWindowEx(0,wid,0,"X2Go client - U3");
+           wid=FindWindowEx(0,wid,0,"X2Go Client - U3");
            PostMessage(prevWid,WM_CLOSE,0,0);
        }
        return 0;

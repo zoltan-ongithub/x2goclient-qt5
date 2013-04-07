@@ -796,7 +796,7 @@ Publik nyckel: </translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="142"/>
-        <source>X2Go client</source>
+        <source>X2Go Client</source>
         <translation>X2Go-klient</translation>
     </message>
     <message>
@@ -1596,7 +1596,7 @@ Data som ej sparats kommer att förloras</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="7463"/>
-        <source>&lt;b&gt;X2Go client V. </source>
+        <source>&lt;b&gt;X2Go Client V. </source>
         <translation>&lt;b&gt;X2Go-klient V. </translation>
     </message>
     <message>
@@ -1831,7 +1831,7 @@ du kan installera sshd med (Debian/Ubuntu)
     <name>PrintDialog</name>
     <message>
         <location filename="printdialog.ui" line="18"/>
-        <source>Print - X2Go client</source>
+        <source>Print - X2Go Client</source>
         <translation>Utskrift - X2Go-klient</translation>
     </message>
     <message>
@@ -2835,7 +2835,7 @@ ljudström genom brandväggar</translation>
     </message>
     <message>
         <location filename="xsettingsui.ui" line="102"/>
-        <source>start X-Server on X2Go client start</source>
+        <source>start X-Server on X2Go Client start</source>
         <translation>Starta X-server när X2Go-klienten startas</translation>
     </message>
     <message>

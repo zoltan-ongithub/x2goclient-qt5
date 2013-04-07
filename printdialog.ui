@@ -15,7 +15,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Print - X2Go client</string>
+   <string>Print - X2Go Client</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>

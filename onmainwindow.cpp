@@ -139,7 +139,7 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
 
 
     cleanAskPass();
-    setWindowTitle ( tr ( "X2Go client" ) );
+    setWindowTitle ( tr ( "X2Go Client" ) );
     ld=0;
     tunnel=0l;
     sndTunnel=0l;
@@ -205,7 +205,7 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
     {
         portableDataPath=u3Path;
         ONMainWindow::portable=true;
-        setWindowTitle ( "X2Go client - U3" );
+        setWindowTitle ( "X2Go Client - U3" );
     }
 #endif
 
@@ -7481,7 +7481,7 @@ void ONMainWindow::slotAbout()
             "further information." );
     QMessageBox::about (
         this,tr ( "About X2GO client" ),
-        tr ( "<b>X2Go client V. " ) +VERSION+
+        tr ( "<b>X2Go Client V. " ) +VERSION+
         " </b >(Qt - "+qVersion() +")"+
         aboutStr );
 }

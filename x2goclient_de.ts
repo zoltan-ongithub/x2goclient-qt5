@@ -1841,7 +1841,7 @@ Please check your settings</source>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="142"/>
-        <source>X2Go client</source>
+        <source>X2Go Client</source>
         <translation></translation>
     </message>
     <message>
@@ -2019,7 +2019,7 @@ Public key hash: </source>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="7463"/>
-        <source>&lt;b&gt;X2Go client V. </source>
+        <source>&lt;b&gt;X2Go Client V. </source>
         <translation>&lt;b&gt;X2GoClient V. </translation>
     </message>
     <message>
@@ -2357,7 +2357,7 @@ Sie können SSHD über folgenden Befehl installieren:
     </message>
     <message>
         <location filename="printdialog.ui" line="18"/>
-        <source>Print - X2Go client</source>
+        <source>Print - X2Go Client</source>
         <translation>Drucken - X2GoClient</translation>
     </message>
 </context>
@@ -3385,7 +3385,7 @@ sound system connections through firewalls</source>
     </message>
     <message>
         <location filename="xsettingsui.ui" line="102"/>
-        <source>start X-Server on X2Go client start</source>
+        <source>start X-Server on X2Go Client start</source>
         <translation>X-Server auf X2GoClient starten</translation>
     </message>
     <message>

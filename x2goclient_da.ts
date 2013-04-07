@@ -792,7 +792,7 @@ Public key hash: </translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="142"/>
-        <source>X2Go client</source>
+        <source>X2Go Client</source>
         <translation>X2go klient</translation>
     </message>
     <message>
@@ -1587,8 +1587,8 @@ Ugemte dokumenter vil gå tabt</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="7463"/>
-        <source>&lt;b&gt;X2Go client V. </source>
-        <translation>&lt;b&gt;X2Go client V. </translation>
+        <source>&lt;b&gt;X2Go Client V. </source>
+        <translation>&lt;b&gt;X2Go Client V. </translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="7508"/>
@@ -1803,7 +1803,7 @@ du kan installere sshd med
     <name>PrintDialog</name>
     <message>
         <location filename="printdialog.ui" line="18"/>
-        <source>Print - X2Go client</source>
+        <source>Print - X2Go Client</source>
         <translation>Udskrift - X2Go klient</translation>
     </message>
     <message>
@@ -2807,7 +2807,7 @@ lydsystemets forbindelse igennem firewalls</translation>
     </message>
     <message>
         <location filename="xsettingsui.ui" line="102"/>
-        <source>start X-Server on X2Go client start</source>
+        <source>start X-Server on X2Go Client start</source>
         <translation>start X-Server sammen med X2Go klient</translation>
     </message>
     <message>
