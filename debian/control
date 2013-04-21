@@ -1,6 +1,6 @@
 Source: x2goclient
 Section: x11
-Priority: optional
+Priority: extra
 Maintainer: X2Go Developers <x2go-dev@lists.berlios.de>
 Uploaders:
  Oleksandr Shneyder <oleksandr.shneyder@obviously-nice.de>,
@@ -13,9 +13,8 @@ Build-Depends:
  libcups2-dev,
  libx11-dev,
  libxpm-dev,
- doxygen,
- man2html-base | man2html
-Standards-Version: 3.9.3
+ man2html-base | man2html,
+Standards-Version: 3.9.4
 Homepage: http://code.x2go.org/releases/source/x2goclient
 Vcs-Git: git://code.x2go.org/x2goclient.git
 Vcs-Browser: http://code.x2go.org/gitweb?p=x2goclient.git;a=summary
@@ -27,28 +26,28 @@ Depends:
  ${misc:Depends},
  libssh-4 (>= 0.4.7),
  openssh-client,
- nxproxy
+ nxproxy,
 Recommends:
  openssh-server,
- rdesktop | freerdp-x11
+ rdesktop | freerdp-x11,
 Suggests:
- pinentry-x2go
+ pinentry-x2go,
 Conflicts:
- x2goclient-gtk
+ x2goclient-gtk,
 Replaces:
- x2goclient-gtk
+ x2goclient-gtk,
 Description: X2Go Client application (Qt4)
  X2Go is a serverbased computing environment with
     - session resuming
     - low bandwidth support
     - LDAP support
-    - client side mass storage mounting support
-    - client side printing support
+    - client-side mass storage mounting support
+    - client-side printing support
     - audio support
     - authentication by smartcard and USB stick
  .
  x2goclient is a graphical client (Qt4) for the X2Go system.
- You can use it to connect to running sessions and start new sessions. 
+ You can use it to connect to running sessions and start new sessions.
 
 Package: x2goplugin
 Architecture: any
@@ -56,41 +55,42 @@ Depends:
  ${shlibs:Depends},
  ${misc:Depends},
  openssh-client,
- nxproxy
+ nxproxy,
 Recommends:
  openssh-server,
- rdesktop | freerdp-x11
+ rdesktop | freerdp-x11,
 Suggests:
- pinentry-x2go
+ pinentry-x2go,
 Description: X2Go Client (Qt4) as browser plugin
  X2Go is a serverbased computing environment with
     - session resuming
     - low bandwidth support
     - LDAP support
-    - client side mass storage mounting support
-    - client side printing support
+    - client-side mass storage mounting support
+    - client-side printing support
     - audio support
     - authentication by smartcard and USB stick
  .
  x2goclient is a graphical client (qt4) for the X2Go system.
- You can use it to connect to running sessions and start new sessions. 
+ You can use it to connect to running sessions and start new sessions.
  .
- This package provides x2goclient as Mozilla plugin.
+ This package provides x2goclient as QtBrowser-based Mozilla plugin.
 
 Package: x2goplugin-provider
 Architecture: all
 Depends:
  ${misc:Depends},
- x2goplugin,
 Recommends:
  httpd | apache2,
+Suggests:
+ x2goplugin,
 Description: Provide X2Go Plugin via Apache webserver
  X2Go is a serverbased computing environment with
     - session resuming
     - low bandwidth support
     - LDAP support
-    - client side mass storage mounting support
-    - client side printing support
+    - client-side mass storage mounting support
+    - client-side printing support
     - audio support
     - authentication by smartcard and USB stick
  .
