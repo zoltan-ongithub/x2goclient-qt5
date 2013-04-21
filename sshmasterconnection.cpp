@@ -847,7 +847,7 @@ bool SshMasterConnection::userAuthWithKey()
 
 bool SshMasterConnection::userAuth()
 {
-    if ( autologin )
+    if ( autologin && key=="" )
         if ( userAuthAuto() )
             return true;
     if ( key!="" )
