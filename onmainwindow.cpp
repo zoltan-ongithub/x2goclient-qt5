@@ -61,8 +61,6 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
     showHaltBtn=false;
     defaultUseSound=true;
     defaultSetKbd=true;
-    defaultSetDPI=false;
-    defaultDPI=96;
     extStarted=false;
     cmdAutologin=false;
     defaultLink=2;
@@ -107,6 +105,16 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
     cmdAutologin=false;
 
 
+// Try to determine the native DPI and use it for the default
+    int dpix = QApplication::desktop()->physicalDpiX();
+    int dpiy = QApplication::desktop()->physicalDpiY();
+    if ( dpix >0 && dpiy >0) {
+        defaultSetDPI=true;
+        defaultDPI=(dpix+dpiy)/2;
+    } else {
+        defaultSetDPI=false;
+        defaultDPI=96;
+    }
 
 #ifdef Q_OS_WIN
     clientSshPort="7022";
@@ -6661,7 +6669,7 @@ void ONMainWindow::showHelp()
         "--user=<username>\t\t select user 'username'\n"
         "--geomerty=<W>x<H>|fullscreen\t set default geometry, default "
         "value '800x600'\n"
-        "--dpi=<dpi>\t\t\t set dpi of x2goagent to dpi, default not set\n"
+        "--dpi=<dpi>\t\t\t set dpi of x2goagent to dpi, default set to same as local display\n"
         "--link=<modem|isdn|adsl|wan|lan> set default link type, "
         "default 'adsl'\n"
         "--pack=<packmethod>\t\t set default pack method, default "

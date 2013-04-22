@@ -12,6 +12,11 @@ x2goclient (4.0.1.1-0~x2go1) UNRELEASED; urgency=low
       Let's consider a given SSH private key that fails to log the user
       in as an overall login failure. (Fixes: 141).
 
+  [ Orion Poplawski ]
+  * New upstream version (4.0.1.0):
+    - Instead of using a hard-code DPI of 96, use local DPI settings for new
+      sessions if not explicitly set in session profile (Fixes: #164).
+
  -- Mike Gabriel <mike.gabriel@das-netzwerkteam.de>  Fri, 22 Mar 2013 23:21:11 +0100
 
 x2goclient (4.0.1.0-0~x2go1) unstable; urgency=low
