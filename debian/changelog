@@ -1,19 +1,19 @@
 x2goclient (4.0.1.1-0~x2go1) UNRELEASED; urgency=low
 
   [ Oleksandr Shneyder ]
-  * New upstream version (4.0.1.0):
+  * New upstream version (4.0.1.1):
     - Use "127.0.0.1" instead of localhost to avoid wrong IPv6 hostname
       resolution. (Fixes: #151).
     - Wait for x2gocmdexitmessage to return before closing in hidden mode.
 
   [ Mike Gabriel ]
-  * New upstream version (4.0.1.0):
+  * New upstream version (4.0.1.1):
     - If a priv SSH key has been specified, skip the autologin procedure.
       Let's consider a given SSH private key that fails to log the user
       in as an overall login failure. (Fixes: 141).
 
   [ Orion Poplawski ]
-  * New upstream version (4.0.1.0):
+  * New upstream version (4.0.1.1):
     - Instead of using a hard-code DPI of 96, use local DPI settings for new
       sessions if not explicitly set in session profile (Fixes: #164).
 
