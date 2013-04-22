@@ -10,7 +10,7 @@ x2goclient (4.0.1.1-0~x2go1) UNRELEASED; urgency=low
   * New upstream version (4.0.1.1):
     - If a priv SSH key has been specified, skip the autologin procedure.
       Let's consider a given SSH private key that fails to log the user
-      in as an overall login failure. (Fixes: 141).
+      in as an overall login failure. (Fixes: #141).
 
   [ Orion Poplawski ]
   * New upstream version (4.0.1.1):
