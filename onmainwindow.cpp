@@ -2677,7 +2677,7 @@ void ONMainWindow::slotSelectedFromList ( SessionButton* session )
         currentKey=config.key;
     }
 
-    selectedCommand=command;
+    selectedCommand=command.split("/").last();
     command=transAppName ( command );
     login->setText ( userName );
     QPixmap pix ( sessIcon );
