@@ -324,6 +324,9 @@ public:
         ARTS,
         ESD
     };
+
+    static bool debugging;
+
     static bool portable;
     ONMainWindow ( QWidget *parent = 0 );
     ~ONMainWindow();

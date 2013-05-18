@@ -12,6 +12,10 @@ x2goclient (4.0.1.1-0~x2go1) UNRELEASED; urgency=low
       Let's consider a given SSH private key that fails to log the user
       in as an overall login failure. (Fixes: #141).
 
+  [ Otto Kjell ]
+  * New upstream version (4.0.1.1):
+    - Enable debug mode through cmd line parameter. (Fixes: #142).
+
   [ Orion Poplawski ]
   * New upstream version (4.0.1.1):
     - Instead of using a hard-code DPI of 96, use local DPI settings for new

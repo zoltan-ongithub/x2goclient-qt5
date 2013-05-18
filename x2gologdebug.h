@@ -20,21 +20,50 @@
 #include <QTextStream>
 #include <QFile>
 #include "x2goclientconfig.h"
+#include "onmainwindow.h"
 /**
 	@author Oleksandr Shneyder <oleksandr.shneyder@obviously-nice.de>
 */
+
+#define __x2goPrefix      "x2go-"
+#define __x2goDebugPrefix "DEBUG-"
+#define __x2goInfoPrefix  "INFO-"
+#define __x2goWarningPrefix  "WARNING-"
+#define __x2goErrorPrefix "ERROR-"
+#define __x2goPostfix     "> "
+
 #ifdef LOGFILE
 class X2goLogDebug: public QTextStream
 {
 public:
     X2goLogDebug();
     ~X2goLogDebug();
+
  private:
      QFile logFile;
 };
-#define x2goDebug X2goLogDebug()
+
+#define __x2goDebug   X2goLogDebug()<<"\n"
+#define __x2goInfo    X2goLogDebug()<<"\n"
+#define __x2goWarning X2goLogDebug()<<"\n"
+#define __x2goError   X2goLogDebug()<<"\n"
+
 #else
+
 #include <QDebug>
-#define x2goDebug qDebug()
+
+#define __x2goDebug   qDebug().nospace()
+#define __x2goInfo    qDebug().nospace()
+#define __x2goWarning qWarning().nospace()
+#define __x2goError   qCritical().nospace()
+
 #endif //LOGFILE
+
+#define x2goDebugf        __x2goDebug  <<__x2goPrefix<<__x2goDebugPrefix  <<__FILE__<<":"<<__LINE__<<__x2goPostfix
+#define x2goInfof(NUM)    __x2goInfo   <<__x2goPrefix<<__x2goInfoPrefix   <<NUM                    <<__x2goPostfix
+#define x2goWarningf(NUM) __x2goWarning<<__x2goPrefix<<__x2goWarningPrefix<<NUM                    <<__x2goPostfix
+#define x2goErrorf(NUM)   __x2goError  <<__x2goPrefix<<__x2goErrorPrefix  <<NUM                    <<__x2goPostfix
+
+#define x2goDebug      if (ONMainWindow::debugging) x2goDebugf
+
 #endif //X2GOLOGDEBUG_H

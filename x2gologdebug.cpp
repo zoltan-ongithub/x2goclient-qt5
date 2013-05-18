@@ -28,7 +28,6 @@ X2goLogDebug::X2goLogDebug():QTextStream()
     }
 }
 
-
 X2goLogDebug::~X2goLogDebug()
 {
  	logFile.close();
