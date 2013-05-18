@@ -3672,10 +3672,20 @@ void ONMainWindow::startNewSession()
         fullscreen=st->setting()->value ( sid+"/fullscreen",
                                           ( QVariant )
                                           defaultFullscreen ).toBool();
-        height=st->setting()->value ( sid+"/height",
-                                      ( QVariant ) defaultHeight ).toInt();
-        width=st->setting()->value ( sid+"/width",
-                                     ( QVariant ) defaultWidth ).toInt();
+
+        //if multidisplay = true or maxdim = true we set maximun display area available for the seleccted monitor
+        if (st->setting()->value(sid + "/multidisp", (QVariant) false).toBool() || st->setting()->value(sid + "/maxdim", (QVariant) false).toBool()) {
+            int selectedScreen = st->setting()->value(sid + "/display", (QVariant) -1).toInt();
+            height=QApplication::desktop()->availableGeometry(selectedScreen).height();
+            width=QApplication::desktop()->availableGeometry(selectedScreen).width();
+        } else {
+            height=st->setting()->value ( sid+"/height",
+                                          ( QVariant ) defaultHeight ).toInt();
+            width=st->setting()->value ( sid+"/width",
+                                         ( QVariant ) defaultWidth ).toInt();
+        }
+
+
         setDPI=st->setting()->value ( sid+"/setdpi",
                                       ( QVariant ) defaultSetDPI ).toBool();
         dpi=st->setting()->value ( sid+"/dpi",
