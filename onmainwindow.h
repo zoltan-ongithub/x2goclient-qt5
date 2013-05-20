@@ -44,6 +44,7 @@
 #include "sshmasterconnection.h"
 
 
+
 #ifdef Q_OS_WIN
 #include <windows.h>
 #endif
@@ -524,6 +525,7 @@ public:
     }
 #endif
 
+
 private:
     QString m_x2goconfig;
     QStringList _internApplicationsNames;
@@ -894,6 +896,7 @@ private:
     void removeAppsFromTray();
     void plugAppsInTray();
     QMenu* initTrayAppMenu(QString text, QPixmap icon);
+    void setTrayIconToSessionIcon(QString info);
 
 
 protected:

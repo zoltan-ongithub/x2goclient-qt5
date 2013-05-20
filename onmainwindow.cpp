@@ -1430,6 +1430,7 @@ void ONMainWindow::hideEvent(QHideEvent* event)
     QMainWindow::hideEvent(event);
     if (event->spontaneous() && trayMinToTray)
         hide();
+
 }
 
 
@@ -3673,7 +3674,7 @@ void ONMainWindow::startNewSession()
                                           ( QVariant )
                                           defaultFullscreen ).toBool();
 
-        //if multidisplay = true or maxdim = true we set maximun display area available for the seleccted monitor
+        //if multidisplay = true or maxdim = true we set maximun display area available for the selected monitor
         if (st->setting()->value(sid + "/multidisp", (QVariant) false).toBool() || st->setting()->value(sid + "/maxdim", (QVariant) false).toBool()) {
             int selectedScreen = st->setting()->value(sid + "/display", (QVariant) -1).toInt();
             height=QApplication::desktop()->availableGeometry(selectedScreen).height();
@@ -3930,8 +3931,10 @@ void ONMainWindow::startNewSession()
     sshConnection->executeCommand ( cmd, this, SLOT ( slotRetResumeSess ( bool,
                                     QString,int ) ) );
     passForm->hide();
-}
 
+    //change the trayicon picture
+    setTrayIconToSessionIcon(tr("Creating new session..."));
+}
 
 
 void ONMainWindow::resumeSession ( const x2goSession& s )
@@ -4167,8 +4170,46 @@ void ONMainWindow::resumeSession ( const x2goSession& s )
                                     int ) ));
     resumingSession=s;
     passForm->hide();
+
+    //change the trayicon picture
+    setTrayIconToSessionIcon(tr("Restoring session..."));
+
 }
 
+/**
+ * @brief ONMainWindow::setTrayIconToSessionIcon
+ * @param info: message to be displayed in tray icon message
+ *
+ * set the tray session icon picture as tray icon picture and show a tray icon information message about something is doing
+ * this message avoid the users think nothing is happend for some seconds while x2go session window is showed
+ *
+ */
+void ONMainWindow::setTrayIconToSessionIcon(QString info) {
+
+    //set session icon to tray icon
+    if (trayIcon && lastSession) {
+
+        X2goSettings* st;
+
+        if (!brokerMode)
+            st=new X2goSettings( "sessions" );
+        else
+            st= new X2goSettings(config.iniFile,QSettings::IniFormat);
+
+        QString sid;
+        if ( !embedMode )
+            sid=lastSession->id();
+        else
+            sid="embedded";
+
+        QString imagePath = st->setting()->value(sid + "/icon", (QVariant) QString(":icons/128x128/x2go.png")).toString();
+        trayIcon->setIcon(QIcon (imagePath));
+
+        //send a information notification about the connection is done
+        trayIcon->showMessage(tr("X2Go"), tr ("Established connection\n") + info, QSystemTrayIcon::Information, 15000);
+    }
+
+}
 
 void ONMainWindow::selectSession ( QStringList& sessions )
 {
@@ -5281,6 +5322,11 @@ void ONMainWindow::slotProxyError ( QProcess::ProcessError )
 
 void ONMainWindow::slotProxyFinished ( int,QProcess::ExitStatus )
 {
+
+    //set tray icon to default
+    trayIcon->setIcon(QIcon ( ":icons/128x128/x2go.png") );
+
+
     if ( embedMode )
     {
         if ( proxyWinEmbedded )
@@ -9529,7 +9575,6 @@ void ONMainWindow::resizeProxyWinOnDisplay(int disp)
     QTimer::singleShot(500, this, SLOT(slotSetProxyWinFullscreen()));
 }
 
-
 QRect ONMainWindow::proxyWinGeometry()
 {
 #ifdef Q_OS_WIN
@@ -9702,6 +9747,7 @@ void ONMainWindow::slotFindProxyWin()
             else
                 slotAttachProxyWindow();
         }
+
 #ifdef Q_OS_WIN
         x2goDebug<<"Maximize proxy win: "<<maximizeProxyWin;
 
