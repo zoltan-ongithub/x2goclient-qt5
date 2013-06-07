@@ -5336,7 +5336,8 @@ void ONMainWindow::slotProxyFinished ( int,QProcess::ExitStatus )
 {
 
     //set tray icon to default
-    trayIcon->setIcon(QIcon ( ":icons/128x128/x2go.png") );
+    if (trayIcon)
+        trayIcon->setIcon(QIcon ( ":icons/128x128/x2go.png") );
 
 
     if ( embedMode )
