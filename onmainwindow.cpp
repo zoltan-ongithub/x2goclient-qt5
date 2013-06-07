@@ -4372,7 +4372,7 @@ void ONMainWindow::slotActivated ( const QModelIndex& index )
                          index.row(),
                          D_USER ).data().toString();
         bShadowView->setEnabled ( true );
-        bShadow->setEnabled ( user==getCurrentUname() );
+        bShadow->setEnabled ( true );
     }
 }
 
