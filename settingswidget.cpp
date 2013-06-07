@@ -68,16 +68,12 @@ SettingsWidget::SettingsWidget ( QString id, ONMainWindow * mw,
     custom=new QRadioButton ( tr ( "Window" ),dgb );
 #endif
     display=new QRadioButton ( tr ( "Use whole display" ),dgb );
-#ifdef Q_OS_LINUX
     maxRes=new QRadioButton ( tr ( "Maximum available" ),dgb );
-#endif
     radio->addButton ( fs );
     radio->addButton ( custom );
     radio->setExclusive ( true );
     radio->addButton(display);
-#ifdef Q_OS_LINUX
     radio->addButton(maxRes);
-#endif
     width=new QSpinBox ( dgb );
     height=new QSpinBox ( dgb );
     cbSetDPI=new QCheckBox ( tr ( "Set display DPI" ),dgb );
@@ -110,9 +106,7 @@ SettingsWidget::SettingsWidget ( QString id, ONMainWindow * mw,
     dwLay->addStretch();
 
     dispLay->addWidget(display);
-#ifdef Q_OS_LINUX
     dispLay->addWidget(maxRes);
-#endif
     dispLay->addSpacing(15);
     dispLay->addWidget(lDisplay=new QLabel(tr("&Display:"),dgb));
     dispLay->addWidget(displayNumber=new QSpinBox(dgb));
@@ -665,8 +659,6 @@ void SettingsWidget::saveSettings()
 
     st.setting()->setValue ( sessionId+"/fullscreen",
                              ( QVariant ) fs->isChecked() );
-    st.setting()->setValue ( sessionId+"/width",
-                             ( QVariant ) width->value() );
     st.setting()->setValue ( sessionId+"/multidisp",
                              ( QVariant ) display->isChecked() );
     st.setting()->setValue ( sessionId+"/display",
@@ -687,8 +679,31 @@ void SettingsWidget::saveSettings()
                              ( QVariant ) params->text());
 #endif
 #endif
+
+    st.setting()->setValue ( sessionId+"/width",
+                             ( QVariant ) width->value() );
+
     st.setting()->setValue ( sessionId+"/height",
                              ( QVariant ) height->value() );
+
+    //if maxRes is checked width and height are setted to max area available
+    if (maxRes->isChecked()
+            || st.setting()->value(sessionId + "/multidisp", (QVariant) false).toBool()
+            || st.setting()->value(sessionId + "/maxdim", (QVariant) false).toBool()) {
+
+        //get screen number
+        int selectedScreen = st.setting()->value(sessionId + "/display", (QVariant) -1).toInt();
+
+        //get max available desktop area for selected screen
+        int height = QApplication::desktop()->availableGeometry(selectedScreen).height();
+        int width = QApplication::desktop()->availableGeometry(selectedScreen).width();
+
+        //save max resolution
+        st.setting()->setValue (sessionId + "/width", (QVariant) width);
+        st.setting()->setValue (sessionId + "/height", (QVariant) height);
+    }
+
+
     st.setting()->setValue ( sessionId+"/dpi",
                              ( QVariant ) DPI->value() );
     st.setting()->setValue ( sessionId+"/setdpi",

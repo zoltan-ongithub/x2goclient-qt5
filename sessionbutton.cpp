@@ -433,8 +433,15 @@ void SessionButton::redraw()
         for (uint i=0;i<displays;++i)
         {
             geomBox->addItem ( tr( "Display " )+QString::number(i+1));
+
+            //add maximun available area
+            geomBox->addItem( QString::number(QApplication::desktop()->availableGeometry(i).width()) + "x" + QString::number(QApplication::desktop()->availableGeometry(i).height()));
+
+
         }
 #ifndef Q_WS_HILDON
+
+
     geomBox->addItem ( "1440x900" );
     geomBox->addItem ( "1280x1024" );
     geomBox->addItem ( "1024x768" );

@@ -68,9 +68,7 @@ private:
     QLineEdit* type;
     QRadioButton* custom;
     QRadioButton* display;
-#ifdef Q_OS_LINUX
     QRadioButton* maxRes;
-#endif
     QRadioButton* arts;
     QRadioButton* pulse;
     QRadioButton* esd;
