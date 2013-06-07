@@ -3286,16 +3286,20 @@ bool ONMainWindow::startSession ( const QString& sid )
         st=new X2goSettings(config.iniFile, QSettings::IniFormat);
 
     passForm->setEnabled ( false );
-    if(!embedMode)
-        host=st->setting()->value ( sid+"/host",
-                                    ( QVariant ) QString::null ).toString();
-    else
-        host=config.server;
     if(brokerMode)
     {
+        host=config.serverIp;
         sshPort=config.sshport;
-
         x2goDebug<<"Server: "<<host;
+    }
+    else if (embedMode)
+    {
+        host=config.server;
+    }
+    else
+    {
+        host=st->setting()->value ( sid+"/host",
+                                    ( QVariant ) QString::null ).toString();
     }
 
     QString cmd=st->setting()->value ( sid+"/command",
@@ -3419,12 +3423,6 @@ bool ONMainWindow::startSession ( const QString& sid )
     }
 
     delete st;
-
-    if(brokerMode)
-    {
-        host=config.serverIp;
-    }
-
 
     sshConnection=startSshConnection ( host,sshPort,acceptRsa,user,passwd,autologin, krblogin, false, useproxy,proxyType,proxyserver,
                                        proxyport, proxylogin, proxypassword, proxyKey,proxyAutologin);
@@ -4020,12 +4018,11 @@ void ONMainWindow::resumeSession ( const x2goSession& s )
         rootless=st->setting()->value ( sid+"/rootless",
                                         ( QVariant ) false ).toBool();
 
-        if ( !embedMode )
+        if ( brokerMode )
         {
-            host=st->setting()->value ( sid+"/host",
-                                        ( QVariant ) s.server ).toString();
+            host = config.serverIp;
         }
-        else
+        else if ( embedMode )
         {
             startEmbedded=false;
             if ( st->setting()->value ( sid+"/startembed",
@@ -4055,6 +4052,11 @@ void ONMainWindow::resumeSession ( const x2goSession& s )
                 type=config.kbdType;
                 usekbd=true;
             }
+        }
+        else
+        {
+            host=st->setting()->value ( sid+"/host",
+                                        ( QVariant ) s.server ).toString();
         }
         delete st;
     }
@@ -4469,16 +4471,20 @@ void ONMainWindow::slotSuspendSess()
                      S_SERVER ).data().toString();
     if ( !useLdap )
     {
-        if ( !embedMode )
+        if ( brokerMode )
+        {
+            host=config.serverIp;
+        }
+        if ( embedMode )
+        {
+            host=config.server;
+        }
+        else
         {
             X2goSettings st ( "sessions" );
             QString sid=lastSession->id();
             host=st.setting()->value ( sid+"/host",
                                        ( QVariant ) host ).toString();
-        }
-        else
-        {
-            host=config.server;
         }
     }
     else
@@ -4864,7 +4870,15 @@ void ONMainWindow::slotRetResumeSess ( bool result,
     }
     if ( !useLdap )
     {
-        if ( !embedMode )
+        if ( brokerMode )
+        {
+            host=config.serverIp;
+        }
+        else if ( embedMode )
+        {
+            host=config.server;
+        }
+        else
         {
             X2goSettings st ( "sessions" );
 
@@ -4872,8 +4886,6 @@ void ONMainWindow::slotRetResumeSess ( bool result,
             host=st.setting()->value ( sid+"/host",
                                        ( QVariant ) host ).toString();
         }
-        else
-            host=config.server;
         resumingSession.server=host;
     }
 
@@ -5781,10 +5793,18 @@ void ONMainWindow::setStatStatus ( QString status )
         statusBar()->hide();
 #endif
         QString srv;
-        if ( embedMode )
+        if ( brokerMode )
+        {
+            srv=config.serverIp;
+        }
+        else if ( embedMode )
+        {
             srv=config.server;
+        }
         else
+        {
             srv=resumingSession.server;
+        }
         slVal->setText ( resumingSession.sessionId+"\n"+
                          srv+"\n"+
                          getCurrentUname() +"\n"+
@@ -5801,7 +5821,15 @@ void ONMainWindow::setStatStatus ( QString status )
     else
     {
 
-        QString srv=config.server;
+        QString srv;
+        if ( brokerMode )
+        {
+            srv=config.serverIp;
+        }
+        else
+        {
+            srv=config.server;
+        }
         QString message=getCurrentUname() +"@"+
                         srv+
                         ", "+tr ( "Session" ) +": "+
