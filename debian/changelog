@@ -19,6 +19,7 @@ x2goclient (4.0.1.1-0~x2go1) UNRELEASED; urgency=low
     - Fix segmentation fault that started occurring since the custom trayIcon
       patch was applied. Segfault only occurred if the tray icon was not used.
     - Show session name in notification bubbles.
+    - Update German translation.
 
   [ Ezra Bühler ]
   * New upstream version (4.0.1.1):

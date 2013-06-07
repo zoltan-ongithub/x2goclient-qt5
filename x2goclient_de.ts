@@ -1255,65 +1255,65 @@ Public key hash: </source>
     <message>
         <location filename="onmainwindow.cpp" line="4836"/>
         <source>New session started</source>
-        <translation type="unfinished"></translation>
+        <translation>Neue Sitzung gestartet</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="4871"/>
         <source>Session resumed</source>
-        <translation type="unfinished"></translation>
+        <translation>Sitzung fortgesetzt</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="5103"/>
         <location filename="onmainwindow.cpp" line="5107"/>
         <source>Unable to create folder: </source>
-        <translation type="unfinished"></translation>
+        <translation>Ordner kann nicht erstellt werden:</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="5133"/>
         <location filename="onmainwindow.cpp" line="5137"/>
         <source>Unable to write file: </source>
-        <translation type="unfinished"></translation>
+        <translation>Datei kann nicht geschrieben werden:</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="5406"/>
         <source>Emergency exit.</source>
-        <translation type="unfinished"></translation>
+        <translation>Notausgang.</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="5415"/>
         <source>Waiting for proxy to exit.</source>
-        <translation type="unfinished"></translation>
+        <translation>Warten darauf, dass der Proxy sich beendet</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="5418"/>
         <source>Failed, killing the proxy.</source>
-        <translation type="unfinished"></translation>
+        <translation>Fehlgeschlagen, töte Proxy.</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="6830"/>
         <location filename="onmainwindow.cpp" line="6835"/>
         <source>Wrong parameter: </source>
-        <translation type="unfinished"></translation>
+        <translation>Falscher Parameter:</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="7359"/>
         <source>RSA file empty.</source>
-        <translation type="unfinished"></translation>
+        <translation>RSA Datei leer.</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="7368"/>
         <source>Can not open key: </source>
-        <translation type="unfinished"></translation>
+        <translation>Schlüssel kann nicht geöffnet werden:</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="8062"/>
         <source>Card not configured.</source>
-        <translation type="unfinished"></translation>
+        <translation>Smartcard nicht konfiguriert.</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="9641"/>
         <source>Error getting window geometry (window closed)?</source>
-        <translation type="unfinished"></translation>
+        <translation>Fehler beim Ermitteln der Fenstergeometrie (Fenster geschlossen?).</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="10220"/>
@@ -1842,7 +1842,7 @@ Please check your settings</source>
     <message>
         <location filename="onmainwindow.cpp" line="7727"/>
         <source>&lt;b&gt;X2Go Client V. </source>
-        <translation type="unfinished">&lt;b&gt;X2GoClient V. </translation>
+        <translation>&lt;b&gt;X2GoClient V. </translation>
     </message>
     <message>
         <source>&lt;/b&gt;&lt;br&gt; (C. 2006-2007 Oleksandr Shneyder, Heinz-Markus Graesing)&lt;br&gt;&lt;br&gt;Client for use with the X2Go network based computing environment. This Client will be able to connect to X2Go server(s) and start, stop, resume and terminate (running) desktop sessions. X2Go Client stores different server connections and may automatically request authentication data from LDAP directories. Furthermore it can be used as fullscreen loginscreen (replacement for loginmanager like xdm). Please visit x2go.org for further information.</source>
@@ -2001,27 +2001,27 @@ Please check your settings</source>
     <message>
         <location filename="onmainwindow.cpp" line="2152"/>
         <source>No X2Go sessions found, closing.</source>
-        <translation type="unfinished"></translation>
+        <translation>Keine X2Go Sitzung gefunden, Programm wird geschlossen.</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="2781"/>
         <source>Starting connection to server: </source>
-        <translation type="unfinished"></translation>
+        <translation>Verbindung mit Server wird gestartet</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="2790"/>
         <source> to </source>
-        <translation type="unfinished"></translation>
+        <translation>auf</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="2835"/>
         <source>Connection Error(</source>
-        <translation type="unfinished"></translation>
+        <translation>Verbindungsfehler(</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="2904"/>
         <source>Couldn&apos;t find a SSH connection.</source>
-        <translation type="unfinished"></translation>
+        <translation>Konnte keine SSH Verbindung finden.</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="2954"/>
@@ -2059,7 +2059,7 @@ Public key hash: </source>
     <message>
         <location filename="onmainwindow.cpp" line="3041"/>
         <source>Authentication failed: </source>
-        <translation type="unfinished"></translation>
+        <translation>Anmeldung fehlgeschlagen:</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="3045"/>
@@ -2079,13 +2079,13 @@ Public key hash: </source>
         <location filename="onmainwindow.cpp" line="7406"/>
         <location filename="onmainwindow.cpp" line="7408"/>
         <source>Connection failed: </source>
-        <translation type="unfinished"></translation>
+        <translation>Verbindung fehlgeschlagen:</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="3458"/>
         <location filename="onmainwindow.cpp" line="7406"/>
         <source> - Wrong password.</source>
-        <translation type="unfinished"></translation>
+        <translation> - Falsches Kennwort.</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="3649"/>
@@ -2151,35 +2151,35 @@ Bitte installieren sie eine neuere Version von x2goserver</translation>
     <message>
         <location filename="onmainwindow.cpp" line="50"/>
         <source>Starting x2goclient...</source>
-        <translation type="unfinished"></translation>
+        <translation>X2Go Client wird gestartet...</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="229"/>
         <source>Starting x2goclient in portable mode... data directory is: </source>
-        <translation type="unfinished"></translation>
+        <translation>Portable X2Go Client wird gestartet... Datenverzeichnis ist: </translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="460"/>
         <source>Started  x2goclient.</source>
-        <translation type="unfinished"></translation>
+        <translation>X2Go Client ist gestartet.</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="522"/>
         <location filename="onmainwindow.cpp" line="535"/>
         <source>Can&apos;t load translator: </source>
-        <translation type="unfinished"></translation>
+        <translation>Kann Übersetzer nicht laden: </translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="527"/>
         <location filename="onmainwindow.cpp" line="540"/>
         <source>Translator: </source>
-        <translation type="unfinished"></translation>
+        <translation>Übersetzung: </translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="527"/>
         <location filename="onmainwindow.cpp" line="540"/>
         <source> installed.</source>
-        <translation type="unfinished"></translation>
+        <translation>installiert.</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="770"/>
@@ -2280,12 +2280,12 @@ Bitte installieren sie eine neuere Version von x2goserver</translation>
     <message>
         <location filename="onmainwindow.cpp" line="1259"/>
         <source>Closing x2goclient...</source>
-        <translation type="unfinished"></translation>
+        <translation>X2Go Client wird geschossen...</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="1407"/>
         <source>Closed  x2goclient.</source>
-        <translation type="unfinished"></translation>
+        <translation>X2Go Client wurde geschlossen.</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="2027"/>
@@ -3515,7 +3515,7 @@ sound system connections through firewalls</source>
     <message>
         <location filename="xsettingsui.ui" line="61"/>
         <source> do not use primary clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Nicht das primäre Clipboard verwenden</translation>
     </message>
     <message>
         <location filename="xsettingsui.ui" line="68"/>
