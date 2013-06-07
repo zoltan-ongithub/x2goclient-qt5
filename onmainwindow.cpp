@@ -3929,9 +3929,6 @@ void ONMainWindow::startNewSession()
     sshConnection->executeCommand ( cmd, this, SLOT ( slotRetResumeSess ( bool,
                                     QString,int ) ) );
     passForm->hide();
-
-    //change the trayicon picture
-    setTrayIconToSessionIcon(tr("Creating new session..."));
 }
 
 
@@ -4172,10 +4169,6 @@ void ONMainWindow::resumeSession ( const x2goSession& s )
                                     int ) ));
     resumingSession=s;
     passForm->hide();
-
-    //change the trayicon picture
-    setTrayIconToSessionIcon(tr("Restoring session..."));
-
 }
 
 /**
@@ -4207,8 +4200,10 @@ void ONMainWindow::setTrayIconToSessionIcon(QString info) {
         QString imagePath = st->setting()->value(sid + "/icon", (QVariant) QString(":icons/128x128/x2go.png")).toString();
         trayIcon->setIcon(QIcon (imagePath));
 
+        QString name=st->setting()->value ( sid +"/name").toString() ;
+
         //send a information notification about the connection is done
-        trayIcon->showMessage(tr("X2Go"), tr ("Established connection\n") + info, QSystemTrayIcon::Information, 15000);
+        trayIcon->showMessage("X2Go - " + name, info, QSystemTrayIcon::Information, 15000);
     }
 
 }
@@ -4836,6 +4831,10 @@ void ONMainWindow::slotRetResumeSess ( bool result,
                                "0|"+
                                resumingSession.fsPort;
         }
+
+        //change the trayicon picture
+        setTrayIconToSessionIcon(tr("New session started") + ":" + resumingSession.sessionId);
+
     }
     else
     {
@@ -4867,6 +4866,10 @@ void ONMainWindow::slotRetResumeSess ( bool result,
         }
         if (resumingSession.published)
             readApplications();
+
+        //change the trayicon picture
+        setTrayIconToSessionIcon(tr("Session resumed") + ": " + resumingSession.sessionId);
+
     }
     if ( !useLdap )
     {
