@@ -22,6 +22,7 @@ x2goclient (4.0.1.1-0~x2go1) UNRELEASED; urgency=low
     - Add cmdline option --broker-autologoff: Enforce re-authentication against
       X2Go Session Broker after a session has been suspended or terminated.
       (Fixes: #179).
+    - Enable full access desktop sharing across user accounts. (Fixes: #222).
 
   [ Ezra Bühler ]
   * New upstream version (4.0.1.1):
