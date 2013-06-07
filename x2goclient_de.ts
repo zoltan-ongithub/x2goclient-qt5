@@ -2006,7 +2006,7 @@ Please check your settings</source>
     <message>
         <location filename="onmainwindow.cpp" line="2781"/>
         <source>Starting connection to server: </source>
-        <translation>Verbindung mit Server wird gestartet</translation>
+        <translation>Verbindung mit Server wird gestartet: </translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="2790"/>
@@ -2179,7 +2179,7 @@ Bitte installieren sie eine neuere Version von x2goserver</translation>
         <location filename="onmainwindow.cpp" line="527"/>
         <location filename="onmainwindow.cpp" line="540"/>
         <source> installed.</source>
-        <translation>installiert.</translation>
+        <translation> installiert.</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="770"/>
