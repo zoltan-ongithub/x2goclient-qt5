@@ -856,7 +856,7 @@ Utiliser le mode caché de X2Go Client ?</translation>
     </message>
     <message>
         <source>X2Go sessions not found</source>
-        <translation>Sessions X2Go non trouvées</translation>
+        <translation type="obsolete">Sessions X2Go non trouvées</translation>
     </message>
     <message>
         <source>Are you sure you want to delete this session?</source>
@@ -1026,7 +1026,7 @@ Hash de la clef publique: </translation>
     </message>
     <message>
         <source>Unable to write file:</source>
-        <translation>Impossible de créer le fichier:</translation>
+        <translation type="obsolete">Impossible de créer le fichier:</translation>
     </message>
     <message>
         <source>Attach X2Go window</source>
@@ -1127,10 +1127,6 @@ Unsaved documents will be lost</source>
     </message>
     <message>
         <source>wrong value for argument&quot;--pack&quot;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>wrong parameter: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1323,6 +1319,118 @@ you can install sshd with
     </message>
     <message>
         <source>wrong value for argument&quot;speed&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Starting x2goclient...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Starting x2goclient in portable mode... data directory is: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Started  x2goclient.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Can&apos;t load translator: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Translator: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> installed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Closing x2goclient...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Closed  x2goclient.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No X2Go sessions found, closing.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Starting connection to server: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> to </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connection Error(</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Couldn&apos;t find a SSH connection.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Authentication failed: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connection failed: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> - Wrong password.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New session started</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Session resumed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to create folder: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to write file: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Emergency exit.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Waiting for proxy to exit.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed, killing the proxy.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Wrong parameter: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>RSA file empty.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Can not open key: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Card not configured.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Error getting window geometry (window closed)?</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2122,6 +2230,10 @@ sound system connections through firewalls</source>
     </message>
     <message>
         <source>single application:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> do not use primary clipboard</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
