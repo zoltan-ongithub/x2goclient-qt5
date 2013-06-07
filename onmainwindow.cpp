@@ -992,7 +992,7 @@ void ONMainWindow::slotGetBrokerAuth()
     }
     if(config.brokerNoAuth)
         slotSessEnter();
-    if(config.brokerurl.indexOf("ssh://")==0 && (config.brokerAutologin || config.brokerSshKey.length()>0))
+    else if(config.brokerurl.indexOf("ssh://")==0 && (config.brokerAutologin || config.brokerSshKey.length()>0))
         slotSessEnter();
 }
 
@@ -2731,23 +2731,23 @@ void ONMainWindow::slotSelectedFromList ( SessionButton* session )
 
 ///////////////////////////////////////////////////
 
+    if ( currentKey.length() >0 )
+    {
+        nopass=true;
+    }
     if(brokerMode &&usebrokerpass)
     {
         pass->setText(config.brokerPass);
         slotSessEnter();
     }
-
-    if ( currentKey.length() >0 )
-    {
-        nopass=true;
-    }
-    if ( currentKey != QString::null && currentKey != "" && nopass )
+    else if ( currentKey != QString::null && currentKey != "" && nopass )
     {
         x2goDebug<<"Starting session with key.";
         slotSessEnter();
     }
-    if ( cardReady || autologin || krblogin  )
+    else if ( cardReady || autologin || krblogin  )
     {
+        x2goDebug<<"Starting session via smartcard, ssh-agent or kerberos token.";
         nopass=true;
         if ( cardReady )
             login->setText ( cardLogin );
