@@ -20,6 +20,9 @@ x2goclient (4.0.1.1-0~x2go1) UNRELEASED; urgency=low
       patch was applied. Segfault only occurred if the tray icon was not used.
     - Show session name in notification bubbles.
     - Update German translation.
+    - Add cmdline option --broker-autologoff: Enforce re-authentication against
+      X2Go Session Broker after a session has been suspended or terminated.
+      (Fixes: #179).
 
   [ Ezra Bühler ]
   * New upstream version (4.0.1.1):

@@ -104,6 +104,7 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
     appSeparator=0;
     config.brokerNoAuth=false;
     config.brokerAutologin=false;
+    config.brokerAutologoff=false;
     cmdAutologin=false;
 
 
@@ -5473,18 +5474,22 @@ void ONMainWindow::slotProxyFinished ( int,QProcess::ExitStatus )
         cleanPrintSpool();
     if ( !restartResume )
     {
-        if ( !embedMode )
+        if ( brokerMode && (!config.brokerAutologoff) )
         {
-            if (!brokerMode)
-            {
-                pass->setText ( "" );
-                QTimer::singleShot ( 2000,this,
-                                     SLOT ( slotShowPassForm() ) );
-            }
-            else
-                QTimer::singleShot ( 2000,broker,
-                                     SLOT ( getUserSessions() ) );
-
+            x2goDebug<<"Re-reading user's session profiles from broker.";
+            QTimer::singleShot ( 2000,broker,
+                                 SLOT ( getUserSessions() ) );
+        }
+        else if ( brokerMode && config.brokerAutologoff )
+        {
+            x2goDebug<<"Logging off from broker as requested via cmdline.";
+            QTimer::singleShot(1, this,SLOT(slotGetBrokerAuth()));
+        }
+        else if ( !embedMode )
+        {
+            pass->setText ( "" );
+            QTimer::singleShot ( 2000,this,
+                                 SLOT ( slotShowPassForm() ) );
         }
     }
     else
@@ -6372,6 +6377,12 @@ bool ONMainWindow::parseParameter ( QString param )
     if ( param == "--broker-autologin")
     {
         config.brokerAutologin=true;
+        return true;
+    }
+
+    if ( param == "--broker-autologoff")
+    {
+        config.brokerAutologoff=true;
         return true;
     }
 
@@ -8172,7 +8183,7 @@ void ONMainWindow::slotGpgAgentFinished ( int , QProcess::ExitStatus )
 
         x2goDebug<<"SSH-ADD out: "<<sshout;
 
-        if(brokerMode)
+        if(brokerMode && (!config.brokerAutologoff))
         {
             broker->getUserSessions();
         }

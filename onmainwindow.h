@@ -166,6 +166,7 @@ struct ConfigFile
     bool brokerAuthenticated;
     bool brokerNoAuth;
     bool brokerAutologin;
+    bool brokerAutologoff;
     QString brokerSshKey;
     QString iniFile;
     QString server;
