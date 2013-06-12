@@ -4834,7 +4834,7 @@ void ONMainWindow::slotRetResumeSess ( bool result,
         }
 
         //change the trayicon picture
-        setTrayIconToSessionIcon(tr("New session started") + ":" + resumingSession.sessionId);
+        setTrayIconToSessionIcon(tr("New session started") + ": " + resumingSession.sessionId);
 
     }
     else
