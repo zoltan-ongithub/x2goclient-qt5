@@ -691,7 +691,7 @@ int SshMasterConnection::serverAuth ( QString& errorMsg )
         errorMsg=host+":"+QString::number(port)+" - "+ssh_get_error ( my_ssh_session );
         break;
     }
-    free ( hash );
+    ssh_clean_pubkey_hash ( &hash );
     return state;
 }
 

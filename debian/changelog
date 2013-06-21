@@ -24,6 +24,13 @@ x2goclient (4.0.1.1-0~x2go1) UNRELEASED; urgency=low
       (Fixes: #179).
     - Enable full access desktop sharing across user accounts. (Fixes: #222).
 
+  [ Heinrich Schuchardt ]
+  * New upstream version (4.0.1.1):
+    - Call ssh_clean_pubkey_hash() for deallocating public key hashes instead of
+      just calling free(). Required under MS Windows as documented in libssh2
+      API. (Fixes: #243). (For further details see:
+      http://api.libssh.org/master/group__libssh__session.html).
+
   [ Ezra Bühler ]
   * New upstream version (4.0.1.1):
     - Fix auto-resume when session type is »Single Application«. (Fixes: #183).
