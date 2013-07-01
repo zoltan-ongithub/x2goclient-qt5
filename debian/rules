@@ -16,4 +16,4 @@ override_dh_auto_clean:
 override_dh_auto_install:
 
 override_dh_strip:
-	dh_strip --dbg-package=x2goclient-dbg
+	dh_strip -p x2goclient --dbg-package=x2goclient-dbg
