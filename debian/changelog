@@ -30,6 +30,7 @@ x2goclient (4.0.1.1-0~x2go1) UNRELEASED; urgency=low
       just calling free(). Required under MS Windows as documented in libssh2
       API. (Fixes: #243). (For further details see:
       http://api.libssh.org/master/group__libssh__session.html).
+  * Provide bin:package with debug symbols for X2Go Client. (Fixes: #255).
 
   [ Ezra Bühler ]
   * New upstream version (4.0.1.1):
