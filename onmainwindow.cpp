@@ -105,6 +105,7 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
     config.brokerNoAuth=false;
     config.brokerAutologin=false;
     config.brokerAutologoff=false;
+    config.published=false;
     cmdAutologin=false;
 
 
@@ -561,6 +562,9 @@ void ONMainWindow::initWidgetsEmbed()
     act_shareFolder=new QAction ( QIcon ( ":icons/32x32/file-open.png" ),
                                   tr ( "Share folder..." ),this );
 
+    act_showApps=new QAction ( QIcon ( ":icons/32x32/apps.png" ),
+                               tr ( "Applications..." ),this );
+
     act_suspend=new QAction ( QIcon ( ":icons/32x32/suspend.png" ),
                               tr ( "Suspend" ),this );
 
@@ -581,6 +585,9 @@ void ONMainWindow::initWidgetsEmbed()
 
     connect ( act_shareFolder,SIGNAL ( triggered ( bool ) ),this,
               SLOT ( slotExportDirectory() ) );
+
+    connect ( act_showApps,SIGNAL ( triggered ( bool ) ),this,
+              SLOT ( slotAppDialog() ) );
 
     connect ( act_suspend,SIGNAL ( triggered ( bool ) ),this,
               SLOT ( slotSuspendSessFromSt() ) );
@@ -658,6 +665,8 @@ void ONMainWindow::initWidgetsEmbed()
 
         act_shareFolder->setVisible ( false );
     }
+
+    act_showApps->setVisible(false);
 
 
     if ( !managedMode )
@@ -3727,6 +3736,7 @@ void ONMainWindow::startNewSession()
             rootless= config.rootless;
             host=config.server;
             startEmbedded=false;
+            resumingSession.published=config.published;
             if ( st->setting()->value ( sid+"/startembed",
                                         ( QVariant ) true ).toBool() )
             {
@@ -5986,6 +5996,7 @@ void ONMainWindow::runCommand()
     {
         command=config.command;
         rootless=config.rootless;
+        resumingSession.published=config.published;
     }
     if ( rootless )
         sessionType="R";
@@ -6270,6 +6281,14 @@ void ONMainWindow::slotReadApplications(bool result, QString output,
         else
         {
             runApplication(autostartApp);
+        }
+    }
+    else
+    {
+        if(embedMode)
+        {
+            act_showApps->setVisible(true);
+            slotAppDialog();
         }
     }
 }
@@ -7548,11 +7567,11 @@ void ONMainWindow::slotExtTimer()
 
         x2goDebug<<"Wrong permissions on "<<readLoginsFrom <<":";
         x2goDebug<< ( int ) ( QFile::permissions (
-                                   readLoginsFrom+"/." ) )
-                  <<"must be"<< ( int ) ( QFile::ReadUser|QFile::WriteUser
-                                          |QFile::ExeUser|QFile::ReadOwner|
-                                          QFile::WriteOwner|
-                                          QFile::ExeOwner ) <<endl;
+                                  readLoginsFrom+"/." ) )
+                 <<"must be"<< ( int ) ( QFile::ReadUser|QFile::WriteUser
+                                         |QFile::ExeUser|QFile::ReadOwner|
+                                         QFile::WriteOwner|
+                                         QFile::ExeOwner ) <<endl;
 
         if ( extLogin )
             extTimer->stop();
@@ -7624,13 +7643,13 @@ void ONMainWindow::slotExportTimer()
     {
 
         x2goDebug<<"Wrong permissions on "<<
-                  readExportsFrom <<":"<<endl;
+                 readExportsFrom <<":"<<endl;
         x2goDebug<< ( int ) ( QFile::permissions (
-                                   readExportsFrom+"/." ) )
-                  <<"must be"<< ( int ) ( QFile::ReadUser|QFile::WriteUser
-                                          |QFile::ExeUser|QFile::ReadOwner|
-                                          QFile::WriteOwner|
-                                          QFile::ExeOwner ) <<endl;
+                                  readExportsFrom+"/." ) )
+                 <<"must be"<< ( int ) ( QFile::ReadUser|QFile::WriteUser
+                                         |QFile::ExeUser|QFile::ReadOwner|
+                                         QFile::WriteOwner|
+                                         QFile::ExeOwner ) <<endl;
         exportTimer->stop();
         return;
     }
@@ -9602,10 +9621,10 @@ void ONMainWindow::resizeProxyWinOnDisplay(int disp)
     QRect geom=QApplication::desktop()->screenGeometry(disp-1);
 
     QString geoStr =
-            "(x: " + QString("%1").arg(geom.x()) +
-            ", y: "+ QString("%1").arg(geom.y()) +
-            ", w: "+ QString("%1").arg(geom.width()) +
-            ", h: "+ QString("%1").arg(geom.height());
+        "(x: " + QString("%1").arg(geom.x()) +
+        ", y: "+ QString("%1").arg(geom.y()) +
+        ", w: "+ QString("%1").arg(geom.width()) +
+        ", h: "+ QString("%1").arg(geom.height());
     x2goDebug<<"Resizing proxy window to fit Display: " + QString("%1").arg(disp) + " " + geoStr;
 
 #ifdef Q_OS_LINUX
@@ -9658,10 +9677,10 @@ void ONMainWindow::slotConfigXinerama()
     lastDisplayGeometry=newGeometry;
 
     QString geoStr =
-            "(x: " + QString("%1").arg(lastDisplayGeometry.x()) +
-            ", y: "+ QString("%1").arg(lastDisplayGeometry.y()) +
-            ", w: "+ QString("%1").arg(lastDisplayGeometry.width()) +
-            ", h: "+ QString("%1").arg(lastDisplayGeometry.height());
+        "(x: " + QString("%1").arg(lastDisplayGeometry.x()) +
+        ", y: "+ QString("%1").arg(lastDisplayGeometry.y()) +
+        ", w: "+ QString("%1").arg(lastDisplayGeometry.width()) +
+        ", h: "+ QString("%1").arg(lastDisplayGeometry.height());
     x2goDebug<<"New proxy geometry: " + geoStr;
 
     QDesktopWidget* root=QApplication::desktop();
@@ -9889,6 +9908,8 @@ void ONMainWindow::slotEmbedWindow()
 void ONMainWindow::setEmbedSessionActionsEnabled ( bool enable )
 {
     act_shareFolder->setEnabled ( enable );
+    if(!enable)
+       act_showApps->setVisible(enable);
     act_suspend->setEnabled ( enable );
     act_terminate->setEnabled ( enable );
     act_embedContol->setEnabled ( enable );
@@ -10016,6 +10037,14 @@ void ONMainWindow::processCfgLine ( QString line )
             config.rootless=true;
         else
             config.rootless=false;
+        return;
+    }
+    if ( lst[0]=="published" )
+    {
+        if ( lst[1]=="true" )
+            config.published=true;
+        else
+            config.published=false;
         return;
     }
     if ( lst[0]=="checkexitstatus" )
@@ -10919,6 +10948,7 @@ void ONMainWindow::initEmbedToolBar()
     stb->addSeparator();
     stb->setToolButtonStyle ( Qt::ToolButtonTextUnderIcon );
     stb->addAction ( act_shareFolder );
+    stb->addAction ( act_showApps );
     stb->addAction ( act_reconnect );
     stb->addAction ( act_suspend );
     stb->addAction ( act_terminate );

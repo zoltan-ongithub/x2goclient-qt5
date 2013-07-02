@@ -198,6 +198,7 @@ struct ConfigFile
     //
     bool useSnd;
     bool useFs;
+    bool published;
     int conSpeed;
     QString compMet;
     int imageQ;
@@ -679,6 +680,7 @@ private:
     QAction *act_abclient;
     QAction *act_support;
     QAction *act_shareFolder;
+    QAction *act_showApps;
     QAction *act_suspend;
     QAction *act_terminate;
     QAction *act_reconnect;
