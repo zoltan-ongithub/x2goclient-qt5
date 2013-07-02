@@ -6,6 +6,7 @@ x2goclient (4.0.1.1-0~x2go1) UNRELEASED; urgency=low
       resolution. (Fixes: #151).
     - Wait for x2gocmdexitmessage to return before closing in hidden mode.
     - Support for published applications in X2Go Plugin 
+    - Support for "shadow" mode in X2Go Plugin 
 
   [ Mike Gabriel ]
   * New upstream version (4.0.1.1):

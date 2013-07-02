@@ -71,6 +71,7 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
     acceptRsa=false;
     cardStarted=false;
     cardReady=false;
+    shadowSession=false;
     proxyRunning=false;
 // 	useSshAgent=false;
     closeEventSent=false;
@@ -1674,7 +1675,8 @@ void ONMainWindow::slotClosePass()
 void ONMainWindow::slotPassEnter()
 {
 
-    shadowSession=false;
+    if(!embedMode)
+        shadowSession=false;
 #if defined ( Q_OS_WIN ) || defined (Q_OS_DARWIN )
     QString disp=getXDisplay();
     if ( disp==QString::null )
@@ -3113,6 +3115,7 @@ void ONMainWindow::slotSessEnter()
 void ONMainWindow::continueNormalSession()
 {
     x2goDebug<<"Continue normal x2go session";
+
     if (brokerMode)
     {
         slotListSessions(true,QString::null,0);
@@ -3279,7 +3282,8 @@ bool ONMainWindow::startSession ( const QString& sid )
 
     user=getCurrentUname();
     runRemoteCommand=true;
-    shadowSession=false;
+    if(!embedMode)
+        shadowSession=false;
     applications.clear();
     removeAppsFromTray();
 
@@ -3733,6 +3737,12 @@ void ONMainWindow::startNewSession()
         else
         {
             command=config.command;
+            if ( command=="SHADOW" )
+            {
+                shadowSession=true;
+                runRemoteCommand=false;
+            }
+
             rootless= config.rootless;
             host=config.server;
             startEmbedded=false;
@@ -3783,7 +3793,6 @@ void ONMainWindow::startNewSession()
         }
         delete st;
     }
-
 
     if ( shadowSession )
     {
@@ -9909,7 +9918,7 @@ void ONMainWindow::setEmbedSessionActionsEnabled ( bool enable )
 {
     act_shareFolder->setEnabled ( enable );
     if(!enable)
-       act_showApps->setVisible(enable);
+        act_showApps->setVisible(enable);
     act_suspend->setEnabled ( enable );
     act_terminate->setEnabled ( enable );
     act_embedContol->setEnabled ( enable );
@@ -10009,6 +10018,12 @@ void ONMainWindow::processCfgLine ( QString line )
     if ( lst[0]=="command" )
     {
         config.command=lst[1];
+        if ( config.command=="SHADOW" )
+        {
+            shadowSession=true;
+            runRemoteCommand=false;
+        }
+
         return;
     }
     if ( lst[0]=="server" )
