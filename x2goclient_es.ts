@@ -781,7 +781,7 @@ Hash de su clave pública: </translation>
     <message>
         <location filename="onmainwindow.cpp" line="50"/>
         <source>Starting x2goclient...</source>
-        <translation type="unfinished"></translation>
+        <translation>Iniciando el cliente X2Go</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="89"/>
@@ -829,7 +829,7 @@ Hash de su clave pública: </translation>
     <message>
         <location filename="onmainwindow.cpp" line="229"/>
         <source>Starting x2goclient in portable mode... data directory is: </source>
-        <translation type="unfinished"></translation>
+        <translation>Iniciando x2goclint en modo portable... el directorio de los datos es: </translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="351"/>
@@ -850,25 +850,25 @@ Hash de su clave pública: </translation>
     <message>
         <location filename="onmainwindow.cpp" line="460"/>
         <source>Started  x2goclient.</source>
-        <translation type="unfinished"></translation>
+        <translation>Cliente X2Go iniciado.</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="522"/>
         <location filename="onmainwindow.cpp" line="535"/>
         <source>Can&apos;t load translator: </source>
-        <translation type="unfinished"></translation>
+        <translation>No se puede cargar el traductor.</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="527"/>
         <location filename="onmainwindow.cpp" line="540"/>
         <source>Translator: </source>
-        <translation type="unfinished"></translation>
+        <translation>Traductor: </translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="527"/>
         <location filename="onmainwindow.cpp" line="540"/>
         <source> installed.</source>
-        <translation type="unfinished"></translation>
+        <translation> instalado.</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="561"/>
@@ -1157,12 +1157,12 @@ Hash de su clave pública: </translation>
     <message>
         <location filename="onmainwindow.cpp" line="1259"/>
         <source>Closing x2goclient...</source>
-        <translation type="unfinished"></translation>
+        <translation>Cerrando x2goclient</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="1407"/>
         <source>Closed  x2goclient.</source>
-        <translation type="unfinished"></translation>
+        <translation>x2goclient finalizado.</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="1678"/>
@@ -1202,7 +1202,7 @@ Use x2goclient hidden mode?</source>
     <message>
         <location filename="onmainwindow.cpp" line="2152"/>
         <source>No X2Go sessions found, closing.</source>
-        <translation type="unfinished"></translation>
+        <translation>No se han encontrado sesiones X2Go.</translation>
     </message>
     <message>
         <source>X2Go sessions not found</source>
@@ -1242,22 +1242,22 @@ Use x2goclient hidden mode?</source>
     <message>
         <location filename="onmainwindow.cpp" line="2781"/>
         <source>Starting connection to server: </source>
-        <translation type="unfinished"></translation>
+        <translation>Iniciando conección con el servidor: </translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="2790"/>
         <source> to </source>
-        <translation type="unfinished"></translation>
+        <translation> a </translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="2835"/>
         <source>Connection Error(</source>
-        <translation type="unfinished"></translation>
+        <translation>Error en la conexión (</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="2904"/>
         <source>Couldn&apos;t find a SSH connection.</source>
-        <translation type="unfinished"></translation>
+        <translation>No se pudo encontrar la conexión SSH.</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="2921"/>
@@ -1316,7 +1316,7 @@ Hash de su clave pública: </translation>
     <message>
         <location filename="onmainwindow.cpp" line="3041"/>
         <source>Authentication failed: </source>
-        <translation type="unfinished"></translation>
+        <translation>Fallo en la autenticación: </translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="3045"/>
@@ -1364,13 +1364,13 @@ Hash de su clave pública: </translation>
         <location filename="onmainwindow.cpp" line="7406"/>
         <location filename="onmainwindow.cpp" line="7408"/>
         <source>Connection failed: </source>
-        <translation type="unfinished"></translation>
+        <translation>Fallo en la conexión: </translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="3458"/>
         <location filename="onmainwindow.cpp" line="7406"/>
         <source> - Wrong password.</source>
-        <translation type="unfinished"></translation>
+        <translation> - Contraseña incorrecta.</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="3573"/>
@@ -1488,45 +1488,45 @@ Hash de su clave pública: </translation>
     <message>
         <location filename="onmainwindow.cpp" line="4836"/>
         <source>New session started</source>
-        <translation type="unfinished"></translation>
+        <translation>Iniciada nueva sesión</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="4871"/>
         <source>Session resumed</source>
-        <translation type="unfinished"></translation>
+        <translation>Sesión suspendida</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="5103"/>
         <location filename="onmainwindow.cpp" line="5107"/>
         <source>Unable to create folder: </source>
-        <translation type="unfinished"></translation>
+        <translation>No se ha podido crear la carpeta: </translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="5133"/>
         <location filename="onmainwindow.cpp" line="5137"/>
         <source>Unable to write file: </source>
-        <translation type="unfinished"></translation>
+        <translation>No se ha podido guardar el archivo: </translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="5406"/>
         <source>Emergency exit.</source>
-        <translation type="unfinished"></translation>
+        <translation>Salida de emergencia.</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="5415"/>
         <source>Waiting for proxy to exit.</source>
-        <translation type="unfinished"></translation>
+        <translation>Esperando a la salida del proxy.</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="5418"/>
         <source>Failed, killing the proxy.</source>
-        <translation type="unfinished"></translation>
+        <translation>Error, finalizando el proxy.</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="6830"/>
         <location filename="onmainwindow.cpp" line="6835"/>
         <source>Wrong parameter: </source>
-        <translation type="unfinished"></translation>
+        <translation>Parámetro incorrecto: </translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="7263"/>
@@ -1698,12 +1698,12 @@ Los documentos no guardados se perderán</translation>
     <message>
         <location filename="onmainwindow.cpp" line="7359"/>
         <source>RSA file empty.</source>
-        <translation type="unfinished"></translation>
+        <translation>Archivo RSA vacío.</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="7368"/>
         <source>Can not open key: </source>
-        <translation type="unfinished"></translation>
+        <translation>No se puede abrir la clave: </translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="7701"/>
@@ -1743,7 +1743,7 @@ Los documentos no guardados se perderán</translation>
     <message>
         <location filename="onmainwindow.cpp" line="8062"/>
         <source>Card not configured.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tarjeta no configurada.</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="8066"/>
@@ -1816,7 +1816,7 @@ Actualiza el paquete x2goserver en el servidor</translation>
     <message>
         <location filename="onmainwindow.cpp" line="9641"/>
         <source>Error getting window geometry (window closed)?</source>
-        <translation type="unfinished"></translation>
+        <translation>Fallo al obtener el tamaño de la ventana (ventana cerrada)?</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="9917"/>
@@ -2157,7 +2157,7 @@ Ejemplo:
     <message>
         <location filename="ongetpass.cpp" line="79"/>
         <source>No response received from the remote server. Do you want to terminate the current session?</source>
-        <translation type="unfinished"></translation>
+        <translation>No se ha recibido respuesta del servidor remoto. ¿Finalizar la sesión actual?</translation>
     </message>
 </context>
 <context>
@@ -2943,7 +2943,7 @@ el sonido en conexiones a través de firewalls</translation>
     <message>
         <location filename="xsettingsui.ui" line="61"/>
         <source> do not use primary clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation> no usar el portapapeles principal</translation>
     </message>
     <message>
         <location filename="xsettingsui.ui" line="68"/>
