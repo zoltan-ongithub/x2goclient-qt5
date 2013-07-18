@@ -786,7 +786,7 @@ Publik nyckel: </translation>
     <message>
         <location filename="onmainwindow.cpp" line="50"/>
         <source>Starting x2goclient...</source>
-        <translation type="unfinished"></translation>
+        <translation>Startar x2goclient...</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="89"/>
@@ -834,7 +834,7 @@ Publik nyckel: </translation>
     <message>
         <location filename="onmainwindow.cpp" line="229"/>
         <source>Starting x2goclient in portable mode... data directory is: </source>
-        <translation type="unfinished"></translation>
+        <translation>Startar x2goclient i portabelt läge ... datakatalog är: </translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="351"/>
@@ -855,25 +855,25 @@ Publik nyckel: </translation>
     <message>
         <location filename="onmainwindow.cpp" line="460"/>
         <source>Started  x2goclient.</source>
-        <translation type="unfinished"></translation>
+        <translation>Startade x2goclient.</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="522"/>
         <location filename="onmainwindow.cpp" line="535"/>
         <source>Can&apos;t load translator: </source>
-        <translation type="unfinished"></translation>
+        <translation>Kan inte ladda översättare: </translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="527"/>
         <location filename="onmainwindow.cpp" line="540"/>
         <source>Translator: </source>
-        <translation type="unfinished"></translation>
+        <translation>Översättare: </translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="527"/>
         <location filename="onmainwindow.cpp" line="540"/>
         <source> installed.</source>
-        <translation type="unfinished"></translation>
+        <translation> installerad.</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="561"/>
@@ -1163,12 +1163,12 @@ Publik nyckel: </translation>
     <message>
         <location filename="onmainwindow.cpp" line="1259"/>
         <source>Closing x2goclient...</source>
-        <translation type="unfinished"></translation>
+        <translation>Stänger x2goclient...</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="1407"/>
         <source>Closed  x2goclient.</source>
-        <translation type="unfinished"></translation>
+        <translation>Stängt x2goclient.</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="1678"/>
@@ -1209,7 +1209,7 @@ Använd dolt läge?</translation>
     <message>
         <location filename="onmainwindow.cpp" line="2152"/>
         <source>No X2Go sessions found, closing.</source>
-        <translation type="unfinished"></translation>
+        <translation>Inga X2Go-sessioner hittades, stänger.</translation>
     </message>
     <message>
         <source>X2Go sessions not found</source>
@@ -1249,22 +1249,22 @@ Använd dolt läge?</translation>
     <message>
         <location filename="onmainwindow.cpp" line="2781"/>
         <source>Starting connection to server: </source>
-        <translation type="unfinished"></translation>
+        <translation>Startar anslutning till server: </translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="2790"/>
         <source> to </source>
-        <translation type="unfinished"></translation>
+        <translation> till </translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="2835"/>
         <source>Connection Error(</source>
-        <translation type="unfinished"></translation>
+        <translation>Anslutningsfel(</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="2904"/>
         <source>Couldn&apos;t find a SSH connection.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kunde inte hitta en SSH-anslutning.</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="2921"/>
@@ -1323,7 +1323,7 @@ Publik nyckel: </translation>
     <message>
         <location filename="onmainwindow.cpp" line="3041"/>
         <source>Authentication failed: </source>
-        <translation type="unfinished"></translation>
+        <translation>Autentisering misslyckades: </translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="3045"/>
@@ -1372,13 +1372,13 @@ Publik nyckel: </translation>
         <location filename="onmainwindow.cpp" line="7406"/>
         <location filename="onmainwindow.cpp" line="7408"/>
         <source>Connection failed: </source>
-        <translation type="unfinished"></translation>
+        <translation>Anslutning misslyckades: </translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="3458"/>
         <location filename="onmainwindow.cpp" line="7406"/>
         <source> - Wrong password.</source>
-        <translation type="unfinished"></translation>
+        <translation> - Fel lösenord.</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="3573"/>
@@ -1496,45 +1496,45 @@ Publik nyckel: </translation>
     <message>
         <location filename="onmainwindow.cpp" line="4836"/>
         <source>New session started</source>
-        <translation type="unfinished"></translation>
+        <translation>Ny session startad</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="4871"/>
         <source>Session resumed</source>
-        <translation type="unfinished"></translation>
+        <translation>Session återupptagen</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="5103"/>
         <location filename="onmainwindow.cpp" line="5107"/>
         <source>Unable to create folder: </source>
-        <translation type="unfinished"></translation>
+        <translation>Kunde ej skapa katalog: </translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="5133"/>
         <location filename="onmainwindow.cpp" line="5137"/>
         <source>Unable to write file: </source>
-        <translation type="unfinished"></translation>
+        <translation>Kunde ej skriva till fil: </translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="5406"/>
         <source>Emergency exit.</source>
-        <translation type="unfinished"></translation>
+        <translation>Akut avslut.</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="5415"/>
         <source>Waiting for proxy to exit.</source>
-        <translation type="unfinished"></translation>
+        <translation>Väntar på att proxy ska avslutas.</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="5418"/>
         <source>Failed, killing the proxy.</source>
-        <translation type="unfinished"></translation>
+        <translation>Misslyckades, dödar proxy.</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="6830"/>
         <location filename="onmainwindow.cpp" line="6835"/>
         <source>Wrong parameter: </source>
-        <translation type="unfinished"></translation>
+        <translation>Felaktig parameter: </translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="7263"/>
@@ -1704,12 +1704,12 @@ Data som ej sparats kommer att förloras</translation>
     <message>
         <location filename="onmainwindow.cpp" line="7359"/>
         <source>RSA file empty.</source>
-        <translation type="unfinished"></translation>
+        <translation>RSA-fil tom.</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="7368"/>
         <source>Can not open key: </source>
-        <translation type="unfinished"></translation>
+        <translation>Kan inte öppna nyckel: </translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="7701"/>
@@ -1749,7 +1749,7 @@ Data som ej sparats kommer att förloras</translation>
     <message>
         <location filename="onmainwindow.cpp" line="8062"/>
         <source>Card not configured.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kort ej konfigurerat.</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="8066"/>
@@ -1836,7 +1836,7 @@ Uppdatera till en nyare version av x2goserver</translation>
     <message>
         <location filename="onmainwindow.cpp" line="9641"/>
         <source>Error getting window geometry (window closed)?</source>
-        <translation type="unfinished"></translation>
+        <translation>Ett fel uppstod när fönstergeometri hämtades (fönster stängt)?</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="9917"/>
@@ -2181,7 +2181,7 @@ Example:
     <message>
         <location filename="ongetpass.cpp" line="79"/>
         <source>No response received from the remote server. Do you want to terminate the current session?</source>
-        <translation type="unfinished"></translation>
+        <translation>Inget svar från fjärrserver. Vill du avsluta den aktuella sessionen?</translation>
     </message>
 </context>
 <context>
@@ -2969,7 +2969,7 @@ ljudström genom brandväggar</translation>
     <message>
         <location filename="xsettingsui.ui" line="61"/>
         <source> do not use primary clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation> Använd inte primär urklippsbuffert</translation>
     </message>
     <message>
         <location filename="xsettingsui.ui" line="68"/>
