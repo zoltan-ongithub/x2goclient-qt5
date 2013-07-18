@@ -60,7 +60,7 @@ x2goclient (4.0.1.1-0~x2go1) UNRELEASED; urgency=low
 
   [ Daniel Lindgren ]
   * New upstream version (4.0.1.1):
-    - Swedish translation update.
+    - Update Swedish translation file.
 
   [ Ricardo Díaz Martín ]
   * New upstream version (4.0.1.1):
