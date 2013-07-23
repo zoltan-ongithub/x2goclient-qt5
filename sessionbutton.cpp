@@ -344,6 +344,7 @@ void SessionButton::redraw()
     cmdBox->addItem ( "GNOME" );
     cmdBox->addItem ( "LXDE" );
     cmdBox->addItem ( "XFCE" );
+    cmdBox->addItem ( "MATE" );
     cmdBox->addItem ( "UNITY" );
     cmdBox->addItem ( tr ( "RDP connection" ) );
     cmdBox->addItem ( tr ( "XDMCP" ) );
@@ -373,6 +374,11 @@ void SessionButton::redraw()
     {
         cmdpix.load ( par->iconsPath ( "/16x16/xfce.png" ) );
         cmdBox->setCurrentIndex ( XFCE );
+    }
+    else if ( command == "MATE" )
+    {
+        cmdpix.load ( par->iconsPath ( "/16x16/mate.png" ) );
+        cmdBox->setCurrentIndex ( MATE );
     }
     else if ( command =="LXDE" )
     {
@@ -682,6 +688,11 @@ void SessionButton::slot_cmd_change ( const QString& command )
         newRootless=false;
         pix.load ( par->iconsPath ( "/16x16/xfce.png" ) );
     }
+    else if ( command == "MATE" )
+    {
+        newRootless=false;
+        pix.load ( par->iconsPath ( "/16x16/mate.png" ) );
+    }
     else if ( command ==tr ( "Connection to local desktop" ) )
     {
         newRootless=false;
@@ -728,6 +739,11 @@ void SessionButton::slot_cmd_change ( const QString& command )
     if ( command=="xfce4-session" )
     {
         cmd="XFCE";
+        newRootless=false;
+    }
+    if ( command=="mate-session" )
+    {
+        cmd="MATE";
         newRootless=false;
     }
     if (command== tr("Published applications"))

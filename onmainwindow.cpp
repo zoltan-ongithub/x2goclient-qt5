@@ -6031,6 +6031,10 @@ void ONMainWindow::runCommand()
     {
         command="xfce4-session";
     }
+    else if ( command=="MATE" )
+    {
+        command="mate-session";
+    }
     else if ( command=="LXDE" )
     {
         command="startlxde";
