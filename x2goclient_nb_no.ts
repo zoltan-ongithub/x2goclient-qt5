@@ -892,65 +892,65 @@ Offentlig nøkkel: </translation>
     <message>
         <location filename="onmainwindow.cpp" line="4836"/>
         <source>New session started</source>
-        <translation type="unfinished"></translation>
+        <translation>Ny sesjon startet</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="4871"/>
         <source>Session resumed</source>
-        <translation type="unfinished"></translation>
+        <translation>Sesjon gjenopptatt</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="5103"/>
         <location filename="onmainwindow.cpp" line="5107"/>
         <source>Unable to create folder: </source>
-        <translation type="unfinished"></translation>
+        <translation>Klarer ikke å opprette katalogen: </translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="5133"/>
         <location filename="onmainwindow.cpp" line="5137"/>
         <source>Unable to write file: </source>
-        <translation type="unfinished"></translation>
+        <translation>Klarer ikke å skrive til filen: </translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="5406"/>
         <source>Emergency exit.</source>
-        <translation type="unfinished"></translation>
+        <translation>Avsluttning grunnet nødstilfelle.</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="5415"/>
         <source>Waiting for proxy to exit.</source>
-        <translation type="unfinished"></translation>
+        <translation>Venter på at proxy skal avslutte.</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="5418"/>
         <source>Failed, killing the proxy.</source>
-        <translation type="unfinished"></translation>
+        <translation>Feilet, dreper derfor proxy.</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="6830"/>
         <location filename="onmainwindow.cpp" line="6835"/>
         <source>Wrong parameter: </source>
-        <translation type="unfinished"></translation>
+        <translation>Feil parameter: </translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="7359"/>
         <source>RSA file empty.</source>
-        <translation type="unfinished"></translation>
+        <translation>RSA filen er tom.</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="7368"/>
         <source>Can not open key: </source>
-        <translation type="unfinished"></translation>
+        <translation>Kan ikke åpne nøkkelfilen: </translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="8062"/>
         <source>Card not configured.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kortet er ikke konfigurert.</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="9641"/>
         <source>Error getting window geometry (window closed)?</source>
-        <translation type="unfinished"></translation>
+        <translation>Feil under uthenting av vindusgeometrien (Er vinduet lukket?)</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="10220"/>
@@ -1489,7 +1489,8 @@ Vennligst sjekk instillingene dine</translation>
     <message>
         <location filename="onmainwindow.cpp" line="7727"/>
         <source>&lt;b&gt;X2Go Client V. </source>
-        <translation type="unfinished">&lt;b&gt;X2Go Client V. </translation>
+        <translatorcomment>&lt;b&gt;X2Go klient V. </translatorcomment>
+        <translation>&lt;b&gt;X2Go Client V. </translation>
     </message>
     <message>
         <source>&lt;/b&gt;&lt;br&gt; (C. 2006-2007 Oleksandr Shneyder, Heinz-Markus Graesing)&lt;br&gt;&lt;br&gt;Client for use with the X2Go network based computing environment. This Client will be able to connect to X2Go server(s) and start, stop, resume and terminate (running) desktop sessions. X2Go Client stores different server connections and may automatically request authentication data from LDAP directories. Furthermore it can be used as fullscreen loginscreen (replacement for loginmanager like xdm). Please visit x2go.org for further information.</source>
@@ -1649,27 +1650,27 @@ Vennligst sjekk instillingene dine</translation>
     <message>
         <location filename="onmainwindow.cpp" line="2152"/>
         <source>No X2Go sessions found, closing.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ingen X2Go sesjoner ble funnet, lukker.</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="2781"/>
         <source>Starting connection to server: </source>
-        <translation type="unfinished"></translation>
+        <translation>Starter tilkobling til server: </translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="2790"/>
         <source> to </source>
-        <translation type="unfinished"></translation>
+        <translation> til </translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="2835"/>
         <source>Connection Error(</source>
-        <translation type="unfinished"></translation>
+        <translation>Tilkoblingsfeil(</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="2904"/>
         <source>Couldn&apos;t find a SSH connection.</source>
-        <translation type="unfinished"></translation>
+        <translation>Klarte ikke å finne en SSH tilkobling.</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="2954"/>
@@ -1709,7 +1710,7 @@ Offentlig nøkkel: </translation>
     <message>
         <location filename="onmainwindow.cpp" line="3041"/>
         <source>Authentication failed: </source>
-        <translation type="unfinished"></translation>
+        <translation>Autentisering feilet: </translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="3045"/>
@@ -1729,13 +1730,13 @@ Offentlig nøkkel: </translation>
         <location filename="onmainwindow.cpp" line="7406"/>
         <location filename="onmainwindow.cpp" line="7408"/>
         <source>Connection failed: </source>
-        <translation type="unfinished"></translation>
+        <translation>Tilkoblingen feilet: </translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="3458"/>
         <location filename="onmainwindow.cpp" line="7406"/>
         <source> - Wrong password.</source>
-        <translation type="unfinished"></translation>
+        <translation> - Feil passord.</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="3649"/>
@@ -1803,35 +1804,38 @@ Vennligst oppdater til en nyere x2goserver pakke</translation>
     <message>
         <location filename="onmainwindow.cpp" line="50"/>
         <source>Starting x2goclient...</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>virker som om det er egennavnet &quot;x2goclient&quot; som er ment her, beholder engelsk versjon</translatorcomment>
+        <translation>Starter x2goclient...</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="229"/>
         <source>Starting x2goclient in portable mode... data directory is: </source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>virker som om det er egennavnet &quot;x2goclient&quot; som er ment her, beholder engelsk versjon</translatorcomment>
+        <translation>Starter x2goclient i portabel modus... data-katalogen er: </translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="460"/>
         <source>Started  x2goclient.</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>virker som om det er egennavnet &quot;x2goclient&quot; som er ment her, beholder engelsk versjon</translatorcomment>
+        <translation>Startet x2goclient.</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="522"/>
         <location filename="onmainwindow.cpp" line="535"/>
         <source>Can&apos;t load translator: </source>
-        <translation type="unfinished"></translation>
+        <translation>Kan ikke laste oversetter: </translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="527"/>
         <location filename="onmainwindow.cpp" line="540"/>
         <source>Translator: </source>
-        <translation type="unfinished"></translation>
+        <translation>Oversetter: </translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="527"/>
         <location filename="onmainwindow.cpp" line="540"/>
         <source> installed.</source>
-        <translation type="unfinished"></translation>
+        <translation> installert.</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="770"/>
@@ -1934,12 +1938,14 @@ Vennligst oppdater til en nyere x2goserver pakke</translation>
     <message>
         <location filename="onmainwindow.cpp" line="1259"/>
         <source>Closing x2goclient...</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>virker som om det er egennavnet &quot;x2goclient&quot; som er ment her, beholder engelsk versjon</translatorcomment>
+        <translation>Lukker x2goclient...</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="1407"/>
         <source>Closed  x2goclient.</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>virker som om det er egennavnet &quot;x2goclient&quot; som er ment her, beholder engelsk versjon</translatorcomment>
+        <translation>Lukket x2goclient.</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="2027"/>
@@ -2349,7 +2355,7 @@ Eksempel:
     <message>
         <location filename="ongetpass.cpp" line="79"/>
         <source>No response received from the remote server. Do you want to terminate the current session?</source>
-        <translation type="unfinished"></translation>
+        <translation>Ingen respons mottatt fra serveren. Ønsker du å avslutte gjeldende sesjon?</translation>
     </message>
 </context>
 <context>
@@ -3141,7 +3147,7 @@ lydsystem forbindelser gjennom brannmurer</translation>
     <message>
         <location filename="xsettingsui.ui" line="61"/>
         <source> do not use primary clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation> ikke benytt primær utklippstavle</translation>
     </message>
     <message>
         <location filename="xsettingsui.ui" line="68"/>
