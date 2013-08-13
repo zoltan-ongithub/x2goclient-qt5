@@ -1,5 +1,9 @@
 x2goclient (4.0.1.1-0~x2go1) UNRELEASED; urgency=low
 
+  [ Nicolai Hansen ]
+  * New upstream version (4.0.1.1):
+    - Update Danish translation file.
+
   [ Terje Andersen ]
   * New upstream version (4.0.1.1):
     - Update Norwegian Bokmaal translation file.

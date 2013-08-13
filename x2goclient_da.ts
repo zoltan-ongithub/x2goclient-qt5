@@ -782,7 +782,7 @@ Public key hash: </translation>
     <message>
         <location filename="onmainwindow.cpp" line="50"/>
         <source>Starting x2goclient...</source>
-        <translation type="unfinished"></translation>
+        <translation>Starter x2goclient...</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="89"/>
@@ -830,7 +830,7 @@ Public key hash: </translation>
     <message>
         <location filename="onmainwindow.cpp" line="229"/>
         <source>Starting x2goclient in portable mode... data directory is: </source>
-        <translation type="unfinished"></translation>
+        <translation>Starter x2goclient i flyttebar tilstand... data filsti er:</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="351"/>
@@ -851,25 +851,25 @@ Public key hash: </translation>
     <message>
         <location filename="onmainwindow.cpp" line="460"/>
         <source>Started  x2goclient.</source>
-        <translation type="unfinished"></translation>
+        <translation>Startede  x2goclient.</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="522"/>
         <location filename="onmainwindow.cpp" line="535"/>
         <source>Can&apos;t load translator: </source>
-        <translation type="unfinished"></translation>
+        <translation>Kan ikke åbne translator:</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="527"/>
         <location filename="onmainwindow.cpp" line="540"/>
         <source>Translator: </source>
-        <translation type="unfinished"></translation>
+        <translation>Oversætter:</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="527"/>
         <location filename="onmainwindow.cpp" line="540"/>
         <source> installed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Installeret.</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="561"/>
@@ -1158,12 +1158,12 @@ Public key hash: </translation>
     <message>
         <location filename="onmainwindow.cpp" line="1259"/>
         <source>Closing x2goclient...</source>
-        <translation type="unfinished"></translation>
+        <translation>Lukker x2goclient...</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="1407"/>
         <source>Closed  x2goclient.</source>
-        <translation type="unfinished"></translation>
+        <translation>Lukkede  x2goclient.</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="1678"/>
@@ -1203,7 +1203,7 @@ Slå skjult tilstand til?</translation>
     <message>
         <location filename="onmainwindow.cpp" line="2152"/>
         <source>No X2Go sessions found, closing.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ingen X2Go sessioner Fundet, Lukker.</translation>
     </message>
     <message>
         <source>X2Go sessions not found</source>
@@ -1243,22 +1243,22 @@ Slå skjult tilstand til?</translation>
     <message>
         <location filename="onmainwindow.cpp" line="2781"/>
         <source>Starting connection to server: </source>
-        <translation type="unfinished"></translation>
+        <translation>Starter forbindelse til server:</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="2790"/>
         <source> to </source>
-        <translation type="unfinished"></translation>
+        <translation>til</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="2835"/>
         <source>Connection Error(</source>
-        <translation type="unfinished"></translation>
+        <translation>Forbindelses Fejl(</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="2904"/>
         <source>Couldn&apos;t find a SSH connection.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kunne ikke finde en SSH forbindelse.</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="2921"/>
@@ -1317,7 +1317,7 @@ Public key hash: </translation>
     <message>
         <location filename="onmainwindow.cpp" line="3041"/>
         <source>Authentication failed: </source>
-        <translation type="unfinished"></translation>
+        <translation>Godkendelse Fejlede:</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="3045"/>
@@ -1365,13 +1365,13 @@ Public key hash: </translation>
         <location filename="onmainwindow.cpp" line="7406"/>
         <location filename="onmainwindow.cpp" line="7408"/>
         <source>Connection failed: </source>
-        <translation type="unfinished"></translation>
+        <translation>Forbindelse Fejlede:</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="3458"/>
         <location filename="onmainwindow.cpp" line="7406"/>
         <source> - Wrong password.</source>
-        <translation type="unfinished"></translation>
+        <translation>Forkert password.</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="3573"/>
@@ -1489,45 +1489,45 @@ Public key hash: </translation>
     <message>
         <location filename="onmainwindow.cpp" line="4836"/>
         <source>New session started</source>
-        <translation type="unfinished"></translation>
+        <translation>Ny session er startet</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="4871"/>
         <source>Session resumed</source>
-        <translation type="unfinished"></translation>
+        <translation>Session genoptaget</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="5103"/>
         <location filename="onmainwindow.cpp" line="5107"/>
         <source>Unable to create folder: </source>
-        <translation type="unfinished"></translation>
+        <translation>Ikke i stand til at lave mappe:</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="5133"/>
         <location filename="onmainwindow.cpp" line="5137"/>
         <source>Unable to write file: </source>
-        <translation type="unfinished"></translation>
+        <translation>Ikke i stand til at skrive filen:</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="5406"/>
         <source>Emergency exit.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nødudgang.</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="5415"/>
         <source>Waiting for proxy to exit.</source>
-        <translation type="unfinished"></translation>
+        <translation>Venter på at proxy lukker.</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="5418"/>
         <source>Failed, killing the proxy.</source>
-        <translation type="unfinished"></translation>
+        <translation>Fejlede med at dræbe proxy.</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="6830"/>
         <location filename="onmainwindow.cpp" line="6835"/>
         <source>Wrong parameter: </source>
-        <translation type="unfinished"></translation>
+        <translation>Forkerte parameter:</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="7263"/>
@@ -1695,12 +1695,12 @@ Ugemte dokumenter vil gå tabt</translation>
     <message>
         <location filename="onmainwindow.cpp" line="7359"/>
         <source>RSA file empty.</source>
-        <translation type="unfinished"></translation>
+        <translation>RSA fil er tom.</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="7368"/>
         <source>Can not open key: </source>
-        <translation type="unfinished"></translation>
+        <translation>Kan ikke åbne nøgle:</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="7701"/>
@@ -1740,7 +1740,7 @@ Ugemte dokumenter vil gå tabt</translation>
     <message>
         <location filename="onmainwindow.cpp" line="8062"/>
         <source>Card not configured.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kort er ikke konfigureret.</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="8066"/>
@@ -1813,7 +1813,7 @@ Opdater venligst til en nyere version af x2goserver pakken</translation>
     <message>
         <location filename="onmainwindow.cpp" line="9641"/>
         <source>Error getting window geometry (window closed)?</source>
-        <translation type="unfinished"></translation>
+        <translation>Fejl med at hente vindue geomatri (vinduet lukkede)?</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="9917"/>
@@ -2155,7 +2155,7 @@ f.eks:
     <message>
         <location filename="ongetpass.cpp" line="79"/>
         <source>No response received from the remote server. Do you want to terminate the current session?</source>
-        <translation type="unfinished"></translation>
+        <translation>Ingen respons modtaget fra fjern server. Vil du dræbe den nuværende session?</translation>
     </message>
 </context>
 <context>
@@ -2941,7 +2941,7 @@ lydsystemets forbindelse igennem firewalls</translation>
     <message>
         <location filename="xsettingsui.ui" line="61"/>
         <source> do not use primary clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>brug ikke den primær udklipsholder</translation>
     </message>
     <message>
         <location filename="xsettingsui.ui" line="68"/>
