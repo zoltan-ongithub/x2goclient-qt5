@@ -34,6 +34,8 @@ x2goclient (4.0.1.1-0~x2go1) UNRELEASED; urgency=low
       (Fixes: #179).
     - Enable full access desktop sharing across user accounts. (Fixes: #222).
     - Make X2Go Client aware of the MATE desktop environment.
+    - Make X2Go Client work in SSH broker mode without the need of a auth-id
+      file.
 
   [ Heinrich Schuchardt ]
   * New upstream version (4.0.1.1):

@@ -243,8 +243,13 @@ void HttpBrokerClient::getUserSessions()
             createSshConnection();
             return;
         }
-        sshConnection->executeCommand ( config->sshBrokerBin+" --user "+ brokerUser +" --authid "+config->brokerUserId+ " --task listsessions",
-                                        this, SLOT ( slotListSessions ( bool, QString,int ) ));
+        if (config->brokerUserId.length() > 0) {
+            sshConnection->executeCommand ( config->sshBrokerBin+" --user "+ brokerUser +" --authid "+config->brokerUserId+ " --task listsessions",
+                                            this, SLOT ( slotListSessions ( bool, QString,int ) ));
+        } else {
+            sshConnection->executeCommand ( config->sshBrokerBin+" --user "+ brokerUser +" --task listsessions",
+                                            this, SLOT ( slotListSessions ( bool, QString,int ) ));
+        }
     }
 }
 
@@ -270,8 +275,13 @@ void HttpBrokerClient::selectUserSession(const QString& session)
     }
     else
     {
-        sshConnection->executeCommand ( config->sshBrokerBin+" --user "+ brokerUser +" --authid "+config->brokerUserId+ " --task selectsession --sid \\\""+session+"\\\"",
-                                        this,SLOT ( slotSelectSession(bool,QString,int)));
+        if (config->brokerUserId.length() > 0) {
+            sshConnection->executeCommand ( config->sshBrokerBin+" --user "+ brokerUser +" --authid "+config->brokerUserId+ " --task selectsession --sid \\\""+session+"\\\"",
+                                            this,SLOT ( slotSelectSession(bool,QString,int)));
+        } else {
+            sshConnection->executeCommand ( config->sshBrokerBin+" --user "+ brokerUser +" --task selectsession --sid \\\""+session+"\\\"",
+                                            this,SLOT ( slotSelectSession(bool,QString,int)));
+        }
     }
 
 }
@@ -299,8 +309,13 @@ void HttpBrokerClient::changePassword(QString newPass)
     }
     else
     {
-        sshConnection->executeCommand ( config->sshBrokerBin+" --user "+ brokerUser +" --authid "+config->brokerUserId+ " --task setpass --newpass "+newPass, this,
-                                        SLOT ( slotPassChanged(bool,QString,int)));
+        if (config->brokerUserId.length() > 0) {
+            sshConnection->executeCommand ( config->sshBrokerBin+" --user "+ brokerUser +" --authid "+config->brokerUserId+ " --task setpass --newpass "+newPass, this,
+                                            SLOT ( slotPassChanged(bool,QString,int)));
+        } else {
+            sshConnection->executeCommand ( config->sshBrokerBin+" --user "+ brokerUser +" --task setpass --newpass "+newPass, this,
+                                            SLOT ( slotPassChanged(bool,QString,int)));
+        }
     }
 }
 
@@ -319,8 +334,13 @@ void HttpBrokerClient::testConnection()
     }
     else
     {
-        sshConnection->executeCommand(config->sshBrokerBin+" --authid "+config->brokerUserId+ " --task testcon",
-                                      this, SLOT ( slotSelectSession(bool,QString,int)));
+        if (config->brokerUserId.length() > 0) {
+            sshConnection->executeCommand(config->sshBrokerBin+" --authid "+config->brokerUserId+ " --task testcon",
+                                          this, SLOT ( slotSelectSession(bool,QString,int)));
+        } else {
+            sshConnection->executeCommand(config->sshBrokerBin+" --task testcon",
+                                          this, SLOT ( slotSelectSession(bool,QString,int)));
+        }
     }
 }
 
