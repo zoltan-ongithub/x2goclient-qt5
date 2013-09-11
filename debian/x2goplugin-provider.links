@@ -1,2 +1,2 @@
-etc/x2go/x2goplugin-apache.conf etc/apache2/conf.d/x2goplugin.conf
+etc/x2go/x2goplugin-apache.conf etc/apache2/conf-available/x2goplugin-provider.conf
 etc/x2go/plugin-provider/x2goplugin.html usr/share/x2go/plugin/x2goplugin.html
