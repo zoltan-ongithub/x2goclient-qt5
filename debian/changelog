@@ -1,6 +1,7 @@
 x2goclient (4.0.1.2-0~x2go2) UNRELEASED; urgency=low
 
-  * Continue development...
+  * New upstream version (4.0.1.2):
+    + Provide Keywords: key in .desktop file.
 
  -- Mike Gabriel <mike.gabriel@das-netzwerkteam.de>  Wed, 11 Sep 2013 12:17:43 +0200
 
