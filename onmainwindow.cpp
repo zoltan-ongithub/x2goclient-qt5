@@ -7090,7 +7090,7 @@ void ONMainWindow::slotListAllSessions ( bool result,QString output,
             x2goSession s=getSessionFromString (
                               listedSessions[0] );
 
-            x2goDebug<<"Will procceed with session.";
+            x2goDebug<<"Will proceed with session.";
 
             QDesktopWidget wd;
             if ( s.status=="S" && isColorDepthOk (
