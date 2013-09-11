@@ -6,7 +6,7 @@ export CXXFLAGS:=$(shell dpkg-buildflags --get CXXFLAGS)
 export LDFLAGS:=$(shell dpkg-buildflags --get LDFLAGS)
 
 %:
-	dh $@ --parallel --with apache2
+	dh $@ --parallel --with apache2 || dh $@ --parallel
 
 override_dh_auto_clean:
 	dh_auto_clean
