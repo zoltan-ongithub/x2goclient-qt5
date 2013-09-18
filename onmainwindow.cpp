@@ -4339,6 +4339,31 @@ void ONMainWindow::selectSession ( QStringList& sessions )
         filterDesktops ( "" );
         desktopFilter->setFocus();
         desktopFilter->selectAll();
+        if ( !embedMode )
+        {
+            X2goSettings* st;
+
+            if (!brokerMode)
+            {
+                st=new X2goSettings( "sessions" );
+
+                QString sid=lastSession->id();
+                QString suser = st->setting()->value(sid + "/shadowuser", (QVariant) QString::null).toString();
+                QString sdisplay = st->setting()->value(sid + "/shadowdisplay", (QVariant) QString::null).toString();
+                bool fullAccess= st->setting()->value(sid + "/shadowfullaccess", (QVariant) false).toBool();
+                if(suser != QString::null && sdisplay != QString::null)
+                {
+                    shadowUser=suser;
+                    shadowDisplay=sdisplay;
+                    if(fullAccess)
+                        shadowMode=SHADOW_FULL;
+                    else
+                        shadowMode=SHADOW_VIEWONLY;
+                    startNewSession();
+		    return;
+                }
+            }
+        }
     }
 
     sessTv->setCurrentIndex ( sessTv->model()->index ( 0, 0 ) );

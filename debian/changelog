@@ -1,8 +1,14 @@
 x2goclient (4.0.1.2-0~x2go2) UNRELEASED; urgency=low
 
+  [ Mike Gabriel ]
   * New upstream version (4.0.1.2):
     + Provide Keywords: key in .desktop file.
   * Pull-in packaging changes from Debian.
+
+  [ Oleksandr Shneyder ]
+  * New upstream version (4.0.1.2):
+    - support for keys "shadowuser" "shadowdisplay" and "shadowmode" in
+      config file. This allow to choose default display for shadow sessions
 
  -- Mike Gabriel <mike.gabriel@das-netzwerkteam.de>  Wed, 11 Sep 2013 12:17:43 +0200
 
