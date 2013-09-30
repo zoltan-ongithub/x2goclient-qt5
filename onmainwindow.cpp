@@ -2964,33 +2964,58 @@ void ONMainWindow::slotSshServerAuthError ( int error, QString sshMessage, SshMa
     {
     case SSH_SERVER_KNOWN_CHANGED:
         errMsg=tr ( "Host key for server changed.\nIt is now: " ) +sshMessage+"\n"+
-               tr ( "For security reasons, connection will be stopped" );
-        connection->writeKnownHosts(false);
-        connection->wait();
-        if(sshConnection && sshConnection !=connection)
-        {
-            sshConnection->wait();
-            delete sshConnection;
+               tr ( "This can be an indication of a man-in-the-middle attack.\n"
+                    "Somebody might be eavesdropping on you.\n"
+                    "For security reasons, it is recommended to stop the connection.\n"
+                    "Do you want to terminate the connection?\n" );
+        if ( !QMessageBox::warning( 0, tr( "Host key verification failed" ),
+                errMsg, tr( "Yes" ), tr( "No" ) ) != 0)
+            {
+            connection->writeKnownHosts(false);
+            connection->wait();
+            if(sshConnection && sshConnection !=connection)
+            {
+                sshConnection->wait();
+                delete sshConnection;
+            }
+            slotSshUserAuthError ( tr ( "Host key verification failed" ) );
+            sshConnection=0;
+            return;
         }
-        sshConnection=0;
-        slotSshUserAuthError ( errMsg );
-        return;
-
+        else
+        {
+            errMsg = tr( "If you accept the new host key the security of your "
+                         "connection may be compromised.\n"
+                         "Do you want to update the host key?" );
+        }
+        break;
     case SSH_SERVER_FOUND_OTHER:
         errMsg=tr ( "The host key for this server was not found but an other"
-                    "type of key exists.An attacker might change the default server key to"
-                    "confuse your client into thinking the key does not exist" );
-        connection->writeKnownHosts(false);
-        connection->wait();
-        if(sshConnection && sshConnection !=connection)
-        {
-            sshConnection->wait();
-            delete sshConnection;
+                    "type of key exists. An attacker might change the default server key to "
+                    "confuse your client into thinking the key does not exist. \n"
+                    "For security reasons, it is recommended to stop the connection.\n"
+                    "Do you want to terminate the connection?\n");
+        if ( !QMessageBox::warning( 0, tr( "Host key verification failed" ),
+                errMsg, tr( "Yes" ), tr( "No" ) ) != 0)
+            {
+            connection->writeKnownHosts(false);
+            connection->wait();
+            if(sshConnection && sshConnection !=connection)
+            {
+                sshConnection->wait();
+                delete sshConnection;
+            }
+            slotSshUserAuthError ( tr ( "Host key verification failed" ) );
+            sshConnection=0;
+            return;
         }
-        sshConnection=0;
-        slotSshUserAuthError ( errMsg );
-        return ;
-
+        else
+        {
+            errMsg = tr( "If you accept the new host key the security of your "
+                         "connection may be compromised.\n"
+                         "Do you want to update the host key?" );
+        }
+        break;
     case SSH_SERVER_ERROR:
         connection->writeKnownHosts(false);
         connection->wait();

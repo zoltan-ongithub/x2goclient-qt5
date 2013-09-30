@@ -11,6 +11,11 @@ x2goclient (4.0.1.2-0~x2go2) UNRELEASED; urgency=low
       config file. This allows choosing the default display for shadow
       sessions.
 
+  [ Heinrich Schuchardt ]
+  * New upstream version (4.0.1.2):
+    - Handle SSH host key changes more elegantly and allow user interaction
+      if such a host key change occurs. (Fixes: #241).
+
  -- Mike Gabriel <mike.gabriel@das-netzwerkteam.de>  Wed, 11 Sep 2013 12:17:43 +0200
 
 x2goclient (4.0.1.1-0~x2go1) unstable; urgency=low
