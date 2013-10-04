@@ -503,21 +503,21 @@ void SessionWidget::readConfig()
     sessName->setText (
         st.setting()->value (
             sessionId+"/name",
-            ( QVariant ) tr ( "New session" ) ).toString() );
+            ( QVariant ) tr ( "New session" ) ).toString().trimmed() );
     sessIcon=st.setting()->value (
                  sessionId+"/icon",
-                 ( QVariant ) ":icons/128x128/x2gosession.png" ).toString();
+                 ( QVariant ) ":icons/128x128/x2gosession.png" ).toString().trimmed();
     icon->setIcon ( QIcon ( sessIcon ) );
 
     server->setText ( st.setting()->value (
                           sessionId+"/host",
-                          ( QVariant ) QString::null ).toString() );
+                          ( QVariant ) QString::null ).toString().trimmed() );
     uname->setText ( st.setting()->value (
                          sessionId+"/user",
-                         ( QVariant ) QString::null ).toString() );
+                         ( QVariant ) QString::null ).toString().trimmed() );
     key->setText ( st.setting()->value (
                        sessionId+"/key",
-                       ( QVariant ) QString::null ).toString() );
+                       ( QVariant ) QString::null ).toString().trimmed() );
     cbAutoLogin->setChecked(st.setting()->value (
                                 sessionId+"/autologin",
                                 ( QVariant ) false ).toBool());
@@ -545,7 +545,7 @@ void SessionWidget::readConfig()
     QString prtype= st.setting()->value (
                         sessionId+"/sshproxytype",
                         "SSH"
-                    ).toString() ;
+                    ).toString().trimmed() ;
 
     if(prtype=="HTTP")
     {
@@ -559,17 +559,17 @@ void SessionWidget::readConfig()
     proxyLogin->setText(st.setting()->value (
                             sessionId+"/sshproxyuser",
                             QString()
-                        ).toString() );
+                        ).toString().trimmed() );
 
     proxyKey->setText(st.setting()->value (
                           sessionId+"/sshproxykeyfile",
                           QString()
-                      ).toString() );
+                      ).toString().trimmed() );
 
     proxyHost->setText(st.setting()->value (
                            sessionId+"/sshproxyhost",
                            QString()
-                       ).toString() );
+                       ).toString().trimmed() );
 
     proxyPort->setValue(st.setting()->value (
                             sessionId+"/sshproxyport",
@@ -612,14 +612,14 @@ void SessionWidget::readConfig()
     QString
     command=st.setting()->value (
                 sessionId+"/command",
-                ( QVariant ) mainWindow->getDefaultCmd() ).toString();
+                ( QVariant ) mainWindow->getDefaultCmd() ).toString().trimmed();
 
     rdpOptions=st.setting()->value ( sessionId+"/rdpoptions",
-                                     ( QVariant ) "" ).toString();
+                                     ( QVariant ) "" ).toString().trimmed();
     rdpServer=st.setting()->value ( sessionId+"/rdpserver",
-                                    ( QVariant ) "" ).toString();
+                                    ( QVariant ) "" ).toString().trimmed();
     xdmcpServer=st.setting()->value ( sessionId+"/xdmcpserver",
-                                      ( QVariant ) "localhost" ).toString();
+                                      ( QVariant ) "localhost" ).toString().trimmed();
 #ifdef Q_OS_LINUX
     cbDirectRDP->setChecked(st.setting()->value (
                                 sessionId+"/directrdp",false ).toBool());
@@ -763,16 +763,16 @@ void SessionWidget::saveSettings()
 
     X2goSettings st ( "sessions" );
     st.setting()->setValue ( sessionId+"/name",
-                             ( QVariant ) sessName->text() );
+                             ( QVariant ) sessName->text().trimmed() );
     st.setting()->setValue ( sessionId+"/icon",
                              ( QVariant ) sessIcon );
     st.setting()->setValue ( sessionId+"/host",
-                             ( QVariant ) server->text() );
+                             ( QVariant ) server->text().trimmed() );
     st.setting()->setValue ( sessionId+"/user",
-                             ( QVariant ) uname->text() );
+                             ( QVariant ) uname->text().trimmed() );
 
     st.setting()->setValue ( sessionId+"/key",
-                             ( QVariant ) key->text() );
+                             ( QVariant ) key->text().trimmed() );
 #ifdef Q_OS_LINUX
     st.setting()->setValue ( sessionId+"/rdpport",
                              ( QVariant ) rdpPort->value() );
@@ -792,16 +792,16 @@ void SessionWidget::saveSettings()
     if ( sessBox->currentIndex() < OTHER )
         command=sessBox->currentText();
     else
-        command=cmd->text();
+        command=cmd->text().trimmed();
     if ( sessBox->currentIndex() == RDP )
     {
         command="RDP";
-        rdpServer=cmd->text();
+        rdpServer=cmd->text().trimmed();
     }
     if ( sessBox->currentIndex() == XDMCP )
     {
         command="XDMCP";
-        xdmcpServer=cmd->text();
+        xdmcpServer=cmd->text().trimmed();
     }
     if ( sessBox->currentIndex() == SHADOW )
     {
@@ -826,7 +826,7 @@ void SessionWidget::saveSettings()
     if ( sessBox->currentIndex() ==APPLICATION )
     {
         rootless=true;
-        command=mainWindow->internAppName ( cmdCombo->lineEdit()->text() );
+        command=mainWindow->internAppName ( cmdCombo->lineEdit()->text().trimmed() );
     }
     if ( sessBox->currentIndex() == PUBLISHED)
         published=true;
@@ -857,9 +857,9 @@ void SessionWidget::saveSettings()
     {
         st.setting()->setValue ( sessionId+"/sshproxytype","SSH");
     }
-    st.setting()->setValue (sessionId+"/sshproxyuser",proxyLogin->text());
-    st.setting()->setValue (sessionId+"/sshproxykeyfile",proxyKey->text());
-    st.setting()->setValue (sessionId+"/sshproxyhost",proxyHost->text());
+    st.setting()->setValue (sessionId+"/sshproxyuser",proxyLogin->text().trimmed());
+    st.setting()->setValue (sessionId+"/sshproxykeyfile",proxyKey->text().trimmed());
+    st.setting()->setValue (sessionId+"/sshproxyhost",proxyHost->text().trimmed());
     st.setting()->setValue (sessionId+"/sshproxyport",proxyPort->value());
     st.setting()->setValue (sessionId+"/sshproxysamepass",cbProxySamePass->isChecked());
     st.setting()->setValue (sessionId+"/sshproxysameuser",cbProxySameUser->isChecked());

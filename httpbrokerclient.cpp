@@ -41,6 +41,11 @@ HttpBrokerClient::HttpBrokerClient ( ONMainWindow* wnd, ConfigFile* cfg )
     QUrl lurl ( config->brokerurl );
     if(lurl.userName().length()>0)
         config->brokerUser=lurl.userName();
+    /*
+     * load self-signed / custome (root-)CA certificate
+     * see. http://www.thomaskeller.biz/blog/2009/01/03/ssl-verification-with-qt-and-a-custom-ca-certificate/
+     */
+
     if(config->brokerurl.indexOf("ssh://")==0)
     {
         sshBroker=true;

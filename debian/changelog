@@ -5,6 +5,11 @@ x2goclient (4.0.1.2-0~x2go2) UNRELEASED; urgency=low
     + Provide Keywords: key in .desktop file.
   * Pull-in packaging changes from Debian.
 
+  [ Ricardo Díaz Martín ]
+  * New upstream versino (4.0.1.2):
+    + Strip whitespaces off of user name, host name and other
+      strings when loading / saving session profiles.(Fixes: #315).
+
   [ Oleksandr Shneyder ]
   * New upstream version (4.0.1.2):
     - Support for keys "shadowuser" "shadowdisplay" and "shadowmode" in
