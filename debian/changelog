@@ -5,6 +5,9 @@ x2goclient (4.0.1.2-0~x2go2) UNRELEASED; urgency=low
     + Provide Keywords: key in .desktop file.
     + Add NSIS packaging files for win32 builds to source tree.
       (Files provided by Oleksandr Shneyder, thanks!!!).
+    + Store broker HTTPS certificate exceptions in
+      $HOME/.x2go/ssl/exceptions (before: $HOME/ssl/exceptions).
+      (Fixes: #328).
   * Pull-in packaging changes from Debian.
 
   [ Ricardo Díaz Martín ]

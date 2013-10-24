@@ -532,10 +532,10 @@ void HttpBrokerClient::slotSslErrors ( const QList<QSslError> & errors )
     fname=fname.replace(":","_");
     QUrl lurl ( config->brokerurl );
     QString homeDir=mainWindow->getHomeDirectory();
-    if ( QFile::exists ( homeDir+"/ssl/exceptions/"+
+    if ( QFile::exists ( homeDir+"/.x2go/ssl/exceptions/"+
                          lurl.host() +"/"+fname ) )
     {
-        QFile fl ( homeDir+"/ssl/exceptions/"+
+        QFile fl ( homeDir+"/.x2go/ssl/exceptions/"+
                    lurl.host() +"/"+fname );
         fl.open ( QIODevice::ReadOnly | QIODevice::Text );
         QSslCertificate mcert ( &fl );
@@ -606,14 +606,14 @@ void HttpBrokerClient::slotSslErrors ( const QList<QSslError> & errors )
     {
         x2goDebug<<"accept certificate";
         QDir dr;
-        dr.mkpath ( homeDir+"/ssl/exceptions/"+lurl.host() +"/" );
-        QFile fl ( homeDir+"/ssl/exceptions/"+
+        dr.mkpath ( homeDir+"/.x2go/ssl/exceptions/"+lurl.host() +"/" );
+        QFile fl ( homeDir+"/.x2go/ssl/exceptions/"+
                    lurl.host() +"/"+fname );
         fl.open ( QIODevice::WriteOnly | QIODevice::Text );
         QTextStream ( &fl ) <<cert.toPem();
         fl.close();
         http->ignoreSslErrors();
-        x2goDebug<<"store certificate in  "<<homeDir+"/ssl/exceptions/"+
+        x2goDebug<<"store certificate in  "<<homeDir+"/.x2go/ssl/exceptions/"+
                  lurl.host() +"/"+fname;
         requestTime.restart();
     }
