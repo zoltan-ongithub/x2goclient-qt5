@@ -2,23 +2,23 @@ x2goclient (4.0.1.2-0~x2go2) UNRELEASED; urgency=low
 
   [ Mike Gabriel ]
   * New upstream version (4.0.1.2):
-    + Provide Keywords: key in .desktop file.
-    + Add NSIS packaging files for win32 builds to source tree.
+    - Provide Keywords: key in .desktop file.
+    - Add NSIS packaging files for win32 builds to source tree.
       (Files provided by Oleksandr Shneyder, thanks!!!).
-    + Store broker HTTPS certificate exceptions in
+    - Store broker HTTPS certificate exceptions in
       $HOME/.x2go/ssl/exceptions (before: $HOME/ssl/exceptions).
       (Fixes: #328).
-    + Perform sanity checks on data that comes in from X2Go Servers.
+    - Perform sanity checks on data that comes in from X2Go Servers.
       Prohibit the execution of arbitrary code via the ~/.bashrc file.
       (Fixes: #333).
-    + Add option --broker-cacertfile. Allow usage of non-system-wide
+    - Add option --broker-cacertfile. Allow usage of non-system-wide
       installed (self-signed) SSL certificate chains for https (SSL)
       session broker connections. (Fixes: #311).
   * Pull-in packaging changes from Debian.
 
   [ Ricardo Díaz Martín ]
   * New upstream versino (4.0.1.2):
-    + Strip whitespaces off of user name, host name and other
+    - Strip whitespaces off of user name, host name and other
       strings when loading / saving session profiles.(Fixes: #315).
 
   [ Oleksandr Shneyder ]
