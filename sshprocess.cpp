@@ -132,7 +132,7 @@ void SshProcess::startNormal(const QString& cmd)
     QUuid uuid = QUuid::createUuid();
     QString uuidStr = uuid.toString().mid(1, 36).toLower();
 
-    QString shcmd = "sh -c \"echo X2GODATABEGIN:" + uuidStr + " && "+cmd+" && echo X2GODATAEND:" + uuidStr +"\";";
+    QString shcmd = "sh -c \"echo X2GODATABEGIN:" + uuidStr + "; "+cmd+"; echo X2GODATAEND:" + uuidStr +"\";";
 //#ifdef DEBUG
 // ONLY UNCOMMENT FOR TESTING, MIGHT REVEAL PASSWORD WHEN command=RDP
 //    x2goDebug<<"executing remote command: "<<shcmd<<endl;
