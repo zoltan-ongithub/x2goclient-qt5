@@ -106,6 +106,9 @@ In case you want to retrieve \fBx2goclient\fR session profiles from an X2Go Sess
 \*(T<\fB\-\-broker-url=<URL>\fR\*(T>
 Specify the <URL> of the X2Go Session Broker. X2Go Client can access http:// and ssh:// style URLs.
 .TP
+\*(T<\fB\-\-broker-cacertfile=</path/to/cafile.crt>\fR\*(T>
+Specify a special (self-signed) root-CACert file that shall get used when connecting to an X2Go Session Broker via https (SSL).
+.TP
 \*(T<\fB\-\-broker-noauth\fR\*(T>
 The X2Go Session Broker is accessible without authentication.
 .TP

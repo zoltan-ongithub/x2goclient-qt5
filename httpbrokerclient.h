@@ -22,6 +22,7 @@
 #include <QBuffer>
 #include <QObject>
 #include <QDateTime>
+#include <QSslSocket>
 #include "sshmasterconnection.h"
 /**
 	@author Oleksandr Shneyder <oleksandr.shneyder@obviously-nice.de>
@@ -43,6 +44,7 @@ private:
     QBuffer httpCmdAnswer;
     QBuffer httpSessionAnswer;
     QHttp* http;
+    QSslSocket* sslSocket;
     int sessionsRequest;
     int selSessRequest;
     int chPassRequest;

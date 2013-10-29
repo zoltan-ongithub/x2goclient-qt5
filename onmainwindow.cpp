@@ -6597,6 +6597,11 @@ bool ONMainWindow::parseParameter ( QString param )
         config.brokerurl=value;
         return true;
     }
+    if ( setting == "--broker-cacertfile")
+    {
+        config.brokerCaCertFile=value;
+        return true;
+    }
     if ( setting == "--broker-ssh-key")
     {
         config.brokerSshKey=value;

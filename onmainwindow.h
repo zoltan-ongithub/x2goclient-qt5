@@ -168,6 +168,7 @@ struct ConfigFile
     bool brokerAutologin;
     bool brokerAutologoff;
     QString brokerSshKey;
+    QString brokerCaCertFile;
     QString iniFile;
     QString server;
     QString serverIp;//Can be different from server (use for loadballancing)

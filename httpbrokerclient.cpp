@@ -21,6 +21,7 @@
 #include <QTextStream>
 #include <QFile>
 #include <QDir>
+#include <QSslSocket>
 #include "x2gologdebug.h"
 #include <QMessageBox>
 #include <QDateTime>
@@ -41,10 +42,6 @@ HttpBrokerClient::HttpBrokerClient ( ONMainWindow* wnd, ConfigFile* cfg )
     QUrl lurl ( config->brokerurl );
     if(lurl.userName().length()>0)
         config->brokerUser=lurl.userName();
-    /*
-     * load self-signed / custome (root-)CA certificate
-     * see. http://www.thomaskeller.biz/blog/2009/01/03/ssl-verification-with-qt-and-a-custom-ca-certificate/
-     */
 
     if(config->brokerurl.indexOf("ssh://")==0)
     {
@@ -58,18 +55,31 @@ HttpBrokerClient::HttpBrokerClient ( ONMainWindow* wnd, ConfigFile* cfg )
     else
     {
         sshBroker=false;
+
         http=new QHttp ( this );
-        if ( config->brokerurl.indexOf ( "https://" ) ==0 )
+
+        if ( config->brokerurl.indexOf ( "https://" ) ==0 ) {
+            if ((config->brokerCaCertFile.length() >0) && (QFile::exists(config->brokerCaCertFile))) {
+
+                sslSocket = new QSslSocket(this);
+                connect ( sslSocket, SIGNAL ( sslErrors ( const QList<QSslError>& ) ),this,
+                          SLOT ( slotSslErrors ( const QList<QSslError>& ) ) );
+                http->setSocket(sslSocket);
+                sslSocket->addCaCertificates(config->brokerCaCertFile, QSsl::Pem);
+                x2goDebug<<"Custom CA certificate file loaded into HTTPS broker client: "<<config->brokerCaCertFile;
+
+            } else {
+                connect ( http, SIGNAL ( sslErrors ( const QList<QSslError>& ) ),this,
+                          SLOT ( slotSslErrors ( const QList<QSslError>& ) ) );
+            }
             http->setHost ( lurl.host(),QHttp::ConnectionModeHttps,
                             lurl.port ( 443 ) );
-        else
+        } else {
             http->setHost ( lurl.host(),QHttp::ConnectionModeHttp,
                             lurl.port ( 80 ) );
-
+        }
         connect ( http,SIGNAL ( requestFinished ( int,bool ) ),this,
                   SLOT ( slotRequestFinished ( int,bool ) ) );
-        connect ( http,SIGNAL ( sslErrors ( const QList<QSslError>& ) ),this,
-                  SLOT ( slotSslErrors ( const QList<QSslError>& ) ) );
     }
 }
 
@@ -520,7 +530,7 @@ void HttpBrokerClient::slotSslErrors ( const QList<QSslError> & errors )
     QSslCertificate cert;
     for ( int i=0; i<errors.count(); ++i )
     {
-        x2goDebug<<"sslError ,code:"<<errors[i].error() <<":";
+        x2goDebug<<"sslError, code:"<<errors[i].error() <<":";
         err<<errors[i].errorString();
         if ( !errors[i].certificate().isNull() )
             cert=errors[i].certificate();
