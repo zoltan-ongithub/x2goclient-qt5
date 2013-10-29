@@ -20,6 +20,7 @@
 #include "sshmasterconnection.h"
 #include "sshprocess.h"
 #include <QTimer>
+#include <QUuid>
 
 #ifndef Q_OS_WIN
 #include <arpa/inet.h>
@@ -128,14 +129,17 @@ void SshProcess::tunnelLoop()
 
 void SshProcess::startNormal(const QString& cmd)
 {
-    QString shcmd = "sh -c \""+cmd+"\"";
-// #ifdef DEBUG
+    QUuid uuid = QUuid::createUuid();
+    QString uuidStr = uuid.toString().mid(1, 36).toLower();
+
+    QString shcmd = "sh -c \"echo X2GODATABEGIN:" + uuidStr + " && "+cmd+" && echo X2GODATAEND:" + uuidStr +"\";";
+//#ifdef DEBUG
 // ONLY UNCOMMENT FOR TESTING, MIGHT REVEAL PASSWORD WHEN command=RDP
 //    x2goDebug<<"executing remote command: "<<shcmd<<endl;
 // #endif
-    masterCon->addChannelConnection(this, shcmd);
+    masterCon->addChannelConnection(this, uuidStr, shcmd);
     connect(masterCon,SIGNAL(stdOut(SshProcess*,QByteArray)),this,SLOT(slotStdOut(SshProcess*,QByteArray)));
-    connect(masterCon,SIGNAL(channelClosed(SshProcess*)), this,SLOT(slotChannelClosed(SshProcess*)));
+    connect(masterCon,SIGNAL(channelClosed(SshProcess*,QString)), this,SLOT(slotChannelClosed(SshProcess*,QString)));
 }
 
 void SshProcess::start_cp(QString src, QString dst)
@@ -216,7 +220,7 @@ void SshProcess::slotReverseTunnelOk(SshProcess* creator)
 }
 
 
-void SshProcess::slotChannelClosed(SshProcess* creator)
+void SshProcess::slotChannelClosed(SshProcess* creator, QString uuid)
 {
     if (creator!=this)
         return;
@@ -235,8 +239,13 @@ void SshProcess::slotChannelClosed(SshProcess* creator)
             x2goDebug<<"have only stderr, something must be wrong"<<endl;
 #endif
         }
-        else
-            output=stdOutString;
+        else {
+            QString begin_marker = "X2GODATABEGIN:"+uuid+"\n";
+            QString end_marker = "X2GODATAEND:"+uuid+"\n";
+            int output_begin=stdOutString.indexOf(begin_marker) + begin_marker.length();
+            int output_end=stdOutString.indexOf(end_marker);
+            output = stdOutString.mid(output_begin, output_end-output_begin);
+        }
     }
 #ifdef DEBUG
     x2goDebug<<"ssh finished:"<<normalExited<<" - "<<output<<endl;

@@ -77,7 +77,7 @@ private slots:
     void slotStdErr(SshProcess* creator, QByteArray data);
     void slotStdOut(SshProcess* creator, QByteArray data);
     void slotIOerr(SshProcess* creator,QString message, QString sshSessionErr);
-    void slotChannelClosed(SshProcess* creator);
+    void slotChannelClosed(SshProcess* creator, QString uuid);
     void slotReverseTunnelOk(SshProcess* creator);
     void slotCopyOk(SshProcess* creator);
     void slotCopyErr(SshProcess* creator,QString message, QString sshSessionErr);

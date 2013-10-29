@@ -39,6 +39,7 @@ struct ChannelConnection
     QString forwardHost;
     QString localHost;
     QString command;
+    QString uuid;
     bool operator==(ChannelConnection& t)
     {
         return (channel==t.channel);
@@ -67,7 +68,7 @@ public:
     static void finalizeLibSsh();
     void addChannelConnection(SshProcess* creator, int sock, QString forwardHost,
                               int forwardPort, QString localHost, int localPort, void* channel=0l);
-    void addChannelConnection(SshProcess* creator, QString cmd);
+    void addChannelConnection(SshProcess* creator, QString uuid, QString cmd);
     void addCopyRequest(SshProcess* creator, QString src, QString dst);
     void writeKnownHosts(bool);
     void setKeyPhrase(QString);
@@ -191,7 +192,7 @@ signals:
     void ioErr(SshProcess* caller, QString error, QString lastSessionError);
     void copyErr(SshProcess* caller, QString error, QString lastSessionError);
     void copyOk(SshProcess* caller);
-    void channelClosed(SshProcess* caller);
+    void channelClosed(SshProcess* caller, QString uuid);
 
     void connectionError(QString message, QString lastSessionError);
     void serverAuthError(int errCode, QString lastSessionError, SshMasterConnection*);

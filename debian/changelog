@@ -8,6 +8,9 @@ x2goclient (4.0.1.2-0~x2go2) UNRELEASED; urgency=low
     + Store broker HTTPS certificate exceptions in
       $HOME/.x2go/ssl/exceptions (before: $HOME/ssl/exceptions).
       (Fixes: #328).
+    + Perform sanity checks on data that comes in from X2Go Servers.
+      Prohibit the execution of arbitrary code via the ~/.bashrc file.
+      (Fixes: #333).
   * Pull-in packaging changes from Debian.
 
   [ Ricardo Díaz Martín ]

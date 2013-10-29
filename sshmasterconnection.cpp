@@ -903,7 +903,7 @@ void SshMasterConnection::addChannelConnection ( SshProcess* creator, int sock, 
 }
 
 
-void SshMasterConnection::addChannelConnection ( SshProcess* creator, QString cmd )
+void SshMasterConnection::addChannelConnection ( SshProcess* creator, QString uuid, QString cmd )
 {
 
     ChannelConnection con;
@@ -911,6 +911,7 @@ void SshMasterConnection::addChannelConnection ( SshProcess* creator, QString cm
     con.sock=-1;
     con.creator=creator;
     con.command=cmd;
+    con.uuid=uuid;
 
     channelConnectionsMutex.lock();
     channelConnections<<con;
@@ -1407,7 +1408,8 @@ void SshMasterConnection::finalize ( int item )
         close ( tcpSocket );
     }
     SshProcess* proc=channelConnections[item].creator;
+    QString uuid=channelConnections[item].uuid;
     channelConnections.removeAt ( item );
-    emit channelClosed ( proc );
+    emit channelClosed ( proc, uuid );
 }
 
