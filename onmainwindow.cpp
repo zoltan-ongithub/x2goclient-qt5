@@ -101,6 +101,7 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
     lastSession=0l;
     changeBrokerPass=false;
     resumeAfterSuspending=false;
+    forceToShowTrayicon=false;
 
     appSeparator=0;
     config.brokerNoAuth=false;
@@ -1099,7 +1100,7 @@ void ONMainWindow::trayIconInit()
             trayIcon->setToolTip(tr("Left mouse button to hide/restore - Right mouse button to display context menu"));
         }
 
-        if (!startHidden)
+        if (!startHidden | forceToShowTrayicon)
         {
             trayIcon->show();
             plugAppsInTray();
@@ -2034,17 +2035,29 @@ void ONMainWindow::slotEdit ( SessionButton* bt )
 
 void ONMainWindow::slotCreateDesktopIcon ( SessionButton* bt )
 {
-    bool crHidden= ( QMessageBox::question (
-                         this,
-                         tr ( "Create session icon on desktop" ),
-                         tr ( "Desktop icons can be configured "
-                              "not to show x2goclient (hidden mode). "
-                              "If you like to use this feature you'll "
-                              "need to configure login by a gpg key "
-                              "or gpg smart card.\n\n"
-                              "Use x2goclient hidden mode?" ),
-                         QMessageBox::Yes|QMessageBox::No ) ==
-                     QMessageBox::Yes );
+    QMessageBox messageBox(QMessageBox::Question,
+                           tr ( "Create session icon on desktop" ),
+                           tr ( "Desktop icons can be configured "
+                                "not to show x2goclient (hidden mode). "
+                                "If you like to use this feature you'll "
+                                "need to configure login by a gpg key "
+                                "or gpg smart card.\n\n"
+                                "Use x2goclient hidden mode?" ),
+                           QMessageBox::Yes|QMessageBox::No,
+                           this);
+
+    //adding a chekbox to know if user want to enable trayicon in hide sessions
+    QCheckBox cbShowTrayIcon(tr("Show session tray icon when running"));
+    messageBox.layout()->addWidget(&cbShowTrayIcon);
+    QGridLayout* gridLayout = (QGridLayout*) messageBox.layout();
+    gridLayout->addWidget(&cbShowTrayIcon, gridLayout->rowCount(), 0, 1, gridLayout->columnCount());
+    cbShowTrayIcon.blockSignals(true);
+
+    //getting the result
+    bool crHidden = (messageBox.exec() == QMessageBox::Yes);
+    bool bShowTrayicon = (cbShowTrayIcon.checkState() == Qt::Checked);
+
+
     X2goSettings st ( "sessions" );
 
     QString name=st.setting()->value ( bt->id() +"/name",
@@ -2073,6 +2086,10 @@ void ONMainWindow::slotCreateDesktopIcon ( SessionButton* bt )
     QString cmd="x2goclient";
     if ( crHidden )
         cmd="x2goclient --hide";
+
+    if (bShowTrayicon)
+        cmd += " --tray-icon";
+
     QTextStream out ( &file );
     out << "[Desktop Entry]\n"<<
         "Exec="<<cmd<<" --sessionid="<<bt->id() <<"\n"<<
@@ -6474,6 +6491,12 @@ bool ONMainWindow::parseParameter ( QString param )
         return true;
     }
 
+    //force to show trayicon
+    if (param == "--tray-icon")
+    {
+        forceToShowTrayicon = true;
+        return true;
+    }
 
     QString setting,value;
     QStringList vals=param.split ( "=" );
@@ -6980,7 +7003,9 @@ void ONMainWindow::showHelp()
         "--set-kbd=<0|1>\t\t\t overwrite current keyboard settings\n"
         "--autostart=<app> \t\t launch \"app\" by session start in \"published "
         "applications\" mode\n"
-        "--session-conf=<file>\t\t path to alternative session config\n";
+        "--session-conf=<file>\t\t path to alternative session config\n"
+        "--tray-icon\t\t force to show session trayicon\n";
+
     qCritical ( "%s",helpMsg.toLocal8Bit().data() );
     if (!startHidden)
     {

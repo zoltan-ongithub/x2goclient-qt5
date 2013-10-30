@@ -595,6 +595,7 @@ private:
     QList<serv> x2goServers;
     QList<Application> applications;
     QList<sshKey> cmdSshKeys;
+    bool forceToShowTrayicon; //true if --tray-icon passed in command line
 
     QPushButton* bSusp;
     QPushButton* bTerm;

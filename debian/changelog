@@ -20,6 +20,9 @@ x2goclient (4.0.1.2-0~x2go2) UNRELEASED; urgency=low
   * New upstream versino (4.0.1.2):
     - Strip whitespaces off of user name, host name and other
       strings when loading / saving session profiles.(Fixes: #315).
+    - New option --tray-icon. Force showing the tray icon, even for
+      hidden sessions. Also allow creation of .desktop files with
+      --tray-icon optionally being enabled. (Fixes: #316).
 
   [ Oleksandr Shneyder ]
   * New upstream version (4.0.1.2):
