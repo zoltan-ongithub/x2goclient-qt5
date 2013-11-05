@@ -2681,6 +2681,10 @@ void ONMainWindow::slotSelectedFromList ( SessionButton* session )
         currentKey=st->setting()->value (
                        sid+"/key",
                        ( QVariant ) QString::null ).toString();
+        if ( currentKey.startsWith("~") ) {
+            currentKey = currentKey.replace(QString("~"), QDir::homePath());
+        }
+
         autologin=st->setting()->value (
                       sid+"/autologin",
                       ( QVariant ) false ).toBool();
@@ -3419,6 +3423,9 @@ bool ONMainWindow::startSession ( const QString& sid )
                   sid+"/sshproxykeyfile",
                   QString()
               ).toString() );
+    if ( proxyKey.startsWith("~") ) {
+        proxyKey = proxyKey.replace(QString("~"), QDir::homePath());
+    }
 
     proxyserver=(st->setting()->value (
                      sid+"/sshproxyhost",
