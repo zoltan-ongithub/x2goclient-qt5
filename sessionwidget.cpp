@@ -507,6 +507,7 @@ void SessionWidget::readConfig()
     sessIcon=st.setting()->value (
                  sessionId+"/icon",
                  ( QVariant ) ":icons/128x128/x2gosession.png" ).toString().trimmed();
+    sessIcon=ONMainWindow::expandHome(sessIcon);
     icon->setIcon ( QIcon ( sessIcon ) );
 
     server->setText ( st.setting()->value (

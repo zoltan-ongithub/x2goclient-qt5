@@ -305,6 +305,7 @@ void SessionButton::redraw()
                          ( QVariant )
                          ":icons/128x128/x2gosession.png"
                      ).toString();
+    sessIcon = ONMainWindow::expandHome(sessIcon);
     QPixmap* pix;
 
     if (!par->brokerMode || sessIcon == ":icons/128x128/x2gosession.png")

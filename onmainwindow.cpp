@@ -2655,7 +2655,7 @@ void ONMainWindow::slotSelectedFromList ( SessionButton* session )
                      sid+"/icon",
                      ( QVariant ) ":icons/128x128/x2gosession.png"
                  ).toString();
-
+        sessIcon=expandHome(sessIcon);
 
         command=st->setting()->value (
                     sid+"/command",
@@ -3180,6 +3180,7 @@ void ONMainWindow::continueLDAPSession()
 
 QString ONMainWindow::expandHome( QString path )
 {
+    path = path.trimmed();
     if ( path.startsWith("~/") || path.startsWith("~\\") ) {
         path = path.replace(QString("~"), QDir::homePath());
     }
@@ -4271,7 +4272,7 @@ void ONMainWindow::setTrayIconToSessionIcon(QString info) {
         else
             sid="embedded";
 
-        QString imagePath = st->setting()->value(sid + "/icon", (QVariant) QString(":icons/128x128/x2go.png")).toString();
+        QString imagePath = expandHome(st->setting()->value(sid + "/icon", (QVariant) QString(":icons/128x128/x2go.png")).toString());
         trayIcon->setIcon(QIcon (imagePath));
 
         QString name=st->setting()->value ( sid +"/name").toString() ;
@@ -6719,6 +6720,7 @@ bool ONMainWindow::parseParameter ( QString param )
     }
     if (setting == "--session-icon")
     {
+        value=expandHome(value);
         if (! QFile::exists(value))
         {
             printError( param + tr(" (file not exists)"));
