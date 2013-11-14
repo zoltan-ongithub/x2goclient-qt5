@@ -66,7 +66,8 @@ HEADERS += configdialog.h \
            brokerpassdlg.h \
            contest.h \
            xsettingswidget.h \
-           appdialog.h
+           appdialog.h \
+           x2goutils.h
 
 SOURCES += sharewidget.cpp \
            settingswidget.cpp\
@@ -101,7 +102,8 @@ SOURCES += sharewidget.cpp \
            brokerpassdlg.cpp \
            contest.cpp \
            xsettingswidget.cpp \
-           appdialog.cpp
+           appdialog.cpp \
+           x2goutils.cpp
 
 LIBS += -lssh
 

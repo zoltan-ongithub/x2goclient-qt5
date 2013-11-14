@@ -3178,15 +3178,6 @@ void ONMainWindow::continueLDAPSession()
     sshConnection->executeCommand ( "x2gogetservers", this, SLOT ( slotGetServers ( bool, QString,int ) ));
 }
 
-QString ONMainWindow::expandHome( QString path )
-{
-    path = path.trimmed();
-    if ( path.startsWith("~/") || path.startsWith("~\\") ) {
-        path = path.replace(QString("~"), QDir::homePath());
-    }
-    return path;
-}
-
 #ifdef Q_OS_LINUX
 void ONMainWindow::startDirectRDP()
 {

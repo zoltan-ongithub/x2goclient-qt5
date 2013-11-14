@@ -1088,7 +1088,6 @@ private:
     void printSshDError();
     void loadPulseModuleNativeProtocol();
     void initEmbedToolBar();
-    QString expandHome( QString path );
 #ifdef Q_OS_LINUX
     void startDirectRDP();
 #endif

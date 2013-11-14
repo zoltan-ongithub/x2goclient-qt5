@@ -17,6 +17,7 @@
 
 #include "sessionbutton.h"
 #include "x2goclientconfig.h"
+#include "x2goutils.h"
 
 #include <QFont>
 #include <QPixmap>
@@ -305,7 +306,7 @@ void SessionButton::redraw()
                          ( QVariant )
                          ":icons/128x128/x2gosession.png"
                      ).toString();
-    sessIcon = ONMainWindow::expandHome(sessIcon);
+    sessIcon = expandHome(sessIcon);
     QPixmap* pix;
 
     if (!par->brokerMode || sessIcon == ":icons/128x128/x2gosession.png")

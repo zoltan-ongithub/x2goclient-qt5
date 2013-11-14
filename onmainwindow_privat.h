@@ -26,6 +26,7 @@
 
 #include "version.h"
 #include "x2goclientconfig.h"
+#include "x2goutils.h"
 #include "onmainwindow.h"
 #include "userbutton.h"
 #include "exportdialog.h"

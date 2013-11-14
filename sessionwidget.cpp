@@ -16,6 +16,7 @@
 ***************************************************************************/
 
 #include "sessionwidget.h"
+#include "x2goutils.h"
 #include <QBoxLayout>
 #include <QLineEdit>
 #include <QPushButton>
@@ -507,7 +508,7 @@ void SessionWidget::readConfig()
     sessIcon=st.setting()->value (
                  sessionId+"/icon",
                  ( QVariant ) ":icons/128x128/x2gosession.png" ).toString().trimmed();
-    sessIcon=ONMainWindow::expandHome(sessIcon);
+    sessIcon=expandHome(sessIcon);
     icon->setIcon ( QIcon ( sessIcon ) );
 
     server->setText ( st.setting()->value (
