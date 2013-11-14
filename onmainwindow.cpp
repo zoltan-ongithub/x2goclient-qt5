@@ -2071,6 +2071,7 @@ void ONMainWindow::slotCreateDesktopIcon ( SessionButton* bt )
                          ( QVariant )
                          ":icons/128x128/x2gosession.png"
                      ).toString();
+    sessIcon = expandHome(sessIcon);
     if ( sessIcon.startsWith ( ":icons",Qt::CaseInsensitive ) ||
             !sessIcon.endsWith ( ".png",Qt::CaseInsensitive ) )
     {
@@ -2681,9 +2682,7 @@ void ONMainWindow::slotSelectedFromList ( SessionButton* session )
         currentKey=st->setting()->value (
                        sid+"/key",
                        ( QVariant ) QString::null ).toString();
-        if ( currentKey.startsWith("~") ) {
-            currentKey = currentKey.replace(QString("~"), QDir::homePath());
-        }
+        currentKey=expandHome(currentKey);
 
         autologin=st->setting()->value (
                       sid+"/autologin",
@@ -3179,6 +3178,14 @@ void ONMainWindow::continueLDAPSession()
     sshConnection->executeCommand ( "x2gogetservers", this, SLOT ( slotGetServers ( bool, QString,int ) ));
 }
 
+QString ONMainWindow::expandHome( QString path )
+{
+    if ( path.startsWith("~/") || path.startsWith("~\\") ) {
+        path = path.replace(QString("~"), QDir::homePath());
+    }
+    return path;
+}
+
 #ifdef Q_OS_LINUX
 void ONMainWindow::startDirectRDP()
 {
@@ -3423,9 +3430,7 @@ bool ONMainWindow::startSession ( const QString& sid )
                   sid+"/sshproxykeyfile",
                   QString()
               ).toString() );
-    if ( proxyKey.startsWith("~") ) {
-        proxyKey = proxyKey.replace(QString("~"), QDir::homePath());
-    }
+    proxyKey=expandHome(proxyKey);
 
     proxyserver=(st->setting()->value (
                      sid+"/sshproxyhost",
@@ -6546,7 +6551,7 @@ bool ONMainWindow::parseParameter ( QString param )
     }
     if ( setting=="--session-conf" )
     {
-        ONMainWindow::sessionCfg=value;
+        ONMainWindow::sessionCfg=expandHome(value);
         return true;
     }
     if ( setting=="--sessionid" )
@@ -6589,13 +6594,13 @@ bool ONMainWindow::parseParameter ( QString param )
     }
     if ( setting=="--read-exports-from" )
     {
-        readExportsFrom=value;
+        readExportsFrom=expandHome(value);
         return true;
     }
     if ( setting=="--external-login" )
     {
         extLogin=true;
-        readLoginsFrom=value;
+        readLoginsFrom=expandHome(value);
         return true;
     }
     if ( setting=="--ssh-port" )
@@ -6682,7 +6687,7 @@ bool ONMainWindow::parseParameter ( QString param )
     }
     if ( setting == "--auth-id")
     {
-        QFile file(value);
+        QFile file(expandHome(value));
         if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
         {
             printError ( param + tr(" (can't open file)"));
@@ -6725,6 +6730,8 @@ bool ONMainWindow::parseParameter ( QString param )
     if (setting == "--home")
     {
         QDir dr;
+
+        value = expandHome(value);
 
 #ifdef Q_OS_WIN
         int find=value.indexOf("(");
