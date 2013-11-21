@@ -109,6 +109,16 @@ In case you want to retrieve \fBx2goclient\fR session profiles from an X2Go Sess
 .TP
 \*(T<\fB\-\-broker-url=<URL>\fR\*(T>
 Specify the <URL> of the X2Go Session Broker. X2Go Client can access http:// and ssh:// style URLs.
+
+Syntax of <URL> for HTTP brokerage:
+
+http(s)://<user>:<password>@<hostname>:<port>/path/to/broker 
+
+Syntax of <URL> for  SSH brokerage:
+
+ssh://<user>:<password>@<hostname>:<port>/usr/bin/x2gobroker (or any executable that
+provides the broker via SSH).
+
 .TP
 \*(T<\fB\-\-broker-cacertfile=</path/to/cafile.crt>\fR\*(T>
 Specify a special (self-signed) root-CACert file that shall get used when connecting to an X2Go Session Broker via https (SSL).
