@@ -267,17 +267,17 @@
     <message>
         <location filename="configdialog.cpp" line="72"/>
         <source>Hide to system tray when minimized</source>
-        <translation>Ocultar icono de notificación al minimizar</translation>
+        <translation>Mostrar como icono de notificación al minimizar</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="73"/>
         <source>Hide to system tray when closed</source>
-        <translation>Ocultar icono de notificación al cerrar</translation>
+        <translation>Mostrar icono de notificación al cerrar</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="74"/>
         <source>Hide to system tray after connection is established</source>
-        <translation>Ocultar icono de notificación tras la conexión</translation>
+        <translation>Mostrar como icono de notificación cuando se establece la conexión</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="75"/>
@@ -781,18 +781,18 @@ Hash de su clave pública: </translation>
     <message>
         <location filename="onmainwindow.cpp" line="50"/>
         <source>Starting x2goclient...</source>
-        <translation>Iniciando el cliente X2Go</translation>
+        <translation>Iniciando el cliente X2Go...</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="90"/>
         <location filename="onmainwindow.cpp" line="6535"/>
         <source>us</source>
-        <translation>us</translation>
+        <translation>es</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="91"/>
         <source>pc105/us</source>
-        <translation>pc105/us</translation>
+        <translation>pc105/es</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="156"/>
@@ -856,7 +856,7 @@ Hash de su clave pública: </translation>
         <location filename="onmainwindow.cpp" line="526"/>
         <location filename="onmainwindow.cpp" line="539"/>
         <source>Can&apos;t load translator: </source>
-        <translation>No se puede cargar el traductor.</translation>
+        <translation>No se puede cargar el traductor:</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="531"/>
@@ -908,7 +908,7 @@ Hash de su clave pública: </translation>
         <location filename="onmainwindow.cpp" line="583"/>
         <location filename="onmainwindow.cpp" line="11041"/>
         <source>Minimize toolbar</source>
-        <translation>Minimar barra</translation>
+        <translation>Minimizar barra de herramientas</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="699"/>
@@ -966,13 +966,13 @@ Hash de su clave pública: </translation>
     <message>
         <location filename="onmainwindow.cpp" line="793"/>
         <source>&amp;Connectivity test...</source>
-        <translation>Test de &amp;conectividad</translation>
+        <translation>Test de &amp;conectividad...</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="800"/>
         <location filename="onmainwindow.cpp" line="821"/>
         <source>Show toolbar</source>
-        <translation>Mostrar barra</translation>
+        <translation>Mostrar barra de herramientas</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="806"/>
@@ -1157,7 +1157,7 @@ Hash de su clave pública: </translation>
     <message>
         <location filename="onmainwindow.cpp" line="1271"/>
         <source>Closing x2goclient...</source>
-        <translation>Cerrando x2goclient</translation>
+        <translation>Cerrando x2goclient...</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="1419"/>
@@ -1851,7 +1851,7 @@ Actualiza el paquete x2goserver en el servidor</translation>
     <message>
         <location filename="onmainwindow.cpp" line="9771"/>
         <source>Error getting window geometry (window closed)?</source>
-        <translation>Fallo al obtener el tamaño de la ventana (ventana cerrada)?</translation>
+        <translation>Fallo al obtener el tamaño de la ventana (¿ventana cerrada?)</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="10049"/>
@@ -2321,7 +2321,7 @@ Ejemplo:
         <location filename="sessionbutton.cpp" line="519"/>
         <location filename="sessionbutton.cpp" line="649"/>
         <source>Disabled</source>
-        <translation>Desacactivado</translation>
+        <translation>Desactivado</translation>
     </message>
 </context>
 <context>
@@ -2735,12 +2735,12 @@ el sonido en conexiones a través de firewalls</translation>
     <message>
         <location filename="settingswidget.cpp" line="644"/>
         <source>us</source>
-        <translation>us</translation>
+        <translation>es</translation>
     </message>
     <message>
         <location filename="settingswidget.cpp" line="645"/>
         <source>pc105/us</source>
-        <translation>pc105/us</translation>
+        <translation>pc105/es</translation>
     </message>
     <message>
         <location filename="settingswidget.cpp" line="783"/>

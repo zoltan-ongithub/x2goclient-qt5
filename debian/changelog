@@ -29,6 +29,7 @@ x2goclient (4.0.1.2-0~x2go2) UNRELEASED; urgency=low
     - New option --tray-icon. Force showing the tray icon, even for
       hidden sessions. Also allow creation of .desktop files with
       --tray-icon optionally being enabled. (Fixes: #316).
+    - Update Spanish translation.
 
   [ Oleksandr Shneyder ]
   * New upstream version (4.0.1.2):
