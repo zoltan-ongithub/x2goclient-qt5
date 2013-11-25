@@ -972,11 +972,11 @@ La nouvelle clef est:</translation>
     </message>
     <message>
         <source>For security reasons, connection will be stopped</source>
-        <translation>Pour des raisons de sécurité, la connection va être stoppée</translation>
+        <translation type="obsolete">Pour des raisons de sécurité, la connection va être stoppée</translation>
     </message>
     <message>
         <source>The host key for this server was not found but an othertype of key exists.An attacker might change the default server key toconfuse your client into thinking the key does not exist</source>
-        <translation>La clef d&apos;hôte pour ce serveur n&apos;a pas été trouvée mais un autre type de clef a été trouvé. Un attaquant peut avoir changé la clef par défaut du serveur pour faire croire à votre client que la clef n&apos;existe pas</translation>
+        <translation type="obsolete">La clef d&apos;hôte pour ce serveur n&apos;a pas été trouvée mais un autre type de clef a été trouvé. Un attaquant peut avoir changé la clef par défaut du serveur pour faire croire à votre client que la clef n&apos;existe pas</translation>
     </message>
     <message>
         <source>Could not find known host file.If you accept the host key here, the file will be automatically created</source>
@@ -1431,6 +1431,30 @@ you can install sshd with
     </message>
     <message>
         <source>Error getting window geometry (window closed)?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show session tray icon when running</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This can be an indication of a man-in-the-middle attack.
+Somebody might be eavesdropping on you.
+For security reasons, it is recommended to stop the connection.
+Do you want to terminate the connection?
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>If you accept the new host key the security of your connection may be compromised.
+Do you want to update the host key?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The host key for this server was not found but an othertype of key exists. An attacker might change the default server key to confuse your client into thinking the key does not exist. 
+For security reasons, it is recommended to stop the connection.
+Do you want to terminate the connection?
+</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
