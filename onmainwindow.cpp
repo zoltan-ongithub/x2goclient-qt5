@@ -6626,12 +6626,12 @@ bool ONMainWindow::parseParameter ( QString param )
     }
     if ( setting == "--broker-cacertfile")
     {
-        config.brokerCaCertFile=value;
+        config.brokerCaCertFile=expandHome(value);
         return true;
     }
     if ( setting == "--broker-ssh-key")
     {
-        config.brokerSshKey=value;
+        config.brokerSshKey=expandHome(value);
         return true;
     }
     if ( setting == "--ssh-key")
@@ -6642,15 +6642,15 @@ bool ONMainWindow::parseParameter ( QString param )
         switch(parts.length())
         {
         case 1:
-            key.key=parts[0];
+            key.key=expandHome(parts[0]);
             break;
         case 2:
-            key.key=parts[1];
+            key.key=expandHome(parts[1]);
             authPart=parts[0];
             break;
         case 3:
             authPart=parts[0];
-            key.key=parts[2];
+            key.key=expandHome(parts[2]);
             key.port=parts[1];
             break;
         }
@@ -6691,6 +6691,7 @@ bool ONMainWindow::parseParameter ( QString param )
     }
     if (setting == "--support-menu")
     {
+        value = expandHome(value)
         if (! QFile::exists(value))
         {
             printError( param + tr(" (file not exists)"));
@@ -6701,6 +6702,7 @@ bool ONMainWindow::parseParameter ( QString param )
     }
     if (setting == "--background")
     {
+        value = expandHome(value)
         if (! QFile::exists(value))
         {
             printError( param + tr(" (file not exists)"));
