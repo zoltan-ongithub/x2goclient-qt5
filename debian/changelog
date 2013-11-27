@@ -22,6 +22,8 @@ x2goclient (4.0.1.2-0~x2go2) UNRELEASED; urgency=low
       via sessions file or cmdline parameter.
     - Syntax fix of x2goclient.desktop file.
   * Pull-in packaging changes from Debian.
+  * debian/source/format:
+    + Switch to format 1.0.
 
   [ Ricardo Díaz Martín ]
   * New upstream versino (4.0.1.2):
