@@ -20,6 +20,7 @@ x2goclient (4.0.1.2-0~x2go2) UNRELEASED; urgency=low
       attention by Eldamir on IRC. Thanks!).
     - Expand tilde operator for all other file paths handed over to X2Go Client
       via sessions file or cmdline parameter.
+    - Syntax fix of x2goclient.desktop file.
   * Pull-in packaging changes from Debian.
 
   [ Ricardo Díaz Martín ]
