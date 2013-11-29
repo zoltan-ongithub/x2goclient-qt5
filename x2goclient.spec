@@ -1,6 +1,6 @@
 Name:           x2goclient
 Version:        4.0.1.2
-Release:        0.1%{?dist}
+Release:        0x2go1%{?dist}
 Summary:        Graphical client for use with the X2Go network based computing environment
 
 Group:          Applications/Communications
