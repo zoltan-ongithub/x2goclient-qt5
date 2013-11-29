@@ -24,6 +24,7 @@ x2goclient (4.0.1.2-0x2go2) UNRELEASED; urgency=low
   * Pull-in packaging changes from Debian.
   * debian/source/format:
     + Switch to format 1.0.
+  * Ship x2goclient.spec (RPM package definitions) in upstream project.
 
   [ Ricardo Díaz Martín ]
   * New upstream versino (4.0.1.2):
