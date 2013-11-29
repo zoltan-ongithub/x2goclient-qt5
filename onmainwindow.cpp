@@ -6691,7 +6691,7 @@ bool ONMainWindow::parseParameter ( QString param )
     }
     if (setting == "--support-menu")
     {
-        value = expandHome(value)
+        value = expandHome(value);
         if (! QFile::exists(value))
         {
             printError( param + tr(" (file not exists)"));
@@ -6702,7 +6702,7 @@ bool ONMainWindow::parseParameter ( QString param )
     }
     if (setting == "--background")
     {
-        value = expandHome(value)
+        value = expandHome(value);
         if (! QFile::exists(value))
         {
             printError( param + tr(" (file not exists)"));
