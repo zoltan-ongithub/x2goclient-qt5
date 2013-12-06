@@ -19,7 +19,11 @@ BuildRequires:  man
 %endif
 BuildRequires:  openldap-devel
 BuildRequires:  qt-devel
+%if 0%{?fedora_version} >= 18
 BuildRequires:  qtbrowserplugin-static
+%elif 0%{?rhel_version} >= 6
+BuildRequires:  qtbrowserplugin-static
+%endif
 Requires:       hicolor-icon-theme
 Requires:       mozilla-filesystem
 Requires:       nxproxy
@@ -36,12 +40,19 @@ directories.
 # Fix up install issues
 sed -i -e 's/-o root -g root//' Makefile
 sed -i -e '/^MOZPLUGDIR=/s/lib/%{_lib}/' Makefile
+%if 0%{?fedora_version} >= 18
 # Use system qtbrowserplugin
 sed -i -e '/CFGPLUGIN/aTEMPLATE=lib' x2goclient.pro
 sed -i -e '/^LIBS /s/$/ -ldl/' x2goclient.pro
 sed -i -e 's/include.*qtbrowserplugin.pri)/LIBS += -lqtbrowserplugin/' x2goclient.pro
 rm -r qtbrowserplugin*
-
+%elif 0%{?rhel_version} >= 6
+# Use system qtbrowserplugin
+sed -i -e '/CFGPLUGIN/aTEMPLATE=lib' x2goclient.pro
+sed -i -e '/^LIBS /s/$/ -ldl/' x2goclient.pro
+sed -i -e 's/include.*qtbrowserplugin.pri)/LIBS += -lqtbrowserplugin/' x2goclient.pro
+rm -r qtbrowserplugin*
+%endif
 
 %build
 export PATH=%{_qt4_bindir}:$PATH
