@@ -22,13 +22,16 @@ x2goclient (4.0.1.2-0x2go2) UNRELEASED; urgency=low
       via sessions file or cmdline parameter.
     - Syntax fix of x2goclient.desktop file.
     - Test for various file locations of the pulseaudio cookie file.
+    - Allow patching of qmake-qt4 executable path in Makefile.
   * Pull-in packaging changes from Debian.
   * debian/source/format:
     + Switch to format 1.0.
-  * Ship x2goclient.spec (RPM package definitions) in upstream project. (Thanks
-    to the Fedora package maintainers).
-  * Make package build on Fedora/EPEL versions that do not have the qtbrowserplugin
-    package.
+  * x2goclient.spec:
+    + Ship x2goclient.spec (RPM package definitions) in upstream project.
+      (Thanks to the Fedora package maintainers).
+    + Make package build on Fedora/EPEL versions that do not have the
+      qtbrowserplugin package.
+    + Replace qmake-qt4 path in Makefile.
 
   [ Ricardo Díaz Martín ]
   * New upstream versino (4.0.1.2):
