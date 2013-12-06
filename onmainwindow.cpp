@@ -5062,21 +5062,46 @@ void ONMainWindow::slotRetResumeSess ( bool result,
                 file.close();
             }
 #endif
+            QString pulsecookie_filename = "";
             if ( sysPulse )
             {
-                sshConnection->copyFile(
-                    "/var/run/pulse/.pulse-cookie",
-                    "~/.x2go/C-"+
-                    resumingSession.sessionId+
-                    "/.pulse-cookie", this, SLOT ( slotPCookieReady ( bool, QString,int )));
+                if ( QFile::exists("/run/pulse/.config/pulse/cookie") ) {
+                    pulsecookie_filename = "/run/pulse/.config/pulse/cookie";
+                }
+                else if ( QFile::exists("/run/pulse/.pulse-cookie") ) {
+                    pulsecookie_filename = "/run/pulse/.pulse-cookie";
+                }
+                else if ( QFile::exists("/var/run/pulse/.config/pulse/cookie") ) {
+                    pulsecookie_filename = "/var/run/pulse/.config/pulse/cookie";
+                }
+                else if ( QFile::exists("/var/run/pulse/.pulse-cookie") ) {
+                    pulsecookie_filename = "/var/run/pulse/.pulse-cookie";
+                }
+                if ( pulsecookie_filename.length() > 0 )
+                {
+                    sshConnection->copyFile(
+                        pulsecookie_filename,
+                        "~/.x2go/C-"+
+                        resumingSession.sessionId+
+                        "/.pulse-cookie", this, SLOT ( slotPCookieReady ( bool, QString,int )));
+                }
             }
             else
             {
 #ifndef Q_OS_WIN
-                sshConnection->copyFile(homeDir+"/.pulse-cookie",
-                                        "~/.x2go/C-"+
-                                        resumingSession.sessionId+
-                                        "/.pulse-cookie", this, SLOT ( slotPCookieReady ( bool, QString,int )));
+                if ( QFile::exists(homeDir+".config/pulse/cookie") ) {
+                    pulsecookie_filename = homeDir+".config/pulse/cookie";
+                }
+                else if ( QFile::exists(homeDir+".pulse-cookie") ) {
+                    pulsecookie_filename = homeDir+".pulse-cookie";
+                }
+                if ( pulsecookie_filename.length() > 0 )
+                {
+                    sshConnection->copyFile(pulsecookie_filename,
+                                            "~/.x2go/C-"+
+                                            resumingSession.sessionId+
+                                            "/.pulse-cookie", this, SLOT ( slotPCookieReady ( bool, QString,int )));
+                }
 #else
                 QString cooFile=
                     wapiShortFileName ( homeDir )  +
