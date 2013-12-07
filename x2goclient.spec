@@ -28,6 +28,9 @@ Requires:       hicolor-icon-theme
 Requires:       mozilla-filesystem
 Requires:       nxproxy
 
+# For compatibility with EPEL5
+BuildRoot:      %(mktemp -ud %{_tmppath}/%{name}-%{version}-%{release}-XXXXXX)
+
 %description
 This client will be able to connect to X2Go server(s) and start, stop, resume 
 and terminate (running) desktop sessions. X2Go Client stores different server 
