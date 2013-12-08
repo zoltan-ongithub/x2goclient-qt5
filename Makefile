@@ -27,7 +27,9 @@ LRELEASE_BINARY=/usr/bin/lrelease
 
 all: build
 
-build: build_client build_plugin build_man
+build: build_man
+	$(MAKE) build_client
+	$(MAKE) build_plugin
 
 build_client:
 	$(LRELEASE_BINARY) x2goclient.pro
