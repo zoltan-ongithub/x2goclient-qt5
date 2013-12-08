@@ -18,7 +18,11 @@ BuildRequires:  man2html-core
 BuildRequires:  man
 %endif
 BuildRequires:  openldap-devel
+%if 0%{?el5}
+BuildRequires:  qt4-devel
+%else
 BuildRequires:  qt-devel
+%endif
 %if 0%{?fedora} >= 19 || 0%{?rhel} >= 6
 BuildRequires:  qtbrowserplugin-static
 %endif
@@ -44,7 +48,7 @@ directories.
 sed -i -e 's/-o root -g root//' Makefile
 sed -i -e '/^MOZPLUGDIR=/s/lib/%{_lib}/' Makefile
 %if 0%{?el5}
-sed -i -e '/^QMAKE_BINARY=/s@/usr/bin/qmake-qt4@/usr/lib/qt4/bin/qmake@' Makefile
+sed -i -e '/^QMAKE_BINARY=/s@/usr/bin/qmake-qt4@%{_libdir}/qt4/bin/qmake@' Makefile
 %endif
 %if 0%{?fedora} >= 19 || 0%{?rhel} >= 6
 # Use system qtbrowserplugin
