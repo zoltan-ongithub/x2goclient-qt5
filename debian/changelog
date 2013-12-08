@@ -29,6 +29,7 @@ x2goclient (4.0.1.2-0x2go2) UNRELEASED; urgency=low
   * x2goclient.spec:
     + Ship x2goclient.spec (RPM package definitions) in upstream project.
       (Thanks to the Fedora package maintainers).
+    + Clear (Fedora package) changelog.
     + Make package build on Fedora/EPEL versions that do not have the
       qtbrowserplugin package.
     + Replace qmake-qt4 path in Makefile.

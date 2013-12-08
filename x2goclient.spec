@@ -90,34 +90,3 @@ fi
 
 
 %changelog
-* Wed Sep 11 2013 Orion Poplawski <orion@cora.nwra.com> - 4.0.1.1-1
-- Update to 4.0.1.1
-- Drop patches applied upstream
-
-* Thu Sep 5 2013 Orion Poplawski <orion@cora.nwra.com> - 4.0.1.0-5
-- Build against system qtbrowserplugin
-
-* Fri Aug 30 2013 Orion Poplawski <orion@cora.nwra.com> - 4.0.1.0-4
-- Add BR desktop-file-utils and validate desktop file
-- Add gtk-update-icon-cache scriptlets
-
-* Wed Apr 10 2013 Orion Poplawski <orion@cora.nwra.com> - 4.0.1.0-3
-- Add patch to set dpi automatically
-
-* Thu Mar 28 2013 Orion Poplawski <orion@cora.nwra.com> - 4.0.1.0-2
-- Add patch to fix proxy connection issue
-
-* Mon Mar 25 2013 Orion Poplawski <orion@cora.nwra.com> - 4.0.1.0-1
-- Update to 4.0.1.0
-
-* Tue Feb 12 2013 Orion Poplawski <orion@cora.nwra.com> - 4.0.0.2-1
-- Update to 4.0.0.2
-
-* Fri Jan 18 2013 Orion Poplawski <orion@cora.nwra.com> - 4.0.0.1-1
-- Update to 4.0.0.1
-
-* Wed Dec 12 2012 Orion Poplawski <orion@cora.nwra.com> - 3.99.3.1-0.1
-- Update to latest git
-
-* Tue Dec 11 2012 Orion Poplawski <orion@cora.nwra.com> - 3.99.3.0-1
-- Initial Fedora package
