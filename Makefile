@@ -23,18 +23,19 @@ SHAREDIR=$(PREFIX)/share
 MANDIR=$(SHAREDIR)/man
 MOZPLUGDIR=$(PREFIX)/lib/mozilla/plugins
 QMAKE_BINARY=/usr/bin/qmake-qt4
+LRELEASE_BINARY=/usr/bin/lrelease
 
 all: build
 
 build: build_client build_plugin build_man
 
 build_client:
-	lrelease x2goclient.pro
+	$(LRELEASE_BINARY) x2goclient.pro
 	mkdir -p $(CLIENT_DIR) && cd $(CLIENT_DIR) && $(QMAKE_BINARY) QMAKE_CFLAGS="${CPPFLAGS} ${CFLAGS}" QMAKE_CXXFLAGS="${CPPFLAGS} ${CXXFLAGS}" QMAKE_LFLAGS="${LDFLAGS}" ../x2goclient.pro
 	cd $(CLIENT_DIR) && $(MAKE)
 
 build_plugin:
-	lrelease x2goclient.pro
+	$(LRELEASE_BINARY) x2goclient.pro
 	mkdir -p $(PLUGIN_DIR) && cd $(PLUGIN_DIR) && X2GO_CLIENT_TARGET=plugin $(QMAKE_BINARY) QMAKE_CFLAGS="${CPPFLAGS} ${CFLAGS}" QMAKE_CXXFLAGS="${CPPFLAGS} ${CXXFLAGS}" QMAKE_LFLAGS="${LDFLAGS}" ../x2goclient.pro
 	cd $(PLUGIN_DIR) && $(MAKE)
 
