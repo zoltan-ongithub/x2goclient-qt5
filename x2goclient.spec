@@ -19,15 +19,17 @@ BuildRequires:  man
 %endif
 BuildRequires:  openldap-devel
 BuildRequires:  qt-devel
-%if 0%{?fedora_version} >= 18 || 0%{?rhel_version} >= 6
+%if 0%{?fedora} >= 18 || 0%{?rhel} >= 6
 BuildRequires:  qtbrowserplugin-static
 %endif
 Requires:       hicolor-icon-theme
 Requires:       mozilla-filesystem
 Requires:       nxproxy
 
+%if 0%{?el5}
 # For compatibility with EPEL5
 BuildRoot:      %(mktemp -ud %{_tmppath}/%{name}-%{version}-%{release}-XXXXXX)
+%endif
 
 %description
 This client will be able to connect to X2Go server(s) and start, stop, resume 
@@ -41,10 +43,10 @@ directories.
 # Fix up install issues
 sed -i -e 's/-o root -g root//' Makefile
 sed -i -e '/^MOZPLUGDIR=/s/lib/%{_lib}/' Makefile
-%if 0%{?rhel_version}
+%if 0%{?el5} || 0%{?el6}
 sed -i -e '/^QMAKE_BINARY=/s@/usr/bin/qmake-qt4@/usr/lib/qt4/bin/qmake@' Makefile
 %endif
-%if 0%{?fedora_version} >= 18 || 0%{?rhel_version} >= 6
+%if 0%{?fedora} >= 18 || 0%{?rhel} >= 6
 # Use system qtbrowserplugin
 sed -i -e '/CFGPLUGIN/aTEMPLATE=lib' x2goclient.pro
 sed -i -e '/^LIBS /s/$/ -ldl/' x2goclient.pro
