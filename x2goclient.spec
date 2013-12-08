@@ -19,9 +19,7 @@ BuildRequires:  man
 %endif
 BuildRequires:  openldap-devel
 BuildRequires:  qt-devel
-%if 0%{?fedora_version} >= 18
-BuildRequires:  qtbrowserplugin-static
-%elif 0%{?rhel_version} >= 6
+%if 0%{?fedora_version} >= 18 || 0%{?rhel_version} >= 6
 BuildRequires:  qtbrowserplugin-static
 %endif
 Requires:       hicolor-icon-theme
