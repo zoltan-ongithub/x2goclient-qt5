@@ -18,7 +18,7 @@ BuildRequires:  man2html-core
 BuildRequires:  man
 %endif
 BuildRequires:  openldap-devel
-%if 0%{?el5}
+%if 0%{?el5} || 0%{?el6}
 BuildRequires:  qt4-devel
 %else
 BuildRequires:  qt-devel
