@@ -25,7 +25,7 @@ SHAREDIR=$(PREFIX)/share
 MANDIR=$(SHAREDIR)/man
 MOZPLUGDIR=$(PREFIX)/lib/mozilla/plugins
 QMAKE_BINARY=qmake-qt4
-LRELEASE_BINARY=lrelease
+LRELEASE_BINARY=lrelease-qt4
 
 all: build
 

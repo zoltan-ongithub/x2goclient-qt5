@@ -42,6 +42,7 @@ x2goclient (4.0.1.2-0x2go2) UNRELEASED; urgency=low
     + For EPEL-5 builds: replace full path to qmake-qt4 and lrelease.
     + Split up package into bin:packages: x2goclient, x2goplugin,
       x2goplugin-provider.
+    + Make sure lrelease-qt4 is executed (not just lrelease).
 
   [ Ricardo Díaz Martín ]
   * New upstream versino (4.0.1.2):

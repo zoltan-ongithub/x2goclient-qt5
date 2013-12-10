@@ -95,7 +95,7 @@ sed -i -e 's/-o root -g root//' Makefile
 sed -i -e '/^MOZPLUGDIR=/s/lib/%{_lib}/' Makefile
 %if 0%{?el5}
 sed -i -e '/^QMAKE_BINARY=/s@qmake-qt4@%{_libdir}/qt4/bin/qmake@' Makefile
-sed -i -e '/^LRELEASE_BINARY=/s@lrelease@%{_libdir}/qt4/bin/lrelease@' Makefile
+sed -i -e '/^LRELEASE_BINARY=/s@lrelease-qt4@%{_libdir}/qt4/bin/lrelease@' Makefile
 %endif
 %if 0%{?fedora} >= 19 || 0%{?rhel} >= 6
 # Use system qtbrowserplugin
