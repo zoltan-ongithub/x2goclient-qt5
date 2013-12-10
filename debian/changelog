@@ -38,6 +38,8 @@ x2goclient (4.0.1.2-0x2go2) UNRELEASED; urgency=low
     + Make package build on Fedora/EPEL versions that do not have the
       qtbrowserplugin package.
     + For EPEL-5 builds: replace full path to qmake-qt4 and lrelease.
+    + Split up package into bin:packages: x2goclient, x2goplugin,
+      x2goplugin-provider.
 
   [ Ricardo Díaz Martín ]
   * New upstream versino (4.0.1.2):
