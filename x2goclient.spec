@@ -51,6 +51,7 @@ You can use it to connect to running sessions and start new sessions.
 
 %package -n x2goplugin
 Summary: X2Go Client (Qt4) as browser plugin
+Group:          Applications/Communications
 Requires:       mozilla-filesystem
 Requires:       nxproxy
 Requires:       openssh-clients, openssh-server
@@ -73,6 +74,7 @@ This package provides X2Go Client as QtBrowser-based Mozilla plugin.
 
 %package -n x2goplugin-provider
 Summary: Provide X2Go Plugin via Apache webserver
+Group:          Applications/Communications
 Requires: httpd
 
 %description -n x2goplugin-provider
