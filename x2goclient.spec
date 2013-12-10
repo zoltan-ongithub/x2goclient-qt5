@@ -115,7 +115,7 @@ make %{?_smp_mflags}
 make install DESTDIR=%{buildroot} PREFIX=%{_prefix}
 desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
 
-mkdir %{buildroot}%{_sysconfdir}/httpd/conf.d
+mkdir -p %{buildroot}%{_sysconfdir}/httpd/conf.d
 ln -s ../../x2go/x2goplugin-apache.conf %{buildroot}%{_sysconfdir}/httpd/conf.d/x2goplugin-provider.conf
 
 %post
