@@ -146,5 +146,11 @@ fi
 %files -n x2goplugin
 %{_libdir}/mozilla/plugins/libx2goplugin.so
 
+%files -n x2goplugin-provider
+%{_sysconfdir}/x2go/x2goplugin-apache.conf
+%{_sysconfdir}/httpd/
+%{_sysconfdir}/x2go/plugin-provider/
+%{_datadir}/x2go/plugin/
+
 
 %changelog

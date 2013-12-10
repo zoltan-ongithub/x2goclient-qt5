@@ -67,7 +67,7 @@ clean_pluginprovider:
 clean_man:
 	make -f Makefile.man2html clean
 
-install: install_client install_plugin install_man
+install: install_client install_plugin install_man install_pluginprovider
 
 install_client:
 	$(INSTALL_DIR) $(DESTDIR)$(BINDIR)/
