@@ -55,11 +55,38 @@ Requires:       mozilla-filesystem
 Requires:       nxproxy
 Requires:       openssh-clients, openssh-server
 
+%description -n x2goplugin
+X2Go is a serverbased computing environment with
+    - session resuming
+    - low bandwidth support
+    - session brokerage support
+    - client-side mass storage mounting support
+    - client-side printing support
+    - audio support
+    - authentication by smartcard and USB stick
+
+X2Go Client is a graphical client (qt4) for the X2Go system.
+You can use it to connect to running sessions and start new sessions.
+
+This package provides X2Go Client as QtBrowser-based Mozilla plugin.
+
 
 %package -n x2goplugin-provider
 Summary: Provide X2Go Plugin via Apache webserver
 Requires: httpd
 
+%description -n x2goplugin-provider
+X2Go is a serverbased computing environment with
+    - session resuming
+    - low bandwidth support
+    - session brokerage support
+    - client-side mass storage mounting support
+    - client-side printing support
+    - audio support
+    - authentication by smartcard and USB stick
+
+This package provides an example configuration for providing
+the X2Go Plugin via an Apache webserver.
 
 %prep
 %setup -q
