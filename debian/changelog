@@ -58,6 +58,10 @@ x2goclient (4.0.1.2-0x2go2) UNRELEASED; urgency=low
     - Handle SSH host key changes more elegantly and allow user interaction
       if such a host key change occurs. (Fixes: #241).
 
+  [ Michael DePaulo ]
+  * New upstream version (4.0.1.2):
+    - win32: Add uninstall information to Add/Remove Programs. (Fixes: #230).
+
  -- Mike Gabriel <mike.gabriel@das-netzwerkteam.de>  Wed, 11 Sep 2013 12:17:43 +0200
 
 x2goclient (4.0.1.1-0~x2go1) unstable; urgency=low

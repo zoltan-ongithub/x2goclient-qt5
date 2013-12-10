@@ -10,7 +10,7 @@
 ;General
 
   RequestExecutionLevel admin
- !define VERSION "4.0.1.2-pre01"
+ !define VERSION "4.0.1.2-pre02"
   Name "x2goclient-${VERSION}"
   Caption "x2goclient-${VERSION}"
   OutFile "x2goclient-${VERSION}-setup.exe"
@@ -50,6 +50,12 @@ SectionEnd
 
   Var STARTMENU_FOLDER
   Var MUI_TEMP
+    
+  !define  UNINSTALL_REGKEY "Software\Microsoft\Windows\CurrentVersion\Uninstall\x2goclient"
+  !define  UNINSTALL_DISPLAYNAME "X2Go Client for Windows"
+  !define  UNINSTALL_PUBLISHER "X2Go Project" 
+  !define  UNINSTALL_DISPLAYVERSION ${VERSION}
+  !define  UNINSTALL_URL "http://www.x2go.org"
 
 ;--------------------------------
 ;Pages
@@ -109,8 +115,29 @@ Section "x2goclient" Section1
   CreateShortCut "$DESKTOP\X2goClient.lnk" "$INSTDIR\x2goclient.exe"
   
   !insertmacro MUI_STARTMENU_WRITE_END
+  
+  ;Add uninstall information to Add/Remove Programs
+  ;http://nsis.sourceforge.net/Add_uninstall_information_to_Add/Remove_Programs
+  WriteRegStr HKLM ${UNINSTALL_REGKEY} "InstallLocation" 	"$INSTDIR"
+  WriteRegStr HKLM ${UNINSTALL_REGKEY} "UninstallString" 	"$\"$INSTDIR\Uninstall.exe$\""
+  WriteRegStr HKLM ${UNINSTALL_REGKEY} "DisplayIcon" 		"$INSTDIR\x2goclient.exe"
+  WriteRegStr HKLM ${UNINSTALL_REGKEY} "DisplayName" 		"${UNINSTALL_DISPLAYNAME}"
+  WriteRegStr HKLM ${UNINSTALL_REGKEY} "Publisher" 			"${UNINSTALL_PUBLISHER}"
+  WriteRegStr HKLM ${UNINSTALL_REGKEY} "DisplayVersion" 	"${UNINSTALL_DISPLAYVERSION}"
+  WriteRegStr HKLM ${UNINSTALL_REGKEY} "HelpLink" 			"${UNINSTALL_URL}"
+  WriteRegStr HKLM ${UNINSTALL_REGKEY} "URLInfoAbout" 		"${UNINSTALL_URL}"
+  WriteRegStr HKLM ${UNINSTALL_REGKEY} "URLUpdateInfo" 		"${UNINSTALL_URL}"
+  WriteRegDWORD HKLM ${UNINSTALL_REGKEY} "NoModify" 		1
+  WriteRegDWORD HKLM ${UNINSTALL_REGKEY} "NoRepair" 		1
+  
 SectionEnd
 
+Section EstimatedSize
+  ${GetSize} "$INSTDIR" "/S=0K" $0 $1 $2
+  IntFmt $0 "0x%08X" $0
+  WriteRegDWORD HKLM ${UNINSTALL_REGKEY} "EstimatedSize" "$0"
+SectionEnd
+  
 ;-------------------------------------------
 ;Descriptions
 
@@ -152,8 +179,9 @@ Section "Uninstall"
   startMenuDeleteLoopDone:
 
   RMDir /r "$INSTDIR"
-
-  DeleteRegKey  HKLM "Software\x2goclient"
+  
+  DeleteRegKey HKLM "Software\x2goclient"
+  DeleteRegKey HKLM "${UNINSTALL_REGKEY}"
 
 SectionEnd
 
