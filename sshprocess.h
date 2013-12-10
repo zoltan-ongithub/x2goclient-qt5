@@ -20,13 +20,12 @@
 
 #include <libssh/libssh.h>
 #include <QObject>
-
+#include <QProcess>
 #ifndef Q_OS_WIN
 #include <netinet/in.h>
 #endif
 
 #include "sshmasterconnection.h"
-
 
 class SshProcess : public QObject
 {
@@ -70,7 +69,10 @@ private:
     QString abortString;
     bool tunnel;
     bool normalExited;
-
+//only to use with krb (until no GSSAPI support in libssh)
+    QProcess* proc;
+    QString procUuid;
+    bool execProcess;
 
 private slots:
     void slotCheckNewConnection();
@@ -81,6 +83,10 @@ private slots:
     void slotReverseTunnelOk(SshProcess* creator);
     void slotCopyOk(SshProcess* creator);
     void slotCopyErr(SshProcess* creator,QString message, QString sshSessionErr);
+    //krb stuff
+    void slotSshProcFinished( int exitCode, QProcess::ExitStatus exitStatus);
+    void slotSshProcStdErr();
+    void slotSshProcStdOut();
 signals:
     void sshFinished ( bool result, QString output, int processId);
     void sshTunnelOk(int processId);

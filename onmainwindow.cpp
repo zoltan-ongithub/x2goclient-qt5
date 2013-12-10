@@ -2989,8 +2989,8 @@ void ONMainWindow::slotSshServerAuthError ( int error, QString sshMessage, SshMa
                     "For security reasons, it is recommended to stop the connection.\n"
                     "Do you want to terminate the connection?\n" );
         if ( !QMessageBox::warning( 0, tr( "Host key verification failed" ),
-                errMsg, tr( "Yes" ), tr( "No" ) ) != 0)
-            {
+                                    errMsg, tr( "Yes" ), tr( "No" ) ) != 0)
+        {
             connection->writeKnownHosts(false);
             connection->wait();
             if(sshConnection && sshConnection !=connection)
@@ -3016,8 +3016,8 @@ void ONMainWindow::slotSshServerAuthError ( int error, QString sshMessage, SshMa
                     "For security reasons, it is recommended to stop the connection.\n"
                     "Do you want to terminate the connection?\n");
         if ( !QMessageBox::warning( 0, tr( "Host key verification failed" ),
-                errMsg, tr( "Yes" ), tr( "No" ) ) != 0)
-            {
+                                    errMsg, tr( "Yes" ), tr( "No" ) ) != 0)
+        {
             connection->writeKnownHosts(false);
             connection->wait();
             if(sshConnection && sshConnection !=connection)
@@ -3493,6 +3493,7 @@ bool ONMainWindow::startSession ( const QString& sid )
 void ONMainWindow::slotListSessions ( bool result,QString output,
                                       int  )
 {
+    x2goDebug<<output;
     if ( result==false )
     {
         cardReady=false;
@@ -4406,7 +4407,7 @@ void ONMainWindow::selectSession ( QStringList& sessions )
                     else
                         shadowMode=SHADOW_VIEWONLY;
                     startNewSession();
-		    return;
+                    return;
                 }
             }
         }

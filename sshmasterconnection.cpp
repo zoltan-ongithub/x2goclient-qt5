@@ -47,12 +47,103 @@
 #define PROXYTUNNELPORT 44444
 
 #undef DEBUG
-// #define DEBUG
+#define DEBUG
 
 #undef SSH_DEBUG
 // #define SSH_DEBUG
 
 static bool isLibSshInited=false;
+
+
+#ifdef Q_OS_WIN
+#include <QSettings>
+// parse known_hosts file from libssh and export keys in registry to use with plink.exe
+void SshMasterConnection::parseKnownHosts()
+{
+    QFile fl(mainWnd->getHomeDirectory()+"/ssh/known_hosts");
+    if (!fl.open(QFile::ReadOnly))
+        return;
+    QSettings settings("HKEY_CURRENT_USER\\Software\\SimonTatham\\PuTTY\\SshHostKeys",
+                       QSettings::NativeFormat);
+    while (!fl.atEnd())
+    {
+        QString line=fl.readLine();
+        QStringList parts=line.split(' ',QString::SkipEmptyParts);
+        if (parts.count()!=3)
+            continue;
+
+        //lines in known_hosts have format:
+        //[host]:port <ssh-rsa|ssh-dss> <key>
+        //we proceeding only lines from libssh - no hashed hostnames
+        //or patterns are allowed
+
+        QString type="unknown";
+        QString port="22";
+        if (parts[1]=="ssh-dss")
+            type="dss";
+        if (parts[1]=="ssh-rsa")
+            type="rsa2";
+
+
+        QStringList hostParts=parts[0].split(":",QString::SkipEmptyParts);
+        if (hostParts.count()>1)
+            port=hostParts[1];
+        hostParts[0].replace("[","");
+        hostParts[0].replace("]","");
+
+        QString keyName=type+"@"+port+":"+hostParts[0];
+
+        QByteArray bytes=QByteArray::fromBase64(parts[2].toAscii());
+        QStringList fields;
+
+        //key is a set of data fields:
+        //[size][data][size][data].....[size][data]
+
+        for (int i=0; i<bytes.count();)
+        {
+            int size=0;
+            //first 4 bytes are for size of data fild (big-endian)
+            for (int j=0; j<4; ++j)
+            {
+                size+=((uchar)(bytes[i])) * pow(256,3-j);
+                i++;
+            }
+            QByteArray data;
+            data=bytes.mid(i,size);
+            QString hex;
+
+            for (int j=0; j<data.count(); ++j)
+            {
+                QString byte;
+                byte.sprintf("%02x",(uchar)(data[j]));
+                hex+=byte;
+            }
+            //remove leading '0'
+            for (;;)
+            {
+                if (hex.length()==0)
+                    break;
+                if (hex[0]=='0')
+                    hex.remove(0,1);
+                else
+                    break;
+            }
+            hex="0x"+hex;
+            fields<<hex;
+            i+=size;
+        }
+        //first element is a type of key, we don't need it
+        fields.removeFirst();
+        settings.setValue(keyName,fields.join(","));
+#ifdef DEBUG
+        x2goDebug<<"writing key in registry: HKEY_CURRENT_USER\\Software\\SimonTatham\\PuTTY\\SshHostKeys"<<endl;
+        x2goDebug<<keyName<<"="<<fields.join(",")<<endl;
+#endif
+    }
+    settings.sync();
+}
+#endif
+
 
 SshMasterConnection::SshMasterConnection (QObject* parent, QString host, int port, bool acceptUnknownServers, QString user,
         QString pass, QString key, bool autologin, bool krblogin,
@@ -92,11 +183,14 @@ SshMasterConnection::SshMasterConnection (QObject* parent, QString host, int por
     kerberos=krblogin;
 #ifdef DEBUG
     if (kerberos)
+    {
         x2goDebug<<"starting ssh connection with kerberos authentication"<<endl;
+    }
     else
+    {
         x2goDebug<<"starting ssh connection without kerberos authentication"<<endl;
+    }
 #endif
-    kerberos=false;
 #ifdef DEBUG
     x2goDebug<<"SshMasterConnection, instance "<<this<<" created";
 #endif
@@ -359,6 +453,11 @@ void SshMasterConnection::run()
 
 #ifdef Q_OS_WIN
     ssh_options_set ( my_ssh_session, SSH_OPTIONS_SSH_DIR, (mainWnd->getHomeDirectory()+"/ssh").toAscii());
+    if (kerberos)
+    {
+        parseKnownHosts();
+    }
+
 #endif
     ssh_options_set(my_ssh_session, SSH_OPTIONS_LOG_VERBOSITY, &verbosity);
 
@@ -496,7 +595,13 @@ void SshMasterConnection::run()
         }
         QString err;
         if (!kerberos)
+        {
             err=ssh_get_error ( my_ssh_session );
+        }
+        else
+        {
+            err=sshProcErrString;
+        }
         QString message=tr ( "Authentication failed" );
 #ifdef DEBUG
         x2goDebug<<message<<" - "<<err;
@@ -870,9 +975,63 @@ bool SshMasterConnection::userAuthWithKey()
     return true;
 }
 
+bool SshMasterConnection::userAuthKrb()
+{
+    QProcess ssh;
+    QString sshCmd;
+
+#ifdef Q_OS_WIN
+    sshCmd="plink -batch "+user+"@"+host+" -P "+
+           QString::number(port)+ " whoami";
+#else
+    sshCmd="ssh -o GSSApiAuthentication=yes "+user+"@"+host+" -p "+
+           QString::number(port)+ " -o PasswordAuthentication=no whoami";
+#endif
+
+#ifdef DEBUG
+    x2goDebug<<"starting ssh:" <<sshCmd<<endl;
+#endif
+    ssh.start(sshCmd);
+
+
+    if (!ssh.waitForStarted(5000))
+    {
+        sshProcErrString=ssh.errorString();
+        authErrors<<sshProcErrString;
+#ifdef DEBUG
+        x2goDebug<<"ssh start failed:" <<sshProcErrString<<endl;
+#endif
+        return false;
+    }
+    if (!ssh.waitForFinished(20000))
+    {
+        sshProcErrString=ssh.errorString();
+        authErrors<<sshProcErrString;
+#ifdef DEBUG
+        x2goDebug<<"ssh not finished:" <<sshProcErrString<<endl;
+#endif
+        return false;
+    }
+    QString outp=ssh.readAllStandardOutput();
+    QString err=ssh.readAllStandardError();
+#ifdef DEBUG
+    x2goDebug<<"ssh exited\n";
+    x2goDebug<<"stdout - "<<outp<<endl;
+    x2goDebug<<"stderr - "<<err<<endl;
+    x2goDebug<<"code - "<<ssh.exitCode()<<", status - "<<ssh.exitStatus()<<endl;
+#endif
+    if (ssh.exitCode() == 0 && ssh.exitStatus() == 0)
+        return true;
+    sshProcErrString=err;
+    authErrors<<sshProcErrString;
+    return false;
+}
+
 
 bool SshMasterConnection::userAuth()
 {
+    if (kerberos)
+        return userAuthKrb();
     if ( autologin && key=="" )
         if ( userAuthAuto() )
             return true;

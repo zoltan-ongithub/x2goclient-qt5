@@ -114,6 +114,7 @@ private:
     bool userAuthAuto();
     bool userAuthWithKey();
     bool userAuth();
+    bool userAuthKrb();
     void channelLoop();
     void finalize(int arg1);
     void copy();

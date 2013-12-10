@@ -267,8 +267,6 @@ SessionWidget::SessionWidget ( QString id, ONMainWindow * mw,
     connect (cbProxySameUser, SIGNAL(clicked(bool)), this, SLOT(slot_proxySameLogin()));
 
     readConfig();
-    cbKrbLogin->setChecked(false);
-    cbKrbLogin->setVisible(false);
 }
 
 

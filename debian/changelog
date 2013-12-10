@@ -58,6 +58,8 @@ x2goclient (4.0.1.2-0x2go2) UNRELEASED; urgency=low
     - Support for keys "shadowuser" "shadowdisplay" and "shadowmode" in
       config file. This allows choosing the default display for shadow
       sessions.
+    - Support for GSSApi(Kerberos 5) authentication. Using ssh/scp commands
+      on Linux and Mac and plink/pscp on Windows.   
 
   [ Heinrich Schuchardt ]
   * New upstream version (4.0.1.2):
