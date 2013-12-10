@@ -10,7 +10,7 @@ Source0:        http://code.x2go.org/releases/source/%{name}/%{name}-%{version}.
 
 BuildRequires:  cups-devel
 BuildRequires:  desktop-file-utils
-BuildRequires:  libssh-devel (>= 0.4.7)
+BuildRequires:  libssh-devel >= 0.4.7
 BuildRequires:  libXpm-devel
 %if 0%{?fedora}
 BuildRequires:  man2html-core
