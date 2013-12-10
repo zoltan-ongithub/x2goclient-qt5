@@ -5,6 +5,8 @@ x2goclient (4.0.1.2-0x2go2) UNRELEASED; urgency=low
     - Provide Keywords: key in .desktop file.
     - Add NSIS packaging files for win32 builds to source tree.
       (Files provided by Oleksandr Shneyder, thanks!!!).
+    - Rename win32 desktop and startmenu icon from "X2goClient" to "X2Go
+      Client".
     - Store broker HTTPS certificate exceptions in
       $HOME/.x2go/ssl/exceptions (before: $HOME/ssl/exceptions).
       (Fixes: #328).

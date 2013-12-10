@@ -109,10 +109,14 @@ Section "x2goclient" Section1
   !insertmacro MUI_STARTMENU_WRITE_BEGIN Application
   CreateDirectory "$SMPROGRAMS\$STARTMENU_FOLDER"
   CreateShortCut "$SMPROGRAMS\$STARTMENU_FOLDER\Uninstall.lnk" "$INSTDIR\Uninstall.exe"
-  CreateShortCut "$INSTDIR\X2goClient.lnk" "$INSTDIR\x2goclient.exe"
-  CreateShortCut "$SMPROGRAMS\$STARTMENU_FOLDER\X2goClient.lnk" "$INSTDIR\x2goclient.exe"
-  CreateShortCut "$DESKTOP\X2goClient.lnk" "$INSTDIR\x2goclient.exe"
-  CreateShortCut "$DESKTOP\X2goClient.lnk" "$INSTDIR\x2goclient.exe"
+  CreateShortCut "$INSTDIR\X2Go Client.lnk" "$INSTDIR\x2goclient.exe"
+  CreateShortCut "$SMPROGRAMS\$STARTMENU_FOLDER\X2Go Client.lnk" "$INSTDIR\x2goclient.exe"
+  CreateShortCut "$DESKTOP\X2Go Client.lnk" "$INSTDIR\x2goclient.exe"
+
+  ;Cleanup previous icon names (prior to X2Go Client 4.0.1.2)
+  Delete "$INSTDIR\X2goClient.lnk"
+  Delete "$SMPROGRAMS\$STARTMENU_FOLDER\X2goClient.lnk"
+  Delete "$DESKTOP\X2goClient.lnk"
   
   !insertmacro MUI_STARTMENU_WRITE_END
   
@@ -167,8 +171,8 @@ Section "Uninstall"
 
   !insertmacro MUI_STARTMENU_GETFOLDER Application $MUI_TEMP
   Delete "$SMPROGRAMS\$MUI_TEMP\Uninstall.lnk"
-  Delete "$SMPROGRAMS\$MUI_TEMP\X2goClient.lnk"
-  Delete "$DESKTOP\X2goClient.lnk"
+  Delete "$SMPROGRAMS\$MUI_TEMP\X2Go Client.lnk"
+  Delete "$DESKTOP\X2Go Client.lnk"
   StrCpy $MUI_TEMP "$SMPROGRAMS\$MUI_TEMP"
   startMenuDeleteLoop:
 	ClearErrors
