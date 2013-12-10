@@ -10,7 +10,7 @@
 ;General
 
   RequestExecutionLevel admin
- !define VERSION "4.0.1.2-pre02"
+ !define VERSION "4.0.1.2"
   Name "x2goclient-${VERSION}"
   Caption "x2goclient-${VERSION}"
   OutFile "x2goclient-${VERSION}-setup.exe"
