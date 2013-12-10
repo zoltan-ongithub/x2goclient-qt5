@@ -11,6 +11,7 @@ SHELL=/bin/bash
 
 INSTALL_DIR=install -d -o root -g root -m 755
 INSTALL_FILE=install -o root -g root -m 644
+INSTALL_SYMLINK=ln -s -f
 INSTALL_PROGRAM=install -o root -g root -m 755
 
 RM_FILE=rm -f
@@ -18,6 +19,7 @@ RM_DIR=rmdir -p --ignore-fail-on-non-empty
 
 DESTDIR=
 PREFIX=/usr/local
+ETCDIR=/etc/x2go
 BINDIR=$(PREFIX)/bin
 SHAREDIR=$(PREFIX)/share
 MANDIR=$(SHAREDIR)/man
@@ -27,7 +29,7 @@ LRELEASE_BINARY=lrelease
 
 all: build
 
-build: build_man
+build: build_man build_pluginprovider
 	$(MAKE) build_client
 	$(MAKE) build_plugin
 
@@ -41,10 +43,12 @@ build_plugin:
 	mkdir -p $(PLUGIN_DIR) && cd $(PLUGIN_DIR) && X2GO_CLIENT_TARGET=plugin $(QMAKE_BINARY) QMAKE_CFLAGS="${CPPFLAGS} ${CFLAGS}" QMAKE_CXXFLAGS="${CPPFLAGS} ${CXXFLAGS}" QMAKE_LFLAGS="${LDFLAGS}" ../x2goclient.pro
 	cd $(PLUGIN_DIR) && $(MAKE)
 
+build_pluginprovider:
+
 build_man:
 	${MAKE} -f Makefile.man2html build
 
-clean: clean_client clean_plugin clean_man
+clean: clean_client clean_plugin clean_man clean_pluginprovider
 	find . -maxdepth 2 -name '*.o' -exec rm -vf {} + -type f
 	find . -maxdepth 2 -name 'moc_*.cpp' -exec rm -vf {} + -type f
 	find . -maxdepth 2 -name 'ui_*.h' -exec rm -vf {} + -type f
@@ -57,6 +61,8 @@ clean_client:
 
 clean_plugin:
 	rm -fr $(PLUGIN_DIR)
+
+clean_pluginprovider:
 
 clean_man:
 	make -f Makefile.man2html clean
@@ -84,6 +90,13 @@ install_client:
 install_plugin:
 	$(INSTALL_DIR) $(DESTDIR)$(MOZPLUGDIR)/
 	$(INSTALL_PROGRAM) $(PLUGIN_DIR)/libx2goplugin.so $(DESTDIR)$(MOZPLUGDIR)/libx2goplugin.so
+
+install_pluginprovider:
+	$(INSTALL_DIR) $(DESTDIR)$(ETCDIR)/plugin-provider
+	$(INSTALL_FILE) provider/etc/x2goplugin-apache.conf $(DESTDIR)$(ETCDIR)/x2goplugin-apache.conf
+	$(INSTALL_FILE) provider/share/x2goplugin.html $(DESTDIR)$(ETCDIR)/plugin-provider/x2goplugin.html
+	$(INSTALL_DIR) $(DESTDIR)$(SHAREDIR)/x2go/plugin/
+	$(INSTALL_SYMLINK) ../../../../$(ETCDIR)/plugin-provider/x2goplugin.html $(DESTDIR)$(SHAREDIR)/x2go/plugin/x2goplugin.html
 
 install_man:
 	$(INSTALL_DIR) $(DESTDIR)$(MANDIR)/
@@ -113,6 +126,15 @@ uninstall_client:
 uninstall_plugin:
 	$(RM_FILE) $(MOZPLUGDIR)/libx2goplugin.so
 	$(RM_DIR) $(MOZPLUGDIR)/
+
+uninstall_pluginprovider:
+	$(RM_FILE) $(ETCDIR)/x2goplugin-apache.conf
+	$(RM_FILE) $(ETCDIR)/plugin-provider/x2goplugin.html
+	$(RM_DIR) $(ETCDIR)/plugin-provider
+	$(RM_DIR) $(ETCDIR)
+	$(RM_FILE) $(SHAREDIR)/x2go/plugin/x2goplugin.html
+	$(RM_DIR) $(SHAREDIR)/x2go/plugin/
+	$(RM_DIR) $(SHAREDIR)/x2go/
 
 uninstall_man:
 	$(RM_FILE) $(MANDIR)/man1/x2goclient.1.gz
