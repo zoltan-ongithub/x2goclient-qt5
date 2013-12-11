@@ -47,7 +47,7 @@
 #define PROXYTUNNELPORT 44444
 
 #undef DEBUG
-#define DEBUG
+// #define DEBUG
 
 #undef SSH_DEBUG
 // #define SSH_DEBUG
@@ -181,6 +181,7 @@ SshMasterConnection::SshMasterConnection (QObject* parent, QString host, int por
     reverseTunnel=false;
     mainWnd=(ONMainWindow*) parent;
     kerberos=krblogin;
+    challengeAuthVerificationCode=QString::null;
 #ifdef DEBUG
     if (kerberos)
     {
@@ -352,9 +353,13 @@ SshMasterConnection* SshMasterConnection::reverseTunnelConnection ( SshProcess* 
             proxypassword, proxykey, proxyautologin, localProxyPort );
     con->kerberos=kerberos;
 
+    con->setVerficationCode(challengeAuthVerificationCode);
+
     connect ( con,SIGNAL ( ioErr ( SshProcess*,QString,QString ) ),this,SIGNAL ( ioErr ( SshProcess*,QString,QString ) ) );
     connect ( con,SIGNAL ( stdErr ( SshProcess*,QByteArray ) ),this,SIGNAL ( stdErr ( SshProcess*,QByteArray ) ) );
     connect ( con,SIGNAL ( reverseListenOk ( SshProcess* ) ), this, SIGNAL ( reverseListenOk ( SshProcess* ) ) );
+    connect ( con,SIGNAL ( needPassPhrase(SshMasterConnection*, bool)), this, SIGNAL (needPassPhrase(SshMasterConnection*, bool)));
+
     con->keyPhrase=keyPhrase;
     con->keyPhraseReady=true;
     con->start();
@@ -383,8 +388,8 @@ void SshMasterConnection::run()
 
         connect ( sshProxy, SIGNAL ( serverAuthError ( int,QString,SshMasterConnection* ) ),this,
                   SLOT ( slotSshProxyServerAuthError ( int,QString, SshMasterConnection* ) ) );
-        connect ( sshProxy, SIGNAL ( needPassPhrase(SshMasterConnection*)),this,
-                  SIGNAL ( needPassPhrase(SshMasterConnection*)) );
+        connect ( sshProxy, SIGNAL ( needPassPhrase(SshMasterConnection*, bool)),this,
+                  SIGNAL ( needPassPhrase(SshMasterConnection*, bool)) );
         connect ( sshProxy, SIGNAL ( serverAuthAborted()),this,
                   SLOT ( slotSshProxyServerAuthAborted()) );
         connect ( sshProxy, SIGNAL ( userAuthError ( QString ) ),this,SLOT ( slotSshProxyUserAuthError ( QString ) ) );
@@ -800,20 +805,141 @@ int SshMasterConnection::serverAuth ( QString& errorMsg )
     return state;
 }
 
+void SshMasterConnection::setVerficationCode(QString code)
+{
+    challengeAuthVerificationCode=code;
+}
+
+
+bool SshMasterConnection::userChallengeAuth()
+{
+    int rez=ssh_userauth_kbdint(my_ssh_session, NULL, NULL);
+    int prompts;
+
+    switch( rez)
+    {
+    case SSH_AUTH_INFO:
+        prompts=ssh_userauth_kbdint_getnprompts(my_ssh_session);
+#ifdef DEBUG
+        x2goDebug<<"Have prompts: "<<prompts<<endl;
+#endif
+        if(prompts)
+        {
+            const char *prompt= ssh_userauth_kbdint_getprompt(my_ssh_session,0,NULL);
+#ifdef DEBUG
+            x2goDebug<<"Prompt[0]: |"<<prompt<<"|"<<endl;
+#endif
+            QString pr=prompt;
+            if(pr=="Password: ")
+            {
+#ifdef DEBUG
+                x2goDebug<<"Password request"<<endl;
+#endif
+                ssh_userauth_kbdint_setanswer(my_ssh_session,0,pass.toAscii());
+                return userChallengeAuth();
+            }
+            if(pr=="Verification code: ")
+            {
+#ifdef DEBUG
+                x2goDebug<<"Verification code request"<<endl;
+#endif
+
+                challengeAuthPasswordAccepted=true;
+                if(challengeAuthVerificationCode == QString::null)
+                {
+                    keyPhraseReady=false;
+                    emit needPassPhrase(this, true);
+                    for(;;)
+                    {
+                        bool ready=false;
+                        this->usleep(200);
+                        keyPhraseMutex.lock();
+                        if(keyPhraseReady)
+                            ready=true;
+                        keyPhraseMutex.unlock();
+                        if(ready)
+                            break;
+                    }
+                    challengeAuthVerificationCode=keyPhrase;
+                    if(challengeAuthVerificationCode==QString::null)
+                    {
+                        authErrors<<tr("Authentication failed");
+                        return false;
+                    }
+                }
+                ssh_userauth_kbdint_setanswer(my_ssh_session,0,challengeAuthVerificationCode.toAscii());
+                return userChallengeAuth();
+            }
+            QString err=ssh_get_error ( my_ssh_session );
+            authErrors<<err;
+
+            return false;
+        }
+        else
+        {
+            return userChallengeAuth();
+        }
+    case SSH_AUTH_SUCCESS:
+#ifdef DEBUG
+        x2goDebug<<"Challenge auth ok"<<endl;
+#endif
+        return true;
+    case SSH_AUTH_DENIED:
+        if(!challengeAuthPasswordAccepted )
+        {
+            QString err=ssh_get_error ( my_ssh_session );
+            authErrors<<err;
+            return false;
+        }
+        else
+        {
+            challengeAuthVerificationCode=QString::null;
+            //try with another verification code
+            return userChallengeAuth();
+        }
+    default:
+        QString err=ssh_get_error ( my_ssh_session );
+        authErrors<<err;
+
+        return false;
+    }
+    return false;
+
+}
+
 
 bool SshMasterConnection::userAuthWithPass()
 {
-    int rc = ssh_userauth_password ( my_ssh_session, NULL, pass.toAscii() );
-    if ( rc != SSH_AUTH_SUCCESS )
+    int method = ssh_userauth_list(my_ssh_session, NULL);
+
+    if (method& SSH_AUTH_METHOD_INTERACTIVE)
     {
-        QString err=ssh_get_error ( my_ssh_session );
-        authErrors<<err;
 #ifdef DEBUG
-        x2goDebug<<"userAuthWithPass failed:" <<err<<endl;
+        x2goDebug<<"Challenge authentication"<<endl;
 #endif
-        return false;
+        challengeAuthPasswordAccepted=false;
+        return userChallengeAuth();
     }
-    return true;
+
+    if (method & SSH_AUTH_METHOD_PASSWORD)
+    {
+#ifdef DEBUG
+        x2goDebug<<"Password authentication"<<endl;
+#endif
+        int rc = ssh_userauth_password ( my_ssh_session, NULL, pass.toAscii() );
+        if ( rc != SSH_AUTH_SUCCESS )
+        {
+            QString err=ssh_get_error ( my_ssh_session );
+            authErrors<<err;
+#ifdef DEBUG
+            x2goDebug<<"userAuthWithPass failed:" <<err<<endl;
+#endif
+            return false;
+        }
+        return true;
+    }
+
+    return false;
 }
 
 
@@ -826,7 +952,7 @@ bool SshMasterConnection::userAuthAuto()
         if(!reverseTunnel)
         {
             keyPhraseReady=false;
-            emit needPassPhrase(this);
+            emit needPassPhrase(this, false);
             for(;;)
             {
                 bool ready=false;
@@ -901,7 +1027,7 @@ bool SshMasterConnection::userAuthWithKey()
         if(!reverseTunnel)
         {
             keyPhraseReady=false;
-            emit needPassPhrase(this);
+            emit needPassPhrase(this, false);
             for(;;)
             {
                 bool ready=false;

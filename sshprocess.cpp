@@ -29,7 +29,7 @@
 #endif
 
 #undef DEBUG
-#define DEBUG
+// #define DEBUG
 
 #ifdef Q_OS_DARWIN
 #define KEEPALIVE_OPTION " -o ServerAliveInterval=60 "

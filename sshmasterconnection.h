@@ -113,12 +113,14 @@ private:
     bool userAuthWithPass();
     bool userAuthAuto();
     bool userAuthWithKey();
+    bool userChallengeAuth();
     bool userAuth();
     bool userAuthKrb();
     void channelLoop();
     void finalize(int arg1);
     void copy();
     int serverAuth(QString& errorMsg);
+    void setVerficationCode(QString code);
 #ifdef Q_OS_WIN
     void parseKnownHosts();
 #endif
@@ -187,6 +189,9 @@ private:
     bool sshProxyReady;
     bool breakLoop;
 
+    bool challengeAuthPasswordAccepted;
+    QString challengeAuthVerificationCode;
+
 signals:
     void stdErr(SshProcess* caller, QByteArray data);
     void stdOut(SshProcess* caller, QByteArray data);
@@ -204,7 +209,7 @@ signals:
     void reverseListenOk(SshProcess* creator);
     void connectionOk( QString host);
 
-    void needPassPhrase(SshMasterConnection*);
+    void needPassPhrase(SshMasterConnection*, bool verificationCode);
 };
 
 

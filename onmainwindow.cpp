@@ -2853,8 +2853,8 @@ SshMasterConnection* ONMainWindow::startSshConnection ( QString host, QString po
 
     connect ( con, SIGNAL ( serverAuthError ( int,QString, SshMasterConnection* ) ),this,
               SLOT ( slotSshServerAuthError ( int,QString, SshMasterConnection* ) ) );
-    connect ( con, SIGNAL ( needPassPhrase(SshMasterConnection*)),this,
-              SLOT ( slotSshServerAuthPassphrase(SshMasterConnection*)) );
+    connect ( con, SIGNAL ( needPassPhrase(SshMasterConnection*, bool)),this,
+              SLOT ( slotSshServerAuthPassphrase(SshMasterConnection*, bool)) );
     connect ( con, SIGNAL ( userAuthError ( QString ) ),this,SLOT ( slotSshUserAuthError ( QString ) ) );
     connect ( con, SIGNAL ( connectionError ( QString,QString ) ), this,
               SLOT ( slotSshConnectionError ( QString,QString ) ) );
@@ -2946,11 +2946,20 @@ void ONMainWindow::slotServSshConnectionOk(QString server)
     con->executeCommand( "export HOSTNAME && x2golistsessions", this, SLOT (slotListAllSessions ( bool,QString,int ) ));
 }
 
-void ONMainWindow::slotSshServerAuthPassphrase(SshMasterConnection* connection)
+void ONMainWindow::slotSshServerAuthPassphrase(SshMasterConnection* connection, bool verificationCode)
 {
     bool ok;
+    QString message;
+    if(verificationCode)
+    {
+        message=tr("Verification code:");
+    }
+    else
+    {
+        message=tr("Enter passphrase to decrypt a key");
+    }
     QString phrase=QInputDialog::getText(0,connection->getUser()+"@"+connection->getHost()+":"+QString::number(connection->getPort()),
-                                         tr("Enter passphrase to decrypt a key"),QLineEdit::Password,QString::null, &ok);
+                                         message,QLineEdit::Password,QString::null, &ok);
     if(!ok)
     {
         phrase=QString::null;
