@@ -5464,6 +5464,10 @@ void ONMainWindow::slotProxyError ( QProcess::ProcessError )
 void ONMainWindow::slotProxyFinished ( int,QProcess::ExitStatus )
 {
 
+#ifdef Q_OS_DARWIN
+//fixes bug, when mainwindow inputs not accepting focus under mac
+    setFocus();
+#endif
     //set tray icon to default
     if (trayIcon)
         trayIcon->setIcon(QIcon ( ":icons/128x128/x2go.png") );
@@ -5625,6 +5629,11 @@ void ONMainWindow::slotProxyFinished ( int,QProcess::ExitStatus )
     }
     x2goDebug<<"Finished Proxy.";
     setStatStatus ( tr ( "Finished" ) );
+#ifdef Q_OS_DARWIN
+//fixes bug, when mainwindow inputs not accepting focus under mac
+    setFocus();
+#endif
+
 }
 
 
@@ -5744,6 +5753,12 @@ void ONMainWindow::slotProxyStdout()
 
 void ONMainWindow::slotShowPassForm()
 {
+#ifdef Q_OS_DARWIN
+//fixes bug, when mainwindow inputs not accepting focus under mac
+    x2goDebug<<"set focus"<<endl;
+    QTimer::singleShot(500, this, SLOT(setFocus()));
+    setFocus();
+#endif
     if ( !useLdap )
     {
         loginPrompt->show();
