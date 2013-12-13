@@ -63,6 +63,9 @@ x2goclient (4.0.1.2-0x2go2) UNRELEASED; urgency=low
     - Support for ChallengeResponseAuthentication (Google Authenticator)
     - Setting main window focus on mac (Fixes: #139).   
     - Additional check if authentication with GSSApi successfull 
+    - c121b7e2d3d83abdc2d7a29637bc3294e38b2ec3 broke checking if remote
+      command produce only stderr and not stdout. It made x2goclient crash
+      if x2gostartagent send LIMIT error. Current commit fixes this issue. 
 
   [ Heinrich Schuchardt ]
   * New upstream version (4.0.1.2):

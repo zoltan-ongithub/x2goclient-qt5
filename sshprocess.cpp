@@ -276,7 +276,7 @@ void SshProcess::startTunnel(const QString& forwardHost, uint forwardPort, const
 #ifdef Q_OS_WIN
         QString sshString="plink -batch -P "+
 #else
-	        QString sshString=QString::null+"ssh"+ KEEPALIVE_OPTION +"-o GSSApiAuthentication=yes -o PasswordAuthentication=no -p "+
+        QString sshString=QString::null+"ssh"+ KEEPALIVE_OPTION +"-o GSSApiAuthentication=yes -o PasswordAuthentication=no -p "+
 #endif
                           QString::number(masterCon->getPort())+" "+
                           masterCon->getUser()+"@"+
@@ -374,21 +374,18 @@ void SshProcess::slotChannelClosed(SshProcess* creator, QString uuid)
     }
     else
     {
-        if ( stdOutString.length()<=0 &&  stdErrString.length() >0 )
+        QString begin_marker = "X2GODATABEGIN:"+uuid+"\n";
+        QString end_marker = "X2GODATAEND:"+uuid+"\n";
+        int output_begin=stdOutString.indexOf(begin_marker) + begin_marker.length();
+        int output_end=stdOutString.indexOf(end_marker);
+        output = stdOutString.mid(output_begin, output_end-output_begin);
+        if ( output.length()<=0 &&  stdErrString.length() >0 )
         {
             normalExited=false;
             output=stdErrString;
 #ifdef DEBUG
             x2goDebug<<"have only stderr, something must be wrong"<<endl;
 #endif
-        }
-        else
-        {
-            QString begin_marker = "X2GODATABEGIN:"+uuid+"\n";
-            QString end_marker = "X2GODATAEND:"+uuid+"\n";
-            int output_begin=stdOutString.indexOf(begin_marker) + begin_marker.length();
-            int output_end=stdOutString.indexOf(end_marker);
-            output = stdOutString.mid(output_begin, output_end-output_begin);
         }
     }
 #ifdef DEBUG
