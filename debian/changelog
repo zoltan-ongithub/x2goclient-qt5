@@ -62,6 +62,7 @@ x2goclient (4.0.1.2-0x2go2) UNRELEASED; urgency=low
       on Linux and Mac and plink/pscp on Windows.
     - Support for ChallengeResponseAuthentication (Google Authenticator)
     - Setting main window focus on mac (Fixes: #139).   
+    - Additional check if authentication with GSSApi successfull 
 
   [ Heinrich Schuchardt ]
   * New upstream version (4.0.1.2):

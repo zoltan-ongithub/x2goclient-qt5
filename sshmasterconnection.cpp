@@ -32,6 +32,8 @@
 #endif
 #include <math.h>
 
+#include <QUuid>
+
 #ifndef Q_OS_WIN
 #include <sys/socket.h> /* for socket(), connect(), send(), and recv() */
 #include <arpa/inet.h>  /* for sockaddr_in and inet_addr() */
@@ -1106,12 +1108,17 @@ bool SshMasterConnection::userAuthKrb()
     QProcess ssh;
     QString sshCmd;
 
+    QUuid uuid = QUuid::createUuid();
+    QString uuidStr = uuid.toString().mid(1, 36).toLower();
+
+    QString shcmd = " echo X2GODATABEGIN:" + uuidStr + "; whoami; echo X2GODATAEND:" + uuidStr ;
+
 #ifdef Q_OS_WIN
     sshCmd="plink -batch "+user+"@"+host+" -P "+
-           QString::number(port)+ " whoami";
+           QString::number(port)+ shcmd;
 #else
     sshCmd="ssh -o GSSApiAuthentication=yes "+user+"@"+host+" -p "+
-           QString::number(port)+ " -o PasswordAuthentication=no whoami";
+           QString::number(port)+ " -o PasswordAuthentication=no "+shcmd;
 #endif
 
 #ifdef DEBUG
@@ -1132,10 +1139,12 @@ bool SshMasterConnection::userAuthKrb()
     if (!ssh.waitForFinished(20000))
     {
         sshProcErrString=ssh.errorString();
+        authErrors<<tr("Failed to start SSH Client. Please check your installation and GSSApi configuration");
         authErrors<<sshProcErrString;
 #ifdef DEBUG
         x2goDebug<<"ssh not finished:" <<sshProcErrString<<endl;
 #endif
+
         return false;
     }
     QString outp=ssh.readAllStandardOutput();
@@ -1146,10 +1155,17 @@ bool SshMasterConnection::userAuthKrb()
     x2goDebug<<"stderr - "<<err<<endl;
     x2goDebug<<"code - "<<ssh.exitCode()<<", status - "<<ssh.exitStatus()<<endl;
 #endif
-    if (ssh.exitCode() == 0 && ssh.exitStatus() == 0)
+
+    QString begin_marker = "X2GODATABEGIN:"+uuidStr+"\n";
+    QString end_marker = "X2GODATAEND:"+uuidStr+"\n";
+    int output_begin=outp.indexOf(begin_marker) + begin_marker.length();
+    int output_end=outp.indexOf(end_marker);
+    outp = outp.mid(output_begin, output_end-output_begin);
+    outp.replace("\n","");
+
+    if (ssh.exitCode() == 0 && ssh.exitStatus() == 0 && outp== user)
         return true;
-    sshProcErrString=err;
-    authErrors<<sshProcErrString;
+    authErrors<<tr("Check your GSSApi configuration or choose another authentication method");
     return false;
 }
 
