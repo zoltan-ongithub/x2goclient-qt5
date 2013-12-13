@@ -184,6 +184,14 @@ SshMasterConnection::SshMasterConnection (QObject* parent, QString host, int por
     mainWnd=(ONMainWindow*) parent;
     kerberos=krblogin;
     challengeAuthVerificationCode=QString::null;
+    if(this->user==QString::null||this->user.length()<=0)
+    {
+#ifdef Q_OS_WIN
+        this->user=getenv("USERNAME");
+#else
+        this->user=getenv("USER");
+#endif
+    }
 #ifdef DEBUG
     if (kerberos)
     {
