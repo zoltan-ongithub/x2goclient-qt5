@@ -167,6 +167,7 @@ struct ConfigFile
     bool brokerNoAuth;
     bool brokerAutologin;
     bool brokerAutologoff;
+    bool brokerKrbLogin;
     QString brokerSshKey;
     QString brokerCaCertFile;
     QString iniFile;
@@ -215,6 +216,7 @@ struct ConfigFile
     QString proxypassword;
     QString proxyKey;
     bool proxyAutologin;
+    bool proxyKrbLogin;
 
 };
 
@@ -894,7 +896,7 @@ private:
             SshMasterConnection::ProxyType type=SshMasterConnection::PROXYSSH,
             QString proxyserver=QString::null, quint16 proxyport=0,
             QString proxylogin=QString::null, QString proxypassword=QString::null, QString proxyKey=QString::null,
-            bool proxyAutologin=false );
+            bool proxyAutologin=false, bool proxyKrbLogin=false );
     void setProxyWinTitle();
     QRect proxyWinGeometry();
     void readApplications();

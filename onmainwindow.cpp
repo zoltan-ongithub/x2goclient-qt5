@@ -106,6 +106,7 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
     appSeparator=0;
     config.brokerNoAuth=false;
     config.brokerAutologin=false;
+    config.brokerKrbLogin=false;
     config.brokerAutologoff=false;
     config.published=false;
     cmdAutologin=false;
@@ -1004,7 +1005,7 @@ void ONMainWindow::slotGetBrokerAuth()
     }
     if(config.brokerNoAuth)
         slotSessEnter();
-    else if(config.brokerurl.indexOf("ssh://")==0 && (config.brokerAutologin || config.brokerSshKey.length()>0))
+    else if(config.brokerurl.indexOf("ssh://")==0 && (config.brokerAutologin || config.brokerKrbLogin|| config.brokerSshKey.length()>0))
         slotSessEnter();
 }
 
@@ -2808,7 +2809,7 @@ SshMasterConnection* ONMainWindow::startSshConnection ( QString host, QString po
         SshMasterConnection::ProxyType type,
         QString proxyserver, quint16 proxyport,
         QString proxylogin, QString proxypassword, QString proxyKey,
-        bool proxyAutologin)
+        bool proxyAutologin, bool proxyKrbLogin)
 {
     x2goInfof(8)<<tr("Starting connection to server: ") + host + ":" + port;
     SshMasterConnection* con;
@@ -2845,7 +2846,7 @@ SshMasterConnection* ONMainWindow::startSshConnection ( QString host, QString po
 
     con=new SshMasterConnection (this, host, port.toInt(),acceptUnknownHosts,
                                  login, password,currentKey, autologin, krbLogin,useproxy,
-                                 type, proxyserver, proxyport, proxylogin, proxypassword, proxyKey,proxyAutologin);
+                                 type, proxyserver, proxyport, proxylogin, proxypassword, proxyKey,proxyAutologin, proxyKrbLogin);
     if (!getSrv)
         connect ( con, SIGNAL ( connectionOk(QString) ), this, SLOT ( slotSshConnectionOk() ) );
     else
@@ -3333,6 +3334,7 @@ bool ONMainWindow::startSession ( const QString& sid )
     QString proxypassword;
     QString proxyKey;
     bool proxyAutologin=false;
+    bool proxyKrbLogin=false;
 
     user=getCurrentUname();
     runRemoteCommand=true;
@@ -3462,6 +3464,11 @@ bool ONMainWindow::startSession ( const QString& sid )
                         false
                     ).toBool() );
 
+    proxyKrbLogin=(st->setting()->value (
+                       sid+"/sshproxykrblogin",
+                       false
+                   ).toBool() );
+
     if(proxyKey.length()<=0 && proxyType==SshMasterConnection::PROXYSSH)
     {
         proxyKey=findSshKeyForServer(proxylogin, proxyserver, QString::number(proxyport));
@@ -3473,7 +3480,7 @@ bool ONMainWindow::startSession ( const QString& sid )
         proxypassword=passwd;
     else
     {
-        if(useproxy && !proxyAutologin && proxyKey.length()<=0)
+        if(useproxy && !proxyAutologin && !proxyKrbLogin && proxyKey.length()<=0)
         {
             bool ok;
             bool useBrokerPassForProxy=false;
@@ -3494,7 +3501,7 @@ bool ONMainWindow::startSession ( const QString& sid )
     delete st;
 
     sshConnection=startSshConnection ( host,sshPort,acceptRsa,user,passwd,autologin, krblogin, false, useproxy,proxyType,proxyserver,
-                                       proxyport, proxylogin, proxypassword, proxyKey,proxyAutologin);
+                                       proxyport, proxylogin, proxypassword, proxyKey,proxyAutologin, proxyKrbLogin);
     return true;
 }
 
@@ -6530,6 +6537,11 @@ bool ONMainWindow::parseParameter ( QString param )
     if ( param == "--broker-autologin")
     {
         config.brokerAutologin=true;
+        return true;
+    }
+    if ( param == "--broker-krblogin")
+    {
+        config.brokerKrbLogin=true;
         return true;
     }
 

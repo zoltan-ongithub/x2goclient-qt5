@@ -63,7 +63,7 @@ public:
                         QString pass, QString key, bool autologin, bool krblogin=false,
                         bool useproxy=false, ProxyType type=PROXYSSH, QString proxyserver=QString::null, quint16 proxyport=0,
                         QString proxylogin=QString::null, QString proxypassword=QString::null, QString proxyKey=QString::null,
-                        bool proxyAutologin=false);
+                        bool proxyAutologin=false, bool proxyKrbLogin=false);
     ~SshMasterConnection();
     static void finalizeLibSsh();
     void addChannelConnection(SshProcess* creator, int sock, QString forwardHost,
@@ -108,7 +108,7 @@ private:
                         int remotePort, QString localHost, int localPort, SshProcess* creator,
                         bool useproxy=false, ProxyType type=PROXYSSH, QString proxyserver=QString::null, quint16 proxyport=0,
                         QString proxylogin=QString::null, QString proxypassword=QString::null, QString proxyKey=QString::null,
-                        bool proxyAutologin=false, int localProxyPort=0);
+                        bool proxyAutologin=false, bool proxyKrbLogin=false, int localProxyPort=0);
     bool sshConnect();
     bool userAuthWithPass();
     bool userAuthAuto();
@@ -169,6 +169,7 @@ private:
     QString proxypassword;
     ProxyType proxytype;
     bool proxyautologin;
+    bool proxyKrbLogin;
     QString proxykey;
     QStringList authErrors;
     bool autologin;

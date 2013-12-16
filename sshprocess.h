@@ -73,6 +73,7 @@ private:
     QProcess* proc;
     QString procUuid;
     bool execProcess;
+    bool tunnelOkEmited;
 
 private slots:
     void slotCheckNewConnection();

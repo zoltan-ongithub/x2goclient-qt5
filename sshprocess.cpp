@@ -256,6 +256,7 @@ void SshProcess::startTunnel(const QString& forwardHost, uint forwardPort, const
                              uint localPort, bool reverse)
 {
     tunnel=true;
+    tunnelOkEmited=false;
     if(!masterCon->useKerberos())
     {
         this->forwardHost=forwardHost;
@@ -280,7 +281,7 @@ void SshProcess::startTunnel(const QString& forwardHost, uint forwardPort, const
 #endif
                           QString::number(masterCon->getPort())+" "+
                           masterCon->getUser()+"@"+
-                          masterCon->getHost() + " -N ";
+                          masterCon->getHost() + " -N -v ";
         if (!reverse)
             sshString+=" -L " + QString::number(localPort)+":"+forwardHost+":"+QString::number(forwardPort);
         else
@@ -304,10 +305,8 @@ void SshProcess::startTunnel(const QString& forwardHost, uint forwardPort, const
                 SLOT(slotSshProcFinished(int,QProcess::ExitStatus)));
         connect(proc,SIGNAL(readyReadStandardError()),this,SLOT(slotSshProcStdErr()));
         connect(proc,SIGNAL(readyReadStandardOutput()),this,SLOT(slotSshProcStdOut()));
-        emit sshTunnelOk(pid);
     }
 }
-
 
 void SshProcess::slotStdErr(SshProcess* creator, QByteArray data)
 {
@@ -317,6 +316,15 @@ void SshProcess::slotStdErr(SshProcess* creator, QByteArray data)
     x2goDebug<<"new err data:"<<data<<endl;
 #endif
     stdErrString+=data;
+
+    if(tunnel && !tunnelOkEmited)
+    {
+        if(stdErrString.indexOf("Entering interactive session")!=-1)
+        {
+            tunnelOkEmited=true;
+            emit sshTunnelOk(pid);
+        }
+    }
 }
 
 void SshProcess::slotStdOut(SshProcess* creator, QByteArray data)

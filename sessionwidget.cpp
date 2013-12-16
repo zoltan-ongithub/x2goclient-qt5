@@ -154,6 +154,8 @@ SessionWidget::SessionWidget ( QString id, ONMainWindow * mw,
         QIcon ( mainWindow->iconsPath ( "/16x16/file-open.png" ) ),
         QString::null,proxyBox );
     cbProxyAutologin=new QCheckBox(tr("ssh-agent or default ssh key"),proxyBox);
+    cbProxyKrbLogin=new QCheckBox(tr("Kerberos 5 (GSSAPI) authentication"),proxyBox);
+
 
     proxyLaout->addWidget(new QLabel(tr("Type:"),proxyBox),0,0,1,2);
     proxyLaout->addWidget(rbSshProxy,1,0,1,2);
@@ -171,6 +173,7 @@ SessionWidget::SessionWidget ( QString id, ONMainWindow * mw,
     proxyLaout->addWidget(proxyKey,3,4,1,1);
     proxyLaout->addWidget(pbOpenProxyKey,3,5,1,1);
     proxyLaout->addWidget(cbProxyAutologin,4,3,1,3);
+    proxyLaout->addWidget(cbProxyKrbLogin,5,3,1,3);
 
 
 #ifndef Q_WS_HILDON
@@ -333,6 +336,7 @@ void SessionWidget::slot_proxyType()
 {
     bool isSsh=rbSshProxy->isChecked();
     cbProxyAutologin->setVisible(isSsh);
+    cbProxyKrbLogin->setVisible(isSsh);
     proxyKey->setVisible(isSsh);
     proxyKeyLabel->setVisible(isSsh);
     pbOpenProxyKey->setVisible(isSsh);
@@ -588,6 +592,10 @@ void SessionWidget::readConfig()
                                      sessionId+"/sshproxyautologin",
                                      false
                                  ).toBool() );
+    cbProxyKrbLogin->setChecked(st.setting()->value (
+                                     sessionId+"/sshproxykrblogin",
+                                     false
+                                 ).toBool() );
 
     if(proxyHost->text().indexOf(":")!=-1)
     {
@@ -750,6 +758,7 @@ void SessionWidget::setDefaults()
     cbProxySamePass->setChecked(false);
     cbProxySameUser->setChecked(false);
     cbProxyAutologin->setChecked(false);
+    cbProxyKrbLogin->setChecked(false);
 
     QTimer::singleShot(1, this,SLOT(slot_proxySameLogin()));
     QTimer::singleShot(2, this,SLOT(slot_proxyType()));
@@ -864,6 +873,7 @@ void SessionWidget::saveSettings()
     st.setting()->setValue (sessionId+"/sshproxysamepass",cbProxySamePass->isChecked());
     st.setting()->setValue (sessionId+"/sshproxysameuser",cbProxySameUser->isChecked());
     st.setting()->setValue (sessionId+"/sshproxyautologin",cbProxyAutologin->isChecked());
+    st.setting()->setValue (sessionId+"/sshproxykrblogin",cbProxyKrbLogin->isChecked());
 
     st.setting()->sync();
 }

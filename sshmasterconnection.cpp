@@ -151,7 +151,7 @@ SshMasterConnection::SshMasterConnection (QObject* parent, QString host, int por
         QString pass, QString key, bool autologin, bool krblogin,
         bool useproxy, ProxyType type, QString proxyserver, quint16 proxyport,
         QString proxylogin, QString proxypassword, QString proxykey,
-        bool proxyautologin ) : QThread ( parent )
+        bool proxyautologin, bool proxyKrbLogin ) : QThread ( parent )
 {
 #if defined ( Q_OS_DARWIN )
     // Mac OS X provides only 512KB stack space for secondary threads.
@@ -180,6 +180,7 @@ SshMasterConnection::SshMasterConnection (QObject* parent, QString host, int por
     this->proxyport=proxyport;
     this->proxylogin=proxylogin;
     this->proxypassword=proxypassword;
+    this->proxyKrbLogin=proxyKrbLogin;
     reverseTunnel=false;
     mainWnd=(ONMainWindow*) parent;
     kerberos=krblogin;
@@ -212,7 +213,7 @@ SshMasterConnection::SshMasterConnection (QObject* parent, ONMainWindow* mwd, QS
         int remotePort, QString localHost, int localPort, SshProcess* creator,
         bool useproxy, ProxyType type, QString proxyserver, quint16 proxyport,
         QString proxylogin, QString proxypassword, QString proxykey,
-        bool proxyautologin, int localProxyPort) : QThread ( parent )
+        bool proxyautologin, bool proxyKrbLogin, int localProxyPort) : QThread ( parent )
 {
 #if defined ( Q_OS_DARWIN )
     setStackSize (sizeof (char) * 1024 * 1024 * 2);
@@ -236,6 +237,7 @@ SshMasterConnection::SshMasterConnection (QObject* parent, ONMainWindow* mwd, QS
     this->proxypassword=proxypassword;
     this->proxytype=type;
     this->proxyautologin=proxyautologin;
+    this->proxyKrbLogin=proxyKrbLogin;
     this->proxykey=proxykey;
     this->localProxyPort=localProxyPort;
     reverseTunnelLocalHost=localHost;
@@ -360,7 +362,7 @@ SshMasterConnection* SshMasterConnection::reverseTunnelConnection ( SshProcess* 
     SshMasterConnection* con=new SshMasterConnection (this, mainWnd, host,port,acceptUnknownServers,user,pass,
             key,autologin, remotePort,localHost,
             localPort,creator, useproxy, proxytype, proxyserver, proxyport, proxylogin,
-            proxypassword, proxykey, proxyautologin, localProxyPort );
+            proxypassword, proxykey, proxyautologin, proxyKrbLogin, localProxyPort );
     con->kerberos=kerberos;
 
     con->setVerficationCode(challengeAuthVerificationCode);
@@ -393,7 +395,7 @@ void SshMasterConnection::run()
     {
 
         sshProxy=new SshMasterConnection (0, proxyserver, proxyport,acceptUnknownServers,
-                                          proxylogin, proxypassword, proxykey, proxyautologin, kerberos, false);
+                                          proxylogin, proxypassword, proxykey, proxyautologin, proxyKrbLogin, false);
         connect ( sshProxy, SIGNAL ( connectionOk(QString) ), this, SLOT ( slotSshProxyConnectionOk() ) );
 
         connect ( sshProxy, SIGNAL ( serverAuthError ( int,QString,SshMasterConnection* ) ),this,
@@ -955,6 +957,7 @@ bool SshMasterConnection::userAuthWithPass()
 
 bool SshMasterConnection::userAuthAuto()
 {
+  x2goDebug<<"auth auto";
     int rc = ssh_userauth_autopubkey ( my_ssh_session, "" );
     int i=0;
     while(rc != SSH_AUTH_SUCCESS)

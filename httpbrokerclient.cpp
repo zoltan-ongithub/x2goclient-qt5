@@ -92,7 +92,8 @@ void HttpBrokerClient::createSshConnection()
 {
     QUrl lurl ( config->brokerurl );
     sshConnection=new SshMasterConnection (this, lurl.host(), lurl.port(22),false,
-                                           config->brokerUser, config->brokerPass,config->brokerSshKey,config->brokerAutologin, false,false);
+                                           config->brokerUser, config->brokerPass,config->brokerSshKey,config->brokerAutologin,
+					   config->brokerKrbLogin, false);
 
     connect ( sshConnection, SIGNAL ( connectionOk(QString)), this, SLOT ( slotSshConnectionOk() ) );
     connect ( sshConnection, SIGNAL ( serverAuthError ( int,QString, SshMasterConnection* ) ),this,
@@ -643,3 +644,4 @@ QString HttpBrokerClient::getHexVal ( const QByteArray& ba )
     }
     return val.join ( ":" );
 }
+
