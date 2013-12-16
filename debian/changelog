@@ -69,6 +69,8 @@ x2goclient (4.0.1.2-0x2go2) UNRELEASED; urgency=low
     - SshMasterConnection should use current user name if no user name is
       specified in session settings
     - GSSApi(Kerberos 5) authentication for sshproxy and sshbroker 
+    - fixed GSSApi(Kerberos 5) authentication for sshproxy and sshbroker
+      on windows
 
   [ Heinrich Schuchardt ]
   * New upstream version (4.0.1.2):

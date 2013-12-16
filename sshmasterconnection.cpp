@@ -957,7 +957,6 @@ bool SshMasterConnection::userAuthWithPass()
 
 bool SshMasterConnection::userAuthAuto()
 {
-  x2goDebug<<"auth auto";
     int rc = ssh_userauth_autopubkey ( my_ssh_session, "" );
     int i=0;
     while(rc != SSH_AUTH_SUCCESS)

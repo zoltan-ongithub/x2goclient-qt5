@@ -72,7 +72,15 @@ SshProcess::~SshProcess()
                 proc->terminate();
             }
         }
-        delete proc;
+        if (proc->state()==QProcess::Running)
+        {
+            proc->kill();
+        }
+        if(proc->state()!=QProcess::Running)
+        {
+            delete proc;
+        }
+        proc=0;
     }
     if (serverSocket>0)
     {
@@ -273,7 +281,7 @@ void SshProcess::startTunnel(const QString& forwardHost, uint forwardPort, const
     }
     else
     {
-        proc=new QProcess(this);
+        proc=new QProcess(0);
 #ifdef Q_OS_WIN
         QString sshString="plink -batch -P "+
 #else
@@ -319,7 +327,11 @@ void SshProcess::slotStdErr(SshProcess* creator, QByteArray data)
 
     if(tunnel && !tunnelOkEmited)
     {
+#ifdef Q_OS_WIN
+        if(stdErrString.indexOf("Access granted")!=-1)
+#else
         if(stdErrString.indexOf("Entering interactive session")!=-1)
+#endif
         {
             tunnelOkEmited=true;
             emit sshTunnelOk(pid);
