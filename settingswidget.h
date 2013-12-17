@@ -57,21 +57,26 @@ private slots:
     void slot_sndDefPortChecked ( bool val );
     void slot_identDisplays();
     void slot_hideIdentWins();
+    void slot_kbdClicked();
 private:
     enum {PULSE,ARTS,ESD};
     QSpinBox* width;
     QSpinBox* height;
     QSpinBox* displayNumber;
     QRadioButton* fs;
-    QCheckBox* kbd;
-    QLineEdit* layout;
-    QLineEdit* type;
     QRadioButton* custom;
     QRadioButton* display;
     QRadioButton* maxRes;
     QRadioButton* arts;
     QRadioButton* pulse;
     QRadioButton* esd;
+    QRadioButton* rbKbdAuto;
+    QRadioButton* rbKbdNoSet;
+    QRadioButton* rbKbdSet;
+    QGroupBox* gbKbdString;
+    QLineEdit* leModel;
+    QLineEdit* leLayout;
+    QLineEdit* leVariant;
     QCheckBox* sound;
     QRadioButton* rbStartSnd;
     QRadioButton* rbNotStartSnd;
@@ -93,6 +98,7 @@ private:
     QList <QMainWindow*> identWins;
     QGroupBox *kgb;
     QGroupBox *sbgr;
+
 #ifdef Q_OS_LINUX
     QGroupBox *rdpBox;
     QRadioButton* rRdesktop;

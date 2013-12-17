@@ -1,6 +1,9 @@
 x2goclient (4.0.1.3-0x2go1) UNRELEASED; urgency=low
 
-  * Continue development...
+  [ Oleksandr Shneyder ]
+  * New upstream version (4.0.1.3):
+    - changed keyboard settings. Supported modes: auto, none and config with
+      model/layout(variant)
 
  -- Mike Gabriel <mike.gabriel@das-netzwerkteam.de>  Tue, 17 Dec 2013 15:34:49 +0100
 
