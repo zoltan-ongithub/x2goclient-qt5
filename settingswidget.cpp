@@ -150,28 +150,36 @@ SettingsWidget::SettingsWidget ( QString id, ONMainWindow * mw,
 #endif
 
 
-    kbd=new QCheckBox ( tr ( "Keep current keyboard Settings" ),kgb );
-    layout=new QLineEdit ( kgb );
-    type=new QLineEdit ( kgb );
+
+    rbKbdAuto=new QRadioButton(tr("Auto detect keyboard settings"),kgb);
+    rbKbdNoSet=new QRadioButton(tr("Do not configure keyboard"),kgb);
+    rbKbdSet=new QRadioButton(tr("Configure keyboard"),kgb);
+    QButtonGroup* kbRadio=new QButtonGroup(kgb);
+    kbRadio->addButton(rbKbdAuto);
+    kbRadio->addButton(rbKbdNoSet);
+    kbRadio->addButton(rbKbdSet);
+
+    gbKbdString=new QGroupBox(kgb);
+    gbKbdString->setFlat(true);
+
+
+    QHBoxLayout* kbstrlay=new QHBoxLayout(gbKbdString);
+    kbstrlay->addWidget(new QLabel(tr("Model: "), gbKbdString));
+    leModel=new QLineEdit(gbKbdString);
+    kbstrlay->addWidget(leModel);
+    kbstrlay->addWidget(new QLabel(tr("Layout: "), gbKbdString));
+    leLayout=new QLineEdit(gbKbdString);
+    kbstrlay->addWidget(leLayout);
+    kbstrlay->addWidget(new QLabel(tr("Variant: "), gbKbdString));
+    leVariant=new QLineEdit(gbKbdString);
+    kbstrlay->addWidget(leVariant);
+
     QVBoxLayout *kbLay = new QVBoxLayout ( kgb );
 
-    QVBoxLayout *klLay = new QVBoxLayout();
-    QVBoxLayout *kwLay = new QVBoxLayout();
-    QHBoxLayout *ksLay = new QHBoxLayout();
-
-    klLay->addWidget ( layoutLabel= new QLabel (
-        tr ( "Keyboard layout:" ),kgb ) );
-    klLay->addWidget ( typeLabel= new QLabel (
-        tr ( "Keyboard model:" ),kgb ) );
-
-    kwLay->addWidget ( layout );
-    kwLay->addWidget ( type );
-
-    ksLay->addLayout ( klLay );
-    ksLay->addLayout ( kwLay );
-
-    kbLay->addWidget ( kbd );
-    kbLay->addLayout ( ksLay );
+    kbLay->addWidget ( rbKbdAuto);
+    kbLay->addWidget ( rbKbdNoSet);
+    kbLay->addWidget ( rbKbdSet);
+    kbLay->addWidget( gbKbdString );
 
     sound=new QCheckBox ( tr ( "Enable sound support" ),sbgr );
     QButtonGroup* sndsys=new QButtonGroup;
@@ -285,16 +293,9 @@ SettingsWidget::SettingsWidget ( QString id, ONMainWindow * mw,
 
 
 
+    connect ( kbRadio, SIGNAL (buttonClicked(QAbstractButton*)), this, SLOT(slot_kbdClicked()));
     connect ( cbSetDPI,SIGNAL ( toggled ( bool ) ),DPI,
               SLOT ( setEnabled ( bool ) ) );
-    connect ( kbd,SIGNAL ( toggled ( bool ) ),layout,
-              SLOT ( setDisabled ( bool ) ) );
-    connect ( kbd,SIGNAL ( toggled ( bool ) ),layoutLabel,
-              SLOT ( setDisabled ( bool ) ) );
-    connect ( kbd,SIGNAL ( toggled ( bool ) ),type,
-              SLOT ( setDisabled ( bool ) ) );
-    connect ( kbd,SIGNAL ( toggled ( bool ) ),typeLabel,
-              SLOT ( setDisabled ( bool ) ) );
     connect ( sound,SIGNAL ( toggled ( bool ) ),this,
               SLOT ( slot_sndToggled ( bool ) ) );
     connect ( sndsys,SIGNAL ( buttonClicked ( int ) ),this,
@@ -306,7 +307,8 @@ SettingsWidget::SettingsWidget ( QString id, ONMainWindow * mw,
     connect ( cbDefSndPort,SIGNAL ( toggled ( bool ) ),this,
               SLOT ( slot_sndDefPortChecked ( bool ) ) );
 
-    kbd->setChecked ( true );
+    setDefaults();
+
     custom->setChecked ( true );
     readConfig();
 }
@@ -315,6 +317,13 @@ SettingsWidget::SettingsWidget ( QString id, ONMainWindow * mw,
 SettingsWidget::~SettingsWidget()
 {
 }
+
+
+void SettingsWidget::slot_kbdClicked()
+{
+    gbKbdString->setVisible(rbKbdSet->isChecked());
+}
+
 
 #ifdef Q_OS_LINUX
 void SettingsWidget::setDirectRdp(bool direct)
@@ -558,18 +567,43 @@ void SettingsWidget::readConfig()
         st.setting()->value ( sessionId+"/dpi",
                               ( QVariant ) mainWindow->getDefaultDPI() ).toUInt() );
 
-    kbd->setChecked ( !st.setting()->value (
-                          sessionId+"/usekbd",
-                          ( QVariant ) mainWindow->getDefaultSetKbd()
-                      ).toBool() );
-    layout->setText (
-        st.setting()->value ( sessionId+"/layout",
-                              ( QVariant ) mainWindow->getDefaultLayout()
-                            ).toString() );
-    type->setText (
-        st.setting()->value ( sessionId+"/type",
-                              ( QVariant ) mainWindow->getDefaultKbdType()
-                            ).toString() );
+    QString ktype=st.setting()->value ( sessionId+"/type",
+                                        ( QVariant ) mainWindow->getDefaultKbdType()
+                                      ).toString();
+    if(ktype=="auto")
+    {
+        rbKbdAuto->setChecked(true);
+    }
+    else
+    {
+        rbKbdSet->setChecked(true);
+        ktype.replace("\\","");
+        QStringList str=ktype.split("/");
+        if(str.size()>0)
+        {
+            leModel->setText(str[0]);
+        }
+        if(str.size()>1)
+        {
+            str[1].replace(")","");
+            str=str[1].split("(");
+            if(str.size()>0)
+            {
+                leLayout->setText(str[0]);
+            }
+            if(str.size()>1)
+            {
+                leVariant->setText(str[1]);
+            }
+        }
+    }
+
+    rbKbdNoSet->setChecked ( !st.setting()->value (
+                                 sessionId+"/usekbd",
+                                 ( QVariant ) mainWindow->getDefaultSetKbd()
+                             ).toBool() );
+    slot_kbdClicked();
+
     bool snd=st.setting()->value (
                  sessionId+"/sound",
                  ( QVariant ) mainWindow->getDefaultUseSound()
@@ -640,9 +674,15 @@ void SettingsWidget::setDefaults()
     DPI->setValue ( mainWindow->getDefaultDPI() );
     DPI->setEnabled ( mainWindow->getDefaultSetDPI() );
 
-    kbd->setChecked ( !mainWindow->getDefaultSetKbd() );
-    layout->setText ( tr ( "us" ) );
-    type->setText ( tr ( "pc105/us" ) );
+    rbKbdAuto->setChecked ( mainWindow->getDefaultSetKbd() );
+    rbKbdNoSet->setChecked ( !mainWindow->getDefaultSetKbd() );
+    rbKbdSet->setChecked (false );
+    leLayout->setText ( tr ( "us" ) );
+    leModel->setText ( "pc105" );
+    leVariant->setText("");
+
+    slot_kbdClicked();
+
     sound->setChecked ( true );
     pulse->setChecked ( true );
     slot_sndToggled ( true );
@@ -712,11 +752,24 @@ void SettingsWidget::saveSettings()
                              ( QVariant ) cbXinerama->isChecked() );
 
     st.setting()->setValue ( sessionId+"/usekbd",
-                             ( QVariant ) !kbd->isChecked() );
-    st.setting()->setValue ( sessionId+"/layout",
-                             ( QVariant ) layout->text() );
+                             ( QVariant ) !rbKbdNoSet->isChecked() );
+
+    QString ktype;
+    if(rbKbdAuto->isChecked())
+    {
+        ktype="auto";
+    }
+    else
+    {
+        ktype=leModel->text()+"/"+leLayout->text();
+        if(leVariant->text().length()>0)
+        {
+            ktype+="\\("+leVariant->text()+"\\)";
+        }
+    }
+
     st.setting()->setValue ( sessionId+"/type",
-                             ( QVariant ) type->text() );
+                             ( QVariant ) ktype );
     st.setting()->setValue ( sessionId+"/sound",
                              ( QVariant ) sound->isChecked() );
     if ( arts->isChecked() )
