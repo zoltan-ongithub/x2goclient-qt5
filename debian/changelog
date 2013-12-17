@@ -1,4 +1,4 @@
-x2goclient (4.0.1.2-0x2go2) UNRELEASED; urgency=low
+x2goclient (4.0.1.2-0x2go2) unstable; urgency=low
 
   [ Mike Gabriel ]
   * New upstream version (4.0.1.2):
@@ -81,7 +81,7 @@ x2goclient (4.0.1.2-0x2go2) UNRELEASED; urgency=low
   * New upstream version (4.0.1.2):
     - win32: Add uninstall information to Add/Remove Programs. (Fixes: #230).
 
- -- Mike Gabriel <mike.gabriel@das-netzwerkteam.de>  Wed, 11 Sep 2013 12:17:43 +0200
+ -- Mike Gabriel <mike.gabriel@das-netzwerkteam.de>  Tue, 17 Dec 2013 15:21:38 +0100
 
 x2goclient (4.0.1.1-0~x2go1) unstable; urgency=low
 
