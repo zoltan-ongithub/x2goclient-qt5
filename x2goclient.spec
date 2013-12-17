@@ -36,7 +36,7 @@ BuildRoot:      %(mktemp -ud %{_tmppath}/%{name}-%{version}-%{release}-XXXXXX)
 %endif
 
 %description
-X2Go is a serverbased computing environment with
+X2Go is a server-based computing environment with
     - session resuming
     - low bandwidth support
     - session brokerage support
@@ -57,7 +57,7 @@ Requires:       nxproxy
 Requires:       openssh-clients, openssh-server
 
 %description -n x2goplugin
-X2Go is a serverbased computing environment with
+X2Go is a server-based computing environment with
     - session resuming
     - low bandwidth support
     - session brokerage support
@@ -78,7 +78,7 @@ Group:          Applications/Communications
 Requires: httpd
 
 %description -n x2goplugin-provider
-X2Go is a serverbased computing environment with
+X2Go is a server-based computing environment with
     - session resuming
     - low bandwidth support
     - session brokerage support
