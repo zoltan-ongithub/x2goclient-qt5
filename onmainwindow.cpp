@@ -88,7 +88,7 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
     defaultPack="16m-jpeg";
     defaultQuality=9;
     defaultLayout<<tr ( "us" );
-    defaultKbdType="auto";
+    defaultKbdType=tr ( "pc105/us" );
     defaultCmd="KDE";
     defaultSshPort=sshPort=clientSshPort="22";
     LDAPPrintSupport=false;
@@ -3780,9 +3780,6 @@ void ONMainWindow::startNewSession()
         type=st->setting()->value ( sid+"/type",
                                     ( QVariant )
                                     defaultKbdType ).toString();
-        type.replace("\\","");
-        type.replace("(","\\(");
-        type.replace(")","\\)");
         if ( !embedMode )
         {
             command=st->setting()->value ( sid+"/command",
