@@ -5109,11 +5109,11 @@ void ONMainWindow::slotRetResumeSess ( bool result,
             else
             {
 #ifndef Q_OS_WIN
-                if ( QFile::exists(homeDir+".config/pulse/cookie") ) {
-                    pulsecookie_filename = homeDir+".config/pulse/cookie";
+                if ( QFile::exists(homeDir+"/.config/pulse/cookie") ) {
+                    pulsecookie_filename = homeDir+"/.config/pulse/cookie";
                 }
-                else if ( QFile::exists(homeDir+".pulse-cookie") ) {
-                    pulsecookie_filename = homeDir+".pulse-cookie";
+                else if ( QFile::exists(homeDir+"/.pulse-cookie") ) {
+                    pulsecookie_filename = homeDir+"/.pulse-cookie";
                 }
                 if ( pulsecookie_filename.length() > 0 )
                 {
