@@ -615,7 +615,7 @@ Public key hash: </source>
     </message>
     <message>
         <source>pc105/us</source>
-        <translation>pc105/us</translation>
+        <translation type="obsolete">pc105/us</translation>
     </message>
     <message>
         <source>X2Go Client</source>
@@ -1457,6 +1457,10 @@ Do you want to terminate the connection?
 </source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Verification code:</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PrintDialog</name>
@@ -1977,18 +1981,6 @@ lpr -P hp_laserjet</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Keep current keyboard Settings</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Keyboard layout:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Keyboard model:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Enable sound support</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2031,10 +2023,34 @@ sound system connections through firewalls</source>
     </message>
     <message>
         <source>pc105/us</source>
-        <translation type="unfinished">pc105/us</translation>
+        <translation type="obsolete">pc105/us</translation>
     </message>
     <message>
         <source>password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Auto detect keyboard settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Do not configure keyboard</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Configure keyboard</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Model: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Layout: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Variant: </source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2181,6 +2197,14 @@ sound system connections through firewalls</source>
     </message>
     <message>
         <source>error reading tcp socket</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed to start SSH Client. Please check your installation and GSSApi configuration</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Check your GSSApi configuration or choose another authentication method</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
