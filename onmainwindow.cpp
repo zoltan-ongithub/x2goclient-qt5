@@ -3325,6 +3325,7 @@ bool ONMainWindow::startSession ( const QString& sid )
     QString host;
     bool autologin=false;
     bool krblogin=false;
+    bool krbDelegation=false;
 
     bool useproxy=false;
     SshMasterConnection::ProxyType proxyType= SshMasterConnection::PROXYHTTP;
@@ -3378,6 +3379,8 @@ bool ONMainWindow::startSession ( const QString& sid )
                                      ( QVariant ) false ).toBool();
     krblogin=st->setting()->value ( sid+"/krblogin",
                                     ( QVariant ) false ).toBool();
+    krbDelegation=st->setting()->value ( sid+"/krbdelegation",
+                                         ( QVariant ) false ).toBool();
 #ifdef Q_OS_LINUX
     directRDP=(st->setting()->value ( sid+"/directrdp",
                                       ( QVariant ) false ).toBool() && cmd == "RDP");
@@ -3502,6 +3505,7 @@ bool ONMainWindow::startSession ( const QString& sid )
 
     sshConnection=startSshConnection ( host,sshPort,acceptRsa,user,passwd,autologin, krblogin, false, useproxy,proxyType,proxyserver,
                                        proxyport, proxylogin, proxypassword, proxyKey,proxyAutologin, proxyKrbLogin);
+    sshConnection->set_kerberosDelegation(krbDelegation);
     return true;
 }
 
@@ -6195,7 +6199,7 @@ void ONMainWindow::runCommand()
     command.replace ( " ","X2GO_SPACE_CHAR" );
     QString krbFwString;
 
-    if(sshConnection->useKerberos())
+    if(sshConnection->useKerberos() && sshConnection->get_kerberosDelegation())
     {
         krbFwString="KRB5CCNAME=`echo $KRB5CCNAME |sed 's/FILE://g'` \
         KRBFL=~/.x2go/C-"+resumingSession.sessionId+"/krb5cc ;\

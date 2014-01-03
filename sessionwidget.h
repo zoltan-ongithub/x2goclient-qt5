@@ -50,6 +50,7 @@ private slots:
     void slot_proxyType();
     void slot_proxySameLogin();
     void slot_proxyGetKey();
+    void slot_krbChecked();
 public slots:
 #ifdef Q_OS_LINUX
     void slot_rdpDirectClicked();
@@ -68,6 +69,7 @@ private:
     QLineEdit* key;
     QCheckBox* cbAutoLogin;
     QCheckBox* cbKrbLogin;
+    QCheckBox* cbKrbDelegation;
 #ifdef Q_OS_LINUX
     QCheckBox* cbDirectRDP;
 #endif

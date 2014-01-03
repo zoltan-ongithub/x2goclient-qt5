@@ -205,11 +205,19 @@ void SshProcess::startNormal(const QString& cmd)
         QString shcmd = "echo X2GODATABEGIN:" + uuidStr + "; "+cmd+"; echo X2GODATAEND:" + uuidStr;
         proc=new QProcess(this);
 #ifdef Q_OS_WIN
-        addPuttyReg(host, uuidStr);
-        host = uuidStr;
+        if(masterCon->get_kerberosDelegation())
+        {
+            addPuttyReg(host, uuidStr);
+            host = uuidStr;
+        }
         QString sshString="plink -batch -P "+
 #else
-        QString sshString=QString::null+"ssh"+ KEEPALIVE_OPTION +"-K -o GSSApiAuthentication=yes -o PasswordAuthentication=no -p "+
+        QString krbDelegOption=" -k ";
+        if(masterCon->get_kerberosDelegation())
+        {
+            krbDelegOption=" -K ";
+        }
+        QString sshString=QString::null+"ssh"+ KEEPALIVE_OPTION +krbDelegOption+" -o GSSApiAuthentication=yes -o PasswordAuthentication=no -p "+
 #endif
                           QString::number(masterCon->getPort())+" -l "+
                           masterCon->getUser()+" "+ host +  " \""+shcmd+"\"";

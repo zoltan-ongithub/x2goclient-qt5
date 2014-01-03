@@ -126,8 +126,10 @@ SessionWidget::SessionWidget ( QString id, ONMainWindow * mw,
     sgbLay->addLayout ( keyLay );
     cbAutoLogin=new QCheckBox(tr("Try auto login (ssh-agent or default ssh key)"),sgb);
     cbKrbLogin=new QCheckBox(tr("Kerberos 5 (GSSAPI) authentication"),sgb);
+    cbKrbDelegation=new QCheckBox(tr("Delegation of GSSAPI credentials to the server"),sgb);
     sgbLay->addWidget(cbAutoLogin);
     sgbLay->addWidget(cbKrbLogin);
+    sgbLay->addWidget(cbKrbDelegation);
     cbProxy=new QCheckBox(tr("Use Proxy server for SSH connection"),sgb);
     proxyBox=new QGroupBox(tr("Proxy server"),sgb);
     sgbLay->addWidget(cbProxy);
@@ -260,6 +262,7 @@ SessionWidget::SessionWidget ( QString id, ONMainWindow * mw,
               SIGNAL ( nameChanged ( const QString & ) ) );
     connect (server, SIGNAL(textChanged(const QString&)),this, SLOT(slot_emitSettings()));
     connect (uname, SIGNAL(textChanged(const QString&)),this, SLOT(slot_emitSettings()));
+    connect (cbKrbLogin, SIGNAL(clicked(bool)), this, SLOT(slot_krbChecked()));
 #ifdef Q_OS_LINUX
     connect (rdpPort, SIGNAL(valueChanged(int)),this, SLOT(slot_emitSettings()));
 #endif
@@ -528,6 +531,9 @@ void SessionWidget::readConfig()
     cbKrbLogin->setChecked(st.setting()->value (
                                sessionId+"/krblogin",
                                ( QVariant ) false ).toBool());
+    cbKrbDelegation->setChecked(st.setting()->value (
+                                    sessionId+"/krbdelegation",
+                                    ( QVariant ) false ).toBool());
     sshPort->setValue (
         st.setting()->value (
             sessionId+"/sshport",
@@ -593,9 +599,9 @@ void SessionWidget::readConfig()
                                      false
                                  ).toBool() );
     cbProxyKrbLogin->setChecked(st.setting()->value (
-                                     sessionId+"/sshproxykrblogin",
-                                     false
-                                 ).toBool() );
+                                    sessionId+"/sshproxykrblogin",
+                                    false
+                                ).toBool() );
 
     if(proxyHost->text().indexOf(":")!=-1)
     {
@@ -718,6 +724,7 @@ void SessionWidget::readConfig()
 #ifdef Q_OS_LINUX
     slot_rdpDirectClicked();
 #endif
+    slot_krbChecked();
 }
 
 void SessionWidget::setDefaults()
@@ -790,6 +797,7 @@ void SessionWidget::saveSettings()
                              ( QVariant ) sshPort->value() );
     st.setting()->setValue(sessionId+"/autologin",( QVariant ) cbAutoLogin->isChecked());
     st.setting()->setValue(sessionId+"/krblogin",( QVariant ) cbKrbLogin->isChecked());
+    st.setting()->setValue(sessionId+"/krbdelegation",( QVariant ) cbKrbDelegation->isChecked());
 #ifdef Q_OS_LINUX
     st.setting()->setValue(sessionId+"/directrdp",( QVariant ) cbDirectRDP->isChecked());
 #endif
@@ -889,3 +897,8 @@ void SessionWidget::slot_emitSettings()
     emit settingsChanged(server->text(), QString::number( rdpPort->value()), uname->text());
 }
 #endif
+
+void SessionWidget::slot_krbChecked()
+{
+    cbKrbDelegation->setEnabled(cbKrbLogin->isChecked());
+}

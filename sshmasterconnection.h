@@ -27,6 +27,12 @@
 #include <QTcpSocket>
 #include <QNetworkProxy>
 
+
+#define PROPERTY(TYPE,NAME)  private: TYPE NAME; \
+public: TYPE get_##NAME(){return NAME;} \
+void set_##NAME(TYPE VAL){NAME=VAL;}
+
+
 class ONMainWindow;
 class SshProcess;
 struct ChannelConnection
@@ -56,6 +62,7 @@ struct CopyRequest
 class SshMasterConnection: public QThread
 {
     Q_OBJECT
+    PROPERTY(bool, kerberosDelegation)
 public:
     enum ProxyType {PROXYSSH, PROXYHTTP};
     void run();

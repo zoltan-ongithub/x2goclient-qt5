@@ -165,6 +165,7 @@ SshMasterConnection::SshMasterConnection (QObject* parent, QString host, int por
     nextPid=0;
 
     breakLoop=false;
+    kerberosDelegation=false;
     this->host=host;
     this->port=port;
     this->user=user;
@@ -222,6 +223,7 @@ SshMasterConnection::SshMasterConnection (QObject* parent, ONMainWindow* mwd, QS
     tcpNetworkProxy = NULL;
     sshProxy= NULL;
     sshProxyReady=false;
+    kerberosDelegation=false;
     breakLoop=false;
     this->host=host;
     this->port=port;
