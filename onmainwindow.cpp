@@ -6193,10 +6193,18 @@ void ONMainWindow::runCommand()
     QString cmd;
 
     command.replace ( " ","X2GO_SPACE_CHAR" );
+    QString krbFwString;
+
+    if(sshConnection->useKerberos())
+    {
+        krbFwString="KRB5CCNAME=`echo $KRB5CCNAME |sed 's/FILE://g'` \
+        KRBFL=~/.x2go/C-"+resumingSession.sessionId+"/krb5cc ;\
+        cp -a $KRB5CCNAME $KRBFL;KRB5CCNAME=$KRBFL ";
+    }
 
     if ( !startSessSound  || startSessSndSystem==PULSE )
     {
-        cmd="setsid x2goruncommand "+resumingSession.display+" "+
+        cmd=krbFwString+"setsid x2goruncommand "+resumingSession.display+" "+
             resumingSession.agentPid + " " +
             resumingSession.sessionId+" "+
             resumingSession.sndPort+ " "+ command+" nosnd "+
@@ -6213,7 +6221,7 @@ void ONMainWindow::runCommand()
         switch ( startSessSndSystem )
         {
         case ESD:
-            cmd="setsid x2goruncommand "+
+            cmd=krbFwString+"setsid x2goruncommand "+
                 resumingSession.display+" "+
                 resumingSession.agentPid + " " +
                 resumingSession.sessionId+" "+
@@ -6222,7 +6230,7 @@ void ONMainWindow::runCommand()
                 sessionType +" 1> /dev/null 2>/dev/null & exit";
             break;
         case ARTS:
-            cmd="setsid x2goruncommand "+
+            cmd=krbFwString+"setsid x2goruncommand "+
                 resumingSession.display+" "+
                 resumingSession.agentPid + " " +
                 resumingSession.sessionId+" "+

@@ -46,6 +46,10 @@ private:
     }
 
     void tunnelLoop();
+#ifdef Q_OS_WIN
+    void    addPuttyReg(QString host, QString uuidStr);
+    void    rmPuttyReg(QString uuidStr);
+#endif
 
 private:
     SshMasterConnection* masterCon;

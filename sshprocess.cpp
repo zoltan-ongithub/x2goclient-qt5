@@ -162,6 +162,26 @@ void SshProcess::tunnelLoop()
 #endif
 }
 
+#ifdef Q_OS_WIN
+#include <QSettings>
+void SshProcess::addPuttyReg(QString host, QString uuidStr)
+{
+    QSettings st("HKEY_CURRENT_USER\\Software\\SimonTatham\\PuTTY\\Sessions\\"+uuidStr,
+                 QSettings::NativeFormat);
+    st.setValue("HostName", host);
+    st.setValue("GssapiFwd", (uint) 1);
+    st.sync();
+}
+
+void SshProcess::rmPuttyReg(QString uuidStr)
+{
+    QSettings st("HKEY_CURRENT_USER\\Software\\SimonTatham\\PuTTY\\Sessions",
+                 QSettings::NativeFormat);
+    st.remove(uuidStr);
+    st.sync();
+}
+#endif
+
 void SshProcess::startNormal(const QString& cmd)
 {
     QUuid uuid = QUuid::createUuid();
@@ -181,15 +201,18 @@ void SshProcess::startNormal(const QString& cmd)
     }
     else
     {
+        QString host=masterCon->getHost();
         QString shcmd = "echo X2GODATABEGIN:" + uuidStr + "; "+cmd+"; echo X2GODATAEND:" + uuidStr;
         proc=new QProcess(this);
 #ifdef Q_OS_WIN
+        addPuttyReg(host, uuidStr);
+        host = uuidStr;
         QString sshString="plink -batch -P "+
 #else
-        QString sshString=QString::null+"ssh"+ KEEPALIVE_OPTION +"-o GSSApiAuthentication=yes -o PasswordAuthentication=no -p "+
+        QString sshString=QString::null+"ssh"+ KEEPALIVE_OPTION +"-K -o GSSApiAuthentication=yes -o PasswordAuthentication=no -p "+
 #endif
-                          QString::number(masterCon->getPort())+" "+
-                          masterCon->getUser()+"@"+ masterCon->getHost() +  " \""+shcmd+"\"";
+                          QString::number(masterCon->getPort())+" -l "+
+                          masterCon->getUser()+" "+ host +  " \""+shcmd+"\"";
 #ifdef DEBUG
         x2goDebug<<"running ssh:" <<sshString<<endl;
 #endif
@@ -421,6 +444,12 @@ void SshProcess::slotSshProcFinished(int exitCode, QProcess::ExitStatus exitStat
         normalExited=true;
 #ifdef DEBUG
     x2goDebug<<"ssh process exit code :"<<exitStatus;
+#endif
+#ifdef Q_OS_WIN
+    if(masterCon->useKerberos())
+    {
+        rmPuttyReg(procUuid);
+    }
 #endif
     slotChannelClosed(this,procUuid);
 }
