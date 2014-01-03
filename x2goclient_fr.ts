@@ -1917,6 +1917,10 @@ lpr -P hp_laserjet</source>
         <source>x2goclient is running in portable mode. You should use a path on your usb device to be able to access your data whereever you are</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Delegation of GSSAPI credentials to the server</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SettingsWidget</name>
