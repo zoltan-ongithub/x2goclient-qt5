@@ -1294,7 +1294,7 @@ Public key hash: </translation>
     <message>
         <location filename="onmainwindow.cpp" line="2956"/>
         <source>Verification code:</source>
-        <translation type="unfinished"></translation>
+        <translation>Код проверки:</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="2997"/>
@@ -1303,14 +1303,16 @@ Somebody might be eavesdropping on you.
 For security reasons, it is recommended to stop the connection.
 Do you want to terminate the connection?
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Это может быть признаком попытки взлома.
+Из соображений безопасности рекомендуется прекратить соединение.
+Прервать соединение?</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="3017"/>
         <location filename="onmainwindow.cpp" line="3044"/>
         <source>If you accept the new host key the security of your connection may be compromised.
 Do you want to update the host key?</source>
-        <translation type="unfinished"></translation>
+        <translation>Если Вы продолжите, безопасность соединения может быть скомпрометированой. Обновить ключ?</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="3023"/>
@@ -1318,70 +1320,71 @@ Do you want to update the host key?</source>
 For security reasons, it is recommended to stop the connection.
 Do you want to terminate the connection?
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Ключ для этого сервера не найден, но другой вариант ключа существует. Злоумышленик мог изменить ключ сервера по умолчания, что бы ввести ваш клиент в заблуждение, что этот ключ не существует.
+Прекратить соединение?</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="4951"/>
         <source>New session started</source>
-        <translation type="unfinished"></translation>
+        <translation>Новая сессия запущенна</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="4986"/>
         <source>Session resumed</source>
-        <translation type="unfinished"></translation>
+        <translation>Сессия восстановленна</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="5243"/>
         <location filename="onmainwindow.cpp" line="5247"/>
         <source>Unable to create folder: </source>
-        <translation type="unfinished"></translation>
+        <translation>Невозможно создать каталог:</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="5273"/>
         <location filename="onmainwindow.cpp" line="5277"/>
         <source>Unable to write file: </source>
-        <translation type="unfinished"></translation>
+        <translation>Невозможно записать файл:</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="5550"/>
         <source>Emergency exit.</source>
-        <translation type="unfinished"></translation>
+        <translation>Аварийный выход.</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="5559"/>
         <source>Waiting for proxy to exit.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ожидание завершения прокси.</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="5562"/>
         <source>Failed, killing the proxy.</source>
-        <translation type="unfinished"></translation>
+        <translation>Провал, завершаем прокси.</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="7037"/>
         <location filename="onmainwindow.cpp" line="7042"/>
         <source>Wrong parameter: </source>
-        <translation type="unfinished"></translation>
+        <translation>Неверный параметр:</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="7568"/>
         <source>RSA file empty.</source>
-        <translation type="unfinished"></translation>
+        <translation>RSA файл пуст.</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="7577"/>
         <source>Can not open key: </source>
-        <translation type="unfinished"></translation>
+        <translation>Невозможно открыть ключ:</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="8271"/>
         <source>Card not configured.</source>
-        <translation type="unfinished"></translation>
+        <translation>Карта не сконфигурирована.</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="9850"/>
         <source>Error getting window geometry (window closed)?</source>
-        <translation type="unfinished"></translation>
+        <translation>Ошибка чтения геометрии окна (окно закрыто)?</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="10445"/>
@@ -1623,27 +1626,27 @@ Do you want to terminate the connection?
     <message>
         <location filename="onmainwindow.cpp" line="2183"/>
         <source>No X2Go sessions found, closing.</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="2814"/>
         <source>Starting connection to server: </source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="2823"/>
         <source> to </source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="2868"/>
         <source>Connection Error(</source>
-        <translation type="unfinished"></translation>
+        <translation>Ошибка соединения(</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="2937"/>
         <source>Couldn&apos;t find a SSH connection.</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="2960"/>
@@ -1698,7 +1701,7 @@ Public key hash: </translation>
     <message>
         <location filename="onmainwindow.cpp" line="3108"/>
         <source>Authentication failed: </source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="3112"/>
@@ -1718,13 +1721,13 @@ Public key hash: </translation>
         <location filename="onmainwindow.cpp" line="7615"/>
         <location filename="onmainwindow.cpp" line="7617"/>
         <source>Connection failed: </source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="3539"/>
         <location filename="onmainwindow.cpp" line="7615"/>
         <source> - Wrong password.</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="3730"/>
@@ -1918,7 +1921,7 @@ Public key hash: </translation>
     <message>
         <location filename="onmainwindow.cpp" line="7936"/>
         <source>&lt;b&gt;X2Go Client V. </source>
-        <translation type="unfinished">&lt;b&gt;X2Go Client V. </translation>
+        <translation>&lt;b&gt;X2Go Client V. </translation>
     </message>
     <message>
         <source>&lt;/b&gt;&lt;br&gt; (C. 2006-2007 Oleksandr Shneyder, Heinz-Markus Graesing)&lt;br&gt;&lt;br&gt;Client for use with the X2Go network based computing environment. This Client will be able to connect to X2Go server(s) and start, stop, resume and terminate (running) desktop sessions. X2Go Client stores different server connections and may automatically request authentication data from LDAP directories. Furthermore it can be used as fullscreen loginscreen (replacement for loginmanager like xdm). Please visit x2go.org for further information.</source>
@@ -2170,35 +2173,35 @@ Please update to a newer x2goserver package</source>
     <message>
         <location filename="onmainwindow.cpp" line="50"/>
         <source>Starting x2goclient...</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="234"/>
         <source>Starting x2goclient in portable mode... data directory is: </source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="465"/>
         <source>Started  x2goclient.</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="527"/>
         <location filename="onmainwindow.cpp" line="540"/>
         <source>Can&apos;t load translator: </source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="532"/>
         <location filename="onmainwindow.cpp" line="545"/>
         <source>Translator: </source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="532"/>
         <location filename="onmainwindow.cpp" line="545"/>
         <source> installed.</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="783"/>
@@ -2299,12 +2302,12 @@ Please update to a newer x2goserver package</source>
     <message>
         <location filename="onmainwindow.cpp" line="1272"/>
         <source>Closing x2goclient...</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="1420"/>
         <source>Closed  x2goclient.</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="2040"/>
@@ -2323,7 +2326,7 @@ Use x2goclient hidden mode?</source>
     <message>
         <location filename="onmainwindow.cpp" line="2051"/>
         <source>Show session tray icon when running</source>
-        <translation type="unfinished"></translation>
+        <translation>Показывать значок системной области при исполнении</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="2065"/>
@@ -2974,7 +2977,7 @@ Example:
     <message>
         <location filename="sessionwidget.cpp" line="129"/>
         <source>Delegation of GSSAPI credentials to the server</source>
-        <translation type="unfinished"></translation>
+        <translation>Делегация GSSAPI на сервер</translation>
     </message>
     <message>
         <location filename="sessionwidget.cpp" line="133"/>
@@ -3176,32 +3179,32 @@ Example:
     <message>
         <location filename="settingswidget.cpp" line="154"/>
         <source>Auto detect keyboard settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Автоматическая настройка клавиатуры</translation>
     </message>
     <message>
         <location filename="settingswidget.cpp" line="155"/>
         <source>Do not configure keyboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Не настраивать клавиатуру</translation>
     </message>
     <message>
         <location filename="settingswidget.cpp" line="156"/>
         <source>Configure keyboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Настроить клавиатуру</translation>
     </message>
     <message>
         <location filename="settingswidget.cpp" line="167"/>
         <source>Model: </source>
-        <translation type="unfinished"></translation>
+        <translation>Модель:</translation>
     </message>
     <message>
         <location filename="settingswidget.cpp" line="170"/>
         <source>Layout: </source>
-        <translation type="unfinished"></translation>
+        <translation>Раскладка:</translation>
     </message>
     <message>
         <location filename="settingswidget.cpp" line="173"/>
         <source>Variant: </source>
-        <translation type="unfinished"></translation>
+        <translation>Вариант:</translation>
     </message>
     <message>
         <location filename="settingswidget.cpp" line="246"/>
@@ -3470,12 +3473,12 @@ sound system connections through firewalls</source>
     <message>
         <location filename="sshmasterconnection.cpp" line="1154"/>
         <source>Failed to start SSH Client. Please check your installation and GSSApi configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Невозможно запустить клиент SSH. Проверте настройки GSSAPI</translation>
     </message>
     <message>
         <location filename="sshmasterconnection.cpp" line="1180"/>
         <source>Check your GSSApi configuration or choose another authentication method</source>
-        <translation type="unfinished"></translation>
+        <translation>Проверте настройки GSSAPI или выберите другой метод авторизации</translation>
     </message>
     <message>
         <location filename="sshmasterconnection.cpp" line="1279"/>
@@ -3579,7 +3582,7 @@ sound system connections through firewalls</source>
     <message>
         <location filename="xsettingsui.ui" line="61"/>
         <source> do not use primary clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Не использовать первичный буффер обмена</translation>
     </message>
     <message>
         <location filename="xsettingsui.ui" line="68"/>
