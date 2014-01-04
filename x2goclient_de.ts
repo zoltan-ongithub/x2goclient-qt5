@@ -1067,7 +1067,7 @@ Public key hash: </source>
         <location filename="httpbrokerclient.cpp" line="574"/>
         <source>Issued to:
 </source>
-        <translation>Ausgestellt für:￼
+        <translation>Ausgestellt für:
 </translation>
     </message>
     <message>
@@ -1097,7 +1097,7 @@ Public key hash: </source>
         <location filename="httpbrokerclient.cpp" line="586"/>
         <source>Issued by:
 </source>
-        <translation>Ausgestellt von:￼
+        <translation>Ausgestellt von:
 </translation>
     </message>
     <message>
@@ -1121,7 +1121,7 @@ Public key hash: </source>
         <location filename="httpbrokerclient.cpp" line="600"/>
         <source>Fingerprints:
 </source>
-        <translation>Fingerabdrücke:￼
+        <translation>Fingerabdrücke:
 </translation>
     </message>
     <message>
@@ -1214,7 +1214,7 @@ Public key hash: </source>
     <message>
         <location filename="onmainwindow.cpp" line="11108"/>
         <source>Restore toolbar</source>
-        <translation>Wergzeugleiste wieder anzeigen</translation>
+        <translation>Werkzeugleiste wieder anzeigen</translation>
     </message>
     <message>
         <source>About X2GO Client</source>
@@ -1254,7 +1254,7 @@ Public key hash: </source>
     <message>
         <location filename="onmainwindow.cpp" line="2956"/>
         <source>Verification code:</source>
-        <translation type="unfinished"></translation>
+        <translation>Bestätigungscode:</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="2997"/>
@@ -1263,14 +1263,18 @@ Somebody might be eavesdropping on you.
 For security reasons, it is recommended to stop the connection.
 Do you want to terminate the connection?
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Das kann ein Anzeichen für einen Man-in-the-Middle-Angriff sein.
+Vielleicht werden Sie gerade von jemandem belauscht.
+Aus Sicherheitsgründen ist es angeraten, die Verbindung zu beenden.
+Möchten Sie die Verbindung abbrechen?</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="3017"/>
         <location filename="onmainwindow.cpp" line="3044"/>
         <source>If you accept the new host key the security of your connection may be compromised.
 Do you want to update the host key?</source>
-        <translation type="unfinished"></translation>
+        <translation>Wenn Sie den neuen Host-Key akzeptieren, kann das die Sicherheit Ihrer Verbindung gefährden.
+Wollen Sie den Host-Key aktualisieren?</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="3023"/>
@@ -1278,7 +1282,9 @@ Do you want to update the host key?</source>
 For security reasons, it is recommended to stop the connection.
 Do you want to terminate the connection?
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Der Host-Key dieses Servers konnte nicht gefunden werden, aber eine anderer Schlüsseltyp für ihn ist bereits vorhanden. Ein Angreifer könnte den Standard-Key des Servers geändert haben, um Ihren Client glauben zu machen, der Key wäre noch nicht vorhanden.
+Aus Sicherheitsgründen ist es angeraten, die Verbindung zu beenden.
+Möchten Sie die Verbindung abbrechen?</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="4951"/>
@@ -1310,7 +1316,7 @@ Do you want to terminate the connection?
     <message>
         <location filename="onmainwindow.cpp" line="5559"/>
         <source>Waiting for proxy to exit.</source>
-        <translation>Warten darauf, dass der Proxy sich beendet</translation>
+        <translation>Darauf warten, dass der Proxy sich beendet.</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="5562"/>
@@ -1341,7 +1347,7 @@ Do you want to terminate the connection?
     <message>
         <location filename="onmainwindow.cpp" line="9850"/>
         <source>Error getting window geometry (window closed)?</source>
-        <translation>Fehler beim Ermitteln der Fenstergeometrie (Fenster geschlossen?).</translation>
+        <translation>Fehler beim Ermitteln der Fenstergeometrie. (Fenster geschlossen?)</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="10445"/>
@@ -1964,7 +1970,7 @@ Please check your settings</source>
         <location filename="onmainwindow.cpp" line="801"/>
         <location filename="onmainwindow.cpp" line="822"/>
         <source>Show toolbar</source>
-        <translation>Zeige Wergzeugleiste</translation>
+        <translation>Zeige Werkzeugleiste</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="367"/>
@@ -2339,7 +2345,7 @@ Wollen Sie den versteckten Modus nutzen?</translation>
     <message>
         <location filename="onmainwindow.cpp" line="2051"/>
         <source>Show session tray icon when running</source>
-        <translation type="unfinished"></translation>
+        <translation>Sitzungssymbol während Verbindung in der Taskleiste anzeigen</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="2065"/>
@@ -3195,32 +3201,32 @@ Beispiel:
     <message>
         <location filename="settingswidget.cpp" line="154"/>
         <source>Auto detect keyboard settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Tastatureinstellungen automatisch erkennen</translation>
     </message>
     <message>
         <location filename="settingswidget.cpp" line="155"/>
         <source>Do not configure keyboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Tastatur nicht konfigurieren</translation>
     </message>
     <message>
         <location filename="settingswidget.cpp" line="156"/>
         <source>Configure keyboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Tastatur konfigurieren</translation>
     </message>
     <message>
         <location filename="settingswidget.cpp" line="167"/>
         <source>Model: </source>
-        <translation type="unfinished"></translation>
+        <translation>Modell:</translation>
     </message>
     <message>
         <location filename="settingswidget.cpp" line="170"/>
         <source>Layout: </source>
-        <translation type="unfinished"></translation>
+        <translation>Tastaturlayout:</translation>
     </message>
     <message>
         <location filename="settingswidget.cpp" line="173"/>
         <source>Variant: </source>
-        <translation type="unfinished"></translation>
+        <translation>Variante:</translation>
     </message>
     <message>
         <location filename="settingswidget.cpp" line="246"/>
@@ -3489,12 +3495,12 @@ sound system connections through firewalls</source>
     <message>
         <location filename="sshmasterconnection.cpp" line="1154"/>
         <source>Failed to start SSH Client. Please check your installation and GSSApi configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Konnte SSH Client nicht starten. Bitte überprüfen Sie Ihre Installation und die GSSApi-Konfiguration.</translation>
     </message>
     <message>
         <location filename="sshmasterconnection.cpp" line="1180"/>
         <source>Check your GSSApi configuration or choose another authentication method</source>
-        <translation type="unfinished"></translation>
+        <translation>Überprüfen Sie die GSSApi-Konfiguration oder wählen Sie eine andere Authentisierungsmethode.</translation>
     </message>
     <message>
         <location filename="sshmasterconnection.cpp" line="1279"/>
