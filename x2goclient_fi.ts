@@ -1732,8 +1732,8 @@ Avoimet tiedostot eivät talletu</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="7915"/>
-        <source>&lt;/b&gt;&lt;br&gt; (C. 2006-2012 &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing)&lt;br&gt;</source>
-        <translation type="unfinished">&lt;b&gt;&lt;br&gt; (C. 2006-2012 &lt;b&gt;varmaan hyvä&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing)&lt;br&gt;</translation>
+        <source>&lt;/b&gt;&lt;br&gt; (C. 2005-2014 &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing)&lt;br&gt;</source>
+        <translation type="unfinished">&lt;b&gt;&lt;br&gt; (C. 2005-2014 &lt;b&gt;varmaan hyvä&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing)&lt;br&gt;</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="7919"/>

@@ -1,5 +1,5 @@
 /**************************************************************************
-*   Copyright (C) 2005-2012 by Oleksandr Shneyder                         *
+*   Copyright (C) 2005-2014 by Oleksandr Shneyder                         *
 *   o.shneyder@phoca-gmbh.de                                              *
 *                                                                         *
 *   This program is free software; you can redistribute it and/or modify  *
@@ -7913,7 +7913,7 @@ void ONMainWindow::slotSupport()
 void ONMainWindow::slotAbout()
 {
     QString aboutStr=tr (
-                         "</b><br> (C. 2006-2012 <b>obviously nice</b>: "
+                         "</b><br> (C. 2005-2014 <b>obviously nice</b>: "
                          "Oleksandr Shneyder, Heinz-Markus Graesing)<br>" );
     if ( embedMode )
         aboutStr+=tr ( "<br>x2goplugin mode was sponsored by "
