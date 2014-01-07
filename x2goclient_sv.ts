@@ -1198,7 +1198,7 @@ Använd dolt läge?</translation>
     <message>
         <location filename="onmainwindow.cpp" line="2051"/>
         <source>Show session tray icon when running</source>
-        <translation type="unfinished"></translation>
+        <translation>Visa ikon i systemfältet när aktiv</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="2065"/>
@@ -1315,7 +1315,7 @@ Publik nyckel: </translation>
     <message>
         <location filename="onmainwindow.cpp" line="2956"/>
         <source>Verification code:</source>
-        <translation type="unfinished"></translation>
+        <translation>Verifieringskod:</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="2997"/>
@@ -1324,7 +1324,11 @@ Somebody might be eavesdropping on you.
 For security reasons, it is recommended to stop the connection.
 Do you want to terminate the connection?
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Detta kan vara en indikation på en &quot;man in the middle&quot;-attack.
+Någon kan avlyssna kommunikationen.
+Av säkerhetsskäl är det rekommenderat att du avslutar anslutningen.
+Vill du avsluta anslutningen?
+</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="3002"/>
@@ -1349,7 +1353,8 @@ Do you want to terminate the connection?
         <location filename="onmainwindow.cpp" line="3044"/>
         <source>If you accept the new host key the security of your connection may be compromised.
 Do you want to update the host key?</source>
-        <translation type="unfinished"></translation>
+        <translation>Om du accepterar den nya servernyckeln så kan säkerheten i anslutningen vara komprometterad.
+Vill du uppdatera servernyckeln?</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="3023"/>
@@ -1357,7 +1362,9 @@ Do you want to update the host key?</source>
 For security reasons, it is recommended to stop the connection.
 Do you want to terminate the connection?
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Servernyckeln hittades inte, men en annan nyckeltyp finns. En attackerare kan ändra typen på servernyckeln för att lura din klient att tro att nyckeln inte finns.
+Av säkerhetsskäl är det rekommenderat att du avslutar anslutningen.
+Vill du avsluta anslutningen?</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="3108"/>
@@ -1757,8 +1764,8 @@ Data som ej sparats kommer att förloras</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="7915"/>
-        <source>&lt;/b&gt;&lt;br&gt; (C. 2005-2014 &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing)&lt;br&gt;</source>
-        <translation>&lt;/b&gt;&lt;br&gt; (&amp;copy; 2005-2014 &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing)&lt;br&gt;</translation>
+        <source>&lt;/b&gt;&lt;br&gt; (C. 2006-2012 &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing)&lt;br&gt;</source>
+        <translation>&lt;/b&gt;&lt;br&gt; (&amp;copy; 2006-2012 &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing)&lt;br&gt;</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="7919"/>
@@ -2446,7 +2453,7 @@ Example:
     <message>
         <location filename="sessionwidget.cpp" line="129"/>
         <source>Delegation of GSSAPI credentials to the server</source>
-        <translation type="unfinished"></translation>
+        <translation>Delegering av GSSAPI autentiseringsuppgifter till server</translation>
     </message>
     <message>
         <location filename="sessionwidget.cpp" line="133"/>
@@ -2648,32 +2655,32 @@ Example:
     <message>
         <location filename="settingswidget.cpp" line="154"/>
         <source>Auto detect keyboard settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Detektera tangentbordsinställningar automatiskt</translation>
     </message>
     <message>
         <location filename="settingswidget.cpp" line="155"/>
         <source>Do not configure keyboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Konfigurera inte tangentbordet</translation>
     </message>
     <message>
         <location filename="settingswidget.cpp" line="156"/>
         <source>Configure keyboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Konfigurera tangentbordet</translation>
     </message>
     <message>
         <location filename="settingswidget.cpp" line="167"/>
         <source>Model: </source>
-        <translation type="unfinished"></translation>
+        <translation>Modell: </translation>
     </message>
     <message>
         <location filename="settingswidget.cpp" line="170"/>
         <source>Layout: </source>
-        <translation type="unfinished"></translation>
+        <translation>Layout: </translation>
     </message>
     <message>
         <location filename="settingswidget.cpp" line="173"/>
         <source>Variant: </source>
-        <translation type="unfinished"></translation>
+        <translation>Variant: </translation>
     </message>
     <message>
         <location filename="settingswidget.cpp" line="246"/>
@@ -2943,12 +2950,12 @@ ljudström genom brandväggar</translation>
     <message>
         <location filename="sshmasterconnection.cpp" line="1154"/>
         <source>Failed to start SSH Client. Please check your installation and GSSApi configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Start av SSH-klient misslyckades. Kontrollera din installation och GSSAPI-konfiguration</translation>
     </message>
     <message>
         <location filename="sshmasterconnection.cpp" line="1180"/>
         <source>Check your GSSApi configuration or choose another authentication method</source>
-        <translation type="unfinished"></translation>
+        <translation>Kontrollera din GSSAPI-konfiguration eller välj en annan autentiseringsmetod</translation>
     </message>
     <message>
         <location filename="sshmasterconnection.cpp" line="1279"/>
