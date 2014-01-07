@@ -2999,7 +2999,7 @@ Beispiel:
     <message>
         <location filename="sessionwidget.cpp" line="129"/>
         <source>Delegation of GSSAPI credentials to the server</source>
-        <translation type="unfinished"></translation>
+        <translation>Übertragung der GSSAPI Legitimation auf den Server</translation>
     </message>
     <message>
         <location filename="sessionwidget.cpp" line="133"/>

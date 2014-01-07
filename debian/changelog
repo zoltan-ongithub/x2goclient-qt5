@@ -17,6 +17,7 @@ x2goclient (4.0.1.3-0x2go1) UNRELEASED; urgency=low
     - Fix scan for pulseaudio cookie file. Issue got introduced in X2Go Client
       4.0.1.2 and let pulseaudio sound setup fail completely in the Linux
       X2Go Client of that version. (Fixes: #384).
+    - Minor update of the German translation file.
 
   [ Daniel Lindgren ]
   * New upstream version (4.0.1.3):
