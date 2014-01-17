@@ -5033,25 +5033,25 @@ void ONMainWindow::slotRetResumeSess ( bool result,
                 scmd="echo \"default-server=`echo "
                      "$SSH_CLIENT | awk '{print $1}'`:"+
                      sndPort+
-                     "\"> ~/.x2go/C-"+
+                     "\"> $HOME/.x2go/C-"+
                      resumingSession.sessionId+
                      "/.pulse-client.conf"
                      ";echo \"cookie-file=.x2go/C-"+
                      resumingSession.sessionId+
                      "/.pulse-cookie"+
-                     "\">> ~/.x2go/C-"+
+                     "\">> $HOME/.x2go/C-"+
                      resumingSession.sessionId+
                      "/.pulse-client.conf";
             else
                 scmd="echo \"default-server=localhost:"+
                      resumingSession.sndPort+
-                     "\"> ~/.x2go/C-"+
+                     "\"> $HOME/.x2go/C-"+
                      resumingSession.sessionId+
                      "/.pulse-client.conf"
                      ";echo \"cookie-file=.x2go/C-"+
                      resumingSession.sessionId+
                      "/.pulse-cookie"+
-                     "\">> ~/.x2go/C-"+
+                     "\">> $HOME/.x2go/C-"+
                      resumingSession.sessionId+
                      "/.pulse-client.conf";
 
@@ -5105,7 +5105,7 @@ void ONMainWindow::slotRetResumeSess ( bool result,
                 {
                     sshConnection->copyFile(
                         pulsecookie_filename,
-                        "~/.x2go/C-"+
+                        "$HOME/.x2go/C-"+
                         resumingSession.sessionId+
                         "/.pulse-cookie", this, SLOT ( slotPCookieReady ( bool, QString,int )));
                 }
@@ -5122,7 +5122,7 @@ void ONMainWindow::slotRetResumeSess ( bool result,
                 if ( pulsecookie_filename.length() > 0 )
                 {
                     sshConnection->copyFile(pulsecookie_filename,
-                                            "~/.x2go/C-"+
+                                            "$HOME/.x2go/C-"+
                                             resumingSession.sessionId+
                                             "/.pulse-cookie", this, SLOT ( slotPCookieReady ( bool, QString,int )));
                 }
@@ -5130,7 +5130,7 @@ void ONMainWindow::slotRetResumeSess ( bool result,
                 QString cooFile=
                     wapiShortFileName ( homeDir )  +
                     "/.x2go/pulse/.pulse-cookie";
-                QString destFile="~/.x2go/C-"+
+                QString destFile="$HOME/.x2go/C-"+
                                  resumingSession.sessionId+
                                  "/.pulse-cookie";
                 sshConnection->copyFile(cooFile,
@@ -5143,12 +5143,12 @@ void ONMainWindow::slotRetResumeSess ( bool result,
         {
 #ifndef Q_OS_WIN
             sshConnection->copyFile(homeDir+"/.esd_auth",
-                                    "~/.esd_auth" );
+                                    "$HOME/.esd_auth" );
 #else
             QString cooFile=
                 wapiShortFileName ( homeDir )  +
                 "/.x2go/pulse/.esd_auth";
-            QString destFile="~/.esd_auth";
+            QString destFile="$HOME/.esd_auth";
             sshConnection->copyFile(cooFile,
                                     destFile );
 
@@ -6202,7 +6202,7 @@ void ONMainWindow::runCommand()
     if(sshConnection->useKerberos() && sshConnection->get_kerberosDelegation())
     {
         krbFwString="KRB5CCNAME=`echo $KRB5CCNAME |sed 's/FILE://g'` \
-        KRBFL=~/.x2go/C-"+resumingSession.sessionId+"/krb5cc ;\
+        KRBFL=$HOME/.x2go/C-"+resumingSession.sessionId+"/krb5cc ;\
         cp -a $KRB5CCNAME $KRBFL;KRB5CCNAME=$KRBFL ";
     }
 
@@ -6215,9 +6215,9 @@ void ONMainWindow::runCommand()
             sessionType +" 1> /dev/null 2>/dev/null & exit";
         if ( startSessSndSystem ==PULSE )
         {
-            cmd="PULSE_CLIENTCONFIG=~/.x2go/C-"+
+            cmd="export PULSE_CLIENTCONFIG=$HOME/.x2go/C-"+
                 resumingSession.sessionId+
-                "/.pulse-client.conf "+cmd;
+                "/.pulse-client.conf;"+cmd;
         }
     }
     else
@@ -6261,7 +6261,7 @@ void ONMainWindow::runCommand()
 
 void ONMainWindow::runApplication(QString exec)
 {
-    sshConnection->executeCommand ("PULSE_CLIENTCONFIG=~/.x2go/C-"+
+    sshConnection->executeCommand ("PULSE_CLIENTCONFIG=$HOME/.x2go/C-"+
                                    resumingSession.sessionId+"/.pulse-client.conf DISPLAY=:"+
                                    resumingSession.display+
                                    " setsid "+exec+" 1> /dev/null 2>/dev/null & exit");
@@ -9891,7 +9891,7 @@ void ONMainWindow::slotConfigXinerama()
         foreach (QRect disp, xineramaScreens)
         screens<<QString::number(disp.x())+" "+QString::number(disp.y())+" "+QString::number(disp.width())+
                " "+QString::number(disp.height());
-        QString cmd="export DISPLAY=:"+resumingSession.display+";printf '"+screens.join("\\\\n")+"' >  ~/.x2go/C-"+
+        QString cmd="export DISPLAY=:"+resumingSession.display+";printf '"+screens.join("\\\\n")+"' >  $HOME/.x2go/C-"+
                     resumingSession.sessionId+"/xinerama.conf";
 
         sshConnection->executeCommand(cmd, this, SLOT(slotXineramaConfigured()));

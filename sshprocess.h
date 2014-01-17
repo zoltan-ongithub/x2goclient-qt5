@@ -86,6 +86,7 @@ private slots:
     void slotIOerr(SshProcess* creator,QString message, QString sshSessionErr);
     void slotChannelClosed(SshProcess* creator, QString uuid);
     void slotReverseTunnelOk(SshProcess* creator);
+    void slotReverseTunnelFailed(SshProcess* creator, QString error);
     void slotCopyOk(SshProcess* creator);
     void slotCopyErr(SshProcess* creator,QString message, QString sshSessionErr);
     //krb stuff

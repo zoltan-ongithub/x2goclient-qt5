@@ -182,7 +182,6 @@ SshMasterConnection::SshMasterConnection (QObject* parent, QString host, int por
     this->proxylogin=proxylogin;
     this->proxypassword=proxypassword;
     this->proxyKrbLogin=proxyKrbLogin;
-    reverseTunnel=false;
     mainWnd=(ONMainWindow*) parent;
     kerberos=krblogin;
     challengeAuthVerificationCode=QString::null;
@@ -209,49 +208,6 @@ SshMasterConnection::SshMasterConnection (QObject* parent, QString host, int por
 #endif
 }
 
-SshMasterConnection::SshMasterConnection (QObject* parent, ONMainWindow* mwd, QString host, int port, bool acceptUnknownServers,
-        QString user, QString pass, QString key,bool autologin,
-        int remotePort, QString localHost, int localPort, SshProcess* creator,
-        bool useproxy, ProxyType type, QString proxyserver, quint16 proxyport,
-        QString proxylogin, QString proxypassword, QString proxykey,
-        bool proxyautologin, bool proxyKrbLogin, int localProxyPort) : QThread ( parent )
-{
-#if defined ( Q_OS_DARWIN )
-    setStackSize (sizeof (char) * 1024 * 1024 * 2);
-#endif
-    tcpProxySocket = NULL;
-    tcpNetworkProxy = NULL;
-    sshProxy= NULL;
-    sshProxyReady=false;
-    kerberosDelegation=false;
-    breakLoop=false;
-    this->host=host;
-    this->port=port;
-    this->user=user;
-    this->pass=pass;
-    this->key=key;
-    this->autologin=autologin;
-    this->acceptUnknownServers=acceptUnknownServers;
-    this->useproxy=useproxy;
-    this->proxyserver=proxyserver;
-    this->proxyport=proxyport;
-    this->proxylogin=proxylogin;
-    this->proxypassword=proxypassword;
-    this->proxytype=type;
-    this->proxyautologin=proxyautologin;
-    this->proxyKrbLogin=proxyKrbLogin;
-    this->proxykey=proxykey;
-    this->localProxyPort=localProxyPort;
-    reverseTunnelLocalHost=localHost;
-    reverseTunnelLocalPort=localPort;
-    reverseTunnelCreator=creator;
-    reverseTunnel=true;
-    reverseTunnelRemotePort=remotePort;
-    mainWnd=mwd;
-#ifdef DEBUG
-    x2goDebug<<"SshMasterConnection, instance "<<this<<" created (reverse tunnel)";
-#endif
-}
 
 void SshMasterConnection::slotSshProxyConnectionOk()
 {
@@ -306,6 +262,106 @@ QString SshMasterConnection::getSourceFile(int pid)
 }
 
 
+void SshMasterConnection::addReverseTunnelConnections()
+{
+    reverseTunnelRequestMutex.lock();
+    for(int i=0; i<reverseTunnelRequest.count(); ++i)
+    {
+        if(!reverseTunnelRequest[i].listen)
+        {
+            reverseTunnelRequest[i].listen=true;
+            int rc=ssh_forward_listen(my_ssh_session, NULL, reverseTunnelRequest[i].forwardPort, NULL);
+            if(rc==SSH_OK)
+            {
+                emit reverseTunnelOk(reverseTunnelRequest[i].creator);
+#ifdef DEBUG
+                x2goDebug<<"Listening for TCP/IP connections on "<<reverseTunnelRequest[i].forwardPort;
+#endif
+            }
+            if(rc==SSH_ERROR)
+            {
+                QString err=ssh_get_error(my_ssh_session);
+#ifdef DEBUG
+                x2goDebug<<"Forward port "<<reverseTunnelRequest[i].forwardPort<<" failed:"<<err;
+#endif
+                emit reverseTunnelFailed(reverseTunnelRequest[i].creator, err);
+            }
+        }
+    }
+    reverseTunnelRequestMutex.unlock();
+}
+
+void SshMasterConnection::checkReverseTunnelConnections()
+{
+    int port;
+    ssh_channel chan=ssh_channel_accept_forward(my_ssh_session, 0, &port);
+    if(chan)
+    {
+#ifdef DEBUG
+        x2goDebug<<"New reverse connection on port "<<port;
+#endif
+
+        reverseTunnelRequestMutex.lock();
+        for(int i=0; i<reverseTunnelRequest.count(); ++i)
+        {
+            ReverseTunnelRequest req=reverseTunnelRequest[i];
+            if(req.forwardPort==port)
+            {
+#ifdef DEBUG
+                x2goDebug<<"Creating new channel for reverse tunnel "<<port;
+#endif
+                int sock=socket ( AF_INET, SOCK_STREAM,0 );
+#ifndef Q_OS_WIN
+                const int y=1;
+#else
+                const char y=1;
+#endif
+                setsockopt(sock, IPPROTO_TCP, TCP_NODELAY,&y, sizeof(int));
+
+                struct sockaddr_in address;
+                address.sin_family=AF_INET;
+                address.sin_port=htons ( req.localPort );
+#ifdef DEBUG
+                x2goDebug<<"connecting to "<<req.localHost<<":"<<req.localPort<<endl;
+#endif
+#ifndef Q_OS_WIN
+                inet_aton ( req.localHost.toAscii(), &address.sin_addr );
+#else
+                address.sin_addr.s_addr=inet_addr (
+                                            req.localHost.toAscii() );
+#endif
+
+                if ( ::connect ( sock, ( struct sockaddr * ) &address,sizeof ( address ) ) !=0 )
+                {
+                    QString errMsg=tr ( "can not connect to " ) +
+                                   req.localHost+":"+QString::number ( req.localPort );
+#ifdef DEBUG
+                    x2goDebug<<errMsg<<endl;
+#endif
+                    emit ioErr ( req.creator, errMsg, "" );
+                    break;
+                }
+
+                ChannelConnection con;
+                con.channel=chan;
+                con.sock=sock;
+                con.creator=req.creator;
+                channelConnectionsMutex.lock();
+                channelConnections<<con;
+                channelConnectionsMutex.unlock();
+#ifdef DEBUG
+                x2goDebug<<"New channel created";
+#endif
+                break;
+            }
+        }
+        reverseTunnelRequestMutex.unlock();
+
+
+    }
+}
+
+
 int SshMasterConnection::startTunnel(const QString& forwardHost, uint forwardPort, const QString& localHost, uint localPort, bool reverse,
                                      QObject* receiver, const char* slotTunnelOk, const char* slotFinished)
 {
@@ -319,6 +375,23 @@ int SshMasterConnection::startTunnel(const QString& forwardHost, uint forwardPor
         connect(proc, SIGNAL(sshTunnelOk(int)), receiver, slotTunnelOk);
     }
     proc->startTunnel(forwardHost, forwardPort, localHost, localPort, reverse);
+    if(reverse && !kerberos)
+    {
+        connect(this, SIGNAL(reverseTunnelOk(SshProcess*)), proc, SLOT(slotReverseTunnelOk(SshProcess*)));
+        connect(this, SIGNAL(reverseTunnelFailed(SshProcess*,QString)), proc, SLOT(slotReverseTunnelFailed(SshProcess*,QString)));
+        ReverseTunnelRequest req;
+        req.creator=proc;
+        req.localPort=localPort;
+        req.localHost=localHost;
+        req.forwardPort=forwardPort;
+        req.listen=false;
+#ifdef DEBUG
+        x2goDebug<<"Requesting reverse tunnel from port "<<forwardPort<< " to "<<localPort;
+#endif
+        reverseTunnelRequestMutex.lock();
+        reverseTunnelRequest<<req;
+        reverseTunnelRequestMutex.unlock();
+    }
     processes<<proc;
     return proc->pid;
 }
@@ -358,30 +431,6 @@ void SshMasterConnection::slotSshProxyTunnelFailed(bool ,  QString output,
 }
 
 
-SshMasterConnection* SshMasterConnection::reverseTunnelConnection ( SshProcess* creator,
-        int remotePort, QString localHost, int localPort )
-{
-    SshMasterConnection* con=new SshMasterConnection (this, mainWnd, host,port,acceptUnknownServers,user,pass,
-            key,autologin, remotePort,localHost,
-            localPort,creator, useproxy, proxytype, proxyserver, proxyport, proxylogin,
-            proxypassword, proxykey, proxyautologin, proxyKrbLogin, localProxyPort );
-    con->kerberos=kerberos;
-
-    con->setVerficationCode(challengeAuthVerificationCode);
-
-    connect ( con,SIGNAL ( ioErr ( SshProcess*,QString,QString ) ),this,SIGNAL ( ioErr ( SshProcess*,QString,QString ) ) );
-    connect ( con,SIGNAL ( stdErr ( SshProcess*,QByteArray ) ),this,SIGNAL ( stdErr ( SshProcess*,QByteArray ) ) );
-    connect ( con,SIGNAL ( reverseListenOk ( SshProcess* ) ), this, SIGNAL ( reverseListenOk ( SshProcess* ) ) );
-    connect ( con,SIGNAL ( needPassPhrase(SshMasterConnection*, bool)), this, SIGNAL (needPassPhrase(SshMasterConnection*, bool)));
-
-    con->keyPhrase=keyPhrase;
-    con->keyPhraseReady=true;
-    con->start();
-    reverseTunnelConnectionsMutex.lock();
-    reverseTunnelConnections.append ( con );
-    reverseTunnelConnectionsMutex.unlock();
-    return con;
-}
 
 void SshMasterConnection::slotSshProxyServerAuthAborted()
 {
@@ -393,7 +442,7 @@ void SshMasterConnection::run()
 #ifdef DEBUG
     x2goDebug<<"SshMasterConnection, instance "<<this<<" entering thread";
 #endif
-    if(useproxy && proxytype==PROXYSSH && !reverseTunnel)
+    if(useproxy && proxytype==PROXYSSH)
     {
 
         sshProxy=new SshMasterConnection (0, proxyserver, proxyport,acceptUnknownServers,
@@ -464,8 +513,6 @@ void SshMasterConnection::run()
         x2goDebug<<err<<endl;
 #endif
         emit connectionError ( err,"" );
-        if ( reverseTunnel )
-            emit ioErr ( reverseTunnelCreator,err,"" );
         quit();
         return;
     }
@@ -529,8 +576,6 @@ void SshMasterConnection::run()
         x2goDebug<<message<<" - "<<err;
 #endif
         emit connectionError ( message, err );
-        if ( reverseTunnel )
-            emit ioErr ( reverseTunnelCreator,message,err );
         ssh_free ( my_ssh_session );
         quit();
         return;
@@ -626,8 +671,6 @@ void SshMasterConnection::run()
         x2goDebug<<message<<" - "<<err;
 #endif
         emit userAuthError ( authErrors.join ( "\n" ) );
-        if ( reverseTunnel )
-            emit ioErr ( reverseTunnelCreator,message,err );
         ssh_disconnect ( my_ssh_session );
         ssh_free ( my_ssh_session );
         quit();
@@ -644,34 +687,6 @@ void SshMasterConnection::run()
     setsockopt(session_sock, IPPROTO_TCP, TCP_NODELAY,&y, sizeof(int));
 
 
-    if ( reverseTunnel )
-    {
-        if ( channel_forward_listen ( my_ssh_session, NULL, reverseTunnelRemotePort,  NULL ) !=SSH_OK )
-        {
-            if(disconnectSessionFlag)
-            {
-#ifdef DEBUG
-                x2goDebug<<"session already disconnected, exiting"<<endl;
-#endif
-                return;
-            }
-            QString err=ssh_get_error ( my_ssh_session );
-            QString message=tr ( "channel_forward_listen failed" );
-#ifdef DEBUG
-            x2goDebug<<message<<" - "<<err;
-#endif
-            emit ioErr ( reverseTunnelCreator, message, err );
-            ssh_disconnect ( my_ssh_session );
-            ssh_free ( my_ssh_session );
-            quit();
-            return;
-        }
-        emit reverseListenOk ( reverseTunnelCreator );
-
-#ifdef DEBUG
-        x2goDebug<<"channel_forward_listen ok\n ";
-#endif
-    }
     channelLoop();
 }
 
@@ -685,10 +700,7 @@ SshMasterConnection::~SshMasterConnection()
 #ifdef DEBUG
     x2goDebug<<"SshMasterConnection, instance "<<this<<" waiting for thread to finish";
 #endif
-    if(!reverseTunnel)
-        wait(15000);
-    else
-        wait(5000);
+    wait(15000);
 #ifdef DEBUG
     x2goDebug<<"SshMasterConnection, instance "<<this<<" thread finished";
 #endif
@@ -963,21 +975,18 @@ bool SshMasterConnection::userAuthAuto()
     int i=0;
     while(rc != SSH_AUTH_SUCCESS)
     {
-        if(!reverseTunnel)
+        keyPhraseReady=false;
+        emit needPassPhrase(this, false);
+        for(;;)
         {
-            keyPhraseReady=false;
-            emit needPassPhrase(this, false);
-            for(;;)
-            {
-                bool ready=false;
-                this->usleep(200);
-                keyPhraseMutex.lock();
-                if(keyPhraseReady)
-                    ready=true;
-                keyPhraseMutex.unlock();
-                if(ready)
-                    break;
-            }
+            bool ready=false;
+            this->usleep(200);
+            keyPhraseMutex.lock();
+            if(keyPhraseReady)
+                ready=true;
+            keyPhraseMutex.unlock();
+            if(ready)
+                break;
         }
         if(keyPhrase==QString::null)
             break;
@@ -1038,21 +1047,18 @@ bool SshMasterConnection::userAuthWithKey()
     int i=0;
     while(!prkey)
     {
-        if(!reverseTunnel)
+        keyPhraseReady=false;
+        emit needPassPhrase(this, false);
+        for(;;)
         {
-            keyPhraseReady=false;
-            emit needPassPhrase(this, false);
-            for(;;)
-            {
-                bool ready=false;
-                this->usleep(200);
-                keyPhraseMutex.lock();
-                if(keyPhraseReady)
-                    ready=true;
-                keyPhraseMutex.unlock();
-                if(ready)
-                    break;
-            }
+            bool ready=false;
+            this->usleep(200);
+            keyPhraseMutex.lock();
+            if(keyPhraseReady)
+                ready=true;
+            keyPhraseMutex.unlock();
+            if(ready)
+                break;
         }
         if(keyPhrase==QString::null)
             break;
@@ -1254,7 +1260,7 @@ void SshMasterConnection::copy()
         lst.removeLast();
         QString dstPath=lst.join ( "/" );
 #ifdef DEBUG
-        x2goDebug<<"dst path:"<<dstPath<<" file:"<<dstFile<<endl;
+        x2goDebug<<"SSH Master Connection copy - dst path:"<<dstPath<<" file:"<<dstFile<<endl;
 #endif
         ssh_scp scp=ssh_scp_new ( my_ssh_session, SSH_SCP_WRITE|SSH_SCP_RECURSIVE, dstPath.toAscii() );
         if ( scp == NULL )
@@ -1343,16 +1349,6 @@ void SshMasterConnection::channelLoop()
                 sshProxy=0;
             }
 
-            reverseTunnelConnectionsMutex.lock();
-#ifdef DEBUG
-            x2goDebug<<"Deleting reverse tunnel connections"<<endl;
-#endif
-            for ( int i=reverseTunnelConnections.size()-1; i>=0; --i)
-            {
-                delete reverseTunnelConnections[i];
-            }
-            reverseTunnelConnectionsMutex.unlock();
-
             channelConnectionsMutex.lock();
 #ifdef DEBUG
             x2goDebug<<"Deleting channel connections"<<endl;
@@ -1376,67 +1372,17 @@ void SshMasterConnection::channelLoop()
             if (tcpNetworkProxy != NULL)
                 delete tcpNetworkProxy;
 #ifdef DEBUG
-            if ( !reverseTunnel )
-                x2goDebug<<"All channels closed, session disconnected, quiting session loop"<<endl;
+            x2goDebug<<"All channels closed, session disconnected, quiting session loop"<<endl;
 #endif
             quit();
             return;
         }
+        addReverseTunnelConnections();
+        checkReverseTunnelConnections();
         copyRequestMutex.lock();
         if ( copyRequests.size() >0 )
             copy();
         copyRequestMutex.unlock();
-        if ( reverseTunnel )
-        {
-            ssh_channel newChan=channel_forward_accept ( my_ssh_session,0 );
-            if ( newChan )
-            {
-#ifdef DEBUG
-                x2goDebug<<"new forward connection"<<endl;
-#endif
-                int sock=socket ( AF_INET, SOCK_STREAM,0 );
-#ifndef Q_OS_WIN
-                const int y=1;
-#else
-                const char y=1;
-#endif
-                setsockopt(sock, IPPROTO_TCP, TCP_NODELAY,&y, sizeof(int));
-
-                struct sockaddr_in address;
-                address.sin_family=AF_INET;
-                address.sin_port=htons ( reverseTunnelLocalPort );
-#ifdef DEBUG
-                x2goDebug<<"connecting to "<<reverseTunnelLocalHost<<":"<<reverseTunnelLocalPort<<endl;
-#endif
-#ifndef Q_OS_WIN
-                inet_aton ( reverseTunnelLocalHost.toAscii(), &address.sin_addr );
-#else
-                address.sin_addr.s_addr=inet_addr (
-                                            reverseTunnelLocalHost.toAscii() );
-#endif
-
-                if ( ::connect ( sock, ( struct sockaddr * ) &address,sizeof ( address ) ) !=0 )
-                {
-                    QString errMsg=tr ( "can not connect to " ) +
-                                   reverseTunnelLocalHost+":"+QString::number ( reverseTunnelLocalPort );
-#ifdef DEBUG
-                    x2goDebug<<errMsg<<endl;
-#endif
-                    emit ioErr ( reverseTunnelCreator, errMsg, "" );
-                    continue;
-                }
-#ifdef DEBUG
-                x2goDebug<<"creating new channel connection"<<endl;
-#endif
-                ChannelConnection con;
-                con.channel=newChan;
-                con.sock=sock;
-                con.creator=reverseTunnelCreator;
-                channelConnectionsMutex.lock();
-                channelConnections<<con;
-                channelConnectionsMutex.unlock();
-            }
-        }
 
         char buffer[1024*512]; //512K buffer
         int nbytes;
