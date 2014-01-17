@@ -52,6 +52,15 @@ struct ChannelConnection
     }
 };
 
+struct ReverseTunnelRequest
+{
+    uint localPort;
+    uint forwardPort;
+    QString localHost;
+    SshProcess* creator;
+    bool listen;
+};
+
 struct CopyRequest
 {
     SshProcess* creator;
@@ -90,8 +99,6 @@ public:
     {
         acceptUnknownServers=accept;
     }
-    SshMasterConnection* reverseTunnelConnection(SshProcess* creator, int remotePort,
-            QString localHost, int localPort);
     QString getHost()
     {
         return host;
@@ -110,12 +117,6 @@ public:
     };
 
 private:
-    SshMasterConnection(QObject* parent, ONMainWindow* parWnd, QString host, int port, bool acceptUnknownServers,
-                        QString user, QString pass, QString key,bool autologin,
-                        int remotePort, QString localHost, int localPort, SshProcess* creator,
-                        bool useproxy=false, ProxyType type=PROXYSSH, QString proxyserver=QString::null, quint16 proxyport=0,
-                        QString proxylogin=QString::null, QString proxypassword=QString::null, QString proxyKey=QString::null,
-                        bool proxyAutologin=false, bool proxyKrbLogin=false, int localProxyPort=0);
     bool sshConnect();
     bool userAuthWithPass();
     bool userAuthAuto();
@@ -128,6 +129,8 @@ private:
     void copy();
     int serverAuth(QString& errorMsg);
     void setVerficationCode(QString code);
+    void checkReverseTunnelConnections();
+    void addReverseTunnelConnections();
 #ifdef Q_OS_WIN
     void parseKnownHosts();
 #endif
@@ -149,12 +152,12 @@ private:
     ssh_session my_ssh_session;
     QList<ChannelConnection> channelConnections;
     QList<CopyRequest> copyRequests;
-    QList<SshMasterConnection*> reverseTunnelConnections;
+    QList<ReverseTunnelRequest> reverseTunnelRequest;
     QMutex channelConnectionsMutex;
     QMutex copyRequestMutex;
     QMutex disconnectFlagMutex;
-    QMutex reverseTunnelConnectionsMutex;
     QMutex writeHostKeyMutex;
+    QMutex reverseTunnelRequestMutex;
     bool writeHostKey;
     bool writeHostKeyReady;
     int nextPid;
@@ -181,13 +184,8 @@ private:
     QStringList authErrors;
     bool autologin;
     bool disconnectSessionFlag;
-    bool reverseTunnel;
-    int reverseTunnelRemotePort;
     int localProxyPort;
-    int reverseTunnelLocalPort;
     bool acceptUnknownServers;
-    QString reverseTunnelLocalHost;
-    SshProcess* reverseTunnelCreator;
     ONMainWindow* mainWnd;
     bool kerberos;
     QString sshProcErrString;
@@ -207,14 +205,14 @@ signals:
     void copyErr(SshProcess* caller, QString error, QString lastSessionError);
     void copyOk(SshProcess* caller);
     void channelClosed(SshProcess* caller, QString uuid);
+    void reverseTunnelOk(SshProcess* caller);
+    void reverseTunnelFailed(SshProcess* caller, QString error);
 
     void connectionError(QString message, QString lastSessionError);
     void serverAuthError(int errCode, QString lastSessionError, SshMasterConnection*);
     void serverAuthAborted();
     void userAuthError(QString error);
 
-    void newReverceTunnelConnection(SshProcess* creator, void* newChannel);
-    void reverseListenOk(SshProcess* creator);
     void connectionOk( QString host);
 
     void needPassPhrase(SshMasterConnection*, bool verificationCode);

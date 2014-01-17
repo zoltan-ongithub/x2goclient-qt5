@@ -227,7 +227,7 @@ void SshProcess::startNormal(const QString& cmd)
         procUuid=uuidStr;
         proc->start(sshString);
 
-        if (!proc->waitForStarted(5000))
+        if (!proc->waitForStarted(15000))
         {
             stdErrString=proc->errorString();
 #ifdef DEBUG
@@ -274,7 +274,7 @@ void SshProcess::start_cp(QString src, QString dst)
 #endif
         proc->start(sshString);
 
-        if (!proc->waitForStarted(5000))
+        if (!proc->waitForStarted(15000))
         {
             stdErrString=proc->errorString();
 #ifdef DEBUG
@@ -304,11 +304,6 @@ void SshProcess::startTunnel(const QString& forwardHost, uint forwardPort, const
         this->localPort=localPort;
         if (!reverse)
             tunnelLoop();
-        else
-        {
-            connect(masterCon, SIGNAL(reverseListenOk(SshProcess*)), this, SLOT(slotReverseTunnelOk(SshProcess*)));
-            tunnelConnection=masterCon->reverseTunnelConnection(this, forwardPort, localHost, localPort);
-        }
     }
     else
     {
@@ -327,7 +322,7 @@ void SshProcess::startTunnel(const QString& forwardHost, uint forwardPort, const
             sshString+=" -R "+ QString::number(forwardPort)+":"+forwardHost+":"+QString::number(localPort);
 
 #ifdef DEBUG
-        x2goDebug<<"running ssh:" <<sshString<<endl;
+        x2goDebug<<"TUNNEL: running ssh:" <<sshString<<endl;
 #endif
         proc->start(sshString);
 
@@ -352,7 +347,7 @@ void SshProcess::slotStdErr(SshProcess* creator, QByteArray data)
     if (creator!=this)
         return;
 #ifdef DEBUG
-    x2goDebug<<"new err data:"<<data<<endl;
+//     x2goDebug<<"new err data:"<<data<<endl;
 #endif
     stdErrString+=data;
 
@@ -365,6 +360,9 @@ void SshProcess::slotStdErr(SshProcess* creator, QByteArray data)
 #endif
         {
             tunnelOkEmited=true;
+#ifdef DEBUG
+            x2goDebug<<"Tunnel OK"<<endl;
+#endif
             emit sshTunnelOk(pid);
         }
     }
@@ -407,6 +405,13 @@ void SshProcess::slotReverseTunnelOk(SshProcess* creator)
 {
     if (creator==this)
         emit sshTunnelOk(pid);
+}
+
+void SshProcess::slotReverseTunnelFailed(SshProcess* creator, QString error)
+{
+    if (creator==this)
+        emit sshFinished(false,error,pid);
+
 }
 
 
