@@ -1064,6 +1064,12 @@ private slots:
     void slotReconnectSession();
     void slotStartBroker();
     void slotStartNewBrokerSession ();
+#ifdef Q_OS_DARWIN
+    void slotSetModMap();
+private:
+    QTimer* modMapTimer;
+    QString kbMap;
+#endif
 
 private:
     void resizeProxyWinOnDisplay(int display);

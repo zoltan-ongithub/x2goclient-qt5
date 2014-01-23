@@ -5468,6 +5468,24 @@ void ONMainWindow::slotSndTunnelFailed ( bool result,  QString output,
 }
 
 
+#ifdef Q_OS_DARWIN
+void ONMainWindow::slotSetModMap()
+{
+    if(!nxproxy)
+    {
+        return;
+    }
+    if(kbMap.length()<=0)
+    {
+        x2goDebug<<"get keyboard map";
+        QProcess pr(this);
+        pr.start("xmodmap -pke");
+        pr.waitForFinished();
+        kbMap=pr.readAllStandardOutput();
+    }
+    sshConnection->executeCommand("export DISPLAY=:"+resumingSession.display+"; echo \\\""+kbMap+"\\\" | xmodmap -");
+}
+#endif
 
 void ONMainWindow::slotProxyError ( QProcess::ProcessError )
 {
@@ -5479,6 +5497,10 @@ void ONMainWindow::slotProxyFinished ( int,QProcess::ExitStatus )
 {
 
 #ifdef Q_OS_DARWIN
+    disconnect(modMapTimer, SIGNAL(timeout()), this, SLOT(slotSetModMap()));
+    delete modMapTimer;
+    modMapTimer=0;
+    kbMap=QString::null;
 //fixes bug, when mainwindow inputs not accepting focus under mac
     setFocus();
 #endif
@@ -5722,6 +5744,12 @@ void ONMainWindow::slotProxyStderr()
             }
         }
         sbSusp->setToolTip ( tr ( "Suspend" ) );
+#ifdef Q_OS_DARWIN
+        modMapTimer=new QTimer(this);
+        connect(modMapTimer, SIGNAL(timeout()), this, SLOT (slotSetModMap()));
+        modMapTimer->start(30000);
+        slotSetModMap();
+#endif
         if ( newSession )
         {
             runCommand();

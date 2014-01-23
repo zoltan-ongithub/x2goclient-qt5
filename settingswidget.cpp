@@ -236,6 +236,7 @@ SettingsWidget::SettingsWidget ( QString id, ONMainWindow * mw,
     arts->hide();
     pulse->hide();
     esd->setChecked ( true );
+    kgb->hide();
 #endif
 #ifndef Q_WS_HILDON
     setLay->addWidget ( dgb );
