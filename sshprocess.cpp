@@ -221,9 +221,6 @@ void SshProcess::startNormal(const QString& cmd)
 #endif
                           QString::number(masterCon->getPort())+" -l "+
                           masterCon->getUser()+" "+ host +  " \""+shcmd+"\"";
-#ifdef DEBUG
-        x2goDebug<<"running ssh:" <<sshString<<endl;
-#endif
         procUuid=uuidStr;
         proc->start(sshString);
 

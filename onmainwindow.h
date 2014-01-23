@@ -962,6 +962,7 @@ public slots:
     void slotEmbedControlAction();
     void slotDetachProxyWindow();
     void slotActivateWindow();
+    void setFocus();
 
 private slots:
     void slotSnameChanged ( const QString& );

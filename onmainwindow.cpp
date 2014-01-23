@@ -5483,7 +5483,14 @@ void ONMainWindow::slotSetModMap()
         pr.waitForFinished();
         kbMap=pr.readAllStandardOutput();
     }
-    sshConnection->executeCommand("export DISPLAY=:"+resumingSession.display+"; echo \\\""+kbMap+"\\\" | xmodmap -");
+    if(sshConnection->useKerberos())
+    {
+        sshConnection->executeCommand("export DISPLAY=:"+resumingSession.display+"; echo '"+kbMap+"' | xmodmap -");
+    }
+    else
+    {
+        sshConnection->executeCommand("export DISPLAY=:"+resumingSession.display+"; echo \\\""+kbMap+"\\\" | xmodmap -");
+    }
 }
 #endif
 
@@ -5790,6 +5797,38 @@ void ONMainWindow::slotProxyStdout()
     QString resout ( nxproxy->readAllStandardOutput() );
 
     x2goDebug<<"Proxy wrote on stdout: "<<resout;
+}
+
+void ONMainWindow::setFocus()
+{
+
+#ifdef Q_OS_DARWIN
+    bool userFocus=false;
+    bool passFocus=false;
+    if(passForm && passForm->isVisible())
+    {
+        if(pass && pass->isVisible()&& pass->hasFocus())
+        {
+            passFocus=true;
+        }
+        if(login && login->isVisible()&& login->hasFocus())
+        {
+            userFocus=true;
+        }
+    }
+#endif
+    QWidget::setFocus();
+#ifdef Q_OS_DARWIN
+    if(userFocus)
+    {
+        login->setFocus();
+    }
+    if(passFocus)
+    {
+        pass->setFocus();
+    }
+#endif
+
 }
 
 
