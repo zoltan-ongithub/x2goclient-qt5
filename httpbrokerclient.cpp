@@ -93,13 +93,13 @@ void HttpBrokerClient::createSshConnection()
     QUrl lurl ( config->brokerurl );
     sshConnection=new SshMasterConnection (this, lurl.host(), lurl.port(22),false,
                                            config->brokerUser, config->brokerPass,config->brokerSshKey,config->brokerAutologin,
-					   config->brokerKrbLogin, false);
+                                           config->brokerKrbLogin, false);
 
     connect ( sshConnection, SIGNAL ( connectionOk(QString)), this, SLOT ( slotSshConnectionOk() ) );
     connect ( sshConnection, SIGNAL ( serverAuthError ( int,QString, SshMasterConnection* ) ),this,
               SLOT ( slotSshServerAuthError ( int,QString, SshMasterConnection* ) ) );
-    connect ( sshConnection, SIGNAL ( needPassPhrase(SshMasterConnection*)),this,
-              SLOT ( slotSshServerAuthPassphrase(SshMasterConnection*)) );
+    connect ( sshConnection, SIGNAL ( needPassPhrase(SshMasterConnection*, bool)),this,
+              SLOT ( slotSshServerAuthPassphrase(SshMasterConnection*, bool)) );
     connect ( sshConnection, SIGNAL ( userAuthError ( QString ) ),this,SLOT ( slotSshUserAuthError ( QString ) ) );
     connect ( sshConnection, SIGNAL ( connectionError(QString,QString)), this,
               SLOT ( slotSshConnectionError ( QString,QString ) ) );
@@ -199,11 +199,23 @@ void HttpBrokerClient::slotSshServerAuthError(int error, QString sshMessage, Ssh
 
 }
 
-void HttpBrokerClient::slotSshServerAuthPassphrase(SshMasterConnection* connection)
+void HttpBrokerClient::slotSshServerAuthPassphrase(SshMasterConnection* connection, bool verificationCode)
 {
     bool ok;
+    QString message;
+
+    if(verificationCode)
+    {
+        message=tr("Verification code:");
+    }
+    else
+    {
+        message=tr("Enter passphrase to decrypt a key");
+    }
+
+
     QString phrase=QInputDialog::getText(0,connection->getUser()+"@"+connection->getHost()+":"+QString::number(connection->getPort()),
-                                         tr("Enter passphrase to decrypt a key"),QLineEdit::Password,QString::null, &ok);
+                                         message, QLineEdit::Password,QString::null, &ok);
     if(!ok)
     {
         phrase=QString::null;
