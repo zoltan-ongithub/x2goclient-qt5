@@ -1191,7 +1191,7 @@ Use x2goclient hidden mode?</source>
     <message>
         <location filename="onmainwindow.cpp" line="2051"/>
         <source>Show session tray icon when running</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostrar icono de sesión en la bandeja del sistema durante la ejecución</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="2065"/>
@@ -1308,7 +1308,7 @@ Hash de su clave pública: </translation>
     <message>
         <location filename="onmainwindow.cpp" line="2956"/>
         <source>Verification code:</source>
-        <translation type="unfinished"></translation>
+        <translation>Código de verificación:</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="2997"/>
@@ -1317,7 +1317,11 @@ Somebody might be eavesdropping on you.
 For security reasons, it is recommended to stop the connection.
 Do you want to terminate the connection?
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Esto puede indicar un ataque del tipo main-in-the-middle.
+Alguien podría estar escuhando las comunicaciones.
+Por razones de seguridad se recomienda finalizar la conexión.
+¿Finalizar la conexión?
+</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="3002"/>
@@ -1342,7 +1346,8 @@ Do you want to terminate the connection?
         <location filename="onmainwindow.cpp" line="3044"/>
         <source>If you accept the new host key the security of your connection may be compromised.
 Do you want to update the host key?</source>
-        <translation type="unfinished"></translation>
+        <translation>Si aceptas la nueva clave de seguridad para tu conexión la seguridad en la conexión podría comprometerse.
+¿Actualizar la clave del host?</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="3023"/>
@@ -1350,7 +1355,9 @@ Do you want to update the host key?</source>
 For security reasons, it is recommended to stop the connection.
 Do you want to terminate the connection?
 </source>
-        <translation type="unfinished"></translation>
+        <translation>No se encuentra la clave del host para este servidor pero el servidor tiene otro tipo de clave disponible. Un atacante podría cambiar la clave por defecto del servidor para hacer creer al cliente x2go que la clave del servidor no existe.
+Por razones de seguridad se recomienda finalizar la conexión.
+¿Finalizar la conexión?</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="3108"/>
@@ -1855,7 +1862,7 @@ Actualiza el paquete x2goserver en el servidor</translation>
     <message>
         <location filename="onmainwindow.cpp" line="9850"/>
         <source>Error getting window geometry (window closed)?</source>
-        <translation>Fallo al obtener el tamaño de la ventana (¿ventana cerrada?)</translation>
+        <translation>Fallo al obtener el tamaño de la ventana (¿está la ventana cerrada?)</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="10128"/>
@@ -2421,7 +2428,7 @@ Ejemplo:
     <message>
         <location filename="sessionwidget.cpp" line="129"/>
         <source>Delegation of GSSAPI credentials to the server</source>
-        <translation type="unfinished"></translation>
+        <translation>Delegación de credenciales GSSAPI al servidor</translation>
     </message>
     <message>
         <location filename="sessionwidget.cpp" line="133"/>
@@ -2623,32 +2630,32 @@ Ejemplo:
     <message>
         <location filename="settingswidget.cpp" line="154"/>
         <source>Auto detect keyboard settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Auto detectar preferencias del teclado</translation>
     </message>
     <message>
         <location filename="settingswidget.cpp" line="155"/>
         <source>Do not configure keyboard</source>
-        <translation type="unfinished"></translation>
+        <translation>No configurar el teclado</translation>
     </message>
     <message>
         <location filename="settingswidget.cpp" line="156"/>
         <source>Configure keyboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Configurar el teclado</translation>
     </message>
     <message>
         <location filename="settingswidget.cpp" line="167"/>
         <source>Model: </source>
-        <translation type="unfinished"></translation>
+        <translation>Modelo:</translation>
     </message>
     <message>
         <location filename="settingswidget.cpp" line="170"/>
         <source>Layout: </source>
-        <translation type="unfinished"></translation>
+        <translation>Capa:</translation>
     </message>
     <message>
         <location filename="settingswidget.cpp" line="173"/>
         <source>Variant: </source>
-        <translation type="unfinished"></translation>
+        <translation>Variante:</translation>
     </message>
     <message>
         <location filename="settingswidget.cpp" line="246"/>
@@ -2917,12 +2924,12 @@ el sonido en conexiones a través de firewalls</translation>
     <message>
         <location filename="sshmasterconnection.cpp" line="1154"/>
         <source>Failed to start SSH Client. Please check your installation and GSSApi configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Fallo al iniciar el cliente SSH: Por favor comprueba tu instalación y la configuración GSSAPI</translation>
     </message>
     <message>
         <location filename="sshmasterconnection.cpp" line="1180"/>
         <source>Check your GSSApi configuration or choose another authentication method</source>
-        <translation type="unfinished"></translation>
+        <translation>Comprueba tu configuración GSSAPI o elije otro método de autenticación</translation>
     </message>
     <message>
         <location filename="sshmasterconnection.cpp" line="1279"/>
