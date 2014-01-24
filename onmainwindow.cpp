@@ -7145,7 +7145,7 @@ void ONMainWindow::showHelp()
         "--geometry=<W>x<H>|fullscreen\t set default geometry, default "
         "value '800x600'\n"
         "--dpi=<dpi>\t\t\t set dpi of x2goagent to dpi, default set to same as local display\n"
-        "--link=<modem|isdn|adsl|wan|lan> set default link type, "
+        "--link=<modem|isdn|adsl|wan|lan>\t set default link type, "
         "default 'adsl'\n"
         "--pack=<packmethod>\t\t set default pack method, default "
         "'16m-jpeg-9'\n"
@@ -7162,7 +7162,9 @@ void ONMainWindow::showHelp()
     qCritical ( "%s",helpMsg.toLocal8Bit().data() );
     if (!startHidden)
     {
-        QMessageBox::information ( this,tr ( "Options" ),helpMsg );
+        HelpDialog dlg(this);
+        dlg.setText(helpMsg);
+        dlg.exec();
     }
 }
 

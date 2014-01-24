@@ -18,7 +18,8 @@ FORMS += cupsprintsettingsdialog.ui \
            xsettingsui.ui \
            brokerpassdialog.ui \
            contest.ui \
-           appdialog.ui
+           appdialog.ui \
+           helpdialog.ui
 
 TRANSLATIONS += \
            x2goclient_de.ts \
@@ -67,7 +68,8 @@ HEADERS += configdialog.h \
            contest.h \
            xsettingswidget.h \
            appdialog.h \
-           x2goutils.h
+           x2goutils.h \
+           helpdialog.h
 
 SOURCES += sharewidget.cpp \
            settingswidget.cpp\
@@ -103,7 +105,8 @@ SOURCES += sharewidget.cpp \
            contest.cpp \
            xsettingswidget.cpp \
            appdialog.cpp \
-           x2goutils.cpp
+           x2goutils.cpp \
+           helpdialog.cpp
 
 LIBS += -lssh
 

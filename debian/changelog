@@ -3,6 +3,7 @@ x2goclient (4.0.2.0-0x2go1) UNRELEASED; urgency=low
   [ Oleksandr Shneyder ]
   * New upstream version (4.0.2.0):
     - Revrite SSH Classes to support libssh fix.
+    - Add Class HelpDialog to show options in scroll area. 
 
  -- Mike Gabriel <mike.gabriel@das-netzwerkteam.de>  Wed, 22 Jan 2014 09:20:08 +0100
 

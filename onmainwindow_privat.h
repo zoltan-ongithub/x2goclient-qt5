@@ -31,6 +31,7 @@
 #include "userbutton.h"
 #include "exportdialog.h"
 #include "printprocess.h"
+#include "helpdialog.h"
 #include "appdialog.h"
 #include <QDesktopServices>
 #include <QApplication>
