@@ -5477,11 +5477,36 @@ void ONMainWindow::slotSetModMap()
     }
     if(kbMap.length()<=0)
     {
-        x2goDebug<<"get keyboard map";
         QProcess pr(this);
-        pr.start("xmodmap -pke");
+        pr.setProcessEnvironment(QProcessEnvironment::systemEnvironment());
+        pr.start("/opt/X11/bin/xmodmap -pke");
         pr.waitForFinished();
         kbMap=pr.readAllStandardOutput();
+        pr.start("/opt/X11/bin/xmodmap -pm");
+        pr.waitForFinished();
+        QString modifiers=pr.readAllStandardOutput();
+        x2goDebug<<"modifiers: "<<modifiers;
+        kbMap+="clear shift\nclear lock\nclear control\nclear mod1\nclear mod2\nclear mod3\nclear mod4\nclear mod5\n";
+        QStringList lines=modifiers.split("\n",QString::SkipEmptyParts);
+        for(int i=0; i<lines.count(); ++i)
+        {
+            QStringList parts=lines[i].split(" ",QString::SkipEmptyParts);
+            if(parts.count()<2)
+            {
+                continue;
+            }
+            QString mod=parts[0];
+            if(mod == "shift" || mod=="lock" || mod=="control" || mod=="mod1"|| mod=="mod2"|| mod=="mod3"|| mod=="mod4"|| mod=="mod5")
+            {
+                for(int j=1; j<parts.count(); ++j)
+                {
+                    if(parts[j].indexOf("(")==-1)
+                    {
+                        kbMap+="add "+mod+" = "+parts[j]+"\n";
+                    }
+                }
+            }
+        }
     }
     if(sshConnection->useKerberos())
     {
@@ -5754,7 +5779,7 @@ void ONMainWindow::slotProxyStderr()
 #ifdef Q_OS_DARWIN
         modMapTimer=new QTimer(this);
         connect(modMapTimer, SIGNAL(timeout()), this, SLOT (slotSetModMap()));
-        modMapTimer->start(30000);
+        modMapTimer->start(10000);
         slotSetModMap();
 #endif
         if ( newSession )
@@ -11491,6 +11516,7 @@ long ONMainWindow::findWindow ( QString text )
 #ifdef Q_OS_WIN
     return ( long ) wapiFindWindow ( 0,text.utf16() );
 #endif
+    return 0;
 }
 
 //////////////////////////plugin stuff//////////////
