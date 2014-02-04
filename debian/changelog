@@ -19,9 +19,13 @@ x2goclient (4.0.1.4-0x2go1) UNRELEASED; urgency=low
     - Increase ssh_select timeout to 0.5 sec.
     - Set mod map from client to server on Mac, hide keyboard settings on Mac.
     - Fix mod map on Mac with kerberos.
-    - Fix focus on pass form.
+    - Fix focus on pass form.   
 
- -- Mike Gabriel <mike.gabriel@das-netzwerkteam.de>  Wed, 22 Jan 2014 09:20:08 +0100
+  [ Orion Poplawski ]
+  * New upstream version (4.0.1.4):
+    - Fix password connection with libssh 0.6.0
+
+ -- Mike Gabriel <mike.gabriel@das-netzwerkteam.de>  Wed, 22 Jan 2014 09:17:39 +0100
 
 x2goclient (4.0.1.3-0x2go1) unstable; urgency=low
 
