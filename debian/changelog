@@ -43,7 +43,6 @@ x2goclient (4.0.1.3-0x2go1) unstable; urgency=low
   [ Orion Poplawski ]
   * New upstream version (4.0.1.3):
     - Protect x2goplugin.html. Make it only available from the local host.
-    - Fix password connection with libssh 0.6.0
 
   [ Mike Gabriel ]
   * New upstream version (4.0.1.3):
