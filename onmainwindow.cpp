@@ -3753,12 +3753,21 @@ void ONMainWindow::startNewSession()
                                           ( QVariant )
                                           defaultFullscreen ).toBool();
 
-        //if multidisplay = true or maxdim = true we set maximun display area available for the selected monitor
-        if (st->setting()->value(sid + "/multidisp", (QVariant) false).toBool() || st->setting()->value(sid + "/maxdim", (QVariant) false).toBool()) {
+        //if maxdim = true we set maximun display area available for the selected monitor
+        if ( st->setting()->value(sid + "/maxdim", (QVariant) false).toBool())
+        {
             int selectedScreen = st->setting()->value(sid + "/display", (QVariant) -1).toInt();
             height=QApplication::desktop()->availableGeometry(selectedScreen).height();
             width=QApplication::desktop()->availableGeometry(selectedScreen).width();
-        } else {
+        }
+        else if(st->setting()->value(sid + "/multidisp", (QVariant) false).toBool())
+        {
+            //workaround to avoid wm set windows maximized, which will break moving and resizing of window
+            width=800;
+            height=600;
+        }
+        else
+        {
             height=st->setting()->value ( sid+"/height",
                                           ( QVariant ) defaultHeight ).toInt();
             width=st->setting()->value ( sid+"/width",
@@ -9861,9 +9870,19 @@ void ONMainWindow::slotSetProxyWinFullscreen()
 {
 
 #ifdef Q_OS_LINUX
+
+    QRect geom=QApplication::desktop()->screenGeometry(localDisplayNumber-1);
+    Atom atom = XInternAtom ( QX11Info::display(), "_NET_WM_STATE_FULLSCREEN", True );
+    XChangeProperty (
+        QX11Info::display(), proxyWinId,
+        XInternAtom ( QX11Info::display(), "_NET_WM_STATE", True ),
+        XA_ATOM,  32,  PropModeReplace,
+        (unsigned char*) &atom,  1 );
+
+    XMapWindow(QX11Info::display(), proxyWinId);
+
     XSync(QX11Info::display(),false);
     XEvent event;
-    long emask = StructureNotifyMask | ResizeRedirectMask;
     event.xclient.type = ClientMessage;
     event.xclient.serial = 0;
     event.xclient.send_event = True;
@@ -9874,12 +9893,23 @@ void ONMainWindow::slotSetProxyWinFullscreen()
     event.xclient.data.l[0] = 1;
     event.xclient.data.l[1] = XInternAtom(QX11Info::display(),"_NET_WM_STATE_FULLSCREEN",False);
     event.xclient.data.l[2] = 0;
-    event.xclient.data.l[3] = 0;
+    event.xclient.data.l[3] = 1;
     event.xclient.data.l[4] = 0;
     Status st;
     st=XSendEvent(QX11Info::display(), DefaultRootWindow(QX11Info::display()),
-                  False, emask,&event);
+                  False, SubstructureNotifyMask ,&event);
+    if(!st)
+    {
+        x2goDebug<<"Couldn't get fullscreen";
+    }
     XSync(QX11Info::display(),false);
+    XMapWindow(QX11Info::display(), proxyWinId);
+
+    QString geoStr = QString("%1").arg(geom.width()) + "x"+ QString("%1").arg(geom.height());
+
+
+
+    sshConnection->executeCommand("DISPLAY=:"+resumingSession.display+" xrandr --output default --mode "+geoStr);
 #endif
 #ifdef Q_OS_WIN
     wapiSetFSWindow ( ( HWND ) proxyWinId,
@@ -9902,7 +9932,9 @@ void ONMainWindow::resizeProxyWinOnDisplay(int disp)
 
 #ifdef Q_OS_LINUX
     XSync(QX11Info::display(),false);
-    XMoveWindow(QX11Info::display(), proxyWinId,geom.x(),geom.y());
+    XMoveResizeWindow(QX11Info::display(), proxyWinId, geom.x(), geom.y(), 800, 600);
+    XMapWindow(QX11Info::display(), proxyWinId);
+    XFlush(QX11Info::display());
 #endif
 #ifdef Q_OS_WIN
     dispGeometry=geom;
@@ -10056,6 +10088,7 @@ void ONMainWindow::slotFindProxyWin()
                     {
                         disp=1;
                     }
+                    localDisplayNumber=disp;
                     resizeProxyWinOnDisplay(disp);
                     return;
                 }

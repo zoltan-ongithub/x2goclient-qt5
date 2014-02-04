@@ -793,6 +793,7 @@ private:
     QString lastFreeServer;
     QString cardLogin;
     QTextEdit* stInfo;
+    int localDisplayNumber;
 
     SVGFrame* ln;
     int tunnel;

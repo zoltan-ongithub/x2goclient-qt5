@@ -8,6 +8,7 @@ x2goclient (4.0.2.0-0x2go1) UNRELEASED; urgency=low
     - Set modmap timer timeout to 10 sec on Mac.
     - Fix running xmodmap if X2Go Client not started from terminal.
     - Setting keyboard modifiers with xmodmap.
+    - Fix multimonitor support on Linux. 
 
  -- Mike Gabriel <mike.gabriel@das-netzwerkteam.de>  Wed, 22 Jan 2014 09:20:08 +0100
 
