@@ -482,6 +482,13 @@
     </message>
 </context>
 <context>
+    <name>HelpDialog</name>
+    <message>
+        <source>Options</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>HttpBrokerClient</name>
     <message>
         <source>Error</source>
@@ -605,6 +612,10 @@ Public key hash: </source>
     <message>
         <source>Add exception</source>
         <translation>Ajouter une exception</translation>
+    </message>
+    <message>
+        <source>Verification code:</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2153,10 +2164,6 @@ sound system connections through firewalls</source>
     </message>
     <message>
         <source>Authentication failed</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>channel_forward_listen failed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

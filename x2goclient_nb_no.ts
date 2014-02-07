@@ -480,6 +480,13 @@
     </message>
 </context>
 <context>
+    <name>HelpDialog</name>
+    <message>
+        <source>Options</source>
+        <translation type="unfinished">Alternativer</translation>
+    </message>
+</context>
+<context>
     <name>HttpBrokerClient</name>
     <message>
         <source>us</source>
@@ -620,6 +627,10 @@ Offentlig nøkkel: </translation>
     <message>
         <source>Your session was disconnected. To get access to your running session, please return to the login page or use the &quot;reload&quot; function of your browser.</source>
         <translation type="obsolete">Sesjonen din ble koblet ned. For å få tilgang til den kjørende sesjonen din, vennligst returner til innloggingssiden, eller benytt &quot;oppdater&quot; funksjonen i nettleseren din.</translation>
+    </message>
+    <message>
+        <source>Verification code:</source>
+        <translation type="unfinished">Verifikasjons kode:</translation>
     </message>
 </context>
 <context>
@@ -2373,7 +2384,7 @@ lydsystem forbindelser gjennom brannmurer</translation>
     </message>
     <message>
         <source>channel_forward_listen failed</source>
-        <translation>channel_forward_listen feilet</translation>
+        <translation type="obsolete">channel_forward_listen feilet</translation>
     </message>
     <message>
         <source>Failed to start SSH Client. Please check your installation and GSSApi configuration</source>
