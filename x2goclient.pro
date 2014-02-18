@@ -25,6 +25,7 @@ TRANSLATIONS += \
            x2goclient_de.ts \
            x2goclient_da.ts \
            x2goclient_es.ts \
+           x2goclient_et.ts \
            x2goclient_fi.ts \
            x2goclient_ru.ts \
            x2goclient_nl.ts \
