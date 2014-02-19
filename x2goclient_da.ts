@@ -605,7 +605,7 @@
     <message>
         <location filename="helpdialog.ui" line="14"/>
         <source>Options</source>
-        <translation type="unfinished">Indstillinger</translation>
+        <translation>Indstillinger</translation>
     </message>
 </context>
 <context>
@@ -685,7 +685,7 @@ Public key hash: </translation>
     <message>
         <location filename="httpbrokerclient.cpp" line="209"/>
         <source>Verification code:</source>
-        <translation type="unfinished"></translation>
+        <translation>Godkendelses kode:</translation>
     </message>
     <message>
         <location filename="httpbrokerclient.cpp" line="213"/>
@@ -1205,7 +1205,7 @@ Slå skjult tilstand til?</translation>
     <message>
         <location filename="onmainwindow.cpp" line="2051"/>
         <source>Show session tray icon when running</source>
-        <translation type="unfinished"></translation>
+        <translation>Vis session meddelelses ikon når programmer køre</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="2065"/>
@@ -1322,7 +1322,7 @@ Public key hash: </translation>
     <message>
         <location filename="onmainwindow.cpp" line="2956"/>
         <source>Verification code:</source>
-        <translation type="unfinished"></translation>
+        <translation>Godkendelses kode:</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="2997"/>
@@ -1331,7 +1331,10 @@ Somebody might be eavesdropping on you.
 For security reasons, it is recommended to stop the connection.
 Do you want to terminate the connection?
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Dette kan være en indikation af man in the middle angreb.
+Nogen kan ske at lytte med på din forbindelse.
+Af sikkerheds grunde anbefaler vi du stopper forbindelsen.
+Vil du afslutte forbindelsen? </translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="3002"/>
@@ -1356,7 +1359,8 @@ Do you want to terminate the connection?
         <location filename="onmainwindow.cpp" line="3044"/>
         <source>If you accept the new host key the security of your connection may be compromised.
 Do you want to update the host key?</source>
-        <translation type="unfinished"></translation>
+        <translation>Hvis du acceptere den nye vært nøgle for sikkerheden af din forbindelse, kan den ske at være usikker.
+Vil du opdatere værts nøglen?</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="3023"/>
@@ -1364,7 +1368,9 @@ Do you want to update the host key?</source>
 For security reasons, it is recommended to stop the connection.
 Do you want to terminate the connection?
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Værts nøglen for denne server blev ikke fundet, men en anden type af nøglen eksistere. En angreber kan ske at ændre standard nøglen for at forvirre din klient til at tro nøglen ikke eksistere.
+Af sikkerhedsmæssige årsager, er det anbefalet at du stopper forbindelsen.
+Vil du afslutte forbindelsen?</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="3108"/>
@@ -2431,7 +2437,7 @@ f.eks:
     <message>
         <location filename="sessionwidget.cpp" line="129"/>
         <source>Delegation of GSSAPI credentials to the server</source>
-        <translation type="unfinished"></translation>
+        <translation>Delgationen af GSSAPI legitimationsoplysninger til serveren</translation>
     </message>
     <message>
         <location filename="sessionwidget.cpp" line="133"/>
@@ -2633,32 +2639,32 @@ f.eks:
     <message>
         <location filename="settingswidget.cpp" line="154"/>
         <source>Auto detect keyboard settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Auto opdage tastetur instillinger</translation>
     </message>
     <message>
         <location filename="settingswidget.cpp" line="155"/>
         <source>Do not configure keyboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Ikke konfigure tasteturet</translation>
     </message>
     <message>
         <location filename="settingswidget.cpp" line="156"/>
         <source>Configure keyboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Konfigurer tasteturet</translation>
     </message>
     <message>
         <location filename="settingswidget.cpp" line="167"/>
         <source>Model: </source>
-        <translation type="unfinished"></translation>
+        <translation>model:</translation>
     </message>
     <message>
         <location filename="settingswidget.cpp" line="170"/>
         <source>Layout: </source>
-        <translation type="unfinished"></translation>
+        <translation>Layout:</translation>
     </message>
     <message>
         <location filename="settingswidget.cpp" line="173"/>
         <source>Variant: </source>
-        <translation type="unfinished"></translation>
+        <translation>Variant:</translation>
     </message>
     <message>
         <location filename="settingswidget.cpp" line="247"/>
@@ -2926,12 +2932,12 @@ lydsystemets forbindelse igennem firewalls</translation>
     <message>
         <location filename="sshmasterconnection.cpp" line="1163"/>
         <source>Failed to start SSH Client. Please check your installation and GSSApi configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Fejlede start af SSH Klient. Venligst tjek din installation og GSSApi konfiguration</translation>
     </message>
     <message>
         <location filename="sshmasterconnection.cpp" line="1189"/>
         <source>Check your GSSApi configuration or choose another authentication method</source>
-        <translation type="unfinished"></translation>
+        <translation>Tjek din GSSApi konfiguration eller vælg en anden godkendelses metode</translation>
     </message>
     <message>
         <location filename="sshmasterconnection.cpp" line="1288"/>
