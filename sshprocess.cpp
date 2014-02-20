@@ -31,11 +31,7 @@
 #undef DEBUG
 // #define DEBUG
 
-#ifdef Q_OS_DARWIN
 #define KEEPALIVE_OPTION " -o ServerAliveInterval=60 "
-#else
-#define KEEPALIVE_OPTION " -o ProtocolKeepAlives=60 "
-#endif
 
 SshProcess::SshProcess(SshMasterConnection* master, int pid): QObject(0)
 {
