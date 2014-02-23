@@ -39,6 +39,10 @@ x2goclient (4.0.1.4-0x2go1) UNRELEASED; urgency=low
   * New upstream version (4.0.1.4):
     - Update Danish translation file.
 
+  [ Jos ]
+  * New upstream version (4.0.1.4):
+    - Add new translation of X2Go Client to Dutch.
+
  -- Mike Gabriel <mike.gabriel@das-netzwerkteam.de>  Wed, 22 Jan 2014 09:17:39 +0100
 
 x2goclient (4.0.1.3-0x2go1) unstable; urgency=low
