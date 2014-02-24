@@ -13,6 +13,7 @@ x2goclient (4.0.2.0-0x2go1) UNRELEASED; urgency=low
   [ Mike Gabriel ]
   * debian/control:
     + Build-depend on libssh-dev (>= 0.5.4-2).
+    + Bump Standards: to 3.9.5. No changes needed.
 
  -- Mike Gabriel <mike.gabriel@das-netzwerkteam.de>  Wed, 22 Jan 2014 09:20:08 +0100
 
