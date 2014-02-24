@@ -9,7 +9,7 @@ Build-Depends:
  debhelper (>= 7.0.50~),
  libqt4-dev,
  libldap2-dev,
- libssh-dev (>= 0.4.7),
+ libssh-dev (>= 0.5.4-2~),
  libcups2-dev,
  libx11-dev,
  libxpm-dev,
@@ -24,7 +24,6 @@ Architecture: any
 Depends:
  ${shlibs:Depends},
  ${misc:Depends},
- libssh-4 (>= 0.4.7),
  openssh-client,
  nxproxy,
 Recommends:
@@ -76,7 +75,6 @@ Depends:
  ${shlibs:Depends},
  ${misc:Depends},
  openssh-client,
- libssh-4 (>= 0.4.7),
  nxproxy,
 Recommends:
  openssh-server,

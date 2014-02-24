@@ -10,6 +10,10 @@ x2goclient (4.0.2.0-0x2go1) UNRELEASED; urgency=low
     - Setting keyboard modifiers with xmodmap.
     - Fix multimonitor support on Linux. 
 
+  [ Mike Gabriel ]
+  * debian/control:
+    + Build-depend on libssh-dev (>= 0.5.4-2).
+
  -- Mike Gabriel <mike.gabriel@das-netzwerkteam.de>  Wed, 22 Jan 2014 09:20:08 +0100
 
 x2goclient (4.0.1.4-0x2go1) UNRELEASED; urgency=low
