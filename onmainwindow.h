@@ -499,6 +499,10 @@ public:
     SshMasterConnection* findServerSshConnection(QString host);
 
     void showHelp();
+    void showVersion();
+    void showTextFile(QString file, QString title);
+    void showGit();
+    void showChangelog();
     void showHelpPack();
     void exportDirs ( QString exports,bool removable=false );
     void reloadUsers();

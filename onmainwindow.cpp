@@ -6565,6 +6565,24 @@ bool ONMainWindow::parseParameter ( QString param )
         return false;
     }
 
+    if ( param=="--version" || param=="-v")
+    {
+        showVersion();
+        return false;
+    }
+
+    if ( param=="--changelog" )
+    {
+        showChangelog();
+        return false;
+    }
+
+    if ( param=="--git" )
+    {
+        showGit();
+        return false;
+    }
+
     if (param == "--debug")
     {
         ONMainWindow::debugging = true;
@@ -7150,6 +7168,9 @@ void ONMainWindow::showHelp()
         "Usage: x2goclient [Options]\n"
         "Options:\n"
         "--help\t\t\t\t show this message\n"
+        "--version\t\t\t\t show version\n"
+        "--changelog\t\t\t\t show changelog\n"
+        "--git\t\t\t\t show GIT info\n"
         "--help-pack\t\t\t show available pack methods\n"
         "--debug\t\t\t\t enables extensive output for console output.\n"
         "--no-menu\t\t\t hide menu bar\n"
@@ -7197,6 +7218,7 @@ void ONMainWindow::showHelp()
     if (!startHidden)
     {
         HelpDialog dlg(this);
+        dlg.setWindowTitle(tr("Help"));
         dlg.setText(helpMsg);
         dlg.exec();
     }
@@ -7220,15 +7242,54 @@ void ONMainWindow::showHelpPack()
             pc+="-[0-9]";
         }
         msg+=pc+"\n";
-        qCritical ( "%s",pc.toLocal8Bit().data() );
     }
     file.close();
-#ifdef Q_OS_WIN
+    qCritical()<<msg;
+    if (!startHidden)
+    {
+        HelpDialog dlg(this);
+        dlg.setWindowTitle(tr("Pack Methodes"));
+        dlg.setText(msg);
+        dlg.exec();
+    }
+}
 
-    QMessageBox::information ( this,tr ( "Options" ),msg );
-#endif
+void ONMainWindow::showTextFile(QString fname, QString title)
+{
+    QFile file ( fname );
+    if ( !file.open ( QIODevice::ReadOnly | QIODevice::Text ) )
+        return;
+    QTextStream in ( &file );
+    QString msg=in.readAll();
+    file.close();
+    qCritical()<<msg;
+    if (!startHidden)
+    {
+        HelpDialog dlg(this);
+        dlg.setWindowTitle(title);
+        dlg.setText(msg);
+        dlg.exec();
+    }
 
 }
+
+
+void ONMainWindow::showChangelog()
+{
+    showTextFile(":/txt/changelog", tr("Changelog"));
+}
+
+void ONMainWindow::showGit()
+{
+    showTextFile(":/txt/git", tr("Git Info"));
+}
+
+void ONMainWindow::showVersion()
+{
+    qCritical()<<VERSION;
+    slotAbout();
+}
+
 
 void ONMainWindow::slotGetServers ( bool result, QString output,
                                     int )

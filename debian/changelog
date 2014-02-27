@@ -9,6 +9,7 @@ x2goclient (4.0.2.0-0x2go1) UNRELEASED; urgency=low
     - Fix running xmodmap if X2Go Client not started from terminal.
     - Setting keyboard modifiers with xmodmap.
     - Fix multimonitor support on Linux. 
+    - Display more version info. Parameters --version, --git, --changelog.
 
   [ Mike Gabriel ]
   * debian/control:

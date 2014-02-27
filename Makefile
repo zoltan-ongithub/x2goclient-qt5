@@ -30,6 +30,7 @@ LRELEASE_BINARY=lrelease-qt4
 all: build
 
 build: build_man build_pluginprovider
+	./create_text.sh
 	$(MAKE) build_client
 	$(MAKE) build_plugin
 
@@ -55,6 +56,8 @@ clean: clean_client clean_plugin clean_man clean_pluginprovider
 	find . -maxdepth 2 -name 'qrc_*.cpp' -exec rm -vf {} + -type f
 	rm -f x2goclient
 	rm -f x2goclient.tag
+	rm -f txt/changelog
+	rm -f txt/git
 
 clean_client:
 	rm -fr $(CLIENT_DIR)
