@@ -541,6 +541,7 @@ private:
     QStringList _transApplicationsNames;
     QString portableDataPath;
     QString proxyErrString;
+    bool haveTerminal;
     bool proxyRunning;
     bool drawMenu;
     bool extStarted;

@@ -44,6 +44,17 @@ bool ONMainWindow::debugging=false;
 
 ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
 {
+
+    haveTerminal=false;
+#ifndef Q_OS_WIN
+    QFile fl("/dev/tty");
+    if(fl.open( QIODevice::ReadOnly))
+    {
+        haveTerminal=true;
+        fl.close();
+    }
+#endif
+
 #ifdef Q_OS_LINUX
     image=shape=0;
 #endif
@@ -7215,7 +7226,7 @@ void ONMainWindow::showHelp()
         "--tray-icon\t\t force to show session trayicon\n";
 
     qCritical ( "%s",helpMsg.toLocal8Bit().data() );
-    if (!startHidden)
+    if (!startHidden && !haveTerminal)
     {
         HelpDialog dlg(this);
         dlg.setWindowTitle(tr("Help"));
@@ -7245,7 +7256,7 @@ void ONMainWindow::showHelpPack()
     }
     file.close();
     qCritical()<<msg;
-    if (!startHidden)
+    if (!startHidden && !haveTerminal)
     {
         HelpDialog dlg(this);
         dlg.setWindowTitle(tr("Pack Methodes"));
@@ -7263,7 +7274,7 @@ void ONMainWindow::showTextFile(QString fname, QString title)
     QString msg=in.readAll();
     file.close();
     qCritical()<<msg;
-    if (!startHidden)
+    if (!startHidden && !haveTerminal)
     {
         HelpDialog dlg(this);
         dlg.setWindowTitle(title);
@@ -7287,7 +7298,11 @@ void ONMainWindow::showGit()
 void ONMainWindow::showVersion()
 {
     qCritical()<<VERSION;
-    slotAbout();
+
+    if (!startHidden && !haveTerminal)
+    {
+        slotAbout();
+    }
 }
 
 
