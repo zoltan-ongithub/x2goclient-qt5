@@ -12,6 +12,7 @@ x2goclient (4.0.2.0-0x2go1) UNRELEASED; urgency=low
     - Display more version info. Parameters --version, --git, --changelog.
     - Don't show GUI dialog for --version, --help, etc, if started
       from terminal on linux and mac.
+    - If no user in session config, display system username in pass form.
 
   [ Mike Gabriel ]
   * debian/control:
