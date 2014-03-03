@@ -6596,7 +6596,7 @@ bool ONMainWindow::parseParameter ( QString param )
         return false;
     }
 
-    if ( param=="--git" )
+    if ( param=="--git-info" )
     {
         showGit();
         return false;
@@ -7187,9 +7187,17 @@ void ONMainWindow::showHelp()
         "Usage: x2goclient [Options]\n"
         "Options:\n"
         "--help\t\t\t\t show this message\n"
-        "--version\t\t\t\t show version\n"
-        "--changelog\t\t\t\t show changelog\n"
-        "--git\t\t\t\t show GIT info\n"
+        "--version\t\t\t show version\n";
+    if(QFile::exists(":/txt/changelog"))
+    {
+        helpMsg+="--changelog\t\t\t show changelog\n";
+    }
+    if(QFile::exists(":/txt/git"))
+    {
+        helpMsg+=        "--git-info\t\t\t show GIT info\n";
+
+    }
+    helpMsg+=
         "--help-pack\t\t\t show available pack methods\n"
         "--debug\t\t\t\t enables extensive output for console output.\n"
         "--no-menu\t\t\t hide menu bar\n"
@@ -7231,7 +7239,7 @@ void ONMainWindow::showHelp()
         "--autostart=<app> \t\t launch \"app\" by session start in \"published "
         "applications\" mode\n"
         "--session-conf=<file>\t\t path to alternative session config\n"
-        "--tray-icon\t\t force to show session trayicon\n";
+        "--tray-icon\t\t\t force to show session trayicon\n";
 
     qCritical ( "%s",helpMsg.toLocal8Bit().data() );
     if (!startHidden && !haveTerminal)
@@ -7295,11 +7303,21 @@ void ONMainWindow::showTextFile(QString fname, QString title)
 
 void ONMainWindow::showChangelog()
 {
+    if(!QFile::exists(":/txt/changelog"))
+    {
+        qCritical()<<tr("Option is not availabel in this build");
+        return;
+    }
     showTextFile(":/txt/changelog", tr("Changelog"));
 }
 
 void ONMainWindow::showGit()
 {
+    if(!QFile::exists(":/txt/git"))
+    {
+        qCritical()<<tr("Option is not availabel in this build");
+        return;
+    }
     showTextFile(":/txt/git", tr("Git Info"));
 }
 

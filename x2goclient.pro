@@ -146,6 +146,16 @@ DEPENDPATH += .
 INCLUDEPATH += .
 RESOURCES += resources.rcc
 
+exists( txt/git ) {
+	message( "Configuring with --git-info" )
+	RESOURCES += git.rcc
+}
+
+exists( txt/changelog ) {
+	message( "Configuring with --changelog" )
+	RESOURCES += changelog.rcc
+}
+
 linux-g++ {
 	message(building $$TARGET with ldap and cups)
 	LIBS += -lldap -lcups -lX11 -lXpm
