@@ -16,11 +16,8 @@
 ***************************************************************************/
 
 #include "httpbrokerclient.h"
-#include <QNetworkAccessManager>
 #include <QUrl>
-#include <QNetworkRequest>
-#include <QNetworkReply>
-#include <QUuid>
+#include <QHttp>
 #include <QTextStream>
 #include <QFile>
 #include <QDir>
@@ -36,7 +33,6 @@
 #include "onmainwindow.h"
 #include <QTemporaryFile>
 #include <QInputDialog>
-
 
 HttpBrokerClient::HttpBrokerClient ( ONMainWindow* wnd, ConfigFile* cfg )
 {
@@ -60,19 +56,30 @@ HttpBrokerClient::HttpBrokerClient ( ONMainWindow* wnd, ConfigFile* cfg )
     {
         sshBroker=false;
 
-        if ((config->brokerCaCertFile.length() >0) && (QFile::exists(config->brokerCaCertFile))) {
-            QSslSocket::addDefaultCaCertificates(config->brokerCaCertFile, QSsl::Pem);
-            x2goDebug<<"Custom CA certificate file loaded into HTTPS broker client: "<<config->brokerCaCertFile;
+        http=new QHttp ( this );
+
+        if ( config->brokerurl.indexOf ( "https://" ) ==0 ) {
+            if ((config->brokerCaCertFile.length() >0) && (QFile::exists(config->brokerCaCertFile))) {
+
+                sslSocket = new QSslSocket(this);
+                connect ( sslSocket, SIGNAL ( sslErrors ( const QList<QSslError>& ) ),this,
+                          SLOT ( slotSslErrors ( const QList<QSslError>& ) ) );
+                http->setSocket(sslSocket);
+                sslSocket->addCaCertificates(config->brokerCaCertFile, QSsl::Pem);
+                x2goDebug<<"Custom CA certificate file loaded into HTTPS broker client: "<<config->brokerCaCertFile;
+
+            } else {
+                connect ( http, SIGNAL ( sslErrors ( const QList<QSslError>& ) ),this,
+                          SLOT ( slotSslErrors ( const QList<QSslError>& ) ) );
+            }
+            http->setHost ( lurl.host(),QHttp::ConnectionModeHttps,
+                            lurl.port ( 443 ) );
+        } else {
+            http->setHost ( lurl.host(),QHttp::ConnectionModeHttp,
+                            lurl.port ( 80 ) );
         }
-
-        http=new QNetworkAccessManager ( this );
-        x2goDebug<<"Setting up connection to broker: "<<config->brokerurl;
-
-        connect ( http, SIGNAL ( sslErrors ( QNetworkReply*, const QList<QSslError>& ) ),this,
-                  SLOT ( slotSslErrors ( QNetworkReply*, const QList<QSslError>& ) ) );
-
-        connect ( http,SIGNAL ( finished (QNetworkReply*) ),this,
-                  SLOT ( slotRequestFinished (QNetworkReply*) ) );
+        connect ( http,SIGNAL ( requestFinished ( int,bool ) ),this,
+                  SLOT ( slotRequestFinished ( int,bool ) ) );
     }
 }
 
@@ -241,7 +248,6 @@ void HttpBrokerClient::slotSshUserAuthError(QString error)
 void HttpBrokerClient::getUserSessions()
 {
     QString brokerUser=config->brokerUser;
-    x2goDebug<<"called getUserSessions: brokeruser: "<<brokerUser<<" authid: "<<config->brokerUserId;
     if(mainWindow->getUsePGPCard())
         brokerUser=mainWindow->getCardLogin();
     config->sessiondata=QString::null;
@@ -253,11 +259,10 @@ void HttpBrokerClient::getUserSessions()
                              "user="<<brokerUser<<"&"<<
                              "password="<<config->brokerPass<<"&"<<
                              "authid="<<config->brokerUserId;
-
-        x2goDebug << "sending request: "<< req.toUtf8();
-        QNetworkRequest request(QUrl(config->brokerurl));
-        request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
-        sessionsRequest=http->post (request, req.toUtf8() );
+        QUrl lurl ( config->brokerurl );
+        httpSessionAnswer.close();
+        httpSessionAnswer.setData ( 0,0 );
+        sessionsRequest=http->post ( lurl.path(),req.toUtf8(),&httpSessionAnswer );
     }
     else
     {
@@ -278,7 +283,6 @@ void HttpBrokerClient::getUserSessions()
 
 void HttpBrokerClient::selectUserSession(const QString& session)
 {
-    x2goDebug<<"called selectUserSessions";
     QString brokerUser=config->brokerUser;
     if(mainWindow->getUsePGPCard())
         brokerUser=mainWindow->getCardLogin();
@@ -292,11 +296,10 @@ void HttpBrokerClient::selectUserSession(const QString& session)
                              "user="<<brokerUser<<"&"<<
                              "password="<<config->brokerPass<<"&"<<
                              "authid="<<config->brokerUserId;
-        x2goDebug << "sending request: "<< req.toUtf8();
-        QNetworkRequest request(QUrl(config->brokerurl));
-        request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
-        sessionsRequest=http->post (request, req.toUtf8() );
-
+        QUrl lurl ( config->brokerurl );
+        httpSessionAnswer.close();
+        httpSessionAnswer.setData ( 0,0 );
+        selSessRequest=http->post ( lurl.path(),req.toUtf8(),&httpSessionAnswer );
     }
     else
     {
@@ -327,10 +330,10 @@ void HttpBrokerClient::changePassword(QString newPass)
                              "user="<<brokerUser<<"&"<<
                              "password="<<config->brokerPass<<"&"<<
                              "authid="<<config->brokerUserId;
-        x2goDebug << "sending request: "<< req.toUtf8();
-        QNetworkRequest request(QUrl(config->brokerurl));
-        request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
-        sessionsRequest=http->post (request, req.toUtf8() );
+        QUrl lurl ( config->brokerurl );
+        httpSessionAnswer.close();
+        httpSessionAnswer.setData ( 0,0 );
+        chPassRequest=http->post ( lurl.path(),req.toUtf8(),&httpSessionAnswer );
     }
     else
     {
@@ -346,16 +349,16 @@ void HttpBrokerClient::changePassword(QString newPass)
 
 void HttpBrokerClient::testConnection()
 {
-    x2goDebug<<"called testConnection";
     if(!sshBroker)
     {
         QString req;
         QTextStream ( &req ) <<
                              "task=testcon";
-        x2goDebug << "sending request: "<< req.toUtf8();
-        QNetworkRequest request(QUrl(config->brokerurl));
-        request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
-        sessionsRequest=http->post (request, req.toUtf8() );
+        QUrl lurl ( config->brokerurl );
+        httpSessionAnswer.close();
+        httpSessionAnswer.setData ( 0,0 );
+        requestTime.start();
+        testConRequest=http->post ( lurl.path(),req.toUtf8(),&httpSessionAnswer );
     }
     else
     {
@@ -389,7 +392,6 @@ void HttpBrokerClient::createIniFile(const QString& raw_content)
 
 bool HttpBrokerClient::checkAccess(QString answer )
 {
-    x2goDebug<<"called checkAccess - answer was: "<<answer;
     if (answer.indexOf("Access granted")==-1)
     {
         QMessageBox::critical (
@@ -406,7 +408,6 @@ bool HttpBrokerClient::checkAccess(QString answer )
 
 void HttpBrokerClient::slotConnectionTest(bool success, QString answer, int)
 {
-    x2goDebug<<"called slotConnectionTest";
     if(!success)
     {
         x2goDebug<<answer;
@@ -418,8 +419,8 @@ void HttpBrokerClient::slotConnectionTest(bool success, QString answer, int)
         return;
     if(!sshBroker)
     {
-        x2goDebug<<"elapsed: "<<requestTime.elapsed()<<"received:"<<answer.size()<<endl;
-        emit connectionTime(requestTime.elapsed(),answer.size());
+        x2goDebug<<"elapsed: "<<requestTime.elapsed()<<"received:"<<httpSessionAnswer.size()<<endl;
+        emit connectionTime(requestTime.elapsed(),httpSessionAnswer.size());
     }
     return;
 
@@ -470,38 +471,36 @@ void HttpBrokerClient::slotSelectSession(bool success, QString answer, int)
 }
 
 
-void HttpBrokerClient::slotRequestFinished ( QNetworkReply*  reply )
+void HttpBrokerClient::slotRequestFinished ( int id, bool error )
 {
-    if(reply->error() != QNetworkReply::NoError)
+//   	x2goDebug<<"http request "<<id<<", finished with: "<<error;
+
+    if ( error )
     {
-        x2goDebug<<"Broker HTTP request failed with error: "<<reply->errorString();
-        QMessageBox::critical(0,tr("Error"),reply->errorString());
+        x2goDebug<<http->errorString();
+        QMessageBox::critical(0,tr("Error"),http->errorString());
         emit fatalHttpError();
         return;
     }
 
-    QString answer ( reply->readAll() );
-    x2goDebug<<"A http request returned.  Result was: "<<answer;
-    if (reply == testConRequest)
+    QString answer ( httpSessionAnswer.data() );
+    x2goDebug<<"cmd request answer: "<<answer;
+    if (id==testConRequest)
     {
         slotConnectionTest(true,answer,0);
     }
-    if (reply == sessionsRequest)
+    if (id == sessionsRequest)
     {
         slotListSessions(true, answer,0);
     }
-    if (reply == selSessRequest)
+    if (id == selSessRequest)
     {
         slotSelectSession(true,answer,0);
     }
-    if (reply == chPassRequest)
+    if ( id == chPassRequest)
     {
         slotPassChanged(true,answer,0);
     }
-
-    // We receive ownership of the reply object
-    // and therefore need to handle deletion.
-    reply->deleteLater();
 }
 
 void HttpBrokerClient::parseSession(QString sinfo)
@@ -538,7 +537,7 @@ void HttpBrokerClient::parseSession(QString sinfo)
 }
 
 
-void HttpBrokerClient::slotSslErrors ( QNetworkReply* netReply, const QList<QSslError> & errors )
+void HttpBrokerClient::slotSslErrors ( const QList<QSslError> & errors )
 {
     QStringList err;
     QSslCertificate cert;
@@ -565,7 +564,7 @@ void HttpBrokerClient::slotSslErrors ( QNetworkReply* netReply, const QList<QSsl
         QSslCertificate mcert ( &fl );
         if ( mcert==cert )
         {
-            netReply->ignoreSslErrors();
+            http->ignoreSslErrors();
             requestTime.restart();
             return;
         }
@@ -636,7 +635,7 @@ void HttpBrokerClient::slotSslErrors ( QNetworkReply* netReply, const QList<QSsl
         fl.open ( QIODevice::WriteOnly | QIODevice::Text );
         QTextStream ( &fl ) <<cert.toPem();
         fl.close();
-        netReply->ignoreSslErrors();
+        http->ignoreSslErrors();
         x2goDebug<<"store certificate in  "<<homeDir+"/.x2go/ssl/exceptions/"+
                  lurl.host() +"/"+fname;
         requestTime.restart();
