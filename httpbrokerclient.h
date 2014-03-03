@@ -18,6 +18,10 @@
 #ifndef HTTPBROKERCLIENT_H
 #define HTTPBROKERCLIENT_H
 #include "x2goclientconfig.h"
+#include <QNetworkAccessManager>
+#include <QUrl>
+#include <QNetworkRequest>
+#include <QNetworkReply>
 #include <QSslError>
 #include <QBuffer>
 #include <QObject>
@@ -27,7 +31,7 @@
 /**
 	@author Oleksandr Shneyder <oleksandr.shneyder@obviously-nice.de>
 */
-class QHttp;
+class QNetworkAccessManager;
 struct ConfigFile;
 class ONMainWindow;
 
@@ -41,14 +45,13 @@ public:
     void changePassword(QString newPass);
     void testConnection();
 private:
-    QBuffer httpCmdAnswer;
-    QBuffer httpSessionAnswer;
-    QHttp* http;
+    QNetworkAccessManager* http;
+    QNetworkRequest* netRequest;
     QSslSocket* sslSocket;
-    int sessionsRequest;
-    int selSessRequest;
-    int chPassRequest;
-    int testConRequest;
+    QNetworkReply* sessionsRequest;
+    QNetworkReply* selSessRequest;
+    QNetworkReply* chPassRequest;
+    QNetworkReply* testConRequest;
     QString newBrokerPass;
     ConfigFile* config;
     ONMainWindow* mainWindow;
@@ -62,8 +65,8 @@ private:
     bool checkAccess(QString answer);
 
 private slots:
-    void slotRequestFinished ( int id, bool error );
-    void slotSslErrors ( const QList<QSslError> & errors ) ;
+    void slotRequestFinished ( QNetworkReply*  reply );
+    void slotSslErrors ( QNetworkReply* netReply, const QList<QSslError> & errors ) ;
     QString getHexVal ( const QByteArray& ba );
     void slotSshConnectionError ( QString message, QString lastSessionError );
     void slotSshServerAuthError ( int error, QString sshMessage, SshMasterConnection* connection );
