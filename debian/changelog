@@ -39,6 +39,7 @@ x2goclient (4.0.2.0-0x2go1) UNRELEASED; urgency=low
   * x2goclient.spec:
     + Copy ChangeLog (or debian/changelog) into txt/ subfolder during
       %setup.
+    + Copy ChangeLog.gitlog (if present) into txt/ subfolder during %setup.
 
  -- Mike Gabriel <mike.gabriel@das-netzwerkteam.de>  Wed, 22 Jan 2014 09:20:08 +0100
 
