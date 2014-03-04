@@ -10,6 +10,7 @@ export LDFLAGS:=$(shell dpkg-buildflags --get LDFLAGS)
 
 override_dh_auto_configure:
 	cp debian/changelog txt/changelog
+	test -f ChangeLog.gitlog && cp ChangeLog.gitlog txt/git-info
 	dh_auto_configure
 
 override_dh_auto_clean:

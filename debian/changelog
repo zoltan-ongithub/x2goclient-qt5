@@ -33,6 +33,7 @@ x2goclient (4.0.2.0-0x2go1) UNRELEASED; urgency=low
     + Bump Standards: to 3.9.5. No changes needed.
   * debian/rules:
     + Copy debian/changelog into txt/ subfolder during dh_auto_configure.
+    + Create txt/git-info files for ChangeLog.git if it exists.
   * x2goclient.spec:
     + Copy ChangeLog (or debian/changelog) into txt/ subfolder during
       %setup.
