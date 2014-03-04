@@ -7192,7 +7192,7 @@ void ONMainWindow::showHelp()
     {
         helpMsg+="--changelog\t\t\t show changelog\n";
     }
-    if(QFile::exists(":/txt/git"))
+    if(QFile::exists(":/txt/git-info"))
     {
         helpMsg+=        "--git-info\t\t\t show GIT info\n";
 
@@ -7313,12 +7313,12 @@ void ONMainWindow::showChangelog()
 
 void ONMainWindow::showGit()
 {
-    if(!QFile::exists(":/txt/git"))
+    if(!QFile::exists(":/txt/git-info"))
     {
         qCritical()<<tr("Option is not availabel in this build");
         return;
     }
-    showTextFile(":/txt/git", tr("Git Info"));
+    showTextFile(":/txt/git-info", tr("Git Info"));
 }
 
 void ONMainWindow::showVersion()

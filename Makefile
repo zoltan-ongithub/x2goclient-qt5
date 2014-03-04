@@ -56,7 +56,7 @@ clean: clean_client clean_plugin clean_man clean_pluginprovider
 	rm -f x2goclient
 	rm -f x2goclient.tag
 	rm -f txt/changelog
-	rm -f txt/git
+	rm -f txt/git-info
 
 clean_client:
 	rm -fr $(CLIENT_DIR)

@@ -146,7 +146,7 @@ DEPENDPATH += .
 INCLUDEPATH += .
 RESOURCES += resources.rcc
 
-exists( txt/git ) {
+exists( txt/git-info ) {
 	message( "Configuring with --git-info" )
 	RESOURCES += git.rcc
 }

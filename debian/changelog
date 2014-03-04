@@ -28,6 +28,8 @@ x2goclient (4.0.2.0-0x2go1) UNRELEASED; urgency=low
     - Drop create_text.sh again, implement changelog copying
       in distro build files. Implement Git history creation for
       nightly builds in build scripts.
+    - Rename txt/git to txt/git-info (make it compliant with cmdline
+      options).
   * debian/control:
     + Build-depend on libssh-dev (>= 0.5.4-2).
     + Bump Standards: to 3.9.5. No changes needed.
