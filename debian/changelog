@@ -15,6 +15,7 @@ x2goclient (4.0.2.0-0x2go1) UNRELEASED; urgency=low
     - If no user in session config, display system username in pass form.
     - Check if txt/changelog and txt/git exist on config phase.
       Rename option "--git" to "--git-info".
+    - Change x2goclient.nsi for nightly builds 
 
   [ Josh Lukens ]
   * New upstream version (4.0.2.0):
