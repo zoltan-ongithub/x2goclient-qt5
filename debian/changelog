@@ -8,14 +8,14 @@ x2goclient (4.0.2.0-0x2go1) UNRELEASED; urgency=low
     - Set modmap timer timeout to 10 sec on Mac.
     - Fix running xmodmap if X2Go Client not started from terminal.
     - Setting keyboard modifiers with xmodmap.
-    - Fix multimonitor support on Linux. 
+    - Fix multimonitor support on Linux.
     - Display more version info. Parameters --version, --git, --changelog.
     - Don't show GUI dialog for --version, --help, etc, if started
       from terminal on linux and mac.
     - If no user in session config, display system username in pass form.
     - Check if txt/changelog and txt/git exist on config phase.
       Rename option "--git" to "--git-info".
-    - Change x2goclient.nsi for nightly builds 
+    - Change x2goclient.nsi for nightly builds.
 
   [ Josh Lukens ]
   * New upstream version (4.0.2.0):
