@@ -30,7 +30,6 @@ LRELEASE_BINARY=lrelease-qt4
 all: build
 
 build: build_man build_pluginprovider
-	./create_text.sh
 	$(MAKE) build_client
 	$(MAKE) build_plugin
 

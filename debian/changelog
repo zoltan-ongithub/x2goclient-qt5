@@ -24,6 +24,10 @@ x2goclient (4.0.2.0-0x2go1) UNRELEASED; urgency=low
       requests. (Fixes: #440, #138).
 
   [ Mike Gabriel ]
+  * New upstream version (4.0.2.0):
+    - Drop create_text.sh again, implement changelog copying
+      in distro build files. Implement Git history creation for
+      nightly builds in build scripts.
   * debian/control:
     + Build-depend on libssh-dev (>= 0.5.4-2).
     + Bump Standards: to 3.9.5. No changes needed.
