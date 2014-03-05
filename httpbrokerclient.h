@@ -52,6 +52,7 @@ private:
     QNetworkReply* selSessRequest;
     QNetworkReply* chPassRequest;
     QNetworkReply* testConRequest;
+    QString nextAuthId;
     QString newBrokerPass;
     ConfigFile* config;
     ONMainWindow* mainWindow;

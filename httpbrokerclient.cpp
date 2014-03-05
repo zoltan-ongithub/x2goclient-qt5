@@ -46,6 +46,7 @@ HttpBrokerClient::HttpBrokerClient ( ONMainWindow* wnd, ConfigFile* cfg )
     QUrl lurl ( config->brokerurl );
     if(lurl.userName().length()>0)
         config->brokerUser=lurl.userName();
+    nextAuthId=config->brokerUserId;
 
     if(config->brokerurl.indexOf("ssh://")==0)
     {
@@ -241,7 +242,7 @@ void HttpBrokerClient::slotSshUserAuthError(QString error)
 void HttpBrokerClient::getUserSessions()
 {
     QString brokerUser=config->brokerUser;
-    x2goDebug<<"called getUserSessions: brokeruser: "<<brokerUser<<" authid: "<<config->brokerUserId;
+    x2goDebug<<"called getUserSessions: brokeruser: "<<brokerUser<<" authid: "<<nextAuthId;
     if(mainWindow->getUsePGPCard())
         brokerUser=mainWindow->getCardLogin();
     config->sessiondata=QString::null;
@@ -252,7 +253,7 @@ void HttpBrokerClient::getUserSessions()
                              "task=listsessions&"<<
                              "user="<<brokerUser<<"&"<<
                              "password="<<config->brokerPass<<"&"<<
-                             "authid="<<config->brokerUserId;
+                             "authid="<<nextAuthId;
 
         x2goDebug << "sending request: "<< req.toUtf8();
         QNetworkRequest request(QUrl(config->brokerurl));
@@ -266,8 +267,8 @@ void HttpBrokerClient::getUserSessions()
             createSshConnection();
             return;
         }
-        if (config->brokerUserId.length() > 0) {
-            sshConnection->executeCommand ( config->sshBrokerBin+" --user "+ brokerUser +" --authid "+config->brokerUserId+ " --task listsessions",
+        if (nextAuthId.length() > 0) {
+            sshConnection->executeCommand ( config->sshBrokerBin+" --user "+ brokerUser +" --authid "+nextAuthId+ " --task listsessions",
                                             this, SLOT ( slotListSessions ( bool, QString,int ) ));
         } else {
             sshConnection->executeCommand ( config->sshBrokerBin+" --user "+ brokerUser +" --task listsessions",
@@ -291,7 +292,7 @@ void HttpBrokerClient::selectUserSession(const QString& session)
                              "sid="<<session<<"&"<<
                              "user="<<brokerUser<<"&"<<
                              "password="<<config->brokerPass<<"&"<<
-                             "authid="<<config->brokerUserId;
+                             "authid="<<nextAuthId;
         x2goDebug << "sending request: "<< req.toUtf8();
         QNetworkRequest request(QUrl(config->brokerurl));
         request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
@@ -300,8 +301,8 @@ void HttpBrokerClient::selectUserSession(const QString& session)
     }
     else
     {
-        if (config->brokerUserId.length() > 0) {
-            sshConnection->executeCommand ( config->sshBrokerBin+" --user "+ brokerUser +" --authid "+config->brokerUserId+ " --task selectsession --sid \\\""+session+"\\\"",
+        if (nextAuthId.length() > 0) {
+            sshConnection->executeCommand ( config->sshBrokerBin+" --user "+ brokerUser +" --authid "+nextAuthId+ " --task selectsession --sid \\\""+session+"\\\"",
                                             this,SLOT ( slotSelectSession(bool,QString,int)));
         } else {
             sshConnection->executeCommand ( config->sshBrokerBin+" --user "+ brokerUser +" --task selectsession --sid \\\""+session+"\\\"",
@@ -326,7 +327,7 @@ void HttpBrokerClient::changePassword(QString newPass)
                              "newpass="<<newPass<<"&"<<
                              "user="<<brokerUser<<"&"<<
                              "password="<<config->brokerPass<<"&"<<
-                             "authid="<<config->brokerUserId;
+                             "authid="<<nextAuthId;
         x2goDebug << "sending request: "<< req.toUtf8();
         QNetworkRequest request(QUrl(config->brokerurl));
         request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
@@ -334,8 +335,8 @@ void HttpBrokerClient::changePassword(QString newPass)
     }
     else
     {
-        if (config->brokerUserId.length() > 0) {
-            sshConnection->executeCommand ( config->sshBrokerBin+" --user "+ brokerUser +" --authid "+config->brokerUserId+ " --task setpass --newpass "+newPass, this,
+        if (nextAuthId.length() > 0) {
+            sshConnection->executeCommand ( config->sshBrokerBin+" --user "+ brokerUser +" --authid "+nextAuthId+ " --task setpass --newpass "+newPass, this,
                                             SLOT ( slotPassChanged(bool,QString,int)));
         } else {
             sshConnection->executeCommand ( config->sshBrokerBin+" --user "+ brokerUser +" --task setpass --newpass "+newPass, this,
@@ -359,8 +360,8 @@ void HttpBrokerClient::testConnection()
     }
     else
     {
-        if (config->brokerUserId.length() > 0) {
-            sshConnection->executeCommand(config->sshBrokerBin+" --authid "+config->brokerUserId+ " --task testcon",
+        if (nextAuthId.length() > 0) {
+            sshConnection->executeCommand(config->sshBrokerBin+" --authid "+nextAuthId+ " --task testcon",
                                           this, SLOT ( slotSelectSession(bool,QString,int)));
         } else {
             sshConnection->executeCommand(config->sshBrokerBin+" --task testcon",
@@ -400,6 +401,11 @@ bool HttpBrokerClient::checkAccess(QString answer )
         return false;
     }
     config->brokerAuthenticated=true;
+    int authBegin=answer.indexOf("AUTHID:");
+    if (authBegin!=-1)
+    {
+        nextAuthId=answer.mid(authBegin+7, answer.indexOf("\n",authBegin)-authBegin-7);
+    }
     return true;
 }
 

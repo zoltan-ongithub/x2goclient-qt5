@@ -23,6 +23,10 @@ x2goclient (4.0.2.0-0x2go1) UNRELEASED; urgency=low
       header to "application/x-www-form-urlencoded" for HTTP post
       requests. (Fixes: #440, #138).
     - Fix copy+paste errors in QNetworkAccessManager code.
+    - Provide support for dynamic authentication IDs. This is
+      a requirement for using the broker client against brokers
+      that use some sort of OTP authentication mechanism.
+      (Fixes: #446).
 
   [ Mike Gabriel ]
   * New upstream version (4.0.2.0):
