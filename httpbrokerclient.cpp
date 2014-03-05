@@ -295,7 +295,7 @@ void HttpBrokerClient::selectUserSession(const QString& session)
         x2goDebug << "sending request: "<< req.toUtf8();
         QNetworkRequest request(QUrl(config->brokerurl));
         request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
-        sessionsRequest=http->post (request, req.toUtf8() );
+        selSessRequest=http->post (request, req.toUtf8() );
 
     }
     else
@@ -330,7 +330,7 @@ void HttpBrokerClient::changePassword(QString newPass)
         x2goDebug << "sending request: "<< req.toUtf8();
         QNetworkRequest request(QUrl(config->brokerurl));
         request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
-        sessionsRequest=http->post (request, req.toUtf8() );
+        chPassRequest=http->post (request, req.toUtf8() );
     }
     else
     {
@@ -355,7 +355,7 @@ void HttpBrokerClient::testConnection()
         x2goDebug << "sending request: "<< req.toUtf8();
         QNetworkRequest request(QUrl(config->brokerurl));
         request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
-        sessionsRequest=http->post (request, req.toUtf8() );
+        testConRequest=http->post (request, req.toUtf8() );
     }
     else
     {

@@ -22,6 +22,7 @@ x2goclient (4.0.2.0-0x2go1) UNRELEASED; urgency=low
     - Switch to QNetworkAccessManager. Appropriately set content type
       header to "application/x-www-form-urlencoded" for HTTP post
       requests. (Fixes: #440, #138).
+    - Fix copy+paste errors in QNetworkAccessManager code.
 
   [ Mike Gabriel ]
   * New upstream version (4.0.2.0):
