@@ -26,7 +26,7 @@ void HelpDialog::setText(QString text)
 {
     text.replace("\t\t\t","\t");
     text.replace("\t\t","\t");
-    plainTextEdit->setTabStopWidth(320);
+    plainTextEdit->setTabStopWidth(30);
     plainTextEdit->setWordWrapMode(QTextOption::NoWrap);
     plainTextEdit->setPlainText(text);
 }

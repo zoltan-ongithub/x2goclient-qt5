@@ -46,6 +46,11 @@ x2goclient (4.0.2.0-0x2go1) UNRELEASED; urgency=low
       %setup.
     + Copy ChangeLog.gitlog (if present) into txt/ subfolder during %setup.
 
+  [ Mike DePaulo ]
+  * New upstream version (4.0.2.0):
+    - Decrease HelpDialog's tab width from 320 to 30
+      (the width of 10 spaces.) (Fixes: #453)
+
  -- Mike Gabriel <mike.gabriel@das-netzwerkteam.de>  Wed, 22 Jan 2014 09:20:08 +0100
 
 x2goclient (4.0.1.4-0x2go1) UNRELEASED; urgency=low
