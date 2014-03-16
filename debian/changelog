@@ -50,6 +50,11 @@ x2goclient (4.0.2.0-0x2go1) UNRELEASED; urgency=low
   * New upstream version (4.0.2.0):
     - Decrease HelpDialog's tab width from 320 to 30
       (the width of 10 spaces.) (Fixes: #453)
+    - Windows: Fix compatibility with PulseAudio 3.0 & later through
+      new cookie handling. (Fixes: #422)
+    - Windows: Upgrade included PulseAudio from 1.1 to 5.0.
+      The 5.0 build is patched for X2Go bug #363. and available here:
+      https://build.opensuse.org/project/show/home:mikedep333:branches:home:mkbosmans:mingw32:pulseaudio
 
  -- Mike Gabriel <mike.gabriel@das-netzwerkteam.de>  Wed, 22 Jan 2014 09:20:08 +0100
 

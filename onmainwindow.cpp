@@ -5149,6 +5149,7 @@ void ONMainWindow::slotRetResumeSess ( bool result,
 #else
                 QString cooFile;
                 // Default cookie file path used by PulseAudio 3.0 and later.
+                // Cannot be overriden due to PulseAudio bug 75006.
                 if ( QFile::exists
                     (wapiShortFileName ( homeDir )  + "/.x2go/pulse/.config/pulse/cookie") )
                 {
