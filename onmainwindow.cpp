@@ -5147,9 +5147,21 @@ void ONMainWindow::slotRetResumeSess ( bool result,
                                             "/.pulse-cookie", this, SLOT ( slotPCookieReady ( bool, QString,int )));
                 }
 #else
-                QString cooFile=
-                    wapiShortFileName ( homeDir )  +
-                    "/.x2go/pulse/.pulse-cookie";
+                QString cooFile;
+                // Default cookie file path used by PulseAudio 3.0 and later.
+                if ( QFile::exists
+                    (wapiShortFileName ( homeDir )  + "/.x2go/pulse/.config/pulse/cookie") )
+                {
+                    cooFile =
+                        (wapiShortFileName ( homeDir )  + "/.x2go/pulse/.config/pulse/cookie");
+                }
+                else
+                {
+                    /* The only cookie file path used by PulseAudio 2.1 and earlier.
+                       PulseAudio 3.0 and later will still use it if the primary path DNE */ 
+                    cooFile = wapiShortFileName ( homeDir )  + "/.x2go/pulse/.pulse-cookie";
+                }
+
                 QString destFile="$HOME/.x2go/C-"+
                                  resumingSession.sessionId+
                                  "/.pulse-cookie";
@@ -9687,6 +9699,11 @@ void ONMainWindow::startPulsed()
     QDir drr(homeDir+"/.x2go/pulse/.pulse/"+QHostInfo::localHostName ()+"-runtime");
     if (!drr.exists())
         drr.mkpath(drr.path());
+    /* Directory is needed for PulseAudio 3.0 and later to start successfuilly
+       when launched by X2Go Client - Fixes bug #422 */
+    QDir cooDir(homeDir+"/.x2go/pulse/.config/pulse/");
+    if (!cooDir.exists())
+        cooDir.mkpath(cooDir.path());
     if (QFile::exists(homeDir+"/.x2go/pulse/.pulse/"+QHostInfo::localHostName ()+"-runtime/pid"))
         QFile::remove(homeDir+"/.x2go/pulse/.pulse/"+QHostInfo::localHostName ()+"-runtime/pid");
     pulseDir.replace("/","\\");
