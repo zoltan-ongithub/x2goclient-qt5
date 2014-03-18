@@ -158,6 +158,7 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
     homeDir=QDir::homePath();
 
 #ifdef Q_OS_WIN
+    pulseVersionTest=0l;
     pulseServer=0l;
     xorg=0l;
     xDisplay=0;
@@ -400,6 +401,7 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
 #ifdef Q_OS_WIN
     winServersReady=false;
     saveCygnusSettings();
+    pulseVersionIsLegacy=false;
 #endif
     initPassDlg();
     initSelectSessDlg();
@@ -5147,20 +5149,26 @@ void ONMainWindow::slotRetResumeSess ( bool result,
                                             "/.pulse-cookie", this, SLOT ( slotPCookieReady ( bool, QString,int )));
                 }
 #else
-                QString cooFile;
+                // The only cookie file path used by PulseAudio 2.1 and earlier.
+                // These PulseAudio versions do not support overriding the cookie file path.
+				if (pulseVersionIsLegacy)
+                    cooFile = wapiShortFileName ( homeDir )  + "/.x2go/pulse/.pulse-cookie";
                 // Default cookie file path used by PulseAudio 3.0 and later.
                 // Cannot be overriden due to PulseAudio bug 75006.
-                if ( QFile::exists
-                    (wapiShortFileName ( homeDir )  + "/.x2go/pulse/.config/pulse/cookie") )
+				else
                 {
-                    cooFile =
-                        (wapiShortFileName ( homeDir )  + "/.x2go/pulse/.config/pulse/cookie");
-                }
-                else
-                {
-                    /* The only cookie file path used by PulseAudio 2.1 and earlier.
-                       PulseAudio 3.0 and later will still use it if the primary path DNE */ 
-                    cooFile = wapiShortFileName ( homeDir )  + "/.x2go/pulse/.pulse-cookie";
+                    if ( QFile::exists
+                        (wapiShortFileName ( homeDir )  + "/.x2go/pulse/.config/pulse/cookie") )
+                    {
+                        cooFile =
+                            (wapiShortFileName ( homeDir )  + "/.x2go/pulse/.config/pulse/cookie");
+                    }
+                    else
+                    {
+                        // PulseAudio 3.0 and later will still use this path if it exists
+                        // but the defaultt path DNE */ 
+                        cooFile = wapiShortFileName ( homeDir )  + "/.x2go/pulse/.pulse-cookie";
+                    }
                 }
 
                 QString destFile="$HOME/.x2go/C-"+
@@ -9648,6 +9656,31 @@ void ONMainWindow::removeCygwinEntry()
 
 void ONMainWindow::startPulsed()
 {
+#ifdef Q_OS_WIN
+    pulseVersionTest=new QProcess ( 0 );
+   	pulseVersionTest->start ( "pulse\\pulseaudio.exe --version" );
+
+	pulseVersionTest->waitForFinished();
+	QString pulseVersionLine=
+        pulseVersionTest->readAllStandardOutput().replace("\n"," ").simplified();
+	
+	x2goDebug <<"PulseAudio Version Line: "<<pulseVersionLine;
+	if (pulseVersionLine.contains("pulseaudio 0.", Qt::CaseInsensitive))
+		pulseVersionIsLegacy = true;
+	if (pulseVersionLine.contains("pulseaudio 1.", Qt::CaseInsensitive))
+		pulseVersionIsLegacy = true;
+	if (pulseVersionLine.contains("pulseaudio 2.", Qt::CaseInsensitive))
+		pulseVersionIsLegacy = true;
+	
+	if (pulseVersionIsLegacy)
+    {
+		x2goDebug <<"PulseAudio <= 2.1 Detected. Using .pulse-cookie";
+    }
+	else
+    {
+		x2goDebug <<"PulseAudio >= 3.0 Detected. Using .config/pulse/cookie or .pulse-cookie in that order.";
+    }
+#endif
     while ( isServerRunning ( pulsePort ) )
         ++pulsePort;
     esdPort=pulsePort+1;
