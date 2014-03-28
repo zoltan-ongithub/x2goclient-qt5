@@ -4461,6 +4461,9 @@ void ONMainWindow::selectSession ( QStringList& sessions )
     sessTv->setCurrentIndex ( sessTv->model()->index ( 0, 0 ) );
     sessTv->setFocus();
     selectSessionDlg->show();
+
+    if( startHidden && shadowSession && sessTv->model()->rowCount() == 1 )
+        slotShadowSess();
 }
 
 void ONMainWindow::slotCloseSelectDlg()
