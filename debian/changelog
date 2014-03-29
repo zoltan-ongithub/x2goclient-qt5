@@ -47,6 +47,7 @@ x2goclient (4.0.2.0-0x2go1) UNRELEASED; urgency=low
     + Copy ChangeLog (or debian/changelog) into txt/ subfolder during
       %setup.
     + Copy ChangeLog.gitlog (if present) into txt/ subfolder during %setup.
+    + B-R (epel-7): man2html-core (same as for Fedora builds).
 
   [ Mike DePaulo ]
   * New upstream version (4.0.2.0):
