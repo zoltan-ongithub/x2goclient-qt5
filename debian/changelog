@@ -69,7 +69,7 @@ x2goclient (4.0.1.4-0x2go1) UNRELEASED; urgency=low
     - Increase ssh_select timeout to 0.5 sec.
     - Set mod map from client to server on Mac, hide keyboard settings on Mac.
     - Fix mod map on Mac with kerberos.
-    - Fix focus on pass form.   
+    - Fix focus on pass form.
 
   [ Orion Poplawski ]
   * New upstream version (4.0.1.4):

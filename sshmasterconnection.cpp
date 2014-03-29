@@ -936,9 +936,6 @@ bool SshMasterConnection::userChallengeAuth()
 
 bool SshMasterConnection::userAuthWithPass()
 {
-    // Populate the userauth_list
-    ssh_userauth_none(my_ssh_session, NULL);
-
     int method = ssh_userauth_list(my_ssh_session, NULL);
 
     if (method& SSH_AUTH_METHOD_INTERACTIVE)
