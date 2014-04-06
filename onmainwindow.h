@@ -773,7 +773,6 @@ private:
     bool winSshdStarted;
     static QString u3Device;
 
-    QString cooFile;
     QString pulseVersionTestOutput;
     QProcess* pulseVersionTest;
     bool pulseVersionIsLegacy;
