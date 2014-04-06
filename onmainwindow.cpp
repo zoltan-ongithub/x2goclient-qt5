@@ -9677,11 +9677,11 @@ void ONMainWindow::startPulsed()
 	
 	if (pulseVersionIsLegacy)
     {
-		x2goDebug <<"PulseAudio <= 2.1 Detected. Using .pulse-cookie";
+		x2goDebug <<"PulseAudio <= 2.1 Detected. PulseAudio will automatically use .pulse-cookie";
     }
 	else
     {
-		x2goDebug <<"PulseAudio >= 3.0 Detected. Using .config/pulse/cookie or .pulse-cookie in that order.";
+		x2goDebug <<"PulseAudio >= 3.0 Detected. x2goclient will tell PulseAudio to use .pulse-cookie.";
     }
 #endif
     while ( isServerRunning ( pulsePort ) )
@@ -9723,8 +9723,19 @@ void ONMainWindow::startPulsed()
     if ( !file.open ( QIODevice::WriteOnly | QIODevice::Text ) )
         return;
     QTextStream out ( &file );
-    out << "load-module module-native-protocol-tcp port="+
-        QString::number ( pulsePort ) <<endl;
+    // http://www.freedesktop.org/wiki/Software/PulseAudio/Documentation/User/Modules/#index22h3
+    // auth-cookie is relative to %USERPROFILE%
+    if (pulseVersionIsLegacy)
+    {
+        out << "load-module module-native-protocol-tcp port="+
+            QString::number ( pulsePort ) <<endl;
+    }
+    else
+    {
+        out << "load-module module-native-protocol-tcp port="+
+            QString::number ( pulsePort )+
+            " auth-cookie="+"\\.pulse-cookie" <<endl;
+    }
     out << "load-module module-esound-protocol-tcp port="+
         QString::number ( esdPort ) <<endl;
     out << "load-module module-waveout"<<endl;
