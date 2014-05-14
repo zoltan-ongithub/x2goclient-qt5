@@ -27,6 +27,8 @@ MOZPLUGDIR=$(PREFIX)/lib/mozilla/plugins
 QMAKE_BINARY=qmake-qt4
 LRELEASE_BINARY=lrelease-qt4
 
+LDFLAGS+=-lldap -lcups -lX11 -lXpm
+
 all: build
 
 build: build_man build_pluginprovider
