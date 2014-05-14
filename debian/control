@@ -80,7 +80,7 @@ Architecture: all
 Depends:
  ${misc:Depends},
 Recommends:
- §{misc:Recommends},
+ ${misc:Recommends},
  httpd | apache2,
 Suggests:
  x2goplugin,
