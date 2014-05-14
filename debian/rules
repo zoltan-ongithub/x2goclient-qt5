@@ -19,14 +19,9 @@ override_dh_auto_clean:
 	rm -Rf x2goclient_*.qm
 	rm -f txt/changelog
 
-override_dh_auto_install:
-	mv plugin_build/libx2goplugin.so plugin_build/libx2goplugin.so.unstripped
-	strip -s --remove-section=.comment --remove-section=.note \
-	        plugin_build/libx2goplugin.so.unstripped -o plugin_build/libx2goplugin.so
-	rm -f plugin_build/libx2goplugin.so.unstripped
-
 override_dh_strip:
 	dh_strip -p x2goclient --dbg-package=x2goclient-dbg
+	dh_strip -p x2goplugin --dbg-package=x2goplugin-dbg
 
 override_dh_apache2:
 	dh_apache2 --noscripts
