@@ -7179,6 +7179,10 @@ void ONMainWindow::printError ( QString param )
     {
         qCritical ( "%s", ( tr ( "Wrong parameter: " ) +param ).
                     toLocal8Bit().data() );
+        if (!startHidden && !haveTerminal)
+        {
+            QMessageBox::critical(0,tr("Error"), tr ( "Wrong parameter: " ) +param);
+        }
     }
     else
     {
@@ -9642,27 +9646,27 @@ void ONMainWindow::startPulsed()
 {
 #ifdef Q_OS_WIN
     pulseVersionTest=new QProcess ( 0 );
-   	pulseVersionTest->start ( "pulse\\pulseaudio.exe --version" );
+    pulseVersionTest->start ( "pulse\\pulseaudio.exe --version" );
 
-	pulseVersionTest->waitForFinished();
-	QString pulseVersionLine=
+    pulseVersionTest->waitForFinished();
+    QString pulseVersionLine=
         pulseVersionTest->readAllStandardOutput().replace("\n"," ").simplified();
-	
-	x2goDebug <<"PulseAudio Version Line: "<<pulseVersionLine;
-	if (pulseVersionLine.contains("pulseaudio 0.", Qt::CaseInsensitive))
-		pulseVersionIsLegacy = true;
-	if (pulseVersionLine.contains("pulseaudio 1.", Qt::CaseInsensitive))
-		pulseVersionIsLegacy = true;
-	if (pulseVersionLine.contains("pulseaudio 2.", Qt::CaseInsensitive))
-		pulseVersionIsLegacy = true;
-	
-	if (pulseVersionIsLegacy)
+
+    x2goDebug <<"PulseAudio Version Line: "<<pulseVersionLine;
+    if (pulseVersionLine.contains("pulseaudio 0.", Qt::CaseInsensitive))
+        pulseVersionIsLegacy = true;
+    if (pulseVersionLine.contains("pulseaudio 1.", Qt::CaseInsensitive))
+        pulseVersionIsLegacy = true;
+    if (pulseVersionLine.contains("pulseaudio 2.", Qt::CaseInsensitive))
+        pulseVersionIsLegacy = true;
+
+    if (pulseVersionIsLegacy)
     {
-		x2goDebug <<"PulseAudio <= 2.1 Detected. PulseAudio will automatically use .pulse-cookie";
+        x2goDebug <<"PulseAudio <= 2.1 Detected. PulseAudio will automatically use .pulse-cookie";
     }
-	else
+    else
     {
-		x2goDebug <<"PulseAudio >= 3.0 Detected. x2goclient will tell PulseAudio to use .pulse-cookie.";
+        x2goDebug <<"PulseAudio >= 3.0 Detected. x2goclient will tell PulseAudio to use .pulse-cookie.";
     }
 #endif
     while ( isServerRunning ( pulsePort ) )

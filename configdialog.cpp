@@ -44,7 +44,7 @@
 
 
 ConfigDialog::ConfigDialog ( QWidget * parent,  Qt::WFlags f )
-        : QDialog ( parent,f )
+    : QDialog ( parent,f )
 {
 
     tabWidg=new QTabWidget ( this );
@@ -442,7 +442,7 @@ QString ConfigDialog::retMaxXDarwinVersion ( QString v1, QString v2 )
 {
     QStringList vl1=v1.split ( "." );
     QStringList vl2=v2.split ( "." );
-    for ( int i=0;i<3;++i )
+    for ( int i=0; i<3; ++i )
     {
         if ( vl1.count() <i+1 )
             vl1<<"0";
@@ -458,7 +458,7 @@ QString ConfigDialog::findXDarwin ( QString& version, QString path )
 {
     if ( path=="" )
     {
-        QString dir1="/Applications/Utilities/X11.app";
+        QString dir1="/Applications/Utilities/XQuartz.app";
         QString ver1="0.0.0";
         if ( QFile::exists ( dir1+"/Contents/Info.plist" ) )
         {
