@@ -1,9 +1,14 @@
 x2goclient (4.0.2.1-0x2go1) UNRELEASED; urgency=low
 
+  [ Mike Gabriel ]
   * New upstream release (4.0.2.1):
     - Fix FTBFS on arm64 (and others) architecture. (Fixes: #498).
   * debian/control:
     + Add dbg:package x2goplugin-dbg.
+
+  [ Oleksandr Shneyder ]
+  * New upstream release (4.0.2.1):
+    - Hide GSSAPI options on direct RDP connections.
 
  -- Mike Gabriel <mike.gabriel@das-netzwerkteam.de>  Thu, 10 Apr 2014 18:30:25 +0200
 

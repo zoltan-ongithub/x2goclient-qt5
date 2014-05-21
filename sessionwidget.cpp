@@ -361,6 +361,8 @@ void SessionWidget::slot_rdpDirectClicked()
     openKey->setVisible(!isDirectRDP);
     sshPort->setVisible(!isDirectRDP);
     rdpPort->setVisible(isDirectRDP);
+    cbKrbDelegation->setVisible(!isDirectRDP);
+    cbKrbLogin->setVisible(!isDirectRDP);
 
     cbProxy->setVisible(!isDirectRDP);
     proxyBox->setVisible(!isDirectRDP && cbProxy->isChecked());
