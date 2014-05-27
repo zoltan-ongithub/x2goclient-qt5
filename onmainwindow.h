@@ -546,6 +546,7 @@ private:
     bool drawMenu;
     bool extStarted;
     bool startMaximized;
+    bool closeDisconnect;
     bool startHidden;
     bool defaultUseSound;
     bool defaultXinerama;

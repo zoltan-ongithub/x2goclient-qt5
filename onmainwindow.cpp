@@ -71,6 +71,7 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
     startMaximized=false;
     startHidden=false;
     thinMode=false;
+    closeDisconnect=false;
     showHaltBtn=false;
     defaultUseSound=true;
     defaultSetKbd=true;
@@ -5678,7 +5679,7 @@ void ONMainWindow::slotProxyFinished ( int,QProcess::ExitStatus )
         delete sshConnection;
         x2goDebug<<"Deleted  SSH connection instance." ;
         sshConnection=0;
-        if ( startHidden )
+        if ( startHidden || closeDisconnect)
         {
             close();
         }
@@ -6722,6 +6723,12 @@ bool ONMainWindow::parseParameter ( QString param )
         return true;
     }
 
+    if ( param=="--close-disconnect" )
+    {
+        closeDisconnect=true;
+        return true;
+    }
+
     QString setting,value;
     QStringList vals=param.split ( "=" );
     if ( vals.size() <2 )
@@ -7248,7 +7255,8 @@ void ONMainWindow::showHelp()
         "--autostart=<app> \t\t launch \"app\" by session start in \"published "
         "applications\" mode\n"
         "--session-conf=<file>\t\t path to alternative session config\n"
-        "--tray-icon\t\t\t force to show session trayicon\n";
+        "--tray-icon\t\t\t force to show session trayicon\n"
+        "--close-disconnect\t\t close X2Go Client after disconnect\n";
 
     qCritical ( "%s",helpMsg.toLocal8Bit().data() );
     if (!startHidden && !haveTerminal)
@@ -8995,7 +9003,7 @@ void ONMainWindow::slotCmdMessage ( bool result,QString output,
     if(sshConnection)
         delete sshConnection;
     sshConnection=0;
-    if ( startHidden )
+    if ( startHidden  || closeDisconnect)
     {
         close();
     }
