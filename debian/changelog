@@ -13,6 +13,7 @@ x2goclient (4.0.2.1-0x2go1) UNRELEASED; urgency=low
     - Wrong cmd line option throw error dialog if running not from terminal.
     - Add command line option "close-disconnect", which make client close after
       session is disconnected.
+    - Don't start pulse on Windows, until we have not session with pulse support.
 
  -- Mike Gabriel <mike.gabriel@das-netzwerkteam.de>  Thu, 10 Apr 2014 18:30:25 +0200
 

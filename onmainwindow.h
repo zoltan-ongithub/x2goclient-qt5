@@ -773,6 +773,7 @@ private:
     PROCESS_INFORMATION sshd;
     bool winSshdStarted;
     static QString u3Device;
+    bool pulseStarted;
 
     QString pulseVersionTestOutput;
     QProcess* pulseVersionTest;

@@ -138,6 +138,7 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
 #ifdef Q_OS_WIN
     clientSshPort="7022";
     pulsePort=4713;
+    pulseStarted=false;
     winSshdStarted=false;
 #else
     userSshd=false;
@@ -1366,7 +1367,7 @@ void ONMainWindow::closeClient()
     }
 #endif
 #ifdef Q_OS_WIN
-    if ( pulseServer )
+    if ( pulseServer && pulseStarted )
     {
         x2goDebug<<"Deleting the pulse timer...";
         delete pulseTimer;
@@ -4932,6 +4933,10 @@ void ONMainWindow::slotRetResumeSess ( bool result,
         switch ( sndSystem )
         {
         case PULSE:
+            if(!pulseStarted)
+            {
+                startPulsed();
+            }
             sndPort=QString::number ( pulsePort );
             break;
         case ESD:
@@ -9572,10 +9577,13 @@ void ONMainWindow::startWinServers()
         generateEtcFiles();
         sshStarter->start();
     }
-    if ( !embedMode || !config.confSnd ||
-            ( config.confSnd && config.useSnd ) )
+    if(embedMode)
     {
-        startPulsed();
+        if ( !config.confSnd ||
+                ( config.confSnd && config.useSnd ) )
+        {
+            startPulsed();
+        }
     }
 // #ifdef CFGCLIENT
 
@@ -9653,6 +9661,10 @@ void ONMainWindow::removeCygwinEntry()
 void ONMainWindow::startPulsed()
 {
 #ifdef Q_OS_WIN
+    if(pulseStarted)
+    {
+        return;
+    }
     pulseVersionTest=new QProcess ( 0 );
     pulseVersionTest->start ( "pulse\\pulseaudio.exe --version" );
 
@@ -9761,6 +9773,7 @@ void ONMainWindow::startPulsed()
     connect (pulseTimer, SIGNAL(timeout()), this, SLOT(slotCheckPulse()));
     x2goDebug<<"Connected timer.";
     pulseTimer->start(2000);
+    pulseStarted=true;
 }
 
 void ONMainWindow::slotCheckPulse()
