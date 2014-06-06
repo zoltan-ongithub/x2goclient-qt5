@@ -4933,7 +4933,7 @@ void ONMainWindow::slotRetResumeSess ( bool result,
         switch ( sndSystem )
         {
         case PULSE:
-            if(!pulseStarted)
+            if(!pulseStarted && sound)
             {
                 startPulsed();
             }
