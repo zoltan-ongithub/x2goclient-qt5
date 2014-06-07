@@ -70,6 +70,7 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
     extLogin=false;
     startMaximized=false;
     startHidden=false;
+    keepTrayIcon=false;
     thinMode=false;
     closeDisconnect=false;
     showHaltBtn=false;
@@ -1128,7 +1129,9 @@ void ONMainWindow::trayIconInit()
 QMenu* ONMainWindow::initTrayAppMenu(QString text, QPixmap icon)
 {
     QMenu* menu=trayIconActiveConnectionMenu->addMenu(text);
-    menu->setIcon(icon);
+    if (!keepTrayIcon) {
+        menu->setIcon(icon);
+    }
     return menu;
 }
 
@@ -4311,8 +4314,10 @@ void ONMainWindow::setTrayIconToSessionIcon(QString info) {
         else
             sid="embedded";
 
-        QString imagePath = expandHome(st->setting()->value(sid + "/icon", (QVariant) QString(":icons/128x128/x2go.png")).toString());
-        trayIcon->setIcon(QIcon (imagePath));
+        if (!keepTrayIcon) {
+            QString imagePath = expandHome(st->setting()->value(sid + "/icon", (QVariant) QString(":icons/128x128/x2go.png")).toString());
+            trayIcon->setIcon(QIcon (imagePath));
+        }
 
         QString name=st->setting()->value ( sid +"/name").toString() ;
 
@@ -5576,7 +5581,7 @@ void ONMainWindow::slotProxyFinished ( int,QProcess::ExitStatus )
     setFocus();
 #endif
     //set tray icon to default
-    if (trayIcon)
+    if (trayIcon && !keepTrayIcon)
         trayIcon->setIcon(QIcon ( ":icons/128x128/x2go.png") );
 
 
@@ -6673,6 +6678,11 @@ bool ONMainWindow::parseParameter ( QString param )
     if ( param=="--hide" )
     {
         startHidden=true;
+        return true;
+    }
+    if ( param=="--keep-trayicon" )
+    {
+        keepTrayIcon=true;
         return true;
     }
     if ( param=="--pgp-card" )

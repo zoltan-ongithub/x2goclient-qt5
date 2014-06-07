@@ -5,6 +5,10 @@ x2goclient (4.0.2.1-0x2go1) UNRELEASED; urgency=low
     - Fix FTBFS on arm64 (and others) architecture. (Fixes: #498).
     - Only show session name in notification bubbles with debugging
       enabled. (Fixes: #364).
+    - New command line option (--keep-trayicon). With that options set,
+      we force X2Go client to only use the default "accelerated X" as
+      system tray icon (and prohibit usage of the session's icon as
+      tray icon). (Fixes: #365).
   * debian/control:
     + Add dbg:package x2goplugin-dbg.
 

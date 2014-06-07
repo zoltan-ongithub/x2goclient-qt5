@@ -548,6 +548,7 @@ private:
     bool startMaximized;
     bool closeDisconnect;
     bool startHidden;
+    bool keepTrayIcon;
     bool defaultUseSound;
     bool defaultXinerama;
     bool cardStarted;
