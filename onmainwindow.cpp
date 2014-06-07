@@ -9916,8 +9916,8 @@ void ONMainWindow::startSshd()
 #ifdef Q_OS_WIN
     std::string clientdir=wapiShortFileName ( appDir ).toStdString();
     std::stringstream strm;
-    std::string config="\""+cygwinPath(etcDir+"/sshd_config").toStdString()+"\"";
-    std::string key="\""+cygwinPath(etcDir+"/ssh_host_dsa_key").toStdString()+"\"";
+    std::string config=cygwinPath(etcDir+"/sshd_config").toStdString();
+    std::string key=cygwinPath(etcDir+"/ssh_host_dsa_key").toStdString();
 
     strm<<clientdir<<"\\sshd.exe -D -p "<<clientSshPort.toInt()<<" -f "<< config <<" -h "<<key;
 

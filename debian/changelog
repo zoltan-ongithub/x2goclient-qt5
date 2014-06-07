@@ -15,7 +15,6 @@ x2goclient (4.0.2.1-0x2go1) UNRELEASED; urgency=low
       session is disconnected.
     - Don't start pulse on Windows, until we have not session with pulse support.
     - Check if sound is activated before starting pulse. 
-    - Fix starting sshd on Win XP. 
 
  -- Mike Gabriel <mike.gabriel@das-netzwerkteam.de>  Thu, 10 Apr 2014 18:30:25 +0200
 
