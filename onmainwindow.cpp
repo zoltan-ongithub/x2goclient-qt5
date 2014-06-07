@@ -4979,7 +4979,11 @@ void ONMainWindow::slotRetResumeSess ( bool result,
         }
 
         //change the trayicon picture
-        setTrayIconToSessionIcon(tr("New session started") + ": " + resumingSession.sessionId);
+        if (debugging) {
+            setTrayIconToSessionIcon(tr("New session started") + ": " + resumingSession.sessionId);
+        } else {
+            setTrayIconToSessionIcon(tr("New session started") + ".");
+        }
 
     }
     else
@@ -5014,7 +5018,11 @@ void ONMainWindow::slotRetResumeSess ( bool result,
             readApplications();
 
         //change the trayicon picture
-        setTrayIconToSessionIcon(tr("Session resumed") + ": " + resumingSession.sessionId);
+        if (debugging) {
+            setTrayIconToSessionIcon(tr("Session resumed") + ": " + resumingSession.sessionId);
+        } else {
+            setTrayIconToSessionIcon(tr("Session resumed") + ".");
+        }
 
     }
     if ( !useLdap )
