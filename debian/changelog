@@ -12,6 +12,11 @@ x2goclient (4.0.2.1-0x2go1) UNRELEASED; urgency=low
   * debian/control:
     + Add dbg:package x2goplugin-dbg.
 
+  [ Clemens Lang ]
+  * New upstream version (4.0.2.1):
+    - Re-add Info.plist file (which got removed by accident in commit 91cf6c6).
+      (Fixes: #502).
+
   [ Oleksandr Shneyder ]
   * New upstream release (4.0.2.1):
     - Hide GSSAPI options on direct RDP connections. (Fixes: #478).
