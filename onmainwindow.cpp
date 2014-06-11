@@ -7239,6 +7239,8 @@ void ONMainWindow::showHelp()
     helpMsg+=
         "--help-pack\t\t\t show available pack methods\n"
         "--debug\t\t\t\t enables extensive output for console output.\n"
+        "\t\t\t\t Also, on Windows, enables pulseaudio logging to .x2go\\pulse under USERPROFILE.\n"
+        "\t\t\t\t The logs will not be deleted automatically when X2Go Client closes.\n"
         "--no-menu\t\t\t hide menu bar\n"
         "--no-session-edit\t\t not allow user to edit preconfigured\n"
         "\t\t\t\t sessions\n"
@@ -9775,6 +9777,8 @@ void ONMainWindow::startPulsed()
         QFile::remove(homeDir+"/.x2go/pulse/.pulse/"+QHostInfo::localHostName ()+"-runtime/pid");
     pulseDir.replace("/","\\");
     pulseArgs<<"--exit-idle-time=-1"<<"-n"<<"-F"<<pulseDir+"\\config.pa";
+    if (debugging)
+        pulseArgs<<"--log-level=debug"<<"--verbose"<<"--log-target=file:"+pulseDir+"\\pulse.log";
 #else
     pulseArgs<<"--exit-idle-time=-1"<<"-n"<<"-F"<<pulseDir+"/config.pa";
 #endif
