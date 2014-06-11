@@ -9737,7 +9737,7 @@ void ONMainWindow::startPulsed()
     {
         if ( pEnv[i].indexOf ( "USERPROFILE=" ) !=-1 )
             pEnv[i]="USERPROFILE="+
-                    wapiShortFileName ( homeDir+"/.x2go/pulse" );
+                    QDir::toNativeSeparators( wapiShortFileName( homeDir+"/.x2go/pulse"));
         if ( pEnv[i].indexOf ( "TEMP=" ) !=-1 )
             pEnv[i]="TEMP="+pulseDir;
         if ( pEnv[i].indexOf ( "USERNAME=" ) !=-1 )
@@ -9782,13 +9782,13 @@ void ONMainWindow::startPulsed()
 #else
     pulseArgs<<"--exit-idle-time=-1"<<"-n"<<"-F"<<pulseDir+"/config.pa";
 #endif
-    pulseServer->setWorkingDirectory ( wapiShortFileName (
-                                           appDir+"\\pulse" ) );
+    pulseServer->setWorkingDirectory ( QDir::toNativeSeparators (
+                                          wapiShortFileName ( appDir+"/pulse/" ) ) );
     pulseServer->start ( "pulse\\pulseaudio.exe",pulseArgs );
 
     x2goDebug<<"Starting pulse\\pulseaudio.exe "<<pulseArgs.join ( " " ) <<
              " working dir: "<<
-             wapiShortFileName ( appDir+"\\pulse" );
+             QDir::toNativeSeparators ( wapiShortFileName ( appDir+"/pulse" ) );
 
     pulseTimer=new QTimer(this);
 
