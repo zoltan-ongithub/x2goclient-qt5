@@ -6751,6 +6751,12 @@ bool ONMainWindow::parseParameter ( QString param )
         closeDisconnect=true;
         return true;
     }
+#ifdef Q_OS_WIN
+    if ( param=="--child-process" )
+    {
+        return true;
+    }
+#endif
 
     QString setting,value;
     QStringList vals=param.split ( "=" );

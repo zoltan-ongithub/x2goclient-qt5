@@ -27,6 +27,7 @@ x2goclient (4.0.2.1-0x2go1) UNRELEASED; urgency=low
     - Don't start pulse on Windows, until we have not session with pulse support.
     - Check if sound is activated before starting pulse. 
     - Fix starting sshd on Win XP. (Fixes: #421).
+    - Fork x2goclient on windows and terminate child processes if x2go client crashed.
   [ Mike DePaulo ]
   * New upstream release (4.0.2.1):
     - Windows: Enable PulseAudio log when --debug is passed.
