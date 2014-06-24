@@ -5758,6 +5758,14 @@ void ONMainWindow::slotProxyStderr()
 
     x2goDebug<<"Proxy wrote on stderr: "<<reserr;
 
+    if(debugging)
+    {
+        QFile fl(homeDir+"/.x2go/S-"+resumingSession.sessionId+"/session.log");
+        fl.open(QIODevice::WriteOnly|QIODevice::Append);
+        fl.write(reserr.toLocal8Bit());
+        fl.close();
+    }
+
     stInfo->insertPlainText ( reserr );
     stInfo->ensureCursorVisible();
     if ( stInfo->toPlainText().indexOf (
@@ -9789,7 +9797,7 @@ void ONMainWindow::startPulsed()
     pulseArgs<<"--exit-idle-time=-1"<<"-n"<<"-F"<<pulseDir+"/config.pa";
 #endif
     pulseServer->setWorkingDirectory ( QDir::toNativeSeparators (
-                                          wapiShortFileName ( appDir+"/pulse/" ) ) );
+                                           wapiShortFileName ( appDir+"/pulse/" ) ) );
     pulseServer->start ( "pulse\\pulseaudio.exe",pulseArgs );
 
     x2goDebug<<"Starting pulse\\pulseaudio.exe "<<pulseArgs.join ( " " ) <<
@@ -10212,8 +10220,8 @@ void ONMainWindow::slotConfigXinerama()
         xineramaTimer->stop();
         QStringList screens;
         foreach (QRect disp, xineramaScreens)
-        screens<<QString::number(disp.x())+" "+QString::number(disp.y())+" "+QString::number(disp.width())+
-               " "+QString::number(disp.height());
+            screens<<QString::number(disp.x())+" "+QString::number(disp.y())+" "+QString::number(disp.width())+
+                   " "+QString::number(disp.height());
         QString cmd="export DISPLAY=:"+resumingSession.display+";printf '"+screens.join("\\\\n")+"' >  $HOME/.x2go/C-"+
                     resumingSession.sessionId+"/xinerama.conf";
 
