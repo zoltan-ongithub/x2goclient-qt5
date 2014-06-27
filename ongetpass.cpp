@@ -96,7 +96,6 @@ void enumerateFromParent(DWORD pid)
 
 int x2goMain ( int argc, char *argv[] )
 {
-
     QApplication app ( argc,argv );
 
 #ifndef Q_WS_HILDON
@@ -152,6 +151,10 @@ int x2goMain ( int argc, char *argv[] )
     else
     {
 #ifdef Q_OS_WIN
+        if(argc <=1)
+        {
+            args=app.arguments();
+        }
         if(args.count()<2 || args[1].indexOf("--child-process")==-1)
         {
             QProcess proc;
