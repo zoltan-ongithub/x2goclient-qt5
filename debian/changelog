@@ -26,12 +26,15 @@ x2goclient (4.0.2.1-0x2go1) UNRELEASED; urgency=low
     - Wrong cmd line option throw error dialog if running not from terminal.
     - Add command line option "close-disconnect", which make client close after
       session is disconnected.
-    - Don't start pulse on Windows, until we have not session with pulse support.
+    - Don't start pulse on Windows, until we have not session with pulse
+      support.
     - Check if sound is activated before starting pulse. 
     - Fix starting sshd on Win XP. (Fixes: #421).
-    - Fork x2goclient on windows and terminate child processes if x2go client crashed.
     - Fix running x2goclient without arguments on Windows. (Fixes: #522).
-    - Save proxy output in $HOME/S-$SESSION-ID/session.log if debugging is enabled.
+    - Save proxy output in $HOME/S-$SESSION-ID/session.log if debugging is
+      enabled.
+    - Fork x2goclient on windows and terminate child processes if x2go client
+      crashed. (Fixes: #159).
 
   [ Mike DePaulo ]
   * New upstream release (4.0.2.1):
