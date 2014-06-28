@@ -16,6 +16,9 @@ x2goclient (4.0.2.1-0x2go1) UNRELEASED; urgency=low
       For SSHd startup failures provide different messages on Windows
       and non-Windows machines. (Fixes: #235).
       FIXME: add detection code to report SSH daemon startup failures.
+    - Add new cmdline option --hide-foldersharing. If used, all GUI
+      elements related to exporting client-side folders to X2Go sessions
+      get hidden. (Fixes: #514).
   * debian/control:
     + Add dbg:package x2goplugin-dbg.
 

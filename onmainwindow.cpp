@@ -71,6 +71,7 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
     startMaximized=false;
     startHidden=false;
     keepTrayIcon=false;
+    hideFolderSharing=false;
     thinMode=false;
     closeDisconnect=false;
     showHaltBtn=false;
@@ -1084,7 +1085,8 @@ void ONMainWindow::trayIconInit()
             appSeparator=trayIconActiveConnectionMenu->addSeparator();
 
 
-            trayIconActiveConnectionMenu->addAction(tr ("Share folder..." ),this, SLOT(slotExportDirectory()));
+            if (!hideFolderSharing)
+                trayIconActiveConnectionMenu->addAction(tr ("Share folder..." ),this, SLOT(slotExportDirectory()));
             trayIconActiveConnectionMenu->addAction(tr("Suspend"),this, SLOT(slotSuspendSessFromSt()));
             trayIconActiveConnectionMenu->addAction(tr("Terminate"),this, SLOT(slotTermSessFromSt()));
             connect (trayIconActiveConnectionMenu, SIGNAL(triggered(QAction*)), this,
@@ -6693,6 +6695,11 @@ bool ONMainWindow::parseParameter ( QString param )
         keepTrayIcon=true;
         return true;
     }
+    if ( param=="--hide-foldersharing" )
+    {
+        hideFolderSharing=true;
+        return true;
+    }
     if ( param=="--pgp-card" )
     {
         usePGPCard=true;
@@ -7296,6 +7303,7 @@ void ONMainWindow::showHelp()
         "--session-conf=<file>\t\t path to alternative session config\n"
         "--tray-icon\t\t\t force to show session trayicon\n"
         "--close-disconnect\t\t close X2Go Client after disconnect\n";
+        "--hide-foldersharing\t\t\t hide all folder sharing related options\n";
 
     qCritical ( "%s",helpMsg.toLocal8Bit().data() );
     if (!startHidden && !haveTerminal)
@@ -11083,7 +11091,8 @@ void ONMainWindow::initStatusDlg()
     {
         sbSusp->show();
         sbTerm->show();
-        sbExp->show();
+        if (! hideFolderSharing )
+            sbExp->show();
     }
 
     X2goSettings st ( "settings" );

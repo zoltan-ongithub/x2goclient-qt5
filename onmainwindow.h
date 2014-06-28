@@ -492,6 +492,10 @@ public:
     {
         return sessionCfg;
     }
+    bool getHideFolderSharing()
+    {
+        return hideFolderSharing;
+    }
 
     void runApplication(QString exec);
 
@@ -549,6 +553,7 @@ private:
     bool closeDisconnect;
     bool startHidden;
     bool keepTrayIcon;
+    bool hideFolderSharing;
     bool defaultUseSound;
     bool defaultXinerama;
     bool cardStarted;

@@ -54,11 +54,11 @@ EditConnectionDialog::EditConnectionDialog ( QString id, QWidget * par,
     otherSet=new SettingsWidget ( id,parent );
     exportDir=new ShareWidget ( id,parent );
 
-
     fr->addTab ( sessSet,tr ( "&Session" ) );
     fr->addTab ( conSet,tr ( "&Connection" ) );
     fr->addTab ( otherSet,tr ( "&Settings" ) );
-    fr->addTab ( exportDir,tr ( "&Shared folders" ) );
+    if (! parent->getHideFolderSharing())
+        fr->addTab ( exportDir,tr ( "&Shared folders" ) );
 
     QPushButton* ok=new QPushButton ( tr ( "&OK" ),this );
     QPushButton* cancel=new QPushButton ( tr ( "&Cancel" ),this );
