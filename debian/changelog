@@ -37,6 +37,20 @@ x2goclient (4.0.2.1-0x2go1) UNRELEASED; urgency=low
     - Windows: Enable PulseAudio log when --debug is passed.
     - Windows: Fix compatibility with current PulseAudio master branch
     - Windows: Reduce size of NSIS installer by switching to lzma solid compression
+    - Windows: cygwin packages (inluding patched OpenSSH 6.6.1p1-3) updated from
+      latest versions as of 2014-04-08 to latest versions as of 2014-06-09. This
+      includes openssl 1.0.1h-1, which fixes the 6 CVEs announced on 2014-06-05.
+      (Cygwin openssl was also individually updated to 1.0.1h-1 in
+      4.0.2.0+build4.) This also includes migrating from libjpeg to
+      libjpeg-turbo, which reduces CPU usage of nxproxy.)
+    - Windows: nx-libs-lite updated from 3.5.0.22 to 3.5.0.24
+      (linked against aforementioned cygwin package versions)
+    - Windows: Win32 OpenSSL updated from 1.0.1g to 1.0.1h, which fixes the 6
+      CVEs announced on 2014-06-05.
+      (Win32 OpenSSL was also updated to 1.0.1h in 4.0.2.0+build3.)
+    - Windows: VcXsrv (XP Compatible) updated from 1.14.3.1 to 1.14.3.2.
+      Fixes CVE-2014-0209, CVE-2014-0210, and CVE-2014-0211 
+      (VcXsrv was also updated to 1.14.3.2 in 4.0.2.0+build2.)
 
  -- Mike Gabriel <mike.gabriel@das-netzwerkteam.de>  Thu, 10 Apr 2014 18:30:25 +0200
 
