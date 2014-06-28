@@ -1106,7 +1106,10 @@ private:
     void initSelectSessDlg();
     void initStatusDlg();
     void initPassDlg();
-    void printSshDError();
+    void printSshDError_startupFailure();
+    void printSshDError_noHostPubKey();
+    void printSshDError_noExportPubKey();
+    void printSshDError_noAuthorizedKeysFile();
     void loadPulseModuleNativeProtocol();
     void initEmbedToolBar();
 #ifdef Q_OS_LINUX
