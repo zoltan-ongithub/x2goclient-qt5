@@ -11,6 +11,11 @@ x2goclient (4.0.2.1-0x2go1) UNRELEASED; urgency=low
       tray icon). (Fixes: #365).
     - Disallow server-side users to override X2Go Server commands via
       ~/bin (or similar). (Fixes: #336).
+    - Provide more meaningful messages on SSH errors (host pub key not
+      found, export pub key not found, authorized_keys file not found).
+      For SSHd startup failures provide different messages on Windows
+      and non-Windows machines. (Fixes: #235).
+      FIXME: add detection code to report SSH daemon startup failures.
   * debian/control:
     + Add dbg:package x2goplugin-dbg.
 

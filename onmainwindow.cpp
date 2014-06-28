@@ -7812,10 +7812,11 @@ QString ONMainWindow::createRSAKey()
         generateHostDsaKey();
         generateEtcFiles();
         startSshd();
+        /* FIXME: test successful SSH daemon startup */
         rsa.setFileName ( homeDir+"/.x2go/etc/ssh_host_dsa_key.pub" );
         rsa.open ( QIODevice::ReadOnly | QIODevice::Text );
 #else
-        printSshDError();
+        printSshDError_noHostPubKey();
         return QString::null;
 #endif
     }
@@ -7934,7 +7935,7 @@ void ONMainWindow::slotRetExportDir ( bool result,QString output,
     QFile file ( key+".pub" );
     if ( !file.open ( QIODevice::ReadOnly | QIODevice::Text ) )
     {
-        printSshDError();
+        printSshDError_noExportPubKey();
         QFile::remove
         ( key+".pub" );
         return;
@@ -7955,7 +7956,7 @@ void ONMainWindow::slotRetExportDir ( bool result,QString output,
     file.setFileName ( authofname );
     if ( !file.open ( QIODevice::ReadOnly | QIODevice::Text ) )
     {
-        printSshDError();
+        printSshDError_noAuthorizedKeysFile();
         QFile::remove
         ( key+".pub" );
         return;
@@ -9994,6 +9995,7 @@ void ONMainWindow::startSshd()
                      clientdir.c_str(), // Starting directory
                      &si,            // Pointer to STARTUPINFO structure
                      &sshd );// Pointer to PROCESS_INFORMATION structure
+    /* FIXME: test successful SSH daemon startup */
     delete []desktop;
     winSshdStarted=true;
 #else
@@ -10003,6 +10005,7 @@ void ONMainWindow::startSshd()
     arguments<<"-f"<<etcDir +"/sshd_config"<< "-h" <<
              etcDir+"/ssh_host_dsa_key"<<"-D"<<"-p"<<clientSshPort;
     sshd->start ( appDir+"/sshd",arguments );
+    /* FIXME: test successful SSH daemon startup */
     x2goDebug<<"Usermode sshd started.";
 
 #endif
@@ -11359,17 +11362,67 @@ void ONMainWindow::initSelectSessDlg()
 
 
 
-void ONMainWindow::printSshDError()
+void ONMainWindow::printSshDError_startupFailure()
+{
+#ifdef Q_OS_WIN
+    if ( closeEventSent )
+        return;
+    QMessageBox::critical ( 0l,tr ( "SSH Error" ),
+                            tr ( "SSH daemon could not be started.\n\n"
+
+                                 "You'll need SSH daemon for printing and file sharing.\n\n"
+
+                                 "Normally, this should not happen as X2Go Client for \n"
+                                 "Windows ships its internal sshd.exe.\n\n"
+
+                                 "If you see this message, please report a bug against\n"
+                                 "the X2Go bugtracker."
+                            ),
+                            QMessageBox::Ok,QMessageBox::NoButton );
+#else
+    if ( closeEventSent )
+        return;
+    QMessageBox::critical ( 0l,tr ( "SSH Error" ),
+                            tr ( "SSH daemon is not running.\n\n"
+
+                                 "You'll need SSH daemon for printing and file sharing\n\n"
+
+                                 "Please ask your system administrator to provide the SSH\n"
+                                 "service on your computer."
+                            ),
+                            QMessageBox::Ok,QMessageBox::NoButton );
+#endif
+}
+
+void ONMainWindow::printSshDError_noHostPubKey()
 {
     if ( closeEventSent )
         return;
-    QMessageBox::critical ( 0l,tr ( "Error" ),
-                            tr ( "sshd not started, "
-                                 "you'll need sshd for printing "
-                                 "and file sharing\n"
-                                 "you can install sshd with\n"
-                                 "<b>sudo apt-get install "
-                                 "openssh-server</b>" ),
+    QMessageBox::critical ( 0l,tr ( "SSH Error" ),
+                            tr ( "SSH daemon failed to open the application's public host key."
+                            ),
+                            QMessageBox::Ok,QMessageBox::NoButton );
+}
+
+void ONMainWindow::printSshDError_noExportPubKey()
+{
+    if ( closeEventSent )
+        return;
+    QMessageBox::critical ( 0l,tr ( "SSH Error" ),
+                            tr ( "SSH daemon failed to open the application's public key\n"
+                                 "used for exporting folders and printers."
+                            ),
+                            QMessageBox::Ok,QMessageBox::NoButton );
+}
+
+void ONMainWindow::printSshDError_noAuthorizedKeysFile()
+{
+    if ( closeEventSent )
+        return;
+    QMessageBox::critical ( 0l,tr ( "SSH Error" ),
+                            tr ( "SSH daemon failed to open the application's\n"
+                                 "authoized_keys file."
+                            ),
                             QMessageBox::Ok,QMessageBox::NoButton );
 }
 
