@@ -36,6 +36,7 @@ x2goclient (4.0.2.1-0x2go1) UNRELEASED; urgency=low
   * New upstream release (4.0.2.1):
     - Windows: Enable PulseAudio log when --debug is passed.
     - Windows: Fix compatibility with current PulseAudio master branch
+    - Windows: Reduce size of NSIS installer by switching to lzma solid compression
 
  -- Mike Gabriel <mike.gabriel@das-netzwerkteam.de>  Thu, 10 Apr 2014 18:30:25 +0200
 

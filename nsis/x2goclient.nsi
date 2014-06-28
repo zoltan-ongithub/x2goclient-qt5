@@ -19,6 +19,10 @@
   ;Default installation folder
   InstallDir "$PROGRAMFILES\x2goclient"
   
+  ;NSIS 2.46 defaults to zlib. Setting this reduces the size of a default
+  ;(no fonts) build by about 24%
+  SetCompressor /SOLID lzma  
+  
   ;Get installation folder from registry if available
   InstallDirRegKey HKLM "Software\x2goclient" ""
 
