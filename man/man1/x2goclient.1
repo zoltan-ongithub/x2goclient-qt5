@@ -17,7 +17,7 @@ x2goclient \- Client application to launch server-side X2Go sessions.
 .SH DESCRIPTION
 \fBx2goclient\fR is a GUI application for launching server-side X2Go sessions.
 .PP
-.SH OPTIONS
+.SH GUI OPTIONS
 \fBx2goclient\fR has the following options:
 .TP
 \*(T<\fB\-\-help-pack\fR\*(T>
@@ -43,13 +43,16 @@ to be shown in hidden X2Go Client mode.
 \*(T<\fB\-\-hide-foldersharing\fR\*(T>
 Hide all elements in X2Go Client GUI that are related to folder sharing.
 .TP
+\*(T<\fB\-\-close\-disconnect\fR\*(T>
+Close X2Go Client after a session got disconnected.
+.TP
 \*(T<\fB\-\-client-ssh-port\fR\*(T>
 Local ssh port (for filesystem export, default: 22).
+.SH PROFILING SESSIONS GLOBALLY
+You can pre-profile sessions globally using the following options. They will override the options in the session profiles.
 .TP
 \*(T<\fB\-\-user\fR\*(T>
 Pre-selection of user at client startup (LDAP mode).
-.SH PROFILING SESSIONS GLOBALLY
-You can pre-profile sessions globally using the following options. They will override the options in the session profiles.
 .TP
 \*(T<\fB\-\-command\fR\*(T>
 Default command for session startup.
