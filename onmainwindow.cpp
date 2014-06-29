@@ -117,6 +117,12 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
     resumeAfterSuspending=false;
     forceToShowTrayicon=false;
 
+    # Initialize at least these variables before they get filled via loadSettings()
+    # They have to be initialized as they are used in closeEvent() and closeClient()...
+    trayIcon=false;
+    useLdap=false;
+    trayNoClose=false;
+
     appSeparator=0;
     config.brokerNoAuth=false;
     config.brokerAutologin=false;
@@ -259,7 +265,7 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
     trayIconMenu=NULL;
     trayAutoHidden=false;
 
-    trayEnabled=trayMinToTray=trayNoclose=trayMinCon=trayMaxDiscon=false;
+    trayEnabled=trayMinToTray=trayMinCon=trayMaxDiscon=false;
 
     trayIconInit();
 

@@ -19,6 +19,8 @@ x2goclient (4.0.2.1-0x2go1) UNRELEASED; urgency=low
     - Add new cmdline option --hide-foldersharing. If used, all GUI
       elements related to exporting client-side folders to X2Go sessions
       get hidden. (Fixes: #514).
+    - Avoid unitialised variables on early calls of ONMainWindow::closeEvent()
+      or ONMainWindow::closeClient(). (Fixes: #253).
   * debian/control:
     + Add dbg:package x2goplugin-dbg.
 
