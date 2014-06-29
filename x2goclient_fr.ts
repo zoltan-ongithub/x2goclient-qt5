@@ -1141,10 +1141,6 @@ Unsaved documents will be lost</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Options</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Available pack methodes:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1300,12 +1296,6 @@ Please update to a newer x2goserver package</source>
     </message>
     <message>
         <source>Only my desktops</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>sshd not started, you&apos;ll need sshd for printing and file sharing
-you can install sshd with
-&lt;b&gt;sudo apt-get install openssh-server&lt;/b&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1470,6 +1460,65 @@ Do you want to terminate the connection?
     </message>
     <message>
         <source>Verification code:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Help</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pack Methodes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Option is not availabel in this build</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Changelog</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Git Info</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SSH Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SSH daemon could not be started.
+
+You&apos;ll need SSH daemon for printing and file sharing.
+
+Normally, this should not happen as X2Go Client for 
+Windows ships its internal sshd.exe.
+
+If you see this message, please report a bug against
+the X2Go bugtracker.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SSH daemon is not running.
+
+You&apos;ll need SSH daemon for printing and file sharing
+
+Please ask your system administrator to provide the SSH
+service on your computer.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SSH daemon failed to open the application&apos;s public host key.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SSH daemon failed to open the application&apos;s public key
+used for exporting folders and printers.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SSH daemon failed to open the application&apos;s
+authoized_keys file.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

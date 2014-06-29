@@ -1124,7 +1124,7 @@ Vil du avbryte tilkoblingen?
     </message>
     <message>
         <source>Options</source>
-        <translation>Alternativer</translation>
+        <translation type="obsolete">Alternativer</translation>
     </message>
     <message>
         <source>Can&apos;t read host rsa key:</source>
@@ -1588,7 +1588,7 @@ Vennligst sjekk din installasjon</translation>
         <source>sshd not started, you&apos;ll need sshd for printing and file sharing
 you can install sshd with
 &lt;b&gt;sudo apt-get install openssh-server&lt;/b&gt;</source>
-        <translation>sshd er ikke startet og du trenger denne for skriver- og fildeling.
+        <translation type="obsolete">sshd er ikke startet og du trenger denne for skriver- og fildeling.
 Du kan installere sshd med:
 &lt;b&gt;sudo apt-get install openssh-server&lt;/b&gt;</translation>
     </message>
@@ -1667,6 +1667,65 @@ Du kan installere sshd med:
     <message>
         <source>application/x2go:x2go:Configuration File for X2Go Session</source>
         <translation type="obsolete">application/x2go:x2go:Konfiguration Datei für eine X2Go Sitzung</translation>
+    </message>
+    <message>
+        <source>Help</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pack Methodes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Option is not availabel in this build</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Changelog</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Git Info</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SSH Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SSH daemon could not be started.
+
+You&apos;ll need SSH daemon for printing and file sharing.
+
+Normally, this should not happen as X2Go Client for 
+Windows ships its internal sshd.exe.
+
+If you see this message, please report a bug against
+the X2Go bugtracker.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SSH daemon is not running.
+
+You&apos;ll need SSH daemon for printing and file sharing
+
+Please ask your system administrator to provide the SSH
+service on your computer.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SSH daemon failed to open the application&apos;s public host key.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SSH daemon failed to open the application&apos;s public key
+used for exporting folders and printers.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SSH daemon failed to open the application&apos;s
+authoized_keys file.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
