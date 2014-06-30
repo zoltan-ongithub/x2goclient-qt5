@@ -2695,6 +2695,11 @@ Esimerkki:
         <translation type="unfinished">Ääni</translation>
     </message>
     <message>
+        <location filename="settingswidget.cpp" line="52"/>
+        <source>&amp;Clipboard Mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="settingswidget.cpp" line="66"/>
         <source>Fullscreen</source>
         <translation type="unfinished">Koko näyttö</translation>

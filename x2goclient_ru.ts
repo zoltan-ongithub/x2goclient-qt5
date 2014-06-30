@@ -3281,6 +3281,11 @@ Example:
         <translation>Звук</translation>
     </message>
     <message>
+        <location filename="settingswidget.cpp" line="52"/>
+        <source>&amp;Clipboard Mode</source>
+        <translation>&amp;Буффер Обмена</translation>
+    </message>
+    <message>
         <location filename="settingswidget.cpp" line="155"/>
         <source>Bidirectional copy and paste</source>
         <translation>Двусторонний буффер обмена</translation>

@@ -2750,6 +2750,11 @@ Example:
         <translation>Ljud</translation>
     </message>
     <message>
+        <location filename="settingswidget.cpp" line="52"/>
+        <source>&amp;Clipboard Mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="settingswidget.cpp" line="155"/>
         <source>Bidirectional copy and paste</source>
         <translation type="unfinished"></translation>
