@@ -120,9 +120,9 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
     /* Initialize at least these variables before they get filled via loadSettings()
      * They have to be initialized as they are used in closeEvent() and closeClient()...
      */
-    trayIcon=false;
+    trayIcon=NULL;
     useLdap=false;
-    trayNoClose=false;
+    trayNoclose=false;
 
     appSeparator=0;
     config.brokerNoAuth=false;
@@ -262,7 +262,6 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
 
     loadSettings();
     trayIconActiveConnectionMenu = NULL;
-    trayIcon = NULL;
     trayIconMenu=NULL;
     trayAutoHidden=false;
 
