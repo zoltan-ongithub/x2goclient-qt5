@@ -1521,6 +1521,10 @@ used for exporting folders and printers.</source>
 authoized_keys file.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>wrong value for argument&quot;--clipboard&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PrintDialog</name>
@@ -2115,6 +2119,26 @@ sound system connections through firewalls</source>
     </message>
     <message>
         <source>Variant: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Clipboard Mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Bidirectional copy and paste</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copy and paste from client to server</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copy and paste from server to client</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Disable clipboard completely</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
