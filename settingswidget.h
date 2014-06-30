@@ -98,11 +98,6 @@ private:
     QList <QMainWindow*> identWins;
     QGroupBox *kgb;
     QGroupBox *sbgr;
-    QGroupBox *clipGr;
-    QRadioButton *rbClipBoth;
-    QRadioButton *rbClipServer;
-    QRadioButton *rbClipClient;
-    QRadioButton *rbClipNone;
 
 #ifdef Q_OS_LINUX
     QGroupBox *rdpBox;

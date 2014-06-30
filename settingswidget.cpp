@@ -49,13 +49,11 @@ SettingsWidget::SettingsWidget ( QString id, ONMainWindow * mw,
     tabSettings->addTab ( sbgr,tr ( "Sound" ) );
 #else
     QGroupBox *dgb=new QGroupBox ( tr ( "&Display" ),this );
-    clipGr=new QGroupBox ( tr ( "&Clipboard Mode" ),this );
     kgb=new QGroupBox ( tr ( "&Keyboard" ),this );
     sbgr=new QGroupBox ( tr ( "Sound" ),this );
 #endif
     QVBoxLayout *dbLay = new QVBoxLayout ( dgb );
-    QVBoxLayout *sndLay=new QVBoxLayout ( sbgr );
-    QVBoxLayout *cbLay=new QVBoxLayout ( clipGr );
+    QVBoxLayout  *sndLay=new QVBoxLayout ( sbgr );
     QHBoxLayout* sLay=new QHBoxLayout ( );
     QVBoxLayout* sLay_sys=new QVBoxLayout ( );
     QVBoxLayout* sLay_opt=new QVBoxLayout ( );
@@ -152,20 +150,6 @@ SettingsWidget::SettingsWidget ( QString id, ONMainWindow * mw,
 #endif
 
 
-    rbClipBoth=new QRadioButton(tr("Bidirectional copy and paste"), clipGr);
-    rbClipClient=new QRadioButton(tr("Copy and paste from client to server"), clipGr);
-    rbClipServer=new QRadioButton(tr("Copy and paste from server to client"), clipGr);
-    rbClipNone=new QRadioButton(tr("Disable clipboard completely"), clipGr);
-    cbLay->addWidget(rbClipBoth);
-    cbLay->addWidget(rbClipClient);
-    cbLay->addWidget(rbClipServer);
-    cbLay->addWidget(rbClipNone);
-    QButtonGroup* clipRadioGroup=new QButtonGroup(clipGr);
-    clipRadioGroup->addButton(rbClipBoth);
-    clipRadioGroup->addButton(rbClipClient);
-    clipRadioGroup->addButton(rbClipServer);
-    clipRadioGroup->addButton(rbClipNone);
-
 
     rbKbdAuto=new QRadioButton(tr("Auto detect keyboard settings"),kgb);
     rbKbdNoSet=new QRadioButton(tr("Do not configure keyboard"),kgb);
@@ -256,7 +240,6 @@ SettingsWidget::SettingsWidget ( QString id, ONMainWindow * mw,
 #endif
 #ifndef Q_WS_HILDON
     setLay->addWidget ( dgb );
-    setLay->addWidget ( clipGr );
     setLay->addWidget ( kgb );
     setLay->addWidget ( sbgr );
 #ifdef Q_OS_LINUX
@@ -347,7 +330,6 @@ void SettingsWidget::slot_kbdClicked()
 void SettingsWidget::setDirectRdp(bool direct)
 {
     cbClientPrint->setVisible(!direct);
-    clipGr->setVisible(!direct);
     kgb->setVisible(!direct);
     sbgr->setVisible(!direct);
     cbSetDPI->setVisible(!direct);
@@ -586,26 +568,6 @@ void SettingsWidget::readConfig()
         st.setting()->value ( sessionId+"/dpi",
                               ( QVariant ) mainWindow->getDefaultDPI() ).toUInt() );
 
-    QString clipboard=st.setting()->value ( sessionId+"/clipboard",
-                                            ( QVariant ) mainWindow->getDefaultClipboardMode()
-                                          ).toString();
-    if(clipboard =="both")
-    {
-        rbClipBoth->setChecked(true);
-    }
-    if(clipboard =="client")
-    {
-        rbClipClient->setChecked(true);
-    }
-    if(clipboard =="server")
-    {
-        rbClipServer->setChecked(true);
-    }
-    if(clipboard =="none")
-    {
-        rbClipNone->setChecked(true);
-    }
-
     QString ktype=st.setting()->value ( sessionId+"/type",
                                         ( QVariant ) mainWindow->getDefaultKbdType()
                                       ).toString();
@@ -713,8 +675,6 @@ void SettingsWidget::setDefaults()
     DPI->setValue ( mainWindow->getDefaultDPI() );
     DPI->setEnabled ( mainWindow->getDefaultSetDPI() );
 
-    rbClipBoth->setChecked(true);
-
     rbKbdAuto->setChecked ( mainWindow->getDefaultSetKbd() );
     rbKbdNoSet->setChecked ( !mainWindow->getDefaultSetKbd() );
     rbKbdSet->setChecked (false );
@@ -791,19 +751,6 @@ void SettingsWidget::saveSettings()
                              ( QVariant ) cbSetDPI->isChecked() );
     st.setting()->setValue ( sessionId+"/xinerama",
                              ( QVariant ) cbXinerama->isChecked() );
-
-    QString clipMode;
-    if(rbClipBoth->isChecked())
-        clipMode="both";
-    if(rbClipClient->isChecked())
-        clipMode="client";
-    if(rbClipServer->isChecked())
-        clipMode="server";
-    if(rbClipNone->isChecked())
-        clipMode="none";
-    st.setting()->setValue ( sessionId+"/clipboard",
-                             ( QVariant ) clipMode );
-
 
     st.setting()->setValue ( sessionId+"/usekbd",
                              ( QVariant ) !rbKbdNoSet->isChecked() );

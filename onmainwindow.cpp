@@ -102,7 +102,6 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
     defaultPack="16m-jpeg";
     defaultQuality=9;
     defaultLayout<<tr ( "us" );
-    defaultClipboardMode="both";
     defaultKbdType="auto";
     defaultCmd="KDE";
     defaultSshPort=sshPort=clientSshPort="22";
@@ -3716,7 +3715,6 @@ void ONMainWindow::startNewSession()
     QString layout;
     QString type;
     QString command;
-    QString clipMode=defaultClipboardMode;
     QString xdmcpServer;
     runRemoteCommand=true;
     QString host=QString::null;
@@ -3812,9 +3810,6 @@ void ONMainWindow::startNewSession()
                     ( QVariant ) defaultQuality ).toInt();
         speed=st->setting()->value ( sid+"/speed",
                                      ( QVariant ) defaultLink ).toInt();
-
-        clipMode=st->setting()->value ( sid+"/clipboard",
-                                        ( QVariant ) defaultClipboardMode ).toString();
 
         usekbd=st->setting()->value ( sid+"/usekbd",
                                       ( QVariant ) defaultSetKbd ).toBool();
@@ -4045,9 +4040,7 @@ void ONMainWindow::startNewSession()
         cmd+=sessTypeStr+QString::number ( shadowMode ) +"XSHAD"+
              shadowUser+"XSHAD"+shadowDisplay;
     }
-
     resumingSession.fullscreen=fullscreen;
-    cmd+=" "+clipMode;
 
     x2goDebug<<"Executing remote command: "<<cmd;
 
@@ -4074,8 +4067,6 @@ void ONMainWindow::resumeSession ( const x2goSession& s )
     QString user=getCurrentUname();
     QString host=s.server;
     bool rootless=false;
-
-    QString clipMode=defaultClipboardMode;
 
     QString pack;
     bool fullscreen;
@@ -4138,10 +4129,6 @@ void ONMainWindow::resumeSession ( const x2goSession& s )
                                        defaultQuality ).toInt();
         speed=st->setting()->value ( sid+"/speed",
                                      ( QVariant ) defaultLink ).toInt();
-
-        clipMode=st->setting()->value ( sid+"/clipboard",
-                                        ( QVariant ) defaultClipboardMode ).toString();
-
         usekbd=st->setting()->value ( sid+"/usekbd",
                                       ( QVariant ) defaultSetKbd ).toBool();
         layout=st->setting()->value ( sid+"/layout",
@@ -4302,7 +4289,6 @@ void ONMainWindow::resumeSession ( const x2goSession& s )
         cmd += "1";
     else
         cmd += "0";
-    cmd +=" "+clipMode;
 
     sshConnection->executeCommand ( cmd, this,  SLOT ( slotRetResumeSess ( bool, QString,
                                     int ) ));
@@ -6807,10 +6793,6 @@ bool ONMainWindow::parseParameter ( QString param )
     {
         return linkParameter ( value );
     }
-    if ( setting=="--clipboard" )
-    {
-        return clipboardParameter ( value );
-    }
     if ( setting=="--sound" )
     {
         return soundParameter ( value );
@@ -7065,28 +7047,13 @@ bool ONMainWindow::linkParameter ( QString value )
         defaultLink=LAN;
     else
     {
-        printError( tr (
-                        "wrong value for argument\"--link\""
-                    ).toLocal8Bit().data() );
+        qCritical (
+            "%s",tr (
+                "wrong value for argument\"--link\""
+            ).toLocal8Bit().data() );
         return false;
     }
     return true;
-}
-
-bool ONMainWindow::clipboardParameter ( QString value )
-{
-    if ( value=="both"  || value=="client" || value=="server"||value == "none")
-    {
-        defaultClipboardMode=value;
-        return true;
-    }
-    else
-    {
-        printError( tr (
-                        "wrong value for argument\"--clipboard\""
-                    ).toLocal8Bit().data() );
-        return false;
-    }
 
 }
 
@@ -7098,8 +7065,9 @@ bool ONMainWindow::soundParameter ( QString val )
         defaultUseSound=false;
     else
     {
-        printError( tr ( "wrong value for "
-                         "argument\"--sound\"" ).toLocal8Bit().data() );
+        qCritical (
+            "%s",tr ( "wrong value for "
+                      "argument\"--sound\"" ).toLocal8Bit().data() );
         return false;
     }
     return true;
@@ -7114,9 +7082,10 @@ bool ONMainWindow::geometry_par ( QString val )
         QStringList res=val.split ( "x" );
         if ( res.size() !=2 )
         {
-            printError( tr (
-                            "wrong value for argument\"--geometry\"" ).
-                        toLocal8Bit().data() );
+            qCritical (
+                "%s",tr (
+                    "wrong value for argument\"--geometry\"" ).
+                toLocal8Bit().data() );
             return false;
         }
         bool o1,o2;
@@ -7124,9 +7093,10 @@ bool ONMainWindow::geometry_par ( QString val )
         defaultHeight=res[1].toInt ( &o2 );
         if ( ! ( defaultWidth >0 && defaultHeight >0 && o1 && o2 ) )
         {
-            printError( tr (
-                            "wrong value for argument\"--geometry\"" ).
-                        toLocal8Bit().data() );
+            qCritical (
+                "%s",tr (
+                    "wrong value for argument\"--geometry\"" ).
+                toLocal8Bit().data() );
             return false;
         }
     }
@@ -7141,9 +7111,10 @@ bool ONMainWindow::setKbd_par ( QString val )
         defaultSetKbd=false;
     else
     {
-        printError( tr (
-                        "wrong value for argument\"--set-kbd\"" ).
-                    toLocal8Bit().data() );
+        qCritical (
+            "%s",tr (
+                "wrong value for argument\"--set-kbd\"" ).
+            toLocal8Bit().data() );
         return false;
     }
     return true;
@@ -7157,9 +7128,10 @@ bool ONMainWindow::ldapParameter ( QString val )
     QStringList lst=ldapstring.split ( ':',QString::SkipEmptyParts );
     if ( lst.size() !=3 )
     {
-        printError( tr (
-                        "wrong value for argument\"--ldap\"" ).
-                    toLocal8Bit().data() );
+        qCritical (
+            "%s",tr (
+                "wrong value for argument\"--ldap\"" ).
+            toLocal8Bit().data() );
         return false;
     }
     ldapOnly=true;
@@ -7178,9 +7150,10 @@ bool ONMainWindow::ldap1Parameter ( QString val )
     QStringList lst=ldapstring.split ( ':',QString::SkipEmptyParts );
     if ( lst.size() !=2 )
     {
-        printError( tr (
-                        "wrong value for argument\"--ldap1\"" ).
-                    toLocal8Bit().data() );
+        qCritical (
+            "%s",tr (
+                "wrong value for argument\"--ldap1\"" ).
+            toLocal8Bit().data() );
         return false;
     }
     ldapServer1=lst[0];
@@ -7196,10 +7169,10 @@ bool ONMainWindow::ldap2Parameter ( QString val )
     QStringList lst=ldapstring.split ( ':',QString::SkipEmptyParts );
     if ( lst.size() !=2 )
     {
-        printError(
-            tr (
-                "wrong value for argument\"--ldap2\"" ).
-            toLocal8Bit().data() );
+        qCritical ( "%s",
+                    tr (
+                        "wrong value for argument\"--ldap2\"" ).
+                    toLocal8Bit().data() );
         return false;
     }
     ldapServer2=lst[0];
@@ -7251,7 +7224,8 @@ bool ONMainWindow::packParameter ( QString val )
         }
     }
     file.close();
-    printError ( tr("wrong value for argument\"--pack\"" ));
+    qCritical ( "%s",tr ( "wrong value for argument\"--pack\"" ).
+                toLocal8Bit().data() );
     return false;
 }
 
@@ -7325,8 +7299,6 @@ void ONMainWindow::showHelp()
         "default 'adsl'\n"
         "--pack=<packmethod>\t\t set default pack method, default "
         "'16m-jpeg-9'\n"
-        "--clipboard=<both|client|server|none>\t set default clipboard mode, "
-        "default 'both'\n"
         "--kbd-layout=<layout>\t\t set default keyboard layout or layouts\n"
         "\t\t\t\t comma separated\n"
         "--kbd-type=<typed>\t\t set default keyboard type\n"
@@ -7336,7 +7308,7 @@ void ONMainWindow::showHelp()
         "applications\" mode\n"
         "--session-conf=<file>\t\t path to alternative session config\n"
         "--tray-icon\t\t\t force to show session trayicon\n"
-        "--close-disconnect\t\t close X2Go Client after disconnect\n"
+        "--close-disconnect\t\t close X2Go Client after disconnect\n";
         "--hide-foldersharing\t\t\t hide all folder sharing related options\n";
 
     qCritical ( "%s",helpMsg.toLocal8Bit().data() );
@@ -11420,7 +11392,7 @@ void ONMainWindow::printSshDError_startupFailure()
 
                                  "If you see this message, please report a bug against\n"
                                  "the X2Go bugtracker."
-                               ),
+                            ),
                             QMessageBox::Ok,QMessageBox::NoButton );
 #else
     if ( closeEventSent )
@@ -11432,7 +11404,7 @@ void ONMainWindow::printSshDError_startupFailure()
 
                                  "Please ask your system administrator to provide the SSH\n"
                                  "service on your computer."
-                               ),
+                            ),
                             QMessageBox::Ok,QMessageBox::NoButton );
 #endif
 }
@@ -11443,7 +11415,7 @@ void ONMainWindow::printSshDError_noHostPubKey()
         return;
     QMessageBox::critical ( 0l,tr ( "SSH Error" ),
                             tr ( "SSH daemon failed to open the application's public host key."
-                               ),
+                            ),
                             QMessageBox::Ok,QMessageBox::NoButton );
 }
 
@@ -11454,7 +11426,7 @@ void ONMainWindow::printSshDError_noExportPubKey()
     QMessageBox::critical ( 0l,tr ( "SSH Error" ),
                             tr ( "SSH daemon failed to open the application's public key\n"
                                  "used for exporting folders and printers."
-                               ),
+                            ),
                             QMessageBox::Ok,QMessageBox::NoButton );
 }
 
@@ -11465,7 +11437,7 @@ void ONMainWindow::printSshDError_noAuthorizedKeysFile()
     QMessageBox::critical ( 0l,tr ( "SSH Error" ),
                             tr ( "SSH daemon failed to open the application's\n"
                                  "authoized_keys file."
-                               ),
+                            ),
                             QMessageBox::Ok,QMessageBox::NoButton );
 }
 
