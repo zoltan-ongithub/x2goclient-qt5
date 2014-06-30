@@ -117,8 +117,9 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
     resumeAfterSuspending=false;
     forceToShowTrayicon=false;
 
-    # Initialize at least these variables before they get filled via loadSettings()
-    # They have to be initialized as they are used in closeEvent() and closeClient()...
+    /* Initialize at least these variables before they get filled via loadSettings()
+     * They have to be initialized as they are used in closeEvent() and closeClient()...
+     */
     trayIcon=false;
     useLdap=false;
     trayNoClose=false;
