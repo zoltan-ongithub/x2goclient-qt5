@@ -45,6 +45,9 @@ x2goclient (4.0.2.1-0x2go1) UNRELEASED; urgency=low
       enabled.
     - Fork x2goclient on windows and terminate child processes if x2go client
       crashed. (Fixes: #159).
+    - Add "clipboard" parameter to session profile and to command line options.
+      (Fixes: #258).
+    - Replace qCritical() with printError() by argument parsing.
     - Update translation files.
     - Update russian translation.
     - Update string "&Clipboard Mode" and translate in russian translation file.
