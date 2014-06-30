@@ -424,6 +424,10 @@ public:
     {
         return defaultSshPort;
     }
+    QString getDefaultClipboardMode()
+    {
+        return defaultClipboardMode;
+    }
     QString getDefaultKbdType()
     {
         return defaultKbdType;
@@ -598,6 +602,7 @@ private:
     QStringList defaultLayout;
     QString selectedLayout;
     QString defaultKbdType;
+    QString defaultClipboardMode;
     QString defaultCmd;
     bool defaultSetDPI;
     uint defaultDPI;
@@ -887,6 +892,7 @@ private:
     x2goSession getSelectedSession();
     bool parseParameter ( QString param );
     bool linkParameter ( QString value );
+    bool clipboardParameter ( QString value );
     bool geometry_par ( QString value );
     bool setKbd_par ( QString value );
     bool ldapParameter ( QString value );
