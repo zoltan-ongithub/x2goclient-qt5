@@ -1005,7 +1005,7 @@ sound system connections through firewalls</source>
     <message>
         <location filename="helpdialog.ui" line="14"/>
         <source>Options</source>
-        <translation type="unfinished">Опции</translation>
+        <translation>Опции</translation>
     </message>
 </context>
 <context>
@@ -1065,7 +1065,7 @@ Public key hash: </translation>
     <message>
         <location filename="httpbrokerclient.cpp" line="203"/>
         <source>Verification code:</source>
-        <translation type="unfinished">Код проверки:</translation>
+        <translation>Код проверки:</translation>
     </message>
     <message>
         <location filename="httpbrokerclient.cpp" line="207"/>
@@ -1263,7 +1263,7 @@ Public key hash: </translation>
         <location filename="onmainwindow.cpp" line="11454"/>
         <location filename="onmainwindow.cpp" line="11465"/>
         <source>SSH Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Ошибка SSH</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="11414"/>
@@ -1276,7 +1276,14 @@ Windows ships its internal sshd.exe.
 
 If you see this message, please report a bug against
 the X2Go bugtracker.</source>
-        <translation type="unfinished"></translation>
+        <translation>Не удается запустить сервер SSH.
+
+Сервер SSH нужен для печати и экспорта ФС.
+
+Это не должно было случиться, поскольку X2Go Client
+обладает внутренним сервером SSH
+
+Если вы видите это сообщение, пожалуйста сообщите об ошибке.</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="11429"/>
@@ -1286,24 +1293,28 @@ You&apos;ll need SSH daemon for printing and file sharing
 
 Please ask your system administrator to provide the SSH
 service on your computer.</source>
-        <translation type="unfinished"></translation>
+        <translation>Сервер SSH не обнаружен.
+
+Сервер SSH необходим для печати и экспорта ФС
+
+Пожалуйста обратитесь к системному администратору за установкой сервера SSH.</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="11445"/>
         <source>SSH daemon failed to open the application&apos;s public host key.</source>
-        <translation type="unfinished"></translation>
+        <translation>Серверу SSH не удалось открыть &quot;public host key&quot; приложения.</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="11455"/>
         <source>SSH daemon failed to open the application&apos;s public key
 used for exporting folders and printers.</source>
-        <translation type="unfinished"></translation>
+        <translation>Серверу SSH не удалось открыть &quot;public host key&quot; приложения используемый для экспорта ФС и принтеров.</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="11466"/>
         <source>SSH daemon failed to open the application&apos;s
 authoized_keys file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Серверу SSH не удалось открыть &quot;authorized_keys&quot; файл приложения.</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="11536"/>
@@ -1427,7 +1438,7 @@ Do you want to terminate the connection?
     <message>
         <location filename="onmainwindow.cpp" line="7085"/>
         <source>wrong value for argument&quot;--clipboard&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>неверное значение для параметра &quot;--clipboard&quot;</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="7263"/>
@@ -1439,28 +1450,28 @@ Do you want to terminate the connection?
     <message>
         <location filename="onmainwindow.cpp" line="7346"/>
         <source>Help</source>
-        <translation type="unfinished"></translation>
+        <translation>Помощь</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="7376"/>
         <source>Pack Methodes</source>
-        <translation type="unfinished"></translation>
+        <translation>Методы сжатия</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="7406"/>
         <location filename="onmainwindow.cpp" line="7416"/>
         <source>Option is not availabel in this build</source>
-        <translation type="unfinished"></translation>
+        <translation>Опция недоступна в этой сборке</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="7409"/>
         <source>Changelog</source>
-        <translation type="unfinished"></translation>
+        <translation>Изменения</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="7419"/>
         <source>Git Info</source>
-        <translation type="unfinished"></translation>
+        <translation>Информация Git</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="7872"/>
@@ -3272,22 +3283,22 @@ Example:
     <message>
         <location filename="settingswidget.cpp" line="155"/>
         <source>Bidirectional copy and paste</source>
-        <translation type="unfinished"></translation>
+        <translation>Двусторонний буффер обмена</translation>
     </message>
     <message>
         <location filename="settingswidget.cpp" line="156"/>
         <source>Copy and paste from client to server</source>
-        <translation type="unfinished"></translation>
+        <translation>Копирование и вставка с сервера на клиент</translation>
     </message>
     <message>
         <location filename="settingswidget.cpp" line="157"/>
         <source>Copy and paste from server to client</source>
-        <translation type="unfinished"></translation>
+        <translation>Копирование и вставка с клиента на сервер</translation>
     </message>
     <message>
         <location filename="settingswidget.cpp" line="158"/>
         <source>Disable clipboard completely</source>
-        <translation type="unfinished"></translation>
+        <translation>Деактивировать буффер обмена</translation>
     </message>
     <message>
         <location filename="settingswidget.cpp" line="170"/>
