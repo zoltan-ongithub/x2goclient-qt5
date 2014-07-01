@@ -3283,12 +3283,12 @@ Example:
     <message>
         <location filename="settingswidget.cpp" line="52"/>
         <source>&amp;Clipboard Mode</source>
-        <translation>&amp;Буффер Обмена</translation>
+        <translation>&amp;Буфер Обмена</translation>
     </message>
     <message>
         <location filename="settingswidget.cpp" line="155"/>
         <source>Bidirectional copy and paste</source>
-        <translation>Двусторонний буффер обмена</translation>
+        <translation>Двусторонний буфер обмена</translation>
     </message>
     <message>
         <location filename="settingswidget.cpp" line="156"/>
@@ -3303,7 +3303,7 @@ Example:
     <message>
         <location filename="settingswidget.cpp" line="158"/>
         <source>Disable clipboard completely</source>
-        <translation>Деактивировать буффер обмена</translation>
+        <translation>Деактивировать буфер обмена</translation>
     </message>
     <message>
         <location filename="settingswidget.cpp" line="170"/>

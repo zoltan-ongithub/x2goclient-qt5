@@ -51,6 +51,7 @@ x2goclient (4.0.2.1-0x2go1) UNRELEASED; urgency=low
     - Update translation files.
     - Update russian translation.
     - Update string "&Clipboard Mode" and translate in russian translation file.
+    - Grammar fix in russian translation.
 
   [ Mike DePaulo ]
   * New upstream release (4.0.2.1):
