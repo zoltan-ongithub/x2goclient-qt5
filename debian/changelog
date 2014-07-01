@@ -64,7 +64,7 @@ x2goclient (4.0.2.1-0x2go1) UNRELEASED; urgency=low
       (Cygwin openssl was also individually updated to 1.0.1h-1 in
       4.0.2.0+build4.) This also includes migrating from libjpeg to
       libjpeg-turbo, which reduces CPU usage of nxproxy.)
-    - Windows: nx-libs-lite updated from 3.5.0.22 to 3.5.0.24
+    - Windows: nx-libs-lite updated from 3.5.0.22 to 3.5.0.27
       (linked against aforementioned cygwin package versions)
     - Windows: Win32 OpenSSL updated from 1.0.1g to 1.0.1h, which fixes the 6
       CVEs announced on 2014-06-05.
