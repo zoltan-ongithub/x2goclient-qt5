@@ -52,6 +52,7 @@ x2goclient (4.0.2.1-0x2go1) UNRELEASED; urgency=low
     - Update russian translation.
     - Update string "&Clipboard Mode" and translate in russian translation file.
     - Grammar fix in russian translation.
+    - Fix "fullscreen" mode on Windows 7 with several monitors.
 
   [ Mike DePaulo ]
   * New upstream release (4.0.2.1):

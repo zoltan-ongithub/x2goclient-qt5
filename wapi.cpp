@@ -30,24 +30,26 @@
 
 long wapiSetFSWindow ( HWND hWnd, const QRect& desktopGeometry )
 {
-    long style=GetWindowLong ( hWnd,GWL_STYLE );
-    SetWindowPos ( hWnd, HWND_TOP, desktopGeometry.x(),
+    SetWindowLong(hWnd, GWL_STYLE,
+                  WS_VISIBLE);
+    SetWindowLong(hWnd, GWL_EXSTYLE,
+                  0);
+    SetWindowPos ( hWnd, HWND_TOPMOST, desktopGeometry.x(),
                    desktopGeometry.y(),
                    desktopGeometry.width(),
                    desktopGeometry.height(),
-                   SWP_FRAMECHANGED );
-    SetWindowLong ( hWnd, GWL_STYLE,
-                    WS_VISIBLE | WS_SYSMENU |
-                    WS_CLIPCHILDREN | WS_CLIPSIBLINGS );
-
-    SetWindowPos ( hWnd, HWND_TOP, desktopGeometry.x(),
+                   0);
+    Sleep(2000);
+    SetWindowLong(hWnd, GWL_STYLE,
+                  WS_VISIBLE);
+    SetWindowLong(hWnd, GWL_EXSTYLE,
+                  0);
+    SetWindowPos ( hWnd, HWND_TOPMOST, desktopGeometry.x(),
                    desktopGeometry.y(),
                    desktopGeometry.width(),
                    desktopGeometry.height(),
-                   SWP_FRAMECHANGED );
-
-    SetForegroundWindow ( hWnd );
-    return style;
+                   SWP_NOSIZE);
+    return WS_VISIBLE;
 }
 
 void wapiRestoreWindow( HWND hWnd, long style, const QRect& desktopGeometry )
