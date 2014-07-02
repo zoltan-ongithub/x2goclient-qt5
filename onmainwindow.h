@@ -47,6 +47,7 @@
 
 #ifdef Q_OS_WIN
 #include <windows.h>
+#include <QSysInfo>
 #endif
 /**
 @author Oleksandr Shneyder

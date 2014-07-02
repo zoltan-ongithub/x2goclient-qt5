@@ -9836,6 +9836,24 @@ void ONMainWindow::startPulsed()
     pulseArgs<<"--exit-idle-time=-1"<<"-n"<<"-F"<<pulseDir+"\\config.pa";
     if (debugging)
         pulseArgs<<"--log-level=debug"<<"--verbose"<<"--log-target=file:"+pulseDir+"\\pulse.log";
+    /*
+    Fix for x2goclient bug #526.
+    Works Around PulseAudio bug #80772.
+    Tested with PulseAudio 5.0.
+    This argument will not cause PulseAudio 0.9.6 or 1.1 (the legacy versions)
+    to fail to launch.
+    However, 0.9.6 defaults to normal priority anyway,
+    and 1.1 ignores it for some reason.
+    So yes, the fact that 1.1 ignores it would be a bug in x2goclient if we
+    ever ship 1.1 again.
+    */
+    if (QSysInfo::WindowsVersion == QSysInfo::WV_XP ||
+        QSysInfo::WindowsVersion == QSysInfo::WV_2003 )
+    {
+        x2goDebug<<"Windows XP or Server 2003 (R2) detected.";
+        x2goDebug<<"Setting PulseAudio to \"Normal\" CPU priority.";
+            pulseArgs<<"--high-priority=no";
+    }
 #else
     pulseArgs<<"--exit-idle-time=-1"<<"-n"<<"-F"<<pulseDir+"/config.pa";
 #endif

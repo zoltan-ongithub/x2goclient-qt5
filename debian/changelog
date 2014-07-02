@@ -55,6 +55,9 @@ x2goclient (4.0.2.1-0x2go1) UNRELEASED; urgency=low
 
   [ Mike DePaulo ]
   * New upstream release (4.0.2.1):
+    - Windows: Prevent high PulseAudio CPU usage on Windows XP by lowering
+      PulseAudio's CPU priority from "high" to "normal" on XP specifically.
+      Also do so on Windows Server 2003 (R2) (Fixes #526)
     - Windows: Enable PulseAudio log when --debug is passed.
     - Windows: Fix compatibility with current PulseAudio master branch
     - Windows: Reduce size of NSIS installer by switching to lzma solid compression
