@@ -78,7 +78,7 @@ x2goclient (4.0.2.1-0x2go1) UNRELEASED; urgency=low
     - Windows: VcXsrv (XP Compatible) updated from 1.14.3.1 to 1.14.3.2.
       Fixes CVE-2014-0209, CVE-2014-0210, and CVE-2014-0211 
       (VcXsrv was also updated to 1.14.3.2 in 4.0.2.0+build2.)
-    - Windows: Switch from regular NSIS 2.46 to NSIS Unicode 2.46.5
+    - Windows: Switch from regular NSIS 2.46 to Unicode NSIS 2.46.5
       (Fixes: #528)
 
  -- Mike Gabriel <mike.gabriel@das-netzwerkteam.de>  Thu, 10 Apr 2014 18:30:25 +0200
