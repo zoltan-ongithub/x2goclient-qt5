@@ -56,12 +56,19 @@ x2goclient (4.0.2.1-0x2go1) UNRELEASED; urgency=low
 
   [ Mike DePaulo ]
   * New upstream release (4.0.2.1):
+    - Windows: Install VcXsrv "misc" fonts by default, and make all 4 font
+      groups optional: misc, 75dpi, 100dpi and others (Fixes: #108)
+      Note: The fact that all the fonts are included makes the installer about
+      30MB larger. (See next comment, it would be even larger.)
+    - Windows: Reduce the new size of NSIS installer by several MB
+      by switching to lzma solid compression
+    - Windows: Make the desktop shortcut optional during install,
+      but still the default.
     - Windows: Prevent high PulseAudio CPU usage on Windows XP by lowering
       PulseAudio's CPU priority from "high" to "normal" on XP specifically.
       Also do so on Windows Server 2003 (R2) (Fixes #526)
     - Windows: Enable PulseAudio log when --debug is passed.
     - Windows: Fix compatibility with current PulseAudio master branch
-    - Windows: Reduce size of NSIS installer by switching to lzma solid compression
     - Windows: cygwin packages (inluding patched OpenSSH 6.6.1p1-3) updated from
       latest versions as of 2014-04-08 to latest versions as of 2014-06-09. This
       includes openssl 1.0.1h-1, which fixes the 6 CVEs announced on 2014-06-05.

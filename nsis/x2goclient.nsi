@@ -5,6 +5,7 @@
 
 !include "MUI.nsh"
 !include "FileFunc.nsh"
+!include "Sections.nsh"
 !insertmacro Locate
 ;--------------------------------
 ;General
@@ -65,6 +66,7 @@ SectionEnd
 ;Pages
 
   !insertmacro MUI_PAGE_LICENSE "gpl.txt"
+  !insertmacro MUI_PAGE_COMPONENTS
   !insertmacro MUI_PAGE_DIRECTORY
   !define MUI_STARTMENUPAGE_DEFAULTFOLDER "X2Go Client for Windows"
   !define MUI_STARTMENUPAGE_REGISTRY_ROOT "HKLM"
@@ -95,7 +97,13 @@ SectionEnd
 
 ;--------------------------------
 ;Installer Sections
-Section "x2goclient" Section1
+
+;"Recommended" is the default because it is specified 1st.
+InstType "Recommended"
+InstType "Full"
+InstType "Minimal"
+
+Section "X2Go Client (required)" base
 
   SetShellVarContext all 
   SectionIn RO
@@ -103,7 +111,7 @@ Section "x2goclient" Section1
   SetOutPath "$INSTDIR"
   File /a "x2goclient\*.*"
   File /r "x2goclient\pulse"
-  File /r "x2goclient\VcXsrv"
+  File /r /x "fonts" "x2goclient\VcXsrv" 
   
   ;Store installation folder
   WriteRegStr HKLM "Software\x2goclient" "" $INSTDIR
@@ -115,7 +123,6 @@ Section "x2goclient" Section1
   CreateShortCut "$SMPROGRAMS\$STARTMENU_FOLDER\Uninstall.lnk" "$INSTDIR\Uninstall.exe"
   CreateShortCut "$INSTDIR\X2Go Client.lnk" "$INSTDIR\x2goclient.exe"
   CreateShortCut "$SMPROGRAMS\$STARTMENU_FOLDER\X2Go Client.lnk" "$INSTDIR\x2goclient.exe"
-  CreateShortCut "$DESKTOP\X2Go Client.lnk" "$INSTDIR\x2goclient.exe"
 
   ;Cleanup previous icon names (prior to X2Go Client 4.0.1.2)
   Delete "$INSTDIR\X2goClient.lnk"
@@ -140,7 +147,64 @@ Section "x2goclient" Section1
   
 SectionEnd
 
-Section EstimatedSize
+;x2goclient bug 108 fix
+SectionGroup "Fonts"
+
+  ;Empirical testing shows that "misc" fixes compatibility for the majority
+  ;of applications with font compatibility programs.
+  ;So lets make "misc" be part of "recommended", and therefore the default.
+  ;
+  ;As of VcXsrv-xp 1.14.3.2
+  ;misc is 412 files at 6.80 MB (7.94 MB on disk)
+  Section "misc" fonts-misc
+    SectionIn 1 2
+    SetOutPath "$INSTDIR\VcXsrv\fonts\"
+    File "x2goclient\VcXsrv\fonts\fonts.conf"
+	File /r "x2goclient\VcXsrv\fonts\misc"
+  SectionEnd
+  
+  ;As of VcXsrv-xp 1.14.3.2
+  ;75dpi is 1,897 files at 10.7 MB (15.6 MB on disk)
+  Section "75dpi" fonts-75dpi
+    SectionIn 2
+    SetOutPath "$INSTDIR\VcXsrv\fonts\"
+    File "x2goclient\VcXsrv\fonts\fonts.conf"
+	File /r "x2goclient\VcXsrv\fonts\75dpi"
+  SectionEnd
+  
+  ;As of VcXsrv-xp 1.14.3.2
+  ;100dpi is 1,897 files at 12.3 MB (16.8 MB on disk)
+  Section "100dpi" fonts-100dpi
+    SectionIn 2
+    SetOutPath "$INSTDIR\VcXsrv\fonts\"
+    File "x2goclient\VcXsrv\fonts\fonts.conf"
+	File /r "x2goclient\VcXsrv\fonts\100dpi"
+  SectionEnd
+  
+  ;As of VcXsrv-xp 1.14.3.2
+  ;everything else is 466 files at 12.8MB (13.8 MB on disk)
+  Section "others" fonts-others
+    SectionIn 2
+    SetOutPath "$INSTDIR\VcXsrv\fonts\"
+    File "x2goclient\VcXsrv\fonts\fonts.conf"
+	File /r "x2goclient\VcXsrv\fonts\cyrillic"
+	File /r "x2goclient\VcXsrv\fonts\encodings"
+	File /r "x2goclient\VcXsrv\fonts\OTF"
+	File /r "x2goclient\VcXsrv\fonts\Speedo"
+	File /r "x2goclient\VcXsrv\fonts\terminus-font"
+	File /r "x2goclient\VcXsrv\fonts\TTF"
+	File /r "x2goclient\VcXsrv\fonts\Type1"
+  SectionEnd
+  
+SectionGroupEnd
+
+Section "Desktop Shortcut" desktopshortcut
+  SectionIn 1 2
+  CreateShortCut "$DESKTOP\X2Go Client.lnk" "$INSTDIR\x2goclient.exe"
+SectionEnd
+  
+Section -EstimatedSize
+  SectionIn RO
   ${GetSize} "$INSTDIR" "/S=0K" $0 $1 $2
   IntFmt $0 "0x%08X" $0
   WriteRegDWORD HKLM ${UNINSTALL_REGKEY} "EstimatedSize" "$0"
