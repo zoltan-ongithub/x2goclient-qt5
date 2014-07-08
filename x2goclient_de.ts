@@ -973,7 +973,7 @@ sound system connections through firewalls</source>
     <message>
         <location filename="helpdialog.ui" line="14"/>
         <source>Options</source>
-        <translation type="unfinished">Einstellungen</translation>
+        <translation>Einstellungen</translation>
     </message>
 </context>
 <context>
@@ -1034,7 +1034,7 @@ Public key hash: </source>
     <message>
         <location filename="httpbrokerclient.cpp" line="203"/>
         <source>Verification code:</source>
-        <translation type="unfinished">Bestätigungscode:</translation>
+        <translation>Bestätigungscode:</translation>
     </message>
     <message>
         <location filename="httpbrokerclient.cpp" line="207"/>
@@ -1341,7 +1341,7 @@ Möchten Sie die Verbindung abbrechen?</translation>
     <message>
         <location filename="onmainwindow.cpp" line="7085"/>
         <source>wrong value for argument&quot;--clipboard&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>unerwarteter Wert &quot;--clipboard&quot;</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="7263"/>
@@ -1353,28 +1353,28 @@ Möchten Sie die Verbindung abbrechen?</translation>
     <message>
         <location filename="onmainwindow.cpp" line="7346"/>
         <source>Help</source>
-        <translation type="unfinished"></translation>
+        <translation>Hilfe</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="7376"/>
         <source>Pack Methodes</source>
-        <translation type="unfinished"></translation>
+        <translation>Packmethoden</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="7406"/>
         <location filename="onmainwindow.cpp" line="7416"/>
         <source>Option is not availabel in this build</source>
-        <translation type="unfinished"></translation>
+        <translation>Option in diesem Build nicht verfügbar</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="7409"/>
         <source>Changelog</source>
-        <translation type="unfinished"></translation>
+        <translation>Changelog</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="7419"/>
         <source>Git Info</source>
-        <translation type="unfinished"></translation>
+        <translation>Git Info</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="7872"/>
@@ -2465,7 +2465,7 @@ Bitte überprüfen Sie Ihre Installation</translation>
         <location filename="onmainwindow.cpp" line="11454"/>
         <location filename="onmainwindow.cpp" line="11465"/>
         <source>SSH Error</source>
-        <translation type="unfinished"></translation>
+        <translation>SSH-Fehler</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="11414"/>
@@ -2478,7 +2478,7 @@ Windows ships its internal sshd.exe.
 
 If you see this message, please report a bug against
 the X2Go bugtracker.</source>
-        <translation type="unfinished"></translation>
+        <translation>SSH-Dienst konnte nicht gestartet werden.\n\nDer SSH-Dienst wird für die Datei- und Druckdienste benötigt.\n\nDiese Fehlermeldung sollte nie auftreten, da der Windows-X2GoClient seinen eigenen SSH-Dienst mitbringt.\n\nWenn Sie diese Fehlermeldung sehen, melden Sie den Fehler bitte über den X2Go-Bugtracker.</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="11429"/>
@@ -2488,24 +2488,24 @@ You&apos;ll need SSH daemon for printing and file sharing
 
 Please ask your system administrator to provide the SSH
 service on your computer.</source>
-        <translation type="unfinished"></translation>
+        <translation>Der SSH-Dienst läuft nicht.\n\nDer SSH-Dienst wird für die Datei- und Druckdienste benötigt.\n\nBitte wenden Sie sich an Ihren Systemadministrator und bitten Sie ihn, den SSH-Dienst auf Ihrem Computer zu installieren.</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="11445"/>
         <source>SSH daemon failed to open the application&apos;s public host key.</source>
-        <translation type="unfinished"></translation>
+        <translation>Der SSH-Dienst konnte den öffentlichen Host-Schlüssel der Anwendung nicht öffnen.</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="11455"/>
         <source>SSH daemon failed to open the application&apos;s public key
 used for exporting folders and printers.</source>
-        <translation type="unfinished"></translation>
+        <translation>Der SSH-Dienst konnte den für Datei- und Druckfreigaben benötigten öffentlichen Host-Schlüssel der Anwendung nicht öffnen.</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="11466"/>
         <source>SSH daemon failed to open the application&apos;s
 authoized_keys file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Der SSH-Dienst konnte die autorized_keys-Datei der Anwendung nicht öffnen.</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="11582"/>
@@ -3294,27 +3294,27 @@ Beispiel:
     <message>
         <location filename="settingswidget.cpp" line="52"/>
         <source>&amp;Clipboard Mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Zwis&amp;chenablage-Modus</translation>
     </message>
     <message>
         <location filename="settingswidget.cpp" line="155"/>
         <source>Bidirectional copy and paste</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopieren und Einfügen in beide Richtungen möglich</translation>
     </message>
     <message>
         <location filename="settingswidget.cpp" line="156"/>
         <source>Copy and paste from client to server</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopieren und Einfügen nur von Client zu Server möglich</translation>
     </message>
     <message>
         <location filename="settingswidget.cpp" line="157"/>
         <source>Copy and paste from server to client</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopieren und Einfügen nur von Server zu Client möglich</translation>
     </message>
     <message>
         <location filename="settingswidget.cpp" line="158"/>
         <source>Disable clipboard completely</source>
-        <translation type="unfinished"></translation>
+        <translation>Zwischenablage komplett deaktivieren</translation>
     </message>
     <message>
         <location filename="settingswidget.cpp" line="170"/>

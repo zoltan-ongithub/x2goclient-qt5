@@ -90,6 +90,10 @@ x2goclient (4.0.2.1-0x2go1) UNRELEASED; urgency=low
     - Windows: Switch from regular NSIS 2.46 to Unicode NSIS 2.46.5
       (Fixes: #528)
 
+  [ Stefan Baur ]
+  * New upstream version (4.0.2.1):
+    - Update German translation files.
+
  -- Mike Gabriel <mike.gabriel@das-netzwerkteam.de>  Thu, 10 Apr 2014 18:30:25 +0200
 
 x2goclient (4.0.2.0-0x2go1) unstable; urgency=low
