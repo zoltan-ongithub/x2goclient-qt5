@@ -1,3 +1,44 @@
+x2goclient (4.0.3.0-0x2go1) UNRELEASED; urgency=low
+
+  [ Mike Gabriel ]
+  * New upstream release (4.0.3.0):
+    - Disallow server-side users to override X2Go Server commands via
+      ~/bin (or similar). (Fixes: #336).
+    - Avoid unitialised variables on early calls of ONMainWindow::closeEvent()
+      or ONMainWindow::closeClient(). (Fixes: #253).
+
+  [ Oleksandr Shneyder ]
+  * New upstream release (4.0.3.0):
+    - Fix running x2goclient without arguments on Windows. (Fixes: #522).
+    - Save proxy output in $HOME/S-$SESSION-ID/session.log if debugging is
+      enabled.
+    - Fork x2goclient on windows and terminate child processes if x2go client
+      crashed. (Fixes: #159).
+    - Add "clipboard" parameter to session profile and to command line options.
+      (Fixes: #258).
+    - Replace qCritical() with printError() by argument parsing.
+    - Update translation files.
+    - Update russian translation.
+    - Update string "&Clipboard Mode" and translate in russian translation file.
+    - Grammar fix in russian translation.
+    - Add x2gohelper to start X2Go Client on Windows and clean child processes if
+      X2Go Client crashes. (Fixes: #525).
+
+  [ Mike DePaulo ]
+  * New upstream release (4.0.3.0):
+    - Windows: Install VcXsrv "misc" fonts by default, and make all 4 font
+      groups optional: misc, 75dpi, 100dpi and others (Fixes: #108)
+      Note: The fact that all the fonts are included makes the installer about
+      30MB larger.
+    - Windows: Make the desktop shortcut optional during install,
+      but still the default.
+
+  [ Stefan Baur ]
+  * New upstream version (4.0.2.1):
+    - Update German translation files.
+
+ -- Mike Gabriel <mike.gabriel@das-netzwerkteam.de>  Thu, 10 Apr 2014 18:30:25 +0200
+
 x2goclient (4.0.2.1-0x2go1) UNRELEASED; urgency=low
 
   [ Mike Gabriel ]
@@ -9,8 +50,6 @@ x2goclient (4.0.2.1-0x2go1) UNRELEASED; urgency=low
       we force X2Go client to only use the default "accelerated X" as
       system tray icon (and prohibit usage of the session's icon as
       tray icon). (Fixes: #365).
-    - Disallow server-side users to override X2Go Server commands via
-      ~/bin (or similar). (Fixes: #336).
     - Provide more meaningful messages on SSH errors (host pub key not
       found, export pub key not found, authorized_keys file not found).
       For SSHd startup failures provide different messages on Windows
@@ -19,8 +58,6 @@ x2goclient (4.0.2.1-0x2go1) UNRELEASED; urgency=low
     - Add new cmdline option --hide-foldersharing. If used, all GUI
       elements related to exporting client-side folders to X2Go sessions
       get hidden. (Fixes: #514).
-    - Avoid unitialised variables on early calls of ONMainWindow::closeEvent()
-      or ONMainWindow::closeClient(). (Fixes: #253).
     - Update COPYING file (to update FSF address).
   * debian/control:
     + Add dbg:package x2goplugin-dbg.
@@ -41,32 +78,12 @@ x2goclient (4.0.2.1-0x2go1) UNRELEASED; urgency=low
       that requires pulse support.
     - Check if sound is activated before starting pulse. 
     - Fix starting sshd on Win XP. (Fixes: #421).
-    - Fix running x2goclient without arguments on Windows. (Fixes: #522).
-    - Save proxy output in $HOME/S-$SESSION-ID/session.log if debugging is
-      enabled.
-    - Fork x2goclient on windows and terminate child processes if x2go client
-      crashed. (Fixes: #159).
-    - Add "clipboard" parameter to session profile and to command line options.
-      (Fixes: #258).
-    - Replace qCritical() with printError() by argument parsing.
-    - Update translation files.
-    - Update russian translation.
-    - Update string "&Clipboard Mode" and translate in russian translation file.
-    - Grammar fix in russian translation.
     - Fix "fullscreen" mode on Windows 7 with multiple monitors.
-    - Add x2gohelper to start X2Go Client on Windows and clean child processes if
-      X2Go Client crashes. (Fixes: #525).
 
   [ Mike DePaulo ]
   * New upstream release (4.0.2.1):
-    - Windows: Install VcXsrv "misc" fonts by default, and make all 4 font
-      groups optional: misc, 75dpi, 100dpi and others (Fixes: #108)
-      Note: The fact that all the fonts are included makes the installer about
-      30MB larger. (See next comment, it would be even larger.)
-    - Windows: Reduce the new size of NSIS installer by several MB
+    - Windows: Reduce the size of NSIS installer by several MB
       by switching to lzma solid compression
-    - Windows: Make the desktop shortcut optional during install,
-      but still the default.
     - Windows: Prevent high PulseAudio CPU usage on Windows XP by lowering
       PulseAudio's CPU priority from "high" to "normal" on XP specifically.
       Also do so on Windows Server 2003 (R2) (Fixes #526)
@@ -90,10 +107,6 @@ x2goclient (4.0.2.1-0x2go1) UNRELEASED; urgency=low
       (VcXsrv was also updated to 1.14.3.2 in 4.0.2.0+build2.)
     - Windows: Switch from regular NSIS 2.46 to Unicode NSIS 2.46.5
       (Fixes: #528)
-
-  [ Stefan Baur ]
-  * New upstream version (4.0.2.1):
-    - Update German translation files.
 
  -- Mike Gabriel <mike.gabriel@das-netzwerkteam.de>  Thu, 10 Apr 2014 18:30:25 +0200
 
