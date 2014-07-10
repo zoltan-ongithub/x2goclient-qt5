@@ -3,7 +3,7 @@
 ######################################################################
 
 TEMPLATE = app
-TARGET = 
+TARGET = x2goclient
 DEPENDPATH += .
 INCLUDEPATH += .
 

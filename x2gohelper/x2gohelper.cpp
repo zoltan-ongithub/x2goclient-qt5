@@ -70,7 +70,7 @@ int main(int argc, char* argv[])
         args<<argv[i];
     }
     QProcess proc;
-    QString executable="x2goclient.exe";
+    QString executable="x2goclient-mainprocess.exe";
     proc.start(executable, args);
     if(!proc.waitForStarted(4000))
     {

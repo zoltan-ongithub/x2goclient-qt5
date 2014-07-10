@@ -23,6 +23,8 @@ x2goclient (4.0.3.0-0x2go1) UNRELEASED; urgency=low
     - Grammar fix in russian translation.
     - Add x2gohelper to start X2Go Client on Windows and clean child processes if
       X2Go Client crashes. (Fixes: #525).
+    - On Windows rename x2goclient.exe to x2goclient-mainprocess.exe and
+      x2gohelper.exe to x2goclient.exe.
 
   [ Mike DePaulo ]
   * New upstream release (4.0.3.0):
