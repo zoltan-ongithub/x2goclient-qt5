@@ -1,5 +1,5 @@
 Name:           x2goclient
-Version:        4.0.2.1
+Version:        4.0.3.0
 Release:        0.0x2go1%{?dist}
 Summary:        X2Go Client application (Qt4)
 
