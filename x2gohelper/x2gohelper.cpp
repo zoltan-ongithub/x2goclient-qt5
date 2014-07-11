@@ -14,14 +14,8 @@
 *   You should have received a copy of the GNU General Public License     *
 *   along with this program.  If not, see <http://www.gnu.org/licenses/>. *
 ***************************************************************************/
-#include <iostream>
-using namespace std;
 #include <windows.h>
 #include <TlHelp32.h>
-
-#include <QStringList>
-#include <QProcess>
-#include <QDebug>
 
 void killProcess(DWORD pid)
 {
@@ -42,7 +36,7 @@ void enumerateFromParent(DWORD pid)
     HANDLE hndl=CreateToolhelp32Snapshot( TH32CS_SNAPPROCESS, 0 );
     if(hndl==INVALID_HANDLE_VALUE)
     {
-        qCritical()<<"failed to get system snapshot";
+        //Failed to get system snapshot
         return;
     }
     PROCESSENTRY32 pentry;
@@ -53,6 +47,11 @@ void enumerateFromParent(DWORD pid)
         {
             if(pid==pentry.th32ParentProcessID)
             {
+                if(pentry.th32ProcessID == GetCurrentProcessId())
+                {
+                    //skip own process
+                    continue;
+                }
                 enumerateFromParent(pentry.th32ProcessID);
                 killProcess(pentry.th32ProcessID);
             }
@@ -63,28 +62,30 @@ void enumerateFromParent(DWORD pid)
 
 int main(int argc, char* argv[])
 {
-    QStringList args;
-    //argv[0] is allways "x2gohelper.exe"
-    for(int i=1; i< argc; ++i)
+    if(argc!=2)
     {
-        args<<argv[i];
-    }
-    QProcess proc;
-    QString executable="x2goclient-mainprocess.exe";
-    proc.start(executable, args);
-    if(!proc.waitForStarted(4000))
-    {
-        qCritical()<<"Can't start process";
+        //wrong number of arguments
         return -1;
     }
-    DWORD pid=proc.pid()->dwProcessId;
-    while(!proc.waitForFinished(300))
+
+    DWORD pid=atoi(argv[1]);
+    if(!pid)
     {
-        QString err=proc.readAllStandardError();
-        QString out=proc.readAllStandardOutput();
-        std::cerr<<err.toStdString();
-        std::cout<<out.toStdString();
+        //error converting argument to int;
+        return -1;
     }
-    enumerateFromParent(pid);
+
+    HANDLE handle=OpenProcess(SYNCHRONIZE,0,pid);
+    if(!handle)
+    {
+        //error open process
+        return -1;
+    }
+    //waiting for process to finish
+    if(WaitForSingleObject(handle,INFINITE)!=WAIT_FAILED)
+    {
+        enumerateFromParent(pid);
+    }
+    CloseHandle(handle);
     return 0;
 }

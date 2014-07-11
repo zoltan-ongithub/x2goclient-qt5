@@ -430,10 +430,9 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
     }
 
 #ifdef Q_OS_WIN
+    QProcess::startDetached("x2gohelper.exe "+QString::number(GetCurrentProcessId()));
     QTimer::singleShot ( 500, this, SLOT ( startWinServers() ) );
-
 #endif
-
 
 
     mainL->setSpacing ( 0 );
@@ -9842,11 +9841,11 @@ void ONMainWindow::startPulsed()
     ever ship 1.1 again.
     */
     if (QSysInfo::WindowsVersion == QSysInfo::WV_XP ||
-        QSysInfo::WindowsVersion == QSysInfo::WV_2003 )
+            QSysInfo::WindowsVersion == QSysInfo::WV_2003 )
     {
         x2goDebug<<"Windows XP or Server 2003 (R2) detected.";
         x2goDebug<<"Setting PulseAudio to \"Normal\" CPU priority.";
-            pulseArgs<<"--high-priority=no";
+        pulseArgs<<"--high-priority=no";
     }
 #else
     pulseArgs<<"--exit-idle-time=-1"<<"-n"<<"-F"<<pulseDir+"/config.pa";

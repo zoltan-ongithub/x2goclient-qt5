@@ -182,8 +182,6 @@ win32-* {
 	message(building $$TARGET for windows without ldap and cups)
 	LIBS += -lwinspool -lws2_32
 	CONFIG += static release
-	TARGET = x2goclient-mainprocess
-
 }
 QT += svg network
 ICON = icons/x2go-mac.icns
