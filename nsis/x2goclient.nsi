@@ -200,6 +200,9 @@ SectionGroupEnd
 
 Section "Desktop Shortcut" desktopshortcut
   SectionIn 1 2
+  # When you run SetOutPath,you set the "Start in" dir for the shortcut.
+  # This "Start in" dir must exist for the shortcut to work.
+  SetOutPath "$INSTDIR"
   CreateShortCut "$DESKTOP\X2Go Client.lnk" "$INSTDIR\x2goclient.exe"
 SectionEnd
   
