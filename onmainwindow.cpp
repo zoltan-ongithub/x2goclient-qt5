@@ -44,7 +44,6 @@ bool ONMainWindow::debugging=false;
 
 ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
 {
-
     haveTerminal=false;
 #ifndef Q_OS_WIN
     QFile fl("/dev/tty");
@@ -113,7 +112,6 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
     sshConnection=0;
     sessionStatusDlg=0;
     noSessionEdit=false;
-    lastSession=0l;
     changeBrokerPass=false;
     resumeAfterSuspending=false;
     forceToShowTrayicon=false;
@@ -397,6 +395,9 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
               SLOT ( slotConfig() ) );
     connect ( act_abclient,SIGNAL ( triggered ( bool ) ),this,
               SLOT ( slotAbout() ) );
+
+
+    sessionExplorer=new SessionExplorer(this);
 
 
 #ifdef Q_OS_DARWIN
@@ -749,7 +750,15 @@ void ONMainWindow::initWidgetsNormal()
     u->show();
     uname->show();
 
+
+    QVBoxLayout* vblay=new QVBoxLayout();
+
+
     users=new QScrollArea ( fr );
+    vblay->addLayout(sessionExplorer->getNavigationLayout());
+    vblay->addWidget(users);
+
+
     pal=users->verticalScrollBar()->palette();
     pal.setBrush ( QPalette::Window, QColor ( 110,112,127,255 ) );
     pal.setBrush ( QPalette::Base, QColor ( 110,112,127,255 ) );
@@ -768,7 +777,8 @@ void ONMainWindow::initWidgetsNormal()
     users->setWidget ( uframe );
 
     mainL->insertWidget ( 1, ln );
-    mainL->addWidget ( users );
+//     mainL->addWidget ( users );
+    mainL->addLayout(vblay);
 
     QAction *act_exit=new QAction (
         QIcon ( iconsPath ( "/32x32/exit.png" ) ),
@@ -1102,7 +1112,7 @@ void ONMainWindow::trayIconInit()
             if (sessionStatusDlg && sessionStatusDlg->isVisible())
             {
                 if (!useLdap)
-                    trayIconActiveConnectionMenu->setTitle(lastSession->name());
+                    trayIconActiveConnectionMenu->setTitle(sessionExplorer->getLastSession()->name());
                 else
                     trayIconActiveConnectionMenu->setTitle(lastUser->username());
             }
@@ -1263,9 +1273,8 @@ void ONMainWindow::slotResize ( const QSize sz )
             else
             {
                 QList<SessionButton*>::iterator it;
-                QList<SessionButton*>::iterator end=
-                    sessions.end();
-                for ( it=sessions.begin(); it!=end; it++ )
+                QList<SessionButton*>::iterator end=sessionExplorer->getSessionsList()->end();
+                for ( it=sessionExplorer->getSessionsList()->begin(); it!=end; it++ )
                 {
                     if ( !miniMode )
                         ( *it )->move (
@@ -1290,6 +1299,7 @@ void ONMainWindow::slotResize ( const QSize sz )
         uname->setMinimumWidth ( rwidth );
         u->move ( upos,height/2 );
         uname->move ( u->pos().x() +u->width() +5,u->pos().y() );
+        sessionExplorer->resize();
     }
 }
 
@@ -1685,10 +1695,10 @@ void ONMainWindow::slotClosePass()
         }
         else
         {
-            if (lastSession)
+            if (sessionExplorer->getLastSession())
             {
-                lastSession->show();
-                uname->setText ( lastSession->name() );
+                sessionExplorer->getLastSession()->show();
+                uname->setText ( sessionExplorer->getLastSession()->name() );
             }
         }
         uname->setEnabled ( true );
@@ -1878,8 +1888,8 @@ void ONMainWindow::slotUnameEntered()
     {
         SessionButton* sess=NULL;
         QList<SessionButton*>::iterator it;
-        QList<SessionButton*>::iterator endit=sessions.end();
-        for ( it=sessions.begin(); it!=endit; it++ )
+        QList<SessionButton*>::iterator endit=sessionExplorer->getSessionsList()->end();
+        for ( it=sessionExplorer->getSessionsList()->begin(); it!=endit; it++ )
         {
             QString name= ( *it )->name();
             if ( name==text )
@@ -2022,11 +2032,10 @@ void ONMainWindow::slotConfig()
 
             for ( i=0; i<names.size(); ++i )
                 names[i]->close();
-            for ( i=0; i<sessions.size(); ++i )
-                sessions[i]->close();
+
+            sessionExplorer->cleanSessions();
 
             userList.clear();
-            sessions.clear();
         }
         loadSettings();
         trayIconInit();
@@ -2049,117 +2058,6 @@ void ONMainWindow::slotConfig()
     }
 }
 
-void ONMainWindow::slotEdit ( SessionButton* bt )
-{
-    EditConnectionDialog dlg ( bt->id(),this );
-    if ( dlg.exec() ==QDialog::Accepted )
-    {
-        bt->redraw();
-        placeButtons();
-        users->ensureVisible ( bt->x(),bt->y(),50,220 );
-    }
-}
-
-void ONMainWindow::slotCreateDesktopIcon ( SessionButton* bt )
-{
-    QMessageBox messageBox(QMessageBox::Question,
-                           tr ( "Create session icon on desktop" ),
-                           tr ( "Desktop icons can be configured "
-                                "not to show x2goclient (hidden mode). "
-                                "If you like to use this feature you'll "
-                                "need to configure login by a gpg key "
-                                "or gpg smart card.\n\n"
-                                "Use x2goclient hidden mode?" ),
-                           QMessageBox::Yes|QMessageBox::No,
-                           this);
-
-    //adding a chekbox to know if user want to enable trayicon in hide sessions
-    QCheckBox cbShowTrayIcon(tr("Show session tray icon when running"));
-    messageBox.layout()->addWidget(&cbShowTrayIcon);
-    QGridLayout* gridLayout = (QGridLayout*) messageBox.layout();
-    gridLayout->addWidget(&cbShowTrayIcon, gridLayout->rowCount(), 0, 1, gridLayout->columnCount());
-    cbShowTrayIcon.blockSignals(true);
-
-    //getting the result
-    bool crHidden = (messageBox.exec() == QMessageBox::Yes);
-    bool bShowTrayicon = (cbShowTrayIcon.checkState() == Qt::Checked);
-
-
-    X2goSettings st ( "sessions" );
-
-    QString name=st.setting()->value ( bt->id() +"/name",
-                                       ( QVariant ) tr ( "New Session" ) ).toString() ;
-
-    // PyHoca-GUI uses the slash as separator for cascaded menus, so let's handle these on the file system
-    name.replace("/","::");
-
-    QString sessIcon=st.setting()->value (
-                         bt->id() +"/icon",
-                         ( QVariant )
-                         ":icons/128x128/x2gosession.png"
-                     ).toString();
-    sessIcon = expandHome(sessIcon);
-    if ( sessIcon.startsWith ( ":icons",Qt::CaseInsensitive ) ||
-            !sessIcon.endsWith ( ".png",Qt::CaseInsensitive ) )
-    {
-        sessIcon="/usr/share/x2goclient/icons/x2gosession.png";
-    }
-#ifndef Q_OS_WIN
-    QFile file (
-        QDesktopServices::storageLocation (
-            QDesktopServices::DesktopLocation ) +"/"+name+".desktop" );
-    if ( !file.open ( QIODevice::WriteOnly | QIODevice::Text ) )
-        return;
-
-    QString cmd="x2goclient";
-    if ( crHidden )
-        cmd="x2goclient --hide";
-
-    if (bShowTrayicon)
-        cmd += " --tray-icon";
-
-    QTextStream out ( &file );
-    out << "[Desktop Entry]\n"<<
-        "Exec="<<cmd<<" --sessionid="<<bt->id() <<"\n"<<
-        "Icon="<<sessIcon<<"\n"<<
-        "Name="<<name<<"\n"<<
-        "StartupNotify=true\n"<<
-        "Terminal=false\n"<<
-        "Type=Application\n"<<
-        "X-KDE-SubstituteUID=false\n";
-    file.setPermissions(QFile::ReadOwner|QFile::WriteOwner|QFile::ExeOwner);
-    file.close();
-#else
-    QString scrname=QDir::tempPath() +"\\mklnk.vbs";
-    QFile file ( scrname );
-    if ( !file.open ( QIODevice::WriteOnly | QIODevice::Text ) )
-        return;
-
-    QSettings xst ( "HKEY_LOCAL_MACHINE\\SOFTWARE\\x2goclient",
-                    QSettings::NativeFormat );
-    QString workDir=xst.value ( "Default" ).toString();
-    QString progname=workDir+"\\x2goclient.exe";
-    QString args="--sessionid="+bt->id();
-    if ( crHidden )
-        args+=" --hide";
-    QTextStream out ( &file );
-    out << "Set Shell = CreateObject(\"WScript.Shell\")\n"<<
-        "DesktopPath = Shell.SpecialFolders(\"Desktop\")\n"<<
-        "Set link = Shell.CreateShortcut(DesktopPath & \"\\"<<name<<
-        ".lnk\")\n"<<
-        "link.Arguments = \""<<args<<"\"\n"<<
-        "link.Description = \""<<tr ( "X2Go Link to session " ) <<
-        "--"<<name<<"--"<<"\"\n"<<
-        "link.TargetPath = \""<<progname<<"\"\n"<<
-        "link.iconLocation = \""<<progname<<"\"\n"<<
-        "link.WindowStyle = 1\n"<<
-        "link.WorkingDirectory = \""<<workDir<<"\"\n"<<
-        "link.Save\n";
-    file.close();
-    system ( scrname.toAscii() );
-    QFile::remove ( scrname );
-#endif
-}
 
 
 void ONMainWindow::slotReadSessions()
@@ -2175,7 +2073,8 @@ void ONMainWindow::slotReadSessions()
     }
 
     X2goSettings *st;
-    lastSession=0;
+    sessionExplorer->cleanSessions();
+    sessionExplorer->setLastSession(0);
 
     if (brokerMode)
     {
@@ -2184,9 +2083,9 @@ void ONMainWindow::slotReadSessions()
         config.key=QString::null;
         config.user=QString::null;
         config.sessiondata=QString::null;
-        for (int i=sessions.count()-1; i>=0; --i)
+        for (int i=sessionExplorer->getSessionsList()->count()-1; i>=0; --i)
         {
-            SessionButton* but=sessions.takeAt(i);
+            SessionButton* but=sessionExplorer->getSessionsList()->takeAt(i);
             if (but)
                 delete but;
         }
@@ -2217,9 +2116,9 @@ void ONMainWindow::slotReadSessions()
     for ( int i=0; i<slst.size(); ++i )
     {
         if ( slst[i]!="embedded" )
-            createBut ( slst[i] );
+            sessionExplorer->createBut ( slst[i] );
     }
-    placeButtons();
+    sessionExplorer->placeButtons();
     if ( slst.size() ==0 )
         slotNewSession();
     uname->setText ( "" );
@@ -2230,9 +2129,9 @@ void ONMainWindow::slotReadSessions()
 
     if(usePGPCard &&brokerMode&&cardReady)
     {
-        if(sessions.count()==1)
+        if(sessionExplorer->getSessionsList()->count()==1)
         {
-            slotSelectedFromList(sessions[0]);
+            slotSelectedFromList(sessionExplorer->getSessionsList()->at(0));
         }
     }
 
@@ -2251,21 +2150,21 @@ void ONMainWindow::slotReadSessions()
         defaultSession=false;
         if ( defaultSessionId.length() >0 )
         {
-            for ( int i=0; i<sessions.size(); ++i )
+            for ( int i=0; i< sessionExplorer->getSessionsList()->size(); ++i )
             {
-                if ( sessions[i]->id() ==defaultSessionId )
+                if ( sessionExplorer->getSessionsList()->at(i)->id() ==defaultSessionId )
                 {
                     sfound=true;
-                    slotSelectedFromList ( sessions[i] );
+                    slotSelectedFromList ( sessionExplorer->getSessionsList()->at(i) );
                     break;
                 }
             }
         }
         else
         {
-            for ( int i=0; i<sessions.size(); ++i )
+            for ( int i=0; i<sessionExplorer->getSessionsList()->size(); ++i )
             {
-                if ( sessions[i]->name() ==defaultSessionName )
+                if ( sessionExplorer->getSessionsList()->at(i)->name() ==defaultSessionName )
                 {
                     sfound=true;
                     uname->setText ( defaultSessionName );
@@ -2297,8 +2196,8 @@ void ONMainWindow::slotNewSession()
     EditConnectionDialog dlg ( id, this );
     if ( dlg.exec() ==QDialog::Accepted )
     {
-        SessionButton* bt=createBut ( id );
-        placeButtons();
+        SessionButton* bt=sessionExplorer->createBut ( id );
+        sessionExplorer->placeButtons();
         users->ensureVisible ( bt->x(),bt->y(),50,220 );
     }
 }
@@ -2313,74 +2212,6 @@ void ONMainWindow::slotCreateSessionIcon()
 {
     SessionManageDialog dlg ( this,true );
     dlg.exec();
-}
-
-SessionButton* ONMainWindow::createBut ( const QString& id )
-{
-    SessionButton* l;
-    l=new SessionButton ( this,uframe,id );
-    sessions.append ( l );
-    connect ( l,SIGNAL ( signal_edit ( SessionButton* ) ),
-              this,SLOT ( slotEdit ( SessionButton* ) ) );
-
-    connect ( l,SIGNAL ( signal_remove ( SessionButton* ) ),
-              this,SLOT ( slotDeleteButton ( SessionButton* ) ) );
-
-    connect ( l,SIGNAL ( sessionSelected ( SessionButton* ) ),this,
-              SLOT ( slotSelectedFromList ( SessionButton* ) ) );
-
-    return l;
-}
-
-
-void ONMainWindow::placeButtons()
-{
-    qSort ( sessions.begin(),sessions.end(),SessionButton::lessThen );
-    for ( int i=0; i<sessions.size(); ++i )
-    {
-        if ( !miniMode )
-            sessions[i]->move ( ( users->width()-360 ) /2,
-                                i*220+i*25+5 );
-        else
-            sessions[i]->move ( ( users->width()-260 ) /2,
-                                i*155+i*20+5 );
-        if (brokerMode)
-            sessions[i]->move ( ( users->width()-360 ) /2,
-                                i*150+i*25+5 );
-        sessions[i]->show();
-    }
-    if ( sessions.size() )
-    {
-        if ( !miniMode )
-            uframe->setFixedHeight (
-                sessions.size() *220+ ( sessions.size()-1 ) *25 );
-        else
-            uframe->setFixedHeight (
-                sessions.size() *155+ ( sessions.size()-1 ) *20 );
-        if (brokerMode)
-            uframe->setFixedHeight (
-                sessions.size() *150+ ( sessions.size()-1 ) *25 );
-    }
-
-}
-
-void ONMainWindow::slotDeleteButton ( SessionButton * bt )
-{
-    if ( QMessageBox::warning (
-                this,bt->name(),
-                tr ( "Are you sure you want to delete this session?" ),
-                QMessageBox::Yes,QMessageBox::No ) !=QMessageBox::Yes )
-        return;
-
-    X2goSettings st ( "sessions" );
-
-    st.setting()->beginGroup ( bt->id() );
-    st.setting()->remove ( "" );
-    st.setting()->sync();
-    sessions.removeAll ( bt );
-    bt->close();
-    placeButtons();
-    users->ensureVisible ( 0,0,50,220 );
 }
 
 
@@ -2621,8 +2452,8 @@ void ONMainWindow::slotSnameChanged ( const QString& text )
     if ( text=="" )
         return;
     QList<SessionButton*>::iterator it;
-    QList<SessionButton*>::iterator endit=sessions.end();
-    for ( it=sessions.begin(); it!=endit; it++ )
+    QList<SessionButton*>::iterator endit=sessionExplorer->getSessionsList()->end();
+    for ( it=sessionExplorer->getSessionsList()->begin(); it!=endit; it++ )
     {
         QString name= ( *it )->name();
         if ( name.indexOf ( text,0,Qt::CaseInsensitive ) ==0 )
@@ -2648,7 +2479,7 @@ void ONMainWindow::slotSnameChanged ( const QString& text )
 void ONMainWindow::slotSelectedFromList ( SessionButton* session )
 {
     pass->setText ( "" );
-    lastSession=session;
+    sessionExplorer->setLastSession(session);
     QString command;
     QString server;
     QString userName;
@@ -3177,8 +3008,8 @@ void ONMainWindow::slotSessEnter()
 
     if(brokerMode)
     {
-        broker->selectUserSession(lastSession->id());
-        config.session=lastSession->id();
+        broker->selectUserSession(sessionExplorer->getLastSession()->id());
+        config.session=sessionExplorer->getLastSession()->id();
         setStatStatus ( tr ( "Connecting to broker" ) );
         stInfo->insertPlainText ( "broker url: "+config.brokerurl );
         setEnabled ( false );
@@ -3189,7 +3020,7 @@ void ONMainWindow::slotSessEnter()
 
     QString sid="";
     if ( !embedMode )
-        sid=lastSession->id();
+        sid=sessionExplorer->getLastSession()->id();
     startSession ( sid );
 }
 
@@ -3221,7 +3052,7 @@ void ONMainWindow::startDirectRDP()
     X2goSettings st ( "sessions" );
     QString sid;
     if ( !embedMode )
-        sid=lastSession->id();
+        sid=sessionExplorer->getLastSession()->id();
     else
         sid="embedded";
 
@@ -3295,7 +3126,7 @@ void ONMainWindow::startDirectRDP()
 
     resumingSession.display="RDP";
     resumingSession.server=host;
-    resumingSession.sessionId=lastSession->name();
+    resumingSession.sessionId=sessionExplorer->getLastSession()->name();
     resumingSession.crTime=QDateTime::currentDateTime().toString("dd.MM.yy HH:mm:ss");
 
     showSessionStatus();
@@ -3771,7 +3602,7 @@ void ONMainWindow::startNewSession()
 
         QString sid;
         if ( !embedMode )
-            sid=lastSession->id();
+            sid=sessionExplorer->getLastSession()->id();
         else
             sid="embedded";
         pack=st->setting()->value ( sid+"/pack",
@@ -4113,7 +3944,7 @@ void ONMainWindow::resumeSession ( const x2goSession& s )
 
         QString sid;
         if ( !embedMode )
-            sid=lastSession->id();
+            sid=sessionExplorer->getLastSession()->id();
         else
             sid="embedded";
         X2goSettings* st;
@@ -4320,7 +4151,7 @@ void ONMainWindow::resumeSession ( const x2goSession& s )
 void ONMainWindow::setTrayIconToSessionIcon(QString info) {
 
     //set session icon to tray icon
-    if (trayIcon && lastSession) {
+    if (trayIcon && sessionExplorer->getLastSession()) {
 
         X2goSettings* st;
 
@@ -4331,7 +4162,7 @@ void ONMainWindow::setTrayIconToSessionIcon(QString info) {
 
         QString sid;
         if ( !embedMode )
-            sid=lastSession->id();
+            sid=sessionExplorer->getLastSession()->id();
         else
             sid="embedded";
 
@@ -4467,7 +4298,7 @@ void ONMainWindow::selectSession ( QStringList& sessions )
             {
                 st=new X2goSettings( "sessions" );
 
-                QString sid=lastSession->id();
+                QString sid=sessionExplorer->getLastSession()->id();
                 QString suser = st->setting()->value(sid + "/shadowuser", (QVariant) QString::null).toString();
                 QString sdisplay = st->setting()->value(sid + "/shadowdisplay", (QVariant) QString::null).toString();
                 bool fullAccess= st->setting()->value(sid + "/shadowfullaccess", (QVariant) false).toBool();
@@ -4645,7 +4476,7 @@ void ONMainWindow::slotSuspendSess()
         else
         {
             X2goSettings st ( "sessions" );
-            QString sid=lastSession->id();
+            QString sid=sessionExplorer->getLastSession()->id();
             host=st.setting()->value ( sid+"/host",
                                        ( QVariant ) host ).toString();
         }
@@ -4789,7 +4620,7 @@ void ONMainWindow::slotTermSess()
         {
             X2goSettings st ( "sessions" );
 
-            QString sid=lastSession->id();
+            QString sid=sessionExplorer->getLastSession()->id();
         }
     }
     else
@@ -4909,7 +4740,7 @@ void ONMainWindow::slotRetResumeSess ( bool result,
     {
         QString sid;
         if ( !embedMode )
-            sid=lastSession->id();
+            sid=sessionExplorer->getLastSession()->id();
         else
             sid="embedded";
         X2goSettings st ( "sessions" );
@@ -5065,7 +4896,7 @@ void ONMainWindow::slotRetResumeSess ( bool result,
         {
             X2goSettings st ( "sessions" );
 
-            QString sid=lastSession->id();
+            QString sid=sessionExplorer->getLastSession()->id();
             host=st.setting()->value ( sid+"/host",
                                        ( QVariant ) host ).toString();
         }
@@ -5817,7 +5648,7 @@ void ONMainWindow::slotProxyStderr()
         if (trayEnabled)
         {
             if (!useLdap)
-                trayIconActiveConnectionMenu->setTitle(lastSession->name());
+                trayIconActiveConnectionMenu->setTitle(sessionExplorer->getLastSession()->name());
             else
                 trayIconActiveConnectionMenu->setTitle(lastUser->username());
             trayIconActiveConnectionMenu->setEnabled(true);
@@ -6275,7 +6106,7 @@ void ONMainWindow::runCommand()
             command=sessionCmd;
         else
         {
-            QString sid=lastSession->id();
+            QString sid=sessionExplorer->getLastSession()->id();
             command=st->setting()->value (
                         sid+"/command",
                         ( QVariant ) tr ( "KDE" ) ).toString();
@@ -7604,7 +7435,7 @@ void ONMainWindow::slotExportDirectory()
     QString path;
     if ( !useLdap && !embedMode )
     {
-        ExportDialog dlg ( lastSession->id(),this );
+        ExportDialog dlg ( sessionExplorer->getLastSession()->id(),this );
         if ( dlg.exec() ==QDialog::Accepted )
             path=dlg.getExport();
     }
@@ -7659,7 +7490,7 @@ void ONMainWindow::exportDirs ( QString exports,bool removable )
         {
             X2goSettings st ( "sessions" );
 
-            QString sid=lastSession->id();
+            QString sid=sessionExplorer->getLastSession()->id();
 
             fsInTun=st.setting()->value ( sid+"/fstunnel",
                                           ( QVariant ) true ).toBool();
@@ -7704,11 +7535,11 @@ void ONMainWindow::exportDefaultDirs()
 
             X2goSettings st ( "sessions" );
             clientPrinting= st.setting()->value (
-                                lastSession->id() +
+                                sessionExplorer->getLastSession()->id() +
                                 "/print", true ).toBool();
 
             QString exd=st.setting()->value (
-                            lastSession->id() +"/export",
+                            sessionExplorer->getLastSession()->id() +"/export",
                             ( QVariant ) QString::null ).toString();
             QStringList lst=exd.split ( ";",
                                         QString::SkipEmptyParts );
@@ -8018,21 +7849,6 @@ void ONMainWindow::slotRetExportDir ( bool result,QString output,
 }
 
 
-
-void ONMainWindow::exportsEdit ( SessionButton* bt )
-{
-    EditConnectionDialog dlg ( bt->id(),this,3 );
-    if ( dlg.exec() ==QDialog::Accepted )
-    {
-        bt->redraw();
-        bool vis=bt->isVisible();
-        placeButtons();
-        users->ensureVisible ( bt->x(),bt->y(),50,220 );
-        bt->setVisible ( vis );
-    }
-}
-
-
 void ONMainWindow::slotExtTimer()
 {
 
@@ -8310,11 +8126,10 @@ void ONMainWindow::reloadUsers()
     int i;
     for ( i=0; i<names.size(); ++i )
         names[i]->close();
-    for ( i=0; i<sessions.size(); ++i )
-        sessions[i]->close();
 
     userList.clear();
-    sessions.clear();
+
+    sessionExplorer->cleanSessions();
 
 
     loadSettings();
@@ -9249,7 +9064,7 @@ void ONMainWindow::startX2goMount()
     {
         QString sid;
         if ( !embedMode )
-            sid=lastSession->id();
+            sid=sessionExplorer->getLastSession()->id();
         else
             sid="embedded";
         if ( st.setting()->value (
@@ -10072,7 +9887,7 @@ void ONMainWindow::setProxyWinTitle()
     QString title;
 
     if (!useLdap)
-        title=lastSession->name();
+        title=sessionExplorer->getLastSession()->name();
     else
         title=getCurrentUname()+"@"+resumingSession.server;
 
@@ -10081,7 +9896,7 @@ void ONMainWindow::setProxyWinTitle()
     if (useLdap)
         pixmap=lastUser->foto();
     else
-        pixmap=*(lastSession->sessIcon());
+        pixmap=*(sessionExplorer->getLastSession()->sessIcon());
 
 #ifdef Q_OS_LINUX
 
@@ -10329,7 +10144,7 @@ void ONMainWindow::slotFindProxyWin()
                 X2goSettings *st;
                 QString sid;
                 if ( !embedMode )
-                    sid=lastSession->id();
+                    sid=sessionExplorer->getLastSession()->id();
                 else
                     sid="embedded";
 
@@ -11272,7 +11087,7 @@ void ONMainWindow::initSelectSessDlg()
     sessTv->setItemsExpandable ( false );
     sessTv->setRootIsDecorated ( false );
 
-    model=new QStandardItemModel ( sessions.size(), 8 );
+    model=new QStandardItemModel ( sessionExplorer->getSessionsList()->size(), 8 );
     model->setHeaderData ( S_DISPLAY,Qt::Horizontal,
                            QVariant ( ( QString ) tr ( "Display" ) ) );
     model->setHeaderData ( S_STATUS,Qt::Horizontal,
@@ -11291,7 +11106,7 @@ void ONMainWindow::initSelectSessDlg()
     model->setHeaderData ( S_ID,Qt::Horizontal,
                            QVariant ( ( QString ) tr ( "Session ID" ) ) );
 
-    modelDesktop=new QStandardItemModel ( sessions.size(), 2 );
+    modelDesktop=new QStandardItemModel ( sessionExplorer->getSessionsList()->size(), 2 );
     modelDesktop->setHeaderData ( D_USER,Qt::Horizontal,
                                   QVariant ( ( QString ) tr ( "User" ) ) );
     modelDesktop->setHeaderData (

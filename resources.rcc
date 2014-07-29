@@ -7,6 +7,8 @@
        <file>svg/x2gologo.svg</file>
        <file>svg/passform.svg</file>
        <file>svg/sessionbut.svg</file>
+       <file>svg/folder.svg</file>
+       <file>svg/folder_grey.svg</file>
        <file>svg/sessionbut_grey.svg</file>
        <file>png/ico.png</file>
        <file>png/ico_mini.png</file>
@@ -14,6 +16,7 @@
        <file>png/ico_440x180.png</file>
        <file>png/power-button.png</file>
        <file>icons/128x128/x2go.png</file>
+       <file>icons/128x128/folder.png</file>
        <file>icons/128x128/x2gosession.png</file>
        <file>icons/128x128/create_file.png</file>
        <file>icons/128x128/lxde.png</file>

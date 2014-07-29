@@ -33,10 +33,11 @@
 #include "x2gologdebug.h"
 #include <QApplication>
 #include <QDesktopWidget>
+#include "sessionexplorer.h"
 
 
 SessionButton::SessionButton ( ONMainWindow* mw,QWidget *parent, QString id )
-        : SVGFrame ( ":/svg/sessionbut.svg",false,parent )
+    : SVGFrame ( ":/svg/sessionbut.svg",false,parent )
 {
     editable=mw->sessionEditEnabled();
 
@@ -287,9 +288,19 @@ void SessionButton::redraw()
 
 
 
-    sessName->setText (
-        st->setting()->value ( sid+"/name",
-                               ( QVariant ) tr ( "New Session" ) ).toString());
+    QString name=st->setting()->value ( sid+"/name",
+                                        ( QVariant ) tr ( "New Session" ) ).toString();
+
+    QStringList tails=name.split("/",QString::SkipEmptyParts);
+    if(tails.count()>0)
+    {
+        name=tails.last();
+        tails.pop_back();
+        path=tails.join("/");
+    }
+
+    sessName->setText (name);
+
     QString status=st->setting()->value ( sid+"/status",
                                           ( QVariant ) QString::null ).toString();
     if (status == "R")
@@ -333,7 +344,7 @@ void SessionButton::redraw()
     QString command=st->setting()->value ( sid+"/command",
                                            ( QVariant )
                                            tr (
-                                               "KDE" ) ).
+                                                   "KDE" ) ).
                     toString();
     rootless=st->setting()->value ( sid+"/rootless",
                                     false ).toBool();
@@ -438,7 +449,7 @@ void SessionButton::redraw()
     geomBox->addItem ( tr ( "fullscreen" ) );
     uint displays=QApplication::desktop()->numScreens();
     if (!directRDP)
-        for (uint i=0;i<displays;++i)
+        for (uint i=0; i<displays; ++i)
         {
             geomBox->addItem ( tr( "Display " )+QString::number(i+1));
 
@@ -462,43 +473,42 @@ void SessionButton::redraw()
     {
         geom->setText ( tr ( "fullscreen" ) );
     }
-    else
-        if (st->setting()->value ( sid+"/multidisp",
-                                   ( QVariant ) false ).toBool() && !directRDP)
+    else if (st->setting()->value ( sid+"/multidisp",
+                                    ( QVariant ) false ).toBool() && !directRDP)
+    {
+        uint disp=st->setting()->value ( sid+"/display",
+                                         ( QVariant ) 1 ).toUInt();
+        if (disp<=displays)
         {
-            uint disp=st->setting()->value ( sid+"/display",
-                                             ( QVariant ) 1 ).toUInt();
-            if (disp<=displays)
-            {
-                geom->setText( tr( "Display " )+QString::number(disp));
-            }
-            else
-            {
-                geom->setText( tr( "Display " )+QString::number(1));
-            }
-            for (int i=0;i<geomBox->count();++i)
-                if (geomBox->itemText(i)==geom->text())
-                {
-                    geomBox->setCurrentIndex(i);
-                    break;
-                }
+            geom->setText( tr( "Display " )+QString::number(disp));
         }
         else
         {
-#ifndef	Q_WS_HILDON
-            QString g=QString::number ( st->setting()->value (
-                                            sid+"/width" ).toInt() );
-            g+="x"+QString::number ( st->setting()->value (
-                                         sid+"/height" ).toInt() );
-            geom->setText ( g );
-            if ( geomBox->findText ( g ) ==-1 )
-                geomBox->addItem ( g );
-            geomBox->setCurrentIndex ( geomBox->findText ( g ) );
-#else
-            geom->setText ( tr ( "window" ) );
-            geomBox->setCurrentIndex ( 1 );
-#endif
+            geom->setText( tr( "Display " )+QString::number(1));
         }
+        for (int i=0; i<geomBox->count(); ++i)
+            if (geomBox->itemText(i)==geom->text())
+            {
+                geomBox->setCurrentIndex(i);
+                break;
+            }
+    }
+    else
+    {
+#ifndef	Q_WS_HILDON
+        QString g=QString::number ( st->setting()->value (
+                                        sid+"/width" ).toInt() );
+        g+="x"+QString::number ( st->setting()->value (
+                                     sid+"/height" ).toInt() );
+        geom->setText ( g );
+        if ( geomBox->findText ( g ) ==-1 )
+            geomBox->addItem ( g );
+        geomBox->setCurrentIndex ( geomBox->findText ( g ) );
+#else
+        geom->setText ( tr ( "window" ) );
+        geomBox->setCurrentIndex ( 1 );
+#endif
+    }
 
     if (directRDP)
     {
@@ -781,29 +791,28 @@ void SessionButton::slot_geom_change ( const QString& new_g )
         st.setting()->setValue ( sid+"/multidisp", ( QVariant ) false );
         st.setting()->setValue ( sid+"/maxdim", ( QVariant ) true );
     }
+    else if (new_g.indexOf(tr("Display "))==0)
+    {
+        QString g= new_g;
+        g.replace(tr("Display "),"");
+        st.setting()->setValue ( sid+"/multidisp", ( QVariant ) true );
+        st.setting()->setValue ( sid+"/display", ( QVariant ) g.toUInt());
+        st.setting()->setValue ( sid+"/fullscreen", ( QVariant ) false );
+        st.setting()->setValue ( sid+"/maxdim", ( QVariant ) false );
+    }
     else
-        if (new_g.indexOf(tr("Display "))==0)
-        {
-            QString g= new_g;
-            g.replace(tr("Display "),"");
-            st.setting()->setValue ( sid+"/multidisp", ( QVariant ) true );
-            st.setting()->setValue ( sid+"/display", ( QVariant ) g.toUInt());
-            st.setting()->setValue ( sid+"/fullscreen", ( QVariant ) false );
-            st.setting()->setValue ( sid+"/maxdim", ( QVariant ) false );
-        }
-        else
-        {
-            QString new_geom=new_g;
+    {
+        QString new_geom=new_g;
 #ifdef Q_WS_HILDON
-            new_geom="800x600";
+        new_geom="800x600";
 #endif
-            st.setting()->setValue ( sid+"/fullscreen", ( QVariant ) false );
-            st.setting()->setValue ( sid+"/multidisp", ( QVariant ) false );
-            st.setting()->setValue ( sid+"/maxdim", ( QVariant ) false );
-            QStringList lst=new_geom.split ( 'x' );
-            st.setting()->setValue ( sid+"/width", ( QVariant ) lst[0] );
-            st.setting()->setValue ( sid+"/height", ( QVariant ) lst[1] );
-        }
+        st.setting()->setValue ( sid+"/fullscreen", ( QVariant ) false );
+        st.setting()->setValue ( sid+"/multidisp", ( QVariant ) false );
+        st.setting()->setValue ( sid+"/maxdim", ( QVariant ) false );
+        QStringList lst=new_geom.split ( 'x' );
+        st.setting()->setValue ( sid+"/width", ( QVariant ) lst[0] );
+        st.setting()->setValue ( sid+"/height", ( QVariant ) lst[1] );
+    }
     st.setting()->sync();
 }
 
@@ -835,5 +844,5 @@ void SessionButton::slotShowMenu()
 
 void SessionButton::slotCreateSessionIcon()
 {
-    par->slotCreateDesktopIcon ( this );
+    par->getSessionExplorer()->slotCreateDesktopIcon ( this );
 }

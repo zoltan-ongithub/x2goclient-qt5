@@ -71,7 +71,9 @@ HEADERS += configdialog.h \
            xsettingswidget.h \
            appdialog.h \
            x2goutils.h \
-           helpdialog.h
+           helpdialog.h \
+           sessionexplorer.h \
+           folderbutton.h
 
 SOURCES += sharewidget.cpp \
            settingswidget.cpp\
@@ -108,7 +110,9 @@ SOURCES += sharewidget.cpp \
            xsettingswidget.cpp \
            appdialog.cpp \
            x2goutils.cpp \
-           helpdialog.cpp
+           helpdialog.cpp \
+           sessionexplorer.cpp \
+           folderbutton.cpp
 
 LIBS += -lssh
 

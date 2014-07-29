@@ -15,8 +15,8 @@
 *   along with this program.  If not, see <http://www.gnu.org/licenses/>. *
 ***************************************************************************/
 
-#ifndef SESSIONBUTTON_H
-#define SESSIONBUTTON_H
+#ifndef FOLDERBUTTON_H
+#define FOLDERBUTTON_H
 
 #include "SVGFrame.h"
 #include <QPushButton>
@@ -28,69 +28,40 @@ class QPushButton;
 /**
 	@author Oleksandr Shneyder <oleksandr.shneyder@obviously-nice.de>
 */
-class SessionButton : public SVGFrame
+class FolderButton : public SVGFrame
 {
     Q_OBJECT
 public:
-    enum {KDE,GNOME,LXDE,XFCE,MATE,UNITY,RDP,XDMCP,SHADOW,PUBLISHED,OTHER,APPLICATION};
-    SessionButton ( ONMainWindow* mw, QWidget* parent,QString id );
-    ~SessionButton();
-    QString id() {
-        return sid;
-    }
-    void redraw();
-    const QPixmap* sessIcon() {
+    FolderButton ( ONMainWindow* mw, QWidget* parent, QString folderPath, QString folderName );
+    ~FolderButton();
+
+    const QPixmap* folderIcon() {
         return icon->pixmap();
     }
-    static bool lessThen ( const SessionButton* b1, const SessionButton* b2 );
-    QString name();
+    static bool lessThen ( const FolderButton* b1, const FolderButton* b2 );
+    QString getName()
+    {
+        return name;
+    }
     QString getPath()
     {
         return path;
     }
+    void setChildrenList(QStringList children);
 private:
-    QString sid;
     QString path;
-    QLabel* sessName;
-    QLabel* sessStatus;
+    QString name;
+    QString description;
+    QLabel* nameLabel;
     QLabel* icon;
-    QComboBox* cmdBox;
-    QLabel* cmd;
-    QLabel* serverIcon;
-    QLabel* geomIcon;
-    QLabel* cmdIcon;
-    QLabel* server;
-    QPushButton* editBut;
-    QLabel* geom;
-    QMenu* sessMenu;
-    QComboBox* geomBox;
-    QPushButton* sound;
-    QLabel* soundIcon;
     ONMainWindow* par;
-    QAction* act_edit;
-    QAction* act_createIcon;
-    QAction* act_remove;
-    bool rootless;
-    bool published;
-    bool editable;
 
 private slots:
     void slotClicked();
-    void slotEdit();
-    void slot_soundClicked();
-    void slot_cmd_change ( const QString& command );
-    void slot_geom_change ( const QString& new_g );
-    void slotRemove();
-    void slotMenuHide();
-    void slotShowMenu();
-    void slotCreateSessionIcon();
 signals:
-    void sessionSelected ( SessionButton* );
-    void signal_edit ( SessionButton* );
-    void signal_remove ( SessionButton* );
+    void folderSelected ( FolderButton* );
     void clicked();
 protected:
-    virtual void mouseMoveEvent ( QMouseEvent * event );
     virtual void mousePressEvent ( QMouseEvent * event );
     virtual void mouseReleaseEvent ( QMouseEvent * event );
 };

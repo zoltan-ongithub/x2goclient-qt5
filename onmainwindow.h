@@ -80,6 +80,8 @@ class QStandardItemModel;
 class HttpBrokerClient;
 class QMenu;
 class QComboBox;
+
+class SessionExplorer;
 struct user
 {
     int uin;
@@ -339,10 +341,6 @@ public:
     ~ONMainWindow();
     static void installTranslator();
     QString iconsPath ( QString fname );
-    const QList<SessionButton*> * getSessionsList()
-    {
-        return &sessions;
-    }
     static bool isServerRunning ( int port );
     void startNewSession();
     void suspendSession ( QString sessId );
@@ -502,6 +500,36 @@ public:
         return hideFolderSharing;
     }
 
+    SessionExplorer* getSessionExplorer()
+    {
+        return sessionExplorer;
+    }
+
+    bool getBrokerMode()
+    {
+        return brokerMode;
+    }
+
+    bool getMiniMode()
+    {
+        return miniMode;
+    }
+
+    QScrollArea* getUsersArea()
+    {
+        return users;
+    }
+
+    QFrame* getUsersFrame()
+    {
+        return uframe;
+    }
+
+    IMGFrame* getCentralFrame()
+    {
+        return fr;
+    }
+
     void runApplication(QString exec);
 
 
@@ -631,6 +659,8 @@ private:
     QLineEdit* desktopFilter;
     QCheckBox* desktopFilterCb;
 
+    SessionExplorer* sessionExplorer;
+
     IMGFrame* fr;
     SVGFrame *bgFrame;
     QLineEdit* uname;
@@ -670,9 +700,7 @@ private:
     QHBoxLayout* mainL;
     QHBoxLayout* bgLay;
     QList<UserButton*> names;
-    QList<SessionButton*> sessions;
     UserButton* lastUser;
-    SessionButton* lastSession;
     QString prevText;
     QString onserver;
     QString id;
@@ -881,8 +909,6 @@ private:
     QString defaultSessionId;
     QString defaultUserName;
     bool defaultUser;
-    SessionButton* createBut ( const QString& id );
-    void placeButtons();
     QString getKdeIconsPath();
     QString findTheme ( QString theme );
     bool initLdapSession ( bool showBox=true );
@@ -979,10 +1005,6 @@ private slots:
 public slots:
     void slotConfig();
     void slotNewSession();
-    void slotDeleteButton ( SessionButton * bt );
-    void slotEdit ( SessionButton* );
-    void slotCreateDesktopIcon ( SessionButton* bt );
-    void exportsEdit ( SessionButton* bt );
     void slotEmbedControlAction();
     void slotDetachProxyWindow();
     void slotActivateWindow();

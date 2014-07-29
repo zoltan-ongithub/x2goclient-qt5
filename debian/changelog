@@ -28,6 +28,7 @@ x2goclient (4.0.3.0-0x2go1) UNRELEASED; urgency=low
     - Start x2gohelper from X2Go Client. Revert name changing of X2Go Client and
       x2gohelper.
     - Add Makefile for x2gohelper.
+    - Add support for sessions folders.
 
   [ Mike DePaulo ]
   * New upstream release (4.0.3.0):
