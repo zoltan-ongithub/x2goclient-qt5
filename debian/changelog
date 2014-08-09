@@ -38,6 +38,10 @@ x2goclient (4.0.3.0-0x2go1) UNRELEASED; urgency=low
       30MB larger.
     - Windows: Make the desktop shortcut optional during install,
       but still the default.
+    - Windows: Win32 OpenSSL updated from 1.0.1h to 1.0.1i, which fixes the
+      9 CVEs announced on 2014-08-06.
+    - Windows: Cygwin OpenSSL updated from 1.0.1h-1 to 1.0.1i-1, which fixes the
+      9 CVEs announced on 2014-08-06.
 
   [ Stefan Baur ]
   * New upstream version (4.0.2.1):
