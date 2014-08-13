@@ -14,66 +14,31 @@
 *   You should have received a copy of the GNU General Public License     *
 *   along with this program.  If not, see <http://www.gnu.org/licenses/>. *
 ***************************************************************************/
-
-#ifndef FOLDERBUTTON_H
-#define FOLDERBUTTON_H
-
-#include "SVGFrame.h"
-#include <QPushButton>
-#include <QLabel>
-class ONMainWindow;
-class QComboBox;
-class QPushButton;
-
-/**
-	@author Oleksandr Shneyder <oleksandr.shneyder@obviously-nice.de>
-*/
-class FolderButton : public SVGFrame
+#ifndef FOLDEREXPLORER_H
+#define FOLDEREXPLORER_H
+#include "ui_folderexplorer.h"
+class SessionExplorer;
+class FolderExplorer: public QDialog, Ui_FolderExplorer
 {
     Q_OBJECT
 public:
-    FolderButton ( ONMainWindow* mw, QWidget* parent, QString folderPath, QString folderName );
-    ~FolderButton();
-
-    const QPixmap* folderIcon() {
-        return icon->pixmap();
-    }
-    static bool lessThen ( const FolderButton* b1, const FolderButton* b2 );
-    QString getName()
+    FolderExplorer(QString path, SessionExplorer* explorer, QWidget* parent=0);
+    QString getCurrentPath()
     {
-        return name;
+        return currentPath;
     }
-    QString getPath()
-    {
-        return path;
-    }
-    void setPath(QString path)
-    {
-        this->path=path;
-    }
-    void setName(QString name)
-    {
-        this->name=name;
-    }
-    void loadIcon();
-
-    void setChildrenList(QStringList children);
 private:
-    QString path;
-    QString name;
-    QString description;
-    QLabel* nameLabel;
-    QLabel* icon;
-    ONMainWindow* par;
-
+    SessionExplorer* explorer;
+    QTreeWidgetItem* root;
+    QTreeWidgetItem* menuItem;
+    QString currentPath;
+    void initFolders(QTreeWidgetItem* parent, QString path);
 private slots:
-    void slotClicked();
-signals:
-    void folderSelected ( FolderButton* );
-    void clicked();
-protected:
-    virtual void mousePressEvent ( QMouseEvent * event );
-    virtual void mouseReleaseEvent ( QMouseEvent * event );
+    void slotContextMenu(QPoint p);
+    void slotItemSelected(QTreeWidgetItem* it, int);
+    void slotNewFolder();
+    void slotChangeName();
+    void slotChangeIcon();
+    void slotDeleteFolder();
 };
-
 #endif

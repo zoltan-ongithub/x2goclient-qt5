@@ -51,6 +51,7 @@ private slots:
     void slot_proxySameLogin();
     void slot_proxyGetKey();
     void slot_krbChecked();
+    void slot_openFolder();
 public slots:
 #ifdef Q_OS_LINUX
     void slot_rdpDirectClicked();
@@ -63,6 +64,7 @@ private:
     QLineEdit* uname;
     QLineEdit* server;
     QSpinBox* sshPort;
+    ONMainWindow* parent;
 #ifdef Q_OS_LINUX
     QSpinBox* rdpPort;
 #endif
@@ -81,6 +83,7 @@ private:
     QLabel* leCmdIp;
     QLabel* lPort;
     QLabel* lKey;
+    QLabel* lPath;
     QPushButton* pbAdvanced;
     QString rdpOptions;
     QString rdpServer;

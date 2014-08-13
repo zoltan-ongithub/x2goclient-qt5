@@ -286,8 +286,6 @@ void SessionButton::redraw()
     else
         st= new X2goSettings( "sessions" );
 
-
-
     QString name=st->setting()->value ( sid+"/name",
                                         ( QVariant ) tr ( "New Session" ) ).toString();
 

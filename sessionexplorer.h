@@ -39,6 +39,10 @@ public:
     {
         return &sessions;
     }
+    QList<FolderButton*> * getFoldersList()
+    {
+        return &folders;
+    }
     SessionButton* getLastSession() {
         return lastSession;
     }
@@ -53,7 +57,14 @@ public:
     {
         return navigationLayout;
     }
+    bool isFolderEmpty(QString path);
     void resize();
+    void setFolderIcon(QString path, QString icon);
+    void createNewFolder(QString path);
+    void renameFolder(QString oldPath, QString currentPath);
+    void deleteFolder(QString path);
+
+
 //vars
 private:
     QList<SessionButton*> sessions;
@@ -70,6 +81,7 @@ private:
     void setNavigationVisible(bool value);
     int findFolder(QString path);
     void createFolder(QString path);
+    void getFoldersFromConfig();
 
 public slots:
     void slotDeleteButton ( SessionButton * bt );

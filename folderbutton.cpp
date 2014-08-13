@@ -76,33 +76,67 @@ FolderButton::FolderButton ( ONMainWindow* mw,QWidget *parent, QString folderPat
 
     icon=new QLabel ( this );
 
-    QString sessIcon=":icons/128x128/folder.png";
-    QPixmap* pix=new QPixmap( sessIcon );
     nameLabel->setWordWrap(true);
     nameLabel->setTextInteractionFlags(Qt::NoTextInteraction);
 
-    icon->move ( 10,10 );
+    icon->move ( 10,25 );
 
     if ( !miniMode )
     {
         nameLabel->move ( 80,34 );
         nameLabel->setFixedSize(235,135);
-        icon->setPixmap ( pix->scaled ( 64,64,Qt::IgnoreAspectRatio,
-                                        Qt::SmoothTransformation ) );
     }
     else
     {
         nameLabel->move ( 64,18 );
         nameLabel->setFixedSize(170,120);
-        icon->setPixmap ( pix->scaled ( 48,48,Qt::IgnoreAspectRatio,
-                                        Qt::SmoothTransformation ) );
     }
-    delete pix;
-
+    loadIcon();
 }
 
 FolderButton::~FolderButton()
 {}
+
+void FolderButton::loadIcon()
+{
+    X2goSettings *st;
+
+    if (par->getBrokerMode())
+        st=new X2goSettings(par->getConfig()->iniFile,QSettings::IniFormat);
+    else
+        st= new X2goSettings( "sessions" );
+
+    QString sessIcon=":icons/128x128/folder.png";
+    QPixmap* pix;
+
+    QString normPath=(path+"/"+name).split("/",QString::SkipEmptyParts).join("::");
+
+    QByteArray picture=st->setting()->value ( normPath,
+                       ( QVariant )QByteArray()).toByteArray();
+    if(!picture.size())
+    {
+        pix=new QPixmap( sessIcon );
+    }
+    else
+    {
+        pix=new QPixmap();
+        pix->loadFromData(picture);
+    }
+    bool miniMode=par->retMiniMode();
+
+    if ( !miniMode )
+    {
+        icon->setPixmap ( pix->scaled ( 64,64,Qt::IgnoreAspectRatio,
+                                        Qt::SmoothTransformation ) );
+    }
+    else
+    {
+        icon->setPixmap ( pix->scaled ( 48,48,Qt::IgnoreAspectRatio,
+                                        Qt::SmoothTransformation ) );
+    }
+
+    delete pix;
+}
 
 void FolderButton::slotClicked()
 {
@@ -118,14 +152,12 @@ bool FolderButton::lessThen ( const FolderButton* b1,
 
 void FolderButton::mousePressEvent ( QMouseEvent * event )
 {
-    x2goDebug<<"mpress";
     SVGFrame::mousePressEvent ( event );
     loadBg ( ":/svg/folder_grey.svg" );
 }
 
 void FolderButton::mouseReleaseEvent ( QMouseEvent * event )
 {
-    x2goDebug<<"mrelease";
     SVGFrame::mouseReleaseEvent ( event );
     int x=event->x();
     int y=event->y();

@@ -530,6 +530,11 @@ public:
         return fr;
     }
 
+    ConfigFile* getConfig()
+    {
+        return &config;
+    }
+
     void runApplication(QString exec);
 
 

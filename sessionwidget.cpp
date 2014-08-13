@@ -35,6 +35,7 @@
 #include <QMessageBox>
 #include <QButtonGroup>
 #include <QRadioButton>
+#include "folderexplorer.h"
 
 SessionWidget::SessionWidget ( QString id, ONMainWindow * mw,
                                QWidget * parent, Qt::WindowFlags f )
@@ -44,6 +45,7 @@ SessionWidget::SessionWidget ( QString id, ONMainWindow * mw,
 #ifdef Q_WS_HILDON
     sessLay->setMargin ( 2 );
 #endif
+    this->parent=mw;
     sessName=new QLineEdit ( this );
     icon=new QPushButton ( QString::null,this );
     if ( !miniMode )
@@ -65,6 +67,14 @@ SessionWidget::SessionWidget ( QString id, ONMainWindow * mw,
     QHBoxLayout* ilay=new QHBoxLayout();
     ilay->addWidget ( icon );
     ilay->addWidget ( new QLabel ( tr ( "<< change icon" ),this ) );
+
+    lPath=new QLabel(this);
+    lPath->setFrameStyle(QFrame::StyledPanel);
+    QPushButton* pathButton=new QPushButton("...",this);
+    QHBoxLayout* pathLay=new QHBoxLayout();
+    pathLay->addWidget(new QLabel(tr("Path:"), this),0);
+    pathLay->addWidget(lPath,1);
+    pathLay->addWidget(pathButton,0);
 
 #ifndef Q_WS_HILDON
     QGroupBox *sgb=new QGroupBox ( tr ( "&Server" ),this );
@@ -221,6 +231,7 @@ SessionWidget::SessionWidget ( QString id, ONMainWindow * mw,
 #ifndef Q_WS_HILDON
     sessLay->addLayout ( slay );
     sessLay->addLayout ( ilay );
+    sessLay->addLayout ( pathLay );
     if ( !miniMode )
         sessLay->addSpacing ( 15 );
     sessLay->addWidget ( sgb );
@@ -271,6 +282,7 @@ SessionWidget::SessionWidget ( QString id, ONMainWindow * mw,
     connect ( proxyType, SIGNAL ( buttonClicked(int)) ,this,SLOT ( slot_proxyType()));
     connect (cbProxy, SIGNAL(clicked(bool)), this, SLOT(slot_proxyOptions()));
     connect (cbProxySameUser, SIGNAL(clicked(bool)), this, SLOT(slot_proxySameLogin()));
+    connect ( pathButton, SIGNAL(clicked(bool)), this, SLOT(slot_openFolder()));
 
     readConfig();
 }
@@ -508,10 +520,22 @@ void SessionWidget::readConfig()
 {
 
     X2goSettings st ( "sessions" );
-    sessName->setText (
-        st.setting()->value (
-            sessionId+"/name",
-            ( QVariant ) tr ( "New session" ) ).toString().trimmed() );
+    QString name=st.setting()->value (
+                     sessionId+"/name",
+                     ( QVariant ) tr ( "New session" ) ).toString().trimmed();
+
+    QStringList tails=name.split("/",QString::SkipEmptyParts);
+    QString path;
+    if(tails.count()>0)
+    {
+        name=tails.last();
+        tails.pop_back();
+        path=tails.join("/")+"/";
+    }
+    lPath->setText(path);
+
+    sessName->setText (name);
+
     sessIcon=st.setting()->value (
                  sessionId+"/icon",
                  ( QVariant ) ":icons/128x128/x2gosession.png" ).toString().trimmed();
@@ -780,8 +804,11 @@ void SessionWidget::saveSettings()
 {
 
     X2goSettings st ( "sessions" );
+
+    QString normPath=(lPath->text()+"/"+sessName->text()).split("/",QString::SkipEmptyParts).join("/");
+
     st.setting()->setValue ( sessionId+"/name",
-                             ( QVariant ) sessName->text().trimmed() );
+                             ( QVariant ) normPath.trimmed() );
     st.setting()->setValue ( sessionId+"/icon",
                              ( QVariant ) sessIcon );
     st.setting()->setValue ( sessionId+"/host",
@@ -903,4 +930,13 @@ void SessionWidget::slot_emitSettings()
 void SessionWidget::slot_krbChecked()
 {
     cbKrbDelegation->setEnabled(cbKrbLogin->isChecked());
+}
+
+void SessionWidget::slot_openFolder()
+{
+    FolderExplorer explorer(lPath->text(), parent->getSessionExplorer(), this);
+    if(explorer.exec()==QDialog::Accepted)
+    {
+        lPath->setText(explorer.getCurrentPath());
+    }
 }

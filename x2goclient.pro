@@ -19,7 +19,8 @@ FORMS += cupsprintsettingsdialog.ui \
            brokerpassdialog.ui \
            contest.ui \
            appdialog.ui \
-           helpdialog.ui
+           helpdialog.ui \
+           folderexplorer.ui
 
 TRANSLATIONS += \
            x2goclient_de.ts \
@@ -73,7 +74,8 @@ HEADERS += configdialog.h \
            x2goutils.h \
            helpdialog.h \
            sessionexplorer.h \
-           folderbutton.h
+           folderbutton.h \
+           folderexplorer.h
 
 SOURCES += sharewidget.cpp \
            settingswidget.cpp\
@@ -112,7 +114,8 @@ SOURCES += sharewidget.cpp \
            x2goutils.cpp \
            helpdialog.cpp \
            sessionexplorer.cpp \
-           folderbutton.cpp
+           folderbutton.cpp \
+           folderexplorer.cpp
 
 LIBS += -lssh
 

@@ -48,6 +48,11 @@ public:
     {
         return path;
     }
+    void setPath(QString path)
+    {
+        this->path=path;
+    }
+
 private:
     QString sid;
     QString path;
