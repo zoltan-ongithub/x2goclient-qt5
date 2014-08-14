@@ -23,13 +23,15 @@
 #include <QDir>
 #include <QFrame>
 #include <QBoxLayout>
-#include <QListView>
+#include <QTreeWidget>
 #include <QStringListModel>
 #include <QShortcut>
 #include "sessionbutton.h"
+#include "folderbutton.h"
 #include "sessionexplorer.h"
 
-
+#define SESSIONROLE Qt::UserRole+1
+#define SESSIONIDROLE Qt::UserRole+2
 
 SessionManageDialog::SessionManageDialog ( QWidget * parent,
         bool onlyCreateIcon, Qt::WFlags f )
@@ -39,10 +41,12 @@ SessionManageDialog::SessionManageDialog ( QWidget * parent,
     QFrame *fr=new QFrame ( this );
     QHBoxLayout* frLay=new QHBoxLayout ( fr );
 
+    currentPath="";
+
     QPushButton* ok=new QPushButton ( tr ( "E&xit" ),this );
     QHBoxLayout* bLay=new QHBoxLayout();
 
-    sessions=new QListView ( fr );
+    sessions=new QTreeWidget ( fr );
     frLay->addWidget ( sessions );
 
     QPushButton* newSession=new QPushButton ( tr ( "&New session" ),fr );
@@ -115,10 +119,10 @@ SessionManageDialog::SessionManageDialog ( QWidget * parent,
 
     setWindowTitle ( tr ( "Session management" ) );
     loadSessions();
-    connect ( sessions,SIGNAL ( clicked ( const QModelIndex& ) ),
-              this,SLOT ( slot_activated ( const QModelIndex& ) ) );
-    connect ( sessions,SIGNAL ( doubleClicked ( const QModelIndex& ) ),
-              this,SLOT ( slot_dclicked ( const QModelIndex& ) ) );
+    connect ( sessions, SIGNAL(itemActivated(QTreeWidgetItem*,int)),
+              this,SLOT(slot_activated(QTreeWidgetItem*,int)) );
+    connect ( sessions,SIGNAL(itemDoubleClicked(QTreeWidgetItem*,int)),
+              this,SLOT(slot_dclicked(QTreeWidgetItem*,int)) );
 }
 
 
@@ -128,47 +132,90 @@ SessionManageDialog::~SessionManageDialog()
 
 void SessionManageDialog::loadSessions()
 {
-    QStringListModel *model= ( QStringListModel* ) sessions->model();
-    if ( !model )
-        model=new QStringListModel();
-    sessions->setModel ( model );
-    QStringList lst;
-    model->setStringList ( lst );
+    sessions->clear();
 
     const QList<SessionButton*> *sess=par->getSessionExplorer()->getSessionsList();
+    const QList<FolderButton*> *folders=par->getSessionExplorer()->getFoldersList();
 
-    for ( int i=0; i<sess->size(); ++i )
-        lst<<sess->at ( i )->name();
-
-    model->setStringList ( lst );
     removeSession->setEnabled ( false );
     editSession->setEnabled ( false );
 #if (!defined Q_WS_HILDON) && (!defined Q_OS_DARWIN)
     if ( !ONMainWindow::getPortable() )
         createSessionIcon->setEnabled ( false );
 #endif
-    sessions->setEditTriggers ( QAbstractItemView::NoEditTriggers );
+
+    QTreeWidgetItem* root;
+
+    root=new QTreeWidgetItem(sessions);
+    root->setText(0,"/");
+    root->setIcon(0,QIcon(":icons/128x128/folder.png"));
+    initFolders(root, "");
+    root->setExpanded(true);
+    root->setData(0, SESSIONROLE , false);
+
+    sessions->setRootIsDecorated(false);
+    sessions->setHeaderHidden(true);
+}
+
+void SessionManageDialog::initFolders(QTreeWidgetItem* parent, QString path)
+{
+    FolderButton* b;
+    foreach(b, *(par->getSessionExplorer()->getFoldersList()))
+    {
+        if(b->getPath()==path)
+        {
+            QTreeWidgetItem* it=new QTreeWidgetItem(parent);
+            it->setText(0,b->getName());
+            it->setIcon(0, QIcon(*(b->folderIcon())));
+            QString normPath=(b->getPath()+"/"+b->getName()).split("/",QString::SkipEmptyParts).join("/");
+            it->setData(0,Qt::UserRole, normPath+"/");
+            it->setData(0, SESSIONROLE , false);
+            initFolders(it, normPath);
+        }
+    }
+    for(int i=0; i< par->getSessionExplorer()->getSessionsList()->count(); ++i)
+    {
+        SessionButton* s=par->getSessionExplorer()->getSessionsList()->at(i);
+        if(s->getPath()==path)
+        {
+            QTreeWidgetItem* it=new QTreeWidgetItem(parent);
+            it->setText(0,s->getName());
+            it->setIcon(0, QIcon(*(s->sessIcon())));
+            QString normPath=(s->getPath()+"/"+s->getName()).split("/",QString::SkipEmptyParts).join("/");
+            it->setData(0,Qt::UserRole, normPath+"/");
+            it->setData(0, SESSIONROLE, true);
+            it->setData(0, SESSIONIDROLE, i);
+            initFolders(it, normPath);
+        }
+    }
 }
 
 
-void SessionManageDialog::slot_activated ( const QModelIndex& )
+void SessionManageDialog::slot_activated ( QTreeWidgetItem* item, int )
 {
-    removeSession->setEnabled ( true );
-    editSession->setEnabled ( true );
+    bool isSess=item->data(0, SESSIONROLE).toBool();
+    if(!isSess)
+    {
+        currentPath=item->data(0,Qt::UserRole).toString().split("/",QString::SkipEmptyParts).join("/");
+    }
+    removeSession->setEnabled ( isSess );
+    editSession->setEnabled ( isSess );
 #if (!defined Q_WS_HILDON) && (!defined Q_OS_DARWIN)
     if ( !ONMainWindow::getPortable() )
-        createSessionIcon->setEnabled ( true );
+        createSessionIcon->setEnabled ( isSess );
 #endif
 }
 
-void SessionManageDialog::slot_dclicked ( const QModelIndex& )
+void SessionManageDialog::slot_dclicked ( QTreeWidgetItem* item, int )
 {
-    slot_edit();
+    if(item->data(0, SESSIONROLE).toBool())
+        slot_edit();
 }
 
 
 void SessionManageDialog::slotNew()
 {
+    par->getSessionExplorer()->setCurrrentPath(currentPath);
     par->slotNewSession();
     loadSessions();
 }
@@ -176,27 +223,27 @@ void SessionManageDialog::slotNew()
 
 void SessionManageDialog::slot_edit()
 {
-    int ind=sessions->currentIndex().row();
-    if ( ind<0 )
+    if((! sessions->currentItem()) || (! sessions->currentItem()->data(0, SESSIONROLE).toBool()))
         return;
+    int ind=sessions->currentItem()->data(0, SESSIONIDROLE).toInt();
     par->getSessionExplorer()->slotEdit ( par->getSessionExplorer()->getSessionsList()->at ( ind ) );
     loadSessions();
 }
 
 void SessionManageDialog::slot_createSessionIcon()
 {
-    int ind=sessions->currentIndex().row();
-    if ( ind<0 )
+    if((! sessions->currentItem()) || (! sessions->currentItem()->data(0, SESSIONROLE).toBool()))
         return;
+    int ind=sessions->currentItem()->data(0, SESSIONIDROLE).toInt();
     par->getSessionExplorer()->slotCreateDesktopIcon ( par->getSessionExplorer()->getSessionsList()->at ( ind ) );
 }
 
 
 void SessionManageDialog::slot_delete()
 {
-    int ind=sessions->currentIndex().row();
-    if ( ind<0 )
+    if((! sessions->currentItem()) || (! sessions->currentItem()->data(0, SESSIONROLE).toBool()))
         return;
+    int ind=sessions->currentItem()->data(0, SESSIONIDROLE).toInt();
     par->getSessionExplorer()->slotDeleteButton ( par->getSessionExplorer()->getSessionsList()->at ( ind ) );
     loadSessions();
 }

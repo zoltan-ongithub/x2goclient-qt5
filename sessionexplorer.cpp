@@ -86,7 +86,7 @@ void SessionExplorer::cleanSessions()
 
 void SessionExplorer::exportsEdit ( SessionButton* bt )
 {
-    EditConnectionDialog dlg ( bt->id(),parent,3 );
+    EditConnectionDialog dlg (false, bt->id(),parent,3 );
     if ( dlg.exec() ==QDialog::Accepted )
     {
         bt->redraw();
@@ -119,7 +119,7 @@ void SessionExplorer::getFoldersFromConfig()
 
 void SessionExplorer::slotEdit ( SessionButton* bt )
 {
-    EditConnectionDialog dlg ( bt->id(),parent );
+    EditConnectionDialog dlg (false, bt->id(),parent );
     if ( dlg.exec() ==QDialog::Accepted )
     {
         bt->redraw();

@@ -28,7 +28,7 @@
 #include "connectionwidget.h"
 #include "settingswidget.h"
 
-EditConnectionDialog::EditConnectionDialog ( QString id, QWidget * par,
+EditConnectionDialog::EditConnectionDialog ( bool newSession, QString id, QWidget * par,
         int ind,Qt::WFlags f )
         : QDialog ( par,f )
 {
@@ -49,7 +49,7 @@ EditConnectionDialog::EditConnectionDialog ( QString id, QWidget * par,
 #endif
     setFont ( fnt );
 
-    sessSet=new SessionWidget ( id,parent );
+    sessSet=new SessionWidget ( newSession, id,parent );
     conSet=new ConnectionWidget ( id,parent );
     otherSet=new SettingsWidget ( id,parent );
     exportDir=new ShareWidget ( id,parent );

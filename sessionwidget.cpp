@@ -36,8 +36,9 @@
 #include <QButtonGroup>
 #include <QRadioButton>
 #include "folderexplorer.h"
+#include "sessionexplorer.h"
 
-SessionWidget::SessionWidget ( QString id, ONMainWindow * mw,
+SessionWidget::SessionWidget ( bool newSession, QString id, ONMainWindow * mw,
                                QWidget * parent, Qt::WindowFlags f )
     : ConfigWidget ( id,mw,parent,f )
 {
@@ -46,6 +47,8 @@ SessionWidget::SessionWidget ( QString id, ONMainWindow * mw,
     sessLay->setMargin ( 2 );
 #endif
     this->parent=mw;
+    this->newSession=newSession;
+
     sessName=new QLineEdit ( this );
     icon=new QPushButton ( QString::null,this );
     if ( !miniMode )
@@ -533,6 +536,8 @@ void SessionWidget::readConfig()
         path=tails.join("/")+"/";
     }
     lPath->setText(path);
+    if(newSession)
+        lPath->setText(parent->getSessionExplorer()->getCurrentPath()+"/");
 
     sessName->setText (name);
 

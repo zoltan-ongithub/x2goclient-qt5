@@ -64,6 +64,16 @@ public:
     void renameFolder(QString oldPath, QString currentPath);
     void deleteFolder(QString path);
 
+    QString getCurrentPath()
+    {
+        return currentPath;
+    }
+
+    void setCurrrentPath(QString path)
+    {
+        currentPath=path;
+    }
+
 
 //vars
 private:

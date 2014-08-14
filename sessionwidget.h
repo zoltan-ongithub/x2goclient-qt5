@@ -35,7 +35,7 @@ class SessionWidget : public ConfigWidget
 {
     Q_OBJECT
 public:
-    SessionWidget ( QString id, ONMainWindow * mv,
+    SessionWidget ( bool newSession, QString id, ONMainWindow * mv,
                     QWidget * parent = 0, Qt::WindowFlags f = 0 );
     ~SessionWidget();
     void setDefaults();
@@ -65,6 +65,7 @@ private:
     QLineEdit* server;
     QSpinBox* sshPort;
     ONMainWindow* parent;
+    bool newSession;
 #ifdef Q_OS_LINUX
     QSpinBox* rdpPort;
 #endif

@@ -2193,7 +2193,7 @@ void ONMainWindow::slotNewSession()
 {
     QString id=QDateTime::currentDateTime().
                toString ( "yyyyMMddhhmmsszzz" );
-    EditConnectionDialog dlg ( id, this );
+    EditConnectionDialog dlg (true, id, this );
     if ( dlg.exec() ==QDialog::Accepted )
     {
         SessionButton* bt=sessionExplorer->createBut ( id );
