@@ -179,9 +179,9 @@ void SessionManageDialog::initFolders(QTreeWidgetItem* parent, QString path)
         if(s->getPath()==path)
         {
             QTreeWidgetItem* it=new QTreeWidgetItem(parent);
-            it->setText(0,s->getName());
+            it->setText(0,s->name());
             it->setIcon(0, QIcon(*(s->sessIcon())));
-            QString normPath=(s->getPath()+"/"+s->getName()).split("/",QString::SkipEmptyParts).join("/");
+            QString normPath=(s->getPath()+"/"+s->name()).split("/",QString::SkipEmptyParts).join("/");
             it->setData(0,Qt::UserRole, normPath+"/");
             it->setData(0, SESSIONROLE, true);
             it->setData(0, SESSIONIDROLE, i);

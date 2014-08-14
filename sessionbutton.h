@@ -48,10 +48,6 @@ public:
     {
         return path;
     }
-    QString getName()
-    {
-        return sessName->text();
-    }
     void setPath(QString path)
     {
         this->path=path;

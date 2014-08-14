@@ -2154,6 +2154,8 @@ void ONMainWindow::slotReadSessions()
             {
                 if ( sessionExplorer->getSessionsList()->at(i)->id() ==defaultSessionId )
                 {
+                    sessionExplorer->setCurrrentPath(sessionExplorer->getSessionsList()->at(i)->getPath());
+                    sessionExplorer->placeButtons();
                     sfound=true;
                     slotSelectedFromList ( sessionExplorer->getSessionsList()->at(i) );
                     break;
@@ -2162,12 +2164,17 @@ void ONMainWindow::slotReadSessions()
         }
         else
         {
+            QString normalDefaultSName=defaultSessionName.split("/",QString::SkipEmptyParts).join("/");
             for ( int i=0; i<sessionExplorer->getSessionsList()->size(); ++i )
             {
-                if ( sessionExplorer->getSessionsList()->at(i)->name() ==defaultSessionName )
+                QString normalName=(sessionExplorer->getSessionsList()->at(i)->getPath()+"/"+sessionExplorer->getSessionsList()->at(i)->name());
+                normalName=normalName.split("/",QString::SkipEmptyParts).join("/");
+                if ( normalName == normalDefaultSName )
                 {
+                    sessionExplorer->setCurrrentPath(sessionExplorer->getSessionsList()->at(i)->getPath());
+                    sessionExplorer->placeButtons();
                     sfound=true;
-                    uname->setText ( defaultSessionName );
+                    uname->setText ( sessionExplorer->getSessionsList()->at(i)->name() );
                     QTimer::singleShot (
                         100, this,
                         SLOT ( slotUnameEntered() ) );
