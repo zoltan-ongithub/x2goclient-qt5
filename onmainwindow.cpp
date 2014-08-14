@@ -2455,6 +2455,8 @@ void ONMainWindow::slotSnameChanged ( const QString& text )
     QList<SessionButton*>::iterator endit=sessionExplorer->getSessionsList()->end();
     for ( it=sessionExplorer->getSessionsList()->begin(); it!=endit; it++ )
     {
+        if((*it)->getPath()!=sessionExplorer->getCurrentPath())
+            continue;
         QString name= ( *it )->name();
         if ( name.indexOf ( text,0,Qt::CaseInsensitive ) ==0 )
         {

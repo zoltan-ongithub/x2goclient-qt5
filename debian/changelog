@@ -31,6 +31,7 @@ x2goclient (4.0.3.0-0x2go1) UNRELEASED; urgency=low
     - Add support for sessions folders.
     - Add folder explorer - GUI to management of sessions folders.
     - Support for sessions folders in sessionmanagedialog.
+    - Session name autocomplition only for sessions in current folder.
 
   [ Mike DePaulo ]
   * New upstream release (4.0.3.0):
