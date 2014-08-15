@@ -603,7 +603,7 @@
     <message>
         <location filename="helpdialog.ui" line="14"/>
         <source>Options</source>
-        <translation type="unfinished">Opciones</translation>
+        <translation>Opciones</translation>
     </message>
 </context>
 <context>
@@ -683,7 +683,7 @@ Hash de su clave pública: </translation>
     <message>
         <location filename="httpbrokerclient.cpp" line="203"/>
         <source>Verification code:</source>
-        <translation type="unfinished">Código de verificación:</translation>
+        <translation>Código de verificación:</translation>
     </message>
     <message>
         <location filename="httpbrokerclient.cpp" line="207"/>
@@ -1224,7 +1224,7 @@ Use x2goclient hidden mode?</source>
     <message>
         <location filename="onmainwindow.cpp" line="7085"/>
         <source>wrong value for argument&quot;--clipboard&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>valor erróneo para el argumento &quot;--clipboard&quot;</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="11413"/>
@@ -1233,7 +1233,7 @@ Use x2goclient hidden mode?</source>
         <location filename="onmainwindow.cpp" line="11454"/>
         <location filename="onmainwindow.cpp" line="11465"/>
         <source>SSH Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Error de SSH</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="11414"/>
@@ -1246,7 +1246,14 @@ Windows ships its internal sshd.exe.
 
 If you see this message, please report a bug against
 the X2Go bugtracker.</source>
-        <translation type="unfinished"></translation>
+        <translation>El demonio SSH no pudo iniciarse
+
+Se necesita el demonio SSH para el sistema de impresión y compartición de archivos.
+
+Normalmente este error no debería aparecer ya que el Cliente X2Go
+para windows incluye su propio sshd.exe
+
+Si ves este mensaje te pedimos notifiques el error en el registro de errores de X2Go.</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="11429"/>
@@ -1256,24 +1263,30 @@ You&apos;ll need SSH daemon for printing and file sharing
 
 Please ask your system administrator to provide the SSH
 service on your computer.</source>
-        <translation type="unfinished"></translation>
+        <translation>El demonio SSH no pudo iniciarse
+
+Se necesita el demonio SSH para el sistema de impresión y compartición de archivos
+
+Pregunte al administrador del sistema para que suministre el servicio
+SSH en tu ordenador.</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="11445"/>
         <source>SSH daemon failed to open the application&apos;s public host key.</source>
-        <translation type="unfinished"></translation>
+        <translation>El demonio SSH falló al abrir la clave pública del host de la aplicación.</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="11455"/>
         <source>SSH daemon failed to open the application&apos;s public key
 used for exporting folders and printers.</source>
-        <translation type="unfinished"></translation>
+        <translation>El demonio SSH falló al abrir la clave pública del host de la aplicación
+usada para exportar carpetas e impresoras.</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="11466"/>
         <source>SSH daemon failed to open the application&apos;s
 authoized_keys file.</source>
-        <translation type="unfinished"></translation>
+        <translation>El demonio SSH falló al abrir el acrhivo authoized_keys de la aplicación.</translation>
     </message>
     <message>
         <source>X2Go sessions not found</source>
@@ -1647,28 +1660,28 @@ Por razones de seguridad se recomienda finalizar la conexión.
     <message>
         <location filename="onmainwindow.cpp" line="7346"/>
         <source>Help</source>
-        <translation type="unfinished"></translation>
+        <translation>Ayuda</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="7376"/>
         <source>Pack Methodes</source>
-        <translation type="unfinished"></translation>
+        <translation>Métodos de empaquetado</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="7406"/>
         <location filename="onmainwindow.cpp" line="7416"/>
         <source>Option is not availabel in this build</source>
-        <translation type="unfinished"></translation>
+        <translation>La opción no está disponible en esta versión</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="7409"/>
         <source>Changelog</source>
-        <translation type="unfinished"></translation>
+        <translation>Registro de cambios</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="7419"/>
         <source>Git Info</source>
-        <translation type="unfinished"></translation>
+        <translation>Información Git</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="7775"/>
@@ -2723,27 +2736,27 @@ Ejemplo:
     <message>
         <location filename="settingswidget.cpp" line="52"/>
         <source>&amp;Clipboard Mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Modo de &amp;Portapapeles</translation>
     </message>
     <message>
         <location filename="settingswidget.cpp" line="155"/>
         <source>Bidirectional copy and paste</source>
-        <translation type="unfinished"></translation>
+        <translation>Copiar y Pegar en ambas direcciones</translation>
     </message>
     <message>
         <location filename="settingswidget.cpp" line="156"/>
         <source>Copy and paste from client to server</source>
-        <translation type="unfinished"></translation>
+        <translation>Copiar y pegar desde el cliente al servidor</translation>
     </message>
     <message>
         <location filename="settingswidget.cpp" line="157"/>
         <source>Copy and paste from server to client</source>
-        <translation type="unfinished"></translation>
+        <translation>Copiar y pegar desde el servidor al cliente</translation>
     </message>
     <message>
         <location filename="settingswidget.cpp" line="158"/>
         <source>Disable clipboard completely</source>
-        <translation type="unfinished"></translation>
+        <translation>Desactivar portapapeles por completo</translation>
     </message>
     <message>
         <location filename="settingswidget.cpp" line="170"/>
