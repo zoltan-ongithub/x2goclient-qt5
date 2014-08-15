@@ -8204,7 +8204,10 @@ void ONMainWindow::setUsersEnabled ( bool enable )
         }
     }
     else
+    {
         users->setEnabled ( enable );
+        sessionExplorer->setEnable(enable);
+    }
 }
 
 

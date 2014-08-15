@@ -34,6 +34,7 @@ x2goclient (4.0.3.0-0x2go1) UNRELEASED; urgency=low
     - Session name autocomplition only for sessions in current folder.
     - Support for sessions folders and commandline options "--session"
       and "--sessionid".
+    - Disable sessions explorer "back" button if user sessions disabled.
 
   [ Mike DePaulo ]
   * New upstream release (4.0.3.0):

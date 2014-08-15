@@ -74,6 +74,8 @@ public:
         currentPath=path;
     }
 
+    void setEnable(bool enable);
+
 
 //vars
 private:

@@ -594,3 +594,8 @@ void SessionExplorer::deleteFolder(QString path)
     }
     placeButtons();
 }
+
+void SessionExplorer::setEnable(bool enable)
+{
+    backButton->setEnabled(enable);
+}
