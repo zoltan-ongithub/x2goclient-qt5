@@ -28,11 +28,11 @@ TRANSLATIONS += \
            x2goclient_es.ts \
            x2goclient_et.ts \
            x2goclient_fi.ts \
-           x2goclient_ru.ts \
-           x2goclient_nl.ts \
-           x2goclient_nb_no.ts \
-           x2goclient_sv.ts \
            x2goclient_fr.ts \
+           x2goclient_nb_no.ts \
+           x2goclient_nl.ts \
+           x2goclient_ru.ts \
+           x2goclient_sv.ts \
            x2goclient_zh_tw.ts
 
 HEADERS += configdialog.h \
