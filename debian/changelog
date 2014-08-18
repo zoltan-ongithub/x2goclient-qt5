@@ -6,6 +6,8 @@ x2goclient (4.0.3.0-0x2go1) UNRELEASED; urgency=low
       ~/bin (or similar). (Fixes: #336).
     - Avoid unitialised variables on early calls of ONMainWindow::closeEvent()
       or ONMainWindow::closeClient(). (Fixes: #253).
+    - Update translation files. Add empty Portuguese translation. Update
+      qt_<lang>.qm files from Debian unstable as of today.
 
   [ Oleksandr Shneyder ]
   * New upstream release (4.0.3.0):

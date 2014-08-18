@@ -519,17 +519,17 @@
 <context>
     <name>EditConnectionDialog</name>
     <message>
-        <location filename="editconnectiondialog.cpp" line="58"/>
+        <location filename="editconnectiondialog.cpp" line="57"/>
         <source>&amp;Session</source>
         <translation>&amp;Istunto</translation>
     </message>
     <message>
-        <location filename="editconnectiondialog.cpp" line="59"/>
+        <location filename="editconnectiondialog.cpp" line="58"/>
         <source>&amp;Connection</source>
         <translation>&amp;Yhteys</translation>
     </message>
     <message>
-        <location filename="editconnectiondialog.cpp" line="60"/>
+        <location filename="editconnectiondialog.cpp" line="59"/>
         <source>&amp;Settings</source>
         <translation>&amp;Asetukset</translation>
     </message>
@@ -562,40 +562,121 @@
 <context>
     <name>ExportDialog</name>
     <message>
-        <location filename="exportdialog.cpp" line="44"/>
+        <location filename="exportdialog.cpp" line="45"/>
         <source>&amp;Cancel</source>
         <translation>&amp;Peruuta</translation>
     </message>
     <message>
-        <location filename="exportdialog.cpp" line="50"/>
+        <location filename="exportdialog.cpp" line="51"/>
         <source>&amp;share</source>
         <translation>&amp;jaa</translation>
     </message>
     <message>
-        <location filename="exportdialog.cpp" line="51"/>
+        <location filename="exportdialog.cpp" line="52"/>
         <source>&amp;Preferences ...</source>
         <translation>&amp;Oletukset ...</translation>
     </message>
     <message>
-        <location filename="exportdialog.cpp" line="52"/>
+        <location filename="exportdialog.cpp" line="53"/>
         <source>&amp;Custom folder ...</source>
         <translation>&amp;Varattu hakemisto ...</translation>
     </message>
     <message>
-        <location filename="exportdialog.cpp" line="62"/>
+        <location filename="exportdialog.cpp" line="63"/>
         <source>Delete</source>
         <comment>Delete</comment>
         <translation>Poista</translation>
     </message>
     <message>
-        <location filename="exportdialog.cpp" line="79"/>
+        <location filename="exportdialog.cpp" line="80"/>
         <source>share folders</source>
         <translation>jaa kansiot</translation>
     </message>
     <message>
-        <location filename="exportdialog.cpp" line="145"/>
+        <location filename="exportdialog.cpp" line="146"/>
         <source>Select folder</source>
         <translation>Valitse kansio</translation>
+    </message>
+</context>
+<context>
+    <name>FolderButton</name>
+    <message>
+        <location filename="folderbutton.cpp" line="73"/>
+        <source>Sessions folder</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>FolderExplorer</name>
+    <message>
+        <location filename="folderexplorer.ui" line="14"/>
+        <source>Folders</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="folderexplorer.cpp" line="77"/>
+        <source>Create New Folder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="folderexplorer.cpp" line="81"/>
+        <source>Rename Folder...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="folderexplorer.cpp" line="82"/>
+        <source>Change Icon...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="folderexplorer.cpp" line="83"/>
+        <source>Delete Folder...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="folderexplorer.cpp" line="97"/>
+        <source>Open picture</source>
+        <translation type="unfinished">Avaa kuva</translation>
+    </message>
+    <message>
+        <location filename="folderexplorer.cpp" line="99"/>
+        <source>Pictures</source>
+        <translation type="unfinished">Kivat</translation>
+    </message>
+    <message>
+        <location filename="folderexplorer.cpp" line="112"/>
+        <source>X2Go Client</source>
+        <translation type="unfinished">X2Go asiakasohjelma</translation>
+    </message>
+    <message>
+        <location filename="folderexplorer.cpp" line="113"/>
+        <source>Folder Name:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="folderexplorer.cpp" line="130"/>
+        <source>Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="folderexplorer.cpp" line="130"/>
+        <source>Unable to remove &quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="folderexplorer.cpp" line="131"/>
+        <source>&quot;. Folder is not empty. Please remove content of folder and try again.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="folderexplorer.cpp" line="134"/>
+        <source>Delete folder &quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="folderexplorer.cpp" line="145"/>
+        <source>New Folder</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -609,7 +690,7 @@
 <context>
     <name>HttpBrokerClient</name>
     <message>
-        <location filename="httpbrokerclient.cpp" line="134"/>
+        <location filename="httpbrokerclient.cpp" line="128"/>
         <source>Host key for server changed.
 It is now: </source>
         <translatorcomment>tarkista</translatorcomment>
@@ -617,163 +698,163 @@ It is now: </source>
 Se on nyt:</translation>
     </message>
     <message>
-        <location filename="httpbrokerclient.cpp" line="135"/>
+        <location filename="httpbrokerclient.cpp" line="129"/>
         <source>For security reasons, connection will be stopped</source>
         <translation>Turvallisuussyistä, yhteys katkaistaan</translation>
     </message>
     <message>
-        <location filename="httpbrokerclient.cpp" line="148"/>
+        <location filename="httpbrokerclient.cpp" line="142"/>
         <source>The host key for this server was not found but an othertype of key exists.An attacker might change the default server key toconfuse your client into thinking the key does not exist</source>
         <translation>Palvelimen avainta ei löytynyt mutta vaihtoehtoinen avain löytyi. Tunkeutuja on ehkä vaihtanut oletusavaimen harhauttaakseen etäkäyttäjää luulemaan että avainta ei ole</translation>
     </message>
     <message>
-        <location filename="httpbrokerclient.cpp" line="174"/>
+        <location filename="httpbrokerclient.cpp" line="168"/>
         <source>Could not find known host file.If you accept the host key here, the file will be automatically created</source>
         <translation>Tunnetut työasemat sisältävää tiedostoa ei löytynyt. Jos hyväksyt palvelimen avaimen, tiedosto tehdäään automaattisesti</translation>
     </message>
     <message>
-        <location filename="httpbrokerclient.cpp" line="179"/>
+        <location filename="httpbrokerclient.cpp" line="173"/>
         <source>The server is unknown. Do you trust the host key?
 Public key hash: </source>
         <translation>Palvelin on tuntematon. Luotatko sen avaimeen?
 Julkinen avain:</translation>
     </message>
     <message>
-        <location filename="httpbrokerclient.cpp" line="183"/>
-        <location filename="httpbrokerclient.cpp" line="193"/>
+        <location filename="httpbrokerclient.cpp" line="177"/>
+        <location filename="httpbrokerclient.cpp" line="187"/>
         <source>Host key verification failed</source>
         <translation>Palvelimen avaimen todennus epäonnistui</translation>
     </message>
     <message>
-        <location filename="httpbrokerclient.cpp" line="183"/>
+        <location filename="httpbrokerclient.cpp" line="177"/>
         <source>Yes</source>
         <translation>Kyllä</translation>
     </message>
     <message>
-        <location filename="httpbrokerclient.cpp" line="183"/>
+        <location filename="httpbrokerclient.cpp" line="177"/>
         <source>No</source>
         <translation>Ei</translation>
     </message>
     <message>
-        <location filename="httpbrokerclient.cpp" line="209"/>
+        <location filename="httpbrokerclient.cpp" line="203"/>
         <source>Verification code:</source>
         <translation>Tarkistuskoodi:</translation>
     </message>
     <message>
-        <location filename="httpbrokerclient.cpp" line="213"/>
+        <location filename="httpbrokerclient.cpp" line="207"/>
         <source>Enter passphrase to decrypt a key</source>
         <translation>Anna avaimen salasana</translation>
     </message>
     <message>
-        <location filename="httpbrokerclient.cpp" line="241"/>
+        <location filename="httpbrokerclient.cpp" line="235"/>
         <source>Authentication failed</source>
         <translation>Autentikointi epäonnistui</translation>
     </message>
     <message>
-        <location filename="httpbrokerclient.cpp" line="398"/>
-        <location filename="httpbrokerclient.cpp" line="414"/>
-        <location filename="httpbrokerclient.cpp" line="434"/>
-        <location filename="httpbrokerclient.cpp" line="449"/>
-        <location filename="httpbrokerclient.cpp" line="463"/>
-        <location filename="httpbrokerclient.cpp" line="481"/>
+        <location filename="httpbrokerclient.cpp" line="397"/>
+        <location filename="httpbrokerclient.cpp" line="419"/>
+        <location filename="httpbrokerclient.cpp" line="439"/>
+        <location filename="httpbrokerclient.cpp" line="454"/>
+        <location filename="httpbrokerclient.cpp" line="468"/>
+        <location filename="httpbrokerclient.cpp" line="484"/>
         <source>Error</source>
         <translation>Virhe</translation>
     </message>
     <message>
-        <location filename="httpbrokerclient.cpp" line="399"/>
+        <location filename="httpbrokerclient.cpp" line="398"/>
         <source>Login failed!&lt;br&gt;Please try again</source>
         <translation>Kirjautuminen epäonnistui!&lt;br&gt;Yritä uudelleen</translation>
     </message>
     <message>
-        <location filename="httpbrokerclient.cpp" line="573"/>
+        <location filename="httpbrokerclient.cpp" line="580"/>
         <source>&lt;br&gt;&lt;b&gt;Server uses an invalid security certificate.&lt;/b&gt;&lt;br&gt;&lt;br&gt;</source>
         <translation>&lt;br&gt;&lt;b&gt;Palvelimen sertifikaatti ei ole kunnossa.&lt;/b&gt;&lt;br&gt;&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="httpbrokerclient.cpp" line="576"/>
+        <location filename="httpbrokerclient.cpp" line="583"/>
         <source>&lt;p style=&apos;background:#FFFFDC;&apos;&gt;You should not add an exception if you are using an internet connection that you do not trust completely or if you are not used to seeing a warning for this server.&lt;/p&gt;</source>
         <translation>&lt;p style=&apos;background:#FFFFDC;&apos;&gt;Älä anna poikkeuslupaa jos käytät yhteyttä johon et täysin luota tai palvelin ei ole aiemmin antanut samaa virheilmoitusta.&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="httpbrokerclient.cpp" line="581"/>
+        <location filename="httpbrokerclient.cpp" line="588"/>
         <source>Secure connection failed</source>
         <translation>Turvallisen yhteyden avaus epäonnistui</translation>
     </message>
     <message>
-        <location filename="httpbrokerclient.cpp" line="586"/>
+        <location filename="httpbrokerclient.cpp" line="593"/>
         <source>Issued to:
 </source>
         <translation>Annettu:</translation>
     </message>
     <message>
-        <location filename="httpbrokerclient.cpp" line="587"/>
-        <location filename="httpbrokerclient.cpp" line="599"/>
+        <location filename="httpbrokerclient.cpp" line="594"/>
+        <location filename="httpbrokerclient.cpp" line="606"/>
         <source>Common Name(CN)	</source>
         <translation>Common Name(CN)	</translation>
     </message>
     <message>
-        <location filename="httpbrokerclient.cpp" line="590"/>
-        <location filename="httpbrokerclient.cpp" line="602"/>
+        <location filename="httpbrokerclient.cpp" line="597"/>
+        <location filename="httpbrokerclient.cpp" line="609"/>
         <source>Organization(O)	</source>
         <translation>Organisaatio(O)</translation>
     </message>
     <message>
-        <location filename="httpbrokerclient.cpp" line="593"/>
-        <location filename="httpbrokerclient.cpp" line="605"/>
+        <location filename="httpbrokerclient.cpp" line="600"/>
+        <location filename="httpbrokerclient.cpp" line="612"/>
         <source>Organizational Unit(OU)	</source>
         <translation>Organisaatioyksikkö(OU))	</translation>
     </message>
     <message>
-        <location filename="httpbrokerclient.cpp" line="596"/>
+        <location filename="httpbrokerclient.cpp" line="603"/>
         <source>Serial Number	</source>
         <translation>Sarjanumero 	</translation>
     </message>
     <message>
-        <location filename="httpbrokerclient.cpp" line="598"/>
+        <location filename="httpbrokerclient.cpp" line="605"/>
         <source>Issued by:
 </source>
         <translation>Myöntäjä:</translation>
     </message>
     <message>
-        <location filename="httpbrokerclient.cpp" line="609"/>
+        <location filename="httpbrokerclient.cpp" line="616"/>
         <source>Validity:
 </source>
         <translation>Voimassaolo:
 </translation>
     </message>
     <message>
-        <location filename="httpbrokerclient.cpp" line="610"/>
+        <location filename="httpbrokerclient.cpp" line="617"/>
         <source>Issued on	</source>
         <translation>Myöntöpäivä</translation>
     </message>
     <message>
-        <location filename="httpbrokerclient.cpp" line="611"/>
+        <location filename="httpbrokerclient.cpp" line="618"/>
         <source>expires on	</source>
         <translation>vanhenee</translation>
     </message>
     <message>
-        <location filename="httpbrokerclient.cpp" line="612"/>
+        <location filename="httpbrokerclient.cpp" line="619"/>
         <source>Fingerprints:
 </source>
         <translation>Tiivisteet:</translation>
     </message>
     <message>
-        <location filename="httpbrokerclient.cpp" line="613"/>
+        <location filename="httpbrokerclient.cpp" line="620"/>
         <source>SHA1	</source>
         <translation>SHA1	</translation>
     </message>
     <message>
-        <location filename="httpbrokerclient.cpp" line="615"/>
+        <location filename="httpbrokerclient.cpp" line="622"/>
         <source>MD5	</source>
         <translation>MD5	</translation>
     </message>
     <message>
-        <location filename="httpbrokerclient.cpp" line="621"/>
+        <location filename="httpbrokerclient.cpp" line="628"/>
         <source>Exit X2Go Client</source>
         <translation>Sulje X2Go -ohjelma</translation>
     </message>
     <message>
-        <location filename="httpbrokerclient.cpp" line="623"/>
+        <location filename="httpbrokerclient.cpp" line="630"/>
         <source>Add exception</source>
         <translation>Lisää poikkeus</translation>
     </message>
@@ -781,13 +862,13 @@ Julkinen avain:</translation>
 <context>
     <name>ONMainWindow</name>
     <message>
-        <location filename="onmainwindow.cpp" line="50"/>
+        <location filename="onmainwindow.cpp" line="60"/>
         <source>Starting x2goclient...</source>
         <translation>Käynnistää x2go-asiakasohjelman...</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="90"/>
-        <location filename="onmainwindow.cpp" line="6704"/>
+        <location filename="onmainwindow.cpp" line="103"/>
+        <location filename="onmainwindow.cpp" line="6663"/>
         <source>us</source>
         <translation>fi</translation>
     </message>
@@ -796,480 +877,475 @@ Julkinen avain:</translation>
         <translation type="obsolete">pc105/us</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="157"/>
+        <location filename="onmainwindow.cpp" line="179"/>
         <source>X2Go Client</source>
         <translation>X2Go asiakasohjelma</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="174"/>
-        <location filename="onmainwindow.cpp" line="3150"/>
-        <location filename="onmainwindow.cpp" line="5722"/>
+        <location filename="onmainwindow.cpp" line="196"/>
+        <location filename="onmainwindow.cpp" line="3016"/>
+        <location filename="onmainwindow.cpp" line="5635"/>
         <source>connecting</source>
         <translation>yhdistää</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="181"/>
+        <location filename="onmainwindow.cpp" line="203"/>
         <source>Internet browser</source>
         <translation>Web -selain</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="182"/>
+        <location filename="onmainwindow.cpp" line="204"/>
         <source>Email client</source>
         <translation>Sähköpostiohjelma</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="183"/>
+        <location filename="onmainwindow.cpp" line="205"/>
         <source>OpenOffice.org</source>
         <translation>OpenOffice.org</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="184"/>
+        <location filename="onmainwindow.cpp" line="206"/>
         <source>Terminal</source>
         <translation>Pääte</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="234"/>
+        <location filename="onmainwindow.cpp" line="256"/>
         <source>Starting x2goclient in portable mode... data directory is: </source>
         <translation>Käynnistää x2go-asiakasohjelman mobiiliversion...datakansio on:</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="356"/>
+        <location filename="onmainwindow.cpp" line="377"/>
         <source>&amp;Settings ...</source>
         <translation>&amp;Asetukset...</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="360"/>
+        <location filename="onmainwindow.cpp" line="381"/>
         <source>Support ...</source>
         <translation>Neuvonta...</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="367"/>
-        <location filename="onmainwindow.cpp" line="8029"/>
+        <location filename="onmainwindow.cpp" line="388"/>
+        <location filename="onmainwindow.cpp" line="8057"/>
         <source>About X2GO client</source>
         <translation>Tietoja X2Go-asiakasohjelmasta</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="465"/>
+        <location filename="onmainwindow.cpp" line="489"/>
         <source>Started  x2goclient.</source>
         <translation>Käynnistetty   x2go-asiakasohjelma</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="527"/>
-        <location filename="onmainwindow.cpp" line="540"/>
+        <location filename="onmainwindow.cpp" line="551"/>
+        <location filename="onmainwindow.cpp" line="564"/>
         <source>Can&apos;t load translator: </source>
         <translation>Kääntäjän käynnistys ei onnistu:</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="532"/>
-        <location filename="onmainwindow.cpp" line="545"/>
+        <location filename="onmainwindow.cpp" line="556"/>
+        <location filename="onmainwindow.cpp" line="569"/>
         <source>Translator: </source>
         <translation>Kääntäjä:</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="532"/>
-        <location filename="onmainwindow.cpp" line="545"/>
+        <location filename="onmainwindow.cpp" line="556"/>
+        <location filename="onmainwindow.cpp" line="569"/>
         <source> installed.</source>
         <translation> asennettu.</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="566"/>
-        <location filename="onmainwindow.cpp" line="1071"/>
-        <location filename="onmainwindow.cpp" line="10737"/>
+        <location filename="onmainwindow.cpp" line="590"/>
+        <location filename="onmainwindow.cpp" line="1105"/>
+        <location filename="onmainwindow.cpp" line="10858"/>
         <source>Share folder...</source>
         <translation>Jaa kansio...</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="569"/>
-        <location filename="onmainwindow.cpp" line="10730"/>
+        <location filename="onmainwindow.cpp" line="593"/>
+        <location filename="onmainwindow.cpp" line="10851"/>
         <source>Applications...</source>
         <translation>Sovellukset...</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="572"/>
-        <location filename="onmainwindow.cpp" line="1072"/>
-        <location filename="onmainwindow.cpp" line="5778"/>
-        <location filename="onmainwindow.cpp" line="10910"/>
+        <location filename="onmainwindow.cpp" line="596"/>
+        <location filename="onmainwindow.cpp" line="1106"/>
+        <location filename="onmainwindow.cpp" line="5691"/>
+        <location filename="onmainwindow.cpp" line="11032"/>
         <source>Suspend</source>
         <translation>Pysäytä</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="575"/>
-        <location filename="onmainwindow.cpp" line="1073"/>
-        <location filename="onmainwindow.cpp" line="10750"/>
-        <location filename="onmainwindow.cpp" line="10912"/>
+        <location filename="onmainwindow.cpp" line="599"/>
+        <location filename="onmainwindow.cpp" line="1107"/>
+        <location filename="onmainwindow.cpp" line="10871"/>
+        <location filename="onmainwindow.cpp" line="11034"/>
         <source>Terminate</source>
         <translation>Lopeta</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="577"/>
+        <location filename="onmainwindow.cpp" line="601"/>
         <source>Reconnect</source>
         <translation>Uusi yhteys</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="581"/>
-        <location filename="onmainwindow.cpp" line="10154"/>
+        <location filename="onmainwindow.cpp" line="605"/>
+        <location filename="onmainwindow.cpp" line="10275"/>
         <source>Detach X2Go window</source>
         <translation>Siirrä X2Go -ikkunaa</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="584"/>
-        <location filename="onmainwindow.cpp" line="11214"/>
+        <location filename="onmainwindow.cpp" line="608"/>
+        <location filename="onmainwindow.cpp" line="11386"/>
         <source>Minimize toolbar</source>
         <translation>Minimoi toimintopalkki</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="700"/>
-        <location filename="onmainwindow.cpp" line="2018"/>
-        <location filename="onmainwindow.cpp" line="8129"/>
+        <location filename="onmainwindow.cpp" line="724"/>
+        <location filename="onmainwindow.cpp" line="2053"/>
+        <location filename="onmainwindow.cpp" line="8156"/>
         <source>Session:</source>
         <translation>Istunto:</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="752"/>
+        <location filename="onmainwindow.cpp" line="785"/>
         <source>&amp;Quit</source>
         <translation>&amp;Lopeta</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="753"/>
+        <location filename="onmainwindow.cpp" line="786"/>
         <source>Ctrl+Q</source>
         <translation>Ctrl+Q</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="754"/>
-        <location filename="onmainwindow.cpp" line="1090"/>
+        <location filename="onmainwindow.cpp" line="787"/>
+        <location filename="onmainwindow.cpp" line="1124"/>
         <source>Quit</source>
         <translation>Lopeta</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="757"/>
+        <location filename="onmainwindow.cpp" line="790"/>
         <source>&amp;New session ...</source>
         <translation>&amp;Uusi istunto...</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="758"/>
+        <location filename="onmainwindow.cpp" line="791"/>
         <source>Ctrl+N</source>
         <translation>Ctrl+N</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="763"/>
+        <location filename="onmainwindow.cpp" line="796"/>
         <source>Session management...</source>
         <translation>Istunnon hallinta...</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="764"/>
+        <location filename="onmainwindow.cpp" line="797"/>
         <source>Ctrl+E</source>
         <translation>Ctrl+E</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="774"/>
+        <location filename="onmainwindow.cpp" line="807"/>
         <source>&amp;Create session icon on desktop...</source>
         <translation>&amp;Tee istuntokuvake työpöydälle</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="783"/>
+        <location filename="onmainwindow.cpp" line="816"/>
         <source>&amp;Set broker password...</source>
         <translation>&amp;Aseta brokerin salasana...</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="794"/>
+        <location filename="onmainwindow.cpp" line="827"/>
         <source>&amp;Connectivity test...</source>
         <translation>&amp;Yhteystesti...</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="801"/>
-        <location filename="onmainwindow.cpp" line="822"/>
+        <location filename="onmainwindow.cpp" line="834"/>
+        <location filename="onmainwindow.cpp" line="855"/>
         <source>Show toolbar</source>
         <translation>Näytä toimintopalkki</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="807"/>
+        <location filename="onmainwindow.cpp" line="840"/>
         <source>About Qt</source>
         <translation>Tietoja Qt:stä</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="824"/>
+        <location filename="onmainwindow.cpp" line="857"/>
         <source>Ctrl+Q</source>
         <comment>exit</comment>
         <translation>Ctrl+Q</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="830"/>
+        <location filename="onmainwindow.cpp" line="863"/>
         <source>&amp;Session</source>
         <translation>&amp;Istunto</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="831"/>
+        <location filename="onmainwindow.cpp" line="864"/>
         <source>&amp;Options</source>
         <translation>&amp;Valinnat</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="850"/>
+        <location filename="onmainwindow.cpp" line="883"/>
         <source>&amp;Help</source>
         <translation>&amp;Apua</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="889"/>
-        <location filename="onmainwindow.cpp" line="2011"/>
-        <location filename="onmainwindow.cpp" line="8122"/>
-        <location filename="onmainwindow.cpp" line="10538"/>
+        <location filename="onmainwindow.cpp" line="922"/>
+        <location filename="onmainwindow.cpp" line="2046"/>
+        <location filename="onmainwindow.cpp" line="8149"/>
+        <location filename="onmainwindow.cpp" line="10659"/>
         <source>Login:</source>
         <translation>Kirjaudu:</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="910"/>
-        <location filename="onmainwindow.cpp" line="939"/>
-        <location filename="onmainwindow.cpp" line="1691"/>
-        <location filename="onmainwindow.cpp" line="1720"/>
-        <location filename="onmainwindow.cpp" line="1728"/>
-        <location filename="onmainwindow.cpp" line="1876"/>
-        <location filename="onmainwindow.cpp" line="1903"/>
-        <location filename="onmainwindow.cpp" line="1906"/>
-        <location filename="onmainwindow.cpp" line="2185"/>
-        <location filename="onmainwindow.cpp" line="2426"/>
-        <location filename="onmainwindow.cpp" line="2442"/>
-        <location filename="onmainwindow.cpp" line="2456"/>
-        <location filename="onmainwindow.cpp" line="2490"/>
-        <location filename="onmainwindow.cpp" line="2535"/>
-        <location filename="onmainwindow.cpp" line="3530"/>
-        <location filename="onmainwindow.cpp" line="3720"/>
-        <location filename="onmainwindow.cpp" line="3729"/>
-        <location filename="onmainwindow.cpp" line="4061"/>
-        <location filename="onmainwindow.cpp" line="4605"/>
-        <location filename="onmainwindow.cpp" line="4686"/>
-        <location filename="onmainwindow.cpp" line="4750"/>
-        <location filename="onmainwindow.cpp" line="4780"/>
-        <location filename="onmainwindow.cpp" line="4824"/>
-        <location filename="onmainwindow.cpp" line="5247"/>
-        <location filename="onmainwindow.cpp" line="5277"/>
-        <location filename="onmainwindow.cpp" line="5432"/>
-        <location filename="onmainwindow.cpp" line="6373"/>
-        <location filename="onmainwindow.cpp" line="6403"/>
-        <location filename="onmainwindow.cpp" line="7239"/>
-        <location filename="onmainwindow.cpp" line="7321"/>
-        <location filename="onmainwindow.cpp" line="7568"/>
-        <location filename="onmainwindow.cpp" line="7700"/>
-        <location filename="onmainwindow.cpp" line="7763"/>
-        <location filename="onmainwindow.cpp" line="8072"/>
-        <location filename="onmainwindow.cpp" line="8074"/>
-        <location filename="onmainwindow.cpp" line="8312"/>
-        <location filename="onmainwindow.cpp" line="8368"/>
-        <location filename="onmainwindow.cpp" line="8396"/>
-        <location filename="onmainwindow.cpp" line="8850"/>
-        <location filename="onmainwindow.cpp" line="8869"/>
-        <location filename="onmainwindow.cpp" line="8923"/>
-        <location filename="onmainwindow.cpp" line="8949"/>
-        <location filename="onmainwindow.cpp" line="8976"/>
-        <location filename="onmainwindow.cpp" line="11128"/>
+        <location filename="onmainwindow.cpp" line="943"/>
+        <location filename="onmainwindow.cpp" line="972"/>
+        <location filename="onmainwindow.cpp" line="1727"/>
+        <location filename="onmainwindow.cpp" line="1756"/>
+        <location filename="onmainwindow.cpp" line="1764"/>
+        <location filename="onmainwindow.cpp" line="1912"/>
+        <location filename="onmainwindow.cpp" line="1939"/>
+        <location filename="onmainwindow.cpp" line="1942"/>
+        <location filename="onmainwindow.cpp" line="2110"/>
+        <location filename="onmainwindow.cpp" line="2290"/>
+        <location filename="onmainwindow.cpp" line="2306"/>
+        <location filename="onmainwindow.cpp" line="2320"/>
+        <location filename="onmainwindow.cpp" line="2354"/>
+        <location filename="onmainwindow.cpp" line="2399"/>
+        <location filename="onmainwindow.cpp" line="3396"/>
+        <location filename="onmainwindow.cpp" line="3587"/>
+        <location filename="onmainwindow.cpp" line="3596"/>
+        <location filename="onmainwindow.cpp" line="3944"/>
+        <location filename="onmainwindow.cpp" line="4498"/>
+        <location filename="onmainwindow.cpp" line="4579"/>
+        <location filename="onmainwindow.cpp" line="4643"/>
+        <location filename="onmainwindow.cpp" line="4673"/>
+        <location filename="onmainwindow.cpp" line="4717"/>
+        <location filename="onmainwindow.cpp" line="5152"/>
+        <location filename="onmainwindow.cpp" line="5182"/>
+        <location filename="onmainwindow.cpp" line="5337"/>
+        <location filename="onmainwindow.cpp" line="6294"/>
+        <location filename="onmainwindow.cpp" line="6324"/>
+        <location filename="onmainwindow.cpp" line="7100"/>
+        <location filename="onmainwindow.cpp" line="7281"/>
+        <location filename="onmainwindow.cpp" line="7363"/>
+        <location filename="onmainwindow.cpp" line="7610"/>
+        <location filename="onmainwindow.cpp" line="7743"/>
+        <location filename="onmainwindow.cpp" line="7806"/>
+        <location filename="onmainwindow.cpp" line="8100"/>
+        <location filename="onmainwindow.cpp" line="8102"/>
+        <location filename="onmainwindow.cpp" line="8342"/>
+        <location filename="onmainwindow.cpp" line="8398"/>
+        <location filename="onmainwindow.cpp" line="8426"/>
+        <location filename="onmainwindow.cpp" line="8880"/>
+        <location filename="onmainwindow.cpp" line="8899"/>
+        <location filename="onmainwindow.cpp" line="8953"/>
+        <location filename="onmainwindow.cpp" line="8979"/>
+        <location filename="onmainwindow.cpp" line="9006"/>
         <source>Error</source>
         <translation>Virhe</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="910"/>
+        <location filename="onmainwindow.cpp" line="943"/>
         <source>Operation failed</source>
         <translation>Toiminto epäonnistui</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="914"/>
+        <location filename="onmainwindow.cpp" line="947"/>
         <source>Password changed</source>
         <translation>Salasana vaihdettu</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="939"/>
+        <location filename="onmainwindow.cpp" line="972"/>
         <source>Wrong password!</source>
         <translation>Väärä salasana!</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="943"/>
-        <location filename="onmainwindow.cpp" line="3156"/>
-        <location filename="onmainwindow.cpp" line="11386"/>
+        <location filename="onmainwindow.cpp" line="976"/>
+        <location filename="onmainwindow.cpp" line="3022"/>
+        <location filename="onmainwindow.cpp" line="11558"/>
         <source>Connecting to broker</source>
         <translation>Yhdistää brokeriin</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="992"/>
+        <location filename="onmainwindow.cpp" line="1025"/>
         <source>&lt;b&gt;Authentication&lt;/b&gt;</source>
         <translation>&lt;b&gt;Autentikointi&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="1042"/>
+        <location filename="onmainwindow.cpp" line="1075"/>
         <source>Restore</source>
         <translation>Palauta</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="1044"/>
-        <location filename="onmainwindow.cpp" line="5592"/>
+        <location filename="onmainwindow.cpp" line="1077"/>
+        <location filename="onmainwindow.cpp" line="5497"/>
         <source>Not connected</source>
         <translation>Ei yhteyttä</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="1046"/>
+        <location filename="onmainwindow.cpp" line="1079"/>
         <source>Multimedia</source>
         <translation>Ääni ja video</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="1048"/>
+        <location filename="onmainwindow.cpp" line="1081"/>
         <source>Development</source>
         <translation>Ohjelmakehitys</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="1050"/>
+        <location filename="onmainwindow.cpp" line="1083"/>
         <source>Education</source>
         <translation>Ohjeet</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="1052"/>
+        <location filename="onmainwindow.cpp" line="1085"/>
         <source>Game</source>
         <translation>Peli</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="1054"/>
+        <location filename="onmainwindow.cpp" line="1087"/>
         <source>Graphics</source>
         <translation>Grafiikka</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="1056"/>
+        <location filename="onmainwindow.cpp" line="1089"/>
         <source>Network</source>
         <translation>Verkko</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="1058"/>
+        <location filename="onmainwindow.cpp" line="1091"/>
         <source>Office</source>
         <translation>Toimisto</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="1060"/>
+        <location filename="onmainwindow.cpp" line="1093"/>
         <source>Settings</source>
         <translation>Asetukset</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="1062"/>
+        <location filename="onmainwindow.cpp" line="1095"/>
         <source>System</source>
         <translation>Järjestelmä</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="1064"/>
+        <location filename="onmainwindow.cpp" line="1097"/>
         <source>Utility</source>
         <translation>Työkalu</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="1066"/>
+        <location filename="onmainwindow.cpp" line="1099"/>
         <source>Other</source>
         <translation>Muuta</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="1101"/>
+        <location filename="onmainwindow.cpp" line="1135"/>
         <source>Left mouse button to hide/restore - Right mouse button to display context menu</source>
         <translation>Vasen hiiren näppäin piilottaa/palauttaa - Oikea näppäin näyttää toiminnon valinnat</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="1272"/>
+        <location filename="onmainwindow.cpp" line="1308"/>
         <source>Closing x2goclient...</source>
         <translation>Sulkee x2go -asiakasohjelman...</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="1420"/>
+        <location filename="onmainwindow.cpp" line="1456"/>
         <source>Closed  x2goclient.</source>
         <translation>X2go-asiakasohjelman sulkeutui.</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="1692"/>
-        <location filename="onmainwindow.cpp" line="1877"/>
-        <location filename="onmainwindow.cpp" line="1907"/>
+        <location filename="onmainwindow.cpp" line="1728"/>
+        <location filename="onmainwindow.cpp" line="1913"/>
+        <location filename="onmainwindow.cpp" line="1943"/>
         <source>Please check LDAP settings</source>
         <translation>Tarkista LDAP-asetukset</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="1727"/>
+        <location filename="onmainwindow.cpp" line="1763"/>
         <source>no X2Go server found in LDAP </source>
         <translation>X2Go -palvelinta ei löydy LDAP-sta </translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="2040"/>
         <source>Create session icon on desktop</source>
-        <translation>Tee instuntokuvake työpöydälle</translation>
+        <translation type="obsolete">Tee instuntokuvake työpöydälle</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="2041"/>
         <source>Desktop icons can be configured not to show x2goclient (hidden mode). If you like to use this feature you&apos;ll need to configure login by a gpg key or gpg smart card.
 
 Use x2goclient hidden mode?</source>
-        <translation>Työpöytäkuvakkeet voidaan asettaa piilottamaan x2go -asiakasohjelman (hidden mode). Jos haluat käyttää ominaisuutta määritä kirjautuminen käyttämään gpg-avainta tai gpg -toimikorttia.
+        <translation type="obsolete">Työpöytäkuvakkeet voidaan asettaa piilottamaan x2go -asiakasohjelman (hidden mode). Jos haluat käyttää ominaisuutta määritä kirjautuminen käyttämään gpg-avainta tai gpg -toimikorttia.
 
 Käytätkö x2go-asiakasohjelmaa piilotettuna?</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="2065"/>
         <source>New Session</source>
-        <translation>Uusi istunto</translation>
+        <translation type="obsolete">Uusi istunto</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="2125"/>
         <source>X2Go Link to session </source>
-        <translation>Linkki X2Go -istuntoon </translation>
+        <translation type="obsolete">Linkki X2Go -istuntoon </translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="2183"/>
+        <location filename="onmainwindow.cpp" line="2108"/>
         <source>No X2Go sessions found, closing.</source>
         <translation>X2Go -istuntoa ei löytynyt, sulkeutuu.</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="2345"/>
         <source>Are you sure you want to delete this session?</source>
-        <translation>Haluatko varmasti poistaa tämän istunnon?</translation>
+        <translation type="obsolete">Haluatko varmasti poistaa tämän istunnon?</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="2663"/>
-        <location filename="onmainwindow.cpp" line="6200"/>
+        <location filename="onmainwindow.cpp" line="2529"/>
+        <location filename="onmainwindow.cpp" line="6121"/>
         <source>KDE</source>
         <translation>KDE</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="2743"/>
+        <location filename="onmainwindow.cpp" line="2609"/>
         <source>RDP connection</source>
         <translation>RDP -yhteys</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="2747"/>
+        <location filename="onmainwindow.cpp" line="2613"/>
         <source>XDMCP</source>
         <translation>XDMCP</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="2751"/>
+        <location filename="onmainwindow.cpp" line="2617"/>
         <source>Connection to local desktop</source>
         <translation>Yhteys paikalliselle näytölle</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="2755"/>
+        <location filename="onmainwindow.cpp" line="2621"/>
         <source> on </source>
         <translation> käyttäen </translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="2814"/>
+        <location filename="onmainwindow.cpp" line="2680"/>
         <source>Starting connection to server: </source>
         <translation>Käynnistää yhteyden palvelimeen: </translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="2823"/>
+        <location filename="onmainwindow.cpp" line="2689"/>
         <source> to </source>
         <translation> kohteeseen </translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="2868"/>
+        <location filename="onmainwindow.cpp" line="2734"/>
         <source>Connection Error(</source>
         <translation>Yhteysvirhe(</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="2937"/>
+        <location filename="onmainwindow.cpp" line="2803"/>
         <source>Couldn&apos;t find a SSH connection.</source>
         <translation>Ei löydä SSH-yhteyttä.</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="2960"/>
+        <location filename="onmainwindow.cpp" line="2826"/>
         <source>Enter passphrase to decrypt a key</source>
         <translation>Anna avaimen salasana</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="2996"/>
+        <location filename="onmainwindow.cpp" line="2862"/>
         <source>Host key for server changed.
 It is now: </source>
         <translation>Palvelimen avain vaihtui.
@@ -1284,39 +1360,38 @@ Se on nyt: </translation>
         <translation type="obsolete">Tämän palvelimen julkinen avain puuttuu mutta toinen löytyi.Tunketuja on ehkä vaihtanut aiemman avaimen harhauttaakseen sinut luulemaan että avainta ei ole</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="3061"/>
+        <location filename="onmainwindow.cpp" line="2927"/>
         <source>Could not find known host file.If you accept the host key here, the file will be automatically created</source>
         <translation>Tunnettut työasemat sisältävää tiedostoa ei ole. Jos hyväksyt yhteyden, kyseinen tiedosto luodaan</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="3066"/>
+        <location filename="onmainwindow.cpp" line="2932"/>
         <source>The server is unknown. Do you trust the host key?
 Public key hash: </source>
         <translation>Palvelin on tuntematon. Luotatko sen avaimeen?
 Avaimen tiiviste: </translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="3001"/>
-        <location filename="onmainwindow.cpp" line="3011"/>
-        <location filename="onmainwindow.cpp" line="3028"/>
-        <location filename="onmainwindow.cpp" line="3038"/>
-        <location filename="onmainwindow.cpp" line="3070"/>
-        <location filename="onmainwindow.cpp" line="3080"/>
+        <location filename="onmainwindow.cpp" line="2867"/>
+        <location filename="onmainwindow.cpp" line="2877"/>
+        <location filename="onmainwindow.cpp" line="2894"/>
+        <location filename="onmainwindow.cpp" line="2904"/>
+        <location filename="onmainwindow.cpp" line="2936"/>
+        <location filename="onmainwindow.cpp" line="2946"/>
         <source>Host key verification failed</source>
         <translation>Palvelimen avaimen todennus epäonnistui</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="2051"/>
         <source>Show session tray icon when running</source>
-        <translation>Näytä istunon ikoni kun se on aktiivinen</translation>
+        <translation type="obsolete">Näytä istunon ikoni kun se on aktiivinen</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="2956"/>
+        <location filename="onmainwindow.cpp" line="2822"/>
         <source>Verification code:</source>
         <translation>Tarkistenumero:</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="2997"/>
+        <location filename="onmainwindow.cpp" line="2863"/>
         <source>This can be an indication of a man-in-the-middle attack.
 Somebody might be eavesdropping on you.
 For security reasons, it is recommended to stop the connection.
@@ -1327,33 +1402,33 @@ Turvallisuuden takia on syytä katkaista yhteys.
 Halutko katkaista?</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="3002"/>
-        <location filename="onmainwindow.cpp" line="3029"/>
-        <location filename="onmainwindow.cpp" line="3070"/>
-        <location filename="onmainwindow.cpp" line="4527"/>
-        <location filename="onmainwindow.cpp" line="4547"/>
+        <location filename="onmainwindow.cpp" line="2868"/>
+        <location filename="onmainwindow.cpp" line="2895"/>
+        <location filename="onmainwindow.cpp" line="2936"/>
+        <location filename="onmainwindow.cpp" line="4420"/>
+        <location filename="onmainwindow.cpp" line="4440"/>
         <source>Yes</source>
         <translation>Kyllä</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="3002"/>
-        <location filename="onmainwindow.cpp" line="3029"/>
-        <location filename="onmainwindow.cpp" line="3070"/>
-        <location filename="onmainwindow.cpp" line="4528"/>
-        <location filename="onmainwindow.cpp" line="4548"/>
+        <location filename="onmainwindow.cpp" line="2868"/>
+        <location filename="onmainwindow.cpp" line="2895"/>
+        <location filename="onmainwindow.cpp" line="2936"/>
+        <location filename="onmainwindow.cpp" line="4421"/>
+        <location filename="onmainwindow.cpp" line="4441"/>
         <source>No</source>
         <translation>Ei</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="3017"/>
-        <location filename="onmainwindow.cpp" line="3044"/>
+        <location filename="onmainwindow.cpp" line="2883"/>
+        <location filename="onmainwindow.cpp" line="2910"/>
         <source>If you accept the new host key the security of your connection may be compromised.
 Do you want to update the host key?</source>
         <translation>Jos hyväksyt uuden palvelinavaimen yhteytesti turvallisuus saattaa vaarantua.
 Halutko hyväksyä uuden palvelinavaimen?</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="3023"/>
+        <location filename="onmainwindow.cpp" line="2889"/>
         <source>The host key for this server was not found but an othertype of key exists. An attacker might change the default server key to confuse your client into thinking the key does not exist. 
 For security reasons, it is recommended to stop the connection.
 Do you want to terminate the connection?
@@ -1363,291 +1438,293 @@ Turvallisuuden takia on syytä katkaista yhteys.
 Haluatko katkaista?</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="3108"/>
+        <location filename="onmainwindow.cpp" line="2974"/>
         <source>Authentication failed: </source>
         <translation>Autentikointi epäonnistui: </translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="3112"/>
+        <location filename="onmainwindow.cpp" line="2978"/>
         <source>Authentication failed</source>
         <translation>Autentikointi epäonnistui</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="3500"/>
+        <location filename="onmainwindow.cpp" line="3366"/>
         <source>Enter password for SSH proxy</source>
         <translation>Anna salasana SSH-proxya varten</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="3521"/>
-        <location filename="onmainwindow.cpp" line="4679"/>
-        <location filename="onmainwindow.cpp" line="4773"/>
-        <location filename="onmainwindow.cpp" line="4806"/>
-        <location filename="onmainwindow.cpp" line="7232"/>
-        <location filename="onmainwindow.cpp" line="7314"/>
-        <location filename="onmainwindow.cpp" line="7691"/>
-        <location filename="onmainwindow.cpp" line="7756"/>
-        <location filename="onmainwindow.cpp" line="8843"/>
+        <location filename="onmainwindow.cpp" line="3387"/>
+        <location filename="onmainwindow.cpp" line="4572"/>
+        <location filename="onmainwindow.cpp" line="4666"/>
+        <location filename="onmainwindow.cpp" line="4699"/>
+        <location filename="onmainwindow.cpp" line="7274"/>
+        <location filename="onmainwindow.cpp" line="7356"/>
+        <location filename="onmainwindow.cpp" line="7734"/>
+        <location filename="onmainwindow.cpp" line="7799"/>
+        <location filename="onmainwindow.cpp" line="8873"/>
         <source>&lt;b&gt;Connection failed&lt;/b&gt;
 </source>
         <translation>&lt;b&gt;Yhteydenotto epäonnistui&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="3524"/>
-        <location filename="onmainwindow.cpp" line="4682"/>
-        <location filename="onmainwindow.cpp" line="4776"/>
-        <location filename="onmainwindow.cpp" line="6370"/>
-        <location filename="onmainwindow.cpp" line="6400"/>
-        <location filename="onmainwindow.cpp" line="7235"/>
-        <location filename="onmainwindow.cpp" line="7317"/>
-        <location filename="onmainwindow.cpp" line="7694"/>
-        <location filename="onmainwindow.cpp" line="7759"/>
-        <location filename="onmainwindow.cpp" line="8846"/>
+        <location filename="onmainwindow.cpp" line="3390"/>
+        <location filename="onmainwindow.cpp" line="4575"/>
+        <location filename="onmainwindow.cpp" line="4669"/>
+        <location filename="onmainwindow.cpp" line="6291"/>
+        <location filename="onmainwindow.cpp" line="6321"/>
+        <location filename="onmainwindow.cpp" line="7277"/>
+        <location filename="onmainwindow.cpp" line="7359"/>
+        <location filename="onmainwindow.cpp" line="7737"/>
+        <location filename="onmainwindow.cpp" line="7802"/>
+        <location filename="onmainwindow.cpp" line="8876"/>
         <source>&lt;b&gt;Wrong password!&lt;/b&gt;&lt;br&gt;&lt;br&gt;</source>
         <translation>&lt;b&gt;Väärä salasana!&lt;b&gt;&lt;br&gt;&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="3536"/>
-        <location filename="onmainwindow.cpp" line="3539"/>
-        <location filename="onmainwindow.cpp" line="3541"/>
-        <location filename="onmainwindow.cpp" line="7706"/>
-        <location filename="onmainwindow.cpp" line="7709"/>
-        <location filename="onmainwindow.cpp" line="7711"/>
+        <location filename="onmainwindow.cpp" line="3402"/>
+        <location filename="onmainwindow.cpp" line="3405"/>
+        <location filename="onmainwindow.cpp" line="3407"/>
+        <location filename="onmainwindow.cpp" line="7749"/>
+        <location filename="onmainwindow.cpp" line="7752"/>
+        <location filename="onmainwindow.cpp" line="7754"/>
         <source>Connection failed: </source>
         <translation>Yhteys epäonnistui</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="3539"/>
-        <location filename="onmainwindow.cpp" line="7709"/>
+        <location filename="onmainwindow.cpp" line="3405"/>
+        <location filename="onmainwindow.cpp" line="7752"/>
         <source> - Wrong password.</source>
         <translation> - Väärä salasana</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="3654"/>
+        <location filename="onmainwindow.cpp" line="3520"/>
         <source>unknown</source>
         <translation>tuntematon</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="3721"/>
+        <location filename="onmainwindow.cpp" line="3588"/>
         <source>No server availabel</source>
         <translatorcomment>Typo in original</translatorcomment>
         <translation>Palvelinta ei saatavilla</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="3730"/>
-        <location filename="onmainwindow.cpp" line="4062"/>
-        <location filename="onmainwindow.cpp" line="4606"/>
-        <location filename="onmainwindow.cpp" line="4751"/>
+        <location filename="onmainwindow.cpp" line="3597"/>
+        <location filename="onmainwindow.cpp" line="3945"/>
+        <location filename="onmainwindow.cpp" line="4499"/>
+        <location filename="onmainwindow.cpp" line="4644"/>
         <source>Server not availabel</source>
         <translatorcomment>Typo</translatorcomment>
         <translation>Palvelinta ei saatavilla</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="4327"/>
-        <location filename="onmainwindow.cpp" line="10901"/>
+        <location filename="onmainwindow.cpp" line="4217"/>
+        <location filename="onmainwindow.cpp" line="11023"/>
         <source>Select session:</source>
         <translation>Valitse istunto:</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="4342"/>
-        <location filename="onmainwindow.cpp" line="4464"/>
-        <location filename="onmainwindow.cpp" line="5742"/>
+        <location filename="onmainwindow.cpp" line="4232"/>
+        <location filename="onmainwindow.cpp" line="4357"/>
+        <location filename="onmainwindow.cpp" line="5655"/>
         <source>running</source>
         <translation>käynnissä</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="4344"/>
-        <location filename="onmainwindow.cpp" line="4698"/>
+        <location filename="onmainwindow.cpp" line="4234"/>
+        <location filename="onmainwindow.cpp" line="4591"/>
         <source>suspended</source>
         <translation>pysäytetty</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="4350"/>
+        <location filename="onmainwindow.cpp" line="4240"/>
         <source>Desktop</source>
         <translation>Työpöytä</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="4352"/>
+        <location filename="onmainwindow.cpp" line="4242"/>
         <source>single application</source>
         <translation>erillinen sovellus</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="4354"/>
+        <location filename="onmainwindow.cpp" line="4244"/>
         <source>shadow session</source>
         <translation>varjoistunto</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="4387"/>
+        <location filename="onmainwindow.cpp" line="4277"/>
         <source>Information</source>
         <translation>Tietoja</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="4388"/>
+        <location filename="onmainwindow.cpp" line="4278"/>
         <source>No accessible desktop found</source>
         <translation>Työpöytää ei ole käytettävissä</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="4401"/>
-        <location filename="onmainwindow.cpp" line="11318"/>
+        <location filename="onmainwindow.cpp" line="4291"/>
+        <location filename="onmainwindow.cpp" line="11490"/>
         <source>Filter</source>
         <translation>Valinta</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="4408"/>
+        <location filename="onmainwindow.cpp" line="4298"/>
         <source>Select desktop:</source>
         <translation>Valitse työpöytä:</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="4514"/>
-        <location filename="onmainwindow.cpp" line="4534"/>
-        <location filename="onmainwindow.cpp" line="5462"/>
-        <location filename="onmainwindow.cpp" line="5995"/>
+        <location filename="onmainwindow.cpp" line="4407"/>
+        <location filename="onmainwindow.cpp" line="4427"/>
+        <location filename="onmainwindow.cpp" line="5367"/>
+        <location filename="onmainwindow.cpp" line="5916"/>
         <source>Warning</source>
         <translation>Varoitus</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="4515"/>
-        <location filename="onmainwindow.cpp" line="4535"/>
+        <location filename="onmainwindow.cpp" line="4408"/>
+        <location filename="onmainwindow.cpp" line="4428"/>
         <source>Your current color depth is different to the color depth of your x2go-session. This may cause problems reconnecting to this session and in most cases &lt;b&gt;you will loose the session&lt;/b&gt; and have to start a new one! It&apos;s highly recommended to change the color depth of your Display to </source>
         <translation>Käyttämäsi värierottelu on erilainen kuin x2go-istunnon vastaava. Se saattaa aiheuttaa ongelmia kun kun yhdistät uudelleen tähän istuntoon ja useimmiten &lt;b&gt;istunto katoaa&lt;/b&gt; ja joudut avaamaan uuden! On erittäin suositeltavaa että muutat värierottelun omalla näytölläsi arvoon </translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="4523"/>
+        <location filename="onmainwindow.cpp" line="4416"/>
         <source>24 or 32</source>
         <translation>25 tai 32</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="4524"/>
-        <location filename="onmainwindow.cpp" line="4544"/>
+        <location filename="onmainwindow.cpp" line="4417"/>
+        <location filename="onmainwindow.cpp" line="4437"/>
         <source> bit and restart your X-server before you reconnect to this x2go-session.&lt;br&gt;Resume this session anyway?</source>
         <translation> bittiä ja käynnistä X-palvelin uudelleen ennenkuin avaat tämän x2go-istunnon.&lt;br&gt;Jatka istuntoa joka tapauksessa?
 </translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="4632"/>
+        <location filename="onmainwindow.cpp" line="4525"/>
         <source>suspending</source>
         <translation>pysäyttää</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="4667"/>
+        <location filename="onmainwindow.cpp" line="4560"/>
         <source>terminating</source>
         <translation>lopettaa</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="4809"/>
+        <location filename="onmainwindow.cpp" line="4702"/>
         <source>&lt;b&gt;Wrong Password!&lt;/b&gt;&lt;br&gt;&lt;br&gt;</source>
         <translation>&lt;b&gt;Väärä salasana!&lt;/b&gt;&lt;br&gt;&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="4951"/>
+        <location filename="onmainwindow.cpp" line="4849"/>
+        <location filename="onmainwindow.cpp" line="4851"/>
         <source>New session started</source>
         <translation>Uusi istunto käynnistyi</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="4986"/>
+        <location filename="onmainwindow.cpp" line="4888"/>
+        <location filename="onmainwindow.cpp" line="4890"/>
         <source>Session resumed</source>
         <translation>Istuntoa jatkettu</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="5243"/>
-        <location filename="onmainwindow.cpp" line="5247"/>
+        <location filename="onmainwindow.cpp" line="5148"/>
+        <location filename="onmainwindow.cpp" line="5152"/>
         <source>Unable to create folder: </source>
         <translation>Kansion luonti ei onnistu: </translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="5273"/>
-        <location filename="onmainwindow.cpp" line="5277"/>
+        <location filename="onmainwindow.cpp" line="5178"/>
+        <location filename="onmainwindow.cpp" line="5182"/>
         <source>Unable to write file: </source>
         <translation>Tiedostoon kirjoitus ei onnistu: </translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="5404"/>
-        <location filename="onmainwindow.cpp" line="10129"/>
+        <location filename="onmainwindow.cpp" line="5309"/>
+        <location filename="onmainwindow.cpp" line="10250"/>
         <source>Attach X2Go window</source>
         <translation>Kytkeydy X2Go -ikkunaan</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="5430"/>
-        <location filename="onmainwindow.cpp" line="8921"/>
+        <location filename="onmainwindow.cpp" line="5335"/>
+        <location filename="onmainwindow.cpp" line="8951"/>
         <source>Unable to create SSL tunnel:
 </source>
         <translation>SSL -tunnelointi ei onnistu</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="5460"/>
+        <location filename="onmainwindow.cpp" line="5365"/>
         <source>Unable to create SSL Tunnel:
 </source>
         <translation>SSL-tunnelin avaus ei onnistu:</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="5604"/>
+        <location filename="onmainwindow.cpp" line="5509"/>
         <source>Emergency exit.</source>
         <translation>Hätäkeskeytus </translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="5613"/>
+        <location filename="onmainwindow.cpp" line="5518"/>
         <source>Waiting for proxy to exit.</source>
         <translation>Odottaa proxyn sulkeutumista</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="5616"/>
+        <location filename="onmainwindow.cpp" line="5521"/>
         <source>Failed, killing the proxy.</source>
         <translation>Epäonnistui, sulkee proxyn</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="5699"/>
+        <location filename="onmainwindow.cpp" line="5604"/>
         <source>Finished</source>
         <translation>Lopetettu</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="5731"/>
+        <location filename="onmainwindow.cpp" line="5644"/>
         <source>starting</source>
         <translation>käynnistyy</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="5735"/>
+        <location filename="onmainwindow.cpp" line="5648"/>
         <source>resuming</source>
         <translation>jatkaa</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="5804"/>
-        <location filename="onmainwindow.cpp" line="6122"/>
-        <location filename="onmainwindow.cpp" line="6141"/>
+        <location filename="onmainwindow.cpp" line="5717"/>
+        <location filename="onmainwindow.cpp" line="6043"/>
+        <location filename="onmainwindow.cpp" line="6062"/>
         <source>Connection timeout, aborting</source>
         <translation>Yhteys aikakatkaistu, keskeytyy</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="5805"/>
+        <location filename="onmainwindow.cpp" line="5718"/>
         <source>aborting</source>
         <translation>keskeytyy</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="5996"/>
+        <location filename="onmainwindow.cpp" line="5917"/>
         <source>Are you sure you want to terminate this session?
 Unsaved documents will be lost</source>
         <translation>Haluatko varmasti sulkea istunnon?
 Avoimet tiedostot eivät talletu</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="6090"/>
+        <location filename="onmainwindow.cpp" line="6011"/>
         <source>Session</source>
         <translation>Istunto</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="6092"/>
-        <location filename="onmainwindow.cpp" line="10982"/>
-        <location filename="onmainwindow.cpp" line="11004"/>
+        <location filename="onmainwindow.cpp" line="6013"/>
+        <location filename="onmainwindow.cpp" line="11104"/>
+        <location filename="onmainwindow.cpp" line="11126"/>
         <source>Display</source>
         <translation>Näyttö</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="6094"/>
-        <location filename="onmainwindow.cpp" line="10993"/>
+        <location filename="onmainwindow.cpp" line="6015"/>
+        <location filename="onmainwindow.cpp" line="11115"/>
         <source>Creation time</source>
         <translation>Luontiaika</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="6367"/>
-        <location filename="onmainwindow.cpp" line="6397"/>
+        <location filename="onmainwindow.cpp" line="6288"/>
+        <location filename="onmainwindow.cpp" line="6318"/>
         <source>&lt;b&gt;Connection failed&lt;/b&gt;
 :
 </source>
@@ -1655,330 +1732,409 @@ Avoimet tiedostot eivät talletu</translation>
 :</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="6854"/>
+        <location filename="onmainwindow.cpp" line="6813"/>
         <source> (can&apos;t open file)</source>
         <translation> (tiedosto ei aukea)</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="6866"/>
-        <location filename="onmainwindow.cpp" line="6877"/>
-        <location filename="onmainwindow.cpp" line="6888"/>
+        <location filename="onmainwindow.cpp" line="6825"/>
+        <location filename="onmainwindow.cpp" line="6836"/>
+        <location filename="onmainwindow.cpp" line="6847"/>
         <source> (file not exists)</source>
         <translation> (tiedosto puuttuu)</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="6915"/>
+        <location filename="onmainwindow.cpp" line="6874"/>
         <source> (directory not exists)</source>
         <translation> (kansio puuttuu)</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="6943"/>
+        <location filename="onmainwindow.cpp" line="6901"/>
         <source>wrong value for argument&quot;--link&quot;</source>
         <translation>Ohjaimella&quot;--link&quot; on väärä arvo</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="6961"/>
+        <location filename="onmainwindow.cpp" line="6918"/>
+        <source>wrong value for argument&quot;--clipboard&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="onmainwindow.cpp" line="6934"/>
         <source>wrong value for argument&quot;--sound&quot;</source>
         <translation>Ohjaimella &quot;--sound&quot; on väärä arvo</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="6978"/>
-        <location filename="onmainwindow.cpp" line="6989"/>
+        <location filename="onmainwindow.cpp" line="6950"/>
+        <location filename="onmainwindow.cpp" line="6960"/>
         <source>wrong value for argument&quot;--geometry&quot;</source>
         <translation>Ohjaimella &quot;--geometry&quot; on väärä arvo</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="7007"/>
+        <location filename="onmainwindow.cpp" line="6977"/>
         <source>wrong value for argument&quot;--set-kbd&quot;</source>
         <translation>Ohjaimella &quot;--set-kbd&quot; on väärä arvo</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="7024"/>
+        <location filename="onmainwindow.cpp" line="6993"/>
         <source>wrong value for argument&quot;--ldap&quot;</source>
         <translation>Ohjaimella &quot;--ldap&quot; on väärä arvo</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="7046"/>
+        <location filename="onmainwindow.cpp" line="7014"/>
         <source>wrong value for argument&quot;--ldap1&quot;</source>
         <translation>Ohjaimella &quot;--ldap1&quot; on väärä arvo</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="7065"/>
+        <location filename="onmainwindow.cpp" line="7033"/>
         <source>wrong value for argument&quot;--ldap2&quot;</source>
         <translation>Ohjaimella &quot;--ldap2&quot; on väärä arvo</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="7119"/>
+        <location filename="onmainwindow.cpp" line="7087"/>
         <source>wrong value for argument&quot;--pack&quot;</source>
         <translation>Ohjaimella &quot;--pack&quot; on väärä arvo</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="7129"/>
-        <location filename="onmainwindow.cpp" line="7134"/>
+        <location filename="onmainwindow.cpp" line="7096"/>
+        <location filename="onmainwindow.cpp" line="7100"/>
+        <location filename="onmainwindow.cpp" line="7105"/>
         <source>Wrong parameter: </source>
         <translation>Väärä parametri: </translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="7219"/>
-        <source>Options</source>
-        <translation>Vaihtoehdot</translation>
+        <location filename="onmainwindow.cpp" line="7179"/>
+        <source>Help</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="7198"/>
+        <location filename="onmainwindow.cpp" line="11251"/>
+        <location filename="onmainwindow.cpp" line="11266"/>
+        <location filename="onmainwindow.cpp" line="11282"/>
+        <location filename="onmainwindow.cpp" line="11292"/>
+        <location filename="onmainwindow.cpp" line="11303"/>
+        <source>SSH Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="onmainwindow.cpp" line="11252"/>
+        <source>SSH daemon could not be started.
+
+You&apos;ll need SSH daemon for printing and file sharing.
+
+Normally, this should not happen as X2Go Client for 
+Windows ships its internal sshd.exe.
+
+If you see this message, please report a bug against
+the X2Go bugtracker.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="onmainwindow.cpp" line="11267"/>
+        <source>SSH daemon is not running.
+
+You&apos;ll need SSH daemon for printing and file sharing
+
+Please ask your system administrator to provide the SSH
+service on your computer.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="onmainwindow.cpp" line="11283"/>
+        <source>SSH daemon failed to open the application&apos;s public host key.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="onmainwindow.cpp" line="11293"/>
+        <source>SSH daemon failed to open the application&apos;s public key
+used for exporting folders and printers.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="onmainwindow.cpp" line="11304"/>
+        <source>SSH daemon failed to open the application&apos;s
+authoized_keys file.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Options</source>
+        <translation type="obsolete">Vaihtoehdot</translation>
+    </message>
+    <message>
+        <location filename="onmainwindow.cpp" line="7187"/>
         <source>Available pack methodes:</source>
         <translation>Mahdolliset pakkaustavat:</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="7566"/>
+        <location filename="onmainwindow.cpp" line="7209"/>
+        <source>Pack Methodes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="onmainwindow.cpp" line="7239"/>
+        <location filename="onmainwindow.cpp" line="7249"/>
+        <source>Option is not availabel in this build</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="onmainwindow.cpp" line="7242"/>
+        <source>Changelog</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="onmainwindow.cpp" line="7252"/>
+        <source>Git Info</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="onmainwindow.cpp" line="7608"/>
         <source>Unable to create folder:</source>
         <translation>Kansion luonti ei onnistu:</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="7662"/>
+        <location filename="onmainwindow.cpp" line="7705"/>
         <source>RSA file empty.</source>
         <translation>RSA-tiedosto on tyhjä</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="7671"/>
+        <location filename="onmainwindow.cpp" line="7714"/>
         <source>Can not open key: </source>
         <translation>Avaimen käyttöönotto ei onnistu:</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="8004"/>
+        <location filename="onmainwindow.cpp" line="8032"/>
         <source>Support</source>
         <translation>Neuvonta</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="8009"/>
+        <location filename="onmainwindow.cpp" line="8037"/>
         <source>&lt;/b&gt;&lt;br&gt; (C. 2005-2014 &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing)&lt;br&gt;</source>
         <translation>&lt;b&gt;&lt;br&gt; (C. 2005-2014 &lt;b&gt;varmaan hyvä&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing)&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="8013"/>
+        <location filename="onmainwindow.cpp" line="8041"/>
         <source>&lt;br&gt;x2goplugin mode was sponsored by &lt;a href=&quot;http://www.foss-group.de/&quot;&gt;FOSS-Group GmbH(Freiburg)&lt;/a&gt;&lt;br&gt;</source>
         <translation>&lt;br&gt;x2plugin tilan sponsori &lt;a href=&quot;http://www.foss-group.de/&quot;&gt;FOSS-Group GmbH(Freiburg)&lt;/a&gt;&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="8017"/>
+        <location filename="onmainwindow.cpp" line="8045"/>
         <source>&lt;br&gt;Client for use with the X2Go network based computing environment. This Client will be able to connect to X2Go server(s) and start, stop, resume and terminate (running) desktop sessions. X2Go Client stores different server connections and may automatically request authentication data from LDAP directories. Furthermore it can be used as fullscreen loginscreen (replacement for loginmanager like xdm). Please visit x2go.org for further information.</source>
         <translation>&lt;b&gt;Asiakasohjelma jolla voit käyttää X2Go palvelinohjelmaa. Tällä ohjelmalla voit kytkeytyä X2Go -palvelimeen ja käynnistää, pysäyttää, jatkaa ja lopettaa työpöytäistuntoja. X2Go -asiakasohjelma tallettaa erilaisten istuntojen parametrit ja se voi hakea autentitontitiedot automaattisesti LDAP-hakemistoista. Lisäksi sitä voidaan käyttää koko näyttö -tilassa kirjaustumisnäyttönä (jolloin se korvaa esim. xdm -kirjautumisnäytön). Tarkempia tietoja löytyy osoitteesta x2go.org.</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="8030"/>
+        <location filename="onmainwindow.cpp" line="8058"/>
         <source>&lt;b&gt;X2Go Client V. </source>
         <translation>&lt;b&gt;X2Gi Asiakasohjelma V. </translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="8075"/>
+        <location filename="onmainwindow.cpp" line="8103"/>
         <source>Please check LDAP Settings</source>
         <translation>Tarkista LDAP-asetukset</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="8313"/>
+        <location filename="onmainwindow.cpp" line="8343"/>
         <source>No valid card found</source>
         <translation>Toimikortti puuttuu</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="8365"/>
+        <location filename="onmainwindow.cpp" line="8395"/>
         <source>Card not configured.</source>
         <translation>Toimikortin asetukset puuttuvat</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="8369"/>
+        <location filename="onmainwindow.cpp" line="8399"/>
         <source>This card is unknown by X2Go system</source>
         <translation>X2Go ei tunnista korttia</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="8397"/>
+        <location filename="onmainwindow.cpp" line="8427"/>
         <source>Unable to create file: </source>
         <translation>Tiedoston luonti epäonnistui:</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="8684"/>
+        <location filename="onmainwindow.cpp" line="8714"/>
         <source>Can&apos;t connect to X server
 Please check your settings</source>
         <translation>Yhteys X-palvelimeen ei aukea
 Tarkista asetukset</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="8685"/>
+        <location filename="onmainwindow.cpp" line="8715"/>
         <source>Can&apos;t start X server
 Please check your settings</source>
         <translation>Yhteys X-palvelimeen ei aukea
 Tarkista asetukset</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="8699"/>
-        <location filename="onmainwindow.cpp" line="9356"/>
+        <location filename="onmainwindow.cpp" line="8729"/>
         <location filename="onmainwindow.cpp" line="9386"/>
+        <location filename="onmainwindow.cpp" line="9416"/>
         <source>Can&apos;t start X Server
 Please check your installation</source>
         <translation>Yhteys X-palvelimeen ei aukea
 Tarkista asennuksen oikeellisuus</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="8865"/>
-        <location filename="onmainwindow.cpp" line="8870"/>
+        <location filename="onmainwindow.cpp" line="8895"/>
+        <location filename="onmainwindow.cpp" line="8900"/>
         <source>Unable to execute: </source>
         <translation>Kännistys ei onnistu:</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="8895"/>
+        <location filename="onmainwindow.cpp" line="8925"/>
         <source>Remote server does not support file system export through SSH Tunnel
 Please update to a newer x2goserver package</source>
         <translation>Etäpalvelin ei tue SSH-ehteyden avulla toimivaa levyjakoa
 Päivitä x2goserver palvelinohjelma</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="8948"/>
+        <location filename="onmainwindow.cpp" line="8978"/>
         <source>Unable to read :
 </source>
         <translation>Lukeminnen ei onnistu :</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="8975"/>
+        <location filename="onmainwindow.cpp" line="9005"/>
         <source>Unable to write :
 </source>
         <translation>Kirjoittaminen ei onnistu :</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="9062"/>
+        <location filename="onmainwindow.cpp" line="9092"/>
         <source>WINDOWS-1252</source>
         <translation>WINDOWS-1252</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="9074"/>
+        <location filename="onmainwindow.cpp" line="9104"/>
         <source>ISO8859-1</source>
         <translation>ISO8859-1</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="9944"/>
+        <location filename="onmainwindow.cpp" line="10064"/>
         <source>Error getting window geometry (window closed)?</source>
         <translation>Ikkunoinnin asetusten luku ei onnistu (ikkuna suljettu)?</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="10222"/>
+        <location filename="onmainwindow.cpp" line="10343"/>
         <source>X2Go Session</source>
         <translation>X2Go Istunto</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="10423"/>
+        <location filename="onmainwindow.cpp" line="10544"/>
         <source>wrong value for argument&quot;speed&quot;</source>
         <translation>&quot;speed&quot; -astuksella on virheellinen arvo</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="10539"/>
+        <location filename="onmainwindow.cpp" line="10660"/>
         <source>Password:</source>
         <translation>Salasana:</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="10540"/>
+        <location filename="onmainwindow.cpp" line="10661"/>
         <source>Keyboard layout:</source>
         <translation>Näppäimistön tyyppi:</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="10581"/>
+        <location filename="onmainwindow.cpp" line="10702"/>
         <source>Ok</source>
         <translation>Ok</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="10583"/>
-        <location filename="onmainwindow.cpp" line="10905"/>
-        <location filename="onmainwindow.cpp" line="10907"/>
+        <location filename="onmainwindow.cpp" line="10704"/>
+        <location filename="onmainwindow.cpp" line="11027"/>
+        <location filename="onmainwindow.cpp" line="11029"/>
         <source>Cancel</source>
         <translation>Peruuta</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="10720"/>
+        <location filename="onmainwindow.cpp" line="10841"/>
         <source>&lt;b&gt;Session ID:&lt;br&gt;Server:&lt;br&gt;Username:&lt;br&gt;Display:&lt;br&gt;Creation time:&lt;br&gt;Status:&lt;/b&gt;</source>
         <translation>&lt;b&gt;Istunnon ID:&lt;br&gt;Palvelin:&lt;br&gt;Käyttätunnus:&lt;br&gt;Näyttö:&lt;br&gt;Luontiaika:&lt;br&gt;Tila:&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="10743"/>
+        <location filename="onmainwindow.cpp" line="10864"/>
         <source>Abort</source>
         <translation>Keskeytä</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="10755"/>
+        <location filename="onmainwindow.cpp" line="10876"/>
         <source>Show details</source>
         <translation>Näytä yksityiskohdat</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="10903"/>
+        <location filename="onmainwindow.cpp" line="11025"/>
         <source>Resume</source>
         <translation>Jatka</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="10915"/>
+        <location filename="onmainwindow.cpp" line="11037"/>
         <source>New</source>
         <translation>Uusi</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="10918"/>
+        <location filename="onmainwindow.cpp" line="11040"/>
         <source>Full access</source>
         <translation>Kaikki oikeudet</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="10921"/>
+        <location filename="onmainwindow.cpp" line="11043"/>
         <source>View only</source>
         <translation>Vain katselu</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="10984"/>
+        <location filename="onmainwindow.cpp" line="11106"/>
         <source>Status</source>
         <translation>Tila</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="10986"/>
+        <location filename="onmainwindow.cpp" line="11108"/>
         <source>Command</source>
         <translation>Komento</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="10988"/>
+        <location filename="onmainwindow.cpp" line="11110"/>
         <source>Type</source>
         <translation>Tyyppi</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="10990"/>
+        <location filename="onmainwindow.cpp" line="11112"/>
         <source>Server</source>
         <translation>Palvelin</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="10995"/>
+        <location filename="onmainwindow.cpp" line="11117"/>
         <source>Client IP</source>
         <translation>Asiakasohjelman IP</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="10997"/>
+        <location filename="onmainwindow.cpp" line="11119"/>
         <source>Session ID</source>
         <translation>Isunnon ID</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="11001"/>
+        <location filename="onmainwindow.cpp" line="11123"/>
         <source>User</source>
         <translation>Käyttäjä</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="11032"/>
+        <location filename="onmainwindow.cpp" line="11154"/>
         <source>Only my desktops</source>
         <translation>Vain omat työpöydät</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="11129"/>
         <source>sshd not started, you&apos;ll need sshd for printing and file sharing
 you can install sshd with
 &lt;b&gt;sudo apt-get install openssh-server&lt;/b&gt;</source>
-        <translation>sshd ei käynnissä, se pitää olla jotta tulostus ja tiedostojako toimisi
+        <translation type="obsolete">sshd ei käynnissä, se pitää olla jotta tulostus ja tiedostojako toimisi
 voit asentaa sshd komennolla
 &lt;b&gt;sudo apt-get install openssh-server&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="11202"/>
+        <location filename="onmainwindow.cpp" line="11374"/>
         <source>Restore toolbar</source>
         <translation>Palauta toimintopalkki</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="11248"/>
+        <location filename="onmainwindow.cpp" line="11420"/>
         <source>&lt;br&gt;&lt;b&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;Click this button&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;to restore toolbar&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/b&gt;&lt;br&gt;</source>
         <translation>&lt;b&gt;&lt;b&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;Klikkaa tätä nappulaa&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;b&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;jotta palkki näkyisi jälleen&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/b&gt;&lt;br&gt;</translation>
     </message>
@@ -2188,7 +2344,7 @@ Esimerkki:
 <context>
     <name>QObject</name>
     <message>
-        <location filename="ongetpass.cpp" line="79"/>
+        <location filename="ongetpass.cpp" line="78"/>
         <source>No response received from the remote server. Do you want to terminate the current session?</source>
         <translation>Etäpalvelin ei vastaa. Haluatko keskeyttää istunnon?</translation>
     </message>
@@ -2196,166 +2352,208 @@ Esimerkki:
 <context>
     <name>SessionButton</name>
     <message>
-        <location filename="sessionbutton.cpp" line="136"/>
+        <location filename="sessionbutton.cpp" line="137"/>
         <source>Session preferences...</source>
         <translation>Istunnon oleutusarvot...</translation>
     </message>
     <message>
-        <location filename="sessionbutton.cpp" line="140"/>
+        <location filename="sessionbutton.cpp" line="141"/>
         <source>Create session icon on desktop...</source>
         <translation>Tee istunnosta ikoni työpöydällesi...</translation>
     </message>
     <message>
-        <location filename="sessionbutton.cpp" line="145"/>
+        <location filename="sessionbutton.cpp" line="146"/>
         <source>Delete session</source>
         <translation>Poista istunto</translation>
     </message>
     <message>
-        <location filename="sessionbutton.cpp" line="158"/>
+        <location filename="sessionbutton.cpp" line="159"/>
         <source>Session actions</source>
         <translation>Istunnon toiminnot</translation>
     </message>
     <message>
-        <location filename="sessionbutton.cpp" line="159"/>
+        <location filename="sessionbutton.cpp" line="160"/>
         <source>Select type</source>
         <translation>Valitse tyyppi</translation>
     </message>
     <message>
-        <location filename="sessionbutton.cpp" line="161"/>
+        <location filename="sessionbutton.cpp" line="162"/>
         <source>Select resolution</source>
         <translation>Valitse tarkkuus</translation>
     </message>
     <message>
-        <location filename="sessionbutton.cpp" line="162"/>
+        <location filename="sessionbutton.cpp" line="163"/>
         <source>Toggle sound support</source>
         <translation>Äänen päälleasetus</translation>
     </message>
     <message>
-        <location filename="sessionbutton.cpp" line="292"/>
+        <location filename="sessionbutton.cpp" line="290"/>
         <source>New Session</source>
         <translation>Uusi istunto</translation>
     </message>
     <message>
-        <location filename="sessionbutton.cpp" line="297"/>
+        <location filename="sessionbutton.cpp" line="306"/>
         <source>running</source>
         <translation>suorittaa</translation>
     </message>
     <message>
-        <location filename="sessionbutton.cpp" line="301"/>
+        <location filename="sessionbutton.cpp" line="310"/>
         <source>suspended</source>
         <translation>pysäytetty</translation>
     </message>
     <message>
-        <location filename="sessionbutton.cpp" line="335"/>
+        <location filename="sessionbutton.cpp" line="344"/>
         <source>KDE</source>
         <translation>KDE</translation>
     </message>
     <message>
-        <location filename="sessionbutton.cpp" line="351"/>
-        <location filename="sessionbutton.cpp" line="403"/>
-        <location filename="sessionbutton.cpp" line="704"/>
+        <location filename="sessionbutton.cpp" line="360"/>
+        <location filename="sessionbutton.cpp" line="412"/>
+        <location filename="sessionbutton.cpp" line="712"/>
         <source>RDP connection</source>
         <translation>RDP -yhteys</translation>
     </message>
     <message>
-        <location filename="sessionbutton.cpp" line="352"/>
-        <location filename="sessionbutton.cpp" line="409"/>
-        <location filename="sessionbutton.cpp" line="710"/>
+        <location filename="sessionbutton.cpp" line="361"/>
+        <location filename="sessionbutton.cpp" line="418"/>
+        <location filename="sessionbutton.cpp" line="718"/>
         <source>XDMCP</source>
         <translation>XDMCP</translation>
     </message>
     <message>
-        <location filename="sessionbutton.cpp" line="353"/>
-        <location filename="sessionbutton.cpp" line="394"/>
-        <location filename="sessionbutton.cpp" line="698"/>
+        <location filename="sessionbutton.cpp" line="362"/>
+        <location filename="sessionbutton.cpp" line="403"/>
+        <location filename="sessionbutton.cpp" line="706"/>
         <source>Connection to local desktop</source>
         <translation>Yhteys palvelimen omaan näyttöön</translation>
     </message>
     <message>
-        <location filename="sessionbutton.cpp" line="354"/>
-        <location filename="sessionbutton.cpp" line="414"/>
-        <location filename="sessionbutton.cpp" line="751"/>
+        <location filename="sessionbutton.cpp" line="363"/>
+        <location filename="sessionbutton.cpp" line="423"/>
+        <location filename="sessionbutton.cpp" line="759"/>
         <source>Published applications</source>
         <translation>Julkaistut sovellukset</translation>
     </message>
     <message>
-        <location filename="sessionbutton.cpp" line="438"/>
-        <location filename="sessionbutton.cpp" line="463"/>
-        <location filename="sessionbutton.cpp" line="772"/>
+        <location filename="sessionbutton.cpp" line="447"/>
+        <location filename="sessionbutton.cpp" line="472"/>
+        <location filename="sessionbutton.cpp" line="780"/>
         <source>fullscreen</source>
         <translation>koko näyttö</translation>
     </message>
     <message>
-        <location filename="sessionbutton.cpp" line="443"/>
-        <location filename="sessionbutton.cpp" line="473"/>
-        <location filename="sessionbutton.cpp" line="477"/>
-        <location filename="sessionbutton.cpp" line="785"/>
-        <location filename="sessionbutton.cpp" line="788"/>
+        <location filename="sessionbutton.cpp" line="452"/>
+        <location filename="sessionbutton.cpp" line="481"/>
+        <location filename="sessionbutton.cpp" line="485"/>
+        <location filename="sessionbutton.cpp" line="792"/>
+        <location filename="sessionbutton.cpp" line="795"/>
         <source>Display </source>
         <translation>Näyttö</translation>
     </message>
     <message>
-        <location filename="sessionbutton.cpp" line="458"/>
-        <location filename="sessionbutton.cpp" line="498"/>
+        <location filename="sessionbutton.cpp" line="467"/>
+        <location filename="sessionbutton.cpp" line="506"/>
         <source>window</source>
         <translation>ikkuna</translation>
     </message>
     <message>
-        <location filename="sessionbutton.cpp" line="505"/>
-        <location filename="sessionbutton.cpp" line="509"/>
-        <location filename="sessionbutton.cpp" line="510"/>
-        <location filename="sessionbutton.cpp" line="778"/>
+        <location filename="sessionbutton.cpp" line="513"/>
+        <location filename="sessionbutton.cpp" line="517"/>
+        <location filename="sessionbutton.cpp" line="518"/>
+        <location filename="sessionbutton.cpp" line="786"/>
         <source>Maximum</source>
         <translation>Maksimi</translation>
     </message>
     <message>
-        <location filename="sessionbutton.cpp" line="517"/>
-        <location filename="sessionbutton.cpp" line="647"/>
+        <location filename="sessionbutton.cpp" line="525"/>
+        <location filename="sessionbutton.cpp" line="655"/>
         <source>Enabled</source>
         <translation>Päällä</translation>
     </message>
     <message>
-        <location filename="sessionbutton.cpp" line="519"/>
-        <location filename="sessionbutton.cpp" line="649"/>
+        <location filename="sessionbutton.cpp" line="527"/>
+        <location filename="sessionbutton.cpp" line="657"/>
         <source>Disabled</source>
         <translation>Päältä</translation>
     </message>
 </context>
 <context>
+    <name>SessionExplorer</name>
+    <message>
+        <location filename="sessionexplorer.cpp" line="48"/>
+        <source>Back</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="sessionexplorer.cpp" line="134"/>
+        <source>Create session icon on desktop</source>
+        <translation type="unfinished">Tee instuntokuvake työpöydälle</translation>
+    </message>
+    <message>
+        <location filename="sessionexplorer.cpp" line="135"/>
+        <source>Desktop icons can be configured not to show x2goclient (hidden mode). If you like to use this feature you&apos;ll need to configure login by a gpg key or gpg smart card.
+
+Use x2goclient hidden mode?</source>
+        <translation type="unfinished">Työpöytäkuvakkeet voidaan asettaa piilottamaan x2go -asiakasohjelman (hidden mode). Jos haluat käyttää ominaisuutta määritä kirjautuminen käyttämään gpg-avainta tai gpg -toimikorttia.
+
+Käytätkö x2go-asiakasohjelmaa piilotettuna?</translation>
+    </message>
+    <message>
+        <location filename="sessionexplorer.cpp" line="145"/>
+        <source>Show session tray icon when running</source>
+        <translation type="unfinished">Näytä istunon ikoni kun se on aktiivinen</translation>
+    </message>
+    <message>
+        <location filename="sessionexplorer.cpp" line="159"/>
+        <source>New Session</source>
+        <translation type="unfinished">Uusi istunto</translation>
+    </message>
+    <message>
+        <location filename="sessionexplorer.cpp" line="220"/>
+        <source>X2Go Link to session </source>
+        <translation type="unfinished">Linkki X2Go -istuntoon </translation>
+    </message>
+    <message>
+        <location filename="sessionexplorer.cpp" line="349"/>
+        <source>Are you sure you want to delete this session?</source>
+        <translation type="unfinished">Haluatko varmasti poistaa tämän istunnon?</translation>
+    </message>
+</context>
+<context>
     <name>SessionManageDialog</name>
     <message>
-        <location filename="sessionmanagedialog.cpp" line="41"/>
+        <location filename="sessionmanagedialog.cpp" line="46"/>
         <source>E&amp;xit</source>
         <translation>&amp;Lopeta</translation>
     </message>
     <message>
-        <location filename="sessionmanagedialog.cpp" line="47"/>
+        <location filename="sessionmanagedialog.cpp" line="52"/>
         <source>&amp;New session</source>
         <translation>&amp;Uusin istunto</translation>
     </message>
     <message>
-        <location filename="sessionmanagedialog.cpp" line="48"/>
+        <location filename="sessionmanagedialog.cpp" line="53"/>
         <source>&amp;Session preferences</source>
         <translation>&amp;Istunnon oletusarvot</translation>
     </message>
     <message>
-        <location filename="sessionmanagedialog.cpp" line="49"/>
+        <location filename="sessionmanagedialog.cpp" line="54"/>
         <source>&amp;Delete session</source>
         <translation>&amp;Poista instunto</translation>
     </message>
     <message>
-        <location filename="sessionmanagedialog.cpp" line="53"/>
+        <location filename="sessionmanagedialog.cpp" line="58"/>
         <source>&amp;Create session icon on desktop...</source>
         <translation>&amp;Tee istunnosta ikoni työpöydälle...</translation>
     </message>
     <message>
-        <location filename="sessionmanagedialog.cpp" line="87"/>
+        <location filename="sessionmanagedialog.cpp" line="92"/>
         <source>Delete</source>
         <comment>Delete</comment>
         <translation>Poista</translation>
     </message>
     <message>
-        <location filename="sessionmanagedialog.cpp" line="115"/>
+        <location filename="sessionmanagedialog.cpp" line="120"/>
         <source>Session management</source>
         <translation>Istunnon hallinnointi</translation>
     </message>
@@ -2363,232 +2561,237 @@ Esimerkki:
 <context>
     <name>SessionWidget</name>
     <message>
-        <location filename="sessionwidget.cpp" line="62"/>
+        <location filename="sessionwidget.cpp" line="67"/>
         <source>Session name:</source>
         <translation>Istunnon nimi:</translation>
     </message>
     <message>
-        <location filename="sessionwidget.cpp" line="67"/>
+        <location filename="sessionwidget.cpp" line="72"/>
         <source>&lt;&lt; change icon</source>
         <translation>&lt;&lt; vaihda ikoni</translation>
     </message>
     <message>
-        <location filename="sessionwidget.cpp" line="70"/>
+        <location filename="sessionwidget.cpp" line="78"/>
+        <source>Path:</source>
+        <translation type="unfinished">Polku:</translation>
+    </message>
+    <message>
+        <location filename="sessionwidget.cpp" line="83"/>
         <source>&amp;Server</source>
         <translation>&amp;Palvelin</translation>
     </message>
     <message>
-        <location filename="sessionwidget.cpp" line="103"/>
-        <location filename="sessionwidget.cpp" line="165"/>
+        <location filename="sessionwidget.cpp" line="116"/>
+        <location filename="sessionwidget.cpp" line="178"/>
         <source>Host:</source>
         <translation>Palvelin:</translation>
     </message>
     <message>
-        <location filename="sessionwidget.cpp" line="104"/>
-        <location filename="sessionwidget.cpp" line="171"/>
+        <location filename="sessionwidget.cpp" line="117"/>
+        <location filename="sessionwidget.cpp" line="184"/>
         <source>Login:</source>
         <translation>Käyttäjä:</translation>
     </message>
     <message>
-        <location filename="sessionwidget.cpp" line="105"/>
-        <location filename="sessionwidget.cpp" line="374"/>
+        <location filename="sessionwidget.cpp" line="118"/>
+        <location filename="sessionwidget.cpp" line="391"/>
         <source>SSH port:</source>
         <translation>SSH .-portti:</translation>
     </message>
     <message>
-        <location filename="sessionwidget.cpp" line="120"/>
+        <location filename="sessionwidget.cpp" line="133"/>
         <source>Use RSA/DSA key for ssh connection:</source>
         <translation>Käytä RSA/DSA -avainta ssh -yhteyden luomiseen:</translation>
     </message>
     <message>
-        <location filename="sessionwidget.cpp" line="127"/>
+        <location filename="sessionwidget.cpp" line="140"/>
         <source>Try auto login (ssh-agent or default ssh key)</source>
         <translation>Yritä automaattista kirjautumista (ssh-välittäjää tai oletus-ssh-avainta käyttäen)</translation>
     </message>
     <message>
-        <location filename="sessionwidget.cpp" line="128"/>
-        <location filename="sessionwidget.cpp" line="159"/>
+        <location filename="sessionwidget.cpp" line="141"/>
+        <location filename="sessionwidget.cpp" line="172"/>
         <source>Kerberos 5 (GSSAPI) authentication</source>
         <translation>Kerberos 5 (GSSAPI) autentikointi</translation>
     </message>
     <message>
-        <location filename="sessionwidget.cpp" line="129"/>
+        <location filename="sessionwidget.cpp" line="142"/>
         <source>Delegation of GSSAPI credentials to the server</source>
         <translation>Anna GSSAPI -tunnistustiedot palvelimelle</translation>
     </message>
     <message>
-        <location filename="sessionwidget.cpp" line="133"/>
+        <location filename="sessionwidget.cpp" line="146"/>
         <source>Use Proxy server for SSH connection</source>
         <translation>Käytä proxy-palvelinta SSH -yhteyden luomiseen</translation>
     </message>
     <message>
-        <location filename="sessionwidget.cpp" line="134"/>
+        <location filename="sessionwidget.cpp" line="147"/>
         <source>Proxy server</source>
         <translation>Proxy-palvelin</translation>
     </message>
     <message>
-        <location filename="sessionwidget.cpp" line="140"/>
+        <location filename="sessionwidget.cpp" line="153"/>
         <source>SSH</source>
         <translation>SSH</translation>
     </message>
     <message>
-        <location filename="sessionwidget.cpp" line="141"/>
+        <location filename="sessionwidget.cpp" line="154"/>
         <source>HTTP</source>
         <translation>HTTP</translation>
     </message>
     <message>
-        <location filename="sessionwidget.cpp" line="149"/>
+        <location filename="sessionwidget.cpp" line="162"/>
         <source>Same login as on X2Go Server</source>
         <translation>Sama käyttäjätunnus kuin X2Go -palvelimeen</translation>
     </message>
     <message>
-        <location filename="sessionwidget.cpp" line="151"/>
+        <location filename="sessionwidget.cpp" line="164"/>
         <source>Same password as on X2Go Server</source>
         <translation>Sama salasana kuin X2Go -palvelimeen</translation>
     </message>
     <message>
-        <location filename="sessionwidget.cpp" line="153"/>
+        <location filename="sessionwidget.cpp" line="166"/>
         <source>RSA/DSA key:</source>
         <translation>RSA/DSA-avain:</translation>
     </message>
     <message>
-        <location filename="sessionwidget.cpp" line="158"/>
+        <location filename="sessionwidget.cpp" line="171"/>
         <source>ssh-agent or default ssh key</source>
         <translation>ssh-agentti tai oletus -ssh-avain</translation>
     </message>
     <message>
-        <location filename="sessionwidget.cpp" line="162"/>
+        <location filename="sessionwidget.cpp" line="175"/>
         <source>Type:</source>
         <translation>Tyyppi:</translation>
     </message>
     <message>
-        <location filename="sessionwidget.cpp" line="166"/>
+        <location filename="sessionwidget.cpp" line="179"/>
         <source>Port:</source>
         <translation>Portti:</translation>
     </message>
     <message>
-        <location filename="sessionwidget.cpp" line="182"/>
+        <location filename="sessionwidget.cpp" line="195"/>
         <source>&amp;Session type</source>
         <translation>&amp;Istuntotyyppi</translation>
     </message>
     <message>
-        <location filename="sessionwidget.cpp" line="187"/>
+        <location filename="sessionwidget.cpp" line="200"/>
         <source>Session type:</source>
         <translation>Istuntotyyppi:</translation>
     </message>
     <message>
-        <location filename="sessionwidget.cpp" line="199"/>
-        <location filename="sessionwidget.cpp" line="498"/>
+        <location filename="sessionwidget.cpp" line="212"/>
+        <location filename="sessionwidget.cpp" line="515"/>
         <source>Connect to Windows terminal server</source>
         <translation>Yhdista Windows terminal serveriin</translation>
     </message>
     <message>
-        <location filename="sessionwidget.cpp" line="200"/>
+        <location filename="sessionwidget.cpp" line="213"/>
         <source>XDMCP</source>
         <translation>XDMCP</translation>
     </message>
     <message>
-        <location filename="sessionwidget.cpp" line="201"/>
+        <location filename="sessionwidget.cpp" line="214"/>
         <source>Connect to local desktop</source>
         <translation>Yhdistä palvelimen omaan näyttöön</translation>
     </message>
     <message>
-        <location filename="sessionwidget.cpp" line="202"/>
+        <location filename="sessionwidget.cpp" line="215"/>
         <source>Custom desktop</source>
         <translation>Muokattu työpöytä</translation>
     </message>
     <message>
-        <location filename="sessionwidget.cpp" line="203"/>
+        <location filename="sessionwidget.cpp" line="216"/>
         <source>Single application</source>
         <translation>Erillinen sovellus</translation>
     </message>
     <message>
-        <location filename="sessionwidget.cpp" line="204"/>
+        <location filename="sessionwidget.cpp" line="217"/>
         <source>Published applications</source>
         <translation>Julkaistut sovellukset</translation>
     </message>
     <message>
-        <location filename="sessionwidget.cpp" line="206"/>
-        <location filename="sessionwidget.cpp" line="442"/>
+        <location filename="sessionwidget.cpp" line="219"/>
+        <location filename="sessionwidget.cpp" line="459"/>
         <source>Command:</source>
         <translation>Komento:</translation>
     </message>
     <message>
-        <location filename="sessionwidget.cpp" line="207"/>
+        <location filename="sessionwidget.cpp" line="220"/>
         <source>Advanced options...</source>
         <translation>Edistyneet toiminnot...</translation>
     </message>
     <message>
-        <location filename="sessionwidget.cpp" line="219"/>
-        <location filename="sessionwidget.cpp" line="741"/>
-        <location filename="sessionwidget.cpp" line="838"/>
+        <location filename="sessionwidget.cpp" line="232"/>
+        <location filename="sessionwidget.cpp" line="772"/>
+        <location filename="sessionwidget.cpp" line="872"/>
         <source>Path to executable</source>
         <translation>Ohjelman hakupolku</translation>
     </message>
     <message>
-        <location filename="sessionwidget.cpp" line="229"/>
+        <location filename="sessionwidget.cpp" line="243"/>
         <source>Direct RDP Connection</source>
         <translation>Suora RPP-yhteys</translation>
     </message>
     <message>
-        <location filename="sessionwidget.cpp" line="296"/>
-        <location filename="sessionwidget.cpp" line="409"/>
+        <location filename="sessionwidget.cpp" line="311"/>
+        <location filename="sessionwidget.cpp" line="426"/>
         <source>Open key file</source>
         <translation>Lue avain-tiedosto</translation>
     </message>
     <message>
-        <location filename="sessionwidget.cpp" line="298"/>
-        <location filename="sessionwidget.cpp" line="411"/>
+        <location filename="sessionwidget.cpp" line="313"/>
+        <location filename="sessionwidget.cpp" line="428"/>
         <source>All files</source>
         <translation>Kaikki tiedostot</translation>
     </message>
     <message>
-        <location filename="sessionwidget.cpp" line="308"/>
-        <location filename="sessionwidget.cpp" line="421"/>
+        <location filename="sessionwidget.cpp" line="323"/>
+        <location filename="sessionwidget.cpp" line="438"/>
         <source>Error</source>
         <translation>VIrhe</translation>
     </message>
     <message>
-        <location filename="sessionwidget.cpp" line="309"/>
-        <location filename="sessionwidget.cpp" line="422"/>
+        <location filename="sessionwidget.cpp" line="324"/>
+        <location filename="sessionwidget.cpp" line="439"/>
         <source>x2goclient is running in portable mode. You should use a path on your usb device to be able to access your data whereever you are</source>
         <translation>x2go-asiakasohjelma on siirrettävässä moodissa. Käytä usb-laiteen hakupolkua jotta pääset joka paikasta käsiksi omiin tietoihisi</translation>
     </message>
     <message>
-        <location filename="sessionwidget.cpp" line="370"/>
+        <location filename="sessionwidget.cpp" line="387"/>
         <source>RDP port:</source>
         <translation>RPP-portti:</translation>
     </message>
     <message>
-        <location filename="sessionwidget.cpp" line="386"/>
+        <location filename="sessionwidget.cpp" line="403"/>
         <source>Open picture</source>
         <translation>Avaa kuva</translation>
     </message>
     <message>
-        <location filename="sessionwidget.cpp" line="388"/>
+        <location filename="sessionwidget.cpp" line="405"/>
         <source>Pictures</source>
         <translation>Kivat</translation>
     </message>
     <message>
-        <location filename="sessionwidget.cpp" line="469"/>
-        <location filename="sessionwidget.cpp" line="695"/>
+        <location filename="sessionwidget.cpp" line="486"/>
+        <location filename="sessionwidget.cpp" line="726"/>
         <source>Server:</source>
         <translation>Palvelin:</translation>
     </message>
     <message>
-        <location filename="sessionwidget.cpp" line="478"/>
-        <location filename="sessionwidget.cpp" line="707"/>
+        <location filename="sessionwidget.cpp" line="495"/>
+        <location filename="sessionwidget.cpp" line="738"/>
         <source>XDMCP server:</source>
         <translation>XDMCP -palvelin:</translation>
     </message>
     <message>
-        <location filename="sessionwidget.cpp" line="499"/>
+        <location filename="sessionwidget.cpp" line="516"/>
         <source>rdesktop command line options:</source>
         <translation>rdesktop -komentorivin optiot:</translation>
     </message>
     <message>
-        <location filename="sessionwidget.cpp" line="512"/>
-        <location filename="sessionwidget.cpp" line="719"/>
+        <location filename="sessionwidget.cpp" line="528"/>
+        <location filename="sessionwidget.cpp" line="750"/>
         <source>New session</source>
         <translation>Uusi istunto</translation>
     </message>
@@ -2603,98 +2806,123 @@ Esimerkki:
     </message>
     <message>
         <location filename="settingswidget.cpp" line="48"/>
-        <location filename="settingswidget.cpp" line="52"/>
+        <location filename="settingswidget.cpp" line="53"/>
         <source>&amp;Keyboard</source>
         <translation>N&amp;äppäimistö</translation>
     </message>
     <message>
         <location filename="settingswidget.cpp" line="49"/>
-        <location filename="settingswidget.cpp" line="53"/>
+        <location filename="settingswidget.cpp" line="54"/>
         <source>Sound</source>
         <translation>Ääni</translation>
     </message>
     <message>
-        <location filename="settingswidget.cpp" line="64"/>
+        <location filename="settingswidget.cpp" line="52"/>
+        <source>&amp;Clipboard Mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="settingswidget.cpp" line="66"/>
         <source>Fullscreen</source>
         <translation>Koko näyttö</translation>
     </message>
     <message>
-        <location filename="settingswidget.cpp" line="66"/>
+        <location filename="settingswidget.cpp" line="68"/>
         <source>Custom</source>
         <translation>Muokattu</translation>
     </message>
     <message>
-        <location filename="settingswidget.cpp" line="68"/>
+        <location filename="settingswidget.cpp" line="70"/>
         <source>Window</source>
         <translation>Ikkuna</translation>
     </message>
     <message>
-        <location filename="settingswidget.cpp" line="70"/>
+        <location filename="settingswidget.cpp" line="72"/>
         <source>Use whole display</source>
         <translation>Käytä koko näyttöä</translation>
     </message>
     <message>
-        <location filename="settingswidget.cpp" line="71"/>
+        <location filename="settingswidget.cpp" line="73"/>
         <source>Maximum available</source>
         <translation>Maksimikoko</translation>
     </message>
     <message>
-        <location filename="settingswidget.cpp" line="79"/>
+        <location filename="settingswidget.cpp" line="81"/>
         <source>Set display DPI</source>
         <translation>Aseta näytön arvot (DPI)</translation>
     </message>
     <message>
-        <location filename="settingswidget.cpp" line="84"/>
+        <location filename="settingswidget.cpp" line="86"/>
         <source>Xinerama extension (support for two or more physical displays)</source>
         <translation>Xinerama -laajennus (tuki kahdelle tai useammalle näytölle)</translation>
     </message>
     <message>
-        <location filename="settingswidget.cpp" line="100"/>
+        <location filename="settingswidget.cpp" line="102"/>
         <source>Width:</source>
         <translation>Leveys:</translation>
     </message>
     <message>
-        <location filename="settingswidget.cpp" line="103"/>
+        <location filename="settingswidget.cpp" line="105"/>
         <source>Height:</source>
         <translation>Korkeus:</translation>
     </message>
     <message>
-        <location filename="settingswidget.cpp" line="111"/>
+        <location filename="settingswidget.cpp" line="113"/>
         <source>&amp;Display:</source>
         <translation>&amp;Näyttö:</translation>
     </message>
     <message>
-        <location filename="settingswidget.cpp" line="113"/>
+        <location filename="settingswidget.cpp" line="115"/>
         <source>&amp;Identify all displays</source>
         <translation>&amp;Tunnista kaikki näytöt</translation>
     </message>
     <message>
-        <location filename="settingswidget.cpp" line="154"/>
+        <location filename="settingswidget.cpp" line="155"/>
+        <source>Bidirectional copy and paste</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="settingswidget.cpp" line="156"/>
+        <source>Copy and paste from client to server</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="settingswidget.cpp" line="157"/>
+        <source>Copy and paste from server to client</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="settingswidget.cpp" line="158"/>
+        <source>Disable clipboard completely</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="settingswidget.cpp" line="170"/>
         <source>Auto detect keyboard settings</source>
         <translation>Tunnista näppäimistötyyppi automaattisesti</translation>
     </message>
     <message>
-        <location filename="settingswidget.cpp" line="155"/>
+        <location filename="settingswidget.cpp" line="171"/>
         <source>Do not configure keyboard</source>
         <translation>Älä muuta näppäimistöasetuksia</translation>
     </message>
     <message>
-        <location filename="settingswidget.cpp" line="156"/>
+        <location filename="settingswidget.cpp" line="172"/>
         <source>Configure keyboard</source>
         <translation>Muuta näppäimistön asetukset</translation>
     </message>
     <message>
-        <location filename="settingswidget.cpp" line="167"/>
+        <location filename="settingswidget.cpp" line="183"/>
         <source>Model: </source>
         <translation>Malli:</translation>
     </message>
     <message>
-        <location filename="settingswidget.cpp" line="170"/>
+        <location filename="settingswidget.cpp" line="186"/>
         <source>Layout: </source>
         <translation>Asettelu:</translation>
     </message>
     <message>
-        <location filename="settingswidget.cpp" line="173"/>
+        <location filename="settingswidget.cpp" line="189"/>
         <source>Variant: </source>
         <translation>Alalaji:</translation>
     </message>
@@ -2711,58 +2939,58 @@ Esimerkki:
         <translation type="obsolete">Näppäimistön malli:</translation>
     </message>
     <message>
-        <location filename="settingswidget.cpp" line="184"/>
+        <location filename="settingswidget.cpp" line="200"/>
         <source>Enable sound support</source>
         <translation>Aseta ääni pälle</translation>
     </message>
     <message>
-        <location filename="settingswidget.cpp" line="193"/>
+        <location filename="settingswidget.cpp" line="209"/>
         <source>Start sound daemon</source>
         <translation>Käynnistä ääniajuri</translation>
     </message>
     <message>
-        <location filename="settingswidget.cpp" line="195"/>
+        <location filename="settingswidget.cpp" line="211"/>
         <source>Use running sound daemon</source>
         <translation>Käytä nykyistä ääniajuria</translation>
     </message>
     <message>
-        <location filename="settingswidget.cpp" line="197"/>
+        <location filename="settingswidget.cpp" line="213"/>
         <source>Use SSH port forwarding to tunnel
 sound system connections through firewalls</source>
         <translation>Käytä SSH -portin tunnelointia äänen saamiseksi palomuurin läpi</translation>
     </message>
     <message>
-        <location filename="settingswidget.cpp" line="199"/>
+        <location filename="settingswidget.cpp" line="215"/>
         <source>Use default sound port</source>
         <translation>Käytä oletus-aääniporttia</translation>
     </message>
     <message>
-        <location filename="settingswidget.cpp" line="206"/>
+        <location filename="settingswidget.cpp" line="222"/>
         <source>Sound port:</source>
         <translation>Ääniportti:</translation>
     </message>
     <message>
-        <location filename="settingswidget.cpp" line="233"/>
+        <location filename="settingswidget.cpp" line="249"/>
         <source>Client side printing support</source>
         <translation>Asiakasohjelman tulostintuki</translation>
     </message>
     <message>
-        <location filename="settingswidget.cpp" line="247"/>
+        <location filename="settingswidget.cpp" line="264"/>
         <source>RDP Client</source>
         <translation>RDP -asiakasohjelma</translation>
     </message>
     <message>
-        <location filename="settingswidget.cpp" line="259"/>
+        <location filename="settingswidget.cpp" line="276"/>
         <source>Additional parameters:</source>
         <translation>Lisäohjaimet:</translation>
     </message>
     <message>
-        <location filename="settingswidget.cpp" line="260"/>
+        <location filename="settingswidget.cpp" line="277"/>
         <source>Command line:</source>
         <translation>Komentorivi:</translation>
     </message>
     <message>
-        <location filename="settingswidget.cpp" line="681"/>
+        <location filename="settingswidget.cpp" line="721"/>
         <source>us</source>
         <translation>fi</translation>
     </message>
@@ -2771,7 +2999,7 @@ sound system connections through firewalls</source>
         <translation type="obsolete">pc105/us</translation>
     </message>
     <message>
-        <location filename="settingswidget.cpp" line="837"/>
+        <location filename="settingswidget.cpp" line="890"/>
         <source>password</source>
         <translation>salasana</translation>
     </message>
@@ -2974,12 +3202,12 @@ sound system connections through firewalls</source>
 <context>
     <name>SshProcess</name>
     <message>
-        <location filename="sshprocess.cpp" line="131"/>
+        <location filename="sshprocess.cpp" line="127"/>
         <source>Error creating socket</source>
         <translation>Virhe socket-yhteyden luonnissa</translation>
     </message>
     <message>
-        <location filename="sshprocess.cpp" line="149"/>
+        <location filename="sshprocess.cpp" line="145"/>
         <source>Error binding </source>
         <translation>Virhe yhteyden avauksessa </translation>
     </message>

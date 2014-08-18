@@ -480,6 +480,72 @@
     </message>
 </context>
 <context>
+    <name>FolderButton</name>
+    <message>
+        <source>Sessions folder</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>FolderExplorer</name>
+    <message>
+        <source>Folders</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Create New Folder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rename Folder...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Change Icon...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete Folder...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open picture</source>
+        <translation type="unfinished">Åpne bilde</translation>
+    </message>
+    <message>
+        <source>Pictures</source>
+        <translation type="unfinished">Bilder</translation>
+    </message>
+    <message>
+        <source>X2Go Client</source>
+        <translation type="unfinished">X2Go klient</translation>
+    </message>
+    <message>
+        <source>Folder Name:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Error</source>
+        <translation type="unfinished">Feil</translation>
+    </message>
+    <message>
+        <source>Unable to remove &quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&quot;. Folder is not empty. Please remove content of folder and try again.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete folder &quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New Folder</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>HelpDialog</name>
     <message>
         <source>Options</source>
@@ -1260,7 +1326,7 @@ Vennligst sjekk instillingene dine</translation>
     </message>
     <message>
         <source>Are you sure you want to delete this session?</source>
-        <translation>Er du sikker på at du ønsker å fjerne denne sesjonen?</translation>
+        <translation type="obsolete">Er du sikker på at du ønsker å fjerne denne sesjonen?</translation>
     </message>
     <message>
         <source>&lt;b&gt;Wrong password!&lt;/b&gt;&lt;br&gt;&lt;br&gt;</source>
@@ -1510,23 +1576,23 @@ Vennligst oppdater til en nyere x2goserver pakke</translation>
     </message>
     <message>
         <source>Create session icon on desktop</source>
-        <translation>Opprett sesjonsikon på skrivebordet</translation>
+        <translation type="obsolete">Opprett sesjonsikon på skrivebordet</translation>
     </message>
     <message>
         <source>Desktop icons can be configured not to show x2goclient (hidden mode). If you like to use this feature you&apos;ll need to configure login by a gpg key or gpg smart card.
 
 Use x2goclient hidden mode?</source>
-        <translation>Skrivebordsikoner kan konfigureres til å ikke vise x2goklient (skjult modus). Om du ønsker å benytte denne muligheten må du konfigurere pålogging ved bruk av en GPG-nøkkel, eller et GPG basert smartkort.
+        <translation type="obsolete">Skrivebordsikoner kan konfigureres til å ikke vise x2goklient (skjult modus). Om du ønsker å benytte denne muligheten må du konfigurere pålogging ved bruk av en GPG-nøkkel, eller et GPG basert smartkort.
 
 Ønsker du å aktivere skjult modus for x2goklient?</translation>
     </message>
     <message>
         <source>Show session tray icon when running</source>
-        <translation>Hvis sesjonsikon i systemkurven når sesjonen kjører</translation>
+        <translation type="obsolete">Hvis sesjonsikon i systemkurven når sesjonen kjører</translation>
     </message>
     <message>
         <source>New Session</source>
-        <translation>Ny sesjon</translation>
+        <translation type="obsolete">Ny sesjon</translation>
     </message>
     <message>
         <source>X2Go sessions not found</source>
@@ -1538,7 +1604,7 @@ Use x2goclient hidden mode?</source>
     </message>
     <message>
         <source>X2Go Link to session </source>
-        <translation>X2Go kobling til sesjon </translation>
+        <translation type="obsolete">X2Go kobling til sesjon </translation>
     </message>
     <message>
         <source>Detach X2Go window</source>
@@ -1993,6 +2059,41 @@ Eksempel:
     </message>
 </context>
 <context>
+    <name>SessionExplorer</name>
+    <message>
+        <source>Back</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Create session icon on desktop</source>
+        <translation type="unfinished">Opprett sesjonsikon på skrivebordet</translation>
+    </message>
+    <message>
+        <source>Desktop icons can be configured not to show x2goclient (hidden mode). If you like to use this feature you&apos;ll need to configure login by a gpg key or gpg smart card.
+
+Use x2goclient hidden mode?</source>
+        <translation type="unfinished">Skrivebordsikoner kan konfigureres til å ikke vise x2goklient (skjult modus). Om du ønsker å benytte denne muligheten må du konfigurere pålogging ved bruk av en GPG-nøkkel, eller et GPG basert smartkort.
+
+Ønsker du å aktivere skjult modus for x2goklient?</translation>
+    </message>
+    <message>
+        <source>Show session tray icon when running</source>
+        <translation type="unfinished">Hvis sesjonsikon i systemkurven når sesjonen kjører</translation>
+    </message>
+    <message>
+        <source>New Session</source>
+        <translation type="unfinished">Ny sesjon</translation>
+    </message>
+    <message>
+        <source>X2Go Link to session </source>
+        <translation type="unfinished">X2Go kobling til sesjon </translation>
+    </message>
+    <message>
+        <source>Are you sure you want to delete this session?</source>
+        <translation type="unfinished">Er du sikker på at du ønsker å fjerne denne sesjonen?</translation>
+    </message>
+</context>
+<context>
     <name>SessionManageDialog</name>
     <message>
         <source>E&amp;xit</source>
@@ -2197,6 +2298,10 @@ Eksempel:
     <message>
         <source>New session</source>
         <translation>Ny sesjon</translation>
+    </message>
+    <message>
+        <source>Path:</source>
+        <translation type="unfinished">Sti:</translation>
     </message>
 </context>
 <context>

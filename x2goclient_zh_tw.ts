@@ -562,40 +562,121 @@
 <context>
     <name>ExportDialog</name>
     <message>
-        <location filename="exportdialog.cpp" line="44"/>
+        <location filename="exportdialog.cpp" line="45"/>
         <source>&amp;Cancel</source>
         <translation>取消(&amp;C)</translation>
     </message>
     <message>
-        <location filename="exportdialog.cpp" line="50"/>
+        <location filename="exportdialog.cpp" line="51"/>
         <source>&amp;share</source>
         <translation>分享(&amp;s)</translation>
     </message>
     <message>
-        <location filename="exportdialog.cpp" line="51"/>
+        <location filename="exportdialog.cpp" line="52"/>
         <source>&amp;Preferences ...</source>
         <translation>偏好設定(&amp;P) ...</translation>
     </message>
     <message>
-        <location filename="exportdialog.cpp" line="52"/>
+        <location filename="exportdialog.cpp" line="53"/>
         <source>&amp;Custom folder ...</source>
         <translation>自訂資料夾(&amp;C) ...</translation>
     </message>
     <message>
-        <location filename="exportdialog.cpp" line="62"/>
+        <location filename="exportdialog.cpp" line="63"/>
         <source>Delete</source>
         <comment>Delete</comment>
         <translation>刪除</translation>
     </message>
     <message>
-        <location filename="exportdialog.cpp" line="79"/>
+        <location filename="exportdialog.cpp" line="80"/>
         <source>share folders</source>
         <translation>共享資料夾</translation>
     </message>
     <message>
-        <location filename="exportdialog.cpp" line="145"/>
+        <location filename="exportdialog.cpp" line="146"/>
         <source>Select folder</source>
         <translation>選擇資料夾</translation>
+    </message>
+</context>
+<context>
+    <name>FolderButton</name>
+    <message>
+        <location filename="folderbutton.cpp" line="73"/>
+        <source>Sessions folder</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>FolderExplorer</name>
+    <message>
+        <location filename="folderexplorer.ui" line="14"/>
+        <source>Folders</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="folderexplorer.cpp" line="77"/>
+        <source>Create New Folder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="folderexplorer.cpp" line="81"/>
+        <source>Rename Folder...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="folderexplorer.cpp" line="82"/>
+        <source>Change Icon...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="folderexplorer.cpp" line="83"/>
+        <source>Delete Folder...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="folderexplorer.cpp" line="97"/>
+        <source>Open picture</source>
+        <translation type="unfinished">開啟圖片</translation>
+    </message>
+    <message>
+        <location filename="folderexplorer.cpp" line="99"/>
+        <source>Pictures</source>
+        <translation type="unfinished">圖片</translation>
+    </message>
+    <message>
+        <location filename="folderexplorer.cpp" line="112"/>
+        <source>X2Go Client</source>
+        <translation type="unfinished">X2Go用戶端</translation>
+    </message>
+    <message>
+        <location filename="folderexplorer.cpp" line="113"/>
+        <source>Folder Name:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="folderexplorer.cpp" line="130"/>
+        <source>Error</source>
+        <translation type="unfinished">錯誤</translation>
+    </message>
+    <message>
+        <location filename="folderexplorer.cpp" line="130"/>
+        <source>Unable to remove &quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="folderexplorer.cpp" line="131"/>
+        <source>&quot;. Folder is not empty. Please remove content of folder and try again.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="folderexplorer.cpp" line="134"/>
+        <source>Delete folder &quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="folderexplorer.cpp" line="145"/>
+        <source>New Folder</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -791,13 +872,13 @@ Public key hash: </source>
 <context>
     <name>ONMainWindow</name>
     <message>
-        <location filename="onmainwindow.cpp" line="61"/>
+        <location filename="onmainwindow.cpp" line="60"/>
         <source>Starting x2goclient...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="104"/>
-        <location filename="onmainwindow.cpp" line="6830"/>
+        <location filename="onmainwindow.cpp" line="103"/>
+        <location filename="onmainwindow.cpp" line="6663"/>
         <source>us</source>
         <translation>us</translation>
     </message>
@@ -806,55 +887,55 @@ Public key hash: </source>
         <translation type="obsolete">pc105/us</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="181"/>
+        <location filename="onmainwindow.cpp" line="179"/>
         <source>X2Go Client</source>
         <translation>X2Go用戶端</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="198"/>
-        <location filename="onmainwindow.cpp" line="3177"/>
-        <location filename="onmainwindow.cpp" line="5796"/>
+        <location filename="onmainwindow.cpp" line="196"/>
+        <location filename="onmainwindow.cpp" line="3016"/>
+        <location filename="onmainwindow.cpp" line="5635"/>
         <source>connecting</source>
         <translation>正在連線</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="205"/>
+        <location filename="onmainwindow.cpp" line="203"/>
         <source>Internet browser</source>
         <translation>網頁瀏覽器</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="206"/>
+        <location filename="onmainwindow.cpp" line="204"/>
         <source>Email client</source>
         <translation>電子郵件軟體</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="207"/>
+        <location filename="onmainwindow.cpp" line="205"/>
         <source>OpenOffice.org</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="208"/>
+        <location filename="onmainwindow.cpp" line="206"/>
         <source>Terminal</source>
         <translation>終端機</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="258"/>
+        <location filename="onmainwindow.cpp" line="256"/>
         <source>Starting x2goclient in portable mode... data directory is: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="379"/>
+        <location filename="onmainwindow.cpp" line="377"/>
         <source>&amp;Settings ...</source>
         <translation>設定(&amp;S) ...</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="383"/>
+        <location filename="onmainwindow.cpp" line="381"/>
         <source>Support ...</source>
         <translation>支援 ...</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="390"/>
-        <location filename="onmainwindow.cpp" line="8239"/>
+        <location filename="onmainwindow.cpp" line="388"/>
+        <location filename="onmainwindow.cpp" line="8057"/>
         <source>About X2GO client</source>
         <translation>關於X2GO用戶端</translation>
     </message>
@@ -883,24 +964,24 @@ Public key hash: </source>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="590"/>
-        <location filename="onmainwindow.cpp" line="1096"/>
-        <location filename="onmainwindow.cpp" line="11020"/>
+        <location filename="onmainwindow.cpp" line="1105"/>
+        <location filename="onmainwindow.cpp" line="10858"/>
         <source>Share folder...</source>
         <translation>共享資料夾...</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="596"/>
-        <location filename="onmainwindow.cpp" line="1097"/>
-        <location filename="onmainwindow.cpp" line="5852"/>
-        <location filename="onmainwindow.cpp" line="11194"/>
+        <location filename="onmainwindow.cpp" line="1106"/>
+        <location filename="onmainwindow.cpp" line="5691"/>
+        <location filename="onmainwindow.cpp" line="11032"/>
         <source>Suspend</source>
         <translation>暫停</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="599"/>
-        <location filename="onmainwindow.cpp" line="1098"/>
-        <location filename="onmainwindow.cpp" line="11033"/>
-        <location filename="onmainwindow.cpp" line="11196"/>
+        <location filename="onmainwindow.cpp" line="1107"/>
+        <location filename="onmainwindow.cpp" line="10871"/>
+        <location filename="onmainwindow.cpp" line="11034"/>
         <source>Terminate</source>
         <translation>終止</translation>
     </message>
@@ -911,332 +992,323 @@ Public key hash: </source>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="605"/>
-        <location filename="onmainwindow.cpp" line="10437"/>
+        <location filename="onmainwindow.cpp" line="10275"/>
         <source>Detach X2Go window</source>
         <translation>脫離X2Go視窗</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="608"/>
-        <location filename="onmainwindow.cpp" line="11548"/>
+        <location filename="onmainwindow.cpp" line="11386"/>
         <source>Minimize toolbar</source>
         <translation>將工具列最小化</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="724"/>
-        <location filename="onmainwindow.cpp" line="2045"/>
-        <location filename="onmainwindow.cpp" line="8339"/>
+        <location filename="onmainwindow.cpp" line="2053"/>
+        <location filename="onmainwindow.cpp" line="8156"/>
         <source>Session:</source>
         <translation>工作階段:</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="776"/>
+        <location filename="onmainwindow.cpp" line="785"/>
         <source>&amp;Quit</source>
         <translation>離開(&amp;Q)</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="777"/>
+        <location filename="onmainwindow.cpp" line="786"/>
         <source>Ctrl+Q</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="778"/>
-        <location filename="onmainwindow.cpp" line="1115"/>
+        <location filename="onmainwindow.cpp" line="787"/>
+        <location filename="onmainwindow.cpp" line="1124"/>
         <source>Quit</source>
         <translation>離開</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="781"/>
+        <location filename="onmainwindow.cpp" line="790"/>
         <source>&amp;New session ...</source>
         <translation>新增工作階段(&amp;N) ...</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="782"/>
+        <location filename="onmainwindow.cpp" line="791"/>
         <source>Ctrl+N</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="787"/>
+        <location filename="onmainwindow.cpp" line="796"/>
         <source>Session management...</source>
         <translation>工作階段管理員...</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="788"/>
+        <location filename="onmainwindow.cpp" line="797"/>
         <source>Ctrl+E</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="798"/>
+        <location filename="onmainwindow.cpp" line="807"/>
         <source>&amp;Create session icon on desktop...</source>
         <translation>在桌面上建立工作階段圖示(&amp;C)...</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="807"/>
+        <location filename="onmainwindow.cpp" line="816"/>
         <source>&amp;Set broker password...</source>
         <translation>設定代理伺服器密碼(&amp;S)...</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="818"/>
+        <location filename="onmainwindow.cpp" line="827"/>
         <source>&amp;Connectivity test...</source>
         <translation>連線能力測試(&amp;C)...</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="825"/>
-        <location filename="onmainwindow.cpp" line="846"/>
+        <location filename="onmainwindow.cpp" line="834"/>
+        <location filename="onmainwindow.cpp" line="855"/>
         <source>Show toolbar</source>
         <translation>顯示工具列</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="831"/>
+        <location filename="onmainwindow.cpp" line="840"/>
         <source>About Qt</source>
         <translation>關於Qt</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="848"/>
+        <location filename="onmainwindow.cpp" line="857"/>
         <source>Ctrl+Q</source>
         <comment>exit</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="854"/>
+        <location filename="onmainwindow.cpp" line="863"/>
         <source>&amp;Session</source>
         <translation>工作階段(&amp;S)</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="855"/>
+        <location filename="onmainwindow.cpp" line="864"/>
         <source>&amp;Options</source>
         <translation>選項(&amp;O)</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="874"/>
+        <location filename="onmainwindow.cpp" line="883"/>
         <source>&amp;Help</source>
         <translation>幫助(&amp;H)</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="913"/>
-        <location filename="onmainwindow.cpp" line="2038"/>
-        <location filename="onmainwindow.cpp" line="8332"/>
-        <location filename="onmainwindow.cpp" line="10821"/>
+        <location filename="onmainwindow.cpp" line="922"/>
+        <location filename="onmainwindow.cpp" line="2046"/>
+        <location filename="onmainwindow.cpp" line="8149"/>
+        <location filename="onmainwindow.cpp" line="10659"/>
         <source>Login:</source>
         <translation>登入:</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="934"/>
-        <location filename="onmainwindow.cpp" line="963"/>
-        <location filename="onmainwindow.cpp" line="1718"/>
-        <location filename="onmainwindow.cpp" line="1747"/>
-        <location filename="onmainwindow.cpp" line="1755"/>
-        <location filename="onmainwindow.cpp" line="1903"/>
-        <location filename="onmainwindow.cpp" line="1930"/>
-        <location filename="onmainwindow.cpp" line="1933"/>
-        <location filename="onmainwindow.cpp" line="2212"/>
-        <location filename="onmainwindow.cpp" line="2453"/>
-        <location filename="onmainwindow.cpp" line="2469"/>
-        <location filename="onmainwindow.cpp" line="2483"/>
-        <location filename="onmainwindow.cpp" line="2517"/>
-        <location filename="onmainwindow.cpp" line="2562"/>
-        <location filename="onmainwindow.cpp" line="3557"/>
-        <location filename="onmainwindow.cpp" line="3748"/>
-        <location filename="onmainwindow.cpp" line="3757"/>
-        <location filename="onmainwindow.cpp" line="4105"/>
-        <location filename="onmainwindow.cpp" line="4659"/>
-        <location filename="onmainwindow.cpp" line="4740"/>
-        <location filename="onmainwindow.cpp" line="4804"/>
-        <location filename="onmainwindow.cpp" line="4834"/>
-        <location filename="onmainwindow.cpp" line="4878"/>
-        <location filename="onmainwindow.cpp" line="5313"/>
-        <location filename="onmainwindow.cpp" line="5343"/>
-        <location filename="onmainwindow.cpp" line="5498"/>
-        <location filename="onmainwindow.cpp" line="6455"/>
-        <location filename="onmainwindow.cpp" line="6485"/>
-        <location filename="onmainwindow.cpp" line="7267"/>
-        <location filename="onmainwindow.cpp" line="7448"/>
-        <location filename="onmainwindow.cpp" line="7530"/>
-        <location filename="onmainwindow.cpp" line="7777"/>
-        <location filename="onmainwindow.cpp" line="7910"/>
-        <location filename="onmainwindow.cpp" line="7973"/>
-        <location filename="onmainwindow.cpp" line="8282"/>
-        <location filename="onmainwindow.cpp" line="8284"/>
-        <location filename="onmainwindow.cpp" line="8522"/>
-        <location filename="onmainwindow.cpp" line="8578"/>
-        <location filename="onmainwindow.cpp" line="8606"/>
-        <location filename="onmainwindow.cpp" line="9060"/>
-        <location filename="onmainwindow.cpp" line="9079"/>
-        <location filename="onmainwindow.cpp" line="9133"/>
-        <location filename="onmainwindow.cpp" line="9159"/>
-        <location filename="onmainwindow.cpp" line="9186"/>
+        <location filename="onmainwindow.cpp" line="943"/>
+        <location filename="onmainwindow.cpp" line="972"/>
+        <location filename="onmainwindow.cpp" line="1727"/>
+        <location filename="onmainwindow.cpp" line="1756"/>
+        <location filename="onmainwindow.cpp" line="1764"/>
+        <location filename="onmainwindow.cpp" line="1912"/>
+        <location filename="onmainwindow.cpp" line="1939"/>
+        <location filename="onmainwindow.cpp" line="1942"/>
+        <location filename="onmainwindow.cpp" line="2110"/>
+        <location filename="onmainwindow.cpp" line="2290"/>
+        <location filename="onmainwindow.cpp" line="2306"/>
+        <location filename="onmainwindow.cpp" line="2320"/>
+        <location filename="onmainwindow.cpp" line="2354"/>
+        <location filename="onmainwindow.cpp" line="2399"/>
+        <location filename="onmainwindow.cpp" line="3396"/>
+        <location filename="onmainwindow.cpp" line="3587"/>
+        <location filename="onmainwindow.cpp" line="3596"/>
+        <location filename="onmainwindow.cpp" line="3944"/>
+        <location filename="onmainwindow.cpp" line="4498"/>
+        <location filename="onmainwindow.cpp" line="4579"/>
+        <location filename="onmainwindow.cpp" line="4643"/>
+        <location filename="onmainwindow.cpp" line="4673"/>
+        <location filename="onmainwindow.cpp" line="4717"/>
+        <location filename="onmainwindow.cpp" line="5152"/>
+        <location filename="onmainwindow.cpp" line="5182"/>
+        <location filename="onmainwindow.cpp" line="5337"/>
+        <location filename="onmainwindow.cpp" line="6294"/>
+        <location filename="onmainwindow.cpp" line="6324"/>
+        <location filename="onmainwindow.cpp" line="7100"/>
+        <location filename="onmainwindow.cpp" line="7281"/>
+        <location filename="onmainwindow.cpp" line="7363"/>
+        <location filename="onmainwindow.cpp" line="7610"/>
+        <location filename="onmainwindow.cpp" line="7743"/>
+        <location filename="onmainwindow.cpp" line="7806"/>
+        <location filename="onmainwindow.cpp" line="8100"/>
+        <location filename="onmainwindow.cpp" line="8102"/>
+        <location filename="onmainwindow.cpp" line="8342"/>
+        <location filename="onmainwindow.cpp" line="8398"/>
+        <location filename="onmainwindow.cpp" line="8426"/>
+        <location filename="onmainwindow.cpp" line="8880"/>
+        <location filename="onmainwindow.cpp" line="8899"/>
+        <location filename="onmainwindow.cpp" line="8953"/>
+        <location filename="onmainwindow.cpp" line="8979"/>
+        <location filename="onmainwindow.cpp" line="9006"/>
         <source>Error</source>
         <translation>錯誤</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="934"/>
+        <location filename="onmainwindow.cpp" line="943"/>
         <source>Operation failed</source>
         <translation>更改密碼失敗</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="938"/>
+        <location filename="onmainwindow.cpp" line="947"/>
         <source>Password changed</source>
         <translation>密碼已更改成功</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="963"/>
+        <location filename="onmainwindow.cpp" line="972"/>
         <source>Wrong password!</source>
         <translation>輸入了錯誤的密碼!</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="967"/>
-        <location filename="onmainwindow.cpp" line="3183"/>
-        <location filename="onmainwindow.cpp" line="11720"/>
+        <location filename="onmainwindow.cpp" line="976"/>
+        <location filename="onmainwindow.cpp" line="3022"/>
+        <location filename="onmainwindow.cpp" line="11558"/>
         <source>Connecting to broker</source>
         <translation>連線至連線代理伺服器</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="1016"/>
+        <location filename="onmainwindow.cpp" line="1025"/>
         <source>&lt;b&gt;Authentication&lt;/b&gt;</source>
         <translation>&lt;b&gt;身份驗證&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="1066"/>
+        <location filename="onmainwindow.cpp" line="1075"/>
         <source>Restore</source>
         <translation>還原</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="1068"/>
-        <location filename="onmainwindow.cpp" line="5658"/>
+        <location filename="onmainwindow.cpp" line="1077"/>
+        <location filename="onmainwindow.cpp" line="5497"/>
         <source>Not connected</source>
         <translation>尚未連線</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="1070"/>
+        <location filename="onmainwindow.cpp" line="1079"/>
         <source>Multimedia</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="1072"/>
+        <location filename="onmainwindow.cpp" line="1081"/>
         <source>Development</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="1074"/>
+        <location filename="onmainwindow.cpp" line="1083"/>
         <source>Education</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="1076"/>
+        <location filename="onmainwindow.cpp" line="1085"/>
         <source>Game</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="1078"/>
+        <location filename="onmainwindow.cpp" line="1087"/>
         <source>Graphics</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="1080"/>
+        <location filename="onmainwindow.cpp" line="1089"/>
         <source>Network</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="1082"/>
+        <location filename="onmainwindow.cpp" line="1091"/>
         <source>Office</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="1084"/>
+        <location filename="onmainwindow.cpp" line="1093"/>
         <source>Settings</source>
         <translation type="unfinished">設定</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="1086"/>
+        <location filename="onmainwindow.cpp" line="1095"/>
         <source>System</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="1088"/>
+        <location filename="onmainwindow.cpp" line="1097"/>
         <source>Utility</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="1090"/>
+        <location filename="onmainwindow.cpp" line="1099"/>
         <source>Other</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="1126"/>
+        <location filename="onmainwindow.cpp" line="1135"/>
         <source>Left mouse button to hide/restore - Right mouse button to display context menu</source>
         <translation>按滑鼠左鍵以隱藏或還原視窗, 右鍵顯示選單</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="1299"/>
+        <location filename="onmainwindow.cpp" line="1308"/>
         <source>Closing x2goclient...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="1447"/>
+        <location filename="onmainwindow.cpp" line="1456"/>
         <source>Closed  x2goclient.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="1719"/>
-        <location filename="onmainwindow.cpp" line="1904"/>
-        <location filename="onmainwindow.cpp" line="1934"/>
+        <location filename="onmainwindow.cpp" line="1728"/>
+        <location filename="onmainwindow.cpp" line="1913"/>
+        <location filename="onmainwindow.cpp" line="1943"/>
         <source>Please check LDAP settings</source>
         <translation>請確認LDAP的設定</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="1754"/>
+        <location filename="onmainwindow.cpp" line="1763"/>
         <source>no X2Go server found in LDAP </source>
         <translation>在LDAP環境中沒有找到X2Go伺服器</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="2067"/>
         <source>Create session icon on desktop</source>
-        <translation>在桌面上建立工作階段圖示</translation>
+        <translation type="obsolete">在桌面上建立工作階段圖示</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="2068"/>
         <source>Desktop icons can be configured not to show x2goclient (hidden mode). If you like to use this feature you&apos;ll need to configure login by a gpg key or gpg smart card.
 
 Use x2goclient hidden mode?</source>
-        <translation>桌面圖示可以被設定為不顯示X2Go用戶端的模式(隱藏模式)。如果您想要使用隱藏模式，您必需要將登入方式設定成使用GPG金匙或是GPG IC智慧卡。
+        <translation type="obsolete">桌面圖示可以被設定為不顯示X2Go用戶端的模式(隱藏模式)。如果您想要使用隱藏模式，您必需要將登入方式設定成使用GPG金匙或是GPG IC智慧卡。
 
 是否要使用X2Go用戶端的隱藏模式?</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="2078"/>
-        <source>Show session tray icon when running</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="onmainwindow.cpp" line="2092"/>
         <source>New Session</source>
-        <translation>新的工作階段</translation>
+        <translation type="obsolete">新的工作階段</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="2152"/>
         <source>X2Go Link to session </source>
-        <translation>X2Go工作階段的連結</translation>
+        <translation type="obsolete">X2Go工作階段的連結</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="2210"/>
+        <location filename="onmainwindow.cpp" line="2108"/>
         <source>No X2Go sessions found, closing.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="7085"/>
+        <location filename="onmainwindow.cpp" line="6918"/>
         <source>wrong value for argument&quot;--clipboard&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="11413"/>
-        <location filename="onmainwindow.cpp" line="11428"/>
-        <location filename="onmainwindow.cpp" line="11444"/>
-        <location filename="onmainwindow.cpp" line="11454"/>
-        <location filename="onmainwindow.cpp" line="11465"/>
+        <location filename="onmainwindow.cpp" line="11251"/>
+        <location filename="onmainwindow.cpp" line="11266"/>
+        <location filename="onmainwindow.cpp" line="11282"/>
+        <location filename="onmainwindow.cpp" line="11292"/>
+        <location filename="onmainwindow.cpp" line="11303"/>
         <source>SSH Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="11414"/>
+        <location filename="onmainwindow.cpp" line="11252"/>
         <source>SSH daemon could not be started.
 
 You&apos;ll need SSH daemon for printing and file sharing.
@@ -1249,7 +1321,7 @@ the X2Go bugtracker.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="11429"/>
+        <location filename="onmainwindow.cpp" line="11267"/>
         <source>SSH daemon is not running.
 
 You&apos;ll need SSH daemon for printing and file sharing
@@ -1259,18 +1331,18 @@ service on your computer.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="11445"/>
+        <location filename="onmainwindow.cpp" line="11283"/>
         <source>SSH daemon failed to open the application&apos;s public host key.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="11455"/>
+        <location filename="onmainwindow.cpp" line="11293"/>
         <source>SSH daemon failed to open the application&apos;s public key
 used for exporting folders and printers.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="11466"/>
+        <location filename="onmainwindow.cpp" line="11304"/>
         <source>SSH daemon failed to open the application&apos;s
 authoized_keys file.</source>
         <translation type="unfinished"></translation>
@@ -1280,63 +1352,62 @@ authoized_keys file.</source>
         <translation type="obsolete">無法找到X2Go的工作</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="2372"/>
         <source>Are you sure you want to delete this session?</source>
-        <translation>您確定要刪除此工作階段嗎?</translation>
+        <translation type="obsolete">您確定要刪除此工作階段嗎?</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="2690"/>
-        <location filename="onmainwindow.cpp" line="6282"/>
+        <location filename="onmainwindow.cpp" line="2529"/>
+        <location filename="onmainwindow.cpp" line="6121"/>
         <source>KDE</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="2770"/>
+        <location filename="onmainwindow.cpp" line="2609"/>
         <source>RDP connection</source>
         <translation>RDP連線</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="2774"/>
+        <location filename="onmainwindow.cpp" line="2613"/>
         <source>XDMCP</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="2778"/>
+        <location filename="onmainwindow.cpp" line="2617"/>
         <source>Connection to local desktop</source>
         <translation>連線至本地桌面</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="2782"/>
+        <location filename="onmainwindow.cpp" line="2621"/>
         <source> on </source>
         <translation> 於 </translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="2841"/>
+        <location filename="onmainwindow.cpp" line="2680"/>
         <source>Starting connection to server: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="2850"/>
+        <location filename="onmainwindow.cpp" line="2689"/>
         <source> to </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="2895"/>
+        <location filename="onmainwindow.cpp" line="2734"/>
         <source>Connection Error(</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="2964"/>
+        <location filename="onmainwindow.cpp" line="2803"/>
         <source>Couldn&apos;t find a SSH connection.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="2987"/>
+        <location filename="onmainwindow.cpp" line="2826"/>
         <source>Enter passphrase to decrypt a key</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="3023"/>
+        <location filename="onmainwindow.cpp" line="2862"/>
         <source>Host key for server changed.
 It is now: </source>
         <translation>主機的SSH密鑰已經更換。
@@ -1351,34 +1422,34 @@ It is now: </source>
         <translation type="obsolete">目前沒有找到伺服器上的主機密鑰，不過有其它類型的密鑰存在。惡意的攻擊者可能會利用改變預設的伺服器密鑰來讓您的用戶端認為原本的密鑰並不存在</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="3088"/>
+        <location filename="onmainwindow.cpp" line="2927"/>
         <source>Could not find known host file.If you accept the host key here, the file will be automatically created</source>
         <translation>目前沒有發現已知的主機檔案。如果您接受目前的主機密鑰，這個檔案將會自動被建立。</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="3093"/>
+        <location filename="onmainwindow.cpp" line="2932"/>
         <source>The server is unknown. Do you trust the host key?
 Public key hash: </source>
         <translation>此為未知的伺服器，您要選擇信任此主機密鑰嗎?
 此公開密鑰的雜湊值為:</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="3028"/>
-        <location filename="onmainwindow.cpp" line="3038"/>
-        <location filename="onmainwindow.cpp" line="3055"/>
-        <location filename="onmainwindow.cpp" line="3065"/>
-        <location filename="onmainwindow.cpp" line="3097"/>
-        <location filename="onmainwindow.cpp" line="3107"/>
+        <location filename="onmainwindow.cpp" line="2867"/>
+        <location filename="onmainwindow.cpp" line="2877"/>
+        <location filename="onmainwindow.cpp" line="2894"/>
+        <location filename="onmainwindow.cpp" line="2904"/>
+        <location filename="onmainwindow.cpp" line="2936"/>
+        <location filename="onmainwindow.cpp" line="2946"/>
         <source>Host key verification failed</source>
         <translation>主機密鑰驗證任失敗</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="2983"/>
+        <location filename="onmainwindow.cpp" line="2822"/>
         <source>Verification code:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="3024"/>
+        <location filename="onmainwindow.cpp" line="2863"/>
         <source>This can be an indication of a man-in-the-middle attack.
 Somebody might be eavesdropping on you.
 For security reasons, it is recommended to stop the connection.
@@ -1387,32 +1458,32 @@ Do you want to terminate the connection?
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="3029"/>
-        <location filename="onmainwindow.cpp" line="3056"/>
-        <location filename="onmainwindow.cpp" line="3097"/>
-        <location filename="onmainwindow.cpp" line="4581"/>
-        <location filename="onmainwindow.cpp" line="4601"/>
+        <location filename="onmainwindow.cpp" line="2868"/>
+        <location filename="onmainwindow.cpp" line="2895"/>
+        <location filename="onmainwindow.cpp" line="2936"/>
+        <location filename="onmainwindow.cpp" line="4420"/>
+        <location filename="onmainwindow.cpp" line="4440"/>
         <source>Yes</source>
         <translation>是</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="3029"/>
-        <location filename="onmainwindow.cpp" line="3056"/>
-        <location filename="onmainwindow.cpp" line="3097"/>
-        <location filename="onmainwindow.cpp" line="4582"/>
-        <location filename="onmainwindow.cpp" line="4602"/>
+        <location filename="onmainwindow.cpp" line="2868"/>
+        <location filename="onmainwindow.cpp" line="2895"/>
+        <location filename="onmainwindow.cpp" line="2936"/>
+        <location filename="onmainwindow.cpp" line="4421"/>
+        <location filename="onmainwindow.cpp" line="4441"/>
         <source>No</source>
         <translation>否</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="3044"/>
-        <location filename="onmainwindow.cpp" line="3071"/>
+        <location filename="onmainwindow.cpp" line="2883"/>
+        <location filename="onmainwindow.cpp" line="2910"/>
         <source>If you accept the new host key the security of your connection may be compromised.
 Do you want to update the host key?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="3050"/>
+        <location filename="onmainwindow.cpp" line="2889"/>
         <source>The host key for this server was not found but an othertype of key exists. An attacker might change the default server key to confuse your client into thinking the key does not exist. 
 For security reasons, it is recommended to stop the connection.
 Do you want to terminate the connection?
@@ -1420,252 +1491,252 @@ Do you want to terminate the connection?
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="3135"/>
+        <location filename="onmainwindow.cpp" line="2974"/>
         <source>Authentication failed: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="3139"/>
+        <location filename="onmainwindow.cpp" line="2978"/>
         <source>Authentication failed</source>
         <translation>認證失敗</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="3527"/>
+        <location filename="onmainwindow.cpp" line="3366"/>
         <source>Enter password for SSH proxy</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="3548"/>
-        <location filename="onmainwindow.cpp" line="4733"/>
-        <location filename="onmainwindow.cpp" line="4827"/>
-        <location filename="onmainwindow.cpp" line="4860"/>
-        <location filename="onmainwindow.cpp" line="7441"/>
-        <location filename="onmainwindow.cpp" line="7523"/>
-        <location filename="onmainwindow.cpp" line="7901"/>
-        <location filename="onmainwindow.cpp" line="7966"/>
-        <location filename="onmainwindow.cpp" line="9053"/>
+        <location filename="onmainwindow.cpp" line="3387"/>
+        <location filename="onmainwindow.cpp" line="4572"/>
+        <location filename="onmainwindow.cpp" line="4666"/>
+        <location filename="onmainwindow.cpp" line="4699"/>
+        <location filename="onmainwindow.cpp" line="7274"/>
+        <location filename="onmainwindow.cpp" line="7356"/>
+        <location filename="onmainwindow.cpp" line="7734"/>
+        <location filename="onmainwindow.cpp" line="7799"/>
+        <location filename="onmainwindow.cpp" line="8873"/>
         <source>&lt;b&gt;Connection failed&lt;/b&gt;
 </source>
         <translation>&lt;b&gt;連線失敗&lt;/b&gt;
 </translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="3551"/>
-        <location filename="onmainwindow.cpp" line="4736"/>
-        <location filename="onmainwindow.cpp" line="4830"/>
-        <location filename="onmainwindow.cpp" line="6452"/>
-        <location filename="onmainwindow.cpp" line="6482"/>
-        <location filename="onmainwindow.cpp" line="7444"/>
-        <location filename="onmainwindow.cpp" line="7526"/>
-        <location filename="onmainwindow.cpp" line="7904"/>
-        <location filename="onmainwindow.cpp" line="7969"/>
-        <location filename="onmainwindow.cpp" line="9056"/>
+        <location filename="onmainwindow.cpp" line="3390"/>
+        <location filename="onmainwindow.cpp" line="4575"/>
+        <location filename="onmainwindow.cpp" line="4669"/>
+        <location filename="onmainwindow.cpp" line="6291"/>
+        <location filename="onmainwindow.cpp" line="6321"/>
+        <location filename="onmainwindow.cpp" line="7277"/>
+        <location filename="onmainwindow.cpp" line="7359"/>
+        <location filename="onmainwindow.cpp" line="7737"/>
+        <location filename="onmainwindow.cpp" line="7802"/>
+        <location filename="onmainwindow.cpp" line="8876"/>
         <source>&lt;b&gt;Wrong password!&lt;/b&gt;&lt;br&gt;&lt;br&gt;</source>
         <translation>&lt;b&gt;不正確的密碼!&lt;/b&gt;&lt;br&gt;&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="3563"/>
-        <location filename="onmainwindow.cpp" line="3566"/>
-        <location filename="onmainwindow.cpp" line="3568"/>
-        <location filename="onmainwindow.cpp" line="7916"/>
-        <location filename="onmainwindow.cpp" line="7919"/>
-        <location filename="onmainwindow.cpp" line="7921"/>
+        <location filename="onmainwindow.cpp" line="3402"/>
+        <location filename="onmainwindow.cpp" line="3405"/>
+        <location filename="onmainwindow.cpp" line="3407"/>
+        <location filename="onmainwindow.cpp" line="7749"/>
+        <location filename="onmainwindow.cpp" line="7752"/>
+        <location filename="onmainwindow.cpp" line="7754"/>
         <source>Connection failed: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="3566"/>
-        <location filename="onmainwindow.cpp" line="7919"/>
+        <location filename="onmainwindow.cpp" line="3405"/>
+        <location filename="onmainwindow.cpp" line="7752"/>
         <source> - Wrong password.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="3681"/>
+        <location filename="onmainwindow.cpp" line="3520"/>
         <source>unknown</source>
         <translation>未知</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="3749"/>
+        <location filename="onmainwindow.cpp" line="3588"/>
         <source>No server availabel</source>
         <translation>伺服器不存在l</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="3758"/>
-        <location filename="onmainwindow.cpp" line="4106"/>
-        <location filename="onmainwindow.cpp" line="4660"/>
-        <location filename="onmainwindow.cpp" line="4805"/>
+        <location filename="onmainwindow.cpp" line="3597"/>
+        <location filename="onmainwindow.cpp" line="3945"/>
+        <location filename="onmainwindow.cpp" line="4499"/>
+        <location filename="onmainwindow.cpp" line="4644"/>
         <source>Server not availabel</source>
         <translation>伺服器不存在|</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="4378"/>
-        <location filename="onmainwindow.cpp" line="11185"/>
+        <location filename="onmainwindow.cpp" line="4217"/>
+        <location filename="onmainwindow.cpp" line="11023"/>
         <source>Select session:</source>
         <translation>請選擇工作階段:</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="4393"/>
-        <location filename="onmainwindow.cpp" line="4518"/>
-        <location filename="onmainwindow.cpp" line="5816"/>
+        <location filename="onmainwindow.cpp" line="4232"/>
+        <location filename="onmainwindow.cpp" line="4357"/>
+        <location filename="onmainwindow.cpp" line="5655"/>
         <source>running</source>
         <translation>正在執行中</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="4395"/>
-        <location filename="onmainwindow.cpp" line="4752"/>
+        <location filename="onmainwindow.cpp" line="4234"/>
+        <location filename="onmainwindow.cpp" line="4591"/>
         <source>suspended</source>
         <translation>已暫停</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="4401"/>
+        <location filename="onmainwindow.cpp" line="4240"/>
         <source>Desktop</source>
         <translation>桌面</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="4403"/>
+        <location filename="onmainwindow.cpp" line="4242"/>
         <source>single application</source>
         <translation>單一的應用程式</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="4405"/>
+        <location filename="onmainwindow.cpp" line="4244"/>
         <source>shadow session</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="4438"/>
+        <location filename="onmainwindow.cpp" line="4277"/>
         <source>Information</source>
         <translation>資訊</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="4439"/>
+        <location filename="onmainwindow.cpp" line="4278"/>
         <source>No accessible desktop found</source>
         <translation>目前沒有找到可訪問的工作桌面</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="4452"/>
-        <location filename="onmainwindow.cpp" line="11652"/>
+        <location filename="onmainwindow.cpp" line="4291"/>
+        <location filename="onmainwindow.cpp" line="11490"/>
         <source>Filter</source>
         <translation>篩選器</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="4459"/>
+        <location filename="onmainwindow.cpp" line="4298"/>
         <source>Select desktop:</source>
         <translation>請選擇工作桌面:</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="4568"/>
-        <location filename="onmainwindow.cpp" line="4588"/>
-        <location filename="onmainwindow.cpp" line="5528"/>
-        <location filename="onmainwindow.cpp" line="6077"/>
+        <location filename="onmainwindow.cpp" line="4407"/>
+        <location filename="onmainwindow.cpp" line="4427"/>
+        <location filename="onmainwindow.cpp" line="5367"/>
+        <location filename="onmainwindow.cpp" line="5916"/>
         <source>Warning</source>
         <translation>警告</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="4569"/>
-        <location filename="onmainwindow.cpp" line="4589"/>
+        <location filename="onmainwindow.cpp" line="4408"/>
+        <location filename="onmainwindow.cpp" line="4428"/>
         <source>Your current color depth is different to the color depth of your x2go-session. This may cause problems reconnecting to this session and in most cases &lt;b&gt;you will loose the session&lt;/b&gt; and have to start a new one! It&apos;s highly recommended to change the color depth of your Display to </source>
         <translation>您目前使用與x2go工作階段不同的色彩設定。可能會造成連線的不穩定，並且很可能會喪失目前的工作階段。強烈建議先將目前使用的色彩設定設為</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="4577"/>
+        <location filename="onmainwindow.cpp" line="4416"/>
         <source>24 or 32</source>
         <translation>24或32</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="4578"/>
-        <location filename="onmainwindow.cpp" line="4598"/>
+        <location filename="onmainwindow.cpp" line="4417"/>
+        <location filename="onmainwindow.cpp" line="4437"/>
         <source> bit and restart your X-server before you reconnect to this x2go-session.&lt;br&gt;Resume this session anyway?</source>
         <translation>位元並且重新啟動X-server，之後再重新連接這一個工作階段。&lt;br&gt;請問您無論如何都要恢復此工作階段的連線嗎?</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="4686"/>
+        <location filename="onmainwindow.cpp" line="4525"/>
         <source>suspending</source>
         <translation>正在暫停工作中</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="4721"/>
+        <location filename="onmainwindow.cpp" line="4560"/>
         <source>terminating</source>
         <translation>正在中止工作中</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="4863"/>
+        <location filename="onmainwindow.cpp" line="4702"/>
         <source>&lt;b&gt;Wrong Password!&lt;/b&gt;&lt;br&gt;&lt;br&gt;</source>
         <translation>&lt;b&gt;不正確的密碼!&lt;/b&gt;&lt;br&gt;&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="5010"/>
-        <location filename="onmainwindow.cpp" line="5012"/>
+        <location filename="onmainwindow.cpp" line="4849"/>
+        <location filename="onmainwindow.cpp" line="4851"/>
         <source>New session started</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="5049"/>
-        <location filename="onmainwindow.cpp" line="5051"/>
+        <location filename="onmainwindow.cpp" line="4888"/>
+        <location filename="onmainwindow.cpp" line="4890"/>
         <source>Session resumed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="5309"/>
-        <location filename="onmainwindow.cpp" line="5313"/>
+        <location filename="onmainwindow.cpp" line="5148"/>
+        <location filename="onmainwindow.cpp" line="5152"/>
         <source>Unable to create folder: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="5339"/>
-        <location filename="onmainwindow.cpp" line="5343"/>
+        <location filename="onmainwindow.cpp" line="5178"/>
+        <location filename="onmainwindow.cpp" line="5182"/>
         <source>Unable to write file: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="5670"/>
+        <location filename="onmainwindow.cpp" line="5509"/>
         <source>Emergency exit.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="5679"/>
+        <location filename="onmainwindow.cpp" line="5518"/>
         <source>Waiting for proxy to exit.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="5682"/>
+        <location filename="onmainwindow.cpp" line="5521"/>
         <source>Failed, killing the proxy.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="7263"/>
-        <location filename="onmainwindow.cpp" line="7267"/>
-        <location filename="onmainwindow.cpp" line="7272"/>
+        <location filename="onmainwindow.cpp" line="7096"/>
+        <location filename="onmainwindow.cpp" line="7100"/>
+        <location filename="onmainwindow.cpp" line="7105"/>
         <source>Wrong parameter: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="7346"/>
+        <location filename="onmainwindow.cpp" line="7179"/>
         <source>Help</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="7376"/>
+        <location filename="onmainwindow.cpp" line="7209"/>
         <source>Pack Methodes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="7406"/>
-        <location filename="onmainwindow.cpp" line="7416"/>
+        <location filename="onmainwindow.cpp" line="7239"/>
+        <location filename="onmainwindow.cpp" line="7249"/>
         <source>Option is not availabel in this build</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="7409"/>
+        <location filename="onmainwindow.cpp" line="7242"/>
         <source>Changelog</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="7419"/>
+        <location filename="onmainwindow.cpp" line="7252"/>
         <source>Git Info</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="7775"/>
+        <location filename="onmainwindow.cpp" line="7608"/>
         <source>Unable to create folder:</source>
         <translation>無法創建資料夾:</translation>
     </message>
@@ -1674,79 +1745,79 @@ Do you want to terminate the connection?
         <translation type="obsolete">檔案無法寫入:</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="5470"/>
-        <location filename="onmainwindow.cpp" line="10412"/>
+        <location filename="onmainwindow.cpp" line="5309"/>
+        <location filename="onmainwindow.cpp" line="10250"/>
         <source>Attach X2Go window</source>
         <translation>連接X2Go視窗</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="5496"/>
-        <location filename="onmainwindow.cpp" line="9131"/>
+        <location filename="onmainwindow.cpp" line="5335"/>
+        <location filename="onmainwindow.cpp" line="8951"/>
         <source>Unable to create SSL tunnel:
 </source>
         <translation>無法建立SSL通道:</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="5526"/>
+        <location filename="onmainwindow.cpp" line="5365"/>
         <source>Unable to create SSL Tunnel:
 </source>
         <translation>無法建立SSL通道:
 </translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="5765"/>
+        <location filename="onmainwindow.cpp" line="5604"/>
         <source>Finished</source>
         <translation>已完成</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="5805"/>
+        <location filename="onmainwindow.cpp" line="5644"/>
         <source>starting</source>
         <translation>正在開始</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="5809"/>
+        <location filename="onmainwindow.cpp" line="5648"/>
         <source>resuming</source>
         <translation>正在還原</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="5878"/>
-        <location filename="onmainwindow.cpp" line="6204"/>
-        <location filename="onmainwindow.cpp" line="6223"/>
+        <location filename="onmainwindow.cpp" line="5717"/>
+        <location filename="onmainwindow.cpp" line="6043"/>
+        <location filename="onmainwindow.cpp" line="6062"/>
         <source>Connection timeout, aborting</source>
         <translation>連線超時，中止中</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="5879"/>
+        <location filename="onmainwindow.cpp" line="5718"/>
         <source>aborting</source>
         <translation>中止中</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="6078"/>
+        <location filename="onmainwindow.cpp" line="5917"/>
         <source>Are you sure you want to terminate this session?
 Unsaved documents will be lost</source>
         <translation>您確定要終止目前的工作階段嗎? 所有未存檔的資料都將會遺失</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="6172"/>
+        <location filename="onmainwindow.cpp" line="6011"/>
         <source>Session</source>
         <translation>工作階段</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="6174"/>
-        <location filename="onmainwindow.cpp" line="11266"/>
-        <location filename="onmainwindow.cpp" line="11288"/>
+        <location filename="onmainwindow.cpp" line="6013"/>
+        <location filename="onmainwindow.cpp" line="11104"/>
+        <location filename="onmainwindow.cpp" line="11126"/>
         <source>Display</source>
         <translation>顯示</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="6176"/>
-        <location filename="onmainwindow.cpp" line="11277"/>
+        <location filename="onmainwindow.cpp" line="6015"/>
+        <location filename="onmainwindow.cpp" line="11115"/>
         <source>Creation time</source>
         <translation>創建時間</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="6449"/>
-        <location filename="onmainwindow.cpp" line="6479"/>
+        <location filename="onmainwindow.cpp" line="6288"/>
+        <location filename="onmainwindow.cpp" line="6318"/>
         <source>&lt;b&gt;Connection failed&lt;/b&gt;
 :
 </source>
@@ -1755,60 +1826,60 @@ Unsaved documents will be lost</source>
 </translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="6980"/>
+        <location filename="onmainwindow.cpp" line="6813"/>
         <source> (can&apos;t open file)</source>
         <translation> (無法開啟檔案)</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="6992"/>
-        <location filename="onmainwindow.cpp" line="7003"/>
-        <location filename="onmainwindow.cpp" line="7014"/>
+        <location filename="onmainwindow.cpp" line="6825"/>
+        <location filename="onmainwindow.cpp" line="6836"/>
+        <location filename="onmainwindow.cpp" line="6847"/>
         <source> (file not exists)</source>
         <translation> (檔案不存在)</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="7041"/>
+        <location filename="onmainwindow.cpp" line="6874"/>
         <source> (directory not exists)</source>
         <translation> (目錄不存在)</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="7068"/>
+        <location filename="onmainwindow.cpp" line="6901"/>
         <source>wrong value for argument&quot;--link&quot;</source>
         <translation>&quot;--link&quot;參數的值錯誤</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="7101"/>
+        <location filename="onmainwindow.cpp" line="6934"/>
         <source>wrong value for argument&quot;--sound&quot;</source>
         <translation>&quot;--sound&quot;參數的值錯誤</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="7117"/>
-        <location filename="onmainwindow.cpp" line="7127"/>
+        <location filename="onmainwindow.cpp" line="6950"/>
+        <location filename="onmainwindow.cpp" line="6960"/>
         <source>wrong value for argument&quot;--geometry&quot;</source>
         <translation>&quot;--geometry&quot;參數的值錯誤</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="7144"/>
+        <location filename="onmainwindow.cpp" line="6977"/>
         <source>wrong value for argument&quot;--set-kbd&quot;</source>
         <translation>&quot;--set-kbd&quot;參數的值錯誤</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="7160"/>
+        <location filename="onmainwindow.cpp" line="6993"/>
         <source>wrong value for argument&quot;--ldap&quot;</source>
         <translation>&quot;--ldap&quot;參數的值錯誤</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="7181"/>
+        <location filename="onmainwindow.cpp" line="7014"/>
         <source>wrong value for argument&quot;--ldap1&quot;</source>
         <translation>&quot;--ldap1&quot;參數的值錯誤</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="7200"/>
+        <location filename="onmainwindow.cpp" line="7033"/>
         <source>wrong value for argument&quot;--ldap2&quot;</source>
         <translation>&quot;--ldap2&quot;參數的值錯誤</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="7254"/>
+        <location filename="onmainwindow.cpp" line="7087"/>
         <source>wrong value for argument&quot;--pack&quot;</source>
         <translation>&quot;--pack&quot;參數的值錯誤</translation>
     </message>
@@ -1821,72 +1892,72 @@ Unsaved documents will be lost</source>
         <translation type="obsolete">選項</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="7354"/>
+        <location filename="onmainwindow.cpp" line="7187"/>
         <source>Available pack methodes:</source>
         <translation>可用的包裝方法:</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="7872"/>
+        <location filename="onmainwindow.cpp" line="7705"/>
         <source>RSA file empty.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="7881"/>
+        <location filename="onmainwindow.cpp" line="7714"/>
         <source>Can not open key: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="8214"/>
+        <location filename="onmainwindow.cpp" line="8032"/>
         <source>Support</source>
         <translation>支援</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="8219"/>
+        <location filename="onmainwindow.cpp" line="8037"/>
         <source>&lt;/b&gt;&lt;br&gt; (C. 2005-2014 &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing)&lt;br&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="8223"/>
+        <location filename="onmainwindow.cpp" line="8041"/>
         <source>&lt;br&gt;x2goplugin mode was sponsored by &lt;a href=&quot;http://www.foss-group.de/&quot;&gt;FOSS-Group GmbH(Freiburg)&lt;/a&gt;&lt;br&gt;</source>
         <translation>&lt;br&gt;x2goplugin mode是由 &lt;a href=&quot;http://www.foss-group.de/&quot;&gt;FOSS-Group GmbH(Freiburg)&lt;/a&gt;提供贊助&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="8227"/>
+        <location filename="onmainwindow.cpp" line="8045"/>
         <source>&lt;br&gt;Client for use with the X2Go network based computing environment. This Client will be able to connect to X2Go server(s) and start, stop, resume and terminate (running) desktop sessions. X2Go Client stores different server connections and may automatically request authentication data from LDAP directories. Furthermore it can be used as fullscreen loginscreen (replacement for loginmanager like xdm). Please visit x2go.org for further information.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="8240"/>
+        <location filename="onmainwindow.cpp" line="8058"/>
         <source>&lt;b&gt;X2Go Client V. </source>
         <translation>&lt;b&gt;X2Go 客戶端 V. </translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="8285"/>
+        <location filename="onmainwindow.cpp" line="8103"/>
         <source>Please check LDAP Settings</source>
         <translation>請檢查LDAP的設定</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="8523"/>
+        <location filename="onmainwindow.cpp" line="8343"/>
         <source>No valid card found</source>
         <translation>沒有發現合法的卡片</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="8575"/>
+        <location filename="onmainwindow.cpp" line="8395"/>
         <source>Card not configured.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="8579"/>
+        <location filename="onmainwindow.cpp" line="8399"/>
         <source>This card is unknown by X2Go system</source>
         <translation>X2Go系統無法辨識此張卡片</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="8607"/>
+        <location filename="onmainwindow.cpp" line="8427"/>
         <source>Unable to create file: </source>
         <translation>檔案無法創建:</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="8895"/>
+        <location filename="onmainwindow.cpp" line="8715"/>
         <source>Can&apos;t start X server
 Please check your settings</source>
         <translation type="unfinished"></translation>
@@ -1896,7 +1967,7 @@ Please check your settings</source>
         <translation type="obsolete">無法連接至X伺服器</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="8894"/>
+        <location filename="onmainwindow.cpp" line="8714"/>
         <source>Can&apos;t connect to X server
 Please check your settings</source>
         <oldsource>Can&apos;t connect to X-Server
@@ -1911,165 +1982,165 @@ Please check your settings</source>
 請檢查您的設定值</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="8909"/>
-        <location filename="onmainwindow.cpp" line="9566"/>
-        <location filename="onmainwindow.cpp" line="9596"/>
+        <location filename="onmainwindow.cpp" line="8729"/>
+        <location filename="onmainwindow.cpp" line="9386"/>
+        <location filename="onmainwindow.cpp" line="9416"/>
         <source>Can&apos;t start X Server
 Please check your installation</source>
         <translation>無法啟動X伺服器
 請檢查X伺服器安是否有安裝正確</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="9075"/>
-        <location filename="onmainwindow.cpp" line="9080"/>
+        <location filename="onmainwindow.cpp" line="8895"/>
+        <location filename="onmainwindow.cpp" line="8900"/>
         <source>Unable to execute: </source>
         <translation>無法執行:</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="9105"/>
+        <location filename="onmainwindow.cpp" line="8925"/>
         <source>Remote server does not support file system export through SSH Tunnel
 Please update to a newer x2goserver package</source>
         <translation>遠端伺服器無法支援SSH通道型式的共用檔案系統，請升級至較新的X2Go伺服器板本</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="9158"/>
+        <location filename="onmainwindow.cpp" line="8978"/>
         <source>Unable to read :
 </source>
         <translation>無法讀取:
 </translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="9185"/>
+        <location filename="onmainwindow.cpp" line="9005"/>
         <source>Unable to write :
 </source>
         <translation>無法寫入:
 </translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="9272"/>
+        <location filename="onmainwindow.cpp" line="9092"/>
         <source>WINDOWS-1252</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="9284"/>
+        <location filename="onmainwindow.cpp" line="9104"/>
         <source>ISO8859-1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="10226"/>
+        <location filename="onmainwindow.cpp" line="10064"/>
         <source>Error getting window geometry (window closed)?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="10505"/>
+        <location filename="onmainwindow.cpp" line="10343"/>
         <source>X2Go Session</source>
         <translation>X2Go工作階段</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="10706"/>
+        <location filename="onmainwindow.cpp" line="10544"/>
         <source>wrong value for argument&quot;speed&quot;</source>
         <translation>錯誤的&quot;speed&quot;參數值</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="10822"/>
+        <location filename="onmainwindow.cpp" line="10660"/>
         <source>Password:</source>
         <translation>密碼:</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="10823"/>
+        <location filename="onmainwindow.cpp" line="10661"/>
         <source>Keyboard layout:</source>
         <translation>鑑盤佈局:</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="10864"/>
+        <location filename="onmainwindow.cpp" line="10702"/>
         <source>Ok</source>
         <translation>確定</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="10866"/>
-        <location filename="onmainwindow.cpp" line="11189"/>
-        <location filename="onmainwindow.cpp" line="11191"/>
+        <location filename="onmainwindow.cpp" line="10704"/>
+        <location filename="onmainwindow.cpp" line="11027"/>
+        <location filename="onmainwindow.cpp" line="11029"/>
         <source>Cancel</source>
         <translation>取消</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="11003"/>
+        <location filename="onmainwindow.cpp" line="10841"/>
         <source>&lt;b&gt;Session ID:&lt;br&gt;Server:&lt;br&gt;Username:&lt;br&gt;Display:&lt;br&gt;Creation time:&lt;br&gt;Status:&lt;/b&gt;</source>
         <translation>&lt;b&gt;工作階段識別碼:&lt;br&gt;伺服器:&lt;br&gt;使用者名稱:&lt;br&gt;顯示:&lt;br&gt;創建時間:&lt;br&gt;狀態:&lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="593"/>
-        <location filename="onmainwindow.cpp" line="11013"/>
+        <location filename="onmainwindow.cpp" line="10851"/>
         <source>Applications...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="11026"/>
+        <location filename="onmainwindow.cpp" line="10864"/>
         <source>Abort</source>
         <translation>退出</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="11038"/>
+        <location filename="onmainwindow.cpp" line="10876"/>
         <source>Show details</source>
         <translation>顯示細節</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="11187"/>
+        <location filename="onmainwindow.cpp" line="11025"/>
         <source>Resume</source>
         <translation>恢復</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="11199"/>
+        <location filename="onmainwindow.cpp" line="11037"/>
         <source>New</source>
         <translation>新增</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="11202"/>
+        <location filename="onmainwindow.cpp" line="11040"/>
         <source>Full access</source>
         <translation>完全存取</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="11205"/>
+        <location filename="onmainwindow.cpp" line="11043"/>
         <source>View only</source>
         <translation>僅查看</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="11268"/>
+        <location filename="onmainwindow.cpp" line="11106"/>
         <source>Status</source>
         <translation>狀態</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="11270"/>
+        <location filename="onmainwindow.cpp" line="11108"/>
         <source>Command</source>
         <translation>指令</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="11272"/>
+        <location filename="onmainwindow.cpp" line="11110"/>
         <source>Type</source>
         <translation>型態</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="11274"/>
+        <location filename="onmainwindow.cpp" line="11112"/>
         <source>Server</source>
         <translation>伺服器</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="11279"/>
+        <location filename="onmainwindow.cpp" line="11117"/>
         <source>Client IP</source>
         <translation>客戶端IP</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="11281"/>
+        <location filename="onmainwindow.cpp" line="11119"/>
         <source>Session ID</source>
         <translation>工作階段識別碼</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="11285"/>
+        <location filename="onmainwindow.cpp" line="11123"/>
         <source>User</source>
         <translation>使用者</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="11316"/>
+        <location filename="onmainwindow.cpp" line="11154"/>
         <source>Only my desktops</source>
         <translation>只選擇我的桌面</translation>
     </message>
@@ -2082,12 +2153,12 @@ you can install sshd with
 &lt;b&gt;sudo apt-get install openssh-server&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="11536"/>
+        <location filename="onmainwindow.cpp" line="11374"/>
         <source>Restore toolbar</source>
         <translation>還原工具列</translation>
     </message>
     <message>
-        <location filename="onmainwindow.cpp" line="11582"/>
+        <location filename="onmainwindow.cpp" line="11420"/>
         <source>&lt;br&gt;&lt;b&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;Click this button&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;to restore toolbar&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/b&gt;&lt;br&gt;</source>
         <translation>&lt;br&gt;&lt;b&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;按此按鈕&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;還原工具列&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/b&gt;&lt;br&gt;</translation>
     </message>
@@ -2300,7 +2371,7 @@ Example:
 <context>
     <name>QObject</name>
     <message>
-        <location filename="ongetpass.cpp" line="127"/>
+        <location filename="ongetpass.cpp" line="78"/>
         <source>No response received from the remote server. Do you want to terminate the current session?</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2308,166 +2379,208 @@ Example:
 <context>
     <name>SessionButton</name>
     <message>
-        <location filename="sessionbutton.cpp" line="136"/>
+        <location filename="sessionbutton.cpp" line="137"/>
         <source>Session preferences...</source>
         <translation>工作階段偏好設定...</translation>
     </message>
     <message>
-        <location filename="sessionbutton.cpp" line="140"/>
+        <location filename="sessionbutton.cpp" line="141"/>
         <source>Create session icon on desktop...</source>
         <translation>在桌面上建立工作階段圖示</translation>
     </message>
     <message>
-        <location filename="sessionbutton.cpp" line="145"/>
+        <location filename="sessionbutton.cpp" line="146"/>
         <source>Delete session</source>
         <translation>刪除工作階段</translation>
     </message>
     <message>
-        <location filename="sessionbutton.cpp" line="158"/>
+        <location filename="sessionbutton.cpp" line="159"/>
         <source>Session actions</source>
         <translation>工作階段動作</translation>
     </message>
     <message>
-        <location filename="sessionbutton.cpp" line="159"/>
+        <location filename="sessionbutton.cpp" line="160"/>
         <source>Select type</source>
         <translation>選擇類型</translation>
     </message>
     <message>
-        <location filename="sessionbutton.cpp" line="161"/>
+        <location filename="sessionbutton.cpp" line="162"/>
         <source>Select resolution</source>
         <translation>選擇解析度</translation>
     </message>
     <message>
-        <location filename="sessionbutton.cpp" line="162"/>
+        <location filename="sessionbutton.cpp" line="163"/>
         <source>Toggle sound support</source>
         <translation>切換聲音支援</translation>
     </message>
     <message>
-        <location filename="sessionbutton.cpp" line="292"/>
+        <location filename="sessionbutton.cpp" line="290"/>
         <source>New Session</source>
         <translation>新工作階段</translation>
     </message>
     <message>
-        <location filename="sessionbutton.cpp" line="297"/>
+        <location filename="sessionbutton.cpp" line="306"/>
         <source>running</source>
         <translation>執行中</translation>
     </message>
     <message>
-        <location filename="sessionbutton.cpp" line="301"/>
+        <location filename="sessionbutton.cpp" line="310"/>
         <source>suspended</source>
         <translation>已暫停</translation>
     </message>
     <message>
-        <location filename="sessionbutton.cpp" line="335"/>
+        <location filename="sessionbutton.cpp" line="344"/>
         <source>KDE</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="sessionbutton.cpp" line="351"/>
-        <location filename="sessionbutton.cpp" line="403"/>
-        <location filename="sessionbutton.cpp" line="704"/>
+        <location filename="sessionbutton.cpp" line="360"/>
+        <location filename="sessionbutton.cpp" line="412"/>
+        <location filename="sessionbutton.cpp" line="712"/>
         <source>RDP connection</source>
         <translation>RDP連線</translation>
     </message>
     <message>
-        <location filename="sessionbutton.cpp" line="352"/>
-        <location filename="sessionbutton.cpp" line="409"/>
-        <location filename="sessionbutton.cpp" line="710"/>
+        <location filename="sessionbutton.cpp" line="361"/>
+        <location filename="sessionbutton.cpp" line="418"/>
+        <location filename="sessionbutton.cpp" line="718"/>
         <source>XDMCP</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="sessionbutton.cpp" line="353"/>
-        <location filename="sessionbutton.cpp" line="394"/>
-        <location filename="sessionbutton.cpp" line="698"/>
+        <location filename="sessionbutton.cpp" line="362"/>
+        <location filename="sessionbutton.cpp" line="403"/>
+        <location filename="sessionbutton.cpp" line="706"/>
         <source>Connection to local desktop</source>
         <translation>連線至本地桌面</translation>
     </message>
     <message>
-        <location filename="sessionbutton.cpp" line="354"/>
-        <location filename="sessionbutton.cpp" line="414"/>
-        <location filename="sessionbutton.cpp" line="751"/>
+        <location filename="sessionbutton.cpp" line="363"/>
+        <location filename="sessionbutton.cpp" line="423"/>
+        <location filename="sessionbutton.cpp" line="759"/>
         <source>Published applications</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="sessionbutton.cpp" line="438"/>
-        <location filename="sessionbutton.cpp" line="463"/>
-        <location filename="sessionbutton.cpp" line="772"/>
+        <location filename="sessionbutton.cpp" line="447"/>
+        <location filename="sessionbutton.cpp" line="472"/>
+        <location filename="sessionbutton.cpp" line="780"/>
         <source>fullscreen</source>
         <translation>全螢幕</translation>
     </message>
     <message>
-        <location filename="sessionbutton.cpp" line="443"/>
-        <location filename="sessionbutton.cpp" line="473"/>
-        <location filename="sessionbutton.cpp" line="477"/>
-        <location filename="sessionbutton.cpp" line="785"/>
-        <location filename="sessionbutton.cpp" line="788"/>
+        <location filename="sessionbutton.cpp" line="452"/>
+        <location filename="sessionbutton.cpp" line="481"/>
+        <location filename="sessionbutton.cpp" line="485"/>
+        <location filename="sessionbutton.cpp" line="792"/>
+        <location filename="sessionbutton.cpp" line="795"/>
         <source>Display </source>
         <translation>顯示</translation>
     </message>
     <message>
-        <location filename="sessionbutton.cpp" line="458"/>
-        <location filename="sessionbutton.cpp" line="498"/>
+        <location filename="sessionbutton.cpp" line="467"/>
+        <location filename="sessionbutton.cpp" line="506"/>
         <source>window</source>
         <translation>視窗</translation>
     </message>
     <message>
-        <location filename="sessionbutton.cpp" line="505"/>
-        <location filename="sessionbutton.cpp" line="509"/>
-        <location filename="sessionbutton.cpp" line="510"/>
-        <location filename="sessionbutton.cpp" line="778"/>
+        <location filename="sessionbutton.cpp" line="513"/>
+        <location filename="sessionbutton.cpp" line="517"/>
+        <location filename="sessionbutton.cpp" line="518"/>
+        <location filename="sessionbutton.cpp" line="786"/>
         <source>Maximum</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="sessionbutton.cpp" line="517"/>
-        <location filename="sessionbutton.cpp" line="647"/>
+        <location filename="sessionbutton.cpp" line="525"/>
+        <location filename="sessionbutton.cpp" line="655"/>
         <source>Enabled</source>
         <translation>啟用</translation>
     </message>
     <message>
-        <location filename="sessionbutton.cpp" line="519"/>
-        <location filename="sessionbutton.cpp" line="649"/>
+        <location filename="sessionbutton.cpp" line="527"/>
+        <location filename="sessionbutton.cpp" line="657"/>
         <source>Disabled</source>
         <translation>停用</translation>
     </message>
 </context>
 <context>
+    <name>SessionExplorer</name>
+    <message>
+        <location filename="sessionexplorer.cpp" line="48"/>
+        <source>Back</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="sessionexplorer.cpp" line="134"/>
+        <source>Create session icon on desktop</source>
+        <translation type="unfinished">在桌面上建立工作階段圖示</translation>
+    </message>
+    <message>
+        <location filename="sessionexplorer.cpp" line="135"/>
+        <source>Desktop icons can be configured not to show x2goclient (hidden mode). If you like to use this feature you&apos;ll need to configure login by a gpg key or gpg smart card.
+
+Use x2goclient hidden mode?</source>
+        <translation type="unfinished">桌面圖示可以被設定為不顯示X2Go用戶端的模式(隱藏模式)。如果您想要使用隱藏模式，您必需要將登入方式設定成使用GPG金匙或是GPG IC智慧卡。
+
+是否要使用X2Go用戶端的隱藏模式?</translation>
+    </message>
+    <message>
+        <location filename="sessionexplorer.cpp" line="145"/>
+        <source>Show session tray icon when running</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="sessionexplorer.cpp" line="159"/>
+        <source>New Session</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="sessionexplorer.cpp" line="220"/>
+        <source>X2Go Link to session </source>
+        <translation type="unfinished">X2Go工作階段的連結</translation>
+    </message>
+    <message>
+        <location filename="sessionexplorer.cpp" line="349"/>
+        <source>Are you sure you want to delete this session?</source>
+        <translation type="unfinished">您確定要刪除此工作階段嗎?</translation>
+    </message>
+</context>
+<context>
     <name>SessionManageDialog</name>
     <message>
-        <location filename="sessionmanagedialog.cpp" line="41"/>
+        <location filename="sessionmanagedialog.cpp" line="46"/>
         <source>E&amp;xit</source>
         <translation>離開(&amp;x)</translation>
     </message>
     <message>
-        <location filename="sessionmanagedialog.cpp" line="47"/>
+        <location filename="sessionmanagedialog.cpp" line="52"/>
         <source>&amp;New session</source>
         <translation>建立新的工作階段(&amp;N)</translation>
     </message>
     <message>
-        <location filename="sessionmanagedialog.cpp" line="48"/>
+        <location filename="sessionmanagedialog.cpp" line="53"/>
         <source>&amp;Session preferences</source>
         <translation>工作階段偏好設定(&amp;S)</translation>
     </message>
     <message>
-        <location filename="sessionmanagedialog.cpp" line="49"/>
+        <location filename="sessionmanagedialog.cpp" line="54"/>
         <source>&amp;Delete session</source>
         <translation>刪除工作階段(&amp;D)</translation>
     </message>
     <message>
-        <location filename="sessionmanagedialog.cpp" line="53"/>
+        <location filename="sessionmanagedialog.cpp" line="58"/>
         <source>&amp;Create session icon on desktop...</source>
         <translation>在桌面上建立工作階段圖示(&amp;C)...</translation>
     </message>
     <message>
-        <location filename="sessionmanagedialog.cpp" line="87"/>
+        <location filename="sessionmanagedialog.cpp" line="92"/>
         <source>Delete</source>
         <comment>Delete</comment>
         <translation>刪除</translation>
     </message>
     <message>
-        <location filename="sessionmanagedialog.cpp" line="115"/>
+        <location filename="sessionmanagedialog.cpp" line="120"/>
         <source>Session management</source>
         <translation>管理工作階段</translation>
     </message>
@@ -2475,232 +2588,237 @@ Example:
 <context>
     <name>SessionWidget</name>
     <message>
-        <location filename="sessionwidget.cpp" line="62"/>
+        <location filename="sessionwidget.cpp" line="67"/>
         <source>Session name:</source>
         <translation>工作階段名稱:</translation>
     </message>
     <message>
-        <location filename="sessionwidget.cpp" line="67"/>
+        <location filename="sessionwidget.cpp" line="72"/>
         <source>&lt;&lt; change icon</source>
         <translation>&lt;&lt; 更換圖示</translation>
     </message>
     <message>
-        <location filename="sessionwidget.cpp" line="70"/>
+        <location filename="sessionwidget.cpp" line="78"/>
+        <source>Path:</source>
+        <translation type="unfinished">路徑:</translation>
+    </message>
+    <message>
+        <location filename="sessionwidget.cpp" line="83"/>
         <source>&amp;Server</source>
         <translation>伺服器(&amp;S)</translation>
     </message>
     <message>
-        <location filename="sessionwidget.cpp" line="103"/>
-        <location filename="sessionwidget.cpp" line="165"/>
+        <location filename="sessionwidget.cpp" line="116"/>
+        <location filename="sessionwidget.cpp" line="178"/>
         <source>Host:</source>
         <translation>主機:</translation>
     </message>
     <message>
-        <location filename="sessionwidget.cpp" line="104"/>
-        <location filename="sessionwidget.cpp" line="171"/>
+        <location filename="sessionwidget.cpp" line="117"/>
+        <location filename="sessionwidget.cpp" line="184"/>
         <source>Login:</source>
         <translation>登入帳號:</translation>
     </message>
     <message>
-        <location filename="sessionwidget.cpp" line="105"/>
-        <location filename="sessionwidget.cpp" line="376"/>
+        <location filename="sessionwidget.cpp" line="118"/>
+        <location filename="sessionwidget.cpp" line="391"/>
         <source>SSH port:</source>
         <translation>SSH連接埠:</translation>
     </message>
     <message>
-        <location filename="sessionwidget.cpp" line="120"/>
+        <location filename="sessionwidget.cpp" line="133"/>
         <source>Use RSA/DSA key for ssh connection:</source>
         <translation>使用RSA/DSA密鑰於SSH連線:</translation>
     </message>
     <message>
-        <location filename="sessionwidget.cpp" line="127"/>
+        <location filename="sessionwidget.cpp" line="140"/>
         <source>Try auto login (ssh-agent or default ssh key)</source>
         <translation>嘗試自動登入 (ssh代理或預設SSH密鑰)</translation>
     </message>
     <message>
-        <location filename="sessionwidget.cpp" line="128"/>
-        <location filename="sessionwidget.cpp" line="159"/>
+        <location filename="sessionwidget.cpp" line="141"/>
+        <location filename="sessionwidget.cpp" line="172"/>
         <source>Kerberos 5 (GSSAPI) authentication</source>
         <translation>Kerberos 5 (GSSAPI) 認證</translation>
     </message>
     <message>
-        <location filename="sessionwidget.cpp" line="129"/>
+        <location filename="sessionwidget.cpp" line="142"/>
         <source>Delegation of GSSAPI credentials to the server</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="sessionwidget.cpp" line="133"/>
+        <location filename="sessionwidget.cpp" line="146"/>
         <source>Use Proxy server for SSH connection</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="sessionwidget.cpp" line="134"/>
+        <location filename="sessionwidget.cpp" line="147"/>
         <source>Proxy server</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="sessionwidget.cpp" line="140"/>
+        <location filename="sessionwidget.cpp" line="153"/>
         <source>SSH</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="sessionwidget.cpp" line="141"/>
+        <location filename="sessionwidget.cpp" line="154"/>
         <source>HTTP</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="sessionwidget.cpp" line="149"/>
+        <location filename="sessionwidget.cpp" line="162"/>
         <source>Same login as on X2Go Server</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="sessionwidget.cpp" line="151"/>
+        <location filename="sessionwidget.cpp" line="164"/>
         <source>Same password as on X2Go Server</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="sessionwidget.cpp" line="153"/>
+        <location filename="sessionwidget.cpp" line="166"/>
         <source>RSA/DSA key:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="sessionwidget.cpp" line="158"/>
+        <location filename="sessionwidget.cpp" line="171"/>
         <source>ssh-agent or default ssh key</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="sessionwidget.cpp" line="162"/>
+        <location filename="sessionwidget.cpp" line="175"/>
         <source>Type:</source>
         <translation type="unfinished">類別:</translation>
     </message>
     <message>
-        <location filename="sessionwidget.cpp" line="166"/>
+        <location filename="sessionwidget.cpp" line="179"/>
         <source>Port:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="sessionwidget.cpp" line="182"/>
+        <location filename="sessionwidget.cpp" line="195"/>
         <source>&amp;Session type</source>
         <translation>工作階段類型(&amp;S)</translation>
     </message>
     <message>
-        <location filename="sessionwidget.cpp" line="187"/>
+        <location filename="sessionwidget.cpp" line="200"/>
         <source>Session type:</source>
         <translation>工作階段類型:</translation>
     </message>
     <message>
-        <location filename="sessionwidget.cpp" line="199"/>
-        <location filename="sessionwidget.cpp" line="500"/>
+        <location filename="sessionwidget.cpp" line="212"/>
+        <location filename="sessionwidget.cpp" line="515"/>
         <source>Connect to Windows terminal server</source>
         <translation>連線至微軟終端伺服器</translation>
     </message>
     <message>
-        <location filename="sessionwidget.cpp" line="200"/>
+        <location filename="sessionwidget.cpp" line="213"/>
         <source>XDMCP</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="sessionwidget.cpp" line="201"/>
+        <location filename="sessionwidget.cpp" line="214"/>
         <source>Connect to local desktop</source>
         <translation>連線至本地桌面</translation>
     </message>
     <message>
-        <location filename="sessionwidget.cpp" line="202"/>
+        <location filename="sessionwidget.cpp" line="215"/>
         <source>Custom desktop</source>
         <translation>自訂桌面類型</translation>
     </message>
     <message>
-        <location filename="sessionwidget.cpp" line="203"/>
+        <location filename="sessionwidget.cpp" line="216"/>
         <source>Single application</source>
         <translation>單一應用程式</translation>
     </message>
     <message>
-        <location filename="sessionwidget.cpp" line="204"/>
+        <location filename="sessionwidget.cpp" line="217"/>
         <source>Published applications</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="sessionwidget.cpp" line="206"/>
-        <location filename="sessionwidget.cpp" line="444"/>
+        <location filename="sessionwidget.cpp" line="219"/>
+        <location filename="sessionwidget.cpp" line="459"/>
         <source>Command:</source>
         <translation>指令:</translation>
     </message>
     <message>
-        <location filename="sessionwidget.cpp" line="207"/>
+        <location filename="sessionwidget.cpp" line="220"/>
         <source>Advanced options...</source>
         <translation>進階設定...</translation>
     </message>
     <message>
-        <location filename="sessionwidget.cpp" line="219"/>
-        <location filename="sessionwidget.cpp" line="743"/>
-        <location filename="sessionwidget.cpp" line="840"/>
+        <location filename="sessionwidget.cpp" line="232"/>
+        <location filename="sessionwidget.cpp" line="772"/>
+        <location filename="sessionwidget.cpp" line="872"/>
         <source>Path to executable</source>
         <translation>執行路徑</translation>
     </message>
     <message>
-        <location filename="sessionwidget.cpp" line="229"/>
+        <location filename="sessionwidget.cpp" line="243"/>
         <source>Direct RDP Connection</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="sessionwidget.cpp" line="372"/>
+        <location filename="sessionwidget.cpp" line="387"/>
         <source>RDP port:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="sessionwidget.cpp" line="388"/>
+        <location filename="sessionwidget.cpp" line="403"/>
         <source>Open picture</source>
         <translation>開啟圖片</translation>
     </message>
     <message>
-        <location filename="sessionwidget.cpp" line="390"/>
+        <location filename="sessionwidget.cpp" line="405"/>
         <source>Pictures</source>
         <translation>圖片</translation>
     </message>
     <message>
-        <location filename="sessionwidget.cpp" line="296"/>
-        <location filename="sessionwidget.cpp" line="411"/>
+        <location filename="sessionwidget.cpp" line="311"/>
+        <location filename="sessionwidget.cpp" line="426"/>
         <source>Open key file</source>
         <translation>開啟密鑰檔案</translation>
     </message>
     <message>
-        <location filename="sessionwidget.cpp" line="298"/>
-        <location filename="sessionwidget.cpp" line="413"/>
+        <location filename="sessionwidget.cpp" line="313"/>
+        <location filename="sessionwidget.cpp" line="428"/>
         <source>All files</source>
         <translation>所有檔案</translation>
     </message>
     <message>
-        <location filename="sessionwidget.cpp" line="308"/>
-        <location filename="sessionwidget.cpp" line="423"/>
+        <location filename="sessionwidget.cpp" line="323"/>
+        <location filename="sessionwidget.cpp" line="438"/>
         <source>Error</source>
         <translation>錯誤</translation>
     </message>
     <message>
-        <location filename="sessionwidget.cpp" line="309"/>
-        <location filename="sessionwidget.cpp" line="424"/>
+        <location filename="sessionwidget.cpp" line="324"/>
+        <location filename="sessionwidget.cpp" line="439"/>
         <source>x2goclient is running in portable mode. You should use a path on your usb device to be able to access your data whereever you are</source>
         <translation>X2Go用戶端目前為可攜式模式，您應該要使用您的USB裝置的路徑來存取您的資料</translation>
     </message>
     <message>
-        <location filename="sessionwidget.cpp" line="471"/>
-        <location filename="sessionwidget.cpp" line="697"/>
+        <location filename="sessionwidget.cpp" line="486"/>
+        <location filename="sessionwidget.cpp" line="726"/>
         <source>Server:</source>
         <translation>伺服器:</translation>
     </message>
     <message>
-        <location filename="sessionwidget.cpp" line="480"/>
-        <location filename="sessionwidget.cpp" line="709"/>
+        <location filename="sessionwidget.cpp" line="495"/>
+        <location filename="sessionwidget.cpp" line="738"/>
         <source>XDMCP server:</source>
         <translation>XDMCP 伺服器:</translation>
     </message>
     <message>
-        <location filename="sessionwidget.cpp" line="501"/>
+        <location filename="sessionwidget.cpp" line="516"/>
         <source>rdesktop command line options:</source>
         <translation>rdesktop 指令選項:</translation>
     </message>
     <message>
-        <location filename="sessionwidget.cpp" line="514"/>
-        <location filename="sessionwidget.cpp" line="721"/>
+        <location filename="sessionwidget.cpp" line="528"/>
+        <location filename="sessionwidget.cpp" line="750"/>
         <source>New session</source>
         <translation>新的工作階段</translation>
     </message>

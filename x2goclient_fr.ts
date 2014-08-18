@@ -482,6 +482,72 @@
     </message>
 </context>
 <context>
+    <name>FolderButton</name>
+    <message>
+        <source>Sessions folder</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>FolderExplorer</name>
+    <message>
+        <source>Folders</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Create New Folder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rename Folder...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Change Icon...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete Folder...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open picture</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pictures</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>X2Go Client</source>
+        <translation type="unfinished">X2Go Client</translation>
+    </message>
+    <message>
+        <source>Folder Name:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Error</source>
+        <translation type="unfinished">Erreur</translation>
+    </message>
+    <message>
+        <source>Unable to remove &quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&quot;. Folder is not empty. Please remove content of folder and try again.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete folder &quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New Folder</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>HelpDialog</name>
     <message>
         <source>Options</source>
@@ -847,23 +913,19 @@ Public key hash: </source>
     </message>
     <message>
         <source>Create session icon on desktop</source>
-        <translation>Créer une icone de session sur le bureau</translation>
+        <translation type="obsolete">Créer une icone de session sur le bureau</translation>
     </message>
     <message>
         <source>Desktop icons can be configured not to show x2goclient (hidden mode). If you like to use this feature you&apos;ll need to configure login by a gpg key or gpg smart card.
 
 Use x2goclient hidden mode?</source>
-        <translation>Les icones de bureau peuvent être configurées pour ne pas afficher X2Go Client (mode caché). Si vous voulez utiliser cette fonctionnalité, vous aurez besoin de configurer l&apos;identification par clef GPG ou par Smart Card GPG.
+        <translation type="obsolete">Les icones de bureau peuvent être configurées pour ne pas afficher X2Go Client (mode caché). Si vous voulez utiliser cette fonctionnalité, vous aurez besoin de configurer l&apos;identification par clef GPG ou par Smart Card GPG.
 
 Utiliser le mode caché de X2Go Client ?</translation>
     </message>
     <message>
         <source>New Session</source>
-        <translation>Nouvelle session</translation>
-    </message>
-    <message>
-        <source>X2Go Link to session </source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Nouvelle session</translation>
     </message>
     <message>
         <source>X2Go sessions not found</source>
@@ -871,7 +933,7 @@ Utiliser le mode caché de X2Go Client ?</translation>
     </message>
     <message>
         <source>Are you sure you want to delete this session?</source>
-        <translation>Êtes vous sûr de vouloir effacer cette session ?</translation>
+        <translation type="obsolete">Êtes vous sûr de vouloir effacer cette session ?</translation>
     </message>
     <message>
         <source>KDE</source>
@@ -1435,10 +1497,6 @@ Please update to a newer x2goserver package</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Show session tray icon when running</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>This can be an indication of a man-in-the-middle attack.
 Somebody might be eavesdropping on you.
 For security reasons, it is recommended to stop the connection.
@@ -1780,6 +1838,41 @@ lpr -P hp_laserjet</source>
     </message>
 </context>
 <context>
+    <name>SessionExplorer</name>
+    <message>
+        <source>Back</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Create session icon on desktop</source>
+        <translation type="unfinished">Créer une icone de session sur le bureau</translation>
+    </message>
+    <message>
+        <source>Desktop icons can be configured not to show x2goclient (hidden mode). If you like to use this feature you&apos;ll need to configure login by a gpg key or gpg smart card.
+
+Use x2goclient hidden mode?</source>
+        <translation type="unfinished">Les icones de bureau peuvent être configurées pour ne pas afficher X2Go Client (mode caché). Si vous voulez utiliser cette fonctionnalité, vous aurez besoin de configurer l&apos;identification par clef GPG ou par Smart Card GPG.
+
+Utiliser le mode caché de X2Go Client ?</translation>
+    </message>
+    <message>
+        <source>Show session tray icon when running</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New Session</source>
+        <translation type="unfinished">Nouvelle session</translation>
+    </message>
+    <message>
+        <source>X2Go Link to session </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Are you sure you want to delete this session?</source>
+        <translation type="unfinished">Êtes vous sûr de vouloir effacer cette session ?</translation>
+    </message>
+</context>
+<context>
     <name>SessionManageDialog</name>
     <message>
         <source>E&amp;xit</source>
@@ -1983,6 +2076,10 @@ lpr -P hp_laserjet</source>
     </message>
     <message>
         <source>Delegation of GSSAPI credentials to the server</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Path:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

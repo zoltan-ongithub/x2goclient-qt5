@@ -31,6 +31,7 @@ TRANSLATIONS += \
            x2goclient_fr.ts \
            x2goclient_nb_no.ts \
            x2goclient_nl.ts \
+           x2goclient_pt.ts \
            x2goclient_ru.ts \
            x2goclient_sv.ts \
            x2goclient_zh_tw.ts

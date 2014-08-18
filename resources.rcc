@@ -84,21 +84,23 @@
        <file>icons/22x22/preferences-system.png</file>
        <file>txt/packs</file>
        <file>txt/encodings</file>
-       <file>x2goclient_de.qm</file>
        <file>x2goclient_da.qm</file>
+       <file>x2goclient_de.qm</file>
        <file>x2goclient_es.qm</file>
        <file>x2goclient_et.qm</file>
        <file>x2goclient_fi.qm</file>
        <file>x2goclient_fr.qm</file>
        <file>x2goclient_nb_no.qm</file>
        <file>x2goclient_nl.qm</file>
+       <file>x2goclient_pt.qm</file>
        <file>x2goclient_ru.qm</file>
        <file>x2goclient_sv.qm</file>
        <file>x2goclient_zh_tw.qm</file>
-       <file>qt_de.qm</file>
        <file>qt_da.qm</file>
+       <file>qt_de.qm</file>
        <file>qt_es.qm</file>
        <file>qt_fr.qm</file>
+       <file>qt_pt.qm</file>
        <file>qt_ru.qm</file>
        <file>qt_sv.qm</file>
        <file>qt_zh_tw.qm</file>
