@@ -32,6 +32,7 @@
 #include <QToolButton>
 #include "x2gologdebug.h"
 #include <QBuffer>
+#include <QDir>
 
 SessionExplorer::SessionExplorer(ONMainWindow* p):QObject(p)
 {
