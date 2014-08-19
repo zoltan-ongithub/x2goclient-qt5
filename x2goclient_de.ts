@@ -973,7 +973,7 @@ sound system connections through firewalls</source>
     <message>
         <location filename="folderbutton.cpp" line="73"/>
         <source>Sessions folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Sitzungsordner</translation>
     </message>
 </context>
 <context>
@@ -981,72 +981,73 @@ sound system connections through firewalls</source>
     <message>
         <location filename="folderexplorer.ui" line="14"/>
         <source>Folders</source>
-        <translation type="unfinished"></translation>
+        <translation>Ordner</translation>
     </message>
     <message>
         <location filename="folderexplorer.cpp" line="77"/>
         <source>Create New Folder</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Neuen Ordner erstellen</translatorcomment>
+        <translation></translation>
     </message>
     <message>
         <location filename="folderexplorer.cpp" line="81"/>
         <source>Rename Folder...</source>
-        <translation type="unfinished"></translation>
+        <translation>Ordner umbenennen...</translation>
     </message>
     <message>
         <location filename="folderexplorer.cpp" line="82"/>
         <source>Change Icon...</source>
-        <translation type="unfinished"></translation>
+        <translation>Symbol ändern...</translation>
     </message>
     <message>
         <location filename="folderexplorer.cpp" line="83"/>
         <source>Delete Folder...</source>
-        <translation type="unfinished"></translation>
+        <translation>Ordner löschen...</translation>
     </message>
     <message>
         <location filename="folderexplorer.cpp" line="97"/>
         <source>Open picture</source>
-        <translation type="unfinished">Öffne Bild</translation>
+        <translation>Öffne Bild</translation>
     </message>
     <message>
         <location filename="folderexplorer.cpp" line="99"/>
         <source>Pictures</source>
-        <translation type="unfinished">Bilder</translation>
+        <translation>Bilder</translation>
     </message>
     <message>
         <location filename="folderexplorer.cpp" line="112"/>
         <source>X2Go Client</source>
-        <translation type="unfinished"></translation>
+        <translation>X2Go Client</translation>
     </message>
     <message>
         <location filename="folderexplorer.cpp" line="113"/>
         <source>Folder Name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ordnername:</translation>
     </message>
     <message>
         <location filename="folderexplorer.cpp" line="130"/>
         <source>Error</source>
-        <translation type="unfinished">Fehler</translation>
+        <translation>Fehler</translation>
     </message>
     <message>
         <location filename="folderexplorer.cpp" line="130"/>
         <source>Unable to remove &quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Kann den Ordner &quot;</translation>
     </message>
     <message>
         <location filename="folderexplorer.cpp" line="131"/>
         <source>&quot;. Folder is not empty. Please remove content of folder and try again.</source>
-        <translation type="unfinished"></translation>
+        <translation>&quot;. nicht löschen. Der Ordner ist nicht leer. Bitte löschen Sie den Inhalt des Ordners und versuchen Sie es erneut.</translation>
     </message>
     <message>
         <location filename="folderexplorer.cpp" line="134"/>
         <source>Delete folder &quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Lösche Ordner &quot;</translation>
     </message>
     <message>
         <location filename="folderexplorer.cpp" line="145"/>
         <source>New Folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Neuer Ordner</translation>
     </message>
 </context>
 <context>
@@ -3059,41 +3060,41 @@ Beispiel:
     <message>
         <location filename="sessionexplorer.cpp" line="48"/>
         <source>Back</source>
-        <translation type="unfinished"></translation>
+        <translation>Zurück</translation>
     </message>
     <message>
         <location filename="sessionexplorer.cpp" line="134"/>
         <source>Create session icon on desktop</source>
-        <translation type="unfinished">Desktopsymbol erzeugen</translation>
+        <translation>Desktopsymbol erzeugen</translation>
     </message>
     <message>
         <location filename="sessionexplorer.cpp" line="135"/>
         <source>Desktop icons can be configured not to show x2goclient (hidden mode). If you like to use this feature you&apos;ll need to configure login by a gpg key or gpg smart card.
 
 Use x2goclient hidden mode?</source>
-        <translation type="unfinished">Der Aufruf über Desktopsymbole kann erfolgen, ohne dass der X2GoClient sichtbar wird (versteckter Modus). Diesen Modus können Sie nutzen, wenn Sie den Loginvorgang über einen GPG-Schlüssel oder eine GPG-Smartcard konfiguriert haben.
+        <translation>Der Aufruf über Desktopsymbole kann erfolgen, ohne dass der X2Go Client sichtbar wird (versteckter Modus). Diesen Modus können Sie nutzen, wenn Sie den Login-Vorgang über einen GPG-Schlüssel oder eine GPG-Smartcard konfiguriert haben.
 
-Wollen Sie den versteckten Modus nutzen?</translation>
+Wollen Sie den versteckten Modus verwenden?</translation>
     </message>
     <message>
         <location filename="sessionexplorer.cpp" line="145"/>
         <source>Show session tray icon when running</source>
-        <translation type="unfinished">Sitzungssymbol während Verbindung in der Taskleiste anzeigen</translation>
+        <translation>Sitzungssymbol während Verbindung in der Taskleiste anzeigen</translation>
     </message>
     <message>
         <location filename="sessionexplorer.cpp" line="159"/>
         <source>New Session</source>
-        <translation type="unfinished">Neue Sitzung</translation>
+        <translation>Neue Sitzung</translation>
     </message>
     <message>
         <location filename="sessionexplorer.cpp" line="220"/>
         <source>X2Go Link to session </source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="sessionexplorer.cpp" line="349"/>
         <source>Are you sure you want to delete this session?</source>
-        <translation type="unfinished">Sind Sie sicher, dass Sie die Sitzung löschen wollen?</translation>
+        <translation>Sind Sie sicher, dass Sie die Sitzung löschen wollen?</translation>
     </message>
 </context>
 <context>
@@ -3166,7 +3167,7 @@ Wollen Sie den versteckten Modus nutzen?</translation>
     <message>
         <location filename="sessionwidget.cpp" line="78"/>
         <source>Path:</source>
-        <translation type="unfinished">Pfad:</translation>
+        <translation>Pfad:</translation>
     </message>
     <message>
         <location filename="sessionwidget.cpp" line="83"/>
