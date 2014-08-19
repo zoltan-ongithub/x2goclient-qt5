@@ -604,7 +604,7 @@
     <message>
         <location filename="folderbutton.cpp" line="73"/>
         <source>Sessions folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Sessies map</translation>
     </message>
 </context>
 <context>
@@ -612,72 +612,72 @@
     <message>
         <location filename="folderexplorer.ui" line="14"/>
         <source>Folders</source>
-        <translation type="unfinished"></translation>
+        <translation>Mappen</translation>
     </message>
     <message>
         <location filename="folderexplorer.cpp" line="77"/>
         <source>Create New Folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Nieuwe map aanmaken</translation>
     </message>
     <message>
         <location filename="folderexplorer.cpp" line="81"/>
         <source>Rename Folder...</source>
-        <translation type="unfinished"></translation>
+        <translation>Map hernoemen...</translation>
     </message>
     <message>
         <location filename="folderexplorer.cpp" line="82"/>
         <source>Change Icon...</source>
-        <translation type="unfinished"></translation>
+        <translation>Icoon wijzigen...</translation>
     </message>
     <message>
         <location filename="folderexplorer.cpp" line="83"/>
         <source>Delete Folder...</source>
-        <translation type="unfinished"></translation>
+        <translation>Map verwijderen...</translation>
     </message>
     <message>
         <location filename="folderexplorer.cpp" line="97"/>
         <source>Open picture</source>
-        <translation type="unfinished">Afbeelding openen</translation>
+        <translation>Afbeelding openen</translation>
     </message>
     <message>
         <location filename="folderexplorer.cpp" line="99"/>
         <source>Pictures</source>
-        <translation type="unfinished">Afbeeldingen</translation>
+        <translation>Afbeeldingen</translation>
     </message>
     <message>
         <location filename="folderexplorer.cpp" line="112"/>
         <source>X2Go Client</source>
-        <translation type="unfinished">X2Go Client</translation>
+        <translation>X2Go client</translation>
     </message>
     <message>
         <location filename="folderexplorer.cpp" line="113"/>
         <source>Folder Name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Map naam:</translation>
     </message>
     <message>
         <location filename="folderexplorer.cpp" line="130"/>
         <source>Error</source>
-        <translation type="unfinished">Fout</translation>
+        <translation>Fout</translation>
     </message>
     <message>
         <location filename="folderexplorer.cpp" line="130"/>
         <source>Unable to remove &quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Verwijderen niet mogelijk</translation>
     </message>
     <message>
         <location filename="folderexplorer.cpp" line="131"/>
         <source>&quot;. Folder is not empty. Please remove content of folder and try again.</source>
-        <translation type="unfinished"></translation>
+        <translation>&quot;. Deze map is niet leeg. Aub eerst de inhoud van deze map verwijderen en daarna opnieuw proberen.</translation>
     </message>
     <message>
         <location filename="folderexplorer.cpp" line="134"/>
         <source>Delete folder &quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Map verwijderen &quot;</translation>
     </message>
     <message>
         <location filename="folderexplorer.cpp" line="145"/>
         <source>New Folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Nieuwe map</translation>
     </message>
 </context>
 <context>
@@ -1747,7 +1747,7 @@ Niet opgeslagen documenten zullen verloren gaan</translation>
     <message>
         <location filename="onmainwindow.cpp" line="6918"/>
         <source>wrong value for argument&quot;--clipboard&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>verkeerde waarde voor argument&quot;--klembord&quot;</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="6934"/>
@@ -1795,7 +1795,7 @@ Niet opgeslagen documenten zullen verloren gaan</translation>
     <message>
         <location filename="onmainwindow.cpp" line="7179"/>
         <source>Help</source>
-        <translation type="unfinished"></translation>
+        <translation>Help</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="7187"/>
@@ -1805,23 +1805,24 @@ Niet opgeslagen documenten zullen verloren gaan</translation>
     <message>
         <location filename="onmainwindow.cpp" line="7209"/>
         <source>Pack Methodes</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>?</translatorcomment>
+        <translation>Pack methoden</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="7239"/>
         <location filename="onmainwindow.cpp" line="7249"/>
         <source>Option is not availabel in this build</source>
-        <translation type="unfinished"></translation>
+        <translation>Optie is niet beschikbaar in deze uitgave</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="7242"/>
         <source>Changelog</source>
-        <translation type="unfinished"></translation>
+        <translation>Logboek met wijzigingen</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="7252"/>
         <source>Git Info</source>
-        <translation type="unfinished"></translation>
+        <translation>Git info</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="11251"/>
@@ -1830,7 +1831,7 @@ Niet opgeslagen documenten zullen verloren gaan</translation>
         <location filename="onmainwindow.cpp" line="11292"/>
         <location filename="onmainwindow.cpp" line="11303"/>
         <source>SSH Error</source>
-        <translation type="unfinished"></translation>
+        <translation>SSH fout</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="11252"/>
@@ -1843,7 +1844,14 @@ Windows ships its internal sshd.exe.
 
 If you see this message, please report a bug against
 the X2Go bugtracker.</source>
-        <translation type="unfinished"></translation>
+        <translation>SSH daemon kon niet gestart worden.
+
+U bent de SSH daemon nodig voor printen en delen van bestanden.
+
+Normaal gesproken zou dit niet voor moeten komen omdat 
+bij de X2Go client voor Windows een eigen sshd.exe.ingesloten is.
+
+Als u dit bericht krijgt, geef dan aub deze fout door via de X2go bugtracker.</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="11267"/>
@@ -1853,24 +1861,29 @@ You&apos;ll need SSH daemon for printing and file sharing
 
 Please ask your system administrator to provide the SSH
 service on your computer.</source>
-        <translation type="unfinished"></translation>
+        <translation>SSH daemon is niet actief.
+
+U bent de SSH daemon nodig voor printen en delen van bestanden
+
+Vraag aub uw systeembeheerder om uw computer te voorzien van de SSH service.</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="11283"/>
         <source>SSH daemon failed to open the application&apos;s public host key.</source>
-        <translation type="unfinished"></translation>
+        <translation>SSH daemon kon de publieke sleutel van de applicatie niet openen.</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="11293"/>
         <source>SSH daemon failed to open the application&apos;s public key
 used for exporting folders and printers.</source>
-        <translation type="unfinished"></translation>
+        <translation>SSH daemon kon de publieke sleutel van de applicatie die gebruikt wordt
+voor printen en het delen van mappen niet openen.</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="11304"/>
         <source>SSH daemon failed to open the application&apos;s
 authoized_keys file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Openen van de geautoriseerde sleutel van de applicatie door de SSH daemon mislukt.</translation>
     </message>
     <message>
         <source>Options</source>
@@ -2474,41 +2487,41 @@ Voorbeeld:
     <message>
         <location filename="sessionexplorer.cpp" line="48"/>
         <source>Back</source>
-        <translation type="unfinished"></translation>
+        <translation>Terug</translation>
     </message>
     <message>
         <location filename="sessionexplorer.cpp" line="134"/>
         <source>Create session icon on desktop</source>
-        <translation type="unfinished">Sessie icoon op bureaublad aanmaken</translation>
+        <translation>Sessie icoon op bureaublad aanmaken</translation>
     </message>
     <message>
         <location filename="sessionexplorer.cpp" line="135"/>
         <source>Desktop icons can be configured not to show x2goclient (hidden mode). If you like to use this feature you&apos;ll need to configure login by a gpg key or gpg smart card.
 
 Use x2goclient hidden mode?</source>
-        <translation type="unfinished">Bureaublad iconen kunnen worden ingesteld zodat de x2goclient niet getoond zal worden (verborgen modus) Als u van deze mogelijkheid gebruik wilt maken moet u wel inloggen met een gpg sleutel of een gpg smartcard configureren.
+        <translation>Bureaublad iconen kunnen worden ingesteld zodat de x2goclient niet getoond zal worden (verborgen modus) Als u van deze mogelijkheid gebruik wilt maken moet u wel inloggen met een gpg sleutel of een gpg smartcard configureren.
 
 X2goclient in verborgen modus gebruiken?</translation>
     </message>
     <message>
         <location filename="sessionexplorer.cpp" line="145"/>
         <source>Show session tray icon when running</source>
-        <translation type="unfinished">Sessie icoon in taakbalk tonen tijdens gebruik</translation>
+        <translation>Sessie icoon in taakbalk tonen tijdens gebruik</translation>
     </message>
     <message>
         <location filename="sessionexplorer.cpp" line="159"/>
         <source>New Session</source>
-        <translation type="unfinished">Nieuwe sessie</translation>
+        <translation>Nieuwe sessie</translation>
     </message>
     <message>
         <location filename="sessionexplorer.cpp" line="220"/>
         <source>X2Go Link to session </source>
-        <translation type="unfinished">X2Go link naar sessie </translation>
+        <translation>X2Go link naar sessie </translation>
     </message>
     <message>
         <location filename="sessionexplorer.cpp" line="349"/>
         <source>Are you sure you want to delete this session?</source>
-        <translation type="unfinished">Weet u zeker dat u deze sessie wilt verwijderen?</translation>
+        <translation>Weet u zeker dat u deze sessie wilt verwijderen?</translation>
     </message>
 </context>
 <context>
@@ -2565,7 +2578,7 @@ X2goclient in verborgen modus gebruiken?</translation>
     <message>
         <location filename="sessionwidget.cpp" line="78"/>
         <source>Path:</source>
-        <translation type="unfinished">Pad:</translation>
+        <translation>Pad:</translation>
     </message>
     <message>
         <location filename="sessionwidget.cpp" line="83"/>
@@ -2812,7 +2825,7 @@ maar bent</translation>
     <message>
         <location filename="settingswidget.cpp" line="52"/>
         <source>&amp;Clipboard Mode</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Klembord modus</translation>
     </message>
     <message>
         <location filename="settingswidget.cpp" line="66"/>
@@ -2872,22 +2885,22 @@ maar bent</translation>
     <message>
         <location filename="settingswidget.cpp" line="155"/>
         <source>Bidirectional copy and paste</source>
-        <translation type="unfinished"></translation>
+        <translation>Bidirectioneel copy and past</translation>
     </message>
     <message>
         <location filename="settingswidget.cpp" line="156"/>
         <source>Copy and paste from client to server</source>
-        <translation type="unfinished"></translation>
+        <translation>Copy and past van client naar server</translation>
     </message>
     <message>
         <location filename="settingswidget.cpp" line="157"/>
         <source>Copy and paste from server to client</source>
-        <translation type="unfinished"></translation>
+        <translation>Copy and past van server naar client</translation>
     </message>
     <message>
         <location filename="settingswidget.cpp" line="158"/>
         <source>Disable clipboard completely</source>
-        <translation type="unfinished"></translation>
+        <translation>Klembord volledig uitschakelen</translation>
     </message>
     <message>
         <location filename="settingswidget.cpp" line="170"/>
