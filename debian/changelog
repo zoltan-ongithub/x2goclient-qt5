@@ -54,15 +54,15 @@ x2goclient (4.0.3.0-0x2go1) UNRELEASED; urgency=low
 
   [ Stefan Baur ]
   * New upstream version (4.0.3.0):
-    - Update German translation files.
+    - Update German translation file (INCOMPLETE).
 
   [ Ricardo Díaz Martín ]
   * New upstream version (4.0.3.0):
-    - Update Spanish translation files.
+    - Update Spanish translation file (INCOMPLETE).
 
   [ Martti Pitkanen ]
   * New upstream version (4.0.3.0):
-    - Update Finnish translation files.
+    - Update Finnish translation file (INCOMPLETE).
 
   [ Jos ]
   * New upstream version (4.0.3.9):
