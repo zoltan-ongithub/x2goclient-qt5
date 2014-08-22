@@ -603,7 +603,7 @@
     <message>
         <location filename="folderbutton.cpp" line="73"/>
         <source>Sessions folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Istuntojen kansio</translation>
     </message>
 </context>
 <context>
@@ -611,72 +611,72 @@
     <message>
         <location filename="folderexplorer.ui" line="14"/>
         <source>Folders</source>
-        <translation type="unfinished"></translation>
+        <translation>Kansiot</translation>
     </message>
     <message>
         <location filename="folderexplorer.cpp" line="77"/>
         <source>Create New Folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Tee uusi kansio</translation>
     </message>
     <message>
         <location filename="folderexplorer.cpp" line="81"/>
         <source>Rename Folder...</source>
-        <translation type="unfinished"></translation>
+        <translation>Kansiolle uusi nimi...</translation>
     </message>
     <message>
         <location filename="folderexplorer.cpp" line="82"/>
         <source>Change Icon...</source>
-        <translation type="unfinished"></translation>
+        <translation>Vaihda kuvake...</translation>
     </message>
     <message>
         <location filename="folderexplorer.cpp" line="83"/>
         <source>Delete Folder...</source>
-        <translation type="unfinished"></translation>
+        <translation>Poista kansio...</translation>
     </message>
     <message>
         <location filename="folderexplorer.cpp" line="97"/>
         <source>Open picture</source>
-        <translation type="unfinished">Avaa kuva</translation>
+        <translation>Avaa kuva</translation>
     </message>
     <message>
         <location filename="folderexplorer.cpp" line="99"/>
         <source>Pictures</source>
-        <translation type="unfinished">Kivat</translation>
+        <translation>Kuvat</translation>
     </message>
     <message>
         <location filename="folderexplorer.cpp" line="112"/>
         <source>X2Go Client</source>
-        <translation type="unfinished">X2Go asiakasohjelma</translation>
+        <translation>X2Go asiakasohjelma</translation>
     </message>
     <message>
         <location filename="folderexplorer.cpp" line="113"/>
         <source>Folder Name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kansion nimi:</translation>
     </message>
     <message>
         <location filename="folderexplorer.cpp" line="130"/>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Virhe</translation>
     </message>
     <message>
         <location filename="folderexplorer.cpp" line="130"/>
         <source>Unable to remove &quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Poisto ei onnisu &quot;</translation>
     </message>
     <message>
         <location filename="folderexplorer.cpp" line="131"/>
         <source>&quot;. Folder is not empty. Please remove content of folder and try again.</source>
-        <translation type="unfinished"></translation>
+        <translation>&quot;. Kansio ei ole tyhjä. Tyhjennä kansio ja yritä uudelleen.</translation>
     </message>
     <message>
         <location filename="folderexplorer.cpp" line="134"/>
         <source>Delete folder &quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Poista kansio &quot;</translation>
     </message>
     <message>
         <location filename="folderexplorer.cpp" line="145"/>
         <source>New Folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Uusi kansio</translation>
     </message>
 </context>
 <context>
@@ -1756,7 +1756,7 @@ Avoimet tiedostot eivät talletu</translation>
     <message>
         <location filename="onmainwindow.cpp" line="6918"/>
         <source>wrong value for argument&quot;--clipboard&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>väärä arvo ohjaimessa&quot;--clipboard&quot;</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="6934"/>
@@ -1804,7 +1804,7 @@ Avoimet tiedostot eivät talletu</translation>
     <message>
         <location filename="onmainwindow.cpp" line="7179"/>
         <source>Help</source>
-        <translation type="unfinished"></translation>
+        <translation>Ohjeet</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="11251"/>
@@ -1813,7 +1813,7 @@ Avoimet tiedostot eivät talletu</translation>
         <location filename="onmainwindow.cpp" line="11292"/>
         <location filename="onmainwindow.cpp" line="11303"/>
         <source>SSH Error</source>
-        <translation type="unfinished"></translation>
+        <translation>SSH -virhe</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="11252"/>
@@ -1826,7 +1826,15 @@ Windows ships its internal sshd.exe.
 
 If you see this message, please report a bug against
 the X2Go bugtracker.</source>
-        <translation type="unfinished"></translation>
+        <translation>SSH -palvelu ei käynnistynyt.
+
+Tarvitse SSH -palvelua tulostamiseen ja tiedostojen yhteiskäyttöön.
+
+Normaalista, näin ei pitäsi tapahtu koska X2Go pääteohjelma 
+Windowsille sisältää oman sshd.exe -ohjelman.
+
+Jos näet tämä viestin, ilmoita virheestä
+X2Go -ohjelman virheseurantaan.</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="11267"/>
@@ -1836,24 +1844,31 @@ You&apos;ll need SSH daemon for printing and file sharing
 
 Please ask your system administrator to provide the SSH
 service on your computer.</source>
-        <translation type="unfinished"></translation>
+        <translation>SSH -palvleu ei ole käynnissä.
+
+Tarvitsen SSH -palvelua tulostamiseen ja tiedostojen yhteiskäyttöön
+
+Pyydä IT -tukihenkilöä asentamaan SSH
+-palvelu työasemaasi.</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="11283"/>
         <source>SSH daemon failed to open the application&apos;s public host key.</source>
-        <translation type="unfinished"></translation>
+        <translation>SSH -palvelu ei pystynyt selvittämään sovelluspalvelimen julkista avainta.</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="11293"/>
         <source>SSH daemon failed to open the application&apos;s public key
 used for exporting folders and printers.</source>
-        <translation type="unfinished"></translation>
+        <translation>SSH -palvelu ei pystynyt selvittämään sovelluksen julkista avainta
+jota käytetään kansioiden ja tulostinten jakamiseen.</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="11304"/>
         <source>SSH daemon failed to open the application&apos;s
 authoized_keys file.</source>
-        <translation type="unfinished"></translation>
+        <translation>SSH -palvelu ei saanut luettua sovelluksen
+authoized_keys -tiedostoa.</translation>
     </message>
     <message>
         <source>Options</source>
@@ -1867,23 +1882,23 @@ authoized_keys file.</source>
     <message>
         <location filename="onmainwindow.cpp" line="7209"/>
         <source>Pack Methodes</source>
-        <translation type="unfinished"></translation>
+        <translation>Pakkausmenetelmät</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="7239"/>
         <location filename="onmainwindow.cpp" line="7249"/>
         <source>Option is not availabel in this build</source>
-        <translation type="unfinished"></translation>
+        <translation>Vaihtoehtoa ei tässä versiossa</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="7242"/>
         <source>Changelog</source>
-        <translation type="unfinished"></translation>
+        <translation>Muutosluettelo</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="7252"/>
         <source>Git Info</source>
-        <translation type="unfinished"></translation>
+        <translation>Git -tietoja</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="7608"/>
@@ -2482,41 +2497,41 @@ Esimerkki:
     <message>
         <location filename="sessionexplorer.cpp" line="48"/>
         <source>Back</source>
-        <translation type="unfinished"></translation>
+        <translation>Takaisin</translation>
     </message>
     <message>
         <location filename="sessionexplorer.cpp" line="134"/>
         <source>Create session icon on desktop</source>
-        <translation type="unfinished">Tee instuntokuvake työpöydälle</translation>
+        <translation>Tee instuntokuvake työpöydälle</translation>
     </message>
     <message>
         <location filename="sessionexplorer.cpp" line="135"/>
         <source>Desktop icons can be configured not to show x2goclient (hidden mode). If you like to use this feature you&apos;ll need to configure login by a gpg key or gpg smart card.
 
 Use x2goclient hidden mode?</source>
-        <translation type="unfinished">Työpöytäkuvakkeet voidaan asettaa piilottamaan x2go -asiakasohjelman (hidden mode). Jos haluat käyttää ominaisuutta määritä kirjautuminen käyttämään gpg-avainta tai gpg -toimikorttia.
+        <translation>Työpöytäkuvakkeet voidaan asettaa piilottamaan x2go -asiakasohjelma (hidden mode). Jos haluat käyttää ominaisuutta määritä kirjautuminen käyttämään gpg-avainta tai gpg -toimikorttia.
 
 Käytätkö x2go-asiakasohjelmaa piilotettuna?</translation>
     </message>
     <message>
         <location filename="sessionexplorer.cpp" line="145"/>
         <source>Show session tray icon when running</source>
-        <translation type="unfinished">Näytä istunon ikoni kun se on aktiivinen</translation>
+        <translation>Näytä istunon kuvake kun se on aktiivinen</translation>
     </message>
     <message>
         <location filename="sessionexplorer.cpp" line="159"/>
         <source>New Session</source>
-        <translation type="unfinished">Uusi istunto</translation>
+        <translation>Uusi istunto</translation>
     </message>
     <message>
         <location filename="sessionexplorer.cpp" line="220"/>
         <source>X2Go Link to session </source>
-        <translation type="unfinished">Linkki X2Go -istuntoon </translation>
+        <translation>Linkki X2Go -istuntoon </translation>
     </message>
     <message>
         <location filename="sessionexplorer.cpp" line="349"/>
         <source>Are you sure you want to delete this session?</source>
-        <translation type="unfinished">Haluatko varmasti poistaa tämän istunnon?</translation>
+        <translation>Haluatko varmasti poistaa tämän istunnon?</translation>
     </message>
 </context>
 <context>
@@ -2573,7 +2588,7 @@ Käytätkö x2go-asiakasohjelmaa piilotettuna?</translation>
     <message>
         <location filename="sessionwidget.cpp" line="78"/>
         <source>Path:</source>
-        <translation type="unfinished">Polku:</translation>
+        <translation>Polku:</translation>
     </message>
     <message>
         <location filename="sessionwidget.cpp" line="83"/>
@@ -2819,7 +2834,7 @@ Käytätkö x2go-asiakasohjelmaa piilotettuna?</translation>
     <message>
         <location filename="settingswidget.cpp" line="52"/>
         <source>&amp;Clipboard Mode</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Leikepöytä -tila</translation>
     </message>
     <message>
         <location filename="settingswidget.cpp" line="66"/>
@@ -2879,22 +2894,22 @@ Käytätkö x2go-asiakasohjelmaa piilotettuna?</translation>
     <message>
         <location filename="settingswidget.cpp" line="155"/>
         <source>Bidirectional copy and paste</source>
-        <translation type="unfinished"></translation>
+        <translation>Kaksisuuntainen leikkaus - liimaus</translation>
     </message>
     <message>
         <location filename="settingswidget.cpp" line="156"/>
         <source>Copy and paste from client to server</source>
-        <translation type="unfinished"></translation>
+        <translation>Leikka ja liimaa päätelaitteesta palvelimeen</translation>
     </message>
     <message>
         <location filename="settingswidget.cpp" line="157"/>
         <source>Copy and paste from server to client</source>
-        <translation type="unfinished"></translation>
+        <translation>Leikkaa ja liimaa palvelimesta päätelaitteeseen</translation>
     </message>
     <message>
         <location filename="settingswidget.cpp" line="158"/>
         <source>Disable clipboard completely</source>
-        <translation type="unfinished"></translation>
+        <translation>Poista leikepöytä käytöstä kokonaan</translation>
     </message>
     <message>
         <location filename="settingswidget.cpp" line="170"/>
