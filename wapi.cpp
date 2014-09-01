@@ -39,16 +39,6 @@ long wapiSetFSWindow ( HWND hWnd, const QRect& desktopGeometry )
                    desktopGeometry.width(),
                    desktopGeometry.height(),
                    0);
-    Sleep(2000);
-    SetWindowLong(hWnd, GWL_STYLE,
-                  WS_VISIBLE);
-    SetWindowLong(hWnd, GWL_EXSTYLE,
-                  0);
-    SetWindowPos ( hWnd, HWND_TOPMOST, desktopGeometry.x(),
-                   desktopGeometry.y(),
-                   desktopGeometry.width(),
-                   desktopGeometry.height(),
-                   SWP_NOSIZE);
     return WS_VISIBLE;
 }
 
