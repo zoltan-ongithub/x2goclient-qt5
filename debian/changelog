@@ -47,6 +47,10 @@ x2goclient (4.0.3.0-0x2go1) UNRELEASED; urgency=low
       groups optional: misc, 75dpi, 100dpi and others (Fixes: #108)
       Note: The fact that all the fonts are included makes the installer about
       30MB larger.
+    - Windows: Fix missing VcXsrv/zlib1.dll . The impact of this bug was that
+      VcXsrv would not start if the cwd was changed from the x2goclient
+      directory. (The start menu and desktop shortcuts do have the x2goclient
+      directory as the cwd. So they were not affected.) (Fixes: #587)
     - Windows: Make the desktop shortcut optional during install,
       but still the default.
     - Windows: Win32 OpenSSL updated from 1.0.1h to 1.0.1i, which fixes the
