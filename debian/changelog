@@ -50,8 +50,10 @@ x2goclient (4.0.3.0-0x2go1) UNRELEASED; urgency=low
     - Windows: Bundle new version of VcXsrv: 1.15.2.0-xp+vc2013+x2go1
       This new version is based on upstream VcXsrv 1.15.2.0, but still
       compatible with Windows XP. It is compiled with Microsoft Visual C++ 2013
-      and contains 1 X2Go-specific change, winmultiwindow.patch
-      (Thanks Oleksandr Shneyder for the patch) (Fixes: #568)
+      and contains 1 X2Go-specific change, winmultiwindow.patch. This patch
+      fixes an issue when resizing the NX-proxy window on specific multiple
+      monitor setups. (Thanks Oleksandr Shneyder for the patch)
+      (Fixes: #568) (Fixes: #594)
     - Windows: Fix missing VcXsrv/zlib1.dll . The impact of this bug was that
       VcXsrv would not start if the cwd was changed from the x2goclient
       directory. (The start menu and desktop shortcuts do have the x2goclient
