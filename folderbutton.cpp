@@ -111,8 +111,8 @@ void FolderButton::loadIcon()
 
     QString normPath=(path+"/"+name).split("/",QString::SkipEmptyParts).join("::");
 
-    QByteArray picture=st->setting()->value ( normPath,
-                       ( QVariant )QByteArray()).toByteArray();
+    QByteArray picture = QByteArray::fromBase64( st->setting()->value ( "icon_"+normPath,
+                       ( QVariant )QString()).toString().toLocal8Bit());
     if(!picture.size())
     {
         pix=new QPixmap( sessIcon );

@@ -111,9 +111,13 @@ void SessionExplorer::getFoldersFromConfig()
     QString folder;
     foreach(folder,folders)
     {
-        folder.replace("::","/");
-        if(findFolder(folder)==-1)
-            createFolder(folder);
+        if(folder.indexOf("icon_")==0)
+        {
+	    folder=folder.mid(strlen("icon_"));
+            folder.replace("::","/");
+            if(findFolder(folder)==-1)
+                createFolder(folder);
+        }
     }
 }
 
@@ -431,7 +435,7 @@ void SessionExplorer::setFolderIcon(QString path, QString icon)
         buffer.open(QIODevice::WriteOnly);
         pix.save(&buffer,"PNG");
         x2goDebug<<"Save: "<<path;
-        st->setting()->setValue(path, bytes);
+        st->setting()->setValue("icon_"+path, QString(bytes.toBase64()));
         st->setting()->sync();
         FolderButton* b;
         foreach(b, folders)
