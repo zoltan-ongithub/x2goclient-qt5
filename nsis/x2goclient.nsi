@@ -12,8 +12,8 @@
 
   RequestExecutionLevel admin
  !define VERSION "X2GOCLIENT_VERSION"
-  Name "x2goclient-${VERSION}"
-  Caption "x2goclient-${VERSION}"
+  Name "x2goclient ${VERSION}"
+  Caption "x2goclient ${VERSION}"
   OutFile "x2goclient-${VERSION}-setup.exe"
   !define MUI_ICON icons\win-install.ico
   !define MUI_UNICON icons\win-uninstall.ico
