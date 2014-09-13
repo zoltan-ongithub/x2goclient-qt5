@@ -55,6 +55,8 @@ x2goclient (4.0.3.0-0x2go1) UNRELEASED; urgency=low
       fixes an issue when resizing the NX-proxy window on specific multiple
       monitor setups. (Thanks Oleksandr Shneyder for the patch)
       (Fixes: #568) (Fixes: #594)
+    - Windows: Port from MinGW 4.4 + Qt 4.8.5 to MinGW 4.8.2 + Qt 4.8.6,
+      including fix for QTBUG-38706 (Fixes: #474, #603)
     - Windows: Fix missing VcXsrv/zlib1.dll . The impact of this bug was that
       VcXsrv would not start if the cwd was changed from the x2goclient
       directory. (The start menu and desktop shortcuts do have the x2goclient
