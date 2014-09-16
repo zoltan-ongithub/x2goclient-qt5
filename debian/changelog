@@ -44,6 +44,12 @@ x2goclient (4.0.3.0-0x2go1) UNRELEASED; urgency=low
 
   [ Mike DePaulo ]
   * New upstream release (4.0.3.0):
+    - Windows: Fix not being able to add the server to the known_hosts file when
+      the username has non-English characters.
+      (NOTE: This fix only works when the non-English characters are in the same
+      language as the Windows "system locale" AKA "Language for non-Unicode
+      programs." Bug #611 was written for fixing the issue for languages other
+      than the system locale.)
     - Windows: Install VcXsrv "misc" fonts by default, and make all 4 font
       groups optional: misc, 75dpi, 100dpi and others (Fixes: #108)
       Note: The fact that all the fonts are included makes the installer about
