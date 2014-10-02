@@ -32,7 +32,7 @@ class SessionButton : public SVGFrame
 {
     Q_OBJECT
 public:
-    enum {KDE,GNOME,LXDE,XFCE,MATE,UNITY,RDP,XDMCP,SHADOW,PUBLISHED,OTHER,APPLICATION};
+    enum {KDE,GNOME,LXDE,XFCE,MATE,UNITY,CINNAMON,RDP,XDMCP,SHADOW,PUBLISHED,OTHER,APPLICATION};
     SessionButton ( ONMainWindow* mw, QWidget* parent,QString id );
     ~SessionButton();
     QString id() {

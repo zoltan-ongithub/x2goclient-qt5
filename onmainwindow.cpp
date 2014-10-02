@@ -6187,6 +6187,12 @@ void ONMainWindow::runCommand()
     {
         command="startlxde";
     }
+    // Note that there are multiple possible Cinnamon commands that the server
+    // may call.
+    else if ( command=="CINNAMON" )
+    {
+        command="cinnamon-session";
+    }
     else if ( command=="RDP" )
     {
         command="rdesktop ";

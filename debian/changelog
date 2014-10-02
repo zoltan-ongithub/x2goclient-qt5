@@ -45,6 +45,7 @@ x2goclient (4.0.3.0-0x2go1) UNRELEASED; urgency=low
 
   [ Mike DePaulo ]
   * New upstream release (4.0.3.0):
+    - Make X2Go Client aware of the Cinnamon (CINNAMON) desktop environment.
     - Windows: Fix not being able to add the server to the known_hosts file when
       the username has non-English characters. (Fixes: #566)
       (NOTE: This fix only works when the non-English characters are in the same

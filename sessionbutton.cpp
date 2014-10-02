@@ -357,6 +357,7 @@ void SessionButton::redraw()
     cmdBox->addItem ( "XFCE" );
     cmdBox->addItem ( "MATE" );
     cmdBox->addItem ( "UNITY" );
+    cmdBox->addItem ( "CINNAMON" );
     cmdBox->addItem ( tr ( "RDP connection" ) );
     cmdBox->addItem ( tr ( "XDMCP" ) );
     cmdBox->addItem ( tr ( "Connection to local desktop" ) );
@@ -395,6 +396,11 @@ void SessionButton::redraw()
     {
         cmdpix.load ( par->iconsPath ( "/16x16/lxde.png" ) );
         cmdBox->setCurrentIndex ( LXDE );
+    }
+    else if ( command == "CINNAMON" )
+    {
+        cmdpix.load ( par->iconsPath ( "/16x16/cinnamon.png" ) );
+        cmdBox->setCurrentIndex ( CINNAMON );
     }
     else if ( command =="SHADOW" )
     {
@@ -703,6 +709,13 @@ void SessionButton::slot_cmd_change ( const QString& command )
         newRootless=false;
         pix.load ( par->iconsPath ( "/16x16/mate.png" ) );
     }
+    else if ( command == "CINNAMON" )
+    {
+        newRootless=false;
+        // As of 2014-10-01, Cinnamon does not have a logo. This icon is the
+        // gear, which is the default start menu icon as of 2.2.
+        pix.load ( par->iconsPath ( "/16x16/cinnamon.png" ) );
+    }
     else if ( command ==tr ( "Connection to local desktop" ) )
     {
         newRootless=false;
@@ -754,6 +767,11 @@ void SessionButton::slot_cmd_change ( const QString& command )
     if ( command=="mate-session" )
     {
         cmd="MATE";
+        newRootless=false;
+    }
+    if ( command=="cinnamon-session" )
+    {
+        cmd="CINNAMON";
         newRootless=false;
     }
     if (command== tr("Published applications"))

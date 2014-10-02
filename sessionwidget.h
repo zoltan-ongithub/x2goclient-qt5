@@ -59,7 +59,7 @@ public slots:
 #endif
 
 private:
-    enum {KDE,GNOME,LXDE,XFCE,MATE,UNITY,RDP,XDMCP,SHADOW,OTHER,APPLICATION,PUBLISHED};
+    enum {KDE,GNOME,LXDE,XFCE,MATE,UNITY,CINNAMON,RDP,XDMCP,SHADOW,OTHER,APPLICATION,PUBLISHED};
     QLineEdit* sessName;
     QLineEdit* uname;
     QLineEdit* server;

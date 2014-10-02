@@ -209,6 +209,7 @@ SessionWidget::SessionWidget ( bool newSession, QString id, ONMainWindow * mw,
     sessBox->addItem ( "XFCE" );
     sessBox->addItem ( "MATE" );
     sessBox->addItem ( "UNITY" );
+    sessBox->addItem ( "CINNAMON" );
     sessBox->addItem ( tr ( "Connect to Windows terminal server" ) );
     sessBox->addItem ( tr ( "XDMCP" ) );
     sessBox->addItem ( tr ( "Connect to local desktop" ) );
