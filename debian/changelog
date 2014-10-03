@@ -51,6 +51,8 @@ x2goclient (4.0.3.0-0x2go1) UNRELEASED; urgency=low
       (Fixes: #609)
     - Make X2Go Client aware of the Openbox (OPENBOX) window manager.
       (Fixes: #607)
+    - Make X2Go Client aware of the IceWM (ICEWM) window manager.
+      (Fixes: #608)
     - Windows: Fix not being able to add the server to the known_hosts file when
       the username has non-English characters. (Fixes: #566)
       (NOTE: This fix only works when the non-English characters are in the same

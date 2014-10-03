@@ -6201,6 +6201,10 @@ void ONMainWindow::runCommand()
     {
         command="openbox-session";
     }
+    else if ( command=="ICEWM" )
+    {
+        command="icewm-session";
+    }
     else if ( command=="RDP" )
     {
         command="rdesktop ";

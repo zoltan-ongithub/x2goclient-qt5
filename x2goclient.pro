@@ -8,7 +8,7 @@
 
 CONFIG += $$(X2GO_CLIENT_TARGET)
 CONFIG += $$(X2GO_LINUX_STATIC)
-#CONFIG += console
+CONFIG += console
 
 FORMS += cupsprintsettingsdialog.ui \
            cupsprintwidget.ui \

@@ -212,6 +212,7 @@ SessionWidget::SessionWidget ( bool newSession, QString id, ONMainWindow * mw,
     sessBox->addItem ( "CINNAMON" );
     sessBox->addItem ( "TRINITY" );
     sessBox->addItem ( "OPENBOX" );
+    sessBox->addItem ( "ICEWM" );
     sessBox->addItem ( tr ( "Connect to Windows terminal server" ) );
     sessBox->addItem ( tr ( "XDMCP" ) );
     sessBox->addItem ( tr ( "Connect to local desktop" ) );
