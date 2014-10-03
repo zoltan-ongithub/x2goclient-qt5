@@ -358,6 +358,7 @@ void SessionButton::redraw()
     cmdBox->addItem ( "MATE" );
     cmdBox->addItem ( "UNITY" );
     cmdBox->addItem ( "CINNAMON" );
+    cmdBox->addItem ( "TRINITY" );
     cmdBox->addItem ( tr ( "RDP connection" ) );
     cmdBox->addItem ( tr ( "XDMCP" ) );
     cmdBox->addItem ( tr ( "Connection to local desktop" ) );
@@ -401,6 +402,11 @@ void SessionButton::redraw()
     {
         cmdpix.load ( par->iconsPath ( "/16x16/cinnamon.png" ) );
         cmdBox->setCurrentIndex ( CINNAMON );
+    }
+    else if ( command == "TRINITY" )
+    {
+        cmdpix.load ( par->iconsPath ( "/16x16/trinity.png" ) );
+        cmdBox->setCurrentIndex ( TRINITY );
     }
     else if ( command =="SHADOW" )
     {
@@ -715,6 +721,11 @@ void SessionButton::slot_cmd_change ( const QString& command )
         // As of 2014-10-01, Cinnamon does not have a logo. This icon is the
         // gear, which is the default start menu icon as of 2.2.
         pix.load ( par->iconsPath ( "/16x16/cinnamon.png" ) );
+    }
+    else if ( command == "TRINITY" )
+    {
+        newRootless=false;
+        pix.load ( par->iconsPath ( "/16x16/trinity.png" ) );
     }
     else if ( command ==tr ( "Connection to local desktop" ) )
     {

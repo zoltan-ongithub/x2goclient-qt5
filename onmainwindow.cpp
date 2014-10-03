@@ -6193,6 +6193,10 @@ void ONMainWindow::runCommand()
     {
         command="cinnamon-session";
     }
+    else if ( command=="TRINITY" )
+    {
+        command="starttrinity";
+    }
     else if ( command=="RDP" )
     {
         command="rdesktop ";
