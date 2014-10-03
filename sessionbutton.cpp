@@ -359,6 +359,7 @@ void SessionButton::redraw()
     cmdBox->addItem ( "UNITY" );
     cmdBox->addItem ( "CINNAMON" );
     cmdBox->addItem ( "TRINITY" );
+    cmdBox->addItem ( "OPENBOX" );
     cmdBox->addItem ( tr ( "RDP connection" ) );
     cmdBox->addItem ( tr ( "XDMCP" ) );
     cmdBox->addItem ( tr ( "Connection to local desktop" ) );
@@ -407,6 +408,11 @@ void SessionButton::redraw()
     {
         cmdpix.load ( par->iconsPath ( "/16x16/trinity.png" ) );
         cmdBox->setCurrentIndex ( TRINITY );
+    }
+    else if ( command == "OPENBOX" )
+    {
+        cmdpix.load ( par->iconsPath ( "/16x16/openbox.png" ) );
+        cmdBox->setCurrentIndex ( OPENBOX );
     }
     else if ( command =="SHADOW" )
     {
@@ -726,6 +732,11 @@ void SessionButton::slot_cmd_change ( const QString& command )
     {
         newRootless=false;
         pix.load ( par->iconsPath ( "/16x16/trinity.png" ) );
+    }
+    else if ( command == "OPENBOX" )
+    {
+        newRootless=false;
+        pix.load ( par->iconsPath ( "/16x16/openbox.png" ) );
     }
     else if ( command ==tr ( "Connection to local desktop" ) )
     {

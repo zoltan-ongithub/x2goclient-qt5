@@ -6197,6 +6197,10 @@ void ONMainWindow::runCommand()
     {
         command="starttrinity";
     }
+    else if ( command=="OPENBOX" )
+    {
+        command="openbox-session";
+    }
     else if ( command=="RDP" )
     {
         command="rdesktop ";
