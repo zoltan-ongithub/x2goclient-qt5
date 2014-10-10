@@ -84,16 +84,14 @@ x2goclient (4.0.3.0-0x2go1) UNRELEASED; urgency=low
       (Gmail: psududemike) (Fixes: #590)
     - Windows: Win32 OpenSSL updated from 1.0.1h to 1.0.1i, which fixes the
       9 CVEs announced on 2014-08-06.
+    - Windows: Replace Cygwin Bash (sh.exe) with Cygwin Dash (ash.exe renamed
+      to sh.exe). This also means fewer Cygwin .DLLs are bundled.
+      (Fixes: #636)
     - Windows: cygwin packages (inluding patched OpenSSH 6.6.1p1-3) updated from
       latest versions as of 2014-06-09 to latest versions as of 2014-10-10. This
       includes openssl 1.0.1i-1, which fixes the 9 CVEs announced on 2014-08-06.
       (Cygwin openssl was also individually updated to 1.0.1i-1 in
       4.0.2.1+hotfix1+build2.)
-      This includes bash 4.1.17-9, which fixes the "Shellshock" vulnerability
-      and other bash parser-related vulnerabilities.
-      (Cygwin bash was also individually updated to 4.1.14-7 in
-      4.0.2.1+hotfix1+build5, and then updated to 4.1.17-9 in
-      4.0.2.1+hotfix1+build6)
     - Windows: Build nxproxy.exe with Cygwin's libpng 1.5.x rather than 1.2.x.
       (This may improve performance when PNG compression is selected.)
     - Windows: Build cygwin openssh without krb5 or tcp_wrappers support because
