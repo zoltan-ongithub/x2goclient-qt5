@@ -88,7 +88,7 @@ x2goclient (4.0.3.0-0x2go1) UNRELEASED; urgency=low
       to sh.exe). This also means fewer Cygwin .DLLs are bundled.
       (Fixes: #636)
     - Windows: cygwin packages (inluding patched OpenSSH 6.6.1p1-3) updated from
-      latest versions as of 2014-06-09 to latest versions as of 2014-10-10. This
+      latest versions as of 2014-06-09 to latest versions as of 2014-10-11. This
       includes openssl 1.0.1i-1, which fixes the 9 CVEs announced on 2014-08-06.
       (Cygwin openssl was also individually updated to 1.0.1i-1 in
       4.0.2.1+hotfix1+build2.)
