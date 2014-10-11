@@ -519,6 +519,9 @@ void SshMasterConnection::run()
 
 #ifdef Q_OS_WIN
     ssh_options_set ( my_ssh_session, SSH_OPTIONS_SSH_DIR, (mainWnd->getHomeDirectory()+"/ssh").toLocal8Bit());
+#ifdef DEBUG
+    x2goDebug<<"setting SSH DIR to "<<(mainWnd->getHomeDirectory()+"/ssh").toLocal8Bit();
+#endif
     if (kerberos)
     {
         parseKnownHosts();
@@ -635,7 +638,7 @@ void SshMasterConnection::run()
 #ifdef Q_OS_WIN
     ssh_options_set ( my_ssh_session, SSH_OPTIONS_SSH_DIR, (mainWnd->getHomeDirectory()+"/ssh").toLocal8Bit());
 #ifdef DEBUG
-    x2goDebug<<"setting SSH DIR to "<<mainWnd->getHomeDirectory()+"/ssh";
+    x2goDebug<<"setting SSH DIR to "<<(mainWnd->getHomeDirectory()+"/ssh").toLocal8Bit();
 #endif
 #endif
 

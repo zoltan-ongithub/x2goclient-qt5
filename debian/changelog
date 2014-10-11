@@ -59,6 +59,7 @@ x2goclient (4.0.3.0-0x2go1) UNRELEASED; urgency=low
       language as the Windows "system locale" AKA "Language for non-Unicode
       programs." Bug #611 was written for fixing the issue for languages other
       than the system locale.)
+      Thanks George Trakatelis (uom.edu.gr) for submitting part of this fix.
     - Windows: Install VcXsrv "misc" fonts by default, and make all 4 font
       groups optional: misc, 75dpi, 100dpi and others (Fixes: #108)
       Note: The fact that all the fonts are included makes the installer about
