@@ -10,25 +10,55 @@ Source0:        http://code.x2go.org/releases/source/%{name}/%{name}-%{version}.
 
 BuildRequires:  cups-devel
 BuildRequires:  desktop-file-utils
-BuildRequires:  libssh-devel >= 0.4.7
-BuildRequires:  libXpm-devel
-%if 0%{?fedora} || 0%{?el7}
-BuildRequires:  man2html-core
-%else
-BuildRequires:  man
-%endif
-BuildRequires:  openldap-devel
+
+BuildRequires:  openldap2-devel
 %if 0%{?el5} || 0%{?el6}
 BuildRequires:  qt4-devel
 %else
 BuildRequires:  qt-devel
 %endif
+
 %if 0%{?fedora} >= 19 || 0%{?rhel} >= 6
 BuildRequires:  qtbrowserplugin-static
 %endif
+
+%if "%{?_vendor}" == "redhat"
+%if 0%{?fedora} || 0%{?el7}
+BuildRequires:  man2html-core
+%else
+BuildRequires:  man
+%endif
+BuildRequires:	libssh-devel >= 0.4.7
+BuildRequires:	libXpm-devel, libX11-devel
+%endif
+
+if "%{?_vendor}" == "suse"
+BuildRequires:	fdupes update-desktop-files
+%if 0%{?suse_version} >= 1130
+BuildRequires:	pkgconfig(libssh) >= 0.4.7
+BuildRequires:	pkgconfig(x11) pkgconfig(xpm) pkgconfig(xproto)
+%endif
+%if 0%{?suse_version} && 0%{?suse_version} < 1130
+BuildRequires:	libssh-devel >= 0.4
+BuildRequires:	xorg-x11-libXpm-devel xorg-x11-proto-devel
+BuildRequires:	xorg-x11-libX11-devel
+%endif
+BuildRequires:	man2html
+%endif
+
 Requires:       hicolor-icon-theme
 Requires:       nxproxy
 Requires:       openssh-clients, openssh-server
+
+%if "%{?_vendor}" == "suse"
+Requires:	terminus-font
+%endif
+%if "%{?_vendor}" == "redhat"
+Requires:	terminus-fonts
+%endif
+%if 0%{?suse_version} >= 1100
+Suggests:	pinentry-x2go
+%endif
 
 %if 0%{?el5}
 # For compatibility with EPEL5
@@ -121,6 +151,11 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
 
 mkdir -p %{buildroot}%{_sysconfdir}/httpd/conf.d
 ln -s ../../x2go/x2goplugin-apache.conf %{buildroot}%{_sysconfdir}/httpd/conf.d/x2goplugin-provider.conf
+
+if 0%{?suse_version}
+%suse_update_desktop_file -r x2goclient Utility WebUtility
+%fdupes %buildroot
+%endif
 
 %post
 /bin/touch --no-create %{_datadir}/icons/hicolor &>/dev/null || :
