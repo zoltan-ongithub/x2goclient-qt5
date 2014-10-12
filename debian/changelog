@@ -9,6 +9,10 @@ x2goclient (4.0.3.0-0x2go1) UNRELEASED; urgency=low
     - Update translation files. Add empty Portuguese translation. Update
       qt_<lang>.qm files from Debian unstable as of today.
     - Update German translation file (after session folder feature got added).
+  * debian/control:
+    + Add B-D: apache2-dev. On squeeze / lucid builds, this is a superfluous
+      B-D, but for later Debian/Ubuntu versions, this smoothes the installation
+      of the x2goplugin-provide bin:package.
 
   [ Oleksandr Shneyder ]
   * New upstream release (4.0.3.0):
