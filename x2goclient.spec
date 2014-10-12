@@ -151,7 +151,7 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
 mkdir -p %{buildroot}%{_sysconfdir}/httpd/conf.d
 ln -s ../../x2go/x2goplugin-apache.conf %{buildroot}%{_sysconfdir}/httpd/conf.d/x2goplugin-provider.conf
 
-if 0%{?suse_version}
+%if 0%{?suse_version}
 %suse_update_desktop_file -r x2goclient Utility WebUtility
 %fdupes %buildroot
 %endif
