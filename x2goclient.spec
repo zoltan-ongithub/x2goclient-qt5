@@ -43,7 +43,6 @@ BuildRequires:	libssh-devel >= 0.4
 BuildRequires:	xorg-x11-libXpm-devel xorg-x11-proto-devel
 BuildRequires:	xorg-x11-libX11-devel
 %endif
-BuildRequires:	man2html
 %endif
 
 Requires:       hicolor-icon-theme
