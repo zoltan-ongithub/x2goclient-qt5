@@ -9,6 +9,7 @@ x2goclient (4.0.3.0-0x2go1) UNRELEASED; urgency=low
     - Update translation files. Add empty Portuguese translation. Update
       qt_<lang>.qm files from Debian unstable as of today.
     - Update German translation file (after session folder feature got added).
+    - Makefile.man2html: Test if man2html exists. If not, don't fail.
   * debian/control:
     + Add B-D: apache2-dev. On squeeze / lucid builds, this is a superfluous
       B-D, but for later Debian/Ubuntu versions, this smoothes the installation
