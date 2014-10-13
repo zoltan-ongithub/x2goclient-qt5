@@ -7554,18 +7554,23 @@ void ONMainWindow::exportDefaultDirs()
 {
     QStringList dirs;
     bool clientPrinting= ( useLdap && LDAPPrintSupport );
+    X2goSettings st;
 
     if ( !useLdap )
     {
         if ( !embedMode )
         {
 
-            X2goSettings st ( "sessions" );
-            clientPrinting= st.setting()->value (
+           if (!brokerMode)
+               st= new X2goSettings( "sessions" );
+           else
+               st= new X2goSettings(config.iniFile,QSettings::IniFormat);
+
+            clientPrinting= st->setting()->value (
                                 sessionExplorer->getLastSession()->id() +
                                 "/print", true ).toBool();
 
-            QString exd=st.setting()->value (
+            QString exd=st->setting()->value (
                             sessionExplorer->getLastSession()->id() +"/export",
                             ( QVariant ) QString::null ).toString();
             QStringList lst=exd.split ( ";",
@@ -7651,6 +7656,7 @@ void ONMainWindow::exportDefaultDirs()
                   SLOT ( slotCheckPrintSpool() ) );
         spoolTimer->start ( 2000 );
     }
+    delete st;
     if ( dirs.size() <=0 )
         return;
     exportDirs ( dirs.join ( ":" ) );
