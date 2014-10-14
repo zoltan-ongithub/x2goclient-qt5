@@ -215,9 +215,11 @@ fi
 %defattr(-,root,root)
 # Link
 %if 0%{suse_version}
+%dir %{_sysconfdir}/apache2/
 %dir %{_sysconfdir}/apache2/conf.d/
 %{_sysconfdir}/apache2/conf.d/x2goplugin-provider.conf
 %else
+%dir %{_sysconfdir}/httpd/
 %dir %{_sysconfdir}/httpd/conf.d/
 %{_sysconfdir}/httpd/conf.d/x2goplugin-provider.conf
 %endif
