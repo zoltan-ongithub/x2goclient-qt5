@@ -20,7 +20,7 @@ x2goclient (4.0.3.0-0x2go1) UNRELEASED; urgency=low
     + Adapt to building for openSUSE/SLES.
     + openSUSE: Make Qt4 Linguist tools available for Makefile.
     + Upgrade versioned BR for libssh-devel (0.6.3 or patched 0.5.5).
-
+    + The libqt4-linguist split off happened in openSUSE 13.1.
 
   [ Oleksandr Shneyder ]
   * New upstream release (4.0.3.0):
