@@ -179,9 +179,19 @@ fi
 
 
 %files
+%defattr(-,root,root)
 %doc AUTHORS COPYING LICENSE 
 %{_bindir}/%{name}
 %{_datadir}/applications/%{name}.desktop
+%dir %{_datadir}/icons/hicolor
+%dir %{_datadir}/icons/hicolor/128x128
+%dir %{_datadir}/icons/hicolor/128x128/apps
+%dir %{_datadir}/icons/hicolor/16x16
+%dir %{_datadir}/icons/hicolor/16x16/apps
+%dir %{_datadir}/icons/hicolor/32x32
+%dir %{_datadir}/icons/hicolor/32x32/apps
+%dir %{_datadir}/icons/hicolor/64x64
+%dir %{_datadir}/icons/hicolor/64x64/apps
 %{_datadir}/icons/hicolor/128x128/apps/%{name}.png
 %{_datadir}/icons/hicolor/16x16/apps/%{name}.png
 %{_datadir}/icons/hicolor/32x32/apps/%{name}.png
@@ -191,9 +201,13 @@ fi
 
 
 %files -n x2goplugin
+%defattr(-,root,root)
+%dir %{_libdir}/mozilla
+%dir %{_libdir}/mozilla/plugins
 %{_libdir}/mozilla/plugins/libx2goplugin.so
 
 %files -n x2goplugin-provider
+%defattr(-,root,root)
 # Link
 %{_sysconfdir}/httpd/conf.d/x2goplugin-provider.conf
 %dir %{_sysconfdir}/x2go
