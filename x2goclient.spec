@@ -158,7 +158,11 @@ make install DESTDIR=%{buildroot} PREFIX=%{_prefix}
 desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
 
 mkdir -p %{buildroot}%{_sysconfdir}/httpd/conf.d
+%if 0%{suse_version}
+ln -s ../../x2go/x2goplugin-apache.conf %{buildroot}%{_sysconfdir}/apache2/conf.d/x2goplugin-provider.conf
+%else
 ln -s ../../x2go/x2goplugin-apache.conf %{buildroot}%{_sysconfdir}/httpd/conf.d/x2goplugin-provider.conf
+%endif
 
 %if 0%{?suse_version}
 %suse_update_desktop_file -r x2goclient Utility WebUtility
@@ -209,7 +213,13 @@ fi
 %files -n x2goplugin-provider
 %defattr(-,root,root)
 # Link
+%if 0%{suse_version}
+%dir %{_sysconfdir}/apache2/conf.d/
+%{_sysconfdir}/apache2/conf.d/x2goplugin-provider.conf
+%else
+%dir %{_sysconfdir}/httpd/conf.d/
 %{_sysconfdir}/httpd/conf.d/x2goplugin-provider.conf
+%endif
 %dir %{_sysconfdir}/x2go
 %dir %{_sysconfdir}/x2go/plugin-provider
 %config(noreplace) %{_sysconfdir}/x2go/plugin-provider/x2goplugin.html
