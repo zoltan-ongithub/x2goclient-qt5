@@ -14,7 +14,7 @@ BuildRequires:  desktop-file-utils
 BuildRequires:  openldap2-devel
 %if 0%{?suse_version}
 BuildRequires:  libqt4-devel
-%if 0%{?suse_version} >= 13.1
+%if 0%{?suse_version} >= 1310
 BuildRequires:  libqt4-linguist
 %endif
 %else
