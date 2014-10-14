@@ -33,18 +33,18 @@ BuildRequires:  man2html-core
 %else
 BuildRequires:  man
 %endif
-BuildRequires:	libssh-devel >= 0.4.7
+BuildRequires:	libssh-devel >= 0.5.5-2.1x2go1
 BuildRequires:	libXpm-devel, libX11-devel
 %endif
 
 %if "%{?_vendor}" == "suse"
 BuildRequires:	fdupes update-desktop-files
 %if 0%{?suse_version} >= 1130
-BuildRequires:	pkgconfig(libssh) >= 0.4.7
+BuildRequires:	pkgconfig(libssh) >= 0.6.3
 BuildRequires:	pkgconfig(x11) pkgconfig(xpm) pkgconfig(xproto)
 %endif
 %if 0%{?suse_version} && 0%{?suse_version} < 1130
-BuildRequires:	libssh-devel >= 0.4
+BuildRequires:	libssh-devel >= 0.6.3
 BuildRequires:	xorg-x11-libXpm-devel xorg-x11-proto-devel
 BuildRequires:	xorg-x11-libX11-devel
 %endif
