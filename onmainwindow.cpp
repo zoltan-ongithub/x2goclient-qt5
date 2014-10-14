@@ -7554,7 +7554,7 @@ void ONMainWindow::exportDefaultDirs()
 {
     QStringList dirs;
     bool clientPrinting= ( useLdap && LDAPPrintSupport );
-    X2goSettings st;
+    X2goSettings* st;
 
     if ( !useLdap )
     {

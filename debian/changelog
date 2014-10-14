@@ -53,6 +53,7 @@ x2goclient (4.0.3.0-0x2go1) UNRELEASED; urgency=low
     - Save folder icons Base64 coded. Save icons under General\icon_<PATH>.
       (Fixes: #580).
     - Fix placing sessions folders in broker mode.
+    - Fix onmainwindow.cpp after 76ae96781f1d2d5754ee4751539d5de47f1d0297.
 
   [ Mike DePaulo ]
   * New upstream release (4.0.3.0):
