@@ -12,10 +12,14 @@ BuildRequires:  cups-devel
 BuildRequires:  desktop-file-utils
 
 BuildRequires:  openldap2-devel
+%if 0%{?suse_version}
+BuildRequires:  libqt4-linguist
+%else
 %if 0%{?el5} || 0%{?el6}
 BuildRequires:  qt4-devel
 %else
 BuildRequires:  qt-devel
+%endif
 %endif
 
 %if 0%{?fedora} >= 19 || 0%{?rhel} >= 6
@@ -126,7 +130,7 @@ sed -i -e 's/-o root -g root//' Makefile
 sed -i -e '/^MOZPLUGDIR=/s/lib/%{_lib}/' Makefile
 test -f ChangeLog && cp ChangeLog txt/changelog || test -f debian/changelog && cp debian/changelog txt/changelog || true
 test -f ChangeLog.gitlog && cp ChangeLog.gitlog txt/git-info || true
-%if 0%{?el5}
+%if 0%{?el5} || 0%{?suse_version}
 sed -i -e '/^QMAKE_BINARY=/s@qmake-qt4@%{_libdir}/qt4/bin/qmake@' Makefile
 sed -i -e '/^LRELEASE_BINARY=/s@lrelease-qt4@%{_libdir}/qt4/bin/lrelease@' Makefile
 %endif

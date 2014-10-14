@@ -18,6 +18,7 @@ x2goclient (4.0.3.0-0x2go1) UNRELEASED; urgency=low
       of the x2goplugin-provide bin:package.
   * x2goclient.spec:
     + Adapt to building for openSUSE/SLES.
+    + openSUSE: Make Qt4 Linguist tools available for Makefile.
 
 
   [ Oleksandr Shneyder ]
