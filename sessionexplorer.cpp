@@ -113,7 +113,7 @@ void SessionExplorer::getFoldersFromConfig()
     {
         if(folder.indexOf("icon_")==0)
         {
-	    folder=folder.mid(strlen("icon_"));
+            folder=folder.mid(strlen("icon_"));
             folder.replace("::","/");
             if(findFolder(folder)==-1)
                 createFolder(folder);
@@ -268,7 +268,7 @@ void SessionExplorer::placeButtons()
 
     setNavigationVisible(currentPath.length()>0);
     resize();
-    int currentIndex=0;
+    int currentVerticalPosition=0;
     qSort ( sessions.begin(),sessions.end(),SessionButton::lessThen );
     qSort ( folders.begin(), folders.end(), FolderButton::lessThen );
 
@@ -279,18 +279,22 @@ void SessionExplorer::placeButtons()
             folders[i]->hide();
             continue;
         }
-        if ( !parent->getMiniMode() )
-            folders[i]->move ( ( parent->getUsersArea()->width()-360 ) /2,
-                               currentIndex*220+currentIndex*25+5 );
-        else
+
+        if ( parent->getMiniMode() )
+        {
             folders[i]->move ( ( parent->getUsersArea()->width()-260 ) /2,
-                               currentIndex*155+currentIndex*20+5 );
-        if (parent->getBrokerMode())
+                               currentVerticalPosition+5 );
+            currentVerticalPosition+=170;
+        }
+        else
+        {
             folders[i]->move ( ( parent->getUsersArea()->width()-360 ) /2,
-                               currentIndex*150+currentIndex*25+5 );
+                               currentVerticalPosition+5 );
+            currentVerticalPosition+=230;
+        }
+
         folders[i]->show();
         folders[i]->setChildrenList(getFolderChildren(folders[i]));
-        ++currentIndex;
     }
 
     for ( int i=0; i<sessions.size(); ++i )
@@ -300,32 +304,35 @@ void SessionExplorer::placeButtons()
             sessions[i]->hide();
             continue;
         }
-        if ( !parent->getMiniMode() )
-            sessions[i]->move ( ( parent->getUsersArea()->width()-360 ) /2,
-                                currentIndex*220+currentIndex*25+5 );
+
+        int horizontalPosition=(parent->getMiniMode())?(parent->getUsersArea()->width()-260 ) /2:(parent->getUsersArea()->width()-360 ) /2;
+
+        sessions[i]->move ( horizontalPosition,
+                            currentVerticalPosition+5 );
+
+        if(parent->getBrokerMode())
+        {
+            currentVerticalPosition+=150;
+        }
         else
-            sessions[i]->move ( ( parent->getUsersArea()->width()-260 ) /2,
-                                currentIndex*155+currentIndex*20+5 );
-        if (parent->getBrokerMode())
-            sessions[i]->move ( ( parent->getUsersArea()->width()-360 ) /2,
-                                currentIndex*150+currentIndex*25+5 );
+        {
+            if ( parent->getMiniMode() )
+            {
+                currentVerticalPosition+=170;
+            }
+            else
+            {
+                currentVerticalPosition+=230;
+            }
+        }
         sessions[i]->show();
-        ++currentIndex;
     }
 
-    if ( currentIndex )
+    if ( currentVerticalPosition )
     {
-        if ( !parent->getMiniMode() )
-            parent->getUsersFrame()->setFixedHeight (
-                currentIndex *220+ ( currentIndex -1 ) *25 );
-        else
-            parent->getUsersFrame()->setFixedHeight (
-                currentIndex *155+ ( currentIndex-1 ) *20 );
-        if (parent->getBrokerMode())
-            parent->getUsersFrame()->setFixedHeight (
-                currentIndex *150+ ( currentIndex-1 ) *25 );
+        parent->getUsersFrame()->setFixedHeight (
+            currentVerticalPosition);
     }
-
 }
 
 QStringList SessionExplorer::getFolderChildren(FolderButton* folder)

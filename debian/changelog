@@ -52,6 +52,7 @@ x2goclient (4.0.3.0-0x2go1) UNRELEASED; urgency=low
     - Remove deprecated workaround in wapi.cpp.
     - Save folder icons Base64 coded. Save icons under General\icon_<PATH>.
       (Fixes: #580).
+    - Fix placing sessions folders in broker mode.
 
   [ Mike DePaulo ]
   * New upstream release (4.0.3.0):
