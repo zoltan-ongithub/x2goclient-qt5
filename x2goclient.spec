@@ -159,7 +159,7 @@ make %{?_smp_mflags}
 make install DESTDIR=%{buildroot} PREFIX=%{_prefix}
 desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
 
-%if 0%{suse_version}
+%if 0%{?suse_version}
 mkdir -p %{buildroot}%{_sysconfdir}/apache2/conf.d
 ln -s ../../x2go/x2goplugin-apache.conf %{buildroot}%{_sysconfdir}/apache2/conf.d/x2goplugin-provider.conf
 %else
