@@ -23,6 +23,7 @@ x2goclient (4.0.3.0-0x2go1) UNRELEASED; urgency=low
     + The libqt4-linguist split off happened in openSUSE 13.1.
     + Add x2goclient-rpmlintrc file.
     + In openSUSE, it is openldap2-devel, in Fedora/RHEL it is openldap-devel.
+    + In openSUSE, openssh is openssh (not openssh-clients / openssh-server).
 
   [ Oleksandr Shneyder ]
   * New upstream release (4.0.3.0):

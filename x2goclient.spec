@@ -62,7 +62,11 @@ BuildRequires:	xorg-x11-libX11-devel
 
 Requires:       hicolor-icon-theme
 Requires:       nxproxy
+%if 0%{?suse_version}
+Requires:       openssh
+%else
 Requires:       openssh-clients, openssh-server
+%endif
 
 %if "%{?_vendor}" == "suse"
 Requires:	terminus-font
@@ -98,7 +102,12 @@ Summary: X2Go Client (Qt4) as browser plugin
 Group:          Applications/Communications
 Requires:       mozilla-filesystem
 Requires:       nxproxy
+%if 0%{?suse_version}
+Requires:       openssh
+%else
 Requires:       openssh-clients, openssh-server
+%endif
+
 
 %description -n x2goplugin
 X2Go is a server-based computing environment with
