@@ -3,10 +3,17 @@ Version:        4.0.3.0
 Release:        0.0x2go1%{?dist}
 Summary:        X2Go Client application (Qt4)
 
+%if 0%{?suse_version}
+Group:          Production/Networking/Remote Desktop
+License:        GPL-2.0+
+%else
 Group:          Applications/Communications
 License:        GPLv2+
+%endif
+
 URL:            http://www.x2go.org
 Source0:        http://code.x2go.org/releases/source/%{name}/%{name}-%{version}.tar.gz
+Source1:        x2goclient-rpmlintrc
 
 BuildRequires:  cups-devel
 BuildRequires:  desktop-file-utils
