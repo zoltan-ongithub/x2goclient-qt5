@@ -223,7 +223,7 @@ fi
 %files -n x2goplugin-provider
 %defattr(-,root,root)
 # Link
-%if 0%{suse_version}
+%if 0%{?suse_version}
 %dir %{_sysconfdir}/apache2/
 %dir %{_sysconfdir}/apache2/conf.d/
 %{_sysconfdir}/apache2/conf.d/x2goplugin-provider.conf
