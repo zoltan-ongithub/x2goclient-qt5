@@ -18,8 +18,8 @@ Source1:        x2goclient-rpmlintrc
 BuildRequires:  cups-devel
 BuildRequires:  desktop-file-utils
 
-BuildRequires:  openldap2-devel
 %if 0%{?suse_version}
+BuildRequires:  openldap2-devel
 BuildRequires:  libqt4-devel
 %if 0%{?suse_version} >= 1310
 BuildRequires:  libqt4-linguist
@@ -30,6 +30,7 @@ BuildRequires:  qt4-devel
 %else
 BuildRequires:  qt-devel
 %endif
+BuildRequires:  openldap-devel
 %endif
 
 %if 0%{?fedora} >= 19 || 0%{?rhel} >= 6
