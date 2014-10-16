@@ -536,7 +536,7 @@ void HttpBrokerClient::parseSession(QString sinfo)
     if (sinfo.indexOf("SESSION_INFO")!=-1)
     {
         QStringList lst=sinfo.split("SESSION_INFO:",QString::SkipEmptyParts);
-        config->sessiondata=(lst[1].split("\n"))[0];
+        config->sessiondata=lst[1];
         x2goDebug<<"session data: "<<config->sessiondata<<"\n";
     }
     x2goDebug<<"parsing has finished\n";

@@ -3425,7 +3425,7 @@ void ONMainWindow::slotListSessions ( bool result,QString output,
         uname->setEnabled ( false );
         u->setEnabled ( false );
     }
-    if ( managedMode || brokerMode )
+    if ( managedMode )
     {
         x2goDebug<<"Session data: " + config.sessiondata;
         if ( config.sessiondata.indexOf ( "|S|" ) ==-1 )
@@ -3442,8 +3442,17 @@ void ONMainWindow::slotListSessions ( bool result,QString output,
         return;
     }
 
-    QStringList sessions=output.trimmed().split ( '\n',
-                         QString::SkipEmptyParts );
+    QStringList sessions;
+    if(!brokerMode)
+    {
+        sessions=output.trimmed().split ( '\n',
+                                          QString::SkipEmptyParts );
+    }
+    else
+    {
+        sessions=config.sessiondata.trimmed().split ( '\n',
+                 QString::SkipEmptyParts );
+    }
     if ( shadowSession )
     {
         selectSession ( sessions );
@@ -7554,17 +7563,17 @@ void ONMainWindow::exportDefaultDirs()
 {
     QStringList dirs;
     bool clientPrinting= ( useLdap && LDAPPrintSupport );
-    X2goSettings* st;
 
     if ( !useLdap )
     {
         if ( !embedMode )
         {
 
-           if (!brokerMode)
-               st= new X2goSettings( "sessions" );
-           else
-               st= new X2goSettings(config.iniFile,QSettings::IniFormat);
+            X2goSettings* st;
+            if (!brokerMode)
+                st= new X2goSettings( "sessions" );
+            else
+                st= new X2goSettings(config.iniFile,QSettings::IniFormat);
 
             clientPrinting= st->setting()->value (
                                 sessionExplorer->getLastSession()->id() +
@@ -7606,6 +7615,7 @@ void ONMainWindow::exportDefaultDirs()
                     dirs+=tails[0];
                 }
             }
+            delete st;
         }
         else
         {
@@ -7656,7 +7666,6 @@ void ONMainWindow::exportDefaultDirs()
                   SLOT ( slotCheckPrintSpool() ) );
         spoolTimer->start ( 2000 );
     }
-    delete st;
     if ( dirs.size() <=0 )
         return;
     exportDirs ( dirs.join ( ":" ) );
@@ -11225,7 +11234,8 @@ void ONMainWindow::initSelectSessDlg()
 
     connect ( sessTv,SIGNAL ( selected ( const QModelIndex& ) ),
               this,SLOT ( slotActivated ( const QModelIndex& ) ) );
-    connect ( sessTv,SIGNAL ( activated ( const QModelIndex& ) ),
+
+    connect ( sessTv,SIGNAL ( doubleClicked ( const QModelIndex& ) ),
               this,SLOT ( slotResumeDoubleClick ( const QModelIndex& ) ) );
 
     connect ( sOk,SIGNAL ( clicked() ),this, SLOT ( slotResumeSess() ) );
