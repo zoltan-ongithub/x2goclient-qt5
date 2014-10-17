@@ -41,8 +41,8 @@ x2goclient (4.0.3.0-0x2go1) UNRELEASED; urgency=low
     - Update russian translation.
     - Update string "&Clipboard Mode" and translate in russian translation file.
     - Grammar fix in russian translation.
-    - Add x2gohelper to start X2Go Client on Windows and clean child processes if
-      X2Go Client crashes. (Fixes: #525).
+    - Add x2gohelper to start X2Go Client on Windows and clean child processes
+      if X2Go Client crashes. (Fixes: #525).
     - On Windows rename x2goclient.exe to x2goclient-mainprocess.exe and
       x2gohelper.exe to x2goclient.exe.
     - Start x2gohelper from X2Go Client. Revert name changing of X2Go Client and
