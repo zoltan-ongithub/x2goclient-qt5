@@ -483,73 +483,73 @@
     <name>FolderButton</name>
     <message>
         <source>Sessions folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Sesjonsmappe</translation>
     </message>
 </context>
 <context>
     <name>FolderExplorer</name>
     <message>
         <source>Folders</source>
-        <translation type="unfinished"></translation>
+        <translation>Mapper</translation>
     </message>
     <message>
         <source>Create New Folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Lag en ny mappe</translation>
     </message>
     <message>
         <source>Rename Folder...</source>
-        <translation type="unfinished"></translation>
+        <translation>Lag nytt navn på mappe...</translation>
     </message>
     <message>
         <source>Change Icon...</source>
-        <translation type="unfinished"></translation>
+        <translation>Endre ikon ...</translation>
     </message>
     <message>
         <source>Delete Folder...</source>
-        <translation type="unfinished"></translation>
+        <translation>Slett mappe...</translation>
     </message>
     <message>
         <source>Open picture</source>
-        <translation type="unfinished">Åpne bilde</translation>
+        <translation>Åpne bilde</translation>
     </message>
     <message>
         <source>Pictures</source>
-        <translation type="unfinished">Bilder</translation>
+        <translation>Bilder</translation>
     </message>
     <message>
         <source>X2Go Client</source>
-        <translation type="unfinished">X2Go klient</translation>
+        <translation>X2Go klient</translation>
     </message>
     <message>
         <source>Folder Name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Navn på mappe:</translation>
     </message>
     <message>
         <source>Error</source>
-        <translation type="unfinished">Feil</translation>
+        <translation>Feil</translation>
     </message>
     <message>
         <source>Unable to remove &quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Klarte ikke å fjerne &quot;</translation>
     </message>
     <message>
         <source>&quot;. Folder is not empty. Please remove content of folder and try again.</source>
-        <translation type="unfinished"></translation>
+        <translation>&quot; mappen er ikke tom. Fjern innholdet i mappa, og forsøk pånytt.</translation>
     </message>
     <message>
         <source>Delete folder &quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Slett mappe &quot;</translation>
     </message>
     <message>
         <source>New Folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Ny mappe</translation>
     </message>
 </context>
 <context>
     <name>HelpDialog</name>
     <message>
         <source>Options</source>
-        <translation type="unfinished">Alternativer</translation>
+        <translation>Alternativer</translation>
     </message>
 </context>
 <context>
@@ -696,7 +696,7 @@ Offentlig nøkkel: </translation>
     </message>
     <message>
         <source>Verification code:</source>
-        <translation type="unfinished">Verifikasjons kode:</translation>
+        <translation>Verifikasjonskode:</translation>
     </message>
 </context>
 <context>
@@ -860,7 +860,7 @@ Vil du avbryte tilkoblingen?
     </message>
     <message>
         <source>Error getting window geometry (window closed)?</source>
-        <translation>Feil under uthenting av vindusgeometrien (Er vinduet lukket?)</translation>
+        <translation>Feil under uthenting av vindusgeometrien (Er vinduet lukket)?</translation>
     </message>
     <message>
         <source>Password:</source>
@@ -1736,27 +1736,27 @@ Du kan installere sshd med:
     </message>
     <message>
         <source>Help</source>
-        <translation type="unfinished"></translation>
+        <translation>Hjelp</translation>
     </message>
     <message>
         <source>Pack Methodes</source>
-        <translation type="unfinished"></translation>
+        <translation>Pakkemetode</translation>
     </message>
     <message>
         <source>Option is not availabel in this build</source>
-        <translation type="unfinished"></translation>
+        <translation>Valget er ikke aktivet i denne versjonen</translation>
     </message>
     <message>
         <source>Changelog</source>
-        <translation type="unfinished"></translation>
+        <translation>Endringslogg</translation>
     </message>
     <message>
         <source>Git Info</source>
-        <translation type="unfinished"></translation>
+        <translation>Git info</translation>
     </message>
     <message>
         <source>SSH Error</source>
-        <translation type="unfinished"></translation>
+        <translation>SSH feil</translation>
     </message>
     <message>
         <source>SSH daemon could not be started.
@@ -1768,7 +1768,15 @@ Windows ships its internal sshd.exe.
 
 If you see this message, please report a bug against
 the X2Go bugtracker.</source>
-        <translation type="unfinished"></translation>
+        <translation>SSH demonen kunne ikke starte.
+
+Du trenger SSH demone for å kunne skrive ut og for fildeling.
+
+Noramlt skal ikke dette skje siden X2Goklienten for Windows 
+inneholder den interne sshd.exe.
+
+Hvis du ser denne meldingen, vennligst opprett en feilmelding i
+X2Go sin feilmeldingshåndterer.</translation>
     </message>
     <message>
         <source>SSH daemon is not running.
@@ -1777,25 +1785,30 @@ You&apos;ll need SSH daemon for printing and file sharing
 
 Please ask your system administrator to provide the SSH
 service on your computer.</source>
-        <translation type="unfinished"></translation>
+        <translation>SSH daemon could not be started.
+
+You&apos;ll need SSH daemon for printing and file sharing.
+
+Vennligst be din systemadministrator og å tilby SSH på din
+datamaskin.</translation>
     </message>
     <message>
         <source>SSH daemon failed to open the application&apos;s public host key.</source>
-        <translation type="unfinished"></translation>
+        <translation>SSH demonen klarte ikke å åpne applikasjonens offentlige vertsnøkkel.</translation>
     </message>
     <message>
         <source>SSH daemon failed to open the application&apos;s public key
 used for exporting folders and printers.</source>
-        <translation type="unfinished"></translation>
+        <translation>SSH demonen klarte ikke å åpne applikasjonens offentlige nøkke for å eksportere mapper og skrivere.</translation>
     </message>
     <message>
         <source>SSH daemon failed to open the application&apos;s
 authoized_keys file.</source>
-        <translation type="unfinished"></translation>
+        <translation>SSH demonen klarte ikke å åpne applikasjonens authorized_keys fil.</translation>
     </message>
     <message>
         <source>wrong value for argument&quot;--clipboard&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>feil verdi til argumentet&quot;--clipboard&quot;</translation>
     </message>
 </context>
 <context>
@@ -2062,35 +2075,35 @@ Eksempel:
     <name>SessionExplorer</name>
     <message>
         <source>Back</source>
-        <translation type="unfinished"></translation>
+        <translation>Tilbake</translation>
     </message>
     <message>
         <source>Create session icon on desktop</source>
-        <translation type="unfinished">Opprett sesjonsikon på skrivebordet</translation>
+        <translation>Opprett sesjonsikon på skrivebordet</translation>
     </message>
     <message>
         <source>Desktop icons can be configured not to show x2goclient (hidden mode). If you like to use this feature you&apos;ll need to configure login by a gpg key or gpg smart card.
 
 Use x2goclient hidden mode?</source>
-        <translation type="unfinished">Skrivebordsikoner kan konfigureres til å ikke vise x2goklient (skjult modus). Om du ønsker å benytte denne muligheten må du konfigurere pålogging ved bruk av en GPG-nøkkel, eller et GPG basert smartkort.
+        <translation>Skrivebordsikoner kan konfigureres til å ikke vise x2goklient (skjult modus). Om du ønsker å benytte denne muligheten må du konfigurere pålogging ved bruk av en GPG-nøkkel, eller et GPG basert smartkort.
 
 Ønsker du å aktivere skjult modus for x2goklient?</translation>
     </message>
     <message>
         <source>Show session tray icon when running</source>
-        <translation type="unfinished">Hvis sesjonsikon i systemkurven når sesjonen kjører</translation>
+        <translation>Hvis sesjonsikon i systemkurven når sesjonen kjører</translation>
     </message>
     <message>
         <source>New Session</source>
-        <translation type="unfinished">Ny sesjon</translation>
+        <translation>Ny sesjon</translation>
     </message>
     <message>
         <source>X2Go Link to session </source>
-        <translation type="unfinished">X2Go kobling til sesjon </translation>
+        <translation>X2Go kobling til sesjon </translation>
     </message>
     <message>
         <source>Are you sure you want to delete this session?</source>
-        <translation type="unfinished">Er du sikker på at du ønsker å fjerne denne sesjonen?</translation>
+        <translation>Er du sikker på at du ønsker å fjerne denne sesjonen?</translation>
     </message>
 </context>
 <context>
@@ -2301,7 +2314,7 @@ Use x2goclient hidden mode?</source>
     </message>
     <message>
         <source>Path:</source>
-        <translation type="unfinished">Sti:</translation>
+        <translation>Sti:</translation>
     </message>
 </context>
 <context>
@@ -2454,23 +2467,23 @@ lydsystem forbindelser gjennom brannmurer</translation>
     </message>
     <message>
         <source>&amp;Clipboard Mode</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Clipboard Modus</translation>
     </message>
     <message>
         <source>Bidirectional copy and paste</source>
-        <translation type="unfinished"></translation>
+        <translation>Toveis klipp og lim</translation>
     </message>
     <message>
         <source>Copy and paste from client to server</source>
-        <translation type="unfinished"></translation>
+        <translation>Klipp og lim fra klient til server</translation>
     </message>
     <message>
         <source>Copy and paste from server to client</source>
-        <translation type="unfinished"></translation>
+        <translation>Klipp og lim fra server til klient</translation>
     </message>
     <message>
         <source>Disable clipboard completely</source>
-        <translation type="unfinished"></translation>
+        <translation>Skru av utklippstavla</translation>
     </message>
 </context>
 <context>
