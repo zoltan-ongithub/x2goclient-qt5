@@ -604,7 +604,7 @@
     <message>
         <location filename="folderbutton.cpp" line="73"/>
         <source>Sessions folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Sessionsmapp</translation>
     </message>
 </context>
 <context>
@@ -612,72 +612,72 @@
     <message>
         <location filename="folderexplorer.ui" line="14"/>
         <source>Folders</source>
-        <translation type="unfinished"></translation>
+        <translation>Mappar</translation>
     </message>
     <message>
         <location filename="folderexplorer.cpp" line="77"/>
         <source>Create New Folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Skapa ny mapp</translation>
     </message>
     <message>
         <location filename="folderexplorer.cpp" line="81"/>
         <source>Rename Folder...</source>
-        <translation type="unfinished"></translation>
+        <translation>Döp om mapp...</translation>
     </message>
     <message>
         <location filename="folderexplorer.cpp" line="82"/>
         <source>Change Icon...</source>
-        <translation type="unfinished"></translation>
+        <translation>Ändra ikon...</translation>
     </message>
     <message>
         <location filename="folderexplorer.cpp" line="83"/>
         <source>Delete Folder...</source>
-        <translation type="unfinished"></translation>
+        <translation>Ta bort mapp...</translation>
     </message>
     <message>
         <location filename="folderexplorer.cpp" line="97"/>
         <source>Open picture</source>
-        <translation type="unfinished">Öppna bild</translation>
+        <translation>Öppna bild</translation>
     </message>
     <message>
         <location filename="folderexplorer.cpp" line="99"/>
         <source>Pictures</source>
-        <translation type="unfinished">Bilder</translation>
+        <translation>Bilder</translation>
     </message>
     <message>
         <location filename="folderexplorer.cpp" line="112"/>
         <source>X2Go Client</source>
-        <translation type="unfinished">X2Go-klient</translation>
+        <translation>X2Go-klient</translation>
     </message>
     <message>
         <location filename="folderexplorer.cpp" line="113"/>
         <source>Folder Name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Mappnamn:</translation>
     </message>
     <message>
         <location filename="folderexplorer.cpp" line="130"/>
         <source>Error</source>
-        <translation type="unfinished">Fel</translation>
+        <translation>Fel</translation>
     </message>
     <message>
         <location filename="folderexplorer.cpp" line="130"/>
         <source>Unable to remove &quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Kunde ej ta bort &quot;</translation>
     </message>
     <message>
         <location filename="folderexplorer.cpp" line="131"/>
         <source>&quot;. Folder is not empty. Please remove content of folder and try again.</source>
-        <translation type="unfinished"></translation>
+        <translation>&quot;. Mappen är inte tom. Var vänlig töm mappen och försök igen.</translation>
     </message>
     <message>
         <location filename="folderexplorer.cpp" line="134"/>
         <source>Delete folder &quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Ta bort mapp &quot;</translation>
     </message>
     <message>
         <location filename="folderexplorer.cpp" line="145"/>
         <source>New Folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Ny mapp</translation>
     </message>
 </context>
 <context>
@@ -685,7 +685,7 @@
     <message>
         <location filename="helpdialog.ui" line="14"/>
         <source>Options</source>
-        <translation type="unfinished">Alternativ</translation>
+        <translation>Alternativ</translation>
     </message>
 </context>
 <context>
@@ -767,7 +767,7 @@ Publik nyckel: </translation>
     <message>
         <location filename="httpbrokerclient.cpp" line="203"/>
         <source>Verification code:</source>
-        <translation type="unfinished">Verifieringskod:</translation>
+        <translation>Verifieringskod:</translation>
     </message>
     <message>
         <location filename="httpbrokerclient.cpp" line="207"/>
@@ -1307,7 +1307,7 @@ Använd dolt läge?</translation>
     <message>
         <location filename="onmainwindow.cpp" line="6918"/>
         <source>wrong value for argument&quot;--clipboard&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>fel värde för argument &quot;--clipboard&quot;</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="11251"/>
@@ -1316,7 +1316,7 @@ Använd dolt läge?</translation>
         <location filename="onmainwindow.cpp" line="11292"/>
         <location filename="onmainwindow.cpp" line="11303"/>
         <source>SSH Error</source>
-        <translation type="unfinished"></translation>
+        <translation>SSH-fel</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="11252"/>
@@ -1329,7 +1329,15 @@ Windows ships its internal sshd.exe.
 
 If you see this message, please report a bug against
 the X2Go bugtracker.</source>
-        <translation type="unfinished"></translation>
+        <translation>SSH-kunde inte startas.
+
+Du behöver SSH för skrivar- och fildelning.
+
+Normalt sett ska detta inte ske eftersom X2Go-klienten för
+Windows innehåller en egen sshd.exe.
+
+Om du ser detta meddelande, rapportera en bugg i
+X2Go:s bugghanteringssystem. </translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="11267"/>
@@ -1339,24 +1347,31 @@ You&apos;ll need SSH daemon for printing and file sharing
 
 Please ask your system administrator to provide the SSH
 service on your computer.</source>
-        <translation type="unfinished"></translation>
+        <translation>SSH är inte igång.
+
+Du behöver SSH för skrivar- och fildelning.
+
+Var vänlig be din systemadministratör att tillhandahålla SSH
+på din dator.</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="11283"/>
         <source>SSH daemon failed to open the application&apos;s public host key.</source>
-        <translation type="unfinished"></translation>
+        <translation>SSH kunde inte öppna applikationens publika servernyckel.</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="11293"/>
         <source>SSH daemon failed to open the application&apos;s public key
 used for exporting folders and printers.</source>
-        <translation type="unfinished"></translation>
+        <translation>SSH kunde inte öppna applikationens publika nyckel
+som används för export av mappar och skrivare.</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="11304"/>
         <source>SSH daemon failed to open the application&apos;s
 authoized_keys file.</source>
-        <translation type="unfinished"></translation>
+        <translation>SSH kunde inte öppna applikationens
+authorized_keys-fil.</translation>
     </message>
     <message>
         <source>X2Go sessions not found</source>
@@ -1730,28 +1745,28 @@ Vill du avsluta anslutningen?</translation>
     <message>
         <location filename="onmainwindow.cpp" line="7179"/>
         <source>Help</source>
-        <translation type="unfinished"></translation>
+        <translation>Hjälp</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="7209"/>
         <source>Pack Methodes</source>
-        <translation type="unfinished"></translation>
+        <translation>Packningsmetoder</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="7239"/>
         <location filename="onmainwindow.cpp" line="7249"/>
         <source>Option is not availabel in this build</source>
-        <translation type="unfinished"></translation>
+        <translation>Alternativet är inte tillgängligt i denna version</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="7242"/>
         <source>Changelog</source>
-        <translation type="unfinished"></translation>
+        <translation>Ändringslogg</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="7252"/>
         <source>Git Info</source>
-        <translation type="unfinished"></translation>
+        <translation>Git-information</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="7608"/>
@@ -2099,7 +2114,7 @@ Uppdatera till en nyare version av x2goserver</translation>
     <message>
         <location filename="onmainwindow.cpp" line="8037"/>
         <source>&lt;/b&gt;&lt;br&gt; (C. 2005-2014 &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing)&lt;br&gt;</source>
-        <translation type="unfinished">&lt;/b&gt;&lt;br&gt; (&amp;copy; 2006-2012 &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing)&lt;br&gt; {2005-2014 ?}</translation>
+        <translation>&lt;/b&gt;&lt;br&gt; (&amp;copy; 2005-2014 &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing)&lt;br&gt;</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="10864"/>
@@ -2536,41 +2551,41 @@ Example:
     <message>
         <location filename="sessionexplorer.cpp" line="48"/>
         <source>Back</source>
-        <translation type="unfinished"></translation>
+        <translation>Tillbaka</translation>
     </message>
     <message>
         <location filename="sessionexplorer.cpp" line="134"/>
         <source>Create session icon on desktop</source>
-        <translation type="unfinished">Skapa sessionsgenväg på Skrivbordet</translation>
+        <translation>Skapa sessionsgenväg på Skrivbordet</translation>
     </message>
     <message>
         <location filename="sessionexplorer.cpp" line="135"/>
         <source>Desktop icons can be configured not to show x2goclient (hidden mode). If you like to use this feature you&apos;ll need to configure login by a gpg key or gpg smart card.
 
 Use x2goclient hidden mode?</source>
-        <translation type="unfinished">Skrivbordsgenvägar kan konfigureras att inte visa X2Go-klienten (dolt läge). Om du vill aktivera den funktionen måste du använda inloggning med GPG-nyckel, GPG-smartkort eller SSH-nyckel.
+        <translation>Skrivbordsgenvägar kan konfigureras att inte visa X2Go-klienten (dolt läge). Om du vill aktivera den funktionen måste du använda inloggning med GPG-nyckel eller GPG-smartkort. 
 
 Använd dolt läge?</translation>
     </message>
     <message>
         <location filename="sessionexplorer.cpp" line="145"/>
         <source>Show session tray icon when running</source>
-        <translation type="unfinished">Visa ikon i systemfältet när aktiv</translation>
+        <translation>Visa ikon i systemfältet när aktiv</translation>
     </message>
     <message>
         <location filename="sessionexplorer.cpp" line="159"/>
         <source>New Session</source>
-        <translation type="unfinished">Ny session</translation>
+        <translation>Ny session</translation>
     </message>
     <message>
         <location filename="sessionexplorer.cpp" line="220"/>
         <source>X2Go Link to session </source>
-        <translation type="unfinished">Länk till X2Go-session</translation>
+        <translation>Länk till X2Go-session</translation>
     </message>
     <message>
         <location filename="sessionexplorer.cpp" line="349"/>
         <source>Are you sure you want to delete this session?</source>
-        <translation type="unfinished">Är du säker på att du vill radera denna session?</translation>
+        <translation>Är du säker på att du vill radera denna session?</translation>
     </message>
 </context>
 <context>
@@ -2628,7 +2643,7 @@ Använd dolt läge?</translation>
     <message>
         <location filename="sessionwidget.cpp" line="78"/>
         <source>Path:</source>
-        <translation type="unfinished">Sökväg:</translation>
+        <translation>Sökväg:</translation>
     </message>
     <message>
         <location filename="sessionwidget.cpp" line="83"/>
@@ -2874,27 +2889,27 @@ Använd dolt läge?</translation>
     <message>
         <location filename="settingswidget.cpp" line="52"/>
         <source>&amp;Clipboard Mode</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Urklippsläge</translation>
     </message>
     <message>
         <location filename="settingswidget.cpp" line="155"/>
         <source>Bidirectional copy and paste</source>
-        <translation type="unfinished"></translation>
+        <translation>Dubbelriktad klippa och klistra</translation>
     </message>
     <message>
         <location filename="settingswidget.cpp" line="156"/>
         <source>Copy and paste from client to server</source>
-        <translation type="unfinished"></translation>
+        <translation>Klippa och klistra från klient till server</translation>
     </message>
     <message>
         <location filename="settingswidget.cpp" line="157"/>
         <source>Copy and paste from server to client</source>
-        <translation type="unfinished"></translation>
+        <translation>Klippa och klistra från server till klient</translation>
     </message>
     <message>
         <location filename="settingswidget.cpp" line="158"/>
         <source>Disable clipboard completely</source>
-        <translation type="unfinished"></translation>
+        <translation>Deaktivera Urklipp helt</translation>
     </message>
     <message>
         <location filename="settingswidget.cpp" line="170"/>
