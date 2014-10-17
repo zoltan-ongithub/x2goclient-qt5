@@ -603,7 +603,7 @@
     <message>
         <location filename="folderbutton.cpp" line="73"/>
         <source>Sessions folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Carpeta de sesión</translation>
     </message>
 </context>
 <context>
@@ -611,72 +611,72 @@
     <message>
         <location filename="folderexplorer.ui" line="14"/>
         <source>Folders</source>
-        <translation type="unfinished"></translation>
+        <translation>Carpetas</translation>
     </message>
     <message>
         <location filename="folderexplorer.cpp" line="77"/>
         <source>Create New Folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Crear Nueva Carpeta</translation>
     </message>
     <message>
         <location filename="folderexplorer.cpp" line="81"/>
         <source>Rename Folder...</source>
-        <translation type="unfinished"></translation>
+        <translation>Renombrar Carpeta...</translation>
     </message>
     <message>
         <location filename="folderexplorer.cpp" line="82"/>
         <source>Change Icon...</source>
-        <translation type="unfinished"></translation>
+        <translation>Cambiar Icono...</translation>
     </message>
     <message>
         <location filename="folderexplorer.cpp" line="83"/>
         <source>Delete Folder...</source>
-        <translation type="unfinished"></translation>
+        <translation>Eliminar Carpeta...</translation>
     </message>
     <message>
         <location filename="folderexplorer.cpp" line="97"/>
         <source>Open picture</source>
-        <translation type="unfinished">Abrir imagen</translation>
+        <translation>Abrir imagen</translation>
     </message>
     <message>
         <location filename="folderexplorer.cpp" line="99"/>
         <source>Pictures</source>
-        <translation type="unfinished">Imágenes</translation>
+        <translation>Imágenes</translation>
     </message>
     <message>
         <location filename="folderexplorer.cpp" line="112"/>
         <source>X2Go Client</source>
-        <translation type="unfinished">Cliente X2Go</translation>
+        <translation>Cliente X2Go</translation>
     </message>
     <message>
         <location filename="folderexplorer.cpp" line="113"/>
         <source>Folder Name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nombre de la Carpeta:</translation>
     </message>
     <message>
         <location filename="folderexplorer.cpp" line="130"/>
         <source>Error</source>
-        <translation type="unfinished">Error</translation>
+        <translation>Error</translation>
     </message>
     <message>
         <location filename="folderexplorer.cpp" line="130"/>
         <source>Unable to remove &quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>No se puede eliminar &quot;</translation>
     </message>
     <message>
         <location filename="folderexplorer.cpp" line="131"/>
         <source>&quot;. Folder is not empty. Please remove content of folder and try again.</source>
-        <translation type="unfinished"></translation>
+        <translation>&quot; la Carpeta no está vacía. Elimina el contenido de la carpeta e inténtalo otra vez.</translation>
     </message>
     <message>
         <location filename="folderexplorer.cpp" line="134"/>
         <source>Delete folder &quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Eliminar carpeta &quot;</translation>
     </message>
     <message>
         <location filename="folderexplorer.cpp" line="145"/>
         <source>New Folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Nueva Carpeta</translation>
     </message>
 </context>
 <context>
@@ -2521,40 +2521,41 @@ Ejemplo:
     <message>
         <location filename="sessionexplorer.cpp" line="48"/>
         <source>Back</source>
-        <translation type="unfinished"></translation>
+        <translation>Atrás</translation>
     </message>
     <message>
         <location filename="sessionexplorer.cpp" line="134"/>
         <source>Create session icon on desktop</source>
-        <translation type="unfinished">Crear icono de sesión en el escritorio</translation>
+        <translation>Crear icono de sesión en el escritorio</translation>
     </message>
     <message>
         <location filename="sessionexplorer.cpp" line="135"/>
         <source>Desktop icons can be configured not to show x2goclient (hidden mode). If you like to use this feature you&apos;ll need to configure login by a gpg key or gpg smart card.
 
 Use x2goclient hidden mode?</source>
-        <translation type="unfinished">Los iconoes del escritorio pueden configurarse para no mostrar la ventana del cliente x2go (modo oculto). Si quieres usar esta característica tienes que configurar el inicio de sesión usando una clave gpg o una smart card.
+        <translation>Los iconoes del escritorio pueden configurarse para no mostrar la ventana del cliente x2go (modo oculto). Si quieres usar esta característica tienes que configurar el inicio de sesión usando una clave gpg o una smart card.
+
 ¿Usar el cliente x2go en modo oculto?</translation>
     </message>
     <message>
         <location filename="sessionexplorer.cpp" line="145"/>
         <source>Show session tray icon when running</source>
-        <translation type="unfinished">Mostrar icono de sesión en la bandeja del sistema durante la ejecución</translation>
+        <translation>Mostrar icono de sesión en la bandeja del sistema durante la ejecución</translation>
     </message>
     <message>
         <location filename="sessionexplorer.cpp" line="159"/>
         <source>New Session</source>
-        <translation type="unfinished">Nueva sesión</translation>
+        <translation>Nueva sesión</translation>
     </message>
     <message>
         <location filename="sessionexplorer.cpp" line="220"/>
         <source>X2Go Link to session </source>
-        <translation type="unfinished">Enlace a la sesión X2go </translation>
+        <translation>Enlace a la sesión X2go </translation>
     </message>
     <message>
         <location filename="sessionexplorer.cpp" line="349"/>
         <source>Are you sure you want to delete this session?</source>
-        <translation type="unfinished">¿Eliminar esta sesión?</translation>
+        <translation>¿Eliminar esta sesión?</translation>
     </message>
 </context>
 <context>
@@ -2611,7 +2612,7 @@ Use x2goclient hidden mode?</source>
     <message>
         <location filename="sessionwidget.cpp" line="78"/>
         <source>Path:</source>
-        <translation type="unfinished">Ruta:</translation>
+        <translation>Ruta:</translation>
     </message>
     <message>
         <location filename="sessionwidget.cpp" line="83"/>
