@@ -16,6 +16,8 @@ x2goclient (4.0.3.0-0x2go1) UNRELEASED; urgency=low
     + Add B-D: apache2-dev. On squeeze / lucid builds, this is a superfluous
       B-D, but for later Debian/Ubuntu versions, this smoothes the installation
       of the x2goplugin-provide bin:package.
+    + Update B-D: apache2-dev | libc6-dev. The apache2-dev package does not
+      exist on all Debian/Ubuntu versions.
   * x2goclient.spec:
     + Adapt to building for openSUSE/SLES.
     + openSUSE: Make Qt4 Linguist tools available for Makefile.

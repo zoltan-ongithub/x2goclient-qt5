@@ -14,7 +14,7 @@ Build-Depends:
  libx11-dev,
  libxpm-dev,
  man2html-base | man2html,
- apache2-dev,
+ apache2-dev | libc6-dev,
 Standards-Version: 3.9.5
 Homepage: http://code.x2go.org/releases/source/x2goclient
 Vcs-Git: git://code.x2go.org/x2goclient.git
