@@ -103,8 +103,8 @@ x2goclient (4.0.3.0-0x2go1) UNRELEASED; urgency=low
       hpn-enabled SSH servers. The Pageant support patch from the KDE Windows
       project was ported to 0.6.3 by myself and Mike Frederick.
       (Gmail: psududemike) (Fixes: #590)
-    - Windows: Win32 OpenSSL updated from 1.0.1h to 1.0.1i, which fixes the
-      9 CVEs announced on 2014-08-06.
+    - Windows: Win32 OpenSSL updated from 1.0.1h to 1.0.1j, which fixes the
+      CVEs announced on 2014-08-06 & 2014-10-15.
     - Windows: Replace Cygwin Bash (sh.exe) with Cygwin Dash (ash.exe renamed
       to sh.exe). This also means fewer Cygwin .DLLs are bundled.
       (Fixes: #636)
