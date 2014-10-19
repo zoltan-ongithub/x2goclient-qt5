@@ -84,13 +84,13 @@ x2goclient (4.0.3.0-0x2go1) UNRELEASED; urgency=low
       groups optional: misc, 75dpi, 100dpi and others (Fixes: #108)
       Note: The fact that all the fonts are included makes the installer about
       30MB larger.
-    - Windows: Bundle new version of VcXsrv: 1.15.2.0-xp+vc2013+x2go1
+    - Windows: Bundle new version of VcXsrv: 1.15.2.1-xp+vc2013+x2go1
       This new version is based on upstream VcXsrv 1.15.2.0, but still
-      compatible with Windows XP. It is compiled with Microsoft Visual C++ 2013
-      and contains 1 X2Go-specific change, winmultiwindow.patch. This patch
-      fixes an issue when resizing the NX-proxy window on specific multiple
-      monitor setups. (Thanks Oleksandr Shneyder for the patch)
-      (Fixes: #568) (Fixes: #594)
+      compatible with Windows XP. It also has its bundled OpenSSL updated to
+      1.0.1j. It is compiled with Microsoft Visual C++ 2013 and contains 1
+      X2Go-specific change, winmultiwindow.patch. This patch fixes an issue
+      when resizing the NX-proxy window on specific multiple monitor setups.
+      (Thanks Oleksandr Shneyder for the patch) (Fixes: #568) (Fixes: #594)
     - Windows: Port from MinGW 4.4 + Qt 4.8.5 to MinGW 4.8.2 + Qt 4.8.6,
       including fix for QTBUG-38706 (Fixes: #474, #603)
     - Windows: Fix missing VcXsrv/zlib1.dll . The impact of this bug was that
