@@ -108,11 +108,12 @@ x2goclient (4.0.3.0-0x2go1) UNRELEASED; urgency=low
     - Windows: Replace Cygwin Bash (sh.exe) with Cygwin Dash (ash.exe renamed
       to sh.exe). This also means fewer Cygwin .DLLs are bundled.
       (Fixes: #636)
-    - Windows: cygwin packages (inluding patched OpenSSH 6.6.1p1-3) updated from
-      latest versions as of 2014-06-09 to latest versions as of 2014-10-11. This
-      includes openssl 1.0.1i-1, which fixes the 9 CVEs announced on 2014-08-06.
-      (Cygwin openssl was also individually updated to 1.0.1i-1 in
-      4.0.2.1+hotfix1+build2.)
+    - Windows: cygwin packages (excluding OpenSSH, which is at the patched
+      version of 6.6.1p1-3-x2go1) updated from latest versions as of 2014-06-09
+      to latest versions as of 2014-10-18. This includes openssl 1.0.1j-1, which
+      fixes the CVEs announced on 2014-08-06 & 2014-10.15.
+      (Cygwin openssl was also individually updated in 4.0.2.1+hotfix1+build2,
+      but only to 1.0.1i-1.)
     - Windows: Build nxproxy.exe with Cygwin's libpng 1.5.x rather than 1.2.x.
       (This may improve performance when PNG compression is selected.)
     - Windows: Build cygwin openssh without krb5 or tcp_wrappers support because
