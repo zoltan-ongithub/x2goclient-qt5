@@ -1,4 +1,4 @@
-x2goclient (4.0.3.0-0x2go1) UNRELEASED; urgency=low
+x2goclient (4.0.3.0-0x2go1) unstable; urgency=low
 
   [ Mike Gabriel ]
   * New upstream release (4.0.3.0):
@@ -32,7 +32,7 @@ x2goclient (4.0.3.0-0x2go1) UNRELEASED; urgency=low
     - Fix running x2goclient without arguments on Windows. (Fixes: #522).
     - Save proxy output in $HOME/S-$SESSION-ID/session.log if debugging is
       enabled.
-    - Fork x2goclient on windows and terminate child processes if x2go client
+    - Fork x2goclient on windows and terminate child processes if X2Go Client
       crashed. (Fixes: #159).
     - Add "clipboard" parameter to session profile and to command line options.
       (Fixes: #258).
@@ -49,12 +49,12 @@ x2goclient (4.0.3.0-0x2go1) UNRELEASED; urgency=low
       x2gohelper.
     - Add Makefile for x2gohelper.
     - Add support for sessions folders.
-    - Add folder explorer - GUI to management of sessions folders.
-    - Support for sessions folders in sessionmanagedialog.
-    - Session name autocomplition only for sessions in current folder.
-    - Support for sessions folders and commandline options "--session"
+    - Add folder explorer: a GUI to manage of session subfolders.
+    - Support for sessions subfolders in sessionmanagedialog.
+    - Session name autocompletion only for sessions in current folder.
+    - Support for session subfolders and command-line options "--session"
       and "--sessionid".
-    - Disable sessions explorer "back" button if user sessions disabled.
+    - Disable session explorer "back" button if user sessions are disabled.
     - Include <QDir> in sessionexplorer.cpp.
     - Remove deprecated workaround in wapi.cpp.
     - Save folder icons Base64 coded. Save icons under General\icon_<PATH>.
@@ -150,7 +150,38 @@ x2goclient (4.0.3.0-0x2go1) UNRELEASED; urgency=low
   * New upstream version (4.0.3.0):
     - Update Swedish translation file.
 
- -- Mike Gabriel <mike.gabriel@das-netzwerkteam.de>  Thu, 10 Apr 2014 18:30:25 +0200
+  * Translation status:
+    OK - Updating 'x2goclient/x2goclient_de.qm'...
+      Generated 566 translation(s) (566 finished and 0 unfinished)
+    INCOMPLETE - Updating 'x2goclient/x2goclient_da.qm'...
+      Generated 536 translation(s) (526 finished and 10 unfinished)
+      Ignored 30 untranslated source text(s)
+    OK - Updating 'x2goclient/x2goclient_es.qm'...
+      Generated 566 translation(s) (566 finished and 0 unfinished)
+    OK - Updating 'x2goclient/x2goclient_et.qm'...
+      Generated 566 translation(s) (566 finished and 0 unfinished)
+    OK - Updating 'x2goclient/x2goclient_fi.qm'...
+      Generated 566 translation(s) (566 finished and 0 unfinished)
+    INCOMPLETE - Updating 'x2goclient/x2goclient_fr.qm'...
+      Generated 254 translation(s) (201 finished and 53 unfinished)
+      Ignored 312 untranslated source text(s)
+    OK - Updating 'x2goclient/x2goclient_nb_no.qm'...
+       Generated 566 translation(s) (566 finished and 0 unfinished)
+    OK - Updating 'x2goclient/x2goclient_nl.qm'...
+      Generated 566 translation(s) (566 finished and 0 unfinished)
+    UNTRANSLATED - Updating 'x2goclient/x2goclient_pt.qm'...
+      Generated 0 translation(s) (0 finished and 0 unfinished)
+      Ignored 566 untranslated source text(s)
+    INCOMPLETE - Updating 'x2goclient/x2goclient_ru.qm'...
+      Generated 552 translation(s) (543 finished and 9 unfinished)
+      Ignored 14 untranslated source text(s)
+    OK - Updating 'x2goclient/x2goclient_sv.qm'...
+      Generated 566 translation(s) (566 finished and 0 unfinished)
+    INCOMPLETE - Updating 'x2goclient/x2goclient_zh_tw.qm'...
+      Generated 397 translation(s) (372 finished and 25 unfinished)
+      Ignored 169 untranslated source text(s)
+
+ -- Mike Gabriel <mike.gabriel@das-netzwerkteam.de>  Tue, 21 Oct 2014 12:38:56 +0200
 
 x2goclient (4.0.2.1-0x2go1) unstable; urgency=low
 
