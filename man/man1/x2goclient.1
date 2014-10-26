@@ -17,13 +17,30 @@ x2goclient \- Client application to launch server-side X2Go sessions.
 .SH DESCRIPTION
 \fBx2goclient\fR is a GUI application for launching server-side X2Go sessions.
 .PP
-.SH GUI OPTIONS
-\fBx2goclient\fR has the following options:
+.SH HELP AND DEBUG OPTIONS
+\fBx2goclient\fR has the following help and debugging options:
 .TP
-\*(T<\fB\-\-help-pack\fR\*(T>
+\*(T<\fB\-\-help\fR\*(T>
+Show available command line options.
+.TP
+\*(T<\fB\-\-help\-pack\fR\*(T>
 Show available pack methods and exit.
 .TP
-\*(T<\fB\-\-no-menu\fR\*(T>
+\*(T<\fB\-v, \-\-version\fR\*(T>
+Output X2Go Client version to stderr.
+.TP
+\*(T<\fB\-\-debug\fR\*(T>
+Enable extensive console output for debugging X2Go Client.
+.TP
+\*(T<\fB\-\-changelog\fR\*(T>
+Show changelog file.
+.TP
+\*(T<\fB\-\-git\-info\fR\*(T>
+Show Git commit history (not available on all X2Go Client builds).
+.SH GUI OPTIONS
+The following options can be used for controlling the GUI behaviour:
+.TP
+\*(T<\fB\-\-no\-menu\fR\*(T>
 Hide menu-/toolbar (default: false).
 .TP
 \*(T<\fB\-\-maximize\fR\*(T>
@@ -32,36 +49,72 @@ Start client maximized (default: false).
 \*(T<\fB\-\-hide\fR\*(T>
 Hide client (start hidden, default: false).
 .TP
-\*(T<\fB\-\-keep-trayicon\fR\*(T>
+\*(T<\fB\-\-keep\-trayicon\fR\*(T>
 Always keep the "accelerated X" icon in the system tray. Without this option the default behaviour is:
 Switch the tray icon to the session's icon on successful session startup/resumption.
 .TP
-\*(T<\fB\-\-tray-icon\fR\*(T>
+\*(T<\fB\-\-tray\-icon\fR\*(T>
 Show tray icon (default: false). This option overrides the global tray icon settings and also forces the tray icon
 to be shown in hidden X2Go Client mode.
 .TP
-\*(T<\fB\-\-hide-foldersharing\fR\*(T>
+\*(T<\fB\-\-hide\-foldersharing\fR\*(T>
 Hide all elements in X2Go Client GUI that are related to folder sharing.
 .TP
 \*(T<\fB\-\-close\-disconnect\fR\*(T>
 Close X2Go Client after a session got disconnected.
 .TP
-\*(T<\fB\-\-client-ssh-port\fR\*(T>
+\*(T<\fB\-\-client\-ssh\-port\fR\*(T>
 Local ssh port (for filesystem export, default: 22).
-.SH PROFILING SESSIONS GLOBALLY
-You can pre-profile sessions globally using the following options. They will override the options in the session profiles.
+.TP
+\*(T<\fB\-\-autostart=<app>\fR\*(T>
+Launch <app> by session start in "published applications" mode. This parameter should go along
+with --session=<session-profile-name>, where the given session profile should be configured as
+a session profile of type "Published Applications".
+.TP
+\*(T<\fB\-\-support\-menu=<html-file>\fR\*(T>
+Add a "Support..." submenu item to X2Go Client's "Help" menu.
+
+The support information is provided via a simple HTML file. Example:
+.sp
+.if n \{\
+.RS 4
+.\}
+.nf
+        \fI<html><body>
+        <h1>IT-Support for X2Go</h1>
+        DAS-NETZWERKTEAM | Mike Gabriel:<br />
+        <a href="mailto:support@das-netzwerkteam.de">
+            support@das-netzwerkteam.de
+        </a><br />
+        <br />
+        Thanks for using X2Go...
+        </body></html>\fR
+.fi
+.if n \{\
+.RE
+.\}
+.TP
+\*(T<\fB\-\-background=<svg-file>\fR\*(T>
+Use a custom/branded background image (SVG format) for X2Go Client's main window (i.e. replace the blue gradient area
+in X2Go Client by some background of your own (business/workgroup/project).
+
+.SH SESSION PROFIE DEFAULTS
+You can set certain defaults for session profiles via command line switches using the following options:
 .TP
 \*(T<\fB\-\-user\fR\*(T>
-Pre-selection of user at client startup (LDAP mode).
+Pre-selection of user at client startup (LDAP mode only).
 .TP
-\*(T<\fB\-\-command\fR\*(T>
+\*(T<\fB\-\-command=<default-command>\fR\*(T>
 Default command for session startup.
 .TP
-\*(T<\fB\-\-sessionid\fR\*(T>
-Pre-selection of session ID at client startup.
+\*(T<\fB\-\-ssh\-port\fR\*(T>
+Use this default TCP/IP port for connection (default: 22).
 .TP
-\*(T<\fB\-\-ssh-port\fR\*(T>
-Use this TCP/IP port for connection (default: 22).
+\*(T<\fB\-\-ssh\-key\fR\*(T>
+Use this SSH private key file by default.
+.TP
+\*(T<\fB\-\-autologin\fR\*(T>
+By default, search for standard SSH key file names or try using an SSH agent.
 .TP
 \*(T<\fB\-\-link\fR\*(T>
 Set default link type (modem,isdn,adsl,wan or lan, default: adsl).
@@ -72,52 +125,99 @@ Set default pack method (default: '16m-jpeg').
 \*(T<\fB\-\-quality\fR\*(T>
 Set default image quality(0-9, default: 9).
 .TP
-\*(T<\fB\-\-set-kbd\fR\*(T>
+\*(T<\fB\-\-set\-kbd\fR\*(T>
 Overwrite current keyboard settings, no override by default.
 .TP
-\*(T<\fB\-\-kbd-layout\fR\*(T>
+\*(T<\fB\-\-kbd\-layout\fR\*(T>
 Set keyboard layout (default: 'de').
 .TP
-\*(T<\fB\-\-kbd-type\fR\*(T>
-Set keyboard type (default: pc105/de).
+\*(T<\fB\-\-kbd\-type\fR\*(T>
+Set keyboard type (default: pc105/us, depend on our clients language setup, though).
 .TP
-\*(T<\fB\-\-fullscreen\fR\*(T>
-Start session in fullscreen mode.
+\*(T<\fB\-\-clipboard=<both|client|server|none>\fR\*(T>
+Set default clipboard mode.
 .TP
-\*(T<\fB\-\-width\fR\*(T>
-Start session with this width (default: 800).
+\*(T<\fB\-\-geometry=<W>x<H>|fullscreen\fR\*(T>
+Set default geometry, default '800x600'.
+.TP
+\*(T<\fB\-\-dpi=<dpi>\fR\*(T>
+set DPI of X2Go Agent to <dpi>, default set to same as local display.
 .TP
 \*(T<\fB\-\-sound\fR\*(T>
 Activate sound for session, not enabled by default.
 .TP
-\*(T<\fB\-\-sound-system\fR\*(T>
-Which soundsystem to use: arts, esd, pulse (default: arts).
+\*(T<\fB\-\-sound\-system\fR\*(T>
+Which soundsystem to use: arts, esd, pulse (default: pulse).
+.TP
+\*(T<\fB\-\-xinerama\fR\*(T>
+Use Xinerama by default.
+.TP
+\*(T<\fB\-\-session-icon=<128x128px-icon-png-file>\fR\*(T>
+Use a custom session icon by default.
+
 .SH THIN CLIENT OPTIONS
 The following command line options are primarily interesting if \fBx2goclient\fR is used
 as a login manager on X2Go thin clients.
 .TP
-\*(T<\fB\-\-session=<session-profile-name>\fR\*(T>
-Pre-selection of session at client startup.
+\*(T<\fB\-\-thinclient\fR\*(T>
+Let X2Go Client run without window manager.
 .TP
-\*(T<\fB\-\-no-session-edit\fR\*(T>
+\*(T<\fB\-\-sessionid=<session-profile-id>\fR\*(T>
+Pre-selection of a session profile (by its session profile ID) at client startup.
+.TP
+\*(T<\fB\-\-session=<session-profile-name>\fR\*(T>
+Pre-selection of a session profile (by its session profile name) at client startup.
+.TP
+\*(T<\fB\-\-no\-session\-edit\fR\*(T>
 Disable session editing.
 .TP
-\*(T<\fB\-\-pgp-card\fR\*(T>
+\*(T<\fB\-\-pgp\-card\fR\*(T>
 Use openPGP Card authentication (default: false).
 .TP
-\*(T<\fB\-\-external-login=<smartcard-logins>\fR\*(T>
+\*(T<\fB\-\-external\-login=<smartcard-logins>\fR\*(T>
 Authenticate via SMART card, path to login notification file.
 .TP
-\*(T<\fB\-\-add-to-known-hosts\fR\*(T>
+\*(T<\fB\-\-add\-to\-known\-hosts\fR\*(T>
 Add DSA/RSA host key fingerprint to .ssh/known_hosts in case of "authenticity of server can't be established".
 .TP
-\*(T<\fB\-\-read-exports-from\fR\*(T>
+\*(T<\fB\-\-read\-exports\-from\fR\*(T>
 Specifies a directory where some external mechanism (e.g. script) can notify \fBx2goclient\fR on
 new block devices (CD/DVDs, USB sticks, etc.).
+.TP
+\*(T<\fB\-\-haltbt\fR\*(T>
+Show a "Shutdown" button in the top left corner of X2Go Client. When pressed, X2Go Client will create the file
+$HOME/.halt. An external script has to watch for this file and trigger a thinclient shutdown once it appears.
+
+.SH PORTABLE OPTIONS
+X2Go Client can be installed on a USB-Flashdrive as a portable applications. If installed that way, the following
+options support the portable setup of X2Go Client:
+.TP
+\*(T<\fB\-\-portable\fR\*(T>
+Start X2Go Client in "portable" mode. This implies... (TODO).
+.TP
+\*(T<\fB\-\-home=<dir>\fR\*(T>
+Set the users home directory. This is the directory where X2Go Client will store settings and cache files.
+.TP
+\*(T<\fB\-\-session\-conf=<file>\fR\*(T>
+Path to alternative session profile config (default: $HOME/.x2goclient/sessions).
+.TP
+\*(T<\fB\-\-clean-all-files\fR\*(T>
+In portable mode, X2Go Client removes several directories it has created (and probably directories you
+don't want to have removed on a normal system):
+
+        \fI$HOME/.ssh
+        $HOME/ssh
+        $HOME/.x2go\fR
+
+If \fI\-\-clean\-all\-files\fR is used on the command line, also the directory containing the configuration files of
+X2Go Client gets removed:
+
+        \fI$HOME/.x2goclient\fR
+
 .SH BROKER OPTIONS
 In case you want to retrieve \fBx2goclient\fR session profiles from an X2Go Session Broker use the following options:
 .TP
-\*(T<\fB\-\-broker-url=<URL>\fR\*(T>
+\*(T<\fB\-\-broker\-url=<URL>\fR\*(T>
 Specify the <URL> of the X2Go Session Broker. X2Go Client can access http:// and ssh:// style URLs.
 
 Syntax of <URL> for HTTP brokerage:
@@ -130,55 +230,57 @@ ssh://<user>:<password>@<hostname>:<port>/usr/bin/x2gobroker (or any executable 
 provides the broker via SSH).
 
 .TP
-\*(T<\fB\-\-broker-cacertfile=</path/to/cafile.crt>\fR\*(T>
+\*(T<\fB\-\-broker\-cacertfile=</path/to/cafile.crt>\fR\*(T>
 Specify a special (self-signed) root-CACert file that shall get used when connecting to an X2Go Session Broker via https (SSL).
 .TP
-\*(T<\fB\-\-broker-noauth\fR\*(T>
+\*(T<\fB\-\-broker\-noauth\fR\*(T>
 The X2Go Session Broker is accessible without authentication.
 .TP
-\*(T<\fB\-\-auth-id=<USERNAME>\fR\*(T>
+\*(T<\fB\-\-broker-krblogin\fR\*(T>
+Login to X2Go Session Broker via GSSAPI. Only supported with ssh:// broker URLs.
+.TP
+\*(T<\fB\-\-auth\-id=<USERNAME>\fR\*(T>
 Use this <USERNAME> for authenticating against the X2Go Session Broker. This option mostly makes sense together
 with \fI--broker-autologin\fR or \fI--broker-ssh-key\fR.
 .TP
-\*(T<\fB\-\-broker-autologin\fR\*(T>
+\*(T<\fB\-\-broker\-autologin\fR\*(T>
 For SSH based X2Go Session Brokers. If an SSH agent is available or default key files exist then
 try those for authentication against the X2Go Session Broker.
 .TP
-\*(T<\fB\-\-broker-autologoff\fR\*(T>
+\*(T<\fB\-\-broker\-autologoff\fR\*(T>
 Enforce re-authentication against X2Go Session Broker after a session has been suspended or terminated.
 .TP
-\*(T<\fB\-\-broker-ssh-key=<SSHPRIVKEY>\fR\*(T>
+\*(T<\fB\-\-broker\-ssh\-key=<SSHPRIVKEY>\fR\*(T>
 For SSH based X2Go Session Brokers. Full path to a valid SSH private key file.
 .TP
-\*(T<\fB\-\-broker-name=<NAME>\fR\*(T>
+\*(T<\fB\-\-broker\-name=<NAME>\fR\*(T>
 Currently unused...
+.TP
+\*(T<\fB\-\-connectivity-test\fR\*(T>
+Run a connectivity test against X2Go Session Broker. Not supported by all broker implementations.
+.TP
+\*(T<\fB\-\-change-broker-pass\fR\*(T>
+Send a change-password request an X2Go Session Broker. Not supported by all broker implementations.
 
 .SH LDAP OPTIONS (deprecated)
-NOTE: LDAP support won't be continued in X2Go Client 2 (next generation of X2Go Client). The LDAP
-functionality already is fully available via the X2Go Session Brokerage feature.
+NOTE: LDAP support won't be continued in X2Go Client 2 (next generation of X2Go Client). 
 .PP
-In case you want to retrieve \fBx2goclient\fR session profiles from an LDAP server use the following options:
+A slightly different approach than X2Go Client's LDAP functionality is available via the X2Go Session Brokerage feature.
+.PP
+In case you want to control \fBx2goclient\fR via an LDAP server use the following options:
 .TP
-\*(T<\fB\-\-ldap\fR\*(T>
-Start with LDAP support (disabled by default).
+\*(T<\fB\-\-ldap=<host:port:dn>\fR\*(T>
+Start with LDAP support (disabled by default). Example: --ldap=ldapserver:389:o=organization,c=de
 .TP
-\*(T<\fB\-\-basedn\fR\*(T>
-Base DN to search in LDAP.
+\*(T<\fB\-\-ldap1=<host:port:dn>\fR\*(T>
+Failover LDAP URI No. 1.
 .TP
-\*(T<\fB\-\-ldap-server\fR\*(T>
-LDAP Server hostname.
+\*(T<\fB\-\-ldap2=<host:port:dn>\fR\*(T>
+Failover LDAP URI No. 2.
 .TP
-\*(T<\fB\-\-ldap-port\fR\*(T>
-LDAP Server portnumber (default: 389).
-.TP
-\*(T<\fB\-\-ldap-server1\fR\*(T>
-Failover LDAP Server hostname.
-.TP
-\*(T<\fB\-\-ldap-port1\fR\*(T>
-Failover LDAP Server portnumber (default: 389).
-.TP
-\*(T<\fB\-\-ldap-server2\fR\*(T>
-Failover LDAP Server hostname.
+\*(T<\fB\-\-ldap-printing\fR\*(T>
+Allow client side printing in LDAP mode.
+
 .PP
 .SH AUTHOR
 This manual has been written by Mike Gabriel <mike.gabriel@das-netzwerkteam.de> for the X2Go project
