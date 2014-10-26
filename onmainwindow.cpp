@@ -4761,7 +4761,12 @@ void ONMainWindow::slotRetResumeSess ( bool result,
             sid=sessionExplorer->getLastSession()->id();
         else
             sid="embedded";
-        X2goSettings st ( "sessions" );
+
+        X2goSettings* st;
+        if (!brokerMode)
+            st= new X2goSettings( "sessions" );
+        else
+            st= new X2goSettings(config.iniFile,QSettings::IniFormat);
 
         sound=st.setting()->value ( sid+"/sound",
                                     ( QVariant ) true ).toBool();
@@ -4819,6 +4824,9 @@ void ONMainWindow::slotRetResumeSess ( bool result,
             break;
         }
 #endif
+
+        delete st;
+
     }
 
     //Will be used in runCommand
