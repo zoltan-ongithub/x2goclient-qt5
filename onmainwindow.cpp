@@ -4768,9 +4768,9 @@ void ONMainWindow::slotRetResumeSess ( bool result,
         else
             st= new X2goSettings(config.iniFile,QSettings::IniFormat);
 
-        sound=st.setting()->value ( sid+"/sound",
+        sound=st->setting()->value ( sid+"/sound",
                                     ( QVariant ) true ).toBool();
-        QString sndsys=st.setting()->value (
+        QString sndsys=st->setting()->value (
                            sid+"/soundsystem",
                            ( QVariant ) "pulse" ).toString();
         if ( sndsys=="arts" )
@@ -4778,9 +4778,9 @@ void ONMainWindow::slotRetResumeSess ( bool result,
         if ( sndsys=="esd" )
             sndSystem=ESD;
 #ifndef Q_OS_WIN
-        sndPort=st.setting()->value ( sid+"/sndport" ).toString();
+        sndPort=st->setting()->value ( sid+"/sndport" ).toString();
 #endif
-        startSoundServer=st.setting()->value (
+        startSoundServer=st->setting()->value (
                              sid+"/startsoundsystem",
                              true ).toBool();
 
@@ -4791,7 +4791,7 @@ void ONMainWindow::slotRetResumeSess ( bool result,
 
 
 #ifndef Q_OS_WIN
-        bool defPort=st.setting()->value ( sid+
+        bool defPort=st->setting()->value ( sid+
                                            "/defsndport",true ).toBool();
         if ( defPort )
         {
@@ -4806,7 +4806,7 @@ void ONMainWindow::slotRetResumeSess ( bool result,
             }
         }
 #endif
-        sshSndTunnel=st.setting()->value ( sid+"/soundtunnel",
+        sshSndTunnel=st->setting()->value ( sid+"/soundtunnel",
                                            true ).toBool();
 
 #ifdef Q_OS_WIN
