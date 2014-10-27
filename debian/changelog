@@ -1,9 +1,14 @@
 x2goclient (4.0.3.1-0x2go1) UNRELEASED; urgency=medium
 
+  [ Mike Gabriel ]
   * New upstream release (4.0.3.1):
     - Fully rework x2goclient man page. Add many options that haven't been
       documented so far.
     - Make sound options configurable via X2Go Session Broker. (Fixes: #652).
+
+  [ Mark Pedersen-Cook ]
+  * New upstream release (4.0.3.1):
+    - Update Danish translation file.
 
  -- Mike Gabriel <mike.gabriel@das-netzwerkteam.de>  Tue, 21 Oct 2014 13:22:39 +0200
 
