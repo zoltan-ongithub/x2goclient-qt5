@@ -5,6 +5,8 @@ x2goclient (4.0.3.1-0x2go1) UNRELEASED; urgency=medium
     - Fully rework x2goclient man page. Add many options that haven't been
       documented so far.
     - Make sound options configurable via X2Go Session Broker. (Fixes: #652).
+    - Fix (cross-user) desktop sharing since introduction of clipboard mode
+      feature.
 
   [ Mark Pedersen-Cook ]
   * New upstream release (4.0.3.1):

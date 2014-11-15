@@ -3888,6 +3888,7 @@ void ONMainWindow::startNewSession()
     QFileInfo f ( command );
     if ( !shadowSession )
         cmd+=sessTypeStr+f.fileName();
+        cmd+=" "+clipMode;
     else
     {
         cmd+=sessTypeStr+QString::number ( shadowMode ) +"XSHAD"+
@@ -3895,7 +3896,6 @@ void ONMainWindow::startNewSession()
     }
 
     resumingSession.fullscreen=fullscreen;
-    cmd+=" "+clipMode;
 
     x2goDebug<<"Executing remote command: "<<cmd;
 
