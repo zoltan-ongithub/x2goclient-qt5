@@ -3886,9 +3886,10 @@ void ONMainWindow::startNewSession()
     else
         cmd += "0 ";
     QFileInfo f ( command );
-    if ( !shadowSession )
+    if ( !shadowSession ) {
         cmd+=sessTypeStr+f.fileName();
         cmd+=" "+clipMode;
+    }
     else
     {
         cmd+=sessTypeStr+QString::number ( shadowMode ) +"XSHAD"+
