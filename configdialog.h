@@ -30,6 +30,7 @@ class QButtonGroup;
 class PrintWidget;
 class ConnectionWidget;
 class SettingsWidget;
+class MediaWidget;
 class QTabWidget;
 class QGroupBox;
 #if defined (Q_OS_WIN) && defined (CFGCLIENT )
@@ -86,6 +87,7 @@ private:
     QButtonGroup* bgRadio;
     ConnectionWidget* conWidg;
     SettingsWidget* setWidg;
+    MediaWidget* mediaWidget;
 
 #if defined ( Q_OS_WIN) && defined (CFGCLIENT )
     XSettingsWidget* xsetWidg;

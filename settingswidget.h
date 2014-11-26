@@ -51,15 +51,10 @@ public slots:
 #endif
 
 private slots:
-    void slot_sndSysSelected ( int system );
-    void slot_sndToggled ( bool val );
-    void slot_sndStartClicked();
-    void slot_sndDefPortChecked ( bool val );
     void slot_identDisplays();
     void slot_hideIdentWins();
     void slot_kbdClicked();
 private:
-    enum {PULSE,ARTS,ESD};
     QSpinBox* width;
     QSpinBox* height;
     QSpinBox* displayNumber;
@@ -67,9 +62,6 @@ private:
     QRadioButton* custom;
     QRadioButton* display;
     QRadioButton* maxRes;
-    QRadioButton* arts;
-    QRadioButton* pulse;
-    QRadioButton* esd;
     QRadioButton* rbKbdAuto;
     QRadioButton* rbKbdNoSet;
     QRadioButton* rbKbdSet;
@@ -77,16 +69,8 @@ private:
     QLineEdit* leModel;
     QLineEdit* leLayout;
     QLineEdit* leVariant;
-    QCheckBox* sound;
-    QRadioButton* rbStartSnd;
-    QRadioButton* rbNotStartSnd;
-    QCheckBox* cbSndSshTun;
-    QCheckBox* cbClientPrint;
-    QCheckBox* cbDefSndPort;
     QCheckBox* cbSetDPI;
     QCheckBox* cbXinerama;
-    QLabel* lSndPort;
-    QSpinBox* sbSndPort;
     QSpinBox* DPI;
     QLabel* widthLabel;
     QLabel* heightLabel;
@@ -97,7 +81,6 @@ private:
     QPushButton* pbIdentDisp;
     QList <QMainWindow*> identWins;
     QGroupBox *kgb;
-    QGroupBox *sbgr;
     QGroupBox *clipGr;
     QRadioButton *rbClipBoth;
     QRadioButton *rbClipServer;

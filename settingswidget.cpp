@@ -43,18 +43,14 @@ SettingsWidget::SettingsWidget ( QString id, ONMainWindow * mw,
     QTabWidget* tabSettings=new QTabWidget ( this );
     QFrame* dgb=new QFrame();
     QFrame* kgb=new QFrame();
-    QFrame* sbgr=new QFrame();
     tabSettings->addTab ( dgb, tr ( "&Display" ) );
     tabSettings->addTab ( kgb,tr ( "&Keyboard" ) );
-    tabSettings->addTab ( sbgr,tr ( "Sound" ) );
 #else
     QGroupBox *dgb=new QGroupBox ( tr ( "&Display" ),this );
     clipGr=new QGroupBox ( tr ( "&Clipboard Mode" ),this );
     kgb=new QGroupBox ( tr ( "&Keyboard" ),this );
-    sbgr=new QGroupBox ( tr ( "Sound" ),this );
 #endif
     QVBoxLayout *dbLay = new QVBoxLayout ( dgb );
-    QVBoxLayout *sndLay=new QVBoxLayout ( sbgr );
     QVBoxLayout *cbLay=new QVBoxLayout ( clipGr );
     QHBoxLayout* sLay=new QHBoxLayout ( );
     QVBoxLayout* sLay_sys=new QVBoxLayout ( );
@@ -151,7 +147,9 @@ SettingsWidget::SettingsWidget ( QString id, ONMainWindow * mw,
     heightLabel->hide();
 #endif
 
-
+#ifdef Q_OS_DARWIN
+    kgb->hide();
+#endif
     rbClipBoth=new QRadioButton(tr("Bidirectional copy and paste"), clipGr);
     rbClipClient=new QRadioButton(tr("Copy and paste from client to server"), clipGr);
     rbClipServer=new QRadioButton(tr("Copy and paste from server to client"), clipGr);
@@ -197,68 +195,10 @@ SettingsWidget::SettingsWidget ( QString id, ONMainWindow * mw,
     kbLay->addWidget ( rbKbdSet);
     kbLay->addWidget( gbKbdString );
 
-    sound=new QCheckBox ( tr ( "Enable sound support" ),sbgr );
-    QButtonGroup* sndsys=new QButtonGroup;
-    pulse=new QRadioButton ( "PulseAudio",sbgr );
-    arts=new QRadioButton ( "arts",sbgr );
-    esd=new QRadioButton ( "esd",sbgr );
-    sndsys->addButton ( pulse,PULSE );
-    sndsys->addButton ( arts,ARTS );
-    sndsys->addButton ( esd,ESD );
-    sndsys->setExclusive ( true );
-    rbStartSnd=new QRadioButton ( tr ( "Start sound daemon" ),sbgr );
-    rbNotStartSnd=new QRadioButton (
-        tr ( "Use running sound daemon" ),sbgr );
-    cbSndSshTun=new QCheckBox (
-        tr ( "Use SSH port forwarding to tunnel\n"
-             "sound system connections through firewalls" ),sbgr );
-    cbDefSndPort=new QCheckBox ( tr ( "Use default sound port" ),sbgr );
-    sbSndPort=new QSpinBox ( sbgr );
-    sbSndPort->setMinimum ( 1 );
-    sbSndPort->setMaximum ( 99999999 );
-
-
-    QHBoxLayout *sndPortLay = new QHBoxLayout();
-    lSndPort=new QLabel ( tr ( "Sound port:" ),sbgr );
-    sndPortLay->addWidget ( lSndPort );
-    sndPortLay->addWidget ( sbSndPort );
-
-    sLay_sys->addWidget ( pulse );
-    sLay_sys->addWidget ( arts );
-    sLay_sys->addWidget ( esd );
-
-    sLay_opt->addWidget ( rbStartSnd );
-    sLay_opt->addWidget ( rbNotStartSnd );
-    sLay_opt->addWidget ( cbSndSshTun );
-    QFrame* hl=new QFrame ( sbgr );
-    hl->setFrameStyle ( QFrame::HLine | QFrame::Sunken );
-    sLay_opt->addWidget ( hl );
-    sLay_opt->addWidget ( cbDefSndPort );
-    sLay_opt->addLayout ( sndPortLay );
-    sndLay->addWidget ( sound );
-    sndLay->addLayout ( sLay );
-#ifdef Q_OS_WIN
-    arts->hide();
-    hl->hide();
-    cbDefSndPort->hide();
-    lSndPort->hide();
-    sbSndPort->hide();
-#endif
-
-
-    cbClientPrint=new QCheckBox ( tr ( "Client side printing support" ),
-                                  this );
-#ifdef	Q_OS_DARWIN
-    arts->hide();
-    pulse->hide();
-    esd->setChecked ( true );
-    kgb->hide();
-#endif
 #ifndef Q_WS_HILDON
     setLay->addWidget ( dgb );
     setLay->addWidget ( clipGr );
     setLay->addWidget ( kgb );
-    setLay->addWidget ( sbgr );
 #ifdef Q_OS_LINUX
 #ifdef CFGCLIENT
     rdpBox=new QGroupBox ( tr ( "RDP Client" ),this );
@@ -291,7 +231,6 @@ SettingsWidget::SettingsWidget ( QString id, ONMainWindow * mw,
     setLay->addWidget ( tabSettings );
 // 	cbClientPrint->hide();
 #endif //Q_WS_HILDON
-    setLay->addWidget ( cbClientPrint );
     setLay->addStretch();
 
     connect ( custom,SIGNAL ( toggled ( bool ) ),width,
@@ -314,16 +253,6 @@ SettingsWidget::SettingsWidget ( QString id, ONMainWindow * mw,
     connect ( kbRadio, SIGNAL (buttonClicked(QAbstractButton*)), this, SLOT(slot_kbdClicked()));
     connect ( cbSetDPI,SIGNAL ( toggled ( bool ) ),DPI,
               SLOT ( setEnabled ( bool ) ) );
-    connect ( sound,SIGNAL ( toggled ( bool ) ),this,
-              SLOT ( slot_sndToggled ( bool ) ) );
-    connect ( sndsys,SIGNAL ( buttonClicked ( int ) ),this,
-              SLOT ( slot_sndSysSelected ( int ) ) );
-    connect ( rbStartSnd,SIGNAL ( clicked ( ) ),this,
-              SLOT ( slot_sndStartClicked() ) );
-    connect ( rbNotStartSnd,SIGNAL ( clicked ( ) ),this,
-              SLOT ( slot_sndStartClicked() ) );
-    connect ( cbDefSndPort,SIGNAL ( toggled ( bool ) ),this,
-              SLOT ( slot_sndDefPortChecked ( bool ) ) );
 
     setDefaults();
 
@@ -346,10 +275,8 @@ void SettingsWidget::slot_kbdClicked()
 #ifdef Q_OS_LINUX
 void SettingsWidget::setDirectRdp(bool direct)
 {
-    cbClientPrint->setVisible(!direct);
     clipGr->setVisible(!direct);
     kgb->setVisible(!direct);
-    sbgr->setVisible(!direct);
     cbSetDPI->setVisible(!direct);
     cbXinerama->setVisible(!direct);
     display->setVisible(!direct);
@@ -420,108 +347,6 @@ void SettingsWidget::slot_hideIdentWins()
 }
 
 
-void SettingsWidget::slot_sndSysSelected ( int system )
-{
-    rbStartSnd->show();
-    rbNotStartSnd->show();
-    cbSndSshTun->hide();
-    cbDefSndPort->setChecked ( true );
-    cbDefSndPort->setEnabled ( true );
-
-    switch ( system )
-    {
-    case PULSE:
-    {
-        rbStartSnd->hide();
-        rbNotStartSnd->hide();
-        cbSndSshTun->show();
-        cbSndSshTun->setEnabled ( true );
-        break;
-    }
-    case ARTS:
-    {
-        cbDefSndPort->setChecked ( false );
-        cbDefSndPort->setEnabled ( false );
-        sbSndPort->setValue ( 20221 );
-        break;
-    }
-    case ESD:
-    {
-#ifdef Q_OS_WIN
-        rbStartSnd->hide();
-        rbNotStartSnd->hide();
-        cbSndSshTun->show();
-        cbSndSshTun->setEnabled ( false );
-        cbSndSshTun->setChecked ( true );
-#endif
-        sbSndPort->setValue ( 16001 );
-        break;
-    }
-    }
-    slot_sndStartClicked();
-}
-
-void SettingsWidget::slot_sndToggled ( bool val )
-{
-    arts->setEnabled ( val );
-    pulse->setEnabled ( val );
-    esd->setEnabled ( val );
-
-    rbStartSnd->setEnabled ( val );
-    rbNotStartSnd->setEnabled ( val );
-
-    cbSndSshTun->setEnabled ( false );
-    if ( pulse->isChecked() )
-        cbSndSshTun->setEnabled ( val );
-    lSndPort->setEnabled ( val );
-    if ( !arts->isChecked() )
-        cbDefSndPort->setEnabled ( val );
-    sbSndPort->setEnabled ( val );
-    if ( val )
-        slot_sndStartClicked();
-
-}
-
-void SettingsWidget::slot_sndStartClicked()
-{
-    bool start=rbStartSnd->isChecked();
-#ifdef Q_OS_WIN
-    start=false;
-#endif
-    if ( pulse->isChecked() )
-    {
-        lSndPort->setEnabled ( true );
-        sbSndPort->setEnabled ( true );
-        cbDefSndPort->setEnabled ( true &&sound->isChecked());
-    }
-    else
-    {
-        lSndPort->setEnabled ( !start );
-        sbSndPort->setEnabled ( !start );
-        cbDefSndPort->setEnabled ( !start );
-    }
-    if ( arts->isChecked() )
-        cbDefSndPort->setEnabled ( false );
-    if ( ( !start  && esd->isChecked() ) ||pulse->isChecked() )
-        slot_sndDefPortChecked ( cbDefSndPort->isChecked() );
-
-}
-
-void SettingsWidget::slot_sndDefPortChecked ( bool val )
-{
-    sbSndPort->setEnabled ( !val );
-    lSndPort->setEnabled ( !val );
-    if ( val )
-    {
-        if ( pulse->isChecked() )
-            sbSndPort->setValue ( 4713 );
-        if ( arts->isChecked() )
-            sbSndPort->setValue ( 20221 );
-        if ( esd->isChecked() )
-            sbSndPort->setValue ( 16001 );
-    }
-
-}
 
 void SettingsWidget::readConfig()
 {
@@ -643,60 +468,6 @@ void SettingsWidget::readConfig()
                              ).toBool() );
     slot_kbdClicked();
 
-    bool snd=st.setting()->value (
-                 sessionId+"/sound",
-                 ( QVariant ) mainWindow->getDefaultUseSound()
-             ).toBool();
-    QString sndsys=st.setting()->value ( sessionId+"/soundsystem",
-                                         "pulse" ).toString();
-    bool startServ=st.setting()->value ( sessionId+"/startsoundsystem",
-                                         true ).toBool();
-    bool sndInTun=st.setting()->value ( sessionId+"/soundtunnel",
-                                        true ).toBool();
-    bool defSndPort=st.setting()->value ( sessionId+"/defsndport",
-                                          true ).toBool();
-    int sndPort= st.setting()->value ( sessionId+"/sndport",4713 ).toInt();
-    if ( startServ )
-        rbStartSnd->setChecked ( true );
-    else
-        rbNotStartSnd->setChecked ( true );
-
-    pulse->setChecked ( true );
-    slot_sndSysSelected ( PULSE );
-#ifdef Q_OS_WIN
-    if ( sndsys=="arts" )
-    {
-        sndsys="pulse";
-    }
-#endif
-    if ( sndsys=="arts" )
-    {
-        arts->setChecked ( true );
-        slot_sndSysSelected ( ARTS );
-    }
-#ifdef	Q_OS_DARWIN
-    sndsys="esd";
-#endif
-    if ( sndsys=="esd" )
-    {
-        esd->setChecked ( true );
-        slot_sndSysSelected ( ESD );
-    }
-    cbSndSshTun->setChecked ( sndInTun );
-    sound->setChecked ( snd );
-    if ( !defSndPort )
-        sbSndPort->setValue ( sndPort );
-    cbDefSndPort->setChecked ( defSndPort );
-    if ( sndsys=="arts" )
-        cbDefSndPort->setChecked ( false );
-    slot_sndToggled ( snd );
-    slot_sndStartClicked();
-
-    if(!sound)
-        cbDefSndPort->setEnabled(false);
-
-    cbClientPrint->setChecked ( st.setting()->value ( sessionId+"/print",
-                                true ).toBool() );
 }
 
 void SettingsWidget::setDefaults()
@@ -724,13 +495,6 @@ void SettingsWidget::setDefaults()
 
     slot_kbdClicked();
 
-    sound->setChecked ( true );
-    pulse->setChecked ( true );
-    slot_sndToggled ( true );
-    slot_sndSysSelected ( PULSE );
-    cbSndSshTun->setChecked ( true );
-    rbStartSnd->setChecked ( true );
-    cbClientPrint->setChecked ( true );
     cbXinerama->setChecked ( false );
 }
 
@@ -824,28 +588,6 @@ void SettingsWidget::saveSettings()
 
     st.setting()->setValue ( sessionId+"/type",
                              ( QVariant ) ktype );
-    st.setting()->setValue ( sessionId+"/sound",
-                             ( QVariant ) sound->isChecked() );
-    if ( arts->isChecked() )
-        st.setting()->setValue ( sessionId+"/soundsystem",
-                                 ( QVariant ) "arts" );
-    if ( esd->isChecked() )
-        st.setting()->setValue ( sessionId+"/soundsystem",
-                                 ( QVariant ) "esd" );
-    if ( pulse->isChecked() )
-        st.setting()->setValue ( sessionId+"/soundsystem",
-                                 ( QVariant ) "pulse" );
-
-    st.setting()->setValue ( sessionId+"/startsoundsystem",
-                             ( QVariant ) rbStartSnd->isChecked() );
-    st.setting()->setValue ( sessionId+"/soundtunnel",
-                             ( QVariant ) cbSndSshTun->isChecked() );
-    st.setting()->setValue ( sessionId+"/defsndport",
-                             ( QVariant ) cbDefSndPort->isChecked() );
-    st.setting()->setValue ( sessionId+"/sndport",
-                             ( QVariant ) sbSndPort->value() );
-    st.setting()->setValue ( sessionId+"/print",
-                             ( QVariant ) cbClientPrint->isChecked() );
     st.setting()->sync();
 }
 

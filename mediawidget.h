@@ -15,58 +15,56 @@
 *   along with this program.  If not, see <http://www.gnu.org/licenses/>. *
 ***************************************************************************/
 
-#ifndef EDITCONNECTIONDIALOG_H
-#define EDITCONNECTIONDIALOG_H
+#ifndef MEDIAWIDGET_H
+#define MEDIAWIDGET_H
 
-#include "x2goclientconfig.h"
-#include <QStringList>
-#include <QDialog>
-
-class QLineEdit;
-class QPushButton;
-class QCheckBox;
-class QSpinBox;
-class QComboBox;
-class QRadioButton;
-class QSlider;
-class QLabel;
-class QTabWidget;
-class ONMainWindow;
-class QStandardItemModel;
-class QTreeView;
+#include <configwidget.h>
 
 /**
 	@author Oleksandr Shneyder <oleksandr.shneyder@obviously-nice.de>
 */
-class SessionWidget;
-class ConnectionWidget;
-class SettingsWidget;
-class MediaWidget;
-class ShareWidget;
+class QSpinBox;
+class QRadioButton;
+class QCheckBox;
+class QLineEdit;
+class QSpinBox;
+class QLabel;
+class QPushButton;
+class QMainWindow;
+class QGroupBox;
 
-class EditConnectionDialog : public QDialog
+
+class MediaWidget : public ConfigWidget
 {
     Q_OBJECT
 public:
-    EditConnectionDialog ( bool newSession, QString id, QWidget * par,  int ind=0,
-                           Qt::WFlags f = 0 );
-    ~EditConnectionDialog();
-private:
-    QTabWidget *fr;
-    SessionWidget* sessSet;
-    ConnectionWidget* conSet;
-    SettingsWidget* otherSet;
-    MediaWidget* mediaSet;
-    ShareWidget* exportDir;
-
+    MediaWidget ( QString id, ONMainWindow * mw,
+                  QWidget * parent=0, Qt::WindowFlags f=0 );
+    ~MediaWidget();
+    void setDefaults();
+    void saveSettings();
 
 private slots:
-    void slot_changeCaption ( const QString& newName );
-    void slot_accepted();
-    void slot_default();
-#ifdef Q_OS_LINUX
-    void slot_directRDP(bool direct);
-#endif
+    void slot_sndSysSelected ( int system );
+    void slot_sndToggled ( bool val );
+    void slot_sndStartClicked();
+    void slot_sndDefPortChecked ( bool val );
+private:
+    enum {PULSE,ARTS,ESD};
+    QRadioButton* arts;
+    QRadioButton* pulse;
+    QRadioButton* esd;
+    QCheckBox* sound;
+    QRadioButton* rbStartSnd;
+    QRadioButton* rbNotStartSnd;
+    QCheckBox* cbSndSshTun;
+    QCheckBox* cbClientPrint;
+    QCheckBox* cbDefSndPort;
+    QLabel* lSndPort;
+    QSpinBox* sbSndPort;
+    QGroupBox *sbgr;
+private:
+    void readConfig();
 };
 
 #endif
