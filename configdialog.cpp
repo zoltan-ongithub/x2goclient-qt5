@@ -36,7 +36,6 @@
 #include "x2goclientconfig.h"
 #include "connectionwidget.h"
 #include "settingswidget.h"
-#include "mediawidget.h"
 
 
 #if defined ( Q_OS_WIN) && defined (CFGCLIENT )
@@ -280,11 +279,8 @@ ConfigDialog::ConfigDialog ( QWidget * parent,  Qt::WFlags f )
                                        ( ONMainWindow* ) parent,this );
         setWidg=new SettingsWidget ( QString::null,
                                      ( ONMainWindow* ) parent,this );
-        mediaWidget=new MediaWidget ( QString::null,
-                                     ( ONMainWindow* ) parent,this );
         conWidg->hide();
         setWidg->hide();
-        mediaWidget->hide();
 
         X2goSettings st ( "sessions" );
         cbStartEmbed->setChecked (
@@ -408,7 +404,6 @@ void ConfigDialog::slot_accepted()
                                  ( QVariant ) cbStartEmbed->isChecked() );
         st.setting()->sync();
         setWidg->saveSettings();
-        mediaWidget->saveSettings();
         conWidg->saveSettings();
     }
 #if defined ( Q_OS_WIN) && defined (CFGCLIENT )
@@ -578,19 +573,15 @@ void ConfigDialog::slotAdvClicked()
         advancedOptions->setText ( tr ( "Advanced options" ) +" >>" );
         conWidg->hide();
         setWidg->hide();
-        mediaWidget->hide();
         conWidg->setParent ( this );
         setWidg->setParent ( this );
-        mediaWidget->setParent (this);
-        tabWidg->removeTab ( 4 );
         tabWidg->removeTab ( 3 );
         tabWidg->removeTab ( 2 );
     }
     else
     {
         tabWidg->addTab ( conWidg,tr ( "&Connection" ) );
-        tabWidg->addTab ( setWidg, tr ( "&Input/Output" ) );
-        tabWidg->addTab ( mediaWidget, tr ( "&Media" ) );
+        tabWidg->addTab ( setWidg, tr ( "&Settings" ) );
         advancedOptions->setText ( tr ( "Advanced options" ) +" <<" );
     }
     advOptionsShown=!advOptionsShown;
@@ -632,11 +623,6 @@ void ConfigDialog::slotDefaults()
     case 3:
     {
         setWidg->setDefaults();
-    }
-    break;
-    case 4:
-    {
-        mediaWidget->setDefaults();
     }
     break;
 #endif

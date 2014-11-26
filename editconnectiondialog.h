@@ -41,7 +41,6 @@ class QTreeView;
 class SessionWidget;
 class ConnectionWidget;
 class SettingsWidget;
-class MediaWidget;
 class ShareWidget;
 
 class EditConnectionDialog : public QDialog
@@ -56,7 +55,6 @@ private:
     SessionWidget* sessSet;
     ConnectionWidget* conSet;
     SettingsWidget* otherSet;
-    MediaWidget* mediaSet;
     ShareWidget* exportDir;
 
 

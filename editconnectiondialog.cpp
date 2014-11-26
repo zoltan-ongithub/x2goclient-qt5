@@ -27,7 +27,6 @@
 #include "sharewidget.h"
 #include "connectionwidget.h"
 #include "settingswidget.h"
-#include "mediawidget.h"
 
 EditConnectionDialog::EditConnectionDialog ( bool newSession, QString id, QWidget * par,
         int ind,Qt::WFlags f )
@@ -53,13 +52,11 @@ EditConnectionDialog::EditConnectionDialog ( bool newSession, QString id, QWidge
     sessSet=new SessionWidget ( newSession, id,parent );
     conSet=new ConnectionWidget ( id,parent );
     otherSet=new SettingsWidget ( id,parent );
-    mediaSet=new MediaWidget ( id,parent );
     exportDir=new ShareWidget ( id,parent );
 
     fr->addTab ( sessSet,tr ( "&Session" ) );
     fr->addTab ( conSet,tr ( "&Connection" ) );
-    fr->addTab ( otherSet,tr ( "&Input/Output" ) );
-    fr->addTab ( mediaSet,tr ( "&Media" ) );
+    fr->addTab ( otherSet,tr ( "&Settings" ) );
     if (! parent->getHideFolderSharing())
         fr->addTab ( exportDir,tr ( "&Shared folders" ) );
 
@@ -132,7 +129,6 @@ void EditConnectionDialog::slot_accepted()
     conSet->saveSettings();
     exportDir->saveSettings();
     otherSet->saveSettings();
-    mediaSet->saveSettings();
     sessSet->saveSettings();
 }
 
@@ -158,11 +154,6 @@ void EditConnectionDialog::slot_default()
     break;
     case 3:
     {
-        mediaSet->setDefaults();
-    }
-    break;
-    case 4:
-    {
         exportDir->setDefaults();
     }
     break;
@@ -174,7 +165,6 @@ void EditConnectionDialog::slot_directRDP(bool direct)
 {
     fr->setTabEnabled(1,!direct);
     fr->setTabEnabled(3,!direct);
-    fr->setTabEnabled(4,!direct);
     otherSet->setDirectRdp(direct);
 }
 #endif

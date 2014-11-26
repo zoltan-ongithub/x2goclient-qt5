@@ -62,7 +62,6 @@ HEADERS += configdialog.h \
            configwidget.h \
            connectionwidget.h \
            settingswidget.h \
-           mediawidget.h \
            sharewidget.h \
            clicklineedit.h \
            httpbrokerclient.h \
@@ -80,8 +79,7 @@ HEADERS += configdialog.h \
            folderexplorer.h
 
 SOURCES += sharewidget.cpp \
-           settingswidget.cpp \
-           mediawidget.cpp \
+           settingswidget.cpp\
            configwidget.cpp \
            sessionwidget.cpp \
            connectionwidget.cpp \
