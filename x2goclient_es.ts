@@ -538,12 +538,6 @@
         <translation>&amp;Conexión</translation>
     </message>
     <message>
-        <location filename="editconnectiondialog.cpp" line="59"/>
-        <source>&amp;Session</source>
-        <oldsource>&amp;Settings</oldsource>
-        <translation type="unfinished">&amp;Propiedades</translation>
-    </message>
-    <message>
         <location filename="editconnectiondialog.cpp" line="61"/>
         <source>&amp;Input/Output</source>
         <translation type="unfinished"></translation>
@@ -896,44 +890,44 @@ Hash de su clave pública: </translation>
         <location filename="mediawidget.cpp" line="44"/>
         <location filename="mediawidget.cpp" line="46"/>
         <source>Sound</source>
-        <translation type="unfinished">Sonido</translation>
+        <translation>Sonido</translation>
     </message>
     <message>
         <location filename="mediawidget.cpp" line="56"/>
         <source>Enable sound support</source>
-        <translation type="unfinished">Activar soporte de sonido</translation>
+        <translation>Activar soporte de sonido</translation>
     </message>
     <message>
         <location filename="mediawidget.cpp" line="65"/>
         <source>Start sound daemon</source>
-        <translation type="unfinished">Iniciar demonio de sonido</translation>
+        <translation>Iniciar demonio de sonido</translation>
     </message>
     <message>
         <location filename="mediawidget.cpp" line="67"/>
         <source>Use running sound daemon</source>
-        <translation type="unfinished">Usar el demonio de sonido actual</translation>
+        <translation>Usar el demonio de sonido actual</translation>
     </message>
     <message>
         <location filename="mediawidget.cpp" line="69"/>
         <source>Use SSH port forwarding to tunnel
 sound system connections through firewalls</source>
-        <translation type="unfinished">Usar el tunel de puertos SSH para
+        <translation>Usar el tunel de puertos SSH para
 el sonido en conexiones a través de firewalls</translation>
     </message>
     <message>
         <location filename="mediawidget.cpp" line="71"/>
         <source>Use default sound port</source>
-        <translation type="unfinished">Usar el puerto para el sonido por defecto</translation>
+        <translation>Usar el puerto para el sonido por defecto</translation>
     </message>
     <message>
         <location filename="mediawidget.cpp" line="78"/>
         <source>Sound port:</source>
-        <translation type="unfinished">Puerto de sonido:</translation>
+        <translation>Puerto de sonido:</translation>
     </message>
     <message>
         <location filename="mediawidget.cpp" line="105"/>
         <source>Client side printing support</source>
-        <translation type="unfinished">Soporte para imprimir en el cliente</translation>
+        <translation>Soporte para imprimir en el cliente</translation>
     </message>
 </context>
 <context>

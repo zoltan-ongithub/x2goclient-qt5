@@ -327,11 +327,11 @@
     </message>
     <message>
         <source>&amp;Input/Output</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Inndata/Utdata</translation>
     </message>
     <message>
         <source>&amp;Media</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Media</translation>
     </message>
 </context>
 <context>
@@ -456,11 +456,11 @@
     </message>
     <message>
         <source>&amp;Input/Output</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Inndata/Utdata</translation>
     </message>
     <message>
         <source>&amp;Media</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Media</translation>
     </message>
 </context>
 <context>
@@ -719,37 +719,37 @@ Offentlig nøkkel: </translation>
     <name>MediaWidget</name>
     <message>
         <source>Sound</source>
-        <translation type="unfinished">Lyd</translation>
+        <translation>Lyd</translation>
     </message>
     <message>
         <source>Enable sound support</source>
-        <translation type="unfinished">Aktiver lydstøtte</translation>
+        <translation>Aktiver lydstøtte</translation>
     </message>
     <message>
         <source>Start sound daemon</source>
-        <translation type="unfinished">Start lydtjeneren</translation>
+        <translation>Start lydtjeneren</translation>
     </message>
     <message>
         <source>Use running sound daemon</source>
-        <translation type="unfinished">Benytt kjørende lydtjener</translation>
+        <translation>Benytt kjørende lydtjener</translation>
     </message>
     <message>
         <source>Use SSH port forwarding to tunnel
 sound system connections through firewalls</source>
-        <translation type="unfinished">Benytt SSH port videresendring for å tunnelere
+        <translation>Benytt SSH port videresendring for å tunnelere
 lydsystem forbindelser gjennom brannmurer</translation>
     </message>
     <message>
         <source>Use default sound port</source>
-        <translation type="unfinished">Benytt standard lyd port</translation>
+        <translation>Benytt standard lyd port</translation>
     </message>
     <message>
         <source>Sound port:</source>
-        <translation type="unfinished">Lyd port:</translation>
+        <translation>Lyd port:</translation>
     </message>
     <message>
         <source>Client side printing support</source>
-        <translation type="unfinished">Klientside utskrifts støtte</translation>
+        <translation>Klientside utskrifts støtte</translation>
     </message>
 </context>
 <context>

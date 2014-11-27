@@ -538,12 +538,6 @@
         <translation>連線(&amp;C)</translation>
     </message>
     <message>
-        <location filename="editconnectiondialog.cpp" line="59"/>
-        <source>&amp;Session</source>
-        <oldsource>&amp;Settings</oldsource>
-        <translation type="unfinished">設定(&amp;S)</translation>
-    </message>
-    <message>
         <location filename="editconnectiondialog.cpp" line="61"/>
         <source>&amp;Input/Output</source>
         <translation type="unfinished"></translation>
@@ -895,44 +889,44 @@ Public key hash: </source>
         <location filename="mediawidget.cpp" line="44"/>
         <location filename="mediawidget.cpp" line="46"/>
         <source>Sound</source>
-        <translation type="unfinished">聲音</translation>
+        <translation>聲音</translation>
     </message>
     <message>
         <location filename="mediawidget.cpp" line="56"/>
         <source>Enable sound support</source>
-        <translation type="unfinished">啟用音效支援</translation>
+        <translation>啟用音效支援</translation>
     </message>
     <message>
         <location filename="mediawidget.cpp" line="65"/>
         <source>Start sound daemon</source>
-        <translation type="unfinished">開啟聲音背景程式</translation>
+        <translation>開啟聲音背景程式</translation>
     </message>
     <message>
         <location filename="mediawidget.cpp" line="67"/>
         <source>Use running sound daemon</source>
-        <translation type="unfinished">使用目前的音效背景程式</translation>
+        <translation>使用目前的音效背景程式</translation>
     </message>
     <message>
         <location filename="mediawidget.cpp" line="69"/>
         <source>Use SSH port forwarding to tunnel
 sound system connections through firewalls</source>
-        <translation type="unfinished">使用SSH連接埠轉送來建立
+        <translation>使用SSH連接埠轉送來建立
 可通過防火牆的聲音通道</translation>
     </message>
     <message>
         <location filename="mediawidget.cpp" line="71"/>
         <source>Use default sound port</source>
-        <translation type="unfinished">使用預設的聲音連接埠</translation>
+        <translation>使用預設的聲音連接埠</translation>
     </message>
     <message>
         <location filename="mediawidget.cpp" line="78"/>
         <source>Sound port:</source>
-        <translation type="unfinished">聲音連接埠:</translation>
+        <translation>聲音連接埠:</translation>
     </message>
     <message>
         <location filename="mediawidget.cpp" line="105"/>
         <source>Client side printing support</source>
-        <translation type="unfinished">用戶端列印支援</translation>
+        <translation>用戶端列印支援</translation>
     </message>
 </context>
 <context>

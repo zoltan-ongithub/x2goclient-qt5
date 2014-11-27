@@ -471,12 +471,12 @@
     <message>
         <location filename="configdialog.cpp" line="592"/>
         <source>&amp;Input/Output</source>
-        <translation type="unfinished"></translation>
+        <translation>Ein-/Ausgabe</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="593"/>
         <source>&amp;Media</source>
-        <translation type="unfinished"></translation>
+        <translation>Medien</translation>
     </message>
     <message>
         <source>&amp;Settings</source>
@@ -602,20 +602,14 @@
         <translation>&amp;Verbindung</translation>
     </message>
     <message>
-        <location filename="editconnectiondialog.cpp" line="59"/>
-        <source>&amp;Session</source>
-        <oldsource>&amp;Settings</oldsource>
-        <translation type="unfinished">&amp;Einstellungen</translation>
-    </message>
-    <message>
         <location filename="editconnectiondialog.cpp" line="61"/>
         <source>&amp;Input/Output</source>
-        <translation type="unfinished"></translation>
+        <translation>Ein-/Ausgabe</translation>
     </message>
     <message>
         <location filename="editconnectiondialog.cpp" line="62"/>
         <source>&amp;Media</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Medien</translation>
     </message>
     <message>
         <location filename="editconnectiondialog.cpp" line="66"/>
@@ -1270,44 +1264,44 @@ Public key hash: </source>
         <location filename="mediawidget.cpp" line="44"/>
         <location filename="mediawidget.cpp" line="46"/>
         <source>Sound</source>
-        <translation type="unfinished">Audio</translation>
+        <translation>Audio</translation>
     </message>
     <message>
         <location filename="mediawidget.cpp" line="56"/>
         <source>Enable sound support</source>
-        <translation type="unfinished">Audiounterstützung aktivieren</translation>
+        <translation>Audiounterstützung aktivieren</translation>
     </message>
     <message>
         <location filename="mediawidget.cpp" line="65"/>
         <source>Start sound daemon</source>
-        <translation type="unfinished">Starte Sound Server</translation>
+        <translation>Starte Sound Server</translation>
     </message>
     <message>
         <location filename="mediawidget.cpp" line="67"/>
         <source>Use running sound daemon</source>
-        <translation type="unfinished">Benutze existierenden Sound Server</translation>
+        <translation>Benutze existierenden Sound Server</translation>
     </message>
     <message>
         <location filename="mediawidget.cpp" line="69"/>
         <source>Use SSH port forwarding to tunnel
 sound system connections through firewalls</source>
-        <translation type="unfinished">Benutze Port-Weiterleitung über Tunnel
+        <translation>Benutze Port-Weiterleitung über Tunnel
  um Audiosignale über Firewalls zu verbinden</translation>
     </message>
     <message>
         <location filename="mediawidget.cpp" line="71"/>
         <source>Use default sound port</source>
-        <translation type="unfinished">Benutze standard Audio Port</translation>
+        <translation>Benutze standard Audio Port</translation>
     </message>
     <message>
         <location filename="mediawidget.cpp" line="78"/>
         <source>Sound port:</source>
-        <translation type="unfinished">Audio Port:</translation>
+        <translation>Audio Port:</translation>
     </message>
     <message>
         <location filename="mediawidget.cpp" line="105"/>
         <source>Client side printing support</source>
-        <translation type="unfinished">Clientseitige Druckunterstützung</translation>
+        <translation>Clientseitige Druckunterstützung</translation>
     </message>
 </context>
 <context>

@@ -409,12 +409,12 @@
     <message>
         <location filename="configdialog.cpp" line="592"/>
         <source>&amp;Input/Output</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Input/Output</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="593"/>
         <source>&amp;Media</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Medie</translation>
     </message>
     <message>
         <source>&amp;Settings</source>
@@ -540,20 +540,14 @@
         <translation>&amp;Forbindelse</translation>
     </message>
     <message>
-        <location filename="editconnectiondialog.cpp" line="59"/>
-        <source>&amp;Session</source>
-        <oldsource>&amp;Settings</oldsource>
-        <translation type="unfinished">&amp;Indstillinger</translation>
-    </message>
-    <message>
         <location filename="editconnectiondialog.cpp" line="61"/>
         <source>&amp;Input/Output</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Input/Output</translation>
     </message>
     <message>
         <location filename="editconnectiondialog.cpp" line="62"/>
         <source>&amp;Media</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Medie</translation>
     </message>
     <message>
         <location filename="editconnectiondialog.cpp" line="64"/>
@@ -907,44 +901,44 @@ offentlig nøgle hash: </translation>
         <location filename="mediawidget.cpp" line="44"/>
         <location filename="mediawidget.cpp" line="46"/>
         <source>Sound</source>
-        <translation type="unfinished">Lyd</translation>
+        <translation>Lyd</translation>
     </message>
     <message>
         <location filename="mediawidget.cpp" line="56"/>
         <source>Enable sound support</source>
-        <translation type="unfinished">Aktiver lyd support</translation>
+        <translation>Aktiver lyd support</translation>
     </message>
     <message>
         <location filename="mediawidget.cpp" line="65"/>
         <source>Start sound daemon</source>
-        <translation type="unfinished">Start lyd daemon</translation>
+        <translation>Start lyd daemon</translation>
     </message>
     <message>
         <location filename="mediawidget.cpp" line="67"/>
         <source>Use running sound daemon</source>
-        <translation type="unfinished">Brug kørende Lyd daemon</translation>
+        <translation>Brug kørende Lyd daemon</translation>
     </message>
     <message>
         <location filename="mediawidget.cpp" line="69"/>
         <source>Use SSH port forwarding to tunnel
 sound system connections through firewalls</source>
-        <translation type="unfinished">brug SSH port forwarding til at føre
+        <translation>brug SSH port forwarding til at føre
 lydsystemets forbindelse igennem firewalls</translation>
     </message>
     <message>
         <location filename="mediawidget.cpp" line="71"/>
         <source>Use default sound port</source>
-        <translation type="unfinished">Brug standard lyd port</translation>
+        <translation>Brug standard lyd port</translation>
     </message>
     <message>
         <location filename="mediawidget.cpp" line="78"/>
         <source>Sound port:</source>
-        <translation type="unfinished">Lyd port:</translation>
+        <translation>Lyd port:</translation>
     </message>
     <message>
         <location filename="mediawidget.cpp" line="105"/>
         <source>Client side printing support</source>
-        <translation type="unfinished">Support til udskrifter på klientsiden</translation>
+        <translation>Support til udskrifter på klientsiden</translation>
     </message>
 </context>
 <context>

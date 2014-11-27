@@ -407,12 +407,12 @@
     <message>
         <location filename="configdialog.cpp" line="592"/>
         <source>&amp;Input/Output</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Input/Output</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="593"/>
         <source>&amp;Media</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Media</translation>
     </message>
     <message>
         <source>&amp;Settings</source>
@@ -538,20 +538,14 @@
         <translation>&amp;Yhteys</translation>
     </message>
     <message>
-        <location filename="editconnectiondialog.cpp" line="59"/>
-        <source>&amp;Session</source>
-        <oldsource>&amp;Settings</oldsource>
-        <translation type="unfinished">&amp;Asetukset</translation>
-    </message>
-    <message>
         <location filename="editconnectiondialog.cpp" line="61"/>
         <source>&amp;Input/Output</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Input/Output</translation>
     </message>
     <message>
         <location filename="editconnectiondialog.cpp" line="62"/>
         <source>&amp;Media</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Media</translation>
     </message>
     <message>
         <location filename="editconnectiondialog.cpp" line="64"/>
@@ -885,43 +879,43 @@ Julkinen avain:</translation>
         <location filename="mediawidget.cpp" line="44"/>
         <location filename="mediawidget.cpp" line="46"/>
         <source>Sound</source>
-        <translation type="unfinished">Ääni</translation>
+        <translation>Ääni</translation>
     </message>
     <message>
         <location filename="mediawidget.cpp" line="56"/>
         <source>Enable sound support</source>
-        <translation type="unfinished">Aseta ääni pälle</translation>
+        <translation>Aseta ääni pälle</translation>
     </message>
     <message>
         <location filename="mediawidget.cpp" line="65"/>
         <source>Start sound daemon</source>
-        <translation type="unfinished">Käynnistä ääniajuri</translation>
+        <translation>Käynnistä ääniajuri</translation>
     </message>
     <message>
         <location filename="mediawidget.cpp" line="67"/>
         <source>Use running sound daemon</source>
-        <translation type="unfinished">Käytä nykyistä ääniajuria</translation>
+        <translation>Käytä nykyistä ääniajuria</translation>
     </message>
     <message>
         <location filename="mediawidget.cpp" line="69"/>
         <source>Use SSH port forwarding to tunnel
 sound system connections through firewalls</source>
-        <translation type="unfinished">Käytä SSH -portin tunnelointia äänen saamiseksi palomuurin läpi</translation>
+        <translation>Käytä SSH -portin tunnelointia äänen saamiseksi palomuurin läpi</translation>
     </message>
     <message>
         <location filename="mediawidget.cpp" line="71"/>
         <source>Use default sound port</source>
-        <translation type="unfinished">Käytä oletus-aääniporttia</translation>
+        <translation>Käytä oletus-aääniporttia</translation>
     </message>
     <message>
         <location filename="mediawidget.cpp" line="78"/>
         <source>Sound port:</source>
-        <translation type="unfinished">Ääniportti:</translation>
+        <translation>Ääniportti:</translation>
     </message>
     <message>
         <location filename="mediawidget.cpp" line="105"/>
         <source>Client side printing support</source>
-        <translation type="unfinished">Asiakasohjelman tulostintuki</translation>
+        <translation>Asiakasohjelman tulostintuki</translation>
     </message>
 </context>
 <context>

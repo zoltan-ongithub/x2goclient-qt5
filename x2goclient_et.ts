@@ -538,12 +538,6 @@
         <translation>&amp;Ühendus</translation>
     </message>
     <message>
-        <location filename="editconnectiondialog.cpp" line="59"/>
-        <source>&amp;Session</source>
-        <oldsource>&amp;Settings</oldsource>
-        <translation type="unfinished">S&amp;eaded</translation>
-    </message>
-    <message>
         <location filename="editconnectiondialog.cpp" line="61"/>
         <source>&amp;Input/Output</source>
         <translation type="unfinished"></translation>
@@ -884,43 +878,43 @@ Tema avaliku võtme &apos;hash&apos; on:</translation>
         <location filename="mediawidget.cpp" line="44"/>
         <location filename="mediawidget.cpp" line="46"/>
         <source>Sound</source>
-        <translation type="unfinished">Heli</translation>
+        <translation>Heli</translation>
     </message>
     <message>
         <location filename="mediawidget.cpp" line="56"/>
         <source>Enable sound support</source>
-        <translation type="unfinished">Võimalda heli</translation>
+        <translation>Võimalda heli</translation>
     </message>
     <message>
         <location filename="mediawidget.cpp" line="65"/>
         <source>Start sound daemon</source>
-        <translation type="unfinished">Käivita helimoodul</translation>
+        <translation>Käivita helimoodul</translation>
     </message>
     <message>
         <location filename="mediawidget.cpp" line="67"/>
         <source>Use running sound daemon</source>
-        <translation type="unfinished">kasuta käimasolevat heli moodulit</translation>
+        <translation>kasuta käimasolevat heli moodulit</translation>
     </message>
     <message>
         <location filename="mediawidget.cpp" line="69"/>
         <source>Use SSH port forwarding to tunnel
 sound system connections through firewalls</source>
-        <translation type="unfinished">Kasuta SSH port edastust heliseadete ühendamiseks pääsemaks läbi tulemüüri</translation>
+        <translation>Kasuta SSH port edastust heliseadete ühendamiseks pääsemaks läbi tulemüüri</translation>
     </message>
     <message>
         <location filename="mediawidget.cpp" line="71"/>
         <source>Use default sound port</source>
-        <translation type="unfinished">Kasuta vaikimisi heli porti</translation>
+        <translation>Kasuta vaikimisi heli porti</translation>
     </message>
     <message>
         <location filename="mediawidget.cpp" line="78"/>
         <source>Sound port:</source>
-        <translation type="unfinished">Heli port:</translation>
+        <translation>Heli port:</translation>
     </message>
     <message>
         <location filename="mediawidget.cpp" line="105"/>
         <source>Client side printing support</source>
-        <translation type="unfinished">Kliendipoolne printimine</translation>
+        <translation>Kliendipoolne printimine</translation>
     </message>
 </context>
 <context>

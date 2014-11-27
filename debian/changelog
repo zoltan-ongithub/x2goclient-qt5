@@ -7,6 +7,9 @@ x2goclient (4.0.3.1-0x2go1) UNRELEASED; urgency=medium
     - Make sound options configurable via X2Go Session Broker. (Fixes: #652).
     - Fix (cross-user) desktop sharing since introduction of clipboard mode
       feature.
+    - Update several translation files after splitting of session profile's
+      "Settings" tab into "Input/Output" and "Media". Translations for these
+      two new tabs derived from the i18n files of PyHoca-GUI.
 
   [ Mark Pedersen-Cook ]
   * New upstream release (4.0.3.1):

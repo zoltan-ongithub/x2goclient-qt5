@@ -408,12 +408,12 @@
     <message>
         <location filename="configdialog.cpp" line="592"/>
         <source>&amp;Input/Output</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;In-/Utdata</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="593"/>
         <source>&amp;Media</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Multimedia</translation>
     </message>
     <message>
         <source>&amp;Settings</source>
@@ -539,20 +539,14 @@
         <translation>&amp;Anslutning</translation>
     </message>
     <message>
-        <location filename="editconnectiondialog.cpp" line="59"/>
-        <source>&amp;Session</source>
-        <oldsource>&amp;Settings</oldsource>
-        <translation type="unfinished">&amp;Inställningar</translation>
-    </message>
-    <message>
         <location filename="editconnectiondialog.cpp" line="61"/>
         <source>&amp;Input/Output</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;In-/Utdata</translation>
     </message>
     <message>
         <location filename="editconnectiondialog.cpp" line="62"/>
         <source>&amp;Media</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Multimedia</translation>
     </message>
     <message>
         <location filename="editconnectiondialog.cpp" line="64"/>
@@ -901,44 +895,44 @@ Publik nyckel: </translation>
         <location filename="mediawidget.cpp" line="44"/>
         <location filename="mediawidget.cpp" line="46"/>
         <source>Sound</source>
-        <translation type="unfinished">Ljud</translation>
+        <translation>Ljud</translation>
     </message>
     <message>
         <location filename="mediawidget.cpp" line="56"/>
         <source>Enable sound support</source>
-        <translation type="unfinished">Aktivera ljudstöd</translation>
+        <translation>Aktivera ljudstöd</translation>
     </message>
     <message>
         <location filename="mediawidget.cpp" line="65"/>
         <source>Start sound daemon</source>
-        <translation type="unfinished">Starta ljudserver</translation>
+        <translation>Starta ljudserver</translation>
     </message>
     <message>
         <location filename="mediawidget.cpp" line="67"/>
         <source>Use running sound daemon</source>
-        <translation type="unfinished">Använd aktiv ljudserver</translation>
+        <translation>Använd aktiv ljudserver</translation>
     </message>
     <message>
         <location filename="mediawidget.cpp" line="69"/>
         <source>Use SSH port forwarding to tunnel
 sound system connections through firewalls</source>
-        <translation type="unfinished">Använd SSH port forwarding för att tunnla
+        <translation>Använd SSH port forwarding för att tunnla
 ljudström genom brandväggar</translation>
     </message>
     <message>
         <location filename="mediawidget.cpp" line="71"/>
         <source>Use default sound port</source>
-        <translation type="unfinished">Använd standardport för ljud</translation>
+        <translation>Använd standardport för ljud</translation>
     </message>
     <message>
         <location filename="mediawidget.cpp" line="78"/>
         <source>Sound port:</source>
-        <translation type="unfinished">Ljudport:</translation>
+        <translation>Ljudport:</translation>
     </message>
     <message>
         <location filename="mediawidget.cpp" line="105"/>
         <source>Client side printing support</source>
-        <translation type="unfinished">Stöd för utskrifter via klienten</translation>
+        <translation>Stöd för utskrifter via klienten</translation>
     </message>
 </context>
 <context>

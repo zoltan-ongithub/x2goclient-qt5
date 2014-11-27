@@ -479,12 +479,12 @@
     <message>
         <location filename="configdialog.cpp" line="592"/>
         <source>&amp;Input/Output</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Ввод/Вывод</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="593"/>
         <source>&amp;Media</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Медиа</translation>
     </message>
     <message>
         <source>&amp;Settings</source>
@@ -610,24 +610,18 @@
         <translation>С&amp;оединение</translation>
     </message>
     <message>
-        <location filename="editconnectiondialog.cpp" line="59"/>
-        <source>&amp;Session</source>
-        <oldsource>&amp;Settings</oldsource>
-        <translation type="unfinished">&amp;Установки</translation>
-    </message>
-    <message>
         <source>&amp;Shared Folders</source>
         <translation type="obsolete">&amp;Экспорт каталогов</translation>
     </message>
     <message>
         <location filename="editconnectiondialog.cpp" line="61"/>
         <source>&amp;Input/Output</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Ввод/Вывод</translation>
     </message>
     <message>
         <location filename="editconnectiondialog.cpp" line="62"/>
         <source>&amp;Media</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Медиа</translation>
     </message>
     <message>
         <location filename="editconnectiondialog.cpp" line="66"/>
@@ -1300,44 +1294,44 @@ Public key hash: </translation>
         <location filename="mediawidget.cpp" line="44"/>
         <location filename="mediawidget.cpp" line="46"/>
         <source>Sound</source>
-        <translation type="unfinished">Звук</translation>
+        <translation>Звук</translation>
     </message>
     <message>
         <location filename="mediawidget.cpp" line="56"/>
         <source>Enable sound support</source>
-        <translation type="unfinished">Активировать звук</translation>
+        <translation>Активировать звук</translation>
     </message>
     <message>
         <location filename="mediawidget.cpp" line="65"/>
         <source>Start sound daemon</source>
-        <translation type="unfinished">Запускать звуковой сервер</translation>
+        <translation>Запускать звуковой сервер</translation>
     </message>
     <message>
         <location filename="mediawidget.cpp" line="67"/>
         <source>Use running sound daemon</source>
-        <translation type="unfinished">Использовать запущенный звуковой сервер</translation>
+        <translation>Использовать запущенный звуковой сервер</translation>
     </message>
     <message>
         <location filename="mediawidget.cpp" line="69"/>
         <source>Use SSH port forwarding to tunnel
 sound system connections through firewalls</source>
-        <translation type="unfinished">Использовать SSH туннель
+        <translation>Использовать SSH туннель
 для звуковой системы</translation>
     </message>
     <message>
         <location filename="mediawidget.cpp" line="71"/>
         <source>Use default sound port</source>
-        <translation type="unfinished">Использовать порт по умолчанию</translation>
+        <translation>Использовать порт по умолчанию</translation>
     </message>
     <message>
         <location filename="mediawidget.cpp" line="78"/>
         <source>Sound port:</source>
-        <translation type="unfinished">Порт:</translation>
+        <translation>Порт:</translation>
     </message>
     <message>
         <location filename="mediawidget.cpp" line="105"/>
         <source>Client side printing support</source>
-        <translation type="unfinished">Печать на стороне клиента</translation>
+        <translation>Печать на стороне клиента</translation>
     </message>
 </context>
 <context>
