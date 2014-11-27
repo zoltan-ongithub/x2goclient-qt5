@@ -4770,7 +4770,7 @@ void ONMainWindow::slotRetResumeSess ( bool result,
             st= new X2goSettings(config.iniFile,QSettings::IniFormat);
 
         sound=st->setting()->value ( sid+"/sound",
-                                    ( QVariant ) true ).toBool();
+                                     ( QVariant ) true ).toBool();
         QString sndsys=st->setting()->value (
                            sid+"/soundsystem",
                            ( QVariant ) "pulse" ).toString();
@@ -4793,7 +4793,7 @@ void ONMainWindow::slotRetResumeSess ( bool result,
 
 #ifndef Q_OS_WIN
         bool defPort=st->setting()->value ( sid+
-                                           "/defsndport",true ).toBool();
+                                            "/defsndport",true ).toBool();
         if ( defPort )
         {
             switch ( sndSystem )
@@ -4808,7 +4808,7 @@ void ONMainWindow::slotRetResumeSess ( bool result,
         }
 #endif
         sshSndTunnel=st->setting()->value ( sid+"/soundtunnel",
-                                           true ).toBool();
+                                            true ).toBool();
 
 #ifdef Q_OS_WIN
         switch ( sndSystem )
