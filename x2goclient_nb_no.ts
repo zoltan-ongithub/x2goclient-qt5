@@ -323,7 +323,15 @@
     </message>
     <message>
         <source>&amp;Settings</source>
-        <translation>&amp;Innstillinger</translation>
+        <translation type="obsolete">&amp;Innstillinger</translation>
+    </message>
+    <message>
+        <source>&amp;Input/Output</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Media</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -424,7 +432,7 @@
     </message>
     <message>
         <source>&amp;Settings</source>
-        <translation>&amp;Innstillinger</translation>
+        <translation type="obsolete">&amp;Innstillinger</translation>
     </message>
     <message>
         <source>&amp;Shared folders</source>
@@ -445,6 +453,14 @@
     <message>
         <source>Session preferences - </source>
         <translation>Sesjonsinnstillinger - </translation>
+    </message>
+    <message>
+        <source>&amp;Input/Output</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Media</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -697,6 +713,43 @@ Offentlig nøkkel: </translation>
     <message>
         <source>Verification code:</source>
         <translation>Verifikasjonskode:</translation>
+    </message>
+</context>
+<context>
+    <name>MediaWidget</name>
+    <message>
+        <source>Sound</source>
+        <translation type="unfinished">Lyd</translation>
+    </message>
+    <message>
+        <source>Enable sound support</source>
+        <translation type="unfinished">Aktiver lydstøtte</translation>
+    </message>
+    <message>
+        <source>Start sound daemon</source>
+        <translation type="unfinished">Start lydtjeneren</translation>
+    </message>
+    <message>
+        <source>Use running sound daemon</source>
+        <translation type="unfinished">Benytt kjørende lydtjener</translation>
+    </message>
+    <message>
+        <source>Use SSH port forwarding to tunnel
+sound system connections through firewalls</source>
+        <translation type="unfinished">Benytt SSH port videresendring for å tunnelere
+lydsystem forbindelser gjennom brannmurer</translation>
+    </message>
+    <message>
+        <source>Use default sound port</source>
+        <translation type="unfinished">Benytt standard lyd port</translation>
+    </message>
+    <message>
+        <source>Sound port:</source>
+        <translation type="unfinished">Lyd port:</translation>
+    </message>
+    <message>
+        <source>Client side printing support</source>
+        <translation type="unfinished">Klientside utskrifts støtte</translation>
     </message>
 </context>
 <context>
@@ -2329,7 +2382,7 @@ Use x2goclient hidden mode?</source>
     </message>
     <message>
         <source>Sound</source>
-        <translation>Lyd</translation>
+        <translation type="obsolete">Lyd</translation>
     </message>
     <message>
         <source>Auto detect keyboard settings</source>
@@ -2417,33 +2470,33 @@ Use x2goclient hidden mode?</source>
     </message>
     <message>
         <source>Enable sound support</source>
-        <translation>Aktiver lydstøtte</translation>
+        <translation type="obsolete">Aktiver lydstøtte</translation>
     </message>
     <message>
         <source>Start sound daemon</source>
-        <translation>Start lydtjeneren</translation>
+        <translation type="obsolete">Start lydtjeneren</translation>
     </message>
     <message>
         <source>Use running sound daemon</source>
-        <translation>Benytt kjørende lydtjener</translation>
+        <translation type="obsolete">Benytt kjørende lydtjener</translation>
     </message>
     <message>
         <source>Use SSH port forwarding to tunnel
 sound system connections through firewalls</source>
-        <translation>Benytt SSH port videresendring for å tunnelere
+        <translation type="obsolete">Benytt SSH port videresendring for å tunnelere
 lydsystem forbindelser gjennom brannmurer</translation>
     </message>
     <message>
         <source>Use default sound port</source>
-        <translation>Benytt standard lyd port</translation>
+        <translation type="obsolete">Benytt standard lyd port</translation>
     </message>
     <message>
         <source>Sound port:</source>
-        <translation>Lyd port:</translation>
+        <translation type="obsolete">Lyd port:</translation>
     </message>
     <message>
         <source>Client side printing support</source>
-        <translation>Klientside utskrifts støtte</translation>
+        <translation type="obsolete">Klientside utskrifts støtte</translation>
     </message>
     <message>
         <source>Additional parameters:</source>

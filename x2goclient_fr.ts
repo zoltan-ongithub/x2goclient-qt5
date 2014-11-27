@@ -324,7 +324,15 @@
     </message>
     <message>
         <source>&amp;Settings</source>
-        <translation>&amp;Préférences</translation>
+        <translation type="obsolete">&amp;Préférences</translation>
+    </message>
+    <message>
+        <source>&amp;Input/Output</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Media</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -426,7 +434,7 @@
     </message>
     <message>
         <source>&amp;Settings</source>
-        <translation>&amp;Préférences</translation>
+        <translation type="obsolete">&amp;Préférences</translation>
     </message>
     <message>
         <source>&amp;Shared folders</source>
@@ -447,6 +455,14 @@
     <message>
         <source>Session preferences - </source>
         <translation type="unfinished">Préférences de session - </translation>
+    </message>
+    <message>
+        <source>&amp;Input/Output</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Media</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -681,6 +697,42 @@ Public key hash: </source>
     </message>
     <message>
         <source>Verification code:</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>MediaWidget</name>
+    <message>
+        <source>Sound</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable sound support</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Start sound daemon</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use running sound daemon</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use SSH port forwarding to tunnel
+sound system connections through firewalls</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use default sound port</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sound port:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Client side printing support</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2094,10 +2146,6 @@ Utiliser le mode caché de X2Go Client ?</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Sound</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>RDP Client</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2143,35 +2191,6 @@ Utiliser le mode caché de X2Go Client ?</translation>
     </message>
     <message>
         <source>&amp;Identify all displays</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Enable sound support</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Start sound daemon</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Use running sound daemon</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Use SSH port forwarding to tunnel
-sound system connections through firewalls</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Use default sound port</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Sound port:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Client side printing support</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
