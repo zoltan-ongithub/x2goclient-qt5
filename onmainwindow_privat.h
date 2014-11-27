@@ -137,7 +137,6 @@
 #include "configdialog.h"
 #include "editconnectiondialog.h"
 #include "sessionbutton.h"
-#include "folderbutton.h"
 #include "sessionexplorer.h"
 #include "sessionmanagedialog.h"
 #include "x2gologdebug.h"

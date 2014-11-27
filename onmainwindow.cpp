@@ -1272,19 +1272,6 @@ void ONMainWindow::slotResize ( const QSize sz )
             }
             else
             {
-                QList<FolderButton*>::iterator fit;
-                QList<FolderButton*>::iterator fend=sessionExplorer->getFoldersList()->end();
-                for ( fit=sessionExplorer->getFoldersList()->begin(); fit!=fend; fit++ )
-                {
-                    if ( !miniMode )
-                        ( *fit )->move (
-                            ( usize-360 ) /2,
-                            ( *fit )->pos().y() );
-                    else
-                        ( *fit )->move (
-                            ( usize-250 ) /2,
-                            ( *fit )->pos().y() );
-                }
                 QList<SessionButton*>::iterator it;
                 QList<SessionButton*>::iterator end=sessionExplorer->getSessionsList()->end();
                 for ( it=sessionExplorer->getSessionsList()->begin(); it!=end; it++ )
