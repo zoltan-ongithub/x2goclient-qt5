@@ -1,4 +1,4 @@
-x2goclient (4.0.3.1-0x2go1) UNRELEASED; urgency=medium
+x2goclient (4.0.3.1-0x2go1) unstable; urgency=medium
 
   [ Mike Gabriel ]
   * New upstream release (4.0.3.1):
@@ -20,7 +20,7 @@ x2goclient (4.0.3.1-0x2go1) UNRELEASED; urgency=medium
     - Split Sessions config widget into Input/output and Media widgets.
       (Fixes: #643).
 
- -- Mike Gabriel <mike.gabriel@das-netzwerkteam.de>  Tue, 21 Oct 2014 13:22:39 +0200
+ -- Mike Gabriel <mike.gabriel@das-netzwerkteam.de>  Thu, 27 Nov 2014 11:00:17 +0100
 
 x2goclient (4.0.3.0-0x2go1) unstable; urgency=low
 
