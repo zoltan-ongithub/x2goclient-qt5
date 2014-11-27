@@ -1,6 +1,9 @@
 x2goclient (4.0.3.2-0x2go1) UNRELEASED; urgency=medium
 
-  * Continue development...
+  [ Oleksandr Shneyder ]
+  * New upstream release (4.0.3.2):
+    - Reformat onmainwindow.cpp
+    - Fix placement of session folders in session card column. (Fixes: #681).
 
  -- Mike Gabriel <mike.gabriel@das-netzwerkteam.de>  Thu, 27 Nov 2014 12:01:43 +0100
 
@@ -25,8 +28,6 @@ x2goclient (4.0.3.1-0x2go1) unstable; urgency=medium
   * New upstream release (4.0.3.1):
     - Split Sessions config widget into Input/output and Media widgets.
       (Fixes: #643).
-    - Reformat onmainwindow.cpp
-    - Fix placement of session folders in session card column.
 
  -- Mike Gabriel <mike.gabriel@das-netzwerkteam.de>  Thu, 27 Nov 2014 11:00:17 +0100
 
