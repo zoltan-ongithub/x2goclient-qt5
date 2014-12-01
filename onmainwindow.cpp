@@ -5118,7 +5118,7 @@ void ONMainWindow::slotRetResumeSess ( bool result,
 #endif //Q_OS_WIN
         if ( sshSndTunnel )
         {
-            char* okSlot=0;
+            const char* okSlot=0;
 #ifdef Q_OS_WIN
             if ( sndSystem==PULSE )
             {
