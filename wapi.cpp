@@ -22,6 +22,7 @@
 #endif
 #include "x2goclientconfig.h"
 #ifdef Q_OS_WIN
+#include <winsock2.h>
 #include <windows.h>
 #include <sddl.h>
 #include "wapi.h"

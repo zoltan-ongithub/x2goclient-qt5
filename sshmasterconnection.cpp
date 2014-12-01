@@ -104,10 +104,10 @@ void SshMasterConnection::parseKnownHosts()
         for (int i=0; i<bytes.count();)
         {
             int size=0;
-            //first 4 bytes are for size of data fild (big-endian)
+            //first 4 bytes are for size of data field (big-endian)
             for (int j=0; j<4; ++j)
             {
-                size+=((uchar)(bytes[i])) * pow(256,3-j);
+                size+=((uchar)(bytes[i])) * pow((float)256,3-j);
                 i++;
             }
             QByteArray data;
@@ -1674,8 +1674,11 @@ void SshMasterConnection::finalize ( int item )
     {
 #ifndef Q_OS_WIN
         shutdown(tcpSocket, SHUT_RDWR);
-#endif
         close ( tcpSocket );
+#else
+        shutdown(tcpSocket, SD_BOTH);
+        closesocket ( tcpSocket );
+#endif
     }
     SshProcess* proc=channelConnections[item].creator;
     QString uuid=channelConnections[item].uuid;
