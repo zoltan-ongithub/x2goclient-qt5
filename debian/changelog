@@ -9,6 +9,14 @@ x2goclient (4.0.3.2-0x2go1) UNRELEASED; urgency=medium
   * New upstream release (4.0.3.2):
     - Provide empty Turkish translation file.
 
+  [ Mike DePaulo ]
+  * New upstream release (4.0.3.2):
+    - Windows: Enable X2Go Client for Windows to build under VS2010 nmake
+      (but not the VS2010 IDE due to a Qt4 Visual Studio Add-in limitation)
+      Note that the official builds are still build under MinGW.
+      (Fixes: #642)
+      Thanks George Trakatelis (uom.edu.gr) for submitting this feature.
+
  -- Mike Gabriel <mike.gabriel@das-netzwerkteam.de>  Thu, 27 Nov 2014 12:01:43 +0100
 
 x2goclient (4.0.3.1-0x2go1) unstable; urgency=medium
