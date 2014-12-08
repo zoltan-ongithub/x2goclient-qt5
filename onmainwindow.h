@@ -836,6 +836,9 @@ private:
     bool cyEntry;
 
     QString pulseDir;
+    QString pulseBaseDir;
+    QString pulseRuntimeDir;
+    QString pulseCookieArg;
     int pulsePort;
     int esdPort;
     bool maximizeProxyWin;

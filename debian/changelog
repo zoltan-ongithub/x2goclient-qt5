@@ -11,6 +11,7 @@ x2goclient (4.0.3.2-0x2go1) UNRELEASED; urgency=medium
 
   [ Mike DePaulo ]
   * New upstream release (4.0.3.2):
+    - Windows: Fix compatibility with PulseAudio 6.0
     - Windows: Enable X2Go Client for Windows to build under VS2010 nmake
       (but not the VS2010 IDE due to a Qt4 Visual Studio Add-in limitation)
       Note that the official builds are still build under MinGW.

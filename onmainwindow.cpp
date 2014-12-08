@@ -9647,13 +9647,15 @@ void ONMainWindow::startPulsed()
     while ( isServerRunning ( esdPort ) )
         ++esdPort;
 
-    pulseDir=homeDir+"/.x2go/pulse";
+    // The permanent dir for the pulse auth cookie
+    pulseBaseDir=homeDir+"/.x2go/pulse";
     QDir dr ( homeDir );
-    dr.mkpath ( pulseDir );
+    dr.mkpath ( pulseBaseDir );
+
+    // The tempoerary dir for config.pa (and pulse.log if it exists)
+    pulseDir=pulseBaseDir;
     pulseDir=wapiShortFileName ( pulseDir );
-
     x2goDebug<<"pulse template: "<<pulseDir+"/tmp";
-
     QTemporaryFile* fl=new QTemporaryFile ( pulseDir+"/tmp" );
     fl->open();
     pulseDir=fl->fileName();
@@ -9669,7 +9671,7 @@ void ONMainWindow::startPulsed()
     {
         if ( pEnv[i].indexOf ( "USERPROFILE=" ) !=-1 )
             pEnv[i]="USERPROFILE="+
-                    QDir::toNativeSeparators( wapiShortFileName( homeDir+"/.x2go/pulse"));
+                    QDir::toNativeSeparators( wapiShortFileName( pulseBaseDir ));
         if ( pEnv[i].indexOf ( "TEMP=" ) !=-1 )
             pEnv[i]="TEMP="+pulseDir;
         if ( pEnv[i].indexOf ( "USERNAME=" ) !=-1 )
@@ -9680,9 +9682,16 @@ void ONMainWindow::startPulsed()
     if ( !file.open ( QIODevice::WriteOnly | QIODevice::Text ) )
         return;
     QTextStream out ( &file );
-    // http://www.freedesktop.org/wiki/Software/PulseAudio/Documentation/User/Modules/#index22h3
-    // auth-cookie is relative to %USERPROFILE%
-    // Setting auth-cookie fixes bug #422
+    /*
+    Reference:
+    http://www.freedesktop.org/wiki/Software/PulseAudio/Documentation/User/Modules/#index22h3
+
+    Setting auth-cookie fixes bug #422
+
+    PulseAudio 6.0 changed the path that auth-cookie is relative to, so
+    Tanu Kaskinen recommended we specify the absolute path instead.
+    The abs path works with at least 5.0 and 6.0
+    */
     if (pulseVersionIsLegacy)
     {
         out << "load-module module-native-protocol-tcp port="+
@@ -9690,9 +9699,13 @@ void ONMainWindow::startPulsed()
     }
     else
     {
+        pulseCookieArg="auth-cookie="+
+            QDir::toNativeSeparators (wapiShortFileName( pulseBaseDir))+
+            "\\.pulse-cookie";
+        // Double backslashes are required in config.pa
+        pulseCookieArg.replace("\\", "\\\\");
         out << "load-module module-native-protocol-tcp port="+
-            QString::number ( pulsePort )+
-            " auth-cookie="+"\\.pulse-cookie" <<endl;
+            QString::number ( pulsePort )+" "+pulseCookieArg <<endl;
     }
     out << "load-module module-esound-protocol-tcp port="+
         QString::number ( esdPort ) <<endl;
@@ -9702,12 +9715,15 @@ void ONMainWindow::startPulsed()
     pulseServer->setEnvironment ( pEnv );
     pulseArgs.clear();
 #ifdef Q_OS_WIN
-    QDir drr(homeDir+"/.x2go/pulse/.pulse/"+QHostInfo::localHostName ()+"-runtime");
+    // FIXME: Explain why this dir needs to be created.
+    pulseRuntimeDir=pulseBaseDir+"/.pulse/"+QHostInfo::localHostName ()+"-runtime";
+    QDir drr(pulseRuntimeDir);
     if (!drr.exists())
         drr.mkpath(drr.path());
-    if (QFile::exists(homeDir+"/.x2go/pulse/.pulse/"+QHostInfo::localHostName ()+"-runtime/pid"))
-        QFile::remove(homeDir+"/.x2go/pulse/.pulse/"+QHostInfo::localHostName ()+"-runtime/pid");
-    pulseDir.replace("/","\\");
+    if (QFile::exists(pulseRuntimeDir+"/pid"))
+        QFile::remove(pulseRuntimeDir+"/pid");
+
+    pulseDir=QDir::toNativeSeparators( pulseDir );
     pulseArgs<<"--exit-idle-time=-1"<<"-n"<<"-F"<<pulseDir+"\\config.pa";
     if (debugging)
         pulseArgs<<"--log-level=debug"<<"--verbose"<<"--log-target=file:"+pulseDir+"\\pulse.log";
