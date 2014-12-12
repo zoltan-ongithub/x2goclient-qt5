@@ -34,6 +34,7 @@ TRANSLATIONS += \
            x2goclient_pt.ts \
            x2goclient_ru.ts \
            x2goclient_sv.ts \
+           x2goclient_tr.ts \
            x2goclient_zh_tw.ts
 
 HEADERS += configdialog.h \

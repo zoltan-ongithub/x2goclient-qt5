@@ -18,6 +18,10 @@ x2goclient (4.0.3.2-0x2go1) UNRELEASED; urgency=medium
       (Fixes: #642)
       Thanks George Trakatelis (uom.edu.gr) for submitting this feature.
 
+  [ Kaan Ozdincer ]
+  * New upstream version (4.0.3.2):
+    - Add Turkish translation file.
+
  -- Mike Gabriel <mike.gabriel@das-netzwerkteam.de>  Thu, 27 Nov 2014 12:01:43 +0100
 
 x2goclient (4.0.3.1-0x2go1) unstable; urgency=medium
