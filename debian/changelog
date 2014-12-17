@@ -9,6 +9,11 @@ x2goclient (4.0.3.2-0x2go1) UNRELEASED; urgency=medium
   * New upstream release (4.0.3.2):
     - Provide empty Turkish translation file.
 
+  [ Jason Alavaliant ]
+  * New upstream verson (4.0.3.2):
+    - Use QUrl::toPercentEncoding() method to properly encode passwords sent
+      to X2Go Session Broker. (Fixes: #705).
+
   [ Mike DePaulo ]
   * New upstream release (4.0.3.2):
     - Windows: Fix compatibility with PulseAudio 6.0

@@ -251,8 +251,8 @@ void HttpBrokerClient::getUserSessions()
         QString req;
         QTextStream ( &req ) <<
                              "task=listsessions&"<<
-                             "user="<<brokerUser<<"&"<<
-                             "password="<<config->brokerPass<<"&"<<
+                             "user="<<QUrl::toPercentEncoding(brokerUser)<<"&"<<
+                             "password="<<QUrl::toPercentEncoding(config->brokerPass)<<"&"<<
                              "authid="<<nextAuthId;
 
         x2goDebug << "sending request: "<< req.toUtf8();
@@ -290,8 +290,8 @@ void HttpBrokerClient::selectUserSession(const QString& session)
         QTextStream ( &req ) <<
                              "task=selectsession&"<<
                              "sid="<<session<<"&"<<
-                             "user="<<brokerUser<<"&"<<
-                             "password="<<config->brokerPass<<"&"<<
+                             "user="<<QUrl::toPercentEncoding(brokerUser)<<"&"<<
+                             "password="<<QUrl::toPercentEncoding(config->brokerPass)<<"&"<<
                              "authid="<<nextAuthId;
         x2goDebug << "sending request: "<< req.toUtf8();
         QNetworkRequest request(QUrl(config->brokerurl));
@@ -324,9 +324,9 @@ void HttpBrokerClient::changePassword(QString newPass)
         QString req;
         QTextStream ( &req ) <<
                              "task=setpass&"<<
-                             "newpass="<<newPass<<"&"<<
-                             "user="<<brokerUser<<"&"<<
-                             "password="<<config->brokerPass<<"&"<<
+                             "newpass="<<QUrl::toPercentEncoding(newPass)<<"&"<<
+                             "user="<<QUrl::toPercentEncoding(brokerUser)<<"&"<<
+                             "password="<<QUrl::toPercentEncoding(config->brokerPass)<<"&"<<
                              "authid="<<nextAuthId;
         x2goDebug << "sending request: "<< req.toUtf8();
         QNetworkRequest request(QUrl(config->brokerurl));
