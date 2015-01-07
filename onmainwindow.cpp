@@ -1471,7 +1471,7 @@ void ONMainWindow::closeClient()
 
 void ONMainWindow::closeEvent ( QCloseEvent* event )
 {
-    x2goDebug<<"Close event received.";
+    x2goDebug<<"Close event received."<<endl;
 
     if (trayNoclose && !brokerMode)
     {
@@ -1487,18 +1487,16 @@ void ONMainWindow::closeEvent ( QCloseEvent* event )
 
 void ONMainWindow::hideEvent(QHideEvent* event)
 {
-
-
     QMainWindow::hideEvent(event);
     if (event->spontaneous() && trayMinToTray)
         hide();
 
 }
 
-
-
 void ONMainWindow::trayQuit()
 {
+    x2goDebug<<"Quitting tray icon and closing application."<<endl;
+
     closeClient();
     qApp->quit();
 
@@ -1691,6 +1689,7 @@ void ONMainWindow::slotClosePass()
     if (brokerMode)
     {
         if (!config.brokerAuthenticated)
+            x2goErrorf(15)<<tr("Broker authenication failed!");
             close();
     }
     passForm->hide();
@@ -5589,8 +5588,14 @@ void ONMainWindow::slotProxyFinished ( int,QProcess::ExitStatus )
         delete sshConnection;
         x2goDebug<<"Deleted  SSH connection instance." ;
         sshConnection=0;
-        if ( startHidden || closeDisconnect)
+        if (startHidden)
         {
+            x2goInfof(9) << tr("Closing X2Go Client (because it was started in hidden mode).");
+            close();
+        }
+        else if (closeDisconnect)
+        {
+            x2goInfof(10) << tr("Closing X2Go Client (because --close-disconnect was used on the cmdline).");
             close();
         }
     }
@@ -8960,8 +8965,14 @@ void ONMainWindow::slotCmdMessage ( bool result,QString output,
     if(sshConnection)
         delete sshConnection;
     sshConnection=0;
-    if ( startHidden  || closeDisconnect)
+    if (startHidden)
     {
+        x2goInfof(11) << tr("Closing X2Go Client (because it was started in hidden mode).");
+        close();
+    }
+    else if (closeDisconnect)
+    {
+        x2goInfof(12) << tr("Closing X2Go Client (because --close-disconnect was used on the cmdline).");
         close();
     }
 }

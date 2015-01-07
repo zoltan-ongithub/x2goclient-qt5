@@ -38,6 +38,7 @@
 PrintProcess::PrintProcess ( QString pdf, QString title, QObject *parent ) :
 		QObject ( parent )
 {
+	x2goDebug<<"Starting print process."<<endl;
 	pdfFile=pdf;
 	pdfTitle=title;
 	parentWidg= ( QWidget* ) parent;
@@ -47,14 +48,21 @@ PrintProcess::PrintProcess ( QString pdf, QString title, QObject *parent ) :
 		return;
 	}
 	if ( viewPdf )
+	{
+		x2goDebug<<"Opening PDF file: "<<pdfFile<<" ("<<pdfTitle<<")"<<endl;
 		QTimer::singleShot ( 100, this, SLOT ( openPdf() ) );
+	}
 	else
+	{
+		x2goDebug<<"Printing PDF file: "<<pdfFile<<" ("<<pdfTitle<<")"<<endl;
 		QTimer::singleShot ( 100, this, SLOT ( print() ) );
+	}
 }
 
 
 PrintProcess::~PrintProcess()
 {
+	x2goDebug<<"Closing print process."<<endl;
 }
 
 
@@ -130,6 +138,7 @@ bool PrintProcess::loadSettings()
 
 void PrintProcess::openPdf()
 {
+	x2goDebug<<"opening/saving PDF..."<<endl;
 	if ( pdfOpen )
 	{
 #ifndef Q_OS_WIN
@@ -138,6 +147,7 @@ void PrintProcess::openPdf()
 #else
 		QString cmd=pdfOpenCmd+"\""+pdfFile+"\"";
 #endif
+		x2goDebug<<"Using PDF viewer command: "<<cmd<<endl;
 		x2goDebug<<cmd;
 		if ( ! QProcess::startDetached ( cmd ) )
 			slot_error ( QProcess::FailedToStart );

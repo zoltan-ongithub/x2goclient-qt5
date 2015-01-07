@@ -8,6 +8,7 @@ x2goclient (4.0.3.2-0x2go1) UNRELEASED; urgency=medium
   [ Mike Gabriel ]
   * New upstream release (4.0.3.2):
     - Provide empty Turkish translation file.
+    - Add several info/error/debug log message while hunting down #702.
 
   [ Jason Alavaliant ]
   * New upstream verson (4.0.3.2):

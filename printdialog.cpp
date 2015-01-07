@@ -25,7 +25,7 @@
 PrintDialog::PrintDialog ( QWidget* parent, Qt::WindowFlags f )
 		: QDialog ( parent,f )
 {
-	x2goDebug<<"starting print dialog"<<endl;
+	x2goDebug<<"Starting print dialog."<<endl;
 	ui.setupUi ( this );
 	ui.buttonBox->button ( QDialogButtonBox::Ok )->setText (
 	    tr ( "Print" ) );
@@ -44,6 +44,7 @@ PrintDialog::PrintDialog ( QWidget* parent, Qt::WindowFlags f )
 
 PrintDialog::~PrintDialog()
 {
+	x2goDebug<<"Closing print dialog."<<endl;
 }
 
 
