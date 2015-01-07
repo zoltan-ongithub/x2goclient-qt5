@@ -103,7 +103,11 @@ int x2goMain ( int argc, char *argv[] )
     {
         ONMainWindow* mw = new ONMainWindow;
         mw->show();
-        return app.exec();
+        int retval;
+        app.setQuitOnLastWindowClosed(false);
+        retval = app.exec();
+        delete mw;
+        return retval;
     }
 #endif
     return 0;

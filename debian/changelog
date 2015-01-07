@@ -9,6 +9,11 @@ x2goclient (4.0.3.2-0x2go1) UNRELEASED; urgency=medium
   * New upstream release (4.0.3.2):
     - Provide empty Turkish translation file.
     - Add several info/error/debug log message while hunting down #702.
+    - Use app.setQuitOnLastWindowClosed(false) for the X2Go Client QtApplication
+      to assure that X2Go Client does not arbitrarily exit during a running
+      session. This fixes X2Go Client crashes that occur when printing via
+      the CUPS-X2Go printing mechanism with activate print dialog popup on
+      incoming print jobs and minimized main window. (Fixes: #702).
 
   [ Jason Alavaliant ]
   * New upstream verson (4.0.3.2):
