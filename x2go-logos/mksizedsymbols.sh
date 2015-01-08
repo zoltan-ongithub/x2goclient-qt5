@@ -2,8 +2,8 @@
 # Use this script to build typical iconsized PNGs based on a svg sourcefile.
 # ----------------------------------------------------------------------------
 # Written by Heinz-M. Graesing <heinz-m.graesing@obviously-nice.de>
-# (c) 2012 Heinz-M. Graesing GNU GPL v2.0+
-# Last updated on: Dez/01/2012 by Heinz-M. Graesing
+# (C) 2012-2015 Heinz-M. Graesing GNU GPL v2.0+
+# Last updated on: Dec/01/2012 by Heinz-M. Graesing
 # ----------------------------------------------------------------------------
 
 usage="mksizedsymbols.sh -f sourcefile.svg"

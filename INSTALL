@@ -3,11 +3,11 @@ Basic Installation
 
 Before use this programm you need to install:
 
-Qt4: 
+Qt4:
 http://www.trolltech.com
 
 nxcomp+nxproxy:
 http://www.nomachine.com/sources.php
 
-You may want also install pulseaudio sound server to enable sound support 
+You may want also install pulseaudio sound server to enable sound support
 http://www.pulseaudio.org/wiki/DownloadPulseAudio

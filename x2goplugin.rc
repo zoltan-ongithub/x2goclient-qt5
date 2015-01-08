@@ -23,7 +23,7 @@ BEGIN
 	    VALUE "FileOpenName", "Configuration File for X2Go Session (*.x2go)\0"
             VALUE "FileVersion", "4, 0, 3 ,2\0"
             VALUE "InternalName", "x2goplugin\0"
-            VALUE "LegalCopyright", "Copyright © 2010-2014 X2Go Project\0"
+            VALUE "LegalCopyright", "Copyright © 2010-2015 X2Go Project\0"
 	    VALUE "MIMEType", "application/x2go\0"
             VALUE "OriginalFilename", "npx2goplugin.dll\0"
             VALUE "ProductName", "X2GoClient Plug-in 4.0.3.2\0"

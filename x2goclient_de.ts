@@ -1837,8 +1837,8 @@ Möchten Sie die Verbindung abbrechen?</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="8079"/>
-        <source>&lt;/b&gt;&lt;br&gt; (C. 2005-2014 &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing)&lt;br&gt;</source>
-        <translation>&lt;/b&gt;&lt;br&gt; (C. 2005-2014 &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing)&lt;br&gt;</translation>
+        <source>&lt;/b&gt;&lt;br&gt; (C. 2005-2015 &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing)&lt;br&gt;</source>
+        <translation>&lt;/b&gt;&lt;br&gt; (C. 2005-2015 &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing)&lt;br&gt;</translation>
     </message>
     <message>
         <location filename="onmainwindow.cpp" line="8145"/>

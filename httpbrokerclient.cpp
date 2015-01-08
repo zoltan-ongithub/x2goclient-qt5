@@ -1,5 +1,5 @@
 /**************************************************************************
-*   Copyright (C) 2005-2014 by Oleksandr Shneyder                         *
+*   Copyright (C) 2005-2015 by Oleksandr Shneyder                         *
 *   o.shneyder@phoca-gmbh.de                                              *
 *                                                                         *
 *   This program is free software; you can redistribute it and/or modify  *
