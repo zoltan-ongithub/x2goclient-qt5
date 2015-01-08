@@ -19,6 +19,7 @@ x2goclient (4.0.3.2-0x2go1) UNRELEASED; urgency=medium
       in the error message.
     - Enable debugging in sshprocess.cpp and sshmasterconnection.cpp if
       --debug is given.
+    - sshmasterconnection.cpp: Fix several grammar issues in error messages.
 
   [ Jason Alavaliant ]
   * New upstream verson (4.0.3.2):

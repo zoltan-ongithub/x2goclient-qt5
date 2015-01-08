@@ -3227,7 +3227,7 @@ sound system connections through firewalls</source>
     </message>
     <message>
         <location filename="sshmasterconnection.cpp" line="336"/>
-        <source>can not connect to </source>
+        <source>Cannot connect to </source>
         <translation>ei suuda ühenduda </translation>
     </message>
     <message>

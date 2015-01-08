@@ -2368,7 +2368,7 @@ Utiliser le mode caché de X2Go Client ?</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>can not connect to </source>
+        <source>Cannot connect to </source>
         <translation type="unfinished"></translation>
     </message>
     <message>

@@ -3129,7 +3129,7 @@ sound system connections through firewalls</source>
     <name>SshMasterConnection</name>
     <message>
         <location filename="sshmasterconnection.cpp" line="336"/>
-        <source>can not connect to </source>
+        <source>Cannot connect to </source>
         <translation>kan niet verbinden met</translation>
     </message>
     <message>

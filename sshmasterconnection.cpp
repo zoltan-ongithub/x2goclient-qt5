@@ -332,7 +332,7 @@ void SshMasterConnection::checkReverseTunnelConnections()
 
                 if ( ::connect ( sock, ( struct sockaddr * ) &address,sizeof ( address ) ) !=0 )
                 {
-                    QString errMsg=tr ( "can not connect to " ) +
+                    QString errMsg=tr ( "Cannot connect to " ) +
                                    req.localHost+":"+QString::number ( req.localPort );
 #ifdef DEBUG
                     x2goDebug<<errMsg<<endl;
@@ -479,7 +479,7 @@ void SshMasterConnection::run()
 #endif
         if ( ssh_init() !=0 )
         {
-            QString err=tr ( "Can not initialize libssh" );
+            QString err=tr ( "Cannot initialize libssh" );
 #ifdef DEBUG
             x2goDebug<<err<<endl;
 #endif
@@ -507,7 +507,7 @@ void SshMasterConnection::run()
     my_ssh_session = ssh_new();
     if ( my_ssh_session == NULL )
     {
-        QString err=tr ( "Can not create ssh session" );
+        QString err=tr ( "Cannot create ssh session" );
 #ifdef DEBUG
         x2goDebug<<err<<endl;
 #endif
@@ -543,7 +543,7 @@ void SshMasterConnection::run()
         proxysocket = tcpProxySocket->socketDescriptor();
         if (!tcpProxySocket->waitForConnected(30000))
         {
-            QString message=tr ( "Can not connect to proxy server" );
+            QString message=tr ( "Cannot connect to proxy server" );
 #ifdef DEBUG
             x2goDebug<<message<<endl;
 #endif
@@ -573,7 +573,7 @@ void SshMasterConnection::run()
             return;
         }
         QString err=ssh_get_error ( my_ssh_session );
-        QString message=tr ( "Can not connect to " ) +host+":"+QString::number ( port );
+        QString message=tr ( "Cannot connect to " ) +host+":"+QString::number ( port );
 #ifdef DEBUG
         x2goDebug<<message<<" - "<<err;
 #endif
@@ -1292,7 +1292,7 @@ void SshMasterConnection::copy()
         QFile file ( copyRequests[i].src );
         if ( !file.open ( QIODevice::ReadOnly ) )
         {
-            QString errMsg=tr ( "Can not open file " ) +copyRequests[i].src;
+            QString errMsg=tr ( "Cannot open file " ) +copyRequests[i].src;
             emit copyErr ( copyRequests[i].creator, errMsg, "" );
             copyRequests.removeAt ( i );
             ssh_scp_close ( scp );
@@ -1304,7 +1304,7 @@ void SshMasterConnection::copy()
         rc=ssh_scp_push_file ( scp,dstFile.toAscii(),arr.size(), 0600 );
         if ( rc != SSH_OK )
         {
-            QString errMsg=tr ( "Can not create remote file " ) +copyRequests[i].dst;
+            QString errMsg=tr ( "Cannot create remote file " ) +copyRequests[i].dst;
             QString serr=ssh_get_error ( my_ssh_session );
 #ifdef DEBUG
             x2goDebug<<errMsg<<" - "<<serr<<endl;
@@ -1319,7 +1319,7 @@ void SshMasterConnection::copy()
         if ( rc != SSH_OK )
         {
             QString serr=ssh_get_error ( my_ssh_session );
-            QString errMsg=tr ( "Can not write to remote file " ) +copyRequests[i].dst;
+            QString errMsg=tr ( "Cannot write to remote file " ) +copyRequests[i].dst;
 #ifdef DEBUG
             x2goDebug<<errMsg<<" - "<<serr<<endl;
 #endif

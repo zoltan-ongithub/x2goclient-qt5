@@ -2661,7 +2661,7 @@ lydsystem forbindelser gjennom brannmurer</translation>
         <translation>Klarer ikke å skrive til filen over nettverket </translation>
     </message>
     <message>
-        <source>can not connect to </source>
+        <source>Cannot connect to </source>
         <translation>Klarer ikke å koble til </translation>
     </message>
     <message>

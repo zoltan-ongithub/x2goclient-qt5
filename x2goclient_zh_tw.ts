@@ -3239,7 +3239,7 @@ sound system connections through firewalls</source>
     </message>
     <message>
         <location filename="sshmasterconnection.cpp" line="336"/>
-        <source>can not connect to </source>
+        <source>Cannot connect to </source>
         <translation>無法連線至 </translation>
     </message>
     <message>

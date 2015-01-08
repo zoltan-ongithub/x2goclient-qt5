@@ -3257,7 +3257,7 @@ lydsystemets forbindelse igennem firewalls</translation>
     </message>
     <message>
         <location filename="sshmasterconnection.cpp" line="336"/>
-        <source>can not connect to </source>
+        <source>Cannot connect to </source>
         <translation>kan ikke forbinde til</translation>
     </message>
     <message>

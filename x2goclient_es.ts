@@ -3251,7 +3251,7 @@ el sonido en conexiones a través de firewalls</translation>
     </message>
     <message>
         <location filename="sshmasterconnection.cpp" line="336"/>
-        <source>can not connect to </source>
+        <source>Cannot connect to </source>
         <translation>no se puede conectar a </translation>
     </message>
     <message>

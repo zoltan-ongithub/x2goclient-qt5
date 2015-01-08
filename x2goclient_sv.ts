@@ -3283,7 +3283,7 @@ ljudström genom brandväggar</translation>
     </message>
     <message>
         <location filename="sshmasterconnection.cpp" line="336"/>
-        <source>can not connect to </source>
+        <source>Cannot connect to </source>
         <translation>kan inte ansluta till </translation>
     </message>
     <message>
