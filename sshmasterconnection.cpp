@@ -1538,7 +1538,7 @@ void SshMasterConnection::channelLoop()
             if ( rez==SSH_EOF )
             {
 #ifdef DEBUG
-                x2goDebug<<"EOF ON CHANNEL "<<channel<<endl;
+                x2goDebug<<"EOF ON CHANNEL "<<channel<<" (SshProcess: "<<channelConnections[i].creator->pid<<")"<<endl;
 #endif
                 //////Finished////////
                 finalize ( i );
@@ -1593,7 +1593,7 @@ void SshMasterConnection::channelLoop()
                 if ( channel_is_eof ( channel ) )
                 {
 #ifdef DEBUG
-                    x2goDebug<<"EOF ON CHANNEL "<<channel<<endl;
+                    x2goDebug<<"EOF ON CHANNEL "<<channel<<" (SshProcess: "<<channelConnections[i].creator->pid<<")"<<endl;
 #endif
                     //////Finished////////
                     finalize ( i );

@@ -186,7 +186,7 @@ void SshProcess::startNormal(const QString& cmd)
 
 //#ifdef DEBUG
 // ONLY UNCOMMENT FOR TESTING, MIGHT REVEAL PASSWORD WHEN command=RDP
-//    x2goDebug<<"executing remote command: "<<shcmd<<endl;
+    x2goDebug<<"executing remote command via SshProcess object ("<<pid<<"): "<<cmd<<endl;
 // #endif
     if(!masterCon->useKerberos())
     {
@@ -239,6 +239,8 @@ void SshProcess::startNormal(const QString& cmd)
 
 void SshProcess::start_cp(QString src, QString dst)
 {
+    x2goDebug<<"copying file via SshProcess object ("<<pid<<"): "<<src<<" -> "<<dst<<endl;
+
     scpSource=src;
     if(!masterCon->useKerberos())
     {
@@ -287,6 +289,8 @@ void SshProcess::start_cp(QString src, QString dst)
 void SshProcess::startTunnel(const QString& forwardHost, uint forwardPort, const QString& localHost,
                              uint localPort, bool reverse)
 {
+    x2goDebug<<"Starting tunnel via SshProcess object ("<<pid<<"): "<<forwardHost<<":"<<forwardPort<<" -> "<<localHost<<":"<<localPort<<endl;
+
     tunnel=true;
     tunnelOkEmited=false;
     if(!masterCon->useKerberos())
@@ -440,7 +444,7 @@ void SshProcess::slotChannelClosed(SshProcess* creator, QString uuid)
         }
     }
 #ifdef DEBUG
-    x2goDebug<<"ssh finished:"<<normalExited<<" - "<<output<<uuid<<endl;
+    x2goDebug<<"ssh finished: "<<normalExited<<" - "<<output<<" ("<<pid<<")."<<endl;
 #endif
     emit sshFinished(normalExited, output, pid);
 }

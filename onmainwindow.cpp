@@ -7843,7 +7843,7 @@ directory* ONMainWindow::getExpDir ( QString key )
 void ONMainWindow::slotRetExportDir ( bool result,QString output,
                                       int pid)
 {
-
+    x2goDebug<<"Post-cleanup for startX2goMount triggered."<<endl;
     QString key;
     for ( int i=0; i<exportDir.size(); ++i )
         if ( exportDir[i].pid==pid )
@@ -7853,10 +7853,10 @@ void ONMainWindow::slotRetExportDir ( bool result,QString output,
             break;
         }
 
-
     if ( result==false )
     {
         QString message=tr ( "<b>Connection failed</b>\n" ) +output;
+        x2goDebug<<"startX2goMount failed to mount client-side folder, reason: "<<message<<endl;
         if ( message.indexOf ( "publickey,password" ) !=-1 )
         {
             message=tr ( "<b>Wrong password!</b><br><br>" ) +
@@ -7868,6 +7868,7 @@ void ONMainWindow::slotRetExportDir ( bool result,QString output,
                                 QMessageBox::NoButton );
     }
     QFile file ( key+".pub" );
+    x2goDebug<<"Deactivating public key from "<<key<<".pub again."<<endl;
     if ( !file.open ( QIODevice::ReadOnly | QIODevice::Text ) )
     {
         printSshDError_noExportPubKey();
@@ -9028,6 +9029,8 @@ void ONMainWindow::slotFsTunnelFailed ( bool result,  QString output,
 
 void ONMainWindow::slotFsTunnelOk(int)
 {
+    x2goDebug<<"FS tunnel through SSH seems to be up and running..."<<endl;
+
     fsTunReady=true;
     //start reverse mounting if RSA Key and FS tunnel are ready
     //start only once from slotFsTunnelOk() or slotCopyKey().
@@ -9085,6 +9088,8 @@ void ONMainWindow::startX2goMount()
     QTextStream out ( &file1 );
     out<<line;
     file1.close();
+
+    x2goDebug<<"Temporarily activated public key from file "<<fsExportKey<<".pub."<<endl;
 
     QString passwd=getCurrentPass();
     QString user=getCurrentUname();
@@ -9177,6 +9182,7 @@ void ONMainWindow::startX2goMount()
         }
     }
 
+    x2goDebug<<"Calling startX2goMount command."<<endl;
     dir->pid=sshConnection->executeCommand(cmd,this,SLOT ( slotRetExportDir ( bool,
                                            QString,int) ));
 }
