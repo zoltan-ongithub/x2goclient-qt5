@@ -373,11 +373,13 @@ void SshProcess::slotIOerr(SshProcess* creator, QString message, QString sshSess
 {
     if (creator!=this)
         return;
+    if (sshSessionErr.length())
+        sshSessionErr = " - "+sshSessionErr;
 #ifdef DEBUG
-    x2goDebug<<"io error:"<<message<<" - "<<sshSessionErr<<endl;
+    x2goDebug<<"I/O error: "<<message<<sshSessionErr<<" ("<<pid<<")."<<endl;
 #endif
     normalExited=false;
-    abortString=message+" - "+sshSessionErr;
+    abortString="I/O error: "+message+sshSessionErr;
 }
 
 void SshProcess::slotCopyErr(SshProcess* creator, QString message, QString sshSessionErr)
