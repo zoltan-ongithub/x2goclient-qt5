@@ -14,6 +14,9 @@ x2goclient (4.0.3.2-0x2go1) UNRELEASED; urgency=medium
       session. This fixes X2Go Client crashes that occur when printing via
       the CUPS-X2Go printing mechanism with activate print dialog popup on
       incoming print jobs and minimized main window. (Fixes: #702).
+    - Be more exact when reporting rev forwarding tunnel request failures to
+      the GUI user. Include the purpose of the tunnel (NX, audio, foldersharing)
+      in the error message.
 
   [ Jason Alavaliant ]
   * New upstream verson (4.0.3.2):

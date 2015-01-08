@@ -5362,7 +5362,7 @@ void ONMainWindow::slotTunnelFailed ( bool result,  QString output,
     {
         if ( !managedMode )
         {
-            QString message=tr ( "Unable to create SSL tunnel:\n" )
+            QString message=tr ( "Unable to create SSH tunnel for X2Go session (NX) startup:\n" )
                             +output;
             QMessageBox::critical ( 0l,tr ( "Error" ),message,
                                     QMessageBox::Ok,
@@ -5392,7 +5392,7 @@ void ONMainWindow::slotSndTunnelFailed ( bool result,  QString output,
     {
         if ( !managedMode )
         {
-            QString message=tr ( "Unable to create SSL Tunnel:\n" )
+            QString message=tr ( "Unable to create SSH Tunnel for audio data:\n" )
                             +output;
             QMessageBox::warning ( 0l,tr ( "Warning" ),message,
                                    QMessageBox::Ok,
@@ -9014,7 +9014,7 @@ void ONMainWindow::slotFsTunnelFailed ( bool result,  QString output,
         if ( !managedMode )
         {
 
-            QString message=tr ( "Unable to create SSL tunnel:\n" )
+            QString message=tr ( "Unable to create SSH tunnel for foldersharing and printing:\n" )
                             +output;
             QMessageBox::critical ( 0l,tr ( "Error" ),message,
                                     QMessageBox::Ok,
