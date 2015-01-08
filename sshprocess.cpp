@@ -28,8 +28,8 @@
 #include <netinet/tcp.h>
 #endif
 
-#undef DEBUG
-// #define DEBUG
+// #undef DEBUG
+#define DEBUG
 
 #define KEEPALIVE_OPTION " -o ServerAliveInterval=60 "
 

@@ -48,8 +48,7 @@
 
 #define PROXYTUNNELPORT 44444
 
-#undef DEBUG
-// #define DEBUG
+#define DEBUG
 
 #undef SSH_DEBUG
 // #define SSH_DEBUG

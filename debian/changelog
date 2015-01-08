@@ -17,6 +17,8 @@ x2goclient (4.0.3.2-0x2go1) UNRELEASED; urgency=medium
     - Be more exact when reporting rev forwarding tunnel request failures to
       the GUI user. Include the purpose of the tunnel (NX, audio, foldersharing)
       in the error message.
+    - Enable debugging in sshprocess.cpp and sshmasterconnection.cpp if
+      --debug is given.
 
   [ Jason Alavaliant ]
   * New upstream verson (4.0.3.2):
