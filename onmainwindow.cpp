@@ -9077,13 +9077,14 @@ void ONMainWindow::startX2goMount()
         return;
 
     }
-    QTextStream out ( &file1 );
-    out<<line;
-    file1.close();
     directory* dir=getExpDir ( fsExportKey );
     bool rem=dir->isRemovable;
     if ( !dir )
         return;
+
+    QTextStream out ( &file1 );
+    out<<line;
+    file1.close();
 
     QString passwd=getCurrentPass();
     QString user=getCurrentUname();

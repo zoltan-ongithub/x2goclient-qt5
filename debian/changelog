@@ -20,6 +20,9 @@ x2goclient (4.0.3.2-0x2go1) UNRELEASED; urgency=medium
     - Enable debugging in sshprocess.cpp and sshmasterconnection.cpp if
       --debug is given.
     - sshmasterconnection.cpp: Fix several grammar issues in error messages.
+    - When sharing a client-side folder, do not write the SSH pub key to
+      client-side authorized_keys file if the folder-to-be-shared does not
+      exist on the client. (Partially solves #405).
 
   [ Jason Alavaliant ]
   * New upstream verson (4.0.3.2):
