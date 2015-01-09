@@ -26,6 +26,8 @@ x2goclient (4.0.3.2-0x2go1) UNRELEASED; urgency=medium
     - Fix string concatenation/layout of error message when tunnel I/O errors
       occur.
     - Improve debugging/logging the SSH connections made by X2Go Client.
+    - SSH with GSSAPI: Don't assume the broker-side user has /bin/sh (or
+      compatible) set as default shell. (Fixes: #720).
 
   [ Jason Alavaliant ]
   * New upstream verson (4.0.3.2):
