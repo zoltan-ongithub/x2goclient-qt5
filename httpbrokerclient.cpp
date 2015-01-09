@@ -302,10 +302,10 @@ void HttpBrokerClient::selectUserSession(const QString& session)
     else
     {
         if (nextAuthId.length() > 0) {
-            sshConnection->executeCommand ( config->sshBrokerBin+" --user "+ brokerUser +" --authid "+nextAuthId+ " --task selectsession --sid \\\""+session+"\\\"",
+            sshConnection->executeCommand ( config->sshBrokerBin+" --user "+ brokerUser +" --authid "+nextAuthId+ " --task selectsession --sid \""+session+"\"",
                                             this,SLOT ( slotSelectSession(bool,QString,int)));
         } else {
-            sshConnection->executeCommand ( config->sshBrokerBin+" --user "+ brokerUser +" --task selectsession --sid \\\""+session+"\\\"",
+            sshConnection->executeCommand ( config->sshBrokerBin+" --user "+ brokerUser +" --task selectsession --sid \""+session+"\"",
                                             this,SLOT ( slotSelectSession(bool,QString,int)));
         }
     }
