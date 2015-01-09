@@ -1689,8 +1689,10 @@ void ONMainWindow::slotClosePass()
     if (brokerMode)
     {
         if (!config.brokerAuthenticated)
+        {
             x2goErrorf(15)<<tr("Broker authenication failed!");
             close();
+        }
     }
     passForm->hide();
     if ( !embedMode )
