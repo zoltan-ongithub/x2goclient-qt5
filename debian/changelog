@@ -29,6 +29,10 @@ x2goclient (4.0.3.2-0x2go1) UNRELEASED; urgency=medium
     - Fix quotes when calling remote commands via SSH (esp. allow same quoting/
       escaping style for libssh and openSSH+Krb based connections). (Fixes: #720).
 
+    [ Heinrich Schuchardt ]
+    - Base the layout dialogue "Session ID" (which shows up when starting a
+      connection) on typographic points (instead of pixels). (Fixes: #713).
+
   [ Jason Alavaliant ]
   * New upstream verson (4.0.3.2):
     - Use QUrl::toPercentEncoding() method to properly encode passwords sent

@@ -11038,6 +11038,7 @@ void ONMainWindow::initStatusDlg()
     layout->addWidget ( sbAdv );
     layout->addStretch();
     layout->addLayout ( bl );
+    layout->setSizeConstraint( QLayout::SetFixedSize );
 
 
     slName->show();
