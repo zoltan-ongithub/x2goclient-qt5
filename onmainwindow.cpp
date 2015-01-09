@@ -5445,14 +5445,7 @@ void ONMainWindow::slotSetModMap()
             }
         }
     }
-    if(sshConnection->useKerberos())
-    {
-        sshConnection->executeCommand("export DISPLAY=:"+resumingSession.display+"; echo '"+kbMap+"' | xmodmap -");
-    }
-    else
-    {
-        sshConnection->executeCommand("export DISPLAY=:"+resumingSession.display+"; echo \\\""+kbMap+"\\\" | xmodmap -");
-    }
+    sshConnection->executeCommand("export DISPLAY=:"+resumingSession.display+"; echo \""+kbMap+"\" | xmodmap -");
 }
 #endif
 

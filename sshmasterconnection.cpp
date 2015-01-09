@@ -1139,7 +1139,7 @@ bool SshMasterConnection::userAuthKrb()
     QUuid uuid = QUuid::createUuid();
     QString uuidStr = uuid.toString().mid(1, 36).toLower();
 
-    QString shcmd = " echo X2GODATABEGIN:" + uuidStr + "; whoami; echo X2GODATAEND:" + uuidStr ;
+    QString shcmd = "sh -c 'echo X2GODATABEGIN:" + uuidStr + "; whoami; echo X2GODATAEND:" + uuidStr +";'";
 
 #ifdef Q_OS_WIN
     sshCmd="plink -batch "+user+"@"+host+" -P "+
