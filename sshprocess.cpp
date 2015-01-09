@@ -217,6 +217,8 @@ void SshProcess::startNormal(const QString& cmd)
 #endif
                           QString::number(masterCon->getPort())+" -l "+
                           masterCon->getUser()+" "+ host +  " \""+shcmd+"\"";
+
+        x2goDebug<<"evoking ssh command via SshProcess object ("<<pid<<"): "<<sshString<<endl;
         procUuid=uuidStr;
         proc->start(sshString);
 
@@ -224,7 +226,7 @@ void SshProcess::startNormal(const QString& cmd)
         {
             stdErrString=proc->errorString();
 #ifdef DEBUG
-            x2goDebug<<"ssh start failed:" <<stdErrString<<endl;
+            //x2goDebug<<"ssh start failed:" <<stdErrString<<endl;
 #endif
             slotChannelClosed(this, uuidStr);
             return;

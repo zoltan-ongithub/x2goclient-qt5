@@ -279,7 +279,7 @@ void HttpBrokerClient::getUserSessions()
 
 void HttpBrokerClient::selectUserSession(const QString& session)
 {
-    x2goDebug<<"called selectUserSession";
+    x2goDebug<<"Called selectUserSession for session "<<session<<".";
     QString brokerUser=config->brokerUser;
     if(mainWindow->getUsePGPCard())
         brokerUser=mainWindow->getCardLogin();
