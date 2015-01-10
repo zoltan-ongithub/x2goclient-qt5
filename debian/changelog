@@ -28,6 +28,9 @@ x2goclient (4.0.3.2-0x2go1) UNRELEASED; urgency=medium
     - Improve debugging/logging the SSH connections made by X2Go Client.
     - Fix quotes when calling remote commands via SSH (esp. allow same quoting/
       escaping style for libssh and openSSH+Krb based connections). (Fixes: #720).
+    - FIXME: Disable PubkeyAuthentication _and_ PasswordAuthentication if
+      GSSAPI authentication is activated. This is counter intuitive, though,
+      and requires several other fixes in the authentication code.
 
     [ Heinrich Schuchardt ]
     - Base the layout dialogue "Session ID" (which shows up when starting a

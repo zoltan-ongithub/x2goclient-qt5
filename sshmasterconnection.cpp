@@ -1146,7 +1146,7 @@ bool SshMasterConnection::userAuthKrb()
            QString::number(port)+ shcmd;
 #else
     sshCmd="ssh -o GSSApiAuthentication=yes "+user+"@"+host+" -p "+
-           QString::number(port)+ " -o PasswordAuthentication=no "+shcmd;
+           QString::number(port)+ " -o PasswordAuthentication=no -o PubkeyAuthentication=no "+shcmd;
 #endif
 
 #ifdef DEBUG
