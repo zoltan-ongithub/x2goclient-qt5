@@ -1143,7 +1143,7 @@ bool SshMasterConnection::userAuthKrb()
 
 #ifdef Q_OS_WIN
     sshCmd="plink -batch "+user+"@"+host+" -P "+
-           QString::number(port)+ shcmd;
+           QString::number(port)+ " "+shcmd;
 #else
     sshCmd="ssh -o GSSApiAuthentication=yes "+user+"@"+host+" -p "+
            QString::number(port)+ " -o PasswordAuthentication=no -o PubkeyAuthentication=no "+shcmd;
