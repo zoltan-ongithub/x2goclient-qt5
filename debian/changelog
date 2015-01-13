@@ -53,6 +53,7 @@ x2goclient (4.0.3.2-0x2go1) UNRELEASED; urgency=medium
       Pageant support). This fixes CVE-2014-8132, which shouldn't
       affect x2goclient because x2goclient uses the SSH client
       functionality, not the SSH server functionality.
+      0.6.4 also added 4 features related to ECDSA keys.
     - Windows: Fix compatibility with PulseAudio 6.0
     - Windows: Enable X2Go Client for Windows to build under VS2010 nmake
       (but not the VS2010 IDE due to a Qt4 Visual Studio Add-in limitation)
