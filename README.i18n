@@ -16,11 +16,11 @@ THANKS!!! for the time you give to the X2Go project.
 And, if you are new to the team and language files for the language you want to feel
 responsible for do not yet exist, please subscribe to this mailing list first:
 
-  http://lists.berlios.de/mailman/listinfo/x2go-i18n 
+  http://lists.x2go.org/listinfo/x2go-i18n
 
 Once you are subscribed, send an email to
 
-  x2go-i18n@lists.berlios.de
+  x2go-i18n@lists.x2go.org
 
 that explains your willingness to translate this-and-that language.
 
@@ -33,8 +33,8 @@ Git cloning
 Next thing to do is to obtained the latest sources from X2Go Git.
 
   $ # git needs to be installed, on Debian/Ubuntu this is
-  $ aptitude install git       <----for debian
-  $ sudo apt-get install git   <----for ubuntu
+  $ aptitude install git       # <----for debian
+  $ sudo apt-get install git   # <----for ubuntu
   $ # then checkout the code
   $ git clone git://code.x2go.org/x2goclient.git
 
@@ -43,39 +43,39 @@ In your current working directory there should now be a subfolder named ,,x2gocl
 
 Creating Your Language File
 ---------------------------
-First, Copy the x2goclient_de.ts file with terminal.
+First, copy the file x2goclient_de.ts, for instance via the terminal.
 
-you do this by typing the following commands:
+You can do this by running the following commands:
 
 1. cd x2goclient/
 
-2. sudo cp x2goclient_de.ts "x2goclient_da.ts <or what langauge your going to translate it into>".
+2. cp x2goclient_de.ts "x2goclient_da.ts <or what language your going to translate it into>".
 
-now the file is ready for editing into the language your going to translate it into.
+Now, the file is ready for editing to your desired language.
 
 
 Editing Your Language File
 --------------------------
 The tool needed for editing qt translation files is ,,linguist-qt4''
 
-  $ go into ubuntu software center and search for Qt 4 Linguist and install it from there   <--for ubuntu
+  $ open Ubuntu Software Center, search for ,,Qt 4 Linguist'' and install it from there  # <--for ubuntu
 
 Now open your language file in <current_dir>/x2goclient/x2goclient_<lang>.ts and edit it with
 linguist-qt4.
 
 NOTE: Make sure you translate all boldly marked items: non-translated as well as fuzzy
-(i.e. inaccurate) items.
+(i.e., inaccurate) items.
 
 
 
 Sending in the Translation File
 -------------------------------
-When done, please send the complete translation file 
+When done, please send the complete translation file
 
   <current_dir>/x2goclient/x2goclient_<lang>.ts
 
-to x2go-i18n@lists.berlios.de and remove your working copy of X2Go Client from
-your system (or read how to use Git and keep the folder).
+to x2go-i18n@lists.x2go.org and remove your working copy of X2Go Client from
+your system (or read how to use Git and keep the folder.)
 
 
 Next time...
@@ -84,7 +84,7 @@ You will get informed on x2go-i18n if a translation update is necessary. So chec
 your mails there regularly.
 
 For updating a translation, either keep the X2Go Client source project folder and
-read more on Git by your self. 
+read more about Git by yourself.
 
 Alternatively, just remove the folder (once you have sent in the translation file)
 and start with this documentation all over again.
