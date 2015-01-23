@@ -16,7 +16,6 @@
 ***************************************************************************/
 #include <windows.h>
 #include <TlHelp32.h>
-
 void killProcess(DWORD pid)
 {
     HANDLE handle=OpenProcess(PROCESS_TERMINATE,0,pid);
@@ -81,11 +80,18 @@ int main(int argc, char* argv[])
         //error open process
         return -1;
     }
+
+    //Process empty message to stop AppStarting cursor
+    MSG message;
+    PostMessage(NULL, WM_NULL, 0, 0);
+    GetMessage(&message, NULL, 0, 0);
+
     //waiting for process to finish
     if(WaitForSingleObject(handle,INFINITE)!=WAIT_FAILED)
     {
         enumerateFromParent(pid);
     }
     CloseHandle(handle);
+
     return 0;
 }
