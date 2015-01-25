@@ -5124,7 +5124,7 @@ void ONMainWindow::slotRetResumeSess ( bool result,
             if ( sndSystem==PULSE )
             {
                 parecTunnelOk=false;
-                okSlot=SLOT ( slotSndTunOk(int) );
+                okSlot=SLOT ( slotSndTunOk() );
             }
 #endif
             sndTunnel=sshConnection->startTunnel (
@@ -11410,8 +11410,6 @@ void ONMainWindow::slotStartParec ()
                  resumingSession.sessionId+
                  "/.pulse-client.conf "+
                  "parec 1> /dev/null & sleep 1 && kill %1";
-
-    sshConnection->executeCommand ( scmd );
 }
 #endif
 
