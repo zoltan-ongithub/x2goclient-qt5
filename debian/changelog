@@ -58,6 +58,10 @@ x2goclient (4.0.3.2-0x2go1) UNRELEASED; urgency=medium
       functionality, not the SSH server functionality.
       0.6.4 also added 4 features related to ECDSA keys.
     - Windows: Fix compatibility with PulseAudio 6.0
+    - Windows: Remove workaround for audio input with old versions of
+      PulseAudio (calling parec once per second)
+      (Fixes: #742)
+      Thanks George Trakatelis (uom.edu.gr) for submitting this change.
     - Windows: Enable X2Go Client for Windows to build under VS2010 nmake
       (but not the VS2010 IDE due to a Qt4 Visual Studio Add-in limitation)
       Note that the official builds are still build under MinGW.
