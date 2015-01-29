@@ -33,7 +33,8 @@ x2goclient (4.0.3.2-0x2go1) UNRELEASED; urgency=medium
       GSSAPI authentication is activated. This is counter intuitive, though,
       and requires several other fixes in the authentication code.
 
-    [ Heinrich Schuchardt ]
+  [ Heinrich Schuchardt ]
+  * New upstream release (4.0.3.2):
     - Base the layout dialogue "Session ID" (which shows up when starting a
       connection) on typographic points (instead of pixels). (Fixes: #713).
 
