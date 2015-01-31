@@ -15,6 +15,10 @@ URL:            http://www.x2go.org
 Source0:        http://code.x2go.org/releases/source/%{name}/%{name}-%{version}.tar.gz
 Source1:        x2goclient-rpmlintrc
 
+%if 0%{?suse_version} && 0%{?suse_version} <= 1130
+BuildRequires: glib2-branding-SLED
+%endif
+
 BuildRequires:  cups-devel
 BuildRequires:  desktop-file-utils
 

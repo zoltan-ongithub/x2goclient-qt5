@@ -34,6 +34,7 @@ x2goclient (4.0.3.2-0x2go1) UNRELEASED; urgency=medium
       and requires several other fixes in the authentication code.
   * x2goclient.spec:
     - Always set BuildRoot: parameter.
+    - Forceful B-R on SLE 11.3: glib2-branding-SLED.
 
   [ Heinrich Schuchardt ]
   * New upstream release (4.0.3.2):
