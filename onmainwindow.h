@@ -592,6 +592,7 @@ private:
     bool startHidden;
     bool keepTrayIcon;
     bool hideFolderSharing;
+    bool brokerNoauthWithSessionUsername;
     bool defaultUseSound;
     bool defaultXinerama;
     bool cardStarted;

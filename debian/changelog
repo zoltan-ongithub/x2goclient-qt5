@@ -39,6 +39,11 @@ x2goclient (4.0.3.2-0x2go1) UNRELEASED; urgency=medium
   * New upstream release (4.0.3.2):
     - Prevent passwordless re-logins into X2Go Session Broker if
       --broker-autologoff is used on the cmdline. (Fixes: #782).
+    - Add new cmdline option --broker-noauth-use-session-username.
+      When --broker-noauth is used, the broker does not know on behalf
+      of which user to operate. This new option enables username syncing.
+      When logging into X2Go Server, that username will be sent to the
+      broker and be used for querying X2Go Broker Agents etc. (Fixes: #781).
 
   [ Heinrich Schuchardt ]
   * New upstream release (4.0.3.2):

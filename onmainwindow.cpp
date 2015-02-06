@@ -71,6 +71,7 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
     startHidden=false;
     keepTrayIcon=false;
     hideFolderSharing=false;
+    brokerNoauthWithSessionUsername=false;
     thinMode=false;
     closeDisconnect=false;
     showHaltBtn=false;
@@ -3031,6 +3032,9 @@ void ONMainWindow::slotSessEnter()
 
     if(brokerMode)
     {
+	if (config.brokerNoAuth && brokerNoauthWithSessionUsername) {
+            config.brokerUser = login->text();
+        }
         broker->selectUserSession(sessionExplorer->getLastSession()->id());
         config.session=sessionExplorer->getLastSession()->id();
         setStatStatus ( tr ( "Connecting to broker" ) );
@@ -6659,6 +6663,12 @@ bool ONMainWindow::parseParameter ( QString param )
     if ( param == "--broker-noauth")
     {
         config.brokerNoAuth=true;
+        return true;
+    }
+
+    if ( param=="--broker-noauth-with-session-username" )
+    {
+        brokerNoauthWithSessionUsername=true;
         return true;
     }
 
