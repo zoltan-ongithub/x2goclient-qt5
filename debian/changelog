@@ -35,6 +35,11 @@ x2goclient (4.0.3.2-0x2go1) UNRELEASED; urgency=medium
   * x2goclient.spec:
     - Always set BuildRoot: parameter.
 
+  [ Sergey Savko ]
+  * New upstream release (4.0.3.2):
+    - Prevent passwordless re-logins into X2Go Session Broker if
+      --broker-autologoff is used on the cmdline. (Fixes: #782).
+
   [ Heinrich Schuchardt ]
   * New upstream release (4.0.3.2):
     - Base the layout dialogue "Session ID" (which shows up when starting a

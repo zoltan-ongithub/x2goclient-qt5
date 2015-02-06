@@ -242,6 +242,10 @@ void HttpBrokerClient::slotSshUserAuthError(QString error)
 void HttpBrokerClient::getUserSessions()
 {
     QString brokerUser=config->brokerUser;
+    // Otherwise, after logout from the session, we will be connected by a previous user without a password by authid.
+    if (config->brokerAutologoff) {
+        nextAuthId=config->brokerUserId;
+    }
     x2goDebug<<"called getUserSessions: brokeruser: "<<brokerUser<<" authid: "<<nextAuthId;
     if(mainWindow->getUsePGPCard())
         brokerUser=mainWindow->getCardLogin();
