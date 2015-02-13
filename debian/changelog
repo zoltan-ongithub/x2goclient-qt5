@@ -157,6 +157,7 @@ x2goclient (4.0.3.2-0x2go1) unstable; urgency=medium
     - Move *.ts files back to the top directory (they are resources.)
     - Move *.ts and *.qm files to i18n/ and update references in
       resources.rcc, x2goclient.pro and debian/rules.
+    - Fix formatting errors in nsis/gpl.txt.
 
  -- X2Go Release Manager <git-admin@x2go.org>  Thu, 19 Feb 2015 12:49:22 +0100
 
