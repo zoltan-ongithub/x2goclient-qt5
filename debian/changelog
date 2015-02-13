@@ -115,6 +115,10 @@ x2goclient (4.0.3.2-0x2go1) unstable; urgency=medium
   * New upstream version (4.0.3.2):
     - Add Turkish translation file.
 
+  [ Mihai Moldovan ]
+  * New upstream version (4.0.3.2):
+    - Move *.cpp and *.h files to src/ and *.ts files to src/i18n/.
+
  -- X2Go Release Manager <git-admin@x2go.org>  Thu, 19 Feb 2015 12:49:22 +0100
 
 x2goclient (4.0.3.1-0x2go1) unstable; urgency=medium
