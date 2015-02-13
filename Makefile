@@ -1,10 +1,10 @@
 #!/usr/bin/make -f
 
-SRC_DIR=$(CURDIR)
-CLIENT_DIR=$(SRC_DIR)/client_build
+TOP_DIR=$(CURDIR)
+CLIENT_DIR=$(TOP_DIR)/client_build
 CLIENT_BINARY=$(CLIENT_DIR)/x2goclient
 
-PLUGIN_DIR=$(SRC_DIR)/plugin_build
+PLUGIN_DIR=$(TOP_DIR)/plugin_build
 PLUGIN_BINARY=$(PLUGIN_DIR)/libx2goplugin.so
 
 SHELL=/bin/bash
