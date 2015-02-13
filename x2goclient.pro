@@ -199,15 +199,15 @@ QMAKE_INFO_PLIST = Info.plist
 plugin {
 	DEFINES += CFGPLUGIN
 	linux-g++ {
-		include(qtbrowserplugin-2.4_1-opensource/src/qtbrowserplugin.pri)
+		include(x2gobrowserplugin-2.4_1/src/qtbrowserplugin.pri)
 	}
 	linux-g++-64 {
-		include(qtbrowserplugin-2.4_1-opensource/src/qtbrowserplugin.pri)
+		include(x2gobrowserplugin-2.4_1/src/qtbrowserplugin.pri)
 	}
 	win32-* {
 		DEFINES += QT_NODLL
 		CONFIG += qaxserver
-		include(qtbrowserplugin-2.4_1-opensource/src/qtbrowserplugin.pri)
+		include(x2gobrowserplugin-2.4_1/src/qtbrowserplugin.pri)
 	}
 	RC_FILE = x2goplugin.rc
 }
