@@ -16,7 +16,7 @@ override_dh_auto_configure:
 override_dh_auto_clean:
 	dh_auto_clean
 	# clean stray .qm files that are not handled by clean rule in upstream Makefile
-	rm -Rf x2goclient_*.qm
+	rm -Rf i18n/x2goclient_*.qm
 	rm -f txt/changelog
 
 override_dh_strip:
