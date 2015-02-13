@@ -100,7 +100,7 @@ IMPORTANT: login Name is a name of user on remote system
 2.1 start gpg-agent with ssh support
 
 Be sure, that pinentry-x2go is installed. For test purposes you can use other pinentry program, but for
-x2goclient pinentry-x2go is requered (pinentry-x2go-gtk if you are using gtk version of x2goclient)
+x2goclient pinentry-x2go is required (pinentry-x2go-gtk if you are using the gtk-version of x2goclient)
 
 user@x2goclient$ gpg-agent --enable-ssh-support --daemon --pinentry-program /usr/bin/pinentry-x2go
 GPG_AGENT_INFO=/tmp/gpg-Xh4lY7/S.gpg-agent:24620:1; export GPG_AGENT_INFO;
@@ -112,18 +112,18 @@ user@x2goclient$ GPG_AGENT_INFO=/tmp/gpg-Xh4lY7/S.gpg-agent:24620:1; export GPG_
 user@x2goclient$ SSH_AUTH_SOCK=/tmp/gpg-LO41WU/S.gpg-agent.ssh; export SSH_AUTH_SOCK;
 user@x2goclient$ SSH_AGENT_PID=24620; export SSH_AGENT_PID;
 
-2.3 You can check the key on your smartcard with command:
+2.3 You can check the key on your smartcard with:
 user@x2goclient$ ssh-add -l
 1024 ef:d5:8c:37:cb:38:01:8d:c2:30:00:ac:93:a2:43:98 cardno:000000000042 (RSA)
 
-2.4 Copy public part of your key to remote computer
+2.4 Copy the public part of your key to the remote computer
 user@x2goclient$ ssh-copy-id beispielb@x2goserver
 beispielb@x2goserver's password:
-Now try logging into the machine, with "ssh 'beispielb@x2goserver'", and check in:
+Now try logging in into the machine, e.g., via "ssh 'beispielb@x2goserver'", and check:
 
-  .ssh/authorized_keys
+  ~/.ssh/authorized_keys
 
 to make sure we haven't added extra keys that you weren't expecting.
 
 2.5 Testing ssh connection
-
+TBD
