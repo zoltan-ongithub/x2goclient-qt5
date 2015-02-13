@@ -1,8 +1,8 @@
 # This file was created by KDevelop.
 # -------------------------------------------
 
-#include (x2goclientconfig.pri)
-
+# Override settings in this file.
+include (x2goclientconfig.pri)
 
 CONFIG += $$(X2GO_CLIENT_TARGET)
 CONFIG += $$(X2GO_LINUX_STATIC)
