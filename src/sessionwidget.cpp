@@ -547,7 +547,7 @@ void SessionWidget::readConfig()
 
     sessIcon=st.setting()->value (
                  sessionId+"/icon",
-                 ( QVariant ) ":icons/128x128/x2gosession.png" ).toString().trimmed();
+                 ( QVariant ) ":/img/icons/128x128/x2gosession.png" ).toString().trimmed();
     sessIcon=expandHome(sessIcon);
     icon->setIcon ( QIcon ( sessIcon ) );
 
@@ -777,7 +777,7 @@ void SessionWidget::setDefaults()
     cmdCombo->lineEdit()->selectAll();
     slot_changeCmd ( 0 );
     cmd->setEnabled ( false );
-    sessIcon=":icons/128x128/x2gosession.png";
+    sessIcon=":/img/icons/128x128/x2gosession.png";
     icon->setIcon ( QIcon ( sessIcon ) );
     sshPort->setValue (
         mainWindow->getDefaultSshPort().toInt() );

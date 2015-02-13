@@ -64,5 +64,5 @@ $PKG_DMG \
 	--copy "./LICENSE" \
 	--copy "./COPYING" \
 	--symlink "/Applications: " \
-	--icon "./icons/x2go-mac.icns" \
+	--icon "./img/icons/x2go-mac.icns" \
 	--format "UDBZ"

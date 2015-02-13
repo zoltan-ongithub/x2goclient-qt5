@@ -106,7 +106,7 @@ void FolderButton::loadIcon()
     else
         st= new X2goSettings( "sessions" );
 
-    QString sessIcon=":icons/128x128/folder.png";
+    QString sessIcon=":/img/icons/128x128/folder.png";
     QPixmap* pix;
 
     QString normPath=(path+"/"+name).split("/",QString::SkipEmptyParts).join("::");

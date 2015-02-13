@@ -148,7 +148,7 @@ void SessionManageDialog::loadSessions()
 
     root=new QTreeWidgetItem(sessions);
     root->setText(0,"/");
-    root->setIcon(0,QIcon(":icons/128x128/folder.png"));
+    root->setIcon(0,QIcon(":/img/icons/128x128/folder.png"));
     initFolders(root, "");
     root->setExpanded(true);
     root->setData(0, SESSIONROLE , false);

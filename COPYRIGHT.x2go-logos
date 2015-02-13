@@ -13,10 +13,10 @@ License:   GPL-2.0+
 Copyright: 2005-2015 Heinz-M. Grasesing
 <heinz-m.graesing@obviously-nice.de>
 License:   GPL-2.0+
-Files:     icons/16x16/x2goclient.png
-           icons/32x32/x2goclient.png
-           icons/48x48/x2goclient.png
-           icons/64x64/x2goclient.png
-           icons/128x128/x2goclient.png
+Files:     img/icons/16x16/x2goclient.png
+           img/icons/32x32/x2goclient.png
+           img/icons/48x48/x2goclient.png
+           img/icons/64x64/x2goclient.png
+           img/icons/128x128/x2goclient.png
 Copyright: 2005-2015 Heinz-M. Graesing <heinz-m.graesing@obviously-nice.de>
 License:   GPL-2.0+

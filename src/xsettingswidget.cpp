@@ -37,7 +37,7 @@ XSettingsWidget::XSettingsWidget(QWidget* parent)
     leFSMod->setText(st.setting()->value("optionsfs","-fullscreen -notrayicon -clipboard").toString());
     leSingApp->setText(st.setting()->value("optionssingle","-multiwindow -notrayicon -clipboard").toString());
 //     spDelay->setValue(st.setting()->value("delay",3).toInt());
-    pbExec->setIcon( QPixmap ( ":/icons/16x16/file-open.png" ) );
+    pbExec->setIcon( QPixmap ( ":/img/icons/16x16/file-open.png" ) );
 }
 
 XSettingsWidget::~XSettingsWidget()

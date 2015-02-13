@@ -83,13 +83,13 @@ install_client:
 	$(INSTALL_DIR) $(DESTDIR)$(SHAREDIR)/icons/hicolor/32x32/apps
 	$(INSTALL_PROGRAM) $(CLIENT_DIR)/x2goclient $(DESTDIR)$(BINDIR)/x2goclient
 	$(INSTALL_FILE) desktop/x2goclient.desktop    $(DESTDIR)$(SHAREDIR)/applications/x2goclient.desktop
-	$(INSTALL_FILE) icons/x2goclient.xpm          $(DESTDIR)$(SHAREDIR)/x2goclient/icons/x2goclient.xpm
-	$(INSTALL_FILE) icons/128x128/x2goclient.png  $(DESTDIR)$(SHAREDIR)/x2goclient/icons/x2goclient.png
-	$(INSTALL_FILE) icons/128x128/x2gosession.png $(DESTDIR)$(SHAREDIR)/x2goclient/icons/x2gosession.png
-	$(INSTALL_FILE) icons/128x128/x2goclient.png  $(DESTDIR)$(SHAREDIR)/icons/hicolor/128x128/apps/x2goclient.png
-	$(INSTALL_FILE) icons/16x16/x2goclient.png    $(DESTDIR)$(SHAREDIR)/icons/hicolor/16x16/apps/x2goclient.png
-	$(INSTALL_FILE) icons/64x64/x2goclient.png    $(DESTDIR)$(SHAREDIR)/icons/hicolor/64x64/apps/x2goclient.png
-	$(INSTALL_FILE) icons/32x32/x2goclient.png    $(DESTDIR)$(SHAREDIR)/icons/hicolor/32x32/apps/x2goclient.png
+	$(INSTALL_FILE) img/icons/x2goclient.xpm          $(DESTDIR)$(SHAREDIR)/x2goclient/icons/x2goclient.xpm
+	$(INSTALL_FILE) img/icons/128x128/x2goclient.png  $(DESTDIR)$(SHAREDIR)/x2goclient/icons/x2goclient.png
+	$(INSTALL_FILE) img/icons/128x128/x2gosession.png $(DESTDIR)$(SHAREDIR)/x2goclient/icons/x2gosession.png
+	$(INSTALL_FILE) img/icons/128x128/x2goclient.png  $(DESTDIR)$(SHAREDIR)/icons/hicolor/128x128/apps/x2goclient.png
+	$(INSTALL_FILE) img/icons/16x16/x2goclient.png    $(DESTDIR)$(SHAREDIR)/icons/hicolor/16x16/apps/x2goclient.png
+	$(INSTALL_FILE) img/icons/64x64/x2goclient.png    $(DESTDIR)$(SHAREDIR)/icons/hicolor/64x64/apps/x2goclient.png
+	$(INSTALL_FILE) img/icons/32x32/x2goclient.png    $(DESTDIR)$(SHAREDIR)/icons/hicolor/32x32/apps/x2goclient.png
 
 install_plugin:
 	$(INSTALL_DIR) $(DESTDIR)$(MOZPLUGDIR)/

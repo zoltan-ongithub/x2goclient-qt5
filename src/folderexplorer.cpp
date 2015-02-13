@@ -29,7 +29,7 @@ FolderExplorer::FolderExplorer(QString path, SessionExplorer* explorer, QWidget*
     this->explorer=explorer;
     root=new QTreeWidgetItem(treeWidget);
     root->setText(0,"/");
-    root->setIcon(0,QIcon(":icons/128x128/folder.png"));
+    root->setIcon(0,QIcon(":/img/icons/128x128/folder.png"));
     currentPath=path;
     initFolders(root, "");
     root->setExpanded(true);
@@ -144,7 +144,7 @@ void FolderExplorer::slotNewFolder()
     QTreeWidgetItem* it=new QTreeWidgetItem(menuItem);
     QString name=tr("New Folder");
     it->setText(0,name);
-    it->setIcon(0, QIcon(":icons/128x128/folder.png"));
+    it->setIcon(0, QIcon(":/img/icons/128x128/folder.png"));
     QString normPath=(menuItem->data(0,Qt::UserRole).toString()+"/"+name).split("/",QString::SkipEmptyParts).join("/");
     it->setData(0,Qt::UserRole, normPath+"/");
     treeWidget->clearSelection();

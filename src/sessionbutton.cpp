@@ -313,12 +313,12 @@ void SessionButton::redraw()
     QString sessIcon=st->setting()->value (
                          sid+"/icon",
                          ( QVariant )
-                         ":icons/128x128/x2gosession.png"
+                         ":/img/icons/128x128/x2gosession.png"
                      ).toString();
     sessIcon = expandHome(sessIcon);
     QPixmap* pix;
 
-    if (!par->brokerMode || sessIcon == ":icons/128x128/x2gosession.png")
+    if (!par->brokerMode || sessIcon == ":/img/icons/128x128/x2gosession.png")
         pix=new QPixmap( sessIcon );
     else
     {
