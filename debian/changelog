@@ -160,6 +160,7 @@ x2goclient (4.0.3.2-0x2go1) unstable; urgency=medium
     - Fix formatting errors in nsis/gpl.txt.
     - Fix whitespace errors in nsis/x2goclient.nsi.
     - Don't change the icons path in nsis/x2goclient.nsi.
+    - Make nsis files non-executable.
 
  -- X2Go Release Manager <git-admin@x2go.org>  Thu, 19 Feb 2015 12:49:22 +0100
 
