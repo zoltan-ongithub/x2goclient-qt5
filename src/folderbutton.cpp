@@ -35,7 +35,7 @@
 
 
 FolderButton::FolderButton ( ONMainWindow* mw,QWidget *parent, QString folderPath, QString folderName )
-    : SVGFrame ( ":/svg/folder.svg",false,parent )
+    : SVGFrame ( ":/img/svg/folder.svg",false,parent )
 {
     QPalette pal=palette();
     pal.setColor ( QPalette::Active, QPalette::WindowText, QPalette::Mid );
@@ -153,7 +153,7 @@ bool FolderButton::lessThen ( const FolderButton* b1,
 void FolderButton::mousePressEvent ( QMouseEvent * event )
 {
     SVGFrame::mousePressEvent ( event );
-    loadBg ( ":/svg/folder_grey.svg" );
+    loadBg ( ":/img/svg/folder_grey.svg" );
 }
 
 void FolderButton::mouseReleaseEvent ( QMouseEvent * event )
@@ -161,7 +161,7 @@ void FolderButton::mouseReleaseEvent ( QMouseEvent * event )
     SVGFrame::mouseReleaseEvent ( event );
     int x=event->x();
     int y=event->y();
-    loadBg ( ":/svg/folder.svg" );
+    loadBg ( ":/img/svg/folder.svg" );
     if ( x>=0 && x< width() && y>=0 && y<height() )
         emit clicked();
 }

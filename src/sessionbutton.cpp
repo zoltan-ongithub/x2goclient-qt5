@@ -37,7 +37,7 @@
 
 
 SessionButton::SessionButton ( ONMainWindow* mw,QWidget *parent, QString id )
-    : SVGFrame ( ":/svg/sessionbut.svg",false,parent )
+    : SVGFrame ( ":/img/svg/sessionbut.svg",false,parent )
 {
     editable=mw->sessionEditEnabled();
 
@@ -564,7 +564,7 @@ void SessionButton::redraw()
 void SessionButton::mousePressEvent ( QMouseEvent * event )
 {
     SVGFrame::mousePressEvent ( event );
-    loadBg ( ":/svg/sessionbut_grey.svg" );
+    loadBg ( ":/img/svg/sessionbut_grey.svg" );
 }
 
 void SessionButton::mouseReleaseEvent ( QMouseEvent * event )
@@ -572,7 +572,7 @@ void SessionButton::mouseReleaseEvent ( QMouseEvent * event )
     SVGFrame::mouseReleaseEvent ( event );
     int x=event->x();
     int y=event->y();
-    loadBg ( ":/svg/sessionbut.svg" );
+    loadBg ( ":/img/svg/sessionbut.svg" );
     if ( x>=0 && x< width() && y>=0 && y<height() )
         emit clicked();
 }

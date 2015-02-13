@@ -325,14 +325,14 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
     if (BGFile.size())
         bgFrame=new SVGFrame ( ( QString ) BGFile,true,fr );
     else
-        bgFrame=new SVGFrame ( ( QString ) ":/svg/bg.svg",true,fr );
+        bgFrame=new SVGFrame ( ( QString ) ":/img/svg/bg.svg",true,fr );
 #else
-    bgFrame=new SVGFrame ( ( QString ) ":/svg/bg_hildon.svg",true,fr );
+    bgFrame=new SVGFrame ( ( QString ) ":/img/svg/bg_hildon.svg",true,fr );
 #endif
     //bgFrame=new SVGFrame((QString)"/home/admin/test.svg",false,fr);
 
 
-    SVGFrame* x2g=new SVGFrame ( ( QString ) ":/svg/x2gologo.svg",
+    SVGFrame* x2g=new SVGFrame ( ( QString ) ":/img/svg/x2gologo.svg",
                                  false,fr );
 
     QPalette pl=x2g->palette();
@@ -340,7 +340,7 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
     pl.setColor ( QPalette::Window, QColor ( 255,255,255,0 ) );
     x2g->setPalette ( pl );
 
-    SVGFrame* on=new SVGFrame ( ( QString ) ":/svg/onlogo.svg",false,fr );
+    SVGFrame* on=new SVGFrame ( ( QString ) ":/img/svg/onlogo.svg",false,fr );
     on->setPalette ( pl );
 
     if ( !miniMode )
@@ -719,7 +719,7 @@ void ONMainWindow::initWidgetsNormal()
     username->setSpacing ( 10 );
     username->addStretch();
     username->addStretch();
-    ln=new SVGFrame ( ( QString ) ":/svg/line.svg",true,fr );
+    ln=new SVGFrame ( ( QString ) ":/img/svg/line.svg",true,fr );
     ln->setFixedWidth ( ln->sizeHint().width() );
     uname=new QLineEdit ( bgFrame );
     setWidgetStyle ( uname );
@@ -10718,7 +10718,7 @@ void ONMainWindow::slotChangeKbdLayout(const QString& layout)
 
 void ONMainWindow::initPassDlg()
 {
-    passForm = new SVGFrame ( ":/svg/passform.svg",
+    passForm = new SVGFrame ( ":/img/svg/passform.svg",
                               false,bgFrame );
 #ifdef Q_OS_WIN
     passForm->setMainWidget ( ( QWidget* ) this );
@@ -10910,7 +10910,7 @@ void ONMainWindow::initPassDlg()
 
 void ONMainWindow::initStatusDlg()
 {
-    sessionStatusDlg = new SVGFrame ( ":/svg/passform.svg",
+    sessionStatusDlg = new SVGFrame ( ":/img/svg/passform.svg",
                                       false,bgFrame );
     sessionStatusDlg->hide();
     if ( !miniMode )
@@ -11094,7 +11094,7 @@ void ONMainWindow::initStatusDlg()
 
 void ONMainWindow::initSelectSessDlg()
 {
-    selectSessionDlg = new SVGFrame ( ":/svg/passform.svg",
+    selectSessionDlg = new SVGFrame ( ":/img/svg/passform.svg",
                                       false,bgFrame );
     username->addWidget ( selectSessionDlg );
     setWidgetStyle ( selectSessionDlg );
