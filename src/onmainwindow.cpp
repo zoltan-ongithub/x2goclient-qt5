@@ -463,7 +463,7 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
     if (showHaltBtn)
     {
         QPushButton* bHalt=new QPushButton(bgFrame);
-        QPixmap p(":/png/power-button.png");
+        QPixmap p(":/img/png/power-button.png");
         bHalt->setIcon(p);
         bHalt->setFocusPolicy(Qt::NoFocus);
         bHalt->setFixedSize(32,32);
@@ -1592,9 +1592,9 @@ void ONMainWindow::displayUsers()
 
     QPixmap pix;
     if ( !miniMode )
-        pix=QPixmap ( ":/png/ico.png" );
+        pix=QPixmap ( ":/img/png/ico.png" );
     else
-        pix=QPixmap ( ":/png/ico_mini.png" );
+        pix=QPixmap ( ":/img/png/ico_mini.png" );
     QPixmap foto=QPixmap ( iconsPath ( "/64x64/personal.png" ) );
 
     QPalette pal=palette();

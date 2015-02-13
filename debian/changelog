@@ -150,6 +150,8 @@ x2goclient (4.0.3.2-0x2go1) unstable; urgency=medium
       src/folderbutton.cpp, src/folderexplorer.cpp, src/sessionbutton.cpp,
       src/sessionexplorer.cpp, src/sessionmanagedialog.cpp,
       src/sessionwidget.cpp, src/ui/helpdialog.ui and src/xsettingswidget.cpp.
+    - Move png/ to img/png/ and update references in resources.rcc and
+      src/onmainwindow.cpp.
 
  -- X2Go Release Manager <git-admin@x2go.org>  Thu, 19 Feb 2015 12:49:22 +0100
 

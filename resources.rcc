@@ -10,11 +10,11 @@
        <file>svg/folder.svg</file>
        <file>svg/folder_grey.svg</file>
        <file>svg/sessionbut_grey.svg</file>
-       <file>png/ico.png</file>
-       <file>png/ico_mini.png</file>
-       <file>png/sess_ico.png</file>
-       <file>png/ico_440x180.png</file>
-       <file>png/power-button.png</file>
+       <file>img/png/ico.png</file>
+       <file>img/png/ico_mini.png</file>
+       <file>img/png/sess_ico.png</file>
+       <file>img/png/ico_440x180.png</file>
+       <file>img/png/power-button.png</file>
        <file>img/icons/128x128/x2go.png</file>
        <file>img/icons/128x128/folder.png</file>
        <file>img/icons/128x128/x2gosession.png</file>
