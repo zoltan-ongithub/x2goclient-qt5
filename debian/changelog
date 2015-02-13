@@ -119,6 +119,7 @@ x2goclient (4.0.3.2-0x2go1) unstable; urgency=medium
   * New upstream version (4.0.3.2):
     - Move *.cpp and *.h files to src/ and *.ts files to src/i18n/.
     - Reference src/ in Doxyfile.
+    - Reference src/ and src/i18n/ in x2goclient.pro.
 
  -- X2Go Release Manager <git-admin@x2go.org>  Thu, 19 Feb 2015 12:49:22 +0100
 

@@ -22,104 +22,103 @@ FORMS += cupsprintsettingsdialog.ui \
            helpdialog.ui \
            folderexplorer.ui
 
-TRANSLATIONS += \
-           x2goclient_de.ts \
-           x2goclient_da.ts \
-           x2goclient_es.ts \
-           x2goclient_et.ts \
-           x2goclient_fi.ts \
-           x2goclient_fr.ts \
-           x2goclient_nb_no.ts \
-           x2goclient_nl.ts \
-           x2goclient_pt.ts \
-           x2goclient_ru.ts \
-           x2goclient_sv.ts \
-           x2goclient_tr.ts \
-           x2goclient_zh_tw.ts
+TRANSLATIONS += src/i18n/x2goclient_de.ts \
+                src/i18n/x2goclient_da.ts \
+                src/i18n/x2goclient_es.ts \
+                src/i18n/x2goclient_et.ts \
+                src/i18n/x2goclient_fi.ts \
+                src/i18n/x2goclient_fr.ts \
+                src/i18n/x2goclient_nb_no.ts \
+                src/i18n/x2goclient_nl.ts \
+                src/i18n/x2goclient_pt.ts \
+                src/i18n/x2goclient_ru.ts \
+                src/i18n/x2goclient_sv.ts \
+                src/i18n/x2goclient_tr.ts \
+                src/i18n/x2goclient_zh_tw.ts
 
-HEADERS += configdialog.h \
-           editconnectiondialog.h \
-           exportdialog.h \
-           imgframe.h \
-           LDAPSession.h \
-           onmainwindow.h \
-           sessionbutton.h \
-           sessionmanagedialog.h \
-           sshmasterconnection.h \
-           sshprocess.h \
-           SVGFrame.h \
-           userbutton.h \
-           x2goclientconfig.h \
-           x2gologdebug.h \
-           printprocess.h \
-           cupsprint.h \
-           cupsprintwidget.h \
-           cupsprintersettingsdialog.h \
-           printwidget.h \
-           printercmddialog.h \
-           printdialog.h \
-           wapi.h \
-           sessionwidget.h \
-           configwidget.h \
-           connectionwidget.h \
-           settingswidget.h \
-           mediawidget.h \
-           sharewidget.h \
-           clicklineedit.h \
-           httpbrokerclient.h \
-           ongetpass.h \
-           onmainwindow_privat.h \
-           x2gosettings.h \
-           brokerpassdlg.h \
-           contest.h \
-           xsettingswidget.h \
-           appdialog.h \
-           x2goutils.h \
-           helpdialog.h \
-           sessionexplorer.h \
-           folderbutton.h \
-           folderexplorer.h
+HEADERS += src/configdialog.h \
+           src/editconnectiondialog.h \
+           src/exportdialog.h \
+           src/imgframe.h \
+           src/LDAPSession.h \
+           src/onmainwindow.h \
+           src/sessionbutton.h \
+           src/sessionmanagedialog.h \
+           src/sshmasterconnection.h \
+           src/sshprocess.h \
+           src/SVGFrame.h \
+           src/userbutton.h \
+           src/x2goclientconfig.h \
+           src/x2gologdebug.h \
+           src/printprocess.h \
+           src/cupsprint.h \
+           src/cupsprintwidget.h \
+           src/cupsprintersettingsdialog.h \
+           src/printwidget.h \
+           src/printercmddialog.h \
+           src/printdialog.h \
+           src/wapi.h \
+           src/sessionwidget.h \
+           src/configwidget.h \
+           src/connectionwidget.h \
+           src/settingswidget.h \
+           src/mediawidget.h \
+           src/sharewidget.h \
+           src/clicklineedit.h \
+           src/httpbrokerclient.h \
+           src/ongetpass.h \
+           src/onmainwindow_privat.h \
+           src/x2gosettings.h \
+           src/brokerpassdlg.h \
+           src/contest.h \
+           src/xsettingswidget.h \
+           src/appdialog.h \
+           src/x2goutils.h \
+           src/helpdialog.h \
+           src/sessionexplorer.h \
+           src/folderbutton.h \
+           src/folderexplorer.h
 
-SOURCES += sharewidget.cpp \
-           settingswidget.cpp \
-           mediawidget.cpp \
-           configwidget.cpp \
-           sessionwidget.cpp \
-           connectionwidget.cpp \
-           configdialog.cpp \
-           editconnectiondialog.cpp \
-           exportdialog.cpp \
-           imgframe.cpp \
-           LDAPSession.cpp \
-           onmainwindow.cpp \
-           sessionbutton.cpp \
-           sessionmanagedialog.cpp \
-           sshmasterconnection.cpp \
-           sshprocess.cpp \
-           SVGFrame.cpp \
-           userbutton.cpp \
-           x2gologdebug.cpp \
-           printprocess.cpp \
-           cupsprint.cpp \
-           cupsprintwidget.cpp \
-           cupsprintersettingsdialog.cpp \
-           printwidget.cpp \
-           printercmddialog.cpp \
-           printdialog.cpp \
-           wapi.cpp \
-           clicklineedit.cpp \
-           httpbrokerclient.cpp \
-           ongetpass.cpp \
-           x2gosettings.cpp \
-           brokerpassdlg.cpp \
-           contest.cpp \
-           xsettingswidget.cpp \
-           appdialog.cpp \
-           x2goutils.cpp \
-           helpdialog.cpp \
-           sessionexplorer.cpp \
-           folderbutton.cpp \
-           folderexplorer.cpp
+SOURCES += src/sharewidget.cpp \
+           src/settingswidget.cpp \
+           src/mediawidget.cpp \
+           src/configwidget.cpp \
+           src/sessionwidget.cpp \
+           src/connectionwidget.cpp \
+           src/configdialog.cpp \
+           src/editconnectiondialog.cpp \
+           src/exportdialog.cpp \
+           src/imgframe.cpp \
+           src/LDAPSession.cpp \
+           src/onmainwindow.cpp \
+           src/sessionbutton.cpp \
+           src/sessionmanagedialog.cpp \
+           src/sshmasterconnection.cpp \
+           src/sshprocess.cpp \
+           src/SVGFrame.cpp \
+           src/userbutton.cpp \
+           src/x2gologdebug.cpp \
+           src/printprocess.cpp \
+           src/cupsprint.cpp \
+           src/cupsprintwidget.cpp \
+           src/cupsprintersettingsdialog.cpp \
+           src/printwidget.cpp \
+           src/printercmddialog.cpp \
+           src/printdialog.cpp \
+           src/wapi.cpp \
+           src/clicklineedit.cpp \
+           src/httpbrokerclient.cpp \
+           src/ongetpass.cpp \
+           src/x2gosettings.cpp \
+           src/brokerpassdlg.cpp \
+           src/contest.cpp \
+           src/xsettingswidget.cpp \
+           src/appdialog.cpp \
+           src/x2goutils.cpp \
+           src/helpdialog.cpp \
+           src/sessionexplorer.cpp \
+           src/folderbutton.cpp \
+           src/folderexplorer.cpp
 
 LIBS += -lssh
 win32:LIBS += -lAdvAPI32 -lshell32 -lUser32
@@ -129,7 +128,7 @@ plugin {
 }
 else {
 	RC_FILE = x2goclient.rc
-	SOURCES += x2goclient.cpp
+	SOURCES += src/x2goclient.cpp
 	TARGET = x2goclient
 	DEFINES += CFGCLIENT
 	message(if you want to build x2goplugin you should export X2GO_CLIENT_TARGET=plugin)
