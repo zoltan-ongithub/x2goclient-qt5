@@ -125,7 +125,7 @@ plugin {
   TARGET = x2goplugin
 }
 else {
-  RC_FILE = src/res/x2goclient.rc
+  RC_FILE = x2goclient.rc
   SOURCES += src/x2goclient.cpp
   TARGET = x2goclient
   DEFINES += CFGCLIENT
@@ -153,16 +153,16 @@ else:message("No translation files in project")
 TEMPLATE = app
 DEPENDPATH += .
 INCLUDEPATH += .
-RESOURCES += src/res/resources.rcc
+RESOURCES += resources.rcc
 
 exists(txt/git-info) {
   message("Configuring with --git-info")
-  RESOURCES += src/res/git.rcc
+  RESOURCES += git.rcc
 }
 
 exists(txt/changelog) {
   message("Configuring with --changelog")
-  RESOURCES += src/res/changelog.rcc
+  RESOURCES += changelog.rcc
 }
 
 linux-g++ {
