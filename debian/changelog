@@ -163,6 +163,7 @@ x2goclient (4.0.3.2-0x2go1) unstable; urgency=medium
     - Make nsis files non-executable.
     - Move x2go-logos/ to img/x2go-logos and update references in
       COPYRIGHT.x2go-logos.
+    - Fix whitespace errors in x2gobrowserplugin-2.4_1/src/res/x2goplugin.rc.
 
  -- X2Go Release Manager <git-admin@x2go.org>  Thu, 19 Feb 2015 12:49:22 +0100
 
