@@ -2,10 +2,10 @@
 # Makefile.docupload file - for x2goclient
 # Copyright (C) 2010-2015 by Mike Gabriel <mike.gabriel@das-netzwerkteam.de>, GPLv3 applies to this file
 
-VERSION=`head -n1 debian/changelog | sed 's,.*(\(.*\)).*,\1,' | cut -d"-" -f1`
-DOC_HOST=code.x2go.org
-DOC_PATH=/srv/sites/x2go.org/packages/doc/x2goclient/man/
-DOC_USER=x2go-admin
+VERSION=$(head -n1 debian/changelog | sed 's,.*(\(.*\)).*,\1,' | cut -d"-" -f1)
+DOC_HOST="code.x2go.org"
+DOC_PATH="/srv/sites/x2go.org/packages/doc/x2goclient/man/"
+DOC_USER="x2go-admin"
 
 doc: docbuild docupload
 
