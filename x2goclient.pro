@@ -209,5 +209,5 @@ plugin {
 		CONFIG += qaxserver
 		include(x2gobrowserplugin-2.4_1/src/qtbrowserplugin.pri)
 	}
-	RC_FILE = x2goplugin.rc
+	RC_FILE = x2gobrowserplugin-2.4_1/src/res/x2goplugin.rc
 }
