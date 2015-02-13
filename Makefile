@@ -51,10 +51,10 @@ build_man:
 	${MAKE} -f Makefile.man2html build
 
 clean: clean_client clean_plugin clean_man clean_pluginprovider
-	find . -maxdepth 2 -name '*.o' -exec rm -vf {} + -type f
-	find . -maxdepth 2 -name 'moc_*.cpp' -exec rm -vf {} + -type f
-	find . -maxdepth 2 -name 'ui_*.h' -exec rm -vf {} + -type f
-	find . -maxdepth 2 -name 'qrc_*.cpp' -exec rm -vf {} + -type f
+	find . -maxdepth 3 -name '*.o' -exec rm -vf {} + -type f
+	find . -maxdepth 3 -name 'moc_*.cpp' -exec rm -vf {} + -type f
+	find . -maxdepth 3 -name 'ui_*.h' -exec rm -vf {} + -type f
+	find . -maxdepth 3 -name 'qrc_*.cpp' -exec rm -vf {} + -type f
 	rm -f x2goclient
 	rm -f x2goclient.tag
 	rm -f txt/changelog
