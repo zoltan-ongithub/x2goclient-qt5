@@ -122,14 +122,14 @@ LIBS += -lssh
 win32:LIBS += -lAdvAPI32 -lshell32 -lUser32
 
 plugin {
-	TARGET = x2goplugin
+  TARGET = x2goplugin
 }
 else {
-	RC_FILE = src/res/x2goclient.rc
-	SOURCES += src/x2goclient.cpp
-	TARGET = x2goclient
-	DEFINES += CFGCLIENT
-	message(if you want to build x2goplugin you should export X2GO_CLIENT_TARGET=plugin)
+  RC_FILE = src/res/x2goclient.rc
+  SOURCES += src/x2goclient.cpp
+  TARGET = x2goclient
+  DEFINES += CFGCLIENT
+  message("if you want to build x2goplugin you should export X2GO_CLIENT_TARGET=plugin")
 }
 
 !isEmpty(TRANSLATIONS) {
@@ -148,66 +148,66 @@ else {
   QMAKE_EXTRA_COMPILERS += TSQM
   PRE_TARGETDEPS += compiler_TSQM_make_all
 }
-else:message(No translation files in project)
+else:message("No translation files in project")
 
 TEMPLATE = app
 DEPENDPATH += .
 INCLUDEPATH += .
 RESOURCES += src/res/resources.rcc
 
-exists( txt/git-info ) {
-	message( "Configuring with --git-info" )
-	RESOURCES += src/res/git.rcc
+exists(txt/git-info) {
+  message("Configuring with --git-info")
+  RESOURCES += src/res/git.rcc
 }
 
-exists( txt/changelog ) {
-	message( "Configuring with --changelog" )
-	RESOURCES += src/res/changelog.rcc
+exists(txt/changelog) {
+  message("Configuring with --changelog")
+  RESOURCES += src/res/changelog.rcc
 }
 
 linux-g++ {
-	message(building $$TARGET with ldap and cups)
-	LIBS += -lldap -lcups -lX11 -lXpm
-	DEFINES += __linux__
+  message("building $$TARGET with ldap and cups")
+  LIBS += -lldap -lcups -lX11 -lXpm
+  DEFINES += __linux__
 }
 linux-g++-64 {
-	message(building $$TARGET with ldap and cups)
-	LIBS += -lldap -lcups -lX11 -lXpm
-	DEFINES += __linux__
+  message("building $$TARGET with ldap and cups")
+  LIBS += -lldap -lcups -lX11 -lXpm
+  DEFINES += __linux__
 }
 x2go_linux_static {
-	message (linking all libs statically)
-	DEFINES += __linux__
-	LIBS -= -lssh
-	LIBS += -lssh_static -lssl -lXpm
-	QMAKE_LFLAGS = -Bstatic $$QMAKE_LFLAGS
+  message("linking all libs statically")
+  DEFINES += __linux__
+  LIBS -= -lssh
+  LIBS += -lssh_static -lssl -lXpm
+  QMAKE_LFLAGS = -Bstatic $$QMAKE_LFLAGS
 }
 
 macx {
-	message(building $$TARGET with ldap and cups)
-	LIBS += -framework LDAP -lcups -lcrypto -lssl -lz
+  message("building $$TARGET with ldap and cups")
+  LIBS += -framework LDAP -lcups -lcrypto -lssl -lz
 }
 win32-* {
-	message(building $$TARGET for windows without ldap and cups)
-	LIBS += -lwinspool -lws2_32
-	CONFIG += static release
+  message("building $$TARGET for windows without ldap and cups")
+  LIBS += -lwinspool -lws2_32
+  CONFIG += static release
 }
 QT += svg network
 ICON = icons/x2go-mac.icns
 QMAKE_INFO_PLIST = Info.plist
 
 plugin {
-	DEFINES += CFGPLUGIN
-	linux-g++ {
-		include(x2gobrowserplugin-2.4_1/src/qtbrowserplugin.pri)
-	}
-	linux-g++-64 {
-		include(x2gobrowserplugin-2.4_1/src/qtbrowserplugin.pri)
-	}
-	win32-* {
-		DEFINES += QT_NODLL
-		CONFIG += qaxserver
-		include(x2gobrowserplugin-2.4_1/src/qtbrowserplugin.pri)
-	}
-	RC_FILE = x2gobrowserplugin-2.4_1/src/res/x2goplugin.rc
+  DEFINES += CFGPLUGIN
+  linux-g++ {
+    include(x2gobrowserplugin-2.4_1/src/qtbrowserplugin.pri)
+  }
+  linux-g++-64 {
+    include(x2gobrowserplugin-2.4_1/src/qtbrowserplugin.pri)
+  }
+  win32-* {
+    DEFINES += QT_NODLL
+    CONFIG += qaxserver
+    include(x2gobrowserplugin-2.4_1/src/qtbrowserplugin.pri)
+  }
+  RC_FILE = x2gobrowserplugin-2.4_1/src/res/x2goplugin.rc
 }
