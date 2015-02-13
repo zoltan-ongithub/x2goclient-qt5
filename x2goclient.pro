@@ -10,17 +10,17 @@ CONFIG += $$(X2GO_CLIENT_TARGET)
 CONFIG += $$(X2GO_LINUX_STATIC)
 #CONFIG += console
 
-FORMS += cupsprintsettingsdialog.ui \
-           cupsprintwidget.ui \
-           printdialog.ui \
-           printercmddialog.ui \
-           printwidget.ui \
-           xsettingsui.ui \
-           brokerpassdialog.ui \
-           contest.ui \
-           appdialog.ui \
-           helpdialog.ui \
-           folderexplorer.ui
+FORMS += src/ui/cupsprintsettingsdialog.ui \
+         src/ui/cupsprintwidget.ui \
+         src/ui/printdialog.ui \
+         src/ui/printercmddialog.ui \
+         src/ui/printwidget.ui \
+         src/ui/xsettingsui.ui \
+         src/ui/brokerpassdialog.ui \
+         src/ui/contest.ui \
+         src/ui/appdialog.ui \
+         src/ui/helpdialog.ui \
+         src/ui/folderexplorer.ui
 
 TRANSLATIONS += src/i18n/x2goclient_de.ts \
                 src/i18n/x2goclient_da.ts \
