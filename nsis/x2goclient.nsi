@@ -15,8 +15,8 @@
   Name "x2goclient ${VERSION}"
   Caption "x2goclient ${VERSION}"
   OutFile "x2goclient-${VERSION}-setup.exe"
-  !define MUI_ICON img\icons\win-install.ico
-  !define MUI_UNICON img\icons\win-uninstall.ico
+  !define MUI_ICON icons\win-install.ico
+  !define MUI_UNICON icons\win-uninstall.ico
   ;Default installation folder
   InstallDir "$PROGRAMFILES\x2goclient"
 
