@@ -1,7 +1,5 @@
-# Diese Datei wurde mit dem qmake-Manager von KDevelop erstellt. 
-# ------------------------------------------- 
-# Unterordner relativ zum Projektordner: .
-# Das Target ist eine Anwendung:  
+# This file was created by KDevelop.
+# -------------------------------------------
 
 #include (x2goclientconfig.pri)
 
