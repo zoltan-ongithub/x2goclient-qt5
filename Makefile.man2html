@@ -5,7 +5,7 @@ MAN2HTML_SRC   = man
 BUILD_DIR = .build_man2html
 MAN2HTML_DEST = $(BUILD_DIR)/html
 
-man_pages = `cd $(MAN2HTML_SRC) && find * -type f`
+man_pages = $(cd $(MAN2HTML_SRC) && find * -type f)
 
 all: build
 
@@ -13,9 +13,9 @@ build: build_man2html
 
 build_man2html:
 	if [ -n "$(MAN2HTML_BIN)" ]; then \
-	    mkdir -p $(MAN2HTML_DEST); \
-	    for man_page in $(man_pages); do mkdir -p `dirname $(MAN2HTML_DEST)/$$man_page`; done; \
-	    for man_page in $(man_pages); do $(MAN2HTML_BIN) $(MAN2HTML_SRC)/$$man_page > $(MAN2HTML_DEST)/$$man_page.html; done; \
+		mkdir -p $(MAN2HTML_DEST); \
+		for man_page in $(man_pages); do mkdir -p $$(dirname $(MAN2HTML_DEST)/$$man_page); done; \
+		for man_page in $(man_pages); do $(MAN2HTML_BIN) $(MAN2HTML_SRC)/$$man_page > $(MAN2HTML_DEST)/$$man_page.html; done; \
 	fi
 
 clean: clean_man2html
