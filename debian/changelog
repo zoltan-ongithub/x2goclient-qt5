@@ -134,6 +134,7 @@ x2goclient (4.0.3.2-0x2go1) unstable; urgency=medium
     - Remove executability from x2goclient.pro.
     - Fix typos and update URL's in INSTALL file.
     - Fix typos and grammar in HOWTO.GPGCARD.
+    - Add "X2Go Project" copyright to LICENSE file.
 
  -- X2Go Release Manager <git-admin@x2go.org>  Thu, 19 Feb 2015 12:49:22 +0100
 
