@@ -83,8 +83,8 @@ Next time...
 You will get informed on x2go-i18n if a translation update is necessary. So check
 your mails there regularly.
 
-For updating a translation, either keep the X2Go Client source project folder and
-read more about Git by yourself.
+For updating a translation, keep the X2Go Client source project folder and read
+more about Git by yourself.
 
 Alternatively, just remove the folder (once you have sent in the translation file)
 and start with this documentation all over again.
