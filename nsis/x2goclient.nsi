@@ -19,11 +19,11 @@
   !define MUI_UNICON img\icons\win-uninstall.ico
   ;Default installation folder
   InstallDir "$PROGRAMFILES\x2goclient"
-  
+
   ;NSIS 2.46 defaults to zlib. Setting this reduces the size of a default
   ;(no fonts) build by about 24%
-  SetCompressor /SOLID lzma  
-  
+  SetCompressor /SOLID lzma
+
   ;Get installation folder from registry if available
   InstallDirRegKey HKLM "Software\x2goclient" ""
 
@@ -46,8 +46,8 @@ SectionEnd
 ;Language Selection Dialog Settings
 
   ;Remember the installer language
-  !define MUI_LANGDLL_REGISTRY_ROOT "HKLM" 
-  !define MUI_LANGDLL_REGISTRY_KEY "Software\x2goclient" 
+  !define MUI_LANGDLL_REGISTRY_ROOT "HKLM"
+  !define MUI_LANGDLL_REGISTRY_KEY "Software\x2goclient"
   !define MUI_LANGDLL_REGISTRY_VALUENAME "Installer Language"
 
 ;------------------------------
@@ -55,10 +55,10 @@ SectionEnd
 
   Var STARTMENU_FOLDER
   Var MUI_TEMP
-    
+
   !define  UNINSTALL_REGKEY "Software\Microsoft\Windows\CurrentVersion\Uninstall\x2goclient"
   !define  UNINSTALL_DISPLAYNAME "X2Go Client for Windows"
-  !define  UNINSTALL_PUBLISHER "X2Go Project" 
+  !define  UNINSTALL_PUBLISHER "X2Go Project"
   !define  UNINSTALL_DISPLAYVERSION ${VERSION}
   !define  UNINSTALL_URL "http://www.x2go.org"
 
@@ -71,7 +71,7 @@ SectionEnd
   !define MUI_STARTMENUPAGE_DEFAULTFOLDER "X2Go Client for Windows"
   !define MUI_STARTMENUPAGE_REGISTRY_ROOT "HKLM"
   !define MUI_STARTMENUPAGE_REGISTRY_KEY "Software\x2goclient"
-  !define MUI_STARTMENUPAGE_REGISTRY_VALUENAME "Start Menu Folder"  
+  !define MUI_STARTMENUPAGE_REGISTRY_VALUENAME "Start Menu Folder"
   !insertmacro MUI_PAGE_STARTMENU "Application" $STARTMENU_FOLDER
   !insertmacro MUI_PAGE_INSTFILES
   !insertmacro MUI_UNPAGE_CONFIRM
@@ -81,17 +81,17 @@ SectionEnd
 ;--------------------------------
 ;Languages
 
-  !insertmacro MUI_LANGUAGE "English" 
+  !insertmacro MUI_LANGUAGE "English"
   !insertmacro MUI_LANGUAGE "German"
   !insertmacro MUI_LANGUAGE "Russian"
-  
+
 ;--------------------------------
 ;Reserve Files
-  
+
   ;If you are using solid compression, files that are required before
   ;the actual installation should be stored first in the data block,
   ;because this will make your installer start faster.
-  
+
   !insertmacro MUI_RESERVEFILE_LANGDLL
 
 
@@ -105,17 +105,17 @@ InstType "Minimal"
 
 Section "X2Go Client (required)" base
 
-  SetShellVarContext all 
+  SetShellVarContext all
   SectionIn RO
 
   SetOutPath "$INSTDIR"
   File /a "x2goclient\*.*"
   File /r "x2goclient\pulse"
-  File /r /x "fonts" "x2goclient\VcXsrv" 
-  
+  File /r /x "fonts" "x2goclient\VcXsrv"
+
   ;Store installation folder
   WriteRegStr HKLM "Software\x2goclient" "" $INSTDIR
-  
+
   ;Create uninstaller
   WriteUninstaller "$INSTDIR\Uninstall.exe"
   !insertmacro MUI_STARTMENU_WRITE_BEGIN Application
@@ -128,23 +128,23 @@ Section "X2Go Client (required)" base
   Delete "$INSTDIR\X2goClient.lnk"
   Delete "$SMPROGRAMS\$STARTMENU_FOLDER\X2goClient.lnk"
   Delete "$DESKTOP\X2goClient.lnk"
-  
+
   !insertmacro MUI_STARTMENU_WRITE_END
-  
+
   ;Add uninstall information to Add/Remove Programs
   ;http://nsis.sourceforge.net/Add_uninstall_information_to_Add/Remove_Programs
-  WriteRegStr HKLM ${UNINSTALL_REGKEY} "InstallLocation" 	"$INSTDIR"
-  WriteRegStr HKLM ${UNINSTALL_REGKEY} "UninstallString" 	"$\"$INSTDIR\Uninstall.exe$\""
-  WriteRegStr HKLM ${UNINSTALL_REGKEY} "DisplayIcon" 		"$INSTDIR\x2goclient.exe"
-  WriteRegStr HKLM ${UNINSTALL_REGKEY} "DisplayName" 		"${UNINSTALL_DISPLAYNAME}"
-  WriteRegStr HKLM ${UNINSTALL_REGKEY} "Publisher" 			"${UNINSTALL_PUBLISHER}"
-  WriteRegStr HKLM ${UNINSTALL_REGKEY} "DisplayVersion" 	"${UNINSTALL_DISPLAYVERSION}"
-  WriteRegStr HKLM ${UNINSTALL_REGKEY} "HelpLink" 			"${UNINSTALL_URL}"
-  WriteRegStr HKLM ${UNINSTALL_REGKEY} "URLInfoAbout" 		"${UNINSTALL_URL}"
-  WriteRegStr HKLM ${UNINSTALL_REGKEY} "URLUpdateInfo" 		"${UNINSTALL_URL}"
-  WriteRegDWORD HKLM ${UNINSTALL_REGKEY} "NoModify" 		1
-  WriteRegDWORD HKLM ${UNINSTALL_REGKEY} "NoRepair" 		1
-  
+  WriteRegStr HKLM ${UNINSTALL_REGKEY} "InstallLocation"  "$INSTDIR"
+  WriteRegStr HKLM ${UNINSTALL_REGKEY} "UninstallString"  "$\"$INSTDIR\Uninstall.exe$\""
+  WriteRegStr HKLM ${UNINSTALL_REGKEY} "DisplayIcon"      "$INSTDIR\x2goclient.exe"
+  WriteRegStr HKLM ${UNINSTALL_REGKEY} "DisplayName"      "${UNINSTALL_DISPLAYNAME}"
+  WriteRegStr HKLM ${UNINSTALL_REGKEY} "Publisher"        "${UNINSTALL_PUBLISHER}"
+  WriteRegStr HKLM ${UNINSTALL_REGKEY} "DisplayVersion"   "${UNINSTALL_DISPLAYVERSION}"
+  WriteRegStr HKLM ${UNINSTALL_REGKEY} "HelpLink"         "${UNINSTALL_URL}"
+  WriteRegStr HKLM ${UNINSTALL_REGKEY} "URLInfoAbout"     "${UNINSTALL_URL}"
+  WriteRegStr HKLM ${UNINSTALL_REGKEY} "URLUpdateInfo"    "${UNINSTALL_URL}"
+  WriteRegDWORD HKLM ${UNINSTALL_REGKEY} "NoModify"       1
+  WriteRegDWORD HKLM ${UNINSTALL_REGKEY} "NoRepair"       1
+
 SectionEnd
 
 ;x2goclient bug 108 fix
@@ -160,42 +160,42 @@ SectionGroup "Fonts"
     SectionIn 1 2
     SetOutPath "$INSTDIR\VcXsrv\fonts\"
     File "x2goclient\VcXsrv\fonts\fonts.conf"
-	File /r "x2goclient\VcXsrv\fonts\misc"
+    File /r "x2goclient\VcXsrv\fonts\misc"
   SectionEnd
-  
+
   ;As of VcXsrv-xp 1.14.3.2
   ;75dpi is 1,897 files at 10.7 MB (15.6 MB on disk)
   Section "75dpi" fonts-75dpi
     SectionIn 2
     SetOutPath "$INSTDIR\VcXsrv\fonts\"
     File "x2goclient\VcXsrv\fonts\fonts.conf"
-	File /r "x2goclient\VcXsrv\fonts\75dpi"
+    File /r "x2goclient\VcXsrv\fonts\75dpi"
   SectionEnd
-  
+
   ;As of VcXsrv-xp 1.14.3.2
   ;100dpi is 1,897 files at 12.3 MB (16.8 MB on disk)
   Section "100dpi" fonts-100dpi
     SectionIn 2
     SetOutPath "$INSTDIR\VcXsrv\fonts\"
     File "x2goclient\VcXsrv\fonts\fonts.conf"
-	File /r "x2goclient\VcXsrv\fonts\100dpi"
+    File /r "x2goclient\VcXsrv\fonts\100dpi"
   SectionEnd
-  
+
   ;As of VcXsrv-xp 1.14.3.2
   ;everything else is 466 files at 12.8MB (13.8 MB on disk)
   Section "others" fonts-others
     SectionIn 2
     SetOutPath "$INSTDIR\VcXsrv\fonts\"
     File "x2goclient\VcXsrv\fonts\fonts.conf"
-	File /r "x2goclient\VcXsrv\fonts\cyrillic"
-	File /r "x2goclient\VcXsrv\fonts\encodings"
-	File /r "x2goclient\VcXsrv\fonts\OTF"
-	File /r "x2goclient\VcXsrv\fonts\Speedo"
-	File /r "x2goclient\VcXsrv\fonts\terminus-font"
-	File /r "x2goclient\VcXsrv\fonts\TTF"
-	File /r "x2goclient\VcXsrv\fonts\Type1"
+    File /r "x2goclient\VcXsrv\fonts\cyrillic"
+    File /r "x2goclient\VcXsrv\fonts\encodings"
+    File /r "x2goclient\VcXsrv\fonts\OTF"
+    File /r "x2goclient\VcXsrv\fonts\Speedo"
+    File /r "x2goclient\VcXsrv\fonts\terminus-font"
+    File /r "x2goclient\VcXsrv\fonts\TTF"
+    File /r "x2goclient\VcXsrv\fonts\Type1"
   SectionEnd
-  
+
 SectionGroupEnd
 
 Section "Desktop Shortcut" desktopshortcut
@@ -205,14 +205,14 @@ Section "Desktop Shortcut" desktopshortcut
   SetOutPath "$INSTDIR"
   CreateShortCut "$DESKTOP\X2Go Client.lnk" "$INSTDIR\x2goclient.exe"
 SectionEnd
-  
+
 Section -EstimatedSize
   SectionIn RO
   ${GetSize} "$INSTDIR" "/S=0K" $0 $1 $2
   IntFmt $0 "0x%08X" $0
   WriteRegDWORD HKLM ${UNINSTALL_REGKEY} "EstimatedSize" "$0"
 SectionEnd
-  
+
 ;-------------------------------------------
 ;Descriptions
 
@@ -238,7 +238,7 @@ FunctionEnd
 
 Section "Uninstall"
 
-  SetShellVarContext all 
+  SetShellVarContext all
 
   !insertmacro MUI_STARTMENU_GETFOLDER Application $MUI_TEMP
   Delete "$SMPROGRAMS\$MUI_TEMP\Uninstall.lnk"
@@ -246,7 +246,7 @@ Section "Uninstall"
   Delete "$DESKTOP\X2Go Client.lnk"
   StrCpy $MUI_TEMP "$SMPROGRAMS\$MUI_TEMP"
   startMenuDeleteLoop:
-	ClearErrors
+    ClearErrors
     RMDir $MUI_TEMP
     GetFullPathName $MUI_TEMP "$MUI_TEMP\.."
     IfErrors startMenuDeleteLoopDone
@@ -254,7 +254,7 @@ Section "Uninstall"
   startMenuDeleteLoopDone:
 
   RMDir /r "$INSTDIR"
-  
+
   DeleteRegKey HKLM "Software\x2goclient"
   DeleteRegKey HKLM "${UNINSTALL_REGKEY}"
 
@@ -266,5 +266,5 @@ SectionEnd
 Function un.onInit
 
   !insertmacro MUI_UNGETLANGUAGE
-  
+
 FunctionEnd
