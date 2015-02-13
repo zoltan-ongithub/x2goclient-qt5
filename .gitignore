@@ -1,5 +1,11 @@
 # Temporary object files/static libs.
+*.dylib
+*.so
+*.so.*
 *.[oa]
+*.exe
+*.lib
+*.dll
 
 client_build/
 plugin_build/
@@ -22,3 +28,6 @@ x2goclient.app
 x2goclient.dmg
 
 x2goclient.pro.user
+
+# This file.
+.gitignore
