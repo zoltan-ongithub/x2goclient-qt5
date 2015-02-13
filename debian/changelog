@@ -131,6 +131,7 @@ x2goclient (4.0.3.2-0x2go1) unstable; urgency=medium
       reference in x2goclient.pro.
     - Move x2goplugin.rc to x2gobrowserplugin-*/src/res/ and reference in
       x2goclient.pro.
+    - Remove executability from x2goclient.pro.
 
  -- X2Go Release Manager <git-admin@x2go.org>  Thu, 19 Feb 2015 12:49:22 +0100
 
