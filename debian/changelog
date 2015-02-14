@@ -214,6 +214,8 @@ x2goclient (4.0.3.2-0x2go1) unstable; urgency=medium
       appbundle and dmg file in macbuild.sh.
     - Move Info.plist to res/ and update reference in x2goclient.pro.
     - Fix references of resources in macbuild.sh to access files from TOP_DIR.
+    - Work around a bug in qmake generating incorrect make rules for embedding
+      the OS X app bundle Info.plist file.
 
  -- X2Go Release Manager <git-admin@x2go.org>  Thu, 19 Feb 2015 12:49:22 +0100
 

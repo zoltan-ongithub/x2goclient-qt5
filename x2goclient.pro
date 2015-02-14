@@ -193,8 +193,15 @@ win32-* {
   CONFIG += static release
 }
 QT += svg network
-ICON = res/img/icons/x2go-mac.icns
-QMAKE_INFO_PLIST = res/Info.plist
+ICON = $${PWD}/res/img/icons/x2go-mac.icns
+
+# Strictly speaking, this is a bug in qmake and we should neither need $${PWD}
+# nor QMAKE_INFO_PLIST_OUT nor PRE_TARGETDEPS.
+# Not defining the latter two will however lead to it being empty and no
+# Info.plist file being created in the first place. Bummer.
+QMAKE_INFO_PLIST = $${PWD}/res/Info.plist
+QMAKE_INFO_PLIST_OUT = $${TARGET}.app/Contents/Info.plist
+PRE_TARGETDEPS += $${TARGET}.app/Contents/Info.plist
 
 plugin {
   DEFINES += CFGPLUGIN
