@@ -194,7 +194,7 @@ win32-* {
 }
 QT += svg network
 ICON = res/img/icons/x2go-mac.icns
-QMAKE_INFO_PLIST = Info.plist
+QMAKE_INFO_PLIST = res/Info.plist
 
 plugin {
   DEFINES += CFGPLUGIN
