@@ -192,6 +192,7 @@ x2goclient (4.0.3.2-0x2go1) unstable; urgency=medium
         + x2goclient.rc
         + resources.rcc
       to res/ and update references in x2goclient.pro and src/ui/helpdialog.ui.
+    - Reference new src directory as include dir in x2goclient.pro.
 
  -- X2Go Release Manager <git-admin@x2go.org>  Thu, 19 Feb 2015 12:49:22 +0100
 

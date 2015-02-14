@@ -152,7 +152,7 @@ else:message("No translation files in project")
 
 TEMPLATE = app
 DEPENDPATH += .
-INCLUDEPATH += .
+INCLUDEPATH += src
 RESOURCES += res/resources.rcc
 
 exists(txt/git-info) {
