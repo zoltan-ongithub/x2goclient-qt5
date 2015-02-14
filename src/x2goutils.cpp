@@ -30,6 +30,18 @@ QString expandHome( QString path )
   return path;
 }
 
+QString fixup_resources (const QString res_path) {
+  QString ret (res_path);
+
+  if (!(res_path.isEmpty ())) {
+    if (ret.at (1) != '/') {
+      ret.insert (1, '/');
+    }
+  }
+
+  return (ret);
+}
+
 QString wrap_legacy_resources (const QString res_path) {
   QString ret (res_path);
 
@@ -39,12 +51,14 @@ QString wrap_legacy_resources (const QString res_path) {
     legacy_locations.push_back (QString (":/png/"));
     legacy_locations.push_back (QString (":/svg/"));
 
+    ret = fixup_resources (ret);
+
     bool detected = false;
 
     /* This would be so much easier with C++ and lambdas... */
     std::vector<QString>::const_iterator it = legacy_locations.begin ();
     while (it != legacy_locations.end ()) {
-      if (res_path.startsWith (*(it++))) {
+      if (ret.startsWith (*(it++))) {
         detected = true;
         break;
       }

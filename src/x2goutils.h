@@ -22,6 +22,7 @@
 #include <QString>
 
 QString expandHome( QString path );
+QString fixup_resources (const QString res_path);
 QString wrap_legacy_resources (const QString res_path);
 
 #endif
