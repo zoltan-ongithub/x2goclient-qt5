@@ -1,15 +1,15 @@
 #!/bin/sh
-NAME=x2goclient
-APPBUNDLE=./$NAME.app
-DMGFILE=./$NAME.dmg
-PROJECT=./$NAME.pro
-PKG_DMG=./pkg-dmg
+NAME="x2goclient"
+APPBUNDLE="./${NAME}.app"
+DMGFILE="./${NAME}.dmg"
+PROJECT="./${NAME}.pro"
+PKG_DMG="./pkg-dmg"
 
-NXPROXY=`which nxproxy`
-LIBXCOMP=libXcomp.3.dylib
-LIBPNG=libpng15.15.dylib
-LIBJPEG=libjpeg.9.dylib
-LIBZ=libz.1.dylib
+NXPROXY="$(which nxproxy)"
+LIBXCOMP="libXcomp.3.dylib"
+LIBPNG="libpng15.15.dylib"
+LIBJPEG="libjpeg.9.dylib"
+LIBZ="libz.1.dylib"
 
 set -e
 
@@ -39,23 +39,23 @@ phase "Running make"
 make -j2
 
 phase "Copying nxproxy"
-mkdir -p "$APPBUNDLE/Contents/exe"
-cp "$NXPROXY" "$APPBUNDLE/Contents/exe"
+mkdir -p "${APPBUNDLE}/Contents/exe"
+cp "${NXPROXY}" "${APPBUNDLE}/Contents/exe"
 dylibbundler \
-	--fix-file "$APPBUNDLE/Contents/exe/nxproxy" \
+	--fix-file "${APPBUNDLE}/Contents/exe/nxproxy" \
 	--bundle-deps \
-	--dest-dir "$APPBUNDLE/Contents/Frameworks" \
+	--dest-dir "${APPBUNDLE}/Contents/Frameworks" \
 	--install-path "@executable_path/../Frameworks/" \
 	--create-dir
 
 phase "Bundling up using macdeployqt"
-macdeployqt "$APPBUNDLE" -verbose=2
+macdeployqt "${APPBUNDLE}" -verbose=2
 
 phase "Creating DMG"
-$PKG_DMG \
-	--source "$APPBUNDLE" \
+${PKG_DMG} \
+	--source "${APPBUNDLE}" \
 	--sourcefile \
-	--target "$DMGFILE" \
+	--target "${DMGFILE}" \
 	--volname "x2goclient" \
 	--verbosity 2 \
 	--mkdir "/.background" \
