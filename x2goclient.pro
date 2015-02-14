@@ -196,12 +196,15 @@ QT += svg network
 ICON = $${PWD}/res/img/icons/x2go-mac.icns
 
 # Strictly speaking, this is a bug in qmake and we should neither need $${PWD}
-# nor QMAKE_INFO_PLIST_OUT nor PRE_TARGETDEPS.
+# nor QMAKE_INFO_PLIST_OUT nor PRE_TARGETDEPS nor QMAKE_POST_LINK.
 # Not defining the latter two will however lead to it being empty and no
-# Info.plist file being created in the first place. Bummer.
+# Info.plist file being created in the first place.
+# The last command takes care of actually putting the icon in place - yet
+# another bug in qmake. Bummer.
 QMAKE_INFO_PLIST = $${PWD}/res/Info.plist
 QMAKE_INFO_PLIST_OUT = $${TARGET}.app/Contents/Info.plist
 PRE_TARGETDEPS += $${TARGET}.app/Contents/Info.plist
+QMAKE_POST_LINK += /bin/cp -n $${ICON} $${OUT_PWD}/$${TARGET}.app/Contents/Resources/
 
 plugin {
   DEFINES += CFGPLUGIN
