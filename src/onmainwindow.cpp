@@ -2537,11 +2537,11 @@ void ONMainWindow::slotSelectedFromList ( SessionButton* session )
 
 
 
-        sessIcon=st->setting()->value (
-                     sid+"/icon",
-                     ( QVariant ) ":/img/icons/128x128/x2gosession.png"
-                 ).toString();
-        sessIcon=expandHome(sessIcon);
+        sessIcon = wrap_legacy_resources (st->setting()->value (
+                                                                sid+"/icon",
+                                                                (QVariant) ":/img/icons/128x128/x2gosession.png"
+                                                               ).toString ());
+        sessIcon = expandHome(sessIcon);
 
         command=st->setting()->value (
                     sid+"/command",
