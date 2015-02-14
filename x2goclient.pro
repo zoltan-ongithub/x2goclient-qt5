@@ -193,7 +193,7 @@ win32-* {
   CONFIG += static release
 }
 QT += svg network
-ICON = img/icons/x2go-mac.icns
+ICON = res/img/icons/x2go-mac.icns
 QMAKE_INFO_PLIST = Info.plist
 
 plugin {

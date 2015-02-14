@@ -144,12 +144,23 @@ x2goclient (4.0.3.2-0x2go1) unstable; urgency=medium
       around messages, remove or add whitespace where applicable.
     - Move *.rc and *.rcc files back to top directory for now. Resources must
       be in the resource file's base directory or a sub-directory.
-    - Move icons/ to img/icons/ and update references in resources.rcc,
-      COPYRIGHT.x2go-logos, Makefile, debian/x2goclient.install, macbuild.sh,
-      nsis/x2goclient.nsi, src/onmainwindow.cpp, src/appdialog.cpp,
-      src/folderbutton.cpp, src/folderexplorer.cpp, src/sessionbutton.cpp,
-      src/sessionexplorer.cpp, src/sessionmanagedialog.cpp,
-      src/sessionwidget.cpp, src/ui/helpdialog.ui and src/xsettingswidget.cpp.
+    - Move icons/ to img/icons/ and update references in
+        + resources.rcc
+        + COPYRIGHT.x2go-logos
+        + Makefile
+        + debian/x2goclient.install
+        + macbuild.sh
+        + nsis/x2goclient.nsi
+        + src/onmainwindow.cpp
+        + src/appdialog.cpp
+        + src/folderbutton.cpp
+        + src/folderexplorer.cpp
+        + src/sessionbutton.cpp
+        + src/sessionexplorer.cpp
+        + src/sessionmanagedialog.cpp
+        + src/sessionwidget.cpp
+        + src/ui/helpdialog.ui
+        + src/xsettingswidget.cpp
     - Move png/ to img/png/ and update references in resources.rcc and
       src/onmainwindow.cpp.
     - Move svg/ to img/svg/ and update references in resources.rcc,
@@ -168,6 +179,13 @@ x2goclient (4.0.3.2-0x2go1) unstable; urgency=medium
       x2goclient.pro.
     - Remove executability bit from src/sshmasterconnection.cpp and
       src/sshprocess.cpp.
+    - Move img/ to res/img/ and update references in
+        + COPYRIGHT.x2go-logos
+        + Makefile
+        + debian/x2goclient.install
+        + macbuild.sh
+        + x2goclient.pro
+        + x2goclient.rc
 
  -- X2Go Release Manager <git-admin@x2go.org>  Thu, 19 Feb 2015 12:49:22 +0100
 
