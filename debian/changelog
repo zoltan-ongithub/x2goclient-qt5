@@ -206,6 +206,7 @@ x2goclient (4.0.3.2-0x2go1) unstable; urgency=medium
       macbuild.sh which can also be (pre-)set through the environment. Default
       to the 10.7 SDK and deployment target. Use the variables when calling
       qmake.
+    - Specify -spec macx-g++ when using qmake in macbuild.sh.
 
  -- X2Go Release Manager <git-admin@x2go.org>  Thu, 19 Feb 2015 12:49:22 +0100
 
