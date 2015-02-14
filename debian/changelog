@@ -201,6 +201,7 @@ x2goclient (4.0.3.2-0x2go1) unstable; urgency=medium
     - Whitespace fix in Info.plist.
     - Use more quoting and curly braces for referencing variables in
       macbuild.sh.
+    - Define TOP_DIR variable in macbuild.sh -- set to $PWD.
 
  -- X2Go Release Manager <git-admin@x2go.org>  Thu, 19 Feb 2015 12:49:22 +0100
 

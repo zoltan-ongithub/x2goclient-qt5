@@ -1,9 +1,11 @@
 #!/bin/sh
 NAME="x2goclient"
-APPBUNDLE="./${NAME}.app"
-DMGFILE="./${NAME}.dmg"
-PROJECT="./${NAME}.pro"
-PKG_DMG="./pkg-dmg"
+TOP_DIR="${PWD}"
+BUILD_DIR="${TOP_DIR}/build_client"
+APPBUNDLE="${BUILD_DIR}/${NAME}.app"
+DMGFILE="${BUILD_DIR}/${NAME}.dmg"
+PROJECT="${TOP_DIR}/${NAME}.pro"
+PKG_DMG="${TOP_DIR}/pkg-dmg"
 
 NXPROXY="$(which nxproxy)"
 LIBXCOMP="libXcomp.3.dylib"
