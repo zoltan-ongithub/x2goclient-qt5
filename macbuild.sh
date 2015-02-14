@@ -69,12 +69,12 @@ ${PKG_DMG} \
 	--volname "x2goclient" \
 	--verbosity 2 \
 	--mkdir "/.background" \
-	--copy "./res/img/png/macinstaller_background.png:/.background" \
-	--copy "./macdmg.DS_Store:/.DS_Store" \
-	--copy "./LICENSE" \
-	--copy "./COPYING" \
+	--copy "${TOP_DIR}/res/img/png/macinstaller_background.png:/.background" \
+	--copy "${TOP_DIR}/macdmg.DS_Store:/.DS_Store" \
+	--copy "${TOP_DIR}/LICENSE" \
+	--copy "${TOP_DIR}/COPYING" \
 	--symlink "/Applications: " \
-	--icon "./res/img/icons/x2go-mac.icns" \
+	--icon "${TOP_DIR}/res/img/icons/x2go-mac.icns" \
 	--format "UDBZ"
 
 popd
