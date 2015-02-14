@@ -35,7 +35,7 @@ phase "Running lrelease"
 lrelease "${PROJECT}"
 
 phase "Running qmake"
-qmake -config release -spec macx-g++ \
+qmake -config release -spec macx-g++ "${PROJECT}" \
 	CONFIG+="x86_64" \
 	QMAKE_MAC_SDK="${SDK}" \
 	QMAKE_MACOSX_DEPLOYMENT_TARGET="${MACOSX_DEPLOYMENT_TARGET}"
