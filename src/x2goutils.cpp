@@ -42,8 +42,8 @@ QString wrap_legacy_resources (const QString res_path) {
     bool detected = false;
 
     /* This would be so much easier with C++ and lambdas... */
-    QString::const_iterator it = legacy_locations.begin ();
-    while (it != legacy_locations.end ()) {
+    QString::const_iterator it = legacy_locations.constBegin ();
+    while (it != legacy_locations.constEnd ()) {
       if (res_path.startsWith (*(it++))) {
         detected = true;
         break;
