@@ -23,11 +23,11 @@
 
 QString expandHome( QString path )
 {
-    path = path.trimmed();
-    if ( path.startsWith("~/") || path.startsWith("~\\") ) {
-        path = path.replace(QString("~"), QDir::homePath());
-    }
-    return path;
+  path = path.trimmed();
+  if ( path.startsWith("~/") || path.startsWith("~\\") ) {
+      path = path.replace(QString("~"), QDir::homePath());
+  }
+  return path;
 }
 
 QString wrap_legacy_resources (const QString res_path) {
