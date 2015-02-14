@@ -2,8 +2,8 @@
 NAME="x2goclient"
 TOP_DIR="${PWD}"
 BUILD_DIR="${TOP_DIR}/build_client"
-APPBUNDLE="${BUILD_DIR}/${NAME}.app"
-DMGFILE="${BUILD_DIR}/${NAME}.dmg"
+APPBUNDLE="${TOP_DIR}/${BUILD_DIR}/${NAME}.app"
+DMGFILE="${TOP_DIR}/${BUILD_DIR}/${NAME}.dmg"
 PROJECT="${TOP_DIR}/${NAME}.pro"
 PKG_DMG="${TOP_DIR}/pkg-dmg"
 
