@@ -13,6 +13,9 @@ LIBPNG="libpng15.15.dylib"
 LIBJPEG="libjpeg.9.dylib"
 LIBZ="libz.1.dylib"
 
+: SDK="${SDK:-"/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk"}"
+: MACOSX_DEPLOYMENT_TARGET="${MACOSX_DEPLOYMENT_TARGET:-"10.7"}"
+
 set -e
 
 function phase() {
@@ -34,8 +37,8 @@ lrelease "$PROJECT"
 phase "Running qmake"
 qmake -config release \
 	CONFIG+=x86_64 \
-	QMAKE_MAC_SDK=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk \
-	QMAKE_MACOSX_DEPLOYMENT_TARGET=10.7
+	QMAKE_MAC_SDK="${SDK}" \
+	QMAKE_MACOSX_DEPLOYMENT_TARGET="${MACOSX_DEPLOYMENT_TARGET}"
 
 phase "Running make"
 make -j2
