@@ -20,19 +20,19 @@ FORMS += src/ui/cupsprintsettingsdialog.ui \
          src/ui/helpdialog.ui \
          src/ui/folderexplorer.ui
 
-TRANSLATIONS += i18n/x2goclient_de.ts \
-                i18n/x2goclient_da.ts \
-                i18n/x2goclient_es.ts \
-                i18n/x2goclient_et.ts \
-                i18n/x2goclient_fi.ts \
-                i18n/x2goclient_fr.ts \
-                i18n/x2goclient_nb_no.ts \
-                i18n/x2goclient_nl.ts \
-                i18n/x2goclient_pt.ts \
-                i18n/x2goclient_ru.ts \
-                i18n/x2goclient_sv.ts \
-                i18n/x2goclient_tr.ts \
-                i18n/x2goclient_zh_tw.ts
+TRANSLATIONS += res/i18n/x2goclient_de.ts \
+                res/i18n/x2goclient_da.ts \
+                res/i18n/x2goclient_es.ts \
+                res/i18n/x2goclient_et.ts \
+                res/i18n/x2goclient_fi.ts \
+                res/i18n/x2goclient_fr.ts \
+                res/i18n/x2goclient_nb_no.ts \
+                res/i18n/x2goclient_nl.ts \
+                res/i18n/x2goclient_pt.ts \
+                res/i18n/x2goclient_ru.ts \
+                res/i18n/x2goclient_sv.ts \
+                res/i18n/x2goclient_tr.ts \
+                res/i18n/x2goclient_zh_tw.ts
 
 HEADERS += src/configdialog.h \
            src/editconnectiondialog.h \

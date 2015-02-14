@@ -164,6 +164,8 @@ x2goclient (4.0.3.2-0x2go1) unstable; urgency=medium
     - Move x2go-logos/ to img/x2go-logos and update references in
       COPYRIGHT.x2go-logos.
     - Fix whitespace errors in x2gobrowserplugin-2.4_1/src/res/x2goplugin.rc.
+    - Move i18n/ to res/i18n/ and update references in debian/rules and
+      x2goclient.pro.
 
  -- X2Go Release Manager <git-admin@x2go.org>  Thu, 19 Feb 2015 12:49:22 +0100
 
