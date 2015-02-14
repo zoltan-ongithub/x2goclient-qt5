@@ -28,15 +28,15 @@ function phase() {
 
 phase "Cleaning"
 make clean
-rm -rf "$APPBUNDLE"
-rm -rf "$DMGFILE"
+rm -rf "${APPBUNDLE}"
+rm -rf "${DMGFILE}"
 
 phase "Running lrelease"
-lrelease "$PROJECT"
+lrelease "${PROJECT}"
 
 phase "Running qmake"
 qmake -config release \
-	CONFIG+=x86_64 \
+	CONFIG+="x86_64" \
 	QMAKE_MAC_SDK="${SDK}" \
 	QMAKE_MACOSX_DEPLOYMENT_TARGET="${MACOSX_DEPLOYMENT_TARGET}"
 
