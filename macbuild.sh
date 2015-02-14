@@ -31,6 +31,11 @@ make clean
 rm -rf "${APPBUNDLE}"
 rm -rf "${DMGFILE}"
 
+[ -e "${BUILD_DIR}" ] && rm -rf "${BUILD_DIR}"
+
+mkdir "${BUILD_DIR}"
+pushd "${BUILD_DIR}"
+
 phase "Running lrelease"
 lrelease "${PROJECT}"
 
@@ -71,3 +76,5 @@ ${PKG_DMG} \
 	--symlink "/Applications: " \
 	--icon "./res/img/icons/x2go-mac.icns" \
 	--format "UDBZ"
+
+popd

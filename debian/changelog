@@ -208,6 +208,8 @@ x2goclient (4.0.3.2-0x2go1) unstable; urgency=medium
       qmake.
     - Specify -spec macx-g++ when using qmake in macbuild.sh.
     - Directly reference project file for qmake in macbuild.sh.
+    - Use out-of-source build and do not overwrite the default shipped
+      Makefile in macbuild.sh.
 
  -- X2Go Release Manager <git-admin@x2go.org>  Thu, 19 Feb 2015 12:49:22 +0100
 
