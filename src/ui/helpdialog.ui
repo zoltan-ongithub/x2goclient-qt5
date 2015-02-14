@@ -35,7 +35,7 @@
   </layout>
  </widget>
  <resources>
-  <include location="resources.rcc"/>
+  <include location="../../res/resources.rcc"/>
  </resources>
  <connections>
   <connection>
