@@ -310,10 +310,9 @@ void SessionButton::redraw()
         sessStatus->setText("("+tr("suspended")+")");
     }
 
-    QString sessIcon = wrap_legacy_resources (st->setting()->value (sid+"/icon",
-                                                                    (QVariant)
-                                                                    ":/img/icons/128x128/x2gosession.png"
-                                                                   ).toString ());
+    QString sessIcon = wrap_legacy_resource_URIs (st->setting()->value (sid+"/icon",
+                                                                        (QVariant) ":/img/icons/128x128/x2gosession.png"
+                                                                       ).toString ());
     sessIcon = expandHome(sessIcon);
     QPixmap* pix;
 

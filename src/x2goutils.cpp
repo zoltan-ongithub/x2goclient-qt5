@@ -30,7 +30,7 @@ QString expandHome( QString path )
   return path;
 }
 
-QString fixup_resources (const QString res_path) {
+QString fixup_resource_URIs (const QString res_path) {
   QString ret (res_path);
 
   if (!(res_path.isEmpty ())) {
@@ -42,7 +42,7 @@ QString fixup_resources (const QString res_path) {
   return (ret);
 }
 
-QString wrap_legacy_resources (const QString res_path) {
+QString wrap_legacy_resource_URIs (const QString res_path) {
   QString ret (res_path);
 
   if (!(res_path.isEmpty ())) {
@@ -51,7 +51,7 @@ QString wrap_legacy_resources (const QString res_path) {
     legacy_locations.push_back (QString (":/png/"));
     legacy_locations.push_back (QString (":/svg/"));
 
-    ret = fixup_resources (ret);
+    ret = fixup_resource_URIs (ret);
 
     bool detected = false;
 

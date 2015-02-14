@@ -224,6 +224,9 @@ x2goclient (4.0.3.2-0x2go1) unstable; urgency=medium
     - Add myself to copyright section in the x2goutils headers.
     - Change four spaces per indentation level to two spaces in x2goutils.cpp.
     - Add fixup_resources() to x2goutils to fix "broken" resource URI's.
+    - Rename fixup_resources() and wrap_legacy_resources() to
+      fixup_resource_URIs() and wrap_legacy_resource_URIs(). Update
+      references.
 
  -- X2Go Release Manager <git-admin@x2go.org>  Thu, 19 Feb 2015 12:49:22 +0100
 
