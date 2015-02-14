@@ -317,6 +317,7 @@ void SessionButton::redraw()
     sessIcon = expandHome(sessIcon);
     QPixmap* pix;
 
+    x2goDebug << "creating QPixmap with session icon: '" << sessIcon.toAscii () << "'.";
     if (!par->brokerMode || sessIcon == ":/img/icons/128x128/x2gosession.png")
         pix=new QPixmap( sessIcon );
     else

@@ -2599,6 +2599,7 @@ void ONMainWindow::slotSelectedFromList ( SessionButton* session )
     selectedCommand=command.split("/").last();
     command=transAppName ( command );
     login->setText ( userName );
+    x2goDebug << "creating QPixmap with session icon: '" << sessIcon << "'.";
     QPixmap pix ( sessIcon );
     if ( !miniMode )
     {
