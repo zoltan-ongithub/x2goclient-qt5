@@ -155,12 +155,12 @@ DEPENDPATH += .
 INCLUDEPATH += src
 RESOURCES += res/resources.rcc
 
-exists(txt/git-info) {
+exists(res/txt/git-info) {
   message("Configuring with --git-info")
   RESOURCES += res/git.rcc
 }
 
-exists(txt/changelog) {
+exists(res/txt/changelog) {
   message("Configuring with --changelog")
   RESOURCES += res/changelog.rcc
 }

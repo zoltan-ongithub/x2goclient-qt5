@@ -150,8 +150,8 @@ the X2Go Plugin via an Apache webserver.
 # Fix up install issues
 sed -i -e 's/-o root -g root//' Makefile
 sed -i -e '/^MOZPLUGDIR=/s/lib/%{_lib}/' Makefile
-test -f ChangeLog && cp ChangeLog txt/changelog || test -f debian/changelog && cp debian/changelog txt/changelog || true
-test -f ChangeLog.gitlog && cp ChangeLog.gitlog txt/git-info || true
+test -f ChangeLog && cp ChangeLog res/txt/changelog || test -f debian/changelog && cp debian/changelog res/txt/changelog || true
+test -f ChangeLog.gitlog && cp ChangeLog.gitlog res/txt/git-info || true
 %if 0%{?el5}
 sed -i -e '/^QMAKE_BINARY=/s@qmake-qt4@%{_libdir}/qt4/bin/qmake@' Makefile
 sed -i -e '/^LRELEASE_BINARY=/s@lrelease-qt4@%{_libdir}/qt4/bin/lrelease@' Makefile

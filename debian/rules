@@ -9,15 +9,15 @@ export LDFLAGS:=$(shell dpkg-buildflags --get LDFLAGS)
 	dh $@ --parallel --with apache2 || dh $@ --parallel
 
 override_dh_auto_configure:
-	cp debian/changelog txt/changelog
-	if [ -f ChangeLog.gitlog ]; then cp ChangeLog.gitlog txt/git-info; fi
+	cp debian/changelog res/txt/changelog
+	if [ -f ChangeLog.gitlog ]; then cp ChangeLog.gitlog res/txt/git-info; fi
 	dh_auto_configure
 
 override_dh_auto_clean:
 	dh_auto_clean
 	# clean stray .qm files that are not handled by clean rule in upstream Makefile
 	rm -Rf res/i18n/x2goclient_*.qm
-	rm -f txt/changelog
+	rm -f res/txt/changelog
 
 override_dh_strip:
 	dh_strip -p x2goclient --dbg-package=x2goclient-dbg
