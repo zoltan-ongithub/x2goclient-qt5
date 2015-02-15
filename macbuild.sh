@@ -15,6 +15,12 @@ LIBZ="libz.1.dylib"
 
 : SDK="${SDK:-"/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk"}"
 : MACOSX_DEPLOYMENT_TARGET="${MACOSX_DEPLOYMENT_TARGET:-"10.7"}"
+: DEBUG="${DEBUG:-"0"}"
+
+case "${DEBUG}" in
+	("0"|"no"|""|"No"|"nO"|"NO") BUILD_MODE="release";;
+	(*) BUILD_MODE="debug";;
+esac
 
 set -e
 
@@ -40,7 +46,7 @@ phase "Running lrelease"
 lrelease "${PROJECT}"
 
 phase "Running qmake"
-qmake -config release -spec macx-g++ "${PROJECT}" \
+qmake -config "${BUILD_MODE}" -spec macx-g++ "${PROJECT}" \
 	CONFIG+="x86_64" \
 	QMAKE_MAC_SDK="${SDK}" \
 	QMAKE_MACOSX_DEPLOYMENT_TARGET="${MACOSX_DEPLOYMENT_TARGET}"
