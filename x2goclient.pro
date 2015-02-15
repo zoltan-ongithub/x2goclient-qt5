@@ -206,6 +206,9 @@ QMAKE_INFO_PLIST_OUT = $${TARGET}.app/Contents/Info.plist
 PRE_TARGETDEPS += $${TARGET}.app/Contents/Info.plist
 QMAKE_POST_LINK += /bin/cp -n $${ICON} $${OUT_PWD}/$${TARGET}.app/Contents/Resources/
 
+QMAKE_CXXFLAGS_DEBUG -= -g
+QMAKE_CXXFLAGS_DEBUG += -g3 -ggdb3 -gdwarf-4
+
 plugin {
   DEFINES += CFGPLUGIN
   linux-g++ {

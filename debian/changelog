@@ -230,6 +230,7 @@ x2goclient (4.0.3.2-0x2go1) unstable; urgency=medium
     - Move res/Info.plist and macdmg.DS_Store to res/osxbundle/ and update
       references in x2goclient.pro and macbuild.sh.
     - Add debug mode selector via DEBUG env variable to macbuild.sh.
+    - Enable more debugging if needed: change -g flag to -g3 -ggdb3 -gdwarf-4.
 
  -- X2Go Release Manager <git-admin@x2go.org>  Thu, 19 Feb 2015 12:49:22 +0100
 
