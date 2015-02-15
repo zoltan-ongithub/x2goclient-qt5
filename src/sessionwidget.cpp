@@ -409,7 +409,7 @@ void SessionWidget::slot_getIcon()
                       tr ( "Pictures" ) +" (*.png *.xpm *.jpg)" );
     if ( path!=QString::null )
     {
-        sessIcon=path;
+        sessIcon = wrap_legacy_resource_URIs (path);
         icon->setIcon ( QIcon ( sessIcon ) );
     }
 }
@@ -545,10 +545,10 @@ void SessionWidget::readConfig()
 
     sessName->setText (name);
 
-    sessIcon=st.setting()->value (
-                 sessionId+"/icon",
-                 ( QVariant ) ":/img/icons/128x128/x2gosession.png" ).toString().trimmed();
-    sessIcon=expandHome(sessIcon);
+    sessIcon = wrap_legacy_resource_URIs (st.setting ()->value (sessionId+"/icon",
+                                                                (QVariant) ":/img/icons/128x128/x2gosession.png"
+                                                               ).toString ().trimmed ());
+    sessIcon = expandHome (sessIcon);
     icon->setIcon ( QIcon ( sessIcon ) );
 
     server->setText ( st.setting()->value (

@@ -167,11 +167,9 @@ void SessionExplorer::slotCreateDesktopIcon ( SessionButton* bt )
     name.replace("/","::");
 
 
-    QString sessIcon=st.setting()->value (
-                         bt->id() +"/icon",
-                         ( QVariant )
-                         ":/img/icons/128x128/x2gosession.png"
-                     ).toString();
+    QString sessIcon = wrap_legacy_resource_URIs (st.setting ()->value (bt->id() + "/icon",
+                                                                        (QVariant) ":/img/icons/128x128/x2gosession.png"
+                                                                       ).toString ());
     sessIcon = expandHome(sessIcon);
     if ( sessIcon.startsWith ( ":/img/icons",Qt::CaseInsensitive ) ||
             !sessIcon.endsWith ( ".png",Qt::CaseInsensitive ) )
