@@ -201,7 +201,7 @@ ICON = $${PWD}/res/img/icons/x2go-mac.icns
 # Info.plist file being created in the first place.
 # The last command takes care of actually putting the icon in place - yet
 # another bug in qmake. Bummer.
-QMAKE_INFO_PLIST = $${PWD}/res/Info.plist
+QMAKE_INFO_PLIST = $${PWD}/res/osxbundle/Info.plist
 QMAKE_INFO_PLIST_OUT = $${TARGET}.app/Contents/Info.plist
 PRE_TARGETDEPS += $${TARGET}.app/Contents/Info.plist
 QMAKE_POST_LINK += /bin/cp -n $${ICON} $${OUT_PWD}/$${TARGET}.app/Contents/Resources/

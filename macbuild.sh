@@ -70,7 +70,7 @@ ${PKG_DMG} \
 	--verbosity 2 \
 	--mkdir "/.background" \
 	--copy "${TOP_DIR}/res/img/png/macinstaller_background.png:/.background" \
-	--copy "${TOP_DIR}/macdmg.DS_Store:/.DS_Store" \
+	--copy "${TOP_DIR}/res/osxbundle/macdmg.DS_Store:/.DS_Store" \
 	--copy "${TOP_DIR}/LICENSE" \
 	--copy "${TOP_DIR}/COPYING" \
 	--symlink "/Applications: " \
