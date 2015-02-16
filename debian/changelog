@@ -242,6 +242,7 @@ x2goclient (4.0.3.2-0x2go1) unstable; urgency=medium
     - Add new UNUSED() macro to x2goutils.h and silence compiler warnings.
     - Fix some QMessageBox usages. There are many more places that need
       fixing...
+    - Remove config_mac.sh. macbuild.sh handles this now.
 
  -- X2Go Release Manager <git-admin@x2go.org>  Thu, 19 Feb 2015 12:49:22 +0100
 
