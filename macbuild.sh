@@ -15,9 +15,9 @@ LIBPNG="libpng15.15.dylib"
 LIBJPEG="libjpeg.9.dylib"
 LIBZ="libz.1.dylib"
 
-: SDK="${SDK:-"/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk"}"
-: MACOSX_DEPLOYMENT_TARGET="${MACOSX_DEPLOYMENT_TARGET:-"10.7"}"
-: DEBUG="${DEBUG:-"0"}"
+SDK="${SDK:-"/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk"}"
+MACOSX_DEPLOYMENT_TARGET="${MACOSX_DEPLOYMENT_TARGET:-"10.7"}"
+DEBUG="${DEBUG:-"0"}"
 
 case "${DEBUG}" in
 	("0"|"no"|""|"No"|"nO"|"NO"|"false"|"FALSE") BUILD_MODE="release";;
@@ -40,7 +40,7 @@ set -e
 function phase() {
 	echo
 	echo "***"
-	echo "*** ${1}…"
+	echo "*** ${1}..."
 	echo "***"
 	echo
 }
