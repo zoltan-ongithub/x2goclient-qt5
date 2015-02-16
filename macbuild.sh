@@ -1,6 +1,8 @@
 #!/bin/sh
 NAME="x2goclient"
-TOP_DIR="${PWD}"
+
+TOP_DIR="$(dirname "$0")"
+[[ "${TOP_DIR}" == /* ]] || TOP_DIR="${PWD}/${TOP_DIR#./}"
 BUILD_DIR="${TOP_DIR}/build_client"
 APPBUNDLE="${BUILD_DIR}/${NAME}.app"
 DMGFILE="${BUILD_DIR}/${NAME}.dmg"
