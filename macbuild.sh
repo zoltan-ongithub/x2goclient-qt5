@@ -10,10 +10,6 @@ PROJECT="${TOP_DIR}/${NAME}.pro"
 PKG_DMG="${TOP_DIR}/pkg-dmg"
 
 NXPROXY="$(which nxproxy)"
-LIBXCOMP="libXcomp.3.dylib"
-LIBPNG="libpng15.15.dylib"
-LIBJPEG="libjpeg.9.dylib"
-LIBZ="libz.1.dylib"
 
 SDK="${SDK:-"/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk"}"
 MACOSX_DEPLOYMENT_TARGET="${MACOSX_DEPLOYMENT_TARGET:-"10.7"}"
