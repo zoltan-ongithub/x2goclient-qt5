@@ -237,6 +237,8 @@ x2goclient (4.0.3.2-0x2go1) unstable; urgency=medium
     - Also accept "FALSE" and "false" as binary values in macbuild.sh.
     - Make bundling optional (but enabled by default) via the new BUNDLE
       environment variable in macbuild.sh.
+    - Enable -O2 in debug mode. Otherwise, debug mode would test different
+      execution paths than release mode.
 
  -- X2Go Release Manager <git-admin@x2go.org>  Thu, 19 Feb 2015 12:49:22 +0100
 
