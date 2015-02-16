@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 NAME="x2goclient"
 
 TOP_DIR="$(dirname "$0")"
