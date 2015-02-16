@@ -22,6 +22,17 @@ case "${DEBUG}" in
 	(*) BUILD_MODE="debug";;
 esac
 
+SDK_MINOR_VERSION="$(/usr/bin/perl -pe 's#.*?10\.(\d+).*?\.sdk$#\1#' <<< "${SDK}")"
+
+MATCH_NUMBERS='^[0-9]+$'
+if [[ "${SDK_MINOR_VERSION}" =~ ${MATCH_NUMBERS} ]]; then
+	STDLIB="libstdc++"
+	[ "${SDK_MINOR_VERSION}" -gt "8" ] && STDLIB="libc++"
+else
+	echo "Unable to determine OS X version. Unknown value '${SDK_MINOR_VERSION}'." >&2
+	exit 1
+fi
+
 set -e
 
 function phase() {
@@ -49,7 +60,8 @@ phase "Running qmake"
 qmake -config "${BUILD_MODE}" -spec macx-g++ "${PROJECT}" \
 	CONFIG+="x86_64" \
 	QMAKE_MAC_SDK="${SDK}" \
-	QMAKE_MACOSX_DEPLOYMENT_TARGET="${MACOSX_DEPLOYMENT_TARGET}"
+	QMAKE_MACOSX_DEPLOYMENT_TARGET="${MACOSX_DEPLOYMENT_TARGET}" \
+	OSX_STDLIB="${STDLIB}"
 
 phase "Running make"
 make -j2

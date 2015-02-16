@@ -186,6 +186,10 @@ x2go_linux_static {
 macx {
   message("building $$TARGET with ldap and cups")
   LIBS += -framework LDAP -lcups -lcrypto -lssl -lz
+
+  !isEmpty(OSX_STDLIB) {
+    QMAKE_CXXFLAGS += --stdlib=$${OSX_STDLIB}
+  }
 }
 win32-* {
   message("building $$TARGET for windows without ldap and cups")
