@@ -18,10 +18,16 @@ LIBZ="libz.1.dylib"
 SDK="${SDK:-"/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk"}"
 MACOSX_DEPLOYMENT_TARGET="${MACOSX_DEPLOYMENT_TARGET:-"10.7"}"
 DEBUG="${DEBUG:-"0"}"
+BUNDLE="${BUNDLE:-"1"}"
 
 case "${DEBUG}" in
 	("0"|"no"|""|"No"|"nO"|"NO"|"false"|"FALSE") BUILD_MODE="release";;
 	(*) BUILD_MODE="debug";;
+esac
+
+case "${BUNDLE}" in
+	("0"|"no"|""|"No"|"nO"|"NO"|"false"|"FALSE") BUNDLE="0";;
+	(*) BUNDLE="1";;
 esac
 
 SDK_MINOR_VERSION="$(/usr/bin/perl -pe 's#.*?10\.(\d+).*?\.sdk$#\1#' <<< "${SDK}")"
@@ -71,30 +77,33 @@ make -j2
 phase "Copying nxproxy"
 mkdir -p "${APPBUNDLE}/Contents/exe"
 cp "${NXPROXY}" "${APPBUNDLE}/Contents/exe"
-dylibbundler \
-	--fix-file "${APPBUNDLE}/Contents/exe/nxproxy" \
-	--bundle-deps \
-	--dest-dir "${APPBUNDLE}/Contents/Frameworks" \
-	--install-path "@executable_path/../Frameworks/" \
-	--create-dir
 
-phase "Bundling up using macdeployqt"
-macdeployqt "${APPBUNDLE}" -verbose=2
+if [ "${BUNDLE}" = "1" ]; then
+	dylibbundler \
+		--fix-file "${APPBUNDLE}/Contents/exe/nxproxy" \
+		--bundle-deps \
+		--dest-dir "${APPBUNDLE}/Contents/Frameworks" \
+		--install-path "@executable_path/../Frameworks/" \
+		--create-dir
 
-phase "Creating DMG"
-${PKG_DMG} \
-	--source "${APPBUNDLE}" \
-	--sourcefile \
-	--target "${DMGFILE}" \
-	--volname "x2goclient" \
-	--verbosity 2 \
-	--mkdir "/.background" \
-	--copy "${TOP_DIR}/res/img/png/macinstaller_background.png:/.background" \
-	--copy "${TOP_DIR}/res/osxbundle/macdmg.DS_Store:/.DS_Store" \
-	--copy "${TOP_DIR}/LICENSE" \
-	--copy "${TOP_DIR}/COPYING" \
-	--symlink "/Applications: " \
-	--icon "${TOP_DIR}/res/img/icons/x2go-mac.icns" \
-	--format "UDBZ"
+	phase "Bundling up using macdeployqt"
+	macdeployqt "${APPBUNDLE}" -verbose=2
+
+	phase "Creating DMG"
+	${PKG_DMG} \
+		--source "${APPBUNDLE}" \
+		--sourcefile \
+		--target "${DMGFILE}" \
+		--volname "x2goclient" \
+		--verbosity 2 \
+		--mkdir "/.background" \
+		--copy "${TOP_DIR}/res/img/png/macinstaller_background.png:/.background" \
+		--copy "${TOP_DIR}/res/osxbundle/macdmg.DS_Store:/.DS_Store" \
+		--copy "${TOP_DIR}/LICENSE" \
+		--copy "${TOP_DIR}/COPYING" \
+		--symlink "/Applications: " \
+		--icon "${TOP_DIR}/res/img/icons/x2go-mac.icns" \
+		--format "UDBZ"
+fi
 
 popd
