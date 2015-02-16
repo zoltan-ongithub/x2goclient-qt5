@@ -17,10 +17,12 @@
 
 #include "xsettingswidget.h"
 #include "x2gosettings.h"
+#include "x2goutils.h"
 #include <QFileDialog>
 
 XSettingsWidget::XSettingsWidget(QWidget* parent)
 {
+    UNUSED (parent);
     setupUi(this);
 
     X2goSettings st ( "settings" );

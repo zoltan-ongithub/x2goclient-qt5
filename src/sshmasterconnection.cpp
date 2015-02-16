@@ -304,7 +304,7 @@ void SshMasterConnection::checkReverseTunnelConnections()
         for(int i=0; i<reverseTunnelRequest.count(); ++i)
         {
             ReverseTunnelRequest req=reverseTunnelRequest[i];
-            if(req.forwardPort==port)
+            if (static_cast<int> (req.forwardPort) == port)
             {
 #ifdef DEBUG
                 x2goDebug<<"Creating new channel for reverse tunnel "<<port;

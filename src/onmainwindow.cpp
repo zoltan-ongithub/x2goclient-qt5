@@ -10713,7 +10713,10 @@ void ONMainWindow::slotChangeKbdLayout(const QString& layout)
     x2goDebug<<"Running setxkbmap with params: "<<args.join(" ");
 
     QProcess::startDetached("setxkbmap",args);
-#endif
+#else
+    /* Silence warning. */
+    UNUSED (layout);
+#endif /* defined (Q_OS_LINUX) */
 }
 
 void ONMainWindow::initPassDlg()
@@ -11446,7 +11449,10 @@ void ONMainWindow::slotPCookieReady (	bool result,
 #ifdef Q_OS_WIN
     if ( result )
         slotStartParec();
-#endif
+#else
+    /* Silence warning. */
+    UNUSED (result);
+#endif /* defined (Q_OS_WIN) */
 }
 
 

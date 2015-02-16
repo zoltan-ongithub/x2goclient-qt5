@@ -21,8 +21,11 @@
 
 #include <QString>
 
+#define UNUSED(x) do { (void) x; } while (0)
+
 QString expandHome( QString path );
 QString fixup_resource_URIs (const QString res_path);
 QString wrap_legacy_resource_URIs (const QString res_path);
 
-#endif
+
+#endif /* !defined (X2GOUTILS_H) */

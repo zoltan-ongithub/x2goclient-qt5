@@ -17,6 +17,7 @@
 
 #include "cupsprintersettingsdialog.h"
 #include "cupsprint.h"
+#include "x2goutils.h"
 #ifndef Q_OS_WIN
 #include <QHeaderView>
 #include <QMessageBox>
@@ -206,9 +207,9 @@ void CUPSPrinterSettingsDialog::setPPDTab()
 	CUPSPrint::printState state;
 	QString stateReason;
 	QString valueName,valueText;
-	!m_cups->getPrinterInfo ( printer,
-	                          info,acceptJobs,
-	                          location,model,state,stateReason ) ;
+	UNUSED (m_cups->getPrinterInfo (printer,
+	                                info, acceptJobs,
+	                                location, model, state, stateReason));
 
 
 	ui.ppdTree->clear();

@@ -134,8 +134,8 @@ void SessionManageDialog::loadSessions()
 {
     sessions->clear();
 
-    const QList<SessionButton*> *sess=par->getSessionExplorer()->getSessionsList();
-    const QList<FolderButton*> *folders=par->getSessionExplorer()->getFoldersList();
+    /*const QList<SessionButton*> *sess=par->getSessionExplorer()->getSessionsList();*/
+    /*const QList<FolderButton*> *folders=par->getSessionExplorer()->getFoldersList();*/
 
     removeSession->setEnabled ( false );
     editSession->setEnabled ( false );

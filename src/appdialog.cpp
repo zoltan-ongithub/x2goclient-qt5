@@ -152,6 +152,8 @@ void AppDialog::loadApps()
                 other=initTopItem(tr("Other"), QPixmap(":/img/icons/22x22/applications-other.png"));
             parent=other;
             break;
+        default:
+            break;
         }
 
         QTreeWidgetItem* it;
