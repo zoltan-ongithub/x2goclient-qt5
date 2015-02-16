@@ -1242,8 +1242,11 @@ void SshMasterConnection::addChannelConnection ( SshProcess* creator, QString uu
     con.command=cmd;
     con.uuid=uuid;
 
+    x2goDebug << "locking SSH channel connection MUTEX.";
     channelConnectionsMutex.lock();
+    x2goDebug << "passing con to channelConnections.";
     channelConnections<<con;
+    x2goDebug << "unlocking SSH channel connection MUTEX.";
     channelConnectionsMutex.unlock();
 }
 

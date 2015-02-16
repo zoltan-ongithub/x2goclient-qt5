@@ -191,6 +191,7 @@ void SshProcess::startNormal(const QString& cmd)
     if(!masterCon->useKerberos())
     {
         QString shcmd = "sh -c 'echo X2GODATABEGIN:" + uuidStr + "; PATH=/usr/local/bin:/usr/bin:/bin "+cmd+"; echo X2GODATAEND:" + uuidStr +";'";
+        x2goDebug << "running masterCon->addChannelConnection(this, '" << uuidStr << "', '" << shcmd.left (200) << "');";
         masterCon->addChannelConnection(this, uuidStr, shcmd);
         connect(masterCon,SIGNAL(stdOut(SshProcess*,QByteArray)),this,SLOT(slotStdOut(SshProcess*,QByteArray)));
         connect(masterCon,SIGNAL(channelClosed(SshProcess*,QString)), this,SLOT(slotChannelClosed(SshProcess*,QString)));
