@@ -20,7 +20,7 @@ LIBZ="libz.1.dylib"
 : DEBUG="${DEBUG:-"0"}"
 
 case "${DEBUG}" in
-	("0"|"no"|""|"No"|"nO"|"NO") BUILD_MODE="release";;
+	("0"|"no"|""|"No"|"nO"|"NO"|"false"|"FALSE") BUILD_MODE="release";;
 	(*) BUILD_MODE="debug";;
 esac
 
