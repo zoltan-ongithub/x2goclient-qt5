@@ -2883,8 +2883,9 @@ void ONMainWindow::slotSshServerAuthError ( int error, QString sshMessage, SshMa
                     "Somebody might be eavesdropping on you.\n"
                     "For security reasons, it is recommended to stop the connection.\n"
                     "Do you want to terminate the connection?\n" );
-        if ( !QMessageBox::warning( 0, tr( "Host key verification failed" ),
-                                    errMsg, tr( "Yes" ), tr( "No" ) ) != 0)
+        if (QMessageBox::warning (0, tr ("Host key verification failed"),
+                                  errMsg, QMessageBox::Yes | QMessageBox::No,
+                                  QMessageBox::No) == QMessageBox::Yes)
         {
             connection->writeKnownHosts(false);
             connection->wait();
@@ -2910,8 +2911,9 @@ void ONMainWindow::slotSshServerAuthError ( int error, QString sshMessage, SshMa
                     "confuse your client into thinking the key does not exist. \n"
                     "For security reasons, it is recommended to stop the connection.\n"
                     "Do you want to terminate the connection?\n");
-        if ( !QMessageBox::warning( 0, tr( "Host key verification failed" ),
-                                    errMsg, tr( "Yes" ), tr( "No" ) ) != 0)
+        if (QMessageBox::warning (0, tr ("Host key verification failed"),
+                                  errMsg, QMessageBox::Yes | QMessageBox::No,
+                                  QMessageBox::No) == QMessageBox::Yes)
         {
             connection->writeKnownHosts(false);
             connection->wait();
@@ -2952,7 +2954,9 @@ void ONMainWindow::slotSshServerAuthError ( int error, QString sshMessage, SshMa
         break;
     }
 
-    if ( QMessageBox::warning ( this, tr ( "Host key verification failed" ),errMsg,tr ( "Yes" ), tr ( "No" ) ) !=0 )
+    if (QMessageBox::warning (this, tr ("Host key verification failed"),
+                              errMsg, QMessageBox::Yes | QMessageBox::No,
+                              QMessageBox::No) == QMessageBox::No)
     {
         connection->writeKnownHosts(false);
         connection->wait();
@@ -2994,9 +2998,9 @@ void ONMainWindow::slotSshUserAuthError ( QString error )
         trayQuit();
     }
 
-    QMessageBox::critical ( 0l,tr ( "Authentication failed" ),error,
-                            QMessageBox::Ok,
-                            QMessageBox::NoButton );
+    QMessageBox::critical (0l, tr ("Authentication failed"),
+                           error, QMessageBox::Ok,
+                           QMessageBox::NoButton);
     setEnabled ( true );
     passForm->setEnabled ( true );
     slotShowPassForm();
