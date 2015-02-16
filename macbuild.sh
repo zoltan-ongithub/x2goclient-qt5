@@ -3,7 +3,7 @@ NAME="x2goclient"
 
 TOP_DIR="$(dirname "$0")"
 [[ "${TOP_DIR}" == /* ]] || TOP_DIR="${PWD}/${TOP_DIR#./}"
-BUILD_DIR="${TOP_DIR}/build_client"
+BUILD_DIR="${TOP_DIR}/client_build"
 APPBUNDLE="${BUILD_DIR}/${NAME}.app"
 DMGFILE="${BUILD_DIR}/${NAME}.dmg"
 PROJECT="${TOP_DIR}/${NAME}.pro"
