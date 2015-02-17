@@ -3032,7 +3032,7 @@ void ONMainWindow::slotSessEnter()
 
     if(brokerMode)
     {
-	if (config.brokerNoAuth && brokerNoauthWithSessionUsername) {
+        if (config.brokerNoAuth && brokerNoauthWithSessionUsername) {
             config.brokerUser = login->text();
         }
         broker->selectUserSession(sessionExplorer->getLastSession()->id());
@@ -9723,8 +9723,8 @@ void ONMainWindow::startPulsed()
     else
     {
         pulseCookieArg="auth-cookie="+
-            QDir::toNativeSeparators (wapiShortFileName( pulseBaseDir))+
-            "\\.pulse-cookie";
+                       QDir::toNativeSeparators (wapiShortFileName( pulseBaseDir))+
+                       "\\.pulse-cookie";
         // Double backslashes are required in config.pa
         pulseCookieArg.replace("\\", "\\\\");
         out << "load-module module-native-protocol-tcp port="+
