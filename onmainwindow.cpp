@@ -193,8 +193,9 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
     readExportsFrom=QString::null;
     spoolTimer=0l;
 #ifdef Q_OS_DARWIN
-    modMapTimer=0;
-#endif
+    modMapTimer = NULL;
+    kbMap = QString ();
+#endif /* defined(Q_OS_DARWIN) */
     ldapOnly=false;
     embedControlChanged=false;
     statusString=tr ( "connecting" );
@@ -5419,7 +5420,7 @@ void ONMainWindow::slotSetModMap()
     {
         return;
     }
-    if(kbMap.length()<=0)
+    if (kbMap.isEmpty ())
     {
         QProcess pr(this);
         pr.setProcessEnvironment(QProcessEnvironment::systemEnvironment());
@@ -5466,15 +5467,15 @@ void ONMainWindow::slotProxyFinished ( int,QProcess::ExitStatus )
 {
 
 #ifdef Q_OS_DARWIN
-    if(modMapTimer)
-    {
-        disconnect(modMapTimer, SIGNAL(timeout()), this, SLOT(slotSetModMap()));
-        delete modMapTimer;
-        modMapTimer=0;
+    if (modMapTimer) {
+      disconnect (modMapTimer, SIGNAL (timeout ()), this, SLOT (slotSetModMap ()));
+      modMapTimer->stop ();
+      delete (modMapTimer);
+      modMapTimer = 0;
     }
-    kbMap=QString::null;
+    kbMap = QString ();
 //fixes bug, when mainwindow inputs not accepting focus under mac
-    setFocus();
+    setFocus ();
 #endif
     //set tray icon to default
     if (trayIcon && !keepTrayIcon)
@@ -5731,12 +5732,12 @@ void ONMainWindow::slotProxyStderr()
         }
         sbSusp->setToolTip ( tr ( "Suspend" ) );
 #ifdef Q_OS_DARWIN
-        if(!modMapTimer)
-        {
-            modMapTimer=new QTimer(this);
-            connect(modMapTimer, SIGNAL(timeout()), this, SLOT (slotSetModMap()));
-            modMapTimer->start(10000);
-            slotSetModMap();
+        // Only start this once...
+        if (!modMapTimer) {
+            modMapTimer = new QTimer (this);
+            connect (modMapTimer, SIGNAL (timeout ()), this, SLOT (slotSetModMap ()));
+            modMapTimer->start (10000);
+            slotSetModMap ();
         }
 #endif
         if ( newSession )
