@@ -6,6 +6,7 @@ x2goclient (4.0.3.2-0x2go1) UNRELEASED; urgency=medium
     - Fix placement of session folders in session card column. (Fixes: #681).
     - Send empty message in x2gohelper to stop AppStarting cursor. (Fixes: #616).
     - Reformat onmainwindow.cpp
+    - Fix multiply creation of modmap timer (OS_DARWIN).
 
   [ Mike Gabriel ]
   * New upstream release (4.0.3.2):
