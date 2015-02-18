@@ -35,11 +35,16 @@ NXPROXY="$(which nxproxy)"
 : ${MACOSX_DEPLOYMENT_TARGET:="10.7"}
 : ${DEBUG:="0"}
 : ${BUNDLE:="1"}
+: ${UNIVERSAL:="1"}
 
 DEBUG="$(make_boolean "${DEBUG}")"
 BUNDLE="$(make_boolean "${BUNDLE}")"
+UNIVERSAL="$(make_boolean "${UNIVERSAL}")"
 
 [ "${DEBUG}" -eq "0" ] && BUILD_MODE="release" || BUILD_MODE="debug"
+
+BUILD_ARCH="x86_64"
+[ "${UNIVERSAL}" -eq "1" ] && BUILD_ARCH="${BUILD_ARCH} x86"
 
 SDK_MINOR_VERSION="$(/usr/bin/perl -pe 's#.*?10\.(\d+).*?\.sdk$#\1#' <<< "${SDK}")"
 
@@ -67,7 +72,7 @@ lrelease "${PROJECT}"
 
 phase "Running qmake"
 qmake -config "${BUILD_MODE}" -spec macx-g++ "${PROJECT}" \
-	CONFIG+="x86_64" \
+	CONFIG+="${BUILD_ARCH}" \
 	QMAKE_MAC_SDK="${SDK}" \
 	QMAKE_MACOSX_DEPLOYMENT_TARGET="${MACOSX_DEPLOYMENT_TARGET}" \
 	OSX_STDLIB="${STDLIB}"

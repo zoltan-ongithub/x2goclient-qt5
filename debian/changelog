@@ -254,6 +254,9 @@ x2goclient (4.0.3.2-0x2go1) unstable; urgency=medium
     - Define and implement new function 'make_boolean()' in macbuild.sh. Takes
       a pseudo-boolean value and outputs either 0 or 1. Use this function.
     - Move functions to the start of the macbuild.sh script.
+    - New env var/parameter UNIVERSAL in macbuild.sh. Switches the build
+      architecture to either exclusively x86_64 (UNIVERSAL=0) or both x86_64
+      and x86 (UNIVERSAL=1).
 
  -- X2Go Release Manager <git-admin@x2go.org>  Thu, 19 Feb 2015 12:49:22 +0100
 
