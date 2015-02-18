@@ -30,7 +30,7 @@ SDK_MINOR_VERSION="$(/usr/bin/perl -pe 's#.*?10\.(\d+).*?\.sdk$#\1#' <<< "${SDK}
 
 MATCH_NUMBERS='^[0-9]+$'
 if [[ "${SDK_MINOR_VERSION}" =~ ${MATCH_NUMBERS} ]]; then
-	STDLIB="libstdc++"
+	[ "${SDK_MINOR_VERSION}" -gt "6" ] && STDLIB="libstdc++"
 	[ "${SDK_MINOR_VERSION}" -gt "8" ] && STDLIB="libc++"
 else
 	echo "Unable to determine OS X version. Unknown value '${SDK_MINOR_VERSION}'." >&2

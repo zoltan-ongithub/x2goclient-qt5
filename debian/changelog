@@ -244,6 +244,7 @@ x2goclient (4.0.3.2-0x2go1) unstable; urgency=medium
       fixing...
     - Remove config_mac.sh. macbuild.sh handles this now.
     - Use the correct client build dir in macbuild.sh: client_build.
+    - Only use --stdlib compiler flag on 10.7+. Unsupported on 10.6 and below.
 
  -- X2Go Release Manager <git-admin@x2go.org>  Thu, 19 Feb 2015 12:49:22 +0100
 
