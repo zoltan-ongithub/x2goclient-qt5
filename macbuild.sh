@@ -39,7 +39,7 @@ fi
 
 set -e
 
-function phase() {
+phase() {
 	echo
 	echo "***"
 	echo "*** ${1}..."
