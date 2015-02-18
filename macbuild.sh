@@ -19,6 +19,28 @@ phase() {
 	echo
 }
 
+usage() {
+	exec >&2
+
+	NO_VAL="0, no, NO, No, nO, false or FALSE"
+	printf "$(basename ${0}): usage\n\n"
+	printf "Accepted environment variables:\n"
+	printf "\tSDK:\t\t\t\tsets the target SDK [string]\n\t\t\t\t\tdefault: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk\n"
+	printf "\tMACOSX_DEPLOYMENT_TARGET:\tsets the deployment target (specific OS X version to optimize/build for) [string]\n\t\t\t\t\tdefault: 10.7\n"
+	printf "\tDEBUG\t\t\t\tenables or disables debug builds [boolean]\n\t\t\t\t\tdefault: disabled\n"
+	printf "\tBUNDLE\t\t\t\tenables or disables library bundling and the creation of a .dmg installer [boolean]\n\t\t\t\t\tdefault: enabled\n"
+	printf "\tUNIVERSAL\t\t\tenables or disables x86 support. x86_64 support is always enabled [boolean]\n\t\t\t\t\tdefault: enabled\n"
+	printf "\n"
+	printf "Boolean values help:\n"
+	printf "\ta value of ${NO_VAL} will be treated as false\n"
+	printf "\tany other value will be treated as true\n"
+
+	exit 2
+}
+
+MATCH_HELP='(^((-h)|(--help))([ 	]|$))|([ 	]+((-h)|(--help))([ 	]|$))'
+[ -n "${*}" ] && [[ "${*}" =~ ${MATCH_HELP} ]] && usage
+
 NAME="x2goclient"
 
 TOP_DIR="$(dirname "$0")"
