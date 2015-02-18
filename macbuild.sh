@@ -11,10 +11,10 @@ PKG_DMG="${TOP_DIR}/pkg-dmg"
 
 NXPROXY="$(which nxproxy)"
 
-SDK="${SDK:-"/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk"}"
-MACOSX_DEPLOYMENT_TARGET="${MACOSX_DEPLOYMENT_TARGET:-"10.7"}"
-DEBUG="${DEBUG:-"0"}"
-BUNDLE="${BUNDLE:-"1"}"
+: ${SDK:="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk"}
+: ${MACOSX_DEPLOYMENT_TARGET:="10.7"}
+: ${DEBUG:="0"}
+: ${BUNDLE:="1"}
 
 case "${DEBUG}" in
 	("0"|"no"|""|"No"|"nO"|"NO"|"false"|"FALSE") BUILD_MODE="release";;
