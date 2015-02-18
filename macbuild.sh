@@ -16,15 +16,22 @@ NXPROXY="$(which nxproxy)"
 : ${DEBUG:="0"}
 : ${BUNDLE:="1"}
 
-case "${DEBUG}" in
-	("0"|"no"|""|"No"|"nO"|"NO"|"false"|"FALSE") BUILD_MODE="release";;
-	(*) BUILD_MODE="debug";;
-esac
 
-case "${BUNDLE}" in
-	("0"|"no"|""|"No"|"nO"|"NO"|"false"|"FALSE") BUNDLE="0";;
-	(*) BUNDLE="1";;
-esac
+make_boolean() {
+	OPTION="${1}"
+
+	case "${OPTION}" in
+		("0"|"no"|""|"No"|"nO"|"NO"|"false"|"FALSE") OPTION="0";;
+		(*) OPTION="1";;
+	esac
+
+	printf "${OPTION}"
+}
+
+DEBUG="$(make_boolean "${DEBUG}")"
+BUNDLE="$(make_boolean "${BUNDLE}")"
+
+[ "${DEBUG}" -eq "0" ] && BUILD_MODE="release" || BUILD_MODE="debug"
 
 SDK_MINOR_VERSION="$(/usr/bin/perl -pe 's#.*?10\.(\d+).*?\.sdk$#\1#' <<< "${SDK}")"
 
