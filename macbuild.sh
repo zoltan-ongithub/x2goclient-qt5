@@ -1,4 +1,24 @@
 #!/bin/bash
+
+make_boolean() {
+	OPTION="${1}"
+
+	case "${OPTION}" in
+		("0"|"no"|""|"No"|"nO"|"NO"|"false"|"FALSE") OPTION="0";;
+		(*) OPTION="1";;
+	esac
+
+	printf "${OPTION}"
+}
+
+phase() {
+	echo
+	echo "***"
+	echo "*** ${1}..."
+	echo "***"
+	echo
+}
+
 NAME="x2goclient"
 
 TOP_DIR="$(dirname "$0")"
@@ -15,18 +35,6 @@ NXPROXY="$(which nxproxy)"
 : ${MACOSX_DEPLOYMENT_TARGET:="10.7"}
 : ${DEBUG:="0"}
 : ${BUNDLE:="1"}
-
-
-make_boolean() {
-	OPTION="${1}"
-
-	case "${OPTION}" in
-		("0"|"no"|""|"No"|"nO"|"NO"|"false"|"FALSE") OPTION="0";;
-		(*) OPTION="1";;
-	esac
-
-	printf "${OPTION}"
-}
 
 DEBUG="$(make_boolean "${DEBUG}")"
 BUNDLE="$(make_boolean "${BUNDLE}")"
@@ -45,14 +53,6 @@ else
 fi
 
 set -e
-
-phase() {
-	echo
-	echo "***"
-	echo "*** ${1}..."
-	echo "***"
-	echo
-}
 
 phase "Cleaning"
 make clean
