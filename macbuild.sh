@@ -49,8 +49,6 @@ function phase() {
 
 phase "Cleaning"
 make clean
-rm -rf "${APPBUNDLE}"
-rm -rf "${DMGFILE}"
 
 [ -e "${BUILD_DIR}" ] && rm -rf "${BUILD_DIR}"
 
