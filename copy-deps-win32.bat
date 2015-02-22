@@ -1,4 +1,5 @@
-xcopy /E /Y    D:\x2goclient-contrib\cygwin\20141018-2_bin %1\
+xcopy /E /Y    D:\x2goclient-contrib\cygwin\20141018-3_bin %1\
+del %1\nxproxy.exe.unstripped %1\libXcomp.a %1\libXcomp.dll.a
 xcopy /E /Y    D:\x2goclient-contrib\libssh\0.6.4-x2go1-mingw482_bin\bin\libssh.dll %1\
 xcopy /E /Y    D:\x2goclient-contrib\libzip\0.9.3_bin\bin\libzip.dll %1\
 xcopy /E /Y    D:\x2goclient-contrib\MinGW-DLLs\i686-4.8.2-release-posix-dwarf-rt_v3-rev3\libgcc_s_dw2-1.dll %1\
