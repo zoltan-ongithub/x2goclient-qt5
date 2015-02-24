@@ -13,6 +13,12 @@ x2goclient (4.0.4.0-0x2go1) UNRELEASED; urgency=low
       In addition to other changes, CVE-2013-6954 has been fixed.
       (Note: The Cygwin package name is now "libpng15" because "libpng" is
        now 1.6.x.)
+    - Windows: Copy the exact version of each cygwin DLL from the cygwin
+      binary tarballs rather than copying the "rebased" version from
+      an X2Go developer's cygwin installation.
+      What effect this will have on users is TBD. However, it does mean
+      that we are distributing the exact DLLs that the Cygwin project
+      provides, which is desirable for security.
 
  -- X2Go Release Manager <git-admin@x2go.org>  Thu, 19 Feb 2015 13:25:28 +0100
 
