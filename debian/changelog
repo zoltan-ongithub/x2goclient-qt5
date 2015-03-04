@@ -23,100 +23,8 @@ x2goclient (4.0.4.0-0x2go1) UNRELEASED; urgency=low
       that we are distributing the exact DLLs that the Cygwin project
       provides, which is desirable for security.
 
- -- X2Go Release Manager <git-admin@x2go.org>  Thu, 19 Feb 2015 13:25:28 +0100
-
-x2goclient (4.0.3.2-0x2go1) unstable; urgency=medium
-
-  [ Oleksandr Shneyder ]
-  * New upstream release (4.0.3.2):
-    - Fix placement of session folders in session card column. (Fixes: #681).
-    - Send empty message in x2gohelper to stop AppStarting cursor. (Fixes: #616).
-    - Fix multiple creations of modmap timer (OS_DARWIN).
-
-  [ Mike Gabriel ]
-  * New upstream release (4.0.3.2):
-    - Add several info/error/debug log message while hunting down #702.
-    - Use app.setQuitOnLastWindowClosed(false) for the X2Go Client QtApplication
-      to assure that X2Go Client does not arbitrarily exit during a running
-      session. This fixes X2Go Client crashes that occur when printing via
-      the CUPS-X2Go printing mechanism with activate print dialog popup on
-      incoming print jobs and minimized main window. (Fixes: #702).
-    - Be more exact when reporting rev forwarding tunnel request failures to
-      the GUI user. Include the purpose of the tunnel (NX, audio, foldersharing)
-      in the error message.
-    - Enable debugging in sshprocess.cpp and sshmasterconnection.cpp if
-      --debug is given.
-    - sshmasterconnection.cpp: Fix several grammar issues in error messages.
-    - When sharing a client-side folder, do not write the SSH pub key to
-      client-side authorized_keys file if the folder-to-be-shared does not
-      exist on the client. (Partially solves #405).
-    - Fix string concatenation/layout of error message when tunnel I/O errors
-      occur.
-    - Improve debugging/logging the SSH connections made by X2Go Client.
-    - Fix quotes when calling remote commands via SSH (esp. allow same quoting/
-      escaping style for libssh and openSSH+Krb based connections). (Fixes: #720).
-    - FIXME: Disable PubkeyAuthentication _and_ PasswordAuthentication if
-      GSSAPI authentication is activated. This is counter intuitive, though,
-      and requires several other fixes in the authentication code.
-  * x2goclient.spec:
-    - Always set BuildRoot: parameter.
-
-  [ Sergey Savko ]
-  * New upstream release (4.0.3.2):
-    - Prevent passwordless re-logins into X2Go Session Broker if
-      --broker-autologoff is used on the cmdline. (Fixes: #782).
-    - Add new cmdline option --broker-noauth-use-session-username.
-      When --broker-noauth is used, the broker does not know on behalf
-      of which user to operate. This new option enables username syncing.
-      When logging into X2Go Server, that username will be sent to the
-      broker and be used for querying X2Go Broker Agents etc. (Fixes: #781).
-
-  [ Heinrich Schuchardt ]
-  * New upstream release (4.0.3.2):
-    - Base the layout dialogue "Session ID" (which shows up when starting a
-      connection) on typographic points (instead of pixels). (Fixes: #713).
-
-  [ Jason Alavaliant ]
-  * New upstream verson (4.0.3.2):
-    - Use QUrl::toPercentEncoding() method to properly encode passwords sent
-      to X2Go Session Broker. (Fixes: #705).
-
-  [ Mike DePaulo ]
-  * New upstream release (4.0.3.2):
-    - Windows: Win32 OpenSSL updates from 1.0.1j to 1.0.1L, which
-      fixes the CVEs announced on 2015-01-08.
-    - Windows: Cygwin OpenSSL updated from 1.0.1j-1 to 1.0.1k-1, which
-      fixes the CVEs announced on 2015-01-08.
-    - Windows: Bundle new version of VcXsrv: 1.15.2.2-xp+vc2013+x2go1.
-      The differences from 1.15.2.1-xp+vc2013+x2go1 are that its bundled
-      OpenSSL has been updated to 1.0.1k, and that xorg-server
-      CVE-2014-8091..8103 have been fixed.
-    - Windows: Update libssh from 0.6.3 to 0.6.4 (while maintaining
-      Pageant support). This fixes CVE-2014-8132, which shouldn't
-      affect x2goclient because x2goclient uses the SSH client
-      functionality, not the SSH server functionality.
-      0.6.4 also added 4 features related to ECDSA keys.
-    - Windows: Fix compatibility with PulseAudio 6.0
-    - Windows: Remove workaround for audio input with old versions of
-      PulseAudio (calling parec once per second)
-      (Fixes: #742)
-      Thanks George Trakatelis (uom.edu.gr) for submitting this change.
-    - Windows: Enable X2Go Client for Windows to build under VS2010 nmake
-      (but not the VS2010 IDE due to a Qt4 Visual Studio Add-in limitation)
-      Note that the official builds are still build under MinGW.
-      (Fixes: #642)
-      Thanks George Trakatelis (uom.edu.gr) for submitting this feature.
-    - Windows: Make builds easier, and updating bundled dependencies
-      easier, by adding copy-deps-win32.bat. It copies the exact
-      version of each dependency (DLL, executable, data, folder, etc)
-      from x2goclient-contrib.git.
-
-  [ Kaan Ozdincer ]
-  * New upstream version (4.0.3.2):
-    - Add Turkish translation file.
-
   [ Mihai Moldovan ]
-  * New upstream version (4.0.3.2):
+  * New upstream version (4.0.4.0):
     - Move *.cpp and *.h files to src/ and *.ts files to src/i18n/.
     - Reference src/ in Doxyfile.
     - Reference src/ and src/i18n/ in x2goclient.pro.
@@ -258,6 +166,98 @@ x2goclient (4.0.3.2-0x2go1) unstable; urgency=medium
       architecture to either exclusively x86_64 (UNIVERSAL=0) or both x86_64
       and x86 (UNIVERSAL=1).
     - Add usage message to macbuild.sh obtainable via -h or --help.
+
+ -- X2Go Release Manager <git-admin@x2go.org>  Thu, 19 Feb 2015 13:25:28 +0100
+
+x2goclient (4.0.3.2-0x2go1) unstable; urgency=medium
+
+  [ Oleksandr Shneyder ]
+  * New upstream release (4.0.3.2):
+    - Fix placement of session folders in session card column. (Fixes: #681).
+    - Send empty message in x2gohelper to stop AppStarting cursor. (Fixes: #616).
+    - Fix multiple creations of modmap timer (OS_DARWIN).
+
+  [ Mike Gabriel ]
+  * New upstream release (4.0.3.2):
+    - Add several info/error/debug log message while hunting down #702.
+    - Use app.setQuitOnLastWindowClosed(false) for the X2Go Client QtApplication
+      to assure that X2Go Client does not arbitrarily exit during a running
+      session. This fixes X2Go Client crashes that occur when printing via
+      the CUPS-X2Go printing mechanism with activate print dialog popup on
+      incoming print jobs and minimized main window. (Fixes: #702).
+    - Be more exact when reporting rev forwarding tunnel request failures to
+      the GUI user. Include the purpose of the tunnel (NX, audio, foldersharing)
+      in the error message.
+    - Enable debugging in sshprocess.cpp and sshmasterconnection.cpp if
+      --debug is given.
+    - sshmasterconnection.cpp: Fix several grammar issues in error messages.
+    - When sharing a client-side folder, do not write the SSH pub key to
+      client-side authorized_keys file if the folder-to-be-shared does not
+      exist on the client. (Partially solves #405).
+    - Fix string concatenation/layout of error message when tunnel I/O errors
+      occur.
+    - Improve debugging/logging the SSH connections made by X2Go Client.
+    - Fix quotes when calling remote commands via SSH (esp. allow same quoting/
+      escaping style for libssh and openSSH+Krb based connections). (Fixes: #720).
+    - FIXME: Disable PubkeyAuthentication _and_ PasswordAuthentication if
+      GSSAPI authentication is activated. This is counter intuitive, though,
+      and requires several other fixes in the authentication code.
+  * x2goclient.spec:
+    - Always set BuildRoot: parameter.
+
+  [ Sergey Savko ]
+  * New upstream release (4.0.3.2):
+    - Prevent passwordless re-logins into X2Go Session Broker if
+      --broker-autologoff is used on the cmdline. (Fixes: #782).
+    - Add new cmdline option --broker-noauth-use-session-username.
+      When --broker-noauth is used, the broker does not know on behalf
+      of which user to operate. This new option enables username syncing.
+      When logging into X2Go Server, that username will be sent to the
+      broker and be used for querying X2Go Broker Agents etc. (Fixes: #781).
+
+  [ Heinrich Schuchardt ]
+  * New upstream release (4.0.3.2):
+    - Base the layout dialogue "Session ID" (which shows up when starting a
+      connection) on typographic points (instead of pixels). (Fixes: #713).
+
+  [ Jason Alavaliant ]
+  * New upstream verson (4.0.3.2):
+    - Use QUrl::toPercentEncoding() method to properly encode passwords sent
+      to X2Go Session Broker. (Fixes: #705).
+
+  [ Mike DePaulo ]
+  * New upstream release (4.0.3.2):
+    - Windows: Win32 OpenSSL updates from 1.0.1j to 1.0.1L, which
+      fixes the CVEs announced on 2015-01-08.
+    - Windows: Cygwin OpenSSL updated from 1.0.1j-1 to 1.0.1k-1, which
+      fixes the CVEs announced on 2015-01-08.
+    - Windows: Bundle new version of VcXsrv: 1.15.2.2-xp+vc2013+x2go1.
+      The differences from 1.15.2.1-xp+vc2013+x2go1 are that its bundled
+      OpenSSL has been updated to 1.0.1k, and that xorg-server
+      CVE-2014-8091..8103 have been fixed.
+    - Windows: Update libssh from 0.6.3 to 0.6.4 (while maintaining
+      Pageant support). This fixes CVE-2014-8132, which shouldn't
+      affect x2goclient because x2goclient uses the SSH client
+      functionality, not the SSH server functionality.
+      0.6.4 also added 4 features related to ECDSA keys.
+    - Windows: Fix compatibility with PulseAudio 6.0
+    - Windows: Remove workaround for audio input with old versions of
+      PulseAudio (calling parec once per second)
+      (Fixes: #742)
+      Thanks George Trakatelis (uom.edu.gr) for submitting this change.
+    - Windows: Enable X2Go Client for Windows to build under VS2010 nmake
+      (but not the VS2010 IDE due to a Qt4 Visual Studio Add-in limitation)
+      Note that the official builds are still build under MinGW.
+      (Fixes: #642)
+      Thanks George Trakatelis (uom.edu.gr) for submitting this feature.
+    - Windows: Make builds easier, and updating bundled dependencies
+      easier, by adding copy-deps-win32.bat. It copies the exact
+      version of each dependency (DLL, executable, data, folder, etc)
+      from x2goclient-contrib.git.
+
+  [ Kaan Ozdincer ]
+  * New upstream version (4.0.3.2):
+    - Add Turkish translation file.
 
  -- X2Go Release Manager <git-admin@x2go.org>  Thu, 19 Feb 2015 12:49:22 +0100
 
