@@ -166,6 +166,10 @@ x2goclient (4.0.4.0-0x2go1) UNRELEASED; urgency=low
       architecture to either exclusively x86_64 (UNIVERSAL=0) or both x86_64
       and x86 (UNIVERSAL=1).
     - Add usage message to macbuild.sh obtainable via -h or --help.
+    - x2goclient.pro.maemo: cleanup.
+      + Reorder sections so that they match x2goclient.pro.
+      + Adapt to new directory structure.
+      + Various whitespace fixes.
 
  -- X2Go Release Manager <git-admin@x2go.org>  Thu, 19 Feb 2015 13:25:28 +0100
 
