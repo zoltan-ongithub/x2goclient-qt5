@@ -176,6 +176,8 @@ x2goclient (4.0.4.0-0x2go1) UNRELEASED; urgency=low
       x2goclient.pro.
     - Windows: move building into client_build subdirectory. Also needs the
       changes in buildscripts.git.
+    - Windows: convert and delete the other config or build scripts. Delete
+      obsolete ones.
 
  -- X2Go Release Manager <git-admin@x2go.org>  Thu, 19 Feb 2015 13:25:28 +0100
 
