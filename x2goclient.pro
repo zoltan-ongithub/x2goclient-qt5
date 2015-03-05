@@ -183,6 +183,8 @@ x2go_linux_static {
   QMAKE_LFLAGS = -Bstatic $$QMAKE_LFLAGS
 }
 
+ICON = $${PWD}/res/img/icons/x2go-mac.icns
+
 macx {
   message("building $$TARGET with ldap and cups")
   LIBS += -framework LDAP -lcups -lcrypto -lssl -lz
@@ -208,7 +210,6 @@ win32-* {
   CONFIG += static release
 }
 QT += svg network
-ICON = $${PWD}/res/img/icons/x2go-mac.icns
 
 QMAKE_CXXFLAGS_DEBUG -= -g
 QMAKE_CXXFLAGS_DEBUG += -O2 -g3 -ggdb3 -gdwarf-4

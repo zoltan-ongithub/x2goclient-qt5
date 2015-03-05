@@ -172,6 +172,8 @@ x2goclient (4.0.4.0-0x2go1) UNRELEASED; urgency=low
       + Various whitespace fixes.
     - Move OS X-specific stuff from general section to macx section in
       x2goclient.pro.
+    - Move ICON definition up before it's actually used in the macx section in
+      x2goclient.pro.
 
  -- X2Go Release Manager <git-admin@x2go.org>  Thu, 19 Feb 2015 13:25:28 +0100
 
