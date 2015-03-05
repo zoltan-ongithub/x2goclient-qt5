@@ -170,6 +170,8 @@ x2goclient (4.0.4.0-0x2go1) UNRELEASED; urgency=low
       + Reorder sections so that they match x2goclient.pro.
       + Adapt to new directory structure.
       + Various whitespace fixes.
+    - Move OS X-specific stuff from general section to macx section in
+      x2goclient.pro.
 
  -- X2Go Release Manager <git-admin@x2go.org>  Thu, 19 Feb 2015 13:25:28 +0100
 
