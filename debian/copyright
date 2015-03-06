@@ -44,7 +44,7 @@ Comment:
  * version.  If you delete this exception statement from all source
  * files in the program, then also delete it here.
 
-Files: qtbrowserplugin-2.4_1-opensource/src/*
+Files: x2gobrowserplugin-2.4_1/src/*
 Copyright: 2009, Nokia Corporation and/or its subsidiary(-ies).
 License: BSD-3-clause
  Contact: Nokia Corporation (qt-info@nokia.com)

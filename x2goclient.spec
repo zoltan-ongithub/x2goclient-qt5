@@ -165,7 +165,7 @@ sed -i -e '/^LRELEASE_BINARY=/s@lrelease-qt4@%{_bindir}/lrelease@' Makefile
 sed -i -e '/CFGPLUGIN/aTEMPLATE=lib' x2goclient.pro
 sed -i -e '/^LIBS /s/$/ -ldl/' x2goclient.pro
 sed -i -e 's/include.*qtbrowserplugin.pri)/LIBS += -lqtbrowserplugin/' x2goclient.pro
-rm -r qtbrowserplugin*
+rm -r x2gobrowserplugin* || :
 %endif
 
 
