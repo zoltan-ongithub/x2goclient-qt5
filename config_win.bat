@@ -7,7 +7,7 @@ mkdir client_build
 
 cd client_build
 
-lrelease x2goclient.pro
+lrelease ..\x2goclient.pro
 
 set X2GO_CLIENT_TARGET=
 
