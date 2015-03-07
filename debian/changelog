@@ -181,6 +181,9 @@ x2goclient (4.0.4.0-0x2go1) UNRELEASED; urgency=low
     - Windows: correctly reference windows icon.
     - x2goclient.spec: fix builds on Fedora and related due to failing removal
       of browserplugin directory. That's non-critical.
+    - onmainwindow.cpp: actually call slotTunnelOk(int), do not generate a run
+      time error by calling the non-existent function slotTunnelOk().
+      Fixes: #804.
 
  -- X2Go Release Manager <git-admin@x2go.org>  Thu, 19 Feb 2015 13:25:28 +0100
 

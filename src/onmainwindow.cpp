@@ -5175,7 +5175,7 @@ void ONMainWindow::slotTunnelOk(int)
 
         x2goDebug<<"Waiting for win-servers.";
 
-        QTimer::singleShot ( 100, this, SLOT ( slotTunnelOk() ) );
+        QTimer::singleShot ( 100, this, SLOT ( slotTunnelOk(int) ) );
         return;
     }
 #endif
