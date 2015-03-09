@@ -42,7 +42,7 @@
 #include <QToolBar>
 #include <QSystemTrayIcon>
 #include "sshmasterconnection.h"
-
+#include "non_modal_messagebox.h"
 
 
 #ifdef Q_OS_WIN

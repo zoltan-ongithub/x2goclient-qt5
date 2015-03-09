@@ -186,6 +186,8 @@ x2goclient (4.0.4.0-0x2go1) UNRELEASED; urgency=low
       Fixes: #804.
     - onmainwindow.cpp: clarify message regarding missing SSH daemon host
       keys. Fixes: #793.
+    - non_modal_messagebox.{cpp,h}: Add new Non_Modal_MessageBox class for
+      non-modal message boxes.
 
  -- X2Go Release Manager <git-admin@x2go.org>  Thu, 19 Feb 2015 13:25:28 +0100
 
