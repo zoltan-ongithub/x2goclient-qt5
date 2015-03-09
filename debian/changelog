@@ -190,6 +190,8 @@ x2goclient (4.0.4.0-0x2go1) UNRELEASED; urgency=low
       non-modal message boxes.
     - onmainwindow.cpp: use Non_Modal_MessageBox::critical function to display
       errors relating to missing sshd host keys. Fixes: #794.
+    - onmainwindow.cpp: also make the message about a non-running sshd
+      non-modal.
 
  -- X2Go Release Manager <git-admin@x2go.org>  Thu, 19 Feb 2015 13:25:28 +0100
 

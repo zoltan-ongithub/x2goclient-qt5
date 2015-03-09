@@ -11376,15 +11376,19 @@ void ONMainWindow::printSshDError_startupFailure()
 #else
     if ( closeEventSent )
         return;
-    QMessageBox::critical ( 0l,tr ( "SSH Error" ),
-                            tr ( "SSH daemon is not running.\n\n"
+    Non_Modal_MessageBox::critical (0l, tr ("SSH Error"),
+                                    tr ("SSH daemon is not running.\n\n"
 
-                                 "You'll need SSH daemon for printing and file sharing\n\n"
+                                        "You have enabled Remote Printing or File Sharing.\n"
+                                        "These features require a running and functioning SSH server on your computer.\n\n"
 
-                                 "Please ask your system administrator to provide the SSH\n"
-                                 "service on your computer."
-                               ),
-                            QMessageBox::Ok,QMessageBox::NoButton );
+                                        "The Server is currently not started.\n\n"
+
+                                        "Please ask your system administrator to provide the SSH\n"
+                                        "service on your computer.\n\n"
+
+                                        "Disabling Remote Printing or File Sharing support will get rid of this message."),
+                                    QMessageBox::Ok, QMessageBox::NoButton);
 #endif
 }
 
