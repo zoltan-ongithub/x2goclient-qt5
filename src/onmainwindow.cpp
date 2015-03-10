@@ -3297,50 +3297,53 @@ bool ONMainWindow::startSession ( const QString& sid )
         currentKey=findSshKeyForServer(user, host, sshPort);
     }
 
-    useproxy=(st->setting()->value (
-                  sid+"/usesshproxy",
-                  false
-              ).toBool() );
+    if (!embedMode) {
+        useproxy = (st->setting ()->value (sid + "/usesshproxy",
+                                           false).toBool ());
 
-    QString prtype= st->setting()->value (
-                        sid+"/sshproxytype",
-                        "SSH"
-                    ).toString() ;
+        QString prtype = (st->setting ()->value (sid + "/sshproxytype",
+                                                 "SSH").toString ());
+        if (prtype.toLower () == "http") {
+            proxyType = SshMasterConnection::PROXYHTTP;
+        }
+        else {
+            proxyType = SshMasterConnection::PROXYSSH;
+        }
 
-    if(prtype=="HTTP")
-    {
-        proxyType=SshMasterConnection::PROXYHTTP;
+        proxylogin = (st->setting ()->value (sid + "/sshproxyuser",
+                                             QString ()).toString ());
+
+        proxyKey = (st->setting ()->value (sid + "/sshproxykeyfile",
+                                           QString ()).toString ());
+        proxyKey = expandHome (proxyKey);
+
+        proxyserver = (st->setting ()->value (sid + "/sshproxyhost",
+                                              QString ()).toString ());
+
+        proxyport = (st->setting ()->value (sid + "/sshproxyport",
+                                            22).toInt ());
+
+        proxyAutologin = (st->setting ()->value (sid + "/sshproxyautologin",
+                                                 false).toBool ());
+
+        proxyKrbLogin = (st->setting ()->value (sid + "/sshproxykrblogin",
+                                                false).toBool ());
     }
-    else
-    {
-        proxyType=SshMasterConnection::PROXYSSH;
+    else {
+        useproxy = config.useproxy;
+        proxyType = config.proxyType;
+        proxylogin = config.proxylogin;
+        proxyKey = config.proxyKey;
+        proxyserver = config.proxyserver;
+        proxyport = config.proxyport;
+        proxyAutologin = config.proxyAutologin;
+        proxyKrbLogin = config.proxyKrbLogin;
     }
 
-    proxylogin=(st->setting()->value (
-                    sid+"/sshproxyuser",
-                    QString()
-                ).toString() );
-
-    proxyKey=(st->setting()->value (
-                  sid+"/sshproxykeyfile",
-                  QString()
-              ).toString() );
-    proxyKey=expandHome(proxyKey);
-
-    proxyserver=(st->setting()->value (
-                     sid+"/sshproxyhost",
-                     QString()
-                 ).toString() );
-
-    proxyport=(st->setting()->value (
-                   sid+"/sshproxyport",
-                   22
-               ).toInt() );
-    if(proxyserver.indexOf(":")!=-1)
-    {
-        QStringList parts=proxyserver.split(":");
-        proxyserver=parts[0];
-        proxyport=parts[1].toInt();
+    if (proxyserver.indexOf (":") != -1) {
+        QStringList parts = proxyserver.split (":");
+        proxyserver = parts[0];
+        proxyport = parts[1].toInt ();
     }
 
     bool proxySamePass=(st->setting()->value (
@@ -3351,15 +3354,6 @@ bool ONMainWindow::startSession ( const QString& sid )
                             sid+"/sshproxysameuser",
                             false
                         ).toBool() );
-    proxyAutologin=(st->setting()->value (
-                        sid+"/sshproxyautologin",
-                        false
-                    ).toBool() );
-
-    proxyKrbLogin=(st->setting()->value (
-                       sid+"/sshproxykrblogin",
-                       false
-                   ).toBool() );
 
     if(proxyKey.length()<=0 && proxyType==SshMasterConnection::PROXYSSH)
     {
@@ -10679,6 +10673,67 @@ void ONMainWindow::processCfgLine ( QString line )
     if ( lst[0]=="connectionts" )
     {
         config.connectionts=lst[1];
+        return;
+    }
+    if (lst[0] == "usesshproxy")
+    {
+        config.useproxy = true;
+        if (lst[1].toLower () == "true") {
+          config.useproxy = true;
+        }
+        else {
+          config.useproxy = false;
+        }
+        return;
+    }
+    if (lst[0] == "sshproxytype")
+    {
+        if (lst[1].toLower () == "http") {
+            config.proxyType = SshMasterConnection::PROXYHTTP;
+        }
+        else {
+            config.proxyType = SshMasterConnection::PROXYSSH;
+        }
+        return;
+    }
+    if (lst[0] == "sshproxyuser")
+    {
+        config.proxylogin = lst[1];
+        return;
+    }
+    if (lst[0] == "sshproxyhost")
+    {
+        config.proxyserver = lst[1];
+        return;
+    }
+    if (lst[0] == "sshproxyport")
+    {
+        config.proxyport = lst[1].toInt ();
+        return;
+    }
+    if (lst[0] == "sshproxyautologin")
+    {
+        if (lst[1].toLower () == "true") {
+            config.proxyAutologin = true;
+        }
+        else {
+            config.proxyAutologin = false;
+        }
+        return;
+    }
+    if (lst[0] == "sshproxykrblogin")
+    {
+        if (lst[1].toLower () == "true") {
+            config.proxyKrbLogin = true;
+        }
+        else {
+            config.proxyKrbLogin = false;
+        }
+        return;
+    }
+    if (lst[0] == "sshproxykeyfile")
+    {
+        config.proxyKey = lst[1];
         return;
     }
 }

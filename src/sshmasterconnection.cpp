@@ -165,6 +165,9 @@ SshMasterConnection::SshMasterConnection (QObject* parent, QString host, int por
 
     breakLoop=false;
     kerberosDelegation=false;
+    x2goDebug << "SshMasterConnection, host " << host << "port " << port << "user " << user
+              << "useproxy " << useproxy << "proxyserver " << proxyserver
+              << "proxyport " << proxyport;
     this->host=host;
     this->port=port;
     this->user=user;
@@ -443,7 +446,7 @@ void SshMasterConnection::run()
 #endif
     if(useproxy && proxytype==PROXYSSH)
     {
-
+        x2goDebug << "proxyserver: " << proxyserver << "proxyport: " << proxyport << "proxylogin: " << proxylogin;
         sshProxy=new SshMasterConnection (0, proxyserver, proxyport,acceptUnknownServers,
                                           proxylogin, proxypassword, proxykey, proxyautologin, proxyKrbLogin, false);
         connect ( sshProxy, SIGNAL ( connectionOk(QString) ), this, SLOT ( slotSshProxyConnectionOk() ) );

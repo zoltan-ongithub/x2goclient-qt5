@@ -337,6 +337,12 @@ x2goclient (4.0.4.0-0x2go1) UNRELEASED; urgency=low
       correctly: remove the %i flag and replace %c with the application name.
       Fixes: #827.
 
+  [ Nicolas Husson ]
+  * New upstream release (4.0.4.0):
+    - src/{onmainwindow,sshmasterconnection}.cpp: enable use of SSH proxy
+      configuration with x2goplugin. Fixes: #798.
+      + v2: refactor patch, fix whitespace issues. (Mihai Moldovan)
+
  -- X2Go Release Manager <git-admin@x2go.org>  Thu, 19 Feb 2015 13:25:28 +0100
 
 x2goclient (4.0.3.2-0x2go1) unstable; urgency=medium
