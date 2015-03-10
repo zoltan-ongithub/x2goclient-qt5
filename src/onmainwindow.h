@@ -1050,7 +1050,7 @@ private slots:
     void slotSndTunnelFailed ( bool result,QString output,
                                int );
     void slotCopyKey ( bool result,QString output,int );
-    void slotTunnelOk(int );
+    void slotTunnelOk(int = 0);
     void slotFsTunnelOk(int );
     void slotProxyError ( QProcess::ProcessError err );
     void slotProxyFinished ( int result,QProcess::ExitStatus st );

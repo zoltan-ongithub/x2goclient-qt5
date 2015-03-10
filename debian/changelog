@@ -220,6 +220,8 @@ x2goclient (4.0.4.0-0x2go1) UNRELEASED; urgency=low
       error message.
     - configdialog.cpp: rephrase another error message, use the new helper and
       reformat code.
+    - onmainwindow.{cpp,h}: make slotTunnelOk parameter optional and use the
+      non-parameter call for the QSingleShotTimer::timeout() signal.
 
  -- X2Go Release Manager <git-admin@x2go.org>  Thu, 19 Feb 2015 13:25:28 +0100
 
