@@ -8,6 +8,8 @@ CONFIG += $$(X2GO_CLIENT_TARGET)
 CONFIG += $$(X2GO_LINUX_STATIC)
 #CONFIG += console
 
+VERSION = "$$cat($${PWD}/VERSION)"
+
 FORMS += src/ui/cupsprintsettingsdialog.ui \
          src/ui/cupsprintwidget.ui \
          src/ui/printdialog.ui \
@@ -201,10 +203,12 @@ macx {
   # Info.plist file being created in the first place.
   # The last command takes care of actually putting the icon in place - yet
   # another bug in qmake. Bummer.
+  # Qt 4.8 is currently missing patches for substituting FULL_VERSION. Work
+  # around by using the postbuild.sh script.
   QMAKE_INFO_PLIST = $${PWD}/res/osxbundle/Info.plist
   QMAKE_INFO_PLIST_OUT = $${TARGET}.app/Contents/Info.plist
   PRE_TARGETDEPS += $${TARGET}.app/Contents/Info.plist
-  QMAKE_POST_LINK += /bin/cp -n $${ICON} $${OUT_PWD}/$${TARGET}.app/Contents/Resources/
+  QMAKE_POST_LINK += $${PWD}/res/osxbundle/postbuild.sh \"$${TARGET}\" \"$${VERSION}\" \"$${QMAKE_INFO_PLIST_OUT}\" \"$${QMAKE_COPY}\" \"$${ICON}\" \"$${OUT_PWD}/$${TARGET}.app/Contents/Resources/\"
 }
 win32-* {
   message("building $$TARGET for windows without ldap and cups")

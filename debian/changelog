@@ -192,6 +192,12 @@ x2goclient (4.0.4.0-0x2go1) UNRELEASED; urgency=low
       errors relating to missing sshd host keys. Fixes: #794.
     - onmainwindow.cpp: also make the message about a non-running sshd
       non-modal.
+    - {x2goclient.pro,res/osxbundle/{Info.plist,postbuild.sh}}:
+      + Add new postbuild script to set the correct version in the processed
+        Info.plist output file.
+      + Use this script in x2goclient.pro as QMAKE_POST_LINK command.
+      + Move Icon copying into that script.
+      + Define version in x2goclient.pro.
 
  -- X2Go Release Manager <git-admin@x2go.org>  Thu, 19 Feb 2015 13:25:28 +0100
 
