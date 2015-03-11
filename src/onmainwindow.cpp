@@ -11425,7 +11425,7 @@ void ONMainWindow::printSshDError_noAuthorizedKeysFile()
         return;
     QMessageBox::critical ( 0l,tr ( "SSH Error" ),
                             tr ( "SSH daemon failed to open the application's\n"
-                                 "authoized_keys file."
+                                 "authorized_keys file."
                                ),
                             QMessageBox::Ok,QMessageBox::NoButton );
 }
