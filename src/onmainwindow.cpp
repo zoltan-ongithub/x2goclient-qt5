@@ -11358,38 +11358,33 @@ void ONMainWindow::initSelectSessDlg()
 
 void ONMainWindow::printSshDError_startupFailure()
 {
+    if ( closeEventSent )
+        return;
+    QString error_message = tr (""
 #ifdef Q_OS_WIN
-    if ( closeEventSent )
-        return;
-    QMessageBox::critical ( 0l,tr ( "SSH Error" ),
-                            tr ( "SSH daemon could not be started.\n\n"
-
-                                 "You'll need SSH daemon for printing and file sharing.\n\n"
-
-                                 "Normally, this should not happen as X2Go Client for \n"
-                                 "Windows ships its internal sshd.exe.\n\n"
-
-                                 "If you see this message, please report a bug against\n"
-                                 "the X2Go bugtracker."
-                               ),
-                            QMessageBox::Ok,QMessageBox::NoButton );
+                                "SSH daemon could not be started.\n\n"
 #else
-    if ( closeEventSent )
-        return;
-    Non_Modal_MessageBox::critical (0l, tr ("SSH Error"),
-                                    tr ("SSH daemon is not running.\n\n"
-
-                                        "You have enabled Remote Printing or File Sharing.\n"
-                                        "These features require a running and functioning SSH server on your computer.\n\n"
-
-                                        "The Server is currently not started.\n\n"
-
-                                        "Please ask your system administrator to provide the SSH\n"
-                                        "service on your computer.\n\n"
-
-                                        "Disabling Remote Printing or File Sharing support will get rid of this message."),
-                                    QMessageBox::Ok, QMessageBox::NoButton);
+                                "SSH daemon is not running.\n\n"
 #endif
+                                "You have enabled Remote Printing or File Sharing.\n"
+                                "These features require a running and functioning SSH server on your computer.\n\n"
+#ifdef Q_OS_WIN
+                                "Normally, this should not happen as X2Go Client for\n"
+                                "Windows ships its internal SSH server.\n\n"
+
+                                "If you see this message, please report a bug at\n"
+                                "the X2Go bugtracker."
+#else
+                                "The Server is currently not started.\n\n"
+
+                                "Please ask your system administrator to provide the SSH\n"
+                                "service on your computer.\n\n"
+#endif
+                                "Disabling Remote Printing or File Sharing support will get rid of this message.");
+
+    Non_Modal_MessageBox::critical (0l, tr ("SSH Error"),
+                                    error_message,
+                                    QMessageBox::Ok, QMessageBox::NoButton);
 }
 
 void ONMainWindow::printSshDError_noHostPubKey()
