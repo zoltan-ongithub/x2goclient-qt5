@@ -18,10 +18,12 @@
 #include <QSpacerItem>
 
 #include "non_modal_messagebox.h"
+#include "x2goutils.h"
 
 // Please look up the documentation in the header file!
 void Non_Modal_MessageBox::critical (QWidget *parent, const QString &title,
-                                     const QString &text,
+                                     const QString &text, const QString &informative_text,
+                                     bool rich_text,
                                      QMessageBox::StandardButtons buttons,
                                      QMessageBox::StandardButton defaultButton) {
   QMessageBox *msg_box = new QMessageBox (QMessageBox::Critical, title, text, buttons, parent);
@@ -29,7 +31,12 @@ void Non_Modal_MessageBox::critical (QWidget *parent, const QString &title,
   msg_box->setAttribute (Qt::WA_DeleteOnClose);
   msg_box->setDefaultButton (defaultButton);
 
-  // Set to minimum width of 300px.
+  if (rich_text) {
+    msg_box->setTextFormat (Qt::RichText);
+    msg_box->setInformativeText (convert_to_rich_text (informative_text, true));
+  }
+
+  // Set to minimum width of 500px.
   QSpacerItem *horizontal_spacer = new QSpacerItem (500, 0, QSizePolicy::Minimum, QSizePolicy::Expanding);
   QGridLayout *grid_layout = (QGridLayout*) (msg_box->layout ());
   grid_layout->addItem (horizontal_spacer, grid_layout->rowCount (), 0, 1, grid_layout->columnCount ());
@@ -40,5 +47,19 @@ void Non_Modal_MessageBox::critical (QWidget *parent, const QString &title,
   msg_box->show ();
   msg_box->raise ();
   msg_box->activateWindow ();
+}
+
+void Non_Modal_MessageBox::critical (QWidget *parent, const QString &title,
+                                     const QString &text, const QString &informative_text,
+                                     QMessageBox::StandardButtons buttons,
+                                     QMessageBox::StandardButton defaultButton) {
+  Non_Modal_MessageBox::critical (parent, title, text, informative_text, false, buttons, defaultButton);
+}
+
+void Non_Modal_MessageBox::critical (QWidget *parent, const QString &title,
+                                     const QString &text,
+                                     QMessageBox::StandardButtons buttons,
+                                     QMessageBox::StandardButton defaultButton) {
+  Non_Modal_MessageBox::critical (parent, title, text, QString (), buttons, defaultButton);
 }
 

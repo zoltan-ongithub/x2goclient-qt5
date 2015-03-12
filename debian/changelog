@@ -224,6 +224,9 @@ x2goclient (4.0.4.0-0x2go1) UNRELEASED; urgency=low
       non-parameter call for the QSingleShotTimer::timeout() signal.
     - x2goutils.{h,cpp}: split up show_RichText_WarningMsgBox() into the
       aforementioned function and a new convert_to_rich_text() helper function.
+    - non_modal_messagebox.{h,cpp}: add new Non_Modal_MessageBox::critical()
+      overloaded functions to be able to use informative text and a (forceful,
+      if requested) conversion to rich text.
 
  -- X2Go Release Manager <git-admin@x2go.org>  Thu, 19 Feb 2015 13:25:28 +0100
 

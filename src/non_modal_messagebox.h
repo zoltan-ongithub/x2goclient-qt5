@@ -21,6 +21,20 @@
 
 class Non_Modal_MessageBox {
   public:
+    // Main implementation.
+    static void critical (QWidget *parent, const QString &title,
+                          const QString &text, const QString &informative_text,
+                          bool rich_text,
+                          QMessageBox::StandardButtons buttons = QMessageBox::Ok,
+                          QMessageBox::StandardButton defaultButton = QMessageBox::NoButton);
+
+    // Wrapper.
+    static void critical (QWidget *parent, const QString &title,
+                          const QString &text, const QString &informative_text,
+                          QMessageBox::StandardButtons buttons = QMessageBox::Ok,
+                          QMessageBox::StandardButton defaultButton = QMessageBox::NoButton);
+
+    // Wrapper for QMessageBox::critical-like usage.
     // Use this instead QMessageBox::critical for a non-modal variant.
     // Caveat: this function does return immediately and will NOT return the clicked button.
     static void critical (QWidget *parent, const QString &title,
