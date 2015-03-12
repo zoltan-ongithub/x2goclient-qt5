@@ -22,6 +22,8 @@
 #include <QDir>
 #include <QMessageBox>
 
+#include "x2goutils.h"
+
 QString expandHome( QString path )
 {
   path = path.trimmed();

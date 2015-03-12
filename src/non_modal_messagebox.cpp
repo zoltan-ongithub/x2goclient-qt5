@@ -14,9 +14,10 @@
 *   along with this program.  If not, see <http://www.gnu.org/licenses/>. *
 ***************************************************************************/
 
-#include "non_modal_messagebox.h"
 #include <QGridLayout>
 #include <QSpacerItem>
+
+#include "non_modal_messagebox.h"
 
 // Please look up the documentation in the header file!
 void Non_Modal_MessageBox::critical (QWidget *parent, const QString &title,
