@@ -7559,6 +7559,12 @@ void ONMainWindow::exportDirs ( QString exports,bool removable )
 
     dr.dirList=exports;
     dr.key=createRSAKey();
+
+    // Key creation failure or the like.
+    if (dr.key.isEmpty ()) {
+      return;
+    }
+
     QString passwd;
 
     x2goDebug<<"Key created on: "<<dr.key;
