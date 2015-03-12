@@ -11366,30 +11366,55 @@ void ONMainWindow::printSshDError_startupFailure()
 {
     if ( closeEventSent )
         return;
-    QString error_message = tr (""
+    QString error_message = tr (
 #ifdef Q_OS_WIN
                                 "SSH daemon could not be started.\n\n"
 #else
                                 "SSH daemon is not running.\n\n"
-#endif
-                                "You have enabled Remote Printing or File Sharing.\n"
-                                "These features require a running and functioning SSH server on your computer.\n\n"
+#endif // defined (Q_OS_WIN)
+                            );
+
+    QString detailed_error_message = tr ("You have enabled Remote Printing or File Sharing.\n"
+                                         "These features require a running and functioning SSH server on your computer.\n"
+                                         "<b>Printing and File Sharing will be disabled for this session.</b>\n\n"
 #ifdef Q_OS_WIN
-                                "Normally, this should not happen as X2Go Client for\n"
-                                "Windows ships its internal SSH server.\n\n"
+                                         "Normally, this should not happen as X2Go Client for Windows "
+                                         "ships its own internal SSH server.\n\n"
 
-                                "If you see this message, please report a bug at\n"
-                                "the X2Go bugtracker."
-#else
-                                "The Server is currently not started.\n\n"
+                                         "If you see this message, please report a bug on:\n"
+                                         "<center><a href=\"https://wiki.x2go.org/doku.php/wiki:bugs\">"
+                                             "https://wiki.x2go.org/doku.php/wiki:bugs"
+                                         "</a></center>\n"
+#else // defined (Q_OS_WIN)
+                                         "The SSH server is currently not started.\n\n"
+#ifdef Q_OS_DARWIN
+                                         "On OS X, please follow the following steps to enable "
+                                         "SSH service:\n"
+                                         "<ul>"
+                                             "<li>Open <b>System Preferences</b> (Applications -> System Preferences)</li>"
+                                             "<li>Go to <b>Sharing</b></li>"
+                                             "<li>Tick the checkbox besides <b>Remote Login</b></li>"
+                                             "<li>Check that <b>Allow access for:</b> is set to either:"
+                                             "<ul>"
+                                                 "<li>All users: <b>no further steps necessary</b></li>"
+                                                 "<li>Only these users <b>and your user name is included in the list</b></li>"
+                                             "</ul>"
+                                             "<li>Optionally, add your user name to the allowed list "
+                                                 "via the <b>Plus Button</b></li>"
+                                         "</ul>\n"
+                                         "<b>Warning: enabling SSH access will allow any user on the network to connect "
+                                         "to your machine. It is your responsibility to set a strong password for every "
+                                         "user that is allowed to log in via SSH.</b>\n\n"
+#else // defined (Q_OS_DARWIN)
+                                         "Please ask your system administrator to provide the SSH "
+                                         "service on your computer.\n\n"
+#endif // defined (Q_OS_DARWIN)
+#endif // defined (Q_OS_WIN)
+                                         "Disabling Remote Printing or File Sharing support "
+                                         "in the session settings will get rid of this message.");
 
-                                "Please ask your system administrator to provide the SSH\n"
-                                "service on your computer.\n\n"
-#endif
-                                "Disabling Remote Printing or File Sharing support will get rid of this message.");
-
-    Non_Modal_MessageBox::critical (0l, tr ("SSH Error"),
-                                    error_message,
+    Non_Modal_MessageBox::critical (0l, "X2Go Client",
+                                    error_message, detailed_error_message, true,
                                     QMessageBox::Ok, QMessageBox::NoButton);
 }
 
@@ -11397,7 +11422,7 @@ void ONMainWindow::printSshDError_noHostPubKey()
 {
     if ( closeEventSent )
         return;
-    Non_Modal_MessageBox::critical (0l, tr ( "SSH Error" ),
+    Non_Modal_MessageBox::critical (0l, "X2Go Client",
                                     tr ("SSH daemon failed to open its public host key.\n\n"
 
                                         "You have enabled Remote Printing or File Sharing.\n"
