@@ -569,30 +569,33 @@ void ConfigDialog::printXDarwinVersionWarning (QString version)
 }
 
 
-void ConfigDialog::slot_selectXDarwin()
+void ConfigDialog::slot_selectXDarwin ()
 {
-    QString newDir=QFileDialog::getOpenFileName ( this,QString(),leXexec->text() +"/.." );
+    QString newDir = QFileDialog::getOpenFileName (this, QString (), leXexec->text () + "/..");
     QString version;
-    if ( newDir.length() >0 )
-    {
-        findXDarwin ( version,newDir );
-        if ( version=="0.0.0" )
-        {
-            QMessageBox::warning (
-                this, tr ( "Warning" ),
-                tr ( "No suitable X11 application found "
-                     "in selected path" ) );
-            return;
+    if (newDir.length () > 0) {
+        findXDarwin (version, newDir);
+        if (version.compare (QString ("0.0.0")) == 0) {
+            show_RichText_WarningMsgBox (tr ("No valid XQuartz application selected."),
+                                         tr ("You did not select a valid XQuartz application.\n"
+                                             "Please try again.\n\n"
+
+                                             "Some standard installation locations may be:\n"
+                                             "<center><b>/Applications/Utilities/X11.app</b></center>\n"
+                                             "<center><b>/Applications/Utilities/XQuartz.app</b></center>\n"
+                                             "<center><b>/Applications/MacPorts/X11.app</b></center>"));
         }
-        QString minVer="2.1.0";
-        if ( retMaxXDarwinVersion ( minVer,version ) ==minVer )
-        {
-            printXDarwinVersionWarning ( version );
+        else {
+            QString minVer = "2.1.0";
+            if (retMaxXDarwinVersion (minVer, version) == minVer) {
+                printXDarwinVersionWarning (version);
+            }
+            leXexec->setText (newDir);
+            leCmdOpt->setText (version);
         }
-        leXexec->setText ( newDir );
-        leCmdOpt->setText ( version );
     }
 }
+
 QString ConfigDialog::getXDarwinDirectory()
 {
     X2goSettings st ("settings");
