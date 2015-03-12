@@ -7768,11 +7768,14 @@ QString ONMainWindow::createRSAKey()
 #endif
     if ( !rsa.open ( QIODevice::ReadOnly | QIODevice::Text ) )
     {
-#ifdef Q_OS_LINUX
-        generateHostDsaKey();
-        generateEtcFiles();
-        startSshd();
-        /* FIXME: test successful SSH daemon startup */
+#if defined (Q_OS_LINUX) || defined (Q_OS_DARWIN)
+        generateHostDsaKey ();
+        generateEtcFiles ();
+
+        if (!startSshd ()) {
+            return (QString::null);
+        }
+
         rsa.setFileName ( homeDir+"/.x2go/etc/ssh_host_dsa_key.pub" );
         rsa.open ( QIODevice::ReadOnly | QIODevice::Text );
 #else
@@ -9929,15 +9932,23 @@ void ONMainWindow::generateHostDsaKey()
     }
 }
 
-void ONMainWindow::startSshd()
+bool ONMainWindow::startSshd()
 {
     if ( embedMode && config.confFS && !config.useFs )
     {
-        return;
+        return false;
     }
 #ifdef Q_OS_LINUX
-    clientSshPort="7022";
-#endif
+    clientSshPort = "7022";
+#else // defined (Q_OS_LINUX)
+#ifdef Q_OS_DARWIN
+    // Should also automatically create keys if Remote Login is enabled
+    // under Sharing in System Preferences.
+    if (!isServerRunning (clientSshPort.toInt ())) {
+      clientSshPort = "7022";
+    }
+#endif // defined (Q_OS_DARWIN)
+#endif // defined (Q_OS_LINUX)
     QString etcDir=homeDir+"/.x2go/etc";
     int port=clientSshPort.toInt();
     //clientSshPort have initvalue
@@ -9992,17 +10003,32 @@ void ONMainWindow::startSshd()
     /* FIXME: test successful SSH daemon startup */
     delete []desktop;
     winSshdStarted=true;
-#else
+#else // defined (Q_OS_WIN)
     userSshd=true;
+
     sshd=new QProcess ( this );
+
+    QString binary = appDir + "/sshd";
+#ifdef Q_OS_DARWIN
+    binary = "/usr/sbin/sshd";
+#endif // defined (Q_OS_DARWIN)
+
     QStringList arguments;
     arguments<<"-f"<<etcDir +"/sshd_config"<< "-h" <<
              etcDir+"/ssh_host_dsa_key"<<"-D"<<"-p"<<clientSshPort;
-    sshd->start ( appDir+"/sshd",arguments );
-    /* FIXME: test successful SSH daemon startup */
-    x2goDebug<<"Usermode sshd started.";
 
-#endif
+    sshd->start (binary, arguments);
+#endif // defined (Q_OS_WIN)
+
+    if (!isServerRunning (clientSshPort.toInt ())) {
+        printSshDError_startupFailure ();
+        x2goDebug << "Failed to start usermode sshd.";
+        return (false);
+    }
+    else {
+        x2goDebug << "Usermode sshd started successfully.";
+        return (true);
+    }
 }
 
 void ONMainWindow::setProxyWinTitle()
@@ -11366,54 +11392,71 @@ void ONMainWindow::printSshDError_startupFailure()
 {
     if ( closeEventSent )
         return;
-    QString error_message = tr (
+    QString error_message;
+
 #ifdef Q_OS_WIN
-                                "SSH daemon could not be started.\n\n"
-#else
-                                "SSH daemon is not running.\n\n"
+    error_message = tr ("SSH daemon could not be started.\n\n");
+#else // defined (Q_OS_WIN)
+    if (userSshd) {
+        error_message = tr ("SSH daemon could not be started.\n\n");
+    }
+    else {
+        error_message = tr ("SSH daemon is not running.\n\n");
+    }
 #endif // defined (Q_OS_WIN)
-                            );
 
     QString detailed_error_message = tr ("You have enabled Remote Printing or File Sharing.\n"
                                          "These features require a running and functioning SSH server on your computer.\n"
                                          "<b>Printing and File Sharing will be disabled for this session.</b>\n\n"
 
-                                         "Please also check the <b>Clientside SSH port</b> in the general settings.\n\n"
+                                         "Please also check the <b>Clientside SSH port</b> in the general settings.\n\n");
 #ifdef Q_OS_WIN
-                                         "Normally, this should not happen as X2Go Client for Windows "
-                                         "ships its own internal SSH server.\n\n"
+    detailed_error_message += tr ("Normally, this should not happen as X2Go Client for Windows "
+                                  "ships its own internal SSH server.\n\n"
 
-                                         "If you see this message, please report a bug on:\n"
-                                         "<center><a href=\"https://wiki.x2go.org/doku.php/wiki:bugs\">"
-                                             "https://wiki.x2go.org/doku.php/wiki:bugs"
-                                         "</a></center>\n"
+                                  "If you see this message, please report a bug on:\n"
+                                  "<center><a href=\"https://wiki.x2go.org/doku.php/wiki:bugs\">"
+                                      "https://wiki.x2go.org/doku.php/wiki:bugs"
+                                  "</a></center>\n");
 #else // defined (Q_OS_WIN)
-                                         "The SSH server is currently not started.\n\n"
+    if (userSshd) {
+        detailed_error_message += tr ("The SSH server failed to start.\n\n");
+        detailed_error_message += tr ("X2Go Client did not detect a globally running SSH server "
+                                      "on your machine and was unable to start its own.\n\n"
+
+                                      "Please report a bug on:\n"
+                                      "<center><a href=\"https://wiki.x2go.org/doku.php/wiki:bugs\">"
+                                          "https://wiki.x2go.org/doku.php/wiki:bugs"
+                                      "</a></center>\n");
+    }
+    else {
+        detailed_error_message += tr ("The SSH server is currently not started.\n\n");
 #ifdef Q_OS_DARWIN
-                                         "On OS X, please follow the following steps to enable "
-                                         "SSH service:"
-                                         "<ul>"
-                                             "<li>Open <b>System Preferences</b> (Applications -> System Preferences)</li>"
-                                             "<li>Go to <b>Sharing</b></li>"
-                                             "<li>Tick the checkbox besides <b>Remote Login</b></li>"
-                                             "<li>Check that <b>Allow access for:</b> is set to either:"
-                                             "<ul>"
-                                                 "<li>All users: <b>no further steps necessary</b></li>"
-                                                 "<li>Only these users <b>and your user name is included in the list</b></li>"
-                                             "</ul>"
-                                             "<li>Optionally, add your user name to the allowed list "
-                                                 "via the <b>Plus Button</b></li>"
-                                         "</ul>"
-                                         "<b>Warning: enabling SSH access will allow any user on the network to connect "
-                                         "to your machine. It is your responsibility to set a strong password for every "
-                                         "user that is allowed to log in via SSH.</b>\n\n"
+        detailed_error_message += tr ("On OS X, please follow the following steps to enable "
+                                      "SSH service:"
+                                      "<ul>"
+                                          "<li>Open <b>System Preferences</b> (Applications -> System Preferences)</li>"
+                                          "<li>Go to <b>Sharing</b></li>"
+                                          "<li>Tick the checkbox besides <b>Remote Login</b></li>"
+                                          "<li>Check that <b>Allow access for:</b> is set to either:"
+                                          "<ul>"
+                                              "<li>All users: <b>no further steps necessary</b></li>"
+                                              "<li>Only these users <b>and your user name is included in the list</b></li>"
+                                          "</ul>"
+                                          "<li>Optionally, add your user name to the allowed list "
+                                              "via the <b>Plus Button</b></li>"
+                                      "</ul>"
+                                      "<b>Warning: enabling SSH access will allow any user on the network to connect "
+                                      "to your machine. It is your responsibility to set a strong password for every "
+                                      "user that is allowed to log in via SSH.</b>\n\n");
 #else // defined (Q_OS_DARWIN)
-                                         "Please ask your system administrator to provide the SSH "
-                                         "service on your computer.\n\n"
+        detailed_error_message += tr ("Please ask your system administrator to provide the SSH "
+                                      "service on your computer.\n\n");
 #endif // defined (Q_OS_DARWIN)
+    }
 #endif // defined (Q_OS_WIN)
-                                         "Disabling Remote Printing or File Sharing support "
-                                         "in the session settings will get rid of this message.");
+    detailed_error_message += tr ("Disabling Remote Printing or File Sharing support "
+                                  "in the session settings will get rid of this message.");
 
     Non_Modal_MessageBox::critical (0l, "X2Go Client",
                                     error_message, detailed_error_message, true,
@@ -11427,7 +11470,7 @@ void ONMainWindow::printSshDError_noHostPubKey()
 
     X2goSettings st ("settings");
 
-    int port = st.setting ()->value ("clientport", (QVariant) 22).toInt ();
+    int port = clientSshPort.toInt ();
 
     Non_Modal_MessageBox::critical (0l, "X2Go Client",
                                     tr ("SSH daemon failed to open its public host key."),

@@ -562,7 +562,7 @@ public:
     QString internAppName ( const QString& transAppName,
                             bool* found=0l );
     void setEmbedSessionActionsEnabled ( bool enable );
-    void startSshd();
+    bool startSshd();
     QSize getEmbedAreaSize();
 #ifdef Q_OS_WIN
     static QString cygwinPath ( const QString& winPath );
