@@ -11377,6 +11377,8 @@ void ONMainWindow::printSshDError_startupFailure()
     QString detailed_error_message = tr ("You have enabled Remote Printing or File Sharing.\n"
                                          "These features require a running and functioning SSH server on your computer.\n"
                                          "<b>Printing and File Sharing will be disabled for this session.</b>\n\n"
+
+                                         "Please also check the <b>Clientside SSH port</b> in the general settings.\n\n"
 #ifdef Q_OS_WIN
                                          "Normally, this should not happen as X2Go Client for Windows "
                                          "ships its own internal SSH server.\n\n"
@@ -11389,7 +11391,7 @@ void ONMainWindow::printSshDError_startupFailure()
                                          "The SSH server is currently not started.\n\n"
 #ifdef Q_OS_DARWIN
                                          "On OS X, please follow the following steps to enable "
-                                         "SSH service:\n"
+                                         "SSH service:"
                                          "<ul>"
                                              "<li>Open <b>System Preferences</b> (Applications -> System Preferences)</li>"
                                              "<li>Go to <b>Sharing</b></li>"
@@ -11401,7 +11403,7 @@ void ONMainWindow::printSshDError_startupFailure()
                                              "</ul>"
                                              "<li>Optionally, add your user name to the allowed list "
                                                  "via the <b>Plus Button</b></li>"
-                                         "</ul>\n"
+                                         "</ul>"
                                          "<b>Warning: enabling SSH access will allow any user on the network to connect "
                                          "to your machine. It is your responsibility to set a strong password for every "
                                          "user that is allowed to log in via SSH.</b>\n\n"
