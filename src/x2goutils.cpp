@@ -74,17 +74,24 @@ QString wrap_legacy_resource_URIs (const QString& res_path) {
   return (ret);
 }
 
-void show_RichText_WarningMsgBox (const QString& main_text, const QString& informative_text) {
-  QString fixup_main_text (main_text);
-  QString fixup_informative_text (informative_text);
-  fixup_main_text.replace ("\n", "\n<br />\n");
-  fixup_informative_text.replace ("\n", "\n<br />\n");
+QString convert_to_rich_text (const QString &text, bool force) {
+  QString fixup_text (text);
+  fixup_text.replace ("\n", "\n<br />\n");
 
-  // This is a workaround for a bug in Qt. Even though we set Qt::RichText as the text format
-  // later on, the informative text is not recognized as rich text, UNLESS a HTML tag
-  // is used ON THE VERY FIRST LINE.
-  // Make sure, that there always is one...
-  fixup_informative_text.prepend ("<b></b>");
+  if (force) {
+    // This is a workaround for a bug in Qt. Even though we set Qt::RichText as the text format
+    // later on, the informative text is not recognized as rich text, UNLESS a HTML tag
+    // is used ON THE VERY FIRST LINE.
+    // Make sure, that there always is one...
+    fixup_text.prepend ("<b></b>");
+  }
+
+  return (fixup_text);
+}
+
+void show_RichText_WarningMsgBox (const QString& main_text, const QString& informative_text) {
+  QString fixup_main_text (convert_to_rich_text (main_text));
+  QString fixup_informative_text (convert_to_rich_text (informative_text, true));
 
   QMessageBox msg_box (QMessageBox::Warning, QString ("X2Go Client"),
                        fixup_main_text, NULL);

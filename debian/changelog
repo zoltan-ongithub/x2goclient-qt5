@@ -222,6 +222,8 @@ x2goclient (4.0.4.0-0x2go1) UNRELEASED; urgency=low
       reformat code.
     - onmainwindow.{cpp,h}: make slotTunnelOk parameter optional and use the
       non-parameter call for the QSingleShotTimer::timeout() signal.
+    - x2goutils.{h,cpp}: split up show_RichText_WarningMsgBox() into the
+      aforementioned function and a new convert_to_rich_text() helper function.
 
  -- X2Go Release Manager <git-admin@x2go.org>  Thu, 19 Feb 2015 13:25:28 +0100
 
