@@ -480,7 +480,11 @@ QString ConfigDialog::findXDarwin ( QString& version, QString path )
             ver2 = vst.value ("CFBundleShortVersionString",
                              (QVariant) "0.0.0").toString ();
         }
-        if (retMaxXDarwinVersion (ver1, ver2) == ver1) {
+        if ((ver1.compare (ver2) == 0) &&
+            (ver1.compare (QString ("0.0.0")) == 0)) {
+          return (QString ());
+        }
+        else if (retMaxXDarwinVersion (ver1, ver2) == ver1) {
             version = ver1;
             return dir1;
         }
@@ -496,6 +500,9 @@ QString ConfigDialog::findXDarwin ( QString& version, QString path )
                            QSettings::NativeFormat);
             version=vst.value ("CFBundleShortVersionString",
                                (QVariant) "0.0.0").toString ();
+        }
+        else {
+            path = QString ();
         }
         return path;
     }

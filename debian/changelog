@@ -215,6 +215,9 @@ x2goclient (4.0.4.0-0x2go1) UNRELEASED; urgency=low
     - configdialog.cpp: use new helper function show_RichText_WarningMsgBox to
       show proper errors. Format as HTML. Use hyperlinks. Rephrase XQuartz
       warning messages.
+    - configdialog.cpp: return empty strings as paths to the XQuartz
+      application if no valid one could be found in order to show the proper
+      error message.
 
  -- X2Go Release Manager <git-admin@x2go.org>  Thu, 19 Feb 2015 13:25:28 +0100
 
