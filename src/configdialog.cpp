@@ -461,69 +461,79 @@ QString ConfigDialog::retMaxXDarwinVersion ( QString v1, QString v2 )
 
 QString ConfigDialog::findXDarwin ( QString& version, QString path )
 {
-    if ( path=="" )
-    {
-        QString dir1="/Applications/Utilities/XQuartz.app";
-        QString ver1="0.0.0";
-        if ( QFile::exists ( dir1+"/Contents/Info.plist" ) )
-        {
-            QSettings vst ( dir1+"/Contents/Info.plist",
-                            QSettings::NativeFormat );
-            ver1=vst.value ( "CFBundleShortVersionString",
-                             ( QVariant ) "0.0.0" ).toString();
+    if (path.isEmpty ()) {
+        QString dir1 = "/Applications/Utilities/XQuartz.app";
+        QString ver1 = "0.0.0";
+        if (QFile::exists (dir1 + "/Contents/Info.plist")) {
+            QSettings vst (dir1 + "/Contents/Info.plist",
+                           QSettings::NativeFormat);
+            ver1 = vst.value ("CFBundleShortVersionString",
+                              (QVariant) "0.0.0").toString ();
         }
-        QString dir2="/usr/X11/X11.app";
-        QString ver2="0.0.0";;
-        if ( QFile::exists ( dir2+"/Contents/Info.plist" ) )
-        {
-            QSettings vst ( dir2+"/Contents/Info.plist",
-                            QSettings::NativeFormat );
-            ver2=vst.value ( "CFBundleShortVersionString",
-                             ( QVariant ) "0.0.0" ).toString();
+
+        QString dir2 = "/usr/X11/X11.app";
+        QString ver2 = "0.0.0";;
+        if (QFile::exists (dir2 + "/Contents/Info.plist")) {
+            QSettings vst (dir2 + "/Contents/Info.plist",
+                           QSettings::NativeFormat);
+            ver2 = vst.value ("CFBundleShortVersionString",
+                             (QVariant) "0.0.0").toString ();
         }
-        if ( retMaxXDarwinVersion ( ver1,ver2 ) ==ver1 )
-        {
-            version=ver1;
+        if (retMaxXDarwinVersion (ver1, ver2) == ver1) {
+            version = ver1;
             return dir1;
         }
-        else
-        {
-            version=ver2;
+        else {
+            version = ver2;
             return dir2;
         }
     }
-    version="0.0.0";
-    if ( QFile::exists ( path+"/Contents/Info.plist" ) )
-    {
-        QSettings vst ( path+"/Contents/Info.plist",
-                        QSettings::NativeFormat );
-        version=vst.value ( "CFBundleShortVersionString",
-                            ( QVariant ) "0.0.0" ).toString();
+    else {
+        version = "0.0.0";
+        if (QFile::exists (path + "/Contents/Info.plist")) {
+            QSettings vst (path + "/Contents/Info.plist",
+                           QSettings::NativeFormat);
+            version=vst.value ("CFBundleShortVersionString",
+                               (QVariant) "0.0.0").toString ();
+        }
+        return path;
     }
-    return path;
 }
 
 
-void ConfigDialog::slot_findXDarwin()
+void ConfigDialog::slot_findXDarwin ()
 {
     QString version;
-    QString path=findXDarwin ( version );
-    if ( path=="" )
-    {
-        QMessageBox::warning (
-            this,tr ( "Warning" ),
-            tr ( "x2goclient could not find any suitable X11 "
-                 "Application. Please install Apple X11 "
-                 "or select the path to the application" ) );
-    }
-    QString minVer="2.1.0";
-    if ( retMaxXDarwinVersion ( minVer,version ) ==minVer )
-    {
-        printXDarwinVersionWarning ( version );
-    }
-    leXexec->setText ( path );
-    leCmdOpt->setText ( version );
+    QString path = findXDarwin (version);
+    if (path.isEmpty ()) {
+        QMessageBox::warning (this, tr ("Warning"),
+                              tr ("x2goclient could not find any suitable X11 Server.\n\n"
 
+                                  "MacPorts users, please install either the port <b>xorg-server</b>\n"
+                                  "or the port <b>xorg-server-devel</b>.\n"
+                                  "Upon successful installation, please follow the instructions printed\n"
+                                  "by the port utility to autostart/load the server.\n\n"
+
+                                  "All other users, please obtain and install XQuartz from\n\n"
+
+                                  "\t<a href=\"https://xquartz.macosforge.org/\">"
+                                      "https://xquartz.macosforge.org/"
+                                  "</a>\n\n"
+
+                                  "Afterwards, restart x2goclient and\n"
+                                  "select the correct path to the X11 application.\n"
+                                  "This will most likely be <b>/Applications/MacPorts/X11.app</b> or\n"
+                                  "<b>/Applications/Utilities/XQuartz.app</b>."));
+    }
+    else {
+        QString minVer = "2.1.0";
+        if (retMaxXDarwinVersion (minVer, version) == minVer) {
+            printXDarwinVersionWarning (version);
+        }
+
+        leXexec->setText (path);
+        leCmdOpt->setText (version);
+    }
 }
 
 void ConfigDialog::printXDarwinVersionWarning (QString version)

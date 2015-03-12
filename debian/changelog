@@ -207,6 +207,9 @@ x2goclient (4.0.4.0-0x2go1) UNRELEASED; urgency=low
       (missed legacy resource URI wrapper call.)
     - configdialog.cpp: update XQuartz outdated version info message and
       links. Add MacPorts reference.
+    - configdialog.cpp: reformat code, add MacPorts and XQuartz references,
+      URL's and installation instructions, don't show outdated version warning
+      when no XQuartz server is installed. Fixes: #792.
 
  -- X2Go Release Manager <git-admin@x2go.org>  Thu, 19 Feb 2015 13:25:28 +0100
 
