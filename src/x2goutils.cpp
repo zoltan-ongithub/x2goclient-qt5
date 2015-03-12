@@ -30,7 +30,7 @@ QString expandHome( QString path )
   return path;
 }
 
-QString fixup_resource_URIs (const QString res_path) {
+QString fixup_resource_URIs (const QString& res_path) {
   QString ret (res_path);
 
   if (!(res_path.isEmpty ())) {
@@ -42,7 +42,7 @@ QString fixup_resource_URIs (const QString res_path) {
   return (ret);
 }
 
-QString wrap_legacy_resource_URIs (const QString res_path) {
+QString wrap_legacy_resource_URIs (const QString& res_path) {
   QString ret (res_path);
 
   if (!(res_path.isEmpty ())) {
