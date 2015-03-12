@@ -212,6 +212,9 @@ x2goclient (4.0.4.0-0x2go1) UNRELEASED; urgency=low
       when no XQuartz server is installed. Fixes: #792.
     - x2goutils.{h,cpp}: use QString references.
     - x2goutils.{h,cpp}: add new helper function show_RichText_WarningMsgBox.
+    - configdialog.cpp: use new helper function show_RichText_WarningMsgBox to
+      show proper errors. Format as HTML. Use hyperlinks. Rephrase XQuartz
+      warning messages.
 
  -- X2Go Release Manager <git-admin@x2go.org>  Thu, 19 Feb 2015 13:25:28 +0100
 

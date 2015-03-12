@@ -37,6 +37,7 @@
 #include "connectionwidget.h"
 #include "settingswidget.h"
 #include "mediawidget.h"
+#include "x2goutils.h"
 
 
 #if defined ( Q_OS_WIN) && defined (CFGCLIENT )
@@ -506,24 +507,24 @@ void ConfigDialog::slot_findXDarwin ()
     QString version;
     QString path = findXDarwin (version);
     if (path.isEmpty ()) {
-        QMessageBox::warning (this, tr ("Warning"),
-                              tr ("x2goclient could not find any suitable X11 Server.\n\n"
+        show_RichText_WarningMsgBox (tr ("x2goclient could not find any suitable X11 Server."),
+                                     tr ("MacPorts users, please install either the port <b>xorg-server</b>\n"
+                                         "or the port <b>xorg-server-devel</b>.\n"
+                                         "Upon successful installation, please follow the instructions printed\n"
+                                         "by the port utility to autostart/load the server.\n\n"
 
-                                  "MacPorts users, please install either the port <b>xorg-server</b>\n"
-                                  "or the port <b>xorg-server-devel</b>.\n"
-                                  "Upon successful installation, please follow the instructions printed\n"
-                                  "by the port utility to autostart/load the server.\n\n"
+                                         "All other users, please obtain and install XQuartz from:\n"
 
-                                  "All other users, please obtain and install XQuartz from\n\n"
+                                         "<center><a href=\"https://xquartz.macosforge.org/\">"
+                                             "https://xquartz.macosforge.org/"
+                                         "</a></center>\n\n"
 
-                                  "\t<a href=\"https://xquartz.macosforge.org/\">"
-                                      "https://xquartz.macosforge.org/"
-                                  "</a>\n\n"
-
-                                  "Afterwards, restart x2goclient and\n"
-                                  "select the correct path to the X11 application.\n"
-                                  "This will most likely be <b>/Applications/MacPorts/X11.app</b> or\n"
-                                  "<b>/Applications/Utilities/XQuartz.app</b>."));
+                                         "Afterwards, restart x2goclient and\n"
+                                         "select the correct path to the X11 application.\n"
+                                         "This will most likely be\n"
+                                         "<center><b>/Applications/MacPorts/X11.app</b></center>\n"
+                                         "or\n"
+                                         "<center><b>/Applications/Utilities/XQuartz.app</b></center>"));
     }
     else {
         QString minVer = "2.1.0";
@@ -538,26 +539,26 @@ void ConfigDialog::slot_findXDarwin ()
 
 void ConfigDialog::printXDarwinVersionWarning (QString version)
 {
-    QMessageBox::warning (this, tr ("Warning"),
-                          tr ("Your are using XQuartz (X-Window Server for OS X) version ")
-                          + version +
-                          tr (".\n"
-                              "This version causes problems with X application in 24bit "
-                              "color mode.\n"
-                              "You should update your X11 environment.\n\n"
+    show_RichText_WarningMsgBox (tr ("Your XQuartz version is too old."),
+                                 tr ("Your are using XQuartz (X Window System Server for OS X) version ")
+                                 + version +
+                                 tr (".\n\n"
+                                     "This version causes problems with X applications in 24bit "
+                                     "color mode.\n"
+                                     "You should update your X11 environment.\n\n"
 
-                              "MacPorts users please follow the steps outlined on\n\n"
+                                     "MacPorts users please follow the steps outlined on:\n"
 
-                              "\t<a href=\"https://guide.macports.org/chunked/using.common-tasks.html\">"
-                                  "https://guide.macports.org/chunked/using.common-tasks.html"
-                              "</a>\n\n"
+                                     "<center><a href=\"https://guide.macports.org/chunked/using.common-tasks.html\">"
+                                         "https://guide.macports.org/chunked/using.common-tasks.html"
+                                     "</a></center>\n\n"
 
-                              "Users who have installed XQuartz via the installer package\n"
-                              "can find updated versions on\n\n"
+                                     "Users who have installed XQuartz via the installer package\n"
+                                     "can find updated versions on:\n"
 
-                              "\t<a href=\"https://xquartz.macosforge.org/\">"
-                                  "https://xquartz.macosforge.org/"
-                              "</a>"));
+                                     "<center><a href=\"https://xquartz.macosforge.org/\">"
+                                         "https://xquartz.macosforge.org/"
+                                     "</a></center>"));
 }
 
 
