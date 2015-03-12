@@ -26,5 +26,6 @@
 QString expandHome( QString path );
 QString fixup_resource_URIs (const QString& res_path);
 QString wrap_legacy_resource_URIs (const QString& res_path);
+void show_RichText_WarningMsgBox (const QString& main_text, const QString& informative_text = "");
 
 #endif /* !defined (X2GOUTILS_H) */

@@ -20,6 +20,7 @@
 #include <algorithm>
 #include <QString>
 #include <QDir>
+#include <QMessageBox>
 
 QString expandHome( QString path )
 {
@@ -69,4 +70,25 @@ QString wrap_legacy_resource_URIs (const QString& res_path) {
   }
 
   return (ret);
+}
+
+void show_RichText_WarningMsgBox (const QString& main_text, const QString& informative_text) {
+  QString fixup_main_text (main_text);
+  QString fixup_informative_text (informative_text);
+  fixup_main_text.replace ("\n", "\n<br />\n");
+  fixup_informative_text.replace ("\n", "\n<br />\n");
+
+  // This is a workaround for a bug in Qt. Even though we set Qt::RichText as the text format
+  // later on, the informative text is not recognized as rich text, UNLESS a HTML tag
+  // is used ON THE VERY FIRST LINE.
+  // Make sure, that there always is one...
+  fixup_informative_text.prepend ("<b></b>");
+
+  QMessageBox msg_box (QMessageBox::Warning, QString ("X2Go Client"),
+                       fixup_main_text, NULL);
+
+  msg_box.setTextFormat (Qt::RichText);
+  msg_box.setInformativeText (fixup_informative_text);
+  msg_box.setWindowModality (Qt::WindowModal);
+  msg_box.exec ();
 }
