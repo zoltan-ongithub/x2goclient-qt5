@@ -205,6 +205,8 @@ x2goclient (4.0.4.0-0x2go1) UNRELEASED; urgency=low
       sshd error.
     - onmainwindow.cpp: fix session icon not being displayed as tray icon
       (missed legacy resource URI wrapper call.)
+    - configdialog.cpp: update XQuartz outdated version info message and
+      links. Add MacPorts reference.
 
  -- X2Go Release Manager <git-admin@x2go.org>  Thu, 19 Feb 2015 13:25:28 +0100
 

@@ -526,15 +526,28 @@ void ConfigDialog::slot_findXDarwin()
 
 }
 
-void ConfigDialog::printXDarwinVersionWarning ( QString version )
+void ConfigDialog::printXDarwinVersionWarning (QString version)
 {
-    QMessageBox::warning (
-        this,tr ( "Warning" ),
-        tr ( "Your are using X11 (Apple X-Window Server) version " )
-        +version+
-        tr ( ". This version causes problems with X-application in 24bit "
-             "color mode. You should update your X11 environment "
-             "(http://trac.macosforge.org/projects/xquartz)." ) );
+    QMessageBox::warning (this, tr ("Warning"),
+                          tr ("Your are using XQuartz (X-Window Server for OS X) version ")
+                          + version +
+                          tr (".\n"
+                              "This version causes problems with X application in 24bit "
+                              "color mode.\n"
+                              "You should update your X11 environment.\n\n"
+
+                              "MacPorts users please follow the steps outlined on\n\n"
+
+                              "\t<a href=\"https://guide.macports.org/chunked/using.common-tasks.html\">"
+                                  "https://guide.macports.org/chunked/using.common-tasks.html"
+                              "</a>\n\n"
+
+                              "Users who have installed XQuartz via the installer package\n"
+                              "can find updated versions on\n\n"
+
+                              "\t<a href=\"https://xquartz.macosforge.org/\">"
+                                  "https://xquartz.macosforge.org/"
+                              "</a>"));
 }
 
 
