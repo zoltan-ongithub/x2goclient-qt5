@@ -4212,7 +4212,7 @@ void ONMainWindow::setTrayIconToSessionIcon(QString info) {
             sid="embedded";
 
         if (!keepTrayIcon) {
-            QString imagePath = expandHome(st->setting()->value(sid + "/icon", (QVariant) QString(":/img/icons/128x128/x2go.png")).toString());
+            QString imagePath = wrap_legacy_resource_URIs (expandHome(st->setting()->value(sid + "/icon", (QVariant) QString(":/img/icons/128x128/x2go.png")).toString()));
             trayIcon->setIcon(QIcon (imagePath));
         }
 
