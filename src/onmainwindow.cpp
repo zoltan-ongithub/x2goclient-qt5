@@ -11477,50 +11477,61 @@ void ONMainWindow::printSshDError_noHostPubKey()
     if ( closeEventSent )
         return;
 
-    X2goSettings st ("settings");
-
     int port = clientSshPort.toInt ();
 
-    Non_Modal_MessageBox::critical (0l, "X2Go Client",
-                                    tr ("SSH daemon failed to open its public host key."),
-                                    tr ("You have enabled Remote Printing or File Sharing.\n"
-                                        "These features require a running and functioning SSH server on your computer.\n"
-                                        "<b>Printing and File Sharing will be disabled for this session.</b>\n\n"
+    QString error_message = tr ("SSH daemon failed to open its public host key.");
 
-                                        "The SSH server is currently not configured correctly.\n\n"
+    QString detailed_error_message = tr ("You have enabled Remote Printing or File Sharing.\n"
+                                         "These features require a running and functioning SSH server on your computer.\n"
+                                         "<b>Printing and File Sharing will be disabled for this session.</b>\n\n"
 
-                                        "Please ensure that the server's public exists.\n\n"
+                                         "The SSH server is currently not configured correctly.\n\n"
+
+                                         "Please ensure that the server's public exists.\n\n");
 #ifdef Q_OS_WIN
-                                        "Normally, this should not happen as X2Go Client for Windows "
-                                        "ships its own internal SSH server and automatically "
-                                        "generates the required keys.\n\n"
+    detailed_error_message += tr ("Normally, this should not happen as X2Go Client for Windows "
+                                  "ships its own internal SSH server and automatically "
+                                  "generates the required keys.\n\n"
 
-                                        "If you see this message, please report a bug on:\n"
-                                        "<center><a href=\"https://wiki.x2go.org/doku.php/wiki:bugs\">"
-                                            "https://wiki.x2go.org/doku.php/wiki:bugs"
-                                        "</a></center>\n"
+                                  "If you see this message, please report a bug on:\n"
+                                  "<center><a href=\"https://wiki.x2go.org/doku.php/wiki:bugs\">"
+                                      "https://wiki.x2go.org/doku.php/wiki:bugs"
+                                  "</a></center>\n");
 #else // defined (Q_OS_WIN)
+    if (userSshd) {
+        detailed_error_message += tr ("X2Go Client was unable to create SSH host keys.\n\n"
+
+                                      "Please report a bug on:\n"
+                                      "<center><a href=\"https://wiki.x2go.org/doku.php/wiki:bugs\">"
+                                          "https://wiki.x2go.org/doku.php/wiki:bugs"
+                                      "</a></center>\n");
+    }
+    else {
 #ifdef Q_OS_DARWIN
-                                        "On OS X, please follow these steps to generate the "
-                                        "required keys:"
+        detailed_error_message += tr ("On OS X, please follow these steps to generate the "
+                                      "required keys:"
 
-                                        "<ul>"
-                                          "<li>Open a <b>Terminal Window</b> (Applications -> Utilities -> Terminal)</li>"
-                                          "<li>Run this command: <b>ssh -p " + QString::number (port).toAscii ()
-                                             + " localhost</b></li>"
-                                          "<li>You do not need to login. Just quit the Terminal application "
-                                              "via Cmd + Q</li>"
-                                        "</ul>"
+                                      "<ul>"
+                                        "<li>Open a <b>Terminal Window</b> (Applications -> Utilities -> Terminal)</li>"
+                                        "<li>Run this command: <b>ssh -p " + QString::number (port).toAscii ()
+                                           + " localhost</b></li>"
+                                        "<li>You do not need to login. Just quit the Terminal application "
+                                            "via Cmd + Q</li>"
+                                      "</ul>");
 #else // defined (Q_OS_DARWIN)
-                                        "Please ask your system administrator to generate the required host keys.\n\n"
+        detailed_error_message += tr ("Please ask your system administrator to generate the required host keys.\n\n"
 
-                                        "If you are administrating this system yourself, please run:\n"
+                                      "If you are administrating this system yourself, please run:\n"
 
-                                        "<center><b>sudo ssh-keygen -A</b></center>\n\n"
+                                      "<center><b>sudo ssh-keygen -A</b></center>\n\n");
 #endif // defined (Q_OS_DARWIN)
+    }
 #endif // defined (Q_OS_WIN)
-                                        "Disabling Remote Printing or File Sharing support "
-                                        "in the session settings will get rid of this message."),
+
+    detailed_error_message += tr ("Disabling Remote Printing or File Sharing support "
+                                  "in the session settings will get rid of this message.");
+
+    Non_Modal_MessageBox::critical (0l, "X2Go Client", error_message, detailed_error_message,
                                     true,
                                     QMessageBox::Ok, QMessageBox::NoButton);
 }
