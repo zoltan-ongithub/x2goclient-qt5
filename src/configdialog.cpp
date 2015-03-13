@@ -33,6 +33,7 @@
 #include "x2gologdebug.h"
 #include "printwidget.h"
 #include <QTabWidget>
+#include <algorithm>
 #include "x2goclientconfig.h"
 #include "connectionwidget.h"
 #include "settingswidget.h"
@@ -463,34 +464,55 @@ QString ConfigDialog::retMaxXDarwinVersion ( QString v1, QString v2 )
 QString ConfigDialog::findXDarwin ( QString& version, QString path )
 {
     if (path.isEmpty ()) {
-        QString dir1 = "/Applications/Utilities/XQuartz.app";
-        QString ver1 = "0.0.0";
-        if (QFile::exists (dir1 + "/Contents/Info.plist")) {
-            QSettings vst (dir1 + "/Contents/Info.plist",
-                           QSettings::NativeFormat);
-            ver1 = vst.value ("CFBundleShortVersionString",
-                              (QVariant) "0.0.0").toString ();
+        QStringList locations;
+        locations << "/Applications/Utilities/XQuartz.app"
+                  << "/usr/X11/X11.app"
+                  << "/Applications/MacPorts/X11.app";
+
+        QStringList versions;
+
+        QStringList::const_iterator const_it;
+        for (const_it = locations.constBegin (); const_it != locations.constEnd (); ++const_it) {
+            QFile info_plist (*const_it + "/Contents/Info.plist");
+
+            if (info_plist.exists ()) {
+                QSettings settings (info_plist.fileName (), QSettings::NativeFormat);
+                versions << settings.value ("CFBundleShortVersionString", (QVariant) "0.0.0").toString ();
+            }
+            else {
+                versions << QString ("0.0.0");
+            }
         }
 
-        QString dir2 = "/usr/X11/X11.app";
-        QString ver2 = "0.0.0";;
-        if (QFile::exists (dir2 + "/Contents/Info.plist")) {
-            QSettings vst (dir2 + "/Contents/Info.plist",
-                           QSettings::NativeFormat);
-            ver2 = vst.value ("CFBundleShortVersionString",
-                             (QVariant) "0.0.0").toString ();
+        QString max_ver = QString ();
+        std::size_t max_idx = 0;
+        if (locations.size () < 1) {
+            version = QString ("0.0.0");
+            return (QString ());
         }
-        if ((ver1.compare (ver2) == 0) &&
-            (ver1.compare (QString ("0.0.0")) == 0)) {
-          return (QString ());
-        }
-        else if (retMaxXDarwinVersion (ver1, ver2) == ver1) {
-            version = ver1;
-            return dir1;
+        else if (locations.size () == 1) {
+            max_ver = versions.at (0);
+            max_idx = 0;
         }
         else {
-            version = ver2;
-            return dir2;
+            max_ver = versions.at (0);
+            max_idx = 0;
+            for (std::size_t i = 1; i < static_cast<std::size_t> (locations.size ()); ++i) {
+                QString cur_ver = versions.at (i);
+                if (retMaxXDarwinVersion (max_ver, cur_ver).compare (cur_ver) == 0) {
+                    max_ver = cur_ver;
+                    max_idx = i;
+                }
+            }
+        }
+
+        version = max_ver;
+
+        if (max_ver.compare (QString ("0.0.0")) == 0) {
+            return (QString ());
+        }
+        else {
+            return (locations.at (max_idx));
         }
     }
     else {

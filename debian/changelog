@@ -237,6 +237,8 @@ x2goclient (4.0.4.0-0x2go1) UNRELEASED; urgency=low
       allow it to come up.
     - onmainwindow.cpp: adapt SSH host key warning message to new usermode
       sshd possibilities.
+    - configdialog.cpp: make XQuartz detection algorithm QStringList-based and
+      add MacPorts location.
 
  -- X2Go Release Manager <git-admin@x2go.org>  Thu, 19 Feb 2015 13:25:28 +0100
 
