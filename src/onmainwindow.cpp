@@ -10023,6 +10023,12 @@ bool ONMainWindow::startSshd()
     sshd->start (binary, arguments);
 #endif // defined (Q_OS_WIN)
 
+    // Allow sshd a grace time of 3 seconds to come up.
+    QTime sleepTime = QTime::currentTime ().addSecs (3);
+    while (QTime::currentTime () < sleepTime) {
+        QCoreApplication::processEvents (QEventLoop::AllEvents, 100);
+    }
+
     if (!isServerRunning (clientSshPort.toInt ())) {
         printSshDError_startupFailure ();
         x2goDebug << "Failed to start usermode sshd.";
