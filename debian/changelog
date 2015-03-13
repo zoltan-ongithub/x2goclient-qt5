@@ -231,6 +231,8 @@ x2goclient (4.0.4.0-0x2go1) UNRELEASED; urgency=low
     - onmainwindow.cpp: prettify non-available host key error message.
     - onmainwindow.cpp: also use usermode sshd on OS X, if no global daemon is
       running.
+    - onmainwindow.cpp: on OS X, specify sshd's PID file location in its
+      server config.
 
  -- X2Go Release Manager <git-admin@x2go.org>  Thu, 19 Feb 2015 13:25:28 +0100
 

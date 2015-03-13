@@ -9884,8 +9884,10 @@ void ONMainWindow::slotSetWinServersReady()
 void ONMainWindow::generateEtcFiles()
 {
     QString etcDir=homeDir+"/.x2go/etc";
+    QString varDir = homeDir + "/.x2go/var";
     QDir dr ( homeDir );
     dr.mkpath ( etcDir );
+    dr.mkpath (varDir);
     QFile file ( etcDir +"/sshd_config" );
     if ( !file.open ( QIODevice::WriteOnly | QIODevice::Text ) )
         return;
@@ -9896,6 +9898,7 @@ void ONMainWindow::generateEtcFiles()
     QTextStream out ( &file );
     out<<"StrictModes no\n"<<
        "UsePrivilegeSeparation no\n"<<
+       "PidFile " + varDir + "/sshd.pid\n" <<
 #ifdef Q_OS_WIN
        "Subsystem shell "<< wapiShortFileName ( appDir) +"/sh"+"\n"<<
        "Subsystem sftp "<< wapiShortFileName ( appDir) +"/sftp-server"+"\n"<<
