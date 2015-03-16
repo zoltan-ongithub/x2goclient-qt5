@@ -52,6 +52,8 @@ x2goclient (4.0.5.3-0x2go1) UNRELEASED; urgency=medium
     - unixhelper.{h,cpp}: also include <QtCore/qglobal.h> to have Q_OS_UNIX
       defined on UNIX-based platforms. Move guards around.
     - unixhelper.h: forgot to declare type of unix_cleanup() function.
+    - {unixhelper.{cpp,h},x2goclient.cpp}: unixhelper should really be a
+      (module) namespace, not a class.
 
   [ Bernard Cafarelli ]
   * New upstream version (4.0.5.3):
