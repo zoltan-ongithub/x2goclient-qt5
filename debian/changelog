@@ -245,6 +245,11 @@ x2goclient (4.0.4.0-0x2go1) UNRELEASED; urgency=low
     - onmainwindow.cpp: fix bad quoting when writing remote xinerama config file.
       Fixes: #797.
 
+  [ René Genz ]
+  * New upstream release (4.0.4.0):
+    - {LICENSE,debian/copyright}: fix typo in URL of obviously-nice.de.
+      Fixes: #811.
+
  -- X2Go Release Manager <git-admin@x2go.org>  Thu, 19 Feb 2015 13:25:28 +0100
 
 x2goclient (4.0.3.2-0x2go1) unstable; urgency=medium
