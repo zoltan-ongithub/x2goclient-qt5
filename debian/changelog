@@ -70,6 +70,7 @@ x2goclient (4.0.5.3-0x2go1) UNRELEASED; urgency=medium
       UNIX cleanup helper tool is requested. It is necessary to call exec()
       after fork on virtually all operating system, especially on OS X.
     - x2goclient.cpp: fix compile problems introduced with the last commit.
+    - x2goclient.cpp: fix string comparison.
 
   [ Bernard Cafarelli ]
   * New upstream version (4.0.5.3):
