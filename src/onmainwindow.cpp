@@ -3063,7 +3063,7 @@ void ONMainWindow::continueNormalSession()
 {
     x2goDebug<<"Continue normal x2go session";
 
-    if (brokerMode)
+    if (brokerMode && !shadowSession)
     {
         slotListSessions(true,QString::null,0);
         return;
@@ -3469,7 +3469,7 @@ void ONMainWindow::slotListSessions ( bool result,QString output,
     }
 
     QStringList sessions;
-    if(!brokerMode)
+    if(!brokerMode || shadowSession)
     {
         sessions=output.trimmed().split ( '\n',
                                           QString::SkipEmptyParts );
