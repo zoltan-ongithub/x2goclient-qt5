@@ -6442,6 +6442,8 @@ void ONMainWindow::slotReadApplications(bool result, QString output,
                 app.exec.replace(" %u","",Qt::CaseInsensitive);
                 app.exec.replace("%f","",Qt::CaseInsensitive);
                 app.exec.replace("%u","",Qt::CaseInsensitive);
+                app.exec.replace("%i","",Qt::CaseInsensitive);
+                app.exec.replace("%c",app.name,Qt::CaseInsensitive);
                 if (app.exec==autostartApp)
                     startAppFound=true;
                 //                 x2goDebug<<"exec: "<<app.exec<<endl;
