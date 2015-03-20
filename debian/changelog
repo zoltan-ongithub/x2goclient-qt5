@@ -82,6 +82,8 @@ x2goclient (4.0.5.3-0x2go1) UNRELEASED; urgency=medium
       and SIGUSR2.
     - x2goclient.cpp: fix failing exec() call for the UNIX helper utility:
       correctly terminate arguments vector.
+    - {appdialog,configwidget,onmainwindow,unixhelper}.cpp: fix some compile
+      warnings with GCC. Fix a few whitespace issues.
 
   [ Bernard Cafarelli ]
   * New upstream version (4.0.5.3):

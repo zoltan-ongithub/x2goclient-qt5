@@ -4329,8 +4329,10 @@ void ONMainWindow::resumeSession ( const x2goSession& s )
     if (! startXorgOnStart)
         startXOrg();
 // #endif
+#else /* defined (Q_OS_WIN) */
+    UNUSED (rootless);
+#endif /* defined (Q_OS_WIN) */
 
-#endif
     if ( fullscreen )
     {
         geometry="fullscreen";
@@ -11017,6 +11019,7 @@ void ONMainWindow::slotEmbedIntoParentWindow()
 void ONMainWindow::processSessionConfig()
 {
     bool haveKey=false;
+    UNUSED (haveKey);
 
     config.command="KDE";
     config.brokerNoAuth=false;
