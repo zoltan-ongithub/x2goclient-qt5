@@ -239,6 +239,8 @@ x2goclient (4.0.4.0-0x2go1) UNRELEASED; urgency=low
       sshd possibilities.
     - configdialog.cpp: make XQuartz detection algorithm QStringList-based and
       add MacPorts location.
+    - onmainwindow.cpp: do not define Ctrl+Q two times. Made it unusable on
+      Linux and Windows.
 
   [ Fernando Pedemonte ]
   * New upstream release (4.0.4.0):

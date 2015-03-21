@@ -859,10 +859,6 @@ void ONMainWindow::initWidgetsNormal()
 
     stb=addToolBar ( tr ( "Show toolbar" ) );
 
-    QShortcut* ex=new QShortcut ( QKeySequence ( tr ( "Ctrl+Q","exit" ) ),
-                                  this );
-    connect ( ex,SIGNAL ( activated() ),this,SLOT ( close() ) );
-
     if ( drawMenu )
     {
         QMenu* menu_sess=menuBar()->addMenu ( tr ( "&Session" ) );
