@@ -548,7 +548,7 @@ void ONMainWindow::slotSyncX()
 void ONMainWindow::installTranslator()
 {
     QTranslator* x2goclientTranslator=new QTranslator();
-    QString filename=QString ( ":/x2goclient_%1" ).arg (
+    QString filename=QString ( ":/i18n/x2goclient_%1" ).arg (
                          QLocale::system().name() );
     filename=filename.toLower();
     if ( !x2goclientTranslator->load ( filename ) )
@@ -563,7 +563,7 @@ void ONMainWindow::installTranslator()
 
 
     QTranslator* qtTranslator=new QTranslator;
-    filename=QString ( ":/qt_%1" ).arg ( QLocale::system().name() );
+    filename=QString ( ":/i18n/qt_%1" ).arg ( QLocale::system().name() );
     if ( !qtTranslator->load ( filename ) )
     {
         x2goWarningf(2)<<tr("Can't load translator: ") + filename.toAscii();

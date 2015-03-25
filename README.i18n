@@ -47,7 +47,7 @@ First, copy the file x2goclient_de.ts, for instance via the terminal.
 
 You can do this by running the following commands:
 
-1. cd x2goclient/
+1. cd x2goclient/res/i18n
 
 2. cp x2goclient_de.ts "x2goclient_da.ts <or what language your going to translate it into>".
 
@@ -60,7 +60,7 @@ The tool needed for editing qt translation files is ,,linguist-qt4''
 
   $ open Ubuntu Software Center, search for ,,Qt 4 Linguist'' and install it from there  # <--for ubuntu
 
-Now open your language file in <current_dir>/x2goclient/x2goclient_<lang>.ts and edit it with
+Now open your language file in <current_dir>/x2goclient/res/i18n/x2goclient_<lang>.ts and edit it with
 linguist-qt4.
 
 NOTE: Make sure you translate all boldly marked items: non-translated as well as fuzzy
@@ -72,7 +72,7 @@ Sending in the Translation File
 -------------------------------
 When done, please send the complete translation file
 
-  <current_dir>/x2goclient/x2goclient_<lang>.ts
+  <current_dir>/x2goclient/res/i18n/x2goclient_<lang>.ts
 
 to x2go-i18n@lists.x2go.org and remove your working copy of X2Go Client from
 your system (or read how to use Git and keep the folder.)
