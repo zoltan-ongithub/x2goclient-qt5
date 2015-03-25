@@ -241,6 +241,8 @@ x2goclient (4.0.4.0-0x2go1) UNRELEASED; urgency=low
       add MacPorts location.
     - onmainwindow.cpp: do not define Ctrl+Q two times. Made it unusable on
       Linux and Windows.
+    - onmainwindow:cpp: correctly pass escaped single quote when writing
+      remote xinerama config file. Post-fixup for #797.
 
   [ Fernando Pedemonte ]
   * New upstream release (4.0.4.0):
