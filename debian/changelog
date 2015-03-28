@@ -240,7 +240,7 @@ x2goclient (4.0.4.0-0x2go1) UNRELEASED; urgency=low
     - configdialog.cpp: make XQuartz detection algorithm QStringList-based and
       add MacPorts location.
     - onmainwindow.cpp: do not define Ctrl+Q two times. Made it unusable on
-      Linux and Windows.
+      Linux and Windows. (Fixes: #830).
     - onmainwindow:cpp: correctly pass escaped single quote when writing
       remote xinerama config file. Post-fixup for #797.
     - {onmainwindow.cpp,README.i18n}: fix localization -- resource strings
