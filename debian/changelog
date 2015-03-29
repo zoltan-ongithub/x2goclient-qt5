@@ -12,6 +12,8 @@ x2goclient (4.0.4.0-0x2go1) UNRELEASED; urgency=low
           to 1.4.9 (Fixes CVE-2015-1802 through CVE-2015-1804)
         + VcXsrv's bundled version of freetype was updated from 2.5.3
           to 2.5.5 (fixes CVE-2014-9656 through CVE-2014-9675)
+    - Windows: Update bundled Win32 OpenSSL from 1.0.1L to 1.0.1m,
+      which fixes the multiple CVEs announced on 2015-03-19.
     - Windows: Update bundled nxproxy (nx-libs-lite) from 3.5.0.27 to
       3.5.0.28.
     - Windows: Update bundled Cygwin openssl from 1.0.1k-1 to 1.0.2a-1.
