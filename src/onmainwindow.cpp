@@ -4981,7 +4981,7 @@ void ONMainWindow::slotRetResumeSess ( bool result,
                      "\\\" > $HOME/.x2go/C-"+
                      resumingSession.sessionId+
                      "/.pulse-client.conf"
-                     ";echo \\\"cookie-file=${HOME}.x2go/C-"+
+                     ";echo \\\"cookie-file=${HOME}/.x2go/C-"+
                      resumingSession.sessionId+
                      "/.pulse-cookie"+
                      "\\\" >> ${HOME}/.x2go/C-"+
@@ -4993,7 +4993,7 @@ void ONMainWindow::slotRetResumeSess ( bool result,
                      "\\\" > $HOME/.x2go/C-"+
                      resumingSession.sessionId+
                      "/.pulse-client.conf"
-                     ";echo \\\"cookie-file=${HOME}.x2go/C-"+
+                     ";echo \\\"cookie-file=${HOME}/.x2go/C-"+
                      resumingSession.sessionId+
                      "/.pulse-cookie"+
                      "\\\" >> ${HOME}/.x2go/C-"+
