@@ -281,6 +281,7 @@ x2goclient (4.0.4.0-0x2go1) UNRELEASED; urgency=low
       include hyphens correctly into the current line.
     - help.cpp: don't let qCritical() add even more spaces or quotes around
       the help message.
+    - help.cpp: add support for newlines within descriptions.
 
   [ Fernando Pedemonte ]
   * New upstream release (4.0.4.0):

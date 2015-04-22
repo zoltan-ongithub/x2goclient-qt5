@@ -89,6 +89,8 @@ help::params_t help::build_params () {
   params_t ret;
 
 # define ADD_OPT(param, desc) do { ret.append (params_elem_t (param, QObject::tr (desc))); } while (0)
+# define NEWLINE "\n"
+
   ADD_OPT ("--help", "Shows this message.");
   ADD_OPT ("--version", "Prints version information.");
 
@@ -140,6 +142,8 @@ help::params_t help::build_params () {
   ADD_OPT ("--broker-ssh-key=<path to key>", "Sets the path to an SSH key to use for authentication against an SSH session broker. The client's behavior is undefined if this flag is used for non-SSH session brokers.");
   ADD_OPT ("--broker-autologin", "Enables the use of the default SSH key or SSH agent for authentication against an SSH session broker. The client's behavior is undefined if this flag is used for non-SSH session brokers.");
   ADD_OPT ("--broker-noauth", "Does not ask for user credentials during session broker authentication. This can be useful if you are using an HTTP(S) session broker without authentication. If you run an HTTP(S) server without authentication, but with user-specific profiles, then put the user name into the broker URL (refer to --broker-url.) The user name then will be extracted from the broker URL and be sent to the session broker. The client's behavior is undefined if this flag is used for non-HTTP(S) session brokers.");
+
+# undef NEWLINE
 # undef ADD_OPT
 
   return (ret);
@@ -193,71 +197,89 @@ QString help::pretty_print (help::data_t data) {
     /* Append first two spaces to the general indent level for upcoming lines. */
     indent += 2;
     std::ptrdiff_t remaining = 0;
-    std::size_t cur_len = (*it).second.size ();
-    x2goDebug << "Going to output a description " << (*it).second.size () << " chars wide." << endl;
-    if (0 != terminal_cols) {
-      remaining = terminal_cols - (indent + (*it).first.size ());
-      x2goDebug << "Still have " << remaining << " characters left on this line." << endl;
 
-      /* Ran out of space? That's bad... print a newline and don't use any indentation level. */
-      if (0 > remaining) {
-        x2goDebug << "Ran out of space! Will break line and start the description on a new one." << endl;
-        out << "\n";
-        remaining = terminal_cols;
-        indent = 0;
-      }
+    /* Split up description on newlines. */
+    QStringList desc_split = (*it).second.split ("\n");
 
-      QString working_copy ((*it).second);
-
-      do {
-        cur_len = working_copy.size ();
-        x2goDebug << "Trying to fit a (remaining) description " << cur_len << " characters wide." << endl;
-
-        /* Fits onto the current line. Great! */
-        if (remaining > static_cast<std::ptrdiff_t> (cur_len)) {
-          x2goDebug << "Fit onto the current line. Done." << endl;
-          out << working_copy;
-          working_copy = "";
+    for (QStringList::const_iterator desc_split_it = desc_split.constBegin (); desc_split_it != desc_split.constEnd (); ++desc_split_it) {
+      std::size_t cur_len = (*desc_split_it).size ();
+      x2goDebug << "Going to output a description " << (*desc_split_it).size () << " chars wide." << endl;
+      if (0 != terminal_cols) {
+        /*
+         * Only set this the first time right after having written the parameter and indent spaces.
+         * Don't change it after that.
+         */
+        if (desc_split_it == desc_split.constBegin ()) {
+          remaining = terminal_cols - (indent + (*it).first.size ());
         }
-        else {
-          /* Try to find the next split point. */
-          std::ptrdiff_t split_point_white = working_copy.lastIndexOf (" ", remaining - 1);
-          std::ptrdiff_t split_point_hyphen = working_copy.lastIndexOf ("-", remaining - 1);
+        x2goDebug << "Still have " << remaining << " characters left on this line." << endl;
 
-          /* Make sure the hyphen is part of the current line. */
-          ++split_point_hyphen;
+        /* Ran out of space? That's bad... print a newline and don't use any indentation level. */
+        if (0 > remaining) {
+          x2goDebug << "Ran out of space! Will break line and start the description on a new one." << endl;
+          out << "\n";
+          remaining = terminal_cols;
+          indent = 0;
+        }
 
-          std::ptrdiff_t split_point = std::max (split_point_white, split_point_hyphen);
+        QString working_copy (*desc_split_it);
 
-          if (-1 == split_point) {
-            /* No split point available. Just print it out and hope for better times... */
+        do {
+          cur_len = working_copy.size ();
+          x2goDebug << "Trying to fit a (remaining) description " << cur_len << " characters wide." << endl;
+
+          /* Fits onto the current line. Great! */
+          if (remaining > static_cast<std::ptrdiff_t> (cur_len)) {
+            x2goDebug << "Fit onto the current line. Done." << endl;
             out << working_copy;
             working_copy = "";
           }
           else {
-            /* Yay, we can split. */
-            x2goDebug << "Split onto " << working_copy.left (split_point);
-            out << working_copy.left (split_point);
+            /* Try to find the next split point. */
+            std::ptrdiff_t split_point_white = working_copy.lastIndexOf (" ", remaining - 1);
+            std::ptrdiff_t split_point_hyphen = working_copy.lastIndexOf ("-", remaining - 1);
 
-            x2goDebug << " and new part " << working_copy.mid (split_point + 1);
-            working_copy = working_copy.mid (split_point + 1);
+            /* Make sure the hyphen is part of the current line. */
+            ++split_point_hyphen;
 
-            /* Do the next chunk, if there are remaining characters. */
-            if (!working_copy.isEmpty ()) {
-              out << "\n";
-              indent = terminal_cols - remaining;
-              out << QString (" ").repeated (indent);
+            std::ptrdiff_t split_point = std::max (split_point_white, split_point_hyphen);
+
+            if (-1 == split_point) {
+              /* No split point available. Just print it out and hope for better times... */
+              out << working_copy;
+              working_copy = "";
+            }
+            else {
+              /* Yay, we can split. */
+              x2goDebug << "Split onto " << working_copy.left (split_point);
+              out << working_copy.left (split_point);
+
+              x2goDebug << " and new part " << working_copy.mid (split_point + 1);
+              working_copy = working_copy.mid (split_point + 1);
+
+              /* Do the next chunk, if there are remaining characters. */
+              if (!working_copy.isEmpty ()) {
+                out << "\n";
+                indent = terminal_cols - remaining;
+                out << QString (" ").repeated (indent);
+              }
             }
           }
-        }
-      } while (!working_copy.isEmpty ());
-    }
-    else {
-      /* No idea what the terminal size is. Just print it all onto one line. */
-      out << (*it).second;
-    }
+        } while (!working_copy.isEmpty ());
+      }
+      else {
+        /* No idea what the terminal size is. Just print it all onto one line. */
+        out << (*desc_split_it);
+      }
 
-    out << "\n";
+      out << "\n";
+
+      /* Add whitespace if description shall continue on next line. */
+      if ((desc_split_it + 1) != desc_split.constEnd ()) {
+        indent = terminal_cols - remaining;
+        out << QString (" ").repeated (indent);
+      }
+    }
   }
 
   qCritical ().nospace () << qPrintable (ret);
