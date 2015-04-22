@@ -95,7 +95,7 @@ void help::pretty_print (help::data_t data) {
 
   /* Iterate over all parameter options and get max width. */
   for (help::params_t::const_iterator it = data.second.constBegin (); it != data.second.constEnd (); ++it) {
-    max_len = std::max (max_len, (*it).first.length ());
+    max_len = std::max (max_len, (*it).first.size ());
   }
 
   std::size_t terminal_cols = 0;
@@ -115,8 +115,69 @@ void help::pretty_print (help::data_t data) {
 #endif
 
   for (help::params_t::const_iterator it = data.second.constBegin (); it != data.second.constEnd (); ++it) {
+    std::size_t indent = (max_len - (*it).first.size ()) + 4;
     out << "  ";
     out << (*it).first;
-    out << QString (" ").repeated (max_len - (*it.length) + 4);
+    out << QString (" ").repeated (indent);
+
+    indent += 2;
+    std::ptrdiff_t remaining = 0;
+    std::size_t cur_len = (*it).second.size ();
+    if (0 != terminal_cols) {
+      remaining = terminal_cols - indent;
+
+      /* Ran out of space? That's bad... print a newline and don't use any indentation level. */
+      if (0 > remaining) {
+        out << "\n";
+        remaining = terminal_cols;
+        indent = 0;
+      }
+
+      QString working_copy ((*it).second);
+
+      do {
+        cur_len = working_copy.size ();
+
+        /* Fits onto the current line. Great! */
+        if (remaining > cur_len) {
+          out << working_copy;
+        }
+        else {
+          /* Try to find the next split point. */
+          std::ptrdiff_t split_point_white = working_copy.lastIndexOf (" ", remaining);
+          std::ptrdiff_t split_point_hyphen = working_copy.lastIndexOf ("-", remaining);
+          std::ptrdiff_t split_point = std::max (split_point_white, split_point_hyphen);
+
+          if (-1 == split_point) {
+            /* No split point available. Just print it out and hope for better times... */
+            out << working_copy;
+            working_copy = "";
+          }
+          else {
+            /* Yay, we can split. */
+            out << working_copy.left (split_point);
+
+            /* If we split at a hyphen, don't lose it. */
+            if (working_copy.at (split_point).compare ("-") == 0) {
+              out << "-"
+            }
+
+            working_copy = working_copy.mid (split_point);
+
+            /* Do the next chunk, if there are remaining characters. */
+            if (!working_copy.isEmpty ()) {
+              out << "\n"
+              out << QString (" ").repeated (indent);
+            }
+          }
+        }
+      } while (!working_copy.isEmpty ());
+    }
+    else {
+      /* No idea what the terminal size is. Just print it all onto one line. */
+      out << (*it).second;
+    }
+
+    out << "\n";
   }
 }
