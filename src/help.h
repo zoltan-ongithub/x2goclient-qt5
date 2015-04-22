@@ -40,6 +40,10 @@ namespace help {
   /* Merges prelude_t and params_t into a data_t object. */
   data_t build_data ();
 
+  /* Cleanup functions for string trimming. */
+  prelude_t cleanup_prelude (prelude_t prelude);
+  params_t cleanup_params (params_t params);
+
   /* Prints a help_data_t structure. */
   void pretty_print (data_t data);
 }

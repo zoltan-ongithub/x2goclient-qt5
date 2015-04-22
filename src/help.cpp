@@ -17,9 +17,26 @@
  *  59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.              *
  ***************************************************************************/
 
-#include "help.h"
 #include <QCoreApplication>
+#include "help.h"
 #include "version.h"
+
+help::prelude_t help::cleanup_prelude (help::prelude_t prelude) {
+  for (help::prelude_t::iterator it = prelude.begin (); it != prelude.end (); ++it) {
+    *it = (*it).trimmed ();
+  }
+
+  return (prelude);
+}
+
+help::params_t help::cleanup_params (help::params_t params) {
+  for (help::params_t::const_iterator params_it = params.constBegin (); params_it != params.constEnd (); ++params_it) {
+    (*params_it).first = (*params_it).first.trimmed ();
+    (*params_it).second = (*params_it).second.trimmed ();
+  }
+
+  return (params);
+}
 
 help::prelude_t build_prelude () {
   help::prelude_t ret ();
@@ -55,7 +72,7 @@ help::params_t help::build_params () {
 }
 
 help::data_t help::build_data () {
-  return (help::data_t (help::build_prelude (), help::build_params ()));
+  return (help::data_t (help::cleanup_prelude (help::build_prelude ()), help::cleanup_params (help::build_params ())));
 }
 
 help::pretty_print (help::data_t data) {

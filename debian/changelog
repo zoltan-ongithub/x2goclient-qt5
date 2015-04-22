@@ -259,6 +259,7 @@ x2goclient (4.0.4.0-0x2go1) UNRELEASED; urgency=low
       correctly, add more quotes and use absolute file path for pulse cookie.
     - version.h: add include guard.
     - help.{cpp,h}: add skeleton for new help system.
+    - help.{cpp,h}: add sanitizing helpers.
 
   [ Fernando Pedemonte ]
   * New upstream release (4.0.4.0):
