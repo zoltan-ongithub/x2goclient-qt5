@@ -271,7 +271,9 @@ x2goclient (4.0.4.0-0x2go1) UNRELEASED; urgency=low
       mode.)
     - x2goclient.pro{,.maemo}: add new help.{cpp,h} files.
     - onmainwindow.cpp: replace old help system with new one.
-    - {{onmainwindow,help}.cpp},helph}: fix misc. build errors.
+    - {{onmainwindow,help}.cpp},help.h}: fix misc. build errors.
+    - help.h: fix run time error by actually giving QTextStream a "device" to
+      write to.
 
   [ Fernando Pedemonte ]
   * New upstream release (4.0.4.0):

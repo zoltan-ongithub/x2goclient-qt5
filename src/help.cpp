@@ -152,7 +152,8 @@ QString help::pretty_print () {
 }
 
 QString help::pretty_print (help::data_t data) {
-  QTextStream out;
+  QString ret = "";
+  QTextStream out (&ret);
   out << data.first.join ("\n") << "\n";
 
   std::size_t max_len = 0;
@@ -244,8 +245,6 @@ QString help::pretty_print (help::data_t data) {
 
     out << "\n";
   }
-
-  QString ret  = out.readAll ();
 
   qCritical () << ret;
 
