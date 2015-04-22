@@ -266,6 +266,7 @@ x2goclient (4.0.4.0-0x2go1) UNRELEASED; urgency=low
     - help.cpp: complete pretty printer function.
     - help.cpp: "copy" old command line parameters.
     - help.cpp: document broker options. Fixes: #851.
+    - help.cpp: actually output the help message.
 
   [ Fernando Pedemonte ]
   * New upstream release (4.0.4.0):

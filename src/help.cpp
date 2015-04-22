@@ -236,4 +236,6 @@ void help::pretty_print (help::data_t data) {
 
     out << "\n";
   }
+
+  qCritical << out;
 }
