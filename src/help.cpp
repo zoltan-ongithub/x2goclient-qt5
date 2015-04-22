@@ -28,6 +28,8 @@
 
 /* For terminal size. */
 #ifdef Q_OS_WIN
+/* winsock2.h is not really needed, but including it silences a compile warning... */
+#include <winsock2.h>
 #include <windows.h>
 #elif defined (Q_OS_UNIX)
 #include <stdio.h>
@@ -182,7 +184,7 @@ QString help::pretty_print (help::data_t data) {
   HANDLE stderr_handle = GetStdHandle (STD_ERROR_HANDLE);
   if (stderr_handle && (stderr_handle != INVALID_HANDLE_VALUE)) {
     if (GetConsoleScreenBufferInfo (stderr_handle, &terminal_internal)) {
-      terminal_cols = (terminal_internal.srWindow.Right - terminal_internal.Left) + 1;
+      terminal_cols = (terminal_internal.srWindow.Right - terminal_internal.srWindow.Left) + 1;
     }
   }
 #elif defined (Q_OS_UNIX)

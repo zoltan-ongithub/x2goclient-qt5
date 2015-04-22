@@ -284,6 +284,8 @@ x2goclient (4.0.4.0-0x2go1) UNRELEASED; urgency=low
     - help.cpp: add support for newlines within descriptions.
     - help.cpp: use new newline feature for some options.
     - help.cpp: trying to split at hyphens was a bad idea. Remove that part.
+    - help.cpp: fix a compile warning (by including winsock2.h) and error
+      (caused by a typo) on Windows.
 
   [ Fernando Pedemonte ]
   * New upstream release (4.0.4.0):
