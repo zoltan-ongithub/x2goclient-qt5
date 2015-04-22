@@ -230,7 +230,7 @@ QString help::pretty_print (help::data_t data) {
 
         QString working_copy (*desc_split_it);
 
-        do {
+        while (!working_copy.isEmpty ()) {
           cur_len = working_copy.size ();
           x2goDebug << "Trying to fit a (remaining) description " << cur_len << " characters wide." << endl;
 
@@ -271,7 +271,7 @@ QString help::pretty_print (help::data_t data) {
               }
             }
           }
-        } while (!working_copy.isEmpty ());
+        }
       }
       else {
         /* No idea what the terminal size is. Just print it all onto one line. */
