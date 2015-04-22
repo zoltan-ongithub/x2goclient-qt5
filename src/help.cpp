@@ -103,7 +103,8 @@ help::params_t help::build_params () {
   }
 
   ADD_OPT ("--help-pack", "Shows available pack methods.");
-  ADD_OPT ("--debug", "Enables extensive debug output to the console. On Windows also enables PulseAudio logging to a file in the \".x2go/pulse\" in the USERPROFILE directory. The logs are not deleted when X2Go Client terminates.");
+  ADD_OPT ("--debug", "Enables extensive debug output to the console. On Windows also enables PulseAudio logging to a file in the \".x2go/pulse\" in the USERPROFILE directory." NEWLINE
+                      "The logs are not deleted when X2Go Client terminates.");
   ADD_OPT ("--no-menu", "Hides menu bar.");
   ADD_OPT ("--no-session-edit", "Disables session editing.");
   ADD_OPT ("--maximize", "Starts maximized.");
@@ -138,7 +139,12 @@ help::params_t help::build_params () {
   ADD_OPT ("--close-disconnect", "Automatically closes X2Go Client after a disconnect.");
   ADD_OPT ("--hide-foldersharing", "Hides all Folder-Sharing-related options.");
   ADD_OPT ("--broker-name=<name>", "Sets the broker name to display in X2Go Client. This parameter is optional.");
-  ADD_OPT ("--broker-url=<protocol>://[username@]<host>[:port]/path", "Sets the URL of the session broker. \"protocol\" must be one of \"http\", \"https\" or \"ssh\". If \"username@\" is provided, it will be pasted into the authorization dialog of X2Go Client. URL examples are: https://x2gobroker.org/cgi-bin/x2gobroker.cgi, ssh://user@x2gobroker.org:22/usr/lib/x2go/x2gobroker.pl");
+  ADD_OPT ("--broker-url=<protocol>://[username@]<host>[:port]/path", "Sets the URL of the session broker." NEWLINE
+                                                                      "\"protocol\" must be one of \"http\", \"https\" or \"ssh\"." NEWLINE
+                                                                      "If \"username@\" is provided, it will be pasted into the authorization dialog of X2Go Client." NEWLINE
+                                                                      "URL examples are:" NEWLINE
+                                                                      "    https://x2gobroker.org/cgi-bin/x2gobroker.cgi" NEWLINE
+                                                                      "    ssh://user@x2gobroker.org:22/usr/lib/x2go/x2gobroker.pl");
   ADD_OPT ("--broker-ssh-key=<path to key>", "Sets the path to an SSH key to use for authentication against an SSH session broker. The client's behavior is undefined if this flag is used for non-SSH session brokers.");
   ADD_OPT ("--broker-autologin", "Enables the use of the default SSH key or SSH agent for authentication against an SSH session broker. The client's behavior is undefined if this flag is used for non-SSH session brokers.");
   ADD_OPT ("--broker-noauth", "Does not ask for user credentials during session broker authentication. This can be useful if you are using an HTTP(S) session broker without authentication. If you run an HTTP(S) server without authentication, but with user-specific profiles, then put the user name into the broker URL (refer to --broker-url.) The user name then will be extracted from the broker URL and be sent to the session broker. The client's behavior is undefined if this flag is used for non-HTTP(S) session brokers.");

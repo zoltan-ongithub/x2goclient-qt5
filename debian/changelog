@@ -282,6 +282,7 @@ x2goclient (4.0.4.0-0x2go1) UNRELEASED; urgency=low
     - help.cpp: don't let qCritical() add even more spaces or quotes around
       the help message.
     - help.cpp: add support for newlines within descriptions.
+    - help.cpp: use new newline feature for some options.
 
   [ Fernando Pedemonte ]
   * New upstream release (4.0.4.0):
