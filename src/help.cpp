@@ -244,8 +244,8 @@ QString help::pretty_print (help::data_t data) {
             /* Do the next chunk, if there are remaining characters. */
             if (!working_copy.isEmpty ()) {
               out << "\n";
-              out << QString (" ").repeated (indent);
               indent = terminal_cols - remaining;
+              out << QString (" ").repeated (indent);
             }
           }
         }
