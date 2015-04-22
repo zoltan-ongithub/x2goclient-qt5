@@ -257,6 +257,7 @@ x2goclient (4.0.4.0-0x2go1) UNRELEASED; urgency=low
       were not correctly updated. Fixes: #828.
     - onmainwindow.cpp: quote commands for generating pulse-client.conf
       correctly, add more quotes and use absolute file path for pulse cookie.
+    - version.h: add include guard.
 
   [ Fernando Pedemonte ]
   * New upstream release (4.0.4.0):
