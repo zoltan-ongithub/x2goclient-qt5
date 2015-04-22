@@ -34,7 +34,8 @@ HEADERS += src/configdialog.h \
            src/connectionwidget.h \
            src/settingswidget.h \
            src/sharewidget.h \
-           src/clicklineedit.h
+           src/clicklineedit.h \
+           src/help.h
 
 SOURCES += src/sharewidget.cpp \
            src/settingswidget.cpp \
@@ -60,7 +61,8 @@ SOURCES += src/sharewidget.cpp \
            src/printdialog.cpp \
            src/embedwidget.cpp \
            src/wapi.cpp \
-           src/clicklineedit.cpp
+           src/clicklineedit.cpp \
+           src/help.cpp
 
 TEMPLATE = app
 TARGET =
