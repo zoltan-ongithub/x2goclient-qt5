@@ -206,6 +206,7 @@ QString help::pretty_print (help::data_t data) {
         /* Fits onto the current line. Great! */
         if (remaining > static_cast<std::ptrdiff_t> (cur_len)) {
           out << working_copy;
+          working_copy = "";
         }
         else {
           /* Try to find the next split point. */
