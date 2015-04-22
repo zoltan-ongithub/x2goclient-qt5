@@ -142,7 +142,7 @@ help::data_t help::build_data () {
   return (help::data_t (help::cleanup_prelude (help::build_prelude ()), help::cleanup_params (help::build_params ())));
 }
 
-void help::pretty_print (help::data_t data) {
+QTextStream help::pretty_print (help::data_t data) {
   help::data_t data = help::build_data ();
 
   QTextStream out << data.first.join ("\n") << "\n";
@@ -238,4 +238,6 @@ void help::pretty_print (help::data_t data) {
   }
 
   qCritical << out;
+
+  return (out);
 }

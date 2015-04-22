@@ -45,7 +45,7 @@ namespace help {
   params_t cleanup_params (params_t params);
 
   /* Prints a help_data_t structure. */
-  void pretty_print (data_t data);
+  QTextStream pretty_print (data_t data);
 }
 
 #endif /* !defined (HELP_H) */
