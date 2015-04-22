@@ -75,7 +75,7 @@ help::data_t help::build_data () {
   return (help::data_t (help::cleanup_prelude (help::build_prelude ()), help::cleanup_params (help::build_params ())));
 }
 
-help::pretty_print (help::data_t data) {
+void help::pretty_print (help::data_t data) {
   help::data_t data = help::build_data ();
 
 
