@@ -275,6 +275,8 @@ x2goclient (4.0.4.0-0x2go1) UNRELEASED; urgency=low
     - help.h: fix run time error by actually giving QTextStream a "device" to
       write to.
     - help.cpp: clear current string if completely written onto one line.
+    - help.cpp: enable debugging for pretty_print(). --debug must be supplied
+      before --help for this to work.
 
   [ Fernando Pedemonte ]
   * New upstream release (4.0.4.0):

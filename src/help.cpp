@@ -36,6 +36,8 @@
 
 #include "help.h"
 #include "version.h"
+#include "x2gologdebug.h"
+#include "onmainwindow.h"
 
 help::prelude_t help::cleanup_prelude (help::prelude_t prelude) {
   for (help::prelude_t::iterator it = prelude.begin (); it != prelude.end (); ++it) {
@@ -179,8 +181,11 @@ QString help::pretty_print (help::data_t data) {
   terminal_cols = terminal_internal.ws_col;
 #endif
 
+  x2goDebug << "Terminal cols: " << terminal_cols << endl;
+
   for (help::params_t::const_iterator it = data.second.constBegin (); it != data.second.constEnd (); ++it) {
     std::size_t indent = (max_len - (*it).first.size ()) + 4;
+    x2goDebug << "Indent: " << indent << "; max_len: " << max_len << "; param size: " << (*it).first.size () << endl;
     out << "  ";
     out << (*it).first;
     out << QString (" ").repeated (indent);
@@ -188,11 +193,14 @@ QString help::pretty_print (help::data_t data) {
     indent += 2;
     std::ptrdiff_t remaining = 0;
     std::size_t cur_len = (*it).second.size ();
+    x2goDebug << "Going to output a description " << (*it).second.size () << " chars wide." << endl;
     if (0 != terminal_cols) {
       remaining = terminal_cols - indent;
+      x2goDebug << "Still have " << remaining << " characters left on this line." << endl;
 
       /* Ran out of space? That's bad... print a newline and don't use any indentation level. */
       if (0 > remaining) {
+        x2goDebug << "Ran out of space! Will break line and start the description on a new one." << endl;
         out << "\n";
         remaining = terminal_cols;
         indent = 0;
@@ -202,9 +210,11 @@ QString help::pretty_print (help::data_t data) {
 
       do {
         cur_len = working_copy.size ();
+        x2goDebug << "Trying to fit a (remaining) description " << cur_len << " characters wide." << endl;
 
         /* Fits onto the current line. Great! */
         if (remaining > static_cast<std::ptrdiff_t> (cur_len)) {
+          x2goDebug << "Fit onto the current line. Done." << endl;
           out << working_copy;
           working_copy = "";
         }
