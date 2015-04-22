@@ -22,8 +22,7 @@
 
 #include <QPair>
 #include <QStringList>
-#include <vector>
-#include <algorithm>
+#include <QTextStream>
 
 namespace help {
   typedef QStringList prelude_t;
@@ -45,7 +44,8 @@ namespace help {
   params_t cleanup_params (params_t params);
 
   /* Prints a help_data_t structure. */
-  QTextStream pretty_print (data_t data);
+  QString pretty_print ();
+  QString pretty_print (data_t data);
 }
 
 #endif /* !defined (HELP_H) */

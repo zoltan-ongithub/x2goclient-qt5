@@ -7180,11 +7180,11 @@ void ONMainWindow::printError ( QString param )
 
 void ONMainWindow::showHelp ()
 {
-    QTextStream out = help::pretty_print ();
+    QString out = help::pretty_print ();
     if (!startHidden && !haveTerminal) {
         HelpDialog dlg (this);
         dlg.setWindowTitle (tr ("Help"));
-        dlg.setText (out.readAll ());
+        dlg.setText (out);
         dlg.exec ();
     }
 }

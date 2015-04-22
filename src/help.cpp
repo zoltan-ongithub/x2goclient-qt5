@@ -19,7 +19,12 @@
 
 #include <QCoreApplication>
 #include <QtDebug>
+#include <QTextStream>
+#include <QString>
+#include <QFile>
+#include <QObject>
 #include <cstddef>
+#include <algorithm>
 
 /* For terminal size. */
 #ifdef Q_OS_WIN
@@ -41,20 +46,20 @@ help::prelude_t help::cleanup_prelude (help::prelude_t prelude) {
 }
 
 help::params_t help::cleanup_params (help::params_t params) {
-  for (help::params_t::const_iterator params_it = params.constBegin (); params_it != params.constEnd (); ++params_it) {
-    (*params_it).first = (*params_it).first.trimmed ();
-    (*params_it).second = (*params_it).second.trimmed ();
+  for (help::params_t::iterator it = params.begin (); it != params.end (); ++it) {
+    (*it).first = (*it).first.trimmed ();
+    (*it).second = (*it).second.trimmed ();
   }
 
   return (params);
 }
 
-help::prelude_t build_prelude () {
-  help::prelude_t ret ();
+help::prelude_t help::build_prelude () {
+  help::prelude_t ret;
 
   QStringList args = QCoreApplication::arguments ();
 
-  QString ver ("X2Go Client " << VERSION);
+  QString ver ("X2Go Client " + QString (VERSION));
 
   if (QFile::exists (":/txt/git-info")) {
     QFile file (":/txt/git-info");
@@ -65,13 +70,13 @@ help::prelude_t build_prelude () {
       QString git_info (stream.readAll ().trimmed ());
 
       if (!(git_info.isEmpty ())) {
-        ver << " (Git information: " << git_info << ")";
+        ver.append (" (Git information: " + git_info + ")");
       }
     }
   }
 
   ret.append (ver);
-  ret.append ("Usage: " << args.at (0) << " [OPTION]...");
+  ret.append ("Usage: " + QString (args.at (0)) + " [OPTION]...");
   ret.append ("Options:");
   ret.append ("");
 
@@ -79,9 +84,9 @@ help::prelude_t build_prelude () {
 }
 
 help::params_t help::build_params () {
-  params_t ret ();
+  params_t ret;
 
-# define ADD_OPT(param, desc) do { ret.append (params_elem_t (params, tr (desc))) } while (0)
+# define ADD_OPT(param, desc) do { ret.append (params_elem_t (param, QObject::tr (desc))); } while (0)
   ADD_OPT ("--help", "Shows this message.");
   ADD_OPT ("--version", "Prints version information.");
 
@@ -101,7 +106,7 @@ help::params_t help::build_params () {
   ADD_OPT ("--hide", "Starts hidden (minimized to system tray where available.)");
   ADD_OPT ("--portable", "Starts in \"portable\" mode.");
   ADD_OPT ("--pgp-card", "Forces OpenPGP smart card authentication.");
-  ADD_OPT ("--xinerama", "Enables Xinerama by default.")
+  ADD_OPT ("--xinerama", "Enables Xinerama by default.");
   ADD_OPT ("--ldap-printing", "Allows client side printing in LDAP mode.");
   ADD_OPT ("--thinclient", "Enables thinclient mode. Starts without a window manager.");
   ADD_OPT ("--haltbt", "Enables shutdown button.");
@@ -142,16 +147,19 @@ help::data_t help::build_data () {
   return (help::data_t (help::cleanup_prelude (help::build_prelude ()), help::cleanup_params (help::build_params ())));
 }
 
-QTextStream help::pretty_print (help::data_t data) {
-  help::data_t data = help::build_data ();
+QString help::pretty_print () {
+  return (help::pretty_print (help::build_data ()));
+}
 
-  QTextStream out << data.first.join ("\n") << "\n";
+QString help::pretty_print (help::data_t data) {
+  QTextStream out;
+  out << data.first.join ("\n") << "\n";
 
   std::size_t max_len = 0;
 
   /* Iterate over all parameter options and get max width. */
   for (help::params_t::const_iterator it = data.second.constBegin (); it != data.second.constEnd (); ++it) {
-    max_len = std::max (max_len, (*it).first.size ());
+    max_len = std::max (max_len, static_cast<std::size_t> ((*it).first.size ()));
   }
 
   std::size_t terminal_cols = 0;
@@ -195,7 +203,7 @@ QTextStream help::pretty_print (help::data_t data) {
         cur_len = working_copy.size ();
 
         /* Fits onto the current line. Great! */
-        if (remaining > cur_len) {
+        if (remaining > static_cast<std::ptrdiff_t> (cur_len)) {
           out << working_copy;
         }
         else {
@@ -214,15 +222,15 @@ QTextStream help::pretty_print (help::data_t data) {
             out << working_copy.left (split_point);
 
             /* If we split at a hyphen, don't lose it. */
-            if (working_copy.at (split_point).compare ("-") == 0) {
-              out << "-"
+            if (working_copy.at (split_point) == '-') {
+              out << "-";
             }
 
             working_copy = working_copy.mid (split_point);
 
             /* Do the next chunk, if there are remaining characters. */
             if (!working_copy.isEmpty ()) {
-              out << "\n"
+              out << "\n";
               out << QString (" ").repeated (indent);
             }
           }
@@ -237,7 +245,9 @@ QTextStream help::pretty_print (help::data_t data) {
     out << "\n";
   }
 
-  qCritical << out;
+  QString ret  = out.readAll ();
 
-  return (out);
+  qCritical () << ret;
+
+  return (ret);
 }

@@ -271,6 +271,7 @@ x2goclient (4.0.4.0-0x2go1) UNRELEASED; urgency=low
       mode.)
     - x2goclient.pro{,.maemo}: add new help.{cpp,h} files.
     - onmainwindow.cpp: replace old help system with new one.
+    - {{onmainwindow,help}.cpp},helph}: fix misc. build errors.
 
   [ Fernando Pedemonte ]
   * New upstream release (4.0.4.0):
