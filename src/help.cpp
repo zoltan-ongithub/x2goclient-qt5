@@ -242,13 +242,7 @@ QString help::pretty_print (help::data_t data) {
           }
           else {
             /* Try to find the next split point. */
-            std::ptrdiff_t split_point_white = working_copy.lastIndexOf (" ", remaining - 1);
-            std::ptrdiff_t split_point_hyphen = working_copy.lastIndexOf ("-", remaining - 1);
-
-            /* Make sure the hyphen is part of the current line. */
-            ++split_point_hyphen;
-
-            std::ptrdiff_t split_point = std::max (split_point_white, split_point_hyphen);
+            std::ptrdiff_t split_point = working_copy.lastIndexOf (" ", remaining - 1);
 
             if (-1 == split_point) {
               /* No split point available. Just print it out and hope for better times... */
