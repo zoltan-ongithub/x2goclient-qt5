@@ -20,6 +20,15 @@
 #include <QCoreApplication>
 #include <QtDebug>
 #include <cstddef>
+
+/* For terminal size. */
+#ifdef Q_OS_WIN
+#include <windows.h>
+#elif defined (Q_OS_UNIX)
+#include <stdio.h>
+#include <sys/ioctl.h>
+#endif
+
 #include "help.h"
 #include "version.h"
 
@@ -89,5 +98,25 @@ void help::pretty_print (help::data_t data) {
     max_len = std::max (max_len, (*it).first.length ());
   }
 
-  std::size_t indent = 0;
+  std::size_t terminal_cols = 0;
+
+#ifdef Q_OS_WIN
+  CONSOLE_SCREEN_BUFFER_INFO terminal_internal;
+  HANDLE stderr_handle = GetStdHandle (STD_ERROR_HANDLE);
+  if (stderr_handle && (stderr_handle != INVALID_HANDLE_VALUE)) {
+    if (GetConsoleScreenBufferInfo (stderr_handle, &terminal_internal)) {
+      terminal_cols = (terminal_internal.srWindow.Right - terminal_internal.Left) + 1;
+    }
+  }
+#elif defined (Q_OS_UNIX)
+  struct winsize terminal_internal;
+  ioctl (0, TIOCGWINSZ, &terminal_internal);
+  terminal_cols = terminal_internal.ws_col;
+#endif
+
+  for (help::params_t::const_iterator it = data.second.constBegin (); it != data.second.constEnd (); ++it) {
+    out << "  ";
+    out << (*it).first;
+    out << QString (" ").repeated (max_len - (*it.length) + 4);
+  }
 }
