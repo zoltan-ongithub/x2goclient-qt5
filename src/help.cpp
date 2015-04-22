@@ -221,8 +221,12 @@ QString help::pretty_print (help::data_t data) {
         }
         else {
           /* Try to find the next split point. */
-          std::ptrdiff_t split_point_white = working_copy.lastIndexOf (" ", remaining);
-          std::ptrdiff_t split_point_hyphen = working_copy.lastIndexOf ("-", remaining);
+          std::ptrdiff_t split_point_white = working_copy.lastIndexOf (" ", remaining - 1);
+          std::ptrdiff_t split_point_hyphen = working_copy.lastIndexOf ("-", remaining - 1);
+
+          /* Make sure the hyphen is part of the current line. */
+          ++split_point_hyphen;
+
           std::ptrdiff_t split_point = std::max (split_point_white, split_point_hyphen);
 
           if (-1 == split_point) {
@@ -232,14 +236,11 @@ QString help::pretty_print (help::data_t data) {
           }
           else {
             /* Yay, we can split. */
+            x2goDebug << "Split onto " << working_copy.left (split_point);
             out << working_copy.left (split_point);
 
-            /* If we split at a hyphen, don't lose it. */
-            if (working_copy.at (split_point) == '-') {
-              out << "-";
-            }
-
-            working_copy = working_copy.mid (split_point);
+            x2goDebug << " and new part " << working_copy.mid (split_point + 1);
+            working_copy = working_copy.mid (split_point + 1);
 
             /* Do the next chunk, if there are remaining characters. */
             if (!working_copy.isEmpty ()) {

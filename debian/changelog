@@ -277,6 +277,8 @@ x2goclient (4.0.4.0-0x2go1) UNRELEASED; urgency=low
     - help.cpp: clear current string if completely written onto one line.
     - help.cpp: enable debugging for pretty_print(). --debug must be supplied
       before --help for this to work.
+    - help.cpp: fix splitting algorithm to step over a space character, but
+      include hyphens correctly into the current line.
 
   [ Fernando Pedemonte ]
   * New upstream release (4.0.4.0):
