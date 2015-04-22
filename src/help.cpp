@@ -190,12 +190,13 @@ QString help::pretty_print (help::data_t data) {
     out << (*it).first;
     out << QString (" ").repeated (indent);
 
+    /* Append first two spaces to the general indent level for upcoming lines. */
     indent += 2;
     std::ptrdiff_t remaining = 0;
     std::size_t cur_len = (*it).second.size ();
     x2goDebug << "Going to output a description " << (*it).second.size () << " chars wide." << endl;
     if (0 != terminal_cols) {
-      remaining = terminal_cols - indent;
+      remaining = terminal_cols - (indent + (*it).first.size ());
       x2goDebug << "Still have " << remaining << " characters left on this line." << endl;
 
       /* Ran out of space? That's bad... print a newline and don't use any indentation level. */
@@ -244,6 +245,7 @@ QString help::pretty_print (help::data_t data) {
             if (!working_copy.isEmpty ()) {
               out << "\n";
               out << QString (" ").repeated (indent);
+              indent = terminal_cols - remaining;
             }
           }
         }
