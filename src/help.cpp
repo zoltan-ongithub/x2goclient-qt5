@@ -79,7 +79,58 @@ help::prelude_t build_prelude () {
 }
 
 help::params_t help::build_params () {
+  params_t ret ();
 
+# define ADD_OPT(param, desc) do { ret.append (params_elem_t (params, tr (desc))) } while (0)
+  ADD_OPT ("--help", "Shows this message.");
+  ADD_OPT ("--version", "Prints version information.");
+
+  if (QFile::exists (":/txt/changelog")) {
+    ADD_OPT ("--changelog", "Shows the changelog.");
+  }
+
+  if (QFile::exists (":/txt/git-info")) {
+    ADD_OPT ("--git-info", "Shows git information as used at compile this. [Deprecated: please use --version.]");
+  }
+
+  ADD_OPT ("--help-pack", "Shows available pack methods.");
+  ADD_OPT ("--debug", "Enables extensive debug output to the console. On Windows also enables PulseAudio logging to a file in the \".x2go/pulse\" in the USERPROFILE directory. The logs are not deleted when X2Go Client terminates.");
+  ADD_OPT ("--no-menu", "Hides menu bar.");
+  ADD_OPT ("--no-session-edit", "Disables session editing.");
+  ADD_OPT ("--maximize", "Starts maximized.");
+  ADD_OPT ("--hide", "Starts hidden (minimized to system tray where available.)");
+  ADD_OPT ("--portable", "Starts in \"portable\" mode.");
+  ADD_OPT ("--pgp-card", "Forces OpenPGP smart card authentication.");
+  ADD_OPT ("--xinerama", "Enables Xinerama by default.")
+  ADD_OPT ("--ldap-printing", "Allows client side printing in LDAP mode.");
+  ADD_OPT ("--thinclient", "Enables thinclient mode. Starts without a window manager.");
+  ADD_OPT ("--haltbt", "Enables shutdown button.");
+  ADD_OPT ("--add-to-known-hosts", "Adds RSA key fingerprint to \".ssh/known_hosts\" if authenticity of the server can't be determined.");
+  ADD_OPT ("--ldap=<host:port:dn>", "Starts with LDAP support. Example: --ldap=ldapserver:389:o=organization,c=de");
+  ADD_OPT ("--ldap1=<host:port>", "Defines the first LDAP failover server.");
+  ADD_OPT ("--ldap2=<host:port>", "Defines the second LDAP failover server.");
+  ADD_OPT ("--ssh-port=<port>", "Defines the remote SSH server port. Default: 22.");
+  ADD_OPT ("--client-ssh-port=<port>", "Defines the local machine's SSH server port. Needed for Client-Side Printing and File Sharing support. Default: 22.");
+  ADD_OPT ("--command=<cmd>", "Sets the default command. Default: 'KDE' (Desktop Session)");
+  ADD_OPT ("--session=<session>", "Starts the session named \"session\".");
+  ADD_OPT ("--user=<username>", "Sets the user name for connecting to the remote SSH server to \"username\".");
+  ADD_OPT ("--geometry=<<W>x<H>|fullscreen>", "Sets the default window geometry. Default: 800x600.");
+  ADD_OPT ("--dpi=<dpi>", "Sets the remote X2Go Agent's DPI value to \"dpi\". Default: same as local display.");
+  ADD_OPT ("--link=<modem|isdn|adsl|wan|lan>", "Sets the default link type. Default: \"adsl\".");
+  ADD_OPT ("--pack=<packmethod>", "Sets default pack method. Default: \"16m-jpeg-9\".");
+  ADD_OPT ("--clipboard=<both|client|server|none>", "Sets the default clipboard mode. Default: \"both\".");
+  ADD_OPT ("--kbd-layout=<layout>", "Sets the default keyboard layout to \"layout\". \"layout\" may be a comma-separated list.");
+  ADD_OPT ("--kbd-type=<type>", "Sets the default keyboard type.");
+  ADD_OPT ("--home=<dir>", "Sets the user's home directory.");
+  ADD_OPT ("--set-kbd=<0|1>", "Enables or disables overwriting the current keyboard settings.");
+  ADD_OPT ("--autostart=<app>", "Automatically launches the application \"app\" on session start in Published Applications mode.");
+  ADD_OPT ("--session-conf=<file>", "Defines an alternative session config file path.");
+  ADD_OPT ("--tray-icon", "Force-enables session system tray icon.");
+  ADD_OPT ("--close-disconnect", "Automatically closes X2Go Client after a disconnect.");
+  ADD_OPT ("--hide-foldersharing", "Hides all Folder-Sharing-related options.");
+# undef ADD_OPT
+
+  return (ret);
 }
 
 help::data_t help::build_data () {
