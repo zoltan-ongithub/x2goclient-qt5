@@ -16,6 +16,7 @@
 ***************************************************************************/
 
 #include "onmainwindow_privat.h"
+#include "help.h"
 
 void x2goSession::operator = ( const x2goSession& s )
 {
@@ -7177,79 +7178,14 @@ void ONMainWindow::printError ( QString param )
     }
 }
 
-void ONMainWindow::showHelp()
+void ONMainWindow::showHelp ()
 {
-    QString helpMsg=
-        "Usage: x2goclient [Options]\n"
-        "Options:\n"
-        "--help\t\t\t\t show this message\n"
-        "--version\t\t\t show version\n";
-    if(QFile::exists(":/txt/changelog"))
-    {
-        helpMsg+="--changelog\t\t\t show changelog\n";
-    }
-    if(QFile::exists(":/txt/git-info"))
-    {
-        helpMsg+=        "--git-info\t\t\t show GIT info\n";
-
-    }
-    helpMsg+=
-        "--help-pack\t\t\t show available pack methods\n"
-        "--debug\t\t\t\t enables extensive output for console output.\n"
-        "\t\t\t\t Also, on Windows, enables pulseaudio logging to .x2go\\pulse under USERPROFILE.\n"
-        "\t\t\t\t The logs will not be deleted automatically when X2Go Client closes.\n"
-        "--no-menu\t\t\t hide menu bar\n"
-        "--no-session-edit\t\t not allow user to edit preconfigured\n"
-        "\t\t\t\t sessions\n"
-        "--maximize\t\t\t start maximized\n"
-        "--hide\t\t\t\t start hidden\n"
-        "--portable\t\t\t start in \"portable\" mode\n"
-        "--pgp-card\t\t\t use openPGP card authentication\n"
-        "--xinerama\t\t\t use Xinerama by default\n"
-        "--ldap-printing\t\t\t allow client side printing in LDAP mode\n"
-        "--thinclient\t\t\t run without window manager\n"
-        "--haltbt\t\t\t show shutdown button\n"
-        "--add-to-known-hosts\t\t add RSA key fingerprint to "
-        ".ssh/known_hosts\n"
-        "\t\t\t\t if authenticity of server can't be established\n\n"
-        "--ldap=<host:port:dn> \t\t start with LDAP support. Example:\n"
-        "\t\t\t\t --ldap=ldapserver:389:o=organization,c=de\n\n"
-        "--ldap1=<host:port>\t\t LDAP failover server #1 \n"
-        "--ldap2=<host:port>\t\t LDAP failover server #2 \n"
-        "--ssh-port=<port>\t\t connect to this port, default 22\n"
-        "--client-ssh-port=<port>\t local ssh port (for fs export), "
-        "default 22\n"
-        "--command=<cmd>\t\t\t Set default command, default value 'KDE'\n"
-        "--session=<session>\t\t Start session 'session'\n"
-        "--user=<username>\t\t select user 'username'\n"
-        "--geometry=<W>x<H>|fullscreen\t set default geometry, default "
-        "value '800x600'\n"
-        "--dpi=<dpi>\t\t\t set dpi of x2goagent to dpi, default set to same as local display\n"
-        "--link=<modem|isdn|adsl|wan|lan>\t set default link type, "
-        "default 'adsl'\n"
-        "--pack=<packmethod>\t\t set default pack method, default "
-        "'16m-jpeg-9'\n"
-        "--clipboard=<both|client|server|none>\t set default clipboard mode, "
-        "default 'both'\n"
-        "--kbd-layout=<layout>\t\t set default keyboard layout or layouts\n"
-        "\t\t\t\t comma separated\n"
-        "--kbd-type=<typed>\t\t set default keyboard type\n"
-        "--home=<dir>\t\t\t set users home directory\n"
-        "--set-kbd=<0|1>\t\t\t overwrite current keyboard settings\n"
-        "--autostart=<app> \t\t launch \"app\" by session start in \"published "
-        "applications\" mode\n"
-        "--session-conf=<file>\t\t path to alternative session config\n"
-        "--tray-icon\t\t\t force to show session trayicon\n"
-        "--close-disconnect\t\t close X2Go Client after disconnect\n"
-        "--hide-foldersharing\t\t\t hide all folder sharing related options\n";
-
-    qCritical ( "%s",helpMsg.toLocal8Bit().data() );
-    if (!startHidden && !haveTerminal)
-    {
-        HelpDialog dlg(this);
-        dlg.setWindowTitle(tr("Help"));
-        dlg.setText(helpMsg);
-        dlg.exec();
+    QTextStream out = help::pretty_print ();
+    if (!startHidden && !haveTerminal) {
+        HelpDialog dlg (this);
+        dlg.setWindowTitle (tr ("Help"));
+        dlg.setText (out.readAll ());
+        dlg.exec ();
     }
 }
 
