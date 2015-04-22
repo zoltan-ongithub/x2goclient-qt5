@@ -279,6 +279,8 @@ x2goclient (4.0.4.0-0x2go1) UNRELEASED; urgency=low
       before --help for this to work.
     - help.cpp: fix splitting algorithm to step over a space character, but
       include hyphens correctly into the current line.
+    - help.cpp: don't let qCritical() add even more spaces or quotes around
+      the help message.
 
   [ Fernando Pedemonte ]
   * New upstream release (4.0.4.0):

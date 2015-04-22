@@ -260,7 +260,7 @@ QString help::pretty_print (help::data_t data) {
     out << "\n";
   }
 
-  qCritical () << ret;
+  qCritical ().nospace () << qPrintable (ret);
 
   return (ret);
 }
