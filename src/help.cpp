@@ -18,6 +18,8 @@
  ***************************************************************************/
 
 #include <QCoreApplication>
+#include <QtDebug>
+#include <cstddef>
 #include "help.h"
 #include "version.h"
 
@@ -78,5 +80,14 @@ help::data_t help::build_data () {
 void help::pretty_print (help::data_t data) {
   help::data_t data = help::build_data ();
 
+  QTextStream out << data.first.join ("\n") << "\n";
 
+  std::size_t max_len = 0;
+
+  /* Iterate over all parameter options and get max width. */
+  for (help::params_t::const_iterator it = data.second.constBegin (); it != data.second.constEnd (); ++it) {
+    max_len = std::max (max_len, (*it).first.length ());
+  }
+
+  std::size_t indent = 0;
 }
