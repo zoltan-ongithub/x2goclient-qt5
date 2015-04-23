@@ -18,19 +18,17 @@
 
 #include "helpdialog.h"
 
-HelpDialog::HelpDialog(QWidget* parent): QDialog(parent)
-{
-    setupUi(this);
+HelpDialog::HelpDialog (QWidget *parent): QDialog (parent) {
+    setupUi (this);
 }
 
-void HelpDialog::setText(QString text)
-{
+void HelpDialog::setText (QString text) {
     QFont font ("monospace");
     font.setStyleHint (QFont::Monospace);
     plainTextEdit->setFont (font);
 
-    plainTextEdit->setTabStopWidth(30);
-    plainTextEdit->setWordWrapMode(QTextOption::NoWrap);
-    plainTextEdit->setPlainText(text);
+    plainTextEdit->setTabStopWidth (30);
+    plainTextEdit->setWordWrapMode (QTextOption::NoWrap);
+    plainTextEdit->setPlainText (text);
 }
 

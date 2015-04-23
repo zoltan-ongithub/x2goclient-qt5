@@ -20,11 +20,11 @@
 #define HELPDIALOG_H
 
 #include "ui_helpdialog.h"
-class HelpDialog:public QDialog, public Ui_HelpDialog
-{
-public:
-    HelpDialog(QWidget* parent=0);
-    void setText(QString text);
+
+class HelpDialog : public QDialog, public Ui_HelpDialog {
+  public:
+    HelpDialog (QWidget *parent = 0);
+    void setText (QString text);
 };
 
-#endif // HELPDIALOG_H
+#endif /* !defined (HELPDIALOG_H) */
