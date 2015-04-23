@@ -103,7 +103,7 @@ help::params_t help::build_params () {
   }
 
   if (QFile::exists (":/txt/git-info")) {
-    ADD_OPT ("--git-info", "Shows git information as used at compile this. [Deprecated: please use --version.]");
+    ADD_OPT ("--git-info", "Shows git information as used at compile time. [Deprecated: please use --version.]");
   }
 
   ADD_OPT ("--help-pack", "Shows available pack methods.");
