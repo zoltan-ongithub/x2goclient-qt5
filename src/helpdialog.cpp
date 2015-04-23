@@ -16,6 +16,7 @@
 *   along with this program.  If not, see <http://www.gnu.org/licenses/>. *
 ***************************************************************************/
 
+#include <QtGlobal>
 #include "helpdialog.h"
 
 HelpDialog::HelpDialog (QWidget *parent): QDialog (parent) {
@@ -24,7 +25,11 @@ HelpDialog::HelpDialog (QWidget *parent): QDialog (parent) {
 
 void HelpDialog::setText (QString text) {
     QFont font ("monospace");
+#if QT_VERSION >= 0x040700
     font.setStyleHint (QFont::Monospace);
+#else
+    font.setStyleHint (QFont::TypeWriter);
+#endif
     plainTextEdit->setFont (font);
 
     plainTextEdit->setTabStopWidth (30);

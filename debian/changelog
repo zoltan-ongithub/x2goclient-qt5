@@ -296,6 +296,8 @@ x2goclient (4.0.4.0-0x2go1) UNRELEASED; urgency=low
     - help.cpp: use new git_changelog_extract_commit_sha() helper while
       building the help prelude.
     - helpdialog.cpp: change to monospaced font.
+    - helpdialog.cpp: use QT_VERSION macro to select either a monospaced or
+      typewriter font (Qt < 4.7.0 only supports TypeWriter.)
 
   [ Fernando Pedemonte ]
   * New upstream release (4.0.4.0):
