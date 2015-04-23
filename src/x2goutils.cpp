@@ -140,3 +140,8 @@ QString git_changelog_extract_commit_sha (const QString &gitlog) {
 
   return (ret);
 }
+
+bool font_is_monospaced (const QFont &font) {
+  const QFontInfo font_info (font);
+  return (font_info.fixedPitch ());
+}

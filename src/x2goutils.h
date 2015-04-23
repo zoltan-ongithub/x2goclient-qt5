@@ -30,4 +30,6 @@ QString convert_to_rich_text (const QString &text, bool force = false);
 void show_RichText_WarningMsgBox (const QString &main_text, const QString &informative_text = "");
 QString git_changelog_extract_commit_sha (const QString &gitlog);
 
+bool font_is_monospaced (const QFont &font);
+
 #endif /* !defined (X2GOUTILS_H) */
