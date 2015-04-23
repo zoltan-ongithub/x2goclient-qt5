@@ -163,10 +163,6 @@ help::data_t help::build_data () {
   return (help::data_t (help::cleanup_prelude (help::build_prelude ()), help::cleanup_params (help::build_params ())));
 }
 
-QString help::pretty_print () {
-  return (help::pretty_print (help::build_data ()));
-}
-
 help::string_split_t help::split_long_line (QString &line, std::ptrdiff_t max_length) {
   string_split_t ret (line, "");
 
@@ -183,6 +179,10 @@ help::string_split_t help::split_long_line (QString &line, std::ptrdiff_t max_le
   }
 
   return (ret);
+}
+
+QString help::pretty_print () {
+  return (help::pretty_print (help::build_data ()));
 }
 
 QString help::pretty_print (help::data_t data) {
