@@ -301,6 +301,7 @@ x2goclient (4.0.4.0-0x2go1) UNRELEASED; urgency=low
     - x2goutils.{cpp,h}: add new font_is_monospaced() helper.
     - helpdialog.cpp: try harder to set a monospaced font.
     - helpdialog.cpp: lower font size to have more space for text.
+    - ui/helpdialog.ui: almost double the window size.
 
   [ Fernando Pedemonte ]
   * New upstream release (4.0.4.0):
