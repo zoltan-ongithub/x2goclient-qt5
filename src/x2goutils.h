@@ -28,5 +28,6 @@ QString fixup_resource_URIs (const QString& res_path);
 QString wrap_legacy_resource_URIs (const QString& res_path);
 QString convert_to_rich_text (const QString &text, bool force = false);
 void show_RichText_WarningMsgBox (const QString& main_text, const QString& informative_text = "");
+QString git_changelog_extract_commit_sha (const QString &gitlog);
 
 #endif /* !defined (X2GOUTILS_H) */

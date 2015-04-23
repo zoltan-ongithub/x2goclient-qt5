@@ -23,6 +23,8 @@
 #include <QMessageBox>
 
 #include "x2goutils.h"
+#include "onmainwindow.h"
+#include "x2gologdebug.h"
 
 QString expandHome( QString path )
 {
@@ -100,4 +102,42 @@ void show_RichText_WarningMsgBox (const QString& main_text, const QString& infor
   msg_box.setInformativeText (fixup_informative_text);
   msg_box.setWindowModality (Qt::WindowModal);
   msg_box.exec ();
+}
+
+QString git_changelog_extract_commit_sha (const QString &gitlog) {
+  QString ret = "";
+
+  /*
+   * Do a poor man's split.
+   * We know that a newline character should be somewhere at the beginning of the string.
+   * We don't need to have Qt split the string up completely as we only care about
+   * a substring: from start to the first newline character.
+   */
+  std::ptrdiff_t pos = gitlog.indexOf ("\n");
+
+  if (0 < pos) {
+    ret = gitlog.left (pos + 1);
+
+    x2goDebug << "First line of git changelog: " << ret;
+
+    pos = ret.lastIndexOf (")");
+
+    if (0 < pos) {
+      std::ptrdiff_t pos_paren_start = ret.lastIndexOf ("(");
+
+      if ((0 < pos_paren_start) && (pos_paren_start < pos)) {
+        ret = ret.mid (pos_paren_start + 1, pos - pos_paren_start - 1);
+      }
+      else {
+        // Either starting parenthesis not found or starting parenthesis comes first.
+        ret = "";
+      }
+    }
+    else {
+      // End parenthesis not found.
+      ret = "";
+    }
+  }
+
+  return (ret);
 }

@@ -290,6 +290,9 @@ x2goclient (4.0.4.0-0x2go1) UNRELEASED; urgency=low
       maximum length of parameters + 4 (for the trailing 4 spaces).
       Calculations via terminal_cols and remaining do not work, if
       terminal_cols is unknown.
+    - x2goutils.{cpp,h}: implement new git_changelog_extract_commit_sha
+      helper, extracting the most recent commit shasum from a git changelog
+      string.
 
   [ Fernando Pedemonte ]
   * New upstream release (4.0.4.0):
