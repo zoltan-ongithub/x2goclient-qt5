@@ -307,6 +307,9 @@ x2goclient (4.0.4.0-0x2go1) UNRELEASED; urgency=low
       split_long_line() function. Use this in pretty_print().
     - help.cpp: simplify pretty_print() and make it also split lines for
       non-terminal output or when the terminal width is unknown.
+    - help.{cpp,h}: add a boolean terminal_output parameter to the
+      pretty_print() function family. Controls terminal width auto-detection
+      and automatic printing to stderr.
 
   [ Fernando Pedemonte ]
   * New upstream release (4.0.4.0):

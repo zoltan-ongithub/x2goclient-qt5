@@ -181,11 +181,11 @@ help::string_split_t help::split_long_line (QString &line, std::ptrdiff_t max_le
   return (ret);
 }
 
-QString help::pretty_print () {
-  return (help::pretty_print (help::build_data ()));
+QString help::pretty_print (bool terminal_output) {
+  return (help::pretty_print (help::build_data (), terminal_output));
 }
 
-QString help::pretty_print (help::data_t data) {
+QString help::pretty_print (help::data_t data, bool terminal_output) {
   QString ret = "";
   QTextStream out (&ret);
   out << data.first.join ("\n") << "\n";
@@ -199,19 +199,21 @@ QString help::pretty_print (help::data_t data) {
 
   std::size_t terminal_cols = 0;
 
+  if (terminal_output) {
 #ifdef Q_OS_WIN
-  CONSOLE_SCREEN_BUFFER_INFO terminal_internal;
-  HANDLE stderr_handle = GetStdHandle (STD_ERROR_HANDLE);
-  if (stderr_handle && (stderr_handle != INVALID_HANDLE_VALUE)) {
-    if (GetConsoleScreenBufferInfo (stderr_handle, &terminal_internal)) {
-      terminal_cols = (terminal_internal.srWindow.Right - terminal_internal.srWindow.Left) + 1;
+    CONSOLE_SCREEN_BUFFER_INFO terminal_internal;
+    HANDLE stderr_handle = GetStdHandle (STD_ERROR_HANDLE);
+    if (stderr_handle && (stderr_handle != INVALID_HANDLE_VALUE)) {
+      if (GetConsoleScreenBufferInfo (stderr_handle, &terminal_internal)) {
+        terminal_cols = (terminal_internal.srWindow.Right - terminal_internal.srWindow.Left) + 1;
+      }
     }
-  }
 #elif defined (Q_OS_UNIX)
-  struct winsize terminal_internal;
-  ioctl (0, TIOCGWINSZ, &terminal_internal);
-  terminal_cols = terminal_internal.ws_col;
+    struct winsize terminal_internal;
+    ioctl (0, TIOCGWINSZ, &terminal_internal);
+    terminal_cols = terminal_internal.ws_col;
 #endif
+  }
 
   x2goDebug << "Terminal cols: " << terminal_cols << endl;
 
@@ -288,7 +290,9 @@ QString help::pretty_print (help::data_t data) {
     }
   }
 
-  qCritical ().nospace () << qPrintable (ret);
+  if (terminal_output) {
+    qCritical ().nospace () << qPrintable (ret);
+  }
 
   return (ret);
 }

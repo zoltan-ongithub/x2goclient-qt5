@@ -56,9 +56,15 @@ namespace help {
    */
   string_split_t split_long_line (QString &line, std::ptrdiff_t max_length = 200);
 
-  /* Prints a help_data_t structure. */
-  QString pretty_print ();
-  QString pretty_print (data_t data);
+  /*
+   * Returns a help_data_t structure as a QString.
+   * If terminal_output is true, the terminal width is probed for and the function
+   * family tries its best to adhere to the auto-detected width.
+   * Additionally, terminal_output controls whether the resulting string is
+   * printed to stderr or not.
+   */
+  QString pretty_print (bool terminal_output = true);
+  QString pretty_print (data_t data, bool terminal_output = true);
 }
 
 #endif /* !defined (HELP_H) */
