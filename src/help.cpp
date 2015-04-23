@@ -278,7 +278,7 @@ QString help::pretty_print (help::data_t data) {
 
       /* Add whitespace if description shall continue on next line. */
       if ((desc_split_it + 1) != desc_split.constEnd ()) {
-        indent = terminal_cols - remaining;
+        indent = 2 + max_len + 4;
         out << QString (" ").repeated (indent);
       }
     }
