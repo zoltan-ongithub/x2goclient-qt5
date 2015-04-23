@@ -1,6 +1,7 @@
 /**************************************************************************
 *   Copyright (C) 2005-2015 by Oleksandr Shneyder                         *
 *   o.shneyder@phoca-gmbh.de                                              *
+*   Copyright (C) 2015 by Mihai Moldovan <ionic@ionic.de>                 *
 *                                                                         *
 *   This program is free software; you can redistribute it and/or modify  *
 *   it under the terms of the GNU General Public License as published by  *
@@ -24,8 +25,10 @@ HelpDialog::HelpDialog(QWidget* parent): QDialog(parent)
 
 void HelpDialog::setText(QString text)
 {
-    text.replace("\t\t\t","\t");
-    text.replace("\t\t","\t");
+    QFont font ("monospace");
+    font.setStyleHint (QFont::Monospace);
+    plainTextEdit->setFont (font);
+
     plainTextEdit->setTabStopWidth(30);
     plainTextEdit->setWordWrapMode(QTextOption::NoWrap);
     plainTextEdit->setPlainText(text);
