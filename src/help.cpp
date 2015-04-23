@@ -249,41 +249,41 @@ QString help::pretty_print (help::data_t data) {
           remaining = terminal_cols;
           indent = 0;
         }
+      }
 
-        QString working_copy (*desc_split_it);
+      QString working_copy (*desc_split_it);
 
-        while (!working_copy.isEmpty ()) {
-          cur_len = working_copy.size ();
-          x2goDebug << "Trying to fit a (remaining) description " << cur_len << " characters wide." << endl;
+      while (!working_copy.isEmpty ()) {
+        cur_len = working_copy.size ();
+        x2goDebug << "Trying to fit a (remaining) description " << cur_len << " characters wide." << endl;
 
-          string_split_t string_split = split_long_line (working_copy, remaining);
-          working_copy = string_split.first;
+        string_split_t string_split;
 
-          /* Print potentially splitted line. */
-          out << working_copy;
-
-          /* Continue with next chunk. */
-          working_copy = string_split.second;;
-
-          /* Print whitespace if the remainder string is non-empty. */
-          if (!working_copy.isEmpty ()) {
-            out << "\n";
-            indent = terminal_cols - remaining;
-            out << QString (" ").repeated (indent);
-          }
+        if (0 != terminal_cols) {
+          string_split = split_long_line (working_copy, remaining);
         }
-      }
-      else {
-        /* No idea what the terminal size is. Just print it all onto one line. */
-        out << (*desc_split_it);
-      }
+        else {
+          /* For non-terminal printing (or if the width is unknown), use the default splitting length. */
+          string_split = split_long_line (working_copy);
+        }
 
-      out << "\n";
+        /* Print potentially splitted line. */
+        working_copy = string_split.first;
+        out << working_copy;
 
-      /* Add whitespace if description shall continue on next line. */
-      if ((desc_split_it + 1) != desc_split.constEnd ()) {
-        indent = 2 + max_len + 4;
-        out << QString (" ").repeated (indent);
+        /* Continue with next chunk. */
+        working_copy = string_split.second;;
+
+        out << "\n";
+
+        /*
+         * Print whitespace if the remainder string is non-empty
+         * or printing shall continue on next line.
+         */
+        if ((!working_copy.isEmpty ()) || ((desc_split_it + 1) != desc_split.constEnd ())) {
+          indent = 2 + max_len + 4;
+          out << QString (" ").repeated (indent);
+        }
       }
     }
   }
