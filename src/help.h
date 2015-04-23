@@ -23,12 +23,14 @@
 #include <QPair>
 #include <QStringList>
 #include <QTextStream>
+#include <cstddef>
 
 namespace help {
   typedef QStringList prelude_t;
   typedef QPair<QString, QString> params_elem_t;
   typedef QList<params_elem_t> params_t;
   typedef QPair<prelude_t, params_t> data_t;
+  typedef QPair<QString, QString> string_split_t;
 
   /* Builds a prelude_t object. Values are hardcoded here. */
   prelude_t build_prelude ();
@@ -42,6 +44,17 @@ namespace help {
   /* Cleanup functions for string trimming. */
   prelude_t cleanup_prelude (prelude_t prelude);
   params_t cleanup_params (params_t params);
+
+  /*
+   * Splits a string into two component.
+   * The first component is at most max_length (or 200) characters long.
+   * The string is split on the nearest space surrounding max_length
+   * (or max_length itself.)
+   * Caveat: if the string length is less than max_length, no splitting
+   * is performed.
+   * In that case, the second component is empty.
+   */
+  string_split_t split_long_line (QString &line, std::ptrdiff_t max_length = 200);
 
   /* Prints a help_data_t structure. */
   QString pretty_print ();

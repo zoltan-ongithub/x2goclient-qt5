@@ -167,6 +167,24 @@ QString help::pretty_print () {
   return (help::pretty_print (help::build_data ()));
 }
 
+help::string_split_t help::split_long_line (QString &line, std::ptrdiff_t max_length) {
+  string_split_t ret (line, "");
+
+  if (line.size () > max_length) {
+    /* Try to find the next split point. */
+    std::ptrdiff_t split_point = line.lastIndexOf (" ", max_length - 1);
+
+    /* Only care for valid split points. */
+    if (0 <= split_point) {
+      x2goDebug << "Split onto " << line.left (split_point) << " and new part " << line.mid (split_point + 1);
+      ret.first = line.left (split_point);
+      ret.second = line.mid (split_point + 1);
+    }
+  }
+
+  return (ret);
+}
+
 QString help::pretty_print (help::data_t data) {
   QString ret = "";
   QTextStream out (&ret);
@@ -238,36 +256,20 @@ QString help::pretty_print (help::data_t data) {
           cur_len = working_copy.size ();
           x2goDebug << "Trying to fit a (remaining) description " << cur_len << " characters wide." << endl;
 
-          /* Fits onto the current line. Great! */
-          if (remaining > static_cast<std::ptrdiff_t> (cur_len)) {
-            x2goDebug << "Fit onto the current line. Done." << endl;
-            out << working_copy;
-            working_copy = "";
-          }
-          else {
-            /* Try to find the next split point. */
-            std::ptrdiff_t split_point = working_copy.lastIndexOf (" ", remaining - 1);
+          string_split_t string_split = split_long_line (working_copy, remaining);
+          working_copy = string_split.first;
 
-            if (-1 == split_point) {
-              /* No split point available. Just print it out and hope for better times... */
-              out << working_copy;
-              working_copy = "";
-            }
-            else {
-              /* Yay, we can split. */
-              x2goDebug << "Split onto " << working_copy.left (split_point);
-              out << working_copy.left (split_point);
+          /* Print potentially splitted line. */
+          out << working_copy;
 
-              x2goDebug << " and new part " << working_copy.mid (split_point + 1);
-              working_copy = working_copy.mid (split_point + 1);
+          /* Continue with next chunk. */
+          working_copy = string_split.second;;
 
-              /* Do the next chunk, if there are remaining characters. */
-              if (!working_copy.isEmpty ()) {
-                out << "\n";
-                indent = terminal_cols - remaining;
-                out << QString (" ").repeated (indent);
-              }
-            }
+          /* Print whitespace if the remainder string is non-empty. */
+          if (!working_copy.isEmpty ()) {
+            out << "\n";
+            indent = terminal_cols - remaining;
+            out << QString (" ").repeated (indent);
           }
         }
       }
