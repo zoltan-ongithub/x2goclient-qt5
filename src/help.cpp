@@ -40,6 +40,7 @@
 #include "version.h"
 #include "x2gologdebug.h"
 #include "onmainwindow.h"
+#include "x2goutils.h"
 
 help::prelude_t help::cleanup_prelude (help::prelude_t prelude) {
   for (help::prelude_t::iterator it = prelude.begin (); it != prelude.end (); ++it) {
@@ -72,6 +73,7 @@ help::prelude_t help::build_prelude () {
       QTextStream stream (&file);
 
       QString git_info (stream.readAll ().trimmed ());
+      git_info = git_changelog_extract_commit_sha (git_info);
 
       if (!(git_info.isEmpty ())) {
         ver.append (" (Git information: " + git_info + ")");
