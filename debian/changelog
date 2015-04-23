@@ -310,6 +310,8 @@ x2goclient (4.0.4.0-0x2go1) UNRELEASED; urgency=low
     - help.{cpp,h}: add a boolean terminal_output parameter to the
       pretty_print() function family. Controls terminal width auto-detection
       and automatic printing to stderr.
+    - onmainwindow.cpp: don't let a potential terminal affect the help string
+      shown in the GUI.
 
   [ Fernando Pedemonte ]
   * New upstream release (4.0.4.0):

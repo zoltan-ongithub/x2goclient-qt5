@@ -7184,7 +7184,7 @@ void ONMainWindow::showHelp ()
     if (!startHidden && !haveTerminal) {
         HelpDialog dlg (this);
         dlg.setWindowTitle (tr ("Help"));
-        dlg.setText (out);
+        dlg.setText (help::pretty_print (false));
         dlg.exec ();
     }
 }
