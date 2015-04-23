@@ -312,6 +312,7 @@ x2goclient (4.0.4.0-0x2go1) UNRELEASED; urgency=low
       and automatic printing to stderr.
     - onmainwindow.cpp: don't let a potential terminal affect the help string
       shown in the GUI.
+    - help.h: lower default splitting length to 100 characters.
 
   [ Fernando Pedemonte ]
   * New upstream release (4.0.4.0):

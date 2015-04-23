@@ -54,7 +54,7 @@ namespace help {
    * is performed.
    * In that case, the second component is empty.
    */
-  string_split_t split_long_line (QString &line, std::ptrdiff_t max_length = 200);
+  string_split_t split_long_line (QString &line, std::ptrdiff_t max_length = 100);
 
   /*
    * Returns a help_data_t structure as a QString.
