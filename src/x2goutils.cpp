@@ -26,16 +26,15 @@
 #include "onmainwindow.h"
 #include "x2gologdebug.h"
 
-QString expandHome( QString path )
-{
-  path = path.trimmed();
-  if ( path.startsWith("~/") || path.startsWith("~\\") ) {
-      path = path.replace(QString("~"), QDir::homePath());
+QString expandHome (QString path) {
+  path = path.trimmed ();
+  if (path.startsWith ("~/") || path.startsWith ("~\\")) {
+      path = path.replace (QString ("~"), QDir::homePath ());
   }
   return path;
 }
 
-QString fixup_resource_URIs (const QString& res_path) {
+QString fixup_resource_URIs (const QString &res_path) {
   QString ret (res_path);
 
   if (!(res_path.isEmpty ())) {
@@ -47,7 +46,7 @@ QString fixup_resource_URIs (const QString& res_path) {
   return (ret);
 }
 
-QString wrap_legacy_resource_URIs (const QString& res_path) {
+QString wrap_legacy_resource_URIs (const QString &res_path) {
   QString ret (res_path);
 
   if (!(res_path.isEmpty ())) {
@@ -91,7 +90,7 @@ QString convert_to_rich_text (const QString &text, bool force) {
   return (fixup_text);
 }
 
-void show_RichText_WarningMsgBox (const QString& main_text, const QString& informative_text) {
+void show_RichText_WarningMsgBox (const QString &main_text, const QString &informative_text) {
   QString fixup_main_text (convert_to_rich_text (main_text));
   QString fixup_informative_text (convert_to_rich_text (informative_text, true));
 
