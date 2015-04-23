@@ -18,18 +18,33 @@
 
 #include <QtGlobal>
 #include "helpdialog.h"
+#include "x2goutils.h"
 
 HelpDialog::HelpDialog (QWidget *parent): QDialog (parent) {
     setupUi (this);
 }
 
 void HelpDialog::setText (QString text) {
+    /* Try real hard to get a monospaced font. */
     QFont font ("monospace");
+
+    if (!font_is_monospaced (font)) {
 #if QT_VERSION >= 0x040700
-    font.setStyleHint (QFont::Monospace);
+      font.setStyleHint (QFont::Monospace);
 #else
-    font.setStyleHint (QFont::TypeWriter);
+      font.setStyleHint (QFont::TypeWriter);
 #endif
+    }
+
+    if (!font_is_monospaced (font)) {
+      font.setFamily ("Courier New");
+    }
+
+    if (!font_is_monospaced (font)) {
+      font.setFamily ("Courier");
+    }
+
+    /* If the font is not monospaced by now, there's not much else we can do... */
     plainTextEdit->setFont (font);
 
     plainTextEdit->setTabStopWidth (30);
