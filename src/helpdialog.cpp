@@ -45,6 +45,8 @@ void HelpDialog::setText (QString text) {
     }
 
     /* If the font is not monospaced by now, there's not much else we can do... */
+    font.setPointSize (10);
+
     plainTextEdit->setFont (font);
 
     plainTextEdit->setTabStopWidth (30);
