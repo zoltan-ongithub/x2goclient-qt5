@@ -21,6 +21,8 @@
 #include <QString>
 #include <QDir>
 #include <QMessageBox>
+#include <QFont>
+#include <QFontInfo>
 
 #include "x2goutils.h"
 #include "onmainwindow.h"

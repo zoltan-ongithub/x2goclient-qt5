@@ -20,6 +20,7 @@
 #define X2GOUTILS_H
 
 #include <QString>
+#include <QFont>
 
 #define UNUSED(x) do { (void) x; } while (0)
 
