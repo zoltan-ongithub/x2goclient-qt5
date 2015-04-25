@@ -4976,30 +4976,30 @@ void ONMainWindow::slotRetResumeSess ( bool result,
             startSoundServer=false;
             QString scmd;
             if ( !sshSndTunnel )
-                scmd="echo \\\"default-server=$(echo "
-                     "$SSH_CLIENT | awk '{print $1}'):"+
+                scmd="echo \"default-server=$(echo "
+                     "\"$SSH_CLIENT\" | awk '{print $1}'):"+
                      sndPort+
-                     "\\\" > $HOME/.x2go/C-"+
+                     "\" > \"${HOME}/.x2go/C-"+
                      resumingSession.sessionId+
-                     "/.pulse-client.conf"
-                     ";echo \\\"cookie-file=${HOME}/.x2go/C-"+
+                     "/.pulse-client.conf\""
+                     ";echo \"cookie-file=${HOME}/.x2go/C-"+
                      resumingSession.sessionId+
                      "/.pulse-cookie"+
-                     "\\\" >> ${HOME}/.x2go/C-"+
+                     "\" >> \"${HOME}/.x2go/C-"+
                      resumingSession.sessionId+
-                     "/.pulse-client.conf";
+                     "/.pulse-client.conf\"";
             else
-                scmd="echo \\\"default-server=localhost:"+
+                scmd="echo \"default-server=localhost:"+
                      resumingSession.sndPort+
-                     "\\\" > $HOME/.x2go/C-"+
+                     "\" > \"${HOME}/.x2go/C-"+
                      resumingSession.sessionId+
-                     "/.pulse-client.conf"
-                     ";echo \\\"cookie-file=${HOME}/.x2go/C-"+
+                     "/.pulse-client.conf\""
+                     ";echo \"cookie-file=${HOME}/.x2go/C-"+
                      resumingSession.sessionId+
                      "/.pulse-cookie"+
-                     "\\\" >> ${HOME}/.x2go/C-"+
+                     "\" >> \"${HOME}/.x2go/C-"+
                      resumingSession.sessionId+
-                     "/.pulse-client.conf";
+                     "/.pulse-client.conf\"";
 
             sshConnection->executeCommand(scmd);
 
@@ -6292,9 +6292,9 @@ void ONMainWindow::runCommand()
             sessionType +" 1> /dev/null 2>/dev/null & exit";
         if ( startSessSndSystem ==PULSE )
         {
-            cmd="export PULSE_CLIENTCONFIG=\\\"${HOME}/.x2go/C-"+
+            cmd="export PULSE_CLIENTCONFIG=\"${HOME}/.x2go/C-"+
                 resumingSession.sessionId+
-                "/.pulse-client.conf\\\";"+cmd;
+                "/.pulse-client.conf\";"+cmd;
         }
     }
     else
@@ -6338,8 +6338,8 @@ void ONMainWindow::runCommand()
 
 void ONMainWindow::runApplication(QString exec)
 {
-    sshConnection->executeCommand ("PULSE_CLIENTCONFIG=\\\"${HOME}/.x2go/C-"+
-                                   resumingSession.sessionId+"/.pulse-client.conf\\\" DISPLAY=:"+
+    sshConnection->executeCommand ("PULSE_CLIENTCONFIG=\"${HOME}/.x2go/C-"+
+                                   resumingSession.sessionId+"/.pulse-client.conf\" DISPLAY=:"+
                                    resumingSession.display+
                                    " setsid "+exec+" 1> /dev/null 2>/dev/null & exit");
 }
@@ -11505,9 +11505,9 @@ void ONMainWindow::slotStartParec ()
     QString passwd=getCurrentPass();
     QString user=getCurrentUname();
     QString host=resumingSession.server;
-    QString scmd="PULSE_CLIENTCONFIG=\\\"${HOME}/.x2go/C-"+
+    QString scmd="PULSE_CLIENTCONFIG=\"${HOME}/.x2go/C-"+
                  resumingSession.sessionId+
-                 "/.pulse-client.conf\\\" "+
+                 "/.pulse-client.conf\" "+
                  "parec 1> /dev/null & sleep 1 && kill %1";
 }
 #endif
