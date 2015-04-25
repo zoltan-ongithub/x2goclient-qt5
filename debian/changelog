@@ -2,6 +2,7 @@ x2goclient (4.0.4.0-0x2go1) UNRELEASED; urgency=low
 
   [ Mike DePaulo ]
   * New upstream release (4.0.4.0):
+    - Windows: Upgrade bundled PulseAudio from 5.0-rev18 to 6.0-11.1
     - Windows: Update bundled VcXsrv from 1.15.2.2-xp+vc2013+x2go1 to
       1.15.2.5 (X2Go/Arctica Build)
       The differences relevant to X2Go are:
