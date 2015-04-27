@@ -8727,10 +8727,7 @@ QString ONMainWindow::getXDisplay()
         }
     }
     // And if not, error out.
-    QMessageBox::critical (
-        this,tr ( "Can't connect to X server\nPlease check your settings" ),
-        tr (
-            "Can't start X server\nPlease check your settings" ) );
+    show_XQuartz_start_error ();
     slotConfig();
     return QString::null;
 }

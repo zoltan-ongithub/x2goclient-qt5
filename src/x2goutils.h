@@ -37,4 +37,10 @@ QString git_changelog_extract_commit_sha (const QString &gitlog);
 
 bool font_is_monospaced (const QFont &font);
 
+#ifdef Q_OS_DARWIN
+void show_XQuartz_not_found_error ();
+void show_XQuartz_start_error ();
+void show_XQuartz_generic_error (const QString &main_error, const QString &additional_info);
+#endif /* defined (Q_OS_DARWIN) */
+
 #endif /* !defined (X2GOUTILS_H) */

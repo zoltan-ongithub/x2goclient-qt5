@@ -338,6 +338,12 @@ x2goclient (4.0.4.0-0x2go1) UNRELEASED; urgency=low
       PULSE_CLIENTCONFIG setting once more.
     - {macbuild,res/osxbundle/postbuild}.sh: add support for git information
       if not building from a tag. Also includes build date.
+    - {{configdialog,onmainwindow}.cpp,x2goutils.{cpp,h}}: new helper
+      functions show_XQuartz_not_found_error(), show_XQuartz_start_error() and
+      show_XQuartz_generic_error(). The first two are calling the latter one.
+      Replace previous messages in configdialog.cpp and onmainwindow.cpp with
+      the helpers, because they are supposed to pop up a dialog showing almost
+      the same message.
 
   [ Fernando Pedemonte ]
   * New upstream release (4.0.4.0):

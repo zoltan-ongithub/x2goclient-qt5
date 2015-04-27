@@ -536,24 +536,7 @@ void ConfigDialog::slot_findXDarwin ()
     QString version;
     QString path = findXDarwin (version);
     if (path.isEmpty ()) {
-        show_RichText_WarningMsgBox (tr ("x2goclient could not find any suitable X11 Server."),
-                                     tr ("MacPorts users, please install either the port <b>xorg-server</b>\n"
-                                         "or the port <b>xorg-server-devel</b>.\n"
-                                         "Upon successful installation, please follow the instructions printed\n"
-                                         "by the port utility to autostart/load the server.\n\n"
-
-                                         "All other users, please obtain and install XQuartz from:\n"
-
-                                         "<center><a href=\"https://xquartz.macosforge.org/\">"
-                                             "https://xquartz.macosforge.org/"
-                                         "</a></center>\n\n"
-
-                                         "Afterwards, restart x2goclient and\n"
-                                         "select the correct path to the X11 application.\n"
-                                         "This will most likely be\n"
-                                         "<center><b>/Applications/MacPorts/X11.app</b></center>\n"
-                                         "or\n"
-                                         "<center><b>/Applications/Utilities/XQuartz.app</b></center>"));
+      show_XQuartz_not_found_error ();
     }
     else {
         QString minVer = "2.1.0";

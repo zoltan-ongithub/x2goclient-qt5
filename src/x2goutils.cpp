@@ -147,3 +147,43 @@ bool font_is_monospaced (const QFont &font) {
   const QFontInfo font_info (font);
   return (font_info.fixedPitch ());
 }
+
+#ifdef Q_OS_DARWIN
+void show_XQuartz_not_found_error () {
+  show_XQuartz_generic_error (tr ("X2Go Client could not find any suitable X11 server."),
+                              QString ());
+}
+
+void show_XQuartz_start_error () {
+  show_XQuartz_generic_error (tr ("X2Go Client could not start X11 server."),
+                              tr ("X2Go Client requires XQuartz to be installed.\n\n"
+                                  "If XQuartz is already installed on your system,\n"
+                                  "please select the correct path in the now upcoming dialog.\n"
+                                  "Refer to the end of this message for path examples,\n"
+                                  "in case you do not know the exact location yourself.\n\n"
+                                  "Should you have <b>not</b> installed XQuartz yet, please\n"
+                                  "follow the outlined steps:\n\n"));
+}
+
+void show_XQuartz_generic_error (const QString &main_error, const QString &additional_info) {
+  show_RichText_WarningMsgBox (main_error,
+                               additional_info +
+                               tr ("MacPorts users, please install either the port <b>xorg-server</b>\n"
+                                   "or the port <b>xorg-server-devel</b>.\n"
+                                   "Upon successful installation, please follow the instructions printed\n"
+                                   "by the port utility to autostart/load the server.\n\n"
+
+                                   "All other users, please obtain and install XQuartz from:\n"
+
+                                   "<center><a href=\"https://xquartz.macosforge.org/\">"
+                                       "https://xquartz.macosforge.org/"
+                                   "</a></center>\n\n"
+
+                                   "Afterwards, restart X2Go Client and select the correct path\n"
+                                   "to the X11 application in the general X2Go Client settings.\n"
+                                   "This will most likely be\n"
+                                   "<center><b>/Applications/MacPorts/X11.app</b></center>\n"
+                                   "or\n"
+                                   "<center><b>/Applications/Utilities/XQuartz.app</b></center>"));
+}
+#endif /* defined (Q_OS_DARWIN) */
