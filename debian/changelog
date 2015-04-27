@@ -3,8 +3,12 @@ x2goclient (4.0.4.0-0x2go1) UNRELEASED; urgency=low
   [ Mike DePaulo ]
   * New upstream release (4.0.4.0):
     - Windows: Upgrade bundled PulseAudio from 5.0-rev18 to 6.0-11.1
+      (No known impacts to X2Go, except for the fact that many needed
+       patches are now included in upstream PulseAudio.)
     - Windows: Update bundled VcXsrv from 1.15.2.2-xp+vc2013+x2go1 to
       1.15.2.5 (X2Go/Arctica Build)
+      Note that X2Go Client for Windows 4.0.3.2-20150329 has this update
+      also.
       The differences relevant to X2Go are:
         + CVE-2015-0255 was fixed in VcXsrv itself
         + VcXsrv's bundled version of openssl was updated from 1.0.1k
@@ -15,6 +19,8 @@ x2goclient (4.0.4.0-0x2go1) UNRELEASED; urgency=low
           to 2.5.5 (fixes CVE-2014-9656 through CVE-2014-9675)
     - Windows: Update bundled Win32 OpenSSL from 1.0.1L to 1.0.1m,
       which fixes the multiple CVEs announced on 2015-03-19.
+      Note that X2Go Client for Windows 4.0.3.2-20150329 has this update
+      also.
     - Windows: Update bundled PuTTY from 0.63 to 0.64.
       In addition to other changes, CVE-2015-2157 has been fixed.
     - Windows: Update bundled nxproxy (nx-libs-lite) from 3.5.0.27 to
