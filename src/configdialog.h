@@ -89,7 +89,7 @@ private:
     SettingsWidget* setWidg;
     MediaWidget* mediaWidget;
 
-#if defined ( Q_OS_WIN) && defined (CFGCLIENT )
+#if defined (Q_OS_WIN) && defined (CFGCLIENT)
     XSettingsWidget* xsetWidg;
 #endif
 

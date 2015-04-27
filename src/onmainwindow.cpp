@@ -3611,7 +3611,7 @@ void ONMainWindow::startNewSession()
         if ( host==QString::null )
         {
             QMessageBox::critical ( 0l,tr ( "Error" ),
-                                    tr ( "No server availabel" ),
+                                    tr ( "No server available" ),
                                     QMessageBox::Ok,
                                     QMessageBox::NoButton );
             return;
@@ -3620,7 +3620,7 @@ void ONMainWindow::startNewSession()
         if (!sshConnection)
         {
             QMessageBox::critical ( 0l,tr ( "Error" ),
-                                    tr ( "Server not availabel" ),
+                                    tr ( "Server not available" ),
                                     QMessageBox::Ok,
                                     QMessageBox::NoButton );
             return;

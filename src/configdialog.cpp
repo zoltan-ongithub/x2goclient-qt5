@@ -413,7 +413,7 @@ void ConfigDialog::slot_accepted()
         mediaWidget->saveSettings();
         conWidg->saveSettings();
     }
-#if defined ( Q_OS_WIN) && defined (CFGCLIENT )
+#if defined (Q_OS_WIN) && defined (CFGCLIENT)
     xsetWidg->saveSettings();
 #endif
 }
@@ -654,7 +654,7 @@ void ConfigDialog::slotDefaults()
 #endif
     }
     break;
-#if defined ( Q_OS_WIN) && defined (CFGCLIENT )
+#if defined (Q_OS_WIN) && defined (CFGCLIENT)
     case 2:
     {
         xsetWidg->setDefaults();
