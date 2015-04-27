@@ -18,15 +18,29 @@ x2goclient (4.0.4.0-0x2go1) UNRELEASED; urgency=low
     - Windows: Update bundled PuTTY from 0.63 to 0.64.
       In addition to other changes, CVE-2015-2157 has been fixed.
     - Windows: Update bundled nxproxy (nx-libs-lite) from 3.5.0.27 to
-      3.5.0.28.
-    - Windows: Update bundled Cygwin openssl from 1.0.1k-1 to 1.0.2a-1.
-      This update fixes the multiple CVEs announced on 2015-03-19
-    - Windows: Update bundled Cygwin libjpeg-turbo from 1.3.1-1 to 1.3.1-3.
-      The difference is that CVE-2014-9092 has been fixed.
-    - Windows: Update bundled Cygwin libpng from 1.5.18-1 to 1.5.21-2.
-      In addition to other changes, CVE-2013-6954 has been fixed.
-      (Note: The Cygwin package name is now "libpng15" because "libpng" is
-       now 1.6.x.)
+      3.5.0.31. (bugfix & feature update)
+    - Windows: Update/Upgrade bundled Cygwin components to latest
+      versions as of 2015-04-25 (except for the Cygwin DLL, which was
+      upgraded but not to the latest version).
+      Note that all the security fixes were included in updates to
+      X2Go Client for Windows 4.0.3.2
+        + openssl 1.0.1k-1 -> 1.0.2a-1 (upgrade. includes security fixes
+          for the multiple CVEs announced on 2015-03-19.)
+        + libjpeg-turbo 1.8.1-1 -> 1.8.1-3 (security update for
+          CVE-2014-9092)
+        + libpng 1.5.21-2 -> libpng16 1.6.17-1 (upgrade, may improve X2Go
+          performance when PNG compression is selected. Also includes the
+          fix for CVE-2013-6954)
+        + gcc 4.8.3-3 -> 4.9.2-3 (upgrade, may improve X2Go performance a
+          little bit)
+        + openssh 6.6p1-3-x2go1 -> 6.8p1-1-x2go1 (upgrade, probably not
+          relevant to X2Go)
+        + cygwin (DLL) 1.7.32-1 -> 1.7.33-1 (upgrade, probably not
+          relevant to X2Go)
+        + dash 0.5.8-2 -> 0.5.8-3 (feature update, not relevant to X2Go)
+        + ncurses 5.9-20140524-1 -> 5.9-20150404-1 (update, probably
+          not relevant to X2Go)
+        + zlib 1.2.8-1 -> 1.2.8-3 (update, undocumented by Cygwin project)
     - Windows: Copy the exact version of each cygwin DLL from the cygwin
       binary tarballs rather than copying the "rebased" version from
       an X2Go developer's cygwin installation.
