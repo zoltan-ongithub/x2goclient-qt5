@@ -344,6 +344,8 @@ x2goclient (4.0.4.0-0x2go1) UNRELEASED; urgency=low
       Replace previous messages in configdialog.cpp and onmainwindow.cpp with
       the helpers, because they are supposed to pop up a dialog showing almost
       the same message.
+    - x2goutils.cpp: fix compile error. tr () is a member of QObject and must
+      be explicitly marked as such in a free function.
 
   [ Fernando Pedemonte ]
   * New upstream release (4.0.4.0):
