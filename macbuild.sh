@@ -84,6 +84,13 @@ set -e
 phase "Cleaning"
 make clean
 
+# Create gitlog.
+git --no-pager log --since "2 years ago" --format="%ai %aN (%h) %n%n%x09*%w(68,0,10) %s%d%n" > "ChangeLog.gitlog"
+mv "ChangeLog.gitlog" "res/txt/git-info"
+
+# Copy debian changelog as the general changelog.
+cp -a "debian/changelog" "res/txt/"
+
 [ -e "${BUILD_DIR}" ] && rm -rf "${BUILD_DIR}"
 
 mkdir "${BUILD_DIR}"

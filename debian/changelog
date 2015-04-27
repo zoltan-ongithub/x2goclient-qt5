@@ -336,6 +336,8 @@ x2goclient (4.0.4.0-0x2go1) UNRELEASED; urgency=low
     - help.h: lower default splitting length to 100 characters.
     - onmainwindow.cpp: fix up pulse config file generation and
       PULSE_CLIENTCONFIG setting once more.
+    - {macbuild,res/osxbundle/postbuild}.sh: add support for git information
+      if not building from a tag. Also includes build date.
 
   [ Fernando Pedemonte ]
   * New upstream release (4.0.4.0):
