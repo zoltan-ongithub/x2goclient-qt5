@@ -96,6 +96,7 @@ x2goclient (4.0.5.3-0x2go1) UNRELEASED; urgency=medium
       in header file.
     - compat.h: include QtCore/qglobal.h for Q_OS_... macros.
     - pulsemanager.{cpp,h}: new class for PulseAudio management.
+    - x2goclient.pro{,.maemo}: reference new pulsemanager.{cpp,h} files.
 
   [ Bernard Cafarelli ]
   * New upstream version (4.0.5.3):
