@@ -110,7 +110,6 @@ DMGFILE="${BUILD_DIR}/${NAME}.dmg"
 PROJECT="${TOP_DIR}/${NAME}.pro"
 PKG_DMG="${TOP_DIR}/pkg-dmg"
 
-NXPROXY="$(which nxproxy)"
 # Try to find the MacPorts prefix.
 typeset MACPORTS_PREFIX_SEARCH=""
 if type -P port >/dev/null 2>&1; then
@@ -121,6 +120,8 @@ else
 	# Try to guess.
 	MACPORTS_PREFIX_SEARCH="/opt/local/"
 fi
+
+NXPROXY="nxproxy"
 
 : ${SDK:="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk"}
 : ${MACOSX_DEPLOYMENT_TARGET:="10.7"}
@@ -163,6 +164,11 @@ else
 		exit 1
 	fi
 fi
+
+# Gather files.
+NXPROXY="$(lazy_canonical_path "${MACPORTS_PREFIX}/bin/${NXPROXY}")"
+
+[ -x "${NXPROXY}" ] || dependency_error "nxproxy" "nxproxy" "binary"
 
 set -e
 
