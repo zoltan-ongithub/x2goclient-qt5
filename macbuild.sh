@@ -279,6 +279,7 @@ set +x
 done
 
 if [ "${BUNDLE}" = "1" ]; then
+	phase "Bundling nxproxy"
 	dylibbundler \
 		--fix-file "${EXE_DIR}/nxproxy" \
 		--bundle-deps \
