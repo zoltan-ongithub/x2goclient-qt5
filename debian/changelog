@@ -101,6 +101,7 @@ x2goclient (4.0.5.3-0x2go1) UNRELEASED; urgency=medium
     - macbuild.sh: add new dependency_error() helper function.
     - macbuild.sh: add new lazy_canonical_path() helper function.
     - macbuild.sh: add new get_nesting_level() helper function.
+    - macbuild.sh: add new repeat_str() helper function.
 
   [ Bernard Cafarelli ]
   * New upstream version (4.0.5.3):
