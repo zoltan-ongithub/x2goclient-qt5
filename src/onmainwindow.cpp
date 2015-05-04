@@ -546,33 +546,28 @@ void ONMainWindow::slotSyncX()
 }
 
 
-void ONMainWindow::installTranslator()
-{
-    QTranslator* x2goclientTranslator=new QTranslator();
-    QString filename=QString ( ":/i18n/x2goclient_%1" ).arg (
-                         QLocale::system().name() );
-    filename=filename.toLower();
-    if ( !x2goclientTranslator->load ( filename ) )
-    {
-        x2goWarningf(1)<<tr("Can't load translator: ") + filename.toAscii();
+void ONMainWindow::installTranslator () {
+    QTranslator *x2goclientTranslator = new QTranslator ();
+    QString filename = QString (":/i18n/x2goclient_%1" ).arg (QLocale::system ().name ());
+    filename = filename.toLower ();
+
+    if (!x2goclientTranslator->load (filename)) {
+        x2goWarningf (1) << tr ("Can't load translator: ") + filename.toAscii ();
     }
-    else
-    {
-        QCoreApplication::installTranslator ( x2goclientTranslator );
-        x2goInfof(4)<<tr("Translator: ") + filename.toAscii() + tr(" installed.");
+    else {
+        QCoreApplication::installTranslator (x2goclientTranslator);
+        x2goInfof (4) << tr ("Translator: ") + filename.toAscii () + tr (" installed.");
     }
 
 
-    QTranslator* qtTranslator=new QTranslator;
-    filename=QString ( ":/i18n/qt_%1" ).arg ( QLocale::system().name() );
-    if ( !qtTranslator->load ( filename ) )
-    {
-        x2goWarningf(2)<<tr("Can't load translator: ") + filename.toAscii();
+    QTranslator *qtTranslator = new QTranslator;
+    filename = QString ( ":/i18n/qt_%1" ).arg (QLocale::system ().name ());
+    if (!qtTranslator->load (filename)) {
+        x2goWarningf (2) << tr ("Can't load translator: ") + filename.toAscii ();
     }
-    else
-    {
-        QCoreApplication::installTranslator ( qtTranslator );
-        x2goInfof(5)<<tr("Translator: ") + filename.toAscii() + tr(" installed.");
+    else {
+        QCoreApplication::installTranslator (qtTranslator);
+        x2goInfof (5) << tr ("Translator: ") + filename.toAscii () + tr (" installed.");
     }
 }
 
