@@ -349,6 +349,10 @@ x2goclient (4.0.4.0-0x2go1) UNRELEASED; urgency=low
     - {configdialog.{cpp,h},onmainwindow.cpp}: miscellaneous typo fixes - no
       functional changes.
     - onmainwindow.cpp: whitespace changes to installTranslator() only.
+    - onmainwindow.cpp: correctly let Qt fetch the UI display language for Qt
+      4.8.0 and higher. The old "compat" behavior is retained for older
+      versions of Qt, which do not have the semantics of a UI display
+      language. Fixes: #845.
 
   [ Fernando Pedemonte ]
   * New upstream release (4.0.4.0):

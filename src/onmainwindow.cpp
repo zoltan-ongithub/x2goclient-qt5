@@ -548,10 +548,25 @@ void ONMainWindow::slotSyncX()
 
 void ONMainWindow::installTranslator () {
     QTranslator *x2goclientTranslator = new QTranslator ();
-    QString filename = QString (":/i18n/x2goclient_%1" ).arg (QLocale::system ().name ());
-    filename = filename.toLower ();
 
+    /* Qt 4.8.0 introduced a new overload for QTranslator::load(), taking a QLocale
+     * object and loading up the UI language.
+     * Additionally, a lower-cased version is automatically added to the search
+     * list on case-sensitive file systems.
+     * We still need the original "compat" version for Qt < 4.8.0, though.
+     */
+
+    QString filename = QString (":/i18n/x2goclient");
+#if QT_VERSION < 0x040800
+    filename = QString (filename + "_%1" ).arg (QLocale::system ().name ());
+    filename = filename.toLower ();
+#endif
+
+#if QT_VERSION < 0x040800
     if (!x2goclientTranslator->load (filename)) {
+#else
+    if (!x2goclientTranslator->load (QLocale::system (), filename, "_")) {
+#endif
         x2goWarningf (1) << tr ("Can't load translator: ") + filename.toAscii ();
     }
     else {
@@ -560,9 +575,19 @@ void ONMainWindow::installTranslator () {
     }
 
 
-    QTranslator *qtTranslator = new QTranslator;
-    filename = QString ( ":/i18n/qt_%1" ).arg (QLocale::system ().name ());
+    QTranslator *qtTranslator = new QTranslator ();
+
+    filename = QString (":/i18n/qt");
+#if QT_VERSION < 0x040800
+    filename = QString (filename + "_%1" ).arg (QLocale::system ().name ());
+    filename = filename.toLower ();
+#endif
+
+#if QT_VERSION < 0x040800
     if (!qtTranslator->load (filename)) {
+#else
+    if (!qtTranslator->load (QLocale::system (), filename, "_")) {
+#endif
         x2goWarningf (2) << tr ("Can't load translator: ") + filename.toAscii ();
     }
     else {
