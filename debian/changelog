@@ -10,7 +10,7 @@ x2goclient (4.0.4.0-0x2go1) UNRELEASED; urgency=low
        patches are now included in upstream PulseAudio.)
     - Windows: Update bundled VcXsrv from 1.15.2.2-xp+vc2013+x2go1 to
       1.15.2.6 (X2Go/Arctica Build)
-      Note that X2Go Client for Windows 4.0.3.2-20150329 has this update
+      Note that X2Go Client for Windows 4.0.3.2-20150508 has this update
       also.
       The differences relevant to X2Go are:
         + CVE-2015-0255 was fixed in VcXsrv itself
