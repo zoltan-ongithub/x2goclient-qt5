@@ -29,6 +29,10 @@ x2goclient (4.0.4.0-0x2go1) UNRELEASED; urgency=low
       also.
     - Windows: Update bundled PuTTY from 0.63 to 0.64.
       In addition to other changes, CVE-2015-2157 has been fixed.
+    - Windows: Update libssh from 0.6.3 to 0.6.5 (while maintaining
+      Pageant support). This fixes CVE-2015-3146.
+      Note that X2Go Client for Windows 4.0.3.2-20150508 has this update
+      also.
     - Windows: Update bundled nxproxy (nx-libs-lite) from 3.5.0.27 to
       3.5.0.31. (bugfix & feature update)
     - Windows: Update/Upgrade bundled Cygwin components to latest
