@@ -109,7 +109,7 @@ Section "X2Go Client (required)" base
   SectionIn RO
 
   SetOutPath "$INSTDIR"
-  File /a "x2goclient\*.*"
+  File /a /x x2goclient.debug.exe "x2goclient\*.*"
   File /r "x2goclient\pulse"
   File /r /x "fonts" "x2goclient\VcXsrv"
 
@@ -206,6 +206,14 @@ Section "Desktop Shortcut" desktopshortcut
   CreateShortCut "$DESKTOP\X2Go Client.lnk" "$INSTDIR\x2goclient.exe"
 SectionEnd
 
+Section "Debug Build" debugbuild
+    SectionIn 2
+    SetOutPath "$INSTDIR"
+    File "x2goclient\x2goclient.debug.exe"
+    CreateShortCut "$INSTDIR\X2Go Client (Debug).lnk" "$INSTDIR\x2goclient.debug.exe" "--debug"
+    CreateShortCut "$SMPROGRAMS\$STARTMENU_FOLDER\X2Go Client (Debug).lnk" "$INSTDIR\x2goclient.debug.exe" "--debug"
+SectionEnd
+
 Section -EstimatedSize
   SectionIn RO
   ${GetSize} "$INSTDIR" "/S=0K" $0 $1 $2
@@ -243,6 +251,7 @@ Section "Uninstall"
   !insertmacro MUI_STARTMENU_GETFOLDER Application $MUI_TEMP
   Delete "$SMPROGRAMS\$MUI_TEMP\Uninstall.lnk"
   Delete "$SMPROGRAMS\$MUI_TEMP\X2Go Client.lnk"
+  Delete "$SMPROGRAMS\$MUI_TEMP\X2Go Client (Debug).lnk"
   Delete "$DESKTOP\X2Go Client.lnk"
   StrCpy $MUI_TEMP "$SMPROGRAMS\$MUI_TEMP"
   startMenuDeleteLoop:
