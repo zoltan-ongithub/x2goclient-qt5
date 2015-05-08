@@ -9,11 +9,14 @@ x2goclient (4.0.4.0-0x2go1) UNRELEASED; urgency=low
       (No known impacts to X2Go, except for the fact that many needed
        patches are now included in upstream PulseAudio.)
     - Windows: Update bundled VcXsrv from 1.15.2.2-xp+vc2013+x2go1 to
-      1.15.2.5 (X2Go/Arctica Build)
+      1.15.2.6 (X2Go/Arctica Build)
       Note that X2Go Client for Windows 4.0.3.2-20150329 has this update
       also.
       The differences relevant to X2Go are:
         + CVE-2015-0255 was fixed in VcXsrv itself
+        + CVE-2015-3418 was fixed in VcXsrv itself
+        + Font files no longer differ in each build due to timestamp
+          differences
         + VcXsrv's bundled version of openssl was updated from 1.0.1k
           to 1.0.1m (fixes the multiple CVEs announced on 2015-03-19)
         + VcXsrv's bundled version of libXfont was updated from 1.4.8
