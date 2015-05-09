@@ -109,7 +109,7 @@ Section "X2Go Client (required)" base
   SectionIn RO
 
   SetOutPath "$INSTDIR"
-  File /a /x x2goclient.debug.exe "x2goclient\*.*"
+  File /a /x x2goclient.debug.exe /x pageant.exe /x puttygen.exe "x2goclient\*.*"
   File /r "x2goclient\pulse"
   File /r /x "fonts" "x2goclient\VcXsrv"
 
@@ -198,6 +198,26 @@ SectionGroup "Fonts" fonts
 
 SectionGroupEnd
 
+SectionGroup "PuTTY Key Utilities" puttykeyutils
+
+  Section "Pageant" pageant
+    SectionIn 1 2
+    SetOutPath "$INSTDIR"
+    File "x2goclient\pageant.exe"
+    CreateShortCut "$INSTDIR\Pageant.lnk" "$INSTDIR\pageant.exe"
+    CreateShortCut "$SMPROGRAMS\$STARTMENU_FOLDER\Pageant.lnk" "$INSTDIR\pageant.exe"
+  SectionEnd
+
+  Section "PuTTYgen" puttygen
+    SectionIn 1 2
+    SetOutPath "$INSTDIR"
+    File "x2goclient\puttygen.exe"
+    CreateShortCut "$INSTDIR\PuTTYgen.lnk" "$INSTDIR\puttygen.exe"
+    CreateShortCut "$SMPROGRAMS\$STARTMENU_FOLDER\PuTTYgen.lnk" "$INSTDIR\puttygen.exe"
+  SectionEnd
+
+SectionGroupEnd
+
 Section "Desktop Shortcut" desktopshortcut
   SectionIn 1 2
   # When you run SetOutPath,you set the "Start in" dir for the shortcut.
@@ -231,6 +251,9 @@ LangString ADM_RIGHT ${LANG_RUSSIAN} "Для того, чтобы установить X2Go Client, не
 
 LangString DESC_base            ${LANG_ENGLISH} "The regular build of X2Go Client and all its required dependencies"
 LangString DESC_fonts           ${LANG_ENGLISH} "Fonts are required for certain legacy/proprietary apps to run properly."
+LangString DESC_puttykeyutils   ${LANG_ENGLISH} "Utilities from the PuTTY project for SSH public key authentication"
+LangString DESC_pageant         ${LANG_ENGLISH} "PuTTY SSH authentication agent. Use this to load private keys into RAM so that you are not repeatedly prompted for the key's password."
+LangString DESC_puttygen        ${LANG_ENGLISH} "PuTTY key generator && converter. Note that keys for Pageant must be in PuTTY format, but key files on disk must be in OpenSSH format."
 LangString DESC_desktopshortcut ${LANG_ENGLISH} "Desktop shortcut"
 LangString DESC_debugbuild      ${LANG_ENGLISH} "A build of X2Go Client with console debugging output. Install and use this if you are reporting a bug."
 
@@ -241,6 +264,9 @@ LangString DESC_debugbuild      ${LANG_ENGLISH} "A build of X2Go Client with con
   !insertmacro MUI_DESCRIPTION_TEXT ${fonts-75dpi}     $(DESC_fonts)
   !insertmacro MUI_DESCRIPTION_TEXT ${fonts-100dpi}    $(DESC_fonts)
   !insertmacro MUI_DESCRIPTION_TEXT ${fonts-others}    $(DESC_fonts)
+  !insertmacro MUI_DESCRIPTION_TEXT ${puttykeyutils}   $(DESC_puttykeyutils)
+  !insertmacro MUI_DESCRIPTION_TEXT ${pageant}         $(DESC_pageant)
+  !insertmacro MUI_DESCRIPTION_TEXT ${puttygen}        $(DESC_puttygen)
   !insertmacro MUI_DESCRIPTION_TEXT ${desktopshortcut} $(DESC_desktopshortcut)
   !insertmacro MUI_DESCRIPTION_TEXT ${debugbuild}      $(DESC_debugbuild)
 !Insertmacro MUI_FUNCTION_DESCRIPTION_END
@@ -264,6 +290,8 @@ Section "Uninstall"
   Delete "$SMPROGRAMS\$MUI_TEMP\Uninstall.lnk"
   Delete "$SMPROGRAMS\$MUI_TEMP\X2Go Client.lnk"
   Delete "$SMPROGRAMS\$MUI_TEMP\X2Go Client (Debug).lnk"
+  Delete "$SMPROGRAMS\$MUI_TEMP\Pageant.lnk"
+  Delete "$SMPROGRAMS\$MUI_TEMP\PuTTYgen.lnk"
   Delete "$DESKTOP\X2Go Client.lnk"
   StrCpy $MUI_TEMP "$SMPROGRAMS\$MUI_TEMP"
   startMenuDeleteLoop:
