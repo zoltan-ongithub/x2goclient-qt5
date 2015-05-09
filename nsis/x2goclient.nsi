@@ -148,7 +148,7 @@ Section "X2Go Client (required)" base
 SectionEnd
 
 ;x2goclient bug 108 fix
-SectionGroup "Fonts"
+SectionGroup "Fonts" fonts
 
   ;Empirical testing shows that "misc" fixes compatibility for the majority
   ;of applications with font compatibility programs.
@@ -229,8 +229,20 @@ LangString ADM_RIGHT ${LANG_ENGLISH} "You have to be Administrator on this compu
 LangString ADM_RIGHT ${LANG_GERMAN} "Sie brauchen Administratorenrechte um X2go Client zu installieren"
 LangString ADM_RIGHT ${LANG_RUSSIAN} "Для того, чтобы установить X2Go Client, необходимо быть администратором этого компьютера"
 
+LangString DESC_base            ${LANG_ENGLISH} "The regular build of X2Go Client and all its required dependencies"
+LangString DESC_fonts           ${LANG_ENGLISH} "Fonts are required for certain legacy/proprietary apps to run properly."
+LangString DESC_desktopshortcut ${LANG_ENGLISH} "Desktop shortcut"
+LangString DESC_debugbuild      ${LANG_ENGLISH} "A build of X2Go Client with console debugging output. Install and use this if you are reporting a bug."
 
 !Insertmacro MUI_FUNCTION_DESCRIPTION_BEGIN
+  !insertmacro MUI_DESCRIPTION_TEXT ${base}            $(DESC_base)
+  !insertmacro MUI_DESCRIPTION_TEXT ${fonts}           $(DESC_fonts)
+  !insertmacro MUI_DESCRIPTION_TEXT ${fonts-misc}      $(DESC_fonts)
+  !insertmacro MUI_DESCRIPTION_TEXT ${fonts-75dpi}     $(DESC_fonts)
+  !insertmacro MUI_DESCRIPTION_TEXT ${fonts-100dpi}    $(DESC_fonts)
+  !insertmacro MUI_DESCRIPTION_TEXT ${fonts-others}    $(DESC_fonts)
+  !insertmacro MUI_DESCRIPTION_TEXT ${desktopshortcut} $(DESC_desktopshortcut)
+  !insertmacro MUI_DESCRIPTION_TEXT ${debugbuild}      $(DESC_debugbuild)
 !Insertmacro MUI_FUNCTION_DESCRIPTION_END
 
 ;--------------------------------
