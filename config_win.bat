@@ -11,7 +11,9 @@ lrelease ..\x2goclient.pro
 
 set X2GO_CLIENT_TARGET=
 
-qmake ..\x2goclient.pro
+set config=release
+if [%1]==[debug] set config=debug console
+qmake ..\x2goclient.pro CONFIG+="%config%"
 
 cd ..
 cd x2gohelper
