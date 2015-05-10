@@ -171,6 +171,13 @@ void SshProcess::addPuttyReg(QString host, QString uuidStr)
 
 void SshProcess::rmPuttyReg(QString uuidStr)
 {
+    if (uuidStr.isEmpty())
+    {
+#ifdef DEBUG
+        x2goDebug<<"uuidStr is empty. No PuTTY session reg key to delete."<<endl;
+#endif
+        return;
+    }
 #ifdef DEBUG
     x2goDebug<<"deleting key in registry: HKEY_CURRENT_USER\\Software\\SimonTatham\\PuTTY\\Sessions\\"+uuidStr<<endl;
 #endif
