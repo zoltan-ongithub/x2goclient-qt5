@@ -22,19 +22,21 @@ x2goclient (4.0.4.0-0x2go1) UNRELEASED; urgency=low
     - Windows: Upgrade bundled PulseAudio from 5.0-rev18 to 6.0-11.1
       (No known impacts to X2Go, except for the fact that many needed
        patches are now included in upstream PulseAudio.)
-    - Windows: Update bundled VcXsrv from 1.15.2.2-xp+vc2013+x2go1 to
-      1.15.2.6 (X2Go/Arctica Build)
-      Note that X2Go Client for Windows 4.0.3.2-20150508 has this update
-      also.
+    - Windows: Upgrade bundled VcXsrv from 1.15.2.2-xp+vc2013+x2go1 to
+      1.17.0.0-1 (X2Go/Arctica Build)
+      Note that X2Go Client for Windows 4.0.3.2-20150508 has an
+      update to 1.15.2.6 (X2Go/Arctica), which fixes all the CVEs.
       The differences relevant to X2Go are:
+        + Numerous X.org components were upgraded to new major/minor
+          versions.
         + CVE-2015-0255 was fixed in VcXsrv itself
         + CVE-2015-3418 was fixed in VcXsrv itself
         + Font files no longer differ in each build due to timestamp
           differences
-        + VcXsrv's bundled version of openssl was updated from 1.0.1k
-          to 1.0.1m (fixes the multiple CVEs announced on 2015-03-19)
-        + VcXsrv's bundled version of libXfont was updated from 1.4.8
-          to 1.4.9 (Fixes CVE-2015-1802 through CVE-2015-1804)
+        + VcXsrv's bundled version of openssl was upgraded from 1.0.1k
+          to 1.0.2a (fixes the multiple CVEs announced on 2015-03-19)
+        + VcXsrv's bundled version of libXfont was upgraded from 1.4.8
+          to 1.5.1 (Fixes CVE-2015-1802 through CVE-2015-1804)
         + VcXsrv's bundled version of freetype was updated from 2.5.3
           to 2.5.5 (fixes CVE-2014-9656 through CVE-2014-9675)
     - Windows: Update bundled Win32 OpenSSL from 1.0.1L to 1.0.1m,
