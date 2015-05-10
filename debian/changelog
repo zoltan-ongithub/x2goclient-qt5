@@ -3,7 +3,7 @@ x2goclient (4.0.4.0-0x2go1) UNRELEASED; urgency=low
   [ Mike DePaulo ]
   * New upstream release (4.0.4.0):
     - Windows: Do not delete saved PuTTY sessions when Kerberos 5
-      (GSSAPI) authentication is enabled (Fixes: #625)
+      (GSSAPI) authentication is enabled (Fixes: #625/#789)
     - Windows: Include debug build in the regular installer.
       It is an optional component during the install. It is not
       installed by default.
