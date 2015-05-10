@@ -12,9 +12,10 @@
 
   RequestExecutionLevel admin
  !define VERSION "X2GOCLIENT_VERSION"
+ !define FILENAME "x2goclient-${VERSION}-setup.exe"
   Name "x2goclient ${VERSION}"
   Caption "x2goclient ${VERSION}"
-  OutFile "x2goclient-${VERSION}-setup.exe"
+  OutFile "${FILENAME}"
   !define MUI_ICON icons\win-install.ico
   !define MUI_UNICON icons\win-uninstall.ico
   ;Default installation folder
@@ -84,6 +85,21 @@ SectionEnd
   !insertmacro MUI_LANGUAGE "English"
   !insertmacro MUI_LANGUAGE "German"
   !insertmacro MUI_LANGUAGE "Russian"
+
+;------------------------------
+; File Properties
+
+  ; This gets truncated to a.b.c.d
+  VIProductVersion "${UNINSTALL_DISPLAYVERSION}"
+  VIAddVersionKey /LANG=${LANG_ENGLISH} "InternalName"     "x2goclient"
+  VIAddVersionKey /LANG=${LANG_ENGLISH} "ProductName"      "${UNINSTALL_DISPLAYNAME}"
+  VIAddVersionKey /LANG=${LANG_ENGLISH} "FileDescription"  "Installer for ${UNINSTALL_DISPLAYNAME}"
+  VIAddVersionKey /LANG=${LANG_ENGLISH} "CompanyName"      "${UNINSTALL_PUBLISHER}"
+  VIAddVersionKey /LANG=${LANG_ENGLISH} "OriginalFilename" "${FILENAME}"
+  ; Due to NSIS "Feature Request" #270, this gets overriden by VIProductVersion
+  VIAddVersionKey /LANG=${LANG_ENGLISH} "FileVersion"      "${UNINSTALL_DISPLAYVERSION}"
+  VIAddVersionKey /LANG=${LANG_ENGLISH} "ProductVersion"   "${UNINSTALL_DISPLAYVERSION}"
+  VIAddVersionKey /LANG=${LANG_ENGLISH} "LegalCopyright"   "GPL-2+"
 
 ;--------------------------------
 ;Reserve Files
