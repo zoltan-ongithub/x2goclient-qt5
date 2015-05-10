@@ -171,6 +171,9 @@ void SshProcess::addPuttyReg(QString host, QString uuidStr)
 
 void SshProcess::rmPuttyReg(QString uuidStr)
 {
+#ifdef DEBUG
+    x2goDebug<<"deleting key in registry: HKEY_CURRENT_USER\\Software\\SimonTatham\\PuTTY\\Sessions\\"+uuidStr<<endl;
+#endif
     QSettings st("HKEY_CURRENT_USER\\Software\\SimonTatham\\PuTTY\\Sessions",
                  QSettings::NativeFormat);
     st.remove(uuidStr);
