@@ -266,10 +266,16 @@ void SshProcess::start_cp(QString src, QString dst)
     {
         proc=new QProcess(this);
 #ifdef Q_OS_WIN
-//pscp don't working with paths like "~user"
-//I hope a home directories of your users are in /home/
-        dst.replace("~"+masterCon->getUser(),"/home/"+masterCon->getUser());
-        dst.replace("~","/home/"+masterCon->getUser());
+//pscp doesn't acccept paths like "~user/foo.txt" when in SFTP mode (default)
+//However, pscp does accept paths like "~/foo.txt"
+//You simply have to leave the "~/" out.
+//
+//This workaround assumes that files will never be uploaded to a home dir
+//other than the user's.
+        dst.remove("~"+masterCon->getUser()+"/");
+        dst.remove("~"+masterCon->getUser()    );
+        dst.remove("~/");
+        dst.remove("~" );
 
         QString sshString="pscp -batch -P "+
 #else
