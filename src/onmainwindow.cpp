@@ -589,8 +589,14 @@ bool ONMainWindow::get_translator (QString file_name_start, QTranslator **transl
             break;
         }
         else {
+            /*
+             * QLocale::uiLanguages() may return an unexpected format.
+             * See: https://bugreports.qt.io/browse/QTBUG-25973
+             */
+            QString tmp_locale = (*it);
+            tmp_locale.replace ("-", "_");
             load_filename = filename;
-            load_filename.append ("_").append (*it);
+            load_filename.append ("_").append (tmp_locale);
 
             if (tmp_translator->load (load_filename)) {
                 /* Some translation successfully loaded. That's good enough. */
