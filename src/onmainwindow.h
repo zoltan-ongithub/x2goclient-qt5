@@ -983,7 +983,7 @@ private:
      * Otherwise returns true and sets the translator object to loaded
      * translation.
      */
-    static bool get_translator (QString file_name_start, QTranslator **translator);
+    static bool get_translator (const QString file_name_start, QTranslator **translator) const;
 
 
 protected:

@@ -389,6 +389,7 @@ x2goclient (4.0.4.0-0x2go1) UNRELEASED; urgency=low
     - onmainwindow.h: include used types/headers.
     - onmainwindow.cpp: correctly call QLocale::uiLanguages ().
     - onmainwindow.cpp: copy strings before manipulating them.
+    - onmainwindow.h: make get_translator() const. Does not change any state.
 
   [ Fernando Pedemonte ]
   * New upstream release (4.0.4.0):
