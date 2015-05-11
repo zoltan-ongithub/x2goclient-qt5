@@ -393,6 +393,8 @@ x2goclient (4.0.4.0-0x2go1) UNRELEASED; urgency=low
     - onmainwindow.cpp: fix compile error triggered by a missing
       parenthesis/typo.
     - onmainwindow.cpp: workaround https://bugreports.qt.io/browse/QTBUG-25973.
+    - onmainwindow.h: revert const-qualifier for get_translator(). It's static
+      and can't have any cv-qualifier.
 
   [ Fernando Pedemonte ]
   * New upstream release (4.0.4.0):
