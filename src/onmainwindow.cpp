@@ -546,55 +546,87 @@ void ONMainWindow::slotSyncX()
 }
 
 
-void ONMainWindow::installTranslator () {
-    QTranslator *x2goclientTranslator = new QTranslator ();
+bool get_translator (QString file_name_start, QTranslator **translator) {
+    QTranslator *tmp_translator = new QTranslator ();
 
     /* Qt 4.8.0 introduced a new overload for QTranslator::load(), taking a QLocale
      * object and loading up the UI language.
      * Additionally, a lower-cased version is automatically added to the search
      * list on case-sensitive file systems.
-     * We still need the original "compat" version for Qt < 4.8.0, though.
+     * We still need to iterate over the UI languages list in case an English
+     * locale is in there. As we do not ship a nop-English translation, loading
+     * an English translation will always fail and the next language in the list
+     * be preferred.
+     * We also still need the original "compat" version for Qt < 4.8.0.
      */
 
-    QString filename = QString (":/i18n/x2goclient");
+    QString filename = file_name_start;
+    QStringList ui_languages;
 #if QT_VERSION < 0x040800
     filename = QString (filename + "_%1" ).arg (QLocale::system ().name ());
     filename = filename.toLower ();
-#endif
+#else /* QT_VERSION < 0x040800 */
+    ui_languages = QLocale::uiLanguages ();
+#endif /* QT_VERSION < 0x040800 */
 
 #if QT_VERSION < 0x040800
-    if (!x2goclientTranslator->load (filename)) {
-#else
-    if (!x2goclientTranslator->load (QLocale::system (), filename, "_")) {
-#endif
-        x2goWarningf (1) << tr ("Can't load translator: ") + filename.toAscii ();
+    if (tmp_translator->load (filename)) {
+        *translator = tmp_translator;
+        x2goInfof (4) << tr ("Translator: ") + filename.toAscii () + tr (" found.");
+        return (true);
     }
     else {
-        QCoreApplication::installTranslator (x2goclientTranslator);
-        x2goInfof (4) << tr ("Translator: ") + filename.toAscii () + tr (" installed.");
+        x2goWarningf (1) << tr ("Can't load translator: ") + filename.toAscii ();
+        return (false);
+    }
+#else /* QT_VERSION < 0x040800 */
+    QString load_filename = "";
+    bool translator_found = false;
+    for (QStringList::const_iterator it = ui_languages.constBegin (); it != ui_languages.constEnd (); ++it) {
+        /* Respect English locales. Don't try to load any translation, because we do not ship nop-English translations. */
+        if (*it.startsWith ("en") {
+            x2goWarningf (1) << tr ("English language requested, not loading translator");
+            break;
+        }
+        else {
+            load_filename = filename.append ("_").append (*it);
+
+            if (tmp_ranslator->load (load_filename) {
+                /* Some translation successfully loaded. That's good enough. */
+                x2goInfof (4) << tr ("Translator: ") + load_filename.toAscii () + tr (" found.");
+                translator_found = true;
+                *translator = tmp_translator;
+                break;
+            }
+            else {
+                x2goWarningf (1) << tr ("Non-fatal: can't load translator: ") + load_filename.toAscii ();
+                x2goWarningf (1) << tr ("Trying to load language with lower preference, if existent.");
+            }
+        }
     }
 
+    return (translator_found);
+#endif /* QT_VERSION < 0x040800 */
+}
+
+void ONMainWindow::installTranslator () {
+    QTranslator *x2goclientTranslator = new QTranslator ();
+
+    bool translator_found = get_translator (QString (":/i18n/x2goclient"), &x2goclientTranslator);
+
+    if (translator_found) {
+        QCoreApplication::installTranslator (x2goclientTranslator);
+    }
 
     QTranslator *qtTranslator = new QTranslator ();
 
-    filename = QString (":/i18n/qt");
-#if QT_VERSION < 0x040800
-    filename = QString (filename + "_%1" ).arg (QLocale::system ().name ());
-    filename = filename.toLower ();
-#endif
+    translator_found = get_translator (QString (":/i18n/qt"), &qtTranslator);
 
-#if QT_VERSION < 0x040800
-    if (!qtTranslator->load (filename)) {
-#else
-    if (!qtTranslator->load (QLocale::system (), filename, "_")) {
-#endif
-        x2goWarningf (2) << tr ("Can't load translator: ") + filename.toAscii ();
-    }
-    else {
+    if (translator_found) {
         QCoreApplication::installTranslator (qtTranslator);
-        x2goInfof (5) << tr ("Translator: ") + filename.toAscii () + tr (" installed.");
     }
 }
+
 
 void ONMainWindow::initWidgetsEmbed()
 {

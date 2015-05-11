@@ -964,6 +964,25 @@ private:
     QMenu* initTrayAppMenu(QString text, QPixmap icon);
     void setTrayIconToSessionIcon(QString info);
 
+    /*
+     * Tries to get the most suitable translator for the running system.
+     *
+     * The first parameter file_name_start denotes the start of a potential
+     * translation file name. Locale values will be appended to this.
+     *
+     * On Qt 4.7 and lower, only tries to fetch a translator for the
+     * main language as returned by QLocale::system().
+     * On Qt 4.8 and higher, tries to fetch the first available translator
+     * for the list returned by QLocale::uiLanguages().
+     *
+     * If no translator is available OR the best available translator
+     * is for an English locale, returns false and doesn't touch
+     * the passed translator object.
+     * Otherwise returns true and sets the translator object to loaded
+     * translation.
+     */
+    bool get_translator (QString file_name_start, QTranslator **translator);
+
 
 protected:
     virtual void closeEvent ( QCloseEvent* event );
