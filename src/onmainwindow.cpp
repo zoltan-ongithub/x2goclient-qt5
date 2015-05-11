@@ -589,7 +589,8 @@ bool ONMainWindow::get_translator (QString file_name_start, QTranslator **transl
             break;
         }
         else {
-            load_filename = filename.append ("_").append (*it);
+            load_filename = filename;
+            load_filename.append ("_").append (*it);
 
             if (tmp_ranslator->load (load_filename) {
                 /* Some translation successfully loaded. That's good enough. */
