@@ -584,7 +584,7 @@ bool ONMainWindow::get_translator (QString file_name_start, QTranslator **transl
     bool translator_found = false;
     for (QStringList::const_iterator it = ui_languages.constBegin (); it != ui_languages.constEnd (); ++it) {
         /* Respect English locales. Don't try to load any translation, because we do not ship nop-English translations. */
-        if (*it.startsWith ("en") {
+        if ((*it).startsWith ("en")) {
             x2goWarningf (1) << tr ("English language requested, not loading translator");
             break;
         }
@@ -592,7 +592,7 @@ bool ONMainWindow::get_translator (QString file_name_start, QTranslator **transl
             load_filename = filename;
             load_filename.append ("_").append (*it);
 
-            if (tmp_ranslator->load (load_filename) {
+            if (tmp_translator->load (load_filename)) {
                 /* Some translation successfully loaded. That's good enough. */
                 x2goInfof (4) << tr ("Translator: ") + load_filename.toAscii () + tr (" found.");
                 translator_found = true;

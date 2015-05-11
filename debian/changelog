@@ -390,6 +390,8 @@ x2goclient (4.0.4.0-0x2go1) UNRELEASED; urgency=low
     - onmainwindow.cpp: correctly call QLocale::uiLanguages ().
     - onmainwindow.cpp: copy strings before manipulating them.
     - onmainwindow.h: make get_translator() const. Does not change any state.
+    - onmainwindow.cpp: fix compile error triggered by a missing
+      parenthesis/typo.
 
   [ Fernando Pedemonte ]
   * New upstream release (4.0.4.0):
