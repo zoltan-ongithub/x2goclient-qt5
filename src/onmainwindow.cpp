@@ -546,7 +546,7 @@ void ONMainWindow::slotSyncX()
 }
 
 
-bool get_translator (QString file_name_start, QTranslator **translator) {
+bool ONMainWindow::get_translator (QString file_name_start, QTranslator **translator) {
     QTranslator *tmp_translator = new QTranslator ();
 
     /* Qt 4.8.0 introduced a new overload for QTranslator::load(), taking a QLocale
