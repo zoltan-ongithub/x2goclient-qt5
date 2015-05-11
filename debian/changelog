@@ -382,7 +382,7 @@ x2goclient (4.0.4.0-0x2go1) UNRELEASED; urgency=low
     - config_win.bat: enable release by default, fetch command line parameter
       and compare against debug. Enable debug and console features in that
       case.
-    - onmainwindow.cpp: follow-up to last translation fix. Actually handle
+    - onmainwindow.{cpp,h}: follow-up to last translation fix. Actually handle
       English locales correctly and don't duplicate code too much.
     - onmainwindow.{cpp,h}: make new get_translator() function static. Correct
       typo in implementation.
