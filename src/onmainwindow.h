@@ -41,6 +41,8 @@
 #include "LDAPSession.h"
 #include <QToolBar>
 #include <QSystemTrayIcon>
+#include <QTranslator>
+#include <QLocale>
 #include "sshmasterconnection.h"
 #include "non_modal_messagebox.h"
 

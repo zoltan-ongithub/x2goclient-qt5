@@ -386,6 +386,7 @@ x2goclient (4.0.4.0-0x2go1) UNRELEASED; urgency=low
       English locales correctly and don't duplicate code too much.
     - onmainwindow.{cpp,h}: make new get_translator() function static. Correct
       typo in implementation.
+    - onmainwindow.h: include used types/headers.
 
   [ Fernando Pedemonte ]
   * New upstream release (4.0.4.0):
