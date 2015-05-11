@@ -566,7 +566,7 @@ bool ONMainWindow::get_translator (QString file_name_start, QTranslator **transl
     filename = QString (filename + "_%1" ).arg (QLocale::system ().name ());
     filename = filename.toLower ();
 #else /* QT_VERSION < 0x040800 */
-    ui_languages = QLocale::uiLanguages ();
+    ui_languages = QLocale::system ().uiLanguages ();
 #endif /* QT_VERSION < 0x040800 */
 
 #if QT_VERSION < 0x040800
