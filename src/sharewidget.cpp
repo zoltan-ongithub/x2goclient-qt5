@@ -173,11 +173,11 @@ void ShareWidget::slot_openDir()
             {
                 QMessageBox::critical (
                     0l,tr ( "Error" ),
-                    tr ( "x2goclient is running in "
+                    tr ( "X2Go Client is running in "
                          "portable mode. You should "
-                         "use a path on your usb device "
+                         "use a path on your USB device "
                          "to be able to access your data "
-                         "whereever you are" ),
+                         "wherever you are." ),
                     QMessageBox::Ok,QMessageBox::NoButton );
                 slot_openDir();
                 return;

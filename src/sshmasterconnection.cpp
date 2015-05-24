@@ -1170,7 +1170,7 @@ bool SshMasterConnection::userAuthKrb()
     if (!ssh.waitForFinished(20000))
     {
         sshProcErrString=ssh.errorString();
-        authErrors<<tr("Failed to start SSH Client. Please check your installation and GSSApi configuration");
+        authErrors<<tr("Failed to start SSH Client. Please check your installation and GSSApi configuration.");
         authErrors<<sshProcErrString;
 #ifdef DEBUG
         x2goDebug<<"ssh not finished:" <<sshProcErrString<<endl;
@@ -1196,7 +1196,7 @@ bool SshMasterConnection::userAuthKrb()
 
     if (ssh.exitCode() == 0 && ssh.exitStatus() == 0 && outp== user)
         return true;
-    authErrors<<tr("Check your GSSApi configuration or choose another authentication method");
+    authErrors<<tr("Check your GSSApi configuration or choose another authentication method.");
     return false;
 }
 

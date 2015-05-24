@@ -3001,8 +3001,8 @@ void ONMainWindow::slotSshServerAuthError ( int error, QString sshMessage, SshMa
         slotSshUserAuthError ( sshMessage );
         return ;
     case SSH_SERVER_FILE_NOT_FOUND:
-        errMsg=tr ( "Could not find known host file."
-                    "If you accept the host key here, the file will be automatically created" );
+        errMsg=tr ( "Could not find known hosts file."
+                    "If you accept the host key here, the file will be automatically created." );
         break;
 
     case SSH_SERVER_NOT_KNOWN:
@@ -10194,7 +10194,7 @@ void ONMainWindow::slotConfigXinerama()
     QRect newGeometry=proxyWinGeometry();
     if (newGeometry.isNull())
     {
-        x2goWarningf(7)<< tr("Error getting window geometry (window closed)?");
+        x2goWarningf(7)<< tr("Error getting window geometry. (Did you close the window?)");
         xineramaTimer->stop();
         return;
     }
