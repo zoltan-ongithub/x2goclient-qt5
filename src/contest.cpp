@@ -145,7 +145,7 @@ void ConTest::slotError(QAbstractSocket::SocketError socketError)
 {
     QString error;
     if (socketError==QAbstractSocket::SocketTimeoutError)
-        error=tr("Socket operation timed out");
+        error=tr("Socket operation timed out.");
     else
         error=socket->errorString();
 

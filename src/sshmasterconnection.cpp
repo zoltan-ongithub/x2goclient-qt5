@@ -137,7 +137,7 @@ void SshMasterConnection::parseKnownHosts()
         fields.removeFirst();
         settings.setValue(keyName,fields.join(","));
 #ifdef DEBUG
-        x2goDebug<<"writing key in registry: HKEY_CURRENT_USER\\Software\\SimonTatham\\PuTTY\\SshHostKeys"<<endl;
+        x2goDebug<<"Writing key to registry: HKEY_CURRENT_USER\\Software\\SimonTatham\\PuTTY\\SshHostKeys"<<endl;
         x2goDebug<<keyName<<"="<<fields.join(",")<<endl;
 #endif
     }
@@ -198,15 +198,15 @@ SshMasterConnection::SshMasterConnection (QObject* parent, QString host, int por
 #ifdef DEBUG
     if (kerberos)
     {
-        x2goDebug<<"starting ssh connection with kerberos authentication"<<endl;
+        x2goDebug<<"Starting SSH connection with Kerberos authentication.";
     }
     else
     {
-        x2goDebug<<"starting ssh connection without kerberos authentication"<<endl;
+        x2goDebug<<"Starting SSH connection without Kerberos authentication.";
     }
 #endif
 #ifdef DEBUG
-    x2goDebug<<"SshMasterConnection, instance "<<this<<" created";
+    x2goDebug<<"SshMasterConnection, instance "<<this<<" created.";
 #endif
 }
 
@@ -214,7 +214,7 @@ SshMasterConnection::SshMasterConnection (QObject* parent, QString host, int por
 void SshMasterConnection::slotSshProxyConnectionOk()
 {
 #ifdef DEBUG
-    x2goDebug<<"sshproxy connected";
+    x2goDebug<<"SSH proxy connected.";
 #endif
 
 
@@ -324,7 +324,7 @@ void SshMasterConnection::checkReverseTunnelConnections()
                 address.sin_family=AF_INET;
                 address.sin_port=htons ( req.localPort );
 #ifdef DEBUG
-                x2goDebug<<"connecting to "<<req.localHost<<":"<<req.localPort<<endl;
+                x2goDebug<<"Connecting to "<<req.localHost<<":"<<req.localPort<<endl;
 #endif
 #ifndef Q_OS_WIN
                 inet_aton ( req.localHost.toAscii(), &address.sin_addr );
@@ -402,7 +402,7 @@ int SshMasterConnection::startTunnel(const QString& forwardHost, uint forwardPor
 void SshMasterConnection::slotSshProxyConnectionError(QString err1, QString err2)
 {
     breakLoop=true;
-    emit connectionError(tr("SSH proxy connection error"),err1+" "+err2);
+    emit connectionError(tr("SSH proxy connection error."),err1+" "+err2);
 }
 
 void SshMasterConnection::slotSshProxyServerAuthError(int errCode, QString err, SshMasterConnection* con)
@@ -420,7 +420,7 @@ void SshMasterConnection::slotSshProxyUserAuthError(QString err)
 void SshMasterConnection::slotSshProxyTunnelOk(int)
 {
 #ifdef DEBUG
-    x2goDebug<<"Ssh proxy tunnel established";
+    x2goDebug<<"SSH proxy tunnel established.";
 #endif
     sshProxyReady=true;
 }
@@ -429,7 +429,7 @@ void SshMasterConnection::slotSshProxyTunnelFailed(bool ,  QString output,
         int)
 {
     breakLoop=true;
-    emit connectionError(tr("Failed to create SSH proxy tunnel"), output);
+    emit connectionError(tr("Failed to create SSH proxy tunnel."), output);
 }
 
 
@@ -442,7 +442,7 @@ void SshMasterConnection::slotSshProxyServerAuthAborted()
 void SshMasterConnection::run()
 {
 #ifdef DEBUG
-    x2goDebug<<"SshMasterConnection, instance "<<this<<" entering thread";
+    x2goDebug<<"SshMasterConnection, instance "<<this<<" entering thread.";
 #endif
     if(useproxy && proxytype==PROXYSSH)
     {
@@ -478,11 +478,11 @@ void SshMasterConnection::run()
     if ( !isLibSshInited )
     {
 #ifdef DEBUG
-        x2goDebug<<"libSsh not inited yet, initting\n";
+        x2goDebug<<"libssh not initialized yet. Initializing.";
 #endif
         if ( ssh_init() !=0 )
         {
-            QString err=tr ( "Cannot initialize libssh" );
+            QString err=tr ( "Cannot initialize libssh." );
 #ifdef DEBUG
             x2goDebug<<err<<endl;
 #endif
@@ -495,7 +495,7 @@ void SshMasterConnection::run()
 #ifdef DEBUG
     else
     {
-        x2goDebug<<"already inited\n";
+        x2goDebug<<"libssh already initialized.";
     }
 #endif
 
@@ -510,7 +510,7 @@ void SshMasterConnection::run()
     my_ssh_session = ssh_new();
     if ( my_ssh_session == NULL )
     {
-        QString err=tr ( "Cannot create ssh session" );
+        QString err=tr ( "Cannot create SSH session." );
 #ifdef DEBUG
         x2goDebug<<err<<endl;
 #endif
@@ -522,7 +522,7 @@ void SshMasterConnection::run()
 #ifdef Q_OS_WIN
     ssh_options_set ( my_ssh_session, SSH_OPTIONS_SSH_DIR, (mainWnd->getHomeDirectory()+"/ssh").toLocal8Bit());
 #ifdef DEBUG
-    x2goDebug<<"setting SSH DIR to "<<(mainWnd->getHomeDirectory()+"/ssh").toLocal8Bit();
+    x2goDebug<<"Setting SSH directory to "<<(mainWnd->getHomeDirectory()+"/ssh").toLocal8Bit();
 #endif
     if (kerberos)
     {
@@ -546,7 +546,7 @@ void SshMasterConnection::run()
         proxysocket = tcpProxySocket->socketDescriptor();
         if (!tcpProxySocket->waitForConnected(30000))
         {
-            QString message=tr ( "Cannot connect to proxy server" );
+            QString message=tr ( "Cannot connect to proxy server." );
 #ifdef DEBUG
             x2goDebug<<message<<endl;
 #endif
@@ -556,12 +556,12 @@ void SshMasterConnection::run()
             return;
         }
 #ifdef DEBUG
-        x2goDebug <<  "Created HTTP proxy socket " << proxysocket << endl;
+        x2goDebug << "Created HTTP proxy socket: " << proxysocket << endl;
 #endif
         ssh_options_set( my_ssh_session, SSH_OPTIONS_FD, &proxysocket);
         ssh_set_fd_toread( my_ssh_session);
 #ifdef DEBUG
-        x2goDebug<<"Connected to HTTP proxy server " << proxyserver << ":"
+        x2goDebug<<"Connected to HTTP proxy server: " << proxyserver << ":"
                  << proxyport <<endl;
 #endif
     }
@@ -571,7 +571,7 @@ void SshMasterConnection::run()
         if(disconnectSessionFlag)
         {
 #ifdef DEBUG
-            x2goDebug<<"session already disconnected, exiting"<<endl;
+            x2goDebug<<"Session is already disconnected, exiting."<<endl;
 #endif
             return;
         }
@@ -588,7 +588,7 @@ void SshMasterConnection::run()
     if(disconnectSessionFlag)
     {
 #ifdef DEBUG
-        x2goDebug<<"session already disconnected, exiting"<<endl;
+        x2goDebug<<"Session is already disconnected, exiting."<<endl;
 #endif
         return;
     }
@@ -599,7 +599,7 @@ void SshMasterConnection::run()
         if(disconnectSessionFlag)
         {
 #ifdef DEBUG
-            x2goDebug<<"session already disconnected, exiting"<<endl;
+            x2goDebug<<"Session is already disconnected, exiting."<<endl;
 #endif
             return;
         }
@@ -626,7 +626,7 @@ void SshMasterConnection::run()
     if(disconnectSessionFlag)
     {
 #ifdef DEBUG
-        x2goDebug<<"session already disconnected, exiting"<<endl;
+        x2goDebug<<"Session is already disconnected, exiting."<<endl;
 #endif
         return;
     }
@@ -640,7 +640,7 @@ void SshMasterConnection::run()
 #ifdef Q_OS_WIN
     ssh_options_set ( my_ssh_session, SSH_OPTIONS_SSH_DIR, (mainWnd->getHomeDirectory()+"/ssh").toLocal8Bit());
 #ifdef DEBUG
-    x2goDebug<<"setting SSH DIR to "<<(mainWnd->getHomeDirectory()+"/ssh").toLocal8Bit();
+    x2goDebug<<"Setting SSH directory to "<<(mainWnd->getHomeDirectory()+"/ssh").toLocal8Bit();
 #endif
 #endif
 
@@ -649,12 +649,12 @@ void SshMasterConnection::run()
         if(disconnectSessionFlag)
         {
 #ifdef DEBUG
-            x2goDebug<<"session already disconnected, exiting"<<endl;
+            x2goDebug<<"Session is already disconnected, exiting."<<endl;
 #endif
             return;
         }
 #ifdef DEBUG
-        x2goDebug<<"user auth OK\n";
+        x2goDebug<<"User authentication OK.";
 #endif
         emit connectionOk(host);
     }
@@ -663,7 +663,7 @@ void SshMasterConnection::run()
         if(disconnectSessionFlag)
         {
 #ifdef DEBUG
-            x2goDebug<<"session already disconnected, exiting"<<endl;
+            x2goDebug<<"Session is already disconnected, exiting."<<endl;
 #endif
             return;
         }
@@ -676,7 +676,7 @@ void SshMasterConnection::run()
         {
             err=sshProcErrString;
         }
-        QString message=tr ( "Authentication failed" );
+        QString message=tr ( "Authentication failed." );
 #ifdef DEBUG
         x2goDebug<<message<<" - "<<err;
 #endif
@@ -708,18 +708,18 @@ SshMasterConnection::~SshMasterConnection()
     disconnectSessionFlag=true;
     disconnectFlagMutex.unlock();
 #ifdef DEBUG
-    x2goDebug<<"SshMasterConnection, instance "<<this<<" waiting for thread to finish";
+    x2goDebug<<"SshMasterConnection, instance "<<this<<" waiting for thread to finish.";
 #endif
     wait(15000);
 #ifdef DEBUG
-    x2goDebug<<"SshMasterConnection, instance "<<this<<" thread finished";
+    x2goDebug<<"SshMasterConnection, instance "<<this<<" thread finished.";
 #endif
     for(int i=processes.count()-1; i>=0; --i)
     {
         delete processes[i];
     }
 #ifdef DEBUG
-    x2goDebug<<"SshMasterConnection, instance "<<this<<" SshMasterConnection, instance  SshMasterConnection(0x7fce7c008aa0) deleted";
+    x2goDebug<<"SshMasterConnection, instance "<<this<<" finished destructor.";
 #endif
 }
 
@@ -729,14 +729,14 @@ void SshMasterConnection::finalizeLibSsh()
     if ( !isLibSshInited )
     {
 #ifdef DEBUG
-        x2goDebug<<"libssh not inited yet\n";
+        x2goDebug<<"libssh not initialized yet.";
 #endif
         return;
     }
 
     ssh_finalize();
 #ifdef DEBUG
-    x2goDebug<<"libssh finalized\n";
+    x2goDebug<<"libssh finalized.";
 #endif
 }
 
@@ -789,7 +789,7 @@ void SshMasterConnection::writeKnownHosts(bool write)
 int SshMasterConnection::serverAuth ( QString& errorMsg )
 {
 #ifdef DEBUG
-    x2goDebug<<"cserverAuth\n ";
+    x2goDebug<<"cserverAuth";
 #endif
 
     int state, hlen;
@@ -899,7 +899,7 @@ bool SshMasterConnection::userChallengeAuth()
                     challengeAuthVerificationCode=keyPhrase;
                     if(challengeAuthVerificationCode==QString::null)
                     {
-                        authErrors<<tr("Authentication failed");
+                        authErrors<<tr("Authentication failed.");
                         return false;
                     }
                 }
@@ -917,7 +917,7 @@ bool SshMasterConnection::userChallengeAuth()
         }
     case SSH_AUTH_SUCCESS:
 #ifdef DEBUG
-        x2goDebug<<"Challenge auth ok"<<endl;
+        x2goDebug<<"Challenge authentication OK."<<endl;
 #endif
         return true;
     case SSH_AUTH_DENIED:
@@ -954,7 +954,7 @@ bool SshMasterConnection::userAuthWithPass()
     if (method& SSH_AUTH_METHOD_INTERACTIVE)
     {
 #ifdef DEBUG
-        x2goDebug<<"Challenge authentication"<<endl;
+        x2goDebug<<"Challenge authentication requested."<<endl;
 #endif
         challengeAuthPasswordAccepted=false;
         return userChallengeAuth();
@@ -963,7 +963,7 @@ bool SshMasterConnection::userAuthWithPass()
     if (method & SSH_AUTH_METHOD_PASSWORD)
     {
 #ifdef DEBUG
-        x2goDebug<<"Password authentication"<<endl;
+        x2goDebug<<"Password authentication requested."<<endl;
 #endif
         int rc = ssh_userauth_password ( my_ssh_session, NULL, pass.toAscii() );
         if ( rc != SSH_AUTH_SUCCESS )
@@ -1034,7 +1034,7 @@ void SshMasterConnection::setKeyPhrase(QString phrase)
 bool SshMasterConnection::userAuthWithKey()
 {
 #ifdef DEBUG
-    x2goDebug<<"try authenticate user with private key" <<endl;
+    x2goDebug<<"Trying to authenticate user with private key." <<endl;
 #endif
     QString keyName=key;
     bool autoRemove=false;
@@ -1052,7 +1052,7 @@ bool SshMasterConnection::userAuthWithKey()
         fl.close();
         autoRemove=true;
 #ifdef DEBUG
-        x2goDebug<<"temporary save key in "<<keyName<<endl;
+        x2goDebug<<"Temporarily saved key in "<<keyName<<endl;
 #endif
     }
 
@@ -1094,7 +1094,7 @@ bool SshMasterConnection::userAuthWithKey()
     if (!prkey)
     {
 #ifdef DEBUG
-        x2goDebug<<"Failed to get public key from private key"<<endl;
+        x2goDebug<<"Failed to get public key from private key."<<endl;
 #endif
         privatekey_free(prkey);
         if ( autoRemove )
@@ -1115,7 +1115,7 @@ bool SshMasterConnection::userAuthWithKey()
     string_free(pubkeyStr);
 
 #ifdef DEBUG
-    x2goDebug<<"auth with key: "<<rc<<endl;
+    x2goDebug<<"Authenticating with key: "<<rc<<endl;
 #endif
 
     if ( autoRemove )
@@ -1153,7 +1153,7 @@ bool SshMasterConnection::userAuthKrb()
 #endif
 
 #ifdef DEBUG
-    x2goDebug<<"starting ssh:" <<sshCmd<<endl;
+    x2goDebug<<"Starting ssh:" <<sshCmd<<endl;
 #endif
     ssh.start(sshCmd);
 
@@ -1163,17 +1163,17 @@ bool SshMasterConnection::userAuthKrb()
         sshProcErrString=ssh.errorString();
         authErrors<<sshProcErrString;
 #ifdef DEBUG
-        x2goDebug<<"ssh start failed:" <<sshProcErrString<<endl;
+        x2goDebug<<"SSH start failed:" <<sshProcErrString<<endl;
 #endif
         return false;
     }
     if (!ssh.waitForFinished(20000))
     {
         sshProcErrString=ssh.errorString();
-        authErrors<<tr("Failed to start SSH Client. Please check your installation and GSSApi configuration.");
+        authErrors<<tr("Failed to start SSH client. Please check your installation and GSSApi configuration.");
         authErrors<<sshProcErrString;
 #ifdef DEBUG
-        x2goDebug<<"ssh not finished:" <<sshProcErrString<<endl;
+        x2goDebug<<"SSH did not finish:" <<sshProcErrString<<endl;
 #endif
 
         return false;
@@ -1181,10 +1181,10 @@ bool SshMasterConnection::userAuthKrb()
     QString outp=ssh.readAllStandardOutput();
     QString err=ssh.readAllStandardError();
 #ifdef DEBUG
-    x2goDebug<<"ssh exited\n";
-    x2goDebug<<"stdout - "<<outp<<endl;
-    x2goDebug<<"stderr - "<<err<<endl;
-    x2goDebug<<"code - "<<ssh.exitCode()<<", status - "<<ssh.exitStatus()<<endl;
+    x2goDebug<<"SSH exited.";
+    x2goDebug<<"stdout: "<<outp<<endl;
+    x2goDebug<<"stderr: "<<err<<endl;
+    x2goDebug<<"Exit code: "<<ssh.exitCode()<<"; status: "<<ssh.exitStatus()<<endl;
 #endif
 
     QString begin_marker = "X2GODATABEGIN:"+uuidStr+"\n";
@@ -1245,11 +1245,11 @@ void SshMasterConnection::addChannelConnection ( SshProcess* creator, QString uu
     con.command=cmd;
     con.uuid=uuid;
 
-    x2goDebug << "locking SSH channel connection MUTEX.";
+    x2goDebug << "Locking SSH channel connection MUTEX.";
     channelConnectionsMutex.lock();
-    x2goDebug << "passing con to channelConnections.";
+    x2goDebug << "Passing new channel conenction object to channelConnections.";
     channelConnections<<con;
-    x2goDebug << "unlocking SSH channel connection MUTEX.";
+    x2goDebug << "Unlocking SSH channel connection MUTEX.";
     channelConnectionsMutex.unlock();
 }
 
@@ -1282,7 +1282,7 @@ void SshMasterConnection::copy()
         if ( scp == NULL )
         {
 #ifdef DEBUG
-            x2goDebug<<"Error allocating scp session: "<< ssh_get_error ( my_ssh_session ) <<endl;
+            x2goDebug<<"Error allocating SCP session: "<< ssh_get_error ( my_ssh_session ) <<endl;
 #endif
             return;
         }
@@ -1290,7 +1290,7 @@ void SshMasterConnection::copy()
         if ( rc != SSH_OK )
         {
 #ifdef DEBUG
-            x2goDebug<<"Error initializing scp session: "<< ssh_get_error ( my_ssh_session ) <<endl;
+            x2goDebug<<"Error initializing SCP session: "<< ssh_get_error ( my_ssh_session ) <<endl;
 #endif
             ssh_scp_free ( scp );
             return;
@@ -1356,7 +1356,7 @@ void SshMasterConnection::channelLoop()
         if ( disconnect )
         {
 #ifdef DEBUG
-            x2goDebug<<"Disconnecting..."<<endl;
+            x2goDebug<<"Disconnecting ..."<<endl;
 #endif
 
             if (useproxy && proxytype==PROXYSSH&&sshProxy)
@@ -1367,7 +1367,7 @@ void SshMasterConnection::channelLoop()
 
             channelConnectionsMutex.lock();
 #ifdef DEBUG
-            x2goDebug<<"Deleting channel connections"<<endl;
+            x2goDebug<<"Deleting channel connections."<<endl;
 #endif
             for ( int i=0; i<channelConnections.size(); ++i )
             {
@@ -1375,20 +1375,20 @@ void SshMasterConnection::channelLoop()
             }
             channelConnectionsMutex.unlock();
 #ifdef DEBUG
-            x2goDebug<<"Disconnect session"<<endl;
+            x2goDebug<<"Disconnecting session."<<endl;
 #endif
             ssh_disconnect ( my_ssh_session );
             ssh_free ( my_ssh_session );
 
 #ifdef DEBUG
-            x2goDebug<<"Delete sockets"<<endl;
+            x2goDebug<<"Deleting sockets."<<endl;
 #endif
             if (tcpProxySocket != NULL)
                 delete tcpProxySocket;
             if (tcpNetworkProxy != NULL)
                 delete tcpNetworkProxy;
 #ifdef DEBUG
-            x2goDebug<<"All channels closed, session disconnected, quiting session loop"<<endl;
+            x2goDebug<<"All channels closed and session disconnected. Quiting session loop."<<endl;
 #endif
             quit();
             return;
@@ -1437,17 +1437,17 @@ void SshMasterConnection::channelLoop()
             if ( channelConnections.at ( i ).channel==0l )
             {
 #ifdef DEBUG
-                x2goDebug<<"creating new channel"<<endl;
+                x2goDebug<<"Creating new channel."<<endl;
 #endif
                 ssh_channel channel=channel_new ( my_ssh_session );
 #ifdef DEBUG
-                x2goDebug<<"new channel:"<<channel<<endl;
+                x2goDebug<<"New channel:"<<channel<<endl;
 #endif
                 channelConnections[i].channel=channel;
                 if ( tcpSocket>0 )
                 {
 #ifdef DEBUG
-                    x2goDebug<<"forwarding new channel, local port: "<<channelConnections.at ( i ).localPort<<endl;
+                    x2goDebug<<"Forwarding new channel, local port: "<<channelConnections.at ( i ).localPort<<endl;
 #endif
                     if ( channel_open_forward ( channel,
                                                 channelConnections.at ( i ).forwardHost.toAscii(),
@@ -1456,7 +1456,7 @@ void SshMasterConnection::channelLoop()
                                                 channelConnections.at ( i ).localPort ) != SSH_OK )
                     {
                         QString err=ssh_get_error ( my_ssh_session );
-                        QString errorMsg=tr ( "channel_open_forward failed" );
+                        QString errorMsg=tr ( "channel_open_forward failed." );
                         emit ioErr ( channelConnections[i].creator, errorMsg, err );
 #ifdef DEBUG
                         x2goDebug<<errorMsg<<": "<<err<<endl;
@@ -1465,19 +1465,19 @@ void SshMasterConnection::channelLoop()
 #ifdef DEBUG
                     else
                     {
-                        x2goDebug<<" new channel forwarded"<<endl;
+                        x2goDebug<<"New channel forwarded."<<endl;
                     }
 #endif
                 }
                 else
                 {
 #ifdef DEBUG
-                    x2goDebug<<"executing remote: "<<channelConnections.at ( i ).command<<endl;
+                    x2goDebug<<"Executing remote: "<<channelConnections.at ( i ).command<<endl;
 #endif
                     if ( channel_open_session ( channel ) !=SSH_OK )
                     {
                         QString err=ssh_get_error ( my_ssh_session );
-                        QString errorMsg=tr ( "channel_open_session failed" );
+                        QString errorMsg=tr ( "channel_open_session failed." );
                         emit ioErr ( channelConnections[i].creator, errorMsg, err );
 #ifdef DEBUG
                         x2goDebug<<errorMsg<<": "<<err<<endl;
@@ -1495,7 +1495,7 @@ void SshMasterConnection::channelLoop()
 #ifdef DEBUG
                     else
                     {
-                        x2goDebug<<" new exec channel created"<<endl;
+                        x2goDebug<<"New exec channel created."<<endl;
                     }
 #endif
                 }
@@ -1513,7 +1513,7 @@ void SshMasterConnection::channelLoop()
         if ( retval == -1 )
         {
 #ifdef DEBUG
-            x2goDebug<<"select error\n";
+            x2goDebug<<"select() error.";
 #endif
             continue;
         }
@@ -1544,7 +1544,7 @@ void SshMasterConnection::channelLoop()
             if ( rez==SSH_EOF )
             {
 #ifdef DEBUG
-                x2goDebug<<"EOF ON CHANNEL "<<channel<<" (SshProcess: "<<channelConnections[i].creator->pid<<")"<<endl;
+                x2goDebug<<"EOF on channel "<<channel<<"; SshProcess PID: "<<channelConnections[i].creator->pid<<<<endl;
 #endif
                 //////Finished////////
                 finalize ( i );
@@ -1565,9 +1565,9 @@ void SshMasterConnection::channelLoop()
                     {
                         if ( send ( tcpSocket,buffer, nbytes,0 ) != nbytes )
                         {
-                            QString errMsg=tr ( "error writing to socket" );
+                            QString errMsg=tr ( "Error writing to socket." );
 #ifdef DEBUG
-                            x2goDebug<<"error writing "<<nbytes<<" to tcp socket"<<tcpSocket<<endl;
+                            x2goDebug<<"Error writing "<<nbytes<<" to TCP socket"<<tcpSocket<<endl;
 #endif
                             emit ioErr ( channelConnections[i].creator,errMsg,"" );
                             finalize ( i );
@@ -1587,7 +1587,7 @@ void SshMasterConnection::channelLoop()
                 {
                     //////ERROR!!!!!////////
                     QString err=ssh_get_error ( my_ssh_session );
-                    QString errorMsg=tr ( "error reading channel" );
+                    QString errorMsg=tr ( "Error reading channel." );
                     emit ioErr ( channelConnections[i].creator, errorMsg, err );
 #ifdef DEBUG
                     x2goDebug<<errorMsg<<" - "<<err<<endl;
@@ -1599,7 +1599,7 @@ void SshMasterConnection::channelLoop()
                 if ( channel_is_eof ( channel ) )
                 {
 #ifdef DEBUG
-                    x2goDebug<<"EOF ON CHANNEL "<<channel<<" (SshProcess: "<<channelConnections[i].creator->pid<<")"<<endl;
+                    x2goDebug<<"EOF on channel "<<channel<<"; SshProcess PID: "<<channelConnections[i].creator->pid<<endl;
 #endif
                     //////Finished////////
                     finalize ( i );
@@ -1621,7 +1621,7 @@ void SshMasterConnection::channelLoop()
                     if ( channel_write ( channel, buffer, nbytes ) !=nbytes )
                     {
                         QString err=ssh_get_error ( my_ssh_session );
-                        QString errorMsg=tr ( "channel_write failed" );
+                        QString errorMsg=tr ( "channel_write failed." );
                         emit ioErr ( channelConnections[i].creator, errorMsg, err );
 #ifdef DEBUG
                         x2goDebug<<errorMsg<<" - "<<err<<endl;
@@ -1637,7 +1637,7 @@ void SshMasterConnection::channelLoop()
                 {
                     //////ERROR!!!!!////////
                     QString err="";
-                    QString errorMsg=tr ( "error reading tcp socket" );
+                    QString errorMsg=tr ( "Error reading from TCP socket." );
                     emit ioErr ( channelConnections[i].creator, errorMsg, err );
 #ifdef DEBUG
                     x2goDebug<<errorMsg<<" - "<<err<<endl;
@@ -1648,7 +1648,7 @@ void SshMasterConnection::channelLoop()
                 if ( nbytes==0 )
                 {
 #ifdef DEBUG
-                    x2goDebug<<"socket closed "<<tcpSocket<<endl;
+                    x2goDebug<<"Socket "<<tcpSocket<<" closed."<<endl;
 #endif
                     finalize ( i );
                     continue;
@@ -1667,11 +1667,11 @@ void SshMasterConnection::finalize ( int item )
     {
         channel_send_eof ( channel );
 #ifdef DEBUG
-        x2goDebug<<"eof sent\n";
+        x2goDebug<<"EOF sent.";
 #endif
         channel_close ( channel );
 #ifdef DEBUG
-        x2goDebug<<"channel closed\n";
+        x2goDebug<<"Channel closed.";
 #endif
         channel_free ( channel );
     }

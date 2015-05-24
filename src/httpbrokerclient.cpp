@@ -126,7 +126,7 @@ void HttpBrokerClient::slotSshServerAuthError(int error, QString sshMessage, Ssh
     {
     case SSH_SERVER_KNOWN_CHANGED:
         errMsg=tr ( "Host key for server changed.\nIt is now: " ) +sshMessage+"\n"+
-               tr ( "For security reasons, connection will be stopped" );
+               tr ( "For security reasons, the connection attempt will be aborted." );
         connection->writeKnownHosts(false);
         connection->wait();
         if(sshConnection && sshConnection !=connection)
@@ -139,9 +139,9 @@ void HttpBrokerClient::slotSshServerAuthError(int error, QString sshMessage, Ssh
         return;
 
     case SSH_SERVER_FOUND_OTHER:
-        errMsg=tr ( "The host key for this server was not found but an other"
-                    "type of key exists.An attacker might change the default server key to"
-                    "confuse your client into thinking the key does not exist" );
+        errMsg=tr ( "The host key for this server was not found but another"
+                    "type of key exists. An attacker might have changed the default server key to "
+                    "trick your client into thinking the key does not exist yet." );
         connection->writeKnownHosts(false);
         connection->wait();
         if(sshConnection && sshConnection !=connection)
@@ -174,7 +174,7 @@ void HttpBrokerClient::slotSshServerAuthError(int error, QString sshMessage, Ssh
         break;
     }
 
-    if ( QMessageBox::warning ( 0, tr ( "Host key verification failed" ),errMsg,tr ( "Yes" ), tr ( "No" ) ) !=0 )
+    if ( QMessageBox::warning ( 0, tr ( "Host key verification failed." ),errMsg,tr ( "Yes" ), tr ( "No" ) ) !=0 )
     {
         connection->writeKnownHosts(false);
         connection->wait();
@@ -184,7 +184,7 @@ void HttpBrokerClient::slotSshServerAuthError(int error, QString sshMessage, Ssh
             delete sshConnection;
         }
         sshConnection=0;
-        slotSshUserAuthError ( tr ( "Host key verification failed" ) );
+        slotSshUserAuthError ( tr ( "Host key verification failed." ) );
         return;
     }
     connection->writeKnownHosts(true);
@@ -232,7 +232,7 @@ void HttpBrokerClient::slotSshUserAuthError(QString error)
         sshConnection=0l;
     }
 
-    QMessageBox::critical ( 0l,tr ( "Authentication failed" ),error,
+    QMessageBox::critical ( 0l,tr ( "Authentication failed." ),error,
                             QMessageBox::Ok,
                             QMessageBox::NoButton );
     emit authFailed();
@@ -246,7 +246,7 @@ void HttpBrokerClient::getUserSessions()
     if (config->brokerAutologoff) {
         nextAuthId=config->brokerUserId;
     }
-    x2goDebug<<"called getUserSessions: brokeruser: "<<brokerUser<<" authid: "<<nextAuthId;
+    x2goDebug<<"Called getUserSessions: brokeruser: "<<brokerUser<<" authid: "<<nextAuthId;
     if(mainWindow->getUsePGPCard())
         brokerUser=mainWindow->getCardLogin();
     config->sessiondata=QString::null;
@@ -297,7 +297,7 @@ void HttpBrokerClient::selectUserSession(const QString& session)
                              "user="<<QUrl::toPercentEncoding(brokerUser)<<"&"<<
                              "password="<<QUrl::toPercentEncoding(config->brokerPass)<<"&"<<
                              "authid="<<nextAuthId;
-        x2goDebug << "sending request: "<< req.toUtf8();
+        x2goDebug << "Sending request: "<< req.toUtf8();
         QNetworkRequest request(QUrl(config->brokerurl));
         request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
         selSessRequest=http->post (request, req.toUtf8() );
@@ -332,7 +332,7 @@ void HttpBrokerClient::changePassword(QString newPass)
                              "user="<<QUrl::toPercentEncoding(brokerUser)<<"&"<<
                              "password="<<QUrl::toPercentEncoding(config->brokerPass)<<"&"<<
                              "authid="<<nextAuthId;
-        x2goDebug << "sending request: "<< req.toUtf8();
+        x2goDebug << "Sending request: "<< req.toUtf8();
         QNetworkRequest request(QUrl(config->brokerurl));
         request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
         chPassRequest=http->post (request, req.toUtf8() );
@@ -351,13 +351,13 @@ void HttpBrokerClient::changePassword(QString newPass)
 
 void HttpBrokerClient::testConnection()
 {
-    x2goDebug<<"called testConnection";
+    x2goDebug<<"Called testConnection.";
     if(!sshBroker)
     {
         QString req;
         QTextStream ( &req ) <<
                              "task=testcon";
-        x2goDebug << "sending request: "<< req.toUtf8();
+        x2goDebug << "Sending request: "<< req.toUtf8();
         QNetworkRequest request(QUrl(config->brokerurl));
         request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
         testConRequest=http->post (request, req.toUtf8() );
@@ -380,7 +380,7 @@ void HttpBrokerClient::createIniFile(const QString& raw_content)
     QString content;
     content = raw_content;
     content.replace("<br>","\n");
-    x2goDebug<<"inifile content: "<<content<<"\n";
+    x2goDebug<<"Inifile content: "<<content<<endl;
     QString cont;
     QStringList lines=content.split("START_USER_SESSIONS\n");
     if (lines.count()>1)
@@ -394,13 +394,13 @@ void HttpBrokerClient::createIniFile(const QString& raw_content)
 
 bool HttpBrokerClient::checkAccess(QString answer )
 {
-    x2goDebug<<"called checkAccess - answer was: "<<answer;
+    x2goDebug<<"Called checkAccess - answer was: "<<answer;
     if (answer.indexOf("Access granted")==-1)
     {
         QMessageBox::critical (
             0,tr ( "Error" ),
             tr ( "Login failed!<br>"
-                 "Please try again" ) );
+                 "Please try again." ) );
         emit authFailed();
         return false;
     }
@@ -416,7 +416,7 @@ bool HttpBrokerClient::checkAccess(QString answer )
 
 void HttpBrokerClient::slotConnectionTest(bool success, QString answer, int)
 {
-    x2goDebug<<"called slotConnectionTest";
+    x2goDebug<<"Called slotConnectionTest.";
     if(!success)
     {
         x2goDebug<<answer;
@@ -428,7 +428,7 @@ void HttpBrokerClient::slotConnectionTest(bool success, QString answer, int)
         return;
     if(!sshBroker)
     {
-        x2goDebug<<"elapsed: "<<requestTime.elapsed()<<"received:"<<answer.size()<<endl;
+        x2goDebug<<"Elapsed: "<<requestTime.elapsed()<<"; received:"<<answer.size()<<endl;
         emit connectionTime(requestTime.elapsed(),answer.size());
     }
     return;
@@ -491,7 +491,7 @@ void HttpBrokerClient::slotRequestFinished ( QNetworkReply*  reply )
     }
 
     QString answer ( reply->readAll() );
-    x2goDebug<<"A http request returned.  Result was: "<<answer;
+    x2goDebug<<"A http request returned. Result was: "<<answer;
     if (reply == testConRequest)
     {
         slotConnectionTest(true,answer,0);
@@ -516,7 +516,7 @@ void HttpBrokerClient::slotRequestFinished ( QNetworkReply*  reply )
 
 void HttpBrokerClient::parseSession(QString sinfo)
 {
-    x2goDebug<<"starting parser\n";
+    x2goDebug<<"Starting parser.";
     QStringList lst=sinfo.split("SERVER:",QString::SkipEmptyParts);
     int keyStartPos=sinfo.indexOf("-----BEGIN DSA PRIVATE KEY-----");
     if(keyStartPos==-1)
@@ -535,15 +535,15 @@ void HttpBrokerClient::parseSession(QString sinfo)
     config->serverIp=words[0];
     if (words.count()>1)
         config->sshport=words[1];
-    x2goDebug<<"server IP: "<<config->serverIp<<"\n";
-    x2goDebug<<"server port: "<<config->sshport<<"\n";
+    x2goDebug<<"Server IP address: "<<config->serverIp;
+    x2goDebug<<"Server port: "<<config->sshport;
     if (sinfo.indexOf("SESSION_INFO")!=-1)
     {
         QStringList lst=sinfo.split("SESSION_INFO:",QString::SkipEmptyParts);
         config->sessiondata=lst[1];
-        x2goDebug<<"session data: "<<config->sessiondata<<"\n";
+        x2goDebug<<"Session data: "<<config->sessiondata<<"\n";
     }
-    x2goDebug<<"parsing has finished\n";
+    x2goDebug<<"Parsing has finished.";
     emit sessionSelected();
 }
 
@@ -589,7 +589,7 @@ void HttpBrokerClient::slotSslErrors ( QNetworkReply* netReply, const QList<QSsl
                "if you are using an internet connection "
                "that you do not trust completely or if you are "
                "not used to seeing a warning for this server.</p>" );
-    QMessageBox mb ( QMessageBox::Warning,tr ( "Secure connection failed" ),
+    QMessageBox mb ( QMessageBox::Warning,tr ( "Secure connection failed." ),
                      text );
     text=QString::null;
     QTextStream ( &text ) <<err.join ( "\n" ) <<"\n"<<
@@ -638,7 +638,7 @@ void HttpBrokerClient::slotSslErrors ( QNetworkReply* netReply, const QList<QSsl
     mb.exec();
     if ( mb.clickedButton() == ( QAbstractButton* ) okButton )
     {
-        x2goDebug<<"accept certificate";
+        x2goDebug<<"User accepted certificate.";
         QDir dr;
         dr.mkpath ( homeDir+"/.x2go/ssl/exceptions/"+lurl.host() +"/" );
         QFile fl ( homeDir+"/.x2go/ssl/exceptions/"+
@@ -647,7 +647,7 @@ void HttpBrokerClient::slotSslErrors ( QNetworkReply* netReply, const QList<QSsl
         QTextStream ( &fl ) <<cert.toPem();
         fl.close();
         netReply->ignoreSslErrors();
-        x2goDebug<<"store certificate in  "<<homeDir+"/.x2go/ssl/exceptions/"+
+        x2goDebug<<"Storing certificate in "<<homeDir+"/.x2go/ssl/exceptions/"+
                  lurl.host() +"/"+fname;
         requestTime.restart();
     }

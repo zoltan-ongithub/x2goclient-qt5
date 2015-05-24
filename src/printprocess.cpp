@@ -38,7 +38,7 @@
 PrintProcess::PrintProcess ( QString pdf, QString title, QObject *parent ) :
 		QObject ( parent )
 {
-	x2goDebug<<"Starting print process."<<endl;
+	x2goDebug<<"Starting print process.";
 	pdfFile=pdf;
 	pdfTitle=title;
 	parentWidg= ( QWidget* ) parent;
@@ -49,12 +49,12 @@ PrintProcess::PrintProcess ( QString pdf, QString title, QObject *parent ) :
 	}
 	if ( viewPdf )
 	{
-		x2goDebug<<"Opening PDF file: "<<pdfFile<<" ("<<pdfTitle<<")"<<endl;
+		x2goDebug<<"Opening PDF file: "<<pdfFile<<"; title: "<<pdfTitle;
 		QTimer::singleShot ( 100, this, SLOT ( openPdf() ) );
 	}
 	else
 	{
-		x2goDebug<<"Printing PDF file: "<<pdfFile<<" ("<<pdfTitle<<")"<<endl;
+		x2goDebug<<"Printing PDF file: "<<pdfFile<<"; title: "<<pdfTitle;
 		QTimer::singleShot ( 100, this, SLOT ( print() ) );
 	}
 }
@@ -62,7 +62,7 @@ PrintProcess::PrintProcess ( QString pdf, QString title, QObject *parent ) :
 
 PrintProcess::~PrintProcess()
 {
-	x2goDebug<<"Closing print process."<<endl;
+	x2goDebug<<"Closing print process.";
 }
 
 
@@ -138,7 +138,7 @@ bool PrintProcess::loadSettings()
 
 void PrintProcess::openPdf()
 {
-	x2goDebug<<"opening/saving PDF..."<<endl;
+	x2goDebug<<"Opening/saving PDF ...";
 	if ( pdfOpen )
 	{
 #ifndef Q_OS_WIN
@@ -147,8 +147,7 @@ void PrintProcess::openPdf()
 #else
 		QString cmd=pdfOpenCmd+"\""+pdfFile+"\"";
 #endif
-		x2goDebug<<"Using PDF viewer command: "<<cmd<<endl;
-		x2goDebug<<cmd;
+		x2goDebug<<"Using PDF viewer command: "<<cmd;
 		if ( ! QProcess::startDetached ( cmd ) )
 			slot_error ( QProcess::FailedToStart );
 
@@ -187,7 +186,7 @@ void PrintProcess::print()
 		prn.setCurrentPrinter ( prn.getDefaultUserPrinter() );
 		prn.print ( pdfFile, pdfTitle );
 #else
-		x2goDebug<<"printing to "<<winX2goPrinter<<endl;
+		x2goDebug<<"Printing to "<<winX2goPrinter;
 		wapiShellExecute ( "printto",
 		                   wapiShortFileName ( pdfFile ),
 		                   winX2goPrinter,
@@ -279,14 +278,14 @@ void PrintProcess::slot_error ( QProcess::ProcessError )
 				message+=pdfFile;
 		}
 	}
-	QMessageBox::critical ( 0l, tr ( "Printing error" ),
+	QMessageBox::critical ( 0l, tr ( "Printing error." ),
 	                        message );
 
 }
 
 void PrintProcess::slot_pdf2psError ( QProcess::ProcessError )
 {
-	QMessageBox::critical ( 0l, tr ( "Printing error" ),
+	QMessageBox::critical ( 0l, tr ( "Printing error." ),
 	                        tr ( "Failed to execute command:\n" ) +
 	                        "pdf2ps "+pdfFile+" "+psFile );
 }

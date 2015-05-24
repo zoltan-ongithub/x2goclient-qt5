@@ -134,12 +134,12 @@ SessionButton::SessionButton ( ONMainWindow* mw,QWidget *parent, QString id )
     act_edit=sessMenu->addAction (
                  QIcon (
                      mw->iconsPath ( "/16x16/edit.png" ) ),
-                 tr ( "Session preferences..." ) );
+                 tr ( "Session preferences ..." ) );
 #if (!defined Q_WS_HILDON) && (!defined Q_OS_DARWIN)
     act_createIcon=sessMenu->addAction (
                        QIcon ( mw->iconsPath ( "/16x16/create_file.png" ) ),
                        tr (
-                           "Create session icon on desktop..." ) );
+                           "Create session icon on desktop ..." ) );
 #endif
     act_remove=sessMenu->addAction (
                    QIcon ( mw->iconsPath ( "/16x16/delete.png" ) ),
@@ -316,7 +316,7 @@ void SessionButton::redraw()
     sessIcon = expandHome(sessIcon);
     QPixmap* pix;
 
-    x2goDebug << "creating QPixmap with session icon: '" << sessIcon.toAscii () << "'.";
+    x2goDebug << "Creating QPixmap with session icon: " << sessIcon.toAscii () << ".";
     if (!par->brokerMode || sessIcon == ":/img/icons/128x128/x2gosession.png")
         pix=new QPixmap( sessIcon );
     else

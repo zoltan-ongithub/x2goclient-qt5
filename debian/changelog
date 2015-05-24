@@ -402,6 +402,29 @@ x2goclient (4.0.4.0-0x2go1) UNRELEASED; urgency=low
     - onmainwindow.h: revert const-qualifier for get_translator(). It's static
       and can't have any cv-qualifier.
     - copy-deps-win32.bat: actually let xcopy error correctly.
+    - general: improve debug output and error messages.
+      Affects:
+        + LDAPSession.cpp
+        + configdialog.cpp
+        + contest.cpp
+        + cupsprintersettingsdialog.cpp
+        + exportdialog.cpp
+        + folderexplorer.cpp
+        + httpbrokerclient.cpp
+        + onmainwindow.cpp
+        + onmainwindow.h
+        + printdialog.cpp
+        + printprocess.cpp
+        + printwidget.cpp
+        + sessionbutton.cpp
+        + sessionexplorer.cpp
+        + sessionmanagedialog.cpp
+        + sessionwidget.cpp
+        + settingswidget.cpp
+        + sharewidget.cpp
+        + sshmasterconnection.cpp
+        + sshprocess.cpp
+        + wapi.cpp
 
   [ Fernando Pedemonte ]
   * New upstream release (4.0.4.0):

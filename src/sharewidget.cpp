@@ -98,7 +98,7 @@ ShareWidget::ShareWidget ( QString id, ONMainWindow * mw,
     loadEnc ( cbTo );
 
     cbFsSshTun=new QCheckBox (
-        tr ( "Use ssh port forwarding to tunnel file system "
+        tr ( "Use SSH port forwarding to tunnel file system "
              "connections through firewalls" ),egb );
 
     QVBoxLayout* expLay=new QVBoxLayout ( this );

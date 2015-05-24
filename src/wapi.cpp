@@ -223,8 +223,8 @@ void wapiSetWindowIcon ( HWND wnd, const QPixmap& icon)
     largeIcon=icon.scaled(iconx,icony, Qt::IgnoreAspectRatio,Qt::SmoothTransformation).toWinHICON ();
     smallIcon=icon.scaled(smallx,smally, Qt::IgnoreAspectRatio,Qt::SmoothTransformation).toWinHICON ();
 
-    x2goDebug<<"large icon: "<<largeIcon<<iconx<<"x"<<icony<<endl;
-    x2goDebug<<"small icon: "<<smallIcon<<smallx<<"x"<<smally<<endl;
+    x2goDebug<<"Large icon: "<<largeIcon<<iconx<<"x"<<icony;
+    x2goDebug<<"Small icon: "<<smallIcon<<smallx<<"x"<<smally;
     int rez=SetClassLong(wnd,GCL_HICON, (LONG)largeIcon);
     if (!rez)
         x2goDebug<<"ERROR: "<<GetLastError()<<endl;
@@ -270,13 +270,13 @@ QString wapiGetDriveByLabel(const QString& label)
         for (int i=0; i<len; i+=4)
         {
             QString drive=QString::fromUtf16 ( ( const ushort* ) buf+i );
-            x2goDebug<<"drive:"<<drive;
+            x2goDebug<<"Drive: "<<drive;
             TCHAR vol[MAX_PATH+1];
             TCHAR fs[MAX_PATH+1];
             GetVolumeInformation(buf+i,vol,MAX_PATH,0,0,0,fs,MAX_PATH);
             QString volume=QString::fromUtf16 ( ( const ushort* ) vol );
-            x2goDebug<<"vol:"<<volume<<
-                     "fs:"<<QString::fromUtf16 ( ( const ushort* ) fs );
+            x2goDebug<<"Volume: "<<volume<<
+                     "; fs: "<<QString::fromUtf16 ( ( const ushort* ) fs );
             if (!volume.compare(label,Qt::CaseInsensitive))
             {
                 x2goDebug<<"matched! ";

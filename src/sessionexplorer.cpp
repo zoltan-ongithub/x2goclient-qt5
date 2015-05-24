@@ -136,13 +136,13 @@ void SessionExplorer::slotEdit ( SessionButton* bt )
 void SessionExplorer::slotCreateDesktopIcon ( SessionButton* bt )
 {
     QMessageBox messageBox(QMessageBox::Question,
-                           tr ( "Create session icon on desktop" ),
+                           tr ( "Create session icon on desktop." ),
                            tr ( "Desktop icons can be configured "
-                                "not to show x2goclient (hidden mode). "
+                                "not to show X2Go Client (hidden mode.) "
                                 "If you like to use this feature you'll "
-                                "need to configure login by a gpg key "
-                                "or gpg smart card.\n\n"
-                                "Use x2goclient hidden mode?" ),
+                                "need to configure login via a GPG key "
+                                "or GPG Smart Card.\n\n"
+                                "Use X2Go Client's hidden mode?" ),
                            QMessageBox::Yes|QMessageBox::No,
                            parent);
 

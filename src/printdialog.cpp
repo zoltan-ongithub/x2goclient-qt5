@@ -58,10 +58,11 @@ void PrintDialog::accept()
 void PrintDialog::slot_dlgShowEnabled ( bool enable )
 {
 	if ( !enable )
-		QMessageBox::warning ( this, tr ( "You've deactivated the x2go "
-		                                  "client printing dialog." ),
+		QMessageBox::warning ( this, tr ( "You've deactivated the X2Go "
+		                                  "Client printing dialog." ),
 		                       tr ( "You may reactivate this dialog "
-		                            "using the x2goclient settings "
-		                            "dialog (Menu -> Options -> "
+		                            "using the X2Go Client settings "
+		                            "dialog. To do so, follow this path "
+                                            "in the menu bar: Options -> "
 		                            "Settings)" ) );
 }

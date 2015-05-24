@@ -47,7 +47,7 @@ SettingsWidget::SettingsWidget ( QString id, ONMainWindow * mw,
     tabSettings->addTab ( kgb,tr ( "&Keyboard" ) );
 #else
     QGroupBox *dgb=new QGroupBox ( tr ( "&Display" ),this );
-    clipGr=new QGroupBox ( tr ( "&Clipboard Mode" ),this );
+    clipGr=new QGroupBox ( tr ( "&Clipboard mode" ),this );
     kgb=new QGroupBox ( tr ( "&Keyboard" ),this );
 #endif
     QVBoxLayout *dbLay = new QVBoxLayout ( dgb );
@@ -165,7 +165,7 @@ SettingsWidget::SettingsWidget ( QString id, ONMainWindow * mw,
     clipRadioGroup->addButton(rbClipNone);
 
 
-    rbKbdAuto=new QRadioButton(tr("Auto detect keyboard settings"),kgb);
+    rbKbdAuto=new QRadioButton(tr("Auto-detect keyboard settings"),kgb);
     rbKbdNoSet=new QRadioButton(tr("Do not configure keyboard"),kgb);
     rbKbdSet=new QRadioButton(tr("Configure keyboard"),kgb);
     QButtonGroup* kbRadio=new QButtonGroup(kgb);
@@ -201,7 +201,7 @@ SettingsWidget::SettingsWidget ( QString id, ONMainWindow * mw,
     setLay->addWidget ( kgb );
 #ifdef Q_OS_LINUX
 #ifdef CFGCLIENT
-    rdpBox=new QGroupBox ( tr ( "RDP Client" ),this );
+    rdpBox=new QGroupBox ( tr ( "RDP client" ),this );
     setLay->addWidget ( rdpBox );
     rRdesktop=new QRadioButton ("rdesktop",rdpBox );
     rRdesktop->setChecked(true);

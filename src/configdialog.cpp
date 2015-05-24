@@ -204,7 +204,7 @@ ConfigDialog::ConfigDialog ( QWidget * parent,  Qt::WFlags f )
 #endif  //USELDAP
 
 #ifdef Q_OS_DARWIN
-    QGroupBox* xgb=new QGroupBox ( tr ( "X-Server settings" ),fr );
+    QGroupBox* xgb=new QGroupBox ( tr ( "X.Org Server settings" ),fr );
     QGridLayout *xLay=new QGridLayout ( xgb );
 
     leXexec=new QLineEdit ( xgb );
@@ -257,7 +257,7 @@ ConfigDialog::ConfigDialog ( QWidget * parent,  Qt::WFlags f )
     QHBoxLayout* sshLay=new QHBoxLayout();
     sshLay->addWidget (
         new QLabel ( tr (
-                         "Clientside SSH port for file system export usage:"
+                         "Clientside (local) SSH daemon port for file system export usage:"
                      ),fr ) );
     sshLay->addWidget ( clientSshPort );
     sshLay->addStretch();
@@ -349,7 +349,7 @@ ConfigDialog::ConfigDialog ( QWidget * parent,  Qt::WFlags f )
 
 #if defined ( Q_OS_WIN) && defined (CFGCLIENT )
     xsetWidg=new XSettingsWidget(this);
-    tabWidg->addTab(xsetWidg, tr("X-Server settings"));
+    tabWidg->addTab(xsetWidg, tr("X.Org Server settings"));
 #endif
 
 }

@@ -55,7 +55,7 @@ SessionManageDialog::SessionManageDialog ( QWidget * parent,
 #if (!defined Q_WS_HILDON) && (!defined Q_OS_DARWIN)
     if ( !ONMainWindow::getPortable() )
         createSessionIcon=new QPushButton (
-            tr ( "&Create session icon on desktop..." ),fr );
+            tr ( "&Create session icon on desktop ..." ),fr );
 #endif
     par= ( ONMainWindow* ) parent;
     newSession->setIcon ( QIcon (

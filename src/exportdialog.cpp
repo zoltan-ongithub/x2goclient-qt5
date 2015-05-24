@@ -77,7 +77,7 @@ ExportDialog::ExportDialog ( QString sid,QWidget * par, Qt::WFlags f )
     fr->setLineWidth ( 2 );
 
     setSizeGripEnabled ( true );
-    setWindowTitle ( tr ( "share folders" ) );
+    setWindowTitle ( tr ( "Share Folders" ) );
     connect ( sessions,SIGNAL ( clicked ( const QModelIndex& ) ),
               this,SLOT ( slot_activated ( const QModelIndex& ) ) );
     connect ( sessions,SIGNAL ( doubleClicked ( const QModelIndex& ) ),

@@ -78,9 +78,9 @@ void FolderExplorer::slotContextMenu(QPoint p)
 
     if(menuItem!=root)
     {
-        connect(menu.addAction(tr("Rename Folder...")), SIGNAL(triggered(bool)), this, SLOT(slotChangeName()));
-        connect(menu.addAction(tr("Change Icon...")), SIGNAL(triggered(bool)), this, SLOT(slotChangeIcon()));
-        connect(menu.addAction(tr("Delete Folder...")), SIGNAL(triggered(bool)), this, SLOT(slotDeleteFolder()));
+        connect(menu.addAction(tr("Rename Folder ...")), SIGNAL(triggered(bool)), this, SLOT(slotChangeName()));
+        connect(menu.addAction(tr("Change Icon ...")), SIGNAL(triggered(bool)), this, SLOT(slotChangeIcon()));
+        connect(menu.addAction(tr("Delete Folder ...")), SIGNAL(triggered(bool)), this, SLOT(slotDeleteFolder()));
     }
     menu.exec(treeWidget->viewport()->mapToGlobal(p));
 }
@@ -128,7 +128,7 @@ void FolderExplorer::slotDeleteFolder()
     if(!explorer->isFolderEmpty(menuItem->data(0, Qt::UserRole).toString()))
     {
         QMessageBox::critical(this, tr("Error"), tr("Unable to remove \"")+menuItem->text(0)+
-                              tr("\". Folder is not empty. Please remove content of folder and try again."));
+                              tr("\". Folder is not empty. Please remove the contents of this directory and try again."));
         return;
     }
     if(QMessageBox::question(this, "X2Go Client", tr("Delete folder \"")+menuItem->text(0)+"\"?",QMessageBox::Ok|QMessageBox::Cancel) == QMessageBox::Ok)

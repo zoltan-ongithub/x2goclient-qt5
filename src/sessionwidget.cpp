@@ -137,7 +137,7 @@ SessionWidget::SessionWidget ( bool newSession, QString id, ONMainWindow * mw,
 
     sgbLay->addLayout ( suLay );
     sgbLay->addLayout ( keyLay );
-    cbAutoLogin=new QCheckBox(tr("Try auto login (ssh-agent or default ssh key)"),sgb);
+    cbAutoLogin=new QCheckBox(tr("Try auto login (via SSH Agent or default SSH key)"),sgb);
     cbKrbLogin=new QCheckBox(tr("Kerberos 5 (GSSAPI) authentication"),sgb);
     cbKrbDelegation=new QCheckBox(tr("Delegation of GSSAPI credentials to the server"),sgb);
     sgbLay->addWidget(cbAutoLogin);
@@ -168,7 +168,7 @@ SessionWidget::SessionWidget ( bool newSession, QString id, ONMainWindow * mw,
     pbOpenProxyKey=new QPushButton (
         QIcon ( mainWindow->iconsPath ( "/16x16/file-open.png" ) ),
         QString::null,proxyBox );
-    cbProxyAutologin=new QCheckBox(tr("ssh-agent or default ssh key"),proxyBox);
+    cbProxyAutologin=new QCheckBox(tr("SSH Agent or default SSH key"),proxyBox);
     cbProxyKrbLogin=new QCheckBox(tr("Kerberos 5 (GSSAPI) authentication"),proxyBox);
 
 
@@ -213,7 +213,7 @@ SessionWidget::SessionWidget ( bool newSession, QString id, ONMainWindow * mw,
     sessBox->addItem ( "TRINITY" );
     sessBox->addItem ( "OPENBOX" );
     sessBox->addItem ( "ICEWM" );
-    sessBox->addItem ( tr ( "Connect to Windows terminal server" ) );
+    sessBox->addItem ( tr ( "Connect to Windows Terminal Server" ) );
     sessBox->addItem ( tr ( "XDMCP" ) );
     sessBox->addItem ( tr ( "Connect to local desktop" ) );
     sessBox->addItem ( tr ( "Custom desktop" ) );
@@ -244,7 +244,7 @@ SessionWidget::SessionWidget ( bool newSession, QString id, ONMainWindow * mw,
     sessLay->addWidget ( sgb );
     sessLay->addWidget ( deskSess );
 #ifdef Q_OS_LINUX
-    cbDirectRDP=new QCheckBox(tr("Direct RDP Connection"), deskSess);
+    cbDirectRDP=new QCheckBox(tr("Direct RDP connection"), deskSess);
     cmdLay->addWidget(cbDirectRDP,1,0,1,6);
     cbDirectRDP->hide();
     connect(cbDirectRDP,SIGNAL(clicked()), this, SLOT(slot_rdpDirectClicked()));
@@ -516,7 +516,7 @@ void SessionWidget::slot_rdpOptions()
     bool ok;
     QString text = QInputDialog::getText (
                        this,
-                       tr ( "Connect to Windows terminal server" ),
+                       tr ( "Connect to Windows Terminal Server" ),
                        tr ( "rdesktop command line options:" ),
                        QLineEdit::Normal,
                        rdpOptions, &ok );

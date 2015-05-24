@@ -63,7 +63,7 @@ PrintWidget::PrintWidget ( QWidget* parent )
 	        "<a href=\"http://pages.cs.wisc.edu/~ghost/doc/GPL/index.htm\">"
 	        "ghostprint</a> and "
 	        "<a href=\"http://pages.cs.wisc.edu/~ghost/gsview/\">"
-	        "ghostview</a><br>You can find  further information "
+	        "ghostview</a><br>You can find further information "
 	        "<a href=\"http://www.x2go.org/index.php?id=49\">here</a>." ),
 	    ui.gbPrint );
 	rtfm->setWordWrap ( true );

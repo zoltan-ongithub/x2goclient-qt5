@@ -80,7 +80,7 @@ LDAPSession::LDAPSession ( string server,int port,string bindDN,
 {
 	ld=ldap_init ( server.c_str(),port );
 	if ( !ld )
-		throw LDAPExeption ( "ldap_init","Can't init LDAP library" );
+		throw LDAPExeption ( "ldap_init","Can't initialize LDAP library." );
 	int ver=3;
 	int errc=ldap_set_option ( ld,LDAP_OPT_PROTOCOL_VERSION,&ver );
 	if ( errc != LDAP_SUCCESS )

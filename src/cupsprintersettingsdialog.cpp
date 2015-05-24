@@ -269,7 +269,7 @@ bool CUPSPrinterSettingsDialog::setNewValue ( const QString& option,
 	if ( !res )
 	{
 		QString textMessage=
-		    tr ( "This value is in conflict with other option" );
+		    tr ( "This value is in conflict with another option." );
 		QString txt;
 		m_cups->getOptionText ( confOpt,txt );
 		QString val,valt;
@@ -279,7 +279,7 @@ bool CUPSPrinterSettingsDialog::setNewValue ( const QString& option,
 			textMessage+="\n("+txt+" : "+valt+")";
 
 		}
-		QMessageBox::critical ( this,tr ( "Options conflict" ),
+		QMessageBox::critical ( this,tr ( "Options conflict." ),
 		                        textMessage );
 	}
 	return res;

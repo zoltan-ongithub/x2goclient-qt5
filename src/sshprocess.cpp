@@ -49,7 +49,7 @@ SshProcess::SshProcess(SshMasterConnection* master, int pid): QObject(0)
 SshProcess::~SshProcess()
 {
 #ifdef DEBUG
-    x2goDebug<<"ssh process destructor";
+    x2goDebug<<"SshProcess destructor called.";
 #endif
 
     if (proc)
@@ -106,12 +106,12 @@ void SshProcess::slotCheckNewConnection()
         return;
 
 #ifdef DEBUG
-    x2goDebug<<"new tcp connection\n";
+    x2goDebug<<"New TCP connection.";
 #endif
     int tcpSocket=accept(serverSocket, (struct sockaddr*)&address,&addrlen);
 
 #ifdef DEBUG
-    x2goDebug<<"new socket:"<<tcpSocket<<endl;
+    x2goDebug<<"New socket: "<<tcpSocket;
 #endif
     masterCon->addChannelConnection(this, tcpSocket, forwardHost, forwardPort, localHost,
                                     ntohs(address.sin_port));
@@ -124,7 +124,7 @@ void SshProcess::tunnelLoop()
     serverSocket=socket(AF_INET, SOCK_STREAM, 0);
     if (serverSocket<=0)
     {
-        QString err=tr("Error creating socket");
+        QString err=tr("Error creating socket.");
         x2goDebug<<err<<endl;
         emit sshFinished(false,err,pid);
         return;
@@ -154,7 +154,7 @@ void SshProcess::tunnelLoop()
     timer->start(100);
     emit sshTunnelOk(pid);
 #ifdef DEBUG
-    x2goDebug<<"Direct tunnel: waiting for connections on "<<localHost<<":"<<localPort<<endl;
+    x2goDebug<<"Direct tunnel: waiting for connections on "<<localHost<<":"<<localPort;
 #endif
 }
 
@@ -174,12 +174,12 @@ void SshProcess::rmPuttyReg(QString uuidStr)
     if (uuidStr.isEmpty())
     {
 #ifdef DEBUG
-        x2goDebug<<"uuidStr is empty. No PuTTY session reg key to delete."<<endl;
+        x2goDebug<<"uuidStr is empty. No PuTTY session reg key to delete.";
 #endif
         return;
     }
 #ifdef DEBUG
-    x2goDebug<<"deleting key in registry: HKEY_CURRENT_USER\\Software\\SimonTatham\\PuTTY\\Sessions\\"+uuidStr<<endl;
+    x2goDebug<<"Deleting key in registry: HKEY_CURRENT_USER\\Software\\SimonTatham\\PuTTY\\Sessions\\"+uuidStr;
 #endif
     QSettings st("HKEY_CURRENT_USER\\Software\\SimonTatham\\PuTTY\\Sessions",
                  QSettings::NativeFormat);
@@ -196,12 +196,12 @@ void SshProcess::startNormal(const QString& cmd)
 
 //#ifdef DEBUG
 // ONLY UNCOMMENT FOR TESTING, MIGHT REVEAL PASSWORD WHEN command=RDP
-    x2goDebug<<"executing remote command via SshProcess object ("<<pid<<"): "<<cmd<<endl;
+    x2goDebug<<"Executing remote command via SshProcess object "<<pid<<": "<<cmd;
 // #endif
     if(!masterCon->useKerberos())
     {
         QString shcmd = "sh -c 'echo X2GODATABEGIN:" + uuidStr + "; PATH=/usr/local/bin:/usr/bin:/bin "+cmd+"; echo X2GODATAEND:" + uuidStr +";'";
-        x2goDebug << "running masterCon->addChannelConnection(this, '" << uuidStr << "', '" << shcmd.left (200) << "');";
+        x2goDebug << "Running masterCon->addChannelConnection(this, '" << uuidStr << "', '" << shcmd.left (200) << "');";
         masterCon->addChannelConnection(this, uuidStr, shcmd);
         connect(masterCon,SIGNAL(stdOut(SshProcess*,QByteArray)),this,SLOT(slotStdOut(SshProcess*,QByteArray)));
         connect(masterCon,SIGNAL(channelClosed(SshProcess*,QString)), this,SLOT(slotChannelClosed(SshProcess*,QString)));
@@ -229,7 +229,7 @@ void SshProcess::startNormal(const QString& cmd)
                           QString::number(masterCon->getPort())+" -l "+
                           masterCon->getUser()+" "+ host +  " \""+shcmd+"\"";
 
-        x2goDebug<<"evoking ssh command via SshProcess object ("<<pid<<"): "<<sshString<<endl;
+        x2goDebug<<"Evoking SSH command via SshProcess object "<<pid<<": "<<sshString;
         procUuid=uuidStr;
         proc->start(sshString);
 
@@ -252,7 +252,7 @@ void SshProcess::startNormal(const QString& cmd)
 
 void SshProcess::start_cp(QString src, QString dst)
 {
-    x2goDebug<<"copying file via SshProcess object ("<<pid<<"): "<<src<<" -> "<<dst<<endl;
+    x2goDebug<<"Copying file via SshProcess object "<<pid<<": "<<src<<" -> "<<dst;
 
     scpSource=src;
     if(!masterCon->useKerberos())
@@ -299,7 +299,7 @@ void SshProcess::start_cp(QString src, QString dst)
                           QString::number(masterCon->getPort())+" "+src+" "+
                           masterCon->getUser()+"@"+ masterCon->getHost()+":"+dst;
 #ifdef DEBUG
-        x2goDebug<<"running scp:" <<sshString<<endl;
+        x2goDebug<<"Running scp:" <<sshString;
 #endif
         proc->start(sshString);
 
@@ -307,7 +307,7 @@ void SshProcess::start_cp(QString src, QString dst)
         {
             stdErrString=proc->errorString();
 #ifdef DEBUG
-            x2goDebug<<"ssh start failed:" <<stdErrString<<endl;
+            x2goDebug<<"SSH start failed:" <<stdErrString;
 #endif
             slotChannelClosed(this,"");
             return;
@@ -323,7 +323,7 @@ void SshProcess::start_cp(QString src, QString dst)
 void SshProcess::startTunnel(const QString& forwardHost, uint forwardPort, const QString& localHost,
                              uint localPort, bool reverse)
 {
-    x2goDebug<<"Starting tunnel via SshProcess object ("<<pid<<"): "<<forwardHost<<":"<<forwardPort<<" -> "<<localHost<<":"<<localPort<<endl;
+    x2goDebug<<"Starting tunnel via SshProcess object "<<pid<<": "<<forwardHost<<":"<<forwardPort<<" -> "<<localHost<<":"<<localPort<<endl;
 
     tunnel=true;
     tunnelOkEmited=false;
@@ -353,7 +353,7 @@ void SshProcess::startTunnel(const QString& forwardHost, uint forwardPort, const
             sshString+=" -R "+ QString::number(forwardPort)+":"+forwardHost+":"+QString::number(localPort);
 
 #ifdef DEBUG
-        x2goDebug<<"TUNNEL: running ssh:" <<sshString<<endl;
+        x2goDebug<<"Tunnel: running ssh:" <<sshString;
 #endif
         proc->start(sshString);
 
@@ -361,7 +361,7 @@ void SshProcess::startTunnel(const QString& forwardHost, uint forwardPort, const
         {
             stdErrString=proc->errorString();
 #ifdef DEBUG
-            x2goDebug<<"ssh start failed:" <<stdErrString<<endl;
+            x2goDebug<<"SSH start failed:" <<stdErrString;
 #endif
             slotChannelClosed(this,"");
             return;
@@ -392,7 +392,7 @@ void SshProcess::slotStdErr(SshProcess* creator, QByteArray data)
         {
             tunnelOkEmited=true;
 #ifdef DEBUG
-            x2goDebug<<"Tunnel OK"<<endl;
+            x2goDebug<<"Tunnel OK";
 #endif
             emit sshTunnelOk(pid);
         }
@@ -414,7 +414,7 @@ void SshProcess::slotIOerr(SshProcess* creator, QString message, QString sshSess
     if (sshSessionErr.length())
         sshSessionErr = " - "+sshSessionErr;
 #ifdef DEBUG
-    x2goDebug<<"I/O error: "<<message<<sshSessionErr<<" ("<<pid<<")."<<endl;
+    x2goDebug<<"I/O error: "<<message<<sshSessionErr<<" ("<<pid<<").";
 #endif
     normalExited=false;
     abortString="I/O error: "+message+sshSessionErr;
@@ -473,12 +473,12 @@ void SshProcess::slotChannelClosed(SshProcess* creator, QString uuid)
             normalExited=false;
             output=stdErrString;
 #ifdef DEBUG
-            x2goDebug<<"have only stderr, something must be wrong"<<endl;
+            x2goDebug<<"Have stderr only, something must be wrong.";
 #endif
         }
     }
 #ifdef DEBUG
-    x2goDebug<<"ssh finished: "<<normalExited<<" - "<<output<<" ("<<pid<<")."<<endl;
+    x2goDebug<<"SSH finished: "<<normalExited<<" - "<<output<<" ("<<pid<<").";
 #endif
     emit sshFinished(normalExited, output, pid);
 }
@@ -489,7 +489,7 @@ void SshProcess::slotSshProcFinished(int exitCode, QProcess::ExitStatus exitStat
     if (exitCode==0 && exitStatus==QProcess::NormalExit)
         normalExited=true;
 #ifdef DEBUG
-    x2goDebug<<"ssh process exit code :"<<exitStatus;
+    x2goDebug<<"SSH process exit code :"<<exitStatus;
 #endif
 #ifdef Q_OS_WIN
     if(masterCon->useKerberos())

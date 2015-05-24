@@ -177,7 +177,7 @@ struct ConfigFile
     QString brokerCaCertFile;
     QString iniFile;
     QString server;
-    QString serverIp;//Can be different from server (use for loadballancing)
+    QString serverIp;//Can be different from server (use for load balancing)
     QString sshport;
     QString command;
     QString key;
@@ -294,7 +294,7 @@ class ONMainWindow : public QMainWindow
     Q_CLASSINFO ( "EventsID", "{44900013-f8bd-4d2e-a2cf-eab407c03005}" )
     Q_CLASSINFO ( "MIME",
                   "application/x2go:x2go:Configuration File "
-                  "for X2Go Session" )
+                  "for X2Go Sessions" )
     Q_CLASSINFO ( "ToSuperClass", "ONMainWindow" )
     Q_CLASSINFO ( "DefaultProperty","x2goconfig" )
 #endif
