@@ -425,6 +425,8 @@ x2goclient (4.0.4.0-0x2go1) UNRELEASED; urgency=low
         + sshmasterconnection.cpp
         + sshprocess.cpp
         + wapi.cpp
+    - sshmasterconnection.cpp: fix typo in last commit leading to a compile
+      failure, correct content, remove superfluous newlines.
 
   [ Fernando Pedemonte ]
   * New upstream release (4.0.4.0):
