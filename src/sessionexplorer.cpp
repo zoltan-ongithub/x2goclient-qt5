@@ -176,6 +176,17 @@ void SessionExplorer::slotCreateDesktopIcon ( SessionButton* bt )
     {
         sessIcon="/usr/share/x2goclient/icons/x2gosession.png";
     }
+
+    QString cmd="x2goclient";
+    QStringList args;
+    if ( crHidden )
+        args << "--hide";
+
+    if (bShowTrayicon)
+        args << "--tray-icon";
+
+    args << QString ("--sessionid=" + bt->id ());
+
 #ifndef Q_OS_WIN
     QFile file (
         QDesktopServices::storageLocation (
@@ -183,16 +194,9 @@ void SessionExplorer::slotCreateDesktopIcon ( SessionButton* bt )
     if ( !file.open ( QIODevice::WriteOnly | QIODevice::Text ) )
         return;
 
-    QString cmd="x2goclient";
-    if ( crHidden )
-        cmd="x2goclient --hide";
-
-    if (bShowTrayicon)
-        cmd += " --tray-icon";
-
     QTextStream out ( &file );
     out << "[Desktop Entry]\n"<<
-        "Exec="<<cmd<<" --sessionid="<<bt->id() <<"\n"<<
+        "Exec="<<cmd<<args.join (" ")<<"\n"<<
         "Icon="<<sessIcon<<"\n"<<
         "Name="<<name<<"\n"<<
         "StartupNotify=true\n"<<
@@ -211,15 +215,12 @@ void SessionExplorer::slotCreateDesktopIcon ( SessionButton* bt )
                     QSettings::NativeFormat );
     QString workDir=xst.value ( "Default" ).toString();
     QString progname=workDir+"\\x2goclient.exe";
-    QString args="--sessionid="+bt->id();
-    if ( crHidden )
-        args+=" --hide";
     QTextStream out ( &file );
     out << "Set Shell = CreateObject(\"WScript.Shell\")\n"<<
         "DesktopPath = Shell.SpecialFolders(\"Desktop\")\n"<<
         "Set link = Shell.CreateShortcut(DesktopPath & \"\\"<<name<<
         ".lnk\")\n"<<
-        "link.Arguments = \""<<args<<"\"\n"<<
+        "link.Arguments = \""<<args.join (" ")<<"\"\n"<<
         "link.Description = \""<<tr ( "X2Go Link to session " ) <<
         "--"<<name<<"--"<<"\"\n"<<
         "link.TargetPath = \""<<progname<<"\"\n"<<

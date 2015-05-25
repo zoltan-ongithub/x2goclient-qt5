@@ -427,6 +427,9 @@ x2goclient (4.0.4.0-0x2go1) UNRELEASED; urgency=low
         + wapi.cpp
     - sshmasterconnection.cpp: fix typo in last commit leading to a compile
       failure, correct content, remove superfluous newlines.
+    - sessionexplorer.cpp: use a better shared logic for generating an
+      arguments list for calling x2goclient.exe from a desktop shortcut.
+      Respect the tray icon option also on Windows. Fixes: #871.
 
   [ Fernando Pedemonte ]
   * New upstream release (4.0.4.0):
