@@ -8335,9 +8335,9 @@ void ONMainWindow::slotStartPGPAuth()
     QStringList arguments;
     arguments<<"--multi-server";
     connect ( scDaemon,SIGNAL ( readyReadStandardError() ),this,
-              SLOT ( slotScDaemonError() ) );
+              SLOT ( slotScDaemonStdErr() ) );
     connect ( scDaemon,SIGNAL ( readyReadStandardOutput() ),this,
-              SLOT ( slotScDaemonOut() ) );
+              SLOT ( slotScDaemonStdOut() ) );
     connect ( scDaemon,SIGNAL ( finished ( int,QProcess::ExitStatus ) ),
               this,
               SLOT (
@@ -8355,7 +8355,7 @@ void ONMainWindow::slotCheckScDaemon()
     }
 }
 
-void ONMainWindow::slotScDaemonError()
+void ONMainWindow::slotScDaemonStdErr()
 {
     QString stdOut ( scDaemon->readAllStandardError() );
     stdOut=stdOut.simplified();
@@ -8375,7 +8375,7 @@ void ONMainWindow::slotScDaemonError()
     }
 }
 
-void ONMainWindow::slotScDaemonOut()
+void ONMainWindow::slotScDaemonStdOut()
 {
     QString stdOut ( scDaemon->readAllStandardOutput() );
     stdOut=stdOut.simplified();

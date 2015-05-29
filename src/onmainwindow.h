@@ -1109,8 +1109,8 @@ private slots:
     void slotRereadUsers();
     void slotExtTimer();
     void slotStartPGPAuth();
-    void slotScDaemonOut();
-    void slotScDaemonError();
+    void slotScDaemonStdOut();
+    void slotScDaemonStdErr();
     void slotGpgFinished ( int exitCode,
                            QProcess::ExitStatus exitStatus );
     void slotScDaemonFinished ( int exitCode,

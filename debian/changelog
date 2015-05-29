@@ -4,6 +4,10 @@ x2goclient (4.0.4.1-0x2go1) UNRELEASED; urgency=low
   * New upstream release (4.0.4.1):
     - INSTALL: add more verbose instructions on how to build X2Go Client and
       friends.
+    - onmainwindow.{cpp,h}: rename slotScDaemonOut() and slotScDaemonError()
+      to slotScDaemonStdOut() and slotScDaemonStdErr(). I will need
+      slotScDaemonError() later and the previous names were a bit of a
+      misnomer.
 
  -- X2Go Release Manager <git-admin@x2go.org>  Tue, 26 May 2015 21:42:09 +0200
 
