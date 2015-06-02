@@ -8347,14 +8347,14 @@ void ONMainWindow::slotStartPGPAuth()
     QString new_path_value = "";
 
     if (!old_path_value.isEmpty ()) {
-        new_path_value = old_path_value + path_env_separator
+        new_path_value = old_path_value + path_env_separator;
     }
 
     new_path_value += "/usr/lib/gnupg2/";
 
     scdaemon_env.insert ("PATH", new_path_value);
 
-    scDaemon.setProcessEnvironment (scdaemon_env);
+    scDaemon->setProcessEnvironment (scdaemon_env);
 
     connect ( scDaemon,SIGNAL ( readyReadStandardError() ),this,
               SLOT ( slotScDaemonStdErr() ) );

@@ -19,6 +19,7 @@ x2goclient (4.0.4.1-0x2go1) UNRELEASED; urgency=low
     - onmainwindow.cpp: manipulate PATH and append /usr/lib/gnupg2/ to it when
       starting scdaemon. Fixes: #882.
     - x2goutils.h: add QMessageBox include, fixed compile error.
+    - onmainwindow.cpp: fix typos leading to compile errors.
 
  -- X2Go Release Manager <git-admin@x2go.org>  Tue, 26 May 2015 21:42:09 +0200
 
