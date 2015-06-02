@@ -34,6 +34,7 @@ QString convert_to_rich_text (const QString &text, bool force = false);
 
 void show_RichText_Generic_MsgBox (QMessageBox::Icon icon, const QString &main_text, const QString &informative_text);
 void show_RichText_WarningMsgBox (const QString &main_text, const QString &informative_text = "");
+void show_RichText_ErrorMsgBox (const QString &main_text, const QString &informative_text = "");
 
 QString git_changelog_extract_commit_sha (const QString &gitlog);
 
