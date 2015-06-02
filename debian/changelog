@@ -10,6 +10,8 @@ x2goclient (4.0.4.1-0x2go1) UNRELEASED; urgency=low
       misnomer.
     - x2goutils.{cpp,h}: add new show_RichText_Generic_MsgBox() main function
       designed to replace the show_RichText_WarningMsgBox() function.
+    - x2goutils.{cpp,h}: make show_RichText_WarningMsgBox() use
+      show_RichText_Generic_MsgBox ().
 
  -- X2Go Release Manager <git-admin@x2go.org>  Tue, 26 May 2015 21:42:09 +0200
 

@@ -106,16 +106,8 @@ void show_RichText_Generic_MsgBox (QMessageBox::Icon icon, const QString &main_t
 }
 
 void show_RichText_WarningMsgBox (const QString &main_text, const QString &informative_text) {
-  QString fixup_main_text (convert_to_rich_text (main_text));
-  QString fixup_informative_text (convert_to_rich_text (informative_text, true));
+  show_RichText_Generic_MsgBox (QMessageBox::warning, main_text, informative_text);
 
-  QMessageBox msg_box (QMessageBox::Warning, QString ("X2Go Client"),
-                       fixup_main_text, NULL);
-
-  msg_box.setTextFormat (Qt::RichText);
-  msg_box.setInformativeText (fixup_informative_text);
-  msg_box.setWindowModality (Qt::WindowModal);
-  msg_box.exec ();
 }
 
 QString git_changelog_extract_commit_sha (const QString &gitlog) {
