@@ -43,6 +43,7 @@
 #include <QSystemTrayIcon>
 #include <QTranslator>
 #include <QLocale>
+#include <QProcessEnvironment>
 #include "sshmasterconnection.h"
 #include "non_modal_messagebox.h"
 
@@ -1115,6 +1116,7 @@ private slots:
                            QProcess::ExitStatus exitStatus );
     void slotScDaemonFinished ( int exitCode,
                                 QProcess::ExitStatus exitStatus );
+    void slotScDaemonError (QProcess::ProcessError error);
     void slotGpgError();
     void slotCheckScDaemon();
     void slotGpgAgentFinished ( int exitCode,

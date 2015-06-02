@@ -14,6 +14,8 @@ x2goclient (4.0.4.1-0x2go1) UNRELEASED; urgency=low
       show_RichText_Generic_MsgBox ().
     - x2goutils.{cpp,h}: new show_RichText_ErrorMsgBox() function as a wrapper
       for show_RichText_Generic_MsgBox() with a critical icon.
+    - onmainwindow.{cpp,h}: properly handle scdaemon errors with a message box
+      and close the client.
 
  -- X2Go Release Manager <git-admin@x2go.org>  Tue, 26 May 2015 21:42:09 +0200
 
