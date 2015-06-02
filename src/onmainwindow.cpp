@@ -8334,6 +8334,28 @@ void ONMainWindow::slotStartPGPAuth()
     scDaemon=new QProcess ( this );
     QStringList arguments;
     arguments<<"--multi-server";
+
+    QProcessEnvironment scdaemon_env = QProcessEnvironment::systemEnvironment ();
+
+    QString path_env_separator = ":";
+    /* Let's hope that's really the only override... */
+#ifdef Q_OS_WIN
+    path_env_separator = ";";
+#endif
+
+    QString old_path_value = scdaemon_env.value ("PATH", "");
+    QString new_path_value = "";
+
+    if (!old_path_value.isEmpty ()) {
+        new_path_value = old_path_value + path_env_separator
+    }
+
+    new_path_value += "/usr/lib/gnupg2/";
+
+    scdaemon_env.insert ("PATH", new_path_value);
+
+    scDaemon.setProcessEnvironment (scdaemon_env);
+
     connect ( scDaemon,SIGNAL ( readyReadStandardError() ),this,
               SLOT ( slotScDaemonStdErr() ) );
     connect ( scDaemon,SIGNAL ( readyReadStandardOutput() ),this,
