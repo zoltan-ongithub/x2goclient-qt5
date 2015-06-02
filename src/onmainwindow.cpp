@@ -8430,7 +8430,7 @@ void ONMainWindow::slotScDaemonFinished ( int , QProcess::ExitStatus )
         slotStartPGPAuth();
 }
 
-void ONMainWindow::slotScDaemonError (QProcess::QProcessError error) {
+void ONMainWindow::slotScDaemonError (QProcess::ProcessError error) {
     QString main_text ("scdaemon ");
     QString informative_text;
 
