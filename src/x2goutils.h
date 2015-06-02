@@ -21,6 +21,7 @@
 
 #include <QString>
 #include <QFont>
+#include <QMessageBox>
 
 #define UNUSED(x) do { (void) x; } while (0)
 
