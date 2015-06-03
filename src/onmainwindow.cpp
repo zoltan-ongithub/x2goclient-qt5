@@ -11630,8 +11630,6 @@ void ONMainWindow::printSshDError_noHostPubKey()
     if ( closeEventSent )
         return;
 
-    int port = clientSshPort.toInt ();
-
     QString error_message = tr ("SSH daemon failed to open its public host key.");
 
     QString detailed_error_message = tr ("You have enabled Remote Printing or File Sharing.\n"
@@ -11666,7 +11664,7 @@ void ONMainWindow::printSshDError_noHostPubKey()
 
                                       "<ul>"
                                         "<li>Open a <b>Terminal Window</b> (Applications -> Utilities -> Terminal)</li>"
-                                        "<li>Run this command: <b>ssh -p " + QString::number (port).toAscii ()
+                                        "<li>Run this command: <b>ssh -p " + clientSshPort
                                            + " localhost</b></li>"
                                         "<li>You do not need to login. Just quit the Terminal application "
                                             "via Cmd + Q</li>"
