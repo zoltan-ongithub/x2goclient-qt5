@@ -8343,11 +8343,10 @@ void ONMainWindow::slotStartPGPAuth()
     path_env_separator = ";";
 #endif
 
-    QString old_path_value = scdaemon_env.value ("PATH", "");
-    QString new_path_value = "";
+    QString new_path_value = scdaemon_env.value ("PATH", "");
 
-    if (!old_path_value.isEmpty ()) {
-        new_path_value = old_path_value + path_env_separator;
+    if (!new_path_value.isEmpty ()) {
+        new_path_value += path_env_separator;
     }
 
     new_path_value += "/usr/lib/gnupg2/";
@@ -8442,7 +8441,7 @@ void ONMainWindow::slotScDaemonError (QProcess::ProcessError error) {
 
             QProcessEnvironment tmp_env = QProcessEnvironment::systemEnvironment ();
 
-            if (!scDaemon->processEnvironment ().isEmpty ()) {
+            if (!(scDaemon->processEnvironment ().isEmpty ())) {
                 tmp_env = scDaemon->processEnvironment ();
             }
 
