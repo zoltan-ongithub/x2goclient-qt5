@@ -200,7 +200,7 @@ void SshProcess::startNormal(const QString& cmd)
 // #endif
     if(!masterCon->useKerberos())
     {
-        QString shcmd = "sh -c 'echo X2GODATABEGIN:" + uuidStr + "; export PATH=/usr/local/bin:/usr/bin:/bin; "+cmd+"; echo X2GODATAEND:" + uuidStr +";'";
+        QString shcmd = "sh -c 'echo \"X2GODATABEGIN:" + uuidStr + "\"; export PATH=\"/usr/local/bin:/usr/bin:/bin\"; "+cmd+"; echo \"X2GODATAEND:" + uuidStr +"\";'";
         x2goDebug << "Running masterCon->addChannelConnection(this, '" << uuidStr << "', '" << shcmd.left (200) << "');";
         masterCon->addChannelConnection(this, uuidStr, shcmd);
         connect(masterCon,SIGNAL(stdOut(SshProcess*,QByteArray)),this,SLOT(slotStdOut(SshProcess*,QByteArray)));
@@ -209,7 +209,9 @@ void SshProcess::startNormal(const QString& cmd)
     else
     {
         QString host=masterCon->getHost();
-        QString shcmd = "sh -c 'echo X2GODATABEGIN:" + uuidStr + "; export PATH=/usr/local/bin:/usr/bin:/bin; "+cmd+"; echo X2GODATAEND:" + uuidStr +";'";
+
+        QString shcmd = "sh -c 'echo \\\"X2GODATABEGIN:" + uuidStr + "\\\"; export PATH=\\\"/usr/local/bin:/usr/bin:/bin\\\"; "+cmd+"; echo \\\"X2GODATAEND:" + uuidStr +"\\\";'";
+
         proc=new QProcess(this);
 #ifdef Q_OS_WIN
         if(masterCon->get_kerberosDelegation())

@@ -33,6 +33,8 @@ x2goclient (4.0.4.1-0x2go1) UNRELEASED; urgency=low
       truncation issues.
     - sshprocess.cpp: export PATH variable when running commands. Otherwise,
       only the first one will respect the new PATH value.
+    - sshprocess.cpp: wrap SSH command prelude and conclusion in double
+      quotes.
 
  -- X2Go Release Manager <git-admin@x2go.org>  Tue, 26 May 2015 21:42:09 +0200
 
