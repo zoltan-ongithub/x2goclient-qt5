@@ -11664,7 +11664,7 @@ void ONMainWindow::printSshDError_noHostPubKey()
 
                                       "<ul>"
                                         "<li>Open a <b>Terminal Window</b> (Applications -> Utilities -> Terminal)</li>"
-                                        "<li>Run this command: <b>ssh -p " + clientSshPort
+                                        "<li>Run this command: <b>ssh -p " + clientSshPort.toAscii ()
                                            + " localhost</b></li>"
                                         "<li>You do not need to login. Just quit the Terminal application "
                                             "via Cmd + Q</li>"

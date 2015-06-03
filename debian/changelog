@@ -46,6 +46,8 @@ x2goclient (4.0.4.1-0x2go1) UNRELEASED; urgency=low
     - onmainwindow.cpp: silence another compiler warning by not converting
       from string to int and back to string needlessly. Just use the string.
       No need for an OS X-specific variable anymore.
+    - onmainwindow.cpp: fix compile error - use QString.toAscii () to get a
+      valid C string representation for tr ().
 
  -- X2Go Release Manager <git-admin@x2go.org>  Tue, 26 May 2015 21:42:09 +0200
 
