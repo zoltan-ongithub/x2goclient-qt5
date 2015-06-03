@@ -5056,7 +5056,12 @@ void ONMainWindow::slotRetResumeSess ( bool result,
                      resumingSession.sessionId+
                      "/.pulse-client.conf\"";
 
-            sshConnection->executeCommand(scmd);
+            /* Escape quotes - executing commands with Kerberos/GSSApi enabled adds another layer of quoting. */
+            if (sshConnection->useKerberos ()) {
+                scmd.replace ('"', "\\\"");
+            }
+
+            sshConnection->executeCommand (scmd);
 
             bool sysPulse=false;
 #ifdef Q_OS_LINUX
@@ -6401,10 +6406,17 @@ void ONMainWindow::runCommand()
 
 void ONMainWindow::runApplication(QString exec)
 {
-    sshConnection->executeCommand ("PULSE_CLIENTCONFIG=\"${HOME}/.x2go/C-"+
-                                   resumingSession.sessionId+"/.pulse-client.conf\" DISPLAY=:"+
-                                   resumingSession.display+
-                                   " setsid "+exec+" 1> /dev/null 2>/dev/null & exit");
+    QString cmd = "PULSE_CLIENTCONFIG=\"${HOME}/.x2go/C-"
+                + resumingSession.sessionId+"/.pulse-client.conf\" DISPLAY=:"
+                + resumingSession.display
+                + " setsid " + exec + " 1> /dev/null 2>/dev/null & exit";
+
+    /* Escape quotes - executing commands with Kerberos/GSSApi enabled adds another layer of quoting. */
+    if (sshConnection->useKerberos ()) {
+        cmd.replace ('"', "\\\"");
+    }
+
+    sshConnection->executeCommand (cmd);
 }
 
 void ONMainWindow::slotRetRunCommand ( bool result, QString output,
