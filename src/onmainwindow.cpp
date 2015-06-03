@@ -8475,14 +8475,14 @@ void ONMainWindow::slotScDaemonError (QProcess::ProcessError error) {
     }
 
     if (!informative_text.isEmpty ()) {
-        informative_text += "\n";
+        informative_text += "\n\n";
     }
 
-    informative_text += tr ("X2Go Client will now terminate.\n"
+    informative_text += tr ("X2Go Client will now terminate.\n\n"
                             "File a bug report as outlined on the <a href=\"http://wiki.x2go.org/doku.php/wiki:bugs\">bugs wiki page</a>.");
 
     show_RichText_ErrorMsgBox (main_text, informative_text);
-    closeClient ();
+    trayQuit ();
 }
 
 
