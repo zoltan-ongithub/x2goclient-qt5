@@ -31,6 +31,8 @@ x2goclient (4.0.4.1-0x2go1) UNRELEASED; urgency=low
     - onmainwindow.cpp: split up PATH value as printed in the error message
       box by a newline every 100 characters. Makes it look less ugly and fixes
       truncation issues.
+    - sshprocess.cpp: export PATH variable when running commands. Otherwise,
+      only the first one will respect the new PATH value.
 
  -- X2Go Release Manager <git-admin@x2go.org>  Tue, 26 May 2015 21:42:09 +0200
 
