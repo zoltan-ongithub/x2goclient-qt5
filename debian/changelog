@@ -27,6 +27,7 @@ x2goclient (4.0.4.1-0x2go1) UNRELEASED; urgency=low
     - onmainwindow.cpp: drop a redundant variable and fix empty env check.
     - onmainwindow.cpp: add more newlines to scdaemon error output. Use
       trayQuit() method to really quit the client.
+    - onmainwindow.cpp: add debugging output for new scdaemon PATH value.
 
  -- X2Go Release Manager <git-admin@x2go.org>  Tue, 26 May 2015 21:42:09 +0200
 

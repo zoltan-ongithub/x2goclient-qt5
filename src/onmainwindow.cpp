@@ -8353,6 +8353,8 @@ void ONMainWindow::slotStartPGPAuth()
 
     scdaemon_env.insert ("PATH", new_path_value);
 
+    x2goDebug << "New PATH value for scdaemon: " << new_path_value;
+
     scDaemon->setProcessEnvironment (scdaemon_env);
 
     connect ( scDaemon,SIGNAL ( readyReadStandardError() ),this,
