@@ -8435,31 +8435,44 @@ void ONMainWindow::slotScDaemonError (QProcess::ProcessError error) {
     QString informative_text;
 
     switch (error) {
-        case QProcess::FailedToStart: main_text += tr ("failed to start.");
-                                      informative_text = tr ("Check whether the package providing \"scdaemon\" is installed.\n"
-                                                             "The current search path is: ");
+        case QProcess::FailedToStart: {
+            main_text += tr ("failed to start.");
+            informative_text = tr ("Check whether the package providing \"scdaemon\" is installed.\n"
+                                   "The current search path is: ");
 
-                                      QProcessEnvironment tmp_env = QProcessEnvironment::systemEnvironment ();
+            QProcessEnvironment tmp_env = QProcessEnvironment::systemEnvironment ();
 
-                                      if (!scDaemon->processEnvironment ().isEmpty ()) {
-                                          tmp_env = scDaemon->processEnvironment ();
-                                      }
+            if (!scDaemon->processEnvironment ().isEmpty ()) {
+                tmp_env = scDaemon->processEnvironment ();
+            }
 
-                                      informative_text = tmp_env.value ("PATH", "unknown");
-                                      break;
-        case QProcess::Crashed:       main_text += tr ("started, but crashed.");
-                                      break;
-        case QProcess::Timedout:      main_text += tr ("didn't start yet.");
-                                      informative_text = tr ("This error shouldn't come up.");
-                                      break;
-        case QProcess::WriteError:    main_text += tr ("didn't accept a write operation.");
-                                      informative_text = tr ("It is probably not running correctly or crashed in-between.");
-                                      break;
-        case QProcess::ReadError:     main_text = tr ("Unable to read from scdaemon.");
-                                      informative_text = tr ("It is probably not running correctly or crashed in-between.");
-                                      break;
-        case QProcess::UnknownError:
-        default:                      main_text += tr ("experienced an unknown error.");
+            informative_text += tmp_env.value ("PATH", "unknown");
+            break;
+        }
+        case QProcess::Crashed: {
+            main_text += tr ("started, but crashed.");
+            break;
+        }
+        case QProcess::Timedout: {
+            main_text += tr ("didn't start yet.");
+            informative_text = tr ("This error shouldn't come up.");
+            break;
+        }
+        case QProcess::WriteError: {
+            main_text += tr ("didn't accept a write operation.");
+            informative_text = tr ("It is probably not running correctly or crashed in-between.");
+            break;
+        }
+        case QProcess::ReadError: {
+            main_text = tr ("Unable to read from scdaemon.");
+            informative_text = tr ("It is probably not running correctly or crashed in-between.");
+            break;
+        }
+        case QProcess::UnknownError: {
+        }
+        default: {
+            main_text += tr ("experienced an unknown error.");
+        }
     }
 
     if (!informative_text.isEmpty ()) {
