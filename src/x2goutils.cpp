@@ -106,11 +106,11 @@ void show_RichText_Generic_MsgBox (QMessageBox::Icon icon, const QString &main_t
 }
 
 void show_RichText_WarningMsgBox (const QString &main_text, const QString &informative_text) {
-  show_RichText_Generic_MsgBox (QMessageBox::warning, main_text, informative_text);
+  show_RichText_Generic_MsgBox (QMessageBox::Warning, main_text, informative_text);
 }
 
 void show_RichText_ErrorMsgBox (const QString &main_text, const QString &informative_text) {
-  show_RichText_Generic_MsgBox (QMessageBox::Critical, main_text, informative_test);
+  show_RichText_Generic_MsgBox (QMessageBox::Critical, main_text, informative_text);
 }
 
 QString git_changelog_extract_commit_sha (const QString &gitlog) {
