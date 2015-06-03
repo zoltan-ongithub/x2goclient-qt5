@@ -41,6 +41,8 @@ x2goclient (4.0.4.1-0x2go1) UNRELEASED; urgency=low
       Kerberos/GSSApi when running the xmodmap keyboard sync command on OS X.
     - onmainwindow.cpp: also escape other shell quotes when using
       Kerberos/GSSApi.
+    - onmainwindow.cpp: silence compiler warning by casting an int value to
+      std::size_t.
 
  -- X2Go Release Manager <git-admin@x2go.org>  Tue, 26 May 2015 21:42:09 +0200
 

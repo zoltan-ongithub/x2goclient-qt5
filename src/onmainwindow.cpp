@@ -8470,7 +8470,7 @@ void ONMainWindow::slotScDaemonError (QProcess::ProcessError error) {
             QString path_val = tmp_env.value ("PATH", "unknown");
 
             /* Add a newline every 100 characters. */
-            for (std::size_t i = 100; i < path_val.size (); i += 100) {
+            for (std::size_t i = 100; i < static_cast<std::size_t> (path_val.size ()); i += 100) {
                 path_val.insert (i, "\n");
             }
 
