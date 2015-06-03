@@ -8447,7 +8447,14 @@ void ONMainWindow::slotScDaemonError (QProcess::ProcessError error) {
                 tmp_env = scDaemon->processEnvironment ();
             }
 
-            informative_text += tmp_env.value ("PATH", "unknown");
+            QString path_val = tmp_env.value ("PATH", "unknown");
+
+            /* Add a newline every 100 characters. */
+            for (std::size_t i = 100; i < path_val.size (); i += 100) {
+                path_val.insert (i, "\n");
+            }
+
+            informative_text += path_val;
             break;
         }
         case QProcess::Crashed: {

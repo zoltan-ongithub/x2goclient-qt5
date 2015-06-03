@@ -28,6 +28,9 @@ x2goclient (4.0.4.1-0x2go1) UNRELEASED; urgency=low
     - onmainwindow.cpp: add more newlines to scdaemon error output. Use
       trayQuit() method to really quit the client.
     - onmainwindow.cpp: add debugging output for new scdaemon PATH value.
+    - onmainwindow.cpp: split up PATH value as printed in the error message
+      box by a newline every 100 characters. Makes it look less ugly and fixes
+      truncation issues.
 
  -- X2Go Release Manager <git-admin@x2go.org>  Tue, 26 May 2015 21:42:09 +0200
 
