@@ -37,6 +37,8 @@ x2goclient (4.0.4.1-0x2go1) UNRELEASED; urgency=low
       quotes.
     - sshprocess.cpp: wrap all remote commands with "bash" instead of the
       unspecific "sh".
+    - onmainwindow.cpp: try to escape shell quotes correctly when using
+      Kerberos/GSSApi when running the xmodmap keyboard sync command on OS X.
 
  -- X2Go Release Manager <git-admin@x2go.org>  Tue, 26 May 2015 21:42:09 +0200
 

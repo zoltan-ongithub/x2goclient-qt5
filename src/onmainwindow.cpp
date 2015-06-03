@@ -5509,7 +5509,15 @@ void ONMainWindow::slotSetModMap()
             }
         }
     }
-    sshConnection->executeCommand("export DISPLAY=:"+resumingSession.display+"; echo \""+kbMap+"\" | xmodmap -");
+
+    QString cmd = "export DISPLAY=\":" + resumingSession.display + "\"; echo \"" + kbMap + "\" | xmodmap -";
+
+    /* Escape quotes - executing commands with Kerberos/GSSApi enabled adds another layer of quoting. */
+    if (sshConnection->useKerberos ()) {
+        cmd.replace ('"', "\\\"");
+    }
+
+    sshConnection->executeCommand (cmd);
 }
 #endif
 
