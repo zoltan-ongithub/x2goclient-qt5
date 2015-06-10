@@ -8478,8 +8478,10 @@ void ONMainWindow::slotScDaemonError (QProcess::ProcessError error) {
             break;
         }
         case QProcess::Crashed: {
-            main_text += tr ("started, but crashed.");
-            break;
+            /* This means the process exited with a non-zero exit code.
+             * It didn't really crash at all. Everything is fine.
+             * Just restart it. */
+            return;
         }
         case QProcess::Timedout: {
             main_text += tr ("didn't start yet.");
