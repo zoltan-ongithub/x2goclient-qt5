@@ -5056,11 +5056,6 @@ void ONMainWindow::slotRetResumeSess ( bool result,
                      resumingSession.sessionId+
                      "/.pulse-client.conf\"";
 
-            /* Escape quotes - executing commands with Kerberos/GSSApi enabled adds another layer of quoting. */
-            if (sshConnection->useKerberos ()) {
-                scmd.replace ('"', "\\\"");
-            }
-
             sshConnection->executeCommand (scmd);
 
             bool sysPulse=false;
@@ -5516,11 +5511,6 @@ void ONMainWindow::slotSetModMap()
     }
 
     QString cmd = "export DISPLAY=\":" + resumingSession.display + "\"; echo \"" + kbMap + "\" | xmodmap -";
-
-    /* Escape quotes - executing commands with Kerberos/GSSApi enabled adds another layer of quoting. */
-    if (sshConnection->useKerberos ()) {
-        cmd.replace ('"', "\\\"");
-    }
 
     sshConnection->executeCommand (cmd);
 }
@@ -6410,11 +6400,6 @@ void ONMainWindow::runApplication(QString exec)
                 + resumingSession.sessionId+"/.pulse-client.conf\" DISPLAY=:"
                 + resumingSession.display
                 + " setsid " + exec + " 1> /dev/null 2>/dev/null & exit";
-
-    /* Escape quotes - executing commands with Kerberos/GSSApi enabled adds another layer of quoting. */
-    if (sshConnection->useKerberos ()) {
-        cmd.replace ('"', "\\\"");
-    }
 
     sshConnection->executeCommand (cmd);
 }
