@@ -200,7 +200,7 @@ void SshProcess::startNormal(const QString& cmd)
 // #endif
     if(!masterCon->useKerberos())
     {
-        QString shcmd = "bash -c 'echo \"X2GODATABEGIN:" + uuidStr + "\"; export PATH=\"/usr/local/bin:/usr/bin:/bin\"; "+cmd+"; echo \"X2GODATAEND:" + uuidStr +"\";'";
+        QString shcmd = "bash -c 'echo \"X2GODATABEGIN:" + uuidStr + "\"; export PATH=\"/usr/local/bin:/usr/bin:/bin\"; "+cmd+"; echo \"X2GODATAEND:" + uuidStr + "\";'";
         x2goDebug << "Running masterCon->addChannelConnection(this, '" << uuidStr << "', '" << shcmd.left (200) << "');";
         masterCon->addChannelConnection(this, uuidStr, shcmd);
         connect(masterCon,SIGNAL(stdOut(SshProcess*,QByteArray)),this,SLOT(slotStdOut(SshProcess*,QByteArray)));
@@ -210,30 +210,74 @@ void SshProcess::startNormal(const QString& cmd)
     {
         QString host=masterCon->getHost();
 
-        QString shcmd = "bash -c 'echo \\\"X2GODATABEGIN:" + uuidStr + "\\\"; export PATH=\\\"/usr/local/bin:/usr/bin:/bin\\\"; "+cmd+"; echo \\\"X2GODATAEND:" + uuidStr +"\\\";'";
+        QString shcmd = "";
+
+        /* On Windows, arguments are automatically wrapped in double quotes.
+         * Additionally, QProcess automatically doubles escape characters before
+         * double quotes and inserts an escape character before any non-escaped
+         * double quotes.
+         * Thus, we don't escape double quotes here and let Qt handle this stuff.
+         *
+         * On UNIX-like platforms, likewise, we MUST NOT escape double quotes,
+         * as there is no preceding "outer double quote" the whole argument
+         * is wrapped in.
+         */
+        shcmd = "bash -c 'echo \"X2GODATABEGIN:" + uuidStr + "\"; export PATH=\"/usr/local/bin:/usr/bin:/bin\"; "+cmd+"; echo \"X2GODATAEND:" + uuidStr + "\";'";
 
         proc=new QProcess(this);
+        QString local_cmd = "";
+        QStringList local_args;
 #ifdef Q_OS_WIN
         if(masterCon->get_kerberosDelegation())
         {
             addPuttyReg(host, uuidStr);
             host = uuidStr;
         }
-        QString sshString="plink -batch -P "+
+        local_cmd = "plink";
+
+        /* General options. */
+        local_args << "-batch";
+
+        /* Port option. Must be the last one added! */
+        local_args << "-P";
 #else
-        QString krbDelegOption=" -k ";
+        local_cmd = "ssh";
+
+        /* General options. */
+        local_args << QString (KEEPALIVE_OPTION).trimmed ().split (" ");
+
+        /* Kerberos options. */
+        local_args << "-k";
         if(masterCon->get_kerberosDelegation())
         {
-            krbDelegOption=" -K ";
+            local_args << "-K";
         }
-        QString sshString=QString::null+"ssh"+ KEEPALIVE_OPTION +krbDelegOption+" -o GSSApiAuthentication=yes -o PasswordAuthentication=no -o PubkeyAuthentication=no -p "+
-#endif
-                          QString::number(masterCon->getPort())+" -l "+
-                          masterCon->getUser()+" "+ host +  " \""+shcmd+"\"";
 
-        x2goDebug<<"Evoking SSH command via SshProcess object "<<pid<<": "<<sshString;
+        /* Authentication options. */
+        local_args << "-o" << "GSSApiAuthentication=yes";
+        local_args << "-o" << "PasswordAuthentication=no";
+        local_args << "-o" << "PubkeyAuthentication=no";
+
+        /* Port option. Must be the last one added! */
+        local_args << "-p";
+#endif
+        local_args << QString::number (masterCon->getPort ());
+        local_args << "-l" << masterCon->getUser ();
+        local_args << host;
+
+        /* On Windows, arguments are automatically wrapped in double quotes.
+         * This means we do not have to wrap shcmd ourselves.
+         *
+         * On UNIX-like platforms, we likewise MUST NOT wrap the command in
+         * double quotes, as each entry in the arguments list is passed as
+         * one entry in argv.
+         */
+        local_args << shcmd;
+
+        x2goDebug << "Invoking SSH command via SshProcess object " << pid<< ": "
+                  << local_cmd << local_args.join (" ");
         procUuid=uuidStr;
-        proc->start(sshString);
+        proc->start (local_cmd, local_args);
 
         if (!proc->waitForStarted(15000))
         {

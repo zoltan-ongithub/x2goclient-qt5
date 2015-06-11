@@ -50,6 +50,14 @@ x2goclient (4.0.4.1-0x2go1) UNRELEASED; urgency=low
       valid C string representation for tr ().
     - onmainwindow.cpp: don't terminate if scdaemon exited with non-zero exit
       code.
+    - sshprocess.cpp: don't use QProcess::start (QString). Qt is trying to be
+      too smart and causes big trouble. Instead, use QProcess::start (QString,
+      QStringList) and pass the arguments as a list. On Windows, Qt will
+      automatically double quote the arguments and duplicate escaped double
+      quotes or escape non-escaped double quotes. On UNIX-like platforms, each
+      element of the list is passed as a unique argv element, so there's no
+      need for quoting them (that's only a shell-internal thing to group
+      arguments.)
 
  -- X2Go Release Manager <git-admin@x2go.org>  Tue, 26 May 2015 21:42:09 +0200
 
