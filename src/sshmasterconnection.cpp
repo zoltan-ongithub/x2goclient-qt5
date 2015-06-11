@@ -1137,25 +1137,61 @@ bool SshMasterConnection::userAuthWithKey()
 bool SshMasterConnection::userAuthKrb()
 {
     QProcess ssh;
-    QString sshCmd;
 
     QUuid uuid = QUuid::createUuid();
     QString uuidStr = uuid.toString().mid(1, 36).toLower();
 
-    QString shcmd = "sh -c 'echo X2GODATABEGIN:" + uuidStr + "; whoami; echo X2GODATAEND:" + uuidStr +";'";
+    /* On Windows, arguments are automatically wrapped in double quotes.
+     * Additionally, QProcess automatically doubles escape characters before
+     * double quotes and inserts an escape character before any non-escaped
+     * double quotes.
+     * Thus, we don't escape double quotes here and let Qt handle this stuff.
+     *
+     * On UNIX-like platforms, likewise, we MUST NOT escape double quotes,
+     * as there is no preceding "outer double quote" the whole argument
+     * is wrapped in.
+     */
+    QString shcmd = "bash -c 'echo \"X2GODATABEGIN:" + uuidStr + "\"; whoami; echo \"X2GODATAEND:" + uuidStr + "\";'";
+
+    QString local_cmd = "";
+    QStringList local_args;
 
 #ifdef Q_OS_WIN
-    sshCmd="plink -batch "+user+"@"+host+" -P "+
-           QString::number(port)+ " "+shcmd;
+    local_cmd = "plink";
+
+    /* General options. */
+    local_args << "-batch";
+
+    /* Port option. Must be the last one added! */
+    local_args << "-P";
 #else
-    sshCmd="ssh -o GSSApiAuthentication=yes "+user+"@"+host+" -p "+
-           QString::number(port)+ " -o PasswordAuthentication=no -o PubkeyAuthentication=no "+shcmd;
+    local_cmd = "ssh";
+
+    /* Kerberos options. */
+    local_args << "-o" << "GSSApiAuthentication=yes"
+               << "-o" << "PasswordAuthentication=no"
+               << "-o" << "PubkeyAuthentication=no";
+
+    /* Port option. Must be the last one added! */
+    local_args << "-p";
 #endif
+    local_args << QString::number (port)
+               << "-l" << user
+               << host;
+
+    /* On Windows, arguments are automatically wrapped in double quotes.
+     * This means we do not have to wrap shcmd ourselves.
+     *
+     * On UNIX-like platforms, we likewise MUST NOT wrap the command in
+     * double quotes, as each entry in the arguments list is passed as
+     * one entry in argv.
+     */
+    local_args << shcmd;
 
 #ifdef DEBUG
-    x2goDebug<<"Starting ssh:" <<sshCmd<<endl;
+    x2goDebug << "Starting ssh:" << local_cmd << " " << local_args.join (" ") << endl;
 #endif
-    ssh.start(sshCmd);
+    ssh.start (local_cmd, local_args);
 
 
     if (!ssh.waitForStarted(5000))
