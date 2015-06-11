@@ -58,6 +58,8 @@ x2goclient (4.0.4.1-0x2go1) UNRELEASED; urgency=low
       element of the list is passed as a unique argv element, so there's no
       need for quoting them (that's only a shell-internal thing to group
       arguments.)
+    - sshprocess.cpp: add a bit more debugging - also print out the unmodified
+      raw output of SSH commands.
 
  -- X2Go Release Manager <git-admin@x2go.org>  Tue, 26 May 2015 21:42:09 +0200
 

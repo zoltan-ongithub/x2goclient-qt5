@@ -514,6 +514,7 @@ void SshProcess::slotChannelClosed(SshProcess* creator, QString uuid)
         int output_begin=stdOutString.indexOf(begin_marker) + begin_marker.length();
         int output_end=stdOutString.indexOf(end_marker);
         output = stdOutString.mid(output_begin, output_end-output_begin);
+        x2goDebug << "SSH finished: raw output (stdout): " << stdOutString;
         if ( output.length()<=0 &&  stdErrString.length() >0 )
         {
             normalExited=false;
