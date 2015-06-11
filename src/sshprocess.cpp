@@ -254,16 +254,16 @@ void SshProcess::startNormal(const QString& cmd)
         }
 
         /* Authentication options. */
-        local_args << "-o" << "GSSApiAuthentication=yes";
-        local_args << "-o" << "PasswordAuthentication=no";
-        local_args << "-o" << "PubkeyAuthentication=no";
+        local_args << "-o" << "GSSApiAuthentication=yes"
+                   << "-o" << "PasswordAuthentication=no"
+                   << "-o" << "PubkeyAuthentication=no";
 
         /* Port option. Must be the last one added! */
         local_args << "-p";
 #endif
-        local_args << QString::number (masterCon->getPort ());
-        local_args << "-l" << masterCon->getUser ();
-        local_args << host;
+        local_args << QString::number (masterCon->getPort ())
+                   << "-l" << masterCon->getUser ()
+                   << host;
 
         /* On Windows, arguments are automatically wrapped in double quotes.
          * This means we do not have to wrap shcmd ourselves.
@@ -274,8 +274,8 @@ void SshProcess::startNormal(const QString& cmd)
          */
         local_args << shcmd;
 
-        x2goDebug << "Invoking SSH command via SshProcess object " << pid<< ": "
-                  << local_cmd << local_args.join (" ");
+        x2goDebug << "Invoking SSH command via SshProcess object " << pid << ": "
+                  << local_cmd << " " << local_args.join (" ");
         procUuid=uuidStr;
         proc->start (local_cmd, local_args);
 
