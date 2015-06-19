@@ -64,6 +64,11 @@ x2goclient (4.0.4.1-0x2go1) UNRELEASED; urgency=low
     - sshmasterconnection.cpp: port QProcess::start () change.
     - sshprocess.cpp: whitespace/prettify only and a compile fix.
 
+  [ Mike Gabriel ]
+  * debian/control:
+    + Add alternative D for nxproxy: qvd-nxproxy. Allows parallel installation
+      of X2Go Client and the TheQVD client (perl-qvd-client).
+
  -- X2Go Release Manager <git-admin@x2go.org>  Tue, 26 May 2015 21:42:09 +0200
 
 x2goclient (4.0.4.0-0x2go1) unstable; urgency=low
