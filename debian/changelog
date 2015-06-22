@@ -69,6 +69,10 @@ x2goclient (4.0.4.1-0x2go1) UNRELEASED; urgency=low
     + Add alternative D for nxproxy: qvd-nxproxy. Allows parallel installation
       of X2Go Client and the TheQVD client (perl-qvd-client).
 
+  [ Mike DePaulo ]
+    - Windows: Update bundled Win32 OpenSSL from 1.0.1m to 1.0.1o,
+      which fixes the multiple CVEs announced on 2015-06-11.
+
  -- X2Go Release Manager <git-admin@x2go.org>  Tue, 26 May 2015 21:42:09 +0200
 
 x2goclient (4.0.4.0-0x2go1) unstable; urgency=low
