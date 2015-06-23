@@ -2,7 +2,7 @@ if "%~3"=="" (
 	echo "Usage: copy-deps-win32.bat path-to-x2goclient-contrib path-to-OpenSSL-Win32 destination"
 	goto :a
 )
-xcopy /E /Y    %1\cygwin\20150425-2_bin %3\ || exit /b  %errorlevel%
+xcopy /E /Y    %1\cygwin\20150425-3_bin %3\ || exit /b  %errorlevel%
 del %3\nxproxy.exe.unstripped %3\libXcomp.a %3\libXcomp.dll.a || exit /b  %errorlevel%
 xcopy /E /Y    %1\libssh\0.7.0-x2go1-mingw482_bin\bin\libssh.dll %3\ || exit /b  %errorlevel%
 xcopy /E /Y    %1\libzip\0.9.3_bin\bin\libzip.dll %3\ || exit /b  %errorlevel%
