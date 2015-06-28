@@ -391,7 +391,7 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
     }
 
     act_abclient=new QAction ( QIcon ( ":/img/icons/32x32/x2goclient.png" ),
-                               tr ( "About X2GO client" ),this );
+                               tr ( "About X2Go Client" ),this );
 
 
 
