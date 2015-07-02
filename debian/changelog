@@ -80,6 +80,11 @@ x2goclient (4.0.4.1-0x2go1) UNRELEASED; urgency=low
         + VcXsrv's bundled version of openssl was updated from 1.0.2a
           to 1.0.2c (fixes the multiple CVEs announced on 2015-06-11)
 
+  [ Henning Heinold ]
+  * New upstream release (4.0.4.1):
+    - x2goclient.pro: simplify lrelease path preparing for different OS and
+      cross compiling. Fixes: #901.
+
  -- X2Go Release Manager <git-admin@x2go.org>  Tue, 26 May 2015 21:42:09 +0200
 
 x2goclient (4.0.4.0-0x2go1) unstable; urgency=low
