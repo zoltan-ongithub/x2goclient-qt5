@@ -63,6 +63,9 @@ x2goclient (4.0.4.1-0x2go1) UNRELEASED; urgency=low
     - onmainwindow.cpp: remove now-bogus double quote escaping.
     - sshmasterconnection.cpp: port QProcess::start () change.
     - sshprocess.cpp: whitespace/prettify only and a compile fix.
+    - x2goclient.pro: reinstate old lrelease "search" behavior if
+      qtPrepareTool() is not available. This should only happen on EPEL 6,
+      which ships a broken Qt4 version...
 
   [ Mike Gabriel ]
   * debian/control:

@@ -140,7 +140,16 @@ else {
 
 !isEmpty(TRANSLATIONS) {
   isEmpty(QMAKE_LRELEASE) {
+    # Some Qt versions (looking at you, EPEL 6) are broken
+    # and do not provide the qtPrepareTool test function.
+    # This section is only for working around bugs...
+    !defined(qtPrepareTool) {
+      win32:QMAKE_LRELEASE = $$[QT_INSTALL_BINS]\\lrelease.exe
+      else:QMAKE_LRELEASE = $$[QT_INSTALL_BINS]/lrelease
+    }
+    else {
       qtPrepareTool(QMAKE_LRELEASE, lrelease)
+    }
   }
 
   isEmpty(TS_DIR):TS_DIR = .
