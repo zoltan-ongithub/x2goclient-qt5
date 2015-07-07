@@ -5401,11 +5401,14 @@ void ONMainWindow::slotTunnelOk(int)
 
     nxproxy->start ( proxyCmd );
     proxyRunning=true;
-//allways search for proxy window on linux. On Windows only in window mode
+// always search for proxy window on linux. On Windows only in window mode
 #ifdef Q_OS_WIN
-    if(xorgMode==WIN)
+    if (xorgMode==WIN) {
 #endif
     proxyWinTimer->start ( 300 );
+#ifdef Q_OS_WIN
+    }
+#endif
     if ( embedMode )
     {
 //         proxyWinTimer->start ( 300 );

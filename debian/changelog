@@ -89,8 +89,9 @@ x2goclient (4.0.4.1-0x2go1) UNRELEASED; urgency=low
       cross compiling. Fixes: #901.
 
   [ Oleksandr Shneyder ]
-    - Fixing multimonitor mode on Windows. Run VcXsrv with on selected screen
-      without decoration.
+  * New upstream release (4.0.4.1):
+    - onmainwindow.{cpp,h}: fix multimonitor mode on Windows. Run VcXsrv on
+      selected screen without decorations.
 
  -- X2Go Release Manager <git-admin@x2go.org>  Tue, 26 May 2015 21:42:09 +0200
 
