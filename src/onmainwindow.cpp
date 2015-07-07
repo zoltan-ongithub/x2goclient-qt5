@@ -3825,6 +3825,32 @@ void ONMainWindow::startNewSession()
         {
             runRemoteCommand=false;
         }
+#ifdef Q_OS_WIN
+        x2goDebug<<"Fullscreen: "<<fullscreen;
+        maximizeProxyWin=false;
+        proxyWinWidth=width;
+        proxyWinHeight=height;
+        xorgMode=WIN;
+        if (fullscreen)
+            xorgMode=FS;
+        if (rootless)
+            xorgMode=SAPP;
+        xorgWidth=QString::number(width);
+        xorgHeight=QString::number(height);
+        uint displays=QApplication::desktop()->numScreens();
+        if (st->setting()->value ( sid+"/multidisp", ( QVariant ) false ).toBool())
+        {
+            xorgMode=MULTIDISPLAY;
+            uint disp=st->setting()->value ( sid+"/display",( QVariant ) 1 ).toUInt();
+            if (disp>displays)
+            {
+                disp=1;
+            }
+            localDisplayNumber=disp;
+        }
+        if (! startXorgOnStart)
+            startXOrg();
+#endif
         delete st;
     }
 
@@ -3840,25 +3866,6 @@ void ONMainWindow::startNewSession()
 
 
     QString geometry;
-#ifdef Q_OS_WIN
-
-    x2goDebug<<"Fullscreen: "<<fullscreen;
-
-    maximizeProxyWin=false;
-    proxyWinWidth=width;
-    proxyWinHeight=height;
-//#ifdef CFGCLIENT
-    xorgMode=WIN;
-    if (fullscreen)
-        xorgMode=FS;
-    if (rootless)
-        xorgMode=SAPP;
-    xorgWidth=QString::number(width);
-    xorgHeight=QString::number(height);
-    if (! startXorgOnStart)
-        startXOrg();
-//#endif
-#endif
     if ( fullscreen )
     {
         geometry="fullscreen";
@@ -5394,7 +5401,10 @@ void ONMainWindow::slotTunnelOk(int)
 
     nxproxy->start ( proxyCmd );
     proxyRunning=true;
-//always search for proxyWin
+//allways search for proxy window on linux. On Windows only in window mode
+#ifdef Q_OS_WIN
+    if(xorgMode==WIN)
+#endif
     proxyWinTimer->start ( 300 );
     if ( embedMode )
     {
@@ -9519,6 +9529,9 @@ void ONMainWindow::startXOrg ()
 
                 x2goDebug<<cmdLine;
                 break;
+            case MULTIDISPLAY:
+                cmdLine=xorgMDOptions+QString::number(localDisplayNumber);
+                break;
             }
         }
         QStringList options=cmdLine.split(" ",QString::SkipEmptyParts);
@@ -9919,7 +9932,7 @@ void ONMainWindow::xorgSettings()
     xorgWinOptions=(st.setting()->value("optionswin","-screen 0 %wx%h -notrayicon -clipboard").toString());
     xorgFSOptions=(st.setting()->value("optionsfs","-fullscreen -notrayicon -clipboard").toString());
     xorgSAppOptions=(st.setting()->value("optionssingle","-multiwindow -notrayicon -clipboard").toString());
-
+    xorgMDOptions=(st.setting()->value("optionsmd","-nodecoration -notrayicon -clipboard -screen 0 @").toString());
 
 
     if (QFile::exists(appDir+"\\vcxsrv"))
@@ -9941,6 +9954,7 @@ void ONMainWindow::xorgSettings()
             xorgWinOptions="-multiwindow -notrayicon -clipboard"+primClip;
             xorgFSOptions="-fullscreen -notrayicon -clipboard"+primClip;
             xorgSAppOptions="-multiwindow -notrayicon -clipboard"+primClip;
+            xorgMDOptions="-nodecoration -notrayicon -clipboard"+primClip+" -screen 0 @";
         }
     }
 
@@ -10227,11 +10241,6 @@ void ONMainWindow::slotSetProxyWinFullscreen()
 
     sshConnection->executeCommand("DISPLAY=:"+resumingSession.display+" xrandr --output default --mode "+geoStr);
 #endif
-#ifdef Q_OS_WIN
-    wapiSetFSWindow ( ( HWND ) proxyWinId,
-                      dispGeometry );
-
-#endif
 }
 
 
@@ -10392,9 +10401,10 @@ void ONMainWindow::slotFindProxyWin()
                     st=new X2goSettings(config.iniFile,QSettings::IniFormat);
                 else
                     st= new X2goSettings( "sessions" );
-                uint displays=QApplication::desktop()->numScreens();
                 xinerama=st->setting()->value ( sid+"/xinerama",
                                                 ( QVariant ) defaultXinerama ).toBool();
+#ifndef Q_OS_WIN
+                uint displays=QApplication::desktop()->numScreens();
                 if (st->setting()->value ( sid+"/multidisp",
                                            ( QVariant ) false ).toBool())
                 {
@@ -10408,6 +10418,7 @@ void ONMainWindow::slotFindProxyWin()
                     resizeProxyWinOnDisplay(disp);
                     return;
                 }
+#endif
             }
             if (xinerama)
             {

@@ -886,7 +886,8 @@ private:
     QString xorgWinOptions;
     QString xorgFSOptions;
     QString xorgSAppOptions;
-    enum {WIN,FS,SAPP} xorgMode;
+    QString xorgMDOptions;
+    enum {WIN,FS,SAPP,MULTIDISPLAY} xorgMode;
     QString xorgWidth;
     QString xorgHeight;
     int waitingForX;
