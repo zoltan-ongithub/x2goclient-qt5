@@ -66,6 +66,7 @@ x2goclient (4.0.4.1-0x2go1) UNRELEASED; urgency=low
     - x2goclient.pro: reinstate old lrelease "search" behavior if
       qtPrepareTool() is not available. This should only happen on EPEL 6,
       which ships a broken Qt4 version...
+    - onmainwindow.cpp: only set multidisplay mode for non-rootless sessions.
 
   [ Mike Gabriel ]
   * debian/control:

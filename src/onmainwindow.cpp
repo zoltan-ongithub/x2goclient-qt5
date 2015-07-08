@@ -3838,7 +3838,7 @@ void ONMainWindow::startNewSession()
         xorgWidth=QString::number(width);
         xorgHeight=QString::number(height);
         uint displays=QApplication::desktop()->numScreens();
-        if (st->setting()->value ( sid+"/multidisp", ( QVariant ) false ).toBool())
+        if ((!rootless) && (st->setting()->value ( sid+"/multidisp", ( QVariant ) false ).toBool())
         {
             xorgMode=MULTIDISPLAY;
             uint disp=st->setting()->value ( sid+"/display",( QVariant ) 1 ).toUInt();
