@@ -38,6 +38,8 @@ XSettingsWidget::XSettingsWidget(QWidget* parent)
     leWinMod->setText(st.setting()->value("optionswin","-screen 0 %wx%h -notrayicon -clipboard").toString());
     leFSMod->setText(st.setting()->value("optionsfs","-fullscreen -notrayicon -clipboard").toString());
     leSingApp->setText(st.setting()->value("optionssingle","-multiwindow -notrayicon -clipboard").toString());
+    leWholeDisplay->setText (st.settings ()->value ("optionswholedisplay", "-nodecoration -notrayicon -clipboard -screen 0 @").toString ());
+
 //     spDelay->setValue(st.setting()->value("delay",3).toInt());
     pbExec->setIcon( QPixmap ( ":/img/icons/16x16/file-open.png" ) );
 }
@@ -66,6 +68,7 @@ void XSettingsWidget::setDefaults()
     leWinMod->setText("-screen 0 %wx%h -notrayicon -clipboard");
     leFSMod->setText("-fullscreen -notrayicon -clipboard");
     leSingApp->setText("-multiwindow -notrayicon -clipboard");
+    leWholeDisplay->setText ("-nodecoration -notrayicon -clipboard -screen 0 @");
 //     spDelay->setValue(3);
 
 }
@@ -82,6 +85,7 @@ void XSettingsWidget::saveSettings()
     st.setting()->setValue("optionswin",leWinMod->text());
     st.setting()->setValue("optionsfs",leFSMod->text());
     st.setting()->setValue("optionssingle",leSingApp->text());
+    st.settings ()->setValue ("optionswholedisplay", leWholeDisplay->text ());
 //     st.setting()->setValue("delay",spDelay->value());
     st.setting()->sync();
 }

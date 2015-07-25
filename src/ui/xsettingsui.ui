@@ -163,6 +163,16 @@
          <item row="2" column="1">
           <widget class="QLineEdit" name="leSingApp"/>
          </item>
+         <item row="3" column="0">
+          <widget class="QLabel" name="label_6">
+            <property name="text">
+              <string>whole display:</string>
+            </property>
+          </widget>
+        </item>
+        <item row="3" column="1">
+          <widget class="QLineEdit" name="leWholeDisplay"/>
+        </item>
         </layout>
        </widget>
       </item>
