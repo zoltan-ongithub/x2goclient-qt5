@@ -9935,7 +9935,7 @@ void ONMainWindow::xorgSettings()
     xorgWinOptions=(st.setting()->value("optionswin","-screen 0 %wx%h -notrayicon -clipboard").toString());
     xorgFSOptions=(st.setting()->value("optionsfs","-fullscreen -notrayicon -clipboard").toString());
     xorgSAppOptions=(st.setting()->value("optionssingle","-multiwindow -notrayicon -clipboard").toString());
-    xorgMDOptions=(st.setting()->value("optionsmd","-nodecoration -notrayicon -clipboard -screen 0 @").toString());
+    xorgMDOptions=(st.setting()->value("optionswholedisplay","-nodecoration -notrayicon -clipboard -screen 0 @").toString());
 
 
     if (QFile::exists(appDir+"\\vcxsrv"))

@@ -69,6 +69,8 @@ x2goclient (4.0.4.1-0x2go1) UNRELEASED; urgency=low
     - onmainwindow.cpp: only set multidisplay mode for non-rootless sessions.
     - {ui/xsettingsui.ui,xsettingswidget.cpp}: add new "whole display" option
       for external X server configuration. Part of #883.
+    - onmainwindow.cpp: rename "optionsmd" setting to "optionswholedisplay",
+      which is more clear.
 
   [ Mike Gabriel ]
   * debian/control:
