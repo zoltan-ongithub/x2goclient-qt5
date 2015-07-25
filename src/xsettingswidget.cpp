@@ -85,7 +85,7 @@ void XSettingsWidget::saveSettings()
     st.setting()->setValue("optionswin",leWinMod->text());
     st.setting()->setValue("optionsfs",leFSMod->text());
     st.setting()->setValue("optionssingle",leSingApp->text());
-    st.settings ()->setValue ("optionswholedisplay", leWholeDisplay->text ());
+    st.setting ()->setValue ("optionswholedisplay", leWholeDisplay->text ());
 //     st.setting()->setValue("delay",spDelay->value());
     st.setting()->sync();
 }

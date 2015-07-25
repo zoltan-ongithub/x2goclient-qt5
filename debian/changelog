@@ -71,6 +71,7 @@ x2goclient (4.0.4.1-0x2go1) UNRELEASED; urgency=low
       for external X server configuration. Part of #883.
     - onmainwindow.cpp: rename "optionsmd" setting to "optionswholedisplay",
       which is more clear.
+    - xsettingswidget.cpp: fix compile error: settings -> setting.
 
   [ Mike Gabriel ]
   * debian/control:
