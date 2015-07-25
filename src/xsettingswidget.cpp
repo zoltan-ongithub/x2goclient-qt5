@@ -38,7 +38,7 @@ XSettingsWidget::XSettingsWidget(QWidget* parent)
     leWinMod->setText(st.setting()->value("optionswin","-screen 0 %wx%h -notrayicon -clipboard").toString());
     leFSMod->setText(st.setting()->value("optionsfs","-fullscreen -notrayicon -clipboard").toString());
     leSingApp->setText(st.setting()->value("optionssingle","-multiwindow -notrayicon -clipboard").toString());
-    leWholeDisplay->setText (st.settings ()->value ("optionswholedisplay", "-nodecoration -notrayicon -clipboard -screen 0 @").toString ());
+    leWholeDisplay->setText (st.setting ()->value ("optionswholedisplay", "-nodecoration -notrayicon -clipboard -screen 0 @").toString ());
 
 //     spDelay->setValue(st.setting()->value("delay",3).toInt());
     pbExec->setIcon( QPixmap ( ":/img/icons/16x16/file-open.png" ) );
