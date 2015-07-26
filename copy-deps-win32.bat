@@ -12,7 +12,7 @@ xcopy /E /Y    %1\MinGW-DLLs\i686-4.8.2-release-posix-dwarf-rt_v3-rev3\libwinpth
 xcopy /E /Y    %1\MSVC-DLLs\2008-9.0.21022.8-x86 %3\ || exit /b  %errorlevel%
 xcopy /E /Y    %1\pulse\6.0-11.1_bin %3\ || exit /b  %errorlevel%
 xcopy /E /Y    %1\PuTTY\0.64_bin %3\ || exit /b  %errorlevel%
-xcopy /E /Y /I %1\VcXsrv\1.17.0.0-2_bin %3\VcXsrv || exit /b  %errorlevel%
+xcopy /E /Y /I %1\VcXsrv\1.17.0.0-3_bin %3\VcXsrv || exit /b  %errorlevel%
 xcopy /E /Y    %1\zlib\1.2.8_bin\zlib1.dll %3\ || exit /b  %errorlevel%
 xcopy /E /Y    %1\zlib\x86-mingw4-1.2.7-1_bin\bin\libz.dll %3\ || exit /b  %errorlevel%
 xcopy /E /Y    %2\bin\ssleay32.dll %3\ || exit /b  %errorlevel%

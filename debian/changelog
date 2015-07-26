@@ -86,10 +86,20 @@ x2goclient (4.0.4.1-0x2go1) UNRELEASED; urgency=low
       which fixes the multiple CVEs announced on 2015-06-11 and
       CVE-2015-1793 (announced on 2015-07-09).
     - Windows: Update bundled VcXsrv from 1.17.0.0-1 (X2Go/Arctica Build)
-      to 1.17.0.0-2 (X2Go/Arctica Build)
+      to 1.17.0.0-3 (X2Go/Arctica Build)
       The differences relevant to X2Go are:
         + VcXsrv's bundled version of openssl was updated from 1.0.2a
-          to 1.0.2c (fixes the multiple CVEs announced on 2015-06-11)
+          to 1.0.2d (fixes the multiple CVEs announced on 2015-06-11 and
+          CVE-2015-1793 (announced on 2015-07-09).
+        + Drop winmultiwindow.patch (Part of #883)
+        + hw/xwin/glx: Don't create fbConfigs for un-accelerated
+          pixelFormats
+          This has the effect of disabling StaticColor under
+          MultiWindow mode with -wgl (default) and -swrastwgl, and
+          thus making X2Go sessions started from the Windows client
+          able to be resumed on the client on a different OS or the
+          client runing on Windows with different display settings.
+          (Fixes: #696)
 
   [ Henning Heinold ]
   * New upstream release (4.0.4.1):
