@@ -84,6 +84,8 @@ x2goclient (4.0.4.1-0x2go1) UNRELEASED; urgency=low
       CVE-2015-1793 (announced on 2015-07-09).
     - Windows: Upgrade the MSVC 2008 DLLs (9.0.21022.8) to the
       MSVC 2013 DLLs (12.0.21005.1), which Win32 OpenSSL now requires.
+    - Windows: Only bundle msvcr120.dll; The other 2 MSVC DLLs aren't
+      needed by Win32 OpenSSL.
     - Windows: Update bundled Cygwin OpenSSL from 1.0.2a-1 to 1.0.2d-1, which
       which fixes the multiple CVEs announced on 2015-06-11 and
       CVE-2015-1793 (announced on 2015-07-09).
