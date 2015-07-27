@@ -1,7 +1,7 @@
-x2goclient (4.0.4.1-0x2go1) UNRELEASED; urgency=low
+x2goclient (4.0.5.0-0x2go1) UNRELEASED; urgency=low
 
   [ Mihai Moldovan ]
-  * New upstream release (4.0.4.1):
+  * New upstream release (4.0.5.0):
     - INSTALL: add more verbose instructions on how to build X2Go Client and
       friends.
     - onmainwindow.{cpp,h}: rename slotScDaemonOut() and slotScDaemonError()
@@ -108,12 +108,12 @@ x2goclient (4.0.4.1-0x2go1) UNRELEASED; urgency=low
           (Fixes: #696)
 
   [ Henning Heinold ]
-  * New upstream release (4.0.4.1):
+  * New upstream release (4.0.5.0):
     - x2goclient.pro: simplify lrelease path preparing for different OS and
       cross compiling. Fixes: #901.
 
   [ Oleksandr Shneyder ]
-  * New upstream release (4.0.4.1):
+  * New upstream release (4.0.5.0):
     - onmainwindow.{cpp,h}: fix multimonitor mode on Windows. Run VcXsrv on
       selected screen without decorations.
 
