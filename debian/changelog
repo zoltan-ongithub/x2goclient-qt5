@@ -72,6 +72,8 @@ x2goclient (4.0.4.1-0x2go1) UNRELEASED; urgency=low
     - onmainwindow.cpp: rename "optionsmd" setting to "optionswholedisplay",
       which is more clear.
     - xsettingswidget.cpp: fix compile error: settings -> setting.
+    - sessionmanagedialog.cpp: enable some debugging and make selected
+      sessions configureable or deletable. Fixes: #909.
 
   [ Mike Gabriel ]
   * debian/control:

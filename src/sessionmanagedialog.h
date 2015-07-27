@@ -48,7 +48,8 @@ private:
     ONMainWindow* par;
     QString currentPath;
 private slots:
-    void slot_activated ( QTreeWidgetItem * item, int);
+    void slot_endisable (QTreeWidgetItem *item, int col = -1);
+    void slot_endisable_ItemChanged_wrapper (QTreeWidgetItem *item, QTreeWidgetItem *);
     void slotNew();
     void slot_edit();
     void slot_createSessionIcon();

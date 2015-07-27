@@ -18,6 +18,7 @@
 #include "x2goclientconfig.h"
 #include "sessionmanagedialog.h"
 #include "onmainwindow.h"
+#include "x2gologdebug.h"
 
 #include <QPushButton>
 #include <QDir>
@@ -119,10 +120,16 @@ SessionManageDialog::SessionManageDialog ( QWidget * parent,
 
     setWindowTitle ( tr ( "Session management" ) );
     loadSessions();
-    connect ( sessions, SIGNAL(itemActivated(QTreeWidgetItem*,int)),
-              this,SLOT(slot_activated(QTreeWidgetItem*,int)) );
-    connect ( sessions,SIGNAL(itemDoubleClicked(QTreeWidgetItem*,int)),
-              this,SLOT(slot_dclicked(QTreeWidgetItem*,int)) );
+    connect (sessions, SIGNAL (itemPressed (QTreeWidgetItem *, int)),
+             this, SLOT (slot_endisable (QTreeWidgetItem *, int)));
+    connect (sessions, SIGNAL (itemActivated (QTreeWidgetItem *, int)),
+             this, SLOT (slot_endisable (QTreeWidgetItem *, int)));
+    connect (sessions, SIGNAL (itemChanged (QTreeWidgetItem *, int)),
+             this, SLOT (slot_endisable (QTreeWidgetItem *, int)));
+    connect (sessions, SIGNAL (currentItemChanged (QTreeWidgetItem *, QTreeWidgetItem *)),
+             this, SLOT (slot_endisable_ItemChanged_wrapper (QTreeWidgetItem *, QTreeWidgetItem *)));
+    connect (sessions,SIGNAL (itemDoubleClicked (QTreeWidgetItem *, int)),
+             this, SLOT (slot_dclicked (QTreeWidgetItem *, int)));
 }
 
 
@@ -191,19 +198,33 @@ void SessionManageDialog::initFolders(QTreeWidgetItem* parent, QString path)
 }
 
 
-void SessionManageDialog::slot_activated ( QTreeWidgetItem* item, int )
+void SessionManageDialog::slot_endisable ( QTreeWidgetItem* item, int col)
 {
+    Q_UNUSED (col);
+
     bool isSess=item->data(0, SESSIONROLE).toBool();
+    x2goDebug << "slot_endisable: isSess: " << isSess;
+
     if(!isSess)
     {
         currentPath=item->data(0,Qt::UserRole).toString().split("/",QString::SkipEmptyParts).join("/");
+        x2goDebug << "slot_endisable: no session, currentPath(?): " << currentPath;
     }
+
     removeSession->setEnabled ( isSess );
     editSession->setEnabled ( isSess );
 #if (!defined Q_WS_HILDON) && (!defined Q_OS_DARWIN)
     if ( !ONMainWindow::getPortable() )
         createSessionIcon->setEnabled ( isSess );
 #endif
+}
+
+void SessionManageDialog::slot_endisable_ItemChanged_wrapper (QTreeWidgetItem *item, QTreeWidgetItem *) {
+  /*
+   * The int parameter of slot_endisable is unused anyway,
+   * just use the default value in this special case.
+   */
+  slot_endisable (item);
 }
 
 void SessionManageDialog::slot_dclicked ( QTreeWidgetItem* item, int )
