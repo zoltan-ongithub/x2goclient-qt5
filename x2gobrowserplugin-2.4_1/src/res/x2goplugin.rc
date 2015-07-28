@@ -1,8 +1,8 @@
 1 TYPELIB "x2goplugin.rc"
 
 1 VERSIONINFO
- FILEVERSION 4.0.5.0
- PRODUCTVERSION 4.0.5.0
+ FILEVERSION 4.0.5.1
+ PRODUCTVERSION 4.0.5.1
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -26,7 +26,7 @@ BEGIN
             VALUE "LegalCopyright", "Copyright © 2010-2015 X2Go Project\0"
             VALUE "MIMEType", "application/x2go\0"
             VALUE "OriginalFilename", "npx2goplugin.dll\0"
-            VALUE "ProductName", "X2GoClient Plug-in 4.0.5.0\0"
+            VALUE "ProductName", "X2GoClient Plug-in 4.0.5.1\0"
             VALUE "ProductVersion", "4, 0, 4, 1\0"
         END
     END
