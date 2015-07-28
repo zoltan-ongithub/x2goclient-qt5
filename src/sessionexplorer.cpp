@@ -196,7 +196,7 @@ void SessionExplorer::slotCreateDesktopIcon ( SessionButton* bt )
 
     QTextStream out ( &file );
     out << "[Desktop Entry]\n"<<
-        "Exec="<<cmd<<args.join (" ")<<"\n"<<
+        "Exec="<<cmd<<" "<<args.join (" ")<<"\n"<<
         "Icon="<<sessIcon<<"\n"<<
         "Name="<<name<<"\n"<<
         "StartupNotify=true\n"<<

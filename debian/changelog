@@ -106,6 +106,9 @@ x2goclient (4.0.5.0-0x2go1) UNRELEASED; urgency=low
           able to be resumed on the client on a different OS or the
           client runing on Windows with different display settings.
           (Fixes: #696)
+    - Linux: Fix desktop session icons (.desktop files) failing due to
+      missing space between "x2goclient" and its 1st argument
+      (e.g. "--session") (Fixes: #911)
 
   [ Henning Heinold ]
   * New upstream release (4.0.5.0):
