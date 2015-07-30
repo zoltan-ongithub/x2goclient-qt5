@@ -117,6 +117,8 @@ x2goclient (4.0.5.3-0x2go1) UNRELEASED; urgency=medium
     - macbuild.sh: directories are "executable", so the first check must
       explicitly include a check for the argument being not a directory.
     - macbuild.sh: add some more debugging output.
+    - macbuild.sh: remove libpulse and libpulsecore from libraries to be
+      bundled, as something else will bundle them anyway.
 
   [ Bernard Cafarelli ]
   * New upstream version (4.0.5.3):
