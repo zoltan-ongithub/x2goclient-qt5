@@ -121,6 +121,8 @@ x2goclient (4.0.5.3-0x2go1) UNRELEASED; urgency=medium
       bundled, as something else will bundle them anyway.
     - macbuild.sh: use while-read-loop and find to actually recurse through
       directories.
+    - macbuild.sh: check current file name against regex, not a (now) full
+      path.
 
   [ Bernard Cafarelli ]
   * New upstream version (4.0.5.3):
