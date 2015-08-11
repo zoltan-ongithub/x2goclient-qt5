@@ -9994,12 +9994,13 @@ void ONMainWindow::generateEtcFiles()
     QTextStream out ( &file );
     out<<"StrictModes no\n"<<
        "UsePrivilegeSeparation no\n"<<
-       "PidFile " + varDir + "/sshd.pid\n" <<
+       "PidFile \"" + varDir + "/sshd.pid\"\n" <<
 #ifdef Q_OS_WIN
        "Subsystem shell "<< wapiShortFileName ( appDir) +"/sh"+"\n"<<
        "Subsystem sftp "<< wapiShortFileName ( appDir) +"/sftp-server"+"\n"<<
        "AuthorizedKeysFile \""<<authKeyPath<<"\"";
 #else
+      /* This may need some sanitization, i.e., appDir could potentially include whitespace. */
        "Subsystem sftp "
        <<appDir<<"/sftp-server\n";
 #endif
