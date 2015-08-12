@@ -3142,6 +3142,7 @@ void ONMainWindow::startDirectRDP()
 
     X2goSettings st ( "sessions" );
     QString sid;
+    bool freeRDPNew=false;
     if ( !embedMode )
         sid=sessionExplorer->getLastSession()->id();
     else
@@ -3161,6 +3162,11 @@ void ONMainWindow::startDirectRDP()
 
     QString client=st.setting()->value ( sid+"/rdpclient",
                                          ( QVariant ) "rdesktop").toString();
+    if(client=="xfreerdpnew")
+    {
+        client="xfreerdp";
+        freeRDPNew=true;
+    }
     QString host=st.setting()->value ( sid+"/host",
                                        ( QVariant ) "").toString();
     QString port=st.setting()->value ( sid+"/rdpport",
@@ -3183,43 +3189,68 @@ void ONMainWindow::startDirectRDP()
 
 
     QString userOpt;
-    if (user.length()>0)
-    {
-        userOpt=" -u ";
-        userOpt+=user+" ";
-    }
-
     QString passOpt;
-    if (password.length()>0)
-    {
-        passOpt=" -p \"";
-        passOpt+=password+"\" ";
-    }
-
     QString grOpt;
-
-    if (fullscreen)
+    QString proxyCmd;
+    if(!freeRDPNew)
     {
-        grOpt=" -f ";
-    }
-    else if (maxRes)
-    {
-        QDesktopWidget wd;
-        grOpt=" -D -g "+QString::number( wd.screenGeometry().width())+"x"+QString::number(wd.screenGeometry().height())+" ";
+        if (user.length()>0)
+        {
+            userOpt=" -u ";
+            userOpt+=user+" ";
+        }
+        if (password.length()>0)
+        {
+            passOpt=" -p \"";
+            passOpt+=password+"\" ";
+        }
+        if (fullscreen)
+        {
+            grOpt=" -f ";
+        }
+        else if (maxRes)
+        {
+            QDesktopWidget wd;
+            grOpt=" -D -g "+QString::number( wd.screenGeometry().width())+"x"+QString::number(wd.screenGeometry().height())+" ";
+        }
+        else
+        {
+            grOpt=" -g "+QString::number(width)+"x"+QString::number(height);
+        }
+        proxyCmd=client +" "+params+ grOpt +userOpt+passOpt + host +":"+port ;
     }
     else
     {
-        grOpt=" -g "+QString::number(width)+"x"+QString::number(height);
+        if (user.length()>0)
+        {
+            userOpt=" /u:";
+            userOpt+=user+" ";
+        }
+        if (password.length()>0)
+        {
+            passOpt=" /p:\"";
+            passOpt+=password+"\" ";
+        }
+        if (fullscreen)
+        {
+            grOpt=" /f ";
+        }
+        else if (maxRes)
+        {
+            QDesktopWidget wd;
+            grOpt=" /w:"+QString::number( wd.screenGeometry().width())+" /h:"+QString::number(wd.screenGeometry().height())+" ";
+        }
+        else
+        {
+            grOpt=" /w:"+QString::number(width)+" /h:"+QString::number(height);
+        }
+        proxyCmd= client +" "+params+ grOpt +userOpt+passOpt + "/v:"+host +":"+port ;
     }
-
-    QString proxyCmd=client +" "+params+ grOpt +userOpt+passOpt + host +":"+port ;
     nxproxy->start ( proxyCmd );
-
     resumingSession.display="RDP";
     resumingSession.server=host;
     resumingSession.sessionId=sessionExplorer->getLastSession()->name();
     resumingSession.crTime=QDateTime::currentDateTime().toString("dd.MM.yy HH:mm:ss");
-
     showSessionStatus();
 //     QTimer::singleShot ( 30000,this,SLOT ( slotRestartProxy() ) );
     proxyRunning=true;

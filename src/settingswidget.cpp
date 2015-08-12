@@ -205,21 +205,24 @@ SettingsWidget::SettingsWidget ( QString id, ONMainWindow * mw,
     setLay->addWidget ( rdpBox );
     rRdesktop=new QRadioButton ("rdesktop",rdpBox );
     rRdesktop->setChecked(true);
-    rXfreeRDP=new QRadioButton ( "xfreerdp",rdpBox);
+    rXfreeRDPOld=new QRadioButton ( "xfreerdp (old style options)",rdpBox);
+    rXfreeRDPNew=new QRadioButton ( "xfreerdp (new style options)",rdpBox);
     QButtonGroup* rClient=new QButtonGroup(rdpBox);
     rClient->addButton ( rRdesktop );
-    rClient->addButton ( rXfreeRDP );
+    rClient->addButton ( rXfreeRDPOld );
+    rClient->addButton ( rXfreeRDPNew );
     rClient->setExclusive ( true );
     QGridLayout *rdpLay=new QGridLayout(rdpBox);
     rdpLay->addWidget(rRdesktop,0,0);
-    rdpLay->addWidget(rXfreeRDP,1,0);
-    rdpLay->addWidget(new QLabel(tr("Additional parameters:")),2,0);
-    rdpLay->addWidget(new QLabel(tr("Command line:")),3,0);
+    rdpLay->addWidget(rXfreeRDPOld,1,0);
+    rdpLay->addWidget(rXfreeRDPNew,2,0);
+    rdpLay->addWidget(new QLabel(tr("Additional parameters:")),3,0);
+    rdpLay->addWidget(new QLabel(tr("Command line:")),4,0);
     cmdLine=new QLineEdit(rdpBox);
     cmdLine->setReadOnly(true);
     params=new QLineEdit(rdpBox);
     rdpLay->addWidget(cmdLine,4,0,1,2);
-    rdpLay->addWidget(params,2,1);
+    rdpLay->addWidget(params,3,1);
     connect (rClient, SIGNAL(buttonClicked(int)), this, SLOT(updateCmdLine()));
     connect (radio, SIGNAL(buttonClicked(int)), this, SLOT(updateCmdLine()));
     connect (params, SIGNAL(textChanged(QString)), this, SLOT(updateCmdLine()));
@@ -390,8 +393,10 @@ void SettingsWidget::readConfig()
     QString client=st.setting()->value ( sessionId+"/rdpclient","rdesktop").toString();
     if(client=="rdesktop")
         rRdesktop->setChecked(true);
+    else if(client=="xfreerdpnew")
+        rXfreeRDPNew->setChecked(true);
     else
-        rXfreeRDP->setChecked(true);
+        rXfreeRDPOld->setChecked(true);
     params->setText(st.setting()->value ( sessionId+"/directrdpsettings","").toString());
 #endif
 #endif
@@ -514,12 +519,21 @@ void SettingsWidget::saveSettings()
     st.setting()->setValue ( sessionId+"/maxdim",
                              ( QVariant ) maxRes->isChecked() );
 
-    if (rXfreeRDP->isChecked())
+    if (rXfreeRDPOld->isChecked())
+    {
         st.setting()->setValue ( sessionId+"/rdpclient",
                                  ( QVariant ) "xfreerdp" );
+    }
+    else if (rXfreeRDPNew->isChecked())
+    {
+        st.setting()->setValue ( sessionId+"/rdpclient",
+                                 ( QVariant ) "xfreerdpnew" );
+    }
     else
+    {
         st.setting()->setValue ( sessionId+"/rdpclient",
                                  ( QVariant ) "rdesktop" );
+    }
     st.setting()->setValue ( sessionId+"/directrdpsettings",
                              ( QVariant ) params->text());
 #endif
@@ -617,19 +631,43 @@ void SettingsWidget::updateCmdLine()
 
     QString grOpt;
 
-    if (fs->isChecked())
+    if(!rXfreeRDPNew->isChecked())
     {
-        grOpt=" -f ";
+        if (fs->isChecked())
+        {
+            grOpt=" -f ";
+        }
+        if (maxRes->isChecked())
+        {
+            grOpt=" -D -g <maxW>x<maxH>";
+        }
+        if (custom->isChecked())
+        {
+            grOpt=" -g "+QString::number(width->value())+"x"+QString::number(height->value());
+        }
+        cmdLine->setText(client +" "+params->text()+ grOpt +userOpt+" -p <"+tr("password")+"> "+ server+":"+port );
     }
-    if (maxRes->isChecked())
+    else
     {
-        grOpt=" -D -g <maxW>x<maxH>";
+        if (user.length()>0)
+        {
+            userOpt=" /u:";
+            userOpt+=user;
+        }
+        if (fs->isChecked())
+        {
+            grOpt=" /f ";
+        }
+        if (maxRes->isChecked())
+        {
+            grOpt="  /w:<maxW> /h:<maxH>";
+        }
+        if (custom->isChecked())
+        {
+            grOpt=" /w:"+QString::number(width->value())+" /h:"+QString::number(height->value());
+        }
+        cmdLine->setText(client +" "+params->text()+ grOpt +userOpt+" /p:<"+tr("password")+"> /v:"+ server+":"+port );
     }
-    if (custom->isChecked())
-    {
-        grOpt=" -g "+QString::number(width->value())+"x"+QString::number(height->value());
-    }
-    cmdLine->setText(client +" "+params->text()+ grOpt +userOpt+" -p <"+tr("password")+"> "+ server+":"+port );
 #endif
 }
 #endif

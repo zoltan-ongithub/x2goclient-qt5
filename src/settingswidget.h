@@ -90,7 +90,8 @@ private:
 #ifdef Q_OS_LINUX
     QGroupBox *rdpBox;
     QRadioButton* rRdesktop;
-    QRadioButton* rXfreeRDP;
+    QRadioButton* rXfreeRDPOld;
+    QRadioButton* rXfreeRDPNew;
     QLineEdit* cmdLine;
     QLineEdit* params;
     QString server;
