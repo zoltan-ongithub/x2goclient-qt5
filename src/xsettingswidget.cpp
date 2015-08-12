@@ -14,12 +14,12 @@
 *   You should have received a copy of the GNU General Public License     *
 *   along with this program.  If not, see <http://www.gnu.org/licenses/>. *
 ***************************************************************************/
-
 #include "xsettingswidget.h"
 #include "x2gosettings.h"
 #include "x2goutils.h"
 #include <QFileDialog>
 
+#ifdef Q_OS_WIN
 XSettingsWidget::XSettingsWidget(QWidget* parent)
 {
     UNUSED (parent);
@@ -89,4 +89,4 @@ void XSettingsWidget::saveSettings()
 //     st.setting()->setValue("delay",spDelay->value());
     st.setting()->sync();
 }
-
+#endif //Q_OS_WIN

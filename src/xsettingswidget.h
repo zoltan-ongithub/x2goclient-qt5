@@ -20,6 +20,7 @@
 
 #include <QWidget>
 
+#ifdef Q_OS_WIN
 #include "ui_xsettingsui.h"
 
 class XSettingsWidget : public QWidget, private Ui_XSettingsWidgetUI
@@ -33,5 +34,5 @@ public:
 private slots:
     void slotSetExecutable();
 };
-
+#endif //Q_OS_WIN
 #endif // XSETTINGSWIDGET_H
