@@ -132,6 +132,7 @@ x2goclient (4.0.5.3-0x2go1) UNRELEASED; urgency=medium
       library path. Putting everything into a single place is a stupid idea.
     - deduplicate.sh: add new, more or less Proof of Concept, and Work in
       Progress file deduplication script.
+    - deduplicate.sh: add duplicates-to-real mapping.
 
   [ Bernard Cafarelli ]
   * New upstream version (4.0.5.3):
