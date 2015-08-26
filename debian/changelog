@@ -134,6 +134,8 @@ x2goclient (4.0.5.3-0x2go1) UNRELEASED; urgency=medium
       Progress file deduplication script.
     - deduplicate.sh: add duplicates-to-real mapping.
     - deduplicate.sh: add missed local variable declaration.
+    - deduplicate.sh: new function for parsing otool's output and printing
+      library dependencies if no error occurred.
 
   [ Bernard Cafarelli ]
   * New upstream version (4.0.5.3):
