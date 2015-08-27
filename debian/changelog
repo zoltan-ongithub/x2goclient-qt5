@@ -160,6 +160,8 @@ x2goclient (4.0.5.3-0x2go1) UNRELEASED; urgency=medium
     - deduplicate.sh: add more useful information in fixup section's error
       message.
     - deduplicate.sh: unstub fixup section.
+    - deduplicate.sh: parse_otool_output: jump over first matching entry,
+      which is - hopefully - the id line.
 
   [ Bernard Cafarelli ]
   * New upstream version (4.0.5.3):
