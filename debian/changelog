@@ -164,6 +164,8 @@ x2goclient (4.0.5.3-0x2go1) UNRELEASED; urgency=medium
       which is - hopefully - the id line.
     - deduplicate.sh: actually include file name in install_name_tool pseudo
       output.
+    - deduplicate.sh: save dependency format base string as a readonly
+      variable and use that instead of repeating a fixed string.
 
   [ Bernard Cafarelli ]
   * New upstream version (4.0.5.3):
