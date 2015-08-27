@@ -152,6 +152,8 @@ x2goclient (4.0.5.3-0x2go1) UNRELEASED; urgency=medium
     - deduplicate.sh: record crafted "library path" values in duplicates
       replacement to_files array.
     - deduplicate.sh: debug parse_otool_output fiercely for the time being.
+    - deduplicate.sh: prevent word splitting when parsing otool's output. We
+      want the raw bits.
 
   [ Bernard Cafarelli ]
   * New upstream version (4.0.5.3):
