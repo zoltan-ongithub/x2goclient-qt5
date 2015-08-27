@@ -168,6 +168,7 @@ x2goclient (4.0.5.3-0x2go1) UNRELEASED; urgency=medium
       variable and use that instead of repeating a fixed string.
     - deduplicate.sh: copy lazy_canonical_path from macbuild.sh for now.
       deduplicate.sh will eventually be merged into macbuild.sh anyway.
+    - deduplicate.sh: more temporary debugging output in fixup section.
 
   [ Bernard Cafarelli ]
   * New upstream version (4.0.5.3):
