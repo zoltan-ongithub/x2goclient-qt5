@@ -148,6 +148,7 @@ x2goclient (4.0.5.3-0x2go1) UNRELEASED; urgency=medium
     - deduplicate.sh: fix parse_otool_output: we want to return failure only
       iff any of the strings are present in otool's output and actually handle
       the failure string *ARRAY* correctly as that.
+    - deduplicate.sh: change exit to return in parse_otool_output.
 
   [ Bernard Cafarelli ]
   * New upstream version (4.0.5.3):
