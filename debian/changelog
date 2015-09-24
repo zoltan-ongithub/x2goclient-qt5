@@ -183,6 +183,7 @@ x2goclient (4.0.5.3-0x2go1) UNRELEASED; urgency=medium
     - deduplicate.sh: add WARNING to status message.
     - deduplicate.sh: remove some noisy debug output.
     - macbuild.sh: replace tabs with two spaces. No functional changes.
+    - deduplicate.sh: replace tabs with two spaces. No functional changes.
 
   [ Bernard Cafarelli ]
   * New upstream version (4.0.5.3):
