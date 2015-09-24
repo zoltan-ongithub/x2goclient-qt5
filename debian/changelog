@@ -186,6 +186,7 @@ x2goclient (4.0.5.3-0x2go1) UNRELEASED; urgency=medium
     - deduplicate.sh: replace tabs with two spaces. No functional changes.
     - macbuild.sh: merge deduplicate.sh content in. Also enable the
       functionality "for real", not just as a dry-run.
+    - macbuild.sh: spelling fix.
 
   [ Bernard Cafarelli ]
   * New upstream version (4.0.5.3):
