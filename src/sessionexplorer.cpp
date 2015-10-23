@@ -206,6 +206,9 @@ void SessionExplorer::slotCreateDesktopIcon ( SessionButton* bt )
     file.setPermissions(QFile::ReadOwner|QFile::WriteOwner|QFile::ExeOwner);
     file.close();
 #else
+    // Windows can't create links containing "::"
+    QString linkname=name;
+    linkname.replace("::","_");
     QString scrname=QDir::tempPath() +"\\mklnk.vbs";
     QFile file ( scrname );
     if ( !file.open ( QIODevice::WriteOnly | QIODevice::Text ) )
@@ -218,7 +221,7 @@ void SessionExplorer::slotCreateDesktopIcon ( SessionButton* bt )
     QTextStream out ( &file );
     out << "Set Shell = CreateObject(\"WScript.Shell\")\n"<<
         "DesktopPath = Shell.SpecialFolders(\"Desktop\")\n"<<
-        "Set link = Shell.CreateShortcut(DesktopPath & \"\\"<<name<<
+        "Set link = Shell.CreateShortcut(DesktopPath & \"\\"<<linkname<<
         ".lnk\")\n"<<
         "link.Arguments = \""<<args.join (" ")<<"\"\n"<<
         "link.Description = \""<<tr ( "X2Go Link to session " ) <<
