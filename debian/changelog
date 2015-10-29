@@ -204,6 +204,7 @@ x2goclient (4.0.5.3-0x2go1) UNRELEASED; urgency=medium
     - pulsemanager.{cpp,h}: switch port definitions to std::uint16_t.
     - pulsemanager.h: add std:: namespace selector for uint32_t version
       variables.
+    - pulsemanager.{cpp,h}: add ESD support.
 
   [ Bernard Cafarelli ]
   * New upstream version (4.0.5.3):
