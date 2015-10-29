@@ -200,6 +200,7 @@ x2goclient (4.0.5.3-0x2go1) UNRELEASED; urgency=medium
     - pulsemanager.{cpp,h}: reformat only.
     - pulsemanager.cpp: use initializer list for constructor.
     - pulsemanager.{cpp,h}: add pulse_version_{major,minor}_ member variables.
+    - pulsemanager.cpp: reformat only.
 
   [ Bernard Cafarelli ]
   * New upstream version (4.0.5.3):
