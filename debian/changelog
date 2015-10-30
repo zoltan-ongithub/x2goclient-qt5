@@ -206,6 +206,7 @@ x2goclient (4.0.5.3-0x2go1) UNRELEASED; urgency=medium
       variables.
     - pulsemanager.{cpp,h}: add ESD support.
     - pulsemanager.{cpp,h}: rename relaunch () to restart ().
+    - pulsemanager.cpp: reformat only.
 
   [ Bernard Cafarelli ]
   * New upstream version (4.0.5.3):
