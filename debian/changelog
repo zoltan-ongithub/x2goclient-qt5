@@ -205,6 +205,7 @@ x2goclient (4.0.5.3-0x2go1) UNRELEASED; urgency=medium
     - pulsemanager.h: add std:: namespace selector for uint32_t version
       variables.
     - pulsemanager.{cpp,h}: add ESD support.
+    - pulsemanager.{cpp,h}: rename relaunch () to restart ().
 
   [ Bernard Cafarelli ]
   * New upstream version (4.0.5.3):
