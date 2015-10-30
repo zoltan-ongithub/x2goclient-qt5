@@ -208,6 +208,8 @@ x2goclient (4.0.5.3-0x2go1) UNRELEASED; urgency=medium
     - pulsemanager.{cpp,h}: rename relaunch () to restart ().
     - pulsemanager.cpp: reformat only.
     - pulsemanager.{cpp,h}: fixup preprocessor usage.
+    - pulsemanager.{cpp,h}: add server_args_, server_binary_ and
+      server_working_dir_ class variables.
 
   [ Bernard Cafarelli ]
   * New upstream version (4.0.5.3):
