@@ -216,6 +216,8 @@ x2goclient (4.0.5.3-0x2go1) UNRELEASED; urgency=medium
     - pulsemanager.cpp: add Windows support to shutdown ().
     - pulsemanager.cpp: add cleanup support to on_pulse_finished ().
     - pulsemanager.cpp: add Windows stuff to initial env in constructor.
+    - pulsemanager.{cpp,h}: add new function start_generic () to split off
+      common functionality.
 
   [ Bernard Cafarelli ]
   * New upstream version (4.0.5.3):
