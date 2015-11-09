@@ -3099,6 +3099,21 @@ void ONMainWindow::slotSessEnter()
         if (config.brokerNoAuth && brokerNoauthWithSessionUsername) {
             config.brokerUser = login->text();
         }
+#ifdef Q_OS_LINUX
+        X2goSettings* st=new X2goSettings(config.iniFile, QSettings::IniFormat);
+        QString sid=sessionExplorer->getLastSession()->id();
+        QString cmd=st->setting()->value ( sid+"/command",
+                                           ( QVariant ) QString::null ).toString();
+        bool directRDP=(st->setting()->value ( sid+"/directrdp",
+                                               ( QVariant ) false ).toBool() && cmd == "RDP");
+
+        if (cmd =="RDP" && directRDP)
+        {
+            x2goDebug<<"Starting direct RDP Session from broker";
+            startSession ( sid );
+            return;
+        }
+#endif
         broker->selectUserSession(sessionExplorer->getLastSession()->id());
         config.session=sessionExplorer->getLastSession()->id();
         setStatStatus ( tr ( "Connecting to broker" ) );
