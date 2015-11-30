@@ -145,39 +145,40 @@ void PulseManager::start_win () {
 bool PulseManager::find_port (bool search_esd) {
   QTcpSocket tcpSocket (0);
   bool free = false;
-  std::uint16_t ret = pulse_port_;
+  std::uint16_t search_port = pulse_port_;
   std::uint16_t other_port = esd_port_;
 
   // If the search_esd parameter is true, find a free port
   // for the PulseAudio emulation.
   if (search_esd) {
-    ret = esd_port_;
+    search_port = esd_port_;
     other_port = pulse_port_;
   }
 
   do {
     // Skip this port, if it's reserved for the counterpart.
-    if (ret == other_port) {
-      ++ret;
+    if (search_port == other_port) {
+      ++search_port;
       continue;
     }
 
-    tcpSocket.connectToHost ("127.0.0.1", ret);
+    tcpSocket.connectToHost ("127.0.0.1", search_port);
 
     if (tcpSocket.waitForConnected (1000)) {
       tcpSocket.close ();
       free = false;
-      ++ret;
+      ++search_port;
     }
-    else
+    else {
       free = true;
-  } while ((!free) && (port > 1023));
+    }
+  } while ((!free) && (search_port > 1023));
 
   if (!search_esd) {
-    pulse_port_ = ret;
+    pulse_port_ = search_port;
   }
   else {
-    esd_port_ = ret;
+    esd_port_ = search_port;
   }
 
   return (free);
