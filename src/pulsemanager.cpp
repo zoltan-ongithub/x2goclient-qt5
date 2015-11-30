@@ -69,7 +69,7 @@ void PulseManager::start () {
   // failed. Better trust your compiler to
   // optimize this statement and save some
   // cycles.
-  if ((findPort (false)) && (findPort (true))) {
+  if ((find_port (false)) && (find_port (true))) {
 #ifdef Q_OS_DARWIN
     start_osx ();
 #elif defined (Q_OS_WIN)
