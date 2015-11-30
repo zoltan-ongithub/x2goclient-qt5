@@ -142,6 +142,10 @@ void PulseManager::start_win () {
   }
 }
 
+void PulseManager::start_linux () {
+  /* Do nothing - assumed to be already running. */
+}
+
 bool PulseManager::find_port (bool search_esd) {
   QTcpSocket tcpSocket (0);
   bool free = false;
