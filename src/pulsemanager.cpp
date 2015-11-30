@@ -32,7 +32,7 @@ PulseManager::PulseManager () : pulse_X2Go_ ("/.x2go/pulse"),
                                 app_dir_ (QApplication::applicationDirPath ()),
                                 server_args_ (QStringList ()),
                                 server_binary_ (QString ("")),
-                                server_working_dir (QString ("")),
+                                server_working_dir_ (QString ("")),
                                 pulse_version_major_ (0),
                                 pulse_version_minor_ (0) {
   pulse_dir_ = QDir (QDir::homePath ());
