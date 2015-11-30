@@ -58,6 +58,7 @@ class PulseManager: public QObject {
 
   private:
     PulseManager (const PulseManager &other);
+    void fetch_pulseaudio_version ();
     void start_osx ();
     void start_win ();
     // FIXME

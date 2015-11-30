@@ -86,6 +86,8 @@ PulseManager::PulseManager () : pulse_X2Go_ ("/.x2go/pulse"),
   free (buf);
   buf = ptr = NULL;
 #endif // defined (Q_OS_DARWIN)
+
+  fetch_pulseaudio_version ();
 }
 
 PulseManager::~PulseManager () {
@@ -178,6 +180,13 @@ void PulseManager::start_win () {
 
 void PulseManager::start_linux () {
   /* Do nothing - assumed to be already running. */
+}
+
+void PulseManager::fetch_pulseaudio_version () {
+  QStringList args = "--version";
+  QProcess tmp_server (this);
+
+  tmp_server->setWorkingDirectory (server_working_dir_);
 }
 
 bool PulseManager::find_port (bool search_esd) {
