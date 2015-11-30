@@ -238,6 +238,9 @@ x2goclient (4.0.5.3-0x2go1) UNRELEASED; urgency=medium
     - pulsemanager.cpp: reorder member variables in initialization list.
       Compile warning fix.
     - pulsemanager.cpp: add "dummy" start_linux () function.
+    - pulsemanager.cpp: generate platform-dependent values for member
+      variables server_working_dir_ and server_binary_ in constructor. We need
+      them right away.
 
   [ Bernard Cafarelli ]
   * New upstream version (4.0.5.3):

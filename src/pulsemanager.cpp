@@ -17,6 +17,9 @@
  *  59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.              *
  ***************************************************************************/
 
+#include <unistd.h>
+#include <stdlib.h>
+
 #include "pulsemanager.h"
 
 #ifndef DEBUG
@@ -46,6 +49,43 @@ PulseManager::PulseManager () : pulse_X2Go_ ("/.x2go/pulse"),
   env_.insert ("USERPROFILE", pulse_dir_.absolutePath ());
   env_.insert ("USERNAME", "pulseuser");
 #endif // defined (Q_OS_WIN)
+
+  /* Set server binary and working dir paths. */
+#ifdef Q_OS_DARWIN
+  server_working_dir_ = QString (app_dir_ + "/../exe/");
+  server_binary_ = QString (server_working_dir_ + "/pulseaudio");
+#elif defined (Q_OS_WIN)
+  server_working_dir_ = QString (app_dir_ + "/pulse/");
+  server_binary_ = QString (app_dir_ + "/pulse/pulseaudio.exe");
+#elif defined (Q_OS_LINUX)
+  std::size_t path_len = pathconf (".", _PC_PATH_MAX);
+
+  if (-1 == path_len) {
+    path_len = 1024;
+  }
+
+  char *buf, *ptr;
+
+  for (buf = ptr = NULL; ptr == NULL; path_len += 20) {
+    if (NULL == (buf = realloc (buf, path_len))) {
+      x2goErrorf (16) << "Could not allocate buffer for getting current working directory!" << std::endl;
+      abort ();
+    }
+
+    ptr = getcwd (buf, path_len);
+
+    if ((NULL == ptr) && (ERANGE != erange)) {
+      x2goErrorf (17) << "getcwd() failed: " << QString (strerror (errno)) << std::endl;
+      abort ();
+    }
+  }
+
+  server_working_dir_ = QString (buf);
+  server_binary_ = QString ("pulseaudio");
+
+  free (buf);
+  buf = ptr = NULL;
+#endif // defined (Q_OS_DARWIN)
 }
 
 PulseManager::~PulseManager () {
@@ -111,9 +151,6 @@ void PulseManager::start_osx () {
   server_args_ << "--log-level=debug";
 #endif // defined (DEBUG)
 
-  server_working_dir_ = QString (app_dir_ + "/../exe/");
-  server_binary_ = QString (server_working_dir_ + "/pulseaudio");
-
   if (generate_server_config () && generate_client_config ()) {
     cleanup_client_dir ();
 
@@ -131,9 +168,6 @@ void PulseManager::start_win () {
 #ifdef DEBUG
   server_args_ << "--log-level=debug";
 #endif // defined (DEBUG)
-
-  server_working_dir_ = QString (app_dir_ + "/pulse/");
-  server_binary_ = QString (app_dir_ + "/pulse/pulseaudio.exe");
 
   if (generate_server_config () && generate_client_config ()) {
     create_client_dir ();
