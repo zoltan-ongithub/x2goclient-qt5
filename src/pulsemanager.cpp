@@ -135,7 +135,7 @@ void PulseManager::start_win () {
   server_working_dir_ = QString (app_dir_ + "/pulse/");
   server_binary_ = QString (app_dir_ + "/pulse/pulseaudio.exe");
 
-  if (generateServerConfig () && generateClientConfig ()) {
+  if (generate_server_config () && generate_client_config ()) {
     create_client_dir ();
 
     start_generic ();
