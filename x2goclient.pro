@@ -207,6 +207,14 @@ macx {
     QMAKE_CXXFLAGS += --stdlib=$${OSX_STDLIB}
   }
 
+  !isEmpty(MACPORTS_INCLUDE_PATH) {
+    INCLUDEPATH += $${MACPORTS_INCLUDE_PATH}
+  }
+
+  !isEmpty(MACPORTS_LIBRARY_PATH) {
+    LIBS = -L$${MACPORTS_LIBRARY_PATH} $${LIBS}
+  }
+
   # Strictly speaking, this is a bug in qmake and we should neither need $${PWD}
   # nor QMAKE_INFO_PLIST_OUT nor PRE_TARGETDEPS nor QMAKE_POST_LINK.
   # Not defining the latter two will however lead to it being empty and no
