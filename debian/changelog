@@ -235,6 +235,8 @@ x2goclient (4.0.5.3-0x2go1) UNRELEASED; urgency=medium
     - pulsemanager.cpp: fix another compile error due to typo'd versions of
       generate_server_config () and generate_client_config ().
     - pulsemanager.cpp: another typo fix: findPort -> find_port.
+    - pulsemanager.cpp: reorder member varibles in initialization list.
+      Compile warning fix.
 
   [ Bernard Cafarelli ]
   * New upstream version (4.0.5.3):
