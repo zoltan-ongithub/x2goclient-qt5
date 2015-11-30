@@ -142,7 +142,7 @@ void PulseManager::start_win () {
   }
 }
 
-void PulseManager::find_port (bool search_esd) {
+bool PulseManager::find_port (bool search_esd) {
   QTcpSocket tcpSocket (0);
   bool free = false;
   std::uint16_t ret = pulse_port_;

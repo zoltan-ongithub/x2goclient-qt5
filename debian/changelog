@@ -228,6 +228,8 @@ x2goclient (4.0.5.3-0x2go1) UNRELEASED; urgency=medium
     - pulsemanager.cpp: make startup sound playing via
       slot_play_startup_sound () Windows-compatible.
     - pulsemanager.cpp: typo fix in variable name server_working_dir_.
+    - pulsemanager.{cpp,h}: find_port () actually returns a value, fix
+      declaration accordingly.
 
   [ Bernard Cafarelli ]
   * New upstream version (4.0.5.3):
