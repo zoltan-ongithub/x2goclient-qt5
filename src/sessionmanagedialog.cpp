@@ -202,12 +202,15 @@ void SessionManageDialog::slot_endisable ( QTreeWidgetItem* item, int col)
 {
     Q_UNUSED (col);
 
-    bool isSess=item->data(0, SESSIONROLE).toBool();
+    bool isSess=(item && item->data(0, SESSIONROLE).toBool());
     x2goDebug << "slot_endisable: isSess: " << isSess;
 
     if(!isSess)
     {
-        currentPath=item->data(0,Qt::UserRole).toString().split("/",QString::SkipEmptyParts).join("/");
+        if(item)
+            currentPath=item->data(0,Qt::UserRole).toString().split("/",QString::SkipEmptyParts).join("/");
+        else
+	    currentPath="/";
         x2goDebug << "slot_endisable: no session, currentPath(?): " << currentPath;
     }
 
