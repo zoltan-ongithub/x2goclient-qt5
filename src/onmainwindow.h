@@ -844,6 +844,8 @@ private:
     QString pulseRuntimeDir;
     QString pulseCookieArg;
     int pulsePort;
+    bool pulseNoRecord;
+
     int esdPort;
     bool maximizeProxyWin;
     int proxyWinWidth;

@@ -352,6 +352,18 @@ ConfigDialog::ConfigDialog ( QWidget * parent,  Qt::WFlags f )
     tabWidg->addTab(xsetWidg, tr("X.Org Server settings"));
 #endif
 
+#ifdef Q_OS_WIN
+    QFrame* frp=new QFrame(this);
+    tabWidg->addTab(frp, tr("Pulseaudio settings"));
+    QVBoxLayout* l=new QVBoxLayout(frp);
+    cbNoRecord=new QCheckBox(tr("Disable audio input"),frp);
+    QLabel* lw=new QLabel(tr("<font size=\"5\">You must restart the X2Go Client for the changes to take effect</font><br><br>"),frp);
+    lw->setWordWrap(true);
+    l->addWidget(lw);
+    l->addWidget(cbNoRecord);
+    l->addStretch(1);
+    cbNoRecord->setChecked ( st.setting()->value ( "pulse/norecord", false ).toBool() );
+#endif
 }
 
 
@@ -368,6 +380,9 @@ void ConfigDialog::slot_accepted()
     st.setting()->setValue ( "trayicon/noclose", cbNoClose->isChecked() );
     st.setting()->setValue ( "trayicon/mincon", cbMinimizeTray->isChecked() );
     st.setting()->setValue ( "trayicon/maxdiscon", cbMaxmizeTray->isChecked() );
+#endif
+#ifdef Q_OS_WIN
+    st.setting()->setValue ( "pulse/norecord", cbNoRecord->isChecked() );
 #endif
 #ifdef USELDAP
     if ( !embedMode )
@@ -640,6 +655,13 @@ void ConfigDialog::slotDefaults()
 {
     switch ( tabWidg->currentIndex() )
     {
+#ifdef Q_OS_WIN
+    case 3:
+    {
+         cbNoRecord->setChecked(false);
+    }
+    break;
+#endif
     case 0:
     {
         if ( embedMode )

@@ -93,6 +93,10 @@ private:
     XSettingsWidget* xsetWidg;
 #endif
 
+#ifdef Q_OS_WIN
+    QCheckBox *cbNoRecord;
+#endif
+
     QGroupBox *gbTrayIcon;
     QCheckBox *cbMinimizeTray;
     QCheckBox *cbMaxmizeTray;

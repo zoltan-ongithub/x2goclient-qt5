@@ -149,6 +149,8 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
     clientSshPort="7022";
     pulsePort=4713;
     pulseStarted=false;
+    X2goSettings st ( "settings" );    
+    pulseNoRecord=st.setting()->value ( "pulse/norecord", false ).toBool();
     winSshdStarted=false;
 #else
     userSshd=false;
@@ -9896,7 +9898,12 @@ void ONMainWindow::startPulsed()
     }
     out << "load-module module-esound-protocol-tcp port="+
         QString::number ( esdPort ) <<endl;
-    out << "load-module module-waveout"<<endl;
+    out << "load-module module-waveout";
+#ifdef Q_OS_WIN
+    if(pulseNoRecord)
+        out <<  " record=0";
+#endif
+    out << endl;
     file.close();
     pulseServer=new QProcess ( 0 );
     pulseServer->setEnvironment ( pEnv );
