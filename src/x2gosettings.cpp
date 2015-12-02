@@ -77,6 +77,8 @@ bool X2goSettings::centralSettings()
     QDir d("/etc/x2goclient/settings");
     x2goDebug<<d.exists();
     return d.exists();
+#else
+    return (false);
 #endif
 }
 
