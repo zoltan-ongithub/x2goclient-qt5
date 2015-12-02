@@ -97,6 +97,8 @@ void HttpBrokerClient::createSshConnection()
     connect ( sshConnection, SIGNAL ( userAuthError ( QString ) ),this,SLOT ( slotSshUserAuthError ( QString ) ) );
     connect ( sshConnection, SIGNAL ( connectionError(QString,QString)), this,
               SLOT ( slotSshConnectionError ( QString,QString ) ) );
+    connect ( sshConnection, SIGNAL(ioErr(SshProcess*,QString,QString)), this,
+              SLOT(slotSshIoErr(SshProcess*,QString,QString)));
     sshConnection->start();
 }
 
@@ -668,3 +670,13 @@ QString HttpBrokerClient::getHexVal ( const QByteArray& ba )
     return val.join ( ":" );
 }
 
+void HttpBrokerClient::slotSshIoErr(SshProcess* caller, QString error, QString lastSessionError)
+{
+    x2goDebug<<"Brocker SSH Connection IO Error, reconnect session\n";
+    if ( sshConnection )
+    {
+        delete sshConnection;
+        sshConnection=0l;
+    }
+    createSshConnection();
+}

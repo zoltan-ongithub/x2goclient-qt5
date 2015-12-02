@@ -78,6 +78,7 @@ private slots:
     void slotSelectSession ( bool success, QString answer, int pid);
     void slotPassChanged ( bool success, QString answer, int pid);
     void slotConnectionTest( bool success, QString answer, int pid);
+    void slotSshIoErr(SshProcess* caller, QString error, QString lastSessionError);
 
 public slots:
     void getUserSessions();
