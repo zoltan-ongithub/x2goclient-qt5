@@ -99,6 +99,10 @@ pushd "${BUILD_DIR}"
 phase "Running lrelease"
 lrelease "${PROJECT}"
 
+
+# WILL BE REMOVED IN OTHER BRANCH - ONLY HERE FOR COMPAT REASONS
+MACPORTS_PREFIX="/opt/local"
+
 phase "Running qmake"
 qmake -config "${BUILD_MODE}" -spec macx-g++ "${PROJECT}" \
 	CONFIG+="${BUILD_ARCH}" \
