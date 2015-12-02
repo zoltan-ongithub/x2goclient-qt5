@@ -178,6 +178,11 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
     xDisplay=0;
 #endif
 
+    if(X2goSettings::centralSettings())
+    {
+        x2goInfof(0)<<"using central configuration";
+        noSessionEdit=true;
+    }
 
     cleanAskPass();
     setWindowTitle ( tr ( "X2Go Client" ) );
@@ -924,8 +929,10 @@ void ONMainWindow::initWidgetsNormal()
     if ( drawMenu )
     {
         QMenu* menu_sess=menuBar()->addMenu ( tr ( "&Session" ) );
-        QMenu* menu_opts=menuBar()->addMenu ( tr ( "&Options" ) );
-        if (!brokerMode)
+        QMenu* menu_opts=0;
+        if(!X2goSettings::centralSettings())
+            menu_opts=menuBar()->addMenu ( tr ( "&Options" ) );
+        if (!brokerMode && !X2goSettings::centralSettings())
         {
             menu_sess->addAction ( act_new );
             menu_sess->addAction ( act_edit );
@@ -936,12 +943,15 @@ void ONMainWindow::initWidgetsNormal()
             menu_sess->addSeparator();
         }
         menu_sess->addAction ( act_exit );
-        menu_opts->addAction ( act_set );
-        menu_opts->addAction ( act_tb );
-        if (changeBrokerPass)
-            menu_opts->addAction(act_changeBrokerPass);
-        if (connTest)
-            menu_opts->addAction(act_testCon);
+        if(!X2goSettings::centralSettings())
+        {
+            menu_opts->addAction ( act_set );
+            menu_opts->addAction ( act_tb );
+            if (changeBrokerPass)
+                menu_opts->addAction(act_changeBrokerPass);
+            if (connTest)
+                menu_opts->addAction(act_testCon);
+        }
 
         QMenu* menu_help=menuBar()->addMenu ( tr ( "&Help" ) );
         if (supportMenuFile!=QString::null)
@@ -965,7 +975,7 @@ void ONMainWindow::initWidgetsNormal()
         if (connTest)
             stb->addAction(act_testCon);
 
-        if ( !showToolBar )
+        if ( !showToolBar  || X2goSettings::centralSettings())
             stb->hide();
         connect ( act_tb,SIGNAL ( toggled ( bool ) ),stb,
                   SLOT ( setVisible ( bool ) ) );

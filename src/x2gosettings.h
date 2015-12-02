@@ -31,6 +31,7 @@ public:
     X2goSettings ( QString fileContent, QSettings::Format format);
     ~X2goSettings();
 
+    static bool centralSettings();
     QSettings* setting()
     {
         return set;

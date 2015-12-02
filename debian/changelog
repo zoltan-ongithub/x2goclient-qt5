@@ -17,6 +17,7 @@ x2goclient (4.0.5.1-0x2go1) UNRELEASED; urgency=low
     - Configure audio input in pulseaudio on Windows.
     - Reconnect ssh broker in case of IO Error.
     - Reformat source onmainwindow.cpp.
+    - Disable settings editing if a directory with central settings is exists.
 
   [ Mike Gabriel ]
   * New upstream release (4.0.5.1):

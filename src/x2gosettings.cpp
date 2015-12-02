@@ -20,6 +20,7 @@
 #include "x2gologdebug.h"
 #include "onmainwindow.h"
 #include <QTemporaryFile>
+#include <QDir>
 
 X2goSettings::X2goSettings(QString fileContent, QSettings::Format format)
 {
@@ -70,4 +71,12 @@ X2goSettings::~X2goSettings()
         delete cfgFile;
 }
 
+bool X2goSettings::centralSettings()
+{
+#ifndef Q_OS_WIN
+    QDir d("/etc/x2goclient/settings");
+    x2goDebug<<d.exists();
+    return d.exists();
+#endif
+}
 

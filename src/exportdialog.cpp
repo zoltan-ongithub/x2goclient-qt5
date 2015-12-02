@@ -52,6 +52,11 @@ ExportDialog::ExportDialog ( QString sid,QWidget * par, Qt::WFlags f )
     editSession=new QPushButton ( tr ( "&Preferences ..." ),fr );
     newDir=new QPushButton ( tr ( "&Custom folder ..." ),fr );
 
+    if(X2goSettings::centralSettings())
+    {
+        editSession->setEnabled(false);
+        editSession->setVisible(false);
+    }
 
     QVBoxLayout* actLay=new QVBoxLayout();
     actLay->addWidget ( exportDir );
