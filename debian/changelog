@@ -5,6 +5,8 @@ x2goclient (4.0.5.1-0x2go1) UNRELEASED; urgency=low
     - onmainwindow.cpp: include sshd PID file path option in quotes to support
       whitespaces within the var directory path on Windows. Add comment to
       revisit this later on non-Windows-platforms, too. Fixes: #916.
+    - onmainwindow.cpp: do NOT reformat. Reverts most of the previous commit
+      because it breaks code logic.
 
   [ Oleksandr Shneyder ]
   * New upstream release (4.0.5.1):
