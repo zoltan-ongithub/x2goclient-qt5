@@ -149,7 +149,7 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
     clientSshPort="7022";
     pulsePort=4713;
     pulseStarted=false;
-    X2goSettings st ( "settings" );    
+    X2goSettings st ( "settings" );
     pulseNoRecord=st.setting()->value ( "pulse/norecord", false ).toBool();
     winSshdStarted=false;
 #else
@@ -2596,7 +2596,7 @@ void ONMainWindow::slotSelectedFromList ( SessionButton* session )
 
 
         sessIcon = wrap_legacy_resource_URIs (st->setting()->value (sid+"/icon",
-                                                                    (QVariant) ":/img/icons/128x128/x2gosession.png"
+                                              (QVariant) ":/img/icons/128x128/x2gosession.png"
                                                                    ).toString ());
         sessIcon = expandHome(sessIcon);
 
@@ -3409,7 +3409,7 @@ bool ONMainWindow::startSession ( const QString& sid )
                                            false).toBool ());
 
         QString prtype = (st->setting ()->value (sid + "/sshproxytype",
-                                                 "SSH").toString ());
+                          "SSH").toString ());
         if (prtype.toLower () == "http") {
             proxyType = SshMasterConnection::PROXYHTTP;
         }
@@ -3431,7 +3431,7 @@ bool ONMainWindow::startSession ( const QString& sid )
                                             22).toInt ());
 
         proxyAutologin = (st->setting ()->value (sid + "/sshproxyautologin",
-                                                 false).toBool ());
+                          false).toBool ());
 
         proxyKrbLogin = (st->setting ()->value (sid + "/sshproxykrblogin",
                                                 false).toBool ());
@@ -5453,7 +5453,7 @@ void ONMainWindow::slotTunnelOk(int)
 #ifdef Q_OS_WIN
     if (xorgMode==WIN) {
 #endif
-    proxyWinTimer->start ( 300 );
+        proxyWinTimer->start ( 300 );
 #ifdef Q_OS_WIN
     }
 #endif
@@ -5588,10 +5588,10 @@ void ONMainWindow::slotProxyFinished ( int,QProcess::ExitStatus )
 
 #ifdef Q_OS_DARWIN
     if (modMapTimer) {
-      disconnect (modMapTimer, SIGNAL (timeout ()), this, SLOT (slotSetModMap ()));
-      modMapTimer->stop ();
-      delete (modMapTimer);
-      modMapTimer = 0;
+        disconnect (modMapTimer, SIGNAL (timeout ()), this, SLOT (slotSetModMap ()));
+        modMapTimer->stop ();
+        delete (modMapTimer);
+        modMapTimer = 0;
     }
     kbMap = QString ();
 //fixes bug, when mainwindow inputs not accepting focus under mac
@@ -6458,9 +6458,9 @@ void ONMainWindow::runCommand()
 void ONMainWindow::runApplication(QString exec)
 {
     QString cmd = "PULSE_CLIENTCONFIG=\"${HOME}/.x2go/C-"
-                + resumingSession.sessionId+"/.pulse-client.conf\" DISPLAY=:"
-                + resumingSession.display
-                + " setsid " + exec + " 1> /dev/null 2>/dev/null & exit";
+                  + resumingSession.sessionId+"/.pulse-client.conf\" DISPLAY=:"
+                  + resumingSession.display
+                  + " setsid " + exec + " 1> /dev/null 2>/dev/null & exit";
 
     sshConnection->executeCommand (cmd);
 }
@@ -7617,7 +7617,7 @@ void ONMainWindow::exportDirs ( QString exports,bool removable )
 
     // Key creation failure or the like.
     if (dr.key.isEmpty ()) {
-      return;
+        return;
     }
 
     QString passwd;
@@ -8502,53 +8502,53 @@ void ONMainWindow::slotScDaemonError (QProcess::ProcessError error) {
     QString informative_text;
 
     switch (error) {
-        case QProcess::FailedToStart: {
-            main_text += tr ("failed to start.");
-            informative_text = tr ("Check whether the package providing \"scdaemon\" is installed.\n"
-                                   "The current search path is: ");
+    case QProcess::FailedToStart: {
+        main_text += tr ("failed to start.");
+        informative_text = tr ("Check whether the package providing \"scdaemon\" is installed.\n"
+                               "The current search path is: ");
 
-            QProcessEnvironment tmp_env = QProcessEnvironment::systemEnvironment ();
+        QProcessEnvironment tmp_env = QProcessEnvironment::systemEnvironment ();
 
-            if (!(scDaemon->processEnvironment ().isEmpty ())) {
-                tmp_env = scDaemon->processEnvironment ();
-            }
+        if (!(scDaemon->processEnvironment ().isEmpty ())) {
+            tmp_env = scDaemon->processEnvironment ();
+        }
 
-            QString path_val = tmp_env.value ("PATH", "unknown");
+        QString path_val = tmp_env.value ("PATH", "unknown");
 
-            /* Add a newline every 100 characters. */
-            for (std::size_t i = 100; i < static_cast<std::size_t> (path_val.size ()); i += 100) {
-                path_val.insert (i, "\n");
-            }
+        /* Add a newline every 100 characters. */
+        for (std::size_t i = 100; i < static_cast<std::size_t> (path_val.size ()); i += 100) {
+            path_val.insert (i, "\n");
+        }
 
-            informative_text += path_val;
-            break;
-        }
-        case QProcess::Crashed: {
-            /* This means the process exited with a non-zero exit code.
-             * It didn't really crash at all. Everything is fine.
-             * Just restart it. */
-            return;
-        }
-        case QProcess::Timedout: {
-            main_text += tr ("didn't start yet.");
-            informative_text = tr ("This error shouldn't come up.");
-            break;
-        }
-        case QProcess::WriteError: {
-            main_text += tr ("didn't accept a write operation.");
-            informative_text = tr ("It is probably not running correctly or crashed in-between.");
-            break;
-        }
-        case QProcess::ReadError: {
-            main_text = tr ("Unable to read from scdaemon.");
-            informative_text = tr ("It is probably not running correctly or crashed in-between.");
-            break;
-        }
-        case QProcess::UnknownError: {
-        }
-        default: {
-            main_text += tr ("experienced an unknown error.");
-        }
+        informative_text += path_val;
+        break;
+    }
+    case QProcess::Crashed: {
+        /* This means the process exited with a non-zero exit code.
+         * It didn't really crash at all. Everything is fine.
+         * Just restart it. */
+        return;
+    }
+    case QProcess::Timedout: {
+        main_text += tr ("didn't start yet.");
+        informative_text = tr ("This error shouldn't come up.");
+        break;
+    }
+    case QProcess::WriteError: {
+        main_text += tr ("didn't accept a write operation.");
+        informative_text = tr ("It is probably not running correctly or crashed in-between.");
+        break;
+    }
+    case QProcess::ReadError: {
+        main_text = tr ("Unable to read from scdaemon.");
+        informative_text = tr ("It is probably not running correctly or crashed in-between.");
+        break;
+    }
+    case QProcess::UnknownError: {
+    }
+    default: {
+        main_text += tr ("experienced an unknown error.");
+    }
     }
 
     if (!informative_text.isEmpty ()) {
@@ -10053,7 +10053,7 @@ void ONMainWindow::generateEtcFiles()
        "Subsystem sftp "<< wapiShortFileName ( appDir) +"/sftp-server"+"\n"<<
        "AuthorizedKeysFile \""<<authKeyPath<<"\"";
 #else
-      /* This may need some sanitization, i.e., appDir could potentially include whitespace. */
+       /* This may need some sanitization, i.e., appDir could potentially include whitespace. */
        "Subsystem sftp "
        <<appDir<<"/sftp-server\n";
 #endif
@@ -10098,7 +10098,7 @@ bool ONMainWindow::startSshd()
     // Should also automatically create keys if Remote Login is enabled
     // under Sharing in System Preferences.
     if (!isServerRunning (clientSshPort.toInt ())) {
-      clientSshPort = "7022";
+        clientSshPort = "7022";
     }
 #endif // defined (Q_OS_DARWIN)
 #endif // defined (Q_OS_LINUX)
@@ -10898,10 +10898,10 @@ void ONMainWindow::processCfgLine ( QString line )
     {
         config.useproxy = true;
         if (lst[1].toLower () == "true") {
-          config.useproxy = true;
+            config.useproxy = true;
         }
         else {
-          config.useproxy = false;
+            config.useproxy = false;
         }
         return;
     }
@@ -11633,7 +11633,7 @@ void ONMainWindow::printSshDError_startupFailure()
 
                                   "If you see this message, please report a bug on:\n"
                                   "<center><a href=\"https://wiki.x2go.org/doku.php/wiki:bugs\">"
-                                      "https://wiki.x2go.org/doku.php/wiki:bugs"
+                                  "https://wiki.x2go.org/doku.php/wiki:bugs"
                                   "</a></center>\n");
 #else // defined (Q_OS_WIN)
     if (userSshd) {
@@ -11643,7 +11643,7 @@ void ONMainWindow::printSshDError_startupFailure()
 
                                       "Please report a bug on:\n"
                                       "<center><a href=\"https://wiki.x2go.org/doku.php/wiki:bugs\">"
-                                          "https://wiki.x2go.org/doku.php/wiki:bugs"
+                                      "https://wiki.x2go.org/doku.php/wiki:bugs"
                                       "</a></center>\n");
     }
     else {
@@ -11652,16 +11652,16 @@ void ONMainWindow::printSshDError_startupFailure()
         detailed_error_message += tr ("On OS X, please follow the following steps to enable "
                                       "SSH service:"
                                       "<ul>"
-                                          "<li>Open <b>System Preferences</b> (Applications -> System Preferences)</li>"
-                                          "<li>Go to <b>Sharing</b></li>"
-                                          "<li>Tick the checkbox besides <b>Remote Login</b></li>"
-                                          "<li>Check that <b>Allow access for:</b> is set to either:"
-                                          "<ul>"
-                                              "<li>All users: <b>no further steps necessary</b></li>"
-                                              "<li>Only these users <b>and your user name is included in the list</b></li>"
-                                          "</ul>"
-                                          "<li>Optionally, add your user name to the allowed list "
-                                              "via the <b>Plus Button</b></li>"
+                                      "<li>Open <b>System Preferences</b> (Applications -> System Preferences)</li>"
+                                      "<li>Go to <b>Sharing</b></li>"
+                                      "<li>Tick the checkbox besides <b>Remote Login</b></li>"
+                                      "<li>Check that <b>Allow access for:</b> is set to either:"
+                                      "<ul>"
+                                      "<li>All users: <b>no further steps necessary</b></li>"
+                                      "<li>Only these users <b>and your user name is included in the list</b></li>"
+                                      "</ul>"
+                                      "<li>Optionally, add your user name to the allowed list "
+                                      "via the <b>Plus Button</b></li>"
                                       "</ul>"
                                       "<b>Warning: enabling SSH access will allow any user on the network to connect "
                                       "to your machine. It is your responsibility to set a strong password for every "
@@ -11701,7 +11701,7 @@ void ONMainWindow::printSshDError_noHostPubKey()
 
                                   "If you see this message, please report a bug on:\n"
                                   "<center><a href=\"https://wiki.x2go.org/doku.php/wiki:bugs\">"
-                                      "https://wiki.x2go.org/doku.php/wiki:bugs"
+                                  "https://wiki.x2go.org/doku.php/wiki:bugs"
                                   "</a></center>\n");
 #else // defined (Q_OS_WIN)
     if (userSshd) {
@@ -11709,7 +11709,7 @@ void ONMainWindow::printSshDError_noHostPubKey()
 
                                       "Please report a bug on:\n"
                                       "<center><a href=\"https://wiki.x2go.org/doku.php/wiki:bugs\">"
-                                          "https://wiki.x2go.org/doku.php/wiki:bugs"
+                                      "https://wiki.x2go.org/doku.php/wiki:bugs"
                                       "</a></center>\n");
     }
     else {
@@ -11718,11 +11718,11 @@ void ONMainWindow::printSshDError_noHostPubKey()
                                       "required keys:"
 
                                       "<ul>"
-                                        "<li>Open a <b>Terminal Window</b> (Applications -> Utilities -> Terminal)</li>"
-                                        "<li>Run this command: <b>ssh -p " + clientSshPort.toAscii ()
-                                           + " localhost</b></li>"
-                                        "<li>You do not need to login. Just quit the Terminal application "
-                                            "via Cmd + Q</li>"
+                                      "<li>Open a <b>Terminal Window</b> (Applications -> Utilities -> Terminal)</li>"
+                                      "<li>Run this command: <b>ssh -p " + clientSshPort.toAscii ()
+                                      + " localhost</b></li>"
+                                      "<li>You do not need to login. Just quit the Terminal application "
+                                      "via Cmd + Q</li>"
                                       "</ul>");
 #else // defined (Q_OS_DARWIN)
         detailed_error_message += tr ("Please ask your system administrator to generate the required host keys.\n\n"
