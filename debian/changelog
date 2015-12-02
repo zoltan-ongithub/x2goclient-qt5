@@ -7,6 +7,7 @@ x2goclient (4.0.5.1-0x2go1) UNRELEASED; urgency=low
       revisit this later on non-Windows-platforms, too. Fixes: #916.
     - onmainwindow.cpp: do NOT reformat. Reverts most of the previous commit
       because it breaks code logic.
+    - res/txt/packs: add adaptive method.
 
   [ Oleksandr Shneyder ]
   * New upstream release (4.0.5.1):
