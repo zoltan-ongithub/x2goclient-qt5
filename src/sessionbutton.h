@@ -54,6 +54,7 @@ public:
     }
 
 private:
+    QString nameofSession;
     QString sid;
     QString path;
     QLabel* sessName;

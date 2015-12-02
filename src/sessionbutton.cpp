@@ -289,6 +289,7 @@ void SessionButton::redraw()
     QString name=st->setting()->value ( sid+"/name",
                                         ( QVariant ) tr ( "New Session" ) ).toString();
 
+
     QStringList tails=name.split("/",QString::SkipEmptyParts);
     if(tails.count()>0)
     {
@@ -297,7 +298,12 @@ void SessionButton::redraw()
         path=tails.join("/");
     }
 
-    sessName->setText (name);
+    QFontMetrics metr(sessName->font());
+    nameofSession=name;
+
+    QString elName=metr.elidedText(name, Qt::ElideRight, 250);
+    sessName->setText (elName);
+    sessName->setToolTip(nameofSession);
 
     QString status=st->setting()->value ( sid+"/status",
                                           ( QVariant ) QString::null ).toString();
@@ -311,7 +317,7 @@ void SessionButton::redraw()
     }
 
     QString sessIcon = wrap_legacy_resource_URIs (st->setting()->value (sid+"/icon",
-                                                                        (QVariant) ":/img/icons/128x128/x2gosession.png"
+                       (QVariant) ":/img/icons/128x128/x2gosession.png"
                                                                        ).toString ());
     sessIcon = expandHome(sessIcon);
     QPixmap* pix;
@@ -873,7 +879,7 @@ bool SessionButton::lessThen ( const SessionButton* b1,
 
 QString SessionButton::name()
 {
-    return sessName->text();
+    return nameofSession;
 }
 
 void SessionButton::slotMenuHide()
