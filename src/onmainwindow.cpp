@@ -228,7 +228,17 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
               SLOT ( slotCheckAgentProcess() ) );
 
 #ifdef CFGCLIENT
-    QStringList args=QCoreApplication::arguments();
+    QStringList args;
+    if(!X2goSettings::centralSettings())
+        args=QCoreApplication::arguments();
+    else
+    {
+        X2goSettings st ( "settings" );
+        QString cmdLine=st.setting()->value ( "commandline", "" ).toString();
+//         x2goErrorf(100)<<"cmd line:"<<cmdLine;
+        args=cmdLine.split(";",QString::SkipEmptyParts);
+        args.push_front(QCoreApplication::arguments()[0]);
+    }
     for ( int i=1; i<args.size(); ++i )
     {
         if ( !parseParameter ( args[i] ) )
@@ -2285,6 +2295,8 @@ void ONMainWindow::slotReadSessions()
 
 void ONMainWindow::slotNewSession()
 {
+    if(X2goSettings::centralSettings())
+        return;
     QString id=QDateTime::currentDateTime().
                toString ( "yyyyMMddhhmmsszzz" );
     EditConnectionDialog dlg (true, id, this );

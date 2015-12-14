@@ -21,6 +21,7 @@
 #include "onmainwindow.h"
 #include <QTemporaryFile>
 #include <QDir>
+#include <QProcessEnvironment>
 
 X2goSettings::X2goSettings(QString fileContent, QSettings::Format format)
 {
@@ -44,14 +45,48 @@ X2goSettings::X2goSettings ( QString group )
         return;
     }
 #ifndef Q_OS_WIN
-    set=new QSettings ( ONMainWindow::getHomeDirectory() +
-                        "/.x2goclient/"+group,
-                        QSettings::NativeFormat );
+    if(!centralSettings())
+    {
+        set=new QSettings ( ONMainWindow::getHomeDirectory() +
+                           "/.x2goclient/"+group,
+                          QSettings::NativeFormat );
+    }
+    else
+    {
+        QString settingPath="/etc/x2goclient/config/"+qgetenv("USER")+"/";
+        QDir d(settingPath);
+        if(!d.exists())
+        {
+            settingPath="/etc/x2goclient/config/All Users/";
+        }
+//         x2goErrorf(99)<<"CFG PATH:"<<settingPath;
+        set=new QSettings ( settingPath+group,
+                          QSettings::NativeFormat );
+    }
 #else
     if ( !ONMainWindow::getPortable() )
     {
-        set=new QSettings ( "Obviously Nice","x2goclient" );
-        set->beginGroup ( group );
+        if(! centralSettings())
+	{
+            set=new QSettings ( "Obviously Nice","x2goclient" );
+            set->beginGroup ( group );
+	}
+	else
+	{
+	    QSettings setroot("HKEY_LOCAL_MACHINE\\SOFTWARE\\x2goclient\\config",QSettings::NativeFormat);
+	    QString setPath="HKEY_LOCAL_MACHINE\\SOFTWARE\\x2goclient\\config\\All Users";
+	    QString uname=getenv("USERNAME");
+            foreach(QString group, setroot.childGroups())
+	    {
+	        if(group==uname)
+		{
+	             setPath="HKEY_LOCAL_MACHINE\\SOFTWARE\\x2goclient\\config\\"+uname;
+		     break;
+		}
+            }
+            set=new QSettings ( setPath, QSettings::NativeFormat);
+            set->beginGroup ( group );
+	}
     }
     else
     {
@@ -74,11 +109,17 @@ X2goSettings::~X2goSettings()
 bool X2goSettings::centralSettings()
 {
 #ifndef Q_OS_WIN
-    QDir d("/etc/x2goclient/settings");
-    x2goDebug<<d.exists();
+    QDir d("/etc/x2goclient/config");
     return d.exists();
 #else
-    return (false);
+    QSettings set("HKEY_LOCAL_MACHINE\\SOFTWARE\\x2goclient",QSettings::NativeFormat);
+    foreach(QString group,set.childGroups())
+    {
+      if(group=="config")
+      {
+	return true;
+      }
+    }
+    return false;
 #endif
 }
-
