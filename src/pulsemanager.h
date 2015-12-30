@@ -52,8 +52,8 @@ class PulseManager: public QObject {
     std::uint16_t get_pulse_port ();
     std::uint16_t get_esd_port ();
 
-    void set_pulse_port (std::uint16_t pulse_port);
-    void set_esd_port (std::uint16_t esd_port);
+    bool set_pulse_port (std::uint16_t pulse_port);
+    bool set_esd_port (std::uint16_t esd_port);
 
 
   public slots:

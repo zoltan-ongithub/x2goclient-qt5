@@ -554,12 +554,26 @@ std::uint16_t PulseManager::get_esd_port () {
   return (esd_port_);
 }
 
-void PulseManager::set_pulse_port (std::uint16_t pulse_port) {
-  pulse_port_ = pulse_port;
+bool PulseManager::set_pulse_port (std::uint16_t pulse_port) {
+  bool ret = false;
+
+  if (!(is_server_running ())) {
+    pulse_port_ = pulse_port;
+    ret = true;
+  }
+
+  return (ret);
 }
 
-void PulseManager::set_esd_port (std::uint16_t esd_port) {
-  esd_port_ = esd_port;
+bool PulseManager::set_esd_port (std::uint16_t esd_port) {
+  bool ret = false;
+
+  if (!(is_server_running ())) {
+    esd_port_ = esd_port;
+    ret = true;
+  }
+
+  return (ret);
 }
 
 void PulseManager::restart () {
