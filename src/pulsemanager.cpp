@@ -68,7 +68,7 @@ PulseManager::PulseManager () : pulse_X2Go_ ("/.x2go/pulse"),
 
   for (buf = ptr = NULL; ptr == NULL; path_len += 20) {
     if (NULL == (buf = realloc (buf, path_len))) {
-      x2goErrorf (16) << "Could not allocate buffer for getting current working directory!" << std::endl;
+      x2goErrorf (16) << "Could not allocate buffer for getting current working directory!";
       abort ();
     }
 
@@ -76,7 +76,7 @@ PulseManager::PulseManager () : pulse_X2Go_ ("/.x2go/pulse"),
     ptr = getcwd (buf, path_len);
 
     if ((NULL == ptr) && (ERANGE != erange)) {
-      x2goErrorf (17) << "getcwd() failed: " << QString (strerror (errno)) << std::endl;
+      x2goErrorf (17) << "getcwd() failed: " << QString (strerror (errno));
       abort ();
     }
   }

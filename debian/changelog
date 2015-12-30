@@ -245,6 +245,8 @@ x2goclient (4.0.5.3-0x2go1) UNRELEASED; urgency=medium
       with first skeleton. Call it in the constructor.
     - pulsemanager.cpp: re-initialize buffer string on each run while getting
       CWD on Linux.
+    - pulsemanager.cpp: fix some error messages by removing redundant
+      newlines.
 
   [ Bernard Cafarelli ]
   * New upstream version (4.0.5.3):
