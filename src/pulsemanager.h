@@ -46,51 +46,69 @@ class PulseManager: public QObject {
   public:
     PulseManager ();
     ~PulseManager ();
+
+    QProcess::ProcessState state ();
+
     std::uint16_t get_pulse_port ();
     std::uint16_t get_esd_port ();
+
     void set_pulse_port (std::uint16_t pulse_port);
     void set_esd_port (std::uint16_t esd_port);
-    QProcess::ProcessState state ();
+
 
   public slots:
     void start ();
     void restart ();
 
+
   private:
     PulseManager (const PulseManager &other);
-    void fetch_pulseaudio_version ();
+
     void start_osx ();
     void start_win ();
     // FIXME
     void start_linux ();
     void start_generic ();
+
+    void fetch_pulseaudio_version ();
+
     bool find_port (bool search_esd = false);
+
     bool generate_server_config ();
     bool generate_client_config ();
-    void cleanup_client_dir ();
+
     void create_client_dir ();
+    void cleanup_client_dir ();
+
     void shutdown ();
+
     bool is_server_running ();
+
 
   private slots:
     void on_pulse_finished (int exit_code);
     void slot_play_startup_sound ();
 
+
   signals:
     void sig_pulse_server_terminated ();
 
+
   private:
+    QString app_dir_;
     QString pulse_X2Go_;
     QDir pulse_dir_;
-    QProcessEnvironment env_;
-    QProcess *pulse_server_;
-    std::uint16_t pulse_port_;
-    std::uint16_t esd_port_;
-    QProcess::ProcessState state_;
-    QString app_dir_;
     QStringList server_args_;
     QString server_binary_;
     QString server_working_dir_;
+
+    QProcessEnvironment env_;
+    QProcess *pulse_server_;
+    QProcess::ProcessState state_;
+
+    std::uint16_t pulse_port_;
+    std::uint16_t esd_port_;
+
     std::uint32_t pulse_version_major_;
     std::uint32_t pulse_version_minor_;
     std::uint32_t pulse_version_micro_;

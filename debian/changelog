@@ -250,6 +250,8 @@ x2goclient (4.0.5.3-0x2go1) UNRELEASED; urgency=medium
     - pulsemanager.{cpp,h}: some older PA versions used the major, minor and
       micro numbering scheme together with a descriptive string. Add new
       member variables for this and initialize them correctly.
+    - pulsemanager.h: reformat a bit by adding newlines and moving lines in a
+      (hopefully) logical fashion.
 
   [ Bernard Cafarelli ]
   * New upstream version (4.0.5.3):
