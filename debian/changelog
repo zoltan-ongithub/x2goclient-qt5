@@ -252,6 +252,8 @@ x2goclient (4.0.5.3-0x2go1) UNRELEASED; urgency=medium
       member variables for this and initialize them correctly.
     - pulsemanager.h: reformat a bit by adding newlines and moving lines in a
       (hopefully) logical fashion.
+    - pulsemanager.cpp: add algorithm for actually extracting PA version
+      number.
 
   [ Bernard Cafarelli ]
   * New upstream version (4.0.5.3):

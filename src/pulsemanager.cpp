@@ -189,7 +189,134 @@ void PulseManager::fetch_pulseaudio_version () {
   QStringList args = "--version";
   QProcess tmp_server (this);
 
-  tmp_server->setWorkingDirectory (server_working_dir_);
+  /* Start PA with --version argument. */
+  tmp_server.setWorkingDirectory (server_working_dir_);
+  tmp_server.start (server_binary_, args);
+
+  /* Wait until the process exited again. */
+  if (tmp_server->waitForFinished ()) {
+    /* Read stdout and split it up on newlines. */
+    QByteArray ba = pulse_server_->readAllStandardOutput ();
+    QString stdout_data (ba.data ());
+    QStringList stdout_list (stdout_data.split ("\n"));
+
+    bool found = false;
+    for (QStringList::const_iterator cit = stdout_list.begin (); cit != stdout_list.end (); ++cit) {
+      /* Remove trailing whitespace, mostly carriage returns on Windows. */
+      QString tmp_str (*cit);
+      tmp_str = tmp_str.trimmed ();
+
+      QString needle ("pulseaudio ");
+
+      if (tmp_str.startsWith (needle)) {
+        /* Drop first part. */
+        tmp_str = tmp_str.mid (needle.size ());
+
+        /* We should be at a digit now. */
+        bool numbers_found[3] = { false, false, false };
+        QString tmp_str = QString ("");
+        for (QString::const_iterator cit = tmp_str.begin (); cit != tmp_str.end (); ++cit) {
+          if (!(numbers_found[0])) {
+            if (((*cit) >= '0') && ((*cit) <= '9')) {
+              tmp_str.append (*cit);
+            }
+            else if ((*cit) == '.') {
+              /* First number part complete, let's convert the string and skip the period. */
+              numbers_found[0] = true;
+              bool convert_success = false;
+              pulse_version_major_ = tmp_str.toUInt (&convert_success, 10);
+
+              if (!convert_success) {
+                x2goErrorf (20) << "Unable to convert major version number string to integer.";
+                abort ();
+              }
+
+              tmp_str = QString ("");
+            }
+            else {
+              x2goErrorf (21) << "Unexpected character found when parsing version string for major version number: '" << QString (*cit) << "'.";
+              abort ();
+            }
+          }
+          else if (!(numbers_found[1])) {
+            if (((*cit) >= '0') && ((*cit) <= '9')) {
+              tmp_str.append (*cit);
+            }
+            else if (((*cit) == '.') || ((*cit) == '-')) {
+              /*
+               * Second number part complete, let's convert the string and then check whether
+               * we stopped at a period or a dash character.
+               */
+              numbers_found[1] = true;
+              bool convert_success = false;
+              pulse_version_minor_ = tmp_str.toUInt (&convert_success, 10);
+
+              if (!convert_success) {
+                x2goErrorf (22) << "Unable to convert minor version number string to integer.";
+                abort ();
+              }
+
+              tmp_str = QString ("");
+
+              if ((*cit) == '-') {
+                /*
+                 * There will be no micro version, skip it entirely and assume the default
+                 * value of zero.
+                 */
+                numbers_found[2] = true;
+              }
+            }
+            else {
+              x2goErrorf (23) << "Unexpected character found when parsing version string for minor version number: '" << QString (*cit) << "'.";
+              abort ();
+            }
+          }
+          else if (!(numbers_found[2])) {
+            if (((*cit) >= '0') && ((*cit) <= '9')) {
+              tmp_str.append (*cit);
+            }
+            else if ((*cit) == '-') {
+              /* Third number part complete, let's convert the string and skip the period. */
+              numbers_found[2] = true;
+              bool convert_success = false;
+              pulse_version_micro_ = tmp_str.toUInt (&convert_success, 10);
+
+              if (!convert_success) {
+                x2goErrorf (24) << "Unable to convert micro version number string to integer.";
+                abort ();
+              }
+
+              tmp_str = QString ("");
+            }
+            else {
+              x2goErrorf (25) << "Unexpected character found when parsing version string for micro version number: '" << QString (*cit) << "'.";
+              abort ();
+            }
+          }
+          else {
+            /* Numbers should be good by now, let's fetch everything else. */
+            tmp_str.append (*cit);
+          }
+        }
+
+        /* Misc version part will be set to the trailing string. */
+        pulse_version_misc_ = tmp_str;
+      }
+      else {
+        /* No need to look any further. */
+        continue;
+      }
+    }
+
+    if (!found) {
+      x2goErrorf (19) << "Unable to fetch PulseAudio version - unexpected format. Exiting.";
+      abort ();
+    }
+  }
+  else {
+    x2goErrorf (18) << "Unable to start PulseAudio to fetch its version number. Exiting.";
+    abort ();
+  }
 }
 
 bool PulseManager::find_port (bool search_esd) {
