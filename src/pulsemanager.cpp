@@ -72,6 +72,7 @@ PulseManager::PulseManager () : pulse_X2Go_ ("/.x2go/pulse"),
       abort ();
     }
 
+    memset (buf, 0, path_len);
     ptr = getcwd (buf, path_len);
 
     if ((NULL == ptr) && (ERANGE != erange)) {
