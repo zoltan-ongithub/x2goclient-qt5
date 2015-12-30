@@ -247,6 +247,9 @@ x2goclient (4.0.5.3-0x2go1) UNRELEASED; urgency=medium
       CWD on Linux.
     - pulsemanager.cpp: fix some error messages by removing redundant
       newlines.
+    - pulsemanager.{cpp,h}: some older PA versions used the major, minor and
+      micro numbering scheme together with a descriptive string. Add new
+      member variables for this and initialize them correctly.
 
   [ Bernard Cafarelli ]
   * New upstream version (4.0.5.3):

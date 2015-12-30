@@ -93,6 +93,8 @@ class PulseManager: public QObject {
     QString server_working_dir_;
     std::uint32_t pulse_version_major_;
     std::uint32_t pulse_version_minor_;
+    std::uint32_t pulse_version_micro_;
+    QString pulse_version_misc_;
 };
 
 #ifdef NDEBUG_DEFINE

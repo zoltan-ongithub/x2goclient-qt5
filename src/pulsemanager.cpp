@@ -37,7 +37,9 @@ PulseManager::PulseManager () : pulse_X2Go_ ("/.x2go/pulse"),
                                 server_binary_ (QString ("")),
                                 server_working_dir_ (QString ("")),
                                 pulse_version_major_ (0),
-                                pulse_version_minor_ (0) {
+                                pulse_version_minor_ (0),
+                                pulse_version_micro_ (0),
+                                pulse_version_misc_ ("") {
   pulse_dir_ = QDir (QDir::homePath ());
   pulse_dir_.mkpath (pulse_dir_.absolutePath () + pulse_X2Go_ + "/tmp");
   pulse_dir_.cd (pulse_X2Go_.mid (1));
