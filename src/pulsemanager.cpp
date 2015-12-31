@@ -366,12 +366,7 @@ bool PulseManager::find_port (bool search_esd) {
 bool PulseManager::generate_server_config () {
   QString config_file_name = pulse_dir_.absolutePath () + "/config.pa";
   QTemporaryFile config_tmp_file (pulse_dir_.absolutePath () + "/tmp/tmpconfig");
-  X2goSettings settings ("settings");
-  bool disable_input = false;
   bool ret = false;
-
-  disable_input = settings.setting ()->value ("soundnoinput",
-                                              (QVariant) false).toBool ();
 
   if (config_tmp_file.open ()) {
     QTextStream config_tmp_file_stream (&config_tmp_file);
@@ -395,9 +390,22 @@ bool PulseManager::generate_server_config () {
 // FIXME Linux
 #endif // defined (Q_OS_DARWIN)
 
-    if (disable_input)
-      config_tmp_file_stream << " record=0";
+    config_tmp_file_stream << " record=";
+    if (!record_) {
+      config_tmp_file_stream << "0";
+    }
+    else {
+      config_tmp_file_stream << "1";
+    }
+    config_tmp_file_stream << endl;
 
+    config_tmp_file_stream << " playback=";
+    if (!playback_) {
+      config_tmp_file_stream << "0";
+    }
+    else {
+      config_tmp_file_stream << "1";
+    }
     config_tmp_file_stream << endl;
 
     QFile config_file (config_file_name);

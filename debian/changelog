@@ -261,6 +261,7 @@ x2goclient (4.0.5.3-0x2go1) UNRELEASED; urgency=medium
     - pulsemanager.cpp: reorder member variables in initializer list.
     - pulsemanager.cpp: fix compile error in startup sound function.
     - pulsemanager.h: more moving around.
+    - pulsemanager.cpp: use record and playback member variables.
 
   [ Bernard Cafarelli ]
   * New upstream version (4.0.5.3):
