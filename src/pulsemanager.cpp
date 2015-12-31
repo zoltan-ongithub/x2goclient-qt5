@@ -188,7 +188,7 @@ void PulseManager::start_linux () {
 }
 
 void PulseManager::fetch_pulseaudio_version () {
-  QStringList args = "--version";
+  QStringList args (QString ("--version"));
   QProcess tmp_server (this);
 
   /* Start PA with --version argument. */
@@ -198,7 +198,7 @@ void PulseManager::fetch_pulseaudio_version () {
   /* Wait until the process exited again. */
   if (tmp_server.waitForFinished ()) {
     /* Read stdout and split it up on newlines. */
-    QByteArray ba = pulse_server_->readAllStandardOutput ();
+    QByteArray ba (pulse_server_->readAllStandardOutput ());
     QString stdout_data (ba.data ());
     QStringList stdout_list (stdout_data.split ("\n"));
 
@@ -364,7 +364,7 @@ bool PulseManager::find_port (bool search_esd) {
 }
 
 bool PulseManager::generate_server_config () {
-  QString config_file_name = pulse_dir_.absolutePath () + "/config.pa";
+  QString config_file_name (pulse_dir_.absolutePath () + "/config.pa");
   QTemporaryFile config_tmp_file (pulse_dir_.absolutePath () + "/tmp/tmpconfig");
   bool ret = false;
 
@@ -482,8 +482,8 @@ void PulseManager::create_client_dir () {
 void PulseManager::slot_play_startup_sound () {
 #ifdef DEBUG
   QProcess play_file (0);
-  QString play_file_binary = QString (app_dir_);
-  QString play_file_file = play_file_binary;
+  QString play_file_binary (app_dir_);
+  QString play_file_file (play_file_binary);
 
 #ifdef Q_OS_DARWIN
   play_file_binary += "/../exe/paplay";
@@ -493,8 +493,7 @@ void PulseManager::slot_play_startup_sound () {
   playFileFile += "/startup.wav";
 #endif // defined (Q_OS_DARWIN)
 
-  QStringList args;
-  args << play_file_file;
+  QStringList args (play_file_file);
   play_file.setWorkingDirectory (server_working_dir_);
   play_file.setProcessEnvironment (env_);
   play_file.start (play_file_binary, args);
@@ -508,7 +507,7 @@ void PulseManager::on_pulse_finished (int exit_code) {
   if (!exit_code)
     x2goDebug << "Warning! Pulseaudio's exit code is non-zero.";
 
-  QByteArray ba = pulse_server_->readAllStandardOutput ();
+  QByteArray ba (pulse_server_->readAllStandardOutput ());
   char *data = ba.data ();
   std::cout << data;
   ba = pulse_server_->readAllStandardError ();
