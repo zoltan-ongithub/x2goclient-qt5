@@ -27,15 +27,15 @@
 #define DEBUG
 #endif // defined (NDEBUG)
 
-PulseManager::PulseManager () : pulse_X2Go_ ("/.x2go/pulse"),
-                                pulse_server_ (NULL),
-                                pulse_port_ (4713),
-                                esd_port_ (4714),
-                                state_ (QProcess::NotRunning),
-                                app_dir_ (QApplication::applicationDirPath ()),
-                                server_args_ (QStringList ()),
+PulseManager::PulseManager () : app_dir_ (QApplication::applicationDirPath ()),
+                                pulse_X2Go_ ("/.x2go/pulse"),
                                 server_binary_ (QString ("")),
                                 server_working_dir_ (QString ("")),
+                                server_args_ (QStringList ()),
+                                pulse_server_ (NULL),
+                                state_ (QProcess::NotRunning),
+                                pulse_port_ (4713),
+                                esd_port_ (4714),
                                 pulse_version_major_ (0),
                                 pulse_version_minor_ (0),
                                 pulse_version_micro_ (0),
