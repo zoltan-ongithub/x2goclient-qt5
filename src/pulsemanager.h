@@ -51,9 +51,13 @@ class PulseManager: public QObject {
 
     std::uint16_t get_pulse_port ();
     std::uint16_t get_esd_port ();
+    bool get_record ();
+    bool get_playback ();
 
     bool set_pulse_port (std::uint16_t pulse_port);
     bool set_esd_port (std::uint16_t esd_port);
+    bool set_record (bool record);
+    bool set_playback (bool playback);
 
 
   public slots:
@@ -113,6 +117,9 @@ class PulseManager: public QObject {
     std::uint32_t pulse_version_minor_;
     std::uint32_t pulse_version_micro_;
     QString pulse_version_misc_;
+
+    bool record_;
+    bool playback_;
 };
 
 #ifdef NDEBUG_DEFINE

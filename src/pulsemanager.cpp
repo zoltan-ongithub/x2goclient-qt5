@@ -39,7 +39,9 @@ PulseManager::PulseManager () : pulse_X2Go_ ("/.x2go/pulse"),
                                 pulse_version_major_ (0),
                                 pulse_version_minor_ (0),
                                 pulse_version_micro_ (0),
-                                pulse_version_misc_ ("") {
+                                pulse_version_misc_ (""),
+                                record_ (true),
+                                playback_ (true) {
   pulse_dir_ = QDir (QDir::homePath ());
   pulse_dir_.mkpath (pulse_dir_.absolutePath () + pulse_X2Go_ + "/tmp");
   pulse_dir_.cd (pulse_X2Go_.mid (1));
@@ -554,6 +556,14 @@ std::uint16_t PulseManager::get_esd_port () {
   return (esd_port_);
 }
 
+bool PulseManager::get_record () {
+  return (record_);
+}
+
+bool PulseManager::get_playback () {
+  return (playback_);
+}
+
 bool PulseManager::set_pulse_port (std::uint16_t pulse_port) {
   bool ret = false;
 
@@ -570,6 +580,28 @@ bool PulseManager::set_esd_port (std::uint16_t esd_port) {
 
   if (!(is_server_running ())) {
     esd_port_ = esd_port;
+    ret = true;
+  }
+
+  return (ret);
+}
+
+bool PulseManager::set_record (bool record) {
+  bool ret = false;
+
+  if (!(is_server_running ())) {
+    record_ = record;
+    ret = true;
+  }
+
+  return (ret);
+}
+
+bool PulseManager::set_playback (bool playback) {
+  bool ret = false;
+
+  if (!(is_server_running ())) {
+    playback_ = playback;
     ret = true;
   }
 
