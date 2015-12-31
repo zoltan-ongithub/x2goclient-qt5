@@ -102,11 +102,11 @@ class PulseManager: public QObject {
     QString app_dir_;
     QString pulse_X2Go_;
     QDir pulse_dir_;
-    QStringList server_args_;
     QString server_binary_;
     QString server_working_dir_;
 
     QProcessEnvironment env_;
+    QStringList server_args_;
     QProcess *pulse_server_;
     QProcess::ProcessState state_;
 
