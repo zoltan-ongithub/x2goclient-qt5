@@ -17,6 +17,12 @@ x2goclient (4.0.5.1-0x2go1) UNRELEASED; urgency=low
     - onmainwindow.{cpp,h}: don't use a hardcoded path to xmodmap on OS X and
       handle errors more gracefully. Fixes: #487.
     - x2goclient.pro: fix typo --stdlib=... -> -stdlib=... Fixes: #973.
+  * debian/control:
+    - Change apache2-dev | libc6-dev build dependency back to apache2-dev
+      only. Otherwise, apache2-dev is not installed at all, even though
+      theoretically available. The initial reasoning for this dependency type,
+      apache2-dev not being available on all Ubuntu/Debian platforms, is not
+      true anymore.
 
   [ Oleksandr Shneyder ]
   * New upstream release (4.0.5.1):
