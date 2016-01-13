@@ -12,6 +12,8 @@ x2goclient (4.0.5.1-0x2go1) UNRELEASED; urgency=low
       to qmake. Due to the qt4-mac's changes, we do not automatically get
       these values automatically "appended" in a usable way anymore.
     - x2gosettings.cpp: let centralSettings () return false on Windows.
+    - onmainwindow.cpp: be more precise in slotScDaemonError () regarding
+      unknown and undefined errors.
 
   [ Oleksandr Shneyder ]
   * New upstream release (4.0.5.1):

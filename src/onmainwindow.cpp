@@ -8567,9 +8567,12 @@ void ONMainWindow::slotScDaemonError (QProcess::ProcessError error) {
             break;
         }
         case QProcess::UnknownError: {
+            main_text += tr ("encountered an unknown error during start up or execution.");
+            break;
         }
         default: {
-            main_text += tr ("experienced an unknown error.");
+            main_text += tr ("experienced an undefined error.");
+            break;
         }
     }
 
