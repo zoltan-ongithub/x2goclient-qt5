@@ -5555,47 +5555,154 @@ void ONMainWindow::slotSndTunnelFailed ( bool result,  QString output,
 #ifdef Q_OS_DARWIN
 void ONMainWindow::slotSetModMap()
 {
-    if(!nxproxy)
-    {
+    if (!nxproxy) {
         return;
     }
-    if (kbMap.isEmpty ())
-    {
-        QProcess pr(this);
-        pr.setProcessEnvironment(QProcessEnvironment::systemEnvironment());
-        pr.start("/opt/X11/bin/xmodmap -pke");
-        pr.waitForFinished();
-        kbMap=pr.readAllStandardOutput();
-        pr.start("/opt/X11/bin/xmodmap -pm");
-        pr.waitForFinished();
-        QString modifiers=pr.readAllStandardOutput();
-        x2goDebug<<"modifiers: "<<modifiers;
-        kbMap+="clear shift\nclear lock\nclear control\nclear mod1\nclear mod2\nclear mod3\nclear mod4\nclear mod5\n";
-        QStringList lines=modifiers.split("\n",QString::SkipEmptyParts);
-        for(int i=0; i<lines.count(); ++i)
-        {
-            QStringList parts=lines[i].split(" ",QString::SkipEmptyParts);
-            if(parts.count()<2)
-            {
-                continue;
+    if (kbMap.isEmpty ()) {
+        QProcess pr (this);
+        QProcessEnvironment tmp_env = QProcessEnvironment::systemEnvironment ();
+        QString path_val = tmp_env.value ("PATH");
+
+        /* Let's set a reasonable default value if none is provided. */
+        if (path_val.isEmpty ()) {
+            /* Prefer the default MacPorts prefix. */
+            path_val = "/opt/local/bin:/opt/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/sbin:/usr/X11R6/bin:/opt/X11/bin";
+            tmp_env.insert ("PATH", path_val);
+        }
+
+        pr.setProcessEnvironment (tmp_env);
+
+        QStringList key_map_fetch_args;
+        key_map_fetch_args << "-pke";
+        pr.start ("xmodmap", key_map_fetch_args);
+        bool key_map_fetch_ret = pr.waitForStarted ();
+
+        if (!key_map_fetch_ret) {
+            handle_xmodmap_error (pr);
+        }
+        else {
+            key_map_fetch_ret = pr.waitForFinished ();
+
+            if (!key_map_fetch_ret) {
+                handle_xmodmap_error (pr);
             }
-            QString mod=parts[0];
-            if(mod == "shift" || mod=="lock" || mod=="control" || mod=="mod1"|| mod=="mod2"|| mod=="mod3"|| mod=="mod4"|| mod=="mod5")
-            {
-                for(int j=1; j<parts.count(); ++j)
-                {
-                    if(parts[j].indexOf("(")==-1)
-                    {
-                        kbMap+="add "+mod+" = "+parts[j]+"\n";
+
+            kbMap = pr.readAllStandardOutput ();
+
+            QStringList mod_fetch_args;
+            mod_fetch_args << "-pm";
+            pr.start ("xmodmap", mod_fetch_args);
+            bool mod_fetch_ret = pr.waitForStarted ();
+
+            if (!mod_fetch_ret) {
+                handle_xmodmap_error (pr);
+            }
+            else {
+                mod_fetch_ret = pr.waitForFinished ();
+
+                if (!mod_fetch_ret) {
+                    handle_xmodmap_error (pr);
+                }
+
+                QString modifiers = pr.readAllStandardOutput ();
+                x2goDebug << "modifiers: " << modifiers;
+
+                /* Reset all modifiers first. */
+                kbMap += "clear shift\nclear lock\nclear control\nclear mod1\nclear mod2\nclear mod3\nclear mod4\nclear mod5\n";
+
+                /* And set them back again. */
+                QStringList lines = modifiers.split ("\n", QString::SkipEmptyParts);
+                for (int i = 0; i < lines.count (); ++i) {
+                    QStringList parts = lines[i].split (" ", QString::SkipEmptyParts);
+                    if (parts.count () < 2) {
+                        continue;
+                    }
+
+                    QString mod = parts[0];
+                    if ((mod == "shift") || (mod == "lock") || (mod == "control") || (mod == "mod1") || (mod == "mod2") || (mod == "mod3") || (mod == "mod4") || (mod == "mod5")) {
+                        for (int j = 1; j < parts.count (); ++j) {
+                            if (parts[j].indexOf ("(") == -1) {
+                                kbMap += "add " + mod + " = " + parts[j] + "\n";
+                            }
+                        }
                     }
                 }
+
+                /* Send modified map to server. */
+                QString cmd = "export DISPLAY=\":" + resumingSession.display + "\"; echo \"" + kbMap + "\" | xmodmap -";
+                sshConnection->executeCommand (cmd);
             }
         }
     }
+}
 
-    QString cmd = "export DISPLAY=\":" + resumingSession.display + "\"; echo \"" + kbMap + "\" | xmodmap -";
+void ONMainWindow::handle_xmodmap_error (QProcess &proc) {
+  QString main_text ("xmodmap ");
+  QString informative_text;
 
-    sshConnection->executeCommand (cmd);
+  QProcessEnvironment proc_env = QProcessEnvironment::systemEnvironment ();
+
+  /* If the process has a special env, fetch it. */
+  if (!(proc.processEnvironment ().isEmpty ())) {
+    proc_env = proc.processEnvironment ();
+  }
+
+  switch (proc.error ()) {
+    case QProcess::FailedToStart: {
+      main_text += tr ("failed to start.");
+      informative_text += tr ("This likely means the binary is not available.\n"
+                              "The current search path is: ");
+
+      QString path_val = proc_env.value ("PATH", "unknown");
+
+      /* Add a newline every 100 characters. */
+      for (std::size_t i = 100; i < static_cast<std::size_t> (path_val.size ()); i += 100) {
+          path_val.insert (i, "\n");
+      }
+
+      informative_text += path_val;
+      break;
+    }
+    case QProcess::Crashed: {
+      main_text += tr ("returned a non-zero exit code or crashed otherwise.");
+      informative_text += tr ("Execution failed, exit code was: ");
+      informative_text += QString::number (proc.exitCode ());
+      break;
+    }
+    case QProcess::Timedout: {
+      main_text += tr ("didn't start up in time.");
+      informative_text = tr ("This error shouldn't come up.");
+      break;
+    }
+    case QProcess::WriteError: {
+      main_text += tr ("didn't accept a write operation.");
+      informative_text = tr ("It is probably not running correctly or crashed in-between.");
+      break;
+    }
+    case QProcess::ReadError: {
+      main_text = tr ("Unable to read from xmodmap.");
+      informative_text = tr ("It is probably not running correctly or crashed in-between.");
+      break;
+    }
+    case QProcess::UnknownError: {
+      main_text += tr ("encountered an unknown error during start up or execution.");
+      break;
+    }
+    default: {
+      main_text += tr ("experienced an undefined error.");
+      break;
+    }
+  }
+
+  if (!informative_text.isEmpty ()) {
+    informative_text += "\n\n";
+  }
+
+  informative_text += tr ("X2Go Client will now terminate.\n\n"
+                          "File a bug report as outlined on the <a href=\"http://wiki.x2go.org/doku.php/wiki:bugs\">bugs wiki page</a>.");
+
+  show_RichText_ErrorMsgBox (main_text, informative_text);
+  trayQuit ();
 }
 #endif
 

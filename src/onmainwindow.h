@@ -1148,6 +1148,7 @@ private slots:
     void slotStartNewBrokerSession ();
 #ifdef Q_OS_DARWIN
     void slotSetModMap();
+    void handle_xmodmap_error (QProcess &proc);
 private:
     QTimer* modMapTimer;
     QString kbMap;
