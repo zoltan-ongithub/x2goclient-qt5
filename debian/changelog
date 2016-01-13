@@ -23,6 +23,10 @@ x2goclient (4.0.5.1-0x2go1) UNRELEASED; urgency=low
       theoretically available. The initial reasoning for this dependency type,
       apache2-dev not being available on all Ubuntu/Debian platforms, is not
       true anymore.
+    - Change apache2-dev build dependency yet again to apache2-dev |
+      apache2-threaded-dev. Turns out all Debian distros but wheezy (currently
+      oldstable) have an apache2-dev package. Even oldoldstable (squeeze)
+      does...
 
   [ Oleksandr Shneyder ]
   * New upstream release (4.0.5.1):
