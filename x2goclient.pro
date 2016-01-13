@@ -204,7 +204,7 @@ macx {
   LIBS += -framework LDAP -lcups -lcrypto -lssl -lz
 
   !isEmpty(OSX_STDLIB) {
-    QMAKE_CXXFLAGS += --stdlib=$${OSX_STDLIB}
+    QMAKE_CXXFLAGS += -stdlib=$${OSX_STDLIB}
   }
 
   !isEmpty(MACPORTS_INCLUDE_PATH) {
