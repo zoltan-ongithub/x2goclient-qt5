@@ -200,8 +200,8 @@ void SshProcess::startNormal(const QString& cmd)
 // #endif
     if(!masterCon->useKerberos())
     {
-        QString shcmd = "bash -c 'echo \"X2GODATABEGIN:" + uuidStr + "\"; export PATH=\"/usr/local/bin:/usr/bin:/bin\"; "+cmd+"; echo \"X2GODATAEND:" + uuidStr + "\";'";
-        x2goDebug << "Running masterCon->addChannelConnection(this, '" << uuidStr << "', '" << shcmd.left (200) << "');";
+        QString shcmd = "bash -l -c 'echo \"X2GODATABEGIN:" + uuidStr + "\"; export PATH=\"/usr/local/bin:/usr/bin:/bin\"; export TERM=\"dumb\"; "+cmd+"; echo \"X2GODATAEND:" + uuidStr + "\";'";
+        x2goDebug << "this="<<this<<" Running masterCon->addChannelConnection(this, '" << uuidStr << "', '" << shcmd.left (200) << "');";
         masterCon->addChannelConnection(this, uuidStr, shcmd);
         connect(masterCon,SIGNAL(stdOut(SshProcess*,QByteArray)),this,SLOT(slotStdOut(SshProcess*,QByteArray)));
         connect(masterCon,SIGNAL(channelClosed(SshProcess*,QString)), this,SLOT(slotChannelClosed(SshProcess*,QString)));
@@ -222,7 +222,7 @@ void SshProcess::startNormal(const QString& cmd)
          * as there is no preceding "outer double quote" the whole argument
          * is wrapped in.
          */
-        shcmd = "bash -c 'echo \"X2GODATABEGIN:" + uuidStr + "\"; export PATH=\"/usr/local/bin:/usr/bin:/bin\"; "+cmd+"; echo \"X2GODATAEND:" + uuidStr + "\";'";
+        shcmd = "bash -l -c 'echo \"X2GODATABEGIN:" + uuidStr + "\"; export PATH=\"/usr/local/bin:/usr/bin:/bin\"; export TERM=\"dumb\"; "+cmd+"; echo \"X2GODATAEND:" + uuidStr + "\";'";
 
         proc=new QProcess(this);
         QString local_cmd = "";

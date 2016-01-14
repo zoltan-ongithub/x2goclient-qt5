@@ -1151,7 +1151,7 @@ bool SshMasterConnection::userAuthKrb()
      * as there is no preceding "outer double quote" the whole argument
      * is wrapped in.
      */
-    QString shcmd = "bash -c 'echo \"X2GODATABEGIN:" + uuidStr + "\"; whoami; echo \"X2GODATAEND:" + uuidStr + "\";'";
+    QString shcmd = "bash -l -c 'echo \"X2GODATABEGIN:" + uuidStr + "\"; export TERM=\"dumb\"; whoami; echo \"X2GODATAEND:" + uuidStr + "\";'";
 
     QString local_cmd = "";
     QStringList local_args;
