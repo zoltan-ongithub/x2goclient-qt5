@@ -17,6 +17,11 @@ x2goclient (4.0.5.1-0x2go1) UNRELEASED; urgency=low
     - onmainwindow.{cpp,h}: don't use a hardcoded path to xmodmap on OS X and
       handle errors more gracefully. Fixes: #487.
     - x2goclient.pro: fix typo --stdlib=... -> -stdlib=... Fixes: #973.
+    - onmainwindow.cpp: add some more error handling for parsing the return
+      value of x2golistsessions. As it turns out, it can happen that "invalid"
+      strings are inserted in there, for instance by the perl interpreter
+      itself. We need to skip over these, or the client crashes when splitting
+      up the invalid lines.
   * debian/control:
     - Change apache2-dev | libc6-dev build dependency back to apache2-dev
       only. Otherwise, apache2-dev is not installed at all, even though

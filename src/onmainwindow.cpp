@@ -3582,8 +3582,15 @@ void ONMainWindow::slotListSessions ( bool result,QString output,
         else
         {
             x2goSession s=getSessionFromString (config.sessiondata);
-            x2goDebug<<"Resuming managed session with ID: " + s.sessionId;
-            resumeSession ( s );
+
+            /* Check getSessionFromString for what this "invalid" string means. */
+            if (s.agentPid == "invalid") {
+                startNewSession ();
+            }
+            else {
+                x2goDebug << "Resuming managed session with ID: " + s.sessionId;
+                resumeSession (s);
+            }
         }
         return;
     }
@@ -3611,14 +3618,17 @@ void ONMainWindow::slotListSessions ( bool result,QString output,
         else if ( sessions.size() ==1 )
         {
             x2goSession s=getSessionFromString ( sessions[0] );
+
             QDesktopWidget wd;
-            if ( s.status=="S" && isColorDepthOk ( wd.depth(),
-                                                   s.colorDepth )
-                    &&s.command == selectedCommand )
+
+            /* Check getSessionFromString for what this "invalid" string means. */
+            if ((s.agentPid != "invalid") && (s.status == "S")
+                && (isColorDepthOk (wd.depth (), s.colorDepth))
+                && (s.command == selectedCommand))
                 resumeSession ( s );
             else
             {
-                if ( startHidden )
+                if ((startHidden) || (s.agentPid == "invalid"))
                     startNewSession();
                 else
                     selectSession ( sessions );
@@ -3634,10 +3644,13 @@ void ONMainWindow::slotListSessions ( bool result,QString output,
                 {
                     x2goSession s=getSessionFromString (
                                       sessions[i] );
+
                     QDesktopWidget wd;
-                    if ( s.status=="S" && isColorDepthOk (
-                                wd.depth(),s.colorDepth )
-                            &&s.command == selectedCommand )
+
+                    /* Check getSessionFromString for what this "invalid" string means. */
+                    if ((s.agentPid != "invalid") && (s.status == "S")
+                        && (isColorDepthOk (wd.depth (), s.colorDepth))
+                        && (s.command == selectedCommand))
                     {
                         resumeSession ( s );
                         return;
@@ -3653,7 +3666,19 @@ void ONMainWindow::slotListSessions ( bool result,QString output,
 x2goSession ONMainWindow::getSessionFromString ( const QString& string )
 {
     QStringList lst=string.split ( '|' );
+
     x2goSession s;
+
+    /*
+     * Skip over invalid sessions strings...
+     * This can happen if the perl interpreter outputs warning or error messages
+     * to stdout.
+     */
+    if (lst.size () < 10) {
+        s.agentPid = "invalid";
+        return (s);
+    }
+
     s.agentPid=lst[0];
     s.sessionId=lst[1];
     s.display=lst[2];
@@ -4388,6 +4413,11 @@ void ONMainWindow::selectSession ( QStringList& sessions )
         {
             x2goDebug<<"Decoding session string:" + sessions[row];
             x2goSession s=getSessionFromString ( sessions[row] );
+
+            /* Check getSessionFromString for what this "invalid" string means. */
+            if (s.agentPid == "invalid") {
+                continue;
+            }
 
             selectedSessions.append ( s );
             QStandardItem *item;
@@ -7652,8 +7682,10 @@ void ONMainWindow::slotListAllSessions ( bool result,QString output,
             x2goDebug<<"Will proceed with this session.";
 
             QDesktopWidget wd;
-            if ( s.status=="S" && isColorDepthOk (
-                        wd.depth(),s.colorDepth ) )
+
+            /* Check getSessionFromString for what this "invalid" string means. */
+            if ((s.agentPid != "invalid") && (s.status == "S")
+                && (isColorDepthOk (wd.depth (), s.colorDepth)))
             {
                 resumeSession ( s );
             }
