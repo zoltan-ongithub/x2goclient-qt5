@@ -1091,7 +1091,7 @@ bool SshMasterConnection::userAuthWithKey()
         return false;
     }
     ssh_public_key pubkey=publickey_from_privatekey(prkey);
-    if (!prkey)
+    if (!pubkey)
     {
 #ifdef DEBUG
         x2goDebug<<"Failed to get public key from private key."<<endl;
