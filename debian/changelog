@@ -41,6 +41,7 @@ x2goclient (4.0.5.1-0x2go1) UNRELEASED; urgency=low
     - Replace "::" with "_" for the desktop link name on Windows.
     - Fix direct RDP in broker mode.
     - Fix crashing client when editing session from SessionManageDialog.
+      Fixes: #921.
     - Configure audio input in pulseaudio on Windows.
     - Reconnect ssh broker in case of IO Error.
     - Reformat source onmainwindow.cpp.
