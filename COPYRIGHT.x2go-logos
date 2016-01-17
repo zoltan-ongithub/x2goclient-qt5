@@ -3,14 +3,14 @@ Upstream-Name: X2Go-artwork [~X]
 Upstream-Contact: Heinz-M. Graesing <heinz-m.graesing@obviously-nice.de>
 
 Files:     res/img/x2go-logos/mksizedsymbols.sh
-Copyright: 2005-2015 Heinz-M. Graesing
+Copyright: 2005-2016 Heinz-M. Graesing
 <heinz-m.graesing@obviously-nice.de>
 License:   GPL-2.0+
            res/img/x2go-logos/x2go-logo-colored.svg
            res/img/x2go-logos/x2go-logo.svg
            res/img/x2go-logos/x2go-logo-rotated.svg
            res/img/x2go-logos/x2go-mascot.svg
-Copyright: 2005-2015 Heinz-M. Grasesing
+Copyright: 2005-2016 Heinz-M. Grasesing
 <heinz-m.graesing@obviously-nice.de>
 License:   GPL-2.0+
 Files:     res/img/icons/16x16/x2goclient.png
@@ -18,5 +18,5 @@ Files:     res/img/icons/16x16/x2goclient.png
            res/img/icons/48x48/x2goclient.png
            res/img/icons/64x64/x2goclient.png
            res/img/icons/128x128/x2goclient.png
-Copyright: 2005-2015 Heinz-M. Graesing <heinz-m.graesing@obviously-nice.de>
+Copyright: 2005-2016 Heinz-M. Graesing <heinz-m.graesing@obviously-nice.de>
 License:   GPL-2.0+

@@ -1,7 +1,7 @@
 /**************************************************************************
-*   Copyright (C) 2005-2015 by Oleksandr Shneyder                         *
+*   Copyright (C) 2005-2016 by Oleksandr Shneyder                         *
 *   o.shneyder@phoca-gmbh.de                                              *
-*   Copyright (C) 2015 by Mihai Moldovan                                  *
+*   Copyright (C) 2015-2016 by Mihai Moldovan                             *
 *                                                                         *
 *   This program is free software; you can redistribute it and/or modify  *
 *   it under the terms of the GNU General Public License as published by  *

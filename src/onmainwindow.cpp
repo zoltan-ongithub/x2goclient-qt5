@@ -1,5 +1,5 @@
 /**************************************************************************
-*   Copyright (C) 2005-2015 by Oleksandr Shneyder                         *
+*   Copyright (C) 2005-2016 by Oleksandr Shneyder                         *
 *   o.shneyder@phoca-gmbh.de                                              *
 *                                                                         *
 *   This program is free software; you can redistribute it and/or modify  *
@@ -1595,6 +1595,7 @@ void ONMainWindow::trayIconActivated(QSystemTrayIcon::ActivationReason reason )
 #else
     case QSystemTrayIcon::DoubleClick:
 #endif
+        x2goDebug << "tray icon clicked with Trigger (left click)";
         if (isVisible())
             hide();
         else
@@ -8339,7 +8340,7 @@ void ONMainWindow::slotSupport()
 
 void ONMainWindow::slotAbout()
 {
-    QString aboutStr=tr ("<br>(C) 2005-2015 by <b>obviously nice</b>: "
+    QString aboutStr=tr ("<br>(C) 2005-2016 by <b>obviously nice</b>: "
                          "Oleksandr Shneyder, Heinz-Markus Graesing<br>" );
     if ( embedMode )
         aboutStr+=tr ( "<br>X2Go Plugin mode was sponsored by "

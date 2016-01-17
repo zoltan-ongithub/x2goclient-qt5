@@ -1102,8 +1102,8 @@ Vil du avbryte tilkoblingen?
         <translation>Støtte</translation>
     </message>
     <message>
-        <source>&lt;/b&gt;&lt;br&gt; (C. 2005-2015 &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing)&lt;br&gt;</source>
-        <translation>&lt;/b&gt;&lt;br&gt; (C. 2005-2015 &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing)&lt;br&gt;</translation>
+        <source>&lt;/b&gt;&lt;br&gt; (C. 2005-2016 &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing)&lt;br&gt;</source>
+        <translation>&lt;/b&gt;&lt;br&gt; (C. 2005-2016 &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing)&lt;br&gt;</translation>
     </message>
     <message>
         <source>Please check LDAP Settings</source>
