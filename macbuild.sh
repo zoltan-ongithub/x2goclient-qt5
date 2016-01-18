@@ -27,6 +27,8 @@ usage() {
 	printf "Accepted environment variables:\n"
 	printf "\tSDK:\t\t\t\tsets the target SDK [string]\n\t\t\t\t\tdefault: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk\n"
 	printf "\tMACOSX_DEPLOYMENT_TARGET:\tsets the deployment target (specific OS X version to optimize/build for) [string]\n\t\t\t\t\tdefault: 10.7\n"
+	printf "\tSTDLIB:\t\t\t\tsets a specific stdlib variant. Must be used with FORCE_STDLIB to have any effect. [string]\n\t\t\t\t\tdefault: autodetect\n"
+	printf "\tFORCE_STDLIB:\t\t\tforces a specific C++ stdlib version. If you use this, also specify STDLIB. YOU SHOULD NEVER USE THIS, UNLESS YOU KNOW WHAT YOU ARE DOING! [boolean]\n\t\t\t\t\tdefault: disabled\n"
 	printf "\tDEBUG\t\t\t\tenables or disables debug builds [boolean]\n\t\t\t\t\tdefault: disabled\n"
 	printf "\tBUNDLE\t\t\t\tenables or disables library bundling and the creation of a .dmg installer [boolean]\n\t\t\t\t\tdefault: enabled\n"
 	printf "\tUNIVERSAL\t\t\tenables or disables x86 support. x86_64 support is always enabled [boolean]\n\t\t\t\t\tdefault: enabled\n"
@@ -55,10 +57,12 @@ NXPROXY="$(which nxproxy)"
 
 : ${SDK:="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk"}
 : ${MACOSX_DEPLOYMENT_TARGET:="10.7"}
+: ${FORCE_STDLIB:="0"}
 : ${DEBUG:="0"}
 : ${BUNDLE:="1"}
 : ${UNIVERSAL:="1"}
 
+FORCE_STDLIB="$(make_boolean "${FORCE_STDLIB}")"
 DEBUG="$(make_boolean "${DEBUG}")"
 BUNDLE="$(make_boolean "${BUNDLE}")"
 UNIVERSAL="$(make_boolean "${UNIVERSAL}")"
@@ -68,15 +72,27 @@ UNIVERSAL="$(make_boolean "${UNIVERSAL}")"
 BUILD_ARCH="x86_64"
 [ "${UNIVERSAL}" -eq "1" ] && BUILD_ARCH="${BUILD_ARCH} x86"
 
-SDK_MINOR_VERSION="$(/usr/bin/perl -pe 's#.*?10\.(\d+).*?\.sdk$#\1#' <<< "${SDK}")"
 
-MATCH_NUMBERS='^[0-9]+$'
-if [[ "${SDK_MINOR_VERSION}" =~ ${MATCH_NUMBERS} ]]; then
-	[ "${SDK_MINOR_VERSION}" -gt "6" ] && STDLIB="libstdc++"
-	[ "${SDK_MINOR_VERSION}" -gt "8" ] && STDLIB="libc++"
+if [ "${FORCE_STDLIB}" -eq "1" ]; then
+	if [[ -z "${STDLIB}" ]]; then
+		echo "stdlib forcing enabled, but STDLIB not passed." >&2
+		exit 1
+	fi
+
+	if [[ "${STDLIB}" != "libc++" && "${STDLIB}" != "libstdc++" ]]; then
+		echo "stdlib forcing enabled, but STDLIB contains illegal value. Legal values: libc++, libstdc++" >&2
+		exit 1
+	fi
 else
-	echo "Unable to determine OS X version. Unknown value '${SDK_MINOR_VERSION}'." >&2
-	exit 1
+	SDK_MINOR_VERSION="$(/usr/bin/perl -pe 's#.*?10\.(\d+).*?\.sdk$#\1#' <<< "${SDK}")"
+	MATCH_NUMBERS='^[0-9]+$'
+	if [[ "${SDK_MINOR_VERSION}" =~ ${MATCH_NUMBERS} ]]; then
+		[ "${SDK_MINOR_VERSION}" -gt "6" ] && STDLIB="libstdc++"
+		[ "${SDK_MINOR_VERSION}" -gt "8" ] && STDLIB="libc++"
+	else
+		echo "Unable to determine OS X version. Unknown value '${SDK_MINOR_VERSION}'." >&2
+		exit 1
+	fi
 fi
 
 set -e
