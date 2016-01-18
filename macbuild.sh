@@ -72,7 +72,6 @@ UNIVERSAL="$(make_boolean "${UNIVERSAL}")"
 BUILD_ARCH="x86_64"
 [ "${UNIVERSAL}" -eq "1" ] && BUILD_ARCH="${BUILD_ARCH} x86"
 
-
 if [ "${FORCE_STDLIB}" -eq "1" ]; then
 	if [[ -z "${STDLIB}" ]]; then
 		echo "stdlib forcing enabled, but STDLIB not passed." >&2
