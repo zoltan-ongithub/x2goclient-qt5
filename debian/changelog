@@ -60,6 +60,15 @@ x2goclient (4.0.5.1-0x2go1) UNRELEASED; urgency=low
   * New upstream release (4.0.5.1):
     - Windows: Update bundled Win32 OpenSSL from 1.0.1p to 1.0.1q,
       which fixes the multiple CVEs announced on 2015-12-03.
+    - Windows: Upgrade Cygwin components to latest versions as of
+      2016-01-21, except for the Cygwin DLL which is still at 1.7.33
+      in order to avoid breaking folder sharing and printer sharing
+      due to 1.7.34's ACL/permissions changes.
+      (authorized_keys file would often have mode 660 instead of 600)
+      The latest components include most notably:
+        + openssh 6.8p1-1-x2go1 -> 7.1p2-1-x2go1 (security update)
+        + openssl 1.0.2d-1 -> 1.0.2e-1 (security update)
+    - Windows: Update nxproxy from 3.5.0.31 to 3.5.0.32
 
   [ Orion Poplawski ]
   * New upstream release (4.0.5.1):
