@@ -73,6 +73,7 @@ x2goclient (4.0.5.1-0x2go1) UNRELEASED; urgency=low
       which fixes the DLL hijacking security vuln (NSIS bug 1125.)
     - Windows: Update PuTTY from 0.64 to 0.66, which fixes
       CVE-2015-5309.
+    - Windows: Remove libzip. libssh no longer uses it.
 
   [ Orion Poplawski ]
   * New upstream release (4.0.5.1):
