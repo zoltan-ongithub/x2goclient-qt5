@@ -55,6 +55,10 @@
 
 static bool isLibSshInited=false;
 
+const QString SshMasterConnection::challenge_auth_code_prompts_[] = {
+  "Verification code:"
+};
+
 
 #ifdef Q_OS_WIN
 #include <QSettings>
@@ -874,8 +878,20 @@ bool SshMasterConnection::userChallengeAuth()
                 ssh_userauth_kbdint_setanswer(my_ssh_session,0,pass.toAscii());
                 return userChallengeAuth();
             }
-            if(pr=="Verification code: ")
-            {
+
+            bool has_challenge_auth_code_prompt = false;
+            const std::size_t challenge_auth_code_prompts_size = (sizeof (challenge_auth_code_prompts_)/sizeof (*challenge_auth_code_prompts_));
+
+            for (std::size_t i = 0; i < challenge_auth_code_prompts_size; ++i) {
+                x2goDebug << "Checking against known prompt #" << i << ": " << challenge_auth_code_prompts_[i] << endl;
+
+                if (pr == challenge_auth_code_prompts_[i]) {
+                    has_challenge_auth_code_prompt = true;
+                    break;
+                }
+            }
+
+            if (has_challenge_auth_code_prompt) {
 #ifdef DEBUG
                 x2goDebug<<"Verification code request"<<endl;
 #endif

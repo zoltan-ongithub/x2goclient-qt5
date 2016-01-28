@@ -198,6 +198,8 @@ private:
     bool challengeAuthPasswordAccepted;
     QString challengeAuthVerificationCode;
 
+    static const QString challenge_auth_code_prompts_[];
+
 signals:
     void stdErr(SshProcess* caller, QByteArray data);
     void stdOut(SshProcess* caller, QByteArray data);
