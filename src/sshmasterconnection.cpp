@@ -56,7 +56,8 @@
 static bool isLibSshInited=false;
 
 const QString SshMasterConnection::challenge_auth_code_prompts_[] = {
-  "Verification code:"
+  "Verification code:",
+  "One-time password (OATH) for"
 };
 
 
