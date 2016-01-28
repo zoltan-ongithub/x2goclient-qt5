@@ -86,9 +86,9 @@ EditConnectionDialog::EditConnectionDialog ( bool newSession, QString id, QWidge
               SLOT ( slot_changeCaption ( const QString& ) ) );
     connect ( this,SIGNAL ( accepted() ),this,SLOT ( slot_accepted() ) );
     connect (sessSet, SIGNAL(directRDP(bool)), this, SLOT(slot_directRDP(bool)));
-     
-    connect (sessSet, 
-	     SIGNAL(settingsChanged(QString,QString,QString)), otherSet, 
+
+    connect (sessSet,
+	     SIGNAL(settingsChanged(QString,QString,QString)), otherSet,
  	     SLOT(setServerSettings(QString,QString,QString)));
 
     ok->setDefault ( true );

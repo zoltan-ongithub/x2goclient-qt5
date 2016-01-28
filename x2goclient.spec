@@ -206,7 +206,7 @@ fi
 
 %files
 %defattr(-,root,root)
-%doc AUTHORS COPYING LICENSE 
+%doc AUTHORS COPYING LICENSE
 %{_bindir}/%{name}
 %{_datadir}/applications/%{name}.desktop
 %dir %{_datadir}/icons/hicolor

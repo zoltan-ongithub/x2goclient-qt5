@@ -192,7 +192,7 @@ exit;
 }
 
 sub printpack
-{ 
+{
     my $m=$pack_methods;
     $m=~s/%/[0-9]/g;
     print "$m\n";
@@ -210,7 +210,7 @@ sub check_pack
     my $pm=$pack_methods;
 
     if(@arr>1)
-    {    
+    {
        my $qa=@arr[@arr-1];
        my @vals=unpack('cc',$qa);
        if($qa ge '0' && $qa le '9' && @vals == 1)
@@ -533,16 +533,16 @@ else
 
 sleep 2;
 $dirpath="$nxroot/S-$sname";
-eval 
-{ 
-    mkpath($dirpath) 
+eval
+{
+    mkpath($dirpath)
 };
-if ($@) 
+if ($@)
 {
       print "Couldn't create $dirpath: $@";
       hidepass $askpass;
       exit;
-}  
+}
 
 my $nx_host="nx/nx,composite=1,root=$nxroot,connect=localhost,cookie=$cookie,port=$gr_port,errors=$dirpath/session";
 

@@ -49,9 +49,9 @@ class CUPSPrinterSettingsDialog : public QDialog
 		void changeGeneralOption ( const QString&  option,
 		                           const QString& val );
 	private slots:
-		void slot_optionSelected ( QTreeWidgetItem * current, 
+		void slot_optionSelected ( QTreeWidgetItem * current,
 					   QTreeWidgetItem * previous );
-		void slot_valueSelected ( QTreeWidgetItem * current, 
+		void slot_valueSelected ( QTreeWidgetItem * current,
 					  QTreeWidgetItem * previous );
 		void slot_reloadValues();
 		void slot_changePSize ( int ind );

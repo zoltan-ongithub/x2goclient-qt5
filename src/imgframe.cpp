@@ -37,7 +37,7 @@ void IMGFrame::setBg(QImage* img)
 	setAutoFillBackground(true);
 	QPalette pal=palette();
 	pal.setBrush(QPalette::Window,QBrush(QPixmap::fromImage(*img)));
-	setPalette(pal);    
+	setPalette(pal);
 	}
 }
 

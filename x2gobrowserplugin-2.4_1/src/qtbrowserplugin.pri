@@ -1,7 +1,7 @@
 TEMPLATE = lib
 CONFIG  += dll
 win32-* {
-  # Uncomment the following line to build a plugin that can be used also in 
+  # Uncomment the following line to build a plugin that can be used also in
   # Internet Explorer, through ActiveX.
   # CONFIG += qaxserver
 } else {
@@ -56,7 +56,7 @@ win32-* {
 } else {
   SOURCES     += $$PWD/qtbrowserplugin_x11.cpp
   INCLUDEPATH += /usr/include/X11
-  
+
   # Avoiding symbol clash with other instances of the Qt library
   # (ref. developingplugins.html in the doc.):
   #

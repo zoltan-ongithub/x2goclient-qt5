@@ -23,7 +23,7 @@
 ClickLineEdit::ClickLineEdit(QWidget * parent)
  : QLineEdit(parent)
 {
-	
+
 }
 
 
@@ -43,7 +43,7 @@ void ClickLineEdit::mouseReleaseEvent ( QMouseEvent * event )
 // 	QLineEdit::focusInEvent(event);
 // 	x2goDebug<<"focus in";
 // }
-// 
+//
 // void ClickLineEdit::focusOutEvent ( QFocusEvent * event )
 // {
 // 	QLineEdit::focusOutEvent(event);
