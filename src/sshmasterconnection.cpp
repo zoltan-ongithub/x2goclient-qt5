@@ -946,6 +946,8 @@ bool SshMasterConnection::userChallengeAuth()
 
 bool SshMasterConnection::userAuthWithPass()
 {
+    bool ret = false;
+
     // Populate the userauth_list
     ssh_userauth_none(my_ssh_session, NULL);
 
@@ -957,11 +959,19 @@ bool SshMasterConnection::userAuthWithPass()
         x2goDebug<<"Challenge authentication requested."<<endl;
 #endif
         challengeAuthPasswordAccepted=false;
-        return userChallengeAuth();
+        ret = userChallengeAuth();
     }
 
-    if (method & SSH_AUTH_METHOD_PASSWORD)
+    if (!ret) {
+        x2goDebug << "Challenge authentication failed. Trying password mechanism if available." << endl;
+    }
+
+    if ((!ret) && (method & SSH_AUTH_METHOD_PASSWORD))
     {
+        if (!ret) {
+            x2goDebug << "Password mechanism available. Continuing." << endl;
+        }
+
 #ifdef DEBUG
         x2goDebug<<"Password authentication requested."<<endl;
 #endif
@@ -973,12 +983,13 @@ bool SshMasterConnection::userAuthWithPass()
 #ifdef DEBUG
             x2goDebug<<"userAuthWithPass failed:" <<err<<endl;
 #endif
-            return false;
         }
-        return true;
+        else {
+            ret = true;
+        }
     }
 
-    return false;
+    return (ret);
 }
 
 

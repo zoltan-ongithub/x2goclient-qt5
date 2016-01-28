@@ -28,6 +28,9 @@ x2goclient (4.0.5.1-0x2go1) UNRELEASED; urgency=low
     - onmainwindow.cpp: use lowercase version of locale. Fixes: #953.
       Fixes loading up the nb_NO translation file, which is actually baked as
       nb_no into the binary.
+    - sshmasterconnection.cpp: let challenge-auth-based login attempts
+      fallback to normal password authentication if the initial
+      challenge-auth-based attempt was unsuccessful.
   * debian/control:
     - Change apache2-dev | libc6-dev build dependency back to apache2-dev
       only. Otherwise, apache2-dev is not installed at all, even though
