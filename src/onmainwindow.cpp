@@ -613,7 +613,7 @@ bool ONMainWindow::get_translator (QString file_name_start, QTranslator **transl
             QString tmp_locale = (*it);
             tmp_locale.replace ("-", "_");
             load_filename = filename;
-            load_filename.append ("_").append (tmp_locale);
+            load_filename.append ("_").append (tmp_locale.toLower ());
 
             if (tmp_translator->load (load_filename)) {
                 /* Some translation successfully loaded. That's good enough. */

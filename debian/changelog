@@ -25,6 +25,9 @@ x2goclient (4.0.5.1-0x2go1) UNRELEASED; urgency=low
     - macbuild.sh: add stdlib forcing. Should not be used unless you really
       know what you're doing. If you ponder using this, you probably don't.
     - res/resources.rcc: add Turkish translation file. Fixes: #987.
+    - onmainwindow.cpp: use lowercase version of locale. Fixes: #953.
+      Fixes loading up the nb_NO translation file, which is actually baked as
+      nb_no into the binary.
   * debian/control:
     - Change apache2-dev | libc6-dev build dependency back to apache2-dev
       only. Otherwise, apache2-dev is not installed at all, even though
