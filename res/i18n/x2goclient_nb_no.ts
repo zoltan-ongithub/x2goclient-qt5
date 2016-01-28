@@ -157,11 +157,19 @@
     </message>
     <message>
         <source>This value is in conflict with other option</source>
-        <translation>Dette alternativet er i konflikt med et annet alternativ</translation>
+        <translation type="obsolete">Dette alternativet er i konflikt med et annet alternativ</translation>
     </message>
     <message>
         <source>Options conflict</source>
-        <translation>Alternativskonflikt</translation>
+        <translation type="obsolete">Alternativskonflikt</translation>
+    </message>
+    <message>
+        <source>This value is in conflict with another option.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Options conflict.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -196,11 +204,15 @@
     </message>
     <message>
         <source>Socket operation timed out</source>
-        <translation>Sokkel handlingen ble tidsavbrutt</translation>
+        <translation type="obsolete">Sokkel handlingen ble tidsavbrutt</translation>
     </message>
     <message>
         <source>Failed: </source>
         <translation>Feilet: </translation>
+    </message>
+    <message>
+        <source>Socket operation timed out.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -251,7 +263,7 @@
     </message>
     <message>
         <source>X-Server settings</source>
-        <translation>X-Server innstillinger</translation>
+        <translation type="obsolete">X-Server innstillinger</translation>
     </message>
     <message>
         <source>X11 application:</source>
@@ -267,7 +279,7 @@
     </message>
     <message>
         <source>Clientside SSH port for file system export usage:</source>
-        <translation>Klientside SSH port for bruk ved eksport av filsystem:</translation>
+        <translation type="obsolete">Klientside SSH port for bruk ved eksport av filsystem:</translation>
     </message>
     <message>
         <source>Start session embedded inside website</source>
@@ -299,23 +311,23 @@
     </message>
     <message>
         <source>Warning</source>
-        <translation>Advarsel</translation>
+        <translation type="obsolete">Advarsel</translation>
     </message>
     <message>
         <source>x2goclient could not find any suitable X11 Application. Please install Apple X11 or select the path to the application</source>
-        <translation>x2goclient kan ikke finne en passende X11 applikasjon. Vennligst installer Apple X11, eller oppgi stien til applikasjonen</translation>
+        <translation type="obsolete">x2goclient kan ikke finne en passende X11 applikasjon. Vennligst installer Apple X11, eller oppgi stien til applikasjonen</translation>
     </message>
     <message>
         <source>Your are using X11 (Apple X-Window Server) version </source>
-        <translation>Du benytter X11 (Apple X-Window Server) versjon </translation>
+        <translation type="obsolete">Du benytter X11 (Apple X-Window Server) versjon </translation>
     </message>
     <message>
         <source>. This version causes problems with X-application in 24bit color mode. You should update your X11 environment (http://trac.macosforge.org/projects/xquartz).</source>
-        <translation>. Denne versjonen forårsaker problemer med X-applikasjoner i 24biters fargemodus. Du burde oppdatere ditt X11 oppsett (http://trac.macosforge.org/projects/xquartz).</translation>
+        <translation type="obsolete">. Denne versjonen forårsaker problemer med X-applikasjoner i 24biters fargemodus. Du burde oppdatere ditt X11 oppsett (http://trac.macosforge.org/projects/xquartz).</translation>
     </message>
     <message>
         <source>No suitable X11 application found in selected path</source>
-        <translation>Ingen passende X11 applikasjon ble funnet i valgt sti</translation>
+        <translation type="obsolete">Ingen passende X11 applikasjon ble funnet i valgt sti</translation>
     </message>
     <message>
         <source>&amp;Connection</source>
@@ -332,6 +344,62 @@
     <message>
         <source>&amp;Media</source>
         <translation>&amp;Media</translation>
+    </message>
+    <message>
+        <source>X.Org Server settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Clientside (local) SSH daemon port for file system export usage:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pulseaudio settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Disable audio input</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;font size=&quot;5&quot;&gt;You must restart the X2Go Client for the changes to take effect&lt;/font&gt;&lt;br&gt;&lt;br&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Your XQuartz version is too old.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Your are using XQuartz (X Window System Server for OS X) version </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>.
+
+This version causes problems with X applications in 24bit color mode.
+You should update your X11 environment.
+
+MacPorts users please follow the steps outlined on:
+&lt;center&gt;&lt;a href=&quot;https://guide.macports.org/chunked/using.common-tasks.html&quot;&gt;https://guide.macports.org/chunked/using.common-tasks.html&lt;/a&gt;&lt;/center&gt;
+
+Users who have installed XQuartz via the installer package
+can find updated versions on:
+&lt;center&gt;&lt;a href=&quot;https://xquartz.macosforge.org/&quot;&gt;https://xquartz.macosforge.org/&lt;/a&gt;&lt;/center&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No valid XQuartz application selected.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You did not select a valid XQuartz application.
+Please try again.
+
+Some standard installation locations may be:
+&lt;center&gt;&lt;b&gt;/Applications/Utilities/X11.app&lt;/b&gt;&lt;/center&gt;
+&lt;center&gt;&lt;b&gt;/Applications/Utilities/XQuartz.app&lt;/b&gt;&lt;/center&gt;
+&lt;center&gt;&lt;b&gt;/Applications/MacPorts/X11.app&lt;/b&gt;&lt;/center&gt;</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -488,11 +556,15 @@
     </message>
     <message>
         <source>share folders</source>
-        <translation>del mapper</translation>
+        <translation type="obsolete">del mapper</translation>
     </message>
     <message>
         <source>Select folder</source>
         <translation>Velg mappe</translation>
+    </message>
+    <message>
+        <source>Share Folders</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -514,15 +586,15 @@
     </message>
     <message>
         <source>Rename Folder...</source>
-        <translation>Lag nytt navn på mappe...</translation>
+        <translation type="obsolete">Lag nytt navn på mappe...</translation>
     </message>
     <message>
         <source>Change Icon...</source>
-        <translation>Endre ikon ...</translation>
+        <translation type="obsolete">Endre ikon ...</translation>
     </message>
     <message>
         <source>Delete Folder...</source>
-        <translation>Slett mappe...</translation>
+        <translation type="obsolete">Slett mappe...</translation>
     </message>
     <message>
         <source>Open picture</source>
@@ -550,7 +622,7 @@
     </message>
     <message>
         <source>&quot;. Folder is not empty. Please remove content of folder and try again.</source>
-        <translation>&quot; mappen er ikke tom. Fjern innholdet i mappa, og forsøk pånytt.</translation>
+        <translation type="obsolete">&quot; mappen er ikke tom. Fjern innholdet i mappa, og forsøk pånytt.</translation>
     </message>
     <message>
         <source>Delete folder &quot;</source>
@@ -559,6 +631,22 @@
     <message>
         <source>New Folder</source>
         <translation>Ny mappe</translation>
+    </message>
+    <message>
+        <source>Rename Folder ...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Change Icon ...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete Folder ...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&quot;. Folder is not empty. Please remove the contents of this directory and try again.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -586,15 +674,15 @@ Den er nå: </translation>
     </message>
     <message>
         <source>For security reasons, connection will be stopped</source>
-        <translation>Av hensyn til sikkerheten vil tilkoblingen bli stoppet</translation>
+        <translation type="obsolete">Av hensyn til sikkerheten vil tilkoblingen bli stoppet</translation>
     </message>
     <message>
         <source>The host key for this server was not found but an othertype of key exists.An attacker might change the default server key toconfuse your client into thinking the key does not exist</source>
-        <translation>Vertsnøkkelen for denne serveren ble ikke funnet, men en annen type av nøkkel eksisterer. En angriper kan endre standard servernøkkel for å lure klienten din til å tro at nøkkelen ikke finnes</translation>
+        <translation type="obsolete">Vertsnøkkelen for denne serveren ble ikke funnet, men en annen type av nøkkel eksisterer. En angriper kan endre standard servernøkkel for å lure klienten din til å tro at nøkkelen ikke finnes</translation>
     </message>
     <message>
         <source>Could not find known host file.If you accept the host key here, the file will be automatically created</source>
-        <translation>Kan ikke finne &quot;known host&quot; filen. Om du aksepterer vertsnøkkelen her vil filen automatisk bli opprettet</translation>
+        <translation type="obsolete">Kan ikke finne &quot;known host&quot; filen. Om du aksepterer vertsnøkkelen her vil filen automatisk bli opprettet</translation>
     </message>
     <message>
         <source>The server is unknown. Do you trust the host key?
@@ -604,7 +692,7 @@ Offentlig nøkkel: </translation>
     </message>
     <message>
         <source>Host key verification failed</source>
-        <translation>Verifiseringen av vertsnøkkelen feilet</translation>
+        <translation type="obsolete">Verifiseringen av vertsnøkkelen feilet</translation>
     </message>
     <message>
         <source>Yes</source>
@@ -620,7 +708,7 @@ Offentlig nøkkel: </translation>
     </message>
     <message>
         <source>Authentication failed</source>
-        <translation>Autentisering feilet</translation>
+        <translation type="obsolete">Autentisering feilet</translation>
     </message>
     <message>
         <source>Error</source>
@@ -628,7 +716,7 @@ Offentlig nøkkel: </translation>
     </message>
     <message>
         <source>Login failed!&lt;br&gt;Please try again</source>
-        <translation>Innlogging feilet! &lt;br&gt;Vennligst forsøk igjen</translation>
+        <translation type="obsolete">Innlogging feilet! &lt;br&gt;Vennligst forsøk igjen</translation>
     </message>
     <message>
         <source>&lt;br&gt;&lt;b&gt;Server uses an invalid security certificate.&lt;/b&gt;&lt;br&gt;&lt;br&gt;</source>
@@ -640,7 +728,7 @@ Offentlig nøkkel: </translation>
     </message>
     <message>
         <source>Secure connection failed</source>
-        <translation>Sikker tilkobling feilet</translation>
+        <translation type="obsolete">Sikker tilkobling feilet</translation>
     </message>
     <message>
         <source>Issued to:
@@ -713,6 +801,34 @@ Offentlig nøkkel: </translation>
     <message>
         <source>Verification code:</source>
         <translation>Verifikasjonskode:</translation>
+    </message>
+    <message>
+        <source>For security reasons, the connection attempt will be aborted.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The host key for this server was not found but anothertype of key exists. An attacker might have changed the default server key to trick your client into thinking the key does not exist yet.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not find known hosts file.If you accept the host key here, the file will be automatically created.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Host key verification failed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Authentication failed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Login failed!&lt;br&gt;Please try again.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Secure connection failed.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -821,7 +937,7 @@ lydsystem forbindelser gjennom brannmurer</translation>
     <message>
         <source>Ctrl+Q</source>
         <comment>exit</comment>
-        <translation>Ctrl+Q</translation>
+        <translation type="obsolete">Ctrl+Q</translation>
     </message>
     <message>
         <source>&amp;Session</source>
@@ -845,7 +961,7 @@ Somebody might be eavesdropping on you.
 For security reasons, it is recommended to stop the connection.
 Do you want to terminate the connection?
 </source>
-        <translation>Dette kan være et tegn på såkalt man-in-the-middle angrep.
+        <translation type="obsolete">Dette kan være et tegn på såkalt man-in-the-middle angrep.
 Noen kan forsøke å avlytte din forbindelse.
 Av hensyn til din sikkerhet, så bør du avbryte tilkoblingen.
 Vil du avbryte tilkoblingen?
@@ -862,7 +978,7 @@ Vil du oppdateren den nye vertsnøkkelen?</translation>
 For security reasons, it is recommended to stop the connection.
 Do you want to terminate the connection?
 </source>
-        <translation>Vertsnøkkelen for denne serveren ble ikke funnet, men en annen type nøkkel finnes. En angriper kan endre standard vertsnøkkel for serveren for å lure din klient til å tro at nøkkelen ikke finnes.
+        <translation type="obsolete">Vertsnøkkelen for denne serveren ble ikke funnet, men en annen type nøkkel finnes. En angriper kan endre standard vertsnøkkel for serveren for å lure din klient til å tro at nøkkelen ikke finnes.
 Av hensyn til din sikkerhet så bør du avbryte tilkoblingen.
 Vil du avbryte tilkoblingen?
 </translation>
@@ -893,7 +1009,7 @@ Vil du avbryte tilkoblingen?
     </message>
     <message>
         <source>Failed, killing the proxy.</source>
-        <translation>Feilet, dreper derfor proxy.</translation>
+        <translation type="obsolete">Feilet, dreper derfor proxy.</translation>
     </message>
     <message>
         <source>Wrong parameter: </source>
@@ -905,7 +1021,7 @@ Vil du avbryte tilkoblingen?
     </message>
     <message>
         <source>Can not open key: </source>
-        <translation>Kan ikke åpne nøkkelfilen: </translation>
+        <translation type="obsolete">Kan ikke åpne nøkkelfilen: </translation>
     </message>
     <message>
         <source>Card not configured.</source>
@@ -913,7 +1029,7 @@ Vil du avbryte tilkoblingen?
     </message>
     <message>
         <source>Error getting window geometry (window closed)?</source>
-        <translation>Feil under uthenting av vindusgeometrien (Er vinduet lukket)?</translation>
+        <translation type="obsolete">Feil under uthenting av vindusgeometrien (Er vinduet lukket)?</translation>
     </message>
     <message>
         <source>Password:</source>
@@ -1014,7 +1130,7 @@ Vil du avbryte tilkoblingen?
     <message>
         <source>Unable to create SSL Tunnel:
 </source>
-        <translation>Klarer ikke å opprette SSL tunnel:
+        <translation type="obsolete">Klarer ikke å opprette SSL tunnel:
 </translation>
     </message>
     <message>
@@ -1059,35 +1175,35 @@ Vil du avbryte tilkoblingen?
     </message>
     <message>
         <source> (file not exists)</source>
-        <translation> (filen finnes ikke)</translation>
+        <translation type="obsolete"> (filen finnes ikke)</translation>
     </message>
     <message>
         <source> (directory not exists)</source>
-        <translation> (mappen finnes ikke)</translation>
+        <translation type="obsolete"> (mappen finnes ikke)</translation>
     </message>
     <message>
         <source>wrong value for argument&quot;--link&quot;</source>
-        <translation>ugyldig verdi for parameteren &quot;--link&quot;</translation>
+        <translation type="obsolete">ugyldig verdi for parameteren &quot;--link&quot;</translation>
     </message>
     <message>
         <source>wrong value for argument&quot;--sound&quot;</source>
-        <translation>ugyldig verdi for parameteren &quot;--sound&quot;</translation>
+        <translation type="obsolete">ugyldig verdi for parameteren &quot;--sound&quot;</translation>
     </message>
     <message>
         <source>wrong value for argument&quot;--geometry&quot;</source>
-        <translation>ugyldig verdi for parameteren &quot;--geometry&quot;</translation>
+        <translation type="obsolete">ugyldig verdi for parameteren &quot;--geometry&quot;</translation>
     </message>
     <message>
         <source>wrong value for argument&quot;--set-kbd&quot;</source>
-        <translation>ugyldig verdi for parameteren &quot;--set-kbd&quot;</translation>
+        <translation type="obsolete">ugyldig verdi for parameteren &quot;--set-kbd&quot;</translation>
     </message>
     <message>
         <source>wrong value for argument&quot;--ldap&quot;</source>
-        <translation>ugyldig verdi for parameteren &quot;--ldap&quot;</translation>
+        <translation type="obsolete">ugyldig verdi for parameteren &quot;--ldap&quot;</translation>
     </message>
     <message>
         <source>wrong value for argument&quot;--pack&quot;</source>
-        <translation>ugyldig verdi for parameteren &quot;--pack&quot;</translation>
+        <translation type="obsolete">ugyldig verdi for parameteren &quot;--pack&quot;</translation>
     </message>
     <message>
         <source>wrong parameter: </source>
@@ -1095,7 +1211,7 @@ Vil du avbryte tilkoblingen?
     </message>
     <message>
         <source>Available pack methodes:</source>
-        <translation>Tilgjengelige pakkemetoder:</translation>
+        <translation type="obsolete">Tilgjengelige pakkemetoder:</translation>
     </message>
     <message>
         <source>Support</source>
@@ -1103,15 +1219,15 @@ Vil du avbryte tilkoblingen?
     </message>
     <message>
         <source>&lt;/b&gt;&lt;br&gt; (C. 2005-2016 &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing)&lt;br&gt;</source>
-        <translation>&lt;/b&gt;&lt;br&gt; (C. 2005-2016 &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing)&lt;br&gt;</translation>
+        <translation type="obsolete">&lt;/b&gt;&lt;br&gt; (C. 2005-2016 &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing)&lt;br&gt;</translation>
     </message>
     <message>
         <source>Please check LDAP Settings</source>
-        <translation>Vennligst sjekk LDAP innstillingene</translation>
+        <translation type="obsolete">Vennligst sjekk LDAP innstillingene</translation>
     </message>
     <message>
         <source>no X2Go Server found in LDAP </source>
-        <translation type="obsolete">LDAP enthält keinen X2Go Server </translation>
+        <translation type="unfinished">LDAP enthält keinen X2Go Server </translation>
     </message>
     <message>
         <source>Are you sure you want to delete this Session?</source>
@@ -1120,7 +1236,7 @@ Vil du avbryte tilkoblingen?
     <message>
         <source>&lt;b&gt;Connection failed&lt;/b&gt;
 </source>
-        <translation>&lt;b&gt;Tilkoblingen feilet&lt;/b&gt;
+        <translation type="obsolete">&lt;b&gt;Tilkoblingen feilet&lt;/b&gt;
 </translation>
     </message>
     <message>
@@ -1143,7 +1259,7 @@ Vil du avbryte tilkoblingen?
         <source>&lt;b&gt;Connection failed&lt;/b&gt;
 :
 </source>
-        <translation>&lt;b&gt;Tilkoblingen feilet&lt;/b&gt;
+        <translation type="obsolete">&lt;b&gt;Tilkoblingen feilet&lt;/b&gt;
 :
 </translation>
     </message>
@@ -1176,13 +1292,13 @@ Vil du avbryte tilkoblingen?
     <message>
         <source>Unable to read :
 </source>
-        <translation>Klarer ikke å lese:
+        <translation type="obsolete">Klarer ikke å lese:
 </translation>
     </message>
     <message>
         <source>Unable to write :
 </source>
-        <translation>Klarer ikke å skrive:
+        <translation type="obsolete">Klarer ikke å skrive:
 </translation>
     </message>
     <message>
@@ -1195,11 +1311,11 @@ Vil du avbryte tilkoblingen?
     </message>
     <message>
         <source>wrong value for argument&quot;--ldap1&quot;</source>
-        <translation>ugyldig verdi for parameteren &quot;--ldap1&quot;</translation>
+        <translation type="obsolete">ugyldig verdi for parameteren &quot;--ldap1&quot;</translation>
     </message>
     <message>
         <source>wrong value for argument&quot;--ldap2&quot;</source>
-        <translation>ugyldig verdi for parameteren &quot;--ldap2&quot;</translation>
+        <translation type="obsolete">ugyldig verdi for parameteren &quot;--ldap2&quot;</translation>
     </message>
     <message>
         <source>Usage: x2goclient [Options]
@@ -1231,7 +1347,7 @@ Vil du avbryte tilkoblingen?
     </message>
     <message>
         <source>No valid card found</source>
-        <translation>Ingen gyldige kort ble funnet</translation>
+        <translation type="obsolete">Ingen gyldige kort ble funnet</translation>
     </message>
     <message>
         <source>This card is unknown by X2Go System</source>
@@ -1256,7 +1372,7 @@ Vil du avbryte tilkoblingen?
     <message>
         <source>Can&apos;t connect to X server
 Please check your settings</source>
-        <translation>Klarte ikke å koble til X-Serveren
+        <translation type="obsolete">Klarte ikke å koble til X-Serveren
 Vennligst sjekk innstillingene dine</translation>
     </message>
     <message>
@@ -1271,7 +1387,7 @@ Vennligst sjekk instillingene dine</translation>
     </message>
     <message>
         <source>Your current color depth is different to the color depth of your x2go-session. This may cause problems reconnecting to this session and in most cases &lt;b&gt;you will loose the session&lt;/b&gt; and have to start a new one! It&apos;s highly recommended to change the color depth of your Display to </source>
-        <translation>Din nåværende fargedybde er forskjellig fra fargedybden i din x2go sesjon. Dette kan skape problemer ved gjenoppkobling til denne sesjonen, og i de fleste tilfellene &lt;b&gt;vil du miste hele sesjonen&lt;/b&gt;. og du må starte en ny en! Det er sterkt anbefalt å endre fargedybden på skjemen din til </translation>
+        <translation type="obsolete">Din nåværende fargedybde er forskjellig fra fargedybden i din x2go sesjon. Dette kan skape problemer ved gjenoppkobling til denne sesjonen, og i de fleste tilfellene &lt;b&gt;vil du miste hele sesjonen&lt;/b&gt;. og du må starte en ny en! Det er sterkt anbefalt å endre fargedybden på skjemen din til </translation>
     </message>
     <message>
         <source>24 or 32</source>
@@ -1279,7 +1395,7 @@ Vennligst sjekk instillingene dine</translation>
     </message>
     <message>
         <source> bit and restart your X-server before you reconnect to this x2go-session.&lt;br&gt;Resume this session anyway?</source>
-        <translation> bit og deretter restarte X-Serveren før du kobler til denne x2go sesjonen. &lt;br&gt;Gjenoppta denne sesjonen uansett?</translation>
+        <translation type="obsolete"> bit og deretter restarte X-Serveren før du kobler til denne x2go sesjonen. &lt;br&gt;Gjenoppta denne sesjonen uansett?</translation>
     </message>
     <message>
         <source>Yes</source>
@@ -1291,7 +1407,7 @@ Vennligst sjekk instillingene dine</translation>
     </message>
     <message>
         <source>&lt;b&gt;X2Go Client V. </source>
-        <translation>&lt;b&gt;X2Go Client V. </translation>
+        <translation type="obsolete">&lt;b&gt;X2Go Client V. </translation>
     </message>
     <message>
         <source>&lt;/b&gt;&lt;br&gt; (C. 2006-2007 Oleksandr Shneyder, Heinz-Markus Graesing)&lt;br&gt;&lt;br&gt;Client for use with the X2Go network based computing environment. This Client will be able to connect to X2Go server(s) and start, stop, resume and terminate (running) desktop sessions. X2Go Client stores different server connections and may automatically request authentication data from LDAP directories. Furthermore it can be used as fullscreen loginscreen (replacement for loginmanager like xdm). Please visit x2go.org for further information.</source>
@@ -1359,7 +1475,7 @@ Vennligst sjekk instillingene dine</translation>
     </message>
     <message>
         <source>Session management...</source>
-        <translation>Sesjonshåndtering...</translation>
+        <translation type="obsolete">Sesjonshåndtering...</translation>
     </message>
     <message>
         <source>Show toolbar</source>
@@ -1367,7 +1483,7 @@ Vennligst sjekk instillingene dine</translation>
     </message>
     <message>
         <source>About X2GO client</source>
-        <translation>Om X2GO klient</translation>
+        <translation type="obsolete">Om X2GO klient</translation>
     </message>
     <message>
         <source>Please check LDAP settings</source>
@@ -1375,7 +1491,7 @@ Vennligst sjekk instillingene dine</translation>
     </message>
     <message>
         <source>no X2Go server found in LDAP </source>
-        <translation>Inge X2Go server ble funnet i LDAP </translation>
+        <translation type="obsolete">Inge X2Go server ble funnet i LDAP </translation>
     </message>
     <message>
         <source>Are you sure you want to delete this session?</source>
@@ -1387,7 +1503,7 @@ Vennligst sjekk instillingene dine</translation>
     </message>
     <message>
         <source>No server availabel</source>
-        <translation>Ingen tilgjengelig server</translation>
+        <translation type="obsolete">Ingen tilgjengelig server</translation>
     </message>
     <message>
         <source>Not connected</source>
@@ -1399,7 +1515,7 @@ Vennligst sjekk instillingene dine</translation>
     </message>
     <message>
         <source>Unable to create folder:</source>
-        <translation>Klarer ikke å opprette katalogen:</translation>
+        <translation type="obsolete">Klarer ikke å opprette katalogen:</translation>
     </message>
     <message>
         <source>Enter passphrase to decrypt a key</source>
@@ -1419,11 +1535,11 @@ Vennligst sjekk instillingene dine</translation>
     </message>
     <message>
         <source>Connection Error(</source>
-        <translation>Tilkoblingsfeil(</translation>
+        <translation type="obsolete">Tilkoblingsfeil(</translation>
     </message>
     <message>
         <source>Couldn&apos;t find a SSH connection.</source>
-        <translation>Klarte ikke å finne en SSH tilkobling.</translation>
+        <translation type="obsolete">Klarte ikke å finne en SSH tilkobling.</translation>
     </message>
     <message>
         <source>Host key for server changed.
@@ -1441,7 +1557,7 @@ Den er nå: </translation>
     </message>
     <message>
         <source>Could not find known host file.If you accept the host key here, the file will be automatically created</source>
-        <translation>Kan ikke finne &quot;known host&quot; filen. Om du aksepterer vertsnøkkelen her vil filen automatisk bli opprettet</translation>
+        <translation type="obsolete">Kan ikke finne &quot;known host&quot; filen. Om du aksepterer vertsnøkkelen her vil filen automatisk bli opprettet</translation>
     </message>
     <message>
         <source>The server is unknown. Do you trust the host key?
@@ -1451,7 +1567,7 @@ Offentlig nøkkel: </translation>
     </message>
     <message>
         <source>Host key verification failed</source>
-        <translation>Verifiseringen av vertsnøkkelen feilet</translation>
+        <translation type="obsolete">Verifiseringen av vertsnøkkelen feilet</translation>
     </message>
     <message>
         <source>Authentication failed: </source>
@@ -1459,7 +1575,7 @@ Offentlig nøkkel: </translation>
     </message>
     <message>
         <source>Authentication failed</source>
-        <translation>Pålogging feilet</translation>
+        <translation type="obsolete">Pålogging feilet</translation>
     </message>
     <message>
         <source>Enter password for SSH proxy</source>
@@ -1475,7 +1591,7 @@ Offentlig nøkkel: </translation>
     </message>
     <message>
         <source>Server not availabel</source>
-        <translation>Serveren er ikke tilgjengelig</translation>
+        <translation type="obsolete">Serveren er ikke tilgjengelig</translation>
     </message>
     <message>
         <source>Unable to write file:</source>
@@ -1484,7 +1600,7 @@ Offentlig nøkkel: </translation>
     <message>
         <source>Unable to create SSL tunnel:
 </source>
-        <translation>Klarte ikke å opprette SSL tunnel:
+        <translation type="obsolete">Klarte ikke å opprette SSL tunnel:
 </translation>
     </message>
     <message>
@@ -1501,35 +1617,35 @@ Offentlig nøkkel: </translation>
     </message>
     <message>
         <source>This card is unknown by X2Go system</source>
-        <translation>Dette kortet er ukjent for X2Go systemet</translation>
+        <translation type="obsolete">Dette kortet er ukjent for X2Go systemet</translation>
     </message>
     <message>
         <source>Can&apos;t start X server
 Please check your settings</source>
-        <translation>Klarte ikke å starte X-Serveren
+        <translation type="obsolete">Klarte ikke å starte X-Serveren
 Vennligst sjekk instillingene dine</translation>
     </message>
     <message>
         <source>Remote server does not support file system export through SSH Tunnel
 Please update to a newer x2goserver package</source>
-        <translation>Serveren støtter ikke eksport av filsystemet over en SSH Tunnel
+        <translation type="obsolete">Serveren støtter ikke eksport av filsystemet over en SSH Tunnel
 Vennligst oppdater til en nyere x2goserver pakke</translation>
     </message>
     <message>
         <source>&amp;Create session icon on desktop...</source>
-        <translation>&amp;Opprett sesjonsikon på skrivebordet...</translation>
+        <translation type="obsolete">&amp;Opprett sesjonsikon på skrivebordet...</translation>
     </message>
     <message>
         <source>Starting x2goclient...</source>
-        <translation>Starter x2goclient...</translation>
+        <translation type="obsolete">Starter x2goclient...</translation>
     </message>
     <message>
         <source>Starting x2goclient in portable mode... data directory is: </source>
-        <translation>Starter x2goclient i portabel modus... data-katalogen er: </translation>
+        <translation type="obsolete">Starter x2goclient i portabel modus... data-katalogen er: </translation>
     </message>
     <message>
         <source>Started  x2goclient.</source>
-        <translation>Startet x2goclient.</translation>
+        <translation type="obsolete">Startet x2goclient.</translation>
     </message>
     <message>
         <source>Can&apos;t load translator: </source>
@@ -1541,15 +1657,15 @@ Vennligst oppdater til en nyere x2goserver pakke</translation>
     </message>
     <message>
         <source> installed.</source>
-        <translation> installert.</translation>
+        <translation type="obsolete"> installert.</translation>
     </message>
     <message>
         <source>&amp;Set broker password...</source>
-        <translation>&amp;Sett megler passord...</translation>
+        <translation type="obsolete">&amp;Sett megler passord...</translation>
     </message>
     <message>
         <source>&amp;Connectivity test...</source>
-        <translation>&amp;Tilkoblings-test...</translation>
+        <translation type="obsolete">&amp;Tilkoblings-test...</translation>
     </message>
     <message>
         <source>Operation failed</source>
@@ -1617,15 +1733,15 @@ Vennligst oppdater til en nyere x2goserver pakke</translation>
     </message>
     <message>
         <source>Left mouse button to hide/restore - Right mouse button to display context menu</source>
-        <translation>Venstre museknapp for å skjule/gjenopprette  -  Høyre museknapp viser sprettoppmeny</translation>
+        <translation type="obsolete">Venstre museknapp for å skjule/gjenopprette  -  Høyre museknapp viser sprettoppmeny</translation>
     </message>
     <message>
         <source>Closing x2goclient...</source>
-        <translation>Lukker x2goclient...</translation>
+        <translation type="obsolete">Lukker x2goclient...</translation>
     </message>
     <message>
         <source>Closed  x2goclient.</source>
-        <translation>Lukket x2goclient.</translation>
+        <translation type="obsolete">Lukket x2goclient.</translation>
     </message>
     <message>
         <source>Create session icon on desktop</source>
@@ -1674,7 +1790,7 @@ Use x2goclient hidden mode?</source>
     <message>
         <source>Are you sure you want to terminate this session?
 Unsaved documents will be lost</source>
-        <translation>Er du sikker på at du vil avslutte denne sesjonen?
+        <translation type="obsolete">Er du sikker på at du vil avslutte denne sesjonen?
 Ulagrede data vil gå tapt</translation>
     </message>
     <message>
@@ -1684,7 +1800,7 @@ Ulagrede data vil gå tapt</translation>
     <message>
         <source>Can&apos;t start X Server
 Please check your installation</source>
-        <translation>Klarer ikke å starte X Serveren
+        <translation type="obsolete">Klarer ikke å starte X Serveren
 Vennligst sjekk din installasjon</translation>
     </message>
     <message>
@@ -1741,7 +1857,7 @@ Du kan installere sshd med:
     </message>
     <message>
         <source>No accessible desktop found</source>
-        <translation>Ingen tilgjengelige skrivebord ble funnet</translation>
+        <translation type="obsolete">Ingen tilgjengelige skrivebord ble funnet</translation>
     </message>
     <message>
         <source>Full access</source>
@@ -1765,11 +1881,11 @@ Du kan installere sshd med:
     </message>
     <message>
         <source>&lt;br&gt;x2goplugin mode was sponsored by &lt;a href=&quot;http://www.foss-group.de/&quot;&gt;FOSS-Group GmbH(Freiburg)&lt;/a&gt;&lt;br&gt;</source>
-        <translation>&lt;br&gt;x2goplugin modusen ble sponset av &lt;a href=&quot;http://www.foss-group.de/&quot;&gt;FOSS-Group GmbH(Freiburg)&lt;/a&gt;&lt;br&gt;</translation>
+        <translation type="obsolete">&lt;br&gt;x2goplugin modusen ble sponset av &lt;a href=&quot;http://www.foss-group.de/&quot;&gt;FOSS-Group GmbH(Freiburg)&lt;/a&gt;&lt;br&gt;</translation>
     </message>
     <message>
         <source>&lt;br&gt;Client for use with the X2Go network based computing environment. This Client will be able to connect to X2Go server(s) and start, stop, resume and terminate (running) desktop sessions. X2Go Client stores different server connections and may automatically request authentication data from LDAP directories. Furthermore it can be used as fullscreen loginscreen (replacement for loginmanager like xdm). Please visit x2go.org for further information.</source>
-        <translation>&lt;br&gt;Ein Client für den Zugriff auf die serverbasierende Anwendungsumgebung X2Go. Mit Hilfe dieser Anwendung können Sie Sitzungen eines X2Go Servers starten, stoppen, laufende Sitzungen fortführen oder anhalten und verschiedene Sitzungskonfigurationen verwalten. Die Authentifizierung kann über LDAP erfolgen und das Programm kann im Vollbildmodus (als Ersatz für XDM) gestartet werden. Weitere Informationen erhalten SIe auf x2go.org. </translation>
+        <translation type="obsolete">&lt;br&gt;Ein Client für den Zugriff auf die serverbasierende Anwendungsumgebung X2Go. Mit Hilfe dieser Anwendung können Sie Sitzungen eines X2Go Servers starten, stoppen, laufende Sitzungen fortführen oder anhalten und verschiedene Sitzungskonfigurationen verwalten. Die Authentifizierung kann über LDAP erfolgen und das Programm kann im Vollbildmodus (als Ersatz für XDM) gestartet werden. Weitere Informationen erhalten SIe auf x2go.org. </translation>
     </message>
     <message>
         <source>WINDOWS-1252</source>
@@ -1781,7 +1897,7 @@ Du kan installere sshd med:
     </message>
     <message>
         <source>wrong value for argument&quot;speed&quot;</source>
-        <translation>wrong value for argument&quot;speed&quot;</translation>
+        <translation type="obsolete">wrong value for argument&quot;speed&quot;</translation>
     </message>
     <message>
         <source>application/x2go:x2go:Configuration File for X2Go Session</source>
@@ -1793,11 +1909,11 @@ Du kan installere sshd med:
     </message>
     <message>
         <source>Pack Methodes</source>
-        <translation>Pakkemetode</translation>
+        <translation type="obsolete">Pakkemetode</translation>
     </message>
     <message>
         <source>Option is not availabel in this build</source>
-        <translation>Valget er ikke aktivet i denne versjonen</translation>
+        <translation type="obsolete">Valget er ikke aktivet i denne versjonen</translation>
     </message>
     <message>
         <source>Changelog</source>
@@ -1821,7 +1937,7 @@ Windows ships its internal sshd.exe.
 
 If you see this message, please report a bug against
 the X2Go bugtracker.</source>
-        <translation>SSH demonen kunne ikke starte.
+        <translation type="obsolete">SSH demonen kunne ikke starte.
 
 Du trenger SSH demone for å kunne skrive ut og for fildeling.
 
@@ -1838,7 +1954,7 @@ You&apos;ll need SSH daemon for printing and file sharing
 
 Please ask your system administrator to provide the SSH
 service on your computer.</source>
-        <translation>SSH daemon could not be started.
+        <translation type="obsolete">SSH daemon could not be started.
 
 You&apos;ll need SSH daemon for printing and file sharing.
 
@@ -1847,7 +1963,7 @@ datamaskin.</translation>
     </message>
     <message>
         <source>SSH daemon failed to open the application&apos;s public host key.</source>
-        <translation>SSH demonen klarte ikke å åpne applikasjonens offentlige vertsnøkkel.</translation>
+        <translation type="obsolete">SSH demonen klarte ikke å åpne applikasjonens offentlige vertsnøkkel.</translation>
     </message>
     <message>
         <source>SSH daemon failed to open the application&apos;s public key
@@ -1857,11 +1973,481 @@ used for exporting folders and printers.</source>
     <message>
         <source>SSH daemon failed to open the application&apos;s
 authoized_keys file.</source>
-        <translation>SSH demonen klarte ikke å åpne applikasjonens authorized_keys fil.</translation>
+        <translation type="obsolete">SSH demonen klarte ikke å åpne applikasjonens authorized_keys fil.</translation>
     </message>
     <message>
         <source>wrong value for argument&quot;--clipboard&quot;</source>
-        <translation>feil verdi til argumentet&quot;--clipboard&quot;</translation>
+        <translation type="obsolete">feil verdi til argumentet&quot;--clipboard&quot;</translation>
+    </message>
+    <message>
+        <source>Starting X2Go Client...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Starting X2Go Client in portable mode. Data directory is: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>About X2Go Client</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Started X2Go Client.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> found.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>English language requested, not loading translator.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Non-fatal: can&apos;t load translator: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Trying to load language with lower preference, if existent.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Session management ...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Create session icon on desktop ...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Set broker password ...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Connectivity test ...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Share folder ...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>A left click hides or restores the window. A right click displays the context menu.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Closing X2Go Client ...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Finished X2Go Client closing hooks.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Broker authentication failed!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connection error: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Couldn&apos;t find an SSH connection.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This can be an indication of a man-in-the-middle attack.
+Somebody might be eavesdropping on you.
+For security reasons, it is recommended to stop the connection attempt.
+Do you want to terminate the connection?
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Host key verification failed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The host key for this server was not found but anothertype of key exists. An attacker might have changed the default server key to trick your client into thinking the key does not exist yet.
+For security reasons, it is recommended to stop the connection attempt.
+Do you want to terminate the connection?
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not find known hosts file.If you accept the host key here, the file will be automatically created.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Authentication failed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Connection failed.&lt;/b&gt;
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No server available.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Server not available.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No accessible desktop found.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Your current color depth is different from the session&apos;s color depth. This may cause problems reconnecting to this session and in most cases &lt;b&gt;you will loose the session&lt;/b&gt; and have to start a new one! It&apos;s highly recommended to change the color depth of your display to </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> bits and restart your X.Org Server before you reconnect to this X2Go session.&lt;br /&gt;Do you want to resume this session anyway?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to create SSH tunnel for X2Go session (NX) startup:
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to create SSH tunnel for audio data:
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>failed to start.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This likely means the binary is not available.
+The current search path is: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>returned a non-zero exit code or crashed otherwise.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Execution failed, exit code was: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>didn&apos;t start up in time.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This error shouldn&apos;t come up.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>didn&apos;t accept a write operation.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>It is probably not running correctly or crashed in-between.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to read from xmodmap.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>encountered an unknown error during start up or execution.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>experienced an undefined error.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>X2Go Client will now terminate.
+
+File a bug report as outlined on the &lt;a href=&quot;http://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;bugs wiki page&lt;/a&gt;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Proxy didn&apos;t terminate after 3 seconds. Killing the proxy.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Closing X2Go Client because it was started in hidden mode.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Closing X2Go Client because the --close-disconnect parameter was passed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Are you sure you want to terminate this session?
+Unsaved documents will be lost.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Connection failed.&lt;/b&gt;
+:
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> (file does not exist)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> (directory does not exist)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invalid value for parameter &quot;--link&quot;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invalid value for parameter &quot;--clipboard&quot;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invalid value for parameter &quot;--sound&quot;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invalid value for parameter &quot;--geometry&quot;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invalid value for parameter &quot;--set-kbd&quot;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invalid value for parameter &quot;--ldap&quot;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invalid value for parameter &quot;--ldap1&quot;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invalid value for parameter &quot;--ldap2&quot;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invalid value for parameter &quot;--pack&quot;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Available pack methods:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pack Methods</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Option is not available in this build.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to create directory:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cannot open key: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;br&gt;(C) 2005-2016 by &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing&lt;br&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;br&gt;X2Go Plugin mode was sponsored by &lt;a href=&quot;http://www.foss-group.de/&quot;&gt;FOSS-Group GmbH (Freiburg)&lt;/a&gt;&lt;br&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;br&gt;This is a client to access the X2Go network-based computing environment. This client will be able to connect to X2Go Server(s) and start, stop, resume and terminate (running) desktop sessions. X2Go Client stores different server connections and may automatically request authentication data from LDAP directories. Furthermore, it can be used as a fullscreen login screen (replacement for login managers like XDM). Please visit &lt;a href=&quot;http://www.x2go.org&quot;&gt;the project home page at x2go.org&lt;/a&gt; for further information.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;X2Go Client v. </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please check LDAP Settings.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Check whether the package providing &quot;scdaemon&quot; is installed.
+The current search path is: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>didn&apos;t start yet.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to read from scdaemon.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No valid card found.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This card is unknown to the X2Go system.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Can&apos;t start X.Org Server.
+Please check your installation.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remote server does not support file system exports through SSH tunnels.
+Please update your x2goserver package.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to create SSH tunnel for Folder Sharing and Printing support:
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to read:
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to write:
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Error getting window geometry. (Did you close the window?)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invalid value for argument &quot;speed&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Applications ...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SSH daemon could not be started.
+
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SSH daemon is not running.
+
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You have enabled Remote Printing or File Sharing.
+These features require a running and functioning SSH server on your computer.
+&lt;b&gt;Printing and File Sharing will be disabled for this session.&lt;/b&gt;
+
+Please also check the &lt;b&gt;Clientside SSH port&lt;/b&gt; in the general settings.
+
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Normally, this should not happen as X2Go Client for Windows ships its own internal SSH server.
+
+If you see this message, please report a bug on:
+&lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The SSH server failed to start.
+
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>X2Go Client did not detect a globally running SSH server on your machine and was unable to start its own.
+
+Please report a bug on:
+&lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The SSH server is currently not started.
+
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>On OS X, please follow the following steps to enable SSH service:&lt;ul&gt;&lt;li&gt;Open &lt;b&gt;System Preferences&lt;/b&gt; (Applications -&gt; System Preferences)&lt;/li&gt;&lt;li&gt;Go to &lt;b&gt;Sharing&lt;/b&gt;&lt;/li&gt;&lt;li&gt;Tick the checkbox besides &lt;b&gt;Remote Login&lt;/b&gt;&lt;/li&gt;&lt;li&gt;Check that &lt;b&gt;Allow access for:&lt;/b&gt; is set to either:&lt;ul&gt;&lt;li&gt;All users: &lt;b&gt;no further steps necessary&lt;/b&gt;&lt;/li&gt;&lt;li&gt;Only these users &lt;b&gt;and your user name is included in the list&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;&lt;li&gt;Optionally, add your user name to the allowed list via the &lt;b&gt;Plus Button&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;&lt;b&gt;Warning: enabling SSH access will allow any user on the network to connect to your machine. It is your responsibility to set a strong password for every user that is allowed to log in via SSH.&lt;/b&gt;
+
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please ask your system administrator to provide the SSH service on your computer.
+
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Disabling Remote Printing or File Sharing support in the session settings will get rid of this message.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SSH daemon failed to open its public host key.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You have enabled Remote Printing or File Sharing.
+These features require a running and functioning SSH server on your computer.
+&lt;b&gt;Printing and File Sharing will be disabled for this session.&lt;/b&gt;
+
+The SSH server is currently not configured correctly.
+
+Please ensure that the server&apos;s public exists.
+
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Normally, this should not happen as X2Go Client for Windows ships its own internal SSH server and automatically generates the required keys.
+
+If you see this message, please report a bug on:
+&lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>X2Go Client was unable to create SSH host keys.
+
+Please report a bug on:
+&lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>On OS X, please follow these steps to generate the required keys:&lt;ul&gt;&lt;li&gt;Open a &lt;b&gt;Terminal Window&lt;/b&gt; (Applications -&gt; Utilities -&gt; Terminal)&lt;/li&gt;&lt;li&gt;Run this command: &lt;b&gt;ssh -p </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please ask your system administrator to generate the required host keys.
+
+If you are administrating this system yourself, please run:
+&lt;center&gt;&lt;b&gt;sudo ssh-keygen -A&lt;/b&gt;&lt;/center&gt;
+
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SSH daemon failed to open the application&apos;s
+authorized_keys file.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1876,11 +2462,19 @@ authoized_keys file.</source>
     </message>
     <message>
         <source>You&apos;ve deactivated the x2go client printing dialog.</source>
-        <translation>Du har deaktivert X2Go klientens utskriftsdialog.</translation>
+        <translation type="obsolete">Du har deaktivert X2Go klientens utskriftsdialog.</translation>
     </message>
     <message>
         <source>You may reactivate this dialog using the x2goclient settings dialog (Menu -&gt; Options -&gt; Settings)</source>
-        <translation>Du kan reaktivere denne dialogen ved å benytte x2goclient innstillingene (Meny -&gt; Innstillinger -&gt; Innstillinger)</translation>
+        <translation type="obsolete">Du kan reaktivere denne dialogen ved å benytte x2goclient innstillingene (Meny -&gt; Innstillinger -&gt; Innstillinger)</translation>
+    </message>
+    <message>
+        <source>You&apos;ve deactivated the X2Go Client printing dialog.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You may reactivate this dialog using the X2Go Client settings dialog. To do so, follow this path in the menu bar: Options -&gt; Settings)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1901,7 +2495,11 @@ authoized_keys file.</source>
     </message>
     <message>
         <source>Printing error</source>
-        <translation>Utskriftsfeil</translation>
+        <translation type="obsolete">Utskriftsfeil</translation>
+    </message>
+    <message>
+        <source>Printing error.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1962,7 +2560,11 @@ authoized_keys file.</source>
     </message>
     <message>
         <source>Please configure your client side printing settings.&lt;br&gt;&lt;br&gt;If you want to print the created file, you&apos;ll need an external application. Typically you can use &lt;a href=&quot;http://pages.cs.wisc.edu/~ghost/doc/GPL/index.htm&quot;&gt;ghostprint&lt;/a&gt; and &lt;a href=&quot;http://pages.cs.wisc.edu/~ghost/gsview/&quot;&gt;ghostview&lt;/a&gt;&lt;br&gt;You can find  further information &lt;a href=&quot;http://www.x2go.org/index.php?id=49&quot;&gt;here&lt;/a&gt;.</source>
-        <translation>Vennligst sett opp innstillingene for utskrift på klientsiden.&lt;br&gt;&lt;br&gt;Om du ønsker å skrive ut den opprettede filen så trengs en ekstern applikasjon. Typisk kan du benytte&lt;a href=&quot;http://pages.cs.wisc.edu/~ghost/doc/GPL/index.htm&quot;&gt;ghostprint&lt;/a&gt; og &lt;a href=&quot;http://pages.cs.wisc.edu/~ghost/gsview/&quot;&gt;ghostview&lt;/a&gt;&lt;br&gt;Du kan finne ytterlig informasjon &lt;a href=&quot;http://www.x2go.org/index.php?id=49&quot;&gt;her&lt;/a&gt;.</translation>
+        <translation type="obsolete">Vennligst sett opp innstillingene for utskrift på klientsiden.&lt;br&gt;&lt;br&gt;Om du ønsker å skrive ut den opprettede filen så trengs en ekstern applikasjon. Typisk kan du benytte&lt;a href=&quot;http://pages.cs.wisc.edu/~ghost/doc/GPL/index.htm&quot;&gt;ghostprint&lt;/a&gt; og &lt;a href=&quot;http://pages.cs.wisc.edu/~ghost/gsview/&quot;&gt;ghostview&lt;/a&gt;&lt;br&gt;Du kan finne ytterlig informasjon &lt;a href=&quot;http://www.x2go.org/index.php?id=49&quot;&gt;her&lt;/a&gt;.</translation>
+    </message>
+    <message>
+        <source>Please configure your client side printing settings.&lt;br&gt;&lt;br&gt;If you want to print the created file, you&apos;ll need an external application. Typically you can use &lt;a href=&quot;http://pages.cs.wisc.edu/~ghost/doc/GPL/index.htm&quot;&gt;ghostprint&lt;/a&gt; and &lt;a href=&quot;http://pages.cs.wisc.edu/~ghost/gsview/&quot;&gt;ghostview&lt;/a&gt;&lt;br&gt;You can find further information &lt;a href=&quot;http://www.x2go.org/index.php?id=49&quot;&gt;here&lt;/a&gt;.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2036,16 +2638,55 @@ Eksempel:
         <source>No response received from the remote server. Do you want to terminate the current session?</source>
         <translation>Ingen respons mottatt fra serveren. Ønsker du å avslutte gjeldende sesjon?</translation>
     </message>
+    <message>
+        <source>X2Go Client could not find any suitable X11 server.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>X2Go Client could not start X11 server.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>X2Go Client requires XQuartz to be installed.
+
+If XQuartz is already installed on your system,
+please select the correct path in the now upcoming dialog.
+Refer to the end of this message for path examples,
+in case you do not know the exact location yourself.
+
+Should you have &lt;b&gt;not&lt;/b&gt; installed XQuartz yet, please
+follow the outlined steps:
+
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>MacPorts users, please install either the port &lt;b&gt;xorg-server&lt;/b&gt;
+or the port &lt;b&gt;xorg-server-devel&lt;/b&gt;.
+Upon successful installation, please follow the instructions printed
+by the port utility to autostart/load the server.
+
+All other users, please obtain and install XQuartz from:
+&lt;center&gt;&lt;a href=&quot;https://xquartz.macosforge.org/&quot;&gt;https://xquartz.macosforge.org/&lt;/a&gt;&lt;/center&gt;
+
+Afterwards, restart X2Go Client and select the correct path
+to the X11 application in the general X2Go Client settings.
+This will most likely be
+&lt;center&gt;&lt;b&gt;/Applications/MacPorts/X11.app&lt;/b&gt;&lt;/center&gt;
+or
+&lt;center&gt;&lt;b&gt;/Applications/Utilities/XQuartz.app&lt;/b&gt;&lt;/center&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SessionButton</name>
     <message>
         <source>Session preferences...</source>
-        <translation>Sesjonsinnstillinger...</translation>
+        <translation type="obsolete">Sesjonsinnstillinger...</translation>
     </message>
     <message>
         <source>Create session icon on desktop...</source>
-        <translation>Opprett sesjonsikon på skrivebordet...</translation>
+        <translation type="obsolete">Opprett sesjonsikon på skrivebordet...</translation>
     </message>
     <message>
         <source>Delete session</source>
@@ -2123,6 +2764,14 @@ Eksempel:
         <source>Disabled</source>
         <translation>Deaktivert</translation>
     </message>
+    <message>
+        <source>Session preferences ...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Create session icon on desktop ...</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SessionExplorer</name>
@@ -2132,13 +2781,13 @@ Eksempel:
     </message>
     <message>
         <source>Create session icon on desktop</source>
-        <translation>Opprett sesjonsikon på skrivebordet</translation>
+        <translation type="obsolete">Opprett sesjonsikon på skrivebordet</translation>
     </message>
     <message>
         <source>Desktop icons can be configured not to show x2goclient (hidden mode). If you like to use this feature you&apos;ll need to configure login by a gpg key or gpg smart card.
 
 Use x2goclient hidden mode?</source>
-        <translation>Skrivebordsikoner kan konfigureres til å ikke vise x2goklient (skjult modus). Om du ønsker å benytte denne muligheten må du konfigurere pålogging ved bruk av en GPG-nøkkel, eller et GPG basert smartkort.
+        <translation type="obsolete">Skrivebordsikoner kan konfigureres til å ikke vise x2goklient (skjult modus). Om du ønsker å benytte denne muligheten må du konfigurere pålogging ved bruk av en GPG-nøkkel, eller et GPG basert smartkort.
 
 Ønsker du å aktivere skjult modus for x2goklient?</translation>
     </message>
@@ -2157,6 +2806,16 @@ Use x2goclient hidden mode?</source>
     <message>
         <source>Are you sure you want to delete this session?</source>
         <translation>Er du sikker på at du ønsker å fjerne denne sesjonen?</translation>
+    </message>
+    <message>
+        <source>Create session icon on desktop.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Desktop icons can be configured not to show X2Go Client (hidden mode.) If you like to use this feature you&apos;ll need to configure login via a GPG key or GPG Smart Card.
+
+Use X2Go Client&apos;s hidden mode?</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2179,7 +2838,7 @@ Use x2goclient hidden mode?</source>
     </message>
     <message>
         <source>&amp;Create session icon on desktop...</source>
-        <translation>&amp;Opprett sesjonsikon på skrivebordet...</translation>
+        <translation type="obsolete">&amp;Opprett sesjonsikon på skrivebordet...</translation>
     </message>
     <message>
         <source>Delete</source>
@@ -2189,6 +2848,10 @@ Use x2goclient hidden mode?</source>
     <message>
         <source>Session management</source>
         <translation>Sesjonshåndtering</translation>
+    </message>
+    <message>
+        <source>&amp;Create session icon on desktop ...</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2223,7 +2886,7 @@ Use x2goclient hidden mode?</source>
     </message>
     <message>
         <source>Try auto login (ssh-agent or default ssh key)</source>
-        <translation>Forsøk automatisk pålogging (SSH agent, eller standard SSH nøkkel)</translation>
+        <translation type="obsolete">Forsøk automatisk pålogging (SSH agent, eller standard SSH nøkkel)</translation>
     </message>
     <message>
         <source>Kerberos 5 (GSSAPI) authentication</source>
@@ -2263,7 +2926,7 @@ Use x2goclient hidden mode?</source>
     </message>
     <message>
         <source>ssh-agent or default ssh key</source>
-        <translation>SSH-agent, eller standard SSH nøkkel</translation>
+        <translation type="obsolete">SSH-agent, eller standard SSH nøkkel</translation>
     </message>
     <message>
         <source>Type:</source>
@@ -2283,7 +2946,7 @@ Use x2goclient hidden mode?</source>
     </message>
     <message>
         <source>Connect to Windows terminal server</source>
-        <translation>Koble til Windows terminal server</translation>
+        <translation type="obsolete">Koble til Windows terminal server</translation>
     </message>
     <message>
         <source>XDMCP</source>
@@ -2319,7 +2982,7 @@ Use x2goclient hidden mode?</source>
     </message>
     <message>
         <source>Direct RDP Connection</source>
-        <translation>Direktekobling med RDP</translation>
+        <translation type="obsolete">Direktekobling med RDP</translation>
     </message>
     <message>
         <source>RDP port:</source>
@@ -2347,7 +3010,7 @@ Use x2goclient hidden mode?</source>
     </message>
     <message>
         <source>x2goclient is running in portable mode. You should use a path on your usb device to be able to access your data whereever you are</source>
-        <translation>x2goclient kjører i portabel modus. Du burde bruke en sti på din USB enhet for å kunne benytte dataene dine uavhengig av hvor du er</translation>
+        <translation type="obsolete">x2goclient kjører i portabel modus. Du burde bruke en sti på din USB enhet for å kunne benytte dataene dine uavhengig av hvor du er</translation>
     </message>
     <message>
         <source>Server:</source>
@@ -2369,6 +3032,26 @@ Use x2goclient hidden mode?</source>
         <source>Path:</source>
         <translation>Sti:</translation>
     </message>
+    <message>
+        <source>Try auto login (via SSH Agent or default SSH key)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SSH Agent or default SSH key</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connect to Windows Terminal Server</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Direct RDP connection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>X2Go Client is running in portable mode. You should use a path on your USB device to be able to access your data wherever you are.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SettingsWidget</name>
@@ -2386,7 +3069,7 @@ Use x2goclient hidden mode?</source>
     </message>
     <message>
         <source>Auto detect keyboard settings</source>
-        <translation>Oppdag automatisk tastaturopplegget</translation>
+        <translation type="obsolete">Oppdag automatisk tastaturopplegget</translation>
     </message>
     <message>
         <source>Do not configure keyboard</source>
@@ -2410,7 +3093,7 @@ Use x2goclient hidden mode?</source>
     </message>
     <message>
         <source>RDP Client</source>
-        <translation>RDP klient</translation>
+        <translation type="obsolete">RDP klient</translation>
     </message>
     <message>
         <source>Fullscreen</source>
@@ -2520,7 +3203,7 @@ lydsystem forbindelser gjennom brannmurer</translation>
     </message>
     <message>
         <source>&amp;Clipboard Mode</source>
-        <translation>&amp;Clipboard Modus</translation>
+        <translation type="obsolete">&amp;Clipboard Modus</translation>
     </message>
     <message>
         <source>Bidirectional copy and paste</source>
@@ -2537,6 +3220,18 @@ lydsystem forbindelser gjennom brannmurer</translation>
     <message>
         <source>Disable clipboard completely</source>
         <translation>Skru av utklippstavla</translation>
+    </message>
+    <message>
+        <source>&amp;Clipboard mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Auto-detect keyboard settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>RDP client</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2579,7 +3274,7 @@ lydsystem forbindelser gjennom brannmurer</translation>
     </message>
     <message>
         <source>Use ssh port forwarding to tunnel file system connections through firewalls</source>
-        <translation>Benytt SSH port videresendring for å tunnelere lydsystem forbindelser gjennom brannmurer</translation>
+        <translation type="obsolete">Benytt SSH port videresendring for å tunnelere lydsystem forbindelser gjennom brannmurer</translation>
     </message>
     <message>
         <source>Select folder</source>
@@ -2591,7 +3286,7 @@ lydsystem forbindelser gjennom brannmurer</translation>
     </message>
     <message>
         <source>x2goclient is running in portable mode. You should use a path on your usb device to be able to access your data whereever you are</source>
-        <translation>x2goclient kjører i portabel modus. Du burde bruke en sti på din USB enhet for å kunne benytte dataene dine uavhengig av hvor du er</translation>
+        <translation type="obsolete">x2goclient kjører i portabel modus. Du burde bruke en sti på din USB enhet for å kunne benytte dataene dine uavhengig av hvor du er</translation>
     </message>
     <message>
         <source>WINDOWS-1252</source>
@@ -2601,12 +3296,20 @@ lydsystem forbindelser gjennom brannmurer</translation>
         <source>ISO8859-1</source>
         <translation>ISO8859-1</translation>
     </message>
+    <message>
+        <source>Use SSH port forwarding to tunnel file system connections through firewalls</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>X2Go Client is running in portable mode. You should use a path on your USB device to be able to access your data wherever you are.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SshMasterConnection</name>
     <message>
         <source>SSH proxy connection error</source>
-        <translation>SSH proxy tilkoblingsfeil</translation>
+        <translation type="obsolete">SSH proxy tilkoblingsfeil</translation>
     </message>
     <message>
         <source>SSH proxy connection error: </source>
@@ -2614,27 +3317,27 @@ lydsystem forbindelser gjennom brannmurer</translation>
     </message>
     <message>
         <source>Failed to create SSH proxy tunnel</source>
-        <translation>Klarte ikke å opprette SSH proxy tunnel</translation>
+        <translation type="obsolete">Klarte ikke å opprette SSH proxy tunnel</translation>
     </message>
     <message>
         <source>Can not initialize libssh</source>
-        <translation>Klarer ikke å initiere libssh</translation>
+        <translation type="obsolete">Klarer ikke å initiere libssh</translation>
     </message>
     <message>
         <source>Can not create ssh session</source>
-        <translation>Klarer ikke å opprette ssh sesjon</translation>
+        <translation type="obsolete">Klarer ikke å opprette ssh sesjon</translation>
     </message>
     <message>
         <source>Can not connect to proxy server</source>
-        <translation>Klarte ikke å koble til proxyserver</translation>
+        <translation type="obsolete">Klarte ikke å koble til proxyserver</translation>
     </message>
     <message>
         <source>Can not connect to </source>
-        <translation>Klarer ikke å koble til </translation>
+        <translation type="obsolete">Klarer ikke å koble til </translation>
     </message>
     <message>
         <source>Authentication failed</source>
-        <translation>Autentisering feilet</translation>
+        <translation type="obsolete">Autentisering feilet</translation>
     </message>
     <message>
         <source>channel_forward_listen failed</source>
@@ -2642,23 +3345,23 @@ lydsystem forbindelser gjennom brannmurer</translation>
     </message>
     <message>
         <source>Failed to start SSH Client. Please check your installation and GSSApi configuration</source>
-        <translation>Klarte ikke å starte SSH-klient. Sjekk ditt oppsett og din GSSApi innstillinger</translation>
+        <translation type="obsolete">Klarte ikke å starte SSH-klient. Sjekk ditt oppsett og din GSSApi innstillinger</translation>
     </message>
     <message>
         <source>Check your GSSApi configuration or choose another authentication method</source>
-        <translation>Sjekk ditt GSSApi oppsett, eller velg en annen autentiserings metode</translation>
+        <translation type="obsolete">Sjekk ditt GSSApi oppsett, eller velg en annen autentiserings metode</translation>
     </message>
     <message>
         <source>Can not open file </source>
-        <translation>Kan ikke åpne filen </translation>
+        <translation type="obsolete">Kan ikke åpne filen </translation>
     </message>
     <message>
         <source>Can not create remote file </source>
-        <translation>Klarer ikke å opprette fil over nettverket </translation>
+        <translation type="obsolete">Klarer ikke å opprette fil over nettverket </translation>
     </message>
     <message>
         <source>Can not write to remote file </source>
-        <translation>Klarer ikke å skrive til filen over nettverket </translation>
+        <translation type="obsolete">Klarer ikke å skrive til filen over nettverket </translation>
     </message>
     <message>
         <source>Cannot connect to </source>
@@ -2666,11 +3369,11 @@ lydsystem forbindelser gjennom brannmurer</translation>
     </message>
     <message>
         <source>channel_open_forward failed</source>
-        <translation>channel_open_forward feilet</translation>
+        <translation type="obsolete">channel_open_forward feilet</translation>
     </message>
     <message>
         <source>channel_open_session failed</source>
-        <translation>channel_open_session feilet</translation>
+        <translation type="obsolete">channel_open_session feilet</translation>
     </message>
     <message>
         <source>channel_request_exec failed</source>
@@ -2678,30 +3381,102 @@ lydsystem forbindelser gjennom brannmurer</translation>
     </message>
     <message>
         <source>error writing to socket</source>
-        <translation>feil ved skriving til sokkelen</translation>
+        <translation type="obsolete">feil ved skriving til sokkelen</translation>
     </message>
     <message>
         <source>error reading channel</source>
-        <translation>feil under lesing av kanalen</translation>
+        <translation type="obsolete">feil under lesing av kanalen</translation>
     </message>
     <message>
         <source>channel_write failed</source>
-        <translation>channel_write feilet</translation>
+        <translation type="obsolete">channel_write feilet</translation>
     </message>
     <message>
         <source>error reading tcp socket</source>
-        <translation>feil ved lesing av tcp sokkelen</translation>
+        <translation type="obsolete">feil ved lesing av tcp sokkelen</translation>
+    </message>
+    <message>
+        <source>SSH proxy connection error.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed to create SSH proxy tunnel.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cannot initialize libssh.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cannot create SSH session.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cannot connect to proxy server.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Authentication failed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed to start SSH client. Please check your installation and GSSApi configuration.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Check your GSSApi configuration or choose another authentication method.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cannot open file </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cannot create remote file </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cannot write to remote file </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>channel_open_forward failed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>channel_open_session failed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Error writing to socket.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Error reading channel.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>channel_write failed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Error reading from TCP socket.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>SshProcess</name>
     <message>
         <source>Error creating socket</source>
-        <translation>feil under opprettelse av sokkelen</translation>
+        <translation type="obsolete">feil under opprettelse av sokkelen</translation>
     </message>
     <message>
         <source>Error binding </source>
         <translation>Feil ved binding </translation>
+    </message>
+    <message>
+        <source>Error creating socket.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2768,6 +3543,10 @@ lydsystem forbindelser gjennom brannmurer</translation>
     <message>
         <source>single application:</source>
         <translation>enkeltapplikasjon:</translation>
+    </message>
+    <message>
+        <source>whole display:</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

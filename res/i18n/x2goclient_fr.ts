@@ -157,11 +157,19 @@
     </message>
     <message>
         <source>This value is in conflict with other option</source>
-        <translation type="unfinished">Cette valeur est en conflit avec une autre option</translation>
+        <translation type="obsolete">Cette valeur est en conflit avec une autre option</translation>
     </message>
     <message>
         <source>Options conflict</source>
-        <translation type="unfinished">Conflits d&apos;options</translation>
+        <translation type="obsolete">Conflits d&apos;options</translation>
+    </message>
+    <message>
+        <source>This value is in conflict with another option.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Options conflict.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -195,12 +203,12 @@
         <translation>Ok</translation>
     </message>
     <message>
-        <source>Socket operation timed out</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Failed: </source>
         <translation>Échec:</translation>
+    </message>
+    <message>
+        <source>Socket operation timed out.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -252,7 +260,7 @@
     </message>
     <message>
         <source>X-Server settings</source>
-        <translation>Préférences du serveur X</translation>
+        <translation type="obsolete">Préférences du serveur X</translation>
     </message>
     <message>
         <source>X11 application:</source>
@@ -268,7 +276,7 @@
     </message>
     <message>
         <source>Clientside SSH port for file system export usage:</source>
-        <translation>Port SSH coté client pour l&apos;export du système de fichiers:</translation>
+        <translation type="obsolete">Port SSH coté client pour l&apos;export du système de fichiers:</translation>
     </message>
     <message>
         <source>Start session embedded inside website</source>
@@ -300,23 +308,23 @@
     </message>
     <message>
         <source>Warning</source>
-        <translation type="unfinished">Attention</translation>
+        <translation type="obsolete">Attention</translation>
     </message>
     <message>
         <source>x2goclient could not find any suitable X11 Application. Please install Apple X11 or select the path to the application</source>
-        <translation>x2goclient ne peut pas trouve d&apos;application X11 adaptée. Merci d&apos;installer Apple X11 ou de séléctionner le chemin de l&apos;application</translation>
+        <translation type="obsolete">x2goclient ne peut pas trouve d&apos;application X11 adaptée. Merci d&apos;installer Apple X11 ou de séléctionner le chemin de l&apos;application</translation>
     </message>
     <message>
         <source>Your are using X11 (Apple X-Window Server) version </source>
-        <translation>Vous utilisez X11 (Server X-Window Apple) version </translation>
+        <translation type="obsolete">Vous utilisez X11 (Server X-Window Apple) version </translation>
     </message>
     <message>
         <source>. This version causes problems with X-application in 24bit color mode. You should update your X11 environment (http://trac.macosforge.org/projects/xquartz).</source>
-        <translation>Cette version pose des problèmes avec les applications X en mode de couleurs 24bits. Vous devriez mettre à jour votre environement X11 (http://trac.macosforge.org/projects/xquartz).</translation>
+        <translation type="obsolete">Cette version pose des problèmes avec les applications X en mode de couleurs 24bits. Vous devriez mettre à jour votre environement X11 (http://trac.macosforge.org/projects/xquartz).</translation>
     </message>
     <message>
         <source>No suitable X11 application found in selected path</source>
-        <translation>Pas d&apos;application X11 trouvée dans le chemin sélectionné.</translation>
+        <translation type="obsolete">Pas d&apos;application X11 trouvée dans le chemin sélectionné.</translation>
     </message>
     <message>
         <source>&amp;Connection</source>
@@ -332,6 +340,62 @@
     </message>
     <message>
         <source>&amp;Media</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>X.Org Server settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Clientside (local) SSH daemon port for file system export usage:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pulseaudio settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Disable audio input</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;font size=&quot;5&quot;&gt;You must restart the X2Go Client for the changes to take effect&lt;/font&gt;&lt;br&gt;&lt;br&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Your XQuartz version is too old.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Your are using XQuartz (X Window System Server for OS X) version </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>.
+
+This version causes problems with X applications in 24bit color mode.
+You should update your X11 environment.
+
+MacPorts users please follow the steps outlined on:
+&lt;center&gt;&lt;a href=&quot;https://guide.macports.org/chunked/using.common-tasks.html&quot;&gt;https://guide.macports.org/chunked/using.common-tasks.html&lt;/a&gt;&lt;/center&gt;
+
+Users who have installed XQuartz via the installer package
+can find updated versions on:
+&lt;center&gt;&lt;a href=&quot;https://xquartz.macosforge.org/&quot;&gt;https://xquartz.macosforge.org/&lt;/a&gt;&lt;/center&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No valid XQuartz application selected.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You did not select a valid XQuartz application.
+Please try again.
+
+Some standard installation locations may be:
+&lt;center&gt;&lt;b&gt;/Applications/Utilities/X11.app&lt;/b&gt;&lt;/center&gt;
+&lt;center&gt;&lt;b&gt;/Applications/Utilities/XQuartz.app&lt;/b&gt;&lt;/center&gt;
+&lt;center&gt;&lt;b&gt;/Applications/MacPorts/X11.app&lt;/b&gt;&lt;/center&gt;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -490,11 +554,15 @@
     </message>
     <message>
         <source>share folders</source>
-        <translation>partager des dossiers</translation>
+        <translation type="obsolete">partager des dossiers</translation>
     </message>
     <message>
         <source>Select folder</source>
         <translation>Choisir un dossier</translation>
+    </message>
+    <message>
+        <source>Share Folders</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -512,18 +580,6 @@
     </message>
     <message>
         <source>Create New Folder</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Rename Folder...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Change Icon...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Delete Folder...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -551,15 +607,27 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&quot;. Folder is not empty. Please remove content of folder and try again.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Delete folder &quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>New Folder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rename Folder ...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Change Icon ...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete Folder ...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&quot;. Folder is not empty. Please remove the contents of this directory and try again.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -578,7 +646,7 @@
     </message>
     <message>
         <source>Login failed!&lt;br&gt;Please try again</source>
-        <translation>Identification échouée !&lt;br&gt;Merci de réessayer</translation>
+        <translation type="obsolete">Identification échouée !&lt;br&gt;Merci de réessayer</translation>
     </message>
     <message>
         <source>Host key for server changed.
@@ -588,15 +656,15 @@ C&apos;est maintenant: </translation>
     </message>
     <message>
         <source>For security reasons, connection will be stopped</source>
-        <translation>Pour des raisons de sécurité, la connection va être stoppée.</translation>
+        <translation type="obsolete">Pour des raisons de sécurité, la connection va être stoppée.</translation>
     </message>
     <message>
         <source>The host key for this server was not found but an othertype of key exists.An attacker might change the default server key toconfuse your client into thinking the key does not exist</source>
-        <translation type="unfinished">La clef de ce serveur n&apos;a pas été trouvée mais un autre type de clef existe. Un attaquant peut avoir changé la clef par défaut du serveur pour faire croire à votre client que la clef n&apos;existe pas</translation>
+        <translation type="obsolete">La clef de ce serveur n&apos;a pas été trouvée mais un autre type de clef existe. Un attaquant peut avoir changé la clef par défaut du serveur pour faire croire à votre client que la clef n&apos;existe pas</translation>
     </message>
     <message>
         <source>Could not find known host file.If you accept the host key here, the file will be automatically created</source>
-        <translation>Impossible de trouver le fichier des hôtes connus. Si vous acceptez l&apos;hôte maintenant, le fichier sera créé automatiquement</translation>
+        <translation type="obsolete">Impossible de trouver le fichier des hôtes connus. Si vous acceptez l&apos;hôte maintenant, le fichier sera créé automatiquement</translation>
     </message>
     <message>
         <source>The server is unknown. Do you trust the host key?
@@ -605,7 +673,7 @@ Public key hash: </source>
     </message>
     <message>
         <source>Host key verification failed</source>
-        <translation>La vérification de la clef d&apos;hôte a échouée</translation>
+        <translation type="obsolete">La vérification de la clef d&apos;hôte a échouée</translation>
     </message>
     <message>
         <source>Yes</source>
@@ -621,7 +689,7 @@ Public key hash: </source>
     </message>
     <message>
         <source>Authentication failed</source>
-        <translation>Identification échouée</translation>
+        <translation type="obsolete">Identification échouée</translation>
     </message>
     <message>
         <source>&lt;br&gt;&lt;b&gt;Server uses an invalid security certificate.&lt;/b&gt;&lt;br&gt;&lt;br&gt;</source>
@@ -633,7 +701,7 @@ Public key hash: </source>
     </message>
     <message>
         <source>Secure connection failed</source>
-        <translation>Connection sécurisée échouée</translation>
+        <translation type="obsolete">Connection sécurisée échouée</translation>
     </message>
     <message>
         <source>Issued to:
@@ -697,6 +765,34 @@ Public key hash: </source>
     </message>
     <message>
         <source>Verification code:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>For security reasons, the connection attempt will be aborted.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The host key for this server was not found but anothertype of key exists. An attacker might have changed the default server key to trick your client into thinking the key does not exist yet.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not find known hosts file.If you accept the host key here, the file will be automatically created.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Host key verification failed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Authentication failed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Login failed!&lt;br&gt;Please try again.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Secure connection failed.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -780,7 +876,7 @@ sound system connections through firewalls</source>
     </message>
     <message>
         <source>About X2GO client</source>
-        <translation>Apropos de X2Go Client</translation>
+        <translation type="obsolete">Apropos de X2Go Client</translation>
     </message>
     <message>
         <source>Share folder...</source>
@@ -832,7 +928,7 @@ sound system connections through firewalls</source>
     </message>
     <message>
         <source>Session management...</source>
-        <translation>Gestion de sessions...</translation>
+        <translation type="obsolete">Gestion de sessions...</translation>
     </message>
     <message>
         <source>Ctrl+E</source>
@@ -840,15 +936,15 @@ sound system connections through firewalls</source>
     </message>
     <message>
         <source>&amp;Create session icon on desktop...</source>
-        <translation>&amp;Créer une icone de session sur le bureau...</translation>
+        <translation type="obsolete">&amp;Créer une icone de session sur le bureau...</translation>
     </message>
     <message>
         <source>&amp;Set broker password...</source>
-        <translation>Configurer le mot de passe du broker...</translation>
+        <translation type="obsolete">Configurer le mot de passe du broker...</translation>
     </message>
     <message>
         <source>&amp;Connectivity test...</source>
-        <translation>Test de &amp;Connectivité...</translation>
+        <translation type="obsolete">Test de &amp;Connectivité...</translation>
     </message>
     <message>
         <source>Show toolbar</source>
@@ -857,11 +953,6 @@ sound system connections through firewalls</source>
     <message>
         <source>About Qt</source>
         <translation>À propos de Qt</translation>
-    </message>
-    <message>
-        <source>Ctrl+Q</source>
-        <comment>exit</comment>
-        <translation></translation>
     </message>
     <message>
         <source>&amp;Session</source>
@@ -949,7 +1040,7 @@ sound system connections through firewalls</source>
     </message>
     <message>
         <source>Left mouse button to hide/restore - Right mouse button to display context menu</source>
-        <translation>Bouton de gauche de la souris pour cacher/afficher - Bouton de droite de la souris pour afficher le menu contextuel</translation>
+        <translation type="obsolete">Bouton de gauche de la souris pour cacher/afficher - Bouton de droite de la souris pour afficher le menu contextuel</translation>
     </message>
     <message>
         <source>Error</source>
@@ -961,7 +1052,7 @@ sound system connections through firewalls</source>
     </message>
     <message>
         <source>no X2Go server found in LDAP </source>
-        <translation>Pas de serveur X2Go trouvé dans LDAP</translation>
+        <translation type="obsolete">Pas de serveur X2Go trouvé dans LDAP</translation>
     </message>
     <message>
         <source>Create session icon on desktop</source>
@@ -1010,7 +1101,7 @@ Utiliser le mode caché de X2Go Client ?</translation>
     <message>
         <source>&lt;b&gt;Connection failed&lt;/b&gt;
 </source>
-        <translation>&lt;b&gt;Connection échouée&lt;/b&gt;
+        <translation type="obsolete">&lt;b&gt;Connection échouée&lt;/b&gt;
 </translation>
     </message>
     <message>
@@ -1023,7 +1114,7 @@ Utiliser le mode caché de X2Go Client ?</translation>
     </message>
     <message>
         <source>No server availabel</source>
-        <translation>Pas de serveur disponible</translation>
+        <translation type="obsolete">Pas de serveur disponible</translation>
     </message>
     <message>
         <source>Select session:</source>
@@ -1055,7 +1146,7 @@ Utiliser le mode caché de X2Go Client ?</translation>
     </message>
     <message>
         <source>No accessible desktop found</source>
-        <translation>Aucun bureau distant trouvé</translation>
+        <translation type="obsolete">Aucun bureau distant trouvé</translation>
     </message>
     <message>
         <source>Filter</source>
@@ -1071,7 +1162,7 @@ Utiliser le mode caché de X2Go Client ?</translation>
     </message>
     <message>
         <source>Your current color depth is different to the color depth of your x2go-session. This may cause problems reconnecting to this session and in most cases &lt;b&gt;you will loose the session&lt;/b&gt; and have to start a new one! It&apos;s highly recommended to change the color depth of your Display to </source>
-        <translation>La profondeur de couleur de votre serveur X est différente de celle de votre session X2Go. Cela peut pauser problème pour se reconnecter et la plupart du temps, &lt;b&gt;vous allez perdre la session&lt;/b&gt;. Vous êtes fortement encouragé à changer la profondeur de couleur de couleur de votre serveur X à </translation>
+        <translation type="obsolete">La profondeur de couleur de votre serveur X est différente de celle de votre session X2Go. Cela peut pauser problème pour se reconnecter et la plupart du temps, &lt;b&gt;vous allez perdre la session&lt;/b&gt;. Vous êtes fortement encouragé à changer la profondeur de couleur de couleur de votre serveur X à </translation>
     </message>
     <message>
         <source>24 or 32</source>
@@ -1079,7 +1170,7 @@ Utiliser le mode caché de X2Go Client ?</translation>
     </message>
     <message>
         <source> bit and restart your X-server before you reconnect to this x2go-session.&lt;br&gt;Resume this session anyway?</source>
-        <translation>bits et redémarrer votre serveur X avant de vous reconnecter à votre session.&lt;br&gt;Souhaitez-vous tout de même rétablir cette session ?</translation>
+        <translation type="obsolete">bits et redémarrer votre serveur X avant de vous reconnecter à votre session.&lt;br&gt;Souhaitez-vous tout de même rétablir cette session ?</translation>
     </message>
     <message>
         <source>Yes</source>
@@ -1105,7 +1196,7 @@ La nouvelle clef est:</translation>
     </message>
     <message>
         <source>Could not find known host file.If you accept the host key here, the file will be automatically created</source>
-        <translation>Impossible de trouver le fichier des hôtes connus. Si vouss acceptez la clef d&apos;hôte ici, le fichier sera automatiquement créé</translation>
+        <translation type="obsolete">Impossible de trouver le fichier des hôtes connus. Si vouss acceptez la clef d&apos;hôte ici, le fichier sera automatiquement créé</translation>
     </message>
     <message>
         <source>The server is unknown. Do you trust the host key?
@@ -1119,11 +1210,11 @@ Hash de la clef publique: </translation>
     </message>
     <message>
         <source>Host key verification failed</source>
-        <translation>La vérification de la clef d&apos;hôte a échouée</translation>
+        <translation type="obsolete">La vérification de la clef d&apos;hôte a échouée</translation>
     </message>
     <message>
         <source>Authentication failed</source>
-        <translation>L&apos;autentification a échouée</translation>
+        <translation type="obsolete">L&apos;autentification a échouée</translation>
     </message>
     <message>
         <source>Enter password for SSH proxy</source>
@@ -1131,7 +1222,7 @@ Hash de la clef publique: </translation>
     </message>
     <message>
         <source>Server not availabel</source>
-        <translation>Le serveur n&apos;est pas disponible</translation>
+        <translation type="obsolete">Le serveur n&apos;est pas disponible</translation>
     </message>
     <message>
         <source>suspending</source>
@@ -1147,7 +1238,7 @@ Hash de la clef publique: </translation>
     </message>
     <message>
         <source>Unable to create folder:</source>
-        <translation>Impossible de créer le dossier:</translation>
+        <translation type="obsolete">Impossible de créer le dossier:</translation>
     </message>
     <message>
         <source>Unable to write file:</source>
@@ -1160,12 +1251,12 @@ Hash de la clef publique: </translation>
     <message>
         <source>Unable to create SSL tunnel:
 </source>
-        <translation>Impossible de créer un tunnel SSL:</translation>
+        <translation type="obsolete">Impossible de créer un tunnel SSL:</translation>
     </message>
     <message>
         <source>Unable to create SSL Tunnel:
 </source>
-        <translation>Impossible de créer un tunnel SSL:</translation>
+        <translation type="obsolete">Impossible de créer un tunnel SSL:</translation>
     </message>
     <message>
         <source>Finished</source>
@@ -1188,11 +1279,6 @@ Hash de la clef publique: </translation>
         <translation>abandon en cours</translation>
     </message>
     <message>
-        <source>Are you sure you want to terminate this session?
-Unsaved documents will be lost</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Session</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1205,57 +1291,7 @@ Unsaved documents will be lost</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&lt;b&gt;Connection failed&lt;/b&gt;
-:
-</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source> (can&apos;t open file)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source> (file not exists)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source> (directory not exists)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>wrong value for argument&quot;--link&quot;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>wrong value for argument&quot;--sound&quot;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>wrong value for argument&quot;--geometry&quot;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>wrong value for argument&quot;--set-kbd&quot;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>wrong value for argument&quot;--ldap&quot;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>wrong value for argument&quot;--ldap1&quot;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>wrong value for argument&quot;--ldap2&quot;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>wrong value for argument&quot;--pack&quot;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Available pack methodes:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1263,69 +1299,11 @@ Unsaved documents will be lost</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&lt;/b&gt;&lt;br&gt; (C. 2005-2016 &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing)&lt;br&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&lt;br&gt;x2goplugin mode was sponsored by &lt;a href=&quot;http://www.foss-group.de/&quot;&gt;FOSS-Group GmbH(Freiburg)&lt;/a&gt;&lt;br&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&lt;br&gt;Client for use with the X2Go network based computing environment. This Client will be able to connect to X2Go server(s) and start, stop, resume and terminate (running) desktop sessions. X2Go Client stores different server connections and may automatically request authentication data from LDAP directories. Furthermore it can be used as fullscreen loginscreen (replacement for loginmanager like xdm). Please visit x2go.org for further information.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&lt;b&gt;X2Go Client V. </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Please check LDAP Settings</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>No valid card found</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>This card is unknown by X2Go system</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Unable to create file: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Can&apos;t start X server
-Please check your settings</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Can&apos;t connect to X server
-Please check your settings</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Can&apos;t start X Server
-Please check your installation</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Unable to execute: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Remote server does not support file system export through SSH Tunnel
-Please update to a newer x2goserver package</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to read :
-</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to write :
-</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1433,39 +1411,11 @@ Please update to a newer x2goserver package</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>wrong value for argument&quot;speed&quot;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Starting x2goclient...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Starting x2goclient in portable mode... data directory is: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Started  x2goclient.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Can&apos;t load translator: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Translator: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source> installed.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Closing x2goclient...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Closed  x2goclient.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1478,14 +1428,6 @@ Please update to a newer x2goserver package</source>
     </message>
     <message>
         <source> to </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Connection Error(</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Couldn&apos;t find a SSH connection.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1525,10 +1467,6 @@ Please update to a newer x2goserver package</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Failed, killing the proxy.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Wrong parameter: </source>
         <translation type="unfinished"></translation>
     </message>
@@ -1537,23 +1475,7 @@ Please update to a newer x2goserver package</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Can not open key: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Card not configured.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Error getting window geometry (window closed)?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>This can be an indication of a man-in-the-middle attack.
-Somebody might be eavesdropping on you.
-For security reasons, it is recommended to stop the connection.
-Do you want to terminate the connection?
-</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1562,26 +1484,11 @@ Do you want to update the host key?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>The host key for this server was not found but an othertype of key exists. An attacker might change the default server key to confuse your client into thinking the key does not exist. 
-For security reasons, it is recommended to stop the connection.
-Do you want to terminate the connection?
-</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Verification code:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Help</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Pack Methodes</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Option is not availabel in this build</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1597,42 +1504,482 @@ Do you want to terminate the connection?
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>SSH daemon could not be started.
-
-You&apos;ll need SSH daemon for printing and file sharing.
-
-Normally, this should not happen as X2Go Client for 
-Windows ships its internal sshd.exe.
-
-If you see this message, please report a bug against
-the X2Go bugtracker.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>SSH daemon is not running.
-
-You&apos;ll need SSH daemon for printing and file sharing
-
-Please ask your system administrator to provide the SSH
-service on your computer.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>SSH daemon failed to open the application&apos;s public host key.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>SSH daemon failed to open the application&apos;s public key
 used for exporting folders and printers.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>SSH daemon failed to open the application&apos;s
-authoized_keys file.</source>
+        <source>Starting X2Go Client...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>wrong value for argument&quot;--clipboard&quot;</source>
+        <source>Starting X2Go Client in portable mode. Data directory is: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>About X2Go Client</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Started X2Go Client.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> found.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>English language requested, not loading translator.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Non-fatal: can&apos;t load translator: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Trying to load language with lower preference, if existent.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Session management ...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Create session icon on desktop ...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Set broker password ...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Connectivity test ...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Share folder ...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>A left click hides or restores the window. A right click displays the context menu.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Closing X2Go Client ...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Finished X2Go Client closing hooks.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Broker authentication failed!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>no X2Go Server found in LDAP </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connection error: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Couldn&apos;t find an SSH connection.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This can be an indication of a man-in-the-middle attack.
+Somebody might be eavesdropping on you.
+For security reasons, it is recommended to stop the connection attempt.
+Do you want to terminate the connection?
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Host key verification failed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The host key for this server was not found but anothertype of key exists. An attacker might have changed the default server key to trick your client into thinking the key does not exist yet.
+For security reasons, it is recommended to stop the connection attempt.
+Do you want to terminate the connection?
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not find known hosts file.If you accept the host key here, the file will be automatically created.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Authentication failed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Connection failed.&lt;/b&gt;
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No server available.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Server not available.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No accessible desktop found.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Your current color depth is different from the session&apos;s color depth. This may cause problems reconnecting to this session and in most cases &lt;b&gt;you will loose the session&lt;/b&gt; and have to start a new one! It&apos;s highly recommended to change the color depth of your display to </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> bits and restart your X.Org Server before you reconnect to this X2Go session.&lt;br /&gt;Do you want to resume this session anyway?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to create SSH tunnel for X2Go session (NX) startup:
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to create SSH tunnel for audio data:
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>failed to start.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This likely means the binary is not available.
+The current search path is: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>returned a non-zero exit code or crashed otherwise.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Execution failed, exit code was: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>didn&apos;t start up in time.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This error shouldn&apos;t come up.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>didn&apos;t accept a write operation.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>It is probably not running correctly or crashed in-between.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to read from xmodmap.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>encountered an unknown error during start up or execution.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>experienced an undefined error.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>X2Go Client will now terminate.
+
+File a bug report as outlined on the &lt;a href=&quot;http://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;bugs wiki page&lt;/a&gt;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Proxy didn&apos;t terminate after 3 seconds. Killing the proxy.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Closing X2Go Client because it was started in hidden mode.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Closing X2Go Client because the --close-disconnect parameter was passed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Are you sure you want to terminate this session?
+Unsaved documents will be lost.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Connection failed.&lt;/b&gt;
+:
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> (file does not exist)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> (directory does not exist)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invalid value for parameter &quot;--link&quot;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invalid value for parameter &quot;--clipboard&quot;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invalid value for parameter &quot;--sound&quot;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invalid value for parameter &quot;--geometry&quot;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invalid value for parameter &quot;--set-kbd&quot;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invalid value for parameter &quot;--ldap&quot;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invalid value for parameter &quot;--ldap1&quot;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invalid value for parameter &quot;--ldap2&quot;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invalid value for parameter &quot;--pack&quot;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Available pack methods:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pack Methods</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Option is not available in this build.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to create directory:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cannot open key: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;br&gt;(C) 2005-2016 by &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing&lt;br&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;br&gt;X2Go Plugin mode was sponsored by &lt;a href=&quot;http://www.foss-group.de/&quot;&gt;FOSS-Group GmbH (Freiburg)&lt;/a&gt;&lt;br&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;br&gt;This is a client to access the X2Go network-based computing environment. This client will be able to connect to X2Go Server(s) and start, stop, resume and terminate (running) desktop sessions. X2Go Client stores different server connections and may automatically request authentication data from LDAP directories. Furthermore, it can be used as a fullscreen login screen (replacement for login managers like XDM). Please visit &lt;a href=&quot;http://www.x2go.org&quot;&gt;the project home page at x2go.org&lt;/a&gt; for further information.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;X2Go Client v. </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please check LDAP Settings.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Check whether the package providing &quot;scdaemon&quot; is installed.
+The current search path is: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>didn&apos;t start yet.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to read from scdaemon.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No valid card found.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This card is unknown to the X2Go system.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Can&apos;t start X.Org Server.
+Please check your installation.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remote server does not support file system exports through SSH tunnels.
+Please update your x2goserver package.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to create SSH tunnel for Folder Sharing and Printing support:
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to read:
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to write:
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Error getting window geometry. (Did you close the window?)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invalid value for argument &quot;speed&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Applications ...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SSH daemon could not be started.
+
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SSH daemon is not running.
+
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You have enabled Remote Printing or File Sharing.
+These features require a running and functioning SSH server on your computer.
+&lt;b&gt;Printing and File Sharing will be disabled for this session.&lt;/b&gt;
+
+Please also check the &lt;b&gt;Clientside SSH port&lt;/b&gt; in the general settings.
+
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Normally, this should not happen as X2Go Client for Windows ships its own internal SSH server.
+
+If you see this message, please report a bug on:
+&lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The SSH server failed to start.
+
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>X2Go Client did not detect a globally running SSH server on your machine and was unable to start its own.
+
+Please report a bug on:
+&lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The SSH server is currently not started.
+
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>On OS X, please follow the following steps to enable SSH service:&lt;ul&gt;&lt;li&gt;Open &lt;b&gt;System Preferences&lt;/b&gt; (Applications -&gt; System Preferences)&lt;/li&gt;&lt;li&gt;Go to &lt;b&gt;Sharing&lt;/b&gt;&lt;/li&gt;&lt;li&gt;Tick the checkbox besides &lt;b&gt;Remote Login&lt;/b&gt;&lt;/li&gt;&lt;li&gt;Check that &lt;b&gt;Allow access for:&lt;/b&gt; is set to either:&lt;ul&gt;&lt;li&gt;All users: &lt;b&gt;no further steps necessary&lt;/b&gt;&lt;/li&gt;&lt;li&gt;Only these users &lt;b&gt;and your user name is included in the list&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;&lt;li&gt;Optionally, add your user name to the allowed list via the &lt;b&gt;Plus Button&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;&lt;b&gt;Warning: enabling SSH access will allow any user on the network to connect to your machine. It is your responsibility to set a strong password for every user that is allowed to log in via SSH.&lt;/b&gt;
+
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please ask your system administrator to provide the SSH service on your computer.
+
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Disabling Remote Printing or File Sharing support in the session settings will get rid of this message.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SSH daemon failed to open its public host key.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You have enabled Remote Printing or File Sharing.
+These features require a running and functioning SSH server on your computer.
+&lt;b&gt;Printing and File Sharing will be disabled for this session.&lt;/b&gt;
+
+The SSH server is currently not configured correctly.
+
+Please ensure that the server&apos;s public exists.
+
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Normally, this should not happen as X2Go Client for Windows ships its own internal SSH server and automatically generates the required keys.
+
+If you see this message, please report a bug on:
+&lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>X2Go Client was unable to create SSH host keys.
+
+Please report a bug on:
+&lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>On OS X, please follow these steps to generate the required keys:&lt;ul&gt;&lt;li&gt;Open a &lt;b&gt;Terminal Window&lt;/b&gt; (Applications -&gt; Utilities -&gt; Terminal)&lt;/li&gt;&lt;li&gt;Run this command: &lt;b&gt;ssh -p </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please ask your system administrator to generate the required host keys.
+
+If you are administrating this system yourself, please run:
+&lt;center&gt;&lt;b&gt;sudo ssh-keygen -A&lt;/b&gt;&lt;/center&gt;
+
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SSH daemon failed to open the application&apos;s
+authorized_keys file.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1643,15 +1990,15 @@ authoized_keys file.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>You&apos;ve deactivated the x2go client printing dialog.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>You may reactivate this dialog using the x2goclient settings dialog (Menu -&gt; Options -&gt; Settings)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Print - X2Go Client</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You&apos;ve deactivated the X2Go Client printing dialog.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You may reactivate this dialog using the X2Go Client settings dialog. To do so, follow this path in the menu bar: Options -&gt; Settings)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1671,16 +2018,12 @@ authoized_keys file.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Printing error</source>
+        <source>Printing error.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>PrintWidget</name>
-    <message>
-        <source>Please configure your client side printing settings.&lt;br&gt;&lt;br&gt;If you want to print the created file, you&apos;ll need an external application. Typically you can use &lt;a href=&quot;http://pages.cs.wisc.edu/~ghost/doc/GPL/index.htm&quot;&gt;ghostprint&lt;/a&gt; and &lt;a href=&quot;http://pages.cs.wisc.edu/~ghost/gsview/&quot;&gt;ghostview&lt;/a&gt;&lt;br&gt;You can find  further information &lt;a href=&quot;http://www.x2go.org/index.php?id=49&quot;&gt;here&lt;/a&gt;.</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
         <source>Form</source>
         <translation type="unfinished">Formulaire</translation>
@@ -1732,6 +2075,10 @@ authoized_keys file.</source>
     </message>
     <message>
         <source>Show this dialog before start printing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please configure your client side printing settings.&lt;br&gt;&lt;br&gt;If you want to print the created file, you&apos;ll need an external application. Typically you can use &lt;a href=&quot;http://pages.cs.wisc.edu/~ghost/doc/GPL/index.htm&quot;&gt;ghostprint&lt;/a&gt; and &lt;a href=&quot;http://pages.cs.wisc.edu/~ghost/gsview/&quot;&gt;ghostview&lt;/a&gt;&lt;br&gt;You can find further information &lt;a href=&quot;http://www.x2go.org/index.php?id=49&quot;&gt;here&lt;/a&gt;.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1801,17 +2148,48 @@ lpr -P hp_laserjet</source>
         <source>No response received from the remote server. Do you want to terminate the current session?</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>X2Go Client could not find any suitable X11 server.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>X2Go Client could not start X11 server.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>X2Go Client requires XQuartz to be installed.
+
+If XQuartz is already installed on your system,
+please select the correct path in the now upcoming dialog.
+Refer to the end of this message for path examples,
+in case you do not know the exact location yourself.
+
+Should you have &lt;b&gt;not&lt;/b&gt; installed XQuartz yet, please
+follow the outlined steps:
+
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>MacPorts users, please install either the port &lt;b&gt;xorg-server&lt;/b&gt;
+or the port &lt;b&gt;xorg-server-devel&lt;/b&gt;.
+Upon successful installation, please follow the instructions printed
+by the port utility to autostart/load the server.
+
+All other users, please obtain and install XQuartz from:
+&lt;center&gt;&lt;a href=&quot;https://xquartz.macosforge.org/&quot;&gt;https://xquartz.macosforge.org/&lt;/a&gt;&lt;/center&gt;
+
+Afterwards, restart X2Go Client and select the correct path
+to the X11 application in the general X2Go Client settings.
+This will most likely be
+&lt;center&gt;&lt;b&gt;/Applications/MacPorts/X11.app&lt;/b&gt;&lt;/center&gt;
+or
+&lt;center&gt;&lt;b&gt;/Applications/Utilities/XQuartz.app&lt;/b&gt;&lt;/center&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SessionButton</name>
-    <message>
-        <source>Session preferences...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Create session icon on desktop...</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
         <source>Delete session</source>
         <translation type="unfinished"></translation>
@@ -1888,6 +2266,14 @@ lpr -P hp_laserjet</source>
         <source>Disabled</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Session preferences ...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Create session icon on desktop ...</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SessionExplorer</name>
@@ -1897,13 +2283,13 @@ lpr -P hp_laserjet</source>
     </message>
     <message>
         <source>Create session icon on desktop</source>
-        <translation type="unfinished">Créer une icone de session sur le bureau</translation>
+        <translation type="obsolete">Créer une icone de session sur le bureau</translation>
     </message>
     <message>
         <source>Desktop icons can be configured not to show x2goclient (hidden mode). If you like to use this feature you&apos;ll need to configure login by a gpg key or gpg smart card.
 
 Use x2goclient hidden mode?</source>
-        <translation type="unfinished">Les icones de bureau peuvent être configurées pour ne pas afficher X2Go Client (mode caché). Si vous voulez utiliser cette fonctionnalité, vous aurez besoin de configurer l&apos;identification par clef GPG ou par Smart Card GPG.
+        <translation type="obsolete">Les icones de bureau peuvent être configurées pour ne pas afficher X2Go Client (mode caché). Si vous voulez utiliser cette fonctionnalité, vous aurez besoin de configurer l&apos;identification par clef GPG ou par Smart Card GPG.
 
 Utiliser le mode caché de X2Go Client ?</translation>
     </message>
@@ -1922,6 +2308,16 @@ Utiliser le mode caché de X2Go Client ?</translation>
     <message>
         <source>Are you sure you want to delete this session?</source>
         <translation type="unfinished">Êtes vous sûr de vouloir effacer cette session ?</translation>
+    </message>
+    <message>
+        <source>Create session icon on desktop.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Desktop icons can be configured not to show X2Go Client (hidden mode.) If you like to use this feature you&apos;ll need to configure login via a GPG key or GPG Smart Card.
+
+Use X2Go Client&apos;s hidden mode?</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1944,7 +2340,7 @@ Utiliser le mode caché de X2Go Client ?</translation>
     </message>
     <message>
         <source>&amp;Create session icon on desktop...</source>
-        <translation type="unfinished">&amp;Créer une icone de session sur le bureau...</translation>
+        <translation type="obsolete">&amp;Créer une icone de session sur le bureau...</translation>
     </message>
     <message>
         <source>Delete</source>
@@ -1953,6 +2349,10 @@ Utiliser le mode caché de X2Go Client ?</translation>
     </message>
     <message>
         <source>Session management</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Create session icon on desktop ...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1984,10 +2384,6 @@ Utiliser le mode caché de X2Go Client ?</translation>
     </message>
     <message>
         <source>Use RSA/DSA key for ssh connection:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Try auto login (ssh-agent or default ssh key)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2023,10 +2419,6 @@ Utiliser le mode caché de X2Go Client ?</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>ssh-agent or default ssh key</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Type:</source>
         <translation type="unfinished">Type:</translation>
     </message>
@@ -2040,10 +2432,6 @@ Utiliser le mode caché de X2Go Client ?</translation>
     </message>
     <message>
         <source>Session type:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Connect to Windows terminal server</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2076,10 +2464,6 @@ Utiliser le mode caché de X2Go Client ?</translation>
     </message>
     <message>
         <source>Path to executable</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Direct RDP Connection</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2123,15 +2507,31 @@ Utiliser le mode caché de X2Go Client ?</translation>
         <translation type="unfinished">Erreur</translation>
     </message>
     <message>
-        <source>x2goclient is running in portable mode. You should use a path on your usb device to be able to access your data whereever you are</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Delegation of GSSAPI credentials to the server</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Path:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Try auto login (via SSH Agent or default SSH key)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SSH Agent or default SSH key</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connect to Windows Terminal Server</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Direct RDP connection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>X2Go Client is running in portable mode. You should use a path on your USB device to be able to access your data wherever you are.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2143,10 +2543,6 @@ Utiliser le mode caché de X2Go Client ?</translation>
     </message>
     <message>
         <source>&amp;Keyboard</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>RDP Client</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2214,10 +2610,6 @@ Utiliser le mode caché de X2Go Client ?</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Auto detect keyboard settings</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Do not configure keyboard</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2238,10 +2630,6 @@ Utiliser le mode caché de X2Go Client ?</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&amp;Clipboard Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Bidirectional copy and paste</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2255,6 +2643,18 @@ Utiliser le mode caché de X2Go Client ?</translation>
     </message>
     <message>
         <source>Disable clipboard completely</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Clipboard mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Auto-detect keyboard settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>RDP client</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2282,10 +2682,6 @@ Utiliser le mode caché de X2Go Client ?</translation>
     </message>
     <message>
         <source>Path:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Use ssh port forwarding to tunnel file system connections through firewalls</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2317,54 +2713,18 @@ Utiliser le mode caché de X2Go Client ?</translation>
         <translation type="unfinished">Erreur</translation>
     </message>
     <message>
-        <source>x2goclient is running in portable mode. You should use a path on your usb device to be able to access your data whereever you are</source>
+        <source>Use SSH port forwarding to tunnel file system connections through firewalls</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>X2Go Client is running in portable mode. You should use a path on your USB device to be able to access your data wherever you are.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>SshMasterConnection</name>
     <message>
-        <source>SSH proxy connection error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>SSH proxy connection error: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Failed to create SSH proxy tunnel</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Can not initialize libssh</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Can not create ssh session</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Can not connect to proxy server</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Can not connect to </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Authentication failed</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Can not open file </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Can not create remote file </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Can not write to remote file </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2372,50 +2732,86 @@ Utiliser le mode caché de X2Go Client ?</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>channel_open_forward failed</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>channel_open_session failed</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>channel_request_exec failed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>error writing to socket</source>
+        <source>SSH proxy connection error.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>error reading channel</source>
+        <source>Failed to create SSH proxy tunnel.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>channel_write failed</source>
+        <source>Cannot initialize libssh.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>error reading tcp socket</source>
+        <source>Cannot create SSH session.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Failed to start SSH Client. Please check your installation and GSSApi configuration</source>
+        <source>Cannot connect to proxy server.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Check your GSSApi configuration or choose another authentication method</source>
+        <source>Authentication failed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed to start SSH client. Please check your installation and GSSApi configuration.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Check your GSSApi configuration or choose another authentication method.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cannot open file </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cannot create remote file </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cannot write to remote file </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>channel_open_forward failed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>channel_open_session failed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Error writing to socket.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Error reading channel.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>channel_write failed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Error reading from TCP socket.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>SshProcess</name>
     <message>
-        <source>Error creating socket</source>
+        <source>Error binding </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Error binding </source>
+        <source>Error creating socket.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2482,6 +2878,10 @@ Utiliser le mode caché de X2Go Client ?</translation>
     </message>
     <message>
         <source> do not use primary clipboard</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>whole display:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
