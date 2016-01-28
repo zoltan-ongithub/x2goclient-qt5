@@ -33,6 +33,10 @@ x2goclient (4.0.5.1-0x2go1) UNRELEASED; urgency=low
       challenge-auth-based attempt was unsuccessful.
     - sshmasterconnection.{cpp,h}: support variable number of
       challenge-auth-code-based prompts.
+    - sshmasterconnection.cpp: don't check prompts for full string equality -
+      a matching prefix is good enough. Amongst others, this fixes errors in
+      conditions where the prompt does not contain a trailing whitespace, but
+      X2Go Client expects one.
   * debian/control:
     - Change apache2-dev | libc6-dev build dependency back to apache2-dev
       only. Otherwise, apache2-dev is not installed at all, even though

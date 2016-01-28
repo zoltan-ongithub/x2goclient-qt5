@@ -870,7 +870,7 @@ bool SshMasterConnection::userChallengeAuth()
             x2goDebug<<"Prompt[0]: |"<<prompt<<"|"<<endl;
 #endif
             QString pr=prompt;
-            if(pr=="Password: ")
+            if(pr.startsWith ("Password:"))
             {
 #ifdef DEBUG
                 x2goDebug<<"Password request"<<endl;
@@ -885,7 +885,7 @@ bool SshMasterConnection::userChallengeAuth()
             for (std::size_t i = 0; i < challenge_auth_code_prompts_size; ++i) {
                 x2goDebug << "Checking against known prompt #" << i << ": " << challenge_auth_code_prompts_[i] << endl;
 
-                if (pr == challenge_auth_code_prompts_[i]) {
+                if (pr.startsWith (challenge_auth_code_prompts_[i])) {
                     has_challenge_auth_code_prompt = true;
                     break;
                 }
