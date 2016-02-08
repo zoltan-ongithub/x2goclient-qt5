@@ -100,6 +100,10 @@ x2goclient (4.0.5.1-0x2go1) UNRELEASED; urgency=low
     - sshmasterconnection.cpp: check correct variable for validity: public key
       instead of private key (again.) Fixes: #945.
 
+  [ Klaus Ade Johnstad ]
+  * New upstream version (4.0.5.1):
+    - res/i18n/x2goclient_nb_no.ts: update Bokmål (Norway) translation file.
+
  -- X2Go Release Manager <git-admin@x2go.org>  Tue, 28 Jul 2015 06:05:27 +0200
 
 x2goclient (4.0.5.0-0x2go1) unstable; urgency=low
