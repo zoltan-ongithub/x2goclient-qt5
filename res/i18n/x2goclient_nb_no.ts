@@ -371,7 +371,7 @@
     </message>
     <message>
         <source>Your are using XQuartz (X Window System Server for OS X) version </source>
-        <translation>Du benytter X11 (Apple X-Window Server) versjon </translation>
+        <translation>Du benytter XQuartz (Apple X Window System Server) versjon </translation>
     </message>
     <message>
         <source>.
