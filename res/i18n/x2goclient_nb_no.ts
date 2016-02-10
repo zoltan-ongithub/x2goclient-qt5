@@ -2544,7 +2544,7 @@ authorized_keys file.</source>
     </message>
     <message>
         <source>You may reactivate this dialog using the X2Go Client settings dialog. To do so, follow this path in the menu bar: Options -&gt; Settings)</source>
-        <translation type"unfinished">Du kan reaktivere denne dialogen ved å benytte x2goclient innstillingene (Innstillinger -&gt; Innstillinger)</translation>
+        <translation type="unfinished">Du kan reaktivere denne dialogen ved å benytte x2goclient innstillingene (Innstillinger -&gt; Innstillinger)</translation>
     </message>
 </context>
 <context>
