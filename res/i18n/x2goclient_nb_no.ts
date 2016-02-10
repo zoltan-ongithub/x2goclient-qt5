@@ -347,7 +347,7 @@
     </message>
     <message>
         <source>X.Org Server settings</source>
-        <translation>X-Server innstillinger</translation>
+        <translation>X.Org Server innstillinger</translation>
     </message>
     <message>
         <source>Clientside (local) SSH daemon port for file system export usage:</source>
@@ -2129,7 +2129,7 @@ Vil du avbryte tilkoblingen?
     </message>
     <message>
         <source> bits and restart your X.Org Server before you reconnect to this X2Go session.&lt;br /&gt;Do you want to resume this session anyway?</source>
-        <translation> bit og deretter restarte X-Serveren før du kobler til denne x2go sesjonen. &lt;br&gt;Gjenoppta denne sesjonen uansett?</translation>
+        <translation> bit og deretter restarte X.Org Server før du kobler til denne x2go sesjonen. &lt;br&gt;Gjenoppta denne sesjonen uansett?</translation>
     </message>
     <message>
         <source>Unable to create SSH tunnel for X2Go session (NX) startup:
@@ -2333,7 +2333,7 @@ Søkebanen som er i bruk er:</translation>
     <message>
         <source>Can&apos;t start X.Org Server.
 Please check your installation.</source>
-        <translation>Klarer ikke å starte X Serveren.
+        <translation>Klarer ikke å starte X.Org Server.
 Vennligst sjekk din installasjon.</translation>
     </message>
     <message>
