@@ -2544,7 +2544,7 @@ authorized_keys file.</source>
     </message>
     <message>
         <source>You may reactivate this dialog using the X2Go Client settings dialog. To do so, follow this path in the menu bar: Options -&gt; Settings)</source>
-        <translation>Du kan reaktivere denne dialogen ved å benytte x2goclient innstillingene (Innstillinger -&gt; Innstillinger)</translation>
+        <translation type"unfinished">Du kan reaktivere denne dialogen ved å benytte x2goclient innstillingene (Innstillinger -&gt; Innstillinger)</translation>
     </message>
 </context>
 <context>
@@ -2908,7 +2908,7 @@ Use x2goclient hidden mode?</source>
         <source>Desktop icons can be configured not to show X2Go Client (hidden mode.) If you like to use this feature you&apos;ll need to configure login via a GPG key or GPG Smart Card.
 
 Use X2Go Client&apos;s hidden mode?</source>
-        <translation>Skrivebordsikoner kan konfigureres til å ikke vise x2goklient (skjult modus). Om du ønsker å benytte denne muligheten må du konfigurere pålogging ved bruk av en GPG-nøkkel, eller et GPG basert smartkort.
+        <translation type="unfinished">Skrivebordsikoner kan konfigureres til å ikke vise x2goklient (skjult modus). Om du ønsker å benytte denne muligheten må du konfigurere pålogging ved bruk av en GPG-nøkkel, eller et GPG basert smartkort.
 
 Ønsker du å aktivere skjult modus for x2goklient?</translation>
     </message>
@@ -3145,7 +3145,7 @@ Use X2Go Client&apos;s hidden mode?</source>
     </message>
     <message>
         <source>X2Go Client is running in portable mode. You should use a path on your USB device to be able to access your data wherever you are.</source>
-        <translation>x2goclient kjører i portabel modus. Du burde bruke en sti på din USB enhet for å kunne benytte dataene dine uavhengig av hvor du er.</translation>
+        <translation type="unfinished">x2goclient kjører i portabel modus. Du burde bruke en sti på din USB enhet for å kunne benytte dataene dine uavhengig av hvor du er.</translation>
     </message>
 </context>
 <context>
@@ -3397,7 +3397,7 @@ lydsystem forbindelser gjennom brannmurer</translation>
     </message>
     <message>
         <source>X2Go Client is running in portable mode. You should use a path on your USB device to be able to access your data wherever you are.</source>
-        <translation>x2goclient kjører i portabel modus. Du burde bruke en sti på din USB enhet for å kunne benytte dataene dine uavhengig av hvor du er.</translation>
+        <translation type="unfinished">x2goclient kjører i portabel modus. Du burde bruke en sti på din USB enhet for å kunne benytte dataene dine uavhengig av hvor du er.</translation>
     </message>
 </context>
 <context>

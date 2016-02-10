@@ -44,6 +44,8 @@ x2goclient (4.0.5.1-0x2go1) UNRELEASED; urgency=low
     - res/i18n/x2goclient_nb_no.ts: correctly use "XQuartz" where necessary.
     - res/i18n/x2goclient_nb_no.ts: whitespace only.
     - res/i18n/x2goclient_nb_no.ts: fix up some "x2go" -> "X2Go" errors.
+    - res/i18n/x2goclient_nb_no.ts: mark translation strings needing some care
+      ("x2go..." -> "X2Go...") as unfinished for later fixup.
   * debian/control:
     - Change apache2-dev | libc6-dev build dependency back to apache2-dev
       only. Otherwise, apache2-dev is not installed at all, even though
