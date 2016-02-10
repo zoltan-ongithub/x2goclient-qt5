@@ -2125,11 +2125,11 @@ Vil du avbryte tilkoblingen?
     </message>
     <message>
         <source>Your current color depth is different from the session&apos;s color depth. This may cause problems reconnecting to this session and in most cases &lt;b&gt;you will loose the session&lt;/b&gt; and have to start a new one! It&apos;s highly recommended to change the color depth of your display to </source>
-        <translation>Din nåværende fargedybde er forskjellig fra fargedybden i din x2go sesjon. Dette kan skape problemer ved gjenoppkobling til denne sesjonen, og i de fleste tilfellene &lt;b&gt;vil du miste hele sesjonen&lt;/b&gt;. og du må starte en ny en! Det er sterkt anbefalt å endre fargedybden på skjemen din til </translation>
+        <translation>Din nåværende fargedybde er forskjellig fra fargedybden i din X2Go sesjon. Dette kan skape problemer ved gjenoppkobling til denne sesjonen, og i de fleste tilfellene &lt;b&gt;vil du miste hele sesjonen&lt;/b&gt;. og du må starte en ny en! Det er sterkt anbefalt å endre fargedybden på skjemen din til </translation>
     </message>
     <message>
         <source> bits and restart your X.Org Server before you reconnect to this X2Go session.&lt;br /&gt;Do you want to resume this session anyway?</source>
-        <translation> bit og deretter restarte X.Org Server før du kobler til denne x2go sesjonen. &lt;br&gt;Gjenoppta denne sesjonen uansett?</translation>
+        <translation> bit og deretter restarte X.Org Server før du kobler til denne X2Go sesjonen. &lt;br&gt;Gjenoppta denne sesjonen uansett?</translation>
     </message>
     <message>
         <source>Unable to create SSH tunnel for X2Go session (NX) startup:
