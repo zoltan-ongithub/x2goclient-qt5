@@ -367,7 +367,7 @@
     </message>
     <message>
         <source>Your XQuartz version is too old.</source>
-        <translation>Din XQuartz versjon er for gammel. </translation>
+        <translation>Din XQuartz versjon er for gammel.</translation>
     </message>
     <message>
         <source>Your are using XQuartz (X Window System Server for OS X) version </source>
@@ -2728,7 +2728,7 @@ Should you have &lt;b&gt;not&lt;/b&gt; installed XQuartz yet, please
 follow the outlined steps:
 
 </source>
-        <translation>X2Go klienten krever at  XQuartz er installert.
+        <translation>X2Go klienten krever at XQuartz er installert.
 
 Hvis XQuartz allerede er installert, vennligst oppgi korrekt
 plassering i dialogboksen som nå dukker opp. På slutten av
