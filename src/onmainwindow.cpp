@@ -10163,7 +10163,7 @@ void ONMainWindow::xorgSettings()
 
     QString primClip;
     if(st.setting()->value("noprimaryclip",false).toBool() && internalX==VCXSRV)
-        primClip=" -noclipboardprimary";
+        primClip=" -noprimary";
 
     if (useInternalX)
     {
