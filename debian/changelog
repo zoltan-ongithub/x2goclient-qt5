@@ -75,6 +75,7 @@ x2goclient (4.0.5.1-0x2go1) UNRELEASED; urgency=low
     - Format long names on session buttons.
     - Central settings for Linux, Mac and Windows.
     - Fix VCXSRV parameter to disable PRIMARY clipboard in X2Go Client for Windows. Fixes: #927.
+    - Fix reading settings for direct RDP connections in broker mode.
 
   [ Mike Gabriel ]
   * New upstream release (4.0.5.1):

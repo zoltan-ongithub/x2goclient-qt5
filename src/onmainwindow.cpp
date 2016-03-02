@@ -3179,8 +3179,16 @@ void ONMainWindow::continueLDAPSession()
 #ifdef Q_OS_LINUX
 void ONMainWindow::startDirectRDP()
 {
+    X2goSettings* st;
+    if(brokerMode)
+    {
+        st=new X2goSettings(config.iniFile, QSettings::IniFormat);
+    }
+    else
+    {
+        st=new X2goSettings ( "sessions" );
+    }
 
-    X2goSettings st ( "sessions" );
     QString sid;
     bool freeRDPNew=false;
     if ( !embedMode )
@@ -3189,32 +3197,42 @@ void ONMainWindow::startDirectRDP()
         sid="embedded";
 
 
-    bool fullscreen=st.setting()->value ( sid+"/fullscreen",
+    bool fullscreen=st->setting()->value ( sid+"/fullscreen",
                                           ( QVariant )
                                           defaultFullscreen ).toBool();
-    bool maxRes=st.setting()->value ( sid+"/maxdim",
+    bool maxRes=st->setting()->value ( sid+"/maxdim",
                                       ( QVariant )
                                       false ).toBool();
-    int height=st.setting()->value ( sid+"/height",
+    int height=st->setting()->value ( sid+"/height",
                                      ( QVariant ) defaultHeight ).toInt();
-    int width=st.setting()->value ( sid+"/width",
+    int width=st->setting()->value ( sid+"/width",
                                     ( QVariant ) defaultWidth ).toInt();
 
-    QString client=st.setting()->value ( sid+"/rdpclient",
+    QString client=st->setting()->value ( sid+"/rdpclient",
                                          ( QVariant ) "rdesktop").toString();
     if(client=="xfreerdpnew")
     {
         client="xfreerdp";
         freeRDPNew=true;
     }
-    QString host=st.setting()->value ( sid+"/host",
+    QString host=st->setting()->value ( sid+"/host",
                                        ( QVariant ) "").toString();
-    QString port=st.setting()->value ( sid+"/rdpport",
+    QString port=st->setting()->value ( sid+"/rdpport",
                                        ( QVariant ) "3389").toString();
-    QString params=st.setting()->value ( sid+"/directrdpsettings",
+    QString params=st->setting()->value ( sid+"/directrdpsettings",
                                          ( QVariant ) "").toString();
-    QString user=login->text();
-    QString password=pass->text();
+
+    QString user,password;
+    if(!brokerMode)
+    {
+        user=login->text();
+        password=pass->text();
+    }
+    else
+    {
+        user=st->setting()->value ( sid+"/user",
+                                       ( QVariant ) "").toString();
+    }
 
     nxproxy=new QProcess;
     proxyErrString="";
@@ -3286,6 +3304,7 @@ void ONMainWindow::startDirectRDP()
         }
         proxyCmd= client +" "+params+ grOpt +userOpt+passOpt + "/v:"+host +":"+port ;
     }
+//     x2goDebug<<"starting direct session with cmd:"<<proxyCmd;
     nxproxy->start ( proxyCmd );
     resumingSession.display="RDP";
     resumingSession.server=host;
@@ -3294,6 +3313,7 @@ void ONMainWindow::startDirectRDP()
     showSessionStatus();
 //     QTimer::singleShot ( 30000,this,SLOT ( slotRestartProxy() ) );
     proxyRunning=true;
+    delete st;
 }
 
 #endif
