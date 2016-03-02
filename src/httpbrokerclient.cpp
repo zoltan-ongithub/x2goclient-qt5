@@ -85,7 +85,7 @@ HttpBrokerClient::~HttpBrokerClient()
 void HttpBrokerClient::createSshConnection()
 {
     QUrl lurl ( config->brokerurl );
-    sshConnection=new SshMasterConnection (this, lurl.host(), lurl.port(22),false,
+    sshConnection=new SshMasterConnection (this, lurl.host(), lurl.port(22),mainWindow->getAcceptRSA(),
                                            config->brokerUser, config->brokerPass,config->brokerSshKey,config->brokerAutologin,
                                            config->brokerKrbLogin, false);
 

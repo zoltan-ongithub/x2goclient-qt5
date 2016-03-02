@@ -518,6 +518,11 @@ public:
         return miniMode;
     }
 
+    bool getAcceptRSA()
+    {
+        return acceptRsa;
+    }
+
     QScrollArea* getUsersArea()
     {
         return users;
