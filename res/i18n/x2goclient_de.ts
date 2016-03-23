@@ -193,12 +193,12 @@
     <message>
         <location filename="../../src/cupsprintersettingsdialog.cpp" line="272"/>
         <source>This value is in conflict with another option.</source>
-        <translation>Dieser Wert erzeugt einen Konflikt mit einer anderen Option</translation>
+        <translation>Dieser Wert erzeugt einen Konflikt mit einer anderen Option.</translation>
     </message>
     <message>
         <location filename="../../src/cupsprintersettingsdialog.cpp" line="282"/>
         <source>Options conflict.</source>
-        <translation>Einstellungskonflikt</translation>
+        <translation>Einstellungskonflikt.</translation>
     </message>
     <message>
         <source>This value is in conflict with other option</source>
@@ -251,7 +251,7 @@
     <message>
         <location filename="../../src/contest.cpp" line="148"/>
         <source>Socket operation timed out.</source>
-        <translation>Zeitüberschreibung bei Socket-Operation</translation>
+        <translation>Zeitüberschreibung bei Socket-Operation.</translation>
     </message>
     <message>
         <source>Socket operation timed out</source>
@@ -269,7 +269,7 @@
     <message>
         <location filename="../../src/configdialog.cpp" line="96"/>
         <source>Use LDAP</source>
-        <translation>benutze LDAP</translation>
+        <translation>Benutze LDAP</translation>
     </message>
     <message>
         <source>LDAP Settings</source>
@@ -383,12 +383,12 @@
     <message>
         <location filename="../../src/configdialog.cpp" line="123"/>
         <source>Failover server 1 URL:</source>
-        <translation>Failover Server 1 URL:</translation>
+        <translation>URL von Failover-Server 1:</translation>
     </message>
     <message>
         <location filename="../../src/configdialog.cpp" line="125"/>
         <source>Failover server 2 URL:</source>
-        <translation>Failover Server 2 URL:</translation>
+        <translation>URL von Failover-Server 2:</translation>
     </message>
     <message>
         <source>X-Server settings</source>
@@ -402,12 +402,12 @@
     <message>
         <location filename="../../src/configdialog.cpp" line="227"/>
         <source>X11 version:</source>
-        <translation>X11 Version:</translation>
+        <translation>X11-Version:</translation>
     </message>
     <message>
         <location filename="../../src/configdialog.cpp" line="242"/>
         <source>Find X11 application</source>
-        <translation>Suche X11 Applikation</translation>
+        <translation>Suche X11-Applikation</translation>
     </message>
     <message>
         <source>Clientside SSH port for file system export usage:</source>
@@ -441,12 +441,12 @@
     <message>
         <location filename="../../src/configdialog.cpp" line="76"/>
         <source>Hide to system tray when closed</source>
-        <translation>Statt Schließen in den Systemabschnitt der Kontrolleiste minimieren</translation>
+        <translation>Statt Schließen in den Systemabschnitt der Kontrollleiste minimieren</translation>
     </message>
     <message>
         <location filename="../../src/configdialog.cpp" line="77"/>
         <source>Hide to system tray after connection is established</source>
-        <translation>Bei Verbindung in den Systemabschnitt der Kontrolleiste minimieren</translation>
+        <translation>Bei Verbindung in den Systemabschnitt der Kontrollleiste minimieren</translation>
     </message>
     <message>
         <location filename="../../src/configdialog.cpp" line="78"/>
@@ -516,13 +516,14 @@ can find updated versions on:
 &lt;center&gt;&lt;a href=&quot;https://xquartz.macosforge.org/&quot;&gt;https://xquartz.macosforge.org/&lt;/a&gt;&lt;/center&gt;</source>
         <translation>.
 
-Diese Version verursacht Probleme mit X-Anwendungen, wenn 24 Bit Farbtiefe gesetzt sind.
+Diese Version verursacht Probleme mit X-Anwendungen, wenn 24-Bit-Farbtiefe gesetzt sind.
 Sie sollten Ihre X11-Umgebung aktualisieren.
 
 MacPorts-Benutzer gehen bitte gemäß der folgenden Anleitung vor:
 &lt;center&gt;&lt;a href=&quot;https://guide.macports.org/chunked/using.common-tasks.html&quot;&gt;https://guide.macports.org/chunked/using.common-tasks.html&lt;/a&gt;&lt;/center&gt;
 
-Benutzer, die XQuartz über das Installationspaket installiert haben, können aktualisierte Versionen hier herunterladen:
+Benutzer, die XQuartz über das Installationspaket installiert haben,
+können aktualisierte Versionen hier herunterladen:
 &lt;center&gt;&lt;a href=&quot;https://xquartz.macosforge.org/&quot;&gt;https://xquartz.macosforge.org/&lt;/a&gt;&lt;/center&gt;</translation>
     </message>
     <message>
@@ -543,9 +544,9 @@ Some standard installation locations may be:
 Bitte versuchen Sie es erneut.
 
 Übliche Installationspfade sind zum Beispiel:
-&lt;center&gt;&lt;b&gt;/Applications/Utilities/X11.app&lt;/b&gt;&lt;/center&gt;
-&lt;center&gt;&lt;b&gt;/Applications/Utilities/XQuartz.app&lt;/b&gt;&lt;/center&gt;
-&lt;center&gt;&lt;b&gt;/Applications/MacPorts/X11.app&lt;/b&gt;&lt;/center&gt;</translation>
+&lt;center&gt;&lt;b&gt;/Programme/Dienstprogramme/X11.app&lt;/b&gt;&lt;/center&gt;
+&lt;center&gt;&lt;b&gt;/Programme/Dienstprogramme/XQuartz.app&lt;/b&gt;&lt;/center&gt;
+&lt;center&gt;&lt;b&gt;/Programme/MacPorts/X11.app&lt;/b&gt;&lt;/center&gt;</translation>
     </message>
     <message>
         <location filename="../../src/configdialog.cpp" line="645"/>
@@ -555,12 +556,12 @@ Bitte versuchen Sie es erneut.
     <message>
         <location filename="../../src/configdialog.cpp" line="646"/>
         <source>&amp;Input/Output</source>
-        <translation>Ein-/Ausgabe</translation>
+        <translation>E&amp;in-/Ausgabe</translation>
     </message>
     <message>
         <location filename="../../src/configdialog.cpp" line="647"/>
         <source>&amp;Media</source>
-        <translation>Medien</translation>
+        <translation>&amp;Medien</translation>
     </message>
     <message>
         <source>&amp;Settings</source>
@@ -592,7 +593,7 @@ Bitte versuchen Sie es erneut.
     <message>
         <location filename="../../src/connectionwidget.cpp" line="93"/>
         <source>Compression method:</source>
-        <translation>Methode:</translation>
+        <translation>Komprimierungsmethode:</translation>
     </message>
     <message>
         <location filename="../../src/connectionwidget.cpp" line="95"/>
@@ -655,12 +656,12 @@ Bitte versuchen Sie es erneut.
     <message>
         <location filename="../../src/ui/cupsprintsettingsdialog.ui" line="177"/>
         <source>Option</source>
-        <translation>OPtion</translation>
+        <translation>Option</translation>
     </message>
     <message>
         <location filename="../../src/ui/cupsprintsettingsdialog.ui" line="182"/>
         <source>Value</source>
-        <translation>Value</translation>
+        <translation>Wert</translation>
     </message>
     <message>
         <location filename="../../src/ui/cupsprintsettingsdialog.ui" line="188"/>
@@ -688,7 +689,7 @@ Bitte versuchen Sie es erneut.
     <message>
         <location filename="../../src/editconnectiondialog.cpp" line="61"/>
         <source>&amp;Input/Output</source>
-        <translation>Ein-/Ausgabe</translation>
+        <translation>E&amp;in-/Ausgabe</translation>
     </message>
     <message>
         <location filename="../../src/editconnectiondialog.cpp" line="62"/>
@@ -1067,7 +1068,7 @@ sound system connections through firewalls</source>
     <message>
         <location filename="../../src/exportdialog.cpp" line="151"/>
         <source>Select folder</source>
-        <translation>Wähle Ordner</translation>
+        <translation>Ordner auswählen</translation>
     </message>
 </context>
 <context>
@@ -1088,8 +1089,7 @@ sound system connections through firewalls</source>
     <message>
         <location filename="../../src/folderexplorer.cpp" line="77"/>
         <source>Create New Folder</source>
-        <translatorcomment>Neuen Ordner erstellen</translatorcomment>
-        <translation></translation>
+        <translation>Neuen Ordner erstellen</translation>
     </message>
     <message>
         <source>Rename Folder...</source>
@@ -1151,7 +1151,7 @@ sound system connections through firewalls</source>
     <message>
         <location filename="../../src/folderexplorer.cpp" line="131"/>
         <source>&quot;. Folder is not empty. Please remove the contents of this directory and try again.</source>
-        <translation>&quot;. Der Ordner ist nicht leer. Bitte löschen Sie den Inhalt des Ordners und versuchen Sie es erneut.</translation>
+        <translation>&quot; nicht entfernen. Der Ordner ist nicht leer. Bitte löschen Sie den Inhalt des Ordners und versuchen Sie es erneut.</translation>
     </message>
     <message>
         <source>&quot;. Folder is not empty. Please remove content of folder and try again.</source>
@@ -1281,13 +1281,13 @@ Public key hash: </source>
     <message>
         <location filename="../../src/httpbrokerclient.cpp" line="170"/>
         <source>Could not find known hosts file.If you accept the host key here, the file will be automatically created.</source>
-        <translation>Die ,,Known Hosts&apos;&apos;-Datei konnte nicht gefunden werden. Wenn Sie den Host-Key hier akzeptieren, dann wird die Datei automatisch erstellt.</translation>
+        <translation>Die „Known Hosts“-Datei konnte nicht gefunden werden. Wenn Sie den Host-Key hier akzeptieren, dann wird die Datei automatisch erstellt.</translation>
     </message>
     <message>
         <location filename="../../src/httpbrokerclient.cpp" line="179"/>
         <location filename="../../src/httpbrokerclient.cpp" line="189"/>
         <source>Host key verification failed.</source>
-        <translation>Host-Key Überprüfung fehlgeschlagen.</translation>
+        <translation>Host-Key-Überprüfung fehlgeschlagen.</translation>
     </message>
     <message>
         <location filename="../../src/httpbrokerclient.cpp" line="237"/>
@@ -1321,18 +1321,18 @@ Public key hash: </source>
         <location filename="../../src/httpbrokerclient.cpp" line="603"/>
         <location filename="../../src/httpbrokerclient.cpp" line="615"/>
         <source>Organization(O)	</source>
-        <translation>Organization(O)￼	</translation>
+        <translation>Organization(O)	</translation>
     </message>
     <message>
         <location filename="../../src/httpbrokerclient.cpp" line="606"/>
         <location filename="../../src/httpbrokerclient.cpp" line="618"/>
         <source>Organizational Unit(OU)	</source>
-        <translation>Organizational Unit(OU)￼	</translation>
+        <translation>Organizational Unit(OU)	</translation>
     </message>
     <message>
         <location filename="../../src/httpbrokerclient.cpp" line="609"/>
         <source>Serial Number	</source>
-        <translation>Serial Number￼	</translation>
+        <translation>Serial Number	</translation>
     </message>
     <message>
         <location filename="../../src/httpbrokerclient.cpp" line="611"/>
@@ -1351,7 +1351,7 @@ Public key hash: </source>
     <message>
         <location filename="../../src/httpbrokerclient.cpp" line="623"/>
         <source>Issued on	</source>
-        <translation>Issued on￼	</translation>
+        <translation>Issued on	</translation>
     </message>
     <message>
         <location filename="../../src/httpbrokerclient.cpp" line="624"/>
@@ -1368,7 +1368,7 @@ Public key hash: </source>
     <message>
         <location filename="../../src/httpbrokerclient.cpp" line="626"/>
         <source>SHA1	</source>
-        <translation>SHA1￼	</translation>
+        <translation>SHA1	</translation>
     </message>
     <message>
         <location filename="../../src/httpbrokerclient.cpp" line="628"/>
@@ -1378,7 +1378,7 @@ Public key hash: </source>
     <message>
         <location filename="../../src/httpbrokerclient.cpp" line="634"/>
         <source>Exit X2Go Client</source>
-        <translation>X2Go Client beenden</translation>
+        <translation>X2GoClient beenden</translation>
     </message>
     <message>
         <location filename="../../src/httpbrokerclient.cpp" line="636"/>
@@ -1406,29 +1406,29 @@ Public key hash: </source>
     <message>
         <location filename="../../src/mediawidget.cpp" line="65"/>
         <source>Start sound daemon</source>
-        <translation>Starte Sound Server</translation>
+        <translation>Starte Sound-Server</translation>
     </message>
     <message>
         <location filename="../../src/mediawidget.cpp" line="67"/>
         <source>Use running sound daemon</source>
-        <translation>Benutze existierenden Sound Server</translation>
+        <translation>Benutze existierenden Sound-Server</translation>
     </message>
     <message>
         <location filename="../../src/mediawidget.cpp" line="69"/>
         <source>Use SSH port forwarding to tunnel
 sound system connections through firewalls</source>
         <translation>Benutze Port-Weiterleitung über Tunnel
- um Audiosignale über Firewalls zu verbinden</translation>
+um Audiosignale über Firewalls zu verbinden</translation>
     </message>
     <message>
         <location filename="../../src/mediawidget.cpp" line="71"/>
         <source>Use default sound port</source>
-        <translation>Benutze standard Audio Port</translation>
+        <translation>Benutze Standard-Audio-Port</translation>
     </message>
     <message>
         <location filename="../../src/mediawidget.cpp" line="78"/>
         <source>Sound port:</source>
-        <translation>Audio Port:</translation>
+        <translation>Audio-Port:</translation>
     </message>
     <message>
         <location filename="../../src/mediawidget.cpp" line="105"/>
@@ -1510,7 +1510,7 @@ sound system connections through firewalls</source>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="922"/>
         <source>About Qt</source>
-        <translation>Über QT</translation>
+        <translation>Über Qt</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="6336"/>
@@ -1586,18 +1586,18 @@ Möchten Sie die Verbindung abbrechen?</translation>
         <location filename="../../src/onmainwindow.cpp" line="5352"/>
         <location filename="../../src/onmainwindow.cpp" line="5356"/>
         <source>Unable to create folder: </source>
-        <translation>Ordner kann nicht erstellt werden:</translation>
+        <translation>Ordner kann nicht erstellt werden: </translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="5382"/>
         <location filename="../../src/onmainwindow.cpp" line="5386"/>
         <source>Unable to write file: </source>
-        <translation>Datei kann nicht geschrieben werden:</translation>
+        <translation>Datei kann nicht geschrieben werden: </translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="5825"/>
         <source>Emergency exit.</source>
-        <translation>Notausgang.</translation>
+        <translation>Notbeendung.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="5834"/>
@@ -1617,7 +1617,7 @@ Möchten Sie die Verbindung abbrechen?</translation>
         <location filename="../../src/onmainwindow.cpp" line="7453"/>
         <location filename="../../src/onmainwindow.cpp" line="7458"/>
         <source>Wrong parameter: </source>
-        <translation>Falscher Parameter:</translation>
+        <translation>Falscher Parameter: </translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="7467"/>
@@ -1640,12 +1640,12 @@ Möchten Sie die Verbindung abbrechen?</translation>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="7540"/>
         <source>Git Info</source>
-        <translation>Git Info</translation>
+        <translation>Git-Info</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="8010"/>
         <source>RSA file empty.</source>
-        <translation>RSA Datei leer.</translation>
+        <translation>RSA-Datei leer.</translation>
     </message>
     <message>
         <source>Can not open key: </source>
@@ -1748,7 +1748,7 @@ Möchten Sie die Verbindung abbrechen?</translation>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="2721"/>
         <source> on </source>
-        <translation> on </translation>
+        <translation> auf </translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="1005"/>
@@ -1814,7 +1814,7 @@ Möchten Sie die Verbindung abbrechen?</translation>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="11643"/>
         <source>Client IP</source>
-        <translation>Client IP</translation>
+        <translation>Client-IP</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="4430"/>
@@ -1877,7 +1877,7 @@ Möchten Sie die Verbindung abbrechen?</translation>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="512"/>
         <source>Started X2Go Client.</source>
-        <translation>X2Go Client wurde gestartet.</translation>
+        <translation>X2GoClient wurde gestartet.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="592"/>
@@ -1899,7 +1899,7 @@ Möchten Sie die Verbindung abbrechen?</translation>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="627"/>
         <source>Trying to load language with lower preference, if existent.</source>
-        <translation>Versuche eine Sprache niedrigerer Präferenz zu laden, wenn vorhanden.</translation>
+        <translation>Versuche eine Sprache niedrigerer Präferenz zu laden, falls vorhanden.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="878"/>
@@ -1950,7 +1950,7 @@ Möchten Sie die Verbindung abbrechen?</translation>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="2834"/>
         <source>Connection error: </source>
-        <translation>Verbindungsfehler:</translation>
+        <translation>Verbindungsfehler: </translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="2903"/>
@@ -1967,7 +1967,8 @@ Do you want to terminate the connection?
         <translation>Das kann ein Anzeichen für einen Man-in-the-Middle-Angriff sein.
 Vielleicht werden Sie gerade von jemandem belauscht.
 Aus Sicherheitsgründen ist es angeraten, die Verbindung zu beenden.
-Möchten Sie die Verbindung abbrechen?</translation>
+Möchten Sie die Verbindung abbrechen?
+</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="2967"/>
@@ -1977,7 +1978,7 @@ Möchten Sie die Verbindung abbrechen?</translation>
         <location filename="../../src/onmainwindow.cpp" line="3038"/>
         <location filename="../../src/onmainwindow.cpp" line="3050"/>
         <source>Host key verification failed.</source>
-        <translation>Host-Key Überprüfung fehlgeschlagen.</translation>
+        <translation>Host-Key-Überprüfung fehlgeschlagen.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="2990"/>
@@ -1985,14 +1986,15 @@ Möchten Sie die Verbindung abbrechen?</translation>
 For security reasons, it is recommended to stop the connection attempt.
 Do you want to terminate the connection?
 </source>
-        <translation>Der Host-Key dieses Servers konnte nicht gefunden werden, aber eine anderer Schlüsseltyp für ihn ist bereits vorhanden. Ein Angreifer könnte den Standard-Key des Servers geändert haben, um Ihren Client glauben zu machen, der Key wäre noch nicht vorhanden.
+        <translation>Der Host-Key dieses Servers konnte nicht gefunden werden, aber ein anderer Schlüsseltyp für ihn ist bereits vorhanden. Ein Angreifer könnte den Standard-Key des Servers geändert haben, um Ihren Client glauben zu machen, der Key wäre noch nicht vorhanden.
 Aus Sicherheitsgründen ist es angeraten, die Verbindung zu beenden.
-Möchten Sie die Verbindung abbrechen?</translation>
+Möchten Sie die Verbindung abbrechen?
+</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="3029"/>
         <source>Could not find known hosts file.If you accept the host key here, the file will be automatically created.</source>
-        <translation>Die ,,Known Hosts&apos;&apos;-Datei konnte nicht gefunden werden. Wenn Sie den Host-Key hier akzeptieren, dann wird die Datei automatisch erstellt.</translation>
+        <translation>Die „Known Hosts“-Datei konnte nicht gefunden werden. Wenn Sie den Host-Key hier akzeptieren, dann wird die Datei automatisch erstellt.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="3082"/>
@@ -2042,19 +2044,21 @@ Möchten Sie die Verbindung abbrechen?</translation>
         <location filename="../../src/onmainwindow.cpp" line="4614"/>
         <location filename="../../src/onmainwindow.cpp" line="4633"/>
         <source> bits and restart your X.Org Server before you reconnect to this X2Go session.&lt;br /&gt;Do you want to resume this session anyway?</source>
-        <translation> bit zu ändern und den verwendeten X.Org-Server neu zu starten, bevor Sie sich mit der Sitzung verbinden.&lt;br /&gt; Trotzdem versuchen, die Sitzung fortzuführen?</translation>
+        <translation> bit zu ändern und den verwendeten X.Org-Server neu zu starten, bevor Sie sich mit der Sitzung verbinden.&lt;br /&gt;Trotzdem versuchen, die Sitzung fortzuführen?</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="5545"/>
         <source>Unable to create SSH tunnel for X2Go session (NX) startup:
 </source>
-        <translation>Kann keinen SSH-Tunnel für den Start der X2Go-Sitzung (NX) erstellen:</translation>
+        <translation>Kann keinen SSH-Tunnel für den Start der X2Go-Sitzung (NX) erstellen:
+</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="5575"/>
         <source>Unable to create SSH tunnel for audio data:
 </source>
-        <translation>Kann keinen SSH-Tunnel für Audiodaten erstellen:</translation>
+        <translation>Kann keinen SSH-Tunnel für Audiodaten erstellen:
+</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="5683"/>
@@ -2067,7 +2071,7 @@ Möchten Sie die Verbindung abbrechen?</translation>
         <source>This likely means the binary is not available.
 The current search path is: </source>
         <translation>Das bedeutet sehr wahrscheinlich, dass die ausführbare Datei nicht verfügbar ist.
-Der aktuelle Suchpfad lautet:</translation>
+Der aktuelle Suchpfad lautet: </translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="5698"/>
@@ -2077,7 +2081,7 @@ Der aktuelle Suchpfad lautet:</translation>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="5699"/>
         <source>Execution failed, exit code was: </source>
-        <translation>Ausführung fehlgeschlagen, der Exit-Code lautet:</translation>
+        <translation>Ausführung fehlgeschlagen, der Exit-Code lautete: </translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="5704"/>
@@ -2094,7 +2098,7 @@ Der aktuelle Suchpfad lautet:</translation>
         <location filename="../../src/onmainwindow.cpp" line="5709"/>
         <location filename="../../src/onmainwindow.cpp" line="8700"/>
         <source>didn&apos;t accept a write operation.</source>
-        <translation>hat keine Schreiboperation akzeptiert.</translation>
+        <translation>hat eine Schreiboperation nicht akzeptiert.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="5710"/>
@@ -2134,7 +2138,7 @@ Bitte melden Sie den Fehler wie auf der &lt;a href=&quot;http://wiki.x2go.org/do
     <message>
         <location filename="../../src/onmainwindow.cpp" line="5837"/>
         <source>Proxy didn&apos;t terminate after 3 seconds. Killing the proxy.</source>
-        <translation>der Proxy hat sich nicht nach 3 Sekunden beendet. Proxy wird nun zwangsbeendet.</translation>
+        <translation>Der Proxy hat sich nicht nach 3 Sekunden beendet. Proxy wird nun zwangsbeendet.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="5879"/>
@@ -2163,18 +2167,19 @@ Bitte melden Sie den Fehler wie auf der &lt;a href=&quot;http://wiki.x2go.org/do
         <location filename="../../src/onmainwindow.cpp" line="6368"/>
         <location filename="../../src/onmainwindow.cpp" line="6387"/>
         <source>Connection timeout, aborting</source>
-        <translation>Zeitüberschreitung</translation>
+        <translation>Zeitüberschreitung, breche ab</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="6043"/>
         <source>aborting</source>
-        <translation>Abbruch</translation>
+        <translation>breche ab</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="11926"/>
         <source>SSH daemon failed to open the application&apos;s
 authorized_keys file.</source>
-        <translation>Der SSH-Dienst konnte die authorized_keys-Datei der Anwendung nicht öffnen.</translation>
+        <translation>Der SSH-Dienst konnte die authorized_keys-Datei
+der Anwendung nicht öffnen.</translation>
     </message>
     <message>
         <source>&lt;b&gt;Session ID:&lt;br&gt;Server:&lt;br&gt;Username:&lt;br&gt;Display:&lt;br&gt;Creation Time:&lt;br&gt;Status:&lt;/b&gt;</source>
@@ -2269,7 +2274,7 @@ authorized_keys file.</source>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="11645"/>
         <source>Session ID</source>
-        <translation>Sitzungs ID</translation>
+        <translation>Sitzungs-ID</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="4721"/>
@@ -2461,7 +2466,7 @@ Please check your settings</source>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="219"/>
         <source>Terminal</source>
-        <translation></translation>
+        <translation>Eingabeaufforderung</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="3701"/>
@@ -2491,7 +2496,7 @@ Please check your settings</source>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="4442"/>
         <source>shadow session</source>
-        <translation></translation>
+        <translation>Shadow Session</translation>
     </message>
     <message>
         <source>&lt;br&gt;Sudo configuration error</source>
@@ -2501,12 +2506,12 @@ Please check your settings</source>
         <location filename="../../src/onmainwindow.cpp" line="9290"/>
         <location filename="../../src/onmainwindow.cpp" line="9295"/>
         <source>Unable to execute: </source>
-        <translation>Befehl konnte nicht ausgeführt werden:</translation>
+        <translation>Befehl konnte nicht ausgeführt werden: </translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="188"/>
         <source>X2Go Client</source>
-        <translation></translation>
+        <translation>X2Go Client</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="216"/>
@@ -2605,7 +2610,7 @@ Please check your settings</source>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="2789"/>
         <source> to </source>
-        <translation>auf</translation>
+        <translation> auf </translation>
     </message>
     <message>
         <source>Connection Error(</source>
@@ -2619,7 +2624,8 @@ Please check your settings</source>
         <location filename="../../src/onmainwindow.cpp" line="2962"/>
         <source>Host key for server changed.
 It is now: </source>
-        <translation>Host-Key des Servers hat sich geändert. Er lautet jetzt: </translation>
+        <translation>Host-Key des Servers hat sich geändert.
+Er lautet jetzt: </translation>
     </message>
     <message>
         <source>For security reasons, connection will be stopped</source>
@@ -2637,7 +2643,8 @@ It is now: </source>
         <location filename="../../src/onmainwindow.cpp" line="3034"/>
         <source>The server is unknown. Do you trust the host key?
 Public key hash: </source>
-        <translation>Der Server ist unbekannt. Vertrauen Sie diesem Host-Key? Öffentlicher Schlüssel: </translation>
+        <translation>Der Server ist unbekannt. Vertrauen Sie diesem Host-Key?
+Hash des öffentlichen Schlüssels: </translation>
     </message>
     <message>
         <source>Host key verification failed</source>
@@ -2646,7 +2653,7 @@ Public key hash: </source>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="3078"/>
         <source>Authentication failed: </source>
-        <translation>Anmeldung fehlgeschlagen:</translation>
+        <translation>Anmeldung fehlgeschlagen: </translation>
     </message>
     <message>
         <source>Authentication failed</source>
@@ -2665,7 +2672,7 @@ Public key hash: </source>
         <location filename="../../src/onmainwindow.cpp" line="8057"/>
         <location filename="../../src/onmainwindow.cpp" line="8059"/>
         <source>Connection failed: </source>
-        <translation>Verbindung fehlgeschlagen:</translation>
+        <translation>Verbindung fehlgeschlagen: </translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="3552"/>
@@ -2690,7 +2697,7 @@ Public key hash: </source>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="11366"/>
         <source>&lt;b&gt;Session ID:&lt;br&gt;Server:&lt;br&gt;Username:&lt;br&gt;Display:&lt;br&gt;Creation time:&lt;br&gt;Status:&lt;/b&gt;</source>
-        <translation>&lt;b&gt;Sitzungs ID:&lt;br&gt;Server:&lt;br&gt;Login:&lt;br&gt;Display:&lt;br&gt;Startzeit:&lt;br&gt;Status:&lt;/b&gt;</translation>
+        <translation>&lt;b&gt;Sitzungs-ID:&lt;br&gt;Server:&lt;br&gt;Login:&lt;br&gt;Display:&lt;br&gt;Startzeit:&lt;br&gt;Status:&lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="672"/>
@@ -2877,7 +2884,7 @@ Wollen Sie den versteckten Modus nutzen?</translation>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="2709"/>
         <source>RDP connection</source>
-        <translation>RDP Verbindung</translation>
+        <translation>RDP-Verbindung</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="687"/>
@@ -2928,14 +2935,18 @@ Bitte überprüfen Sie Ihre Installation</translation>
         <source>SSH daemon could not be started.
 
 </source>
-        <translation>SSH-Daemon konnte nicht gestartet werden.</translation>
+        <translation>SSH-Daemon konnte nicht gestartet werden.
+
+</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="11786"/>
         <source>SSH daemon is not running.
 
 </source>
-        <translation>SSH-Daemon läuft nicht.</translation>
+        <translation>SSH-Daemon läuft nicht.
+
+</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="11790"/>
@@ -2951,6 +2962,7 @@ Für diese Funktionen muss auf Ihrem Client ein funktionierender und laufender S
 &lt;b&gt;Druck- und Dateifreigaben werden für diese Sitzung deaktiviert.&lt;/b&gt;
 
 Bitte überprüfen Sie auch den &lt;b&gt;clientseitigen SSH-Port&lt;/b&gt; in den allgemeinen Einstellungen.
+
 </translation>
     </message>
     <message>
@@ -2963,14 +2975,17 @@ If you see this message, please report a bug on:
         <translation>Normalerweise sollte diese Meldung nicht auftreten, da X2GoClient für Windows seinen eigenen, internen SSH-Server mitbringt.
 
 Wenn Sie diese Meldung sehen, bitten wir um einen Bugreport über:
-&lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;</translation>
+&lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
+</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="11805"/>
         <source>The SSH server failed to start.
 
 </source>
-        <translation>SSH-Server konnte nicht gestartet werden.</translation>
+        <translation>SSH-Server konnte nicht gestartet werden.
+
+</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="11806"/>
@@ -2979,9 +2994,9 @@ Wenn Sie diese Meldung sehen, bitten wir um einen Bugreport über:
 Please report a bug on:
 &lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
 </source>
-        <translation>X2GoClient konnte keinen globalen, laufenden SSH-Server auf Ihrem System finden, und konnte auch nicht seinen eigenen starten..
+        <translation>X2GoClient konnte keinen globalen, laufenden SSH-Server auf Ihrem System finden, und konnte auch nicht seinen eigenen starten.
 
-Bitte melden Sie den Fehler via:
+Bitte melden Sie den Fehler über:
 &lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
 </translation>
     </message>
@@ -2997,7 +3012,7 @@ Bitte melden Sie den Fehler via:
         <source>On OS X, please follow the following steps to enable SSH service:&lt;ul&gt;&lt;li&gt;Open &lt;b&gt;System Preferences&lt;/b&gt; (Applications -&gt; System Preferences)&lt;/li&gt;&lt;li&gt;Go to &lt;b&gt;Sharing&lt;/b&gt;&lt;/li&gt;&lt;li&gt;Tick the checkbox besides &lt;b&gt;Remote Login&lt;/b&gt;&lt;/li&gt;&lt;li&gt;Check that &lt;b&gt;Allow access for:&lt;/b&gt; is set to either:&lt;ul&gt;&lt;li&gt;All users: &lt;b&gt;no further steps necessary&lt;/b&gt;&lt;/li&gt;&lt;li&gt;Only these users &lt;b&gt;and your user name is included in the list&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;&lt;li&gt;Optionally, add your user name to the allowed list via the &lt;b&gt;Plus Button&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;&lt;b&gt;Warning: enabling SSH access will allow any user on the network to connect to your machine. It is your responsibility to set a strong password for every user that is allowed to log in via SSH.&lt;/b&gt;
 
 </source>
-        <translation>Für OS X befolgen Sie bitte die nachfolgenden Schritte, um den SSH-Service zu starten:&lt;ul&gt;&lt;li&gt;Öffnen Sie die &lt;b&gt;Systemeinstellungen&lt;/b&gt; (Programme -&gt; Systemeinstellungen)&lt;/li&gt;&lt;li&gt;Wählen Sie &lt;b&gt;Freigaben&lt;/b&gt;&lt;/li&gt;&lt;li&gt;Setzen Sie einen Haken neben &lt;b&gt;Entfernte Anmeldung&lt;/b&gt;&lt;/li&gt;&lt;li&gt;Prüfen Sie, dass &lt;b&gt;Zugriff erlauben für:&lt;/b&gt; auf einem der beiden folgenden Werte steht:&lt;ul&gt;&lt;li&gt;Alle Benutzer: &lt;b&gt; - keine weiteren Maßnahmen erforderlich&lt;/b&gt;&lt;/li&gt;&lt;li&gt;Nur diese Benutzer &lt;b&gt; - wobei Ihr Benutzername in der Liste aufgeführt ist&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;&lt;li&gt;Fügen Sie optional Ihren Benutzernamen durch einen Klick auf den&lt;b&gt;Plus-Knopf&lt;/b&gt; der Liste hinzu.&lt;/li&gt;&lt;/ul&gt;&lt;b&gt;Warnung:: den SSH-Zugriff zu aktivieren erlaubt es kedem Benutzer im Netzwerk, sich mit ihrem Computer zu verbinden. Es liegt in Ihrer Verantwortung, sicherzustellen, dass alle Benutzerkonten, die sich per SSH einloggen dürfen, auch mit sicheren Passworten geschützt sind.&lt;/b&gt;
+        <translation>Für OS X befolgen Sie bitte die nachfolgenden Schritte, um den SSH-Service zu starten:&lt;ul&gt;&lt;li&gt;Öffnen Sie die &lt;b&gt;Systemeinstellungen&lt;/b&gt; (Programme -&gt; Systemeinstellungen)&lt;/li&gt;&lt;li&gt;Wählen Sie &lt;b&gt;Freigaben&lt;/b&gt;&lt;/li&gt;&lt;li&gt;Setzen Sie einen Haken neben &lt;b&gt;Entfernte Anmeldung&lt;/b&gt;&lt;/li&gt;&lt;li&gt;Prüfen Sie, dass &lt;b&gt;Zugriff erlauben für:&lt;/b&gt; auf einem der beiden folgenden Werte steht:&lt;ul&gt;&lt;li&gt;Alle Benutzer: &lt;b&gt;keine weiteren Maßnahmen erforderlich&lt;/b&gt;&lt;/li&gt;&lt;li&gt;Nur diese Benutzer &lt;b&gt;, wobei Ihr Benutzername in der Liste aufgeführt ist&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;&lt;li&gt;Fügen Sie optional Ihren Benutzernamen durch einen Klick auf den&lt;b&gt;Plus-Knopf&lt;/b&gt; der Liste hinzu.&lt;/li&gt;&lt;/ul&gt;&lt;b&gt;Warnung: den SSH-Zugriff zu aktivieren erlaubt es jedem Benutzer im Netzwerk, sich mit ihrem Computer zu verbinden. Es liegt in Ihrer Verantwortung, sicherzustellen, dass alle Benutzerkonten, die sich per SSH einloggen dürfen, auch mit sicheren Passworten geschützt sind.&lt;/b&gt;
 
 </translation>
     </message>
@@ -3006,7 +3021,9 @@ Bitte melden Sie den Fehler via:
         <source>Please ask your system administrator to provide the SSH service on your computer.
 
 </source>
-        <translation>Bitte fragen Sie Ihren Systemadministrator, dass er Ihnen den SSH-Dienst auf dem Computer einrichtet.</translation>
+        <translation>Bitten Sie Ihren Systemadministrator, dass er Ihnen den SSH-Dienst auf dem Computer einrichtet.
+
+</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="11840"/>
@@ -3030,13 +3047,15 @@ The SSH server is currently not configured correctly.
 Please ensure that the server&apos;s public exists.
 
 </source>
-        <translation>Sie haben Die Druck- oder Dateifreigabe aktiviert.
+        <translation>Sie haben die Druck- oder Dateifreigabe aktiviert.
 Für diese Funktionen muss auf Ihrem Client ein funktionierender und laufender SSH-Server vorhanden sein.
 &lt;b&gt;Druck- und Dateifreigaben werden für diese Sitzung deaktiviert.&lt;/b&gt;
 
 Der SSH-Server ist momentan nicht korrekt konfiguriert.
 
-Bitte stellen Sie sicher, dass der öffentliche Schlüssel des Servers existiert.</translation>
+Bitte stellen Sie sicher, dass der öffentliche Schlüssel des Servers existiert.
+
+</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="11863"/>
@@ -3048,7 +3067,8 @@ If you see this message, please report a bug on:
         <translation>Normalerweise sollte diese Meldung nicht auftreten, da X2GoClient für Windows seinen eigenen, internen SSH-Server mitbringt und die benötigten Schlüssel automatisch generiert.
 
 Wenn Sie diese Meldung sehen, bitten wir um einen Bugreport über:
-&lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;</translation>
+&lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
+</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="11873"/>
@@ -3060,12 +3080,13 @@ Please report a bug on:
         <translation>X2GoClient konnte keine SSH-Host-Keys erstellen.
 
 Wenn Sie diese Meldung sehen, bitten wir um einen Bugreport über:
-&lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;</translation>
+&lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
+</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="11882"/>
         <source>On OS X, please follow these steps to generate the required keys:&lt;ul&gt;&lt;li&gt;Open a &lt;b&gt;Terminal Window&lt;/b&gt; (Applications -&gt; Utilities -&gt; Terminal)&lt;/li&gt;&lt;li&gt;Run this command: &lt;b&gt;ssh -p </source>
-        <translation>OS-X-Benutzer befolgen bitte diese Anleitung, um die benötigten Keys zu erstellen:&lt;ul&gt;&lt;li&gt;Öffnen Sie ein &lt;b&gt;Terminal-Fenster&lt;/b&gt; (Programme-&gt; Dienstprogramme -&gt; Terminal)&lt;/li&gt;&lt;li&gt;Führen Sie diesen Befehl aus: &lt;b&gt;ssh -p </translation>
+        <translation>OS-X-Benutzer befolgen bitte diese Anleitung, um die benötigten Keys zu erstellen:&lt;ul&gt;&lt;li&gt;Öffnen Sie ein &lt;b&gt;Terminal-Fenster&lt;/b&gt; (Programme -&gt; Dienstprogramme -&gt; Terminal)&lt;/li&gt;&lt;li&gt;Führen Sie diesen Befehl aus: &lt;b&gt;ssh -p </translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="11893"/>
@@ -3075,7 +3096,7 @@ If you are administrating this system yourself, please run:
 &lt;center&gt;&lt;b&gt;sudo ssh-keygen -A&lt;/b&gt;&lt;/center&gt;
 
 </source>
-        <translation>Bitte sprechen Sie Ihren Systemadministrator an, dass er Ihnen die entsprechenden Host-Keys generiert.
+        <translation>Bitten Sie Ihren Systemadministrator, dass er Ihnen die entsprechenden Host-Keys generiert.
 
 Wenn Sie selbst der Systemadministrator sind, führen Sie bitte folgenden Befehl aus:
 &lt;center&gt;&lt;b&gt;sudo ssh-keygen -A&lt;/b&gt;&lt;/center&gt;
@@ -3117,7 +3138,8 @@ service on your computer.</source>
         <location filename="../../src/onmainwindow.cpp" line="11915"/>
         <source>SSH daemon failed to open the application&apos;s public key
 used for exporting folders and printers.</source>
-        <translation>Der SSH-Dienst konnte den für Datei- und Druckfreigaben benötigten öffentlichen Host-Schlüssel der Anwendung nicht öffnen.</translation>
+        <translation>Der SSH-Dienst konnte den für Datei- und Druckfreigaben benötigten
+öffentlichen Host-Schlüssel der Anwendung nicht öffnen.</translation>
     </message>
     <message>
         <source>SSH daemon failed to open the application&apos;s
@@ -3127,7 +3149,7 @@ authoized_keys file.</source>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="12043"/>
         <source>&lt;br&gt;&lt;b&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;Click this button&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;to restore toolbar&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/b&gt;&lt;br&gt;</source>
-        <translation>&lt;br&gt;&lt;b&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;zum Wiederherstellen&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;der Werkzeugleiste&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;hier klicken&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/b&gt;&lt;br&gt;</translation>
+        <translation>&lt;br&gt;&lt;b&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;zum Wiederherstellen&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;der Werkzeugleiste&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;hier klicken&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/b&gt;&lt;br&gt;</translation>
     </message>
     <message>
         <source>Can&apos;t open config file: </source>
@@ -3167,7 +3189,7 @@ Sie können SSHD über folgenden Befehl installieren:
         <source>Are you sure you want to terminate this session?
 Unsaved documents will be lost.</source>
         <translation>Die Sitzung wird beendet. Sind Sie sicher?
-Ungespeicherte Dokumente gehen verloren</translation>
+Ungespeicherte Dokumente gehen verloren.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="6633"/>
@@ -3276,12 +3298,12 @@ Ungespeicherte Dokumente gehen verloren</translation>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="8350"/>
         <source>&lt;br&gt;This is a client to access the X2Go network-based computing environment. This client will be able to connect to X2Go Server(s) and start, stop, resume and terminate (running) desktop sessions. X2Go Client stores different server connections and may automatically request authentication data from LDAP directories. Furthermore, it can be used as a fullscreen login screen (replacement for login managers like XDM). Please visit &lt;a href=&quot;http://www.x2go.org&quot;&gt;the project home page at x2go.org&lt;/a&gt; for further information.</source>
-        <translation>&lt;br&gt;Dies ist ein Client für den Zugriff auf die netzwerkbasierte Anwendungsumgebung X2Go. Mit Hilfe dieser Anwendung können Sie Verbindungen zu einem X2GoServer starten, stoppen, laufende Sitzungen fortführen oder anhalten und verschiedene Sitzungskonfigurationen verwalten. Die Authentifizierung kann über LDAP erfolgen und das Programm kann im Vollbildmodus (als Ersatz für XDM) gestartet werden. Weitere Informationen erhalten SIe auf &lt;a href=&quot;http://www.x2go.org&quot;&gt;x2go.org&lt;/a&gt;. </translation>
+        <translation>&lt;br&gt;Dies ist ein Client für den Zugriff auf die netzwerkbasierte Anwendungsumgebung X2Go. Mit Hilfe dieser Anwendung können Sie Verbindungen zu einem X2GoServer starten, stoppen, laufende Sitzungen fortführen oder anhalten und verschiedene Sitzungskonfigurationen verwalten. Die Authentifizierung kann über LDAP erfolgen und das Programm kann im Vollbildmodus (als Ersatz für XDM) gestartet werden. Weitere Informationen erhalten Sie auf &lt;a href=&quot;http://www.x2go.org&quot;&gt;der Projektwebsite x2go.org&lt;/a&gt;.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="8364"/>
         <source>&lt;b&gt;X2Go Client v. </source>
-        <translation>&lt;b&gt;X2GoClient v.</translation>
+        <translation>&lt;b&gt;X2GoClient V. </translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="8409"/>
@@ -3328,14 +3350,15 @@ Bitte überprüfen Sie Ihre Installation.</translation>
         <location filename="../../src/onmainwindow.cpp" line="9326"/>
         <source>Remote server does not support file system exports through SSH tunnels.
 Please update your x2goserver package.</source>
-        <translation>Der gewählte Server unterstützt keinen Dateisystemexport via SSH Tunnel.
+        <translation>Der gewählte Server unterstützt keinen Dateisystemexport via SSH-Tunnel.
 Bitte installieren Sie dort eine neuere Version des X2GoServer-Pakets.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="9351"/>
         <source>Unable to create SSH tunnel for Folder Sharing and Printing support:
 </source>
-        <translation>Kann keinen SSH-Tunnel für die Druck- und Dateifreigabe erstellen:</translation>
+        <translation>Kann keinen SSH-Tunnel für die Druck- und Dateifreigabe erstellen:
+</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="9380"/>
@@ -3452,7 +3475,7 @@ Bitte installieren Sie dort eine neuere Version des X2GoServer-Pakets.</translat
     <message>
         <location filename="../../src/printdialog.cpp" line="63"/>
         <source>You may reactivate this dialog using the X2Go Client settings dialog. To do so, follow this path in the menu bar: Options -&gt; Settings)</source>
-        <translation>Über die Clienteinstellungen (Menü -&gt; Einstellungen -&gt; Konfiguration) können Sie den Dialog wieder einblenden</translation>
+        <translation>Über die Clienteinstellungen (Menü -&gt; Einstellungen -&gt; Konfiguration) können Sie den Dialog wieder einblenden.</translation>
     </message>
     <message>
         <source>You&apos;ve deactivated the x2go client printing dialog.</source>
@@ -3478,14 +3501,15 @@ Bitte installieren Sie dort eine neuere Version des X2GoServer-Pakets.</translat
     <message>
         <location filename="../../src/printprocess.cpp" line="172"/>
         <source>PDF Document (*.pdf)</source>
-        <translation>PDF Dokument (*.pdf)</translation>
+        <translation>PDF-Dokument (*.pdf)</translation>
     </message>
     <message>
         <location filename="../../src/printprocess.cpp" line="266"/>
         <location filename="../../src/printprocess.cpp" line="289"/>
         <source>Failed to execute command:
 </source>
-        <translation>Befehl konnte nicht ausgeführt werden:</translation>
+        <translation>Befehl konnte nicht ausgeführt werden:
+</translation>
     </message>
     <message>
         <location filename="../../src/printprocess.cpp" line="281"/>
@@ -3538,7 +3562,7 @@ Bitte installieren Sie dort eine neuere Version des X2GoServer-Pakets.</translat
     <message>
         <location filename="../../src/ui/printwidget.ui" line="155"/>
         <source>Open in viewer application</source>
-        <translation>Als PDF (Anzeige) öffnen</translation>
+        <translation>Im (PDF-) Anzeigeprogramm öffnen</translation>
     </message>
     <message>
         <location filename="../../src/ui/printwidget.ui" line="167"/>
@@ -3608,7 +3632,7 @@ lpr -P hp_laserjet</translation>
     <message>
         <location filename="../../src/ui/printercmddialog.ui" line="52"/>
         <source>Please choose the printing file format (regarding to your printing environment - if you use CUPS you may use PDF)</source>
-        <translation>Bitte wählen Sie ein Dateiformat für den Druck (passend zu Ihrer Druckumgebung - bei Verwendung von CUPS können Sie z.B, PDF nutzen)</translation>
+        <translation>Bitte wählen Sie ein Dateiformat für den Druck (passend zu Ihrer Druckumgebung - bei Verwendung von CUPS können Sie z.B. PDF nutzen)</translation>
     </message>
     <message>
         <location filename="../../src/ui/printercmddialog.ui" line="68"/>
@@ -3628,7 +3652,7 @@ lpr -P hp_laserjet</translation>
     <message>
         <location filename="../../src/ui/printercmddialog.ui" line="94"/>
         <source>Please choose the method of printing file input (some commands accepting printing files as program options, some are awaiting data on standard input):</source>
-        <translation>Bitte wählen Sie die Ausgabeform für die Druckübergabe (Einige Druckumgebungen erwarten Dateien als Programmoptionen, andere erwarten die Ausgabe als &quot;standard input&quot;):</translation>
+        <translation>Bitte wählen Sie die Ausgabeform für die Druckübergabe (einige Druckumgebungen erwarten Dateien als Programmoptionen, andere erwarten die Ausgabe als &quot;standard input&quot;):</translation>
     </message>
     <message>
         <location filename="../../src/ui/printercmddialog.ui" line="110"/>
@@ -3660,7 +3684,7 @@ Beispiel:
     <message>
         <location filename="../../src/ongetpass.cpp" line="78"/>
         <source>No response received from the remote server. Do you want to terminate the current session?</source>
-        <translation>Keine Antwort vom Server. Möchten Sie die Sitzung unterbrechen?</translation>
+        <translation>Keine Antwort vom Server empfangen. Möchten Sie die Sitzung unterbrechen?</translation>
     </message>
     <message>
         <location filename="../../src/x2goutils.cpp" line="161"/>
@@ -3685,14 +3709,15 @@ Should you have &lt;b&gt;not&lt;/b&gt; installed XQuartz yet, please
 follow the outlined steps:
 
 </source>
-        <translation>X2Go Client setzt ein installiertes XQuartz voraus.
+        <translation>X2GoClient setzt ein installiertes XQuartz voraus.
 
 Wenn XQuartz bereits auf Ihrem System installiert ist,
 wählen Sie bitte den passenden Pfad im nun erscheinenden Dialogfenster aus.
 Falls Sie sich nicht sicher sind, finden Sie am Ende dieses Texts
 ein paar gängige Pfade als Vorschlag.
 
-Falls Sie XQuartz &lt;b&gt;noch nicht&lt;/b&gt; installiert haben, befolgen Sie bitte diese Anleitung:
+Falls Sie XQuartz &lt;b&gt;noch nicht&lt;/b&gt; installiert haben,
+befolgen Sie bitte diese Anleitung:
 
 </translation>
     </message>
@@ -3714,16 +3739,17 @@ or
 &lt;center&gt;&lt;b&gt;/Applications/Utilities/XQuartz.app&lt;/b&gt;&lt;/center&gt;</source>
         <translation>MacPorts-Benutzer installieren bitte entweder den Port &lt;b&gt;xorg-server&lt;/b&gt;
 oder den Port &lt;b&gt;xorg-server-devel&lt;/b&gt;.
-Nach erfolgreicher Installation befolgen Sie bitte die vom Port-Utility angezeigte Anleitung, um den Server automatisch zu laden und zu starten.
+Nach erfolgreicher Installation befolgen Sie bitte die vom Port-Utility
+angezeigte Anleitung, um den Server automatisch zu laden und zu starten.
 
 Alle anderen Benutzer beziehen und installieren XQuartz bitte von:
 &lt;center&gt;&lt;a href=&quot;https://xquartz.macosforge.org/&quot;&gt;https://xquartz.macosforge.org/&lt;/a&gt;&lt;/center&gt;
 
-Starten Sie anschließend X2GoClient neu, und wählen Sie den passenden Pfad zur X11-Anwendung in den allgemeinen X2GoClient-Einstellungen.
-
-Gängige Pfade sind:
+Starten Sie anschließend X2GoClient neu, und wählen Sie den passenden Pfad
+zur X11-Anwendung in den allgemeinen X2GoClient-Einstellungen.
+Gängige Pfade könnten sein
 &lt;center&gt;&lt;b&gt;/Applications/MacPorts/X11.app&lt;/b&gt;&lt;/center&gt;
-or
+oder
 &lt;center&gt;&lt;b&gt;/Applications/Utilities/XQuartz.app&lt;/b&gt;&lt;/center&gt;</translation>
     </message>
 </context>
@@ -3870,7 +3896,7 @@ or
         <location filename="../../src/sessionbutton.cpp" line="441"/>
         <location filename="../../src/sessionbutton.cpp" line="763"/>
         <source>RDP connection</source>
-        <translation>RDP Verbindung</translation>
+        <translation>RDP-Verbindung</translation>
     </message>
     <message>
         <location filename="../../src/sessionbutton.cpp" line="371"/>
@@ -3933,7 +3959,7 @@ Wollen Sie den versteckten Modus verwenden?</translation>
     <message>
         <location filename="../../src/sessionexplorer.cpp" line="227"/>
         <source>X2Go Link to session </source>
-        <translation></translation>
+        <translation>X2Go-Verknüpfung zu einer Sitzung </translation>
     </message>
     <message>
         <location filename="../../src/sessionexplorer.cpp" line="363"/>
@@ -4058,12 +4084,12 @@ Wollen Sie den versteckten Modus verwenden?</translation>
     <message>
         <location filename="../../src/sessionwidget.cpp" line="142"/>
         <source>Delegation of GSSAPI credentials to the server</source>
-        <translation>Übertragung der GSSAPI Legitimation auf den Server</translation>
+        <translation>Übertragung der GSSAPI-Legitimation auf den Server</translation>
     </message>
     <message>
         <location filename="../../src/sessionwidget.cpp" line="146"/>
         <source>Use Proxy server for SSH connection</source>
-        <translation>Proxy Server für SSH Verbindung verwenden</translation>
+        <translation>Proxy-Server für SSH-Verbindung verwenden</translation>
     </message>
     <message>
         <location filename="../../src/sessionwidget.cpp" line="147"/>
@@ -4212,7 +4238,7 @@ Wollen Sie den versteckten Modus verwenden?</translation>
         <location filename="../../src/sessionwidget.cpp" line="328"/>
         <location filename="../../src/sessionwidget.cpp" line="443"/>
         <source>X2Go Client is running in portable mode. You should use a path on your USB device to be able to access your data wherever you are.</source>
-        <translation>x2goclient wird gerade als portable Anwendung ausgeführt. Sie sollten einen Pfad auf dem USB-Medium wählen, um von überall aus auf Ihre Daten zugreifen zu können.</translation>
+        <translation>X2Go Client wird gerade als portable Anwendung ausgeführt. Sie sollten einen Pfad auf dem USB-Medium wählen, um von überall aus auf Ihre Daten zugreifen zu können.</translation>
     </message>
     <message>
         <location filename="../../src/sessionwidget.cpp" line="490"/>
@@ -4240,7 +4266,7 @@ Wollen Sie den versteckten Modus verwenden?</translation>
         <location filename="../../src/sessionwidget.cpp" line="499"/>
         <location filename="../../src/sessionwidget.cpp" line="742"/>
         <source>XDMCP server:</source>
-        <translation>XDMCP Server:</translation>
+        <translation>XDMCP-Server:</translation>
     </message>
     <message>
         <location filename="../../src/sessionwidget.cpp" line="217"/>
@@ -4317,17 +4343,17 @@ Wollen Sie den versteckten Modus verwenden?</translation>
     <message>
         <location filename="../../src/settingswidget.cpp" line="181"/>
         <source>Model: </source>
-        <translation>Modell:</translation>
+        <translation>Modell: </translation>
     </message>
     <message>
         <location filename="../../src/settingswidget.cpp" line="184"/>
         <source>Layout: </source>
-        <translation>Tastaturlayout:</translation>
+        <translation>Tastaturlayout: </translation>
     </message>
     <message>
         <location filename="../../src/settingswidget.cpp" line="187"/>
         <source>Variant: </source>
-        <translation>Variante:</translation>
+        <translation>Variante: </translation>
     </message>
     <message>
         <source>RDP Client</source>
@@ -4606,7 +4632,7 @@ sound system connections through firewalls</source>
     <message>
         <location filename="../../src/sshmasterconnection.cpp" line="1237"/>
         <source>Failed to start SSH client. Please check your installation and GSSApi configuration.</source>
-        <translation>Konnte SSH Client nicht starten. Bitte überprüfen Sie Ihre Installation und die GSSApi-Konfiguration.</translation>
+        <translation>Konnte den SSH-Client nicht starten. Bitte überprüfen Sie Ihre Installation und die GSSApi-Konfiguration.</translation>
     </message>
     <message>
         <location filename="../../src/sshmasterconnection.cpp" line="1263"/>
@@ -4756,7 +4782,7 @@ sound system connections through firewalls</source>
     <message>
         <location filename="../../src/sshprocess.cpp" line="145"/>
         <source>Error binding </source>
-        <translation>Socket-Bind-Fehler</translation>
+        <translation>Socket-Bind-Fehler </translation>
     </message>
 </context>
 <context>
