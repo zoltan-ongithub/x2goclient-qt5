@@ -48,6 +48,8 @@ x2goclient (4.0.5.1-0x2go1) UNRELEASED; urgency=low
       ("x2go..." -> "X2Go...") as unfinished for later fixup.
     - res/i18n/x2goclient_nb_no.ts: fix (meta data) typo introduced with last
       commit.
+    - res/i18n/x2goclient_nl.ts: fixup translation by respecting the original
+      messages' format and other changes.
   * debian/control:
     - Change apache2-dev | libc6-dev build dependency back to apache2-dev
       only. Otherwise, apache2-dev is not installed at all, even though

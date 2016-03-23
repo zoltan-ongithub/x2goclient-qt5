@@ -261,7 +261,7 @@
         <location filename="../../src/contest.cpp" line="160"/>
         <location filename="../../src/contest.cpp" line="166"/>
         <source>Failed: </source>
-        <translation>Mislukt:</translation>
+        <translation>Mislukt: </translation>
     </message>
 </context>
 <context>
@@ -378,7 +378,8 @@ U moet uw X11 omgeving updaten.
 MacPorts gebruikers kunnen de stappen doorlopen die beschreven zijn op:
 &lt;center&gt;&lt;a href=&quot;https://guide.macports.org/chunked/using.common-tasks.html&quot;&gt;https://guide.macports.org/chunked/using.common-tasks.html&lt;/a&gt;&lt;/center&gt;
 
-Gebruikers die XQuartz geinstalleerd hebben via een installatie bestand kunnen de nieuwste versie downloaden via:
+Gebruikers die XQuartz geinstalleerd hebben via een installatie bestand
+kunnen de nieuwste versie downloaden via:
 &lt;center&gt;&lt;a href=&quot;https://xquartz.macosforge.org/&quot;&gt;https://xquartz.macosforge.org/&lt;/a&gt;&lt;/center&gt;</translation>
     </message>
     <message>
@@ -655,7 +656,7 @@ Locaties voor installatie kunnen de volgende zijn:
     <message>
         <location filename="../../src/editconnectiondialog.cpp" line="126"/>
         <source>Session preferences - </source>
-        <translation>Sessie voorkeuren</translation>
+        <translation>Sessie voorkeuren - </translation>
     </message>
 </context>
 <context>
@@ -776,7 +777,7 @@ Locaties voor installatie kunnen de volgende zijn:
     <message>
         <location filename="../../src/folderexplorer.cpp" line="130"/>
         <source>Unable to remove &quot;</source>
-        <translation>Verwijderen niet mogelijk</translation>
+        <translation>Verwijderen niet mogelijk &quot;</translation>
     </message>
     <message>
         <location filename="../../src/folderexplorer.cpp" line="131"/>
@@ -813,7 +814,7 @@ Locaties voor installatie kunnen de volgende zijn:
         <source>Host key for server changed.
 It is now: </source>
         <translation>Host sleutel van server aangepast.
-Het is nu:</translation>
+Het is nu: </translation>
     </message>
     <message>
         <source>For security reasons, connection will be stopped</source>
@@ -833,7 +834,7 @@ serversleutel aangepast en wil uw client misleiden door deze te laten geloven da
         <source>The server is unknown. Do you trust the host key?
 Public key hash: </source>
         <translation>Deze server is onbekend. Wilt u deze host sleutel vertrouwen?
-Publieke sleutel hash:</translation>
+Publieke sleutel hash: </translation>
     </message>
     <message>
         <source>Host key verification failed</source>
@@ -899,8 +900,7 @@ Publieke sleutel hash:</translation>
     <message>
         <location filename="../../src/httpbrokerclient.cpp" line="144"/>
         <source>The host key for this server was not found but anothertype of key exists. An attacker might have changed the default server key to trick your client into thinking the key does not exist yet.</source>
-        <translation>De host sleutel voor deze server is niet gevonden maar een ander type sleutel is aanwezig. Een aanvaller heeft mogelijk de standaard
-serversleutel aangepast en wil uw client misleiden door deze te laten geloven dat de sleutel niet bestaat.</translation>
+        <translation>De host sleutel voor deze server is niet gevonden maar een ander type sleutel is aanwezig. Een aanvaller heeft mogelijk de standaard serversleutel aangepast en wil uw client misleiden door deze te laten geloven dat de sleutel niet bestaat.</translation>
     </message>
     <message>
         <location filename="../../src/httpbrokerclient.cpp" line="170"/>
@@ -932,7 +932,8 @@ serversleutel aangepast en wil uw client misleiden door deze te laten geloven da
         <location filename="../../src/httpbrokerclient.cpp" line="599"/>
         <source>Issued to:
 </source>
-        <translation>Uitgegeven aan:</translation>
+        <translation>Uitgegeven aan:
+</translation>
     </message>
     <message>
         <location filename="../../src/httpbrokerclient.cpp" line="600"/>
@@ -961,13 +962,15 @@ serversleutel aangepast en wil uw client misleiden door deze te laten geloven da
         <location filename="../../src/httpbrokerclient.cpp" line="611"/>
         <source>Issued by:
 </source>
-        <translation>Uitgegeven door:</translation>
+        <translation>Uitgegeven door:
+</translation>
     </message>
     <message>
         <location filename="../../src/httpbrokerclient.cpp" line="622"/>
         <source>Validity:
 </source>
-        <translation>Geldigheid:</translation>
+        <translation>Geldigheid:
+</translation>
     </message>
     <message>
         <location filename="../../src/httpbrokerclient.cpp" line="623"/>
@@ -983,7 +986,8 @@ serversleutel aangepast en wil uw client misleiden door deze te laten geloven da
         <location filename="../../src/httpbrokerclient.cpp" line="625"/>
         <source>Fingerprints:
 </source>
-        <translation>Vingerafdruk:</translation>
+        <translation>Vingerafdruk:
+</translation>
     </message>
     <message>
         <location filename="../../src/httpbrokerclient.cpp" line="626"/>
@@ -1033,7 +1037,8 @@ serversleutel aangepast en wil uw client misleiden door deze te laten geloven da
         <location filename="../../src/mediawidget.cpp" line="69"/>
         <source>Use SSH port forwarding to tunnel
 sound system connections through firewalls</source>
-        <translation>Gebruik SSH poort forwarding voor het tunnelen van geluidssysteemverbindingen door firewalls</translation>
+        <translation>Gebruik SSH poort forwarding voor het tunnelen
+van geluidssysteemverbindingen door firewalls</translation>
     </message>
     <message>
         <location filename="../../src/mediawidget.cpp" line="71"/>
@@ -1249,7 +1254,7 @@ sound system connections through firewalls</source>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="61"/>
         <source>Starting X2Go Client...</source>
-        <translation>X2goclient wordt gestart...</translation>
+        <translation>X2Go Client wordt gestart...</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="279"/>
@@ -1541,8 +1546,7 @@ Wilt u de verbinding verbreken?</translation>
 For security reasons, it is recommended to stop the connection attempt.
 Do you want to terminate the connection?
 </source>
-        <translation>De host sleutel voor deze server is niet gevonden maar een ander type sleutel is aanwezig. Een aanvaller heeft mogelijk de standaard
-server sleutel aangepast en wil uw client misleiden door deze te laten geloven dat de sleutel niet bestaat. 
+        <translation>De host sleutel voor deze server is niet gevonden maar een ander type sleutel is aanwezig. Een aanvaller heeft mogelijk de standaard server sleutel aangepast en wil uw client misleiden door deze te laten geloven dat de sleutel niet bestaat.
 Vanwege veiligheidsoverwegingen is het aanbevolen om de verbinding te stoppen.
 Wilt u de verbinding afbreken?</translation>
     </message>
@@ -1599,19 +1603,21 @@ Wilt u de verbinding afbreken?</translation>
         <location filename="../../src/onmainwindow.cpp" line="4614"/>
         <location filename="../../src/onmainwindow.cpp" line="4633"/>
         <source> bits and restart your X.Org Server before you reconnect to this X2Go session.&lt;br /&gt;Do you want to resume this session anyway?</source>
-        <translation> bits en uw X.Org Server te herstarten voordat u opnieuw verbinding maakt met deze X2Go sessie.&lt;br&gt;Deze sessie toch hervatten?</translation>
+        <translation> bits en uw X.Org Server te herstarten voordat u opnieuw verbinding maakt met deze X2Go sessie.&lt;br /&gt;Deze sessie toch hervatten?</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="5545"/>
         <source>Unable to create SSH tunnel for X2Go session (NX) startup:
 </source>
-        <translation>SSH tunnel voor deze X2Go sessie niet mogelijk (NX) startup:</translation>
+        <translation>SSH tunnel voor deze X2Go sessie niet mogelijk (NX) startup:
+</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="5575"/>
         <source>Unable to create SSH tunnel for audio data:
 </source>
-        <translation>Opzetten SSL tunnel niet mogelijk voor audio-data:</translation>
+        <translation>Opzetten SSL tunnel niet mogelijk voor audio-data:
+</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="5683"/>
@@ -1624,17 +1630,17 @@ Wilt u de verbinding afbreken?</translation>
         <source>This likely means the binary is not available.
 The current search path is: </source>
         <translation>Dit komt waarschijnlijk omdat de binary niet beschikbaar is.
-Het huidige pad is:</translation>
+Het huidige pad is: </translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="5698"/>
         <source>returned a non-zero exit code or crashed otherwise.</source>
-        <translation>niet geldige exit code gegenereerd .</translation>
+        <translation>niet geldige exit code gegenereerd.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="5699"/>
         <source>Execution failed, exit code was: </source>
-        <translation>Uitvoeren mislukt, exit code was:</translation>
+        <translation>Uitvoeren mislukt, exit code was: </translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="5704"/>
@@ -1659,7 +1665,7 @@ Het huidige pad is:</translation>
         <location filename="../../src/onmainwindow.cpp" line="8701"/>
         <location filename="../../src/onmainwindow.cpp" line="8706"/>
         <source>It is probably not running correctly or crashed in-between.</source>
-        <translation>draait waarschijnlijk niet correct of is inmiddels gecrashed.</translation>
+        <translation>Draait waarschijnlijk niet correct of is inmiddels gecrashed.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="5714"/>
@@ -1684,7 +1690,7 @@ Het huidige pad is:</translation>
         <source>X2Go Client will now terminate.
 
 File a bug report as outlined on the &lt;a href=&quot;http://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;bugs wiki page&lt;/a&gt;.</source>
-        <translation>X2Go client zal worden beëindigd.
+        <translation>X2Go Client zal worden beëindigd.
 
 U kunt deze fout melden zoals beschreven op deze &lt;a href=&quot;http://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;wiki pagina&lt;/a&gt;.</translation>
     </message>
@@ -1718,7 +1724,8 @@ Niet opgeslagen documenten zullen verloren gaan.</translation>
         <source>&lt;b&gt;Connection failed.&lt;/b&gt;
 :
 </source>
-        <translation>&lt;b&gt;Verbinding mislukt.&lt;/b&gt;:
+        <translation>&lt;b&gt;Verbinding mislukt.&lt;/b&gt;
+:
 </translation>
     </message>
     <message>
@@ -1726,12 +1733,12 @@ Niet opgeslagen documenten zullen verloren gaan.</translation>
         <location filename="../../src/onmainwindow.cpp" line="7189"/>
         <location filename="../../src/onmainwindow.cpp" line="7200"/>
         <source> (file does not exist)</source>
-        <translation>.(bestand bestaat niet)</translation>
+        <translation> (bestand bestaat niet)</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="7227"/>
         <source> (directory does not exist)</source>
-        <translation>. (directory bestaat niet)</translation>
+        <translation> (directory bestaat niet)</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="7254"/>
@@ -1799,7 +1806,8 @@ Niet opgeslagen documenten zullen verloren gaan.</translation>
         <location filename="../../src/onmainwindow.cpp" line="11926"/>
         <source>SSH daemon failed to open the application&apos;s
 authorized_keys file.</source>
-        <translation>SSH daemon kon het geautoriseerde sleutelbestand van deze applicatie niet openen.</translation>
+        <translation>SSH daemon kon het geautoriseerde sleutelbestand van
+deze applicatie niet openen.</translation>
     </message>
     <message>
         <source>Left mouse button to hide/restore - Right mouse button to display context menu</source>
@@ -1851,7 +1859,7 @@ X2goclient in verborgen modus gebruiken?</translation>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="2206"/>
         <source>No X2Go sessions found, closing.</source>
-        <translation>Geen X2go sessies gevonden, afsluiten.</translation>
+        <translation>Geen X2Go sessies gevonden, afsluiten.</translation>
     </message>
     <message>
         <source>Are you sure you want to delete this session?</source>
@@ -1891,7 +1899,7 @@ X2goclient in verborgen modus gebruiken?</translation>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="2789"/>
         <source> to </source>
-        <translation>.naar </translation>
+        <translation> naar </translation>
     </message>
     <message>
         <source>Connection Error(</source>
@@ -1951,7 +1959,7 @@ Wilt u de verbinding verbreken?</translation>
         <source>If you accept the new host key the security of your connection may be compromised.
 Do you want to update the host key?</source>
         <translation>Als u de nieuwe host sleutel accepteert kan dit de beveiliging van uw verbinding schaden.
-Wilt u de nieuwe host sleutel updaten? </translation>
+Wilt u de nieuwe host sleutel updaten?</translation>
     </message>
     <message>
         <source>The host key for this server was not found but an othertype of key exists. An attacker might change the default server key to confuse your client into thinking the key does not exist. 
@@ -2143,7 +2151,7 @@ Publieke sleutel hash: </translation>
         <location filename="../../src/onmainwindow.cpp" line="5352"/>
         <location filename="../../src/onmainwindow.cpp" line="5356"/>
         <source>Unable to create folder: </source>
-        <translation>Aanmaken map niet mogelijk:</translation>
+        <translation>Aanmaken map niet mogelijk: </translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="5382"/>
@@ -2155,7 +2163,7 @@ Publieke sleutel hash: </translation>
         <location filename="../../src/onmainwindow.cpp" line="5519"/>
         <location filename="../../src/onmainwindow.cpp" line="10711"/>
         <source>Attach X2Go window</source>
-        <translation>X2go scherm vastmaken</translation>
+        <translation>X2Go scherm vastmaken</translation>
     </message>
     <message>
         <source>Unable to create SSL tunnel:
@@ -2343,12 +2351,13 @@ Niet opgeslagen documenten zullen verloren gaan</translation>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="8346"/>
         <source>&lt;br&gt;X2Go Plugin mode was sponsored by &lt;a href=&quot;http://www.foss-group.de/&quot;&gt;FOSS-Group GmbH (Freiburg)&lt;/a&gt;&lt;br&gt;</source>
-        <translation>&lt;br&gt;X2Go Plugin mode was sponsored by &lt;a href=&quot;http://www.foss-group.de/&quot;&gt;FOSS-Group GmbH (Freiburg)&lt;/a&gt;&lt;br&gt;</translation>
+        <translation type="unfinished">&lt;br&gt;X2Go Plugin mode was sponsored by &lt;a href=&quot;http://www.foss-group.de/&quot;&gt;FOSS-Group GmbH (Freiburg)&lt;/a&gt;&lt;br&gt;</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="8350"/>
         <source>&lt;br&gt;This is a client to access the X2Go network-based computing environment. This client will be able to connect to X2Go Server(s) and start, stop, resume and terminate (running) desktop sessions. X2Go Client stores different server connections and may automatically request authentication data from LDAP directories. Furthermore, it can be used as a fullscreen login screen (replacement for login managers like XDM). Please visit &lt;a href=&quot;http://www.x2go.org&quot;&gt;the project home page at x2go.org&lt;/a&gt; for further information.</source>
-        <translation>&lt;br&gt;Client voor gebruik van de X2Go netwerkgebasseerde computeromgeving. Met deze client maakt u verbinding met de X2Go server(s) en kunt u desktop-sessies starten, stoppen, hervatten en (actieve sessies) beeindigen De X2Go client slaat verschillende serververbindingen op in, en kan automatisch authenticatie data opvragen van, LDAP directories. Verder kan de client gebruikt worden als fullscreen inlog scherm (vervanging voor inlog managers als kdm, xdm etc.). Bezoek aub x2go.org voor meer informatie.   </translation>
+        <comment>Make sure to look at "the project home page at..." translation again and delete this comment.</comment>
+        <translation type="unfinished">&lt;br&gt;Client voor gebruik van de X2Go netwerkgebasseerde computeromgeving. Met deze client maakt u verbinding met de X2Go server(s) en kunt u desktop-sessies starten, stoppen, hervatten en (actieve sessies) beeindigen. De X2Go Client slaat verschillende serververbindingen op in, en kan automatisch authenticatie data opvragen van, LDAP directories. Verder kan de client gebruikt worden als fullscreen inlog scherm (vervanging voor inlog managers als KDM, XDM etc.). Bezoek aub &lt;a href=&quot;http://www.x2go.org&quot;&gt;het project home page op x2go.org&lt;/a&gt; voor meer informatie.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="8364"/>
@@ -2365,7 +2374,7 @@ Niet opgeslagen documenten zullen verloren gaan</translation>
         <source>Check whether the package providing &quot;scdaemon&quot; is installed.
 The current search path is: </source>
         <translation>Controleer of het pakket dat voorziet in &quot;scdaemon&quot; geïnstalleerd is.
-Huidige pad verwijzing is:</translation>
+Huidige pad verwijzing is: </translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="8695"/>
@@ -2400,26 +2409,29 @@ Controleer aub uw installatie.</translation>
         <location filename="../../src/onmainwindow.cpp" line="9326"/>
         <source>Remote server does not support file system exports through SSH tunnels.
 Please update your x2goserver package.</source>
-        <translation>De remote server ondersteund het exporteren van bestanden door een SSH tunnel niet
+        <translation>De remote server ondersteund het exporteren van bestanden door een SSH tunnel niet.
 Aub uw x2goserver sofwarepakket updaten.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="9351"/>
         <source>Unable to create SSH tunnel for Folder Sharing and Printing support:
 </source>
-        <translation>Opzetten van SSH tunnel voor delen van mappen en printer ondersteuning niet mogelijk:</translation>
+        <translation>Opzetten van SSH tunnel voor delen van mappen en printer ondersteuning niet mogelijk:
+</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="9380"/>
         <source>Unable to read:
 </source>
-        <translation>Lezen niet mogelijk:</translation>
+        <translation>Lezen niet mogelijk:
+</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="9407"/>
         <source>Unable to write:
 </source>
-        <translation>Schrijven niet mogelijk:</translation>
+        <translation>Schrijven niet mogelijk:
+</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="10523"/>
@@ -2442,14 +2454,18 @@ Aub uw x2goserver sofwarepakket updaten.</translation>
         <source>SSH daemon could not be started.
 
 </source>
-        <translation>SSH daemon kon niet gestart worden.</translation>
+        <translation>SSH daemon kon niet gestart worden.
+
+</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="11786"/>
         <source>SSH daemon is not running.
 
 </source>
-        <translation>SSH daemon is niet actief.</translation>
+        <translation>SSH daemon is niet actief.
+
+</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="11790"/>
@@ -2465,6 +2481,7 @@ Voor deze opties is het noodzakelijk dat er een SSH server actief is op uw syste
 &lt;b&gt;Printen en het delen van mappen zijn uitgeschakeld voor deze sessie.&lt;/b&gt;
 
 Controleer aub ook de &lt;b&gt;SSH poort aan client zijde&lt;/b&gt; in de algemene instellingen.
+
 </translation>
     </message>
     <message>
@@ -2485,7 +2502,9 @@ Als u dit bericht ziet wilt u dan aub deze foutmelding doorgeven op:
         <source>The SSH server failed to start.
 
 </source>
-        <translation>SSH server kon niet gestart worden.</translation>
+        <translation>SSH server kon niet gestart worden.
+
+</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="11806"/>
@@ -2494,23 +2513,27 @@ Als u dit bericht ziet wilt u dan aub deze foutmelding doorgeven op:
 Please report a bug on:
 &lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
 </source>
-        <translation>X2Go client kon geen actieve SSH server vinden op uw systeem en daarnaast zijn eigen SSH server niet starten.
-Geef aub deze fout door via de X2go bugtracker op:
-&lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center</translation>
+        <translation>X2Go Client kon geen actieve SSH server vinden op uw systeem en daarnaast zijn eigen SSH server niet starten.
+
+Geef aub deze fout door via de X2Go bugtracker op:
+&lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
+</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="11815"/>
         <source>The SSH server is currently not started.
 
 </source>
-        <translation>SSH server is momenteel niet actief.</translation>
+        <translation>SSH server is momenteel niet actief.
+
+</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="11817"/>
         <source>On OS X, please follow the following steps to enable SSH service:&lt;ul&gt;&lt;li&gt;Open &lt;b&gt;System Preferences&lt;/b&gt; (Applications -&gt; System Preferences)&lt;/li&gt;&lt;li&gt;Go to &lt;b&gt;Sharing&lt;/b&gt;&lt;/li&gt;&lt;li&gt;Tick the checkbox besides &lt;b&gt;Remote Login&lt;/b&gt;&lt;/li&gt;&lt;li&gt;Check that &lt;b&gt;Allow access for:&lt;/b&gt; is set to either:&lt;ul&gt;&lt;li&gt;All users: &lt;b&gt;no further steps necessary&lt;/b&gt;&lt;/li&gt;&lt;li&gt;Only these users &lt;b&gt;and your user name is included in the list&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;&lt;li&gt;Optionally, add your user name to the allowed list via the &lt;b&gt;Plus Button&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;&lt;b&gt;Warning: enabling SSH access will allow any user on the network to connect to your machine. It is your responsibility to set a strong password for every user that is allowed to log in via SSH.&lt;/b&gt;
 
 </source>
-        <translation>Bij OS X, volg aub de volgende stappen om de SSH service in te schakelen:&lt;ul&gt;&lt;li&gt;Open &lt;b&gt;System Preferences&lt;/b&gt; (Applications -&gt; System Preferences)&lt;/li&gt;&lt;li&gt;Ga naar&lt;b&gt;Sharing&lt;/b&gt;&lt;/li&gt;&lt;li&gt;Zet een vinkje bij &lt;b&gt;Remote Login&lt;/b&gt;&lt;/li&gt;&lt;li&gt;Controleer dat &lt;b&gt;Allow access for:&lt;/b&gt; is ingesteld op of:&lt;ul&gt;&lt;li&gt;All users: &lt;b&gt;geen vervolg stappen noodzakelijk&lt;/b&gt;&lt;/li&gt;&lt;li&gt;Only these users &lt;b&gt;en uw gebruikersnaam komt voor in de lijst&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;&lt;li&gt;Als optie kunt u een gebruikersnaam toevoegen aan de toegestane lijst via de &lt;b&gt;Plus knop&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;&lt;b&gt;Waarschuwing: het inschakelen van SSH zorgt ervoor dat iedere gebruiker op uw netwerk een verbinding kan maken met uw systeem. Het is uw eigen verantwoordelijkheid om een sterk wachtwoord in te stellen voor iedere gebruiker die mag inloggen via SSH.&lt;/b&gt;
+        <translation>Bij OS X, volg aub de volgende stappen om de SSH service in te schakelen:&lt;ul&gt;&lt;li&gt;Open &lt;b&gt;System Preferences&lt;/b&gt; (Applications -&gt; System Preferences)&lt;/li&gt;&lt;li&gt;Ga naar &lt;b&gt;Sharing&lt;/b&gt;&lt;/li&gt;&lt;li&gt;Zet een vinkje bij &lt;b&gt;Remote Login&lt;/b&gt;&lt;/li&gt;&lt;li&gt;Controleer dat &lt;b&gt;Allow access for:&lt;/b&gt; is ingesteld op of:&lt;ul&gt;&lt;li&gt;All users: &lt;b&gt;geen vervolg stappen noodzakelijk&lt;/b&gt;&lt;/li&gt;&lt;li&gt;Only these users &lt;b&gt;en uw gebruikersnaam komt voor in de lijst&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;&lt;li&gt;Als optie kunt u een gebruikersnaam toevoegen aan de toegestane lijst via de &lt;b&gt;Plus knop&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;&lt;b&gt;Waarschuwing: het inschakelen van SSH zorgt ervoor dat iedere gebruiker op uw netwerk een verbinding kan maken met uw systeem. Het is uw eigen verantwoordelijkheid om een sterk wachtwoord in te stellen voor iedere gebruiker die mag inloggen via SSH.&lt;/b&gt;
 
 </translation>
     </message>
@@ -2519,7 +2542,9 @@ Geef aub deze fout door via de X2go bugtracker op:
         <source>Please ask your system administrator to provide the SSH service on your computer.
 
 </source>
-        <translation>Vraag uw systeembeheerder voor het inschakelen van de SSH service op uw computer.</translation>
+        <translation>Vraag uw systeembeheerder voor het inschakelen van de SSH service op uw computer.
+
+</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="11840"/>
@@ -2548,7 +2573,10 @@ Voor deze opties is het noodzakelijk dat er een SSH server actief is op uw syste
 &lt;b&gt;Printen en het delen van mappen zijn uitgeschakeld voor deze sessie.&lt;/b&gt;
 
 De SSH server is momenteel niet juist geconfigureerd.
-Zorg ervoor dat de publieke sleutel aanwezig is.</translation>
+
+Zorg ervoor dat de publieke sleutel aanwezig is.
+
+</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="11863"/>
@@ -2570,14 +2598,16 @@ Als u dit bericht ziet wilt u deze foutmelding dan aub kenbaar maken op:
 Please report a bug on:
 &lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
 </source>
-        <translation>X2Go client kon geen SSH sleutels aanmaken.
-Geef aub deze fout door via de X2go bugtracker op:
-&lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center</translation>
+        <translation>X2Go Client kon geen SSH sleutels aanmaken.
+
+Geef aub deze fout door via de X2Go bugtracker op:
+&lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
+</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="11882"/>
         <source>On OS X, please follow these steps to generate the required keys:&lt;ul&gt;&lt;li&gt;Open a &lt;b&gt;Terminal Window&lt;/b&gt; (Applications -&gt; Utilities -&gt; Terminal)&lt;/li&gt;&lt;li&gt;Run this command: &lt;b&gt;ssh -p </source>
-        <translation>Bij OS X, volg aub de volgende stappen om de vereiste sleutels aan te maken:&lt;ul&gt;&lt;li&gt;Open een &lt;b&gt;Terminal venster&lt;/b&gt; (Applications -&gt; Utilities -&gt; Terminal)&lt;/li&gt;&lt;li&gt;Geef het volgende commado in: &lt;b&gt;ssh -p</translation>
+        <translation>Bij OS X, volg aub de volgende stappen om de vereiste sleutels aan te maken:&lt;ul&gt;&lt;li&gt;Open een &lt;b&gt;Terminal venster&lt;/b&gt; (Applications -&gt; Utilities -&gt; Terminal)&lt;/li&gt;&lt;li&gt;Geef het volgende commado in: &lt;b&gt;ssh -p </translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="11893"/>
@@ -2591,6 +2621,7 @@ If you are administrating this system yourself, please run:
 
 Als u zelf beheerdersrechten heeft op dit systeem, type dan het volgende commando:
 &lt;center&gt;&lt;b&gt;sudo ssh-keygen -A&lt;/b&gt;&lt;/center&gt;
+
 </translation>
     </message>
     <message>
@@ -2614,9 +2645,9 @@ the X2Go bugtracker.</source>
 U bent de SSH daemon nodig voor printen en delen van bestanden.
 
 Normaal gesproken zou dit niet voor moeten komen omdat 
-bij de X2Go client voor Windows een eigen sshd.exe.ingesloten is.
+bij de X2Go client voor Windows een eigen sshd.exe ingesloten is.
 
-Als u dit bericht krijgt, geef dan aub deze fout door via de X2go bugtracker.</translation>
+Als u dit bericht krijgt, geef dan aub deze fout door via de X2Go bugtracker.</translation>
     </message>
     <message>
         <source>SSH daemon is not running.
@@ -2883,7 +2914,7 @@ u kunt sshd installeren met
     <message>
         <location filename="../../src/onmainwindow.cpp" line="12043"/>
         <source>&lt;br&gt;&lt;b&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;Click this button&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;to restore toolbar&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/b&gt;&lt;br&gt;</source>
-        <translation>&lt;br&gt;&lt;b&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;Klik op deze button&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;om de taakbalk te  herstellen&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/b&gt;&lt;br&gt;</translation>
+        <translation>&lt;br&gt;&lt;b&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;Klik op deze button&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;om de taakbalk te herstellen&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/b&gt;&lt;br&gt;</translation>
     </message>
 </context>
 <context>
@@ -2891,8 +2922,7 @@ u kunt sshd installeren met
     <message>
         <location filename="../../src/ui/printdialog.ui" line="18"/>
         <source>Print - X2Go Client</source>
-        <translation>Printen - X2Go Client
-</translation>
+        <translation>Printen - X2Go Client</translation>
     </message>
     <message>
         <location filename="../../src/printdialog.cpp" line="31"/>
@@ -2902,12 +2932,12 @@ u kunt sshd installeren met
     <message>
         <location filename="../../src/printdialog.cpp" line="61"/>
         <source>You&apos;ve deactivated the X2Go Client printing dialog.</source>
-        <translation>U heeft de x2goclient printer dialoog uitgeschakeld.</translation>
+        <translation>U heeft de X2Go Client printer dialoog uitgeschakeld.</translation>
     </message>
     <message>
         <location filename="../../src/printdialog.cpp" line="63"/>
         <source>You may reactivate this dialog using the X2Go Client settings dialog. To do so, follow this path in the menu bar: Options -&gt; Settings)</source>
-        <translation>U kunt deze dialoog opnieuw activeren via de x2goclient instellingen dialoog (Menu -&gt; Opties -&gt; Instellingen)</translation>
+        <translation>U kunt deze dialoog opnieuw activeren via de X2Go Client instellingen dialoog (Menu -&gt; Opties -&gt; Instellingen)</translation>
     </message>
     <message>
         <source>You&apos;ve deactivated the x2go client printing dialog.</source>
@@ -2935,7 +2965,8 @@ u kunt sshd installeren met
         <location filename="../../src/printprocess.cpp" line="289"/>
         <source>Failed to execute command:
 </source>
-        <translation>Uitvoeren van commando mislukt:</translation>
+        <translation>Uitvoeren van commando mislukt:
+</translation>
     </message>
     <message>
         <location filename="../../src/printprocess.cpp" line="281"/>
@@ -3078,7 +3109,7 @@ lpr -P hp_laserjet</translation>
     <message>
         <location filename="../../src/ui/printercmddialog.ui" line="94"/>
         <source>Please choose the method of printing file input (some commands accepting printing files as program options, some are awaiting data on standard input):</source>
-        <translation>Kies aub de methode van afdrukken (een aantal opdrachten aanvaarden afdrukken van bestanden als programma-opties, sommige zijn in afwachting van informatie van de standaard invoer): </translation>
+        <translation>Kies aub de methode van afdrukken (een aantal opdrachten aanvaarden afdrukken van bestanden als programma-opties, sommige zijn in afwachting van informatie van de standaard invoer):</translation>
     </message>
     <message>
         <location filename="../../src/ui/printercmddialog.ui" line="110"/>
@@ -3102,7 +3133,7 @@ Voorbeeld:
     <message>
         <location filename="../../src/printercmddialog.cpp" line="51"/>
         <source>&lt;Path to gsprint.exe&gt; -query -color</source>
-        <translation>&lt;pad naar gsprint.exe&gt; query -kleur</translation>
+        <translation>&lt;pad naar gsprint.exe&gt; -query -color</translation>
     </message>
 </context>
 <context>
@@ -3120,7 +3151,7 @@ Voorbeeld:
     <message>
         <location filename="../../src/x2goutils.cpp" line="166"/>
         <source>X2Go Client could not start X11 server.</source>
-        <translation>X2Go client kon de X11 server niet starten.</translation>
+        <translation>X2Go Client kon de X11 server niet starten.</translation>
     </message>
     <message>
         <location filename="../../src/x2goutils.cpp" line="167"/>
@@ -3136,12 +3167,13 @@ follow the outlined steps:
 
 </source>
         <translation>X2Go Client vereist dat XQuartz geïnstalleerd is.
+
 Als XQuartz al geïnstalleerd is op uw systeem,
 selecteer aub de juiste pad verwijzing in de hierop volgende dialoog.
 Kijk onderaan dit bericht naar voorbeelden van pad verwijzingen,
 voor het geval u niet zelf de juiste locatie weet.
 
-Mocht u XQuartz nog &lt;b&gt;niet&lt;/b&gt; geïnstalleerd hebben, volg dan 
+Mocht u XQuartz nog &lt;b&gt;niet&lt;/b&gt; geïnstalleerd hebben, volg dan
 aub de volgende stappen:
 
 </translation>
@@ -3162,7 +3194,7 @@ This will most likely be
 &lt;center&gt;&lt;b&gt;/Applications/MacPorts/X11.app&lt;/b&gt;&lt;/center&gt;
 or
 &lt;center&gt;&lt;b&gt;/Applications/Utilities/XQuartz.app&lt;/b&gt;&lt;/center&gt;</source>
-        <translation>MacPorts users, please install either the port &lt;b&gt;xorg-server&lt;/b&gt;
+        <translation type="unfinished">MacPorts users, please install either the port &lt;b&gt;xorg-server&lt;/b&gt;
 or the port &lt;b&gt;xorg-server-devel&lt;/b&gt;.
 Upon successful installation, please follow the instructions printed
 by the port utility to autostart/load the server.
@@ -3343,9 +3375,9 @@ X2goclient in verborgen modus gebruiken?</translation>
         <source>Desktop icons can be configured not to show X2Go Client (hidden mode.) If you like to use this feature you&apos;ll need to configure login via a GPG key or GPG Smart Card.
 
 Use X2Go Client&apos;s hidden mode?</source>
-        <translation>Bureaublad iconen kunnen worden ingesteld zodat de X2Go client niet getoond zal worden (verborgen modus) Als u van deze mogelijkheid gebruik wilt maken moet u wel inloggen met een gpg sleutel of een gpg smartcard configureren.
+        <translation>Bureaublad iconen kunnen worden ingesteld zodat de X2Go client niet getoond zal worden (verborgen modus). Als u van deze mogelijkheid gebruik wilt maken moet u wel inloggen met een GPG sleutel of een GPG smartcard configureren.
 
-X2Go client in verborgen modus gebruiken?</translation>
+X2Go Client in verborgen modus gebruiken?</translation>
     </message>
     <message>
         <location filename="../../src/sessionexplorer.cpp" line="150"/>
@@ -3531,8 +3563,7 @@ X2Go client in verborgen modus gebruiken?</translation>
         <location filename="../../src/sessionwidget.cpp" line="328"/>
         <location filename="../../src/sessionwidget.cpp" line="443"/>
         <source>X2Go Client is running in portable mode. You should use a path on your USB device to be able to access your data wherever you are.</source>
-        <translation>X2Go client is actief in portable modus. U moet een pad op uw usb device gebruiken om in staat te zijn uw bestanden te benaderen, waar u ook
-maar bent.</translation>
+        <translation>X2Go Client is actief in portable modus. U moet een pad op uw USB device gebruiken om in staat te zijn uw bestanden te benaderen, waar u ook maar bent.</translation>
     </message>
     <message>
         <source>ssh-agent or default ssh key</source>
@@ -3923,8 +3954,7 @@ sound system connections through firewalls</source>
     <message>
         <location filename="../../src/sharewidget.cpp" line="176"/>
         <source>X2Go Client is running in portable mode. You should use a path on your USB device to be able to access your data wherever you are.</source>
-        <translation>X2Go client is actief in portable modus. U moet een pad op uw usb device gebruiken om in staat te zijn uw bestanden te benaderen, waar u ook
-maar bent.</translation>
+        <translation>X2Go Client is actief in portable modus. U moet een pad op uw usb device gebruiken om in staat te zijn uw bestanden te benaderen, waar u ook maar bent.</translation>
     </message>
     <message>
         <source>Use ssh port forwarding to tunnel file system connections through firewalls</source>
@@ -3963,7 +3993,7 @@ maar bent.</translation>
         <location filename="../../src/sshmasterconnection.cpp" line="343"/>
         <location filename="../../src/sshmasterconnection.cpp" line="584"/>
         <source>Cannot connect to </source>
-        <translation>kan niet verbinden met</translation>
+        <translation>Kan niet verbinden met </translation>
     </message>
     <message>
         <location filename="../../src/sshmasterconnection.cpp" line="410"/>
@@ -4019,7 +4049,7 @@ maar bent.</translation>
     <message>
         <location filename="../../src/sshmasterconnection.cpp" line="1392"/>
         <source>Cannot write to remote file </source>
-        <translation>Kan niet naar remote bestand schrijven</translation>
+        <translation>Kan niet naar remote bestand schrijven </translation>
     </message>
     <message>
         <location filename="../../src/sshmasterconnection.cpp" line="1523"/>
@@ -4059,7 +4089,7 @@ maar bent.</translation>
         <location filename="../../src/sshmasterconnection.cpp" line="415"/>
         <location filename="../../src/sshmasterconnection.cpp" line="421"/>
         <source>SSH proxy connection error: </source>
-        <translation>SSH proxy verbindingsfout:</translation>
+        <translation>SSH proxy verbindingsfout: </translation>
     </message>
     <message>
         <source>Failed to create SSH proxy tunnel</source>
@@ -4153,7 +4183,7 @@ maar bent.</translation>
     <message>
         <location filename="../../src/sshprocess.cpp" line="145"/>
         <source>Error binding </source>
-        <translation>Fout bij binding</translation>
+        <translation>Fout bij binding </translation>
     </message>
 </context>
 <context>
@@ -4179,7 +4209,7 @@ maar bent.</translation>
     <message>
         <location filename="../../src/ui/xsettingsui.ui" line="28"/>
         <source>You must restart the X2Go Client for the changes to take effect</source>
-        <translation>U moet de X2Go client herstarten om de wijzigingen door te voeren </translation>
+        <translation>U moet de X2Go Client herstarten om de wijzigingen door te voeren</translation>
     </message>
     <message>
         <location filename="../../src/ui/xsettingsui.ui" line="51"/>
@@ -4189,7 +4219,7 @@ maar bent.</translation>
     <message>
         <location filename="../../src/ui/xsettingsui.ui" line="61"/>
         <source> do not use primary clipboard</source>
-        <translation>Primaire klembord niet gebruiken</translation>
+        <translation> primaire klembord niet gebruiken</translation>
     </message>
     <message>
         <location filename="../../src/ui/xsettingsui.ui" line="68"/>
@@ -4209,7 +4239,7 @@ maar bent.</translation>
     <message>
         <location filename="../../src/ui/xsettingsui.ui" line="109"/>
         <source>start X-Server on X2Go Client start</source>
-        <translation>start X-server op X2Go client start</translation>
+        <translation>start X-server op X2Go Client start</translation>
     </message>
     <message>
         <location filename="../../src/ui/xsettingsui.ui" line="121"/>
