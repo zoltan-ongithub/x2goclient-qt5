@@ -54,6 +54,8 @@ x2goclient (4.0.5.1-0x2go1) UNRELEASED; urgency=low
       messages' format, fixing typos and general improvements.
     - res/i18n/x2goclient_es.ts: fixup translation by respecting the original
       messages' format and other changes.
+    - res/i18n/x2goclient_sv.ts: fixup translation by respecting the original
+      messages' format and other changes.
   * debian/control:
     - Change apache2-dev | libc6-dev build dependency back to apache2-dev
       only. Otherwise, apache2-dev is not installed at all, even though

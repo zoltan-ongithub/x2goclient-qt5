@@ -646,7 +646,7 @@ Några vanliga installationssökvägar är:
     <message>
         <location filename="../../src/editconnectiondialog.cpp" line="67"/>
         <source>&amp;Cancel</source>
-        <translation>&amp;Avbryt</translation>
+        <translation>A&amp;vbryt</translation>
     </message>
     <message>
         <location filename="../../src/editconnectiondialog.cpp" line="68"/>
@@ -1560,7 +1560,8 @@ Do you want to terminate the connection?
 </source>
         <translation>Servernyckeln hittades inte, men en annan nyckeltyp finns. En attackerare kan ändra typen på servernyckeln för att lura din klient att tro att nyckeln inte ännu finns.
 Av säkerhetsskäl är det rekommenderat att du avslutar anslutningen.
-Vill du avsluta anslutningen?</translation>
+Vill du avsluta anslutningen?
+</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="3029"/>
@@ -1615,7 +1616,7 @@ Vill du avsluta anslutningen?</translation>
         <location filename="../../src/onmainwindow.cpp" line="4614"/>
         <location filename="../../src/onmainwindow.cpp" line="4633"/>
         <source> bits and restart your X.Org Server before you reconnect to this X2Go session.&lt;br /&gt;Do you want to resume this session anyway?</source>
-        <translation> bitar och startar om X-.Org-servern innan du återansluter till denna X2Go-session.&lt;br&gt;Återanslut session ändå?</translation>
+        <translation> bitar och startar om X.Org-servern innan du återansluter till denna X2Go-session.&lt;br&gt;Återanslut session ändå?</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="5837"/>
@@ -1666,48 +1667,48 @@ Data som ej sparats kommer att förloras.</translation>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="7254"/>
         <source>Invalid value for parameter &quot;--link&quot;.</source>
-        <translation>fel värde för &quot;--link&quot;.</translation>
+        <translation>Fel värde för &quot;--link&quot;.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="7271"/>
         <source>Invalid value for parameter &quot;--clipboard&quot;.</source>
-        <translation>fel värde för argument &quot;--clipboard&quot;.</translation>
+        <translation>Fel värde för argument &quot;--clipboard&quot;.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="7287"/>
         <source>Invalid value for parameter &quot;--sound&quot;.</source>
-        <translation>fel värde för &quot;--sound&quot;.</translation>
+        <translation>Fel värde för &quot;--sound&quot;.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="7303"/>
         <location filename="../../src/onmainwindow.cpp" line="7313"/>
         <source>Invalid value for parameter &quot;--geometry&quot;.</source>
-        <translation>fel värde för &quot;--geometry&quot;.</translation>
+        <translation>Fel värde för &quot;--geometry&quot;.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="7330"/>
         <source>Invalid value for parameter &quot;--set-kbd&quot;.</source>
-        <translation>fel värde för &quot;--set-kbd&quot;.</translation>
+        <translation>Fel värde för &quot;--set-kbd&quot;.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="7346"/>
         <source>Invalid value for parameter &quot;--ldap&quot;.</source>
-        <translation>fel värde för &quot;--ldap&quot;.</translation>
+        <translation>Fel värde för &quot;--ldap&quot;.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="7367"/>
         <source>Invalid value for parameter &quot;--ldap1&quot;.</source>
-        <translation>fel värde för &quot;--ldap1&quot;.</translation>
+        <translation>Fel värde för &quot;--ldap1&quot;.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="7386"/>
         <source>Invalid value for parameter &quot;--ldap2&quot;.</source>
-        <translation>fel värde för &quot;--ldap2&quot;.</translation>
+        <translation>Fel värde för &quot;--ldap2&quot;.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="7440"/>
         <source>Invalid value for parameter &quot;--pack&quot;.</source>
-        <translation>fel värde för &quot;--pack&quot;.</translation>
+        <translation>Fel värde för &quot;--pack&quot;.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="7475"/>
@@ -1738,7 +1739,7 @@ Data som ej sparats kommer att förloras.</translation>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="8343"/>
         <source>&lt;br&gt;(C) 2005-2016 by &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing&lt;br&gt;</source>
-        <translation>&lt;/b&gt;&lt;br&gt; &amp;copy; 2005-2016 &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing&lt;br&gt;</translation>
+        <translation>&lt;br&gt;(C) 2005-2016 av &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing&lt;br&gt;</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="8346"/>
@@ -1748,7 +1749,7 @@ Data som ej sparats kommer att förloras.</translation>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="8350"/>
         <source>&lt;br&gt;This is a client to access the X2Go network-based computing environment. This client will be able to connect to X2Go Server(s) and start, stop, resume and terminate (running) desktop sessions. X2Go Client stores different server connections and may automatically request authentication data from LDAP directories. Furthermore, it can be used as a fullscreen login screen (replacement for login managers like XDM). Please visit &lt;a href=&quot;http://www.x2go.org&quot;&gt;the project home page at x2go.org&lt;/a&gt; for further information.</source>
-        <translation>&lt;br&gt;Klient för X2Go. Denna klient kan ansluta till X2Go-servrar och starta/stoppa/återansluta/avsluta (aktiva) sessioner. X2Go-klienten kan spara anslutningsinställningar samt använda LDAP för autentisering. Klienten kan även användas som inloggningsskärm (ersättning för exempelvis xdm). Besök &lt;a href=&quot;http://www.x2go.org&quot;&gt;www.x2go.org&lt;/a&gt; för vidare information.</translation>
+        <translation>&lt;br&gt;Klient för X2Go. Denna klient kan ansluta till X2Go-servrar och starta/stoppa/återansluta/avsluta (aktiva) sessioner. X2Go-klienten kan spara anslutningsinställningar samt använda LDAP för autentisering. Klienten kan även användas som inloggningsskärm (ersättning för exempelvis XDM). Besök &lt;a href=&quot;http://www.x2go.org&quot;&gt;projektets hemsida på x2go.org&lt;/a&gt; för vidare information.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="8364"/>
@@ -1832,7 +1833,7 @@ Uppdatera till en nyare version av x2goserver.</translation>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="11005"/>
         <source>Invalid value for argument &quot;speed&quot;</source>
-        <translation>Fel värde för &quot;speed&quot;.</translation>
+        <translation>Fel värde för &quot;speed&quot;</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="11376"/>
@@ -1925,7 +1926,7 @@ Var vänlig rapportera en bugg på:
 
 </source>
         <translatorcomment>Har ingen OS X-maskin att kontrollera svenska termer mot.</translatorcomment>
-        <translation>På OS X, var vänlig följ dessa steg för att aktivera SSH-service:&lt;ul&gt;&lt;li&gt;Open &lt;b&gt;System Preferences&lt;/b&gt; (Applications -&gt; System Preferences)&lt;/li&gt;&lt;li&gt;Go to &lt;b&gt;Sharing&lt;/b&gt;&lt;/li&gt;&lt;li&gt;Tick the checkbox besides &lt;b&gt;Remote Login&lt;/b&gt;&lt;/li&gt;&lt;li&gt;Check that &lt;b&gt;Allow access for:&lt;/b&gt; is set to either:&lt;ul&gt;&lt;li&gt;All users: &lt;b&gt;no further steps necessary&lt;/b&gt;&lt;/li&gt;&lt;li&gt;Only these users &lt;b&gt;and your user name is included in the list&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;&lt;li&gt;Optionally, add your user name to the allowed list via the &lt;b&gt;Plus Button&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;&lt;b&gt;Warning: enabling SSH access will allow any user on the network to connect to your machine. It is your responsibility to set a strong password for every user that is allowed to log in via SSH.&lt;/b&gt;
+        <translation type="unfinished">På OS X, var vänlig följ dessa steg för att aktivera SSH-service:&lt;ul&gt;&lt;li&gt;Open &lt;b&gt;System Preferences&lt;/b&gt; (Applications -&gt; System Preferences)&lt;/li&gt;&lt;li&gt;Go to &lt;b&gt;Sharing&lt;/b&gt;&lt;/li&gt;&lt;li&gt;Tick the checkbox besides &lt;b&gt;Remote Login&lt;/b&gt;&lt;/li&gt;&lt;li&gt;Check that &lt;b&gt;Allow access for:&lt;/b&gt; is set to either:&lt;ul&gt;&lt;li&gt;All users: &lt;b&gt;no further steps necessary&lt;/b&gt;&lt;/li&gt;&lt;li&gt;Only these users &lt;b&gt;and your user name is included in the list&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;&lt;li&gt;Optionally, add your user name to the allowed list via the &lt;b&gt;Plus Button&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;&lt;b&gt;Warning: enabling SSH access will allow any user on the network to connect to your machine. It is your responsibility to set a strong password for every user that is allowed to log in via SSH.&lt;/b&gt;
 
 </translation>
     </message>
@@ -1999,7 +2000,7 @@ Var vänlig rapportera en bugg på:
     <message>
         <location filename="../../src/onmainwindow.cpp" line="11882"/>
         <source>On OS X, please follow these steps to generate the required keys:&lt;ul&gt;&lt;li&gt;Open a &lt;b&gt;Terminal Window&lt;/b&gt; (Applications -&gt; Utilities -&gt; Terminal)&lt;/li&gt;&lt;li&gt;Run this command: &lt;b&gt;ssh -p </source>
-        <translation>På OS X, följ dessa steg för att generera nycklar:&lt;ul&gt;&lt;li&gt;Open a &lt;b&gt;Terminal Window&lt;/b&gt; (Applications -&gt; Utilities -&gt; Terminal)&lt;/li&gt;&lt;li&gt;Run this command: &lt;b&gt;ssh -p</translation>
+        <translation type="unfinished">På OS X, följ dessa steg för att generera nycklar:&lt;ul&gt;&lt;li&gt;Open a &lt;b&gt;Terminal Window&lt;/b&gt; (Applications -&gt; Utilities -&gt; Terminal)&lt;/li&gt;&lt;li&gt;Run this command: &lt;b&gt;ssh -p </translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="11893"/>
@@ -2481,7 +2482,7 @@ Aktuell sökväg är: </translation>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="5699"/>
         <source>Execution failed, exit code was: </source>
-        <translation>Exekvering misslyckades, felkod:</translation>
+        <translation>Exekvering misslyckades, felkod: </translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="5704"/>
@@ -3139,7 +3140,8 @@ du kan installera sshd med (Debian/Ubuntu)
 Examples:
 kprinter
 lpr -P hp_laserjet</source>
-        <translation>Ange anpassat utskriftskommando, exempel:
+        <translation>Ange anpassat utskriftskommando.
+Exempel:
 kprinter
 lpr -P hp_laserjet</translation>
     </message>
@@ -3188,7 +3190,8 @@ lpr -P hp_laserjet</translation>
         <source>Please enter your customized or individual printing command.
 Example:
 </source>
-        <translation>Ange anpassat utskriftskommando, exempel:
+        <translation>Ange anpassat utskriftskommando.
+Exempel:
 </translation>
     </message>
     <message>
@@ -3227,7 +3230,8 @@ Should you have &lt;b&gt;not&lt;/b&gt; installed XQuartz yet, please
 follow the outlined steps:
 
 </source>
-        <translation>X2Go-klienten kräver XQuartz.
+        <comment>Looks like you stopped in-between in the second paragraph, so marking as unfinished.</comment>
+        <translation type="unfinished">X2Go-klienten kräver XQuartz.
 
 Om XQuartz finns installerat på ditt system,
 var vänlig välj korrekt sökväg i kommande dialog.
@@ -3256,12 +3260,13 @@ or
 &lt;center&gt;&lt;b&gt;/Applications/Utilities/XQuartz.app&lt;/b&gt;&lt;/center&gt;</source>
         <translation>MacPorts-användare, var vänlig installera &lt;b&gt;xorg-server&lt;/b&gt;
 eller &lt;b&gt;xorg-server-devel&lt;/b&gt;.
-Var vänlig följ instruktionerna från port-verktyget för att autostarta servern.
+Var vänlig följ instruktionerna från port-verktyget för att
+autostarta servern.
 
 Alla andra användare, var vänlig hämta och installera XQuartz från:
 &lt;center&gt;&lt;a href=&quot;https://xquartz.macosforge.org/&quot;&gt;https://xquartz.macosforge.org/&lt;/a&gt;&lt;/center&gt;
 
-Starta sedan om X2Go-klient och välj korrekt sökväg 
+Starta sedan om X2Go-klient och välj korrekt sökväg
 till X11-applikationen i inställningara för X2Go-klient.
 Det är mest troligt
 &lt;center&gt;&lt;b&gt;/Applications/MacPorts/X11.app&lt;/b&gt;&lt;/center&gt;
@@ -4079,7 +4084,7 @@ ljudström genom brandväggar</translation>
         <location filename="../../src/sshmasterconnection.cpp" line="415"/>
         <location filename="../../src/sshmasterconnection.cpp" line="421"/>
         <source>SSH proxy connection error: </source>
-        <translation>Anslutningsfel SSH-proxy:</translation>
+        <translation>Anslutningsfel SSH-proxy: </translation>
     </message>
     <message>
         <location filename="../../src/sshmasterconnection.cpp" line="437"/>
@@ -4110,12 +4115,12 @@ ljudström genom brandväggar</translation>
     <message>
         <location filename="../../src/sshmasterconnection.cpp" line="1237"/>
         <source>Failed to start SSH client. Please check your installation and GSSApi configuration.</source>
-        <translation>Start av SSH-klient misslyckades. Kontrollera din installation och GSSAPI-konfiguration.</translation>
+        <translation>Start av SSH-klient misslyckades. Kontrollera din installation och GSSApi-konfiguration.</translation>
     </message>
     <message>
         <location filename="../../src/sshmasterconnection.cpp" line="1263"/>
         <source>Check your GSSApi configuration or choose another authentication method.</source>
-        <translation>Kontrollera din GSSAPI-konfiguration eller välj en annan autentiseringsmetod.</translation>
+        <translation>Kontrollera din GSSApi-konfiguration eller välj en annan autentiseringsmetod.</translation>
     </message>
     <message>
         <location filename="../../src/sshmasterconnection.cpp" line="1365"/>
@@ -4291,22 +4296,22 @@ ljudström genom brandväggar</translation>
     <message>
         <location filename="../../src/ui/xsettingsui.ui" line="51"/>
         <source>use integrated X-Server</source>
-        <translation>Använd integrerad X-server</translation>
+        <translation>använd integrerad X-server</translation>
     </message>
     <message>
         <location filename="../../src/ui/xsettingsui.ui" line="61"/>
         <source> do not use primary clipboard</source>
-        <translation> Använd inte primär urklippsbuffert</translation>
+        <translation> använd inte primär urklippsbuffert</translation>
     </message>
     <message>
         <location filename="../../src/ui/xsettingsui.ui" line="68"/>
         <source>use custom X-Server</source>
-        <translation>Använd anpassad X-server</translation>
+        <translation>använd anpassad X-server</translation>
     </message>
     <message>
         <location filename="../../src/ui/xsettingsui.ui" line="78"/>
         <source>custom X-Server</source>
-        <translation>Anpassad X-server</translation>
+        <translation>anpassad X-server</translation>
     </message>
     <message>
         <location filename="../../src/ui/xsettingsui.ui" line="86"/>
@@ -4316,7 +4321,7 @@ ljudström genom brandväggar</translation>
     <message>
         <location filename="../../src/ui/xsettingsui.ui" line="109"/>
         <source>start X-Server on X2Go Client start</source>
-        <translation>Starta X-server när X2Go-klienten startas</translation>
+        <translation>starta X-server när X2Go-klienten startas</translation>
     </message>
     <message>
         <location filename="../../src/ui/xsettingsui.ui" line="121"/>
