@@ -193,12 +193,12 @@
     <message>
         <location filename="../../src/cupsprintersettingsdialog.cpp" line="272"/>
         <source>This value is in conflict with another option.</source>
-        <translation type="unfinished"></translation>
+        <translation>Detta värde är i konflikt med en annan option.</translation>
     </message>
     <message>
         <location filename="../../src/cupsprintersettingsdialog.cpp" line="282"/>
         <source>Options conflict.</source>
-        <translation type="unfinished"></translation>
+        <translation>Optionskonflikt.</translation>
     </message>
     <message>
         <source>This value is in conflict with other option</source>
@@ -251,7 +251,7 @@
     <message>
         <location filename="../../src/contest.cpp" line="148"/>
         <source>Socket operation timed out.</source>
-        <translation type="unfinished"></translation>
+        <translation>Socketoperation överskred tidsgräns.</translation>
     </message>
     <message>
         <source>Socket operation timed out</source>
@@ -326,37 +326,37 @@
         <location filename="../../src/configdialog.cpp" line="207"/>
         <location filename="../../src/configdialog.cpp" line="352"/>
         <source>X.Org Server settings</source>
-        <translation type="unfinished"></translation>
+        <translation>X.Org serverinställningar</translation>
     </message>
     <message>
         <location filename="../../src/configdialog.cpp" line="259"/>
         <source>Clientside (local) SSH daemon port for file system export usage:</source>
-        <translation type="unfinished"></translation>
+        <translation>SSH-port på klienten för export av filsystem:</translation>
     </message>
     <message>
         <location filename="../../src/configdialog.cpp" line="357"/>
         <source>Pulseaudio settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Pulseaudio inställningar</translation>
     </message>
     <message>
         <location filename="../../src/configdialog.cpp" line="359"/>
         <source>Disable audio input</source>
-        <translation type="unfinished"></translation>
+        <translation>Deaktivera ljudingång</translation>
     </message>
     <message>
         <location filename="../../src/configdialog.cpp" line="360"/>
         <source>&lt;font size=&quot;5&quot;&gt;You must restart the X2Go Client for the changes to take effect&lt;/font&gt;&lt;br&gt;&lt;br&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;font size=&quot;5&quot;&gt;Du måste starta om X2Go-klienten för att ändringar ska aktiveras&lt;/font&gt;&lt;br&gt;&lt;br&gt;</translation>
     </message>
     <message>
         <location filename="../../src/configdialog.cpp" line="569"/>
         <source>Your XQuartz version is too old.</source>
-        <translation type="unfinished"></translation>
+        <translation>Din XQuartz-version är för gammal.</translation>
     </message>
     <message>
         <location filename="../../src/configdialog.cpp" line="570"/>
         <source>Your are using XQuartz (X Window System Server for OS X) version </source>
-        <translation type="unfinished"></translation>
+        <translation>Du använder XQuartz (X Window System Server for OS X) version </translation>
     </message>
     <message>
         <location filename="../../src/configdialog.cpp" line="572"/>
@@ -371,12 +371,22 @@ MacPorts users please follow the steps outlined on:
 Users who have installed XQuartz via the installer package
 can find updated versions on:
 &lt;center&gt;&lt;a href=&quot;https://xquartz.macosforge.org/&quot;&gt;https://xquartz.macosforge.org/&lt;/a&gt;&lt;/center&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>.
+
+Denna version orsakar problem med X-applikationer i 24-bitars färg.
+Du bör uppdatera din X11-miljö.
+
+MacPorts-användare, följ denna instruktion:
+&lt;center&gt;&lt;a href=&quot;https://guide.macports.org/chunked/using.common-tasks.html&quot;&gt;https://guide.macports.org/chunked/using.common-tasks.html&lt;/a&gt;&lt;/center&gt;
+
+Användare som har installera XQuartz via installationspaketet
+kan hitta uppdaterade versioner här:
+&lt;center&gt;&lt;a href=&quot;https://xquartz.macosforge.org/&quot;&gt;https://xquartz.macosforge.org/&lt;/a&gt;&lt;/center&gt;</translation>
     </message>
     <message>
         <location filename="../../src/configdialog.cpp" line="599"/>
         <source>No valid XQuartz application selected.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ingen giltig XQuartz-applikation vald.</translation>
     </message>
     <message>
         <location filename="../../src/configdialog.cpp" line="600"/>
@@ -387,7 +397,13 @@ Some standard installation locations may be:
 &lt;center&gt;&lt;b&gt;/Applications/Utilities/X11.app&lt;/b&gt;&lt;/center&gt;
 &lt;center&gt;&lt;b&gt;/Applications/Utilities/XQuartz.app&lt;/b&gt;&lt;/center&gt;
 &lt;center&gt;&lt;b&gt;/Applications/MacPorts/X11.app&lt;/b&gt;&lt;/center&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>Du valde inte en giltig XQuartz-applikation.
+Var vänlig försök igen.
+
+Några vanliga installationssökvägar är:
+&lt;center&gt;&lt;b&gt;/Applications/Utilities/X11.app&lt;/b&gt;&lt;/center&gt;
+&lt;center&gt;&lt;b&gt;/Applications/Utilities/XQuartz.app&lt;/b&gt;&lt;/center&gt;
+&lt;center&gt;&lt;b&gt;/Applications/MacPorts/X11.app&lt;/b&gt;&lt;/center&gt;</translation>
     </message>
     <message>
         <source>X-Server settings</source>
@@ -674,7 +690,7 @@ Some standard installation locations may be:
     <message>
         <location filename="../../src/exportdialog.cpp" line="85"/>
         <source>Share Folders</source>
-        <translation type="unfinished"></translation>
+        <translation>Dela mappar</translation>
     </message>
     <message>
         <source>share folders</source>
@@ -721,17 +737,17 @@ Some standard installation locations may be:
     <message>
         <location filename="../../src/folderexplorer.cpp" line="81"/>
         <source>Rename Folder ...</source>
-        <translation type="unfinished"></translation>
+        <translation>Döp om mapp...</translation>
     </message>
     <message>
         <location filename="../../src/folderexplorer.cpp" line="82"/>
         <source>Change Icon ...</source>
-        <translation type="unfinished"></translation>
+        <translation>Ändra ikon...</translation>
     </message>
     <message>
         <location filename="../../src/folderexplorer.cpp" line="83"/>
         <source>Delete Folder ...</source>
-        <translation type="unfinished"></translation>
+        <translation>Ta bort mapp...</translation>
     </message>
     <message>
         <location filename="../../src/folderexplorer.cpp" line="97"/>
@@ -766,7 +782,7 @@ Some standard installation locations may be:
     <message>
         <location filename="../../src/folderexplorer.cpp" line="131"/>
         <source>&quot;. Folder is not empty. Please remove the contents of this directory and try again.</source>
-        <translation type="unfinished"></translation>
+        <translation>&quot;. Mappen är inte tom. Var vänlig töm mappen och försök igen.</translation>
     </message>
     <message>
         <source>&quot;. Folder is not empty. Please remove content of folder and try again.</source>
@@ -892,38 +908,38 @@ Publik nyckel: </translation>
     <message>
         <location filename="../../src/httpbrokerclient.cpp" line="131"/>
         <source>For security reasons, the connection attempt will be aborted.</source>
-        <translation type="unfinished"></translation>
+        <translation>Anslutningen avbryts av säkerhetsskäl.</translation>
     </message>
     <message>
         <location filename="../../src/httpbrokerclient.cpp" line="144"/>
         <source>The host key for this server was not found but anothertype of key exists. An attacker might have changed the default server key to trick your client into thinking the key does not exist yet.</source>
-        <translation type="unfinished"></translation>
+        <translation>Servernyckeln för denna server hittades inte men en annan typ av nyckel finns. En angripare kan ha ändrat servernyckel för att lura klienten att nyckeln inte ännu finns.</translation>
     </message>
     <message>
         <location filename="../../src/httpbrokerclient.cpp" line="170"/>
         <source>Could not find known hosts file.If you accept the host key here, the file will be automatically created.</source>
-        <translation type="unfinished"></translation>
+        <translation>Hittar ej fil för kända servrar. Om du accepterar serverns nyckel så kommer filen att skapas automatiskt.</translation>
     </message>
     <message>
         <location filename="../../src/httpbrokerclient.cpp" line="179"/>
         <location filename="../../src/httpbrokerclient.cpp" line="189"/>
         <source>Host key verification failed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Verifiering av serverns nyckel misslyckades.</translation>
     </message>
     <message>
         <location filename="../../src/httpbrokerclient.cpp" line="237"/>
         <source>Authentication failed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Autentisering misslyckades.</translation>
     </message>
     <message>
         <location filename="../../src/httpbrokerclient.cpp" line="404"/>
         <source>Login failed!&lt;br&gt;Please try again.</source>
-        <translation type="unfinished"></translation>
+        <translation>Inloggning misslyckades!&lt;br&gt;Var god försök igen.</translation>
     </message>
     <message>
         <location filename="../../src/httpbrokerclient.cpp" line="594"/>
         <source>Secure connection failed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Säker anslutning misslyckades.</translation>
     </message>
     <message>
         <location filename="../../src/httpbrokerclient.cpp" line="599"/>
@@ -1249,64 +1265,64 @@ ljudström genom brandväggar</translation>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="61"/>
         <source>Starting X2Go Client...</source>
-        <translation type="unfinished"></translation>
+        <translation>Startar X2Go-klient...</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="279"/>
         <source>Starting X2Go Client in portable mode. Data directory is: </source>
-        <translation type="unfinished"></translation>
+        <translation>Startar X2Go-klient i portabelt läge. Datakatalog är: </translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="411"/>
         <location filename="../../src/onmainwindow.cpp" line="8363"/>
         <source>About X2Go Client</source>
-        <translation type="unfinished"></translation>
+        <translation>Om X2Go-klient</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="512"/>
         <source>Started X2Go Client.</source>
-        <translation type="unfinished"></translation>
+        <translation>Startade X2Go-klient.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="592"/>
         <location filename="../../src/onmainwindow.cpp" line="620"/>
         <source> found.</source>
-        <translation type="unfinished"></translation>
+        <translation> hittad.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="605"/>
         <source>English language requested, not loading translator.</source>
-        <translation type="unfinished"></translation>
+        <translation>Engelska begärt, laddar inte översättare.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="626"/>
         <source>Non-fatal: can&apos;t load translator: </source>
-        <translation type="unfinished"></translation>
+        <translation>Icke-kritiskt: kan inte ladda översättare: </translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="627"/>
         <source>Trying to load language with lower preference, if existent.</source>
-        <translation type="unfinished"></translation>
+        <translation>Försöker ladda språk med lägre preferens, om det finns.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="878"/>
         <source>Session management ...</source>
-        <translation type="unfinished"></translation>
+        <translation>Sessionshantering...</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="889"/>
         <source>&amp;Create session icon on desktop ...</source>
-        <translation type="unfinished"></translation>
+        <translation>S&amp;kapa sessionsgenväg på Skrivbordet...</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="898"/>
         <source>&amp;Set broker password ...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Ange agentlösenord...</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="909"/>
         <source>&amp;Connectivity test ...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Testa anslutning...</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="941"/>
@@ -1476,42 +1492,42 @@ ljudström genom brandväggar</translation>
         <location filename="../../src/onmainwindow.cpp" line="1188"/>
         <location filename="../../src/onmainwindow.cpp" line="11383"/>
         <source>Share folder ...</source>
-        <translation type="unfinished"></translation>
+        <translation>Dela mapp ...</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="1218"/>
         <source>A left click hides or restores the window. A right click displays the context menu.</source>
-        <translation type="unfinished"></translation>
+        <translation>Vänster musknapp för att dölja/återställa. Höger musknapp för att visa snabbmeny.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="1404"/>
         <source>Closing X2Go Client ...</source>
-        <translation type="unfinished"></translation>
+        <translation>Stänger X2Go-klient...</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="1552"/>
         <source>Finished X2Go Client closing hooks.</source>
-        <translation type="unfinished"></translation>
+        <translation>Slutförde X2Go-klientens avslutshookar.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="1777"/>
         <source>Broker authentication failed!</source>
-        <translation type="unfinished"></translation>
+        <translation>Autentisering till agent misslyckades!</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="1861"/>
         <source>no X2Go Server found in LDAP </source>
-        <translation type="unfinished"></translation>
+        <translation>ingen X2Go-server hittades i LDAP </translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="2834"/>
         <source>Connection error: </source>
-        <translation type="unfinished"></translation>
+        <translation>Anslutningsfel: </translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="2903"/>
         <source>Couldn&apos;t find an SSH connection.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kunde inte hitta en SSH-anslutning.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="2963"/>
@@ -1520,7 +1536,11 @@ Somebody might be eavesdropping on you.
 For security reasons, it is recommended to stop the connection attempt.
 Do you want to terminate the connection?
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Detta kan vara en indikation på en &quot;man in the middle&quot;-attack.
+Någon kan avlyssna kommunikationen.
+Av säkerhetsskäl är det rekommenderat att du avslutar anslutningen.
+Vill du avsluta anslutningen?
+</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="2967"/>
@@ -1530,7 +1550,7 @@ Do you want to terminate the connection?
         <location filename="../../src/onmainwindow.cpp" line="3038"/>
         <location filename="../../src/onmainwindow.cpp" line="3050"/>
         <source>Host key verification failed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Verifiering av serverns nyckel misslyckades.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="2990"/>
@@ -1538,17 +1558,19 @@ Do you want to terminate the connection?
 For security reasons, it is recommended to stop the connection attempt.
 Do you want to terminate the connection?
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Servernyckeln hittades inte, men en annan nyckeltyp finns. En attackerare kan ändra typen på servernyckeln för att lura din klient att tro att nyckeln inte ännu finns.
+Av säkerhetsskäl är det rekommenderat att du avslutar anslutningen.
+Vill du avsluta anslutningen?</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="3029"/>
         <source>Could not find known hosts file.If you accept the host key here, the file will be automatically created.</source>
-        <translation type="unfinished"></translation>
+        <translation>Hittar ej fil för kända servrar. Om du accepterar serverns nyckel så kommer filen att skapas automatiskt.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="3082"/>
         <source>Authentication failed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Autentisering misslyckades.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="3534"/>
@@ -1562,12 +1584,13 @@ Do you want to terminate the connection?
         <location filename="../../src/onmainwindow.cpp" line="9268"/>
         <source>&lt;b&gt;Connection failed.&lt;/b&gt;
 </source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Anslutning misslyckades.&lt;/b&gt;
+</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="3769"/>
         <source>No server available.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ingen server tillgänglig.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="3778"/>
@@ -1575,47 +1598,48 @@ Do you want to terminate the connection?
         <location filename="../../src/onmainwindow.cpp" line="4695"/>
         <location filename="../../src/onmainwindow.cpp" line="4840"/>
         <source>Server not available.</source>
-        <translation type="unfinished"></translation>
+        <translation>Server ej tillgänglig.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="4476"/>
         <source>No accessible desktop found.</source>
-        <translation type="unfinished"></translation>
+        <translation>Inget tillgängligt Skrivbord hittades.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="4606"/>
         <location filename="../../src/onmainwindow.cpp" line="4625"/>
         <source>Your current color depth is different from the session&apos;s color depth. This may cause problems reconnecting to this session and in most cases &lt;b&gt;you will loose the session&lt;/b&gt; and have to start a new one! It&apos;s highly recommended to change the color depth of your display to </source>
-        <translation type="unfinished"></translation>
+        <translation>Ditt nuvarande färgdjup matchar inte X2Go-sessionens färgdjup. Det kan orsaka problem vid återanslutning av sessionen och i de flesta fall &lt;b&gt;förlorar du sessionen&lt;/b&gt; och måste starta en ny! Det är starkt rekommenderat att du ändrar färdgjup till </translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="4614"/>
         <location filename="../../src/onmainwindow.cpp" line="4633"/>
         <source> bits and restart your X.Org Server before you reconnect to this X2Go session.&lt;br /&gt;Do you want to resume this session anyway?</source>
-        <translation type="unfinished"></translation>
+        <translation> bitar och startar om X-.Org-servern innan du återansluter till denna X2Go-session.&lt;br&gt;Återanslut session ändå?</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="5837"/>
         <source>Proxy didn&apos;t terminate after 3 seconds. Killing the proxy.</source>
-        <translation type="unfinished"></translation>
+        <translation>Proxy avslutade inte efter 3 sekunder. Dödar proxy.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="5879"/>
         <location filename="../../src/onmainwindow.cpp" line="9305"/>
         <source>Closing X2Go Client because it was started in hidden mode.</source>
-        <translation type="unfinished"></translation>
+        <translation>Avslutar X2Go-klienten eftersom den startades i dolt läge.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="5884"/>
         <location filename="../../src/onmainwindow.cpp" line="9310"/>
         <source>Closing X2Go Client because the --close-disconnect parameter was passed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Avslutar X2Go-klienten eftersom --close-disconnect angavs som inparameter.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="6242"/>
         <source>Are you sure you want to terminate this session?
 Unsaved documents will be lost.</source>
-        <translation type="unfinished"></translation>
+        <translation>Är du säker på att du vill avsluta sessionen?
+Data som ej sparats kommer att förloras.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="6633"/>
@@ -1623,142 +1647,145 @@ Unsaved documents will be lost.</source>
         <source>&lt;b&gt;Connection failed.&lt;/b&gt;
 :
 </source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Anslutning misslyckades.&lt;/b&gt;
+:
+</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="7178"/>
         <location filename="../../src/onmainwindow.cpp" line="7189"/>
         <location filename="../../src/onmainwindow.cpp" line="7200"/>
         <source> (file does not exist)</source>
-        <translation type="unfinished"></translation>
+        <translation> (filen finns inte)</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="7227"/>
         <source> (directory does not exist)</source>
-        <translation type="unfinished"></translation>
+        <translation> (mapp finns inte)</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="7254"/>
         <source>Invalid value for parameter &quot;--link&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>fel värde för &quot;--link&quot;.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="7271"/>
         <source>Invalid value for parameter &quot;--clipboard&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>fel värde för argument &quot;--clipboard&quot;.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="7287"/>
         <source>Invalid value for parameter &quot;--sound&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>fel värde för &quot;--sound&quot;.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="7303"/>
         <location filename="../../src/onmainwindow.cpp" line="7313"/>
         <source>Invalid value for parameter &quot;--geometry&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>fel värde för &quot;--geometry&quot;.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="7330"/>
         <source>Invalid value for parameter &quot;--set-kbd&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>fel värde för &quot;--set-kbd&quot;.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="7346"/>
         <source>Invalid value for parameter &quot;--ldap&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>fel värde för &quot;--ldap&quot;.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="7367"/>
         <source>Invalid value for parameter &quot;--ldap1&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>fel värde för &quot;--ldap1&quot;.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="7386"/>
         <source>Invalid value for parameter &quot;--ldap2&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>fel värde för &quot;--ldap2&quot;.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="7440"/>
         <source>Invalid value for parameter &quot;--pack&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>fel värde för &quot;--pack&quot;.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="7475"/>
         <source>Available pack methods:</source>
-        <translation type="unfinished"></translation>
+        <translation>Tillgängliga kompressionsmetoder:</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="7497"/>
         <source>Pack Methods</source>
-        <translation type="unfinished"></translation>
+        <translation>Kompressionsmetoder</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="7527"/>
         <location filename="../../src/onmainwindow.cpp" line="7537"/>
         <source>Option is not available in this build.</source>
-        <translation type="unfinished"></translation>
+        <translation>Alternativet är inte tillgängligt i denna version.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="7910"/>
         <source>Unable to create directory:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kunde ej skapa katalog:</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="8019"/>
         <source>Cannot open key: </source>
-        <translation type="unfinished"></translation>
+        <translation>Kan inte öppna nyckel: </translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="8343"/>
         <source>&lt;br&gt;(C) 2005-2016 by &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing&lt;br&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;/b&gt;&lt;br&gt; &amp;copy; 2005-2016 &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing&lt;br&gt;</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="8346"/>
         <source>&lt;br&gt;X2Go Plugin mode was sponsored by &lt;a href=&quot;http://www.foss-group.de/&quot;&gt;FOSS-Group GmbH (Freiburg)&lt;/a&gt;&lt;br&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;br&gt;X2Go Plugin sponsrades av &lt;a href=&quot;http://www.foss-group.de/&quot;&gt;FOSS-Group GmbH (Freiburg)&lt;/a&gt;&lt;br&gt;</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="8350"/>
         <source>&lt;br&gt;This is a client to access the X2Go network-based computing environment. This client will be able to connect to X2Go Server(s) and start, stop, resume and terminate (running) desktop sessions. X2Go Client stores different server connections and may automatically request authentication data from LDAP directories. Furthermore, it can be used as a fullscreen login screen (replacement for login managers like XDM). Please visit &lt;a href=&quot;http://www.x2go.org&quot;&gt;the project home page at x2go.org&lt;/a&gt; for further information.</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;br&gt;Klient för X2Go. Denna klient kan ansluta till X2Go-servrar och starta/stoppa/återansluta/avsluta (aktiva) sessioner. X2Go-klienten kan spara anslutningsinställningar samt använda LDAP för autentisering. Klienten kan även användas som inloggningsskärm (ersättning för exempelvis xdm). Besök &lt;a href=&quot;http://www.x2go.org&quot;&gt;www.x2go.org&lt;/a&gt; för vidare information.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="8364"/>
         <source>&lt;b&gt;X2Go Client v. </source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;X2Go-klient V. </translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="8409"/>
         <source>Please check LDAP Settings.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kontrollera LDAP-inställningar.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="8669"/>
         <source>Check whether the package providing &quot;scdaemon&quot; is installed.
 The current search path is: </source>
-        <translation type="unfinished"></translation>
+        <translation>Kontrollera om paket för &quot;scdaemon&quot; är installerat.
+Aktuell sökväg är: </translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="8695"/>
         <source>didn&apos;t start yet.</source>
-        <translation type="unfinished"></translation>
+        <translation>har inte startat ännu.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="8705"/>
         <source>Unable to read from scdaemon.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kunde ej läsa från scdaemon.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="8741"/>
         <source>No valid card found.</source>
-        <translation type="unfinished"></translation>
+        <translation>Inget giltigt kort hittades.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="8797"/>
         <source>This card is unknown to the X2Go system.</source>
-        <translation type="unfinished"></translation>
+        <translation>Detta kort är okänt för X2Go-systemet.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="9124"/>
@@ -1766,46 +1793,51 @@ The current search path is: </source>
         <location filename="../../src/onmainwindow.cpp" line="9825"/>
         <source>Can&apos;t start X.Org Server.
 Please check your installation.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kan ej starta X.Org-server.
+Kontrollera installation.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="9326"/>
         <source>Remote server does not support file system exports through SSH tunnels.
 Please update your x2goserver package.</source>
-        <translation type="unfinished"></translation>
+        <translation>Servern stöder ej filsystemsexport via SSH-tunnel.
+Uppdatera till en nyare version av x2goserver.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="9351"/>
         <source>Unable to create SSH tunnel for Folder Sharing and Printing support:
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Kunde inte skapa SSH-tunnel för mappdelning och skrivarstöd:
+</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="9380"/>
         <source>Unable to read:
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Kunde ej läsa:
+</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="9407"/>
         <source>Unable to write:
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Kunde ej skriva:
+</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="10523"/>
         <source>Error getting window geometry. (Did you close the window?)</source>
-        <translation type="unfinished"></translation>
+        <translation>Ett fel uppstod när fönstergeometri hämtades (fönster stängt?)</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="11005"/>
         <source>Invalid value for argument &quot;speed&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Fel värde för &quot;speed&quot;.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="11376"/>
         <source>Applications ...</source>
-        <translation type="unfinished"></translation>
+        <translation>Applikationer...</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="11780"/>
@@ -1813,14 +1845,18 @@ Please update your x2goserver package.</source>
         <source>SSH daemon could not be started.
 
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Kunde ej starta SSH-demon.
+
+</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="11786"/>
         <source>SSH daemon is not running.
 
 </source>
-        <translation type="unfinished"></translation>
+        <translation>SSH-demon ej aktiv.
+
+</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="11790"/>
@@ -1831,7 +1867,13 @@ These features require a running and functioning SSH server on your computer.
 Please also check the &lt;b&gt;Clientside SSH port&lt;/b&gt; in the general settings.
 
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Du har aktiverat fjärrutskrift eller mappdelning.
+Dessa funktioner krävera en aktiv och fungerande SSH-server på din dator.
+&lt;b&gt;Fjärrutskrift och mappdelning kommer att deaktiveras i denna session.&lt;/b&gt;
+
+Var vänlig kontrollera &lt;b&gt;SSH port&lt;/b&gt; i inställningarna.
+
+</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="11796"/>
@@ -1840,14 +1882,20 @@ Please also check the &lt;b&gt;Clientside SSH port&lt;/b&gt; in the general sett
 If you see this message, please report a bug on:
 &lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Detta ska normalt sett inte hända eftersom X2Go klient för Windows har en intern SSH-server.
+
+Om du ser detta meddelande, rapportera en bugg på:
+&lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
+</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="11805"/>
         <source>The SSH server failed to start.
 
 </source>
-        <translation type="unfinished"></translation>
+        <translation>SSH-servern startade inte.
+
+</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="11806"/>
@@ -1856,39 +1904,50 @@ If you see this message, please report a bug on:
 Please report a bug on:
 &lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
 </source>
-        <translation type="unfinished"></translation>
+        <translation>X2Go-klienten hittade ingen SSH server på din dator och kunde inte starta en egen.
+
+Var vänlig rapportera en bugg på:
+&lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
+</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="11815"/>
         <source>The SSH server is currently not started.
 
 </source>
-        <translation type="unfinished"></translation>
+        <translation>SSH-servern är inte igång.
+
+</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="11817"/>
         <source>On OS X, please follow the following steps to enable SSH service:&lt;ul&gt;&lt;li&gt;Open &lt;b&gt;System Preferences&lt;/b&gt; (Applications -&gt; System Preferences)&lt;/li&gt;&lt;li&gt;Go to &lt;b&gt;Sharing&lt;/b&gt;&lt;/li&gt;&lt;li&gt;Tick the checkbox besides &lt;b&gt;Remote Login&lt;/b&gt;&lt;/li&gt;&lt;li&gt;Check that &lt;b&gt;Allow access for:&lt;/b&gt; is set to either:&lt;ul&gt;&lt;li&gt;All users: &lt;b&gt;no further steps necessary&lt;/b&gt;&lt;/li&gt;&lt;li&gt;Only these users &lt;b&gt;and your user name is included in the list&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;&lt;li&gt;Optionally, add your user name to the allowed list via the &lt;b&gt;Plus Button&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;&lt;b&gt;Warning: enabling SSH access will allow any user on the network to connect to your machine. It is your responsibility to set a strong password for every user that is allowed to log in via SSH.&lt;/b&gt;
 
 </source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Har ingen OS X-maskin att kontrollera svenska termer mot.</translatorcomment>
+        <translation>På OS X, var vänlig följ dessa steg för att aktivera SSH-service:&lt;ul&gt;&lt;li&gt;Open &lt;b&gt;System Preferences&lt;/b&gt; (Applications -&gt; System Preferences)&lt;/li&gt;&lt;li&gt;Go to &lt;b&gt;Sharing&lt;/b&gt;&lt;/li&gt;&lt;li&gt;Tick the checkbox besides &lt;b&gt;Remote Login&lt;/b&gt;&lt;/li&gt;&lt;li&gt;Check that &lt;b&gt;Allow access for:&lt;/b&gt; is set to either:&lt;ul&gt;&lt;li&gt;All users: &lt;b&gt;no further steps necessary&lt;/b&gt;&lt;/li&gt;&lt;li&gt;Only these users &lt;b&gt;and your user name is included in the list&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;&lt;li&gt;Optionally, add your user name to the allowed list via the &lt;b&gt;Plus Button&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;&lt;b&gt;Warning: enabling SSH access will allow any user on the network to connect to your machine. It is your responsibility to set a strong password for every user that is allowed to log in via SSH.&lt;/b&gt;
+
+</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="11835"/>
         <source>Please ask your system administrator to provide the SSH service on your computer.
 
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Var vänlig be din systemadministratör att installera en SSH-server på din dator.
+
+</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="11840"/>
         <location filename="../../src/onmainwindow.cpp" line="11902"/>
         <source>Disabling Remote Printing or File Sharing support in the session settings will get rid of this message.</source>
-        <translation type="unfinished"></translation>
+        <translation>Deaktivering av fjärrutskrift eller mappdelning i sessionsinställningarna blockerar detta meddelande.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="11853"/>
         <source>SSH daemon failed to open its public host key.</source>
-        <translation type="unfinished"></translation>
+        <translation>SSH kunde inte öppna sin publika nyckel.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="11855"/>
@@ -1901,7 +1960,15 @@ The SSH server is currently not configured correctly.
 Please ensure that the server&apos;s public exists.
 
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Du har aktiverat fjärrutskrift eller mappdelning.
+Dessa funktioner kräver en aktiv och fungerande SSH-server på din dator.
+&lt;b&gt;Utskrifter och mappdelning inaktiveras i denna session.&lt;/b&gt;
+
+SSH-servern är inte korrekt konfigurerad.
+
+Var vänlig kontrollera att serverns publika nyckel finns.
+
+</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="11863"/>
@@ -1910,7 +1977,11 @@ Please ensure that the server&apos;s public exists.
 If you see this message, please report a bug on:
 &lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Normalt sett ska detta inte hända eftersom X2Go-klient för Windows har en egen SSH-server och automatiskt genererar nödvändiga nycklar.
+
+Om du ser detta meddelande, var vänlig rapportera en bugg på:
+&lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
+</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="11873"/>
@@ -1919,12 +1990,16 @@ If you see this message, please report a bug on:
 Please report a bug on:
 &lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
 </source>
-        <translation type="unfinished"></translation>
+        <translation>X2Go-klienten kunde inte skapa servernycklar för SSH.
+
+Var vänlig rapportera en bugg på:
+&lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
+</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="11882"/>
         <source>On OS X, please follow these steps to generate the required keys:&lt;ul&gt;&lt;li&gt;Open a &lt;b&gt;Terminal Window&lt;/b&gt; (Applications -&gt; Utilities -&gt; Terminal)&lt;/li&gt;&lt;li&gt;Run this command: &lt;b&gt;ssh -p </source>
-        <translation type="unfinished"></translation>
+        <translation>På OS X, följ dessa steg för att generera nycklar:&lt;ul&gt;&lt;li&gt;Open a &lt;b&gt;Terminal Window&lt;/b&gt; (Applications -&gt; Utilities -&gt; Terminal)&lt;/li&gt;&lt;li&gt;Run this command: &lt;b&gt;ssh -p</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="11893"/>
@@ -1934,13 +2009,19 @@ If you are administrating this system yourself, please run:
 &lt;center&gt;&lt;b&gt;sudo ssh-keygen -A&lt;/b&gt;&lt;/center&gt;
 
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Var vänlig be din systemadministratör att generera nödvändiga servernycklar.
+
+Om du är administratör, var vänlig kör:
+&lt;center&gt;&lt;b&gt;sudo ssh-keygen -A&lt;/b&gt;&lt;/center&gt;
+
+</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="11926"/>
         <source>SSH daemon failed to open the application&apos;s
 authorized_keys file.</source>
-        <translation type="unfinished"></translation>
+        <translation>SSH kunde inte öppna applikationens
+authorized_keys-fil.</translation>
     </message>
     <message>
         <source>Left mouse button to hide/restore - Right mouse button to display context menu</source>
@@ -2369,52 +2450,55 @@ Vill du avsluta anslutningen?</translation>
         <location filename="../../src/onmainwindow.cpp" line="5545"/>
         <source>Unable to create SSH tunnel for X2Go session (NX) startup:
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Kunde inte skapa SSH-tunnel för X2Go-sessionsstart (NX):
+</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="5575"/>
         <source>Unable to create SSH tunnel for audio data:
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Kunde ej skapa SSH-tunnel för ljuddata:
+</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="5683"/>
         <location filename="../../src/onmainwindow.cpp" line="8668"/>
         <source>failed to start.</source>
-        <translation type="unfinished"></translation>
+        <translation>startade inte.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="5684"/>
         <source>This likely means the binary is not available.
 The current search path is: </source>
-        <translation type="unfinished"></translation>
+        <translation>Det här betyder sannolikt att binären saknas.
+Aktuell sökväg är: </translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="5698"/>
         <source>returned a non-zero exit code or crashed otherwise.</source>
-        <translation type="unfinished"></translation>
+        <translation>returnerade en felkod eller avslutades oväntat.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="5699"/>
         <source>Execution failed, exit code was: </source>
-        <translation type="unfinished"></translation>
+        <translation>Exekvering misslyckades, felkod:</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="5704"/>
         <source>didn&apos;t start up in time.</source>
-        <translation type="unfinished"></translation>
+        <translation>startade inte i tid.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="5705"/>
         <location filename="../../src/onmainwindow.cpp" line="8696"/>
         <source>This error shouldn&apos;t come up.</source>
-        <translation type="unfinished"></translation>
+        <translation>Det här felet borde inte komma.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="5709"/>
         <location filename="../../src/onmainwindow.cpp" line="8700"/>
         <source>didn&apos;t accept a write operation.</source>
-        <translation type="unfinished"></translation>
+        <translation>accepterade inte en skrivoperation.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="5710"/>
@@ -2422,24 +2506,24 @@ The current search path is: </source>
         <location filename="../../src/onmainwindow.cpp" line="8701"/>
         <location filename="../../src/onmainwindow.cpp" line="8706"/>
         <source>It is probably not running correctly or crashed in-between.</source>
-        <translation type="unfinished"></translation>
+        <translation>Det är sannolikt inte igång eller har avslutats oväntat.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="5714"/>
         <source>Unable to read from xmodmap.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kunde ej läsa från xmodmap.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="5719"/>
         <location filename="../../src/onmainwindow.cpp" line="8710"/>
         <source>encountered an unknown error during start up or execution.</source>
-        <translation type="unfinished"></translation>
+        <translation>påträffade ett okänt fel under uppstart eller exekvering.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="5723"/>
         <location filename="../../src/onmainwindow.cpp" line="8714"/>
         <source>experienced an undefined error.</source>
-        <translation type="unfinished"></translation>
+        <translation>ett odefinierat fel inträffade.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="5732"/>
@@ -2447,7 +2531,9 @@ The current search path is: </source>
         <source>X2Go Client will now terminate.
 
 File a bug report as outlined on the &lt;a href=&quot;http://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;bugs wiki page&lt;/a&gt;.</source>
-        <translation type="unfinished"></translation>
+        <translation>X2Go-klienten kommer nu att avsluta.
+
+Lämna en buggrapport enligt &lt;a href=&quot;http://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;bugs wiki page&lt;/a&gt;.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="5825"/>
@@ -2909,12 +2995,12 @@ du kan installera sshd med (Debian/Ubuntu)
     <message>
         <location filename="../../src/printdialog.cpp" line="61"/>
         <source>You&apos;ve deactivated the X2Go Client printing dialog.</source>
-        <translation type="unfinished"></translation>
+        <translation>Du har inaktiverat utskriftsdialogen i X2Go.</translation>
     </message>
     <message>
         <location filename="../../src/printdialog.cpp" line="63"/>
         <source>You may reactivate this dialog using the X2Go Client settings dialog. To do so, follow this path in the menu bar: Options -&gt; Settings)</source>
-        <translation type="unfinished"></translation>
+        <translation>Du kan återaktivera denna dialog via X2Go-klientens inställningar (Meny -&gt; Alternativ -&gt; Inställningar)</translation>
     </message>
     <message>
         <source>You&apos;ve deactivated the x2go client printing dialog.</source>
@@ -2949,7 +3035,7 @@ du kan installera sshd med (Debian/Ubuntu)
         <location filename="../../src/printprocess.cpp" line="281"/>
         <location filename="../../src/printprocess.cpp" line="288"/>
         <source>Printing error.</source>
-        <translation type="unfinished"></translation>
+        <translation>Utskriftsfel.</translation>
     </message>
     <message>
         <source>Printing error</source>
@@ -3032,7 +3118,7 @@ du kan installera sshd med (Debian/Ubuntu)
     <message>
         <location filename="../../src/printwidget.cpp" line="59"/>
         <source>Please configure your client side printing settings.&lt;br&gt;&lt;br&gt;If you want to print the created file, you&apos;ll need an external application. Typically you can use &lt;a href=&quot;http://pages.cs.wisc.edu/~ghost/doc/GPL/index.htm&quot;&gt;ghostprint&lt;/a&gt; and &lt;a href=&quot;http://pages.cs.wisc.edu/~ghost/gsview/&quot;&gt;ghostview&lt;/a&gt;&lt;br&gt;You can find further information &lt;a href=&quot;http://www.x2go.org/index.php?id=49&quot;&gt;here&lt;/a&gt;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Konfigurera utskriftsinställningar för klienten.&lt;br&gt;&lt;br&gt;Om du vill skriva ut den skapade filen så behöver du en extern applikation. Du kan oftast använda &lt;a href=&quot;http://pages.cs.wisc.edu/~ghost/doc/GPL/index.htm&quot;&gt;ghostprint&lt;/a&gt; och &lt;a href=&quot;http://pages.cs.wisc.edu/~ghost/gsview/&quot;&gt;ghostview&lt;/a&gt;&lt;br&gt;Mer information finns &lt;a href=&quot;http://www.x2go.org/index.php?id=49&quot;&gt;här&lt;/a&gt;.</translation>
     </message>
 </context>
 <context>
@@ -3121,12 +3207,12 @@ Example:
     <message>
         <location filename="../../src/x2goutils.cpp" line="161"/>
         <source>X2Go Client could not find any suitable X11 server.</source>
-        <translation type="unfinished"></translation>
+        <translation>X2Go-klienten kunde inte hitta en lämplig X11-server.</translation>
     </message>
     <message>
         <location filename="../../src/x2goutils.cpp" line="166"/>
         <source>X2Go Client could not start X11 server.</source>
-        <translation type="unfinished"></translation>
+        <translation>X2Go-klienten kunde inte starta X11-server.</translation>
     </message>
     <message>
         <location filename="../../src/x2goutils.cpp" line="167"/>
@@ -3141,7 +3227,16 @@ Should you have &lt;b&gt;not&lt;/b&gt; installed XQuartz yet, please
 follow the outlined steps:
 
 </source>
-        <translation type="unfinished"></translation>
+        <translation>X2Go-klienten kräver XQuartz.
+
+Om XQuartz finns installerat på ditt system,
+var vänlig välj korrekt sökväg i kommande dialog.
+Se slutet på detta meddelande för exempel på sökvägar,
+
+Om du &lt;b&gt;inte&lt;/b&gt; har installerat XQuartz ännu, var
+vänlig följ dessa steg:
+
+</translation>
     </message>
     <message>
         <location filename="../../src/x2goutils.cpp" line="179"/>
@@ -3159,7 +3254,19 @@ This will most likely be
 &lt;center&gt;&lt;b&gt;/Applications/MacPorts/X11.app&lt;/b&gt;&lt;/center&gt;
 or
 &lt;center&gt;&lt;b&gt;/Applications/Utilities/XQuartz.app&lt;/b&gt;&lt;/center&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>MacPorts-användare, var vänlig installera &lt;b&gt;xorg-server&lt;/b&gt;
+eller &lt;b&gt;xorg-server-devel&lt;/b&gt;.
+Var vänlig följ instruktionerna från port-verktyget för att autostarta servern.
+
+Alla andra användare, var vänlig hämta och installera XQuartz från:
+&lt;center&gt;&lt;a href=&quot;https://xquartz.macosforge.org/&quot;&gt;https://xquartz.macosforge.org/&lt;/a&gt;&lt;/center&gt;
+
+Starta sedan om X2Go-klient och välj korrekt sökväg 
+till X11-applikationen i inställningara för X2Go-klient.
+Det är mest troligt
+&lt;center&gt;&lt;b&gt;/Applications/MacPorts/X11.app&lt;/b&gt;&lt;/center&gt;
+eller
+&lt;center&gt;&lt;b&gt;/Applications/Utilities/XQuartz.app&lt;/b&gt;&lt;/center&gt;</translation>
     </message>
 </context>
 <context>
@@ -3175,12 +3282,12 @@ or
     <message>
         <location filename="../../src/sessionbutton.cpp" line="137"/>
         <source>Session preferences ...</source>
-        <translation type="unfinished"></translation>
+        <translation>Sessionsinställningar...</translation>
     </message>
     <message>
         <location filename="../../src/sessionbutton.cpp" line="141"/>
         <source>Create session icon on desktop ...</source>
-        <translation type="unfinished"></translation>
+        <translation>Skapa sessionsgenväg på Skrivbordet...</translation>
     </message>
     <message>
         <location filename="../../src/sessionbutton.cpp" line="146"/>
@@ -3320,14 +3427,16 @@ Använd dolt läge?</translation>
     <message>
         <location filename="../../src/sessionexplorer.cpp" line="139"/>
         <source>Create session icon on desktop.</source>
-        <translation type="unfinished"></translation>
+        <translation>Skapa sessionsgenväg på Skrivbordet.</translation>
     </message>
     <message>
         <location filename="../../src/sessionexplorer.cpp" line="140"/>
         <source>Desktop icons can be configured not to show X2Go Client (hidden mode.) If you like to use this feature you&apos;ll need to configure login via a GPG key or GPG Smart Card.
 
 Use X2Go Client&apos;s hidden mode?</source>
-        <translation type="unfinished"></translation>
+        <translation>Skrivbordsgenvägar kan konfigureras att inte visa X2Go-klienten (dolt läge). Om du vill aktivera den funktionen måste du använda inloggning med GPG-nyckel eller GPG-smartkort.
+
+Använd dolt läge?</translation>
     </message>
     <message>
         <location filename="../../src/sessionexplorer.cpp" line="150"/>
@@ -3376,7 +3485,7 @@ Use X2Go Client&apos;s hidden mode?</source>
     <message>
         <location filename="../../src/sessionmanagedialog.cpp" line="59"/>
         <source>&amp;Create session icon on desktop ...</source>
-        <translation type="unfinished"></translation>
+        <translation>S&amp;kapa sessionsgenväg på Skrivbordet...</translation>
     </message>
     <message>
         <source>&amp;Create session icon on desktop...</source>
@@ -3493,7 +3602,7 @@ Use X2Go Client&apos;s hidden mode?</source>
         <location filename="../../src/sessionwidget.cpp" line="328"/>
         <location filename="../../src/sessionwidget.cpp" line="443"/>
         <source>X2Go Client is running in portable mode. You should use a path on your USB device to be able to access your data wherever you are.</source>
-        <translation type="unfinished"></translation>
+        <translation>X2Go-klienten körs i portabelt läge. Du bör använda en sökväg till en USB-enhet för att möjliggöra flyttbara inställningar.</translation>
     </message>
     <message>
         <source>ssh-agent or default ssh key</source>
@@ -3594,23 +3703,23 @@ Use X2Go Client&apos;s hidden mode?</source>
     <message>
         <location filename="../../src/sessionwidget.cpp" line="140"/>
         <source>Try auto login (via SSH Agent or default SSH key)</source>
-        <translation type="unfinished"></translation>
+        <translation>Prova automatisk inloggning (ssh-agent eller standard SSH-nyckel)</translation>
     </message>
     <message>
         <location filename="../../src/sessionwidget.cpp" line="171"/>
         <source>SSH Agent or default SSH key</source>
-        <translation type="unfinished"></translation>
+        <translation>ssh-agent eller standard SSH-nyckel</translation>
     </message>
     <message>
         <location filename="../../src/sessionwidget.cpp" line="216"/>
         <location filename="../../src/sessionwidget.cpp" line="519"/>
         <source>Connect to Windows Terminal Server</source>
-        <translation type="unfinished"></translation>
+        <translation>Anslut till Windows Terminal Server (RDP)</translation>
     </message>
     <message>
         <location filename="../../src/sessionwidget.cpp" line="247"/>
         <source>Direct RDP connection</source>
-        <translation type="unfinished"></translation>
+        <translation>Direktanslutning via RDP</translation>
     </message>
     <message>
         <location filename="../../src/sessionwidget.cpp" line="317"/>
@@ -3730,7 +3839,7 @@ Use X2Go Client&apos;s hidden mode?</source>
     <message>
         <location filename="../../src/settingswidget.cpp" line="50"/>
         <source>&amp;Clipboard mode</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Urklippsläge</translation>
     </message>
     <message>
         <location filename="../../src/settingswidget.cpp" line="62"/>
@@ -3790,12 +3899,12 @@ Use X2Go Client&apos;s hidden mode?</source>
     <message>
         <location filename="../../src/settingswidget.cpp" line="168"/>
         <source>Auto-detect keyboard settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Detektera tangentbordsinställningar automatiskt</translation>
     </message>
     <message>
         <location filename="../../src/settingswidget.cpp" line="204"/>
         <source>RDP client</source>
-        <translation type="unfinished"></translation>
+        <translation>RDP-klient</translation>
     </message>
     <message>
         <source>Keep current keyboard Settings</source>
@@ -3917,12 +4026,12 @@ ljudström genom brandväggar</translation>
     <message>
         <location filename="../../src/sharewidget.cpp" line="101"/>
         <source>Use SSH port forwarding to tunnel file system connections through firewalls</source>
-        <translation type="unfinished"></translation>
+        <translation>Använd SSH port forwarding för att tunnla filsystemsanslutningar genom brandväggar</translation>
     </message>
     <message>
         <location filename="../../src/sharewidget.cpp" line="176"/>
         <source>X2Go Client is running in portable mode. You should use a path on your USB device to be able to access your data wherever you are.</source>
-        <translation type="unfinished"></translation>
+        <translation>X2Go-klienten körs i portabelt läge. Du bör använda en sökväg till en USB-enhet för att möjliggöra flyttbara inställningar.</translation>
     </message>
     <message>
         <source>Use ssh port forwarding to tunnel file system connections through firewalls</source>
@@ -3964,7 +4073,7 @@ ljudström genom brandväggar</translation>
     <message>
         <location filename="../../src/sshmasterconnection.cpp" line="410"/>
         <source>SSH proxy connection error.</source>
-        <translation type="unfinished"></translation>
+        <translation>Anslutningsfel SSH-proxy.</translation>
     </message>
     <message>
         <location filename="../../src/sshmasterconnection.cpp" line="415"/>
@@ -3975,83 +4084,83 @@ ljudström genom brandväggar</translation>
     <message>
         <location filename="../../src/sshmasterconnection.cpp" line="437"/>
         <source>Failed to create SSH proxy tunnel.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kunde ej skapa SSH-proxytunnel.</translation>
     </message>
     <message>
         <location filename="../../src/sshmasterconnection.cpp" line="490"/>
         <source>Cannot initialize libssh.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kan ej initialisera libssh.</translation>
     </message>
     <message>
         <location filename="../../src/sshmasterconnection.cpp" line="518"/>
         <source>Cannot create SSH session.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kan ej skapa SSH-session.</translation>
     </message>
     <message>
         <location filename="../../src/sshmasterconnection.cpp" line="554"/>
         <source>Cannot connect to proxy server.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kan ej ansluta till proxyserver.</translation>
     </message>
     <message>
         <location filename="../../src/sshmasterconnection.cpp" line="684"/>
         <location filename="../../src/sshmasterconnection.cpp" line="919"/>
         <source>Authentication failed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Autentisering misslyckades.</translation>
     </message>
     <message>
         <location filename="../../src/sshmasterconnection.cpp" line="1237"/>
         <source>Failed to start SSH client. Please check your installation and GSSApi configuration.</source>
-        <translation type="unfinished"></translation>
+        <translation>Start av SSH-klient misslyckades. Kontrollera din installation och GSSAPI-konfiguration.</translation>
     </message>
     <message>
         <location filename="../../src/sshmasterconnection.cpp" line="1263"/>
         <source>Check your GSSApi configuration or choose another authentication method.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kontrollera din GSSAPI-konfiguration eller välj en annan autentiseringsmetod.</translation>
     </message>
     <message>
         <location filename="../../src/sshmasterconnection.cpp" line="1365"/>
         <source>Cannot open file </source>
-        <translation type="unfinished"></translation>
+        <translation>Kan inte öppna fil </translation>
     </message>
     <message>
         <location filename="../../src/sshmasterconnection.cpp" line="1377"/>
         <source>Cannot create remote file </source>
-        <translation type="unfinished"></translation>
+        <translation>Kan inte skapa fjärrfil </translation>
     </message>
     <message>
         <location filename="../../src/sshmasterconnection.cpp" line="1392"/>
         <source>Cannot write to remote file </source>
-        <translation type="unfinished"></translation>
+        <translation>Kan inte skriva till fjärrfil </translation>
     </message>
     <message>
         <location filename="../../src/sshmasterconnection.cpp" line="1523"/>
         <source>channel_open_forward failed.</source>
-        <translation type="unfinished"></translation>
+        <translation>channel_open_forward misslyckades.</translation>
     </message>
     <message>
         <location filename="../../src/sshmasterconnection.cpp" line="1544"/>
         <source>channel_open_session failed.</source>
-        <translation type="unfinished"></translation>
+        <translation>channel_open_session misslyckades.</translation>
     </message>
     <message>
         <location filename="../../src/sshmasterconnection.cpp" line="1632"/>
         <source>Error writing to socket.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ett fel uppstod vid skrivning till socket.</translation>
     </message>
     <message>
         <location filename="../../src/sshmasterconnection.cpp" line="1654"/>
         <source>Error reading channel.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ett fel uppstod när kanal skulle läsas.</translation>
     </message>
     <message>
         <location filename="../../src/sshmasterconnection.cpp" line="1688"/>
         <source>channel_write failed.</source>
-        <translation type="unfinished"></translation>
+        <translation>channel_write misslyckades.</translation>
     </message>
     <message>
         <location filename="../../src/sshmasterconnection.cpp" line="1704"/>
         <source>Error reading from TCP socket.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ett fel uppstod när TCP-socket skulle läsas.</translation>
     </message>
     <message>
         <source>Failed to create SSH proxy tunnel</source>
@@ -4146,7 +4255,7 @@ ljudström genom brandväggar</translation>
     <message>
         <location filename="../../src/sshprocess.cpp" line="127"/>
         <source>Error creating socket.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ett fel uppstod när socket skulle skapas.</translation>
     </message>
     <message>
         <location filename="../../src/sshprocess.cpp" line="145"/>
@@ -4237,7 +4346,7 @@ ljudström genom brandväggar</translation>
     <message>
         <location filename="../../src/ui/xsettingsui.ui" line="169"/>
         <source>whole display:</source>
-        <translation type="unfinished"></translation>
+        <translation>använd hela skärmen:</translation>
     </message>
 </context>
 </TS>
