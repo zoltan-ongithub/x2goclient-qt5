@@ -4,6 +4,11 @@ x2goclient (4.0.5.2-0x2go1) UNRELEASED; urgency=medium
   * New upstream version (4.0.5.2):
     - res/i18n/x2goclient_nb_no.ts: update Bokmål (Norway) translation file.
 
+  [ Mihai Moldovan ]
+  * New upstream release (4.0.5.2):
+    - res/i18n/x2goclient_nb_no.ts: fixup translation by respecting the
+      original messages' format, typo fixes and other changes.
+
  -- X2Go Release Manager <git-admin@x2go.org>  Thu, 24 Mar 2016 23:04:42 +0100
 
 x2goclient (4.0.5.1-0x2go1) unstable; urgency=low

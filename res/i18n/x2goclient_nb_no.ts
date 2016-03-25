@@ -371,7 +371,7 @@
     </message>
     <message>
         <source>Your are using XQuartz (X Window System Server for OS X) version </source>
-        <translation>Du benytter XQuartz (Apple X Window System Server) versjon </translation>
+        <translation>Du benytter XQuartz (OS X X Window System Server) versjon </translation>
     </message>
     <message>
         <source>.
@@ -662,7 +662,7 @@ Noen vanlige lokasjoner er:
     </message>
     <message>
         <source>&quot;. Folder is not empty. Please remove the contents of this directory and try again.</source>
-        <translation>&quot; mappen er ikke tom. Fjern innholdet i mappa, og forsøk pånytt.</translation>
+        <translation>&quot;. Mappen er ikke tom. Fjern innholdet i mappa, og forsøk pånytt.</translation>
     </message>
 </context>
 <context>
@@ -758,15 +758,15 @@ Offentlig nøkkel: </translation>
     </message>
     <message>
         <source>Organization(O)	</source>
-        <translation>Organisation (O)￼	</translation>
+        <translation>Organisation (O)	</translation>
     </message>
     <message>
         <source>Organizational Unit(OU)	</source>
-        <translation>Organisasjonsenhet (OU)￼	</translation>
+        <translation>Organisasjonsenhet (OU)	</translation>
     </message>
     <message>
         <source>Serial Number	</source>
-        <translation>Serienummer￼	</translation>
+        <translation>Serienummer	</translation>
     </message>
     <message>
         <source>Issued by:
@@ -796,7 +796,7 @@ Offentlig nøkkel: </translation>
     </message>
     <message>
         <source>SHA1	</source>
-        <translation>SHA1￼	</translation>
+        <translation>SHA1	</translation>
     </message>
     <message>
         <source>MD5	</source>
@@ -944,7 +944,7 @@ lydsystem forbindelser gjennom brannmurer</translation>
     </message>
     <message>
         <source>About Qt</source>
-        <translation>Om QT</translation>
+        <translation>Om Qt</translation>
     </message>
     <message>
         <source>Session</source>
@@ -1471,7 +1471,7 @@ Vennligst sjekk instillingene dine</translation>
     </message>
     <message>
         <source>Unable to execute: </source>
-        <translation>Klarte ikke å utføre:</translation>
+        <translation>Klarte ikke å utføre: </translation>
     </message>
     <message>
         <source>X2Go Client</source>
@@ -1829,7 +1829,7 @@ Vennligst sjekk din installasjon</translation>
     </message>
     <message>
         <source>&lt;br&gt;&lt;b&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;Click this button&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;to restore toolbar&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/b&gt;&lt;br&gt;</source>
-        <translation>&lt;br&gt;&lt;b&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;Trykk her&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;for å gjenopprette&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;verktøylinjen&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/b&gt;&lt;br&gt;</translation>
+        <translation>&lt;br&gt;&lt;b&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;Trykk her&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;for å gjenopprette&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;verktøylinjen&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/b&gt;&lt;br&gt;</translation>
     </message>
     <message>
         <source>Can&apos;t open config file: </source>
@@ -2017,15 +2017,17 @@ authoized_keys file.</source>
     </message>
     <message>
         <source>English language requested, not loading translator.</source>
-        <translation></translation>
+        <translation>English language requested, not loading translator.</translation>
     </message>
     <message>
         <source>Non-fatal: can&apos;t load translator: </source>
-        <translation></translation>
+        <comment>Please translate this.</comment>
+        <translation type="unfinished">Non-fatal: can&apos;t load translator: </translation>
     </message>
     <message>
         <source>Trying to load language with lower preference, if existent.</source>
-        <translation></translation>
+        <comment>Please translate this.</comment>
+        <translation type="unfinished">Trying to load language with lower preference, if existent.</translation>
     </message>
     <message>
         <source>Session management ...</source>
@@ -2049,7 +2051,7 @@ authoized_keys file.</source>
     </message>
     <message>
         <source>A left click hides or restores the window. A right click displays the context menu.</source>
-        <translation>Venstre museknapp for å skjule/gjenopprette  -  Høyre museknapp viser sprettoppmeny.</translation>
+        <translation>Venstre museknapp for å skjule/gjenopprette - Høyre museknapp viser sprettoppmeny.</translation>
     </message>
     <message>
         <source>Closing X2Go Client ...</source>
@@ -2129,17 +2131,19 @@ Vil du avbryte tilkoblingen?
     </message>
     <message>
         <source> bits and restart your X.Org Server before you reconnect to this X2Go session.&lt;br /&gt;Do you want to resume this session anyway?</source>
-        <translation> bit og deretter restarte X.Org Server før du kobler til denne X2Go sesjonen. &lt;br&gt;Gjenoppta denne sesjonen uansett?</translation>
+        <translation> bit og deretter restarte X.Org Server før du kobler til denne X2Go sesjonen.&lt;br /&gt;Gjenoppta denne sesjonen uansett?</translation>
     </message>
     <message>
         <source>Unable to create SSH tunnel for X2Go session (NX) startup:
 </source>
-        <translation>Klarte ikke å opprette SSH tunnel for X2Go sesjon (NX) oppstart:</translation>
+        <translation>Klarte ikke å opprette SSH tunnel for X2Go sesjon (NX) oppstart:
+</translation>
     </message>
     <message>
         <source>Unable to create SSH tunnel for audio data:
 </source>
-        <translation>Klarte ikke å opprette SSH tunnel for lyddata:</translation>
+        <translation>Klarte ikke å opprette SSH tunnel for lyddata:
+</translation>
     </message>
     <message>
         <source>failed to start.</source>
@@ -2157,8 +2161,7 @@ Søkebanen som er i bruk er: </translation>
     </message>
     <message>
         <source>Execution failed, exit code was: </source>
-        <translation>Klarte ikke å utføre kommandoen, avslutningskoden var:
-</translation>
+        <translation>Klarte ikke å utføre kommandoen, avslutningskoden var: </translation>
     </message>
     <message>
         <source>didn&apos;t start up in time.</source>
@@ -2178,8 +2181,7 @@ Søkebanen som er i bruk er: </translation>
     </message>
     <message>
         <source>Unable to read from xmodmap.</source>
-        <translation>Klarte ikke å lese fra xmodmap.
-</translation>
+        <translation>Klarte ikke å lese fra xmodmap.</translation>
     </message>
     <message>
         <source>encountered an unknown error during start up or execution.</source>
@@ -2289,15 +2291,15 @@ Ulagrede data vil gå tapt.</translation>
     </message>
     <message>
         <source>&lt;br&gt;(C) 2005-2016 by &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing&lt;br&gt;</source>
-        <translation>&lt;b&gt;(C) 2005-2016 &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing&lt;br&gt;</translation>
+        <translation>&lt;br&gt;(C) 2005-2016 &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing&lt;br&gt;</translation>
     </message>
     <message>
         <source>&lt;br&gt;X2Go Plugin mode was sponsored by &lt;a href=&quot;http://www.foss-group.de/&quot;&gt;FOSS-Group GmbH (Freiburg)&lt;/a&gt;&lt;br&gt;</source>
-        <translation>&lt;br&gt;X2Go plugin modusen ble sponset av &lt;a href=&quot;http://www.foss-group.de/&quot;&gt;FOSS-Group GmbH(Freiburg)&lt;/a&gt;&lt;br&gt;</translation>
+        <translation>&lt;br&gt;X2Go plugin modusen ble sponset av &lt;a href=&quot;http://www.foss-group.de/&quot;&gt;FOSS-Group GmbH (Freiburg)&lt;/a&gt;&lt;br&gt;</translation>
     </message>
     <message>
         <source>&lt;br&gt;This is a client to access the X2Go network-based computing environment. This client will be able to connect to X2Go Server(s) and start, stop, resume and terminate (running) desktop sessions. X2Go Client stores different server connections and may automatically request authentication data from LDAP directories. Furthermore, it can be used as a fullscreen login screen (replacement for login managers like XDM). Please visit &lt;a href=&quot;http://www.x2go.org&quot;&gt;the project home page at x2go.org&lt;/a&gt; for further information.</source>
-        <translation>&lt;br&gt;Dette er en klient for å få tilgang til et X2Go nettverksbasert datasystem. Denne klienten kan koble seg til X2Go servere og starte, stoppe, gjennoppta og avslutte kjørende desktop sesjoner.X2Go klienten lagrer de forskjellige forbindelsene til servere, og kan automatisk be om autentisering fra LDAp kataloger. Den kan også bli brukt som en påloggingsskjerm i fullskjermmodus(kan brukes istedenfor loginhåndtere slik som XDM). Vennligst besøk &lt;a href=&quot;http://www.x2go.org&quot;&gt;prosjektets hjemmeside på x2go.org&lt;/a&gt; for mer informasjon.</translation>
+        <translation>&lt;br&gt;Dette er en klient for å få tilgang til et X2Go nettverksbasert datasystem. Denne klienten kan koble seg til X2Go servere og starte, stoppe, gjennoppta og avslutte kjørende desktop sesjoner. X2Go klienten lagrer de forskjellige forbindelsene til servere, og kan automatisk be om autentisering fra LDAP kataloger. Den kan også bli brukt som en påloggingsskjerm i fullskjermmodus (kan brukes istedenfor loginhåndtere slik som XDM). Vennligst besøk &lt;a href=&quot;http://www.x2go.org&quot;&gt;prosjektets hjemmeside på x2go.org&lt;/a&gt; for mer informasjon.</translation>
     </message>
     <message>
         <source>&lt;b&gt;X2Go Client v. </source>
@@ -2311,7 +2313,7 @@ Ulagrede data vil gå tapt.</translation>
         <source>Check whether the package providing &quot;scdaemon&quot; is installed.
 The current search path is: </source>
         <translation>Sjekk om pakken som tilbyr &quot;scdaemon&quot; er installert.
-Søkebanen som er i bruk er:</translation>
+Søkebanen som er i bruk er: </translation>
     </message>
     <message>
         <source>didn&apos;t start yet.</source>
@@ -2319,8 +2321,7 @@ Søkebanen som er i bruk er:</translation>
     </message>
     <message>
         <source>Unable to read from scdaemon.</source>
-        <translation>Klarte ikke å lese fra scdaemon.
-</translation>
+        <translation>Klarte ikke å lese fra scdaemon.</translation>
     </message>
     <message>
         <source>No valid card found.</source>
@@ -2345,7 +2346,8 @@ Vennligst oppdater til en nyere x2goserver pakke.</translation>
     <message>
         <source>Unable to create SSH tunnel for Folder Sharing and Printing support:
 </source>
-        <translation>Klarte ikke å opprette SSH tunnel for mappedeling og utskriftstøtte:</translation>
+        <translation>Klarte ikke å opprette SSH tunnel for mappedeling og utskriftstøtte:
+</translation>
     </message>
     <message>
         <source>Unable to read:
@@ -2376,13 +2378,16 @@ Vennligst oppdater til en nyere x2goserver pakke.</translation>
 
 </source>
         <translation>SSH daemonen kunne ikke startes.
+
 </translation>
     </message>
     <message>
         <source>SSH daemon is not running.
 
 </source>
-        <translation>SSH daemonen kjører ikke.</translation>
+        <translation>SSH daemonen kjører ikke.
+
+</translation>
     </message>
     <message>
         <source>You have enabled Remote Printing or File Sharing.
@@ -2406,16 +2411,19 @@ Vennligst sjekk innstillingene for &lt;b&gt;SSH port på server&lt;/b&gt; under 
 If you see this message, please report a bug on:
 &lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
 </source>
-        <translation>Dette skal normalt ikke hende siden X2Go klienten for Windows kommer med sin egne innebygde SSH server..
+        <translation>Dette skal normalt ikke hende siden X2Go klienten for Windows kommer med sin egne innebygde SSH server.
 
 Hvis du ser denne meldingen, vennligst rapporter dette på:
-&lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;</translation>
+&lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
+</translation>
     </message>
     <message>
         <source>The SSH server failed to start.
 
 </source>
-        <translation>SSH serveren klarte ikke å starte.</translation>
+        <translation>SSH serveren klarte ikke å starte.
+
+</translation>
     </message>
     <message>
         <source>X2Go Client did not detect a globally running SSH server on your machine and was unable to start its own.
@@ -2426,7 +2434,8 @@ Please report a bug on:
         <translation>X2Go klienten fant ingen global kjørende SSH server på din datamaskin, og klarte heller ikke å starte sin egen.
 
 Vennligst rapporter denne feilen på:
-&lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center</translation>
+&lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
+</translation>
     </message>
     <message>
         <source>The SSH server is currently not started.
@@ -2438,14 +2447,17 @@ Vennligst rapporter denne feilen på:
         <source>On OS X, please follow the following steps to enable SSH service:&lt;ul&gt;&lt;li&gt;Open &lt;b&gt;System Preferences&lt;/b&gt; (Applications -&gt; System Preferences)&lt;/li&gt;&lt;li&gt;Go to &lt;b&gt;Sharing&lt;/b&gt;&lt;/li&gt;&lt;li&gt;Tick the checkbox besides &lt;b&gt;Remote Login&lt;/b&gt;&lt;/li&gt;&lt;li&gt;Check that &lt;b&gt;Allow access for:&lt;/b&gt; is set to either:&lt;ul&gt;&lt;li&gt;All users: &lt;b&gt;no further steps necessary&lt;/b&gt;&lt;/li&gt;&lt;li&gt;Only these users &lt;b&gt;and your user name is included in the list&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;&lt;li&gt;Optionally, add your user name to the allowed list via the &lt;b&gt;Plus Button&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;&lt;b&gt;Warning: enabling SSH access will allow any user on the network to connect to your machine. It is your responsibility to set a strong password for every user that is allowed to log in via SSH.&lt;/b&gt;
 
 </source>
-        <translation>På Mac OS X vennligst følg denne beskrivelsen for å starte SSH serveren: &lt;ul&gt;&lt;li&gt;Åpne &lt;b&gt;Systemvalg&lt;/b&gt; (Program-&gt;Systemvalg)&lt;/li&gt;&lt;li&gt;Gå til &lt;b&gt;Deling&lt;/b&gt;&lt;/li&gt;&lt;li&gt;Sett kryss på&lt;b&gt;Ekstern pålogging&lt;/b&gt;&lt;/li&gt;&lt;li&gt;Sjekk at &lt;b&gt;Tillatt tildang for:&lt;/b&gt; er satt til enten &lt;ul&gt;&lt;li&gt;Alle brukere: &lt;b&gt; da trenger du ikke å gjøre noe mer&lt;/b&gt;&lt;/li&gt;&lt;li&gt;Bare disse brukere &lt;b&gt; og at din bruker er i listen&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;&lt;li&gt;Eventuelt, legg til din bruker i listen over godkjente brukere via &lt;b&gt;Pluss knappen&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;&lt;b&gt;Advarsel: å skru på SSh tilgang vil gjøre det mulig for alle brukere på nettverket å koble seg på. Det er ditt ansvar å sørge for at du har et sterkt passord for hver bruker som kan logge seg inn via SSH.&lt;/b&gt;
+        <translation>På Mac OS X vennligst følg denne beskrivelsen for å starte SSH serveren:&lt;ul&gt;&lt;li&gt;Åpne &lt;b&gt;Systemvalg&lt;/b&gt; (Program -&gt; Systemvalg)&lt;/li&gt;&lt;li&gt;Gå til &lt;b&gt;Deling&lt;/b&gt;&lt;/li&gt;&lt;li&gt;Sett kryss på &lt;b&gt;Ekstern pålogging&lt;/b&gt;&lt;/li&gt;&lt;li&gt;Sjekk at &lt;b&gt;Tillatt tildang for:&lt;/b&gt; er satt til enten &lt;ul&gt;&lt;li&gt;Alle brukere: &lt;b&gt;da trenger du ikke å gjøre noe mer&lt;/b&gt;&lt;/li&gt;&lt;li&gt;Bare disse brukere &lt;b&gt;og at din bruker er i listen&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;&lt;li&gt;Eventuelt, legg til din bruker i listen over godkjente brukere via &lt;b&gt;Pluss knappen&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;&lt;b&gt;Advarsel: å skru på SSh tilgang vil gjøre det mulig for alle brukere på nettverket å koble seg på. Det er ditt ansvar å sørge for at du har et sterkt passord for hver bruker som kan logge seg inn via SSH.&lt;/b&gt;
+
 </translation>
     </message>
     <message>
         <source>Please ask your system administrator to provide the SSH service on your computer.
 
 </source>
-        <translation>Spør din systemadministrator om SSH tjenesten kan installeres på din datamaskin.</translation>
+        <translation>Spør din systemadministrator om SSH tjenesten kan installeres på din datamaskin.
+
+</translation>
     </message>
     <message>
         <source>Disabling Remote Printing or File Sharing support in the session settings will get rid of this message.</source>
@@ -2472,6 +2484,7 @@ Dette er ting som krever en startet og fungerende SSH server på din datamaskin-
 SSH serveren er ikke korrekt konfigurert.
 
 Vennligst sjekk at serverens vertsnøkler eksisterer.
+
 </translation>
     </message>
     <message>
@@ -2483,7 +2496,8 @@ If you see this message, please report a bug on:
         <translation>Dette skal normalt ikke hende siden X2Go klienten for Windows kommer med sin egne innebygde SSH server som automatisk lager de nødvendige nøklene.
 
 Hvis du ser denne meldingen, vennligst rapporter dette på:
-&lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;</translation>
+&lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
+</translation>
     </message>
     <message>
         <source>X2Go Client was unable to create SSH host keys.
@@ -2494,7 +2508,8 @@ Please report a bug on:
         <translation>X2Go klienten klarte ikke å lage SSH vertsnøkler.
 
 Vennligst rapporter denne feilen på:
-&lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center</translation>
+&lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
+</translation>
     </message>
     <message>
         <source>On OS X, please follow these steps to generate the required keys:&lt;ul&gt;&lt;li&gt;Open a &lt;b&gt;Terminal Window&lt;/b&gt; (Applications -&gt; Utilities -&gt; Terminal)&lt;/li&gt;&lt;li&gt;Run this command: &lt;b&gt;ssh -p </source>
@@ -2517,7 +2532,8 @@ Hvis det er du som er administratoren, vennligst kjør:
     <message>
         <source>SSH daemon failed to open the application&apos;s
 authorized_keys file.</source>
-        <translation>SSH demonen klarte ikke å åpne applikasjonens authorized_keys fil.</translation>
+        <translation>SSH demonen klarte ikke å åpne applikasjonens
+authorized_keys fil.</translation>
     </message>
 </context>
 <context>
@@ -2544,7 +2560,8 @@ authorized_keys file.</source>
     </message>
     <message>
         <source>You may reactivate this dialog using the X2Go Client settings dialog. To do so, follow this path in the menu bar: Options -&gt; Settings)</source>
-        <translation>Du kan reaktivere denne dialogen ved å benytte X&quot;Go Client innstillingene (Innstillinger -&gt; Innstillinger)</translation>
+        <comment>X2Go Client should be X2Go klienten or whatever is appropriate in Bokmal, because all other strings say X2Go klienten</comment>
+        <translation type="unfinished">Du kan reaktivere denne dialogen ved å benytte X2Go Client innstillingene (Innstillinger -&gt; Innstillinger)</translation>
     </message>
 </context>
 <context>
@@ -2555,7 +2572,7 @@ authorized_keys file.</source>
     </message>
     <message>
         <source>PDF Document (*.pdf)</source>
-        <translation>PDF Dokuemtn (*.pdf)</translation>
+        <translation>PDF Dokument (*.pdf)</translation>
     </message>
     <message>
         <source>Failed to execute command:
@@ -2737,7 +2754,7 @@ steder hvor XQuartz kan være installert.
 
 Hvis du derimot&lt;b&gt;ikke&lt;/b&gt; har XQuartz installert ennå,
 vennligst følg denne beskrivelsen:
-:
+
 </translation>
     </message>
     <message>
@@ -2908,7 +2925,8 @@ Use x2goclient hidden mode?</source>
         <source>Desktop icons can be configured not to show X2Go Client (hidden mode.) If you like to use this feature you&apos;ll need to configure login via a GPG key or GPG Smart Card.
 
 Use X2Go Client&apos;s hidden mode?</source>
-        <translation>Skrivebordsikoner kan konfigureres til å ikke vise X2Go Client (skjult modus). Om du ønsker å benytte denne muligheten må du konfigurere pålogging ved bruk av en GPG-nøkkel, eller et GPG basert smartkort.
+        <comment>X2Go Client should be X2Go klienten or whatever is appropriate in Bokmal, because all other strings say X2Go klienten</comment>
+        <translation type="unfinished">Skrivebordsikoner kan konfigureres til å ikke vise X2Go Client (skjult modus). Om du ønsker å benytte denne muligheten må du konfigurere pålogging ved bruk av en GPG-nøkkel, eller et GPG basert smartkort.
 
 Ønsker du å aktivere skjult modus for X2Go Client?</translation>
     </message>
@@ -2977,7 +2995,7 @@ Use X2Go Client&apos;s hidden mode?</source>
     </message>
     <message>
         <source>Use RSA/DSA key for ssh connection:</source>
-        <translation>Bruk RSA/DSA  nøkkel for SSH tilkobling:</translation>
+        <translation>Bruk RSA/DSA nøkkel for SSH tilkobling:</translation>
     </message>
     <message>
         <source>Try auto login (ssh-agent or default ssh key)</source>
@@ -3145,7 +3163,8 @@ Use X2Go Client&apos;s hidden mode?</source>
     </message>
     <message>
         <source>X2Go Client is running in portable mode. You should use a path on your USB device to be able to access your data wherever you are.</source>
-        <translation>X2Go Clientt kjører i portabel modus. Du burde bruke en sti på din USB enhet for å kunne benytte dataene dine uavhengig av hvor du er.</translation>
+        <comment>X2Go Client should be X2Go klienten or whatever is appropriate in Bokmal, because all other strings say X2Go klienten</comment>
+        <translation type="unfinished">X2Go Clientt kjører i portabel modus. Du burde bruke en sti på din USB enhet for å kunne benytte dataene dine uavhengig av hvor du er.</translation>
     </message>
 </context>
 <context>
@@ -3397,7 +3416,8 @@ lydsystem forbindelser gjennom brannmurer</translation>
     </message>
     <message>
         <source>X2Go Client is running in portable mode. You should use a path on your USB device to be able to access your data wherever you are.</source>
-        <translation>X2Go Client kjører i portabel modus. Du burde bruke en sti på din USB enhet for å kunne benytte dataene dine uavhengig av hvor du er.</translation>
+        <comment>X2Go Client should be X2Go klienten or whatever is appropriate in Bokmal, because all other strings say X2Go klienten</comment>
+        <translation type="unfinished">X2Go Client kjører i portabel modus. Du burde bruke en sti på din USB enhet for å kunne benytte dataene dine uavhengig av hvor du er.</translation>
     </message>
 </context>
 <context>
@@ -3408,7 +3428,7 @@ lydsystem forbindelser gjennom brannmurer</translation>
     </message>
     <message>
         <source>SSH proxy connection error: </source>
-        <translation>SSH proxy tilkoblingsfeil:</translation>
+        <translation>SSH proxy tilkoblingsfeil: </translation>
     </message>
     <message>
         <source>Failed to create SSH proxy tunnel</source>
