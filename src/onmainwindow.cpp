@@ -10299,7 +10299,27 @@ bool ONMainWindow::startSshd()
     std::string config="\""+cygwinPath(etcDir+"/sshd_config").toStdString()+"\"";
     std::string key="\""+cygwinPath(etcDir+"/ssh_host_dsa_key").toStdString()+"\"";
 
+    // generate a unique sshLog filepath, and create its directory
+    if (debugging)
+    {
+        QDir* sshLogsDir= new QDir( homeDir+"/.x2go/sshLogs" );
+        if (!sshLogsDir->exists())
+            sshLogsDir->mkpath(".");
+
+        QTemporaryFile* sshLogTemp=new QTemporaryFile ( sshLogsDir->absolutePath()+"/XXXXXX.log" );
+        sshLogTemp->open();
+        sshLog=sshLogTemp->fileName();
+        sshLogTemp->close();
+
+        delete sshLogsDir;
+        delete sshLogTemp;
+        x2goDebug<<"Logging cygwin sshd to: "<<sshLog;
+    }
+
     strm<<clientdir<<"\\sshd.exe -D -p "<<clientSshPort.toInt()<<" -f "<< config <<" -h "<<key;
+    if (debugging){
+        strm<<" -E "<<sshLog.toStdString();
+    }
 
     STARTUPINFOA si;
     std::string desktopName="x2go_";

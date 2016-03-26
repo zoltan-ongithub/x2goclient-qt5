@@ -634,6 +634,9 @@ private:
     QString sshPort;
     QString clientSshPort;
     QString defaultSshPort;
+#ifdef Q_OS_WIN
+    QString sshLog;
+#endif
     QVBoxLayout* selectSesDlgLayout;
     SshMasterConnection* sshConnection;
     QList<SshMasterConnection*> serverSshConnections;

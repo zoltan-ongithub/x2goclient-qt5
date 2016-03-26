@@ -107,7 +107,8 @@ help::params_t help::build_params () {
   }
 
   ADD_OPT ("--help-pack", "Shows available pack methods.");
-  ADD_OPT ("--debug", "Enables extensive debug output to the console. On Windows also enables PulseAudio logging to a file in the \".x2go/pulse\" in the USERPROFILE directory." NEWLINE
+  ADD_OPT ("--debug", "Enables extensive debug output to the console." NEWLINE
+                      "On Windows, also enables PulseAudio logging to a file under \".x2go/pulse\" & cygwin sshd logging to a file under \".x2go/sshLogs\" directory, both under the USERPROFILE directory." NEWLINE
                       "The logs are not deleted when X2Go Client terminates.");
   ADD_OPT ("--no-menu", "Hides menu bar.");
   ADD_OPT ("--no-session-edit", "Disables session editing.");
