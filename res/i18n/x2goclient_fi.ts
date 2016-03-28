@@ -193,12 +193,12 @@
     <message>
         <location filename="../../src/cupsprintersettingsdialog.cpp" line="272"/>
         <source>This value is in conflict with another option.</source>
-        <translation type="unfinished"></translation>
+        <translation>Arvo ei sovi tähän.</translation>
     </message>
     <message>
         <location filename="../../src/cupsprintersettingsdialog.cpp" line="282"/>
         <source>Options conflict.</source>
-        <translation type="unfinished"></translation>
+        <translation>Valinnat ovat ristiriitaisia.</translation>
     </message>
     <message>
         <source>This value is in conflict with other option</source>
@@ -251,7 +251,7 @@
     <message>
         <location filename="../../src/contest.cpp" line="148"/>
         <source>Socket operation timed out.</source>
-        <translation type="unfinished"></translation>
+        <translation>Socket -yhteys aikakatkaistu.</translation>
     </message>
     <message>
         <source>Socket operation timed out</source>
@@ -325,37 +325,37 @@
         <location filename="../../src/configdialog.cpp" line="207"/>
         <location filename="../../src/configdialog.cpp" line="352"/>
         <source>X.Org Server settings</source>
-        <translation type="unfinished"></translation>
+        <translation>X.Org asetukset</translation>
     </message>
     <message>
         <location filename="../../src/configdialog.cpp" line="259"/>
         <source>Clientside (local) SSH daemon port for file system export usage:</source>
-        <translation type="unfinished"></translation>
+        <translation>Asiakasohjelman SSH-portti paikallislevyn jakamista varten:</translation>
     </message>
     <message>
         <location filename="../../src/configdialog.cpp" line="357"/>
         <source>Pulseaudio settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Pulseaudio -asetukset</translation>
     </message>
     <message>
         <location filename="../../src/configdialog.cpp" line="359"/>
         <source>Disable audio input</source>
-        <translation type="unfinished"></translation>
+        <translation>Estä audio input</translation>
     </message>
     <message>
         <location filename="../../src/configdialog.cpp" line="360"/>
         <source>&lt;font size=&quot;5&quot;&gt;You must restart the X2Go Client for the changes to take effect&lt;/font&gt;&lt;br&gt;&lt;br&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;font size=&quot;5&quot;&gt;Käynnistä X2Go -yhteysohjelma muutosten aktivoimiseksi&lt;/font&gt;&lt;br&gt;&lt;br&gt;</translation>
     </message>
     <message>
         <location filename="../../src/configdialog.cpp" line="569"/>
         <source>Your XQuartz version is too old.</source>
-        <translation type="unfinished"></translation>
+        <translation>XQuartz versiosi on liian vanha.</translation>
     </message>
     <message>
         <location filename="../../src/configdialog.cpp" line="570"/>
         <source>Your are using XQuartz (X Window System Server for OS X) version </source>
-        <translation type="unfinished"></translation>
+        <translation>Käytät XQuartz (X Window System Server for OS X) versiota </translation>
     </message>
     <message>
         <location filename="../../src/configdialog.cpp" line="572"/>
@@ -370,12 +370,22 @@ MacPorts users please follow the steps outlined on:
 Users who have installed XQuartz via the installer package
 can find updated versions on:
 &lt;center&gt;&lt;a href=&quot;https://xquartz.macosforge.org/&quot;&gt;https://xquartz.macosforge.org/&lt;/a&gt;&lt;/center&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>.
+
+Tämä version aiheuttaa ongelmia X sovellusten kanssa 24 bitin moodissa.
+Sinun pitää päivitttää X11 ohjelmasi.
+
+MacPorts käyttäjät seuratkaa täältä löytyviä ohjeita:
+&lt;center&gt;&lt;a href=&quot;https://guide.macports.org/chunked/using.common-tasks.html&quot;&gt;https://guide.macports.org/chunked/using.common-tasks.html&lt;/a&gt;&lt;/center&gt;
+
+Ne käyttäjät jotka ovat asentaneet XQuartz -ohjelman asennuspaketista
+voivat hakea tuoreen version täältä:
+&lt;center&gt;&lt;a href=&quot;https://xquartz.macosforge.org/&quot;&gt;https://xquartz.macosforge.org/&lt;/a&gt;&lt;/center&gt;</translation>
     </message>
     <message>
         <location filename="../../src/configdialog.cpp" line="599"/>
         <source>No valid XQuartz application selected.</source>
-        <translation type="unfinished"></translation>
+        <translation>XQuartz -sovelleusta ei ole valittu.</translation>
     </message>
     <message>
         <location filename="../../src/configdialog.cpp" line="600"/>
@@ -386,7 +396,13 @@ Some standard installation locations may be:
 &lt;center&gt;&lt;b&gt;/Applications/Utilities/X11.app&lt;/b&gt;&lt;/center&gt;
 &lt;center&gt;&lt;b&gt;/Applications/Utilities/XQuartz.app&lt;/b&gt;&lt;/center&gt;
 &lt;center&gt;&lt;b&gt;/Applications/MacPorts/X11.app&lt;/b&gt;&lt;/center&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>Et ole vielä valinnut sopivaa XQuartz -sovllutsta.
+Yritä uudelleen.
+
+Muutama standardiasennuksia löytyy täältä:
+&lt;center&gt;&lt;b&gt;/Applications/Utilities/X11.app&lt;/b&gt;&lt;/center&gt;
+&lt;center&gt;&lt;b&gt;/Applications/Utilities/XQuartz.app&lt;/b&gt;&lt;/center&gt;
+&lt;center&gt;&lt;b&gt;/Applications/MacPorts/X11.app&lt;/b&gt;&lt;/center&gt;</translation>
     </message>
     <message>
         <source>X-Server settings</source>
@@ -639,7 +655,7 @@ Some standard installation locations may be:
     <message>
         <location filename="../../src/editconnectiondialog.cpp" line="126"/>
         <source>Session preferences - </source>
-        <translation>Istunnon asetukset -</translation>
+        <translation>Istunnon oletusasetukset -</translation>
     </message>
 </context>
 <context>
@@ -673,7 +689,7 @@ Some standard installation locations may be:
     <message>
         <location filename="../../src/exportdialog.cpp" line="85"/>
         <source>Share Folders</source>
-        <translation type="unfinished"></translation>
+        <translation>Jaetut kansiot</translation>
     </message>
     <message>
         <source>share folders</source>
@@ -720,17 +736,17 @@ Some standard installation locations may be:
     <message>
         <location filename="../../src/folderexplorer.cpp" line="81"/>
         <source>Rename Folder ...</source>
-        <translation type="unfinished"></translation>
+        <translation>Nimeä kansio uudelleen ...</translation>
     </message>
     <message>
         <location filename="../../src/folderexplorer.cpp" line="82"/>
         <source>Change Icon ...</source>
-        <translation type="unfinished"></translation>
+        <translation>Vaihda kuvake ...</translation>
     </message>
     <message>
         <location filename="../../src/folderexplorer.cpp" line="83"/>
         <source>Delete Folder ...</source>
-        <translation type="unfinished"></translation>
+        <translation>Poista kansio ...</translation>
     </message>
     <message>
         <location filename="../../src/folderexplorer.cpp" line="97"/>
@@ -765,7 +781,7 @@ Some standard installation locations may be:
     <message>
         <location filename="../../src/folderexplorer.cpp" line="131"/>
         <source>&quot;. Folder is not empty. Please remove the contents of this directory and try again.</source>
-        <translation type="unfinished"></translation>
+        <translation>&quot;. Kansio ei ole tyhjä. Tyhjennä se ja yrittä uudelleen.</translation>
     </message>
     <message>
         <source>&quot;. Folder is not empty. Please remove content of folder and try again.</source>
@@ -878,38 +894,38 @@ Julkinen avain:</translation>
     <message>
         <location filename="../../src/httpbrokerclient.cpp" line="131"/>
         <source>For security reasons, the connection attempt will be aborted.</source>
-        <translation type="unfinished"></translation>
+        <translation>Turvallisuuden takia, yhteyden avaus keskeytetään.</translation>
     </message>
     <message>
         <location filename="../../src/httpbrokerclient.cpp" line="144"/>
         <source>The host key for this server was not found but anothertype of key exists. An attacker might have changed the default server key to trick your client into thinking the key does not exist yet.</source>
-        <translation type="unfinished"></translation>
+        <translation>Palvelimen tunnistusavainta ei löydy mutta toisenlainen löytyy. Hyökkääjä on ehkä vaihtanut oletusavaimen uskotallakseen asiakasohjelmallesi että avainta ei vielä ole.</translation>
     </message>
     <message>
         <location filename="../../src/httpbrokerclient.cpp" line="170"/>
         <source>Could not find known hosts file.If you accept the host key here, the file will be automatically created.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tunnettujen palvelinten nimitiedostoa ei löydy.Jos hyväksyt palvelimen tunnistusavaimen, nimitiedosto luodaan automaattisesti.</translation>
     </message>
     <message>
         <location filename="../../src/httpbrokerclient.cpp" line="179"/>
         <location filename="../../src/httpbrokerclient.cpp" line="189"/>
         <source>Host key verification failed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Palvelimen avaimen tarkistus epäonnistui.</translation>
     </message>
     <message>
         <location filename="../../src/httpbrokerclient.cpp" line="237"/>
         <source>Authentication failed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tunnistautuminen epäonnistui.</translation>
     </message>
     <message>
         <location filename="../../src/httpbrokerclient.cpp" line="404"/>
         <source>Login failed!&lt;br&gt;Please try again.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kirjatuminen epäonnistui!&lt;br&gt;Yritä uudelleen.</translation>
     </message>
     <message>
         <location filename="../../src/httpbrokerclient.cpp" line="594"/>
         <source>Secure connection failed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Suojatun yhteyden avaus epäonnistui.</translation>
     </message>
     <message>
         <location filename="../../src/httpbrokerclient.cpp" line="599"/>
@@ -1236,64 +1252,64 @@ sound system connections through firewalls</source>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="61"/>
         <source>Starting X2Go Client...</source>
-        <translation type="unfinished"></translation>
+        <translation>X2Go-yhteysohjelma käynnistyy...</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="279"/>
         <source>Starting X2Go Client in portable mode. Data directory is: </source>
-        <translation type="unfinished"></translation>
+        <translation>X2Go -yhteysohjelma käynnistyy siirrettävässä moodissa. Datahakemisto on: </translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="411"/>
         <location filename="../../src/onmainwindow.cpp" line="8363"/>
         <source>About X2Go Client</source>
-        <translation type="unfinished"></translation>
+        <translation>Tietoja X2Go -yhteysohjelmasta</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="512"/>
         <source>Started X2Go Client.</source>
-        <translation type="unfinished"></translation>
+        <translation>X2Go -ohjelma käynnistyi.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="592"/>
         <location filename="../../src/onmainwindow.cpp" line="620"/>
         <source> found.</source>
-        <translation type="unfinished"></translation>
+        <translation> löytyi.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="605"/>
         <source>English language requested, not loading translator.</source>
-        <translation type="unfinished"></translation>
+        <translation>English language requested, not loading translator.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="626"/>
         <source>Non-fatal: can&apos;t load translator: </source>
-        <translation type="unfinished"></translation>
+        <translation>Ei vakavaa: kielenvaihtaja ei käynnisty: </translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="627"/>
         <source>Trying to load language with lower preference, if existent.</source>
-        <translation type="unfinished"></translation>
+        <translation>Yrittää käynnistää toissijaisen kielen tiedostot, jos saatavilla.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="878"/>
         <source>Session management ...</source>
-        <translation type="unfinished"></translation>
+        <translation>Istunnon hallinta ...</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="889"/>
         <source>&amp;Create session icon on desktop ...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Luo istuntokuvake työpöydälle ...</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="898"/>
         <source>&amp;Set broker password ...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Aseta istuntohallinnan salasana ...</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="909"/>
         <source>&amp;Connectivity test ...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Yhteystesti ...</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="941"/>
@@ -1463,42 +1479,42 @@ sound system connections through firewalls</source>
         <location filename="../../src/onmainwindow.cpp" line="1188"/>
         <location filename="../../src/onmainwindow.cpp" line="11383"/>
         <source>Share folder ...</source>
-        <translation type="unfinished"></translation>
+        <translation>Jaa kansio ...</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="1218"/>
         <source>A left click hides or restores the window. A right click displays the context menu.</source>
-        <translation type="unfinished"></translation>
+        <translation>Vasen klikkaus piilottaa tai palauttaa ikkunan.Oikea klikkaus näyttää toimintovalikon.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="1404"/>
         <source>Closing X2Go Client ...</source>
-        <translation type="unfinished"></translation>
+        <translation>Suljetaan X2Go-asiakasohjelma ...</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="1552"/>
         <source>Finished X2Go Client closing hooks.</source>
-        <translation type="unfinished"></translation>
+        <translation>X2Go yhteysohjelman sulkeminen valmis.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="1777"/>
         <source>Broker authentication failed!</source>
-        <translation type="unfinished"></translation>
+        <translation>Istuntohallinnan tunnistautuminen epäonnistui!</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="1861"/>
         <source>no X2Go Server found in LDAP </source>
-        <translation type="unfinished"></translation>
+        <translation>X2Go -palvelinta ei löydy LDAP -rekisteristä</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="2834"/>
         <source>Connection error: </source>
-        <translation type="unfinished"></translation>
+        <translation>Yhteydenottovirhe: </translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="2903"/>
         <source>Couldn&apos;t find an SSH connection.</source>
-        <translation type="unfinished"></translation>
+        <translation>SSH -yhteyttä ei löytynyt.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="2963"/>
@@ -1507,7 +1523,11 @@ Somebody might be eavesdropping on you.
 For security reasons, it is recommended to stop the connection attempt.
 Do you want to terminate the connection?
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Tämä saattaa olla osoitus man-in-the-middle -hyökkäyksestä.
+Joku saattaa salakuunnella sinua.
+Turvallisuuden takia on suositeltavaa että lopetat yhteydenoton.
+Halutako katkaista yhteyden?
+</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="2967"/>
@@ -1517,7 +1537,7 @@ Do you want to terminate the connection?
         <location filename="../../src/onmainwindow.cpp" line="3038"/>
         <location filename="../../src/onmainwindow.cpp" line="3050"/>
         <source>Host key verification failed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Palvelimen avaimen tarkistus epäonnistui.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="2990"/>
@@ -1525,17 +1545,20 @@ Do you want to terminate the connection?
 For security reasons, it is recommended to stop the connection attempt.
 Do you want to terminate the connection?
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Tämän palvelimen tunnistusavainta ei löydy tai se on toisen tyyppinen. Hyökkääjä on saattanut palvelimen avaimen uskotellekseen että palvelimen avainta ei ole vielä asetettu työasemaasi.
+Turvallisuussyistä on suositeltavaa että keskeytät kirjautumisen.
+Halutako keskeyttää?
+</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="3029"/>
         <source>Could not find known hosts file.If you accept the host key here, the file will be automatically created.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tunnettujen palvelinten sijaintitiedostoa ei löydy.Jos hyväksyt palvelimen tunnistusavaimen, puuttuva tiedosto perustetaan automaattisesti.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="3082"/>
         <source>Authentication failed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Autentkointi epäonnistui.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="3534"/>
@@ -1549,12 +1572,13 @@ Do you want to terminate the connection?
         <location filename="../../src/onmainwindow.cpp" line="9268"/>
         <source>&lt;b&gt;Connection failed.&lt;/b&gt;
 </source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Yhteys katksesi.&lt;/b&gt;
+</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="3769"/>
         <source>No server available.</source>
-        <translation type="unfinished"></translation>
+        <translation>Palvelinta ei löydy.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="3778"/>
@@ -1562,75 +1586,78 @@ Do you want to terminate the connection?
         <location filename="../../src/onmainwindow.cpp" line="4695"/>
         <location filename="../../src/onmainwindow.cpp" line="4840"/>
         <source>Server not available.</source>
-        <translation type="unfinished"></translation>
+        <translation>Palvelimeen ei pääse.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="4476"/>
         <source>No accessible desktop found.</source>
-        <translation type="unfinished"></translation>
+        <translation>Toimivaa työpöytää ei löydy.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="4606"/>
         <location filename="../../src/onmainwindow.cpp" line="4625"/>
         <source>Your current color depth is different from the session&apos;s color depth. This may cause problems reconnecting to this session and in most cases &lt;b&gt;you will loose the session&lt;/b&gt; and have to start a new one! It&apos;s highly recommended to change the color depth of your display to </source>
-        <translation type="unfinished"></translation>
+        <translation>Työasemasi näytön väripaletti on eri kuin istunnon paletti. Tästä voi aiheutua ongelmia istunnon aikana ja useimmiten &lt;b&gt;istuntosi katoaa&lt;/b&gt; ja joudut käynnistämään uuden! On erittäin suotavaa  että vaihdat näyttösi väripaletin arvoon </translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="4614"/>
         <location filename="../../src/onmainwindow.cpp" line="4633"/>
         <source> bits and restart your X.Org Server before you reconnect to this X2Go session.&lt;br /&gt;Do you want to resume this session anyway?</source>
-        <translation type="unfinished"></translation>
+        <translation> bittiä ja käynnistät X.Org -ohjelman ennenkuin yhdistät uudelleen tähän X2Go istuntoon.&lt;br /&gt;Haluatko kuitenkin jatkaa tätä istuntoa?</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="5545"/>
         <source>Unable to create SSH tunnel for X2Go session (NX) startup:
 </source>
-        <translation type="unfinished"></translation>
+        <translation>SSH -tunnelin avaus epäonnistui X2Go istuntoa varten / (NX) startup:
+</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="5575"/>
         <source>Unable to create SSH tunnel for audio data:
 </source>
-        <translation type="unfinished"></translation>
+        <translation>SSH -tunnelin avaus audiodataa varten epäonnistui:
+</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="5683"/>
         <location filename="../../src/onmainwindow.cpp" line="8668"/>
         <source>failed to start.</source>
-        <translation type="unfinished"></translation>
+        <translation>ei käynnistynyt.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="5684"/>
         <source>This likely means the binary is not available.
 The current search path is: </source>
-        <translation type="unfinished"></translation>
+        <translation>Johtuu ilmeisesti siitä että ohjelma ei ole käytettävissä.
+Nykyinen hakupolku on: </translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="5698"/>
         <source>returned a non-zero exit code or crashed otherwise.</source>
-        <translation type="unfinished"></translation>
+        <translation>palautti nollasta poikkeavan paluukoodin tai kaatui jotenkin muuten.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="5699"/>
         <source>Execution failed, exit code was: </source>
-        <translation type="unfinished"></translation>
+        <translation>Suoritus epäonnistui, paluukoodi oli: </translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="5704"/>
         <source>didn&apos;t start up in time.</source>
-        <translation type="unfinished"></translation>
+        <translation>ei käynnistynyt ajoissa.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="5705"/>
         <location filename="../../src/onmainwindow.cpp" line="8696"/>
         <source>This error shouldn&apos;t come up.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tätä virhettä ei pitäsi tapahtua.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="5709"/>
         <location filename="../../src/onmainwindow.cpp" line="8700"/>
         <source>didn&apos;t accept a write operation.</source>
-        <translation type="unfinished"></translation>
+        <translation>kirjoittaminen oli estetty.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="5710"/>
@@ -1638,24 +1665,24 @@ The current search path is: </source>
         <location filename="../../src/onmainwindow.cpp" line="8701"/>
         <location filename="../../src/onmainwindow.cpp" line="8706"/>
         <source>It is probably not running correctly or crashed in-between.</source>
-        <translation type="unfinished"></translation>
+        <translation>Joke ei toimi oikein tai kaatui aiemmin.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="5714"/>
         <source>Unable to read from xmodmap.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ei pysty lukemaan xmodmap-ista.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="5719"/>
         <location filename="../../src/onmainwindow.cpp" line="8710"/>
         <source>encountered an unknown error during start up or execution.</source>
-        <translation type="unfinished"></translation>
+        <translation>tunnistamaton virhe käynnistymisen tai suorituksen aikana.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="5723"/>
         <location filename="../../src/onmainwindow.cpp" line="8714"/>
         <source>experienced an undefined error.</source>
-        <translation type="unfinished"></translation>
+        <translation>tunnistamaton virhe.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="5732"/>
@@ -1663,30 +1690,33 @@ The current search path is: </source>
         <source>X2Go Client will now terminate.
 
 File a bug report as outlined on the &lt;a href=&quot;http://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;bugs wiki page&lt;/a&gt;.</source>
-        <translation type="unfinished"></translation>
+        <translation>X2Go -asiakasohjelma keskeytyy nyt.
+
+Lähetä virheraportti kuten ohjeistettu sivulla &lt;a href=&quot;http://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;bugs wiki page&lt;/a&gt;.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="5837"/>
         <source>Proxy didn&apos;t terminate after 3 seconds. Killing the proxy.</source>
-        <translation type="unfinished"></translation>
+        <translation>Välityspalvelin ei sulkeutunut kolmessa sekunnissa. Se tapetaan.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="5879"/>
         <location filename="../../src/onmainwindow.cpp" line="9305"/>
         <source>Closing X2Go Client because it was started in hidden mode.</source>
-        <translation type="unfinished"></translation>
+        <translation>Suljetaan X2Go -asiakasohjelma koska oli käynnistetty piilomoodissa.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="5884"/>
         <location filename="../../src/onmainwindow.cpp" line="9310"/>
         <source>Closing X2Go Client because the --close-disconnect parameter was passed.</source>
-        <translation type="unfinished"></translation>
+        <translation>X2Go -asiakasohjelma suljetaan koska --close-disconnect parametri oli annettu.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="6242"/>
         <source>Are you sure you want to terminate this session?
 Unsaved documents will be lost.</source>
-        <translation type="unfinished"></translation>
+        <translation>Haluatko varmati sulkea tämän istunnon?
+Tallentamattomat tiedot katoavat.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="6633"/>
@@ -1694,71 +1724,74 @@ Unsaved documents will be lost.</source>
         <source>&lt;b&gt;Connection failed.&lt;/b&gt;
 :
 </source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Yhteydenluonti epäonnistui.&lt;/b&gt;
+:
+</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="7178"/>
         <location filename="../../src/onmainwindow.cpp" line="7189"/>
         <location filename="../../src/onmainwindow.cpp" line="7200"/>
         <source> (file does not exist)</source>
-        <translation type="unfinished"></translation>
+        <translation> (tiedostoa ei ole)</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="7227"/>
         <source> (directory does not exist)</source>
-        <translation type="unfinished"></translation>
+        <translation> (polkua ei ole)</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="7254"/>
         <source>Invalid value for parameter &quot;--link&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Virheellinen arvo ohjaimella &quot;--link&quot;.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="7271"/>
         <source>Invalid value for parameter &quot;--clipboard&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Virheellinen arvo ohjaimella &quot;--clipboard&quot;.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="7287"/>
         <source>Invalid value for parameter &quot;--sound&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Virheellinen arvo ohjaimella &quot;--sound&quot;.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="7303"/>
         <location filename="../../src/onmainwindow.cpp" line="7313"/>
         <source>Invalid value for parameter &quot;--geometry&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Virheellien arvo ohjaimella &quot;--geometry&quot;.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="7330"/>
         <source>Invalid value for parameter &quot;--set-kbd&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Virheellinen arvo ohjaimella &quot;--set-kbd&quot;.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="7346"/>
         <source>Invalid value for parameter &quot;--ldap&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Virheellinen arvo ohjaimella &quot;--ldap&quot;.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="7367"/>
         <source>Invalid value for parameter &quot;--ldap1&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Virheellinen arvo ohjaimella &quot;--ldap1&quot;.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="7386"/>
         <source>Invalid value for parameter &quot;--ldap2&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Virheellinen arvo ohjaimella &quot;--ldap2&quot;.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="7440"/>
         <source>Invalid value for parameter &quot;--pack&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Virheellinen arvo ohjaimella &quot;--pack&quot;.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="11926"/>
         <source>SSH daemon failed to open the application&apos;s
 authorized_keys file.</source>
-        <translation type="unfinished"></translation>
+        <translation>SSH prosessi ei pystynyt avaamaan sovelluksen
+authorized_keys -tiedostoa.</translation>
     </message>
     <message>
         <source>Left mouse button to hide/restore - Right mouse button to display context menu</source>
@@ -1980,13 +2013,13 @@ Haluatko katkaista?</translation>
         <location filename="../../src/onmainwindow.cpp" line="8057"/>
         <location filename="../../src/onmainwindow.cpp" line="8059"/>
         <source>Connection failed: </source>
-        <translation>Yhteys epäonnistui</translation>
+        <translation>Yhteys epäonnistui:</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="3552"/>
         <location filename="../../src/onmainwindow.cpp" line="8057"/>
         <source> - Wrong password.</source>
-        <translation> - Väärä salasana</translation>
+        <translation> - Väärä salasana.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="3701"/>
@@ -2137,12 +2170,12 @@ Haluatko katkaista?</translation>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="5825"/>
         <source>Emergency exit.</source>
-        <translation>Hätäkeskeytus </translation>
+        <translation>Hätäkeskeytys.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="5834"/>
         <source>Waiting for proxy to exit.</source>
-        <translation>Odottaa proxyn sulkeutumista</translation>
+        <translation>Odottaa välityspalvelimen sulkeutumista.</translation>
     </message>
     <message>
         <source>Failed, killing the proxy.</source>
@@ -2270,79 +2303,82 @@ Avoimet tiedostot eivät talletu</translation>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="7475"/>
         <source>Available pack methods:</source>
-        <translation type="unfinished"></translation>
+        <translation>Valitavissa on nämä pakkausmenetelmät:</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="7497"/>
         <source>Pack Methods</source>
-        <translation type="unfinished"></translation>
+        <translation>Pakkausmenetelmät</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="7527"/>
         <location filename="../../src/onmainwindow.cpp" line="7537"/>
         <source>Option is not available in this build.</source>
-        <translation type="unfinished"></translation>
+        <translation>Vaihtoehtoa ei ole tässä versiossa.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="7910"/>
         <source>Unable to create directory:</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Hakemiston luonti ei onnistu:</translatorcomment>
+        <translation>Unable to create directory:</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="8019"/>
         <source>Cannot open key: </source>
-        <translation type="unfinished"></translation>
+        <translation>Avaimen haku ei onnistu: </translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="8343"/>
         <source>&lt;br&gt;(C) 2005-2016 by &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing&lt;br&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;br&gt;(C) 2005-2016 &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing&lt;br&gt;
+Suomenkielinen versio: Martti Pitkänen, martti@aplcomp.fi</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="8346"/>
         <source>&lt;br&gt;X2Go Plugin mode was sponsored by &lt;a href=&quot;http://www.foss-group.de/&quot;&gt;FOSS-Group GmbH (Freiburg)&lt;/a&gt;&lt;br&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;br&gt;X2Go Plugin moodin sponsori &lt;a href=&quot;http://www.foss-group.de/&quot;&gt;FOSS-Group GmbH (Freiburg)&lt;/a&gt;&lt;br&gt;</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="8350"/>
         <source>&lt;br&gt;This is a client to access the X2Go network-based computing environment. This client will be able to connect to X2Go Server(s) and start, stop, resume and terminate (running) desktop sessions. X2Go Client stores different server connections and may automatically request authentication data from LDAP directories. Furthermore, it can be used as a fullscreen login screen (replacement for login managers like XDM). Please visit &lt;a href=&quot;http://www.x2go.org&quot;&gt;the project home page at x2go.org&lt;/a&gt; for further information.</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;br&gt;Täällä asiakasohjelmalla voidaan kirjautua X2Go -palvelimeen ja käynnistää, pysäytää, jatkaa ja lopettaa etätyöpöytä-istuntoja. X2Go -ohjelma tallettaa kaikki yhteysasetukset ja se voi automaattisesti hakea  tiedot autentikointia varten DAP -hakemistoista. Lisäksi sitä voidaan käyttää kokotuutu-pohjaisen kirjautumisnäyttönä (korvaten login -managerin kuten esim. XDM). Sivulta &lt;a href=&quot;http://www.x2go.org&quot;&gt;x2go.org -projektin kotisivu&lt;/a&gt; löytyy lisätietoja.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="8364"/>
         <source>&lt;b&gt;X2Go Client v. </source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;X2Go Client v. </translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="8409"/>
         <source>Please check LDAP Settings.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tarkisa LDAP -asetukset.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="8669"/>
         <source>Check whether the package providing &quot;scdaemon&quot; is installed.
 The current search path is: </source>
-        <translation type="unfinished"></translation>
+        <translation>Tarkista onko paketti joka sisältää ohjelman &quot;scdaemon&quot; asennettu.
+Hakupolku on: </translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="8695"/>
         <source>didn&apos;t start yet.</source>
-        <translation type="unfinished"></translation>
+        <translation>ei käynnistynyt vielä.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="8705"/>
         <source>Unable to read from scdaemon.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ei vastausta ohjelmasta scdaemon.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="8741"/>
         <source>No valid card found.</source>
-        <translation type="unfinished"></translation>
+        <translation>Toimivaa kortta ei löytynyt.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="8797"/>
         <source>This card is unknown to the X2Go system.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tämä kortti ei toimi X2Go -järjestelmässä.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="9124"/>
@@ -2350,46 +2386,51 @@ The current search path is: </source>
         <location filename="../../src/onmainwindow.cpp" line="9825"/>
         <source>Can&apos;t start X.Org Server.
 Please check your installation.</source>
-        <translation type="unfinished"></translation>
+        <translation>X.Org -ohjelma ei käynnisty.
+Tarkista installointi.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="9326"/>
         <source>Remote server does not support file system exports through SSH tunnels.
 Please update your x2goserver package.</source>
-        <translation type="unfinished"></translation>
+        <translation>Etäpalvelin ei tue SSH tunneloinnin kautta tapahtuvaa levyjakoa.
+Päivitä x2goserver paketti.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="9351"/>
         <source>Unable to create SSH tunnel for Folder Sharing and Printing support:
 </source>
-        <translation type="unfinished"></translation>
+        <translation>SSH -tunnelin luonti levyjakoa ja tulostusta varten ei onnistu:
+</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="9380"/>
         <source>Unable to read:
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Luku ei onnistu:
+</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="9407"/>
         <source>Unable to write:
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Kirjoitus ei onnistu:
+</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="10523"/>
         <source>Error getting window geometry. (Did you close the window?)</source>
-        <translation type="unfinished"></translation>
+        <translation>Näytön geometrian luku ei onnistu. (Suljitko ikkunan?)</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="11005"/>
         <source>Invalid value for argument &quot;speed&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Virheellinen arvo ohjaimella &quot;speed&quot;</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="11376"/>
         <source>Applications ...</source>
-        <translation type="unfinished"></translation>
+        <translation>Sovellukset ...</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="11780"/>
@@ -2397,14 +2438,18 @@ Please update your x2goserver package.</source>
         <source>SSH daemon could not be started.
 
 </source>
-        <translation type="unfinished"></translation>
+        <translation>SSH prosessi ei käynnistynyt.
+
+</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="11786"/>
         <source>SSH daemon is not running.
 
 </source>
-        <translation type="unfinished"></translation>
+        <translation>SSH prosessia ei löydy.
+
+</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="11790"/>
@@ -2415,7 +2460,13 @@ These features require a running and functioning SSH server on your computer.
 Please also check the &lt;b&gt;Clientside SSH port&lt;/b&gt; in the general settings.
 
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Olet aktivoinut etätulostuksen ja tiedostojaon.
+Nämä toiminnot edellyttävät että palvelimessasi on toiminnassa SSH -palvelin.
+&lt;b&gt;Tulostus ja leyvjako ovat pois päältä tässä istunnossa.&lt;/b&gt;
+
+Tarkista myös &lt;b&gt;Asiakakasohjelman SSH -portti&lt;/b&gt; yleisistä asetuksista.
+
+</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="11796"/>
@@ -2424,14 +2475,20 @@ Please also check the &lt;b&gt;Clientside SSH port&lt;/b&gt; in the general sett
 If you see this message, please report a bug on:
 &lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Normaalisti tätä ei tapahtuisi koska &quot;X2Go Client for Windows&quot; sisältää SSH -palvelimen.
+
+Jos näet tämän ilmoituksen, lähetä virheraportti tältä sivulta:
+&lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
+</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="11805"/>
         <source>The SSH server failed to start.
 
 </source>
-        <translation type="unfinished"></translation>
+        <translation>SSH -palvelin ei käynnistynyt.
+
+</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="11806"/>
@@ -2440,39 +2497,49 @@ If you see this message, please report a bug on:
 Please report a bug on:
 &lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
 </source>
-        <translation type="unfinished"></translation>
+        <translation>X2Go -asiakasohjelma ei tunnistanut SSH -palvelinta työasemastasi eikä voinut käynnistää omaansa.
+
+Lähetä virheraportti käyttäen:
+&lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
+</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="11815"/>
         <source>The SSH server is currently not started.
 
 </source>
-        <translation type="unfinished"></translation>
+        <translation>SSH -palvelinta ei ole käynnistetty.
+
+</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="11817"/>
         <source>On OS X, please follow the following steps to enable SSH service:&lt;ul&gt;&lt;li&gt;Open &lt;b&gt;System Preferences&lt;/b&gt; (Applications -&gt; System Preferences)&lt;/li&gt;&lt;li&gt;Go to &lt;b&gt;Sharing&lt;/b&gt;&lt;/li&gt;&lt;li&gt;Tick the checkbox besides &lt;b&gt;Remote Login&lt;/b&gt;&lt;/li&gt;&lt;li&gt;Check that &lt;b&gt;Allow access for:&lt;/b&gt; is set to either:&lt;ul&gt;&lt;li&gt;All users: &lt;b&gt;no further steps necessary&lt;/b&gt;&lt;/li&gt;&lt;li&gt;Only these users &lt;b&gt;and your user name is included in the list&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;&lt;li&gt;Optionally, add your user name to the allowed list via the &lt;b&gt;Plus Button&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;&lt;b&gt;Warning: enabling SSH access will allow any user on the network to connect to your machine. It is your responsibility to set a strong password for every user that is allowed to log in via SSH.&lt;/b&gt;
 
 </source>
-        <translation type="unfinished"></translation>
+        <translation>OS X,seuraa näitä ohjeita käynnistääksesin SSH -palvelun:&lt;ul&gt;&lt;li&gt;Avaa &lt;b&gt;Järjestelmän oletukset&lt;/b&gt; (Sovellukset -&gt; Järjestelmän oletukset)&lt;/li&gt;&lt;li&gt;Mene &lt;b&gt;Jakaminen&lt;/b&gt;&lt;/li&gt;&lt;li&gt;Valitse checkbox &lt;b&gt;Remote Login&lt;/b&gt;&lt;/li&gt;&lt;li&gt;Tarkista että &lt;b&gt;Salli:&lt;/b&gt; on joko asetettu:&lt;ul&gt;&lt;li&gt;Kaikki käyttäjät: &lt;b&gt;muuta ei tarvita&lt;/b&gt;&lt;/li&gt;&lt;li&gt;Vain nämä käyttäjät &lt;b&gt;ja käyttäjätunnuksesi on listassa&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;&lt;li&gt;Vaihtoehtoisesti, lisää käyttäjätunnuksesi sallittujen listaan käyttäen &lt;b&gt;Plus -nappulaa&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;&lt;b&gt;Varoitus: jos aktivoit SSH -yhteyden niin kuka tahansa voi kytkeytyä koneeseesi verkosta. Sinun on huolehdittava salasanan vahvuudesta jokaiselle käyttäjälle jolla on kirjautumismahdollisuus SSH -yhteyttä käyttäen.&lt;/b&gt;
+
+</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="11835"/>
         <source>Please ask your system administrator to provide the SSH service on your computer.
 
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Pyydä IT-asiantuntija asentamaan SSH-palvelin koneeseesi.
+
+</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="11840"/>
         <location filename="../../src/onmainwindow.cpp" line="11902"/>
         <source>Disabling Remote Printing or File Sharing support in the session settings will get rid of this message.</source>
-        <translation type="unfinished"></translation>
+        <translation>Jos poistat etätulostuksen tai levyjaon istunnon asetuksista pääset eroon tästä ilmoituksesta.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="11853"/>
         <source>SSH daemon failed to open its public host key.</source>
-        <translation type="unfinished"></translation>
+        <translation>SSH -prosessi ei pystynyt lukemaan omaa julkista avaintaan.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="11855"/>
@@ -2485,7 +2552,15 @@ The SSH server is currently not configured correctly.
 Please ensure that the server&apos;s public exists.
 
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Olet aktivoinut etätulostuksen tai levyjaon.
+Nämä edellyttävät että koneessasi on toimivaa SSH -palvelin
+&lt;b&gt;Tulostus ja levyjako eivät ole käytettävissä tässä istunnossa.&lt;/b&gt;
+
+SSH -palvelinta ei ole asennettu oikein.
+
+Varmista että palvelimen julkinen avain on olemassa.
+
+</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="11863"/>
@@ -2494,7 +2569,11 @@ Please ensure that the server&apos;s public exists.
 If you see this message, please report a bug on:
 &lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Normaalisti tätä ei tapahdu koska &quot;X2Go Client for Windows&quot; sisältää oman sisäisen SSH -palvelimen ja se generoi automaattisesti tarvittavat avaimet.
+
+Jos näet tämän ilmoituksen, ilmoita virhe käyttäen sivua:
+&lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
+</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="11873"/>
@@ -2503,12 +2582,16 @@ If you see this message, please report a bug on:
 Please report a bug on:
 &lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
 </source>
-        <translation type="unfinished"></translation>
+        <translation>X2Go -asiakasohjelma ei pystynyt luomaan SSH -avaimia.
+
+Ilmoita virheestä käyttäen sivua:
+&lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
+</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="11882"/>
         <source>On OS X, please follow these steps to generate the required keys:&lt;ul&gt;&lt;li&gt;Open a &lt;b&gt;Terminal Window&lt;/b&gt; (Applications -&gt; Utilities -&gt; Terminal)&lt;/li&gt;&lt;li&gt;Run this command: &lt;b&gt;ssh -p </source>
-        <translation type="unfinished"></translation>
+        <translation>OS X, generoi tarvittavat avaimet näin:&lt;ul&gt;&lt;li&gt;Avaa &lt;b&gt;Terminal Window&lt;/b&gt; (Sovellukset -&gt; Apuohjelmat -&gt; Terminal)&lt;/li&gt;&lt;li&gt;Käynnistä komento: &lt;b&gt;ssh -p </translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="11893"/>
@@ -2518,7 +2601,12 @@ If you are administrating this system yourself, please run:
 &lt;center&gt;&lt;b&gt;sudo ssh-keygen -A&lt;/b&gt;&lt;/center&gt;
 
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Pyydä IT-asiantuntijaa generoimaan tarvittavat avaimet.
+
+Voit tehdä sen itse komennolla:
+&lt;center&gt;&lt;b&gt;sudo ssh-keygen -A&lt;/b&gt;&lt;/center&gt;
+
+</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="11914"/>
@@ -2610,7 +2698,7 @@ authoized_keys -tiedostoa.</translation>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="8010"/>
         <source>RSA file empty.</source>
-        <translation>RSA-tiedosto on tyhjä</translation>
+        <translation>RSA-tiedosto on tyhjä.</translation>
     </message>
     <message>
         <source>Can not open key: </source>
@@ -2648,7 +2736,7 @@ authoized_keys -tiedostoa.</translation>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="8793"/>
         <source>Card not configured.</source>
-        <translation>Toimikortin asetukset puuttuvat</translation>
+        <translation>Toimikortin asetukset puuttuvat.</translation>
     </message>
     <message>
         <source>This card is unknown by X2Go system</source>
@@ -2747,7 +2835,7 @@ Päivitä x2goserver palvelinohjelma</translation>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="11366"/>
         <source>&lt;b&gt;Session ID:&lt;br&gt;Server:&lt;br&gt;Username:&lt;br&gt;Display:&lt;br&gt;Creation time:&lt;br&gt;Status:&lt;/b&gt;</source>
-        <translation>&lt;b&gt;Istunnon ID:&lt;br&gt;Palvelin:&lt;br&gt;Käyttätunnus:&lt;br&gt;Näyttö:&lt;br&gt;Luontiaika:&lt;br&gt;Tila:&lt;/b&gt;</translation>
+        <translation>&lt;b&gt;Istunnon ID:&lt;br&gt;Palvelin:&lt;br&gt;Käyttäjätunnus:&lt;br&gt;Näyttö:&lt;br&gt;Luontiaika:&lt;br&gt;Tila:&lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="11389"/>
@@ -2853,12 +2941,12 @@ voit asentaa sshd komennolla
     <message>
         <location filename="../../src/printdialog.cpp" line="61"/>
         <source>You&apos;ve deactivated the X2Go Client printing dialog.</source>
-        <translation type="unfinished"></translation>
+        <translation>Olet poistanut tulostusmahdollisuuden X2Go -yhteysohjelmasta.</translation>
     </message>
     <message>
         <location filename="../../src/printdialog.cpp" line="63"/>
         <source>You may reactivate this dialog using the X2Go Client settings dialog. To do so, follow this path in the menu bar: Options -&gt; Settings)</source>
-        <translation type="unfinished"></translation>
+        <translation>Voit palauttaa takaisin tämän vaihtoehdon käyttäen X2Go asiakasohjelman asetuksia. Se onnistuu päävalikon toiminnnolla: Valinnat -&gt; Asetukset)</translation>
     </message>
     <message>
         <source>You&apos;ve deactivated the x2go client printing dialog.</source>
@@ -2892,7 +2980,7 @@ voit asentaa sshd komennolla
         <location filename="../../src/printprocess.cpp" line="281"/>
         <location filename="../../src/printprocess.cpp" line="288"/>
         <source>Printing error.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tulostusvirhe.</translation>
     </message>
     <message>
         <source>Printing error</source>
@@ -2975,7 +3063,7 @@ voit asentaa sshd komennolla
     <message>
         <location filename="../../src/printwidget.cpp" line="59"/>
         <source>Please configure your client side printing settings.&lt;br&gt;&lt;br&gt;If you want to print the created file, you&apos;ll need an external application. Typically you can use &lt;a href=&quot;http://pages.cs.wisc.edu/~ghost/doc/GPL/index.htm&quot;&gt;ghostprint&lt;/a&gt; and &lt;a href=&quot;http://pages.cs.wisc.edu/~ghost/gsview/&quot;&gt;ghostview&lt;/a&gt;&lt;br&gt;You can find further information &lt;a href=&quot;http://www.x2go.org/index.php?id=49&quot;&gt;here&lt;/a&gt;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Aseta päälle asiakasohjelman tulostus.&lt;br&gt;&lt;br&gt;Jos haluat tulostaa tiedoton, tarvitsen erillisen sovelluksen. Tyyppillisesti voit käyttää tätä &lt;a href=&quot;http://pages.cs.wisc.edu/~ghost/doc/GPL/index.htm&quot;&gt;ghostprint&lt;/a&gt; and &lt;a href=&quot;http://pages.cs.wisc.edu/~ghost/gsview/&quot;&gt;ghostview&lt;/a&gt;&lt;br&gt;Löydät lisäohjeita &lt;a href=&quot;http://www.x2go.org/index.php?id=49&quot;&gt;täältä&lt;/a&gt;.</translation>
     </message>
 </context>
 <context>
@@ -3066,12 +3154,12 @@ Esimerkki:
     <message>
         <location filename="../../src/x2goutils.cpp" line="161"/>
         <source>X2Go Client could not find any suitable X11 server.</source>
-        <translation type="unfinished"></translation>
+        <translation>X2Go -yhteysohjelma ei löytänyt sopivaa X11 -ohjelmaa.</translation>
     </message>
     <message>
         <location filename="../../src/x2goutils.cpp" line="166"/>
         <source>X2Go Client could not start X11 server.</source>
-        <translation type="unfinished"></translation>
+        <translation>X2Go -yhteysohjelma ei pystynyt käynnistämään X11 -ohjelmaa.</translation>
     </message>
     <message>
         <location filename="../../src/x2goutils.cpp" line="167"/>
@@ -3086,7 +3174,17 @@ Should you have &lt;b&gt;not&lt;/b&gt; installed XQuartz yet, please
 follow the outlined steps:
 
 </source>
-        <translation type="unfinished"></translation>
+        <translation>X2Go -asiakasohjelma edellyttää XQuartz -ohjelman asentamista.
+
+Jos XQuartz on jo asennettu,
+valitse oikea hakupolku esitetystä valintaikkunasta.
+Katso tämän viestin lopussa olevia polkuesimerkkejä,
+jos et tiedä tarkkaa sijaintia.
+
+Jos &lt;b&gt;et&lt;/b&gt; ole asentanut XQuartz -ohjelmaa vielä, seuraa
+näitä ohjeita:
+
+</translation>
     </message>
     <message>
         <location filename="../../src/x2goutils.cpp" line="179"/>
@@ -3104,7 +3202,20 @@ This will most likely be
 &lt;center&gt;&lt;b&gt;/Applications/MacPorts/X11.app&lt;/b&gt;&lt;/center&gt;
 or
 &lt;center&gt;&lt;b&gt;/Applications/Utilities/XQuartz.app&lt;/b&gt;&lt;/center&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>MacPorts -käyttäjät, asenna joko portti &lt;b&gt;xorg-server&lt;/b&gt;
+tai portti &lt;b&gt;xorg-server-devel&lt;/b&gt;.
+Kun asennus valmis, seuraa ohjeita jotka tulostuvat 
+ portilla joka käynnistää/lataa palvelimen.
+
+Kaikki muut käyttäjät, nouda ja asenna XQuartz täältä:
+&lt;center&gt;&lt;a href=&quot;https://xquartz.macosforge.org/&quot;&gt;https://xquartz.macosforge.org/&lt;/a&gt;&lt;/center&gt;
+
+Seuraavaksi, käynnistä X2Go -asiakasohjelma ja valitse oikea polku
+jolla pääset X11 -sovellukseen X2Go-ohjelman asetuksilla.
+Se on todennäköisesti
+&lt;center&gt;&lt;b&gt;/Applications/MacPorts/X11.app&lt;/b&gt;&lt;/center&gt;
+tai
+&lt;center&gt;&lt;b&gt;/Applications/Utilities/XQuartz.app&lt;/b&gt;&lt;/center&gt;</translation>
     </message>
 </context>
 <context>
@@ -3120,12 +3231,12 @@ or
     <message>
         <location filename="../../src/sessionbutton.cpp" line="137"/>
         <source>Session preferences ...</source>
-        <translation type="unfinished"></translation>
+        <translation>Istunnon oletusarvot ...</translation>
     </message>
     <message>
         <location filename="../../src/sessionbutton.cpp" line="141"/>
         <source>Create session icon on desktop ...</source>
-        <translation type="unfinished"></translation>
+        <translation>Tee istuntokuvake työpöydälle ...</translation>
     </message>
     <message>
         <location filename="../../src/sessionbutton.cpp" line="146"/>
@@ -3240,7 +3351,7 @@ or
         <location filename="../../src/sessionbutton.cpp" line="556"/>
         <location filename="../../src/sessionbutton.cpp" line="686"/>
         <source>Disabled</source>
-        <translation>Päältä</translation>
+        <translation>Pois päältä</translation>
     </message>
 </context>
 <context>
@@ -3265,14 +3376,16 @@ Käytätkö x2go-asiakasohjelmaa piilotettuna?</translation>
     <message>
         <location filename="../../src/sessionexplorer.cpp" line="139"/>
         <source>Create session icon on desktop.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tee istuntokuvake työpöydälle.</translation>
     </message>
     <message>
         <location filename="../../src/sessionexplorer.cpp" line="140"/>
         <source>Desktop icons can be configured not to show X2Go Client (hidden mode.) If you like to use this feature you&apos;ll need to configure login via a GPG key or GPG Smart Card.
 
 Use X2Go Client&apos;s hidden mode?</source>
-        <translation type="unfinished"></translation>
+        <translation>Työpöydän kuvakkeet voidaan asettaa niin että ne eivat näytä X2Go -ohjelmaa (piilomoodi.) Jos halua käyttää ominaisuutta sinun pitää asentaa kirjautuminen käyttämään GPG -avainta tai GPG -korttia.
+
+Käytätkö X2Go -ohjelmaa piilomoodissa?</translation>
     </message>
     <message>
         <location filename="../../src/sessionexplorer.cpp" line="150"/>
@@ -3320,7 +3433,8 @@ Use X2Go Client&apos;s hidden mode?</source>
     <message>
         <location filename="../../src/sessionmanagedialog.cpp" line="59"/>
         <source>&amp;Create session icon on desktop ...</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>&amp;Tee istuntokuvake työpöydälle ...</translatorcomment>
+        <translation>&amp;Create session icon on desktop ...</translation>
     </message>
     <message>
         <source>&amp;Create session icon on desktop...</source>
@@ -3390,7 +3504,7 @@ Use X2Go Client&apos;s hidden mode?</source>
     <message>
         <location filename="../../src/sessionwidget.cpp" line="140"/>
         <source>Try auto login (via SSH Agent or default SSH key)</source>
-        <translation type="unfinished"></translation>
+        <translation>Kokeile automaattista kirjautumista (käyttäen SSH agenttia tai SSH -oletusavainta)</translation>
     </message>
     <message>
         <location filename="../../src/sessionwidget.cpp" line="141"/>
@@ -3441,24 +3555,24 @@ Use X2Go Client&apos;s hidden mode?</source>
     <message>
         <location filename="../../src/sessionwidget.cpp" line="171"/>
         <source>SSH Agent or default SSH key</source>
-        <translation type="unfinished"></translation>
+        <translation>SSH -agentti tai oletus-SSH -avain</translation>
     </message>
     <message>
         <location filename="../../src/sessionwidget.cpp" line="216"/>
         <location filename="../../src/sessionwidget.cpp" line="519"/>
         <source>Connect to Windows Terminal Server</source>
-        <translation type="unfinished"></translation>
+        <translation>Yhistä Windows Terminal Serveriin</translation>
     </message>
     <message>
         <location filename="../../src/sessionwidget.cpp" line="247"/>
         <source>Direct RDP connection</source>
-        <translation type="unfinished"></translation>
+        <translation>Suora RDP -yhteys</translation>
     </message>
     <message>
         <location filename="../../src/sessionwidget.cpp" line="328"/>
         <location filename="../../src/sessionwidget.cpp" line="443"/>
         <source>X2Go Client is running in portable mode. You should use a path on your USB device to be able to access your data wherever you are.</source>
-        <translation type="unfinished"></translation>
+        <translation>X2Go -yhteysohjelma tomii nyt siirrettävässä moodissa. Sinun pitää käyttää USB -laitteesi polkua jotta pääset käsiksi tietoihisi missä oletkin.</translation>
     </message>
     <message>
         <source>ssh-agent or default ssh key</source>
@@ -3621,7 +3735,7 @@ Use X2Go Client&apos;s hidden mode?</source>
     <message>
         <location filename="../../src/settingswidget.cpp" line="50"/>
         <source>&amp;Clipboard mode</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Leikepöytä -moodi</translation>
     </message>
     <message>
         <location filename="../../src/settingswidget.cpp" line="62"/>
@@ -3701,12 +3815,12 @@ Use X2Go Client&apos;s hidden mode?</source>
     <message>
         <location filename="../../src/settingswidget.cpp" line="168"/>
         <source>Auto-detect keyboard settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Tunnista näppäimistö automaattisesti</translation>
     </message>
     <message>
         <location filename="../../src/settingswidget.cpp" line="204"/>
         <source>RDP client</source>
-        <translation type="unfinished"></translation>
+        <translation>RDP -yhteysohjelma</translation>
     </message>
     <message>
         <source>Auto detect keyboard settings</source>
@@ -3859,12 +3973,12 @@ sound system connections through firewalls</source>
     <message>
         <location filename="../../src/sharewidget.cpp" line="101"/>
         <source>Use SSH port forwarding to tunnel file system connections through firewalls</source>
-        <translation type="unfinished"></translation>
+        <translation>Käytä SSH -porttia viedäksesi levyjaot palomuurien läpi</translation>
     </message>
     <message>
         <location filename="../../src/sharewidget.cpp" line="176"/>
         <source>X2Go Client is running in portable mode. You should use a path on your USB device to be able to access your data wherever you are.</source>
-        <translation type="unfinished"></translation>
+        <translation>X2Go -yhteysohjelma on siirrettävässä moodissa. Käytä USB -laitteesi hakemistopolkua jottä pääset tietoihisi käsiksi sieltä missä olet.</translation>
     </message>
     <message>
         <source>Use ssh port forwarding to tunnel file system connections through firewalls</source>
@@ -3906,7 +4020,7 @@ sound system connections through firewalls</source>
     <message>
         <location filename="../../src/sshmasterconnection.cpp" line="410"/>
         <source>SSH proxy connection error.</source>
-        <translation type="unfinished"></translation>
+        <translation>SSH -välityspalvelimen yhteysvirhe.</translation>
     </message>
     <message>
         <location filename="../../src/sshmasterconnection.cpp" line="415"/>
@@ -3917,83 +4031,83 @@ sound system connections through firewalls</source>
     <message>
         <location filename="../../src/sshmasterconnection.cpp" line="437"/>
         <source>Failed to create SSH proxy tunnel.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tunnelointi SSH -välityspalvelimen kautta epäonnistui.</translation>
     </message>
     <message>
         <location filename="../../src/sshmasterconnection.cpp" line="490"/>
         <source>Cannot initialize libssh.</source>
-        <translation type="unfinished"></translation>
+        <translation>Libssh -kirjaston avaus epäonnistui.</translation>
     </message>
     <message>
         <location filename="../../src/sshmasterconnection.cpp" line="518"/>
         <source>Cannot create SSH session.</source>
-        <translation type="unfinished"></translation>
+        <translation>SSH-istunnon luonti epäonnistui.</translation>
     </message>
     <message>
         <location filename="../../src/sshmasterconnection.cpp" line="554"/>
         <source>Cannot connect to proxy server.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ei yhteyttä välityspalvelimeen.</translation>
     </message>
     <message>
         <location filename="../../src/sshmasterconnection.cpp" line="684"/>
         <location filename="../../src/sshmasterconnection.cpp" line="919"/>
         <source>Authentication failed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Autentikointi epäonnistui.</translation>
     </message>
     <message>
         <location filename="../../src/sshmasterconnection.cpp" line="1237"/>
         <source>Failed to start SSH client. Please check your installation and GSSApi configuration.</source>
-        <translation type="unfinished"></translation>
+        <translation>SSH -asiakasohjelma ei käynnisty. Tarkista asennukset ja GSSApi configurointi.</translation>
     </message>
     <message>
         <location filename="../../src/sshmasterconnection.cpp" line="1263"/>
         <source>Check your GSSApi configuration or choose another authentication method.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tarkista GSSApi -asetukset tai valitse toinen autentikointimentelmä.</translation>
     </message>
     <message>
         <location filename="../../src/sshmasterconnection.cpp" line="1365"/>
         <source>Cannot open file </source>
-        <translation type="unfinished"></translation>
+        <translation>Tiedosto ei avaudu </translation>
     </message>
     <message>
         <location filename="../../src/sshmasterconnection.cpp" line="1377"/>
         <source>Cannot create remote file </source>
-        <translation type="unfinished"></translation>
+        <translation>Tiedosto luonti palvelimeen ei onnistu </translation>
     </message>
     <message>
         <location filename="../../src/sshmasterconnection.cpp" line="1392"/>
         <source>Cannot write to remote file </source>
-        <translation type="unfinished"></translation>
+        <translation>Kirjoittaminen palvelimen tiedostoon ei onnistu </translation>
     </message>
     <message>
         <location filename="../../src/sshmasterconnection.cpp" line="1523"/>
         <source>channel_open_forward failed.</source>
-        <translation type="unfinished"></translation>
+        <translation>channel_open_forward epäonnistui.</translation>
     </message>
     <message>
         <location filename="../../src/sshmasterconnection.cpp" line="1544"/>
         <source>channel_open_session failed.</source>
-        <translation type="unfinished"></translation>
+        <translation>channel_open_session epäonnistui.</translation>
     </message>
     <message>
         <location filename="../../src/sshmasterconnection.cpp" line="1632"/>
         <source>Error writing to socket.</source>
-        <translation type="unfinished"></translation>
+        <translation>Sokettiin kirjoitus epäonnistui.</translation>
     </message>
     <message>
         <location filename="../../src/sshmasterconnection.cpp" line="1654"/>
         <source>Error reading channel.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kanavan luku epäonnistui.</translation>
     </message>
     <message>
         <location filename="../../src/sshmasterconnection.cpp" line="1688"/>
         <source>channel_write failed.</source>
-        <translation type="unfinished"></translation>
+        <translation>channel_write epäonnistui.</translation>
     </message>
     <message>
         <location filename="../../src/sshmasterconnection.cpp" line="1704"/>
         <source>Error reading from TCP socket.</source>
-        <translation type="unfinished"></translation>
+        <translation>TCP -soketin luku epäonnistui.</translation>
     </message>
     <message>
         <source>Failed to create SSH proxy tunnel</source>
@@ -4088,7 +4202,7 @@ sound system connections through firewalls</source>
     <message>
         <location filename="../../src/sshprocess.cpp" line="127"/>
         <source>Error creating socket.</source>
-        <translation type="unfinished"></translation>
+        <translation>Soketin avaus epäonnistui.</translation>
     </message>
     <message>
         <location filename="../../src/sshprocess.cpp" line="145"/>
@@ -4179,7 +4293,7 @@ sound system connections through firewalls</source>
     <message>
         <location filename="../../src/ui/xsettingsui.ui" line="169"/>
         <source>whole display:</source>
-        <translation type="unfinished"></translation>
+        <translation>kokonäyttö:</translation>
     </message>
 </context>
 </TS>
