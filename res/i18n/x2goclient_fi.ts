@@ -219,7 +219,7 @@
     <message>
         <location filename="../../src/ui/contest.ui" line="25"/>
         <source>HTTPS connection:</source>
-        <translation>HTTPS -yhteys:</translation>
+        <translation>HTTPS-yhteys:</translation>
     </message>
     <message>
         <location filename="../../src/ui/contest.ui" line="32"/>
@@ -251,7 +251,7 @@
     <message>
         <location filename="../../src/contest.cpp" line="148"/>
         <source>Socket operation timed out.</source>
-        <translation>Socket -yhteys aikakatkaistu.</translation>
+        <translation>Socket-yhteys aikakatkaistu.</translation>
     </message>
     <message>
         <source>Socket operation timed out</source>
@@ -261,7 +261,7 @@
         <location filename="../../src/contest.cpp" line="160"/>
         <location filename="../../src/contest.cpp" line="166"/>
         <source>Failed: </source>
-        <translation>Epäonnistui:</translation>
+        <translation>Epäonnistui: </translation>
     </message>
 </context>
 <context>
@@ -335,7 +335,7 @@
     <message>
         <location filename="../../src/configdialog.cpp" line="357"/>
         <source>Pulseaudio settings</source>
-        <translation>Pulseaudio -asetukset</translation>
+        <translation>Pulseaudio-asetukset</translation>
     </message>
     <message>
         <location filename="../../src/configdialog.cpp" line="359"/>
@@ -345,7 +345,7 @@
     <message>
         <location filename="../../src/configdialog.cpp" line="360"/>
         <source>&lt;font size=&quot;5&quot;&gt;You must restart the X2Go Client for the changes to take effect&lt;/font&gt;&lt;br&gt;&lt;br&gt;</source>
-        <translation>&lt;font size=&quot;5&quot;&gt;Käynnistä X2Go -yhteysohjelma muutosten aktivoimiseksi&lt;/font&gt;&lt;br&gt;&lt;br&gt;</translation>
+        <translation>&lt;font size=&quot;5&quot;&gt;Käynnistä X2Go-yhteysohjelma muutosten aktivoimiseksi&lt;/font&gt;&lt;br&gt;&lt;br&gt;</translation>
     </message>
     <message>
         <location filename="../../src/configdialog.cpp" line="569"/>
@@ -378,14 +378,14 @@ Sinun pitää päivitttää X11 ohjelmasi.
 MacPorts käyttäjät seuratkaa täältä löytyviä ohjeita:
 &lt;center&gt;&lt;a href=&quot;https://guide.macports.org/chunked/using.common-tasks.html&quot;&gt;https://guide.macports.org/chunked/using.common-tasks.html&lt;/a&gt;&lt;/center&gt;
 
-Ne käyttäjät jotka ovat asentaneet XQuartz -ohjelman asennuspaketista
+Ne käyttäjät jotka ovat asentaneet XQuartz-ohjelman asennuspaketista
 voivat hakea tuoreen version täältä:
 &lt;center&gt;&lt;a href=&quot;https://xquartz.macosforge.org/&quot;&gt;https://xquartz.macosforge.org/&lt;/a&gt;&lt;/center&gt;</translation>
     </message>
     <message>
         <location filename="../../src/configdialog.cpp" line="599"/>
         <source>No valid XQuartz application selected.</source>
-        <translation>XQuartz -sovelleusta ei ole valittu.</translation>
+        <translation>XQuartz-sovelleusta ei ole valittu.</translation>
     </message>
     <message>
         <location filename="../../src/configdialog.cpp" line="600"/>
@@ -396,7 +396,7 @@ Some standard installation locations may be:
 &lt;center&gt;&lt;b&gt;/Applications/Utilities/X11.app&lt;/b&gt;&lt;/center&gt;
 &lt;center&gt;&lt;b&gt;/Applications/Utilities/XQuartz.app&lt;/b&gt;&lt;/center&gt;
 &lt;center&gt;&lt;b&gt;/Applications/MacPorts/X11.app&lt;/b&gt;&lt;/center&gt;</source>
-        <translation>Et ole vielä valinnut sopivaa XQuartz -sovllutsta.
+        <translation>Et ole vielä valinnut sopivaa XQuartz-sovllutsta.
 Yritä uudelleen.
 
 Muutama standardiasennuksia löytyy täältä:
@@ -655,7 +655,7 @@ Muutama standardiasennuksia löytyy täältä:
     <message>
         <location filename="../../src/editconnectiondialog.cpp" line="126"/>
         <source>Session preferences - </source>
-        <translation>Istunnon oletusasetukset -</translation>
+        <translation>Istunnon oletusasetukset - </translation>
     </message>
 </context>
 <context>
@@ -814,7 +814,7 @@ Muutama standardiasennuksia löytyy täältä:
 It is now: </source>
         <translatorcomment>tarkista</translatorcomment>
         <translation>Palvelimen avain vaihtui.
-Se on nyt:</translation>
+Se on nyt: </translation>
     </message>
     <message>
         <source>For security reasons, connection will be stopped</source>
@@ -833,7 +833,7 @@ Se on nyt:</translation>
         <source>The server is unknown. Do you trust the host key?
 Public key hash: </source>
         <translation>Palvelin on tuntematon. Luotatko sen avaimeen?
-Julkinen avain:</translation>
+Julkinen avain: </translation>
     </message>
     <message>
         <source>Host key verification failed</source>
@@ -931,7 +931,8 @@ Julkinen avain:</translation>
         <location filename="../../src/httpbrokerclient.cpp" line="599"/>
         <source>Issued to:
 </source>
-        <translation>Annettu:</translation>
+        <translation>Annettu:
+</translation>
     </message>
     <message>
         <location filename="../../src/httpbrokerclient.cpp" line="600"/>
@@ -943,7 +944,7 @@ Julkinen avain:</translation>
         <location filename="../../src/httpbrokerclient.cpp" line="603"/>
         <location filename="../../src/httpbrokerclient.cpp" line="615"/>
         <source>Organization(O)	</source>
-        <translation>Organisaatio(O)</translation>
+        <translation>Organisaatio(O)	</translation>
     </message>
     <message>
         <location filename="../../src/httpbrokerclient.cpp" line="606"/>
@@ -954,13 +955,14 @@ Julkinen avain:</translation>
     <message>
         <location filename="../../src/httpbrokerclient.cpp" line="609"/>
         <source>Serial Number	</source>
-        <translation>Sarjanumero 	</translation>
+        <translation>Sarjanumero	</translation>
     </message>
     <message>
         <location filename="../../src/httpbrokerclient.cpp" line="611"/>
         <source>Issued by:
 </source>
-        <translation>Myöntäjä:</translation>
+        <translation>Myöntäjä:
+</translation>
     </message>
     <message>
         <location filename="../../src/httpbrokerclient.cpp" line="622"/>
@@ -972,18 +974,19 @@ Julkinen avain:</translation>
     <message>
         <location filename="../../src/httpbrokerclient.cpp" line="623"/>
         <source>Issued on	</source>
-        <translation>Myöntöpäivä</translation>
+        <translation>Myöntöpäivä	</translation>
     </message>
     <message>
         <location filename="../../src/httpbrokerclient.cpp" line="624"/>
         <source>expires on	</source>
-        <translation>vanhenee</translation>
+        <translation>vanhenee	</translation>
     </message>
     <message>
         <location filename="../../src/httpbrokerclient.cpp" line="625"/>
         <source>Fingerprints:
 </source>
-        <translation>Tiivisteet:</translation>
+        <translation>Tiivisteet:
+</translation>
     </message>
     <message>
         <location filename="../../src/httpbrokerclient.cpp" line="626"/>
@@ -998,7 +1001,7 @@ Julkinen avain:</translation>
     <message>
         <location filename="../../src/httpbrokerclient.cpp" line="634"/>
         <source>Exit X2Go Client</source>
-        <translation>Sulje X2Go -ohjelma</translation>
+        <translation>Sulje X2Go-ohjelma</translation>
     </message>
     <message>
         <location filename="../../src/httpbrokerclient.cpp" line="636"/>
@@ -1033,7 +1036,8 @@ Julkinen avain:</translation>
         <location filename="../../src/mediawidget.cpp" line="69"/>
         <source>Use SSH port forwarding to tunnel
 sound system connections through firewalls</source>
-        <translation>Käytä SSH -portin tunnelointia äänen saamiseksi palomuurin läpi</translation>
+        <translation>Käytä SSH-portin tunnelointia
+äänen saamiseksi palomuurin läpi</translation>
     </message>
     <message>
         <location filename="../../src/mediawidget.cpp" line="71"/>
@@ -1124,13 +1128,13 @@ sound system connections through firewalls</source>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="596"/>
         <source>Can&apos;t load translator: </source>
-        <translation>Kääntäjän käynnistys ei onnistu:</translation>
+        <translation>Kääntäjän käynnistys ei onnistu: </translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="592"/>
         <location filename="../../src/onmainwindow.cpp" line="620"/>
         <source>Translator: </source>
-        <translation>Kääntäjä:</translation>
+        <translation>Kääntäjä: </translation>
     </message>
     <message>
         <source> installed.</source>
@@ -1171,7 +1175,7 @@ sound system connections through firewalls</source>
         <location filename="../../src/onmainwindow.cpp" line="687"/>
         <location filename="../../src/onmainwindow.cpp" line="10736"/>
         <source>Detach X2Go window</source>
-        <translation>Siirrä X2Go -ikkunaa</translation>
+        <translation>Siirrä X2Go-ikkunaa</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="690"/>
@@ -1257,18 +1261,18 @@ sound system connections through firewalls</source>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="279"/>
         <source>Starting X2Go Client in portable mode. Data directory is: </source>
-        <translation>X2Go -yhteysohjelma käynnistyy siirrettävässä moodissa. Datahakemisto on: </translation>
+        <translation>X2Go-yhteysohjelma käynnistyy siirrettävässä moodissa. Datahakemisto on: </translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="411"/>
         <location filename="../../src/onmainwindow.cpp" line="8363"/>
         <source>About X2Go Client</source>
-        <translation>Tietoja X2Go -yhteysohjelmasta</translation>
+        <translation>Tietoja X2Go-yhteysohjelmasta</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="512"/>
         <source>Started X2Go Client.</source>
-        <translation>X2Go -ohjelma käynnistyi.</translation>
+        <translation>X2Go-ohjelma käynnistyi.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="592"/>
@@ -1484,7 +1488,7 @@ sound system connections through firewalls</source>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="1218"/>
         <source>A left click hides or restores the window. A right click displays the context menu.</source>
-        <translation>Vasen klikkaus piilottaa tai palauttaa ikkunan.Oikea klikkaus näyttää toimintovalikon.</translation>
+        <translation>Vasen klikkaus piilottaa tai palauttaa ikkunan. Oikea klikkaus näyttää toimintovalikon.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="1404"/>
@@ -1504,7 +1508,7 @@ sound system connections through firewalls</source>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="1861"/>
         <source>no X2Go Server found in LDAP </source>
-        <translation>X2Go -palvelinta ei löydy LDAP -rekisteristä</translation>
+        <translation>X2Go-palvelinta ei löydy LDAP-rekisteristä </translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="2834"/>
@@ -1514,7 +1518,7 @@ sound system connections through firewalls</source>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="2903"/>
         <source>Couldn&apos;t find an SSH connection.</source>
-        <translation>SSH -yhteyttä ei löytynyt.</translation>
+        <translation>SSH-yhteyttä ei löytynyt.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="2963"/>
@@ -1523,7 +1527,7 @@ Somebody might be eavesdropping on you.
 For security reasons, it is recommended to stop the connection attempt.
 Do you want to terminate the connection?
 </source>
-        <translation>Tämä saattaa olla osoitus man-in-the-middle -hyökkäyksestä.
+        <translation>Tämä saattaa olla osoitus man-in-the-middle-hyökkäyksestä.
 Joku saattaa salakuunnella sinua.
 Turvallisuuden takia on suositeltavaa että lopetat yhteydenoton.
 Halutako katkaista yhteyden?
@@ -1597,26 +1601,26 @@ Halutako keskeyttää?
         <location filename="../../src/onmainwindow.cpp" line="4606"/>
         <location filename="../../src/onmainwindow.cpp" line="4625"/>
         <source>Your current color depth is different from the session&apos;s color depth. This may cause problems reconnecting to this session and in most cases &lt;b&gt;you will loose the session&lt;/b&gt; and have to start a new one! It&apos;s highly recommended to change the color depth of your display to </source>
-        <translation>Työasemasi näytön väripaletti on eri kuin istunnon paletti. Tästä voi aiheutua ongelmia istunnon aikana ja useimmiten &lt;b&gt;istuntosi katoaa&lt;/b&gt; ja joudut käynnistämään uuden! On erittäin suotavaa  että vaihdat näyttösi väripaletin arvoon </translation>
+        <translation>Työasemasi näytön väripaletti on eri kuin istunnon paletti. Tästä voi aiheutua ongelmia istunnon aikana ja useimmiten &lt;b&gt;istuntosi katoaa&lt;/b&gt; ja joudut käynnistämään uuden! On erittäin suotavaa että vaihdat näyttösi väripaletin arvoon </translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="4614"/>
         <location filename="../../src/onmainwindow.cpp" line="4633"/>
         <source> bits and restart your X.Org Server before you reconnect to this X2Go session.&lt;br /&gt;Do you want to resume this session anyway?</source>
-        <translation> bittiä ja käynnistät X.Org -ohjelman ennenkuin yhdistät uudelleen tähän X2Go istuntoon.&lt;br /&gt;Haluatko kuitenkin jatkaa tätä istuntoa?</translation>
+        <translation> bittiä ja käynnistät X.Org-ohjelman ennenkuin yhdistät uudelleen tähän X2Go istuntoon.&lt;br /&gt;Haluatko kuitenkin jatkaa tätä istuntoa?</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="5545"/>
         <source>Unable to create SSH tunnel for X2Go session (NX) startup:
 </source>
-        <translation>SSH -tunnelin avaus epäonnistui X2Go istuntoa varten / (NX) startup:
+        <translation>SSH-tunnelin avaus epäonnistui X2Go istuntoa varten / (NX) startup:
 </translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="5575"/>
         <source>Unable to create SSH tunnel for audio data:
 </source>
-        <translation>SSH -tunnelin avaus audiodataa varten epäonnistui:
+        <translation>SSH-tunnelin avaus audiodataa varten epäonnistui:
 </translation>
     </message>
     <message>
@@ -1690,7 +1694,7 @@ Nykyinen hakupolku on: </translation>
         <source>X2Go Client will now terminate.
 
 File a bug report as outlined on the &lt;a href=&quot;http://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;bugs wiki page&lt;/a&gt;.</source>
-        <translation>X2Go -asiakasohjelma keskeytyy nyt.
+        <translation>X2Go-asiakasohjelma keskeytyy nyt.
 
 Lähetä virheraportti kuten ohjeistettu sivulla &lt;a href=&quot;http://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;bugs wiki page&lt;/a&gt;.</translation>
     </message>
@@ -1703,13 +1707,13 @@ Lähetä virheraportti kuten ohjeistettu sivulla &lt;a href=&quot;http://wiki.x2
         <location filename="../../src/onmainwindow.cpp" line="5879"/>
         <location filename="../../src/onmainwindow.cpp" line="9305"/>
         <source>Closing X2Go Client because it was started in hidden mode.</source>
-        <translation>Suljetaan X2Go -asiakasohjelma koska oli käynnistetty piilomoodissa.</translation>
+        <translation>Suljetaan X2Go-asiakasohjelma koska oli käynnistetty piilomoodissa.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="5884"/>
         <location filename="../../src/onmainwindow.cpp" line="9310"/>
         <source>Closing X2Go Client because the --close-disconnect parameter was passed.</source>
-        <translation>X2Go -asiakasohjelma suljetaan koska --close-disconnect parametri oli annettu.</translation>
+        <translation>X2Go-asiakasohjelma suljetaan koska --close-disconnect parametri oli annettu.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="6242"/>
@@ -1791,7 +1795,7 @@ Tallentamattomat tiedot katoavat.</translation>
         <source>SSH daemon failed to open the application&apos;s
 authorized_keys file.</source>
         <translation>SSH prosessi ei pystynyt avaamaan sovelluksen
-authorized_keys -tiedostoa.</translation>
+authorized_keys-tiedostoa.</translation>
     </message>
     <message>
         <source>Left mouse button to hide/restore - Right mouse button to display context menu</source>
@@ -1839,7 +1843,7 @@ Käytätkö x2go-asiakasohjelmaa piilotettuna?</translation>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="2206"/>
         <source>No X2Go sessions found, closing.</source>
-        <translation>X2Go -istuntoa ei löytynyt, sulkeutuu.</translation>
+        <translation>X2Go-istuntoa ei löytynyt, sulkeutuu.</translation>
     </message>
     <message>
         <source>Are you sure you want to delete this session?</source>
@@ -1854,7 +1858,7 @@ Käytätkö x2go-asiakasohjelmaa piilotettuna?</translation>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="2709"/>
         <source>RDP connection</source>
-        <translation>RDP -yhteys</translation>
+        <translation>RDP-yhteys</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="2713"/>
@@ -2003,7 +2007,7 @@ Haluatko katkaista?</translation>
         <location filename="../../src/onmainwindow.cpp" line="8107"/>
         <location filename="../../src/onmainwindow.cpp" line="9271"/>
         <source>&lt;b&gt;Wrong password!&lt;/b&gt;&lt;br&gt;&lt;br&gt;</source>
-        <translation>&lt;b&gt;Väärä salasana!&lt;b&gt;&lt;br&gt;&lt;br&gt;</translation>
+        <translation>&lt;b&gt;Väärä salasana!&lt;/b&gt;&lt;br&gt;&lt;br&gt;</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="3549"/>
@@ -2013,7 +2017,7 @@ Haluatko katkaista?</translation>
         <location filename="../../src/onmainwindow.cpp" line="8057"/>
         <location filename="../../src/onmainwindow.cpp" line="8059"/>
         <source>Connection failed: </source>
-        <translation>Yhteys epäonnistui:</translation>
+        <translation>Yhteys epäonnistui: </translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="3552"/>
@@ -2155,7 +2159,7 @@ Haluatko katkaista?</translation>
         <location filename="../../src/onmainwindow.cpp" line="5519"/>
         <location filename="../../src/onmainwindow.cpp" line="10711"/>
         <source>Attach X2Go window</source>
-        <translation>Kytkeydy X2Go -ikkunaan</translation>
+        <translation>Kytkeydy X2Go-ikkunaan</translation>
     </message>
     <message>
         <source>Unable to create SSL tunnel:
@@ -2319,8 +2323,7 @@ Avoimet tiedostot eivät talletu</translation>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="7910"/>
         <source>Unable to create directory:</source>
-        <translatorcomment>Hakemiston luonti ei onnistu:</translatorcomment>
-        <translation>Unable to create directory:</translation>
+        <translation>Hakemiston luonti ei onnistu:</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="8019"/>
@@ -2331,7 +2334,7 @@ Avoimet tiedostot eivät talletu</translation>
         <location filename="../../src/onmainwindow.cpp" line="8343"/>
         <source>&lt;br&gt;(C) 2005-2016 by &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing&lt;br&gt;</source>
         <translation>&lt;br&gt;(C) 2005-2016 &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing&lt;br&gt;
-Suomenkielinen versio: Martti Pitkänen, martti@aplcomp.fi</translation>
+Suomenkielinen versio: Martti Pitkänen, martti@aplcomp.fi&lt;br&gt;</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="8346"/>
@@ -2341,7 +2344,7 @@ Suomenkielinen versio: Martti Pitkänen, martti@aplcomp.fi</translation>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="8350"/>
         <source>&lt;br&gt;This is a client to access the X2Go network-based computing environment. This client will be able to connect to X2Go Server(s) and start, stop, resume and terminate (running) desktop sessions. X2Go Client stores different server connections and may automatically request authentication data from LDAP directories. Furthermore, it can be used as a fullscreen login screen (replacement for login managers like XDM). Please visit &lt;a href=&quot;http://www.x2go.org&quot;&gt;the project home page at x2go.org&lt;/a&gt; for further information.</source>
-        <translation>&lt;br&gt;Täällä asiakasohjelmalla voidaan kirjautua X2Go -palvelimeen ja käynnistää, pysäytää, jatkaa ja lopettaa etätyöpöytä-istuntoja. X2Go -ohjelma tallettaa kaikki yhteysasetukset ja se voi automaattisesti hakea  tiedot autentikointia varten DAP -hakemistoista. Lisäksi sitä voidaan käyttää kokotuutu-pohjaisen kirjautumisnäyttönä (korvaten login -managerin kuten esim. XDM). Sivulta &lt;a href=&quot;http://www.x2go.org&quot;&gt;x2go.org -projektin kotisivu&lt;/a&gt; löytyy lisätietoja.</translation>
+        <translation>&lt;br&gt;Täällä asiakasohjelmalla voidaan kirjautua X2Go-palvelimeen ja käynnistää, pysäytää, jatkaa ja lopettaa etätyöpöytä-istuntoja. X2Go-ohjelma tallettaa kaikki yhteysasetukset ja se voi automaattisesti hakea tiedot autentikointia varten LDAP-hakemistoista. Lisäksi sitä voidaan käyttää kokotuutu-pohjaisen kirjautumisnäyttönä (korvaten login-managerin kuten esim. XDM). Sivulta &lt;a href=&quot;http://www.x2go.org&quot;&gt;x2go.org-projektin kotisivu&lt;/a&gt; löytyy lisätietoja.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="8364"/>
@@ -2351,7 +2354,7 @@ Suomenkielinen versio: Martti Pitkänen, martti@aplcomp.fi</translation>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="8409"/>
         <source>Please check LDAP Settings.</source>
-        <translation>Tarkisa LDAP -asetukset.</translation>
+        <translation>Tarkisa LDAP-asetukset.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="8669"/>
@@ -2378,7 +2381,7 @@ Hakupolku on: </translation>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="8797"/>
         <source>This card is unknown to the X2Go system.</source>
-        <translation>Tämä kortti ei toimi X2Go -järjestelmässä.</translation>
+        <translation>Tämä kortti ei toimi X2Go-järjestelmässä.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="9124"/>
@@ -2386,7 +2389,7 @@ Hakupolku on: </translation>
         <location filename="../../src/onmainwindow.cpp" line="9825"/>
         <source>Can&apos;t start X.Org Server.
 Please check your installation.</source>
-        <translation>X.Org -ohjelma ei käynnisty.
+        <translation>X.Org-ohjelma ei käynnisty.
 Tarkista installointi.</translation>
     </message>
     <message>
@@ -2400,7 +2403,7 @@ Päivitä x2goserver paketti.</translation>
         <location filename="../../src/onmainwindow.cpp" line="9351"/>
         <source>Unable to create SSH tunnel for Folder Sharing and Printing support:
 </source>
-        <translation>SSH -tunnelin luonti levyjakoa ja tulostusta varten ei onnistu:
+        <translation>SSH-tunnelin luonti levyjakoa ja tulostusta varten ei onnistu:
 </translation>
     </message>
     <message>
@@ -2461,10 +2464,10 @@ Please also check the &lt;b&gt;Clientside SSH port&lt;/b&gt; in the general sett
 
 </source>
         <translation>Olet aktivoinut etätulostuksen ja tiedostojaon.
-Nämä toiminnot edellyttävät että palvelimessasi on toiminnassa SSH -palvelin.
+Nämä toiminnot edellyttävät että palvelimessasi on toiminnassa SSH-palvelin.
 &lt;b&gt;Tulostus ja leyvjako ovat pois päältä tässä istunnossa.&lt;/b&gt;
 
-Tarkista myös &lt;b&gt;Asiakakasohjelman SSH -portti&lt;/b&gt; yleisistä asetuksista.
+Tarkista myös &lt;b&gt;Asiakakasohjelman SSH-portti&lt;/b&gt; yleisistä asetuksista.
 
 </translation>
     </message>
@@ -2475,7 +2478,7 @@ Tarkista myös &lt;b&gt;Asiakakasohjelman SSH -portti&lt;/b&gt; yleisistä asetu
 If you see this message, please report a bug on:
 &lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
 </source>
-        <translation>Normaalisti tätä ei tapahtuisi koska &quot;X2Go Client for Windows&quot; sisältää SSH -palvelimen.
+        <translation>Normaalisti tätä ei tapahtuisi koska &quot;X2Go Client for Windows&quot; sisältää SSH-palvelimen.
 
 Jos näet tämän ilmoituksen, lähetä virheraportti tältä sivulta:
 &lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
@@ -2486,7 +2489,7 @@ Jos näet tämän ilmoituksen, lähetä virheraportti tältä sivulta:
         <source>The SSH server failed to start.
 
 </source>
-        <translation>SSH -palvelin ei käynnistynyt.
+        <translation>SSH-palvelin ei käynnistynyt.
 
 </translation>
     </message>
@@ -2497,7 +2500,7 @@ Jos näet tämän ilmoituksen, lähetä virheraportti tältä sivulta:
 Please report a bug on:
 &lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
 </source>
-        <translation>X2Go -asiakasohjelma ei tunnistanut SSH -palvelinta työasemastasi eikä voinut käynnistää omaansa.
+        <translation>X2Go-asiakasohjelma ei tunnistanut SSH-palvelinta työasemastasi eikä voinut käynnistää omaansa.
 
 Lähetä virheraportti käyttäen:
 &lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
@@ -2508,7 +2511,7 @@ Lähetä virheraportti käyttäen:
         <source>The SSH server is currently not started.
 
 </source>
-        <translation>SSH -palvelinta ei ole käynnistetty.
+        <translation>SSH-palvelinta ei ole käynnistetty.
 
 </translation>
     </message>
@@ -2517,7 +2520,7 @@ Lähetä virheraportti käyttäen:
         <source>On OS X, please follow the following steps to enable SSH service:&lt;ul&gt;&lt;li&gt;Open &lt;b&gt;System Preferences&lt;/b&gt; (Applications -&gt; System Preferences)&lt;/li&gt;&lt;li&gt;Go to &lt;b&gt;Sharing&lt;/b&gt;&lt;/li&gt;&lt;li&gt;Tick the checkbox besides &lt;b&gt;Remote Login&lt;/b&gt;&lt;/li&gt;&lt;li&gt;Check that &lt;b&gt;Allow access for:&lt;/b&gt; is set to either:&lt;ul&gt;&lt;li&gt;All users: &lt;b&gt;no further steps necessary&lt;/b&gt;&lt;/li&gt;&lt;li&gt;Only these users &lt;b&gt;and your user name is included in the list&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;&lt;li&gt;Optionally, add your user name to the allowed list via the &lt;b&gt;Plus Button&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;&lt;b&gt;Warning: enabling SSH access will allow any user on the network to connect to your machine. It is your responsibility to set a strong password for every user that is allowed to log in via SSH.&lt;/b&gt;
 
 </source>
-        <translation>OS X,seuraa näitä ohjeita käynnistääksesin SSH -palvelun:&lt;ul&gt;&lt;li&gt;Avaa &lt;b&gt;Järjestelmän oletukset&lt;/b&gt; (Sovellukset -&gt; Järjestelmän oletukset)&lt;/li&gt;&lt;li&gt;Mene &lt;b&gt;Jakaminen&lt;/b&gt;&lt;/li&gt;&lt;li&gt;Valitse checkbox &lt;b&gt;Remote Login&lt;/b&gt;&lt;/li&gt;&lt;li&gt;Tarkista että &lt;b&gt;Salli:&lt;/b&gt; on joko asetettu:&lt;ul&gt;&lt;li&gt;Kaikki käyttäjät: &lt;b&gt;muuta ei tarvita&lt;/b&gt;&lt;/li&gt;&lt;li&gt;Vain nämä käyttäjät &lt;b&gt;ja käyttäjätunnuksesi on listassa&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;&lt;li&gt;Vaihtoehtoisesti, lisää käyttäjätunnuksesi sallittujen listaan käyttäen &lt;b&gt;Plus -nappulaa&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;&lt;b&gt;Varoitus: jos aktivoit SSH -yhteyden niin kuka tahansa voi kytkeytyä koneeseesi verkosta. Sinun on huolehdittava salasanan vahvuudesta jokaiselle käyttäjälle jolla on kirjautumismahdollisuus SSH -yhteyttä käyttäen.&lt;/b&gt;
+        <translation>OS X, seuraa näitä ohjeita käynnistääksesin SSH-palvelun:&lt;ul&gt;&lt;li&gt;Avaa &lt;b&gt;Järjestelmän oletukset&lt;/b&gt; (Sovellukset -&gt; Järjestelmän oletukset)&lt;/li&gt;&lt;li&gt;Mene &lt;b&gt;Jakaminen&lt;/b&gt;&lt;/li&gt;&lt;li&gt;Valitse checkbox &lt;b&gt;Remote Login&lt;/b&gt;&lt;/li&gt;&lt;li&gt;Tarkista että &lt;b&gt;Salli:&lt;/b&gt; on joko asetettu:&lt;ul&gt;&lt;li&gt;Kaikki käyttäjät: &lt;b&gt;muuta ei tarvita&lt;/b&gt;&lt;/li&gt;&lt;li&gt;Vain nämä käyttäjät &lt;b&gt;ja käyttäjätunnuksesi on listassa&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;&lt;li&gt;Vaihtoehtoisesti, lisää käyttäjätunnuksesi sallittujen listaan käyttäen &lt;b&gt;Plus-nappulaa&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;&lt;b&gt;Varoitus: jos aktivoit SSH-yhteyden niin kuka tahansa voi kytkeytyä koneeseesi verkosta. Sinun on huolehdittava salasanan vahvuudesta jokaiselle käyttäjälle jolla on kirjautumismahdollisuus SSH-yhteyttä käyttäen.&lt;/b&gt;
 
 </translation>
     </message>
@@ -2539,7 +2542,7 @@ Lähetä virheraportti käyttäen:
     <message>
         <location filename="../../src/onmainwindow.cpp" line="11853"/>
         <source>SSH daemon failed to open its public host key.</source>
-        <translation>SSH -prosessi ei pystynyt lukemaan omaa julkista avaintaan.</translation>
+        <translation>SSH-prosessi ei pystynyt lukemaan omaa julkista avaintaan.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="11855"/>
@@ -2553,10 +2556,10 @@ Please ensure that the server&apos;s public exists.
 
 </source>
         <translation>Olet aktivoinut etätulostuksen tai levyjaon.
-Nämä edellyttävät että koneessasi on toimivaa SSH -palvelin
+Nämä edellyttävät että koneessasi on toimivaa SSH-palvelin
 &lt;b&gt;Tulostus ja levyjako eivät ole käytettävissä tässä istunnossa.&lt;/b&gt;
 
-SSH -palvelinta ei ole asennettu oikein.
+SSH-palvelinta ei ole asennettu oikein.
 
 Varmista että palvelimen julkinen avain on olemassa.
 
@@ -2569,7 +2572,7 @@ Varmista että palvelimen julkinen avain on olemassa.
 If you see this message, please report a bug on:
 &lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
 </source>
-        <translation>Normaalisti tätä ei tapahdu koska &quot;X2Go Client for Windows&quot; sisältää oman sisäisen SSH -palvelimen ja se generoi automaattisesti tarvittavat avaimet.
+        <translation>Normaalisti tätä ei tapahdu koska &quot;X2Go Client for Windows&quot; sisältää oman sisäisen SSH-palvelimen ja se generoi automaattisesti tarvittavat avaimet.
 
 Jos näet tämän ilmoituksen, ilmoita virhe käyttäen sivua:
 &lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
@@ -2582,7 +2585,7 @@ Jos näet tämän ilmoituksen, ilmoita virhe käyttäen sivua:
 Please report a bug on:
 &lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
 </source>
-        <translation>X2Go -asiakasohjelma ei pystynyt luomaan SSH -avaimia.
+        <translation>X2Go-asiakasohjelma ei pystynyt luomaan SSH-avaimia.
 
 Ilmoita virheestä käyttäen sivua:
 &lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
@@ -2612,7 +2615,7 @@ Voit tehdä sen itse komennolla:
         <location filename="../../src/onmainwindow.cpp" line="11914"/>
         <location filename="../../src/onmainwindow.cpp" line="11925"/>
         <source>SSH Error</source>
-        <translation>SSH -virhe</translation>
+        <translation>SSH-virhe</translation>
     </message>
     <message>
         <source>SSH daemon could not be started.
@@ -2656,7 +2659,7 @@ Pyydä IT -tukihenkilöä asentamaan SSH
         <location filename="../../src/onmainwindow.cpp" line="11915"/>
         <source>SSH daemon failed to open the application&apos;s public key
 used for exporting folders and printers.</source>
-        <translation>SSH -palvelu ei pystynyt selvittämään sovelluksen julkista avainta
+        <translation>SSH-palvelu ei pystynyt selvittämään sovelluksen julkista avainta
 jota käytetään kansioiden ja tulostinten jakamiseen.</translation>
     </message>
     <message>
@@ -2689,7 +2692,7 @@ authoized_keys -tiedostoa.</translation>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="7540"/>
         <source>Git Info</source>
-        <translation>Git -tietoja</translation>
+        <translation>Git-tietoja</translation>
     </message>
     <message>
         <source>Unable to create folder:</source>
@@ -2745,7 +2748,7 @@ authoized_keys -tiedostoa.</translation>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="8825"/>
         <source>Unable to create file: </source>
-        <translation>Tiedoston luonti epäonnistui:</translation>
+        <translation>Tiedoston luonti epäonnistui: </translation>
     </message>
     <message>
         <source>Can&apos;t connect to X server
@@ -2769,7 +2772,7 @@ Tarkista asennuksen oikeellisuus</translation>
         <location filename="../../src/onmainwindow.cpp" line="9290"/>
         <location filename="../../src/onmainwindow.cpp" line="9295"/>
         <source>Unable to execute: </source>
-        <translation>Kännistys ei onnistu:</translation>
+        <translation>Kännistys ei onnistu: </translation>
     </message>
     <message>
         <source>Remote server does not support file system export through SSH Tunnel
@@ -2923,7 +2926,7 @@ voit asentaa sshd komennolla
     <message>
         <location filename="../../src/onmainwindow.cpp" line="12043"/>
         <source>&lt;br&gt;&lt;b&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;Click this button&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;to restore toolbar&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/b&gt;&lt;br&gt;</source>
-        <translation>&lt;b&gt;&lt;b&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;Klikkaa tätä nappulaa&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;b&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;jotta palkki näkyisi jälleen&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/b&gt;&lt;br&gt;</translation>
+        <translation>&lt;br&gt;&lt;b&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;Klikkaa tätä nappulaa&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;jotta palkki näkyisi jälleen&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/b&gt;&lt;br&gt;</translation>
     </message>
 </context>
 <context>
@@ -2931,7 +2934,7 @@ voit asentaa sshd komennolla
     <message>
         <location filename="../../src/ui/printdialog.ui" line="18"/>
         <source>Print - X2Go Client</source>
-        <translation>Tulosta - X2Go -asiakasohjelma</translation>
+        <translation>Tulosta - X2Go-asiakasohjelma</translation>
     </message>
     <message>
         <location filename="../../src/printdialog.cpp" line="31"/>
@@ -2941,7 +2944,7 @@ voit asentaa sshd komennolla
     <message>
         <location filename="../../src/printdialog.cpp" line="61"/>
         <source>You&apos;ve deactivated the X2Go Client printing dialog.</source>
-        <translation>Olet poistanut tulostusmahdollisuuden X2Go -yhteysohjelmasta.</translation>
+        <translation>Olet poistanut tulostusmahdollisuuden X2Go-yhteysohjelmasta.</translation>
     </message>
     <message>
         <location filename="../../src/printdialog.cpp" line="63"/>
@@ -2974,7 +2977,8 @@ voit asentaa sshd komennolla
         <location filename="../../src/printprocess.cpp" line="289"/>
         <source>Failed to execute command:
 </source>
-        <translation>Komento ei käynnisty:</translation>
+        <translation>Komento ei käynnisty:
+</translation>
     </message>
     <message>
         <location filename="../../src/printprocess.cpp" line="281"/>
@@ -3018,7 +3022,7 @@ voit asentaa sshd komennolla
         <location filename="../../src/ui/printwidget.ui" line="81"/>
         <source>Print using default Windows PDF Viewer
 (Viewer application needs to be installed)</source>
-        <translation>Tulosta käyttäen oletus -PDF-katselulohjelmaa
+        <translation>Tulosta käyttäen oletus-PDF-katselulohjelmaa
 (Esitysohjelma pitää olla asennettuna)</translation>
     </message>
     <message>
@@ -3063,7 +3067,8 @@ voit asentaa sshd komennolla
     <message>
         <location filename="../../src/printwidget.cpp" line="59"/>
         <source>Please configure your client side printing settings.&lt;br&gt;&lt;br&gt;If you want to print the created file, you&apos;ll need an external application. Typically you can use &lt;a href=&quot;http://pages.cs.wisc.edu/~ghost/doc/GPL/index.htm&quot;&gt;ghostprint&lt;/a&gt; and &lt;a href=&quot;http://pages.cs.wisc.edu/~ghost/gsview/&quot;&gt;ghostview&lt;/a&gt;&lt;br&gt;You can find further information &lt;a href=&quot;http://www.x2go.org/index.php?id=49&quot;&gt;here&lt;/a&gt;.</source>
-        <translation>Aseta päälle asiakasohjelman tulostus.&lt;br&gt;&lt;br&gt;Jos haluat tulostaa tiedoton, tarvitsen erillisen sovelluksen. Tyyppillisesti voit käyttää tätä &lt;a href=&quot;http://pages.cs.wisc.edu/~ghost/doc/GPL/index.htm&quot;&gt;ghostprint&lt;/a&gt; and &lt;a href=&quot;http://pages.cs.wisc.edu/~ghost/gsview/&quot;&gt;ghostview&lt;/a&gt;&lt;br&gt;Löydät lisäohjeita &lt;a href=&quot;http://www.x2go.org/index.php?id=49&quot;&gt;täältä&lt;/a&gt;.</translation>
+        <comment>"and" untranslated.</comment>
+        <translation type="unfinished">Aseta päälle asiakasohjelman tulostus.&lt;br&gt;&lt;br&gt;Jos haluat tulostaa tiedoton, tarvitsen erillisen sovelluksen. Tyyppillisesti voit käyttää tätä &lt;a href=&quot;http://pages.cs.wisc.edu/~ghost/doc/GPL/index.htm&quot;&gt;ghostprint&lt;/a&gt; and &lt;a href=&quot;http://pages.cs.wisc.edu/~ghost/gsview/&quot;&gt;ghostview&lt;/a&gt;&lt;br&gt;Löydät lisäohjeita &lt;a href=&quot;http://www.x2go.org/index.php?id=49&quot;&gt;täältä&lt;/a&gt;.</translation>
     </message>
 </context>
 <context>
@@ -3097,7 +3102,7 @@ lpr -P hp_laserjet</translation>
     <message>
         <location filename="../../src/ui/printercmddialog.ui" line="52"/>
         <source>Please choose the printing file format (regarding to your printing environment - if you use CUPS you may use PDF)</source>
-        <translation>Valitse tulostusmuoto (riippuen tulostimestasi - jos käytätä CUPS -voit käyttää PDF -muotoa)</translation>
+        <translation>Valitse tulostusmuoto (riippuen tulostimestasi - jos käytätä CUPS-voit käyttää PDF-muotoa)</translation>
     </message>
     <message>
         <location filename="../../src/ui/printercmddialog.ui" line="68"/>
@@ -3154,12 +3159,12 @@ Esimerkki:
     <message>
         <location filename="../../src/x2goutils.cpp" line="161"/>
         <source>X2Go Client could not find any suitable X11 server.</source>
-        <translation>X2Go -yhteysohjelma ei löytänyt sopivaa X11 -ohjelmaa.</translation>
+        <translation>X2Go-yhteysohjelma ei löytänyt sopivaa X11-ohjelmaa.</translation>
     </message>
     <message>
         <location filename="../../src/x2goutils.cpp" line="166"/>
         <source>X2Go Client could not start X11 server.</source>
-        <translation>X2Go -yhteysohjelma ei pystynyt käynnistämään X11 -ohjelmaa.</translation>
+        <translation>X2Go-yhteysohjelma ei pystynyt käynnistämään X11-ohjelmaa.</translation>
     </message>
     <message>
         <location filename="../../src/x2goutils.cpp" line="167"/>
@@ -3174,14 +3179,14 @@ Should you have &lt;b&gt;not&lt;/b&gt; installed XQuartz yet, please
 follow the outlined steps:
 
 </source>
-        <translation>X2Go -asiakasohjelma edellyttää XQuartz -ohjelman asentamista.
+        <translation>X2Go-asiakasohjelma edellyttää XQuartz-ohjelman asentamista.
 
 Jos XQuartz on jo asennettu,
 valitse oikea hakupolku esitetystä valintaikkunasta.
 Katso tämän viestin lopussa olevia polkuesimerkkejä,
 jos et tiedä tarkkaa sijaintia.
 
-Jos &lt;b&gt;et&lt;/b&gt; ole asentanut XQuartz -ohjelmaa vielä, seuraa
+Jos &lt;b&gt;et&lt;/b&gt; ole asentanut XQuartz-ohjelmaa vielä, seuraa
 näitä ohjeita:
 
 </translation>
@@ -3202,16 +3207,16 @@ This will most likely be
 &lt;center&gt;&lt;b&gt;/Applications/MacPorts/X11.app&lt;/b&gt;&lt;/center&gt;
 or
 &lt;center&gt;&lt;b&gt;/Applications/Utilities/XQuartz.app&lt;/b&gt;&lt;/center&gt;</source>
-        <translation>MacPorts -käyttäjät, asenna joko portti &lt;b&gt;xorg-server&lt;/b&gt;
+        <translation>MacPorts-käyttäjät, asenna joko portti &lt;b&gt;xorg-server&lt;/b&gt;
 tai portti &lt;b&gt;xorg-server-devel&lt;/b&gt;.
-Kun asennus valmis, seuraa ohjeita jotka tulostuvat 
- portilla joka käynnistää/lataa palvelimen.
+Kun asennus valmis, seuraa ohjeita jotka tulostuvat
+portilla joka käynnistää/lataa palvelimen.
 
 Kaikki muut käyttäjät, nouda ja asenna XQuartz täältä:
 &lt;center&gt;&lt;a href=&quot;https://xquartz.macosforge.org/&quot;&gt;https://xquartz.macosforge.org/&lt;/a&gt;&lt;/center&gt;
 
-Seuraavaksi, käynnistä X2Go -asiakasohjelma ja valitse oikea polku
-jolla pääset X11 -sovellukseen X2Go-ohjelman asetuksilla.
+Seuraavaksi, käynnistä X2Go-asiakasohjelma ja valitse oikea polku
+jolla pääset X11-sovellukseen X2Go-ohjelman asetuksilla.
 Se on todennäköisesti
 &lt;center&gt;&lt;b&gt;/Applications/MacPorts/X11.app&lt;/b&gt;&lt;/center&gt;
 tai
@@ -3288,7 +3293,7 @@ tai
         <location filename="../../src/sessionbutton.cpp" line="441"/>
         <location filename="../../src/sessionbutton.cpp" line="763"/>
         <source>RDP connection</source>
-        <translation>RDP -yhteys</translation>
+        <translation>RDP-yhteys</translation>
     </message>
     <message>
         <location filename="../../src/sessionbutton.cpp" line="370"/>
@@ -3325,7 +3330,7 @@ tai
         <location filename="../../src/sessionbutton.cpp" line="848"/>
         <location filename="../../src/sessionbutton.cpp" line="851"/>
         <source>Display </source>
-        <translation>Näyttö</translation>
+        <translation>Näyttö </translation>
     </message>
     <message>
         <location filename="../../src/sessionbutton.cpp" line="496"/>
@@ -3383,9 +3388,9 @@ Käytätkö x2go-asiakasohjelmaa piilotettuna?</translation>
         <source>Desktop icons can be configured not to show X2Go Client (hidden mode.) If you like to use this feature you&apos;ll need to configure login via a GPG key or GPG Smart Card.
 
 Use X2Go Client&apos;s hidden mode?</source>
-        <translation>Työpöydän kuvakkeet voidaan asettaa niin että ne eivat näytä X2Go -ohjelmaa (piilomoodi.) Jos halua käyttää ominaisuutta sinun pitää asentaa kirjautuminen käyttämään GPG -avainta tai GPG -korttia.
+        <translation>Työpöydän kuvakkeet voidaan asettaa niin että ne eivat näytä X2Go-ohjelmaa (piilomoodi.) Jos halua käyttää ominaisuutta sinun pitää asentaa kirjautuminen käyttämään GPG-avainta tai GPG-korttia.
 
-Käytätkö X2Go -ohjelmaa piilomoodissa?</translation>
+Käytätkö X2Go-ohjelmaa piilomoodissa?</translation>
     </message>
     <message>
         <location filename="../../src/sessionexplorer.cpp" line="150"/>
@@ -3400,7 +3405,7 @@ Käytätkö X2Go -ohjelmaa piilomoodissa?</translation>
     <message>
         <location filename="../../src/sessionexplorer.cpp" line="227"/>
         <source>X2Go Link to session </source>
-        <translation>Linkki X2Go -istuntoon </translation>
+        <translation>Linkki X2Go-istuntoon </translation>
     </message>
     <message>
         <location filename="../../src/sessionexplorer.cpp" line="363"/>
@@ -3433,8 +3438,7 @@ Käytätkö X2Go -ohjelmaa piilomoodissa?</translation>
     <message>
         <location filename="../../src/sessionmanagedialog.cpp" line="59"/>
         <source>&amp;Create session icon on desktop ...</source>
-        <translatorcomment>&amp;Tee istuntokuvake työpöydälle ...</translatorcomment>
-        <translation>&amp;Create session icon on desktop ...</translation>
+        <translation>&amp;Tee istuntokuvake työpöydälle ...</translation>
     </message>
     <message>
         <source>&amp;Create session icon on desktop...</source>
@@ -3490,12 +3494,12 @@ Käytätkö X2Go -ohjelmaa piilomoodissa?</translation>
         <location filename="../../src/sessionwidget.cpp" line="118"/>
         <location filename="../../src/sessionwidget.cpp" line="395"/>
         <source>SSH port:</source>
-        <translation>SSH .-portti:</translation>
+        <translation>SSH-portti:</translation>
     </message>
     <message>
         <location filename="../../src/sessionwidget.cpp" line="133"/>
         <source>Use RSA/DSA key for ssh connection:</source>
-        <translation>Käytä RSA/DSA -avainta ssh -yhteyden luomiseen:</translation>
+        <translation>Käytä RSA/DSA-avainta ssh-yhteyden luomiseen:</translation>
     </message>
     <message>
         <source>Try auto login (ssh-agent or default ssh key)</source>
@@ -3504,7 +3508,7 @@ Käytätkö X2Go -ohjelmaa piilomoodissa?</translation>
     <message>
         <location filename="../../src/sessionwidget.cpp" line="140"/>
         <source>Try auto login (via SSH Agent or default SSH key)</source>
-        <translation>Kokeile automaattista kirjautumista (käyttäen SSH agenttia tai SSH -oletusavainta)</translation>
+        <translation>Kokeile automaattista kirjautumista (käyttäen SSH agenttia tai SSH-oletusavainta)</translation>
     </message>
     <message>
         <location filename="../../src/sessionwidget.cpp" line="141"/>
@@ -3515,12 +3519,12 @@ Käytätkö X2Go -ohjelmaa piilomoodissa?</translation>
     <message>
         <location filename="../../src/sessionwidget.cpp" line="142"/>
         <source>Delegation of GSSAPI credentials to the server</source>
-        <translation>Anna GSSAPI -tunnistustiedot palvelimelle</translation>
+        <translation>Anna GSSAPI-tunnistustiedot palvelimelle</translation>
     </message>
     <message>
         <location filename="../../src/sessionwidget.cpp" line="146"/>
         <source>Use Proxy server for SSH connection</source>
-        <translation>Käytä proxy-palvelinta SSH -yhteyden luomiseen</translation>
+        <translation>Käytä proxy-palvelinta SSH-yhteyden luomiseen</translation>
     </message>
     <message>
         <location filename="../../src/sessionwidget.cpp" line="147"/>
@@ -3540,12 +3544,12 @@ Käytätkö X2Go -ohjelmaa piilomoodissa?</translation>
     <message>
         <location filename="../../src/sessionwidget.cpp" line="162"/>
         <source>Same login as on X2Go Server</source>
-        <translation>Sama käyttäjätunnus kuin X2Go -palvelimeen</translation>
+        <translation>Sama käyttäjätunnus kuin X2Go-palvelimeen</translation>
     </message>
     <message>
         <location filename="../../src/sessionwidget.cpp" line="164"/>
         <source>Same password as on X2Go Server</source>
-        <translation>Sama salasana kuin X2Go -palvelimeen</translation>
+        <translation>Sama salasana kuin X2Go-palvelimeen</translation>
     </message>
     <message>
         <location filename="../../src/sessionwidget.cpp" line="166"/>
@@ -3555,7 +3559,7 @@ Käytätkö X2Go -ohjelmaa piilomoodissa?</translation>
     <message>
         <location filename="../../src/sessionwidget.cpp" line="171"/>
         <source>SSH Agent or default SSH key</source>
-        <translation>SSH -agentti tai oletus-SSH -avain</translation>
+        <translation>SSH-agentti tai oletus-SSH-avain</translation>
     </message>
     <message>
         <location filename="../../src/sessionwidget.cpp" line="216"/>
@@ -3566,13 +3570,13 @@ Käytätkö X2Go -ohjelmaa piilomoodissa?</translation>
     <message>
         <location filename="../../src/sessionwidget.cpp" line="247"/>
         <source>Direct RDP connection</source>
-        <translation>Suora RDP -yhteys</translation>
+        <translation>Suora RDP-yhteys</translation>
     </message>
     <message>
         <location filename="../../src/sessionwidget.cpp" line="328"/>
         <location filename="../../src/sessionwidget.cpp" line="443"/>
         <source>X2Go Client is running in portable mode. You should use a path on your USB device to be able to access your data wherever you are.</source>
-        <translation>X2Go -yhteysohjelma tomii nyt siirrettävässä moodissa. Sinun pitää käyttää USB -laitteesi polkua jotta pääset käsiksi tietoihisi missä oletkin.</translation>
+        <translation>X2Go-yhteysohjelma tomii nyt siirrettävässä moodissa. Sinun pitää käyttää USB-laitteesi polkua jotta pääset käsiksi tietoihisi missä oletkin.</translation>
     </message>
     <message>
         <source>ssh-agent or default ssh key</source>
@@ -3665,7 +3669,7 @@ Käytätkö X2Go -ohjelmaa piilomoodissa?</translation>
         <location filename="../../src/sessionwidget.cpp" line="327"/>
         <location filename="../../src/sessionwidget.cpp" line="442"/>
         <source>Error</source>
-        <translation>VIrhe</translation>
+        <translation>Virhe</translation>
     </message>
     <message>
         <source>x2goclient is running in portable mode. You should use a path on your usb device to be able to access your data whereever you are</source>
@@ -3674,7 +3678,7 @@ Käytätkö X2Go -ohjelmaa piilomoodissa?</translation>
     <message>
         <location filename="../../src/sessionwidget.cpp" line="391"/>
         <source>RDP port:</source>
-        <translation>RPP-portti:</translation>
+        <translation>RDP-portti:</translation>
     </message>
     <message>
         <location filename="../../src/sessionwidget.cpp" line="407"/>
@@ -3696,12 +3700,12 @@ Käytätkö X2Go -ohjelmaa piilomoodissa?</translation>
         <location filename="../../src/sessionwidget.cpp" line="499"/>
         <location filename="../../src/sessionwidget.cpp" line="742"/>
         <source>XDMCP server:</source>
-        <translation>XDMCP -palvelin:</translation>
+        <translation>XDMCP-palvelin:</translation>
     </message>
     <message>
         <location filename="../../src/sessionwidget.cpp" line="520"/>
         <source>rdesktop command line options:</source>
-        <translation>rdesktop -komentorivin optiot:</translation>
+        <translation>rdesktop-komentorivin optiot:</translation>
     </message>
     <message>
         <location filename="../../src/sessionwidget.cpp" line="532"/>
@@ -3735,7 +3739,7 @@ Käytätkö X2Go -ohjelmaa piilomoodissa?</translation>
     <message>
         <location filename="../../src/settingswidget.cpp" line="50"/>
         <source>&amp;Clipboard mode</source>
-        <translation>&amp;Leikepöytä -moodi</translation>
+        <translation>&amp;Leikepöytä-moodi</translation>
     </message>
     <message>
         <location filename="../../src/settingswidget.cpp" line="62"/>
@@ -3770,7 +3774,7 @@ Käytätkö X2Go -ohjelmaa piilomoodissa?</translation>
     <message>
         <location filename="../../src/settingswidget.cpp" line="82"/>
         <source>Xinerama extension (support for two or more physical displays)</source>
-        <translation>Xinerama -laajennus (tuki kahdelle tai useammalle näytölle)</translation>
+        <translation>Xinerama-laajennus (tuki kahdelle tai useammalle näytölle)</translation>
     </message>
     <message>
         <location filename="../../src/settingswidget.cpp" line="98"/>
@@ -3820,7 +3824,7 @@ Käytätkö X2Go -ohjelmaa piilomoodissa?</translation>
     <message>
         <location filename="../../src/settingswidget.cpp" line="204"/>
         <source>RDP client</source>
-        <translation>RDP -yhteysohjelma</translation>
+        <translation>RDP-yhteysohjelma</translation>
     </message>
     <message>
         <source>Auto detect keyboard settings</source>
@@ -3839,17 +3843,17 @@ Käytätkö X2Go -ohjelmaa piilomoodissa?</translation>
     <message>
         <location filename="../../src/settingswidget.cpp" line="181"/>
         <source>Model: </source>
-        <translation>Malli:</translation>
+        <translation>Malli: </translation>
     </message>
     <message>
         <location filename="../../src/settingswidget.cpp" line="184"/>
         <source>Layout: </source>
-        <translation>Asettelu:</translation>
+        <translation>Asettelu: </translation>
     </message>
     <message>
         <location filename="../../src/settingswidget.cpp" line="187"/>
         <source>Variant: </source>
-        <translation>Alalaji:</translation>
+        <translation>Alalaji: </translation>
     </message>
     <message>
         <source>Keep current keyboard Settings</source>
@@ -3973,12 +3977,12 @@ sound system connections through firewalls</source>
     <message>
         <location filename="../../src/sharewidget.cpp" line="101"/>
         <source>Use SSH port forwarding to tunnel file system connections through firewalls</source>
-        <translation>Käytä SSH -porttia viedäksesi levyjaot palomuurien läpi</translation>
+        <translation>Käytä SSH-porttia viedäksesi levyjaot palomuurien läpi</translation>
     </message>
     <message>
         <location filename="../../src/sharewidget.cpp" line="176"/>
         <source>X2Go Client is running in portable mode. You should use a path on your USB device to be able to access your data wherever you are.</source>
-        <translation>X2Go -yhteysohjelma on siirrettävässä moodissa. Käytä USB -laitteesi hakemistopolkua jottä pääset tietoihisi käsiksi sieltä missä olet.</translation>
+        <translation>X2Go-yhteysohjelma on siirrettävässä moodissa. Käytä USB-laitteesi hakemistopolkua jottä pääset tietoihisi käsiksi sieltä missä olet.</translation>
     </message>
     <message>
         <source>Use ssh port forwarding to tunnel file system connections through firewalls</source>
@@ -4020,7 +4024,7 @@ sound system connections through firewalls</source>
     <message>
         <location filename="../../src/sshmasterconnection.cpp" line="410"/>
         <source>SSH proxy connection error.</source>
-        <translation>SSH -välityspalvelimen yhteysvirhe.</translation>
+        <translation>SSH-välityspalvelimen yhteysvirhe.</translation>
     </message>
     <message>
         <location filename="../../src/sshmasterconnection.cpp" line="415"/>
@@ -4031,12 +4035,12 @@ sound system connections through firewalls</source>
     <message>
         <location filename="../../src/sshmasterconnection.cpp" line="437"/>
         <source>Failed to create SSH proxy tunnel.</source>
-        <translation>Tunnelointi SSH -välityspalvelimen kautta epäonnistui.</translation>
+        <translation>Tunnelointi SSH-välityspalvelimen kautta epäonnistui.</translation>
     </message>
     <message>
         <location filename="../../src/sshmasterconnection.cpp" line="490"/>
         <source>Cannot initialize libssh.</source>
-        <translation>Libssh -kirjaston avaus epäonnistui.</translation>
+        <translation>Libssh-kirjaston avaus epäonnistui.</translation>
     </message>
     <message>
         <location filename="../../src/sshmasterconnection.cpp" line="518"/>
@@ -4057,12 +4061,12 @@ sound system connections through firewalls</source>
     <message>
         <location filename="../../src/sshmasterconnection.cpp" line="1237"/>
         <source>Failed to start SSH client. Please check your installation and GSSApi configuration.</source>
-        <translation>SSH -asiakasohjelma ei käynnisty. Tarkista asennukset ja GSSApi configurointi.</translation>
+        <translation>SSH-asiakasohjelma ei käynnisty. Tarkista asennukset ja GSSApi configurointi.</translation>
     </message>
     <message>
         <location filename="../../src/sshmasterconnection.cpp" line="1263"/>
         <source>Check your GSSApi configuration or choose another authentication method.</source>
-        <translation>Tarkista GSSApi -asetukset tai valitse toinen autentikointimentelmä.</translation>
+        <translation>Tarkista GSSApi-asetukset tai valitse toinen autentikointimentelmä.</translation>
     </message>
     <message>
         <location filename="../../src/sshmasterconnection.cpp" line="1365"/>
@@ -4107,7 +4111,7 @@ sound system connections through firewalls</source>
     <message>
         <location filename="../../src/sshmasterconnection.cpp" line="1704"/>
         <source>Error reading from TCP socket.</source>
-        <translation>TCP -soketin luku epäonnistui.</translation>
+        <translation>TCP-soketin luku epäonnistui.</translation>
     </message>
     <message>
         <source>Failed to create SSH proxy tunnel</source>
@@ -4263,7 +4267,7 @@ sound system connections through firewalls</source>
     <message>
         <location filename="../../src/ui/xsettingsui.ui" line="109"/>
         <source>start X-Server on X2Go Client start</source>
-        <translation>käynnistä X-palvelin kun X2GO -asiakasohjelma käynnistyy</translation>
+        <translation>käynnistä X-palvelin kun X2Go-asiakasohjelma käynnistyy</translation>
     </message>
     <message>
         <location filename="../../src/ui/xsettingsui.ui" line="121"/>
