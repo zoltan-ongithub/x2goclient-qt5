@@ -181,7 +181,8 @@ PULSEAUDIO_LIBRARIES=( "libpulse-simple.0.dylib"
                        "pulseaudio" )
 
 typeset -a special_files_regex
-special_files_regex+=( "pulseaudio/libpulsecommon-[0-9]\.[0-9]\.dylib" )
+special_files_regex+=( "pulseaudio/libpulsecommon-[0-9]\.[0-9]\.dylib"
+                       "pulseaudio/libpulsecore-[0-9]\.[0-9]\.dylib"   )
 
 typeset -r dependency_base_format='@executable_path/../Frameworks/'
 
