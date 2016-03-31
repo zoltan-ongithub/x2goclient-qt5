@@ -264,6 +264,7 @@ x2goclient (4.0.5.3-0x2go1) UNRELEASED; urgency=medium
     - pulsemanager.cpp: use record and playback member variables.
     - pulsemanager.cpp: cleanup, don't use copy assignment operator when we
       just need to construct a new object.
+    - macbuild.sh: PulseAudio has been updated to version 8.0. Reflect this.
 
   [ Bernard Cafarelli ]
   * New upstream version (4.0.5.3):
