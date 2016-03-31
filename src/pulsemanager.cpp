@@ -524,6 +524,14 @@ void PulseManager::on_pulse_finished (int exit_code) {
                   + "/pulse-pulseuser");
 #endif // defined (Q_OS_WIN)
 
+#if defined (Q_OS_DARWIN) || defined (Q_OS_WIN)
+  // Remove server config file, otherwise the directory won't be empty.
+  work_dir.remove (QDir::toNativeSeparators (QDir (pulse_dir_.absolutePath ()
+                                                   + "/config.pa").absolutePath ()));
+#else // Linux
+  // FIXME.
+#endif
+
   work_dir.rmdir (pulse_dir_.absolutePath ());
 
   state_ = QProcess::NotRunning;
