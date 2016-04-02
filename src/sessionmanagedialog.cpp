@@ -35,7 +35,7 @@
 #define SESSIONIDROLE Qt::UserRole+2
 
 SessionManageDialog::SessionManageDialog ( QWidget * parent,
-        bool onlyCreateIcon, Qt::WFlags f )
+        bool onlyCreateIcon, Qt::WindowFlags f )
     : QDialog ( parent, f )
 {
     QVBoxLayout* ml=new QVBoxLayout ( this );

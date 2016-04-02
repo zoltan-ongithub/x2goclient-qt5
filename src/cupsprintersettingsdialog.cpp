@@ -27,7 +27,7 @@ CUPSPrinterSettingsDialog::CUPSPrinterSettingsDialog (
     QString prnName,
     CUPSPrint*  cupsObject,
     QWidget * parent,
-    Qt::WFlags flags
+    Qt::WindowFlags flags
 ) :QDialog ( parent, flags )
 {
 	m_cups=cupsObject;

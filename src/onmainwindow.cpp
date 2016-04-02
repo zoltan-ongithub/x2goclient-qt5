@@ -510,7 +510,7 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
     connect( xineramaTimer, SIGNAL(timeout()), this, SLOT(slotConfigXinerama()));
 
     x2goInfof(3)<<tr("Started X2Go Client.");
-    x2goDebug<<"$HOME=" + homeDir.toAscii();
+    x2goDebug<<"$HOME=" + homeDir.toLatin1();
     if (thinMode)
     {
         x2goDebug<<"Thin Mode is active.";
@@ -589,11 +589,11 @@ bool ONMainWindow::get_translator (QString file_name_start, QTranslator **transl
 #if QT_VERSION < 0x040800
     if (tmp_translator->load (filename)) {
         *translator = tmp_translator;
-        x2goInfof (4) << tr ("Translator: ") + filename.toAscii () + tr (" found.");
+        x2goInfof (4) << tr ("Translator: ") + filename.toLatin1 () + tr (" found.");
         return (true);
     }
     else {
-        x2goWarningf (1) << tr ("Can't load translator: ") + filename.toAscii ();
+        x2goWarningf (1) << tr ("Can't load translator: ") + filename.toLatin1 ();
         return (false);
     }
 #else /* QT_VERSION < 0x040800 */
@@ -617,13 +617,13 @@ bool ONMainWindow::get_translator (QString file_name_start, QTranslator **transl
 
             if (tmp_translator->load (load_filename)) {
                 /* Some translation successfully loaded. That's good enough. */
-                x2goInfof (4) << tr ("Translator: ") + load_filename.toAscii () + tr (" found.");
+                x2goInfof (4) << tr ("Translator: ") + load_filename.toLatin1 () + tr (" found.");
                 translator_found = true;
                 *translator = tmp_translator;
                 break;
             }
             else {
-                x2goWarningf (1) << tr ("Non-fatal: can't load translator: ") + load_filename.toAscii ();
+                x2goWarningf (1) << tr ("Non-fatal: can't load translator: ") + load_filename.toLatin1 ();
                 x2goWarningf (1) << tr ("Trying to load language with lower preference, if existent.");
             }
         }
@@ -2787,11 +2787,11 @@ SshMasterConnection* ONMainWindow::startSshConnection ( QString host, QString po
 #ifndef Q_OS_WIN
         QStringList args=sshEnv[i].split ( "=" );
         x2goDebug<<"Setting ENV " + args[0] + tr(" to ") + args[1];
-        setenv ( args[0].toAscii(),args[1].toAscii(),1 );
+        setenv ( args[0].toLatin1(),args[1].toLatin1(),1 );
 #else
         x2goDebug<<"Set ENV: "<<sshEnv[i];
 
-        _putenv ( sshEnv[i].toAscii() );
+        _putenv ( sshEnv[i].toLatin1() );
 #endif
     }
 
@@ -3566,7 +3566,7 @@ void ONMainWindow::slotListSessions ( bool result,QString output,
         }
         else
         {
-            QString printout = tr( "Connection failed: ")  + output.toAscii();
+            QString printout = tr( "Connection failed: ")  + output.toLatin1();
 
             if ( output.indexOf ( "publickey,password" ) !=-1 )
                 x2goErrorf(4)<< tr( "Connection failed: ")  + output + tr(" - Wrong password.");
@@ -6709,7 +6709,7 @@ void ONMainWindow::slotReadApplications(bool result, QString output,
             QString line=lines[i];
             if (line.indexOf("Name["+localshort+"]=")!=-1  || line.indexOf("Name["+locallong+"]=")!=-1)
             {
-                app.name=QString::fromUtf8(line.split("=")[1].toAscii());
+                app.name=QString::fromUtf8(line.split("=")[1].toLatin1());
 
                 //                 x2goDebug<<"local name: "<<app.name<<endl;
 
@@ -6717,7 +6717,7 @@ void ONMainWindow::slotReadApplications(bool result, QString output,
             }
             if (line.indexOf("Comment["+localshort+"]=")!=-1 || line.indexOf("Comment["+locallong+"]=")!=-1)
             {
-                app.comment=QString::fromUtf8(line.split("=")[1].toAscii());
+                app.comment=QString::fromUtf8(line.split("=")[1].toLatin1());
                 //                 x2goDebug<<"local comment: "<<app.comment<<endl;
                 localcomment=true;
             }
@@ -6780,9 +6780,9 @@ void ONMainWindow::slotReadApplications(bool result, QString output,
                 QByteArray pic;
                 while (line.indexOf("</icon>")==-1)
                 {
-                    pic+=QByteArray::fromBase64(line.toAscii());
+                    pic+=QByteArray::fromBase64(line.toLatin1());
                     line=lines[++i];
-                    if (QString(QByteArray::fromBase64(line.toAscii())).indexOf("</svg>",Qt::CaseInsensitive)!=-1)
+                    if (QString(QByteArray::fromBase64(line.toLatin1())).indexOf("</svg>",Qt::CaseInsensitive)!=-1)
                     {
                         isSvg=true;
                     }
@@ -8071,7 +8071,7 @@ void ONMainWindow::slotCopyKey ( bool result, QString output, int pid)
         }
         else
         {
-            QString printout = tr( "Connection failed: ")  + output.toAscii();
+            QString printout = tr( "Connection failed: ")  + output.toLatin1();
 
             if ( output.indexOf ( "publickey,password" ) !=-1 )
                 x2goErrorf(11)<< tr( "Connection failed: ")  + output + tr(" - Wrong password.");
@@ -11924,7 +11924,7 @@ void ONMainWindow::printSshDError_noHostPubKey()
 
                                       "<ul>"
                                         "<li>Open a <b>Terminal Window</b> (Applications -> Utilities -> Terminal)</li>"
-                                        "<li>Run this command: <b>ssh -p " + clientSshPort.toAscii ()
+                                        "<li>Run this command: <b>ssh -p " + clientSshPort.toLatin1 ()
                                            + " localhost</b></li>"
                                         "<li>You do not need to login. Just quit the Terminal application "
                                             "via Cmd + Q</li>"
@@ -12412,13 +12412,13 @@ void ONMainWindow::doPluginInit()
 
     QString path=getenv ( "PATH" );
     path=clientDir+":"+pluginDir+":"+path;
-    setenv ( "PATH",path.toAscii (),1 );
+    setenv ( "PATH",path.toLatin1 (),1 );
 
     path=getenv ( "LD_LIBRARY_PATH" );
     path=clientDir+":"+pluginDir+":"+path;
-    setenv ( "LD_LIBRARY_PATH",path.toAscii () ,1 );
+    setenv ( "LD_LIBRARY_PATH",path.toLatin1 () ,1 );
 
-    setenv ( "X2GO_LIB",clientDir.toAscii () ,1 );
+    setenv ( "X2GO_LIB",clientDir.toLatin1 () ,1 );
 
     QFile::setPermissions (
         clientDir+"/x2goclient",

@@ -33,7 +33,7 @@ class ExportDialog : public QDialog
 {
     Q_OBJECT
 public:
-    ExportDialog(QString sid,QWidget * par, Qt::WFlags f = 0);
+    ExportDialog(QString sid,QWidget * par, Qt::WindowFlags f = 0);
 
     ~ExportDialog();
     QString getExport(){return directory;}

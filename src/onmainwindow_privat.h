@@ -67,10 +67,11 @@
 #include <QCheckBox>
 #include <QTemporaryFile>
 #include <QFileDialog>
-#include <QHttp>
 #include <QUrl>
 #include <QLocalSocket>
+#if QT_VERSION < 0x050000
 #include <QPlastiqueStyle>
+#endif
 #include "imgframe.h"
 #include <QToolTip>
 #include "clicklineedit.h"
@@ -149,7 +150,11 @@
 #endif
 
 #ifdef Q_OS_LINUX
+#if QT_VERSION < 0x050000
 #include <QX11Info>
+#else
+#include <QtX11Extras/QX11Info>
+#endif
 #include <X11/Xlib.h>
 #include <X11/Xutil.h>
 #endif

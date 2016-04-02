@@ -53,7 +53,7 @@ QString CUPSPrint::getDefaultUserPrinter()
 	                     "CUPS/defaultprinter","" ). toString();
 	if ( defPrint.length() >0 )
 	{
-		cups_dest_t *dest = cupsGetDest ( defPrint.toAscii(),
+		cups_dest_t *dest = cupsGetDest ( defPrint.toLatin1(),
 		                                  0l, num_dests, dests );
 		if ( dest )
 			return defPrint;
@@ -77,7 +77,7 @@ bool CUPSPrint::getPrinterInfo ( const QString& printerName, QString& info,
                                  QString& model, printState& state,
                                  QString& stateReason )
 {
-	cups_dest_t *dest = cupsGetDest ( printerName.toAscii(), 0l,
+	cups_dest_t *dest = cupsGetDest ( printerName.toLatin1(), 0l,
 	                                  num_dests,
 	                                  dests );
 	if ( !dest )
@@ -114,15 +114,15 @@ bool CUPSPrint::getPrinterInfo ( const QString& printerName, QString& info,
 bool CUPSPrint::setCurrentPrinter ( QString prn )
 {
 	currentPrinter=prn;
-	QString fl=cupsGetPPD ( prn.toAscii() );
+	QString fl=cupsGetPPD ( prn.toLatin1() );
 	if ( fl.length() <=0 )
 		return false;
 
 	if ( ppd )
 		ppdClose ( ppd );
 	ppd=0l;
-	ppd=ppdOpenFile ( fl.toAscii() );
-	unlink ( fl.toAscii() );
+	ppd=ppdOpenFile ( fl.toLatin1() );
+	unlink ( fl.toLatin1() );
 	if ( ppd==0l )
 		return false;
 	ppdMarkDefaults ( ppd );
@@ -141,10 +141,10 @@ bool CUPSPrint::getOptionValue ( const QString& option,
 {
 	if ( !ppd )
 		return false;
-	ppd_choice_t* choice=ppdFindMarkedChoice ( ppd,option.toAscii() );
+	ppd_choice_t* choice=ppdFindMarkedChoice ( ppd,option.toLatin1() );
 	if ( !choice )
 	{
-		ppd_option_t* opt=ppdFindOption ( ppd,option.toAscii() );
+		ppd_option_t* opt=ppdFindOption ( ppd,option.toLatin1() );
 		if ( !opt )
 			return false;
 		choice=ppdFindChoice ( opt,opt->defchoice );
@@ -168,7 +168,7 @@ int CUPSPrint::getOptionValues ( const QString& option,
 	int cur_val=-1;
 	values.clear();
 	descriptions.clear();
-	ppd_option_t* opt=ppdFindOption ( ppd,option.toAscii() );
+	ppd_option_t* opt=ppdFindOption ( ppd,option.toLatin1() );
 	if ( !opt )
 		return -1;
 	for ( int k=0;k<opt->num_choices;++k )
@@ -241,7 +241,7 @@ bool CUPSPrint::setValue ( const QString& option, const QString& value,
 	QString valueBefore, textBefore;
 	if ( !getOptionValue ( option,valueBefore,textBefore ) )
 		return false;
-	ppdMarkOption ( ppd,option.toAscii(),value.toAscii() );
+	ppdMarkOption ( ppd,option.toLatin1(),value.toLatin1() );
 
 	if ( conflictsBefore==ppdConflicts ( ppd ) )
 	{
@@ -281,7 +281,7 @@ bool CUPSPrint::setValue ( const QString& option, const QString& value,
 
 
 	//set previous value
-	ppdMarkOption ( ppd,option.toAscii(),valueBefore.toAscii() );
+	ppdMarkOption ( ppd,option.toLatin1(),valueBefore.toLatin1() );
 	return false;
 }
 
@@ -290,7 +290,7 @@ bool CUPSPrint::getOptionText ( const QString& option, QString& text )
 {
 	if ( !ppd )
 		return false;
-	ppd_option_t* opt=ppdFindOption ( ppd,option .toAscii() );
+	ppd_option_t* opt=ppdFindOption ( ppd,option.toLatin1() );
 	if ( !opt )
 		return false;
 	text=QString::fromLocal8Bit ( opt->text );
@@ -355,7 +355,7 @@ void CUPSPrint::loadUserOptions()
 	for ( int i=0;i<options.size();++i )
 	{
 		QStringList opt=options[i].split ( "=" );
-		ppdMarkOption ( ppd,opt[0].toAscii(),opt[1].toAscii() );
+		ppdMarkOption ( ppd,opt[0].toLatin1(),opt[1].toLatin1() );
 	}
 }
 
@@ -381,14 +381,14 @@ void CUPSPrint::print ( const QString& file, QString title )
 			if ( val!=option->defchoice )
 			{
 				num_options = cupsAddOption ( option->keyword,
-				                              val.toAscii(),
+				                              val.toLatin1(),
 				                              num_options,
 				                              &options );
 			}
 		}
 	}
-	cupsPrintFile ( currentPrinter.toAscii(),file.toAscii(),
-	                title.toAscii(), num_options,options );
+	cupsPrintFile ( currentPrinter.toLatin1(),file.toLatin1(),
+	                title.toLatin1(), num_options,options );
 	cupsFreeOptions ( num_options, options );
 }
 #endif

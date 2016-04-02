@@ -99,7 +99,7 @@ void SshMasterConnection::parseKnownHosts()
 
         QString keyName=type+"@"+port+":"+hostParts[0];
 
-        QByteArray bytes=QByteArray::fromBase64(parts[2].toAscii());
+        QByteArray bytes=QByteArray::fromBase64(parts[2].toLatin1());
         QStringList fields;
 
         //key is a set of data fields:
@@ -332,10 +332,10 @@ void SshMasterConnection::checkReverseTunnelConnections()
                 x2goDebug<<"Connecting to "<<req.localHost<<":"<<req.localPort<<endl;
 #endif
 #ifndef Q_OS_WIN
-                inet_aton ( req.localHost.toAscii(), &address.sin_addr );
+                inet_aton ( req.localHost.toLatin1(), &address.sin_addr );
 #else
                 address.sin_addr.s_addr=inet_addr (
-                                            req.localHost.toAscii() );
+                                            req.localHost.toLatin1() );
 #endif
 
                 if ( ::connect ( sock, ( struct sockaddr * ) &address,sizeof ( address ) ) !=0 )
@@ -639,7 +639,7 @@ void SshMasterConnection::run()
 #ifdef Q_OS_WIN
     ssh_options_set ( my_ssh_session, SSH_OPTIONS_USER, user.toLocal8Bit() );
 #else
-    ssh_options_set ( my_ssh_session, SSH_OPTIONS_USER, user.toAscii() );
+    ssh_options_set ( my_ssh_session, SSH_OPTIONS_USER, user.toLatin1() );
 #endif
 
 #ifdef Q_OS_WIN
@@ -876,7 +876,7 @@ bool SshMasterConnection::userChallengeAuth()
 #ifdef DEBUG
                 x2goDebug<<"Password request"<<endl;
 #endif
-                ssh_userauth_kbdint_setanswer(my_ssh_session,0,pass.toAscii());
+                ssh_userauth_kbdint_setanswer(my_ssh_session,0,pass.toLatin1());
                 return userChallengeAuth();
             }
 
@@ -920,7 +920,7 @@ bool SshMasterConnection::userChallengeAuth()
                         return false;
                     }
                 }
-                ssh_userauth_kbdint_setanswer(my_ssh_session,0,challengeAuthVerificationCode.toAscii());
+                ssh_userauth_kbdint_setanswer(my_ssh_session,0,challengeAuthVerificationCode.toLatin1());
                 return userChallengeAuth();
             }
             QString err=ssh_get_error ( my_ssh_session );
@@ -992,7 +992,7 @@ bool SshMasterConnection::userAuthWithPass()
 #ifdef DEBUG
         x2goDebug<<"Password authentication requested."<<endl;
 #endif
-        int rc = ssh_userauth_password ( my_ssh_session, NULL, pass.toAscii() );
+        int rc = ssh_userauth_password ( my_ssh_session, NULL, pass.toLatin1() );
         if ( rc != SSH_AUTH_SUCCESS )
         {
             QString err=ssh_get_error ( my_ssh_session );
@@ -1031,7 +1031,7 @@ bool SshMasterConnection::userAuthAuto()
         }
         if(keyPhrase==QString::null)
             break;
-        rc = ssh_userauth_autopubkey ( my_ssh_session, keyPhrase.toAscii() );
+        rc = ssh_userauth_autopubkey ( my_ssh_session, keyPhrase.toLatin1() );
         if(i++==2)
         {
             break;
@@ -1084,7 +1084,7 @@ bool SshMasterConnection::userAuthWithKey()
 #endif
     }
 
-    ssh_private_key prkey=privatekey_from_file(my_ssh_session, keyName.toAscii(), 0,"");
+    ssh_private_key prkey=privatekey_from_file(my_ssh_session, keyName.toLatin1(), 0,"");
     int i=0;
     while(!prkey)
     {
@@ -1103,7 +1103,7 @@ bool SshMasterConnection::userAuthWithKey()
         }
         if(keyPhrase==QString::null)
             break;
-        prkey=privatekey_from_file(my_ssh_session, keyName.toAscii(), 0,keyPhrase.toAscii());
+        prkey=privatekey_from_file(my_ssh_session, keyName.toLatin1(), 0,keyPhrase.toLatin1());
         if(i++==2)
         {
             break;
@@ -1135,8 +1135,8 @@ bool SshMasterConnection::userAuthWithKey()
 
     //not implemented before libssh 0.5
     /*	int rc = ssh_userauth_privatekey_file ( my_ssh_session,NULL,
-    	                                        keyName.toAscii(),
-    	                                        pass.toAscii() );*/
+                                               keyName.toLatin1(),
+                                               pass.toLatin1() );*/
 
     int rc=ssh_userauth_pubkey(my_ssh_session, NULL, pubkeyStr, prkey);
     privatekey_free(prkey);
@@ -1342,7 +1342,7 @@ void SshMasterConnection::copy()
 #ifdef DEBUG
         x2goDebug<<"SSH Master Connection copy - dst path:"<<dstPath<<" file:"<<dstFile<<endl;
 #endif
-        ssh_scp scp=ssh_scp_new ( my_ssh_session, SSH_SCP_WRITE|SSH_SCP_RECURSIVE, dstPath.toAscii() );
+        ssh_scp scp=ssh_scp_new ( my_ssh_session, SSH_SCP_WRITE|SSH_SCP_RECURSIVE, dstPath.toLatin1() );
         if ( scp == NULL )
         {
 #ifdef DEBUG
@@ -1371,7 +1371,7 @@ void SshMasterConnection::copy()
         }
         QByteArray arr=file.readAll();
         file.close();
-        rc=ssh_scp_push_file ( scp,dstFile.toAscii(),arr.size(), 0600 );
+        rc=ssh_scp_push_file ( scp,dstFile.toLatin1(),arr.size(), 0600 );
         if ( rc != SSH_OK )
         {
             QString errMsg=tr ( "Cannot create remote file " ) +copyRequests[i].dst;
@@ -1514,9 +1514,9 @@ void SshMasterConnection::channelLoop()
                     x2goDebug<<"Forwarding new channel, local port: "<<channelConnections.at ( i ).localPort<<endl;
 #endif
                     if ( channel_open_forward ( channel,
-                                                channelConnections.at ( i ).forwardHost.toAscii(),
+                                                channelConnections.at ( i ).forwardHost.toLatin1(),
                                                 channelConnections.at ( i ).forwardPort,
-                                                channelConnections.at ( i ).localHost.toAscii(),
+                                                channelConnections.at ( i ).localHost.toLatin1(),
                                                 channelConnections.at ( i ).localPort ) != SSH_OK )
                     {
                         QString err=ssh_get_error ( my_ssh_session );
@@ -1547,7 +1547,7 @@ void SshMasterConnection::channelLoop()
                         x2goDebug<<errorMsg<<": "<<err<<endl;
 #endif
                     }
-                    else if ( channel_request_exec ( channel, channelConnections[i].command.toAscii() ) != SSH_OK )
+                    else if ( channel_request_exec ( channel, channelConnections[i].command.toLatin1() ) != SSH_OK )
                     {
                         QString err=ssh_get_error ( my_ssh_session );
                         QString errorMsg=tr ( "channel_request_exec failed" );

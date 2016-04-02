@@ -30,7 +30,7 @@
 #include "mediawidget.h"
 
 EditConnectionDialog::EditConnectionDialog ( bool newSession, QString id, QWidget * par,
-        int ind,Qt::WFlags f )
+        int ind,Qt::WindowFlags f )
         : QDialog ( par,f )
 {
     QVBoxLayout* ml=new QVBoxLayout ( this );

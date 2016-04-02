@@ -28,8 +28,8 @@ class SVGFrame: public QFrame
 
 		Q_OBJECT
 	public:
-		SVGFrame ( QString fname, bool st, QWidget* parent=0, Qt::WFlags f=0 );
-		SVGFrame ( QWidget* parent=0, Qt::WFlags f=0 );
+		SVGFrame ( QString fname, bool st, QWidget* parent=0, Qt::WindowFlags f=0 );
+		SVGFrame ( QWidget* parent=0, Qt::WindowFlags f=0 );
 		void setRepaintable ( bool val )
 		{
 			repaint=val;

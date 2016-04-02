@@ -234,6 +234,7 @@ win32-* {
   CONFIG += static release
 }
 QT += svg network
+greaterThan(QT_MAJOR_VERSION, 4): QT += x11extras
 
 QMAKE_CXXFLAGS_DEBUG -= -g
 QMAKE_CXXFLAGS_DEBUG += -O2 -g3 -ggdb3 -gdwarf-4

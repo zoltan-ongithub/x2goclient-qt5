@@ -31,7 +31,7 @@ class IMGFrame : public QFrame
 {
 	Q_OBJECT
 public:
-	IMGFrame(QImage* img,QWidget* parent=0, Qt::WFlags f=0);
+	IMGFrame(QImage* img,QWidget* parent=0, Qt::WindowFlags f=0);
     ~IMGFrame();
     void setBg(QImage* img);
     virtual void resizeEvent(QResizeEvent* event);

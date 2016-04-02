@@ -44,7 +44,7 @@ class ConfigDialog : public QDialog
     Q_OBJECT
 public:
     ConfigDialog ( QWidget * parent,
-                   Qt::WFlags f = 0 );
+                   Qt::WindowFlags f = 0 );
     ~ConfigDialog();
 #ifdef Q_OS_DARWIN
     static    QString findXDarwin ( QString& version,

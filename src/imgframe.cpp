@@ -20,7 +20,7 @@
 #include "x2goclientconfig.h"
 #include <QResizeEvent>
 
-IMGFrame::IMGFrame(QImage* ,QWidget* parent, Qt::WFlags f) :QFrame(parent,f)
+IMGFrame::IMGFrame(QImage* ,QWidget* parent, Qt::WindowFlags f) :QFrame(parent,f)
 {
 	//setBg(img);
 }

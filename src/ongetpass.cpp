@@ -35,7 +35,9 @@
 #include <signal.h>
 #endif
 
+#if QT_VERSION < 0x050000
 #include <QPlastiqueStyle>
+#endif
 #include <QMessageBox>
 #include <iostream>
 #include <QFile>
@@ -51,7 +53,9 @@ int x2goMain ( int argc, char *argv[] )
 
 #ifndef Q_WS_HILDON
 #ifdef Q_OS_LINUX
+#if QT_VERSION < 0x050000
     app.setStyle ( new QPlastiqueStyle() );
+#endif
 #endif
 #endif
     QStringList args;

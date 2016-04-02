@@ -46,7 +46,7 @@
 #endif
 
 
-ConfigDialog::ConfigDialog ( QWidget * parent,  Qt::WFlags f )
+ConfigDialog::ConfigDialog ( QWidget * parent,  Qt::WindowFlags f )
     : QDialog ( parent,f )
 {
 

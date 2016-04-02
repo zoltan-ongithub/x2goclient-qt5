@@ -32,7 +32,7 @@
 #include <QFileDialog>
 #include "sessionexplorer.h"
 
-ExportDialog::ExportDialog ( QString sid,QWidget * par, Qt::WFlags f )
+ExportDialog::ExportDialog ( QString sid,QWidget * par, Qt::WindowFlags f )
     : QDialog ( par,f )
 {
     sessionId=sid;

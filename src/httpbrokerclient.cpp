@@ -598,25 +598,49 @@ void HttpBrokerClient::slotSslErrors ( QNetworkReply* netReply, const QList<QSsl
                           "------------\n"<<
                           tr ( "Issued to:\n" ) <<
                           tr ( "Common Name(CN)\t" ) <<
+#if QT_VERSION >= 0x050000
+                          cert.issuerInfo ( QSslCertificate::CommonName ).join("; ")
+#else
                           cert.issuerInfo ( QSslCertificate::CommonName )
+#endif
                           <<endl<<
                           tr ( "Organization(O)\t" ) <<
+#if QT_VERSION >= 0x050000
+                          cert.issuerInfo ( QSslCertificate::Organization ).join("; ")
+#else
                           cert.issuerInfo ( QSslCertificate::Organization )
+#endif
                           <<endl<<
                           tr ( "Organizational Unit(OU)\t" ) <<
+#if QT_VERSION >= 0x050000
+                          cert.issuerInfo ( QSslCertificate::OrganizationalUnitName ).join("; ")
+#else
                           cert.issuerInfo ( QSslCertificate::OrganizationalUnitName )
+#endif
                           <<endl<<
                           tr ( "Serial Number\t" ) <<getHexVal ( cert.serialNumber() )
                           <<endl<<endl<<
                           tr ( "Issued by:\n" ) <<
                           tr ( "Common Name(CN)\t" ) <<
+#if QT_VERSION >= 0x050000
+                          cert.subjectInfo ( QSslCertificate::CommonName ).join("; ")
+#else
                           cert.subjectInfo ( QSslCertificate::CommonName )
+#endif
                           <<endl<<
                           tr ( "Organization(O)\t" ) <<
+#if QT_VERSION >= 0x050000
+                          cert.subjectInfo ( QSslCertificate::Organization ).join("; ")
+#else
                           cert.subjectInfo ( QSslCertificate::Organization )
+#endif
                           <<endl<<
                           tr ( "Organizational Unit(OU)\t" ) <<
+#if QT_VERSION >= 0x050000
+                          cert.subjectInfo ( QSslCertificate::OrganizationalUnitName ).join("; ")
+#else
                           cert.subjectInfo ( QSslCertificate::OrganizationalUnitName )
+#endif
                           <<endl<<endl<<
 
                           tr ( "Validity:\n" ) <<

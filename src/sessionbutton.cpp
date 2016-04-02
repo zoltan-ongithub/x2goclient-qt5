@@ -322,13 +322,13 @@ void SessionButton::redraw()
     sessIcon = expandHome(sessIcon);
     QPixmap* pix;
 
-    x2goDebug << "Creating QPixmap with session icon: " << sessIcon.toAscii () << ".";
+    x2goDebug << "Creating QPixmap with session icon: " << sessIcon.toLatin1 () << ".";
     if (!par->brokerMode || sessIcon == ":/img/icons/128x128/x2gosession.png")
         pix=new QPixmap( sessIcon );
     else
     {
         pix=new QPixmap;
-        pix->loadFromData(QByteArray::fromBase64(sessIcon.toAscii()));
+        pix->loadFromData(QByteArray::fromBase64(sessIcon.toLatin1()));
     }
     if ( !par->retMiniMode() )
         icon->setPixmap ( pix->scaled ( 64,64,Qt::IgnoreAspectRatio,

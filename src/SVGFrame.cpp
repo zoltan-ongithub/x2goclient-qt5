@@ -26,7 +26,7 @@
 
 
 SVGFrame::SVGFrame ( QString fname,bool st,QWidget* parent,
-                     Qt::WFlags f ) :QFrame ( parent,f )
+                     Qt::WindowFlags f ) :QFrame ( parent,f )
 {
 	empty=false;
 #ifdef Q_OS_WIN
@@ -66,7 +66,7 @@ SVGFrame::SVGFrame ( QString fname,bool st,QWidget* parent,
 }
 
 SVGFrame::SVGFrame ( QWidget* parent,
-                     Qt::WFlags f ) :QFrame ( parent,f )
+                     Qt::WindowFlags f ) :QFrame ( parent,f )
 {
 	repaint=false;
 	empty=true;

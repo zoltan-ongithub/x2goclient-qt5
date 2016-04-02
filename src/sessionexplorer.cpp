@@ -189,8 +189,13 @@ void SessionExplorer::slotCreateDesktopIcon ( SessionButton* bt )
 
 #ifndef Q_OS_WIN
     QFile file (
+#if QT_VERSION < 0x050000
         QDesktopServices::storageLocation (
             QDesktopServices::DesktopLocation ) +"/"+name+".desktop" );
+#else
+        QStandardPaths::writableLocation(
+            QStandardPaths::DesktopLocation) +"/"+name+".desktop" );
+#endif
     if ( !file.open ( QIODevice::WriteOnly | QIODevice::Text ) )
         return;
 
