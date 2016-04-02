@@ -218,9 +218,12 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
     addToAppNames ( "OFFICE",tr ( "OpenOffice.org" ) );
     addToAppNames ( "TERMINAL",tr ( "Terminal" ) );
 
-
 #ifndef Q_OS_LINUX
-    widgetExtraStyle =new QPlastiqueStyle();
+#if QT_VERSION < 0x050000
+    widgetExtraStyle = new QPlastiqueStyle ();
+#else
+    widgetExtraStyle = QStyleFactory::create ("fusion");
+#endif
 #endif
 
     agentCheckTimer=new QTimer ( this );
