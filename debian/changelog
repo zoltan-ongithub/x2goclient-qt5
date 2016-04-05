@@ -22,6 +22,7 @@ x2goclient (4.0.5.2-0x2go1) UNRELEASED; urgency=medium
   [ Martti Pitkänen ]
   * New upstream version (4.0.5.2):
     - res/i18n/x2goclient_fi.ts: update Finnish translation file.
+    - res/i18n/x2goclient_fi.ts: update Finnish translation file.
 
 
   [ Sébastien Ducoulombier ]

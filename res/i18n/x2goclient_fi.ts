@@ -1086,7 +1086,7 @@ sound system connections through firewalls</source>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="216"/>
         <source>Internet browser</source>
-        <translation>Web -selain</translation>
+        <translation>Web-selain</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="217"/>
@@ -2349,7 +2349,7 @@ Suomenkielinen versio: Martti Pitkänen, martti@aplcomp.fi&lt;br&gt;</translatio
     <message>
         <location filename="../../src/onmainwindow.cpp" line="8364"/>
         <source>&lt;b&gt;X2Go Client v. </source>
-        <translation>&lt;b&gt;X2Go Client v. </translation>
+        <translation>&lt;b&gt;X2Go-asiakasohjelma v. </translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="8409"/>
@@ -2396,7 +2396,7 @@ Tarkista installointi.</translation>
         <location filename="../../src/onmainwindow.cpp" line="9326"/>
         <source>Remote server does not support file system exports through SSH tunnels.
 Please update your x2goserver package.</source>
-        <translation>Etäpalvelin ei tue SSH tunneloinnin kautta tapahtuvaa levyjakoa.
+        <translation>Etäpalvelin ei tue SSH-tunneloinnin kautta tapahtuvaa levyjakoa.
 Päivitä x2goserver paketti.</translation>
     </message>
     <message>
@@ -2970,7 +2970,7 @@ voit asentaa sshd komennolla
     <message>
         <location filename="../../src/printprocess.cpp" line="172"/>
         <source>PDF Document (*.pdf)</source>
-        <translation>Tulosta tiedosto (*.pdf)</translation>
+        <translation>PDF-tiedosto (*.pdf)</translation>
     </message>
     <message>
         <location filename="../../src/printprocess.cpp" line="266"/>
@@ -3508,7 +3508,7 @@ Käytätkö X2Go-ohjelmaa piilomoodissa?</translation>
     <message>
         <location filename="../../src/sessionwidget.cpp" line="140"/>
         <source>Try auto login (via SSH Agent or default SSH key)</source>
-        <translation>Kokeile automaattista kirjautumista (käyttäen SSH agenttia tai SSH-oletusavainta)</translation>
+        <translation>Kokeile automaattista kirjautumista (käyttäen SSH-agenttia tai SSH-oletusavainta)</translation>
     </message>
     <message>
         <location filename="../../src/sessionwidget.cpp" line="141"/>
@@ -4237,7 +4237,7 @@ sound system connections through firewalls</source>
     <message>
         <location filename="../../src/ui/xsettingsui.ui" line="28"/>
         <source>You must restart the X2Go Client for the changes to take effect</source>
-        <translation>Ota muutokset käyttöön käynnistämällä X2Go -asiakasohjelma uudelleen</translation>
+        <translation>Ota muutokset käyttöön käynnistämällä X2Go-asiakasohjelma uudelleen</translation>
     </message>
     <message>
         <location filename="../../src/ui/xsettingsui.ui" line="51"/>
