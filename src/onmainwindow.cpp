@@ -5623,6 +5623,56 @@ void ONMainWindow::slotSetModMap()
             path_val = "/opt/local/bin:/opt/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/sbin:/usr/X11R6/bin:/opt/X11/bin";
             tmp_env.insert ("PATH", path_val);
         }
+        else {
+            /* FIXME: split/clean this up. */
+            /* Search for and add /opt/X11/bin if necessary. */
+            QStringList tmp_path = path_val.split (":");
+            bool xquartz_found = false,
+                 macports_found = false,
+                 local_found = false;
+            for (int i = 0; i < tmp_path.length (); ++i) {
+                if ((tmp_path[i] == QString ("/opt/X11/bin")) || (tmp_path[i] == QString ("/opt/X11/bin/"))) {
+                    xquartz_found = true;
+                    continue;
+                }
+
+                if ((tmp_path[i] == QString ("/opt/local/bin")) || (tmp_path[i] == QString ("/opt/local/bin/"))) {
+                    macports_found = true;
+                    continue;
+                }
+
+
+                if ((tmp_path[i] == QString ("/usr/local/bin")) || (tmp_path[i] == QString ("/usr/local/bin/"))) {
+                    local_found = true;
+                    continue;
+                }
+
+                if (xquartz_found && macports_found && local_found) {
+                    break;
+                }
+            }
+
+            if (!xquartz_found) {
+                path_val.append (":/opt/X11/bin");
+            }
+
+            if (!local_found) {
+                path_val.prepend ("/usr/local/bin:");
+            }
+
+            if (!macports_found) {
+                path_val.prepend ("/opt/local/bin:");
+            }
+
+            /* Insert will overwrite the value automatically. */
+            tmp_env.insert ("PATH", path_val);
+
+            /*
+             * Also alter our own environment so we can actually
+             * execute xmodmap and friends later on.
+             */
+            qputenv ("PATH", path_val.toUtf8 ());
+        }
 
         pr.setProcessEnvironment (tmp_env);
 
