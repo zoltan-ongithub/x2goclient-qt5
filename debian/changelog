@@ -18,6 +18,8 @@ x2goclient (4.0.5.2-0x2go1) UNRELEASED; urgency=medium
       /opt/X11/bin to x2goclient's environment and child environments before
       starting xmodmap. Fixes: #1019. Requires a re-release of X2Go Client for
       OS X.
+    - src/x2goutils.{cpp,h}: add new function add_to_path () to add multiple
+      entries to a PATH-like string if they do not exist in there yet.
 
   [ Mike DePaulo ]
   * New upstream release (4.0.5.2):

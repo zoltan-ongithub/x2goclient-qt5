@@ -194,4 +194,92 @@ void show_XQuartz_generic_error (const QString &main_error, const QString &addit
                                             "or\n"
                                             "<center><b>/Applications/Utilities/XQuartz.app</b></center>"));
 }
+
+QString add_to_path (const QString &orig_path, const QStringList &add, const bool back) {
+  QString ret = orig_path;
+  std::vector<bool> found;
+
+  QStringList orig_path_list = orig_path.split (":");
+
+  /*
+   * Clean up add list. We want to make sure no entry ends in a slash
+   * and skip empty entries.
+   */
+  QStringList tmp_clean_add;
+  for (int i = 0; i < add.size (); ++i) {
+    if (!(add[i].isEmpty ())) {
+      if (add[i].right (1) == "/") {
+        QString tmp_elem = add[i].right (1);
+
+        if (!(tmp_elem.isEmpty ())) {
+          tmp_clean_add.append (tmp_elem);
+        }
+      }
+      else {
+        tmp_clean_add.append (add[i]);
+      }
+    }
+  }
+
+  /* Nothing to add, really... */
+  if (tmp_clean_add.isEmpty ()) {
+    return (ret);
+  }
+
+  /* Create unique array. */
+  QStringList clean_add;
+  {
+    QStringList::const_iterator begin = tmp_clean_add.constBegin (),
+                                end = tmp_clean_add.constEnd ();
+    for (QStringList::const_iterator cit = begin; cit != end; ++cit) {
+      bool tmp_found = false;
+
+      for (QStringList::const_iterator cit2 = cit + 1; cit2 != end; ++cit2) {
+        if (*cit == *cit) {
+          tmp_found = true;
+          break;
+        }
+      }
+
+      if (!tmp_found) {
+        clean_add.append (*cit);
+      }
+    }
+  }
+
+  /* Nothing to add. */
+  if (clean_add.isEmpty ()) {
+    return (ret);
+  }
+
+  found.resize (clean_add.size (), false);
+
+  for (int i = 0; i < orig_path_list.length (); ++i) {
+    for (int y = 0; y < clean_add.size (); ++y) {
+      if (!found[y]) {
+        if ((orig_path_list[i] == QString (clean_add[y])) || (orig_path_list[i] == QString (clean_add[y] + '/'))) {
+          found[y] = true;
+          break;
+        }
+      }
+    }
+  }
+
+  if (back) {
+    for (int i = 0; i < clean_add.size (); ++i) {
+      if (!found[i]) {
+        ret.append (QString (":" + clean_add[i]));
+      }
+    }
+  }
+  else {
+    for (int i = (clean_add.size () - 1); i > 0; --i) {
+      if (!found[i]) {
+        ret.prepend (QString (clean_add[i] + ":"));
+      }
+    }
+  }
+
+  return (ret);
+}
 #endif /* defined (Q_OS_DARWIN) */

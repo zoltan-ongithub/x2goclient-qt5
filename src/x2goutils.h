@@ -45,6 +45,18 @@ bool font_is_monospaced (const QFont &font);
 void show_XQuartz_not_found_error ();
 void show_XQuartz_start_error ();
 void show_XQuartz_generic_error (const QString &main_error, const QString &additional_info);
+
+/*
+ * Add a list of strings to a PATH value.
+ *
+ * If back is true (the default), each entry is (potentially) appended to the original
+ * PATH value, if not already existing within the original PATH value.
+ * Ex.: <orig_path>:<add_entry1>:<add_entry2>:...
+ *
+ * Otherwise, each entry is prepended to the original PATH value, if not already existing.
+ * Ex.: <add_entry1>:<add_entry2>:...:<orig_path>
+ */
+QString add_to_path (const QString &orig_path, const QStringList &add, const bool back = true);
 #endif /* defined (Q_OS_DARWIN) */
 
 #endif /* !defined (X2GOUTILS_H) */
