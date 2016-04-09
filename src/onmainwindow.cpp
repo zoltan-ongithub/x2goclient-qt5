@@ -5624,45 +5624,13 @@ void ONMainWindow::slotSetModMap()
             tmp_env.insert ("PATH", path_val);
         }
         else {
-            /* FIXME: split/clean this up. */
-            /* Search for and add /opt/X11/bin if necessary. */
-            QStringList tmp_path = path_val.split (":");
-            bool xquartz_found = false,
-                 macports_found = false,
-                 local_found = false;
-            for (int i = 0; i < tmp_path.length (); ++i) {
-                if ((tmp_path[i] == QString ("/opt/X11/bin")) || (tmp_path[i] == QString ("/opt/X11/bin/"))) {
-                    xquartz_found = true;
-                    continue;
-                }
+            /* Search for and add specific directories to the PATH value, if necessary. */
+            QStringList to_back, to_front;
+            to_back << "/opt/X11/bin";
+            to_front << "/opt/local/bin" << "/usr/local/bin";
 
-                if ((tmp_path[i] == QString ("/opt/local/bin")) || (tmp_path[i] == QString ("/opt/local/bin/"))) {
-                    macports_found = true;
-                    continue;
-                }
-
-
-                if ((tmp_path[i] == QString ("/usr/local/bin")) || (tmp_path[i] == QString ("/usr/local/bin/"))) {
-                    local_found = true;
-                    continue;
-                }
-
-                if (xquartz_found && macports_found && local_found) {
-                    break;
-                }
-            }
-
-            if (!xquartz_found) {
-                path_val.append (":/opt/X11/bin");
-            }
-
-            if (!local_found) {
-                path_val.prepend ("/usr/local/bin:");
-            }
-
-            if (!macports_found) {
-                path_val.prepend ("/opt/local/bin:");
-            }
+            path_val = add_to_path (path_val, to_back);
+            path_val = add_to_path (path_val, to_front, false);
 
             /* Insert will overwrite the value automatically. */
             tmp_env.insert ("PATH", path_val);
