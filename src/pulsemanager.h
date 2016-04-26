@@ -53,6 +53,7 @@ class PulseManager: public QObject {
     std::uint16_t get_esd_port ();
     bool get_record ();
     bool get_playback ();
+    QDir get_pulse_dir ();
 
     bool set_pulse_port (std::uint16_t pulse_port);
     bool set_esd_port (std::uint16_t esd_port);

@@ -579,6 +579,10 @@ bool PulseManager::get_playback () {
   return (playback_);
 }
 
+QDir PulseManager::get_pulse_dir () {
+  return (pulse_dir_);
+}
+
 bool PulseManager::set_pulse_port (std::uint16_t pulse_port) {
   bool ret = false;
 

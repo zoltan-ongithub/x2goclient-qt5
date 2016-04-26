@@ -268,6 +268,8 @@ x2goclient (4.0.5.3-0x2go1) UNRELEASED; urgency=medium
     - macbuild.sh: libpulsecore.dylib also resides in the "private" pulseaudio
       subdirectory now, adding it to "special files workaround".
     - pulsemanager.cpp: remove config.pa while doing post-exit cleanups.
+    - src/pulsemanager.{cpp,h}: add get_pulse_dir () for fetching the
+      (OS-dependent) PulseAudio config and cookie directory.
 
   [ Bernard Cafarelli ]
   * New upstream version (4.0.5.3):
