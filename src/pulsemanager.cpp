@@ -152,7 +152,11 @@ void PulseManager::start_osx () {
                << "-F" << pulse_dir_.absolutePath () + "/config.pa"
                << "-p"
                << QDir (app_dir_
-                        + "/../Frameworks/pulse-2.0/modules").absolutePath ()
+                        + "/../Frameworks/pulse-"
+                        + QString::number (pulse_version_major_)
+                        + "."
+                        + QString::number (pulse_version_minor_)
+                        + "/modules").absolutePath ()
                << "--high-priority";
 #ifdef DEBUG
   server_args_ << "--log-level=debug";
@@ -170,8 +174,11 @@ void PulseManager::start_win () {
   server_args_ << "--exit-idle-time=-1" << "-n"
                << "-F" << QDir::toNativeSeparators (QDir (pulse_dir_.absolutePath ()
                                                           + "/config.pa").absolutePath ())
-               << "-p" << QDir::toNativeSeparators (QDir (app_dir_ + "/pulse/lib/pulse-1.1/"
-                                                          + "modules/").absolutePath ());
+               << "-p" << QDir::toNativeSeparators (QDir (app_dir_ + "/pulse/lib/pulse-"
+                                                          + QString::number (pulse_version_major_)
+                                                          + "."
+                                                          + QString::number (pulse_version_minor_)
+                                                          + "/modules/").absolutePath ());
 #ifdef DEBUG
   server_args_ << "--log-level=debug";
 #endif // defined (DEBUG)
