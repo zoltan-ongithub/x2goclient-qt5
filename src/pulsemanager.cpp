@@ -159,7 +159,9 @@ void PulseManager::start_osx () {
                         + "/modules").absolutePath ()
                << "--high-priority";
 #ifdef DEBUG
-  server_args_ << "--log-level=debug";
+  server_args_ << "--log-level=debug"
+               << "--verbose"
+               << "--log-target=file:" pulse_dir_.absolutePath () + "/pulse.log";
 #endif // defined (DEBUG)
 
   if (generate_server_config () && generate_client_config ()) {
@@ -180,7 +182,10 @@ void PulseManager::start_win () {
                                                           + QString::number (pulse_version_minor_)
                                                           + "/modules/").absolutePath ());
 #ifdef DEBUG
-  server_args_ << "--log-level=debug";
+  /* FIXME: need a way to request debugging. */
+  server_args_ << "--log-level=debug"
+               << "--verbose"
+               << "--log-target=file:" + pulse_dir_.absolutePath () + "\\pulse.log";
 #endif // defined (DEBUG)
 
   if (generate_server_config () && generate_client_config ()) {
@@ -535,6 +540,8 @@ void PulseManager::on_pulse_finished (int exit_code) {
   // Remove server config file, otherwise the directory won't be empty.
   work_dir.remove (QDir::toNativeSeparators (QDir (pulse_dir_.absolutePath ()
                                                    + "/config.pa").absolutePath ()));
+  work_dir.remove (QDir::toNativeSeparators (QDir (pulse_dir_.absolutePath ()
+                                                   + "/pulse.log").absolutePath ()));
 #else // Linux
   // FIXME.
 #endif
