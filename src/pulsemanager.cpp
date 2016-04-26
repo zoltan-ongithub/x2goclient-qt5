@@ -19,6 +19,7 @@
 
 #include <unistd.h>
 #include <stdlib.h>
+#include <QSysInfo>
 
 #include "pulsemanager.h"
 
@@ -187,6 +188,24 @@ void PulseManager::start_win () {
                << "--verbose"
                << "--log-target=file:" + pulse_dir_.absolutePath () + "\\pulse.log";
 #endif // defined (DEBUG)
+
+  /*
+   * Fix for x2goclient bug #526.
+   * Works around PulseAudio bug #80772.
+   * Tested with PulseAudio 5.0.
+   * This argument will not cause PulseAudio 0.9.6 or 1.1 (the legacy versions)
+   * to fail to launch.
+   * However, 0.9.6 defaults to normal priority anyway,
+   * and 1.1 ignores it for some reason.
+   * So yes, the fact that 1.1 ignores it would be a bug in x2goclient if we
+   * ever ship 1.1 again.
+   */
+  if ((QSysInfo::WindowsVersion == QSysInfo::WV_XP) || (QSysInfo::WindowsVersion == QSysInfo::WV_2003)) {
+    x2goDebug << "Windows XP or Server 2003 (R2) detected."
+              << "Setting PulseAudio to \"normal\" CPU priority.";
+
+    server_args_ << "--high-priority=no";
+  }
 
   if (generate_server_config () && generate_client_config ()) {
     create_client_dir ();
