@@ -403,7 +403,29 @@ bool PulseManager::generate_server_config () {
     QTextStream config_tmp_file_stream (&config_tmp_file);
 
     config_tmp_file_stream << "load-module module-native-protocol-tcp port="
-                            + QString::number (pulse_port_) << endl;
+                            + QString::number (pulse_port_);
+
+    /*
+     * Reference:
+     * http://www.freedesktop.org/wiki/Software/PulseAudio/Documentation/User/Modules/#index22h3
+     *
+     * Setting auth-cookie fixes bug #422.
+     *
+     * PulseAudio 6.0 changed the path that auth-cookie is relative to, so
+     * Tanu Kaskinen recommended we specify the absolute path instead.
+     * The absolute path works with at least 5.0 and 6.0.
+     */
+    if (pulse_version_major_ > 2) {
+      QString tmp_auth_cookie = QDir::toNativeSeparators (wapiShortFileName (pulse_dir_.absolutePath ()))
+                              + "\\.pulse-cookie";
+
+      /* Double backslashes are required in config.pa. */
+      tmp_auth_cookie.replace ("\\", "\\\\");
+
+      config_tmp_file_stream << " auth-cookie=" + tmp_auth_cookie;
+    }
+
+    config_tmp_file_stream << endl;
 
 #ifdef Q_OS_UNIX
     config_tmp_file_stream << "load-module module-native-protocol-unix" << endl;
