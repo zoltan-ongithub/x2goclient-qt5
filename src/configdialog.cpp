@@ -263,6 +263,7 @@ ConfigDialog::ConfigDialog ( QWidget * parent,  Qt::WindowFlags f )
     sshLay->addStretch();
     frLay->addLayout ( sshLay );
 #endif
+
     if ( embedMode )
     {
         cbStartEmbed=new QCheckBox (
@@ -415,6 +416,7 @@ void ConfigDialog::slot_accepted()
     st.setting()->setValue ( "clientport",
                              ( QVariant ) clientSshPort->value() );
 #endif
+
     pwid->saveSettings();
     if ( embedMode )
     {
