@@ -93,9 +93,9 @@ private:
     XSettingsWidget* xsetWidg;
 #endif
 
-#ifdef Q_OS_WIN
+#if defined (Q_OS_WIN) || defined (Q_OS_DARWIN)
     QCheckBox *cbNoRecord;
-#endif
+#endif /* defined (Q_OS_WIN) || defined (Q_OS_DARWIN) */
 
     QGroupBox *gbTrayIcon;
     QCheckBox *cbMinimizeTray;

@@ -352,18 +352,16 @@ ConfigDialog::ConfigDialog ( QWidget * parent,  Qt::WindowFlags f )
     tabWidg->addTab(xsetWidg, tr("X.Org Server settings"));
 #endif
 
-#ifdef Q_OS_WIN
-    QFrame* frp=new QFrame(this);
-    tabWidg->addTab(frp, tr("Pulseaudio settings"));
-    QVBoxLayout* l=new QVBoxLayout(frp);
-    cbNoRecord=new QCheckBox(tr("Disable audio input"),frp);
-    QLabel* lw=new QLabel(tr("<font size=\"5\">You must restart the X2Go Client for the changes to take effect</font><br><br>"),frp);
-    lw->setWordWrap(true);
-    l->addWidget(lw);
-    l->addWidget(cbNoRecord);
-    l->addStretch(1);
-    cbNoRecord->setChecked ( st.setting()->value ( "pulse/norecord", false ).toBool() );
-#endif
+#if defined (Q_OS_WIN) || defined (Q_OS_DARWIN)
+    QFrame* frp = new QFrame (this);
+    tabWidg->addTab (frp, tr ("PulseAudio settings"));
+    QVBoxLayout* l = new QVBoxLayout (frp);
+    cbNoRecord = new QCheckBox (tr ("Disable sound input"), frp);
+    lw->setWordWrap (true);
+    l->addWidget (cbNoRecord);
+    l->addStretch (1);
+    cbNoRecord->setChecked (st.setting ()->value ("pulse/norecord", false).toBool ());
+#endif /* defined (Q_OS_WIN) || defined (Q_OS_DARWIN) */
 }
 
 
@@ -381,9 +379,9 @@ void ConfigDialog::slot_accepted()
     st.setting()->setValue ( "trayicon/mincon", cbMinimizeTray->isChecked() );
     st.setting()->setValue ( "trayicon/maxdiscon", cbMaxmizeTray->isChecked() );
 #endif
-#ifdef Q_OS_WIN
+#if defined (Q_OS_WIN) || defined (Q_OS_DARWIN)
     st.setting()->setValue ( "pulse/norecord", cbNoRecord->isChecked() );
-#endif
+#endif /* defined (Q_OS_WIN) || defined (Q_OS_DARWIN) */
 #ifdef USELDAP
     if ( !embedMode )
     {
@@ -661,12 +659,15 @@ void ConfigDialog::slotDefaults()
          cbNoRecord->setChecked(false);
     }
     break;
-#endif
+#endif /* defined (Q_OS_WIN) */
     case 0:
     {
         if ( embedMode )
             cbStartEmbed->setChecked ( true );
         clientSshPort->setValue ( 22 );
+#ifdef Q_OS_DARWIN
+        cbNoRecord->setChecked (false);
+#endif /* defined (Q_OS_DARWIN) */
 #ifndef CFGPLUGIN
         gbTrayIcon->setChecked (false);
         cbMinimizeTray->setChecked (false);
