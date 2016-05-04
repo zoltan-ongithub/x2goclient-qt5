@@ -22,6 +22,8 @@ x2goclient (4.0.5.2-0x2go1) UNRELEASED; urgency=medium
       entries to a PATH-like string if they do not exist in there yet.
     - src/onmainwindow.cpp: replace old code to modify the PATH value with the
       new add_to_path () function.
+    - src/{onmainwindow,sshmasterconnection}.cpp: refactoring and whitespace only
+      changes following up the #1027 patch.
 
   [ Mike DePaulo ]
   * New upstream release (4.0.5.2):

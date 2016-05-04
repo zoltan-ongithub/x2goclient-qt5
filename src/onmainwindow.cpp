@@ -2950,29 +2950,29 @@ void ONMainWindow::slotSshServerAuthPassphrase(SshMasterConnection* connection, 
 }
 
 
-void ONMainWindow::slotSshServerAuthChallengeResponse(SshMasterConnection* connection, QString Challenge)
+void ONMainWindow::slotSshServerAuthChallengeResponse(SshMasterConnection* connection, QString challenge)
 {
-    bool ok;
+    bool ok = false;
     QString message;
 
-    message=Challenge;
+    message = challenge;
 
-    QString phrase=QInputDialog::getText(0,connection->getUser()+"@"+connection->getHost()+":"+QString::number(connection->getPort()),
-                                         message,QLineEdit::Password,QString::null, &ok);
-    if(!ok)
-    {
-        phrase=QString::null;
+    QString phrase = QInputDialog::getText (0, connection->getUser () + "@" + connection->getHost () + ":" + QString::number (connection->getPort ()),
+                                            message, QLineEdit::Password, QString::null, &ok);
+    if (!ok) {
+        phrase = QString::null;
     }
-    else
-    {
-        if(phrase==QString::null)
-            phrase="";
+    else {
+        if (phrase == QString::null) {
+            phrase = "";
+        }
     }
-    connection->setKeyPhrase(phrase);
-    if(isHidden())
-    {
-        show();
-        QTimer::singleShot(1, this, SLOT(hide()));
+
+    connection->setKeyPhrase (phrase);
+
+    if (isHidden ()) {
+        show ();
+        QTimer::singleShot (1, this, SLOT (hide ()));
     }
 }
 
