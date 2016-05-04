@@ -5106,10 +5106,10 @@ void ONMainWindow::slotRetResumeSess ( bool result,
 
         switch (sndSystem) {
             case PULSE:
-                sndPort = QString::number (pulseManager->getPulsePort ());
+                sndPort = QString::number (pulseManager->get_pulse_port ());
                 break;
             case ESD:
-                sndPort = QString::number (pulseManager->getEsdPort ());
+                sndPort = QString::number (pulseManager->get_esd_port ());
                 break;
         }
 #endif /* defined (Q_OS_WIN) || defined (Q_OS_DARWIN) */
