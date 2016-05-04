@@ -148,10 +148,7 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
 
 #ifdef Q_OS_WIN
     clientSshPort="7022";
-    pulsePort=4713;
-    pulseStarted=false;
     X2goSettings st ( "settings" );
-    pulseNoRecord=st.setting()->value ( "pulse/norecord", false ).toBool();
     winSshdStarted=false;
 #else
     userSshd=false;
@@ -174,7 +171,6 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
 
 #ifdef Q_OS_WIN
     pulseVersionTest=0l;
-    pulseServer=0l;
     xorg=0l;
     xDisplay=0;
 #endif
@@ -462,6 +458,10 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
     QTimer::singleShot ( 500, this, SLOT ( startWinServers() ) );
 #endif
 
+    /* FIXME: add Linux. */
+#if defined (Q_OS_DARWIN) || defined (Q_OS_WIN)
+    QTimer::singleShot (500, this, SLOT (pulseManagerWrapper ()));
+#endif /* defined (Q_OS_DARWIN) || defined (Q_OS_WIN) */
 
     mainL->setSpacing ( 0 );
     mainL->setMargin ( 0 );
@@ -1488,24 +1488,6 @@ void ONMainWindow::closeClient()
     }
 #endif
 #ifdef Q_OS_WIN
-    if ( pulseServer && pulseStarted )
-    {
-        x2goDebug<<"Deleting the pulse timer ...";
-        delete pulseTimer;
-        x2goDebug<<"Deleted the pulse timer.";
-        x2goDebug<<"Killing the PulseAudio sound server ...";
-        pulseServer->kill();
-        x2goDebug<<"Killed the PulseAudio sound server.";
-        x2goDebug<<"Deleting the PulseAudio process ...";
-        delete pulseServer;
-        x2goDebug<<"Deleted the PulseAudio process.";
-
-        QDir dr ( homeDir );
-        dr.remove ( pulseDir+"/config.pa" );
-        dr.remove ( pulseDir+"/pulse-pulseuser/pid" );
-        dr.rmdir ( pulseDir+"/pulse-pulseuser" );
-        dr.rmdir ( pulseDir );
-    }
     if ( xorg )
     {
         x2goDebug<<"Terminating the X.Org Server ...";
@@ -1522,7 +1504,20 @@ void ONMainWindow::closeClient()
         CloseHandle ( sshd.hProcess );
         CloseHandle ( sshd.hThread );
     }
-#else
+#endif /* defined (Q_OS_WIN) */
+
+#if defined (Q_OS_DARWIN) || defined (Q_OS_WIN)
+    if (pulseManager) {
+        delete (pulseManager);
+
+        pulseManagerThread->quit ();
+        pulseManagerThread->wait ();
+
+        delete (pulseManagerThread);
+    }
+#endif /* defined (Q_OS_DARWIN) || defined (Q_OS_WIN) */
+
+#ifndef (Q_OS_WIN)
     if ( userSshd && sshd )
     {
         x2goDebug<<"Terminating the OpenSSH server ...";
@@ -1530,8 +1525,8 @@ void ONMainWindow::closeClient()
         x2goDebug<<"Terminated the OpenSSH server.";
         delete sshd;
     }
+#endif /* !defined (Q_OS_WIN) */
 
-#endif
     if ( embedMode )
     {
         passForm->close();
@@ -2147,10 +2142,30 @@ void ONMainWindow::slotConfig()
         delete ld;
     ld=0;
 
+#if defined (Q_OS_WIN) || defined (Q_OS_DARWIN)
+    bool oldDisableInput = false;
+    {
+        X2goSettings st ("settings");
+        oldDisableInput = st.setting ()->value ("pulse/norecord",
+                                                (QVariant) false).toBool ();
+    }
+#endif /* defined (Q_OS_WIN) || defined (Q_OS_DARWIN) */
+
     ConfigDialog dlg ( this );
     if ( dlg.exec() ==QDialog::Accepted )
     {
         int i;
+
+#if defined (Q_OS_WIN) || defined (Q_OS_DARWIN)
+        X2goSettings st ("settings");
+        bool newDisableInput = st.setting ()->value ("pulse/norecord",
+                                                     (QVariant) false).toBool ();
+
+        if (oldDisableInput != newDisableInput) {
+            pulseManager->set_record (!newDisableInput);
+            pulseManager->restart ();
+        }
+#endif /* defined (Q_OS_WIN) || defined (Q_OS_DARWIN) */
 
         if ( passForm->isVisible() && !embedMode )
             slotClosePass();
@@ -5013,9 +5028,9 @@ void ONMainWindow::slotRetResumeSess ( bool result,
     bool sound=true;
     int sndSystem=PULSE;
     QString sndPort;
-#ifndef Q_OS_WIN
+#if !defined (Q_OS_WIN) && !defined (Q_OS_DARWIN)
     sndPort="4713";
-#endif
+#endif /* !defined (Q_OS_WIN) && !defined (Q_OS_DARWIN) */
     bool startSoundServer=true;
     bool sshSndTunnel=true;
 
@@ -5052,9 +5067,9 @@ void ONMainWindow::slotRetResumeSess ( bool result,
             sndSystem=ARTS;
         if ( sndsys=="esd" )
             sndSystem=ESD;
-#ifndef Q_OS_WIN
+#if !defined (Q_OS_WIN) && !defined (Q_OS_DARWIN)
         sndPort=st->setting()->value ( sid+"/sndport" ).toString();
-#endif
+#endif /* !defined (Q_OS_WIN) && !defined (Q_OS_DARWIN) */
         startSoundServer=st->setting()->value (
                              sid+"/startsoundsystem",
                              true ).toBool();
@@ -5065,7 +5080,7 @@ void ONMainWindow::slotRetResumeSess ( bool result,
         }
 
 
-#ifndef Q_OS_WIN
+#if !defined (Q_OS_WIN) && !defined (Q_OS_DARWIN)
         bool defPort=st->setting()->value ( sid+
                                             "/defsndport",true ).toBool();
         if ( defPort )
@@ -5080,25 +5095,24 @@ void ONMainWindow::slotRetResumeSess ( bool result,
                 break;
             }
         }
-#endif
+#endif /* !defined (Q_OS_WIN) && !defined (Q_OS_DARWIN) */
         sshSndTunnel=st->setting()->value ( sid+"/soundtunnel",
                                             true ).toBool();
 
-#ifdef Q_OS_WIN
-        switch ( sndSystem )
-        {
-        case PULSE:
-            if(!pulseStarted && sound)
-            {
-                startPulsed();
-            }
-            sndPort=QString::number ( pulsePort );
-            break;
-        case ESD:
-            sndPort=QString::number ( esdPort );
-            break;
+#if defined (Q_OS_WIN) || defined (Q_OS_DARWIN)
+        if ((sound) && (!(pulseManager->is_server_running ()))) {
+            pulseManager->start ();
         }
-#endif
+
+        switch (sndSystem) {
+            case PULSE:
+                sndPort = QString::number (pulseManager->getPulsePort ());
+                break;
+            case ESD:
+                sndPort = QString::number (pulseManager->getEsdPort ());
+                break;
+        }
+#endif /* defined (Q_OS_WIN) || defined (Q_OS_DARWIN) */
 
         delete st;
 
@@ -5309,7 +5323,7 @@ void ONMainWindow::slotRetResumeSess ( bool result,
             }
             else
             {
-#ifndef Q_OS_WIN
+#if !defined (Q_OS_WIN) && !defined (Q_OS_DARWIN)
                 if ( QFile::exists(homeDir+"/.config/pulse/cookie") ) {
                     pulsecookie_filename = homeDir+"/.config/pulse/cookie";
                 }
@@ -5323,49 +5337,37 @@ void ONMainWindow::slotRetResumeSess ( bool result,
                                             resumingSession.sessionId+
                                             "/.pulse-cookie", this, SLOT ( slotPCookieReady ( bool, QString,int )));
                 }
-#else
-                QString cooFile=
-                    wapiShortFileName ( homeDir )  +
-                    "/.x2go/pulse/.pulse-cookie";
+#else /* !defined (Q_OS_WIN) && !defined (Q_OS_DARWIN) */
+                QString cooFile = QDir::toNativeSeparators (QDir (pulseManager->get_pulse_dir () +
+                                                                  "/.pulse-cookie").absolutePath ());
                 QString destFile="$HOME/.x2go/C-"+
                                  resumingSession.sessionId+
                                  "/.pulse-cookie";
                 sshConnection->copyFile(cooFile,
                                         destFile, this, SLOT ( slotPCookieReady ( bool, QString,int )));
                 parecTunnelOk=true;
-#endif
+#endif /* !defined (Q_OS_WIN) && !defined (Q_OS_DARWIN) */
             }
         }
         if ( sndSystem==ESD )
         {
-#ifndef Q_OS_WIN
+#ifdef Q_OS_LINUX
             sshConnection->copyFile(homeDir+"/.esd_auth",
                                     "$HOME/.esd_auth" );
-#else
-            QString cooFile=
-                wapiShortFileName ( homeDir )  +
-                "/.x2go/pulse/.esd_auth";
+#else /* defined (Q_OS_LINUX) */
+            QString cooFile = QDir::toNativeSeparators (QDir (pulseManager->get_pulse_dir () +
+                                                              "/.esd_auth").absolutePath ());
             QString destFile="$HOME/.esd_auth";
             sshConnection->copyFile(cooFile,
                                     destFile );
-
-#endif
+#endif /* defined (Q_OS_LINUX) */
         }
-#ifndef Q_OS_WIN
+/* Windows and Darwin are covered by PulseManager. */
+#if !defined (Q_OS_WIN) && !defined (Q_OS_DARWIN)
         if ( startSoundServer )
         {
             soundServer=new QProcess ( this );
             QString acmd="artsd",ecmd="esd";
-#ifdef Q_OS_DARWIN
-            QStringList env = soundServer->environment();
-            QDir dir ( appDir );
-            dir.cdUp();
-            dir.cd ( "esd" );
-            env.insert ( 0,"DYLD_LIBRARY_PATH="+
-                         dir.absolutePath() );
-            soundServer->setEnvironment ( env );
-            ecmd="\""+dir.absolutePath() +"\"/esd";
-#endif //Q_OS_DARWIN
             if ( sndSystem==ESD )
                 soundServer->start (
                     ecmd+
@@ -5376,11 +5378,11 @@ void ONMainWindow::slotRetResumeSess ( bool result,
                                      resumingSession.sndPort );
             sndPort=resumingSession.sndPort;
         }
-#endif //Q_OS_WIN
+#endif /* !defined (Q_OS_WIN) && !defined (Q_OS_DARWIN) */
         if ( sshSndTunnel )
         {
             const char* okSlot=0;
-#ifdef Q_OS_WIN
+#ifdef Q_OS_WIN /* FIXME: Do we need explicit parec support in PulseManager? */
             if ( sndSystem==PULSE )
             {
                 parecTunnelOk=false;
@@ -6514,6 +6516,29 @@ x2goSession ONMainWindow::getNewSessionFromString ( const QString& string )
     return s;
 }
 
+#if defined (Q_OS_DARWIN) || defined (Q_OS_WIN)
+void ONMainWindow::pulseManagerWrapper () {
+#ifdef Q_OS_WIN
+  if (!embedMode || !config.confSnd ||
+      (config.confSnd && config.useSnd))
+#endif /* defined (Q_OS_WIN) */
+  {
+    pulseManagerThread = new QThread (0);
+    pulseManager = new PulseManager ();
+
+    pulseManager->moveToThread (pulseManagerThread);
+
+    /*
+     * Spawn PulseManager::start() once the thread started up successfully.
+     * Another means of doing that would be via
+     * QMetaObject::invokeMethod (pulseManager, "start", Qt::QueuedConnection);
+     */
+    connect (pulseManagerThread, SIGNAL (started ()), pulseManager, SLOT (start ()));
+
+    pulseManagerThread->start ();
+  }
+}
+#endif /* defined (Q_OS_DARWIN) || defined (Q_OS_WIN) */
 
 void ONMainWindow::slotAppDialog()
 {
@@ -10083,14 +10108,10 @@ void ONMainWindow::startWinServers()
     QString etcDir=homeDir+"/.x2go/etc";
     QDir dr ( homeDir );
 
-    pulseServer=0l;
-
     WinServerStarter* xStarter = new WinServerStarter ( WinServerStarter::X,
             this );
     WinServerStarter* sshStarter = new WinServerStarter (
         WinServerStarter::SSH, this );
-
-
 
     if ( !embedMode || !config.confFS || ( config.confFS && config.useFs ) )
     {
@@ -10100,14 +10121,7 @@ void ONMainWindow::startWinServers()
         generateEtcFiles();
         sshStarter->start();
     }
-    if(embedMode)
-    {
-        if ( !config.confSnd ||
-                ( config.confSnd && config.useSnd ) )
-        {
-            startPulsed();
-        }
-    }
+
 // #ifdef CFGCLIENT
 
     //x2goDebug<<"Xorg settings: "<< startXorgOnStart <<" useXming: "<< useXming;
@@ -10179,177 +10193,6 @@ void ONMainWindow::removeCygwinEntry()
     st.remove ( "" );
     st.sync();
 
-}
-
-void ONMainWindow::startPulsed()
-{
-#ifdef Q_OS_WIN
-    if(pulseStarted)
-    {
-        return;
-    }
-    pulseVersionTest=new QProcess ( 0 );
-    pulseVersionTest->start ( "pulse\\pulseaudio.exe --version" );
-
-    pulseVersionTest->waitForFinished();
-    QString pulseVersionLine=
-        pulseVersionTest->readAllStandardOutput().replace("\n"," ").simplified();
-
-    x2goDebug <<"PulseAudio version line: "<<pulseVersionLine;
-    if (pulseVersionLine.contains("pulseaudio 0.", Qt::CaseInsensitive))
-        pulseVersionIsLegacy = true;
-    if (pulseVersionLine.contains("pulseaudio 1.", Qt::CaseInsensitive))
-        pulseVersionIsLegacy = true;
-    if (pulseVersionLine.contains("pulseaudio 2.", Qt::CaseInsensitive))
-        pulseVersionIsLegacy = true;
-
-    if (pulseVersionIsLegacy)
-    {
-        x2goDebug <<"PulseAudio <= 2.1 detected. PulseAudio will automatically use .pulse-cookie";
-    }
-    else
-    {
-        x2goDebug <<"PulseAudio >= 3.0 detected. X2Go Client will tell PulseAudio to use .pulse-cookie.";
-    }
-#endif
-    while ( isServerRunning ( pulsePort ) )
-        ++pulsePort;
-    esdPort=pulsePort+1;
-    while ( isServerRunning ( esdPort ) )
-        ++esdPort;
-
-    // The permanent dir for the pulse auth cookie
-    pulseBaseDir=homeDir+"/.x2go/pulse";
-    QDir dr ( homeDir );
-    dr.mkpath ( pulseBaseDir );
-
-    // The tempoerary dir for config.pa (and pulse.log if it exists)
-    pulseDir=pulseBaseDir;
-    pulseDir=wapiShortFileName ( pulseDir );
-    x2goDebug<<"PulseAudio template: "<<pulseDir+"/tmp";
-    QTemporaryFile* fl=new QTemporaryFile ( pulseDir+"/tmp" );
-    fl->open();
-    pulseDir=fl->fileName();
-    fl->close();
-    delete fl;
-    QFile::remove ( pulseDir );
-    dr.mkpath ( pulseDir );
-
-    x2goDebug<<"PulseAudio tmp file: "<<pulseDir;
-
-    QStringList pEnv=QProcess::systemEnvironment();
-    for ( int i=0; i<pEnv.size(); ++i )
-    {
-        if ( pEnv[i].indexOf ( "USERPROFILE=" ) !=-1 )
-            pEnv[i]="USERPROFILE="+
-                    QDir::toNativeSeparators( wapiShortFileName( pulseBaseDir ));
-        if ( pEnv[i].indexOf ( "TEMP=" ) !=-1 )
-            pEnv[i]="TEMP="+pulseDir;
-        if ( pEnv[i].indexOf ( "USERNAME=" ) !=-1 )
-            pEnv[i]="USERNAME=pulseuser";
-    }
-
-    QFile file ( pulseDir+"/config.pa" );
-    if ( !file.open ( QIODevice::WriteOnly | QIODevice::Text ) )
-        return;
-    QTextStream out ( &file );
-    /*
-    Reference:
-    http://www.freedesktop.org/wiki/Software/PulseAudio/Documentation/User/Modules/#index22h3
-
-    Setting auth-cookie fixes bug #422
-
-    PulseAudio 6.0 changed the path that auth-cookie is relative to, so
-    Tanu Kaskinen recommended we specify the absolute path instead.
-    The abs path works with at least 5.0 and 6.0
-    */
-    if (pulseVersionIsLegacy)
-    {
-        out << "load-module module-native-protocol-tcp port="+
-            QString::number ( pulsePort ) <<endl;
-    }
-    else
-    {
-        pulseCookieArg="auth-cookie="+
-                       QDir::toNativeSeparators (wapiShortFileName( pulseBaseDir))+
-                       "\\.pulse-cookie";
-        // Double backslashes are required in config.pa
-        pulseCookieArg.replace("\\", "\\\\");
-        out << "load-module module-native-protocol-tcp port="+
-            QString::number ( pulsePort )+" "+pulseCookieArg <<endl;
-    }
-    out << "load-module module-esound-protocol-tcp port="+
-        QString::number ( esdPort ) <<endl;
-    out << "load-module module-waveout";
-#ifdef Q_OS_WIN
-    if(pulseNoRecord)
-        out <<  " record=0";
-#endif
-    out << endl;
-    file.close();
-    pulseServer=new QProcess ( 0 );
-    pulseServer->setEnvironment ( pEnv );
-    pulseArgs.clear();
-#ifdef Q_OS_WIN
-    // FIXME: Explain why this dir needs to be created.
-    pulseRuntimeDir=pulseBaseDir+"/.pulse/"+QHostInfo::localHostName ()+"-runtime";
-    QDir drr(pulseRuntimeDir);
-    if (!drr.exists())
-        drr.mkpath(drr.path());
-    if (QFile::exists(pulseRuntimeDir+"/pid"))
-        QFile::remove(pulseRuntimeDir+"/pid");
-
-    pulseDir=QDir::toNativeSeparators( pulseDir );
-    pulseArgs<<"--exit-idle-time=-1"<<"-n"<<"-F"<<pulseDir+"\\config.pa";
-    if (debugging)
-        pulseArgs<<"--log-level=debug"<<"--verbose"<<"--log-target=file:"+pulseDir+"\\pulse.log";
-    /*
-    Fix for x2goclient bug #526.
-    Works Around PulseAudio bug #80772.
-    Tested with PulseAudio 5.0.
-    This argument will not cause PulseAudio 0.9.6 or 1.1 (the legacy versions)
-    to fail to launch.
-    However, 0.9.6 defaults to normal priority anyway,
-    and 1.1 ignores it for some reason.
-    So yes, the fact that 1.1 ignores it would be a bug in x2goclient if we
-    ever ship 1.1 again.
-    */
-    if (QSysInfo::WindowsVersion == QSysInfo::WV_XP ||
-            QSysInfo::WindowsVersion == QSysInfo::WV_2003 )
-    {
-        x2goDebug<<"Windows XP or Server 2003 (R2) detected.";
-        x2goDebug<<"Setting PulseAudio to \"normal\" CPU priority.";
-        pulseArgs<<"--high-priority=no";
-    }
-#else
-    pulseArgs<<"--exit-idle-time=-1"<<"-n"<<"-F"<<pulseDir+"/config.pa";
-#endif
-    pulseServer->setWorkingDirectory ( QDir::toNativeSeparators (
-                                           wapiShortFileName ( appDir+"/pulse/" ) ) );
-    pulseServer->start ( "pulse\\pulseaudio.exe",pulseArgs );
-
-    x2goDebug<<"Starting pulse\\pulseaudio.exe "<<pulseArgs.join ( " " ) <<
-             " working dir: "<<
-             QDir::toNativeSeparators ( wapiShortFileName ( appDir+"/pulse" ) );
-
-    pulseTimer=new QTimer(this);
-
-    connect (pulseTimer, SIGNAL(timeout()), this, SLOT(slotCheckPulse()));
-    x2goDebug<<"Connected timer.";
-    pulseTimer->start(2000);
-    pulseStarted=true;
-}
-
-void ONMainWindow::slotCheckPulse()
-{
-    //restart pulse server
-    if(pulseServer->state()!=QProcess::Running)
-    {
-        pulseServer->start ( "pulse\\pulseaudio.exe",pulseArgs );
-
-        x2goDebug<<"Restarting pulse\\pulseaudio.exe "<<pulseArgs.join ( " " );
-
-    }
 }
 
 

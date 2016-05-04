@@ -52,6 +52,11 @@
 #include <windows.h>
 #include <QSysInfo>
 #endif
+
+#if defined (Q_OS_DARWIN) || defined (Q_OS_WIN)
+#include "pulsemanager.h"
+#endif /* defined (Q_OS_DARWIN) || defined (Q_OS_WIN) */
+
 /**
 @author Oleksandr Shneyder
 */
@@ -248,7 +253,7 @@ class ONMainWindow;
 class WinServerStarter: public QThread
 {
 public:
-    enum daemon {X,SSH,PULSE};
+    enum daemon {X,SSH};
     WinServerStarter ( daemon server, ONMainWindow * par );
     void run();
 private:
@@ -584,7 +589,6 @@ public:
 #ifdef Q_OS_WIN
     static QString cygwinPath ( const QString& winPath );
     void startXOrg();
-    void startPulsed();
     static bool haveCygwinEntry();
     static void removeCygwinEntry();
     static QString U3DevicePath()
@@ -840,14 +844,7 @@ private:
     PROCESS_INFORMATION sshd;
     bool winSshdStarted;
     static QString u3Device;
-    bool pulseStarted;
 
-    QString pulseVersionTestOutput;
-    QProcess* pulseVersionTest;
-    bool pulseVersionIsLegacy;
-    QProcess* pulseServer;
-    QStringList pulseArgs;
-    QTimer* pulseTimer;
     int xDisplay;
     int sshdPort;
     bool winServersReady;
@@ -857,14 +854,6 @@ private:
 
     bool cyEntry;
 
-    QString pulseDir;
-    QString pulseBaseDir;
-    QString pulseRuntimeDir;
-    QString pulseCookieArg;
-    int pulsePort;
-    bool pulseNoRecord;
-
-    int esdPort;
     bool maximizeProxyWin;
     int proxyWinWidth;
     int proxyWinHeight;
@@ -876,6 +865,12 @@ private:
     QString cardLogin;
     QTextEdit* stInfo;
     int localDisplayNumber;
+
+#if defined (Q_OS_DARWIN) || defined (Q_OS_WIN)
+    QThread *pulseManagerThread;
+    PulseManager *pulseManager;
+#endif /* defined (Q_OS_DARWIN) || defined (Q_OS_WIN) */
+
 
     SVGFrame* ln;
     int tunnel;
@@ -1020,9 +1015,14 @@ private slots:
     void startWinServers();
     void slotCheckXOrgLog();
     void slotCheckXOrgConnection();
-    void slotCheckPulse();
     void slotStartParec ();
 #endif
+
+#if defined (Q_OS_DARWIN) || defined (Q_OS_WIN)
+private slots:
+    void pulseManagerWrapper ();
+#endif /* defined (Q_OS_DARWIN) || defined (Q_OS_WIN) */
+
 private slots:
     void slotAppDialog();
     void slotShowPassForm();
