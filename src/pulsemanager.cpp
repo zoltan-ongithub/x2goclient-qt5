@@ -105,7 +105,9 @@ PulseManager::~PulseManager () {
 }
 
 void PulseManager::start () {
-  assert (!is_server_running ());
+  if (is_server_running ()) {
+    return;
+  }
 
   delete (pulse_server_);
 
