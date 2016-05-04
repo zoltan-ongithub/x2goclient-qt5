@@ -283,6 +283,8 @@ x2goclient (4.0.5.3-0x2go1) UNRELEASED; urgency=medium
     - src/mediawidget.cpp: reflect new capabilities through PulseManager.
     - src/pulsemanager.h: move x2gologdebug.h inclusion into implementation
       file.
+    - src/pulsemanager.cpp: output PA stdout/stderr via x2goDebug, not plainly
+      to stdout.
 
   [ Bernard Cafarelli ]
   * New upstream version (4.0.5.3):

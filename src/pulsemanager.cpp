@@ -563,10 +563,10 @@ void PulseManager::on_pulse_finished (int exit_code) {
 
   QByteArray ba (pulse_server_->readAllStandardOutput ());
   char *data = ba.data ();
-  std::cout << data;
+  x2goDebug << data;
   ba = pulse_server_->readAllStandardError ();
   data = ba.data ();
-  std::cout << data;
+  x2goDebug << data;
 
   // Clean up
   QDir work_dir (app_dir_);
