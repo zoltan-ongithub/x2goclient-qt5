@@ -22,6 +22,7 @@
 #include <QSysInfo>
 
 #include "pulsemanager.h"
+#include "x2gologdebug.h"
 
 #ifndef DEBUG
 #define DEBUG_UNDEF

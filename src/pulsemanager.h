@@ -37,7 +37,6 @@
 #include <assert.h>
 #include <cstdint>
 
-#include "x2gologdebug.h"
 #include "x2gosettings.h"
 
 class PulseManager: public QObject {
