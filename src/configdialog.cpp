@@ -358,7 +358,6 @@ ConfigDialog::ConfigDialog ( QWidget * parent,  Qt::WindowFlags f )
     tabWidg->addTab (frp, tr ("PulseAudio settings"));
     QVBoxLayout* l = new QVBoxLayout (frp);
     cbNoRecord = new QCheckBox (tr ("Disable sound input"), frp);
-    lw->setWordWrap (true);
     l->addWidget (cbNoRecord);
     l->addStretch (1);
     cbNoRecord->setChecked (st.setting ()->value ("pulse/norecord", false).toBool ());
