@@ -71,7 +71,7 @@ MediaWidget::MediaWidget ( QString id, ONMainWindow * mw,
     cbDefSndPort=new QCheckBox ( tr ( "Use default sound port" ),sbgr );
     sbSndPort=new QSpinBox ( sbgr );
     sbSndPort->setMinimum ( 1 );
-    sbSndPort->setMaximum ( 99999999 );
+    sbSndPort->setMaximum ( 65535 );
 
 
     QHBoxLayout *sndPortLay = new QHBoxLayout();
@@ -93,22 +93,17 @@ MediaWidget::MediaWidget ( QString id, ONMainWindow * mw,
     sLay_opt->addLayout ( sndPortLay );
     sndLay->addWidget ( sound );
     sndLay->addLayout ( sLay );
-#ifdef Q_OS_WIN
+#if defined (Q_OS_WIN) || defined (Q_OS_DARWIN)
     arts->hide();
     hl->hide();
     cbDefSndPort->hide();
     lSndPort->hide();
     sbSndPort->hide();
-#endif
+#endif /* defined (Q_OS_WIN) || defined (Q_OS_DARWIN) */
 
 
     cbClientPrint=new QCheckBox ( tr ( "Client side printing support" ),
                                   this );
-#ifdef Q_OS_DARWIN
-    arts->hide();
-    pulse->hide();
-    esd->setChecked ( true );
-#endif
     setLay->addWidget(sbgr);
     setLay->addWidget ( cbClientPrint );
     setLay->addStretch();
@@ -166,7 +161,12 @@ void MediaWidget::slot_sndSysSelected ( int system )
         cbSndSshTun->show();
         cbSndSshTun->setEnabled ( false );
         cbSndSshTun->setChecked ( true );
-#endif
+#elif defined (Q_OS_DARWIN)
+        rbStartSnd->hide ();
+        rbNotStartSnd->hide ();
+        cbSndSshTun->show ();
+        cbSndSshTun->setEnabled (true);
+#endif /* defined (Q_OS_WIN) */
         sbSndPort->setValue ( 16001 );
         break;
     }
@@ -184,8 +184,16 @@ void MediaWidget::slot_sndToggled ( bool val )
     rbNotStartSnd->setEnabled ( val );
 
     cbSndSshTun->setEnabled ( false );
-    if ( pulse->isChecked() )
+    /* ESD is also handled by PA on Windows and OS X. */
+#if defined (Q_OS_WIN) || defined (Q_OS_DARWIN)
+    if ((pulse->isChecked ()) || (esd->isChecked ())) {
+        cbSndSshTun->setEnabled (val);
+    }
+#else
+    if (pulse->isChecked ()) {
         cbSndSshTun->setEnabled ( val );
+    }
+#endif /* defined (Q_OS_WIN) || defined (Q_OS_DARWIN) */
     lSndPort->setEnabled ( val );
     if ( !arts->isChecked() )
         cbDefSndPort->setEnabled ( val );
@@ -261,20 +269,17 @@ void MediaWidget::readConfig()
 
     pulse->setChecked ( true );
     slot_sndSysSelected ( PULSE );
-#ifdef Q_OS_WIN
+#if defined (Q_OS_WIN) || defined (Q_OS_DARWIN)
     if ( sndsys=="arts" )
     {
         sndsys="pulse";
     }
-#endif
+#endif /* defined (Q_OS_WIN) || defined (Q_OS_DARWIN) */
     if ( sndsys=="arts" )
     {
         arts->setChecked ( true );
         slot_sndSysSelected ( ARTS );
     }
-#ifdef	Q_OS_DARWIN
-    sndsys="esd";
-#endif
     if ( sndsys=="esd" )
     {
         esd->setChecked ( true );
