@@ -2825,6 +2825,8 @@ SshMasterConnection* ONMainWindow::startSshConnection ( QString host, QString po
               SLOT ( slotSshServerAuthError ( int,QString, SshMasterConnection* ) ) );
     connect ( con, SIGNAL ( needPassPhrase(SshMasterConnection*, bool)),this,
               SLOT ( slotSshServerAuthPassphrase(SshMasterConnection*, bool)) );
+    connect ( con, SIGNAL ( needChallengeResponse(SshMasterConnection*, QString)),this,
+              SLOT ( slotSshServerAuthChallengeResponse(SshMasterConnection*, QString)) );
     connect ( con, SIGNAL ( userAuthError ( QString ) ),this,SLOT ( slotSshUserAuthError ( QString ) ) );
     connect ( con, SIGNAL ( connectionError ( QString,QString ) ), this,
               SLOT ( slotSshConnectionError ( QString,QString ) ) );
@@ -2928,6 +2930,33 @@ void ONMainWindow::slotSshServerAuthPassphrase(SshMasterConnection* connection, 
     {
         message=tr("Enter passphrase to decrypt a key");
     }
+    QString phrase=QInputDialog::getText(0,connection->getUser()+"@"+connection->getHost()+":"+QString::number(connection->getPort()),
+                                         message,QLineEdit::Password,QString::null, &ok);
+    if(!ok)
+    {
+        phrase=QString::null;
+    }
+    else
+    {
+        if(phrase==QString::null)
+            phrase="";
+    }
+    connection->setKeyPhrase(phrase);
+    if(isHidden())
+    {
+        show();
+        QTimer::singleShot(1, this, SLOT(hide()));
+    }
+}
+
+
+void ONMainWindow::slotSshServerAuthChallengeResponse(SshMasterConnection* connection, QString Challenge)
+{
+    bool ok;
+    QString message;
+
+    message=Challenge;
+
     QString phrase=QInputDialog::getText(0,connection->getUser()+"@"+connection->getHost()+":"+QString::number(connection->getPort()),
                                          message,QLineEdit::Password,QString::null, &ok);
     if(!ok)

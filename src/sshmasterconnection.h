@@ -218,6 +218,7 @@ signals:
     void connectionOk( QString host);
 
     void needPassPhrase(SshMasterConnection*, bool verificationCode);
+    void needChallengeResponse(SshMasterConnection*, QString Challenge);
 };
 
 

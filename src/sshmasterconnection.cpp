@@ -881,15 +881,21 @@ bool SshMasterConnection::userChallengeAuth()
             }
 
             bool has_challenge_auth_code_prompt = false;
+            bool need_to_display_auth_code_prompt = false;
             const std::size_t challenge_auth_code_prompts_size = (sizeof (challenge_auth_code_prompts_)/sizeof (*challenge_auth_code_prompts_));
 
-            for (std::size_t i = 0; i < challenge_auth_code_prompts_size; ++i) {
-                x2goDebug << "Checking against known prompt #" << i << ": " << challenge_auth_code_prompts_[i] << endl;
-
-                if (pr.startsWith (challenge_auth_code_prompts_[i])) {
-                    has_challenge_auth_code_prompt = true;
-                    break;
-                }
+            if( pr.contains("challenge", Qt::CaseInsensitive) ) {
+              x2goDebug << "prompt contains 'challenge': " << pr << endl;
+              has_challenge_auth_code_prompt = true;
+              need_to_display_auth_code_prompt = true;
+            } else {
+              for (std::size_t i = 0; i < challenge_auth_code_prompts_size; ++i) {
+                  x2goDebug << "Checking against known prompt #" << i << ": " << challenge_auth_code_prompts_[i] << endl;
+                  if (pr.startsWith (challenge_auth_code_prompts_[i])) {
+                      has_challenge_auth_code_prompt = true;
+                      break;
+                  }
+              }
             }
 
             if (has_challenge_auth_code_prompt) {
@@ -901,7 +907,11 @@ bool SshMasterConnection::userChallengeAuth()
                 if(challengeAuthVerificationCode == QString::null)
                 {
                     keyPhraseReady=false;
-                    emit needPassPhrase(this, true);
+                    if (need_to_display_auth_code_prompt) {
+                      emit needChallengeResponse(this, pr);
+                    } else {
+                      emit needPassPhrase(this, true);
+                    }
                     for(;;)
                     {
                         bool ready=false;
