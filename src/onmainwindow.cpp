@@ -1517,7 +1517,7 @@ void ONMainWindow::closeClient()
     }
 #endif /* defined (Q_OS_DARWIN) || defined (Q_OS_WIN) */
 
-#ifndef (Q_OS_WIN)
+#ifndef Q_OS_WIN
     if ( userSshd && sshd )
     {
         x2goDebug<<"Terminating the OpenSSH server ...";
