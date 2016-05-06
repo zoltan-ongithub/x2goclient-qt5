@@ -5338,7 +5338,7 @@ void ONMainWindow::slotRetResumeSess ( bool result,
                                             "/.pulse-cookie", this, SLOT ( slotPCookieReady ( bool, QString,int )));
                 }
 #else /* !defined (Q_OS_WIN) && !defined (Q_OS_DARWIN) */
-                QString cooFile = QDir::toNativeSeparators (QDir (pulseManager->get_pulse_dir () +
+                QString cooFile = QDir::toNativeSeparators (QDir (pulseManager->get_pulse_dir ().absolutePath () +
                                                                   "/.pulse-cookie").absolutePath ());
                 QString destFile="$HOME/.x2go/C-"+
                                  resumingSession.sessionId+
@@ -5355,7 +5355,7 @@ void ONMainWindow::slotRetResumeSess ( bool result,
             sshConnection->copyFile(homeDir+"/.esd_auth",
                                     "$HOME/.esd_auth" );
 #else /* defined (Q_OS_LINUX) */
-            QString cooFile = QDir::toNativeSeparators (QDir (pulseManager->get_pulse_dir () +
+            QString cooFile = QDir::toNativeSeparators (QDir (pulseManager->get_pulse_dir ().absolutePath () +
                                                               "/.esd_auth").absolutePath ());
             QString destFile="$HOME/.esd_auth";
             sshConnection->copyFile(cooFile,
