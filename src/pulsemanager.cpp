@@ -165,7 +165,7 @@ void PulseManager::start_osx () {
 #ifdef DEBUG
   server_args_ << "--log-level=debug"
                << "--verbose"
-               << "--log-target=file:" pulse_dir_.absolutePath () + "/pulse.log";
+               << "--log-target=file:" + pulse_dir_.absolutePath () + "/pulse.log";
 #endif // defined (DEBUG)
 
   if (generate_server_config () && generate_client_config ()) {
