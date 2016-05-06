@@ -176,6 +176,11 @@ void PulseManager::start_osx () {
 }
 
 void PulseManager::start_win () {
+/*
+ * Some code in here is Windows-specific and will lead to compile
+ * failures on other platforms. Make this a stub for everything non-Windows.
+ */
+#ifdef Q_OS_WIN
   server_args_ = QStringList ();
   server_args_ << "--exit-idle-time=-1" << "-n"
                << "-F" << QDir::toNativeSeparators (QDir (pulse_dir_.absolutePath ()
@@ -215,6 +220,7 @@ void PulseManager::start_win () {
 
     start_generic ();
   }
+#endif /* defined (Q_OS_WIN) */
 }
 
 void PulseManager::start_linux () {
@@ -419,11 +425,18 @@ bool PulseManager::generate_server_config () {
      * The absolute path works with at least 5.0 and 6.0.
      */
     if (pulse_version_major_ > 2) {
-      QString tmp_auth_cookie = QDir::toNativeSeparators (wapiShortFileName (pulse_dir_.absolutePath ()))
-                              + "\\.pulse-cookie";
+      QString clean_pulse_dir = pulse_dir_.absolutePath ();
 
+#ifdef Q_OS_WIN
+      clean_pulse_dir = wapiShortFileName (clean_pulse_dir);
+#endif /* defined (Q_OS_WIN) */
+
+      QString tmp_auth_cookie = QDir::toNativeSeparators (clean_pulse_dir + "/.pulse-cookie");
+
+#ifdef Q_OS_WIN
       /* Double backslashes are required in config.pa. */
       tmp_auth_cookie.replace ("\\", "\\\\");
+#endif /* defined (Q_OS_WIN) */
 
       config_tmp_file_stream << " auth-cookie=" + tmp_auth_cookie;
     }

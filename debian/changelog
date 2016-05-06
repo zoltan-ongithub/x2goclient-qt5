@@ -297,6 +297,8 @@ x2goclient (4.0.5.3-0x2go1) UNRELEASED; urgency=medium
     - src/onmainwindow.cpp: make use of new PulseManager::start () behavior
       and always use it, no matter whether server is up already or not.
     - src/pulsemanager.cpp: fix compile error due to typo.
+    - src/pulsemanager.cpp: hide Windows-only code behind #ifdefs. Otherwise
+      we'll get compile failures on non-Windows platforms.
 
   [ Bernard Cafarelli ]
   * New upstream version (4.0.5.3):
