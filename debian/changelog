@@ -294,6 +294,8 @@ x2goclient (4.0.5.3-0x2go1) UNRELEASED; urgency=medium
     - src/onmainwindow.cpp: fix compile error due to misuse of #ifdef.
     - src/onmainwindow.cpp: convert QDir object to QString for further
       processing.
+    - src/onmainwindow.cpp: make use of new PulseManager::start () behavior
+      and always use it, no matter whether server is up already or not.
 
   [ Bernard Cafarelli ]
   * New upstream version (4.0.5.3):

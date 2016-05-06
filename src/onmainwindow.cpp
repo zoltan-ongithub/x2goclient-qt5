@@ -5100,7 +5100,11 @@ void ONMainWindow::slotRetResumeSess ( bool result,
                                             true ).toBool();
 
 #if defined (Q_OS_WIN) || defined (Q_OS_DARWIN)
-        if ((sound) && (!(pulseManager->is_server_running ()))) {
+        if (sound) {
+            /*
+             * PulseManager::start () can be called even if the server
+             * is already started. In this case, it will do nothing.
+             */
             pulseManager->start ();
         }
 
