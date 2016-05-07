@@ -333,7 +333,7 @@ cp -av "${NXPROXY}" "${EXE_DIR}/"
 phase "Copying misc resources"
 typeset cur_res_file
 for cur_res_file in ${RESOURCE_FILES[@]}; do
-  cp -av "res/${cur_res_file}" "${RESOURCES_DIR}/"
+  cp -av "${TOP_DIR}/res/${cur_res_file}" "${RESOURCES_DIR}/"
 done
 
 phase "Copying PulseAudio"
