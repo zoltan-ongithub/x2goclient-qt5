@@ -302,6 +302,8 @@ x2goclient (4.0.5.3-0x2go1) UNRELEASED; urgency=medium
     - src/pulsemanager.{cpp,h}: add debugging setter and private variable.
     - src/pulsemanager.{cpp,h}: port to new debugging feature.
     - src/onmainwindow.cpp: port to new debugging feature of PulseManager.
+    - src/pulsemanager.h: fix compile error due to mismatching function
+      declaration for set_debug ().
 
   [ Bernard Cafarelli ]
   * New upstream version (4.0.5.3):

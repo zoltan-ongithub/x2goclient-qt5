@@ -53,7 +53,7 @@ class PulseManager: public QObject {
     bool set_esd_port (std::uint16_t esd_port);
     bool set_record (bool record);
     bool set_playback (bool playback);
-    bool set_debug (bool debug);
+    void set_debug (bool debug);
 
 
   public slots:
