@@ -2162,7 +2162,12 @@ void ONMainWindow::slotConfig()
                                                      (QVariant) false).toBool ();
 
         if (oldDisableInput != newDisableInput) {
-            pulseManager->set_record (!newDisableInput);
+            bool ret = pulseManager->set_record (!newDisableInput);
+
+            if (!ret) {
+              x2goDebug << "Failed to change recording status of PulseManager. PulseAudio not started?" << endl;
+            }
+
             pulseManager->restart ();
         }
 #endif /* defined (Q_OS_WIN) || defined (Q_OS_DARWIN) */
@@ -6529,6 +6534,8 @@ void ONMainWindow::pulseManagerWrapper () {
   {
     pulseManagerThread = new QThread (0);
     pulseManager = new PulseManager ();
+
+    pulseManager->set_debug (debugging);
 
     pulseManager->moveToThread (pulseManagerThread);
 
