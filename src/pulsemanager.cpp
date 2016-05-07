@@ -132,7 +132,12 @@ void PulseManager::start_generic () {
   pulse_server_->setWorkingDirectory (server_working_dir_);
 
   pulse_server_->start (server_binary_, server_args_);
-  if (pulse_server_->waitForStarted ()) {
+
+  /*
+   * We may wait here, because PulseManager runs in a separate thread.
+   * Otherwise, we'd better use signals and slots to not block the main thread.
+   */
+  if (pulse_server_->waitForStarted (-1)) {
     x2goDebug << "pulse started with arguments" << server_args_ << "; waiting for finish...";
     state_ = QProcess::Running;
 
@@ -143,6 +148,9 @@ void PulseManager::start_generic () {
       // Give PA a little time to come up.
       QTimer::singleShot (3000, this, SLOT (slot_play_startup_sound ()));
     }
+  }
+  else {
+    x2goErrorf (27) << "PulseAudio failed to start! Sound support will not be available.";
   }
 }
 
@@ -562,8 +570,12 @@ void PulseManager::slot_play_startup_sound () {
     play_file.setProcessEnvironment (env_);
     play_file.start (play_file_binary, args);
 
-    if (play_file.waitForStarted ())
+    if (play_file.waitForStarted (-1)) {
       play_file.waitForFinished ();
+    }
+    else {
+      x2goErrorf (26) << "Unable to play startup sound! Something may be wrong.";
+    }
   }
 }
 
