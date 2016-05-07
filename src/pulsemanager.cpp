@@ -24,11 +24,6 @@
 #include "pulsemanager.h"
 #include "x2gologdebug.h"
 
-#ifndef DEBUG
-#define DEBUG_UNDEF
-#define DEBUG
-#endif // defined (NDEBUG)
-
 PulseManager::PulseManager () : app_dir_ (QApplication::applicationDirPath ()),
                                 pulse_X2Go_ ("/.x2go/pulse"),
                                 server_binary_ (QString ("")),
@@ -144,10 +139,10 @@ void PulseManager::start_generic () {
     connect (pulse_server_, SIGNAL (finished (int)),
              this,          SLOT (slot_on_pulse_finished (int)));
 
-#ifdef DEBUG
-    // Give PA a little time to come up.
-    QTimer::singleShot (3000, this, SLOT (slot_play_startup_sound ()));
-#endif // defined (DEBUG)
+    if (debug_) {
+      // Give PA a little time to come up.
+      QTimer::singleShot (3000, this, SLOT (slot_play_startup_sound ()));
+    }
   }
 }
 
@@ -163,11 +158,11 @@ void PulseManager::start_osx () {
                         + QString::number (pulse_version_minor_)
                         + "/modules").absolutePath ()
                << "--high-priority";
-#ifdef DEBUG
-  server_args_ << "--log-level=debug"
-               << "--verbose"
-               << "--log-target=file:" + pulse_dir_.absolutePath () + "/pulse.log";
-#endif // defined (DEBUG)
+  if (debug_) {
+    server_args_ << "--log-level=debug"
+                 << "--verbose"
+                 << "--log-target=file:" + pulse_dir_.absolutePath () + "/pulse.log";
+  }
 
   if (generate_server_config () && generate_client_config ()) {
     cleanup_client_dir ();
@@ -191,12 +186,11 @@ void PulseManager::start_win () {
                                                           + "."
                                                           + QString::number (pulse_version_minor_)
                                                           + "/modules/").absolutePath ());
-#ifdef DEBUG
-  /* FIXME: need a way to request debugging. */
-  server_args_ << "--log-level=debug"
-               << "--verbose"
-               << "--log-target=file:" + pulse_dir_.absolutePath () + "\\pulse.log";
-#endif // defined (DEBUG)
+  if (debug_) {
+    server_args_ << "--log-level=debug"
+                 << "--verbose"
+                 << "--log-target=file:" + pulse_dir_.absolutePath () + "\\pulse.log";
+  }
 
   /*
    * Fix for x2goclient bug #526.
@@ -550,27 +544,27 @@ void PulseManager::create_client_dir () {
 }
 
 void PulseManager::slot_play_startup_sound () {
-#ifdef DEBUG
-  QProcess play_file (0);
-  QString play_file_binary (app_dir_);
-  QString play_file_file (play_file_binary);
+  if (!debug_) {
+    QProcess play_file (0);
+    QString play_file_binary (app_dir_);
+    QString play_file_file (play_file_binary);
 
 #ifdef Q_OS_DARWIN
-  play_file_binary += "/../exe/paplay";
-  play_file_file += "/../Resources/startup.wav";
+    play_file_binary += "/../exe/paplay";
+    play_file_file += "/../Resources/startup.wav";
 #elif defined (Q_OS_WIN)
-  playFileBinary += "/pulse/paplay.exe";
-  playFileFile += "/startup.wav";
+    playFileBinary += "/pulse/paplay.exe";
+    playFileFile += "/startup.wav";
 #endif // defined (Q_OS_DARWIN)
 
-  QStringList args (play_file_file);
-  play_file.setWorkingDirectory (server_working_dir_);
-  play_file.setProcessEnvironment (env_);
-  play_file.start (play_file_binary, args);
+    QStringList args (play_file_file);
+    play_file.setWorkingDirectory (server_working_dir_);
+    play_file.setProcessEnvironment (env_);
+    play_file.start (play_file_binary, args);
 
-  if (play_file.waitForStarted ())
-    play_file.waitForFinished ();
-#endif // defined (DEBUG)
+    if (play_file.waitForStarted ())
+      play_file.waitForFinished ();
+  }
 }
 
 void PulseManager::on_pulse_finished (int exit_code) {
@@ -714,8 +708,3 @@ void PulseManager::restart () {
 QProcess::ProcessState PulseManager::state () {
   return (state_);
 }
-
-#ifdef DEBUG_UNDEF
-#undef DEBUG
-#undef DEBUG_UNDEF
-#endif // defined (DEBUG_UNDEF)

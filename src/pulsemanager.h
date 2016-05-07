@@ -20,11 +20,6 @@
 #ifndef PULSEMANAGER_H
 #define PULSEMANAGER_H
 
-#ifdef NDEBUG
-#define NDEBUG_DEFINE
-#undef NDEBUG
-#endif // defined (NDEBUG)
-
 #include <iostream>
 #include <QDir>
 #include <QTcpSocket>
@@ -121,12 +116,8 @@ class PulseManager: public QObject {
 
     bool record_;
     bool playback_;
+
     bool debug_;
 };
-
-#ifdef NDEBUG_DEFINE
-#define NDEBUG
-#undef NDEBUG_DEFINE
-#endif // defined (NDEBUG_DEFINE)
 
 #endif // PULSEMANAGER_H
