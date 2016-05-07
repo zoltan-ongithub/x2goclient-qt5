@@ -158,6 +158,7 @@ BUILD_DIR="${TOP_DIR}/client_build"
 APPBUNDLE="${BUILD_DIR}/${NAME}.app"
 EXE_DIR="${APPBUNDLE}/Contents/exe/"
 FRAMEWORKS_DIR="${APPBUNDLE}/Contents/Frameworks/"
+RESOURCES_DIR="${APPBUNDLE}/Contents/Resources/"
 DMGFILE="${BUILD_DIR}/${NAME}.dmg"
 PROJECT="${TOP_DIR}/${NAME}.pro"
 PKG_DMG="${TOP_DIR}/pkg-dmg"
@@ -179,6 +180,7 @@ PULSEAUDIO_BINARIES=( "pulseaudio" "esdcompat" "pacat" "pacmd"      "pactl"
 PULSEAUDIO_LIBRARIES=( "libpulse-simple.0.dylib"
                        "pulse-8.0"
                        "pulseaudio" )
+RESOURCE_FILES=( "audio/startup.wav" )
 
 typeset -a special_files_regex
 special_files_regex+=( "pulseaudio/libpulsecommon-[0-9]\.[0-9]\.dylib"
@@ -327,6 +329,12 @@ mkdir -p "${FRAMEWORKS_DIR}/"
 
 phase "Copying nxproxy"
 cp -av "${NXPROXY}" "${EXE_DIR}/"
+
+phase "Copying misc resources"
+typeset cur_res_file
+for cur_res_file in ${RESOURCE_FILES[@]}; do
+  cp -av "res/${cur_res_file}" "${RESOURCES_DIR}/"
+done
 
 phase "Copying PulseAudio"
 for cur_binary in ${PULSEAUDIO_BINARIES_FULL[@]}; do

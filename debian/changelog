@@ -308,6 +308,8 @@ x2goclient (4.0.5.3-0x2go1) UNRELEASED; urgency=medium
       daemon in debug mode.
     - src/pulsemanager.cpp: don't time out while trying to start PA or paplay.
       "Handle" errors by printing out debug messages.
+    - macbuild.sh: add support for copying resource files. Currently only used
+      for startup.wav.
 
   [ Bernard Cafarelli ]
   * New upstream version (4.0.5.3):
