@@ -43,7 +43,8 @@ PulseManager::PulseManager () : app_dir_ (QApplication::applicationDirPath ()),
                                 pulse_version_micro_ (0),
                                 pulse_version_misc_ (""),
                                 record_ (true),
-                                playback_ (true) {
+                                playback_ (true),
+                                debug_ (false) {
   pulse_dir_ = QDir (QDir::homePath ());
   pulse_dir_.mkpath (pulse_dir_.absolutePath () + pulse_X2Go_ + "/tmp");
   pulse_dir_.cd (pulse_X2Go_.mid (1));
@@ -696,6 +697,10 @@ bool PulseManager::set_playback (bool playback) {
   }
 
   return (ret);
+}
+
+void PulseManager::set_debug (bool debug) {
+  debug_ = debug;
 }
 
 void PulseManager::restart () {
