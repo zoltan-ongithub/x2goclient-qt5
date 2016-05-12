@@ -505,6 +505,13 @@ if [ "${BUNDLE}" = "1" ]; then
     done
   done
 
+  # Add binaries to all_files as well.
+  typeset entry=""
+  while read -r -d '' entry; do
+    echo "Adding ${entry} to all files"
+    all_files+=( "${entry}" )
+  done < <(find "${EXE_DIR}" -type 'f' -executable -print0)
+
   # Try to fixup files broken by duplicates removal.
   for all_entry in "${all_files[@]}"; do
     typeset otool_out="$(otool -L "${all_entry}")"
