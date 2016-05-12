@@ -241,7 +241,7 @@ void PulseManager::fetch_pulseaudio_version () {
   /* Wait until the process exited again. */
   if (tmp_server.waitForFinished ()) {
     /* Read stdout and split it up on newlines. */
-    QByteArray ba (pulse_server_->readAllStandardOutput ());
+    QByteArray ba (tmp_server.readAllStandardOutput ());
     QString stdout_data (ba.data ());
     QStringList stdout_list (stdout_data.split ("\n"));
 
