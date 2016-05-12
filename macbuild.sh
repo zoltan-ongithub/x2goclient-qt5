@@ -520,7 +520,9 @@ if [ "${BUNDLE}" = "1" ]; then
     # We need the return value of parse_otool_output(), but running
     # typeset foo="$(bar)" will give us the return value of typeset, not bar().
     typeset dependencies=""
+    set +e
     dependencies="$(parse_otool_output "${otool_out}")"
+    set -e
 
     if [ "${?}" -eq "0" ]; then
       typeset line=""
