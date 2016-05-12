@@ -515,6 +515,7 @@ if [ "${BUNDLE}" = "1" ]; then
   # Try to fixup files broken by duplicates removal.
   for all_entry in "${all_files[@]}"; do
     typeset otool_out="$(otool -L "${all_entry}")"
+    typeset -i tmp_ret="0"
 
     # Don't merge the declaration and initialization with the real value assignment.
     # We need the return value of parse_otool_output(), but running
@@ -522,9 +523,10 @@ if [ "${BUNDLE}" = "1" ]; then
     typeset dependencies=""
     set +e
     dependencies="$(parse_otool_output "${otool_out}")"
+    tmp_ret="${?}"
     set -e
 
-    if [ "${?}" -eq "0" ]; then
+    if [ "${tmp_ret}" -eq "0" ]; then
       typeset line=""
       while read -r line; do
         #echo "dependency of ${all_entry}: ${line}"

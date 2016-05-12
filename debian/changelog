@@ -314,6 +314,8 @@ x2goclient (4.0.5.3-0x2go1) UNRELEASED; urgency=medium
     - macbuild.sh: fix copying of resource files.
     - macbuild.sh: also add PA binaries to deduplication fixup list.
     - macbuild.sh: don't error out while executing parse_otool_output ().
+    - macbuild.sh: save return value of parse_otool_output (). Otherwise we'll
+      fetch the return value of "set", which is not really what we need.
 
   [ Bernard Cafarelli ]
   * New upstream version (4.0.5.3):
