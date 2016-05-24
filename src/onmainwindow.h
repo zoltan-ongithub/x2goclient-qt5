@@ -337,13 +337,13 @@ public:
         ESD
     };
 
-    enum {
+    enum key_types {
         RSA_KEY_TYPE,
         DSA_KEY_TYPE,
         ECDSA_KEY_TYPE,
         ED25519_KEY_TYPE,
         UNKNOWN_KEY_TYPE
-    } key_types;
+    };
 
     static bool debugging;
 
@@ -1204,7 +1204,7 @@ private:
 #endif
     void filterDesktops ( const QString& filter,
                           bool strict=false );
-    void generateHostDsaKey();
+    void generateHostKey(key_types key_type);
     void generateEtcFiles();
     QString u3DataPath();
     void cleanPortable();

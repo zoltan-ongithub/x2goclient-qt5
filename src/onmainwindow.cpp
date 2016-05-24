@@ -8056,14 +8056,14 @@ QString ONMainWindow::createRSAKey()
     if ( !rsa.open ( QIODevice::ReadOnly | QIODevice::Text ) )
     {
 #if defined (Q_OS_LINUX) || defined (Q_OS_DARWIN)
-        generateHostDsaKey ();
+        generateHostKey (RSA_KEY_TYPE);
         generateEtcFiles ();
 
         if (!startSshd ()) {
             return (QString::null);
         }
 
-        rsa.setFileName ( homeDir+"/.x2go/etc/ssh_host_dsa_key.pub" );
+        rsa.setFileName ( homeDir+"/.x2go/etc/ssh_host_rsa_key.pub" );
         rsa.open ( QIODevice::ReadOnly | QIODevice::Text );
 #else
         printSshDError_noHostPubKey();
@@ -9949,7 +9949,7 @@ void ONMainWindow::startWinServers()
     {
 
         dr.mkpath ( etcDir );
-        generateHostDsaKey();
+        generateHostKey(RSA_KEY_TYPE);
         generateEtcFiles();
         sshStarter->start();
     }
@@ -10296,27 +10296,63 @@ void ONMainWindow::generateEtcFiles()
     x2goDebug<<etcDir +"/sshd_config created.";
 }
 
-void ONMainWindow::generateHostDsaKey()
+void ONMainWindow::generateHostKey(ONMainWindow::key_types key_type)
 {
-    QString etcDir=homeDir+"/.x2go/etc";
-    QDir dr ( homeDir );
-    dr.mkpath ( etcDir );
-    if ( !QFile::exists ( etcDir+"/ssh_host_dsa_key" ) ||
-            !QFile::exists ( etcDir+"/ssh_host_dsa_key.pub" ) )
-    {
+    ONMainWindow::key_types sanitized_key_type = UNKNOWN_KEY_TYPE;
+    QString stringified_key_type = "";
+    switch (key_type) {
+        case RSA_KEY_TYPE:
+                               sanitized_key_type = key_type;
+                               stringified_key_type = "rsa";
+                               break;
+        case DSA_KEY_TYPE:
+                               sanitized_key_type = key_type;
+                               stringified_key_type = "dsa";
+                               break;
+        case ECDSA_KEY_TYPE:
+                               sanitized_key_type = key_type;
+                               stringified_key_type = "ecdsa";
+                               break;
+        case ED25519_KEY_TYPE:
+                               sanitized_key_type = key_type;
+                               stringified_key_type = "ed25519";
+                               break;
+        default:
+                               sanitized_key_type = UNKNOWN_KEY_TYPE;
+                               stringified_key_type = "unknown";
+    }
 
-        x2goDebug<<"Generating host DSA key.";
+    if (sanitized_key_type == UNKNOWN_KEY_TYPE) {
+        QMessageBox::critical (this, tr ("Host key type selection error"),
+                               tr ("Unknown host key selected.\nTerminating application."));
+        close ();
+    }
+
+    QString etcDir = homeDir + "/.x2go/etc/";
+    QDir dr (homeDir);
+    dr.mkpath (etcDir);
+    QString private_key_file = etcDir + "/ssh_host_" + stringified_key_type + "_key";
+    QString public_key_file = private_key_file + ".pub";
+
+    if ((!(QFile::exists (private_key_file))) || (!(QFile::exists (public_key_file))))
+    {
+        x2goDebug << "Generating host key. Type: " << stringified_key_type;
 
 #ifdef Q_OS_WIN
-        QString fname=cygwinPath ( wapiShortFileName ( etcDir ) ) +
-                      "/ssh_host_dsa_key";
-#else
-        QString fname=etcDir+"/ssh_host_dsa_key";
+        private_key_file = cygwinPath (wapiShortFileName (etcDir))
+                         + "/ssh_host_" + stringified_key_type + "_key";
 #endif
+
         QStringList args;
-        args<<"-t"<<"dsa"<<"-N"<<""<<"-C"<<
-            "x2goclient DSA host key"<<"-f"<<fname;
-        QProcess::execute ( "ssh-keygen",args );
+        args << "-t"
+             << stringified_key_type
+             << "-N"
+             << ""
+             << "-C"
+             << QString ("X2Go Client " + stringified_key_type + "host key")
+             << "-f"
+             << private_key_file;
+        QProcess::execute ("ssh-keygen", args);
     }
 }
 
