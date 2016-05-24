@@ -337,6 +337,14 @@ public:
         ESD
     };
 
+    enum {
+        RSA_KEY_TYPE,
+        DSA_KEY_TYPE,
+        ECDSA_KEY_TYPE,
+        ED25519_KEY_TYPE,
+        UNKNOWN_KEY_TYPE
+    } key_types;
+
     static bool debugging;
 
     static bool portable;
