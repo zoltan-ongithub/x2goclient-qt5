@@ -10286,11 +10286,18 @@ void ONMainWindow::generateEtcFiles()
 #ifdef Q_OS_WIN
          "Subsystem shell "<< wapiShortFileName ( appDir) +"/sh"+"\n"<<
          "Subsystem sftp "<< wapiShortFileName ( appDir) +"/sftp-server"+"\n"<<
-         "AuthorizedKeysFile \""<<authKeyPath<<"\"";
+         "AuthorizedKeysFile \""<<authKeyPath<<"\"\n";
 #else
          "Subsystem sftp "
     /* This may need some sanitization, i.e., appDir could potentially include whitespace. */
        <<appDir<<"/sftp-server\n";
+#endif
+
+    /* The log file in startSshd() is specific to Windows. */
+#ifdef Q_OS_WIN
+    if (debugging){
+        out<<"LogLevel DEBUG1\n";
+    }
 #endif
     file.close();
     x2goDebug<<etcDir +"/sshd_config created.";

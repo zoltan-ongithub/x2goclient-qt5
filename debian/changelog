@@ -33,7 +33,7 @@ x2goclient (4.0.5.2-0x2go1) UNRELEASED; urgency=medium
 
   [ Mike DePaulo ]
   * New upstream release (4.0.5.2):
-    - Windows: add sshd logging when using the --debug flag.
+    - Windows: add sshd debug1 logging when using the --debug flag.
     - Windows: Revert back to Cygwin components that have not been
       "rebased"
 
