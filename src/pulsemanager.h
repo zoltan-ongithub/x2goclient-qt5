@@ -86,7 +86,7 @@ class PulseManager: public QObject {
 
 
   private slots:
-    void on_pulse_finished (int exit_code);
+    void slot_on_pulse_finished (int exit_code);
     void slot_play_startup_sound ();
 
 

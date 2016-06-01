@@ -584,7 +584,7 @@ void PulseManager::slot_play_startup_sound () {
   }
 }
 
-void PulseManager::on_pulse_finished (int exit_code) {
+void PulseManager::slot_on_pulse_finished (int exit_code) {
   if (!exit_code)
     x2goDebug << "Warning! Pulseaudio's exit code is non-zero.";
 

@@ -322,6 +322,8 @@ x2goclient (4.0.5.3-0x2go1) UNRELEASED; urgency=medium
     - src/pulsemanager.cpp: don't overwrite the temporary string variable for
       the current line with what was supposed to hold new data in
       fetch_pulseaudio_version ().
+    - src/pulsemanager.{cpp,h}: rename on_pulse_finished () to
+      slot_on_pulse_finished (). Oops...
 
   [ Bernard Cafarelli ]
   * New upstream version (4.0.5.3):
