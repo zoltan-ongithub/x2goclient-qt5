@@ -319,6 +319,9 @@ x2goclient (4.0.5.3-0x2go1) UNRELEASED; urgency=medium
     - src/pulsemanager.cpp: fix typo in fetch_pulseaudio_version (). Read
       standard output from temporary process, not our "main" server process
       (which at this point is not even started yet.)
+    - src/pulsemanager.cpp: don't overwrite the temporary string variable for
+      the current line with what was supposed to hold new data in
+      fetch_pulseaudio_version ().
 
   [ Bernard Cafarelli ]
   * New upstream version (4.0.5.3):

@@ -259,24 +259,24 @@ void PulseManager::fetch_pulseaudio_version () {
 
         /* We should be at a digit now. */
         bool numbers_found[3] = { false, false, false };
-        QString tmp_str = QString ("");
+        QString tmp_ret_str = QString ("");
         for (QString::const_iterator cit = tmp_str.begin (); cit != tmp_str.end (); ++cit) {
           if (!(numbers_found[0])) {
             if (((*cit) >= '0') && ((*cit) <= '9')) {
-              tmp_str.append (*cit);
+              tmp_ret_str.append (*cit);
             }
             else if ((*cit) == '.') {
               /* First number part complete, let's convert the string and skip the period. */
               numbers_found[0] = true;
               bool convert_success = false;
-              pulse_version_major_ = tmp_str.toUInt (&convert_success, 10);
+              pulse_version_major_ = tmp_ret_str.toUInt (&convert_success, 10);
 
               if (!convert_success) {
                 x2goErrorf (20) << "Unable to convert major version number string to integer.";
                 abort ();
               }
 
-              tmp_str = QString ("");
+              tmp_ret_str = QString ("");
             }
             else {
               x2goErrorf (21) << "Unexpected character found when parsing version string for major version number: '" << QString (*cit) << "'.";
@@ -285,7 +285,7 @@ void PulseManager::fetch_pulseaudio_version () {
           }
           else if (!(numbers_found[1])) {
             if (((*cit) >= '0') && ((*cit) <= '9')) {
-              tmp_str.append (*cit);
+              tmp_ret_str.append (*cit);
             }
             else if (((*cit) == '.') || ((*cit) == '-')) {
               /*
@@ -294,14 +294,14 @@ void PulseManager::fetch_pulseaudio_version () {
                */
               numbers_found[1] = true;
               bool convert_success = false;
-              pulse_version_minor_ = tmp_str.toUInt (&convert_success, 10);
+              pulse_version_minor_ = tmp_ret_str.toUInt (&convert_success, 10);
 
               if (!convert_success) {
                 x2goErrorf (22) << "Unable to convert minor version number string to integer.";
                 abort ();
               }
 
-              tmp_str = QString ("");
+              tmp_ret_str = QString ("");
 
               if ((*cit) == '-') {
                 /*
@@ -318,20 +318,20 @@ void PulseManager::fetch_pulseaudio_version () {
           }
           else if (!(numbers_found[2])) {
             if (((*cit) >= '0') && ((*cit) <= '9')) {
-              tmp_str.append (*cit);
+              tmp_ret_str.append (*cit);
             }
             else if ((*cit) == '-') {
               /* Third number part complete, let's convert the string and skip the period. */
               numbers_found[2] = true;
               bool convert_success = false;
-              pulse_version_micro_ = tmp_str.toUInt (&convert_success, 10);
+              pulse_version_micro_ = tmp_ret_str.toUInt (&convert_success, 10);
 
               if (!convert_success) {
                 x2goErrorf (24) << "Unable to convert micro version number string to integer.";
                 abort ();
               }
 
-              tmp_str = QString ("");
+              tmp_ret_str = QString ("");
             }
             else {
               x2goErrorf (25) << "Unexpected character found when parsing version string for micro version number: '" << QString (*cit) << "'.";
@@ -340,12 +340,17 @@ void PulseManager::fetch_pulseaudio_version () {
           }
           else {
             /* Numbers should be good by now, let's fetch everything else. */
-            tmp_str.append (*cit);
+            tmp_ret_str.append (*cit);
           }
         }
 
-        /* Misc version part will be set to the trailing string. */
-        pulse_version_misc_ = tmp_str;
+        found = ((numbers_found[0]) && (numbers_found[1]) && (numbers_found[2]));
+
+        if (found) {
+          /* Misc version part will be set to the trailing string. */
+          pulse_version_misc_ = tmp_ret_str;
+          break;
+        }
       }
       else {
         /* No need to look any further. */
