@@ -557,7 +557,7 @@ void PulseManager::create_client_dir () {
 }
 
 void PulseManager::slot_play_startup_sound () {
-  if (!debug_) {
+  if (debug_) {
     QProcess play_file (0);
     QString play_file_binary (app_dir_);
     QString play_file_file (play_file_binary);
