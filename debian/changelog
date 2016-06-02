@@ -326,6 +326,7 @@ x2goclient (4.0.5.3-0x2go1) UNRELEASED; urgency=medium
       slot_on_pulse_finished (). Oops...
     - src/pulsemanager.cpp: actually only play startup sound if debugging is
       enabled.
+    - src/pulsemanager.cpp: don't insert stray newline into config.pa.
 
   [ Bernard Cafarelli ]
   * New upstream version (4.0.5.3):

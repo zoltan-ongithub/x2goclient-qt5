@@ -474,7 +474,6 @@ bool PulseManager::generate_server_config () {
     else {
       config_tmp_file_stream << "1";
     }
-    config_tmp_file_stream << endl;
 
     config_tmp_file_stream << " playback=";
     if (!playback_) {
