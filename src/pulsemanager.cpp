@@ -144,6 +144,19 @@ void PulseManager::start_generic () {
     connect (pulse_server_, SIGNAL (finished (int)),
              this,          SLOT (slot_on_pulse_finished (int)));
 
+    env_.insert ("PULSE_SERVER", "127.0.0.1:" + QString::number (pulse_port_));
+
+
+    QString clean_pulse_dir = pulse_dir_.absolutePath ();
+
+#ifdef Q_OS_WIN
+    clean_pulse_dir = wapiShortFileName (clean_pulse_dir);
+#endif /* defined (Q_OS_WIN) */
+
+    QString tmp_auth_cookie = QDir::toNativeSeparators (clean_pulse_dir + "/.pulse-cookie");
+
+    env_.insert ("PULSE_COOKIE", tmp_auth_cookie);
+
     if (debug_) {
       // Give PA a little time to come up.
       QTimer::singleShot (3000, this, SLOT (slot_play_startup_sound ()));
