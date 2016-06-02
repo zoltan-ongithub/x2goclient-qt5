@@ -619,10 +619,12 @@ void PulseManager::slot_on_pulse_finished (int exit_code) {
 
 #if defined (Q_OS_DARWIN) || defined (Q_OS_WIN)
   // Remove server config file, otherwise the directory won't be empty.
-  work_dir.remove (QDir::toNativeSeparators (QDir (pulse_dir_.absolutePath ()
-                                                   + "/config.pa").absolutePath ()));
-  work_dir.remove (QDir::toNativeSeparators (QDir (pulse_dir_.absolutePath ()
-                                                   + "/pulse.log").absolutePath ()));
+  if (!debug_) {
+    work_dir.remove (QDir::toNativeSeparators (QDir (pulse_dir_.absolutePath ()
+                                                     + "/config.pa").absolutePath ()));
+    work_dir.remove (QDir::toNativeSeparators (QDir (pulse_dir_.absolutePath ()
+                                                     + "/pulse.log").absolutePath ()));
+  }
 #else // Linux
   // FIXME.
 #endif
