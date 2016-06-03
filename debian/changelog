@@ -30,6 +30,9 @@ x2goclient (4.0.5.2-0x2go1) UNRELEASED; urgency=medium
       #1003. Host key type selection currently only works within the code. Replace
       calls to former ONMainWindow::generateHostDsaKey () with the generalized
       function and request an RSA-type key.
+    - src/help.cpp: actually make help descriptions translatable. Looks ugly
+      and is cumbersome to use, but there seems to be no other way to do
+      that...
 
   [ Mike DePaulo ]
   * New upstream release (4.0.5.2):

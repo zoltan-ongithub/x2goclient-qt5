@@ -92,67 +92,67 @@ help::prelude_t help::build_prelude () {
 help::params_t help::build_params () {
   params_t ret;
 
-# define ADD_OPT(param, desc) do { ret.append (params_elem_t (param, QObject::tr (desc))); } while (0)
+# define ADD_OPT(param, desc) do { ret.append (params_elem_t (param, qApp->translate ("Help", desc))); } while (0)
 # define NEWLINE "\n"
 
-  ADD_OPT ("--help", "Shows this message.");
-  ADD_OPT ("--version", "Prints version information.");
+  ADD_OPT ("--help", QT_TRANSLATE_NOOP ("Help", "Shows this message."));
+  ADD_OPT ("--version", QT_TRANSLATE_NOOP ("Help", "Prints version information."));
 
   if (QFile::exists (":/txt/changelog")) {
-    ADD_OPT ("--changelog", "Shows the changelog.");
+    ADD_OPT ("--changelog", QT_TRANSLATE_NOOP ("Help", "Shows the changelog."));
   }
 
   if (QFile::exists (":/txt/git-info")) {
-    ADD_OPT ("--git-info", "Shows git information as used at compile time. [Deprecated: please use --version.]");
+    ADD_OPT ("--git-info", QT_TRANSLATE_NOOP ("Help", "Shows git information as used at compile time. [Deprecated: please use --version.]"));
   }
 
-  ADD_OPT ("--help-pack", "Shows available pack methods.");
-  ADD_OPT ("--debug", "Enables extensive debug output to the console." NEWLINE
-                      "On Windows, also enables PulseAudio logging to a file under \".x2go/pulse\" & cygwin sshd logging to a file under \".x2go/sshLogs\" directory, both under the USERPROFILE directory." NEWLINE
-                      "The logs are not deleted when X2Go Client terminates.");
-  ADD_OPT ("--no-menu", "Hides menu bar.");
-  ADD_OPT ("--no-session-edit", "Disables session editing.");
-  ADD_OPT ("--maximize", "Starts maximized.");
-  ADD_OPT ("--hide", "Starts hidden (minimized to system tray where available.)");
-  ADD_OPT ("--portable", "Starts in \"portable\" mode.");
-  ADD_OPT ("--pgp-card", "Forces OpenPGP smart card authentication.");
-  ADD_OPT ("--xinerama", "Enables Xinerama by default.");
-  ADD_OPT ("--ldap-printing", "Allows client side printing in LDAP mode.");
-  ADD_OPT ("--thinclient", "Enables thinclient mode. Starts without a window manager.");
-  ADD_OPT ("--haltbt", "Enables shutdown button.");
-  ADD_OPT ("--add-to-known-hosts", "Adds RSA key fingerprint to \".ssh/known_hosts\" if authenticity of the server can't be determined.");
-  ADD_OPT ("--ldap=<host:port:dn>", "Starts with LDAP support. Example: --ldap=ldapserver:389:o=organization,c=de");
-  ADD_OPT ("--ldap1=<host:port>", "Defines the first LDAP failover server.");
-  ADD_OPT ("--ldap2=<host:port>", "Defines the second LDAP failover server.");
-  ADD_OPT ("--ssh-port=<port>", "Defines the remote SSH server port. Default: 22.");
-  ADD_OPT ("--client-ssh-port=<port>", "Defines the local machine's SSH server port. Needed for Client-Side Printing and File Sharing support. Default: 22.");
-  ADD_OPT ("--command=<cmd>", "Sets the default command. Default: 'KDE' (Desktop Session)");
-  ADD_OPT ("--session=<session>", "Starts the session named \"session\".");
-  ADD_OPT ("--user=<username>", "Sets the user name for connecting to the remote SSH server to \"username\".");
-  ADD_OPT ("--geometry=<<W>x<H>|fullscreen>", "Sets the default window geometry. Default: 800x600.");
-  ADD_OPT ("--dpi=<dpi>", "Sets the remote X2Go Agent's DPI value to \"dpi\". Default: same as local display.");
-  ADD_OPT ("--link=<modem|isdn|adsl|wan|lan>", "Sets the default link type. Default: \"adsl\".");
-  ADD_OPT ("--pack=<packmethod>", "Sets default pack method. Default: \"16m-jpeg-9\".");
-  ADD_OPT ("--clipboard=<both|client|server|none>", "Sets the default clipboard mode. Default: \"both\".");
-  ADD_OPT ("--kbd-layout=<layout>", "Sets the default keyboard layout to \"layout\". \"layout\" may be a comma-separated list.");
-  ADD_OPT ("--kbd-type=<type>", "Sets the default keyboard type.");
-  ADD_OPT ("--home=<dir>", "Sets the user's home directory.");
-  ADD_OPT ("--set-kbd=<0|1>", "Enables or disables overwriting the current keyboard settings.");
-  ADD_OPT ("--autostart=<app>", "Automatically launches the application \"app\" on session start in Published Applications mode.");
-  ADD_OPT ("--session-conf=<file>", "Defines an alternative session config file path.");
-  ADD_OPT ("--tray-icon", "Force-enables session system tray icon.");
-  ADD_OPT ("--close-disconnect", "Automatically closes X2Go Client after a disconnect.");
-  ADD_OPT ("--hide-foldersharing", "Hides all Folder-Sharing-related options.");
-  ADD_OPT ("--broker-name=<name>", "Sets the broker name to display in X2Go Client. This parameter is optional.");
-  ADD_OPT ("--broker-url=<protocol>://[username@]<host>[:port]/path", "Sets the URL of the session broker." NEWLINE
-                                                                      "\"protocol\" must be one of \"http\", \"https\" or \"ssh\"." NEWLINE
-                                                                      "If \"username@\" is provided, it will be pasted into the authorization dialog of X2Go Client." NEWLINE
-                                                                      "URL examples are:" NEWLINE
-                                                                      "    https://x2gobroker.org/cgi-bin/x2gobroker.cgi" NEWLINE
-                                                                      "    ssh://user@x2gobroker.org:22/usr/lib/x2go/x2gobroker.pl");
-  ADD_OPT ("--broker-ssh-key=<path to key>", "Sets the path to an SSH key to use for authentication against an SSH session broker. The client's behavior is undefined if this flag is used for non-SSH session brokers.");
-  ADD_OPT ("--broker-autologin", "Enables the use of the default SSH key or SSH agent for authentication against an SSH session broker. The client's behavior is undefined if this flag is used for non-SSH session brokers.");
-  ADD_OPT ("--broker-noauth", "Does not ask for user credentials during session broker authentication. This can be useful if you are using an HTTP(S) session broker without authentication. If you run an HTTP(S) server without authentication, but with user-specific profiles, then put the user name into the broker URL (refer to --broker-url.) The user name then will be extracted from the broker URL and be sent to the session broker. The client's behavior is undefined if this flag is used for non-HTTP(S) session brokers.");
+  ADD_OPT ("--help-pack", QT_TRANSLATE_NOOP ("Help", "Shows available pack methods."));
+  ADD_OPT ("--debug", QT_TRANSLATE_NOOP ("Help", "Enables extensive debug output to the console." NEWLINE
+                                         "On Windows, also enables PulseAudio logging to a file under \".x2go/pulse\" & cygwin sshd logging to a file under \".x2go/sshLogs\" directory, both under the USERPROFILE directory." NEWLINE
+                                         "The logs are not deleted when X2Go Client terminates."));
+  ADD_OPT ("--no-menu", QT_TRANSLATE_NOOP ("Help", "Hides menu bar."));
+  ADD_OPT ("--no-session-edit", QT_TRANSLATE_NOOP ("Help", "Disables session editing."));
+  ADD_OPT ("--maximize", QT_TRANSLATE_NOOP ("Help", "Starts maximized."));
+  ADD_OPT ("--hide", QT_TRANSLATE_NOOP ("Help", "Starts hidden (minimized to system tray where available.)"));
+  ADD_OPT ("--portable", QT_TRANSLATE_NOOP ("Help", "Starts in \"portable\" mode."));
+  ADD_OPT ("--pgp-card", QT_TRANSLATE_NOOP ("Help", "Forces OpenPGP smart card authentication."));
+  ADD_OPT ("--xinerama", QT_TRANSLATE_NOOP ("Help", "Enables Xinerama by default."));
+  ADD_OPT ("--ldap-printing", QT_TRANSLATE_NOOP ("Help", "Allows client side printing in LDAP mode."));
+  ADD_OPT ("--thinclient", QT_TRANSLATE_NOOP ("Help", "Enables thinclient mode. Starts without a window manager."));
+  ADD_OPT ("--haltbt", QT_TRANSLATE_NOOP ("Help", "Enables shutdown button."));
+  ADD_OPT ("--add-to-known-hosts", QT_TRANSLATE_NOOP ("Help", "Adds RSA key fingerprint to \".ssh/known_hosts\" if authenticity of the server can't be determined."));
+  ADD_OPT ("--ldap=<host:port:dn>", QT_TRANSLATE_NOOP ("Help", "Starts with LDAP support. Example: --ldap=ldapserver:389:o=organization,c=de"));
+  ADD_OPT ("--ldap1=<host:port>", QT_TRANSLATE_NOOP ("Help", "Defines the first LDAP failover server."));
+  ADD_OPT ("--ldap2=<host:port>", QT_TRANSLATE_NOOP ("Help", "Defines the second LDAP failover server."));
+  ADD_OPT ("--ssh-port=<port>", QT_TRANSLATE_NOOP ("Help", "Defines the remote SSH server port. Default: 22."));
+  ADD_OPT ("--client-ssh-port=<port>", QT_TRANSLATE_NOOP ("Help", "Defines the local machine's SSH server port. Needed for Client-Side Printing and File Sharing support. Default: 22."));
+  ADD_OPT ("--command=<cmd>", QT_TRANSLATE_NOOP ("Help", "Sets the default command. Default: 'KDE' (Desktop Session)"));
+  ADD_OPT ("--session=<session>", QT_TRANSLATE_NOOP ("Help", "Starts the session named \"session\"."));
+  ADD_OPT ("--user=<username>", QT_TRANSLATE_NOOP ("Help", "Sets the user name for connecting to the remote SSH server to \"username\"."));
+  ADD_OPT ("--geometry=<<W>x<H>|fullscreen>", QT_TRANSLATE_NOOP ("Help", "Sets the default window geometry. Default: 800x600."));
+  ADD_OPT ("--dpi=<dpi>", QT_TRANSLATE_NOOP ("Help", "Sets the remote X2Go Agent's DPI value to \"dpi\". Default: same as local display."));
+  ADD_OPT ("--link=<modem|isdn|adsl|wan|lan>", QT_TRANSLATE_NOOP ("Help", "Sets the default link type. Default: \"adsl\"."));
+  ADD_OPT ("--pack=<packmethod>", QT_TRANSLATE_NOOP ("Help", "Sets default pack method. Default: \"16m-jpeg-9\"."));
+  ADD_OPT ("--clipboard=<both|client|server|none>", QT_TRANSLATE_NOOP ("Help", "Sets the default clipboard mode. Default: \"both\"."));
+  ADD_OPT ("--kbd-layout=<layout>", QT_TRANSLATE_NOOP ("Help", "Sets the default keyboard layout to \"layout\". \"layout\" may be a comma-separated list."));
+  ADD_OPT ("--kbd-type=<type>", QT_TRANSLATE_NOOP ("Help", "Sets the default keyboard type."));
+  ADD_OPT ("--home=<dir>", QT_TRANSLATE_NOOP ("Help", "Sets the user's home directory."));
+  ADD_OPT ("--set-kbd=<0|1>", QT_TRANSLATE_NOOP ("Help", "Enables or disables overwriting the current keyboard settings."));
+  ADD_OPT ("--autostart=<app>", QT_TRANSLATE_NOOP ("Help", "Automatically launches the application \"app\" on session start in Published Applications mode."));
+  ADD_OPT ("--session-conf=<file>", QT_TRANSLATE_NOOP ("Help", "Defines an alternative session config file path."));
+  ADD_OPT ("--tray-icon", QT_TRANSLATE_NOOP ("Help", "Force-enables session system tray icon."));
+  ADD_OPT ("--close-disconnect", QT_TRANSLATE_NOOP ("Help", "Automatically closes X2Go Client after a disconnect."));
+  ADD_OPT ("--hide-foldersharing", QT_TRANSLATE_NOOP ("Help", "Hides all Folder-Sharing-related options."));
+  ADD_OPT ("--broker-name=<name>", QT_TRANSLATE_NOOP ("Help", "Sets the broker name to display in X2Go Client. This parameter is optional."));
+  ADD_OPT ("--broker-url=<protocol>://[username@]<host>[:port]/path", QT_TRANSLATE_NOOP ("Help", "Sets the URL of the session broker." NEWLINE
+                                                                                         "\"protocol\" must be one of \"http\", \"https\" or \"ssh\"." NEWLINE
+                                                                                         "If \"username@\" is provided, it will be pasted into the authorization dialog of X2Go Client." NEWLINE
+                                                                                         "URL examples are:" NEWLINE
+                                                                                         "    https://x2gobroker.org/cgi-bin/x2gobroker.cgi" NEWLINE
+                                                                                         "    ssh://user@x2gobroker.org:22/usr/lib/x2go/x2gobroker.pl"));
+  ADD_OPT ("--broker-ssh-key=<path to key>", QT_TRANSLATE_NOOP ("Help", "Sets the path to an SSH key to use for authentication against an SSH session broker. The client's behavior is undefined if this flag is used for non-SSH session brokers."));
+  ADD_OPT ("--broker-autologin", QT_TRANSLATE_NOOP ("Help", "Enables the use of the default SSH key or SSH agent for authentication against an SSH session broker. The client's behavior is undefined if this flag is used for non-SSH session brokers."));
+  ADD_OPT ("--broker-noauth", QT_TRANSLATE_NOOP ("Help", "Does not ask for user credentials during session broker authentication. This can be useful if you are using an HTTP(S) session broker without authentication. If you run an HTTP(S) server without authentication, but with user-specific profiles, then put the user name into the broker URL (refer to --broker-url.) The user name then will be extracted from the broker URL and be sent to the session broker. The client's behavior is undefined if this flag is used for non-HTTP(S) session brokers."));
 
 # undef NEWLINE
 # undef ADD_OPT
