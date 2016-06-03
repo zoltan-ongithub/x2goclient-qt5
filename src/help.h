@@ -46,7 +46,7 @@ namespace help {
   params_t cleanup_params (params_t params);
 
   /*
-   * Splits a string into two component.
+   * Splits a string into two components.
    * The first component is at most max_length (or 200) characters long.
    * The string is split on the nearest space surrounding max_length
    * (or max_length itself.)
