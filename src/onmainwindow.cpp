@@ -10411,7 +10411,7 @@ bool ONMainWindow::startSshd()
 
     strm<<clientdir<<"\\sshd.exe -D -p "<<clientSshPort.toInt()<<" -f "<< config <<" -h "<<key;
     if (debugging){
-        strm<<" -E "<<sshLog.toStdString();
+        strm<<" -E "<<"\""<<sshLog.toStdString()<<"\"";
     }
 
     STARTUPINFOA si;
