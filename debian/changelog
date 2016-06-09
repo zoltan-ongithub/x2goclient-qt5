@@ -59,6 +59,10 @@ x2goclient (4.0.5.2-0x2go1) UNRELEASED; urgency=medium
       X9.9 OTP tokens. Fixes: #1027. For this to work correctly, the challenge
       string needs to be displayed to the user.
 
+  [ Oleksandr Shneyder ]
+  * New upstream release (4.0.5.2):
+    - reset session data in broker config.
+
  -- X2Go Release Manager <git-admin@x2go.org>  Thu, 24 Mar 2016 23:04:42 +0100
 
 x2goclient (4.0.5.1-0x2go1) unstable; urgency=low

@@ -518,6 +518,7 @@ void HttpBrokerClient::slotRequestFinished ( QNetworkReply*  reply )
 
 void HttpBrokerClient::parseSession(QString sinfo)
 {
+    config->sessiondata="";
     x2goDebug<<"Starting parser.";
     QStringList lst=sinfo.split("SERVER:",QString::SkipEmptyParts);
     int keyStartPos=sinfo.indexOf("-----BEGIN DSA PRIVATE KEY-----");
