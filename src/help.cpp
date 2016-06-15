@@ -110,6 +110,7 @@ help::params_t help::build_params () {
   ADD_OPT ("--debug", QT_TRANSLATE_NOOP ("Help", "Enables extensive debug output to the console." NEWLINE
                                          "On Windows, also enables PulseAudio logging to a file under \".x2go/pulse\" & cygwin sshd logging to a file under \".x2go/sshLogs\" directory, both under the USERPROFILE directory." NEWLINE
                                          "The logs are not deleted when X2Go Client terminates."));
+  ADD_OPT ("--no-autoresume", QT_TRANSLATE_NOOP ("Help", "Do not resume sessions automatically."));
   ADD_OPT ("--no-menu", QT_TRANSLATE_NOOP ("Help", "Hides menu bar."));
   ADD_OPT ("--no-session-edit", QT_TRANSLATE_NOOP ("Help", "Disables session editing."));
   ADD_OPT ("--maximize", QT_TRANSLATE_NOOP ("Help", "Starts maximized."));

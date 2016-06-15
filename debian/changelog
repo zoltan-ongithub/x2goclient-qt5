@@ -62,6 +62,7 @@ x2goclient (4.0.5.2-0x2go1) UNRELEASED; urgency=medium
   [ Oleksandr Shneyder ]
   * New upstream release (4.0.5.2):
     - reset session data in broker config.
+    - add "--no-autoresume" parameter.
 
  -- X2Go Release Manager <git-admin@x2go.org>  Thu, 24 Mar 2016 23:04:42 +0100
 

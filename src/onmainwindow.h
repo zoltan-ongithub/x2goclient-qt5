@@ -613,6 +613,7 @@ private:
     bool defaultXinerama;
     bool cardStarted;
     bool defaultSetKbd;
+    bool autoresume;
     bool showExport;
     bool usePGPCard;
     bool miniMode;

@@ -63,6 +63,7 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
 
     setFocusPolicy ( Qt::NoFocus );
     installTranslator();
+    autoresume=true;
     cleanAllFiles=false;
     drawMenu=true;
     usePGPCard=false;
@@ -3677,7 +3678,7 @@ void ONMainWindow::slotListSessions ( bool result,QString output,
             /* Check getSessionFromString for what this "invalid" string means. */
             if ((s.agentPid != "invalid") && (s.status == "S")
                 && (isColorDepthOk (wd.depth (), s.colorDepth))
-                && (s.command == selectedCommand))
+                && (s.command == selectedCommand)&&autoresume)
                 resumeSession ( s );
             else
             {
@@ -6915,6 +6916,12 @@ bool ONMainWindow::parseParameter ( QString param )
     if (param == "--debug")
     {
         ONMainWindow::debugging = true;
+        return true;
+    }
+
+    if (param == "--no-autoresume")
+    {
+        autoresume=false;
         return true;
     }
 
