@@ -48,7 +48,6 @@ x2goclient (4.0.5.2-0x2go1) UNRELEASED; urgency=medium
     - res/i18n/x2goclient_fi.ts: update Finnish translation file.
     - res/i18n/x2goclient_fi.ts: update Finnish translation file.
 
-
   [ Sébastien Ducoulombier ]
   * New upstream version (4.0.5.2):
     - misc {src/,x2goclient.pro}: port to Qt5.
