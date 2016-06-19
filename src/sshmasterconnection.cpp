@@ -56,8 +56,9 @@
 static bool isLibSshInited=false;
 
 const QString SshMasterConnection::challenge_auth_code_prompts_[] = {
-  "Verification code:",
-  "One-time password (OATH) for"
+  "Verification code:",            // GA   (http://github.com/google/google-authenticator)
+  "One-time password (OATH) for",  // OATH (http://www.nongnu.org/oath-toolkit/pam_oath.html)
+  "passcode:"                      // MOTP (http://motp.sourceforge.net)
 };
 
 

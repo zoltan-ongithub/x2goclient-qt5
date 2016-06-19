@@ -57,6 +57,8 @@ x2goclient (4.0.5.2-0x2go1) UNRELEASED; urgency=medium
     - src/{onmainwindow,sshmasterconnection}.{cpp,h}: add support for ANSI
       X9.9 OTP tokens. Fixes: #1027. For this to work correctly, the challenge
       string needs to be displayed to the user.
+    - src/sshmasterconnection.cpp: add support for Mobile OTP tokens and
+      references for the other token types. Fixes: #1036.
 
   [ Oleksandr Shneyder ]
   * New upstream release (4.0.5.2):
