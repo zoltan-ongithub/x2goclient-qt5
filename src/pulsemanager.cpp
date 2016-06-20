@@ -21,6 +21,12 @@
 #include <stdlib.h>
 #include <QSysInfo>
 
+#if QT_VERSION < 0x050000
+#include "x2goutils.h"
+#else /* QT_VERSION < 0x050000 */
+#include <QStandardPaths>
+#endif /* QT_VERSION < 0x050000 */
+
 #include "pulsemanager.h"
 #include "x2gologdebug.h"
 
@@ -54,8 +60,69 @@ PulseManager::PulseManager () : app_dir_ (QApplication::applicationDirPath ()),
 
   /* Set server binary and working dir paths. */
 #ifdef Q_OS_DARWIN
+  /* Assume bundled PA first. */
   server_working_dir_ = QString (app_dir_ + "/../exe/");
   server_binary_ = QString (server_working_dir_ + "/pulseaudio");
+
+#if QT_VERSION < 0x050000
+  QProcessEnvironment tmp_env = QProcessEnvironment::systemEnvironment ();
+  QString path_val = tmp_env.value ("PATH");
+
+  QStringList to_front, to_back;
+  to_front << "/opt/local/bin";
+  to_back << "/usr/local/bin";
+
+  add_to_path (path_val, to_back);
+  add_to_path (path_val, to_front, false);
+
+  server_binary_ = find_binary (server_working_dir_, "pulseaudio");
+
+  if (server_binary_.isEmpty ()) {
+    server_binary_ = find_binary (path_val, "pulseaudio");
+
+    if (server_binary_.isEmpty ()) {
+      x2goErrorf (29) << "Unable to find PulseAudio binary. Neither bundled, nor found in $PATH nor additional directories.";
+      abort ();
+    }
+  }
+#else /* QT_VERSION < 0x050000 */
+  QStringList search_paths;
+  search_paths << server_working_dir_;
+
+  server_binary_ = QStandardPaths::findExecutable ("pulseaudio", search_paths);
+
+  if (server_binary_.isEmpty ()) {
+    search_paths = QStringList ();
+    search_paths << "/opt/local/bin"; /* MacPorts default prefix, FIXME: might need to make that configurable. */
+
+    server_binary_ = QStandardPaths::findExecutable ("pulseaudio", search_paths);
+
+    if (server_binary_.isEmpty ()) {
+      search_paths = QStringList ();
+
+      server_binary_ = QStandardPaths::findExecutable ("pulseaudio", search_paths);
+
+      if (server_binary_.isEmpty ()) {
+        search_paths = QStringList ();
+        search_paths << "/usr/local/bin"; /* Homebrew or random stuff. Probably even both intermingled... */
+
+        server_binary_ = QStandardPaths::findExecutable ("pulseaudio", search_paths);
+
+        if (server_binary_.isEmpty ()) {
+          x2goErrorf (28) << "Unable to find PulseAudio binary. Neither bundled, nor found in $PATH nor additional directories.";
+          abort ();
+        }
+      }
+    }
+  }
+#endif /* QT_VERSION < 0x050000 */
+
+  QFileInfo tmp_file_info = QFileInfo (server_binary_);
+  server_working_dir_ = tmp_file_info.canonicalPath ();
+
+  x2goDebug << "Found PA binary as " << server_binary_ << endl;
+  x2goDebug << "Corresponding working dir: " << server_working_dir_ << endl;
+
 #elif defined (Q_OS_WIN)
   server_working_dir_ = QString (app_dir_ + "/pulse/");
   server_binary_ = QString (app_dir_ + "/pulse/pulseaudio.exe");
