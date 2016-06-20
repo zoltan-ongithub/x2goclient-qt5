@@ -57,6 +57,14 @@ void show_XQuartz_generic_error (const QString &main_error, const QString &addit
  * Ex.: <add_entry1>:<add_entry2>:...:<orig_path>
  */
 QString add_to_path (const QString &orig_path, const QStringList &add, const bool back = true);
+
+/*
+ * Returns the first existing path that contains binary_name.
+ * Iff no component contains a binary called binary_name, an empty path is returned.
+ *
+ * Iff path is empty, (only) the current working dir is searched.
+ */
+QString find_binary (const QString &path, const QString &binary_name);
 #endif /* defined (Q_OS_DARWIN) */
 
 #endif /* !defined (X2GOUTILS_H) */

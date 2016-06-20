@@ -24,6 +24,7 @@
 #include <QFont>
 #include <QFontInfo>
 #include <QObject>
+#include <QStringList>
 
 #include "x2goutils.h"
 #include "onmainwindow.h"
@@ -281,6 +282,42 @@ QString add_to_path (const QString &orig_path, const QStringList &add, const boo
     for (int i = (clean_add.size () - 1); i > 0; --i) {
       if (!found[i]) {
         ret.prepend (QString (clean_add[i] + ":"));
+      }
+    }
+  }
+
+  return (ret);
+}
+
+QString find_binary (const QString &path, const QString &binary_name) {
+  QString ret = "";
+
+  if (!(binary_name.isEmpty ())) {
+    QString cur_path = "";
+    QString tmp_path = path;
+
+    if (!(path.isEmpty ())) {
+      tmp_path = "./";
+    }
+
+    QStringList path_list = tmp_path.split (":");
+
+    for (QStringList const_it = path_list.constBegin (); const_it != path_list.constEnd (); ++const_it) {
+      cur_path = *const_it;
+
+      if (cur_path.isEmpty ()) {
+        cur_path = "./";
+      }
+
+      cur_path = QDir (cur_path).absolutePath ();
+
+      cur_path += "/" + binary_name;
+
+      QFileInfo tmp_file_info = QFileInfo (cur_path);
+
+      if ((tmp_file_info.exists ()) && (tmp_file_info.isExecutable ())) {
+        ret = tmp_file_info.canonicalFilePath ();
+        break;
       }
     }
   }
