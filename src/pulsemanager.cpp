@@ -647,6 +647,8 @@ void PulseManager::slot_play_startup_sound () {
 #elif defined (Q_OS_WIN)
     playFileBinary += "/pulse/paplay.exe";
     playFileFile += "/startup.wav";
+#else
+    /* FIXME: implement Linux section. */
 #endif // defined (Q_OS_DARWIN)
 
     QStringList args (play_file_file);

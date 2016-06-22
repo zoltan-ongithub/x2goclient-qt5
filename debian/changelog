@@ -338,6 +338,8 @@ x2goclient (4.0.5.3-0x2go1) UNRELEASED; urgency=medium
     - src/pulsemanager.cpp: auto-detect PA binary in $PATH and MacPorts
       default prefix as well on OS X.
     - src/pulsemanager.cpp: add comments to Qt 4 code part.
+    - src/pulsemanager.cpp: add reminder for Linux-implementation in
+      play_startup_sound ().
 
   [ Bernard Cafarelli ]
   * New upstream version (4.0.5.3):
