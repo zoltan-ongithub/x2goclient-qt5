@@ -343,6 +343,8 @@ x2goclient (4.0.5.3-0x2go1) UNRELEASED; urgency=medium
     - src/x2goutils.cpp: fix compile error.
     - src/pulsemanager.h: add new system_pulse_ variable to indicate that
       a system PA binary shall be used.
+    - src/pulsemanager.cpp: correctly initialize and set system_pulse_ when
+      required.
 
   [ Bernard Cafarelli ]
   * New upstream version (4.0.5.3):

@@ -45,7 +45,8 @@ PulseManager::PulseManager () : app_dir_ (QApplication::applicationDirPath ()),
                                 pulse_version_misc_ (""),
                                 record_ (true),
                                 playback_ (true),
-                                debug_ (false) {
+                                debug_ (false),
+                                system_pulse_ (false) {
   pulse_dir_ = QDir (QDir::homePath ());
   pulse_dir_.mkpath (pulse_dir_.absolutePath () + pulse_X2Go_ + "/tmp");
   pulse_dir_.cd (pulse_X2Go_.mid (1));
@@ -84,6 +85,9 @@ PulseManager::PulseManager () : app_dir_ (QApplication::applicationDirPath ()),
       x2goErrorf (29) << "Unable to find PulseAudio binary. Neither bundled, nor found in $PATH nor additional directories.";
       abort ();
     }
+    else {
+      system_pulse_ = true;
+    }
   }
 #else /* QT_VERSION < 0x050000 */
   QStringList search_paths;
@@ -114,6 +118,14 @@ PulseManager::PulseManager () : app_dir_ (QApplication::applicationDirPath ()),
         }
       }
     }
+
+    /*
+     * The detection above either failed or succeeded.
+     * Failure means that the program already stopped,
+     * success means that all code reaches this point.
+     * Be careful when refactoring this code.
+     */
+    system_pulse_ = true;
   }
 #endif /* QT_VERSION < 0x050000 */
 
