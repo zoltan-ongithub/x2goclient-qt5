@@ -349,6 +349,7 @@ x2goclient (4.0.5.3-0x2go1) UNRELEASED; urgency=medium
       show_RichText_Generic_MsgBox () and its wrappers.
     - src/pulsemanager.cpp: add error message boxes throughout PulseManager.
       Don't just abort () the program.
+    - src/x2goutils.h: fix compile error due to typo.
 
   [ Bernard Cafarelli ]
   * New upstream version (4.0.5.3):

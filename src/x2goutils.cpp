@@ -118,7 +118,7 @@ void show_RichText_Generic_MsgBox (QMessageBox::Icon icon, const QString &main_t
   msg_box.exec ();
 }
 
-void show_RichText_WarningMsgBox (const QString &main_text, const QString &informative_text bool app_modal) {
+void show_RichText_WarningMsgBox (const QString &main_text, const QString &informative_text, bool app_modal) {
   show_RichText_Generic_MsgBox (QMessageBox::Warning, main_text, informative_text, app_modal);
 }
 
