@@ -702,14 +702,20 @@ void PulseManager::create_client_dir () {
 void PulseManager::slot_play_startup_sound () {
   if (debug_) {
     QProcess play_file (0);
-    QString play_file_binary (app_dir_);
-    QString play_file_file (play_file_binary);
+
+    /*
+     * Assume paplay is located at the same place as
+     * the pulseaudio binary.
+     */
+    QString play_file_binary (server_working_dir_);
+
+    QString play_file_file (app_dir_);
 
 #ifdef Q_OS_DARWIN
-    play_file_binary += "/../exe/paplay";
+    play_file_binary += "/paplay";
     play_file_file += "/../Resources/startup.wav";
 #elif defined (Q_OS_WIN)
-    play_file_binary += "/pulse/paplay.exe";
+    play_file_binary += "/paplay.exe";
     play_file_file += "/startup.wav";
 #else
     /* FIXME: implement Linux section. */
