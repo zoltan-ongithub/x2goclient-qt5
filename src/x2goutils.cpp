@@ -326,6 +326,10 @@ QString find_binary (const QString &path, const QString &binary_name) {
         ret = tmp_file_info.canonicalFilePath ();
         break;
       }
+      else {
+        x2goDebug << "Binary at " << cur_path << " either does not exist (" << !(tmp_file_info.exists ())
+                  << ") or is not executable (" << tmp_file_info.isExecutable () << ")";
+      }
     }
   }
 
