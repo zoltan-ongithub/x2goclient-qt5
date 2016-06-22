@@ -145,8 +145,8 @@ PulseManager::PulseManager () : app_dir_ (QApplication::applicationDirPath ()),
   QFileInfo tmp_file_info = QFileInfo (server_binary_);
   server_working_dir_ = tmp_file_info.canonicalPath ();
 
-  x2goDebug << "Found PA binary as " << server_binary_ << endl;
-  x2goDebug << "Corresponding working dir: " << server_working_dir_ << endl;
+  x2goDebug << "Found PA binary as " << server_binary_;
+  x2goDebug << "Corresponding working dir: " << server_working_dir_;
 
 #elif defined (Q_OS_WIN)
   server_working_dir_ = QString (app_dir_ + "/pulse/");
