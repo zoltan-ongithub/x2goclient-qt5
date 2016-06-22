@@ -69,8 +69,8 @@ PulseManager::PulseManager () : app_dir_ (QApplication::applicationDirPath ()),
   QString path_val = tmp_env.value ("PATH");
 
   QStringList to_front, to_back;
-  to_front << "/opt/local/bin";
-  to_back << "/usr/local/bin";
+  to_front << "/opt/local/bin"; /* MacPorts default prefix, FIXME: might need to make that configurable. */
+  to_back << "/usr/local/bin"; /* Homebrew or random stuff. Probably even both intermingled... */
 
   add_to_path (path_val, to_back);
   add_to_path (path_val, to_front, false);
