@@ -263,6 +263,14 @@ void PulseManager::start_generic () {
   }
   else {
     x2goErrorf (27) << "PulseAudio failed to start! Sound support will not be available.";
+    show_RichText_WarningMsgBox (tr ("PulseAudio failed to start!"),
+                                 tr ("Sound support will not be available.\n\n"
+                                     "If you downloaded the bundled, pre-compiled version from the official home page, "
+                                     "please report a bug on:\n"
+                                     "<center><a href=\"https://wiki.x2go.org/doku.php/wiki:bugs\">"
+                                       "https://wiki.x2go.org/doku.php/wiki:bugs"
+                                     "</a></center>\n"),
+                                 true);
   }
 }
 
@@ -731,6 +739,14 @@ void PulseManager::slot_play_startup_sound () {
     }
     else {
       x2goErrorf (26) << "Unable to play startup sound! Something may be wrong.";
+      show_RichText_WarningMsgBox (tr ("Unable to play startup sound."),
+                                   tr ("If you downloaded the bundled, pre-compiled version from the official home page "
+                                       "or the upstream Linux packages, "
+                                       "please report a bug on:\n"
+                                       "<center><a href=\"https://wiki.x2go.org/doku.php/wiki:bugs\">"
+                                         "https://wiki.x2go.org/doku.php/wiki:bugs"
+                                       "</a></center>\n"),
+                                   true);
     }
   }
 }
