@@ -269,15 +269,20 @@ void PulseManager::start_generic () {
 void PulseManager::start_osx () {
   server_args_ = QStringList ();
   server_args_ << "--exit-idle-time=-1" << "-n"
-               << "-F" << pulse_dir_.absolutePath () + "/config.pa"
-               << "-p"
-               << QDir (app_dir_
-                        + "/../Frameworks/pulse-"
-                        + QString::number (pulse_version_major_)
-                        + "."
-                        + QString::number (pulse_version_minor_)
-                        + "/modules").absolutePath ()
-               << "--high-priority";
+               << "-F" << pulse_dir_.absolutePath () + "/config.pa";
+
+  if (!system_pulse_) {
+    server_args_ << "-p"
+                 << QDir (app_dir_
+                          + "/../Frameworks/pulse-"
+                          + QString::number (pulse_version_major_)
+                          + "."
+                          + QString::number (pulse_version_minor_)
+                          + "/modules").absolutePath ();
+  }
+
+  server_args_ << "--high-priority";
+
   if (debug_) {
     server_args_ << "--log-level=debug"
                  << "--verbose"
