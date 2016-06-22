@@ -339,7 +339,7 @@ x2goclient (4.0.5.3-0x2go1) UNRELEASED; urgency=medium
       default prefix as well on OS X.
     - src/pulsemanager.cpp: add comments to Qt 4 code part.
     - src/pulsemanager.cpp: add reminder for Linux-implementation in
-      play_startup_sound ().
+      slot_play_startup_sound ().
     - src/x2goutils.cpp: fix compile error.
     - src/pulsemanager.h: add new system_pulse_ variable to indicate that
       a system PA binary shall be used.
