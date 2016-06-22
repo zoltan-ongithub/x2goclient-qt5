@@ -356,6 +356,8 @@ x2goclient (4.0.5.3-0x2go1) UNRELEASED; urgency=medium
       system-PA version.
     - src/pulsemanager.cpp: add warning message boxes where appropriate.
     - src/pulsemanager.cpp: remove extraneous newlines from debug output.
+    - src/x2goutils.cpp: fix faulty logic in find_binary (): only reset the
+      given path to CWD iff it's actually empty. Not the other way around.
 
   [ Bernard Cafarelli ]
   * New upstream version (4.0.5.3):

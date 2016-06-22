@@ -303,7 +303,7 @@ QString find_binary (const QString &path, const QString &binary_name) {
     QString cur_path = "";
     QString tmp_path = path;
 
-    if (!(path.isEmpty ())) {
+    if (path.isEmpty ()) {
       tmp_path = "./";
     }
 
