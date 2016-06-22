@@ -118,6 +118,8 @@ class PulseManager: public QObject {
     bool playback_;
 
     bool debug_;
+
+    bool system_pulse_;
 };
 
 #endif // PULSEMANAGER_H
