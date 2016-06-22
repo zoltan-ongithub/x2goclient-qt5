@@ -302,7 +302,7 @@ QString find_binary (const QString &path, const QString &binary_name) {
 
     QStringList path_list = tmp_path.split (":");
 
-    for (QStringList const_it = path_list.constBegin (); const_it != path_list.constEnd (); ++const_it) {
+    for (QStringList::const_iterator const_it = path_list.constBegin (); const_it != path_list.constEnd (); ++const_it) {
       cur_path = *const_it;
 
       if (cur_path.isEmpty ()) {
