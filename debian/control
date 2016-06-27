@@ -5,6 +5,7 @@ Maintainer: X2Go Developers <x2go-dev@lists.x2go.org>
 Uploaders:
  Oleksandr Shneyder <oleksandr.shneyder@obviously-nice.de>,
  Mike Gabriel <mike.gabriel@das-netzwerkteam.de>,
+ Mihai Moldovan <ionic@ionic.de>,
 Build-Depends:
  debhelper (>= 7.0.50~),
  libqt4-dev,
