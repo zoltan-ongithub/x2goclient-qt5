@@ -128,6 +128,7 @@ Section "X2Go Client (required)" base
   File /a /x x2goclient.debug.exe /x pageant.exe /x puttygen.exe "x2goclient\*.*"
   File /r "x2goclient\pulse"
   File /r /x "fonts" "x2goclient\VcXsrv"
+  File "..\res\audio\startup.wav"
 
   ;Store installation folder
   WriteRegStr HKLM "Software\x2goclient" "" $INSTDIR

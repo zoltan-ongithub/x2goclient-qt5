@@ -359,6 +359,7 @@ x2goclient (4.0.5.3-0x2go1) UNRELEASED; urgency=medium
     - src/x2goutils.cpp: fix faulty logic in find_binary (): only reset the
       given path to CWD iff it's actually empty. Not the other way around.
     - src/x2goutils.cpp: add some debug logging to find_binary ().
+    - nsis/x2goclient.nsi: add startup.wav to installer package.
 
   [ Bernard Cafarelli ]
   * New upstream version (4.0.5.3):
