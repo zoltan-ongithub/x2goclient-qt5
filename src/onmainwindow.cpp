@@ -5513,6 +5513,7 @@ void ONMainWindow::slotTunnelOk(int)
 #if defined ( Q_OS_DARWIN )
     // setting /usr/X11/bin to find xauth
     // /usr/X11R6/bin is added for compatibility reasons with OS X 10.4.
+    /* FIXME: don't just overwrite this stuff, use add_to_path () instead. */
     env.insert (
         0,
         "PATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/usr/X11R6/bin" );
@@ -8640,6 +8641,8 @@ void ONMainWindow::slotStartPGPAuth()
     QStringList arguments;
     arguments<<"--multi-server";
 
+    /* FIXME: probably use add_to_path () instead. */
+
     QProcessEnvironment scdaemon_env = QProcessEnvironment::systemEnvironment ();
 
     QString path_env_separator = ":";
@@ -9107,6 +9110,7 @@ QString ONMainWindow::getXDisplay()
 
             x2goDebug<< "Starting the X server on free display port.";
 
+            /* FIXME: why not passing our current environment, maybe extended via add_to_path ()? */
             env.insert (0, "PATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11R6/bin");
 
             startx->setProcessEnvironment (env);
