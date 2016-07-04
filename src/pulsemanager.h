@@ -38,6 +38,7 @@
 #endif /* defined (Q_OS_WIN) */
 
 #include "x2gosettings.h"
+#include "wapi.h"
 
 class PulseManager: public QObject {
   Q_OBJECT;
