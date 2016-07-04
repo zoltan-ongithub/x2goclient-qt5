@@ -10301,7 +10301,7 @@ void ONMainWindow::generateEtcFiles()
          "AuthorizedKeysFile \"" << authKeyPath << "\"\n" <<
 #ifdef Q_OS_WIN
          "Subsystem shell "<< wapiShortFileName ( appDir) +"/sh"+"\n"<<
-         "Subsystem sftp "<< wapiShortFileName ( appDir) +"/sftp-server"+"\n"<<
+         "Subsystem sftp "<< wapiShortFileName ( appDir) +"/sftp-server"+"\n";
 #else
          "Subsystem sftp "
     /* This may need some sanitization, i.e., appDir could potentially include whitespace. */
