@@ -360,6 +360,9 @@ x2goclient (4.0.5.3-0x2go1) UNRELEASED; urgency=medium
       given path to CWD iff it's actually empty. Not the other way around.
     - src/x2goutils.cpp: add some debug logging to find_binary ().
     - nsis/x2goclient.nsi: add startup.wav to installer package.
+    - src/: new file windows_stdint.h for Windows-compatibility when using
+      std::(u)int*_t types. These are only available with GCC in C++11 mode on
+      Windows for some reason.
 
   [ Bernard Cafarelli ]
   * New upstream version (4.0.5.3):
