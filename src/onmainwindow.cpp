@@ -8320,8 +8320,13 @@ void ONMainWindow::slotRetExportDir ( bool result,QString output,
     /*
      * Do the user SSHD/global SSHD dance here and either use the
      * private .x2go/.ssh or the global .ssh dir.
+     *
+     * Note: Windows is implicitly always using an user-mode SSH server.
      */
-    if (userSshd) {
+#ifndef Q_OS_WIN
+    if (userSshd)
+#endif /* !defined (Q_OS_WIN) */
+    {
       authorized_keys_dir = QDir (authorized_keys_dir.absolutePath () + "/.x2go/");
     }
 
@@ -9598,15 +9603,23 @@ void ONMainWindow::startX2goMount()
     /*
      * Do the user SSHD/global SSHD dance here and either use the
      * private .x2go/.ssh or the global .ssh dir.
+     *
+     * Note: Windows is implicitly always using an user-mode SSH server.
      */
-    if (userSshd) {
+#ifndef Q_OS_WIN
+    if (userSshd)
+#endif /* !defined (Q_OS_WIN) */
+    {
       authorized_keys_dir = QDir (authorized_keys_dir.absolutePath () + "/.x2go/");
     }
 
     authorized_keys_dir = QDir (authorized_keys_dir.absolutePath () + "/.ssh/");
     QFile authorized_keys_file (authorized_keys_dir.absolutePath () + "/authorized_keys");
 
-    if (userSshd) {
+#ifndef Q_OS_WIN
+    if (userSshd)
+#endif /* !defined (Q_OS_WIN) */
+    {
       x2goDebug << "Creating dir " << authorized_keys_dir.absolutePath ();
       authorized_keys_dir.mkpath (authorized_keys_dir.absolutePath ());
     }

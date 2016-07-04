@@ -365,6 +365,10 @@ x2goclient (4.0.5.3-0x2go1) UNRELEASED; urgency=medium
       Windows for some reason.
     - src/pulsemanager.h: use windows_stdint.h header on Windows, cstdint
       otherwise.
+    - src/onmainwindow.cpp: short out code parts unconditionally checking for
+      the userSshd variable. We don't need it on Windows (and don't define it
+      on purpose) because using an user-mode SSH daemon is implied there (for
+      now.)
 
   [ Bernard Cafarelli ]
   * New upstream version (4.0.5.3):
