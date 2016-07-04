@@ -435,7 +435,6 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
 #ifdef Q_OS_WIN
     winServersReady=false;
     saveCygnusSettings();
-    pulseVersionIsLegacy=false;
 #endif
     initPassDlg();
     initSelectSessDlg();
