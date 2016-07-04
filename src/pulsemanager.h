@@ -30,7 +30,12 @@
 #include <QApplication>
 #include <QTimer>
 #include <assert.h>
+
+#ifdef Q_OS_WIN
+#include "windows_stdint.h"
+#else /* defined (Q_OS_WIN) */
 #include <cstdint>
+#endif /* defined (Q_OS_WIN) */
 
 #include "x2gosettings.h"
 

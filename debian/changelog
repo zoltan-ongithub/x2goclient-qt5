@@ -363,6 +363,8 @@ x2goclient (4.0.5.3-0x2go1) UNRELEASED; urgency=medium
     - src/: new file windows_stdint.h for Windows-compatibility when using
       std::(u)int*_t types. These are only available with GCC in C++11 mode on
       Windows for some reason.
+    - src/pulsemanager.h: use windows_stdint.h header on Windows, cstdint
+      otherwise.
 
   [ Bernard Cafarelli ]
   * New upstream version (4.0.5.3):
