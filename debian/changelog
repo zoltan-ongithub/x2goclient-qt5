@@ -377,6 +377,9 @@ x2goclient (4.0.5.3-0x2go1) UNRELEASED; urgency=medium
       variable initialization on Windows to silence compiler warning.
     - src/onmainwindow.cpp: fix compile error on Windows after moving some
       code around.
+    - src/onmainwindow.cpp: use correct C++ universal initializer for
+      initializing in_addr-type variable, the C-style universal zero
+      initializer won't cut it here.
 
   [ Bernard Cafarelli ]
   * New upstream version (4.0.5.3):

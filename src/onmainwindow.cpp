@@ -9862,7 +9862,7 @@ bool ONMainWindow::isServerRunning ( int port )
     int iResult;
     WSADATA wsaData;
 
-    struct in_addr addr = {{ 0 }};
+    struct in_addr addr = {{ }};
 
     iResult = WSAStartup(MAKEWORD(2, 2), &wsaData);
     if (iResult != 0)
