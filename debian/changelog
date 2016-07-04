@@ -373,6 +373,8 @@ x2goclient (4.0.5.3-0x2go1) UNRELEASED; urgency=medium
       initialization in Windows-only code.
     - src/onmainwindow.cpp: drop obsolete pulseVersionIsLegacy variable
       initialization in Windows-only code.
+    - src/onmainwindow.cpp: add another pair of braces to in_addr-type
+      variable initialization on Windows to silence compiler warning.
 
   [ Bernard Cafarelli ]
   * New upstream version (4.0.5.3):
