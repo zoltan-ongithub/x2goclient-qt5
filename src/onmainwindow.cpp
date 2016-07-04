@@ -170,7 +170,6 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
     homeDir=QDir::homePath();
 
 #ifdef Q_OS_WIN
-    pulseVersionTest=0l;
     xorg=0l;
     xDisplay=0;
 #endif

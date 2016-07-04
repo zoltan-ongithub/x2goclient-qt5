@@ -369,6 +369,8 @@ x2goclient (4.0.5.3-0x2go1) UNRELEASED; urgency=medium
       the userSshd variable. We don't need it on Windows (and don't define it
       on purpose) because using an user-mode SSH daemon is implied there (for
       now.)
+    - src/onmainwindow.cpp: drop obsolete pulseVersionTest variable
+      initialization in Windows-only code.
 
   [ Bernard Cafarelli ]
   * New upstream version (4.0.5.3):
