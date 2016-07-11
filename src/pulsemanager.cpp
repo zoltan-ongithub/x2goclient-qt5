@@ -51,10 +51,10 @@ PulseManager::PulseManager () : app_dir_ (QApplication::applicationDirPath ()),
   pulse_dir_.cd (pulse_X2Go_.mid (1));
 
   env_ = QProcessEnvironment::systemEnvironment ();
-  env_.insert ("HOME", pulse_dir_.absolutePath ());
-  env_.insert ("TEMP", pulse_dir_.absolutePath () + "/tmp");
+  env_.insert ("HOME", QDir::toNativeSeparators (pulse_dir_.absolutePath ()));
+  env_.insert ("TEMP", QDir::toNativeSeparators (pulse_dir_.absolutePath () + "/tmp"));
 #ifdef Q_OS_WIN
-  env_.insert ("USERPROFILE", pulse_dir_.absolutePath ());
+  env_.insert ("USERPROFILE", QDir::toNativeSeparators (pulse_dir_.absolutePath ()));
   env_.insert ("USERNAME", "pulseuser");
 #endif // defined (Q_OS_WIN)
 
@@ -277,16 +277,16 @@ void PulseManager::start_generic () {
 void PulseManager::start_osx () {
   server_args_ = QStringList ();
   server_args_ << "--exit-idle-time=-1" << "-n"
-               << "-F" << pulse_dir_.absolutePath () + "/config.pa";
+               << "-F" << QDir::toNativeSeparators (pulse_dir_.absolutePath () + "/config.pa");
 
   if (!system_pulse_) {
     server_args_ << "-p"
-                 << QDir (app_dir_
-                          + "/../Frameworks/pulse-"
-                          + QString::number (pulse_version_major_)
-                          + "."
-                          + QString::number (pulse_version_minor_)
-                          + "/modules").absolutePath ();
+                 << QDir::toNativeSeparators (QDir (app_dir_
+                                                    + "/../Frameworks/pulse-"
+                                                    + QString::number (pulse_version_major_)
+                                                    + "."
+                                                    + QString::number (pulse_version_minor_)
+                                                    + "/modules").absolutePath ());
   }
 
   server_args_ << "--high-priority";
@@ -294,7 +294,7 @@ void PulseManager::start_osx () {
   if (debug_) {
     server_args_ << "--log-level=debug"
                  << "--verbose"
-                 << "--log-target=file:" + pulse_dir_.absolutePath () + "/pulse.log";
+                 << "--log-target=file:" + QDir::toNativeSeparators (pulse_dir_.absolutePath () + "/pulse.log");
   }
 
   if (generate_server_config () && generate_client_config ()) {
@@ -322,7 +322,7 @@ void PulseManager::start_win () {
   if (debug_) {
     server_args_ << "--log-level=debug"
                  << "--verbose"
-                 << "--log-target=file:" + pulse_dir_.absolutePath () + "\\pulse.log";
+                 << "--log-target=file:" + QDir::toNativeSeparators (pulse_dir_.absolutePath () + "/pulse.log");
   }
 
   /*
