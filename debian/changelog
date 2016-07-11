@@ -381,6 +381,12 @@ x2goclient (4.0.5.3-0x2go1) UNRELEASED; urgency=medium
       initializing in_addr-type variable, the C-style universal zero
       initializer won't cut it here.
     - src/pulsemanager.h: include accidentally omitted wapi.h header file.
+    - src/pulsemanager.cpp: make PA version parsing function more generic and
+      don't expect that a number is always terminated with a period or dash.
+      Especially on Windows, with a PA version number of "6.0", this lead to
+      errors. OS X was fine with its "8.0.0-something" version number, but the
+      optional part at the end or even the micro version number could be
+      missing any time.
 
   [ Bernard Cafarelli ]
   * New upstream version (4.0.5.3):

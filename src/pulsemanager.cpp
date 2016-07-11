@@ -383,28 +383,32 @@ void PulseManager::fetch_pulseaudio_version () {
         tmp_str = tmp_str.mid (needle.size ());
 
         /* We should be at a digit now. */
-        bool numbers_found[3] = { false, false, false };
-        QString tmp_ret_str = QString ("");
+        bool numbers_started[3] = { false, false, false };
+        bool numbers_finished[3] = { false, false, false };
+        bool numbers_skip[3] = { false, false, false };
+        QString tmp_remaining_str = QString ("");
+        QString numbers[3] = { };
         for (QString::const_iterator cit = tmp_str.begin (); cit != tmp_str.end (); ++cit) {
-          if (!(numbers_found[0])) {
+          if (!(numbers_finished[0])) {
             if (((*cit) >= '0') && ((*cit) <= '9')) {
-              tmp_ret_str.append (*cit);
+              numbers[0].append (*cit);
+              numbers_started[0] = true;
             }
             else if ((*cit) == '.') {
-              /* First number part complete, let's convert the string and skip the period. */
-              numbers_found[0] = true;
-              bool convert_success = false;
-              pulse_version_major_ = tmp_ret_str.toUInt (&convert_success, 10);
+              /* First number part complete and more to come, mark as done. */
+              numbers_finished[0] = true;
+            }
+            else if ((*cit) == '-') {
+              /* First number part complete and no more numbers, mark as done, and... */
+              numbers_finished[0] = true;
 
-              if (!convert_success) {
-                x2goErrorf (20) << "Unable to convert major version number string to integer.";
-                show_RichText_ErrorMsgBox (tr ("Error fetching PulseAudio version number!"),
-                                           tr ("Unable to convert major version number string to integer."),
-                                           true);
-                abort ();
-              }
-
-              tmp_ret_str = QString ("");
+              /*
+               * Skip all the other numbers (i.e., assume the default value.)
+               * This doesn't make a huge lot of sense for the first number,
+               * but let's make this robust...
+               */
+              numbers_skip[1] = true;
+              numbers_skip[2] = true;
             }
             else {
               x2goErrorf (21) << "Unexpected character found when parsing version string for major version number: '" << QString (*cit) << "'.";
@@ -415,36 +419,21 @@ void PulseManager::fetch_pulseaudio_version () {
               abort ();
             }
           }
-          else if (!(numbers_found[1])) {
+          else if (!(numbers_finished[1])) {
             if (((*cit) >= '0') && ((*cit) <= '9')) {
-              tmp_ret_str.append (*cit);
+              numbers[1].append (*cit);
+              numbers_started[1] = true;
             }
-            else if (((*cit) == '.') || ((*cit) == '-')) {
-              /*
-               * Second number part complete, let's convert the string and then check whether
-               * we stopped at a period or a dash character.
-               */
-              numbers_found[1] = true;
-              bool convert_success = false;
-              pulse_version_minor_ = tmp_ret_str.toUInt (&convert_success, 10);
+            else if ((*cit) == '.') {
+              /* Second number part complete and more to come, mark as done. */
+              numbers_finished[1] = true;
+            }
+            else if ((*cit) == '-') {
+              /* Second number part complete and no more numbers, mark as done, and... */
+              numbers_finished[1] = true;
 
-              if (!convert_success) {
-                x2goErrorf (22) << "Unable to convert minor version number string to integer.";
-                show_RichText_ErrorMsgBox (tr ("Error fetching PulseAudio version number!"),
-                                           tr ("Unable to convert minor version number string to integer."),
-                                           true);
-                abort ();
-              }
-
-              tmp_ret_str = QString ("");
-
-              if ((*cit) == '-') {
-                /*
-                 * There will be no micro version, skip it entirely and assume the default
-                 * value of zero.
-                 */
-                numbers_found[2] = true;
-              }
+              /* Skip all the other numbers (i.e., assume the default value.) */
+              numbers_skip[2] = true;
             }
             else {
               x2goErrorf (23) << "Unexpected character found when parsing version string for minor version number: '" << QString (*cit) << "'.";
@@ -455,25 +444,14 @@ void PulseManager::fetch_pulseaudio_version () {
               abort ();
             }
           }
-          else if (!(numbers_found[2])) {
+          else if (!(numbers_finished[2])) {
             if (((*cit) >= '0') && ((*cit) <= '9')) {
-              tmp_ret_str.append (*cit);
+              numbers[2].append (*cit);
+              numbers_started[2] = true;
             }
             else if ((*cit) == '-') {
-              /* Third number part complete, let's convert the string and skip the period. */
-              numbers_found[2] = true;
-              bool convert_success = false;
-              pulse_version_micro_ = tmp_ret_str.toUInt (&convert_success, 10);
-
-              if (!convert_success) {
-                x2goErrorf (24) << "Unable to convert micro version number string to integer.";
-                show_RichText_ErrorMsgBox (tr ("Error fetching PulseAudio version number!"),
-                                           tr ("Unable to convert micro version number string to integer."),
-                                           true);
-                abort ();
-              }
-
-              tmp_ret_str = QString ("");
+              /* Third number part complete and no more numbers, mark as done. */
+              numbers_finished[2] = true;
             }
             else {
               x2goErrorf (25) << "Unexpected character found when parsing version string for micro version number: '" << QString (*cit) << "'.";
@@ -486,15 +464,70 @@ void PulseManager::fetch_pulseaudio_version () {
           }
           else {
             /* Numbers should be good by now, let's fetch everything else. */
-            tmp_ret_str.append (*cit);
+            tmp_remaining_str.append (*cit);
           }
         }
 
-        found = ((numbers_found[0]) && (numbers_found[1]) && (numbers_found[2]));
+        bool numbers_done[3] = { false, false, false };
 
+        if (numbers_skip[0]) {
+          x2goErrorf (30) << "Supposed to skip major version number. Something is wrong.";
+          show_RichText_ErrorMsgBox (tr ("Error fetching PulseAudio version number!"),
+                                     tr ("Supposed to skip major version number. "
+                                         "Something is wrong."),
+                                     true);
+          abort ();
+        }
+
+        /*     not skipping   and  ((met period or dash) or (have something to convert and met EOL)) */
+        if ((!numbers_skip[0]) && ((numbers_finished[0]) || (numbers_started[0]))) {
+          bool convert_success = false;
+          pulse_version_major_ = numbers[0].toUInt (&convert_success, 10);
+
+          if (!convert_success) {
+            x2goErrorf (20) << "Unable to convert major version number string to integer.";
+            show_RichText_ErrorMsgBox (tr ("Error fetching PulseAudio version number!"),
+                                       tr ("Unable to convert major version number string to integer."),
+                                       true);
+            abort ();
+          }
+          else {
+            /* First number is enough to satisfy the "found" criterion. */
+            found = true;
+          }
+        }
+
+        /*     not skipping   and  ((met period or dash) or (have something to convert and met EOL)) */
+        if ((!numbers_skip[1]) && ((numbers_finished[1]) || (numbers_started[1]))) {
+          bool convert_success = false;
+          pulse_version_minor_ = numbers[1].toUInt (&convert_success, 10);
+
+          if (!convert_success) {
+            x2goErrorf (22) << "Unable to convert minor version number string to integer.";
+            show_RichText_ErrorMsgBox (tr ("Error fetching PulseAudio version number!"),
+                                       tr ("Unable to convert minor version number string to integer."),
+                                       true);
+            abort ();
+          }
+        }
+
+        /*     not skipping   and  ((met period or dash) or (have something to convert and met EOL)) */
+        if ((!numbers_skip[2]) && ((numbers_finished[2]) || (numbers_started[2]))) {
+          bool convert_success = false;
+          pulse_version_micro_ = numbers[2].toUInt (&convert_success, 10);
+
+          if (!convert_success) {
+            x2goErrorf (24) << "Unable to convert micro version number string to integer.";
+            show_RichText_ErrorMsgBox (tr ("Error fetching PulseAudio version number!"),
+                                       tr ("Unable to convert micro version number string to integer."),
+                                       true);
+            abort ();
+          }
+        }
+
+        /* Misc version part will be set to the trailing string. */
         if (found) {
-          /* Misc version part will be set to the trailing string. */
-          pulse_version_misc_ = tmp_ret_str;
+          pulse_version_misc_ = tmp_remaining_str;
           break;
         }
       }
