@@ -29,7 +29,7 @@
 namespace unixhelper {
   /*
    * Unblocks all signals and installs a signal handler for SIGHUP,
-   * which calls kill_pgroup().
+   * which calls kill_pgroup ().
    *
    * Should signal unblocking or installing the signal handler fail,
    * an emergency exit is performed and
@@ -42,7 +42,7 @@ namespace unixhelper {
    *
    * In this loop, the current parent PID is polled and compared against
    * the original value passed via parameter parent.
-   * Should they mismatch, the parent died and kill_pgroup() is called.
+   * Should they mismatch, the parent died and kill_pgroup () is called.
    */
   int unix_cleanup (const pid_t parent);
 
@@ -60,6 +60,7 @@ namespace unixhelper {
    *              group leader dies under specific circumstances
    *              (we cannot rely that this always happens, though,
    *               so a polling solution is needed, see unix_cleanup().)
+   * Other values are not handled.
    */
   void kill_pgroup (const int signal);
 }
