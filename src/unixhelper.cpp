@@ -30,25 +30,42 @@
 #include <cerrno>
 #include <vector>
 #include <cstdlib>
+#include <stdio.h>
+#include <string.h>
 
 /* For documentation please see unixhelper.h. */
 
 namespace unixhelper {
   void kill_pgroup (const int signal) {
-    if (SIGHUP == signal) {
-      /* Try to kill via SIGTERM first. */
-      if (0 != killpg (getpgrp (), SIGTERM)) {
-        std::cerr << "WARNING: unable to send SIGTERM to process group: " << std::strerror (errno) << std::endl;
-      }
-
-      /* Grant a grace period of (at least) 10 seconds. */
-      sleep (10);
-
-      /* Don't handle any errors here, because we die anyway. */
-      killpg (getpgrp (), SIGKILL);
-    }
   }
 
+  void real_kill_pgroup (const pid_t pgid) {
+    /* Try to kill via SIGTERM first. */
+    if (0 != killpg (pgid, SIGTERM)) {
+      std::cerr << "WARNING: unable to send SIGTERM to process group '" << pgid << "': " << std::strerror (errno) << std::endl;
+    }
+
+    /* Grant a grace period of (at least) 10 seconds. */
+    sleep (10);
+
+    int kill_ret = killpg (pgid, SIGKILL);
+
+    /*
+     * Might be unreachable.
+     * Depending upon which pgroup we just killed, this
+     * code is either unreachable (because killpg () killed
+     * itself already), or being executed.
+     * Let's handle errors and exit, if necessary.
+     */
+    if (0 != kill_ret) {
+      char err_str[512] = { };
+      snprintf (err_str, 512, "WARNING: failed to kill process group '%d'", pgid);
+
+      perror (err_str);
+    }
+
+    exit (EXIT_SUCCESS);
+  }
 
   int unix_cleanup (const pid_t parent) {
     /*

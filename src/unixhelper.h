@@ -63,6 +63,18 @@ namespace unixhelper {
    * Other values are not handled.
    */
   void kill_pgroup (const int signal);
+
+  /*
+   * Kills the whole process group.
+   * First, SIGTERM is sent to the group.
+   * A 10 seconds grace period is granted to make sure
+   * processes exit cleanly on their own.
+   * Lastly, SIGKILL is sent to the group -- which also
+   * implies the demise of this program.
+   *
+   * pgid is the process group ID to be killed.
+   */
+  void real_kill_pgroup (const pid_t pgid);
 }
 
 #endif /* defined (Q_OS_UNIX) */
