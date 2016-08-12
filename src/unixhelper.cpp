@@ -37,6 +37,44 @@
 
 namespace unixhelper {
   void kill_pgroup (const int signal) {
+    pid_t pgid_to_kill = getpgrp ();
+
+    if ((SIGHUP == signal) || (-1 == signal)) {
+      /*
+       * In order to not kill ourselves, we need to run this
+       * code in a new process group.
+       */
+      pid_t tmp_pid = fork ();
+
+      /* Child. */
+      if (0 == tmp_pid) {
+        /* Create new pgid. */
+        int err = setpgid (0, 0);
+
+        if (0 != err) {
+          std::perror ("WARNING: unable to change PGID");
+          std::cerr << "Continuing with normal operation, but process might kill itself before tree vanishes." << std::endl;
+        }
+
+        real_kill_pgroup (pgid_to_kill);
+      }
+      /* Error. */
+      else if (-1 == tmp_pid) {
+        perror ("WARNING: unable to fork off another process to kill original process group");
+        std::cerr << "Proceeding with normal operation, but  process might kill itself before tree vanishes." << std::endl;
+
+        real_kill_pgroup (pgid_to_kill);
+      }
+      /* Parent. */
+      else {
+        /*
+         * No need to do anything, just exit here in order to not
+         * spawn a bunch of new processes due to subsequent calls
+         * to kill_pgroup () from unix_cleanup ().
+         */
+        exit (EXIT_SUCCESS);
+      }
+    }
   }
 
   void real_kill_pgroup (const pid_t pgid) {

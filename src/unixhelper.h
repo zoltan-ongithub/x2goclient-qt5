@@ -47,12 +47,12 @@ namespace unixhelper {
   int unix_cleanup (const pid_t parent);
 
   /*
-   * Kills the whole process group.
-   * First, SIGTERM is sent to the group.
-   * A 10 seconds grace period is granted to make sure
-   * processes exit cleanly on their own.
-   * Lastly, SIGKILL is sent to the group -- which also
-   * implies the demise of this program.
+   * Wrapper for killing a whole process group.
+   * The "real" killing work is done by real_kill_pgroup ().
+   * This function tries to fork off another process and change
+   * the new function's process group ID.
+   * If any of these operations fail, killing the original process
+   * group ID will still continue, albeit with warning messages.
    *
    * signal may be any of:
    *   * -1       to indicate an error leading to emergency termination
