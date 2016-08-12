@@ -419,7 +419,7 @@ void PulseManager::fetch_pulseaudio_version () {
               abort ();
             }
           }
-          else if (!(numbers_finished[1])) {
+          else if ((!(numbers_finished[1])) && (!(numbers_skip[1]))) {
             if (((*cit) >= '0') && ((*cit) <= '9')) {
               numbers[1].append (*cit);
               numbers_started[1] = true;
@@ -444,7 +444,7 @@ void PulseManager::fetch_pulseaudio_version () {
               abort ();
             }
           }
-          else if (!(numbers_finished[2])) {
+          else if ((!(numbers_finished[2])) && (!(numbers_skip[2]))) {
             if (((*cit) >= '0') && ((*cit) <= '9')) {
               numbers[2].append (*cit);
               numbers_started[2] = true;
