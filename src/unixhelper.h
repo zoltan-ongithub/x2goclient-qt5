@@ -61,7 +61,7 @@ namespace unixhelper {
    *              (we cannot rely that this always happens, though,
    *               so a polling solution is needed, see unix_cleanup().)
    */
-  void kill_pgroup (int signal);
+  void kill_pgroup (const int signal);
 }
 
 #endif /* defined (Q_OS_UNIX) */

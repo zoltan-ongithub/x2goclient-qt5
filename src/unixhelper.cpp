@@ -34,7 +34,7 @@
 /* For documentation please see unixhelper.h. */
 
 namespace unixhelper {
-  void kill_pgroup (int signal) {
+  void kill_pgroup (const int signal) {
     if (SIGHUP == signal) {
       /* Try to kill via SIGTERM first. */
       if (0 != killpg (getpgrp (), SIGTERM)) {
