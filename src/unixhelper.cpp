@@ -31,7 +31,6 @@
 #include <vector>
 #include <cstdlib>
 #include <stdio.h>
-#include <string.h>
 
 /* For documentation please see unixhelper.h. */
 
@@ -60,8 +59,8 @@ namespace unixhelper {
       }
       /* Error. */
       else if (-1 == tmp_pid) {
-        perror ("WARNING: unable to fork off another process to kill original process group");
-        std::cerr << "Proceeding with normal operation, but  process might kill itself before tree vanishes." << std::endl;
+        std::perror ("WARNING: unable to fork off another process to kill original process group");
+        std::cerr << "Proceeding with normal operation, but process might kill itself before tree vanishes." << std::endl;
 
         real_kill_pgroup (pgid_to_kill);
       }
@@ -72,7 +71,7 @@ namespace unixhelper {
          * spawn a bunch of new processes due to subsequent calls
          * to kill_pgroup () from unix_cleanup ().
          */
-        exit (EXIT_SUCCESS);
+        std::exit (EXIT_SUCCESS);
       }
     }
   }
@@ -96,13 +95,10 @@ namespace unixhelper {
      * Let's handle errors and exit, if necessary.
      */
     if (0 != kill_ret) {
-      char err_str[512] = { };
-      snprintf (err_str, 512, "WARNING: failed to kill process group '%d'", pgid);
-
-      perror (err_str);
+      std::cerr << "WARNING: failed to kill process group '" << pgid << "': " << std::strerror (err_str) << std::endl;
     }
 
-    exit (EXIT_SUCCESS);
+    std::exit (EXIT_SUCCESS);
   }
 
   int unix_cleanup (const pid_t parent) {
