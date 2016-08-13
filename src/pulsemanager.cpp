@@ -468,8 +468,6 @@ void PulseManager::fetch_pulseaudio_version () {
           }
         }
 
-        bool numbers_done[3] = { false, false, false };
-
         if (numbers_skip[0]) {
           x2goErrorf (30) << "Supposed to skip major version number. Something is wrong.";
           show_RichText_ErrorMsgBox (tr ("Error fetching PulseAudio version number!"),

@@ -400,6 +400,7 @@ x2goclient (4.0.5.3-0x2go1) UNRELEASED; urgency=medium
       around real_kill_pgroup (). Adjust comment. We need to do this so the
       cleanup process doesn't kill itself before all other processes in the
       process group are killed.
+    - src/pulsemanager.cpp: remove unused variables.
 
   [ Bernard Cafarelli ]
   * New upstream version (4.0.5.3):
