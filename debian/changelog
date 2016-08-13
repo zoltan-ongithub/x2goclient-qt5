@@ -402,6 +402,7 @@ x2goclient (4.0.5.3-0x2go1) UNRELEASED; urgency=medium
       process group are killed.
     - src/pulsemanager.cpp: remove unused variables.
     - src/unixhelper.cpp: code cleanup.
+    - src/{unixhelper.cpp,x2goclient.cpp}: fix errno usage - save before use.
 
   [ Bernard Cafarelli ]
   * New upstream version (4.0.5.3):

@@ -79,7 +79,8 @@ namespace unixhelper {
   void real_kill_pgroup (const pid_t pgid) {
     /* Try to kill via SIGTERM first. */
     if (0 != killpg (pgid, SIGTERM)) {
-      std::cerr << "WARNING: unable to send SIGTERM to process group '" << pgid << "': " << std::strerror (errno) << std::endl;
+      const int saved_errno = errno;
+      std::cerr << "WARNING: unable to send SIGTERM to process group '" << pgid << "': " << std::strerror (saved_errno) << std::endl;
     }
 
     /* Grant a grace period of (at least) 10 seconds. */
@@ -95,7 +96,8 @@ namespace unixhelper {
      * Let's handle errors and exit, if necessary.
      */
     if (0 != kill_ret) {
-      std::cerr << "WARNING: failed to kill process group '" << pgid << "': " << std::strerror (err_str) << std::endl;
+      const int saved_errno = errno;
+      std::cerr << "WARNING: failed to kill process group '" << pgid << "': " << std::strerror (saved_errno) << std::endl;
     }
 
     std::exit (EXIT_SUCCESS);
@@ -108,14 +110,16 @@ namespace unixhelper {
      */
     sigset_t empty_set;
     if (0 != sigemptyset (&empty_set)) {
-      std::cerr << "Unable to fetch empty signal set: " << std::strerror (errno) << std::endl;
+      const int saved_errno = errno;
+      std::cerr << "Unable to fetch empty signal set: " << std::strerror (saved_errno) << std::endl;
       kill_pgroup (-1);
 
       /* Anything here shall be unreachable. */
     }
 
     if (0 != sigprocmask (SIG_SETMASK, &empty_set, NULL)) {
-      std::cerr << "Unable to set empty signal set: " << std::strerror (errno) << std::endl;
+      const int saved_errno = errno;
+      std::cerr << "Unable to set empty signal set: " << std::strerror (saved_errno) << std::endl;
       kill_pgroup (-1);
 
       /* Anything here shall be unreachable. */
@@ -137,7 +141,8 @@ namespace unixhelper {
 
       /* Set up signal handler to ignore the current signal. */
       if (0 != sigaction (*it, &sig_action, NULL)) {
-        std::cerr << "Unable to ignore signal " << strsignal (*it) << ": " << std::strerror (errno) << std::endl;
+        const int saved_errno = errno;
+        std::cerr << "Unable to ignore signal " << strsignal (*it) << ": " << std::strerror (saved_errno) << std::endl;
         kill_pgroup (-1);
 
         /* Anything here shall be unreachable. */
@@ -151,7 +156,8 @@ namespace unixhelper {
       sig_action.sa_flags = SA_RESTART;
 
       if (0 != sigaction (SIGHUP, &sig_action, NULL)) {
-        std::cerr << "Unable to set up signal handler for SIGHUP: " << std::strerror (errno) << std::endl;
+        const int saved_errno = errno;
+        std::cerr << "Unable to set up signal handler for SIGHUP: " << std::strerror (saved_errno) << std::endl;
         kill_pgroup (-1);
 
         /* Anything here shall be unreachable. */
