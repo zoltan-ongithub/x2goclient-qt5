@@ -48,6 +48,9 @@ x2goclient (4.0.5.2-0x2go1) UNRELEASED; urgency=medium
       "rebased"
     - Windows: Update PuTTY from 0.66 to 0.67, which fixes
       CVE-2016-2563.
+    - Windows: Update bundled Win32 OpenSSL from 1.0.1q to 1.0.1t,
+      which fixes the multiple CVEs announced on 2016-01-28,
+      2016-03-01 & 2016-05-03.
 
   [ Martti Pitkänen ]
   * New upstream version (4.0.5.2):
