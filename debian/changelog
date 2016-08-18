@@ -46,6 +46,8 @@ x2goclient (4.0.5.2-0x2go1) UNRELEASED; urgency=medium
     - Windows: add sshd debug1 logging when using the --debug flag.
     - Windows: Revert back to Cygwin components that have not been
       "rebased"
+    - Windows: Update PuTTY from 0.66 to 0.67, which fixes
+      CVE-2016-2563.
 
   [ Martti Pitkänen ]
   * New upstream version (4.0.5.2):
