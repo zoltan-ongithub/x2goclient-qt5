@@ -36,6 +36,8 @@ x2goclient (4.0.5.2-0x2go1) UNRELEASED; urgency=medium
     - src/help.h: typo fix in comment only.
     - src/onmainwindow.cpp: add some comments related to maybe using
       add_to_path ().
+    - src/onmainwindow.cpp: work around changed SSH host key locations in OS X
+      10.11+. Fixes: #1079. Also check /etc/ssh/ for keys.
   * debian/control:
     - Maintainer change in package: X2Go Developers <x2go-dev@lists.x2go.org>.
     - Uploaders: add myself. Also, force a rebuild due to the changed

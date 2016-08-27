@@ -8059,7 +8059,21 @@ QString ONMainWindow::createRSAKey()
 #endif
 
 #ifdef Q_OS_DARWIN
-    rsa.setFileName ( "/etc/ssh_host_rsa_key.pub" );
+    {
+        /* OS X 10.11+ changed the key location to /etc/ssh/. */
+        QDir rsa_host_key ("/etc/ssh/ssh_host_rsa_key.pub");
+
+        if (!(rsa_host_key.exists ())) {
+            rsa_host_key = QDir ("/etc/ssh_host_rsa_key.pub");
+
+            if (!(rsa_host_key.exists ())) {
+                printSshDError_noHostPubKey ();
+                return QString::null;
+            }
+        }
+
+        rsa.setFileName (rsa_host_key.absolutePath ());
+    }
 #endif
     if ( !rsa.open ( QIODevice::ReadOnly | QIODevice::Text ) )
     {
