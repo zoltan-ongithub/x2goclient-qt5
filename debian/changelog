@@ -38,6 +38,8 @@ x2goclient (4.0.5.2-0x2go1) UNRELEASED; urgency=medium
       add_to_path ().
     - src/onmainwindow.cpp: work around changed SSH host key locations in OS X
       10.11+. Fixes: #1079. Also check /etc/ssh/ for keys.
+    - src/onmainwindow.cpp: fix last commit by using QFileInfo instead of
+      QDir. This lets us use the exists () member function correctly.
   * debian/control:
     - Maintainer change in package: X2Go Developers <x2go-dev@lists.x2go.org>.
     - Uploaders: add myself. Also, force a rebuild due to the changed
