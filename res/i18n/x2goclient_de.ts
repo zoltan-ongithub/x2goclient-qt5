@@ -1935,7 +1935,7 @@ Möchten Sie die Verbindung abbrechen?</translation>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="1404"/>
         <source>Closing X2Go Client ...</source>
-        <translation>X2GoClient wird geschossen ...</translation>
+        <translation>X2GoClient wird geschlossen ...</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="1552"/>
@@ -2851,7 +2851,7 @@ Bitte installieren sie eine neuere Version von x2goserver</translation>
     </message>
     <message>
         <source>Closing x2goclient...</source>
-        <translation type="obsolete">X2Go Client wird geschossen...</translation>
+        <translation type="obsolete">X2Go Client wird geschlossen...</translation>
     </message>
     <message>
         <source>Closed  x2goclient.</source>
