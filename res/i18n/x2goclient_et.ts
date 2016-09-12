@@ -1769,7 +1769,7 @@ authorized_keys file.</source>
     </message>
     <message>
         <source>Closed  x2goclient.</source>
-        <translation type="obsolete">X2goclient on suletud.</translation>
+        <translation type="obsolete">X2Goclient on suletud.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="1826"/>

@@ -1467,7 +1467,7 @@ Use x2goclient hidden mode?</source>
     </message>
     <message>
         <source>X2Go Link to session </source>
-        <translation type="obsolete">Enlace a la sesión X2go </translation>
+        <translation type="obsolete">Enlace a la sesión X2Go </translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="2206"/>
@@ -2054,7 +2054,7 @@ Los documentos no guardados se perderán</translation>
     </message>
     <message>
         <source>&lt;br&gt;Client for use with the X2Go network based computing environment. This Client will be able to connect to X2Go server(s) and start, stop, resume and terminate (running) desktop sessions. X2Go Client stores different server connections and may automatically request authentication data from LDAP directories. Furthermore it can be used as fullscreen loginscreen (replacement for loginmanager like xdm). Please visit x2go.org for further information.</source>
-        <translation type="obsolete">&lt;br&gt;Cliente para usar con el sistema de acceso remoto X2Go. Este cliente es capaz de conectar con él/los servidor/es X2go y iniciar, parar, guardar y terminar (si están en ejecucion) sesiones de escritorio. El Cliente X2Go almacena diferentes conexiones a servidores y puede recuperar de manera automática datos de autenticación desde directorios LDAP. Además puede usarse como un sistema de inicio de sesión a pantalla completa (reemplazando a gestores de inicio de sesión como xdm). Visita x2go.org para más información.</translation>
+        <translation type="obsolete">&lt;br&gt;Cliente para usar con el sistema de acceso remoto X2Go. Este cliente es capaz de conectar con él/los servidor/es X2Go y iniciar, parar, guardar y terminar (si están en ejecucion) sesiones de escritorio. El Cliente X2Go almacena diferentes conexiones a servidores y puede recuperar de manera automática datos de autenticación desde directorios LDAP. Además puede usarse como un sistema de inicio de sesión a pantalla completa (reemplazando a gestores de inicio de sesión como xdm). Visita x2go.org para más información.</translation>
     </message>
     <message>
         <source>&lt;b&gt;X2Go Client V. </source>
@@ -2589,7 +2589,7 @@ Los documentos no guardados se perderán.</translation>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="8350"/>
         <source>&lt;br&gt;This is a client to access the X2Go network-based computing environment. This client will be able to connect to X2Go Server(s) and start, stop, resume and terminate (running) desktop sessions. X2Go Client stores different server connections and may automatically request authentication data from LDAP directories. Furthermore, it can be used as a fullscreen login screen (replacement for login managers like XDM). Please visit &lt;a href=&quot;http://www.x2go.org&quot;&gt;the project home page at x2go.org&lt;/a&gt; for further information.</source>
-        <translation>&lt;br&gt;Cliente para usar con el sistema de acceso remoto X2Go. Este cliente es capaz de conectar con él/los servidor/es X2go y iniciar, parar, guardar y terminar (si están en ejecucion) sesiones de escritorio. El Cliente X2Go almacena diferentes conexiones a servidores y puede recuperar de manera automática datos de autenticación desde directorios LDAP. Además puede usarse como un sistema de inicio de sesión a pantalla completa (reemplazando a gestores de inicio de sesión como xdm). Visita &lt;a href=&quot;http://www.x2go.org&quot;&gt;la página del projecto en x2go.org&lt;/a&gt; para más información.</translation>
+        <translation>&lt;br&gt;Cliente para usar con el sistema de acceso remoto X2Go. Este cliente es capaz de conectar con él/los servidor/es X2Go y iniciar, parar, guardar y terminar (si están en ejecucion) sesiones de escritorio. El Cliente X2Go almacena diferentes conexiones a servidores y puede recuperar de manera automática datos de autenticación desde directorios LDAP. Además puede usarse como un sistema de inicio de sesión a pantalla completa (reemplazando a gestores de inicio de sesión como xdm). Visita &lt;a href=&quot;http://www.x2go.org&quot;&gt;la página del projecto en x2go.org&lt;/a&gt; para más información.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="8364"/>
@@ -3428,7 +3428,7 @@ Use X2Go Client&apos;s hidden mode?</source>
     <message>
         <location filename="../../src/sessionexplorer.cpp" line="227"/>
         <source>X2Go Link to session </source>
-        <translation>Enlace a la sesión X2go </translation>
+        <translation>Enlace a la sesión X2Go </translation>
     </message>
     <message>
         <location filename="../../src/sessionexplorer.cpp" line="363"/>

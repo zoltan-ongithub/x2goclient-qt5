@@ -3931,7 +3931,7 @@ sound system connections through firewalls</source>
         <location filename="../../src/ui/xsettingsui.ui" line="28"/>
         <source>You must restart the X2Go Client for the changes to take effect</source>
         <oldsource>You must restart the X2go Client for the changes to take effect</oldsource>
-        <translation type="unfinished">您必需重新啟動X2go用戶端以讓設定變更生效</translation>
+        <translation type="unfinished">您必需重新啟動X2Go用戶端以讓設定變更生效</translation>
     </message>
     <message>
         <location filename="../../src/ui/xsettingsui.ui" line="51"/>

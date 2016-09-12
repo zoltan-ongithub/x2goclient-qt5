@@ -1060,7 +1060,7 @@ van geluidssysteemverbindingen door firewalls</translation>
     <name>ONMainWindow</name>
     <message>
         <source>Starting x2goclient...</source>
-        <translation type="obsolete">X2goclient wordt gestart...</translation>
+        <translation type="obsolete">X2Goclient wordt gestart...</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="105"/>
@@ -1815,11 +1815,11 @@ deze applicatie niet openen.</translation>
     </message>
     <message>
         <source>Closing x2goclient...</source>
-        <translation type="obsolete">X2goclient sluiten...</translation>
+        <translation type="obsolete">X2Goclient sluiten...</translation>
     </message>
     <message>
         <source>Closed  x2goclient.</source>
-        <translation type="obsolete">x2g0client afgesloten.</translation>
+        <translation type="obsolete">x2goclient afgesloten.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="1826"/>
@@ -1842,7 +1842,7 @@ deze applicatie niet openen.</translation>
 Use x2goclient hidden mode?</source>
         <translation type="obsolete">Bureaublad iconen kunnen worden ingesteld zodat de x2goclient niet getoond zal worden (verborgen modus) Als u van deze mogelijkheid gebruik wilt maken moet u wel inloggen met een gpg sleutel of een gpg smartcard configureren.
 
-X2goclient in verborgen modus gebruiken?</translation>
+X2Goclient in verborgen modus gebruiken?</translation>
     </message>
     <message>
         <source>Show session tray icon when running</source>
@@ -3363,7 +3363,7 @@ or
 Use x2goclient hidden mode?</source>
         <translation type="obsolete">Bureaublad iconen kunnen worden ingesteld zodat de x2goclient niet getoond zal worden (verborgen modus) Als u van deze mogelijkheid gebruik wilt maken moet u wel inloggen met een gpg sleutel of een gpg smartcard configureren.
 
-X2goclient in verborgen modus gebruiken?</translation>
+X2Goclient in verborgen modus gebruiken?</translation>
     </message>
     <message>
         <location filename="../../src/sessionexplorer.cpp" line="139"/>

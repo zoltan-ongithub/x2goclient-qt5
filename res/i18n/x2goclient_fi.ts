@@ -1807,7 +1807,7 @@ authorized_keys-tiedostoa.</translation>
     </message>
     <message>
         <source>Closed  x2goclient.</source>
-        <translation type="obsolete">X2go-asiakasohjelman sulkeutui.</translation>
+        <translation type="obsolete">X2Go-asiakasohjelman sulkeutui.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="1826"/>

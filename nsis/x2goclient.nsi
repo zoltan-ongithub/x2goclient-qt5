@@ -141,9 +141,9 @@ Section "X2Go Client (required)" base
   CreateShortCut "$SMPROGRAMS\$STARTMENU_FOLDER\X2Go Client.lnk" "$INSTDIR\x2goclient.exe"
 
   ;Cleanup previous icon names (prior to X2Go Client 4.0.1.2)
-  Delete "$INSTDIR\X2goClient.lnk"
-  Delete "$SMPROGRAMS\$STARTMENU_FOLDER\X2goClient.lnk"
-  Delete "$DESKTOP\X2goClient.lnk"
+  Delete "$INSTDIR\X2GoClient.lnk"
+  Delete "$SMPROGRAMS\$STARTMENU_FOLDER\X2GoClient.lnk"
+  Delete "$DESKTOP\X2GoClient.lnk"
 
   !insertmacro MUI_STARTMENU_WRITE_END
 
@@ -262,7 +262,7 @@ SectionEnd
 
 
 LangString ADM_RIGHT ${LANG_ENGLISH} "You have to be Administrator on this computer to install X2Go Client"
-LangString ADM_RIGHT ${LANG_GERMAN} "Sie brauchen Administratorenrechte um X2go Client zu installieren"
+LangString ADM_RIGHT ${LANG_GERMAN} "Sie brauchen Administratorenrechte um X2Go Client zu installieren"
 LangString ADM_RIGHT ${LANG_RUSSIAN} "Для того, чтобы установить X2Go Client, необходимо быть администратором этого компьютера"
 
 LangString DESC_base            ${LANG_ENGLISH} "The regular build of X2Go Client and all its required dependencies"

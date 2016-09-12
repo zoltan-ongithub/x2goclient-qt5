@@ -1454,7 +1454,7 @@ Slå skjult tilstand til?</translation>
     </message>
     <message>
         <source>X2Go Link to session </source>
-        <translation type="obsolete">X2go Link til session</translation>
+        <translation type="obsolete">X2Go Link til session</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="2206"/>
@@ -1520,7 +1520,7 @@ autoriseret_nøgler filen.</translation>
     </message>
     <message>
         <source>X2Go sessions not found</source>
-        <translation type="obsolete">X2go sessioner blev ikke fundet</translation>
+        <translation type="obsolete">X2Go sessioner blev ikke fundet</translation>
     </message>
     <message>
         <source>Are you sure you want to delete this session?</source>
@@ -2035,7 +2035,7 @@ Ugemte dokumenter vil gå tabt</translation>
     </message>
     <message>
         <source>&lt;br&gt;Client for use with the X2Go network based computing environment. This Client will be able to connect to X2Go server(s) and start, stop, resume and terminate (running) desktop sessions. X2Go Client stores different server connections and may automatically request authentication data from LDAP directories. Furthermore it can be used as fullscreen loginscreen (replacement for loginmanager like xdm). Please visit x2go.org for further information.</source>
-        <translation type="obsolete">&lt;br&gt;Klient til brug med X2go&apos;s netværksbaserede computer miljø. Denne klient vil kunne forbinde til X2go servere og starte, stoppe, fortsætte og afslutte (igangværende) skrivebord&apos;s sessioner. X2Go-Klienten lagrer forskellige server forbindelser og kan automatisk lave forespørgsler til LDAP tjenester om autentificeringsdata. Den kan desuden bruges som fuldskærmslogin (erstatning for loginmanagers som xdm) Besøg venligst x2go.org for yderligere information.</translation>
+        <translation type="obsolete">&lt;br&gt;Klient til brug med X2Go&apos;s netværksbaserede computer miljø. Denne klient vil kunne forbinde til X2Go servere og starte, stoppe, fortsætte og afslutte (igangværende) skrivebord&apos;s sessioner. X2Go-Klienten lagrer forskellige server forbindelser og kan automatisk lave forespørgsler til LDAP tjenester om autentificeringsdata. Den kan desuden bruges som fuldskærmslogin (erstatning for loginmanagers som xdm) Besøg venligst x2go.org for yderligere information.</translation>
     </message>
     <message>
         <source>&lt;b&gt;X2Go Client V. </source>

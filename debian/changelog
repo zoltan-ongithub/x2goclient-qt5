@@ -40,6 +40,12 @@ x2goclient (4.0.5.2-0x2go1) UNRELEASED; urgency=medium
       10.11+. Fixes: #1079. Also check /etc/ssh/ for keys.
     - src/onmainwindow.cpp: fix last commit by using QFileInfo instead of
       QDir. This lets us use the exists () member function correctly.
+    - {nsis/x2goclient.nsi,res/i18n/x2goclient_{da,es,et,fi,nl,zh_tw}.ts}:
+      replace left-overs of "X2go" with the correct "X2Go" spelling.
+      This mostly touches obsolete strings and file names, that need to be
+      cleaned, but it's still worthwhile to not have it show up when searching
+      for the old string. Given that NTFS is normally case-insensitive,
+      removing the files will still work.
   * debian/control:
     - Maintainer change in package: X2Go Developers <x2go-dev@lists.x2go.org>.
     - Uploaders: add myself. Also, force a rebuild due to the changed
