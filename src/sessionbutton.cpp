@@ -121,9 +121,9 @@ SessionButton::SessionButton ( ONMainWindow* mw,QWidget *parent, QString id )
     editBut=new QPushButton ( this );
     editBut->setMouseTracking ( true );
     connect ( editBut,SIGNAL ( pressed() ),this,SLOT ( slotShowMenu() ) );
-    editBut->setIcon ( QIcon ( par->iconsPath ( "/16x16/preferences.png" ) ) );
-    editBut->setIconSize ( QSize ( 16,16 ) );
-    editBut->setFixedSize ( 24,24 );
+    editBut->setIcon ( QIcon ( par->iconsPath ( "/32x32/preferences.png" ) ) );
+    editBut->setIconSize ( QSize ( 32,32 ) );
+    editBut->setFixedSize ( 48,48 );
     editBut->setFlat ( true );
     editBut->setPalette ( cpal );
     sessMenu=new QMenu ( this );
@@ -167,7 +167,7 @@ SessionButton::SessionButton ( ONMainWindow* mw,QWidget *parent, QString id )
     {
         sessName->move ( 80,34 );
         sessStatus->move(80,50);
-        editBut->move ( 307,156 );
+        editBut->move ( 283,132 );
         serverIcon->move ( 58,84 );
         server->move ( 80,84 );
         cmdIcon->move ( 58,108 );
