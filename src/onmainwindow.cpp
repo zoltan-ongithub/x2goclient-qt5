@@ -8112,6 +8112,33 @@ void ONMainWindow::exportDefaultDirs()
 
 QString ONMainWindow::createRSAKey()
 {
+    /*
+     * I spent multiple hours on trying to understand this function
+     * and directory exporting in general, so I'd better document
+     * this.
+     *
+     * This function first generates a new RSA private-public key
+     * pair as ~/.x2go/ssh/gen/key.XXXXX{,.pub}.
+     *
+     * Then, the SSH daemon's public host key is read and appended
+     * to the *private* SSH key file after a marker looking like
+     * this: "----BEGIN RSA IDENTITY----"
+     *
+     * Later on, this *private* SSH key file is transferred to the
+     * remote server, which parses it in the "x2gomountdirs" perl
+     * script and extracts the public key (used for logging in
+     * to the client machine) and the public *host* key, used to
+     * circumvent the "untrusted host" message by SSH by
+     * explicitly giving the aforementioned public *host* key as
+     * the only element in a fake "authorized_keys" file. Again,
+     * this is all happening server-side.
+     *
+     * The *public* key part generated here is then taken and
+     * later added to the "authorized_keys" file on the client
+     * side, to allow auto-logins via the generated and transferred
+     * private SSH key.
+     */
+
     QDir dr;
     QString keyPath=homeDir +"/.x2go/ssh/gen";
     dr.mkpath ( keyPath );
@@ -8127,6 +8154,9 @@ QString ONMainWindow::createRSAKey()
 
     QStringList args;
 
+    /*
+     * Generating new key material here.
+     */
     args<<"-t"<<"rsa"<<"-b"<<"1024"<<"-N"<<""<<"-f"<<keyName<<"-q";
 
     x2goDebug<<"ssh-keygen " + args.join(" ");
@@ -8139,6 +8169,9 @@ QString ONMainWindow::createRSAKey()
     x2goDebug<<"ssh-keygen succeeded.";
 
 
+    /*
+     * Now taking the *host* pub key here...
+     */
     QFile rsa ( "/etc/ssh/ssh_host_rsa_key.pub" );
 #ifdef Q_OS_WIN
     rsa.setFileName (
