@@ -10390,20 +10390,21 @@ void ONMainWindow::generateKey(ONMainWindow::key_types key_type, bool host_key)
         close ();
     }
 
-    QString etcDir = homeDir + "/.x2go/etc/";
-    QDir dr (homeDir);
-    dr.mkpath (etcDir);
-    QString private_key_file = etcDir + "/ssh_host_" + stringified_key_type + "_key";
+    QString etc_dir = homeDir + "/.x2go/etc/";
+    QDir dir (homeDir);
+    dir.mkpath (etc_dir);
+    QString private_key_file = "";
+#ifdef Q_OS_WIN
+    private_key_file = cygwinPath (wapiShortFileName (etc_dir));
+#else
+    private_key_file = etc_dir;
+#endif
+    private_key_file += "/ssh_host_" + stringified_key_type + "_key";
     QString public_key_file = private_key_file + ".pub";
 
     if ((!(QFile::exists (private_key_file))) || (!(QFile::exists (public_key_file))))
     {
         x2goDebug << "Generating host key. Type: " << stringified_key_type;
-
-#ifdef Q_OS_WIN
-        private_key_file = cygwinPath (wapiShortFileName (etcDir))
-                         + "/ssh_host_" + stringified_key_type + "_key";
-#endif
 
         QStringList args;
         args << "-t"
