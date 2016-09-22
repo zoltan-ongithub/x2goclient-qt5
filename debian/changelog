@@ -405,6 +405,9 @@ x2goclient (4.0.5.3-0x2go1) UNRELEASED; urgency=medium
     - src/{unixhelper.cpp,x2goclient.cpp}: fix errno usage - save before use.
     - src/onmainwindow.cpp: document createRSAKey () because what it does is
       completely non-obvious.
+    - src/onmainwindow.cpp: add support for explicitly setting the private key
+      bit size based on type and use values (currently) regarded as secure to
+      generateHostKey ().
 
   [ Bernard Cafarelli ]
   * New upstream version (4.0.5.3):

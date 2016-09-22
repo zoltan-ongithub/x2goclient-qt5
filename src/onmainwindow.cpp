@@ -10355,26 +10355,33 @@ void ONMainWindow::generateHostKey(ONMainWindow::key_types key_type)
 {
     ONMainWindow::key_types sanitized_key_type = UNKNOWN_KEY_TYPE;
     QString stringified_key_type = "";
+    std::size_t key_bits = 0;
     switch (key_type) {
         case RSA_KEY_TYPE:
                                sanitized_key_type = key_type;
                                stringified_key_type = "rsa";
+                               key_bits = 4096;
                                break;
         case DSA_KEY_TYPE:
                                sanitized_key_type = key_type;
                                stringified_key_type = "dsa";
+                               key_bits = 1024;
                                break;
         case ECDSA_KEY_TYPE:
                                sanitized_key_type = key_type;
                                stringified_key_type = "ecdsa";
+                               key_bits = 384;
                                break;
         case ED25519_KEY_TYPE:
                                sanitized_key_type = key_type;
                                stringified_key_type = "ed25519";
+                               /* Fixed key length, flag will be unused. */
+                               key_bits = 0;
                                break;
         default:
                                sanitized_key_type = UNKNOWN_KEY_TYPE;
                                stringified_key_type = "unknown";
+                               key_bits = 0;
     }
 
     if (sanitized_key_type == UNKNOWN_KEY_TYPE) {
@@ -10401,6 +10408,8 @@ void ONMainWindow::generateHostKey(ONMainWindow::key_types key_type)
         QStringList args;
         args << "-t"
              << stringified_key_type
+             << "-b"
+             << QString::number (key_bits)
              << "-N"
              << ""
              << "-C"
