@@ -12020,7 +12020,7 @@ void ONMainWindow::printSshDError_noHostPubKey()
 
                                          "The SSH server is currently not configured correctly.\n\n"
 
-                                         "Please ensure that the server's public exists.\n\n");
+                                         "Please ensure that the server's public key exists.\n\n");
 #ifdef Q_OS_WIN
     detailed_error_message += tr ("Normally, this should not happen as X2Go Client for Windows "
                                   "ships its own internal SSH server and automatically "
