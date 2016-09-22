@@ -8207,7 +8207,7 @@ QString ONMainWindow::createRSAKey()
     if ( !rsa.open ( QIODevice::ReadOnly | QIODevice::Text ) )
     {
 #if defined (Q_OS_LINUX) || defined (Q_OS_DARWIN)
-        generateHostKey (RSA_KEY_TYPE);
+        generateKey (RSA_KEY_TYPE, true);
         generateEtcFiles ();
 
         if (!startSshd ()) {
@@ -10172,7 +10172,7 @@ void ONMainWindow::startWinServers()
     {
 
         dr.mkpath ( etcDir );
-        generateHostKey(RSA_KEY_TYPE);
+        generateKey(RSA_KEY_TYPE, true);
         generateEtcFiles();
         sshStarter->start();
     }
@@ -10351,7 +10351,7 @@ void ONMainWindow::generateEtcFiles()
     x2goDebug<<etcDir +"/sshd_config created.";
 }
 
-void ONMainWindow::generateHostKey(ONMainWindow::key_types key_type)
+void ONMainWindow::generateKey(ONMainWindow::key_types key_type, bool host_key)
 {
     ONMainWindow::key_types sanitized_key_type = UNKNOWN_KEY_TYPE;
     QString stringified_key_type = "";

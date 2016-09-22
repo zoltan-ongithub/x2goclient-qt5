@@ -1206,7 +1206,7 @@ private:
 #endif
     void filterDesktops ( const QString& filter,
                           bool strict=false );
-    void generateHostKey(key_types key_type);
+    void generateKey(key_types key_type, bool host_key = false);
     void generateEtcFiles();
     QString u3DataPath();
     void cleanPortable();
