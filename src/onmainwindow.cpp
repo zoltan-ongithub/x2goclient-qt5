@@ -8063,9 +8063,13 @@ QString ONMainWindow::createRSAKey()
         /* OS X 10.11+ changed the key location to /etc/ssh/. */
         QFileInfo rsa_host_key ("/etc/ssh/ssh_host_rsa_key.pub");
 
+        x2goDebug << "first try for RSA key " << rsa_host_key.absoluteFilePath () << ": "
+                  << rsa_host_key.exists ();
         if (!(rsa_host_key.exists ())) {
             rsa_host_key = QFileInfo ("/etc/ssh_host_rsa_key.pub");
 
+            x2goDebug << "second try for RSA key " << rsa_host_key.absoluteFilePath () << ": "
+                      << rsa_host_key.exists ();
             if (!(rsa_host_key.exists ())) {
                 printSshDError_noHostPubKey ();
                 return QString::null;
