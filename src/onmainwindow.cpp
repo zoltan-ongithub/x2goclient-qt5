@@ -10382,6 +10382,7 @@ QString ONMainWindow::generateKey(ONMainWindow::key_types key_type, bool host_ke
                                    tr ("Unable to create SSH key base directory '%1'.").arg (base_dir)
                                    + "\n"
                                    + tr ("Terminating application."));
+            close ();
         }
     }
 
@@ -10445,7 +10446,34 @@ QString ONMainWindow::generateKey(ONMainWindow::key_types key_type, bool host_ke
              << comment
              << "-f"
              << private_key_file;
-        QProcess::execute ("ssh-keygen", args);
+
+        const int keygen_ret = QProcess::execute ("ssh-keygen", args);
+
+        if (-2 == keygen_ret) {
+            QMessageBox::critical (this, tr ("ssh-keygen launching error"),
+                                   tr ("Unable to start the ssh-keygen binary.")
+                                   + "\n"
+                                   + tr ("Terminating application."));
+            close ();
+        }
+
+        if (-1 == keygen_ret) {
+            QMessageBox::critical (this, tr ("ssh-keygen crashed"),
+                                   tr ("The ssh-keygen binary crashed.")
+                                   + "\n"
+                                   + tr ("Terminating application."));
+            close ();
+        }
+
+        if (0 != keygen_ret) {
+            QMessageBox::critical (this, tr ("ssh-keygen program error"),
+                                   tr ("The ssh-keygen binary did not exit cleanly.")
+                                   + " "
+                                   + tr ("It was probably called with unknown arguments.")
+                                   + "\n"
+                                   + tr ("Terminating application."));
+            close ();
+        }
     }
 
     return (ret);
