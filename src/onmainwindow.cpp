@@ -10357,11 +10357,12 @@ QString ONMainWindow::generateKey(ONMainWindow::key_types key_type, bool host_ke
 
     if ((!(QFile::exists (private_key_file))) || (!(QFile::exists (public_key_file))))
     {
-        x2goDebug << "Generating SSH key. Type: " << stringified_key_type;
+        x2goDebug << "Generating SSH key. Type: " << stringified_key_type.toUpper ()
+                  << "; Location: " << private_key_file;
 
         QStringList args;
 
-        QString comment = "X2Go Client " + stringified_key_type + " ";
+        QString comment = "X2Go Client " + stringified_key_type.toUpper () + " ";
 
         if (host_key) {
             comment += "host";
