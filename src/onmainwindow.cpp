@@ -1515,11 +1515,33 @@ void ONMainWindow::closeClient()
 #endif /* defined (Q_OS_DARWIN) || defined (Q_OS_WIN) */
 
 #ifndef Q_OS_WIN
-    if (sshd)
-    {
-        x2goDebug<<"Terminating the OpenSSH server ...";
-        sshd->terminate();
-        x2goDebug<<"Terminated the OpenSSH server.";
+    if (sshd) {
+        x2goDebug << "Terminating the OpenSSH server ...";
+        sshd->terminate ();
+
+        /* Allow sshd a grace time of 5 seconds to terminate. */
+        QTime sleep_time = QTime::currentTime ().addSecs (5);
+        bool killed = false;
+        while (QTime::currentTime () < sleep_time) {
+            if (QProcess::NotRunning == sshd->state ()) {
+                killed = true;
+                break;
+            }
+
+            QCoreApplication::processEvents (QEventLoop::AllEvents, 100);
+        }
+
+        if (!killed) {
+            /* Grace period over, force termination. */
+            sshd->kill ();
+
+            if (!(sshd->waitForFinished (500))) {
+                x2goWarningf (8) << "OpenSSH Server failed to terminate in time "
+                                    " and the kill command timed out.";
+            }
+        }
+
+        x2goDebug << "Terminated the OpenSSH server.";
         delete sshd;
     }
 #endif /* !defined (Q_OS_WIN) */
