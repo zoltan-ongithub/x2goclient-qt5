@@ -8306,7 +8306,7 @@ void ONMainWindow::slotRetExportDir ( bool result,QString output,
                                 QMessageBox::NoButton );
     }
     QFile file ( key+".pub" );
-    x2goDebug<<"Deactivating public key from "<<key<<".pub again."<<endl;
+    x2goDebug << "Deactivating public key from " << QString (key + ".pub") << " again.";
     if ( !file.open ( QIODevice::ReadOnly | QIODevice::Text ) )
     {
         printSshDError_noExportPubKey();
@@ -9691,7 +9691,7 @@ void ONMainWindow::startX2goMount()
     out << line;
     authorized_keys_file.close ();
 
-    x2goDebug << "Temporarily activated public key from file " << fsExportKey << ".pub.";
+    x2goDebug << "Temporarily activated public key from file " << QString (fsExportKey + ".pub") << ".";
 
     QString passwd=getCurrentPass();
     QString user=getCurrentUname();

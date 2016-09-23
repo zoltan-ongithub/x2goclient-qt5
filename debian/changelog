@@ -421,6 +421,7 @@ x2goclient (4.0.5.3-0x2go1) UNRELEASED; urgency=medium
       generate a user key manually previously.
     - src/onmainwindow.cpp: add more error handling to generateKey () and fix
       up a broken error-handling section.
+    - src/onmainwindow.cpp: fix up a few debug strings.
 
   [ Bernard Cafarelli ]
   * New upstream version (4.0.5.3):
