@@ -151,7 +151,6 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
     X2goSettings st ( "settings" );
     winSshdStarted=false;
 #else
-    userSshd=false;
     sshd=0l;
 #endif
 
@@ -1516,7 +1515,7 @@ void ONMainWindow::closeClient()
 #endif /* defined (Q_OS_DARWIN) || defined (Q_OS_WIN) */
 
 #ifndef Q_OS_WIN
-    if ( userSshd && sshd )
+    if (sshd)
     {
         x2goDebug<<"Terminating the OpenSSH server ...";
         sshd->terminate();
@@ -1645,11 +1644,6 @@ void ONMainWindow::loadSettings()
         ldapPort2=st1.setting()->value ( "LDAP/port2",
                                          ( QVariant ) 0 ).toInt();
     }
-#ifndef Q_OS_WIN
-    if ( !userSshd )
-        clientSshPort=st1.setting()->value ( "clientport",
-                                             ( QVariant ) 22 ).toString();
-#endif
     showToolBar=st1.setting()->value ( "toolbar/show",
                                        ( QVariant ) true ).toBool();
 
@@ -8144,52 +8138,26 @@ QString ONMainWindow::createRSAKey()
     /*
      * Now taking the *host* pub key here...
      */
-    QFile rsa ( "/etc/ssh/ssh_host_rsa_key.pub" );
+    QFile rsa (homeDir + "/.x2go/etc/ssh_host_rsa_key.pub");
 #ifdef Q_OS_WIN
-    rsa.setFileName (
-        wapiShortFileName (
-            homeDir+"\\.x2go\\etc\\ssh_host_rsa_key.pub" ) );
-#else
-    if ( userSshd )
-        rsa.setFileName ( homeDir+"/.x2go/etc/ssh_host_dsa_key.pub" );
-
+    rsa.setFileName (wapiShortFileName (homeDir + "\\.x2go\\etc\\ssh_host_rsa_key.pub"));
 #endif
 
-#ifdef Q_OS_DARWIN
-    {
-        /* OS X 10.11+ changed the key location to /etc/ssh/. */
-        QFileInfo rsa_host_key ("/etc/ssh/ssh_host_rsa_key.pub");
-
-        x2goDebug << "first try for RSA key " << rsa_host_key.absoluteFilePath () << ": "
-                  << rsa_host_key.exists ();
-        if (!(rsa_host_key.exists ())) {
-            rsa_host_key = QFileInfo ("/etc/ssh_host_rsa_key.pub");
-
-            x2goDebug << "second try for RSA key " << rsa_host_key.absoluteFilePath () << ": "
-                      << rsa_host_key.exists ();
-            if (!(rsa_host_key.exists ())) {
-                printSshDError_noHostPubKey ();
-                return QString::null;
-            }
-        }
-
-        rsa.setFileName (rsa_host_key.absoluteFilePath ());
-    }
-#endif
-    if ( !rsa.open ( QIODevice::ReadOnly | QIODevice::Text ) )
-    {
-#if defined (Q_OS_LINUX) || defined (Q_OS_DARWIN)
+    if (!(rsa.open (QIODevice::ReadOnly | QIODevice::Text))) {
+        x2goDebug << "Unable to open public host key file.";
+#ifdef Q_OS_UNIX
+        x2goDebug << "Creating a new one.";
         QString tmp_file_name (generateKey (RSA_KEY_TYPE, true));
         generateEtcFiles ();
 
-        if (!startSshd ()) {
+        if (!(startSshd ())) {
             return (QString::null);
         }
 
         rsa.setFileName (tmp_file_name + ".pub");
-        rsa.open ( QIODevice::ReadOnly | QIODevice::Text );
+        rsa.open (QIODevice::ReadOnly | QIODevice::Text);
 #else
-        printSshDError_noHostPubKey();
+        printSshDError_noHostPubKey ();
         return QString::null;
 #endif
     }
@@ -8319,21 +8287,8 @@ void ONMainWindow::slotRetExportDir ( bool result,QString output,
     file.close();
 
     QDir authorized_keys_dir (homeDir);
+    authorized_keys_dir = QDir (authorized_keys_dir.absolutePath () + "/.x2go/.ssh/");
 
-    /*
-     * Do the user SSHD/global SSHD dance here and either use the
-     * private .x2go/.ssh or the global .ssh dir.
-     *
-     * Note: Windows is implicitly always using an user-mode SSH server.
-     */
-#ifndef Q_OS_WIN
-    if (userSshd)
-#endif /* !defined (Q_OS_WIN) */
-    {
-      authorized_keys_dir = QDir (authorized_keys_dir.absolutePath () + "/.x2go/");
-    }
-
-    authorized_keys_dir = QDir (authorized_keys_dir.absolutePath () + "/.ssh/");
     QFile authorized_keys_file (authorized_keys_dir.absolutePath () + "/authorized_keys");
 
     /*
@@ -9602,30 +9557,12 @@ void ONMainWindow::startX2goMount()
     file.close();
 
     QDir authorized_keys_dir (homeDir);
+    authorized_keys_dir = QDir (authorized_keys_dir.absolutePath () + "/.x2go/.ssh/");
 
-    /*
-     * Do the user SSHD/global SSHD dance here and either use the
-     * private .x2go/.ssh or the global .ssh dir.
-     *
-     * Note: Windows is implicitly always using an user-mode SSH server.
-     */
-#ifndef Q_OS_WIN
-    if (userSshd)
-#endif /* !defined (Q_OS_WIN) */
-    {
-      authorized_keys_dir = QDir (authorized_keys_dir.absolutePath () + "/.x2go/");
-    }
-
-    authorized_keys_dir = QDir (authorized_keys_dir.absolutePath () + "/.ssh/");
     QFile authorized_keys_file (authorized_keys_dir.absolutePath () + "/authorized_keys");
 
-#ifndef Q_OS_WIN
-    if (userSshd)
-#endif /* !defined (Q_OS_WIN) */
-    {
-      x2goDebug << "Creating dir " << authorized_keys_dir.absolutePath ();
-      authorized_keys_dir.mkpath (authorized_keys_dir.absolutePath ());
-    }
+    x2goDebug << "Potentially creating dir " << authorized_keys_dir.absolutePath ();
+    authorized_keys_dir.mkpath (authorized_keys_dir.absolutePath ());
 
     x2goDebug << "Potentially creating file " << authorized_keys_file.fileName ();
     if (!authorized_keys_file.open (QIODevice::WriteOnly | QIODevice::Text | QIODevice::Append)) {
@@ -9702,7 +9639,11 @@ void ONMainWindow::startX2goMount()
 
 
     QString cuser;
-#ifndef Q_WS_HILDON
+#ifdef Q_WS_HILDON
+    cuser="user";
+#elif defined (Q_OS_WIN)
+    cuser=wapiGetUserName();
+#else
     for ( int i=0; i<env.size(); ++i )
     {
         QStringList ls=env[i].split ( "=" );
@@ -9713,11 +9654,6 @@ void ONMainWindow::startX2goMount()
             break;
         }
     }
-#else
-    cuser="user";
-#endif
-#ifdef Q_OS_WIN
-    cuser=wapiGetUserName();
 #endif
     QString cmd;
     QString dirs=dir->dirList;
@@ -10397,7 +10333,7 @@ QString ONMainWindow::generateKey(ONMainWindow::key_types key_type, bool host_ke
         QString tmp_to_add ("");
 
         if (host_key) {
-            QString tmp_to_add = "/ssh_host_" + stringified_key_type + "_key";
+            tmp_to_add = "/ssh_host_" + stringified_key_type + "_key";
         }
         else {
             QTemporaryFile temp_file (base_dir + "/key");
@@ -10485,17 +10421,7 @@ bool ONMainWindow::startSshd()
     {
         return false;
     }
-#ifdef Q_OS_LINUX
     clientSshPort = "7022";
-#else // defined (Q_OS_LINUX)
-#ifdef Q_OS_DARWIN
-    // Should also automatically create keys if Remote Login is enabled
-    // under Sharing in System Preferences.
-    if (!isServerRunning (clientSshPort.toInt ())) {
-      clientSshPort = "7022";
-    }
-#endif // defined (Q_OS_DARWIN)
-#endif // defined (Q_OS_LINUX)
     QString etcDir=homeDir+"/.x2go/etc";
     int port=clientSshPort.toInt();
     //clientSshPort have initvalue
@@ -10506,6 +10432,7 @@ bool ONMainWindow::startSshd()
     std::string clientdir=wapiShortFileName ( appDir ).toStdString();
     std::stringstream strm;
     std::string config="\""+cygwinPath(etcDir+"/sshd_config").toStdString()+"\"";
+    /* FIXME: make this generic! */
     std::string key="\""+cygwinPath(etcDir+"/ssh_host_rsa_key").toStdString()+"\"";
 
     // generate a unique sshLog filepath, and create its directory
@@ -10571,21 +10498,20 @@ bool ONMainWindow::startSshd()
     delete []desktop;
     winSshdStarted=true;
 #else // defined (Q_OS_WIN)
-    userSshd=true;
-
     sshd=new QProcess ( this );
 
-    QString binary = appDir + "/sshd";
-#ifdef Q_OS_DARWIN
-    binary = "/usr/sbin/sshd";
-#endif // defined (Q_OS_DARWIN)
+    QString binary ("/usr/sbin/sshd");
+#ifndef Q_OS_UNIX
+    binary = appDir + "/sshd";
+#endif /* !(defined (Q_OS_UNIX)) */
 
     QStringList arguments;
+    /* FIXME: make key selection more generic! */
     arguments<<"-f"<<etcDir +"/sshd_config"<< "-h" <<
-             etcDir+"/ssh_host_dsa_key"<<"-D"<<"-p"<<clientSshPort;
+             etcDir+"/ssh_host_rsa_key"<<"-D"<<"-p"<<clientSshPort;
 
     sshd->start (binary, arguments);
-#endif // defined (Q_OS_WIN)
+#endif /* defined (Q_OS_WIN) */
 
     // Allow sshd a grace time of 3 seconds to come up.
     QTime sleepTime = QTime::currentTime ().addSecs (3);
@@ -12026,67 +11952,24 @@ void ONMainWindow::printSshDError_startupFailure()
         return;
     QString error_message;
 
-#ifdef Q_OS_WIN
     error_message = tr ("SSH daemon could not be started.\n\n");
-#else // defined (Q_OS_WIN)
-    if (userSshd) {
-        error_message = tr ("SSH daemon could not be started.\n\n");
-    }
-    else {
-        error_message = tr ("SSH daemon is not running.\n\n");
-    }
-#endif // defined (Q_OS_WIN)
 
     QString detailed_error_message = tr ("You have enabled Remote Printing or File Sharing.\n"
                                          "These features require a running and functioning SSH server on your computer.\n"
-                                         "<b>Printing and File Sharing will be disabled for this session.</b>\n\n"
-
-                                         "Please also check the <b>Clientside SSH port</b> in the general settings.\n\n");
+                                         "<b>Printing and File Sharing will be disabled for this session.</b>\n\n");
 #ifdef Q_OS_WIN
     detailed_error_message += tr ("Normally, this should not happen as X2Go Client for Windows "
                                   "ships its own internal SSH server.\n\n"
 
-                                  "If you see this message, please report a bug on:\n"
-                                  "<center><a href=\"https://wiki.x2go.org/doku.php/wiki:bugs\">"
+                                  "If you see this message, please report a bug on:\n");
+#else /* defined (Q_OS_WIN) */
+    detailed_error_message += tr ("The SSH server failed to start.\n\n"
+
+                                  "Please report a bug on:\n");
+#endif /* defined (Q_OS_WIN) */
+    detailed_error_message += tr ("<center><a href=\"https://wiki.x2go.org/doku.php/wiki:bugs\">"
                                       "https://wiki.x2go.org/doku.php/wiki:bugs"
                                   "</a></center>\n");
-#else // defined (Q_OS_WIN)
-    if (userSshd) {
-        detailed_error_message += tr ("The SSH server failed to start.\n\n");
-        detailed_error_message += tr ("X2Go Client did not detect a globally running SSH server "
-                                      "on your machine and was unable to start its own.\n\n"
-
-                                      "Please report a bug on:\n"
-                                      "<center><a href=\"https://wiki.x2go.org/doku.php/wiki:bugs\">"
-                                          "https://wiki.x2go.org/doku.php/wiki:bugs"
-                                      "</a></center>\n");
-    }
-    else {
-        detailed_error_message += tr ("The SSH server is currently not started.\n\n");
-#ifdef Q_OS_DARWIN
-        detailed_error_message += tr ("On OS X, please follow the following steps to enable "
-                                      "SSH service:"
-                                      "<ul>"
-                                          "<li>Open <b>System Preferences</b> (Applications -> System Preferences)</li>"
-                                          "<li>Go to <b>Sharing</b></li>"
-                                          "<li>Tick the checkbox besides <b>Remote Login</b></li>"
-                                          "<li>Check that <b>Allow access for:</b> is set to either:"
-                                          "<ul>"
-                                              "<li>All users: <b>no further steps necessary</b></li>"
-                                              "<li>Only these users <b>and your user name is included in the list</b></li>"
-                                          "</ul>"
-                                          "<li>Optionally, add your user name to the allowed list "
-                                              "via the <b>Plus Button</b></li>"
-                                      "</ul>"
-                                      "<b>Warning: enabling SSH access will allow any user on the network to connect "
-                                      "to your machine. It is your responsibility to set a strong password for every "
-                                      "user that is allowed to log in via SSH.</b>\n\n");
-#else // defined (Q_OS_DARWIN)
-        detailed_error_message += tr ("Please ask your system administrator to provide the SSH "
-                                      "service on your computer.\n\n");
-#endif // defined (Q_OS_DARWIN)
-    }
-#endif // defined (Q_OS_WIN)
     detailed_error_message += tr ("Disabling Remote Printing or File Sharing support "
                                   "in the session settings will get rid of this message.");
 
@@ -12104,50 +11987,21 @@ void ONMainWindow::printSshDError_noHostPubKey()
 
     QString detailed_error_message = tr ("You have enabled Remote Printing or File Sharing.\n"
                                          "These features require a running and functioning SSH server on your computer.\n"
-                                         "<b>Printing and File Sharing will be disabled for this session.</b>\n\n"
-
-                                         "The SSH server is currently not configured correctly.\n\n"
-
-                                         "Please ensure that the server's public key exists.\n\n");
+                                         "<b>Printing and File Sharing will be disabled for this session.</b>\n\n");
 #ifdef Q_OS_WIN
     detailed_error_message += tr ("Normally, this should not happen as X2Go Client for Windows "
                                   "ships its own internal SSH server and automatically "
                                   "generates the required keys.\n\n"
 
-                                  "If you see this message, please report a bug on:\n"
-                                  "<center><a href=\"https://wiki.x2go.org/doku.php/wiki:bugs\">"
+                                  "If you see this message, please report a bug on:\n");
+#else /* defined (Q_OS_WIN) */
+    detailed_error_message += tr ("X2Go Client was unable to create SSH host keys.\n\n"
+
+                                  "Please report a bug on:\n");
+#endif /* defined (Q_OS_WIN) */
+    detailed_error_message += tr ("<center><a href=\"https://wiki.x2go.org/doku.php/wiki:bugs\">"
                                       "https://wiki.x2go.org/doku.php/wiki:bugs"
                                   "</a></center>\n");
-#else // defined (Q_OS_WIN)
-    if (userSshd) {
-        detailed_error_message += tr ("X2Go Client was unable to create SSH host keys.\n\n"
-
-                                      "Please report a bug on:\n"
-                                      "<center><a href=\"https://wiki.x2go.org/doku.php/wiki:bugs\">"
-                                          "https://wiki.x2go.org/doku.php/wiki:bugs"
-                                      "</a></center>\n");
-    }
-    else {
-#ifdef Q_OS_DARWIN
-        detailed_error_message += tr ("On OS X, please follow these steps to generate the "
-                                      "required keys:"
-
-                                      "<ul>"
-                                        "<li>Open a <b>Terminal Window</b> (Applications -> Utilities -> Terminal)</li>"
-                                        "<li>Run this command: <b>ssh -p " + clientSshPort.toLatin1 ()
-                                           + " localhost</b></li>"
-                                        "<li>You do not need to login. Just quit the Terminal application "
-                                            "via Cmd + Q</li>"
-                                      "</ul>");
-#else // defined (Q_OS_DARWIN)
-        detailed_error_message += tr ("Please ask your system administrator to generate the required host keys.\n\n"
-
-                                      "If you are administrating this system yourself, please run:\n"
-
-                                      "<center><b>sudo ssh-keygen -A</b></center>\n\n");
-#endif // defined (Q_OS_DARWIN)
-    }
-#endif // defined (Q_OS_WIN)
 
     detailed_error_message += tr ("Disabling Remote Printing or File Sharing support "
                                   "in the session settings will get rid of this message.");

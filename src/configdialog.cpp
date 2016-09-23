@@ -248,22 +248,6 @@ ConfigDialog::ConfigDialog ( QWidget * parent,  Qt::WindowFlags f )
 
 #endif //Q_OS_DARWIN
 
-#ifndef Q_OS_WIN
-    clientSshPort=new QSpinBox ( fr );
-    clientSshPort->setMaximum ( 1000000 );
-    clientSshPort->setValue ( st.setting()->value ( "clientport",
-                              ( QVariant ) 22 ).toInt() );
-
-    QHBoxLayout* sshLay=new QHBoxLayout();
-    sshLay->addWidget (
-        new QLabel ( tr (
-                         "Clientside (local) SSH daemon port for file system export usage:"
-                     ),fr ) );
-    sshLay->addWidget ( clientSshPort );
-    sshLay->addStretch();
-    frLay->addLayout ( sshLay );
-#endif
-
     if ( embedMode )
     {
         cbStartEmbed=new QCheckBox (
@@ -410,10 +394,6 @@ void ConfigDialog::slot_accepted()
 #ifdef Q_OS_DARWIN
     st.setting()->setValue ( "xdarwin/directory",
                              ( QVariant ) leXexec->text() );
-#endif
-#ifndef Q_OS_WIN
-    st.setting()->setValue ( "clientport",
-                             ( QVariant ) clientSshPort->value() );
 #endif
 
     pwid->saveSettings();

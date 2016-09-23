@@ -838,7 +838,6 @@ private:
     QProcess *nxproxy;
 #ifndef Q_OS_WIN
     QProcess *sshd;
-    bool userSshd;
 #else
     QProcess *xorg;
     PROCESS_INFORMATION sshd;
