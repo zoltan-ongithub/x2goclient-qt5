@@ -10513,9 +10513,13 @@ bool ONMainWindow::startSshd()
     sshd->start (binary, arguments);
 #endif /* defined (Q_OS_WIN) */
 
-    // Allow sshd a grace time of 3 seconds to come up.
-    QTime sleepTime = QTime::currentTime ().addSecs (3);
+    // Allow sshd a grace time of 5 seconds to come up.
+    QTime sleepTime = QTime::currentTime ().addSecs (5);
     while (QTime::currentTime () < sleepTime) {
+        if (QProcess::Running == sshd->state ()) {
+            break;
+        }
+
         QCoreApplication::processEvents (QEventLoop::AllEvents, 100);
     }
 
