@@ -8139,35 +8139,7 @@ QString ONMainWindow::createRSAKey()
      * private SSH key.
      */
 
-    QDir dr;
-    QString keyPath=homeDir +"/.x2go/ssh/gen";
-    dr.mkpath ( keyPath );
-#ifdef Q_OS_WIN
-    keyPath=wapiShortFileName ( keyPath );
-#endif
-    QTemporaryFile fl ( keyPath+"/key" );
-    fl.open();
-    QString keyName=fl.fileName();
-    fl.setAutoRemove ( false );
-    fl.close();
-    fl.remove();
-
-    QStringList args;
-
-    /*
-     * Generating new key material here.
-     */
-    args<<"-t"<<"rsa"<<"-b"<<"1024"<<"-N"<<""<<"-f"<<keyName<<"-q";
-
-    x2goDebug<<"ssh-keygen " + args.join(" ");
-
-    if ( QProcess::execute ( "ssh-keygen",args ) !=0 )
-    {
-        x2goDebug<<"ssh-keygen failed." <<endl;
-        return QString::null;
-    }
-    x2goDebug<<"ssh-keygen succeeded.";
-
+    QString user_key = generateKey (RSA_KEY_TYPE);
 
     /*
      * Now taking the *host* pub key here...
@@ -8207,14 +8179,14 @@ QString ONMainWindow::createRSAKey()
     if ( !rsa.open ( QIODevice::ReadOnly | QIODevice::Text ) )
     {
 #if defined (Q_OS_LINUX) || defined (Q_OS_DARWIN)
-        generateKey (RSA_KEY_TYPE, true);
+        QString tmp_file_name (generateKey (RSA_KEY_TYPE, true));
         generateEtcFiles ();
 
         if (!startSshd ()) {
             return (QString::null);
         }
 
-        rsa.setFileName ( homeDir+"/.x2go/etc/ssh_host_rsa_key.pub" );
+        rsa.setFileName (tmp_file_name + ".pub");
         rsa.open ( QIODevice::ReadOnly | QIODevice::Text );
 #else
         printSshDError_noHostPubKey();
@@ -8232,18 +8204,18 @@ QString ONMainWindow::createRSAKey()
         return QString::null;
     }
 
-    QFile file ( keyName );
+    QFile file ( user_key );
     if ( !file.open (
                 QIODevice::WriteOnly | QIODevice::Text | QIODevice::Append )
        )
     {
-        x2goErrorf(10)<<tr("Cannot open key: ")<<keyName;
-        return keyName;
+        x2goErrorf(10) << tr ("Cannot open key: ") << user_key;
+        return user_key;
     }
     QTextStream out ( &file );
     out<<"----BEGIN RSA IDENTITY----"<<rsa_pub;
     file.close();
-    return keyName;
+    return user_key;
 }
 
 void ONMainWindow::slotCopyKey ( bool result, QString output, int pid)
@@ -10172,7 +10144,7 @@ void ONMainWindow::startWinServers()
     {
 
         dr.mkpath ( etcDir );
-        generateKey(RSA_KEY_TYPE, true);
+        UNUSED (generateKey (RSA_KEY_TYPE, true));
         generateEtcFiles();
         sshStarter->start();
     }
@@ -10351,11 +10323,12 @@ void ONMainWindow::generateEtcFiles()
     x2goDebug<<etcDir +"/sshd_config created.";
 }
 
-void ONMainWindow::generateKey(ONMainWindow::key_types key_type, bool host_key)
+QString ONMainWindow::generateKey(ONMainWindow::key_types key_type, bool host_key)
 {
     ONMainWindow::key_types sanitized_key_type = UNKNOWN_KEY_TYPE;
-    QString stringified_key_type = "";
+    QString stringified_key_type ("");
     std::size_t key_bits = 0;
+    QString ret ("");
     switch (key_type) {
         case RSA_KEY_TYPE:
                                sanitized_key_type = key_type;
@@ -10385,28 +10358,83 @@ void ONMainWindow::generateKey(ONMainWindow::key_types key_type, bool host_key)
     }
 
     if (sanitized_key_type == UNKNOWN_KEY_TYPE) {
-        QMessageBox::critical (this, tr ("Host key type selection error"),
-                               tr ("Unknown host key selected.\nTerminating application."));
+        QMessageBox::critical (this, tr ("SSH key type selection error"),
+                               tr ("Unknown SSH key selected.")
+                               + "\n"
+                               + tr ("Terminating application."));
         close ();
     }
 
-    QString etc_dir = homeDir + "/.x2go/etc/";
-    QDir dir (homeDir);
-    dir.mkpath (etc_dir);
-    QString private_key_file = "";
+    QString base_dir (homeDir);
+    QString private_key_file ("");
+
+    if (host_key) {
+        base_dir += "/.x2go/etc/";
+    }
+    else {
+        base_dir += "/.x2go/ssh/gen/";
+    }
+
+    {
+        QDir dir (homeDir);
+        if (!(dir.mkpath (base_dir))) {
+            QMessageBox::critical (this, tr ("SSH key base directory creation error"),
+                                   tr ("Unable to create SSH key base directory '%1'.").arg (base_dir)
+                                   + "\n"
+                                   + tr ("Terminating application."));
+        }
+    }
+
 #ifdef Q_OS_WIN
-    private_key_file = cygwinPath (wapiShortFileName (etc_dir));
+    private_key_file = cygwinPath (wapiShortFileName (base_dir));
 #else
-    private_key_file = etc_dir;
+    private_key_file = base_dir;
 #endif
-    private_key_file += "/ssh_host_" + stringified_key_type + "_key";
-    QString public_key_file = private_key_file + ".pub";
+    ret = base_dir;
+
+    {
+        QString tmp_to_add ("");
+
+        if (host_key) {
+            QString tmp_to_add = "/ssh_host_" + stringified_key_type + "_key";
+        }
+        else {
+            QTemporaryFile temp_file (base_dir + "/key");
+            temp_file.open ();
+
+            /* Extract base name. */
+            QFileInfo tmp_file_info (temp_file.fileName ());
+            tmp_to_add = tmp_file_info.fileName ();
+
+            /* Clean up again. We don't need the temporary file anymore. */
+            temp_file.setAutoRemove (false);
+            temp_file.close ();
+            temp_file.remove ();
+        }
+
+        private_key_file += tmp_to_add;
+        ret += tmp_to_add;
+    }
+
+    QString public_key_file (private_key_file + ".pub");
 
     if ((!(QFile::exists (private_key_file))) || (!(QFile::exists (public_key_file))))
     {
-        x2goDebug << "Generating host key. Type: " << stringified_key_type;
+        x2goDebug << "Generating SSH key. Type: " << stringified_key_type;
 
         QStringList args;
+
+        QString comment = "X2Go Client " + stringified_key_type + " ";
+
+        if (host_key) {
+            comment += "host";
+        }
+        else {
+            comment += "user";
+        }
+
+        comment += " key";
+
         args << "-t"
              << stringified_key_type
              << "-b"
@@ -10414,11 +10442,13 @@ void ONMainWindow::generateKey(ONMainWindow::key_types key_type, bool host_key)
              << "-N"
              << ""
              << "-C"
-             << QString ("X2Go Client " + stringified_key_type + "host key")
+             << comment
              << "-f"
              << private_key_file;
         QProcess::execute ("ssh-keygen", args);
     }
+
+    return (ret);
 }
 
 bool ONMainWindow::startSshd()
