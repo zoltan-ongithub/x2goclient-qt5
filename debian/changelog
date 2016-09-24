@@ -450,6 +450,10 @@ x2goclient (4.0.5.3-0x2go1) UNRELEASED; urgency=medium
       multiple times. Check if the OpenSSH Server is already running and
       return true, otherwise try to start it.
     - src/onmainwindow.cpp: add some comments only to createRSAKey ().
+    - src/onmainwindow.{cpp,h}: rename createRSAKey () to the more-appropriate
+      name createKeyBundle (). Also add a key-type parameter and use it to
+      select the required key type (and maybe generate it if necessary.) Also
+      use the new functions to get a stringified version of the key type etc.
 
   [ Bernard Cafarelli ]
   * New upstream version (4.0.5.3):

@@ -7961,7 +7961,7 @@ void ONMainWindow::exportDirs ( QString exports,bool removable )
 
 
     dr.dirList=exports;
-    dr.key=createRSAKey();
+    dr.key=createKeyBundle();
 
     // Key creation failure or the like.
     if (dr.key.isEmpty ()) {
@@ -10395,7 +10395,7 @@ QString ONMainWindow::generateKey (ONMainWindow::key_types key_type, bool host_k
   return (ret);
 }
 
-QString ONMainWindow::createRSAKey () {
+QString ONMainWindow::createKeyBundle (key_types key_type) {
   /*
    * I spent multiple hours on trying to understand this function
    * and directory exporting in general, so I'd better document
@@ -10423,41 +10423,49 @@ QString ONMainWindow::createRSAKey () {
    * private SSH key.
    */
 
-  QString user_key = generateKey (RSA_KEY_TYPE);
+  QString stringified_key_type (key_type_to_string (key_type));
+
+  QString user_key = generateKey (key_type);
 
   /*
    * Now taking the *host* pub key here...
    */
-  QFile rsa (homeDir + "/.x2go/etc/ssh_host_rsa_key.pub");
+  const QString host_pub_key_file_name ("ssh_host_" + stringified_key_type + "_key.pub");
+  QFile rsa (homeDir + "/.x2go/etc/" + host_pub_key_file_name);
 #ifdef Q_OS_WIN
-  rsa.setFileName (wapiShortFileName (homeDir + "\\.x2go\\etc\\ssh_host_rsa_key.pub"));
+  rsa.setFileName (wapiShortFileName (homeDir + "\\.x2go\\etc\\" + host_pub_key_file_name));
 #endif
 
   if (!(rsa.open (QIODevice::ReadOnly | QIODevice::Text))) {
     x2goDebug << "Unable to open public host key file.";
 #ifdef Q_OS_UNIX
     x2goDebug << "Creating a new one.";
-    QString tmp_file_name (generateKey (RSA_KEY_TYPE, true));
+    QString tmp_file_name (generateKey (key_type, true));
     generateEtcFiles ();
 
-    if (!(startSshd ())) {
+    rsa.setFileName (tmp_file_name + ".pub");
+    if (!(rsa.open (QIODevice::ReadOnly | QIODevice::Text))) {
+      x2goErrorf (9) << tr ("Unable to open newly generated %1 public host key file.").arg (stringified_key_type.toUpper ());
       return (QString::null);
     }
-
-    rsa.setFileName (tmp_file_name + ".pub");
-    rsa.open (QIODevice::ReadOnly | QIODevice::Text);
 #else
     printSshDError_noHostPubKey ();
     return (QString::null);
 #endif
   }
 
+  if (!(startSshd ())) {
+    x2goDebug << "Failed to start OpenSSH Server pro-actively.";
+    return (QString::null);
+  }
+
   QByteArray rsa_pub;
 
   if (!(rsa.atEnd ())) {
     rsa_pub = rsa.readLine ();
+  }
   else {
-    x2goErrorf (9) << tr ("RSA file empty.");
+    x2goErrorf (9) << tr ("%1 public host key file empty.").arg (stringified_key_type.toUpper ());
     return (QString::null);
   }
 
