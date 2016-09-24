@@ -438,6 +438,9 @@ x2goclient (4.0.5.3-0x2go1) UNRELEASED; urgency=medium
     - src/onmainwindow.{cpp,h}: add new function key_type_to_string ().
       Returns a stringified version of the selected key type, after checking
       for validity.
+    - src/onmainwindow.{cpp,h}: add new function default_size_for_key_type ().
+      Returns the default key size in bits for the selected key type, after
+      checking for validity.
 
   [ Bernard Cafarelli ]
   * New upstream version (4.0.5.3):

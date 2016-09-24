@@ -10332,6 +10332,31 @@ QString ONMainWindow::key_type_to_string (ONMainWindow::key_types key_type) {
   return (ret);
 }
 
+std::size_t ONMainWindow::default_size_for_key_type (ONMainWindow::key_types key_type) {
+  ONMainWindow::key_types sanitized_key_type = check_key_type (key_type);
+  std::size_t ret = 0;
+
+  switch (sanitized_key_type) {
+    case RSA_KEY_TYPE:
+                           ret = 4096;
+                           break;
+    case DSA_KEY_TYPE:
+                           ret = 1024;
+                           break;
+    case ECDSA_KEY_TYPE:
+                           ret = 384;
+                           break;
+    case ED25519_KEY_TYPE:
+                           /* Fixed key length, flag will be unused. */
+                           ret = 0;
+                           break;
+    default:
+                           ret = 0;
+  }
+
+  return (ret);
+}
+
 QString ONMainWindow::generateKey(ONMainWindow::key_types key_type, bool host_key)
 {
     ONMainWindow::key_types sanitized_key_type = UNKNOWN_KEY_TYPE;
