@@ -1219,6 +1219,7 @@ private:
 #endif
 
     key_types check_key_type (key_types key_type);
+    QString key_type_to_string (key_types key_type);
 
 ////////////////plugin stuff////////////////////
 #ifdef CFGPLUGIN

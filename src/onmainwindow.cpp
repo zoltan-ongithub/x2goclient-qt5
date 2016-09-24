@@ -10308,6 +10308,30 @@ ONMainWindow::key_types ONMainWindow::check_key_type (ONMainWindow::key_types ke
   return (ret);
 }
 
+QString ONMainWindow::key_type_to_string (ONMainWindow::key_types key_type) {
+  ONMainWindow::key_types sanitized_key_type = check_key_type (key_type);
+  QString ret ("");
+
+  switch (sanitized_key_type) {
+    case RSA_KEY_TYPE:
+                           ret = "rsa";
+                           break;
+    case DSA_KEY_TYPE:
+                           ret = "dsa";
+                           break;
+    case ECDSA_KEY_TYPE:
+                           ret = "ecdsa";
+                           break;
+    case ED25519_KEY_TYPE:
+                           ret = "ed25519";
+                           break;
+    default:
+                           ret = "unknown";
+  }
+
+  return (ret);
+}
+
 QString ONMainWindow::generateKey(ONMainWindow::key_types key_type, bool host_key)
 {
     ONMainWindow::key_types sanitized_key_type = UNKNOWN_KEY_TYPE;
