@@ -1205,7 +1205,6 @@ private:
 #endif
     void filterDesktops ( const QString& filter,
                           bool strict=false );
-    QString generateKey(key_types key_type, bool host_key = false);
     void generateEtcFiles();
     QString u3DataPath();
     void cleanPortable();
@@ -1221,6 +1220,7 @@ private:
     key_types check_key_type (key_types key_type);
     QString key_type_to_string (key_types key_type);
     std::size_t default_size_for_key_type (key_types key_type);
+    QString generateKey(key_types key_type, bool host_key = false);
 
 ////////////////plugin stuff////////////////////
 #ifdef CFGPLUGIN
