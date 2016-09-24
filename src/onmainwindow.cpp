@@ -10357,126 +10357,124 @@ std::size_t ONMainWindow::default_size_for_key_type (ONMainWindow::key_types key
   return (ret);
 }
 
-QString ONMainWindow::generateKey(ONMainWindow::key_types key_type, bool host_key)
-{
-    QString stringified_key_type (key_type_to_string (key_type));
-    std::size_t key_bits = default_size_for_key_type (key_type);
+QString ONMainWindow::generateKey (ONMainWindow::key_types key_type, bool host_key) {
+  QString stringified_key_type (key_type_to_string (key_type));
+  std::size_t key_bits = default_size_for_key_type (key_type);
 
-    QString ret ("");
+  QString ret ("");
 
-    QString base_dir (homeDir);
-    QString private_key_file ("");
+  QString base_dir (homeDir);
+  QString private_key_file ("");
 
-    if (host_key) {
-        base_dir += "/.x2go/etc/";
+  if (host_key) {
+    base_dir += "/.x2go/etc/";
+  }
+  else {
+    base_dir += "/.x2go/ssh/gen/";
+  }
+
+  {
+    QDir dir (homeDir);
+    if (!(dir.mkpath (base_dir))) {
+      QMessageBox::critical (this, tr ("SSH key base directory creation error"),
+                             tr ("Unable to create SSH key base directory '%1'.").arg (base_dir)
+                             + "\n"
+                             + tr ("Terminating application."));
+      close ();
     }
-    else {
-        base_dir += "/.x2go/ssh/gen/";
-    }
-
-    {
-        QDir dir (homeDir);
-        if (!(dir.mkpath (base_dir))) {
-            QMessageBox::critical (this, tr ("SSH key base directory creation error"),
-                                   tr ("Unable to create SSH key base directory '%1'.").arg (base_dir)
-                                   + "\n"
-                                   + tr ("Terminating application."));
-            close ();
-        }
-    }
+  }
 
 #ifdef Q_OS_WIN
-    private_key_file = cygwinPath (wapiShortFileName (base_dir));
+  private_key_file = cygwinPath (wapiShortFileName (base_dir));
 #else
-    private_key_file = base_dir;
+  private_key_file = base_dir;
 #endif
-    ret = base_dir;
+  ret = base_dir;
 
-    {
-        QString tmp_to_add ("");
+  {
+    QString tmp_to_add ("");
 
-        if (host_key) {
-            tmp_to_add = "/ssh_host_" + stringified_key_type + "_key";
-        }
-        else {
-            QTemporaryFile temp_file (base_dir + "/key");
-            temp_file.open ();
+    if (host_key) {
+      tmp_to_add = "/ssh_host_" + stringified_key_type + "_key";
+    }
+    else {
+      QTemporaryFile temp_file (base_dir + "/key");
+      temp_file.open ();
 
-            /* Extract base name. */
-            QFileInfo tmp_file_info (temp_file.fileName ());
-            tmp_to_add = tmp_file_info.fileName ();
+      /* Extract base name. */
+      QFileInfo tmp_file_info (temp_file.fileName ());
+      tmp_to_add = tmp_file_info.fileName ();
 
-            /* Clean up again. We don't need the temporary file anymore. */
-            temp_file.setAutoRemove (false);
-            temp_file.close ();
-            temp_file.remove ();
-        }
-
-        private_key_file += tmp_to_add;
-        ret += tmp_to_add;
+      /* Clean up again. We don't need the temporary file anymore. */
+      temp_file.setAutoRemove (false);
+      temp_file.close ();
+      temp_file.remove ();
     }
 
-    QString public_key_file (private_key_file + ".pub");
+    private_key_file += tmp_to_add;
+    ret += tmp_to_add;
+  }
 
-    if ((!(QFile::exists (private_key_file))) || (!(QFile::exists (public_key_file))))
-    {
-        x2goDebug << "Generating SSH key. Type: " << stringified_key_type.toUpper ()
-                  << "; Location: " << private_key_file;
+  QString public_key_file (private_key_file + ".pub");
 
-        QStringList args;
+  if ((!(QFile::exists (private_key_file))) || (!(QFile::exists (public_key_file)))) {
+    x2goDebug << "Generating SSH key. Type: " << stringified_key_type.toUpper ()
+              << "; Location: " << private_key_file;
 
-        QString comment = "X2Go Client " + stringified_key_type.toUpper () + " ";
+    QStringList args;
 
-        if (host_key) {
-            comment += "host";
-        }
-        else {
-            comment += "user";
-        }
+    QString comment = "X2Go Client " + stringified_key_type.toUpper () + " ";
 
-        comment += " key";
-
-        args << "-t"
-             << stringified_key_type
-             << "-b"
-             << QString::number (key_bits)
-             << "-N"
-             << ""
-             << "-C"
-             << comment
-             << "-f"
-             << private_key_file;
-
-        const int keygen_ret = QProcess::execute ("ssh-keygen", args);
-
-        if (-2 == keygen_ret) {
-            QMessageBox::critical (this, tr ("ssh-keygen launching error"),
-                                   tr ("Unable to start the ssh-keygen binary.")
-                                   + "\n"
-                                   + tr ("Terminating application."));
-            close ();
-        }
-
-        if (-1 == keygen_ret) {
-            QMessageBox::critical (this, tr ("ssh-keygen crashed"),
-                                   tr ("The ssh-keygen binary crashed.")
-                                   + "\n"
-                                   + tr ("Terminating application."));
-            close ();
-        }
-
-        if (0 != keygen_ret) {
-            QMessageBox::critical (this, tr ("ssh-keygen program error"),
-                                   tr ("The ssh-keygen binary did not exit cleanly.")
-                                   + " "
-                                   + tr ("It was probably called with unknown arguments.")
-                                   + "\n"
-                                   + tr ("Terminating application."));
-            close ();
-        }
+    if (host_key) {
+      comment += "host";
+    }
+    else {
+      comment += "user";
     }
 
-    return (ret);
+    comment += " key";
+
+    args << "-t"
+         << stringified_key_type
+         << "-b"
+         << QString::number (key_bits)
+         << "-N"
+         << ""
+         << "-C"
+         << comment
+         << "-f"
+         << private_key_file;
+
+    const int keygen_ret = QProcess::execute ("ssh-keygen", args);
+
+    if (-2 == keygen_ret) {
+      QMessageBox::critical (this, tr ("ssh-keygen launching error"),
+                             tr ("Unable to start the ssh-keygen binary.")
+                             + "\n"
+                             + tr ("Terminating application."));
+      close ();
+    }
+
+    if (-1 == keygen_ret) {
+      QMessageBox::critical (this, tr ("ssh-keygen crashed"),
+                             tr ("The ssh-keygen binary crashed.")
+                             + "\n"
+                             + tr ("Terminating application."));
+      close ();
+    }
+
+    if (0 != keygen_ret) {
+      QMessageBox::critical (this, tr ("ssh-keygen program error"),
+                             tr ("The ssh-keygen binary did not exit cleanly.")
+                             + " "
+                             + tr ("It was probably called with unknown arguments.")
+                             + "\n"
+                             + tr ("Terminating application."));
+      close ();
+    }
+  }
+
+  return (ret);
 }
 
 bool ONMainWindow::startSshd()
