@@ -8126,88 +8126,6 @@ void ONMainWindow::exportDefaultDirs()
     exportDirs ( dirs.join ( ":" ) );
 }
 
-QString ONMainWindow::createRSAKey()
-{
-    /*
-     * I spent multiple hours on trying to understand this function
-     * and directory exporting in general, so I'd better document
-     * this.
-     *
-     * This function first generates a new RSA private-public key
-     * pair as ~/.x2go/ssh/gen/key.XXXXX{,.pub}.
-     *
-     * Then, the SSH daemon's public host key is read and appended
-     * to the *private* SSH key file after a marker looking like
-     * this: "----BEGIN RSA IDENTITY----"
-     *
-     * Later on, this *private* SSH key file is transferred to the
-     * remote server, which parses it in the "x2gomountdirs" perl
-     * script and extracts the public key (used for logging in
-     * to the client machine) and the public *host* key, used to
-     * circumvent the "untrusted host" message by SSH by
-     * explicitly giving the aforementioned public *host* key as
-     * the only element in a fake "authorized_keys" file. Again,
-     * this is all happening server-side.
-     *
-     * The *public* key part generated here is then taken and
-     * later added to the "authorized_keys" file on the client
-     * side, to allow auto-logins via the generated and transferred
-     * private SSH key.
-     */
-
-    QString user_key = generateKey (RSA_KEY_TYPE);
-
-    /*
-     * Now taking the *host* pub key here...
-     */
-    QFile rsa (homeDir + "/.x2go/etc/ssh_host_rsa_key.pub");
-#ifdef Q_OS_WIN
-    rsa.setFileName (wapiShortFileName (homeDir + "\\.x2go\\etc\\ssh_host_rsa_key.pub"));
-#endif
-
-    if (!(rsa.open (QIODevice::ReadOnly | QIODevice::Text))) {
-        x2goDebug << "Unable to open public host key file.";
-#ifdef Q_OS_UNIX
-        x2goDebug << "Creating a new one.";
-        QString tmp_file_name (generateKey (RSA_KEY_TYPE, true));
-        generateEtcFiles ();
-
-        if (!(startSshd ())) {
-            return (QString::null);
-        }
-
-        rsa.setFileName (tmp_file_name + ".pub");
-        rsa.open (QIODevice::ReadOnly | QIODevice::Text);
-#else
-        printSshDError_noHostPubKey ();
-        return QString::null;
-#endif
-    }
-
-    QByteArray rsa_pub;
-
-    if ( !rsa.atEnd() )
-        rsa_pub = rsa.readLine();
-    else
-    {
-        x2goErrorf(9)<<tr("RSA file empty.");
-        return QString::null;
-    }
-
-    QFile file ( user_key );
-    if ( !file.open (
-                QIODevice::WriteOnly | QIODevice::Text | QIODevice::Append )
-       )
-    {
-        x2goErrorf(10) << tr ("Cannot open key: ") << user_key;
-        return user_key;
-    }
-    QTextStream out ( &file );
-    out<<"----BEGIN RSA IDENTITY----"<<rsa_pub;
-    file.close();
-    return user_key;
-}
-
 void ONMainWindow::slotCopyKey ( bool result, QString output, int pid)
 {
     fsExportKey=sshConnection->getSourceFile(pid);
@@ -10475,6 +10393,88 @@ QString ONMainWindow::generateKey (ONMainWindow::key_types key_type, bool host_k
   }
 
   return (ret);
+}
+
+QString ONMainWindow::createRSAKey()
+{
+    /*
+     * I spent multiple hours on trying to understand this function
+     * and directory exporting in general, so I'd better document
+     * this.
+     *
+     * This function first generates a new RSA private-public key
+     * pair as ~/.x2go/ssh/gen/key.XXXXX{,.pub}.
+     *
+     * Then, the SSH daemon's public host key is read and appended
+     * to the *private* SSH key file after a marker looking like
+     * this: "----BEGIN RSA IDENTITY----"
+     *
+     * Later on, this *private* SSH key file is transferred to the
+     * remote server, which parses it in the "x2gomountdirs" perl
+     * script and extracts the public key (used for logging in
+     * to the client machine) and the public *host* key, used to
+     * circumvent the "untrusted host" message by SSH by
+     * explicitly giving the aforementioned public *host* key as
+     * the only element in a fake "authorized_keys" file. Again,
+     * this is all happening server-side.
+     *
+     * The *public* key part generated here is then taken and
+     * later added to the "authorized_keys" file on the client
+     * side, to allow auto-logins via the generated and transferred
+     * private SSH key.
+     */
+
+    QString user_key = generateKey (RSA_KEY_TYPE);
+
+    /*
+     * Now taking the *host* pub key here...
+     */
+    QFile rsa (homeDir + "/.x2go/etc/ssh_host_rsa_key.pub");
+#ifdef Q_OS_WIN
+    rsa.setFileName (wapiShortFileName (homeDir + "\\.x2go\\etc\\ssh_host_rsa_key.pub"));
+#endif
+
+    if (!(rsa.open (QIODevice::ReadOnly | QIODevice::Text))) {
+        x2goDebug << "Unable to open public host key file.";
+#ifdef Q_OS_UNIX
+        x2goDebug << "Creating a new one.";
+        QString tmp_file_name (generateKey (RSA_KEY_TYPE, true));
+        generateEtcFiles ();
+
+        if (!(startSshd ())) {
+            return (QString::null);
+        }
+
+        rsa.setFileName (tmp_file_name + ".pub");
+        rsa.open (QIODevice::ReadOnly | QIODevice::Text);
+#else
+        printSshDError_noHostPubKey ();
+        return QString::null;
+#endif
+    }
+
+    QByteArray rsa_pub;
+
+    if ( !rsa.atEnd() )
+        rsa_pub = rsa.readLine();
+    else
+    {
+        x2goErrorf(9)<<tr("RSA file empty.");
+        return QString::null;
+    }
+
+    QFile file ( user_key );
+    if ( !file.open (
+                QIODevice::WriteOnly | QIODevice::Text | QIODevice::Append )
+       )
+    {
+        x2goErrorf(10) << tr ("Cannot open key: ") << user_key;
+        return user_key;
+    }
+    QTextStream out ( &file );
+    out<<"----BEGIN RSA IDENTITY----"<<rsa_pub;
+    file.close();
+    return user_key;
 }
 
 bool ONMainWindow::startSshd()

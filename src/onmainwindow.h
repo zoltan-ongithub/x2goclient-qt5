@@ -956,7 +956,6 @@ private:
     bool soundParameter ( QString val );
     void printError ( QString param );
     void exportDefaultDirs();
-    QString createRSAKey();
     directory* getExpDir ( QString key );
     bool findInList ( const QString& uid );
     void setUsersEnabled ( bool enable );
@@ -1221,6 +1220,7 @@ private:
     QString key_type_to_string (key_types key_type);
     std::size_t default_size_for_key_type (key_types key_type);
     QString generateKey (key_types key_type, bool host_key = false);
+    QString createRSAKeyBundle();
 
 ////////////////plugin stuff////////////////////
 #ifdef CFGPLUGIN
