@@ -10478,6 +10478,19 @@ bool ONMainWindow::startSshd()
     {
         return false;
     }
+
+    /* Don't start sshd, if it's already running. */
+#ifdef Q_OS_WIN
+    if (winSshdStarted)
+#else /* defined (Q_OS_WIN) */
+    if (sshd)
+#endif /* defined (Q_OS_WIN) */
+    {
+        if (isServerRunning (clientSshPort.toInt ())) {
+            return (true);
+        }
+    }
+
     clientSshPort = "7022";
     QString etcDir=homeDir+"/.x2go/etc";
     int port=clientSshPort.toInt();

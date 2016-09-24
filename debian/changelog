@@ -446,6 +446,9 @@ x2goclient (4.0.5.3-0x2go1) UNRELEASED; urgency=medium
     - src/onmainwindow.{cpp,h}: reformat generateKey () only.
     - src/onmainwindow.{cpp,h}: move createRSAKey () around.
     - src/onmainwindow.{cpp,h}: reformat createRSAKey () only.
+    - src/onmainwindow.cpp: let startSshd () act as a wrapper and be called
+      multiple times. Check if the OpenSSH Server is already running and
+      return true, otherwise try to start it.
 
   [ Bernard Cafarelli ]
   * New upstream version (4.0.5.3):
