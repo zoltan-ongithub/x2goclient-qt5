@@ -441,6 +441,7 @@ x2goclient (4.0.5.3-0x2go1) UNRELEASED; urgency=medium
     - src/onmainwindow.{cpp,h}: add new function default_size_for_key_type ().
       Returns the default key size in bits for the selected key type, after
       checking for validity.
+    - src/onmainwindow.cpp: use the new functions in generateKey ().
 
   [ Bernard Cafarelli ]
   * New upstream version (4.0.5.3):
