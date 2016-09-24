@@ -433,6 +433,8 @@ x2goclient (4.0.5.3-0x2go1) UNRELEASED; urgency=medium
       string in generateKey ().
     - src/onmainwindow.cpp: terminate sshd more correctly. First via terminate
       (), then wait up to 5 seconds, then via kill ().
+    - src/onmainwindow.{cpp,h}: add new function check_key_type (). Takes a
+      key type and checks for validity/if it's known.
 
   [ Bernard Cafarelli ]
   * New upstream version (4.0.5.3):

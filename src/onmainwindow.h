@@ -1218,6 +1218,8 @@ private:
     QString getXDisplay();
 #endif
 
+    key_types check_key_type (key_types key_type);
+
 ////////////////plugin stuff////////////////////
 #ifdef CFGPLUGIN
 public slots:

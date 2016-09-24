@@ -10281,6 +10281,33 @@ void ONMainWindow::generateEtcFiles()
     x2goDebug<<etcDir +"/sshd_config created.";
 }
 
+ONMainWindow::key_types ONMainWindow::check_key_type (ONMainWindow::key_types key_type) {
+  ONMainWindow::key_types ret = key_type;
+
+  switch (key_type) {
+    case RSA_KEY_TYPE:
+                           break;
+    case DSA_KEY_TYPE:
+                           break;
+    case ECDSA_KEY_TYPE:
+                           break;
+    case ED25519_KEY_TYPE:
+                           break;
+    default:
+                           ret = UNKNOWN_KEY_TYPE;
+  }
+
+  if (UNKNOWN_KEY_TYPE == ret) {
+    QMessageBox::critical (this, tr ("SSH key type selection error"),
+                           tr ("Unknown SSH key selected.")
+                           + "\n"
+                           + tr ("Terminating application."));
+    close ();
+  }
+
+  return (ret);
+}
+
 QString ONMainWindow::generateKey(ONMainWindow::key_types key_type, bool host_key)
 {
     ONMainWindow::key_types sanitized_key_type = UNKNOWN_KEY_TYPE;
