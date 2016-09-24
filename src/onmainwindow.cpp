@@ -10466,7 +10466,15 @@ QString ONMainWindow::createRSAKey () {
     x2goErrorf (10) << tr ("Cannot open key: ") << user_key;
     return (user_key);
   }
+
+  /* Append public host key into private user key file. */
   QTextStream out (&file);
+
+  /*
+   * The string here should be changed, but this requires
+   * changes to X2Go Server as well.
+   * As such, I'll be not changing it here for now.
+   */
   out << "----BEGIN RSA IDENTITY----" << rsa_pub;
   file.close ();
   return (user_key);
