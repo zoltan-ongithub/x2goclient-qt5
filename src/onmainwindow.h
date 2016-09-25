@@ -624,7 +624,7 @@ private:
     bool embedMode;
     bool thinMode;
     QString statusString;
-    QString autostartApp;
+    QStringList autostartApps;
     bool cmdAutologin;
     int defaultLink;
     int defaultQuality;

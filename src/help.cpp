@@ -139,7 +139,7 @@ help::params_t help::build_params () {
   ADD_OPT ("--kbd-type=<type>", QT_TRANSLATE_NOOP ("Help", "Sets the default keyboard type."));
   ADD_OPT ("--home=<dir>", QT_TRANSLATE_NOOP ("Help", "Sets the user's home directory."));
   ADD_OPT ("--set-kbd=<0|1>", QT_TRANSLATE_NOOP ("Help", "Enables or disables overwriting the current keyboard settings."));
-  ADD_OPT ("--autostart=<app>", QT_TRANSLATE_NOOP ("Help", "Automatically launches the application \"app\" on session start in Published Applications mode."));
+  ADD_OPT ("--autostart=<app>,[<app2>,...]", QT_TRANSLATE_NOOP ("Help", "Automatically launches the application(s) \"app\", \"app2\", ... on session start in Published Applications mode."));
   ADD_OPT ("--session-conf=<file>", QT_TRANSLATE_NOOP ("Help", "Defines an alternative session config file path."));
   ADD_OPT ("--tray-icon", QT_TRANSLATE_NOOP ("Help", "Force-enables session system tray icon."));
   ADD_OPT ("--close-disconnect", QT_TRANSLATE_NOOP ("Help", "Automatically closes X2Go Client after a disconnect."));

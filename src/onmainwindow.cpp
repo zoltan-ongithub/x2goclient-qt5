@@ -6747,7 +6747,7 @@ void ONMainWindow::slotReadApplications(bool result, QString output,
     applications.clear();
     QString locallong=QLocale::system().name();
     QString localshort=QLocale::system().name().split("_")[0];
-    bool startAppFound=false;
+    QStringList startAppsFound;
 
     foreach(QString appstr, output.split("</desktop>",QString::SkipEmptyParts))
     {
@@ -6776,9 +6776,12 @@ void ONMainWindow::slotReadApplications(bool result, QString output,
             if (line.indexOf("Name=")!=-1 && !localname)
             {
                 app.name=line.split("=")[1];
-                if (app.name==autostartApp)
-                    startAppFound=true;
-                //                 x2goDebug<<"name: "<<app.name<<endl;
+                for (int i=0; i<autostartApps.length(); ++i)
+                {
+                    if (app.name==autostartApps[i])
+                        startAppsFound.append(app.name);
+                    //                 x2goDebug<<"name: "<<app.name<<endl;
+                }
             }
             if (line.indexOf("Comment=")!=-1 && !localcomment)
             {
@@ -6794,9 +6797,12 @@ void ONMainWindow::slotReadApplications(bool result, QString output,
                 app.exec.replace("%u","",Qt::CaseInsensitive);
                 app.exec.replace("%i","",Qt::CaseInsensitive);
                 app.exec.replace("%c",app.name,Qt::CaseInsensitive);
-                if (app.exec==autostartApp)
-                    startAppFound=true;
-                //                 x2goDebug<<"exec: "<<app.exec<<endl;
+                for (int i=0; i<autostartApps.length(); ++i)
+                {
+                    if (app.exec==autostartApps[i])
+                        startAppsFound.append(app.exec);
+                    //                 x2goDebug<<"exec: "<<app.exec<<endl;
+                }
             }
             if (line.indexOf("Categories=")!=-1)
             {
@@ -6861,14 +6867,25 @@ void ONMainWindow::slotReadApplications(bool result, QString output,
 
     qSort(applications.begin(), applications.end(),Application::lessThen);
     plugAppsInTray();
-    if (runStartApp && autostartApp.length()>1)
+    if (runStartApp && autostartApps.length()>0)
     {
-        if (!startAppFound) {
-            x2goDebug<<"Autostart application "<<autostartApp<< " not found in desktop files.";
-        }
-        else
+        for (int i=0; i<autostartApps.length(); ++i)
         {
-            runApplication(autostartApp);
+            bool startAppFound = false;
+            for (int j=0; j<startAppsFound.length(); ++j)
+            {
+                if (startAppsFound[j] == autostartApps[i])
+                {
+                    startAppFound = true;
+                }
+            }
+            if (!startAppFound) {
+                x2goDebug<<"Autostart application "<<autostartApps[i]<< " not found in desktop files.";
+            }
+            else
+            {
+                runApplication(autostartApps[i]);
+            }
         }
     }
     else
@@ -7233,7 +7250,13 @@ bool ONMainWindow::parseParameter ( QString param )
     }
     if ( setting == "--autostart")
     {
-        autostartApp=value;
+        autostartApps.append(value.split(','));
+
+        /* Fix up by trimming whitespace. */
+        for (QStringList::iterator it = autostartApps.begin (); it != autostartApps.end (); ++it) {
+            *it = it->trimmed ();
+        }
+
         return true;
     }
     if ( setting == "--auth-id")
