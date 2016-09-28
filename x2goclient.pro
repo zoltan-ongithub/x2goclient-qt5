@@ -167,16 +167,16 @@ else:message("No translation files in project")
 TEMPLATE = app
 DEPENDPATH += .
 INCLUDEPATH += src
-RESOURCES += res/resources.rcc
+RESOURCES += res/resources.qrc
 
 exists(res/txt/git-info) {
   message("Configuring with --git-info")
-  RESOURCES += res/git.rcc
+  RESOURCES += res/git.qrc
 }
 
 exists(res/txt/changelog) {
   message("Configuring with --changelog")
-  RESOURCES += res/changelog.rcc
+  RESOURCES += res/changelog.qrc
 }
 
 linux-g++ {

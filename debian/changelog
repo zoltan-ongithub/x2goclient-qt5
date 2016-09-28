@@ -10,6 +10,13 @@ x2goclient (4.0.5.3-0x2go1) UNRELEASED; urgency=medium
     - src/onmainwindow.cpp: fix error message string in
       printSshDError_noHostPubKey ().
 
+  [ Bernard Cafarelli ]
+  * New upstream version (4.0.5.3):
+    - {res/,x2goclient.pro}: rename .rcc files to .qrc. Fixes: #1096. "rcc" is
+      the extension for compiled resource files, whereas "qrc" is the mapping
+      file. Qt5 stumbles upon that - i.e., it doesn't try to compile files
+      with the "rcc" extension, while Qt4 did.
+
  -- X2Go Release Manager <git-admin@x2go.org>  Mon, 19 Sep 2016 09:07:07 +0200
 
 x2goclient (4.0.5.2-0x2go1) unstable; urgency=medium
