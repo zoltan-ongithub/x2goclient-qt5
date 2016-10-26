@@ -1223,7 +1223,7 @@ private:
     std::size_t default_size_for_key_type (key_types key_type);
     QString generateKey (key_types key_type, bool host_key = false);
     QString createKeyBundle (key_types key_type = RSA_KEY_TYPE);
-    bool startSshd();
+    bool startSshd (key_types key_type = RSA_KEY_TYPE);
 
 ////////////////plugin stuff////////////////////
 #ifdef CFGPLUGIN

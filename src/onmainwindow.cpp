@@ -10495,7 +10495,7 @@ QString ONMainWindow::createKeyBundle (key_types key_type) {
   return (user_key);
 }
 
-bool ONMainWindow::startSshd()
+bool ONMainWindow::startSshd(ONMainWindow::key_types key_type)
 {
     if ( embedMode && config.confFS && !config.useFs )
     {
