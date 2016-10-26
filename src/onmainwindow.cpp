@@ -9993,7 +9993,7 @@ void WinServerStarter::run()
     switch ( mode )
     {
     case SSH:
-        parent->startSshd();
+        parent->startSshd(ssh_key_type_);
         break;
     case X:
         parent->startXOrg();
