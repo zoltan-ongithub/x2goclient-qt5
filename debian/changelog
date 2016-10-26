@@ -460,6 +460,8 @@ x2goclient (4.0.5.3-0x2go1) UNRELEASED; urgency=medium
       uses other means of starting the daemon.
     - src/onmainwindow.cpp: add comment to last all-in listening check in
       startSshd ().
+    - src/onmainwindow.cpp: add listening-check loop to the Windows-specific
+      code of startSshd ().
 
   [ Bernard Cafarelli ]
   * New upstream version (4.0.5.3):

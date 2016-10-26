@@ -10569,20 +10569,37 @@ bool ONMainWindow::startSshd()
     ZeroMemory ( &sshd, sizeof ( sshd ) );
     si.lpDesktop=desktop;
     si.cb = sizeof ( si );
-    CreateProcessA ( NULL,  // No module name (use command line)
-                     ( LPSTR ) strm.str().c_str(),  // Command line
-                     NULL,           // Process handle not inheritable
-                     NULL,           // Thread handle not inheritable
-                     TRUE,          // Set handle inheritance to FALSE
-                     0/*CREATE_NO_WINDOW|CREATE_NEW_PROCESS_GROUP*/,
-                     //creation flags
-                     NULL,           // Use parent's environment block
-                     clientdir.c_str(), // Starting directory
-                     &si,            // Pointer to STARTUPINFO structure
-                     &sshd );// Pointer to PROCESS_INFORMATION structure
-    /* FIXME: test successful SSH daemon startup */
+    const BOOL ret = CreateProcessA ( NULL,  // No module name (use command line)
+                                      ( LPSTR ) strm.str().c_str(),  // Command line
+                                      NULL,           // Process handle not inheritable
+                                      NULL,           // Thread handle not inheritable
+                                      TRUE,          // Set handle inheritance to FALSE
+                                      0/*CREATE_NO_WINDOW|CREATE_NEW_PROCESS_GROUP*/,
+                                      //creation flags
+                                      NULL,           // Use parent's environment block
+                                      clientdir.c_str(), // Starting directory
+                                      &si,            // Pointer to STARTUPINFO structure
+                                      &sshd );// Pointer to PROCESS_INFORMATION structure
+
+    /* Test successful SSH daemon startup for at most 5 seconds. */
+    if (ret) {
+        QTime sleep_time = QTime::currentTime ().addSecs (5);
+
+        while (QTime::currentTime () < sleep_time) {
+            if (isServerRunning (clientSshPort.toInt ())) {
+                winSshdStarted = true;
+
+                break;
+            }
+
+            QCoreApplication::processEvents (QEventLoop::AllEvents, 100);
+        }
+    }
+    else {
+        winSshdStarted = false;
+    }
+
     delete []desktop;
-    winSshdStarted=true;
 #else // defined (Q_OS_WIN)
     sshd=new QProcess ( this );
 
