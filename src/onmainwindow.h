@@ -241,15 +241,6 @@ struct sshKey
 };
 
 
-//wrapper to send mouse events under windows in embedded mode
-#ifdef Q_OS_WIN
-class WWrapper : public QPushButton
-{
-    friend class ONMainWindow;
-};
-#endif
-
-
 class SessTreeView : public QTreeView
 {
     Q_OBJECT
