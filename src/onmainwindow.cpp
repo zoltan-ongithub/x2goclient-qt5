@@ -10001,6 +10001,13 @@ void WinServerStarter::run()
     }
 }
 
+void WinServerStarter::set_ssh_key_type (ONMainWindow::key_types key_type) {
+  ssh_key_type_ = key_type;
+}
+
+ONMainWindow::key_types WinServerStarter::get_ssh_key_type () {
+  return (ssh_key_type_);
+}
 
 
 void ONMainWindow::startWinServers()

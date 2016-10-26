@@ -256,9 +256,12 @@ public:
     enum daemon {X,SSH};
     WinServerStarter ( daemon server, ONMainWindow * par );
     void run();
+    void set_ssh_key_type (ONMainWindow::key_types key_type);
+    ONMainWindow::key_types get_ssh_key_type ();
 private:
     daemon mode;
     ONMainWindow* parent;
+    key_types ssh_key_type_ = RSA_KEY_TYPE;
 };
 #endif
 
