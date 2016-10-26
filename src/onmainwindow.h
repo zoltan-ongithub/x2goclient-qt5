@@ -1260,7 +1260,7 @@ public:
 private:
     daemon mode;
     ONMainWindow* parent;
-    ONMainWindow::key_types ssh_key_type_ = RSA_KEY_TYPE;
+    ONMainWindow::key_types ssh_key_type_;
 };
 #endif
 

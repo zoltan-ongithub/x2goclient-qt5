@@ -478,6 +478,10 @@ x2goclient (4.0.5.3-0x2go1) UNRELEASED; urgency=medium
     - src/onmainwindow.h: move WinServerStarter class definition around to
       hopefully get the definition of ONMainWindow::key_types.
     - src/onmainwindow.h: remove WWrapper definition, seems to be unused.
+    - src/onmainwindow.{cpp,h}: don't try to initialize non-static
+      ssh_key_type_ member variable directly, but in the constructor. Also,
+      use the initializer list to initialize the other member variables
+      directly.
 
   [ Bernard Cafarelli ]
   * New upstream version (4.0.5.3):
