@@ -10010,8 +10010,9 @@ ONMainWindow::key_types WinServerStarter::get_ssh_key_type () {
 }
 
 
-void ONMainWindow::startWinServers()
+void ONMainWindow::startWinServers(ONMainWindow::key_types key_type)
 {
+    key_type = check_key_type (key_type);
 
     x2goDebug<<"Starting helper servers for Windows ...";
 
@@ -10027,7 +10028,8 @@ void ONMainWindow::startWinServers()
     {
 
         dr.mkpath ( etcDir );
-        UNUSED (generateKey (RSA_KEY_TYPE, true));
+        UNUSED (generateKey (key_type, true));
+        sshStarter->set_ssh_key_type (key_type);
         generateEtcFiles();
         sshStarter->start();
     }

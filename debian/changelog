@@ -471,6 +471,8 @@ x2goclient (4.0.5.3-0x2go1) UNRELEASED; urgency=medium
       in WinServerStarter::run ().
     - src/onmainwindow.cpp: pass key_type parameter to startSshd () in
       createKeyBundle ().
+    - src/onmainwindow.cpp: add and use key_types parameter to
+      startWinServers ().
 
   [ Bernard Cafarelli ]
   * New upstream version (4.0.5.3):

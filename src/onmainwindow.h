@@ -1012,7 +1012,7 @@ protected:
 #else
 private slots:
     void slotSetWinServersReady();
-    void startWinServers();
+    void startWinServers(key_types key_type = RSA_KEY_TYPE);
     void slotCheckXOrgLog();
     void slotCheckXOrgConnection();
     void slotStartParec ();
