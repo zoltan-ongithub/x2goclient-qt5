@@ -475,6 +475,8 @@ x2goclient (4.0.5.3-0x2go1) UNRELEASED; urgency=medium
       startWinServers ().
     - src/onmainwindow.cpp: actually use key_type parameter in startSshd ()
       and make selection more generic.
+    - src/onmainwindow.h: move WinServerStarter class definition around to
+      hopefully get the definition of ONMainWindow::key_types.
 
   [ Bernard Cafarelli ]
   * New upstream version (4.0.5.3):
