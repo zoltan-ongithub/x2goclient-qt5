@@ -484,6 +484,8 @@ x2goclient (4.0.5.3-0x2go1) UNRELEASED; urgency=medium
       directly.
     - src/onmainwindow.cpp: re-order initializer list of WinServerStarter
       constructor.
+    - src/onmainwindow.h: actually, we do need startSshd () to be public. Move
+      it back.
 
   [ Bernard Cafarelli ]
   * New upstream version (4.0.5.3):
