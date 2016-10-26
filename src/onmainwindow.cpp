@@ -10286,8 +10286,6 @@ QString ONMainWindow::generateKey (ONMainWindow::key_types key_type, bool host_k
   QString stringified_key_type (key_type_to_string (key_type));
   std::size_t key_bits = default_size_for_key_type (key_type);
 
-  QString ret ("");
-
   QString base_dir (homeDir);
   QString private_key_file ("");
 
@@ -10309,12 +10307,10 @@ QString ONMainWindow::generateKey (ONMainWindow::key_types key_type, bool host_k
     }
   }
 
-#ifdef Q_OS_WIN
-  private_key_file = cygwinPath (wapiShortFileName (base_dir));
-#else
   private_key_file = base_dir;
+#ifdef Q_OS_WIN
+  QString private_key_file_cygwin = cygwinPath (wapiShortFileName (base_dir));
 #endif
-  ret = base_dir;
 
   {
     QString tmp_to_add ("");
@@ -10337,14 +10333,23 @@ QString ONMainWindow::generateKey (ONMainWindow::key_types key_type, bool host_k
     }
 
     private_key_file += tmp_to_add;
-    ret += tmp_to_add;
+#ifdef Q_OS_WIN
+    private_key_file_cygwin += tmp_to_add;
+#endif
   }
 
   QString public_key_file (private_key_file + ".pub");
 
   if ((!(QFile::exists (private_key_file))) || (!(QFile::exists (public_key_file)))) {
     x2goDebug << "Generating SSH key. Type: " << stringified_key_type.toUpper ()
-              << "; Location: " << private_key_file;
+              << "; Location: "
+              <<
+#ifdef Q_OS_WIN
+                 private_key_file_cygwin
+#else
+                 private_key_file
+#endif
+              ;
 
     QStringList args;
 
@@ -10399,7 +10404,7 @@ QString ONMainWindow::generateKey (ONMainWindow::key_types key_type, bool host_k
     }
   }
 
-  return (ret);
+  return (private_key_file);
 }
 
 QString ONMainWindow::createKeyBundle (key_types key_type) {

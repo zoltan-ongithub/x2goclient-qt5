@@ -486,6 +486,8 @@ x2goclient (4.0.5.3-0x2go1) UNRELEASED; urgency=medium
       constructor.
     - src/onmainwindow.h: actually, we do need startSshd () to be public. Move
       it back.
+    - src/onmainwindow.cpp: only pass non-Cygwin paths to QFile::exists () in
+      generateKey (). Refactor a bit to drop the now-unnecessary ret variable.
 
   [ Bernard Cafarelli ]
   * New upstream version (4.0.5.3):
