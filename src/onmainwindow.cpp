@@ -7998,12 +7998,11 @@ void ONMainWindow::exportDirs ( QString exports,bool removable )
 
 
     QString uname=getCurrentUname();
-    QString dst=dr.key;
-    QString dhdir=homeDir+"/.x2go";
-#ifdef Q_OS_WIN
-    dhdir=wapiShortFileName ( dhdir );
-#endif
-    dst.replace ( dhdir +"/ssh/gen/","" );
+
+    /* For the destination, fetch the base name only. */
+    QFileInfo tmp_file_info (dr.key);
+    QString dst = tmp_file_info.fileName ();
+
     dst="~"+uname +"/.x2go/ssh/"+dst;
     dr.dstKey=dst;
     dr.isRemovable=removable;
