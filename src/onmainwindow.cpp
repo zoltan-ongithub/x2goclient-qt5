@@ -10623,6 +10623,7 @@ bool ONMainWindow::startSshd()
     }
 #endif /* defined (Q_OS_WIN) */
 
+    /* Check to see if connecting to the listening socket works. */
     if (!isServerRunning (clientSshPort.toInt ())) {
         printSshDError_startupFailure ();
         x2goDebug << "Failed to start user mode OpenSSH server.";
