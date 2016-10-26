@@ -10504,6 +10504,8 @@ bool ONMainWindow::startSshd(ONMainWindow::key_types key_type)
         return false;
     }
 
+    const QString stringified_key_type = key_type_to_string (key_type);
+
     /* Don't start sshd, if it's already running. */
 #ifdef Q_OS_WIN
     if (winSshdStarted)
@@ -10527,8 +10529,7 @@ bool ONMainWindow::startSshd(ONMainWindow::key_types key_type)
     std::string clientdir=wapiShortFileName ( appDir ).toStdString();
     std::stringstream strm;
     std::string config="\""+cygwinPath(etcDir+"/sshd_config").toStdString()+"\"";
-    /* FIXME: make this generic! */
-    std::string key="\""+cygwinPath(etcDir+"/ssh_host_rsa_key").toStdString()+"\"";
+    std::string key="\""+cygwinPath(etcDir+"/ssh_host_" + stringified_key_type + "_key").toStdString()+"\"";
 
     // generate a unique sshLog filepath, and create its directory
     if (debugging)
@@ -10618,9 +10619,8 @@ bool ONMainWindow::startSshd(ONMainWindow::key_types key_type)
 #endif /* !(defined (Q_OS_UNIX)) */
 
     QStringList arguments;
-    /* FIXME: make key selection more generic! */
     arguments<<"-f"<<etcDir +"/sshd_config"<< "-h" <<
-             etcDir+"/ssh_host_rsa_key"<<"-D"<<"-p"<<clientSshPort;
+             etcDir+"/ssh_host_" + stringified_key_type + "_key"<<"-D"<<"-p"<<clientSshPort;
 
     sshd->start (binary, arguments);
 
