@@ -10597,17 +10597,31 @@ bool ONMainWindow::startSshd()
              etcDir+"/ssh_host_rsa_key"<<"-D"<<"-p"<<clientSshPort;
 
     sshd->start (binary, arguments);
-#endif /* defined (Q_OS_WIN) */
 
-    // Allow sshd a grace time of 5 seconds to come up.
-    QTime sleepTime = QTime::currentTime ().addSecs (5);
-    while (QTime::currentTime () < sleepTime) {
+    /* Allow sshd a grace time of 5 seconds to come up. */
+    QTime sleep_time = QTime::currentTime ().addSecs (5);
+    while (QTime::currentTime () < sleep_time) {
         if (QProcess::Running == sshd->state ()) {
+            /*
+             * Additionally, spin up to 3 seconds to give sshd
+             * the opportunity to launch its listening socket.
+             */
+            QTime new_sleep_time = QTime::currentTime ().addSecs (3);
+
+            while (QTime::currentTime () < new_sleep_time) {
+                if (isServerRunning (clientSshPort.toInt ())) {
+                    break;
+                }
+
+                QCoreApplication::processEvents (QEventLoop::AllEvents, 100);
+            }
+
             break;
         }
 
         QCoreApplication::processEvents (QEventLoop::AllEvents, 100);
     }
+#endif /* defined (Q_OS_WIN) */
 
     if (!isServerRunning (clientSshPort.toInt ())) {
         printSshDError_startupFailure ();
