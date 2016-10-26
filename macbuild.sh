@@ -178,7 +178,7 @@ NXPROXY="nxproxy"
 PULSEAUDIO_BINARIES=( "pulseaudio" "esdcompat" "pacat" "pacmd"      "pactl"
                       "pamon"      "paplay"    "parec" "parecord"   "pasuspender" )
 PULSEAUDIO_LIBRARIES=( "libpulse-simple.0.dylib"
-                       "pulse-8.0"
+                       "pulse-9.0"
                        "pulseaudio" )
 RESOURCE_FILES=( "audio/startup.wav" )
 
