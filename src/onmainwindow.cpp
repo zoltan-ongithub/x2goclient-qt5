@@ -9982,7 +9982,7 @@ void ONMainWindow::slotCheckXOrgConnection()
 }
 
 WinServerStarter::WinServerStarter ( daemon server, ONMainWindow * par ) :
-    QThread ( 0 ), ssh_key_type_ (ONMainWindow::RSA_KEY_TYPE), mode (server), parent (par)
+    QThread ( 0 ), mode (server), parent (par), ssh_key_type_ (ONMainWindow::RSA_KEY_TYPE)
 {
 }
 

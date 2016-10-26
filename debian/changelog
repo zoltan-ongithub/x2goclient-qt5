@@ -482,6 +482,8 @@ x2goclient (4.0.5.3-0x2go1) UNRELEASED; urgency=medium
       ssh_key_type_ member variable directly, but in the constructor. Also,
       use the initializer list to initialize the other member variables
       directly.
+    - src/onmainwindow.cpp: re-order initializer list of WinServerStarter
+      constructor.
 
   [ Bernard Cafarelli ]
   * New upstream version (4.0.5.3):
