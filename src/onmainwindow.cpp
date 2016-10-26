@@ -10461,7 +10461,7 @@ QString ONMainWindow::createKeyBundle (key_types key_type) {
 #endif
   }
 
-  if (!(startSshd ())) {
+  if (!(startSshd (key_type))) {
     x2goDebug << "Failed to start OpenSSH Server pro-actively.";
     return (QString::null);
   }
