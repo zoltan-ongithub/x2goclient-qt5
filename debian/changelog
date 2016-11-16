@@ -9,6 +9,8 @@ x2goclient (4.0.5.3-0x2go1) UNRELEASED; urgency=medium
       the host pub key locations on OS X.
     - src/onmainwindow.cpp: fix error message string in
       printSshDError_noHostPubKey ().
+    - src/sshmasterconnection.cpp: add SecurID prompt to challenge auth code
+      prompts.
 
   [ Bernard Cafarelli ]
   * New upstream version (4.0.5.3):
