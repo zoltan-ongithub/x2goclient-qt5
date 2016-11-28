@@ -207,7 +207,9 @@ void show_XQuartz_generic_error (const QString &main_error, const QString &addit
                                             "or\n"
                                             "<center><b>/Applications/Utilities/XQuartz.app</b></center>"));
 }
+#endif /* defined (Q_OS_DARWIN) */
 
+#ifdef Q_OS_UNIX
 QString add_to_path (const QString &orig_path, const QStringList &add, const bool back) {
   QString ret = orig_path;
   std::vector<bool> found;
@@ -335,4 +337,4 @@ QString find_binary (const QString &path, const QString &binary_name) {
 
   return (ret);
 }
-#endif /* defined (Q_OS_DARWIN) */
+#endif /* defined (Q_OS_UNIX) */

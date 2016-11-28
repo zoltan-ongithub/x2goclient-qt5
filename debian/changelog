@@ -491,6 +491,9 @@ x2goclient (4.0.5.3-0x2go1) UNRELEASED; urgency=medium
     - src/onmainwindow.cpp: use QFileInfo to get the key file's basename in
       exportDirs () instead of the old, potentially faulty string replace
       dance.
+    - src/x2goutils.{cpp,h}: make find_binary () and add_to_path () available
+      on all UNIX-based operating systems. We will need it for sftp-server
+      discovery.
 
   [ Bernard Cafarelli ]
   * New upstream version (4.0.5.3):

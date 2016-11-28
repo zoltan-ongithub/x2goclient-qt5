@@ -45,7 +45,9 @@ bool font_is_monospaced (const QFont &font);
 void show_XQuartz_not_found_error ();
 void show_XQuartz_start_error ();
 void show_XQuartz_generic_error (const QString &main_error, const QString &additional_info);
+#endif /* defined (Q_OS_DARWIN) */
 
+#ifdef Q_OS_UNIX
 /*
  * Add a list of strings to a PATH value.
  *
@@ -65,6 +67,6 @@ QString add_to_path (const QString &orig_path, const QStringList &add, const boo
  * Iff path is empty, (only) the current working dir is searched.
  */
 QString find_binary (const QString &path, const QString &binary_name);
-#endif /* defined (Q_OS_DARWIN) */
+#endif /* defined (Q_OS_UNIX) */
 
 #endif /* !defined (X2GOUTILS_H) */
