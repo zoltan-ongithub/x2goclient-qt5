@@ -79,6 +79,10 @@ PulseManager::PulseManager () : app_dir_ (QApplication::applicationDirPath ()),
 
   if (server_binary_.isEmpty ()) {
     server_binary_ = find_binary (path_val, "pulseaudio");
+
+    if (!(server_binary_.isEmpty ())) {
+      system_pulse_ = true;
+    }
   }
 #else /* QT_VERSION < 0x050000 */
   QStringList search_paths;
@@ -102,7 +106,17 @@ PulseManager::PulseManager () : app_dir_ (QApplication::applicationDirPath ()),
         search_paths << "/usr/local/bin"; /* Homebrew or random stuff. Probably even both intermingled... */
 
         server_binary_ = QStandardPaths::findExecutable ("pulseaudio", search_paths);
+
+        if (!(server_binary_.isEmpty ())) {
+          system_pulse_ = true;
+        }
       }
+      else {
+        system_pulse_ = true;
+      }
+    }
+    else {
+      system_pulse_ = true;
     }
   }
 #endif /* QT_VERSION < 0x050000 */
@@ -117,9 +131,6 @@ PulseManager::PulseManager () : app_dir_ (QApplication::applicationDirPath ()),
                                    "</a></center>\n"),
                                true);
     abort ();
-  }
-  else {
-    system_pulse_ = true;
   }
 
   QFileInfo tmp_file_info = QFileInfo (server_binary_);

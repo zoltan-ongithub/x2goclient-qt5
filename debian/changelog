@@ -498,6 +498,9 @@ x2goclient (4.0.5.3-0x2go1) UNRELEASED; urgency=medium
       duplication now.
     - src/onmainwindow.cpp: fix sshd_config generation on UNIX by searching
       for the real sftp-server binary path.
+    - src/pulsemanager.cpp: fix PA binary searching logic. We don't want to
+      unconditionally set system_pulse_ to true if we found a binary... it
+      might as well be the bundled one...
 
   [ Bernard Cafarelli ]
   * New upstream version (4.0.5.3):
