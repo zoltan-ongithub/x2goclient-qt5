@@ -10185,14 +10185,81 @@ void ONMainWindow::generateEtcFiles()
     out<<"StrictModes no\n"<<
          "UsePrivilegeSeparation no\n"<<
          "PidFile \"" + varDir + "/sshd.pid\"\n" <<
-         "AuthorizedKeysFile \"" << authKeyPath << "\"\n" <<
+         "AuthorizedKeysFile \"" << authKeyPath << "\"\n";
 #ifdef Q_OS_WIN
-         "Subsystem shell "<< wapiShortFileName ( appDir) +"/sh"+"\n"<<
-         "Subsystem sftp "<< wapiShortFileName ( appDir) +"/sftp-server"+"\n";
+    out << "Subsystem shell "<< wapiShortFileName ( appDir) +"/sh"+"\n"<<
+           "Subsystem sftp "<< wapiShortFileName ( appDir) +"/sftp-server"+"\n";
 #else
-         "Subsystem sftp "
-    /* This may need some sanitization, i.e., appDir could potentially include whitespace. */
-       <<appDir<<"/sftp-server\n";
+    /*
+     * We need to find the sftp-server binary.
+     * This turns out to be surprisingly difficult, because there is no standard place
+     * for this binary. Instead, every distribution installs it where they see fit.
+     * Needless to say, we're screwed...
+     */
+
+    QString sftp_binary;
+
+#if QT_VERSION < 0x050000
+    QProcessEnvironment tmp_env = QProcessEnvironment::systemEnvironment ();
+    QString path_val = tmp_env.value ("PATH");
+
+    QStringList to_back;
+    to_back << "/usr/lib/openssh" /* Debian and Ubuntu */
+            << "/usr/libexec/openssh" /* Fedora, CentOS, hopefully also RHEL */
+            << "/usr/lib/ssh/" /* Mageia, OpenSUSE, SLE{S,D} < 12 x86, SLE{S,D} 12, Arch */
+            << "/usr/lib64/ssh" /* SLE{S,D} < 12 x86_64 */
+            << "/usr/lib/misc" /* Gentoo */
+            << "/usr/libexec"; /* Slackware, OS X */
+
+    add_to_path (path_val, to_back);
+
+    /* Just in case we bundle sftp-server ourselves. */
+    sftp_binary = find_binary (appDir, "sftp-server");
+
+    if (sftp_binary.isEmpty ()) {
+      sftp_binary = find_binary (path_val, "sftp-server");
+    }
+#else /* QT_VERSION < 0x050000 */
+    QStringList search_paths;
+    search_paths << appDir;
+
+    sftp_binary = QStandardPaths::findExecutable ("sftp-binary", search_paths);
+
+    if (sftp_binary.isEmpty ()) {
+      search_paths = QStringList ();
+
+      sftp_binary = QStandardPaths::findExecutable ("sftp-binary", search_paths);
+
+      if (sftp_binary.isEmpty ()) {
+        search_paths = QStringList ();
+        search_paths << "/usr/lib/openssh" /* Debian and Ubuntu */
+                     << "/usr/libexec/openssh" /* Fedora, CentOS, hopefully also RHEL */
+                     << "/usr/lib/ssh/" /* Mageia, OpenSUSE, SLE{S,D} < 12 x86, SLE{S,D} 12, Arch */
+                     << "/usr/lib64/ssh" /* SLE{S,D} < 12 x86_64 */
+                     << "/usr/lib/misc" /* Gentoo */
+                     << "/usr/libexec"; /* Slackware, OS X */
+
+        sftp_binary = QStandardPaths::findExecutable ("sftp-server", search_paths);
+      }
+    }
+#endif /* QT_VERSION < 0x050000 */
+
+    if (sftp_binary.isEmpty ()) {
+      x2goErrorf (31) << "Unable to find the sftp-server binary. Neither bundled, nor found in $PATH nor additional directories.";
+      show_RichText_ErrorMsgBox (tr ("Unable to find the sftp-server binary. Neither bundled, nor found in $PATH nor additional directories."),
+                                 tr ("If you are using a Linux-based operating system, please ask your system administrator "
+                                     "to install the package containing the sftp-server binary. Common names are <b>openssh</b>, "
+                                     "<b>openssh-server</b> or <b>openssh-sftp-server</b> depending upon distribution.\n\n"
+                                     "If the sftp-server binary is installed on your system, please report a bug "
+                                     "mentioning its path on:\n"
+                                     "<center><a href=\"https://wiki.x2go.org/doku.php/wiki:bugs\">"
+                                       "https://wiki.x2go.org/doku.php/wiki:bugs"
+                                     "</a></center>\n"),
+                                 true);
+      abort ();
+    }
+
+    out << "Subsystem sftp " << sftp_binary << "\n";
 #endif
 
     /* The log file in startSshd() is specific to Windows. */
