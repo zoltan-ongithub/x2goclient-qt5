@@ -79,21 +79,6 @@ PulseManager::PulseManager () : app_dir_ (QApplication::applicationDirPath ()),
 
   if (server_binary_.isEmpty ()) {
     server_binary_ = find_binary (path_val, "pulseaudio");
-
-    if (server_binary_.isEmpty ()) {
-      x2goErrorf (29) << "Unable to find PulseAudio binary. Neither bundled, nor found in $PATH nor additional directories.";
-      show_RichText_ErrorMsgBox (tr ("Unable to find PulseAudio binary. Neither bundled, nor found in $PATH nor additional directories."),
-                                 tr ("If you downloaded the bundled, pre-compiled version from the official home page, "
-                                     "please report a bug on:\n"
-                                     "<center><a href=\"https://wiki.x2go.org/doku.php/wiki:bugs\">"
-                                       "https://wiki.x2go.org/doku.php/wiki:bugs"
-                                     "</a></center>\n"),
-                                 true);
-      abort ();
-    }
-    else {
-      system_pulse_ = true;
-    }
   }
 #else /* QT_VERSION < 0x050000 */
   QStringList search_paths;
@@ -117,30 +102,25 @@ PulseManager::PulseManager () : app_dir_ (QApplication::applicationDirPath ()),
         search_paths << "/usr/local/bin"; /* Homebrew or random stuff. Probably even both intermingled... */
 
         server_binary_ = QStandardPaths::findExecutable ("pulseaudio", search_paths);
-
-        if (server_binary_.isEmpty ()) {
-          x2goErrorf (28) << "Unable to find PulseAudio binary. Neither bundled, nor found in $PATH nor additional directories.";
-          show_RichText_ErrorMsgBox (tr ("Unable to find PulseAudio binary. Neither bundled, nor found in $PATH nor additional directories."),
-                                     tr ("If you downloaded the bundled, pre-compiled version from the official home page, "
-                                         "please report a bug on:\n"
-                                         "<center><a href=\"https://wiki.x2go.org/doku.php/wiki:bugs\">"
-                                           "https://wiki.x2go.org/doku.php/wiki:bugs"
-                                         "</a></center>\n"),
-                                     true);
-          abort ();
-        }
       }
     }
-
-    /*
-     * The detection above either failed or succeeded.
-     * Failure means that the program already stopped,
-     * success means that all code reaches this point.
-     * Be careful when refactoring this code.
-     */
-    system_pulse_ = true;
   }
 #endif /* QT_VERSION < 0x050000 */
+
+  if (server_binary_.isEmpty ()) {
+    x2goErrorf (29) << "Unable to find the PulseAudio binary. Neither bundled, nor found in $PATH nor additional directories.";
+    show_RichText_ErrorMsgBox (tr ("Unable to find the PulseAudio binary. Neither bundled, nor found in $PATH nor additional directories."),
+                               tr ("If you downloaded the bundled, pre-compiled version from the official home page, "
+                                   "please report a bug on:\n"
+                                   "<center><a href=\"https://wiki.x2go.org/doku.php/wiki:bugs\">"
+                                     "https://wiki.x2go.org/doku.php/wiki:bugs"
+                                   "</a></center>\n"),
+                               true);
+    abort ();
+  }
+  else {
+    system_pulse_ = true;
+  }
 
   QFileInfo tmp_file_info = QFileInfo (server_binary_);
   server_working_dir_ = tmp_file_info.canonicalPath ();
