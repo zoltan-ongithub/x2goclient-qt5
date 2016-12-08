@@ -8074,7 +8074,7 @@ QString ONMainWindow::createRSAKey()
 #ifdef Q_OS_WIN
     rsa.setFileName (
         wapiShortFileName (
-            homeDir+"\\.x2go\\etc\\ssh_host_dsa_key.pub" ) );
+            homeDir+"\\.x2go\\etc\\ssh_host_rsa_key.pub" ) );
 #else
     if ( userSshd )
         rsa.setFileName ( homeDir+"/.x2go/etc/ssh_host_dsa_key.pub" );
@@ -10330,6 +10330,8 @@ void ONMainWindow::generateEtcFiles()
 #ifdef Q_OS_WIN
     QString authKeyPath=cygwinPath ( homeDir+"/.x2go/.ssh/authorized_keys" );
     authKeyPath.replace(wapiGetUserName(),"%u");
+    varDir=cygwinPath (varDir);
+    x2goDebug<<varDir<<" cygwin var path";
 #endif
     QTextStream out ( &file );
     out<<"StrictModes no\n"<<
@@ -10442,7 +10444,7 @@ bool ONMainWindow::startSshd()
     std::string clientdir=wapiShortFileName ( appDir ).toStdString();
     std::stringstream strm;
     std::string config="\""+cygwinPath(etcDir+"/sshd_config").toStdString()+"\"";
-    std::string key="\""+cygwinPath(etcDir+"/ssh_host_dsa_key").toStdString()+"\"";
+    std::string key="\""+cygwinPath(etcDir+"/ssh_host_rsa_key").toStdString()+"\"";
 
     // generate a unique sshLog filepath, and create its directory
     if (debugging)
