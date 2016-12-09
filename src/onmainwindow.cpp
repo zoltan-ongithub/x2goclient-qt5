@@ -10027,7 +10027,6 @@ void ONMainWindow::startWinServers(ONMainWindow::key_types key_type)
         dr.mkpath ( etcDir );
         UNUSED (generateKey (key_type, true));
         sshStarter->set_ssh_key_type (key_type);
-        generateEtcFiles();
         sshStarter->start();
     }
 
@@ -10519,7 +10518,6 @@ QString ONMainWindow::createKeyBundle (key_types key_type) {
 #ifdef Q_OS_UNIX
     x2goDebug << "Creating a new one.";
     QString tmp_file_name (generateKey (key_type, true));
-    generateEtcFiles ();
 
     rsa.setFileName (tmp_file_name + ".pub");
     if (!(rsa.open (QIODevice::ReadOnly | QIODevice::Text))) {
@@ -10586,6 +10584,12 @@ bool ONMainWindow::startSshd(ONMainWindow::key_types key_type)
             return (true);
         }
     }
+
+    /*
+     * Pro-actively (re-)create sshd_config file, we'll need it for sshd
+     * and more importantly make sure that it's up-to-date.
+     */
+    generateEtcFiles ();
 
     clientSshPort = "7022";
     QString etcDir=homeDir+"/.x2go/etc";
