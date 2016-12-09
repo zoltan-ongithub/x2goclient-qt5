@@ -11,6 +11,8 @@ x2goclient (4.0.5.3-0x2go1) UNRELEASED; urgency=medium
       printSshDError_noHostPubKey ().
     - src/sshmasterconnection.cpp: add SecurID prompt to challenge auth code
       prompts.
+    - src/sharewidget.cpp: fix compile on UNIX-like platforms by defaulting to
+      ISO-8859-1 not just on Linux but also other platforms. Fixes: #1124.
 
   [ Bernard Cafarelli ]
   * New upstream version (4.0.5.3):

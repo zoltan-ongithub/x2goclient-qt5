@@ -284,11 +284,9 @@ void ShareWidget::setDefaults()
 
 #ifdef Q_OS_WIN
     QString fromCode=tr ( "WINDOWS-1252" );
-#endif
-#ifdef Q_OS_DARWIN
+#elif defined (Q_OS_DARWIN)
     QString fromCode="UTF-8";
-#endif
-#ifdef Q_OS_LINUX
+#else
     QString fromCode=tr ( "ISO8859-1" );
 #endif
 
