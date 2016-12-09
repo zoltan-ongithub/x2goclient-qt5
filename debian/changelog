@@ -508,6 +508,8 @@ x2goclient (4.0.5.3-0x2go1) UNRELEASED; urgency=medium
       binary locations.
     - src/{onmainwindow,pulsemanager}.cpp: actually *use* what we got back
       from add_to_path ()... Fixes a few bugs here and there.
+    - src/onmainwindow.cpp: remove trailing slash from Mageia/SUSE/Arch
+      sftp-server binary search path.
 
   [ Bernard Cafarelli ]
   * New upstream version (4.0.5.3):

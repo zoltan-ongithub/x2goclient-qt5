@@ -10200,7 +10200,7 @@ void ONMainWindow::generateEtcFiles()
     QStringList common_sftp_dirs;
     common_sftp_dirs << "/usr/lib/openssh" /* Debian and Ubuntu */
                      << "/usr/libexec/openssh" /* Fedora, CentOS, hopefully also RHEL */
-                     << "/usr/lib/ssh/" /* Mageia, OpenSUSE, SLE{S,D} < 12 x86, SLE{S,D} 12, Arch */
+                     << "/usr/lib/ssh" /* Mageia, OpenSUSE, SLE{S,D} < 12 x86, SLE{S,D} 12, Arch */
                      << "/usr/lib64/ssh" /* SLE{S,D} < 12 x86_64 */
                      << "/usr/lib/misc" /* Gentoo */
                      << "/usr/libexec"; /* Slackware, OS X */
