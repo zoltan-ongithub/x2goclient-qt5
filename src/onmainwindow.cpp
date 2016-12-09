@@ -10197,20 +10197,19 @@ void ONMainWindow::generateEtcFiles()
      */
 
     QString sftp_binary;
+    QStringList common_sftp_dirs;
+    common_sftp_dirs << "/usr/lib/openssh" /* Debian and Ubuntu */
+                     << "/usr/libexec/openssh" /* Fedora, CentOS, hopefully also RHEL */
+                     << "/usr/lib/ssh/" /* Mageia, OpenSUSE, SLE{S,D} < 12 x86, SLE{S,D} 12, Arch */
+                     << "/usr/lib64/ssh" /* SLE{S,D} < 12 x86_64 */
+                     << "/usr/lib/misc" /* Gentoo */
+                     << "/usr/libexec"; /* Slackware, OS X */
 
 #if QT_VERSION < 0x050000
     QProcessEnvironment tmp_env = QProcessEnvironment::systemEnvironment ();
     QString path_val = tmp_env.value ("PATH");
 
-    QStringList to_back;
-    to_back << "/usr/lib/openssh" /* Debian and Ubuntu */
-            << "/usr/libexec/openssh" /* Fedora, CentOS, hopefully also RHEL */
-            << "/usr/lib/ssh/" /* Mageia, OpenSUSE, SLE{S,D} < 12 x86, SLE{S,D} 12, Arch */
-            << "/usr/lib64/ssh" /* SLE{S,D} < 12 x86_64 */
-            << "/usr/lib/misc" /* Gentoo */
-            << "/usr/libexec"; /* Slackware, OS X */
-
-    add_to_path (path_val, to_back);
+    add_to_path (path_val, common_sftp_dirs);
 
     /* Just in case we bundle sftp-server ourselves. */
     sftp_binary = find_binary (appDir, "sftp-server");
@@ -10230,13 +10229,7 @@ void ONMainWindow::generateEtcFiles()
       sftp_binary = QStandardPaths::findExecutable ("sftp-binary", search_paths);
 
       if (sftp_binary.isEmpty ()) {
-        search_paths = QStringList ();
-        search_paths << "/usr/lib/openssh" /* Debian and Ubuntu */
-                     << "/usr/libexec/openssh" /* Fedora, CentOS, hopefully also RHEL */
-                     << "/usr/lib/ssh/" /* Mageia, OpenSUSE, SLE{S,D} < 12 x86, SLE{S,D} 12, Arch */
-                     << "/usr/lib64/ssh" /* SLE{S,D} < 12 x86_64 */
-                     << "/usr/lib/misc" /* Gentoo */
-                     << "/usr/libexec"; /* Slackware, OS X */
+        search_paths = common_sftp_dirs;
 
         sftp_binary = QStandardPaths::findExecutable ("sftp-server", search_paths);
       }

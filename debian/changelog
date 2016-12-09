@@ -504,6 +504,8 @@ x2goclient (4.0.5.3-0x2go1) UNRELEASED; urgency=medium
     - src/onmainwindow.cpp: move generateEtcFiles () call to startSshd (). We
       must make sure that the sshd_config file exists and is up-to-date, so
       let's always do it right before starting the sshd binary.
+    - src/onmainwindow.cpp: stop duplicating the list of known sftp-server
+      binary locations.
 
   [ Bernard Cafarelli ]
   * New upstream version (4.0.5.3):
