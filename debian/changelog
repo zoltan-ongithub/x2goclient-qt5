@@ -511,6 +511,11 @@ x2goclient (4.0.5.3-0x2go1) UNRELEASED; urgency=medium
     - src/onmainwindow.cpp: remove trailing slash from Mageia/SUSE/Arch
       sftp-server binary search path.
     - src/x2goutils.cpp: add debugging output to add_to_path ().
+    - src/x2goutils.cpp: fix add_to_path (). We want to remove trailing
+      slashes from elements-to-add, not just fetch a trailing slash if
+      encountered. Also, better don't compare a value from the original path
+      value to itself, but rather to the things we want to add in order to
+      remove duplicates, not remove most of the list of elements to add...
 
   [ Bernard Cafarelli ]
   * New upstream version (4.0.5.3):

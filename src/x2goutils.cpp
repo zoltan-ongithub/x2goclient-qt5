@@ -226,7 +226,8 @@ QString add_to_path (const QString &orig_path, const QStringList &add, const boo
   for (int i = 0; i < add.size (); ++i) {
     if (!(add[i].isEmpty ())) {
       if (add[i].right (1) == "/") {
-        QString tmp_elem = add[i].right (1);
+        QString tmp_elem = add[i];
+        tmp_elem.chop (1);
 
         if (!(tmp_elem.isEmpty ())) {
           tmp_clean_add.append (tmp_elem);
@@ -254,7 +255,7 @@ QString add_to_path (const QString &orig_path, const QStringList &add, const boo
       bool tmp_found = false;
 
       for (QStringList::const_iterator cit2 = cit + 1; cit2 != end; ++cit2) {
-        if (*cit == *cit) {
+        if (*cit == *cit2) {
           tmp_found = true;
           break;
         }
