@@ -216,6 +216,8 @@ QString add_to_path (const QString &orig_path, const QStringList &add, const boo
 
   QStringList orig_path_list = orig_path.split (":");
 
+  x2goDebug << "path value at beginning: " << orig_path;
+
   /*
    * Clean up add list. We want to make sure no entry ends in a slash
    * and skip empty entries.
@@ -235,6 +237,8 @@ QString add_to_path (const QString &orig_path, const QStringList &add, const boo
       }
     }
   }
+
+  x2goDebug << "tmp_clean_add: " << tmp_clean_add;
 
   /* Nothing to add, really... */
   if (tmp_clean_add.isEmpty ()) {
@@ -262,6 +266,8 @@ QString add_to_path (const QString &orig_path, const QStringList &add, const boo
     }
   }
 
+  x2goDebug << "clean_add: " << clean_add;
+
   /* Nothing to add. */
   if (clean_add.isEmpty ()) {
     return (ret);
@@ -280,6 +286,10 @@ QString add_to_path (const QString &orig_path, const QStringList &add, const boo
     }
   }
 
+  for (std::size_t i = 0; i < found.size (); ++i) {
+    x2goDebug << "found entry i (" << i << ") in orig_path_list (" << clean_add[i] << "): " << found[i];
+  }
+
   if (back) {
     for (int i = 0; i < clean_add.size (); ++i) {
       if (!found[i]) {
@@ -294,6 +304,8 @@ QString add_to_path (const QString &orig_path, const QStringList &add, const boo
       }
     }
   }
+
+  x2goDebug << "return value at end: " << ret;
 
   return (ret);
 }
