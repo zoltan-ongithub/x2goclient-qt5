@@ -506,6 +506,8 @@ x2goclient (4.0.5.3-0x2go1) UNRELEASED; urgency=medium
       let's always do it right before starting the sshd binary.
     - src/onmainwindow.cpp: stop duplicating the list of known sftp-server
       binary locations.
+    - src/{onmainwindow,pulsemanager}.cpp: actually *use* what we got back
+      from add_to_path ()... Fixes a few bugs here and there.
 
   [ Bernard Cafarelli ]
   * New upstream version (4.0.5.3):

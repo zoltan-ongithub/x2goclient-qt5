@@ -10209,7 +10209,7 @@ void ONMainWindow::generateEtcFiles()
     QProcessEnvironment tmp_env = QProcessEnvironment::systemEnvironment ();
     QString path_val = tmp_env.value ("PATH");
 
-    add_to_path (path_val, common_sftp_dirs);
+    path_val = add_to_path (path_val, common_sftp_dirs);
 
     /* Just in case we bundle sftp-server ourselves. */
     sftp_binary = find_binary (appDir, "sftp-server");

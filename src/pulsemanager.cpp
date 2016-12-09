@@ -72,8 +72,8 @@ PulseManager::PulseManager () : app_dir_ (QApplication::applicationDirPath ()),
   to_front << "/opt/local/bin"; /* MacPorts default prefix, FIXME: might need to make that configurable. */
   to_back << "/usr/local/bin"; /* Homebrew or random stuff. Probably even both intermingled... */
 
-  add_to_path (path_val, to_back);
-  add_to_path (path_val, to_front, false);
+  path_val = add_to_path (path_val, to_back);
+  path_val = add_to_path (path_val, to_front, false);
 
   server_binary_ = find_binary (server_working_dir_, "pulseaudio");
 
