@@ -30,7 +30,7 @@
 #include <cerrno>
 #include <vector>
 #include <cstdlib>
-#include <stdio.h>
+#include <cstdio>
 
 /* For documentation please see unixhelper.h. */
 
