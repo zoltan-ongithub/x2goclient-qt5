@@ -40,6 +40,11 @@ namespace std {
   using ::uint64_t;
 }
 
+/* Same issue with unistd's ssize_t type. */
+namespace std {
+  using ::ssize_t;
+}
+
 #endif /* defined (Q_OS_UNIX) */
 
 
