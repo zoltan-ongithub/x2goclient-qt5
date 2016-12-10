@@ -518,6 +518,8 @@ x2goclient (4.0.5.3-0x2go1) UNRELEASED; urgency=medium
       remove duplicates, not remove most of the list of elements to add...
     - src/unixhelper.cpp: use cstdio instead of stdio.h. It's the C++ header
       and imports functions into the std namespace.
+    - src/: create new file unix_stdint.h which imports the (u)int*_t types
+      into the std namespace.
 
   [ Bernard Cafarelli ]
   * New upstream version (4.0.5.3):
