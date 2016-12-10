@@ -144,7 +144,7 @@ PulseManager::PulseManager () : app_dir_ (QApplication::applicationDirPath ()),
   server_working_dir_ = QString (app_dir_ + "/pulse/");
   server_binary_ = QString (app_dir_ + "/pulse/pulseaudio.exe");
 #elif defined (Q_OS_LINUX)
-  std::size_t path_len = pathconf (".", _PC_PATH_MAX);
+  std::ssize_t path_len = pathconf (".", _PC_PATH_MAX);
 
   if (-1 == path_len) {
     path_len = 1024;
