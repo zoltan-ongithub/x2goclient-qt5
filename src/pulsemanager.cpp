@@ -19,6 +19,7 @@
 
 #include <unistd.h>
 #include <stdlib.h>
+#include <cerrno>
 #include <QSysInfo>
 
 #if QT_VERSION >= 0x050000
@@ -163,7 +164,7 @@ PulseManager::PulseManager () : app_dir_ (QApplication::applicationDirPath ()),
     memset (buf, 0, path_len);
     ptr = getcwd (buf, path_len);
 
-    if ((NULL == ptr) && (ERANGE != erange)) {
+    if ((NULL == ptr) && (ERANGE != errno)) {
       int saved_errno = errno;
       x2goErrorf (17) << "getcwd() failed: " << QString (strerror (saved_errno));
       show_RichText_ErrorMsgBox (tr ("getcwd() failed!"),
