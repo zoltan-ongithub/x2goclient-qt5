@@ -34,7 +34,7 @@
 #ifdef Q_OS_WIN
 #include "windows_stdint.h"
 #else /* defined (Q_OS_WIN) */
-#include <cstdint>
+#include "unix_stdint.h"
 #endif /* defined (Q_OS_WIN) */
 
 #include "x2gosettings.h"

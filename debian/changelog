@@ -520,6 +520,8 @@ x2goclient (4.0.5.3-0x2go1) UNRELEASED; urgency=medium
       and imports functions into the std namespace.
     - src/: create new file unix_stdint.h which imports the (u)int*_t types
       into the std namespace.
+    - src/pulsemanager.h: use unix_stdint.h on non-Windows-platforms to get
+      std::(u)int*_t types without having to use C++11.
 
   [ Bernard Cafarelli ]
   * New upstream version (4.0.5.3):
