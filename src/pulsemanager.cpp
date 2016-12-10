@@ -153,7 +153,7 @@ PulseManager::PulseManager () : app_dir_ (QApplication::applicationDirPath ()),
   char *buf, *ptr;
 
   for (buf = ptr = NULL; ptr == NULL; path_len += 20) {
-    if (NULL == (buf = realloc (buf, path_len))) {
+    if (NULL == (buf = static_cast<char *> (realloc (buf, path_len)))) {
       x2goErrorf (16) << "Could not allocate buffer for getting current working directory!";
       show_RichText_ErrorMsgBox (tr ("Could not allocate buffer for getting current working directory!"),
                                  QString (),

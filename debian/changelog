@@ -526,6 +526,8 @@ x2goclient (4.0.5.3-0x2go1) UNRELEASED; urgency=medium
       typo ("erange" instead of "errno") and including the cerrno header.
     - src/pulsemanager.cpp: use std::ssize_t for the path length, because it
       could be -1 and std::size_t is not applicable.
+    - src/pulsemanager.cpp: cast the return value of realloc () to char*, as
+      GCC doesn't seem to like reassigning the pointer otherwise.
 
   [ Bernard Cafarelli ]
   * New upstream version (4.0.5.3):
