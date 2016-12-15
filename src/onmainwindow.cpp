@@ -5368,7 +5368,6 @@ void ONMainWindow::slotRetResumeSess ( bool result,
                                  "/.pulse-cookie";
                 sshConnection->copyFile(cooFile,
                                         destFile, this, SLOT ( slotPCookieReady ( bool, QString,int )));
-                parecTunnelOk=true;
 #endif /* !defined (Q_OS_WIN) && !defined (Q_OS_DARWIN) */
             }
         }
@@ -5404,18 +5403,10 @@ void ONMainWindow::slotRetResumeSess ( bool result,
 #endif /* !defined (Q_OS_WIN) && !defined (Q_OS_DARWIN) */
         if ( sshSndTunnel )
         {
-            const char* okSlot=0;
-#ifdef Q_OS_WIN /* FIXME: Do we need explicit parec support in PulseManager? */
-            if ( sndSystem==PULSE )
-            {
-                parecTunnelOk=false;
-                okSlot=SLOT ( slotSndTunOk() );
-            }
-#endif
             sndTunnel=sshConnection->startTunnel (
                           "localhost",
                           resumingSession.sndPort.toInt(),"127.0.0.1",
-                          sndPort.toInt(),true,this,okSlot, SLOT (
+                          sndPort.toInt(),true,this,NULL, SLOT (
                               slotSndTunnelFailed ( bool,
                                                     QString,
                                                     int ) ));
@@ -12230,43 +12221,13 @@ void ONMainWindow::printSshDError_noAuthorizedKeysFile()
                             QMessageBox::Ok,QMessageBox::NoButton );
 }
 
-#ifdef Q_OS_WIN
-void ONMainWindow::slotStartParec ()
-{
-
-    if ( !parecTunnelOk )
-    {
-// 		wait 1 sec and try again
-        QTimer::singleShot ( 1000, this, SLOT ( slotStartParec() ) );
-        return;
-    }
-    QString passwd=getCurrentPass();
-    QString user=getCurrentUname();
-    QString host=resumingSession.server;
-    QString scmd="PULSE_CLIENTCONFIG=\"${HOME}/.x2go/C-"+
-                 resumingSession.sessionId+
-                 "/.pulse-client.conf\" "+
-                 "parec 1> /dev/null & sleep 1 && kill %1";
-}
-#endif
-
-void ONMainWindow::slotSndTunOk()
-{
-    parecTunnelOk=true;
-}
-
 
 void ONMainWindow::slotPCookieReady (	bool result,
                                         QString ,
                                         int )
 {
-#ifdef Q_OS_WIN
-    if ( result )
-        slotStartParec();
-#else
     /* Silence warning. */
     UNUSED (result);
-#endif /* defined (Q_OS_WIN) */
 }
 
 

@@ -777,7 +777,6 @@ private:
     bool runStartApp;
     bool ldapOnly;
     bool isScDaemonOk;
-    bool parecTunnelOk;
 #ifdef Q_OS_LINUX
     bool directRDP;
 #endif
@@ -991,7 +990,6 @@ private slots:
     void startWinServers(key_types key_type = RSA_KEY_TYPE);
     void slotCheckXOrgLog();
     void slotCheckXOrgConnection();
-    void slotStartParec ();
 #endif
 
 #if defined (Q_OS_DARWIN) || defined (Q_OS_WIN)
@@ -1128,7 +1126,6 @@ private slots:
     void slotAttachProxyWindow();
     void slotEmbedIntoParentWindow();
     void slotEmbedWindow();
-    void slotSndTunOk();
     void slotPCookieReady (	bool result,QString output,
                             int proc );
     void slotEmbedToolBar();
