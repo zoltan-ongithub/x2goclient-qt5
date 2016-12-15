@@ -5373,10 +5373,10 @@ void ONMainWindow::slotRetResumeSess ( bool result,
         }
         if ( sndSystem==ESD )
         {
-#ifdef Q_OS_LINUX
+#if !defined (Q_OS_WIN) && !defined (Q_OS_DARWIN)
             sshConnection->copyFile(homeDir+"/.esd_auth",
                                     "$HOME/.esd_auth" );
-#else /* defined (Q_OS_LINUX) */
+#else /* !defined (Q_OS_WIN) && !defined (Q_OS_DARWIN) */
             QString cooFile = QDir::toNativeSeparators (QDir (pulseManager->get_pulse_dir ().absolutePath () +
                                                               "/.esd_auth").absolutePath ());
             QString destFile="$HOME/.esd_auth";
