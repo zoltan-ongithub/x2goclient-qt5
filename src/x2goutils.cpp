@@ -52,7 +52,12 @@ QString fixup_resource_URIs (const QString &res_path) {
 QString wrap_legacy_resource_URIs (const QString &res_path) {
   QString ret (res_path);
 
-  if (!(res_path.isEmpty ())) {
+  /*
+   * Skip empty or non-resource URIs.
+   * Assume all paths not starting with a colon are
+   * absolute, non-resource URIs.
+   */
+  if ((!(res_path.isEmpty ())) && (res_path.startsWith (':'))) {
     std::vector<QString> legacy_locations;
     legacy_locations.push_back (QString (":/icons/"));
     legacy_locations.push_back (QString (":/png/"));
