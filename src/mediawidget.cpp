@@ -155,16 +155,13 @@ void MediaWidget::slot_sndSysSelected ( int system )
     }
     case ESD:
     {
-#ifdef Q_OS_WIN
-        rbStartSnd->hide();
-        rbNotStartSnd->hide();
-        cbSndSshTun->show();
-        cbSndSshTun->setEnabled ( false );
-        cbSndSshTun->setChecked ( true );
-#elif defined (Q_OS_DARWIN)
         rbStartSnd->hide ();
         rbNotStartSnd->hide ();
         cbSndSshTun->show ();
+#ifdef Q_OS_WIN
+        cbSndSshTun->setEnabled ( false );
+        cbSndSshTun->setChecked ( true );
+#elif defined (Q_OS_DARWIN)
         cbSndSshTun->setEnabled (true);
 #endif /* defined (Q_OS_WIN) */
         sbSndPort->setValue ( 16001 );
