@@ -151,6 +151,11 @@ void MediaWidget::slot_sndSysSelected ( int system )
         cbDefSndPort->setChecked ( false );
         cbDefSndPort->setEnabled ( false );
         sbSndPort->setValue ( 20221 );
+        QMessageBox::warning (NULL, tr ("Deprecation Warning"),
+                              tr ("ARTS support is scheduled to be removed soon.\n\n"
+
+                                  "Please upgrade to PulseAudio."),
+                              QMessageBox::Ok, QMessageBox::NoButton);
         break;
     }
     case ESD:

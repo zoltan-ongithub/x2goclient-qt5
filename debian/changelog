@@ -535,6 +535,7 @@ x2goclient (4.0.5.3-0x2go1) UNRELEASED; urgency=medium
       covered as well.
     - src/mediawidget.cpp: unify some redundant code.
     - src/mediawidget.cpp: simplify expression.
+    - src/mediawidget.cpp: add deprecation warning for ARTS.
 
   [ Bernard Cafarelli ]
   * New upstream version (4.0.5.3):
