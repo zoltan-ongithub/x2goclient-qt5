@@ -169,6 +169,14 @@ void MediaWidget::slot_sndSysSelected ( int system )
 #elif defined (Q_OS_DARWIN)
         cbSndSshTun->setEnabled (true);
 #endif /* defined (Q_OS_WIN) */
+
+#if !defined (Q_OS_WIN) && !defined (Q_OS_DARWIN)
+        QMessageBox::warning (NULL, tr ("Deprecation Warning"),
+                              tr ("ESounD support is scheduled to be removed soon.\n\n"
+
+                                  "Please upgrade to PulseAudio."),
+                              QMessageBox::Ok, QMessageBox::NoButton);
+#endif
         sbSndPort->setValue ( 16001 );
         break;
     }
