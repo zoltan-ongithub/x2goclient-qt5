@@ -210,7 +210,7 @@ void MediaWidget::slot_sndStartClicked()
     {
         lSndPort->setEnabled ( true );
         sbSndPort->setEnabled ( true );
-        cbDefSndPort->setEnabled ( true &&sound->isChecked());
+        cbDefSndPort->setEnabled (sound->isChecked());
     }
     else
     {
