@@ -352,6 +352,7 @@ public:
     ~ONMainWindow();
     static void installTranslator();
     QString iconsPath ( QString fname );
+    QString images_resource_path (const QString &filename) const;
     static bool isServerRunning ( int port );
     void startNewSession();
     void suspendSession ( QString sessId );

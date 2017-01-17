@@ -1670,6 +1670,10 @@ QString ONMainWindow::iconsPath ( QString fname )
     return ( QString ) ":/img/icons"+fname;
 }
 
+QString ONMainWindow::images_resource_path (const QString &filename) const {
+  return (QString (":/img/" + filename));
+}
+
 void ONMainWindow::displayUsers()
 {
 
