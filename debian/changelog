@@ -17,6 +17,9 @@ x2goclient (4.0.5.3-0x2go1) UNRELEASED; urgency=medium
       URIs in wrap_legacy_resource_URIs (). Fixes: #910.
     - {res/img/svg/,res/resources.qrc}: add new file hamburger.svg, a
       custom-created hamburger icon.
+    - src/sessionbutton.cpp: replace drop down menu button on session buttons
+      again with the custom-created hamburger icon. Also fix positioning
+      issues in mini mode.
 
   [ Bernard Cafarelli ]
   * New upstream version (4.0.5.3):

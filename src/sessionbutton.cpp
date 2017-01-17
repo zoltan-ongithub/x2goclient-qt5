@@ -121,7 +121,7 @@ SessionButton::SessionButton ( ONMainWindow* mw,QWidget *parent, QString id )
     editBut=new QPushButton ( this );
     editBut->setMouseTracking ( true );
     connect ( editBut,SIGNAL ( pressed() ),this,SLOT ( slotShowMenu() ) );
-    editBut->setIcon ( QIcon ( par->iconsPath ( "/32x32/preferences.png" ) ) );
+    editBut->setIcon ( QIcon ( par->iconsPath ( "/../svg/hamburger.svg" ) ) );
     editBut->setIconSize ( QSize ( 32,32 ) );
     editBut->setFixedSize ( 48,48 );
     editBut->setFlat ( true );
@@ -181,7 +181,7 @@ SessionButton::SessionButton ( ONMainWindow* mw,QWidget *parent, QString id )
     }
     else
     {
-        editBut->move ( 218,113 );
+        editBut->move ( 194,89 );
         sessName->move ( 64,11 );
         sessStatus->hide();
         serverIcon->move ( 66,44 );
