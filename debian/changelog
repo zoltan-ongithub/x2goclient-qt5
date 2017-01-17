@@ -22,6 +22,9 @@ x2goclient (4.0.5.3-0x2go1) UNRELEASED; urgency=medium
       issues in mini mode.
     - src/onmainwindow.{cpp,h}: add new function images_resource_path (),
       similar to iconsPath () but without explicitly referring to icons.
+    - src/sessionbutton.cpp: we cannot use ".." in resource paths to move up
+      one level, so use images_resource_path () instead and hope that we
+      finally get a yummy hamburger.
 
   [ Bernard Cafarelli ]
   * New upstream version (4.0.5.3):
