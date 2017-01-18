@@ -351,7 +351,7 @@ public:
     ONMainWindow ( QWidget *parent = 0 );
     ~ONMainWindow();
     static void installTranslator();
-    QString iconsPath ( QString fname );
+    QString iconsPath ( const QString &fname ) const;
     QString images_resource_path (const QString &filename) const;
     static bool isServerRunning ( int port );
     void startNewSession();

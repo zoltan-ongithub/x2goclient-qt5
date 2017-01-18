@@ -1662,7 +1662,7 @@ void ONMainWindow::loadSettings()
 
 }
 
-QString ONMainWindow::iconsPath ( QString fname )
+QString ONMainWindow::iconsPath ( const QString &fname ) const
 {
     /*    QFile fl(this->kdeIconsPath+fname);
     	if(fl.exists())
