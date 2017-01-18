@@ -33,6 +33,10 @@
 #include "x2gologdebug.h"
 #include <QApplication>
 #include <QDesktopWidget>
+#include <QSvgRenderer>
+#include <QPainter>
+#include <QImage>
+#include <QPixmap>
 #include "sessionexplorer.h"
 
 
@@ -121,9 +125,21 @@ SessionButton::SessionButton ( ONMainWindow* mw,QWidget *parent, QString id )
     editBut=new QPushButton ( this );
     editBut->setMouseTracking ( true );
     connect ( editBut,SIGNAL ( pressed() ),this,SLOT ( slotShowMenu() ) );
-    editBut->setIcon ( QIcon ( par->images_resource_path ( "/svg/hamburger.svg" ) ) );
-    editBut->setIconSize ( QSize ( 32,32 ) );
-    editBut->setFixedSize ( 48,48 );
+
+    /* Load our edit button SVG file. */
+    QSvgRenderer svg_renderer (par->images_resource_path ("/svg/hamburger.svg"));
+
+    /* Prepare image to render to with full transparency. */
+    QImage tmp_image (16, 16, QImage::Format_ARGB32);
+    tmp_image.fill (0x00000000);
+
+    /* Paint icon to the image. */
+    QPainter tmp_painter (&tmp_image);
+    svg_renderer.render (&tmp_painter);
+
+    editBut->setIcon ( QIcon ( QPixmap::fromImage (tmp_image) ) );
+    editBut->setIconSize ( QSize ( 16,16 ) );
+    editBut->setFixedSize ( 24,24 );
     editBut->setFlat ( true );
     editBut->setPalette ( cpal );
     sessMenu=new QMenu ( this );
@@ -167,7 +183,7 @@ SessionButton::SessionButton ( ONMainWindow* mw,QWidget *parent, QString id )
     {
         sessName->move ( 80,34 );
         sessStatus->move(80,50);
-        editBut->move ( 283,132 );
+        editBut->move ( 307,156 );
         serverIcon->move ( 58,84 );
         server->move ( 80,84 );
         cmdIcon->move ( 58,108 );
@@ -181,7 +197,7 @@ SessionButton::SessionButton ( ONMainWindow* mw,QWidget *parent, QString id )
     }
     else
     {
-        editBut->move ( 194,89 );
+        editBut->move ( 218,113 );
         sessName->move ( 64,11 );
         sessStatus->hide();
         serverIcon->move ( 66,44 );
