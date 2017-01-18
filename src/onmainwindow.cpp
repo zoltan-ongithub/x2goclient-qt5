@@ -1670,8 +1670,38 @@ QString ONMainWindow::iconsPath ( const QString &fname ) const
     return ( QString ) ":/img/icons"+fname;
 }
 
-QString ONMainWindow::images_resource_path (const QString &filename) const {
-  return (QString (":/img/" + filename));
+QString ONMainWindow::images_resource_path (const QString &filename, const QString &base) const {
+  QString ret = ":/img";
+
+  /*
+   * The base parameter is optional and might be empty.
+   * In this case, it's completely skipped.
+   * Otherwise, we want to make sure that the base parameter
+   * is appended to the fixed start with a slash, but doesn't
+   * end in a slash to avoid double-slashes.
+   * We add a trailing slash if the file name doesn't start
+   * with one.
+   */
+  if (!(base.isEmpty ())) {
+    if (!(base.startsWith ('/'))) {
+      ret.append ('/');
+    }
+
+    ret.append (base);
+
+    if (ret.endsWith ('/')) {
+      ret.chop (1);
+    }
+  }
+
+  if (!(filename.startsWith ('/'))) {
+    ret.append ('/');
+  }
+
+  ret.append (filename);
+
+  x2goDebug << "returning " << ret;
+  return (ret);
 }
 
 void ONMainWindow::displayUsers()

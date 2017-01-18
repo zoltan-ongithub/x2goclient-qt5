@@ -27,6 +27,9 @@ x2goclient (4.0.5.3-0x2go1) UNRELEASED; urgency=medium
       finally get a yummy hamburger.
     - src/onmainwindow.{cpp,h}: let iconsPath () take a const-reference
       instead of an object and make it a const member function.
+    - src/onmainwindow.{cpp,h}: let images_resource_path () take a new,
+      optional "base" parameter, that might be empty and is put in-between the
+      fixed resource path string and the filename parameter.
 
   [ Bernard Cafarelli ]
   * New upstream version (4.0.5.3):
