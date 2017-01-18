@@ -1667,7 +1667,7 @@ QString ONMainWindow::iconsPath ( const QString &fname ) const
     /*    QFile fl(this->kdeIconsPath+fname);
     	if(fl.exists())
     	return kdeIconsPath+fname;*/
-    return ( QString ) ":/img/icons"+fname;
+    return (images_resource_path (fname, "/icons/"));
 }
 
 QString ONMainWindow::images_resource_path (const QString &filename, const QString &base) const {
