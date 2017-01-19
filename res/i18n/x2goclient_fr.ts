@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="fr">
+<TS version="2.0" language="fr">
 <context>
     <name>AppDialog</name>
     <message>
@@ -350,19 +350,19 @@
         <source>Clientside (local) SSH daemon port for file system export usage:</source>
         <translatorcomment>&quot;partage&quot; plutôt que &quot;export&quot; ?
 &quot;dossiers partagés&quot; plutôt que &quot;système de fichiers&quot; ?</translatorcomment>
-        <translation>Port du démon SSH côté client (local) pour l&apos;export du système de fichiers:</translation>
+        <translation type="obsolete">Port du démon SSH côté client (local) pour l&apos;export du système de fichiers:</translation>
     </message>
     <message>
         <source>Pulseaudio settings</source>
-        <translation>Paramétrage de Pulseaudio</translation>
+        <translation type="obsolete">Paramétrage de Pulseaudio</translation>
     </message>
     <message>
         <source>Disable audio input</source>
-        <translation>Désactiver l&apos;entrée son</translation>
+        <translation type="obsolete">Désactiver l&apos;entrée son</translation>
     </message>
     <message>
         <source>&lt;font size=&quot;5&quot;&gt;You must restart the X2Go Client for the changes to take effect&lt;/font&gt;&lt;br&gt;&lt;br&gt;</source>
-        <translation>&lt;font size=&quot;5&quot;&gt;Vous devez redémarrer X2Go Client pour que les modifications soient prises en compte&lt;/font&gt;&lt;br&gt;&lt;br&gt;</translation>
+        <translation type="obsolete">&lt;font size=&quot;5&quot;&gt;Vous devez redémarrer X2Go Client pour que les modifications soient prises en compte&lt;/font&gt;&lt;br&gt;&lt;br&gt;</translation>
     </message>
     <message>
         <source>Your XQuartz version is too old.</source>
@@ -415,6 +415,14 @@ Vous la trouverez peut-être dans l&apos;un de ces emplacements standards :
 &lt;center&gt;&lt;b&gt;/Applications/Utilities/X11.app&lt;/b&gt;&lt;/center&gt;
 &lt;center&gt;&lt;b&gt;/Applications/Utilities/XQuartz.app&lt;/b&gt;&lt;/center&gt;
 &lt;center&gt;&lt;b&gt;/Applications/MacPorts/X11.app&lt;/b&gt;&lt;/center&gt;</translation>
+    </message>
+    <message>
+        <source>PulseAudio settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Disable sound input</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -651,6 +659,181 @@ Vous la trouverez peut-être dans l&apos;un de ces emplacements standards :
     </message>
 </context>
 <context>
+    <name>Help</name>
+    <message>
+        <source>Shows this message.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Prints version information.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Shows the changelog.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Shows git information as used at compile time. [Deprecated: please use --version.]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Shows available pack methods.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Do not resume sessions automatically.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Hides menu bar.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Disables session editing.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Starts maximized.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Starts hidden (minimized to system tray where available.)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Starts in &quot;portable&quot; mode.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Forces OpenPGP smart card authentication.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enables Xinerama by default.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Allows client side printing in LDAP mode.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enables thinclient mode. Starts without a window manager.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enables shutdown button.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Adds RSA key fingerprint to &quot;.ssh/known_hosts&quot; if authenticity of the server can&apos;t be determined.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Starts with LDAP support. Example: --ldap=ldapserver:389:o=organization,c=de</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Defines the first LDAP failover server.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Defines the second LDAP failover server.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Defines the remote SSH server port. Default: 22.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Defines the local machine&apos;s SSH server port. Needed for Client-Side Printing and File Sharing support. Default: 22.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sets the default command. Default: &apos;KDE&apos; (Desktop Session)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Starts the session named &quot;session&quot;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sets the user name for connecting to the remote SSH server to &quot;username&quot;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sets the default window geometry. Default: 800x600.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sets the remote X2Go Agent&apos;s DPI value to &quot;dpi&quot;. Default: same as local display.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sets the default link type. Default: &quot;adsl&quot;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sets default pack method. Default: &quot;16m-jpeg-9&quot;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sets the default clipboard mode. Default: &quot;both&quot;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sets the default keyboard layout to &quot;layout&quot;. &quot;layout&quot; may be a comma-separated list.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sets the default keyboard type.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sets the user&apos;s home directory.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enables or disables overwriting the current keyboard settings.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Automatically launches the application(s) &quot;app&quot;, &quot;app2&quot;, ... on session start in Published Applications mode.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Defines an alternative session config file path.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Force-enables session system tray icon.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Automatically closes X2Go Client after a disconnect.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Hides all Folder-Sharing-related options.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sets the broker name to display in X2Go Client. This parameter is optional.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sets the path to an SSH key to use for authentication against an SSH session broker. The client&apos;s behavior is undefined if this flag is used for non-SSH session brokers.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enables the use of the default SSH key or SSH agent for authentication against an SSH session broker. The client&apos;s behavior is undefined if this flag is used for non-SSH session brokers.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Does not ask for user credentials during session broker authentication. This can be useful if you are using an HTTP(S) session broker without authentication. If you run an HTTP(S) server without authentication, but with user-specific profiles, then put the user name into the broker URL (refer to --broker-url.) The user name then will be extracted from the broker URL and be sent to the session broker. The client&apos;s behavior is undefined if this flag is used for non-HTTP(S) session brokers.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>HelpDialog</name>
     <message>
         <source>Options</source>
@@ -850,6 +1033,22 @@ pour passer à travers les pare-feux</translation>
     <message>
         <source>Client side printing support</source>
         <translation>Gestion de l&apos;impression côté client</translation>
+    </message>
+    <message>
+        <source>Deprecation Warning</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>ARTS support is scheduled to be removed soon.
+
+Please upgrade to PulseAudio.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>ESounD support is scheduled to be removed soon.
+
+Please upgrade to PulseAudio.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1493,7 +1692,7 @@ Hash de la clef publique: </translation>
     </message>
     <message>
         <source>RSA file empty.</source>
-        <translation>Fichier RSA vide.</translation>
+        <translation type="obsolete">Fichier RSA vide.</translation>
     </message>
     <message>
         <source>Card not configured.</source>
@@ -1897,7 +2096,7 @@ Mettez à jour votre paquet x2goserver.</translation>
     <message>
         <source>Unable to write:
 </source>
-        <translation>Incapable d&apos;écrire :
+        <translation type="obsolete">Incapable d&apos;écrire :
 </translation>
     </message>
     <message>
@@ -1924,7 +2123,7 @@ Mettez à jour votre paquet x2goserver.</translation>
         <source>SSH daemon is not running.
 
 </source>
-        <translation>Le démon SSH n&apos;est pas en cours d&apos;execution.</translation>
+        <translation type="obsolete">Le démon SSH n&apos;est pas en cours d&apos;execution.</translation>
     </message>
     <message>
         <source>You have enabled Remote Printing or File Sharing.
@@ -1934,7 +2133,7 @@ These features require a running and functioning SSH server on your computer.
 Please also check the &lt;b&gt;Clientside SSH port&lt;/b&gt; in the general settings.
 
 </source>
-        <translation>Vous avez activé l&apos;impression à distance ou le partage de fichier.
+        <translation type="obsolete">Vous avez activé l&apos;impression à distance ou le partage de fichier.
 Vous devez installer et démarrer un serveur SSH sur votre ordinateur pour permettre ces fonctionnalités.
 &lt;b&gt;L&apos;impression et le partage de fichiers seront désactivés pour cette session.&lt;/b&gt;
 
@@ -1948,7 +2147,7 @@ Regardez aussi le &lt;b&gt;port SSH côté client&lt;/b&gt; dans les préférenc
 If you see this message, please report a bug on:
 &lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
 </source>
-        <translation>Normalement, ceci ne devrait pas arriver car X2Go Client pour Windows vient avec son propre serveur SSH interne.
+        <translation type="obsolete">Normalement, ceci ne devrait pas arriver car X2Go Client pour Windows vient avec son propre serveur SSH interne.
 
 Si vous voyez ce message, faites connaitre ce bug sur :
 &lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
@@ -1958,7 +2157,7 @@ Si vous voyez ce message, faites connaitre ce bug sur :
         <source>The SSH server failed to start.
 
 </source>
-        <translation>Le serveur SSH n&apos;a pas pu démarrer.</translation>
+        <translation type="obsolete">Le serveur SSH n&apos;a pas pu démarrer.</translation>
     </message>
     <message>
         <source>X2Go Client did not detect a globally running SSH server on your machine and was unable to start its own.
@@ -1966,7 +2165,7 @@ Si vous voyez ce message, faites connaitre ce bug sur :
 Please report a bug on:
 &lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
 </source>
-        <translation>X2Go Client n&apos;a pas détecté de serveur SSH en cours d&apos;execution sur votre machine et fut incapable de démarrer son propre serveur SSH.
+        <translation type="obsolete">X2Go Client n&apos;a pas détecté de serveur SSH en cours d&apos;execution sur votre machine et fut incapable de démarrer son propre serveur SSH.
 
 Veuillez rapporter ce bug sur :
 &lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
@@ -1976,13 +2175,13 @@ Veuillez rapporter ce bug sur :
         <source>The SSH server is currently not started.
 
 </source>
-        <translation>Le serveur SSH n&apos;est pour l&apos;instant pas démarré.</translation>
+        <translation type="obsolete">Le serveur SSH n&apos;est pour l&apos;instant pas démarré.</translation>
     </message>
     <message>
         <source>On OS X, please follow the following steps to enable SSH service:&lt;ul&gt;&lt;li&gt;Open &lt;b&gt;System Preferences&lt;/b&gt; (Applications -&gt; System Preferences)&lt;/li&gt;&lt;li&gt;Go to &lt;b&gt;Sharing&lt;/b&gt;&lt;/li&gt;&lt;li&gt;Tick the checkbox besides &lt;b&gt;Remote Login&lt;/b&gt;&lt;/li&gt;&lt;li&gt;Check that &lt;b&gt;Allow access for:&lt;/b&gt; is set to either:&lt;ul&gt;&lt;li&gt;All users: &lt;b&gt;no further steps necessary&lt;/b&gt;&lt;/li&gt;&lt;li&gt;Only these users &lt;b&gt;and your user name is included in the list&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;&lt;li&gt;Optionally, add your user name to the allowed list via the &lt;b&gt;Plus Button&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;&lt;b&gt;Warning: enabling SSH access will allow any user on the network to connect to your machine. It is your responsibility to set a strong password for every user that is allowed to log in via SSH.&lt;/b&gt;
 
 </source>
-        <translation>Sur OS X, suivez ces étapes pour activer le service SSH :&lt;ul&gt;&lt;li&gt;Ouvrez les &lt;b&gt;Préférences Système&lt;/b&gt; (Applications -&gt; Préferences Système)&lt;/li&gt;&lt;li&gt;Allez à &lt;b&gt;Partage&lt;/b&gt;&lt;/li&gt;&lt;li&gt;Cochez la case devant &lt;b&gt;Connexion à distance&lt;/b&gt;&lt;/li&gt;&lt;li&gt;Vérifiez que &lt;b&gt;Permettre l&apos;accès pour :&lt;/b&gt; est soit :&lt;ul&gt;&lt;li&gt;Tous les utilisateurs: &lt;b&gt;pas d&apos;autre étape nécessaire&lt;/b&gt;&lt;/li&gt;&lt;li&gt;Seulement ces utilisateurs&lt;b&gt; et que votre nom d&apos;utilisateur est dans la liste&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;&lt;li&gt;En option, ajoutez votre nom d&apos;utilisateur à la liste des autorisations via le &lt;b&gt;Bouton Plus&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;&lt;b&gt;Attention :  permettre l&apos;accès SSH permettra à n&apos;importe quel utilisateur de votre réseau de se connecter à votre machine. Définir un mot de passe difficile à deviner pour chaque utilisateur qui peut se connecter par SSH est de votre responsabilité.&lt;/b&gt;
+        <translation type="obsolete">Sur OS X, suivez ces étapes pour activer le service SSH :&lt;ul&gt;&lt;li&gt;Ouvrez les &lt;b&gt;Préférences Système&lt;/b&gt; (Applications -&gt; Préferences Système)&lt;/li&gt;&lt;li&gt;Allez à &lt;b&gt;Partage&lt;/b&gt;&lt;/li&gt;&lt;li&gt;Cochez la case devant &lt;b&gt;Connexion à distance&lt;/b&gt;&lt;/li&gt;&lt;li&gt;Vérifiez que &lt;b&gt;Permettre l&apos;accès pour :&lt;/b&gt; est soit :&lt;ul&gt;&lt;li&gt;Tous les utilisateurs: &lt;b&gt;pas d&apos;autre étape nécessaire&lt;/b&gt;&lt;/li&gt;&lt;li&gt;Seulement ces utilisateurs&lt;b&gt; et que votre nom d&apos;utilisateur est dans la liste&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;&lt;li&gt;En option, ajoutez votre nom d&apos;utilisateur à la liste des autorisations via le &lt;b&gt;Bouton Plus&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;&lt;b&gt;Attention :  permettre l&apos;accès SSH permettra à n&apos;importe quel utilisateur de votre réseau de se connecter à votre machine. Définir un mot de passe difficile à deviner pour chaque utilisateur qui peut se connecter par SSH est de votre responsabilité.&lt;/b&gt;
 
 </translation>
     </message>
@@ -1990,7 +2189,7 @@ Veuillez rapporter ce bug sur :
         <source>Please ask your system administrator to provide the SSH service on your computer.
 
 </source>
-        <translation>Veuillez demander à votre administrateur système d&apos;activer le service SSH sur votre ordinateur.
+        <translation type="obsolete">Veuillez demander à votre administrateur système d&apos;activer le service SSH sur votre ordinateur.
 
 </translation>
     </message>
@@ -2012,7 +2211,7 @@ The SSH server is currently not configured correctly.
 Please ensure that the server&apos;s public exists.
 
 </source>
-        <translation>Vous avez activé l&apos;impression à distance ou le partage de fichiers.
+        <translation type="obsolete">Vous avez activé l&apos;impression à distance ou le partage de fichiers.
 Vous devez installer et démarrer un serveur SSH sur votre ordinateur pour permettre ces fonctionnalités.
 &lt;b&gt;L&apos;impression et le partage de fichiers seront désactivés pour cette session.&lt;/b&gt;
 
@@ -2028,7 +2227,7 @@ Vérifiez que la clé publique du serveur existe.
 If you see this message, please report a bug on:
 &lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
 </source>
-        <translation>Normalement, ceci ne devrait pas arriver car X2Go Client pour Windows vient avec son propre serveur SSH interne et génère automatiquement les clés requises.
+        <translation type="obsolete">Normalement, ceci ne devrait pas arriver car X2Go Client pour Windows vient avec son propre serveur SSH interne et génère automatiquement les clés requises.
 
 Si vous voyez ce message, faites connaitre ce bug sur :
 &lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
@@ -2040,7 +2239,7 @@ Si vous voyez ce message, faites connaitre ce bug sur :
 Please report a bug on:
 &lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
 </source>
-        <translation>X2Go Client n&apos;a pas réussi à créer les clés SSH de l&apos;hôte.
+        <translation type="obsolete">X2Go Client n&apos;a pas réussi à créer les clés SSH de l&apos;hôte.
 
 Merci de rapporter ce bug sur :
 &lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
@@ -2048,7 +2247,7 @@ Merci de rapporter ce bug sur :
     </message>
     <message>
         <source>On OS X, please follow these steps to generate the required keys:&lt;ul&gt;&lt;li&gt;Open a &lt;b&gt;Terminal Window&lt;/b&gt; (Applications -&gt; Utilities -&gt; Terminal)&lt;/li&gt;&lt;li&gt;Run this command: &lt;b&gt;ssh -p </source>
-        <translation>Sur OS X, suivez ces étapes pour générer les clés requises :&lt;ul&gt;&lt;li&gt;Ouvrez une &lt;b&gt;Fenêtre de Terminal&lt;/b&gt; (Applications -&gt; Utilitaires -&gt; Terminal)&lt;/li&gt;&lt;li&gt;Tapez cette commande : &lt;b&gt;ssh -p </translation>
+        <translation type="obsolete">Sur OS X, suivez ces étapes pour générer les clés requises :&lt;ul&gt;&lt;li&gt;Ouvrez une &lt;b&gt;Fenêtre de Terminal&lt;/b&gt; (Applications -&gt; Utilitaires -&gt; Terminal)&lt;/li&gt;&lt;li&gt;Tapez cette commande : &lt;b&gt;ssh -p </translation>
     </message>
     <message>
         <source>Please ask your system administrator to generate the required host keys.
@@ -2057,7 +2256,7 @@ If you are administrating this system yourself, please run:
 &lt;center&gt;&lt;b&gt;sudo ssh-keygen -A&lt;/b&gt;&lt;/center&gt;
 
 </source>
-        <translation>Veuillez demander à votre administrateur système de générer les clés d&apos;hôtes requises.
+        <translation type="obsolete">Veuillez demander à votre administrateur système de générer les clés d&apos;hôtes requises.
 
 Si vous administrez vous-même ce système, tapez ceci :
 &lt;center&gt;&lt;b&gt;sudo ssh-keygen -A&lt;/b&gt;&lt;/center&gt;
@@ -2069,6 +2268,135 @@ Si vous administrez vous-même ce système, tapez ceci :
 authorized_keys file.</source>
         <translation>Le démon SSH n&apos;a pas réussi à ouvrir le fichier
 authorized_keys de l&apos;application.</translation>
+    </message>
+    <message>
+        <source>Unable to create or append to file: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to change the permissions of file: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This is an error because sshd would deny such a file.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to change the permissions of directory: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This is an error because sshd would deny such a directory.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to find the sftp-server binary. Neither bundled, nor found in $PATH nor additional directories.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>If you are using a Linux-based operating system, please ask your system administrator to install the package containing the sftp-server binary. Common names are &lt;b&gt;openssh&lt;/b&gt;, &lt;b&gt;openssh-server&lt;/b&gt; or &lt;b&gt;openssh-sftp-server&lt;/b&gt; depending upon distribution.
+
+If the sftp-server binary is installed on your system, please report a bug mentioning its path on:
+&lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SSH key type selection error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unknown SSH key selected.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Terminating application.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SSH key base directory creation error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to create SSH key base directory &apos;%1&apos;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>ssh-keygen launching error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to start the ssh-keygen binary.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>ssh-keygen crashed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The ssh-keygen binary crashed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>ssh-keygen program error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The ssh-keygen binary did not exit cleanly.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>It was probably called with unknown arguments.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to open newly generated %1 public host key file.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 public host key file empty.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You have enabled Remote Printing or File Sharing.
+These features require a running and functioning SSH server on your computer.
+&lt;b&gt;Printing and File Sharing will be disabled for this session.&lt;/b&gt;
+
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Normally, this should not happen as X2Go Client for Windows ships its own internal SSH server.
+
+If you see this message, please report a bug on:
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The SSH server failed to start.
+
+Please report a bug on:
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Normally, this should not happen as X2Go Client for Windows ships its own internal SSH server and automatically generates the required keys.
+
+If you see this message, please report a bug on:
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>X2Go Client was unable to create SSH host keys.
+
+Please report a bug on:
+</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2236,6 +2564,89 @@ lpr -P hp_laserjet</translation>
     <message>
         <source>Specify path as program parameter</source>
         <translation>Donner le chemin en paramètre au programme</translation>
+    </message>
+</context>
+<context>
+    <name>PulseManager</name>
+    <message>
+        <source>Unable to find the PulseAudio binary. Neither bundled, nor found in $PATH nor additional directories.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>If you downloaded the bundled, pre-compiled version from the official home page, please report a bug on:
+&lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not allocate buffer for getting current working directory!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>getcwd() failed!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>PulseAudio failed to start!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sound support will not be available.
+
+If you downloaded the bundled, pre-compiled version from the official home page, please report a bug on:
+&lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Error fetching PulseAudio version number!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unexpected character found when parsing version string for major version number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unexpected character found when parsing version string for minor version number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unexpected character found when parsing version string for micro version number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Supposed to skip major version number. Something is wrong.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to convert major version number string to integer.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to convert minor version number string to integer.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to convert micro version number string to integer.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unexpected format encountered.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to start PulseAudio binary.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to play startup sound.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>If you downloaded the bundled, pre-compiled version from the official home page or the upstream Linux packages, please report a bug on:
+&lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
+</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

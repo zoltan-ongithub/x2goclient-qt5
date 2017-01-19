@@ -539,6 +539,7 @@ x2goclient (4.0.5.3-0x2go1) UNRELEASED; urgency=medium
     - src/mediawidget.cpp: add deprecation warning for ESounD.
     - macbuild.sh: make compatible with new llvm-based otool binary, which now
       uses proper return values. Be backwards-compatible with otool-classic.
+    - res/i18n/: refresh translation files.
 
   [ Bernard Cafarelli ]
   * New upstream version (4.0.5.3):
