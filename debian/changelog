@@ -541,6 +541,7 @@ x2goclient (4.1.0.0-0x2go1) UNRELEASED; urgency=medium
       uses proper return values. Be backwards-compatible with otool-classic.
     - res/i18n/: refresh translation files.
     - deduplicate.sh: remove file, now obsolete and merged into macbuild.sh.
+    - res/i18n/: refresh translation files again after copyright date changes.
 
   [ Bernard Cafarelli ]
   * New upstream version (4.1.0.0):

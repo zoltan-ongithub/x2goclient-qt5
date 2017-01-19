@@ -1978,6 +1978,11 @@ Data som ej sparats kommer att förloras.</translation>
         <translation>Kunde ej skapa katalog:</translation>
     </message>
     <message>
+        <location filename="../../src/onmainwindow.cpp" line="8437"/>
+        <source>&lt;br&gt;(C) 2005-2017 by &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing&lt;br&gt;</source>
+        <translation type="unfinished">&lt;br&gt;(C) 2005-2016 av &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing&lt;br&gt; {2005-2017 ?}</translation>
+    </message>
+    <message>
         <location filename="../../src/onmainwindow.cpp" line="9499"/>
         <source>Unable to create or append to file: </source>
         <translation type="unfinished"></translation>
@@ -2145,9 +2150,8 @@ Please report a bug on:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="8437"/>
         <source>&lt;br&gt;(C) 2005-2016 by &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing&lt;br&gt;</source>
-        <translation>&lt;br&gt;(C) 2005-2016 av &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing&lt;br&gt;</translation>
+        <translation type="obsolete">&lt;br&gt;(C) 2005-2016 av &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing&lt;br&gt;</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="8440"/>

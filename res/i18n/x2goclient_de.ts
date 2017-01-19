@@ -2420,6 +2420,11 @@ Bitte melden Sie den Fehler wie auf der &lt;a href=&quot;http://wiki.x2go.org/do
         <translation>breche ab</translation>
     </message>
     <message>
+        <location filename="../../src/onmainwindow.cpp" line="8437"/>
+        <source>&lt;br&gt;(C) 2005-2017 by &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing&lt;br&gt;</source>
+        <translation type="unfinished">&lt;br&gt; (C) 2005-2016 by &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing&lt;br&gt; {2005-2017 ?}</translation>
+    </message>
+    <message>
         <location filename="../../src/onmainwindow.cpp" line="9499"/>
         <source>Unable to create or append to file: </source>
         <translation type="unfinished"></translation>
@@ -3679,9 +3684,8 @@ Ungespeicherte Dokumente gehen verloren.</translation>
         <translation>Schlüssel kann nicht geöffnet werden: </translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="8437"/>
         <source>&lt;br&gt;(C) 2005-2016 by &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing&lt;br&gt;</source>
-        <translation>&lt;br&gt; (C) 2005-2016 by &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing&lt;br&gt;</translation>
+        <translation type="obsolete">&lt;br&gt; (C) 2005-2016 by &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing&lt;br&gt;</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="8440"/>

@@ -2029,7 +2029,7 @@ Les documents qui n&apos;ont pas été sauvegardés seront perdus.</translation>
     </message>
     <message>
         <source>&lt;br&gt;(C) 2005-2016 by &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing&lt;br&gt;</source>
-        <translation>&lt;br&gt;(C) 2005-2016 par &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing&lt;br&gt;</translation>
+        <translation type="obsolete">&lt;br&gt;(C) 2005-2016 par &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing&lt;br&gt;</translation>
     </message>
     <message>
         <source>&lt;br&gt;X2Go Plugin mode was sponsored by &lt;a href=&quot;http://www.foss-group.de/&quot;&gt;FOSS-Group GmbH (Freiburg)&lt;/a&gt;&lt;br&gt;</source>
@@ -2397,6 +2397,10 @@ If you see this message, please report a bug on:
 Please report a bug on:
 </source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;br&gt;(C) 2005-2017 by &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing&lt;br&gt;</source>
+        <translation type="unfinished">&lt;br&gt;(C) 2005-2016 par &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing&lt;br&gt; {2005-2017 ?}</translation>
     </message>
 </context>
 <context>

@@ -2049,6 +2049,11 @@ Niet opgeslagen documenten zullen verloren gaan.</translation>
         <translation>Optie is niet beschikbaar in dit pakket.</translation>
     </message>
     <message>
+        <location filename="../../src/onmainwindow.cpp" line="8437"/>
+        <source>&lt;br&gt;(C) 2005-2017 by &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing&lt;br&gt;</source>
+        <translation type="unfinished">&lt;br&gt;(C) 2005-2016 by &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing&lt;br&gt; {2005-2017 ?}</translation>
+    </message>
+    <message>
         <location filename="../../src/onmainwindow.cpp" line="8444"/>
         <source>&lt;br&gt;This is a client to access the X2Go network-based computing environment. This client will be able to connect to X2Go Server(s) and start, stop, resume and terminate (running) desktop sessions. X2Go Client stores different server connections and may automatically request authentication data from LDAP directories. Furthermore, it can be used as a fullscreen login screen (replacement for login managers like XDM). Please visit &lt;a href=&quot;http://www.x2go.org&quot;&gt;the project home page at x2go.org&lt;/a&gt; for further information.</source>
         <translation type="unfinished">&lt;br&gt;Client voor gebruik van de X2Go netwerkgebasseerde computeromgeving. Met deze client maakt u verbinding met de X2Go server(s) en kunt u desktop-sessies starten, stoppen, hervatten en (actieve sessies) beeindigen. De X2Go Client slaat verschillende serververbindingen op in, en kan automatisch authenticatie data opvragen van, LDAP directories. Verder kan de client gebruikt worden als fullscreen inlog scherm (vervanging voor inlog managers als KDM, XDM etc.). Bezoek aub &lt;a href=&quot;http://www.x2go.org&quot;&gt;het project home page op x2go.org&lt;/a&gt; voor meer informatie.</translation>
@@ -2757,9 +2762,8 @@ Niet opgeslagen documenten zullen verloren gaan</translation>
         <translation>Kan sleutel niet openen: </translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="8437"/>
         <source>&lt;br&gt;(C) 2005-2016 by &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing&lt;br&gt;</source>
-        <translation>&lt;br&gt;(C) 2005-2016 by &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing&lt;br&gt;</translation>
+        <translation type="obsolete">&lt;br&gt;(C) 2005-2016 by &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing&lt;br&gt;</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="8440"/>

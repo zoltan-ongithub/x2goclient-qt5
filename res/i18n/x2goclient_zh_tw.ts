@@ -2653,6 +2653,11 @@ Unsaved documents will be lost.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../src/onmainwindow.cpp" line="8437"/>
+        <source>&lt;br&gt;(C) 2005-2017 by &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing&lt;br&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../src/onmainwindow.cpp" line="9499"/>
         <source>Unable to create or append to file: </source>
         <translation type="unfinished"></translation>
@@ -2768,11 +2773,6 @@ If the sftp-server binary is installed on your system, please report a bug menti
     <message>
         <location filename="../../src/onmainwindow.cpp" line="10534"/>
         <source>Cannot open key: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/onmainwindow.cpp" line="8437"/>
-        <source>&lt;br&gt;(C) 2005-2016 by &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing&lt;br&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

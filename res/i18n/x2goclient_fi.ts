@@ -2037,6 +2037,12 @@ Tallentamattomat tiedot katoavat.</translation>
         <translation>Virheellinen arvo ohjaimella &quot;--pack&quot;.</translation>
     </message>
     <message>
+        <location filename="../../src/onmainwindow.cpp" line="8437"/>
+        <source>&lt;br&gt;(C) 2005-2017 by &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing&lt;br&gt;</source>
+        <translation type="unfinished">&lt;br&gt;(C) 2005-2016 &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing&lt;br&gt;
+Suomenkielinen versio: Martti Pitkänen, martti@aplcomp.fi&lt;br&gt; {2005-2017 ?}</translation>
+    </message>
+    <message>
         <location filename="../../src/onmainwindow.cpp" line="9499"/>
         <source>Unable to create or append to file: </source>
         <translation type="unfinished"></translation>
@@ -2739,9 +2745,8 @@ Avoimet tiedostot eivät talletu</translation>
         <translation>Avaimen haku ei onnistu: </translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="8437"/>
         <source>&lt;br&gt;(C) 2005-2016 by &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing&lt;br&gt;</source>
-        <translation>&lt;br&gt;(C) 2005-2016 &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing&lt;br&gt;
+        <translation type="obsolete">&lt;br&gt;(C) 2005-2016 &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing&lt;br&gt;
 Suomenkielinen versio: Martti Pitkänen, martti@aplcomp.fi&lt;br&gt;</translation>
     </message>
     <message>
