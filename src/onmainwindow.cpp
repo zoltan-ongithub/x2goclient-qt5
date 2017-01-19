@@ -1700,7 +1700,6 @@ QString ONMainWindow::images_resource_path (const QString &filename, const QStri
 
   ret.append (filename);
 
-  x2goDebug << "returning " << ret;
   return (ret);
 }
 
