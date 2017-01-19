@@ -514,48 +514,63 @@ if [ "${BUNDLE}" = "1" ]; then
 
   # Try to fixup files broken by duplicates removal.
   for all_entry in "${all_files[@]}"; do
-    typeset otool_out="$(otool -L "${all_entry}")"
+    typeset otool_out=""
     typeset -i tmp_ret="0"
 
-    # Don't merge the declaration and initialization with the real value assignment.
-    # We need the return value of parse_otool_output(), but running
-    # typeset foo="$(bar)" will give us the return value of typeset, not bar().
-    typeset dependencies=""
+    # Newer otool versions terminate with a non-zero return code on errors,
+    # while the classic/legacy versions do not. We need to make sure our
+    # script doesn't terminate just because otool returns a non-zero exit
+    # status.
     set +e
-    dependencies="$(parse_otool_output "${otool_out}")"
+    otool_out="$(otool -L "${all_entry}")"
     tmp_ret="${?}"
     set -e
 
+    # If the return code was non-zero, skip this file.
+    # A return code of zero does not automatically mean that otool finished
+    # successfully, so in that case throw otool's stdout into parse_otool_output().
     if [ "${tmp_ret}" -eq "0" ]; then
-      typeset line=""
-      while read -r line; do
-        #echo "dependency of ${all_entry}: ${line}"
+      # Don't merge the declaration and initialization with the real value assignment.
+      # We need the return value of parse_otool_output(), but running
+      # typeset foo="$(bar)" will give us the return value of typeset, not bar().
+      typeset dependencies=""
+      set +e
+      dependencies="$(parse_otool_output "${otool_out}")"
+      tmp_ret="${?}"
+      set -e
+    fi
 
-        typeset duplicate_entry=""
-        typeset -i i="0"
-        for i in "${!duplicates[@]}"; do
-          typeset duplicate_entry="${duplicates[${i}]}"
-          #echo "checking for duplicate ${duplicate_entry}"
-          typeset duplicate_format="$(lazy_canonical_path "${dependency_base_format}/${duplicate_entry}")"
-
-          if [ -n "${line}" ] && [ -n "${duplicate_format}" ]; then
-            if [ "${line}" = "${duplicate_format}" ]; then
-              install_name_tool -change "${line}" "${to_files[${i}]}" "${all_entry}"
-            fi
-          else
-            echo "ERROR: empty file name while replacing duplicate dependencies." >&2
-            echo "ERROR: for file ${all_entry}" >&2
-            echo "ERROR: at dependency ${line}" >&2
-            echo "ERROR: duplicate entry: \"${duplicate_entry}\"" >&2
-            echo "ERROR: dependency: \"${line}\"" >&2
-            exit 1
-          fi
-        done
-      done <<< "${dependencies}"
-    else
+    if [ "${tmp_ret}" -ne "0" ]; then
       echo "WARNING: otool returned error for file: ${all_entry}" >&2
       echo "WARNING: skipping." >&2
+      continue
     fi
+
+    typeset line=""
+    while read -r line; do
+      #echo "dependency of ${all_entry}: ${line}"
+
+      typeset duplicate_entry=""
+      typeset -i i="0"
+      for i in "${!duplicates[@]}"; do
+        typeset duplicate_entry="${duplicates[${i}]}"
+        #echo "checking for duplicate ${duplicate_entry}"
+        typeset duplicate_format="$(lazy_canonical_path "${dependency_base_format}/${duplicate_entry}")"
+
+        if [ -n "${line}" ] && [ -n "${duplicate_format}" ]; then
+          if [ "${line}" = "${duplicate_format}" ]; then
+            install_name_tool -change "${line}" "${to_files[${i}]}" "${all_entry}"
+          fi
+        else
+          echo "ERROR: empty file name while replacing duplicate dependencies." >&2
+          echo "ERROR: for file ${all_entry}" >&2
+          echo "ERROR: at dependency ${line}" >&2
+          echo "ERROR: duplicate entry: \"${duplicate_entry}\"" >&2
+          echo "ERROR: dependency: \"${line}\"" >&2
+          exit 1
+        fi
+      done
+    done <<< "${dependencies}"
   done
 
   phase "Bundling up using macdeployqt"
