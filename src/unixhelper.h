@@ -1,5 +1,5 @@
 /***************************************************************************
- *  Copyright (C) 2015 by Mihai Moldovan <ionic@ionic.de> +49 721 14595728 *
+ *  Copyright (C) 2015-2017 by Mihai Moldovan <ionic@ionic.de>             *
  *                                                                         *
  *  This program is free software; you can redistribute it and/or modify   *
  *  it under the terms of the GNU General Public License as published by   *

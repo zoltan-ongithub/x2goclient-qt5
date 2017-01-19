@@ -4,9 +4,9 @@ Upstream-Contact: Oleksandr Shneyder <oleksandr.shneyder@obviously-nice.de>
 Source: http://wiki.x2go.org
 
 Files: *
-Copyright: 2005-2016, Oleksandr Shneyder <oleksandr.shneyder@obviously-nice.de>
-           2005-2016, Heinz-Markus Graesing <heinz-m.graesing@obviously-nice.de>
-           2005-2016, obviously nice - http://www.obviously-nice.de
+Copyright: 2005-2017, Oleksandr Shneyder <oleksandr.shneyder@obviously-nice.de>
+           2005-2017, Heinz-Markus Graesing <heinz-m.graesing@obviously-nice.de>
+           2005-2017, obviously nice - http://www.obviously-nice.de
 License: GPL-2+
  This program is free software; you can redistribute it
  and/or modify it under the terms of the GNU General Public
@@ -80,7 +80,7 @@ License: BSD-3-clause
  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
 
 Files: Makefile.docupload
-Copyright: 2010-2016, Mike Gabriel <mike.gabriel@das-netzwerkteam.de>
+Copyright: 2010-2017, Mike Gabriel <mike.gabriel@das-netzwerkteam.de>
 License: GPL-3
  This program is free software: you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -99,9 +99,9 @@ License: GPL-3
  `/usr/share/common-licenses/GPL-3'.
 
 Files: debian/*
-Copyright: 2007-2016, Oleksandr Shneyder <oleksandr.shneyder@obviously-nice.de>
-           2011-2016, Reinhard Tartler <siretart@tauware.de>
-           2011-2016, Mike Gabriel <sunweaver@debian.org>
+Copyright: 2007-2017, Oleksandr Shneyder <oleksandr.shneyder@obviously-nice.de>
+           2011-2017, Reinhard Tartler <siretart@tauware.de>
+           2011-2017, Mike Gabriel <sunweaver@debian.org>
 License: GPL-2+
  This program is free software; you can redistribute it
  and/or modify it under the terms of the GNU General Public
