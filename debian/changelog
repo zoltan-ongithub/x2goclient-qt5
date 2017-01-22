@@ -561,6 +561,10 @@ x2goclient (4.1.0.0-0x2go1) UNRELEASED; urgency=medium
   * New upstream version (4.1.0.0):
     - src/onmainwindow.cpp: fix SSHFS on Windows client. Fixes: #1105.
 
+  [ Sébastien Ducoulombier ]
+  * New upstream version (4.1.0.0):
+    - res/i18n/x2goclient_fr.ts: update French translation file.
+
  -- X2Go Release Manager <git-admin@x2go.org>  Mon, 19 Sep 2016 09:07:07 +0200
 
 x2goclient (4.0.5.2-0x2go1) unstable; urgency=medium

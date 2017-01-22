@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="fr">
+<TS version="2.1" language="fr">
 <context>
     <name>AppDialog</name>
     <message>
@@ -9,7 +9,7 @@
     </message>
     <message>
         <source>Search:</source>
-        <translation>Rechercher:</translation>
+        <translation>Rechercher :</translation>
     </message>
     <message>
         <source>&amp;Start</source>
@@ -72,15 +72,15 @@
     </message>
     <message>
         <source>Old password:</source>
-        <translation>Ancien mot de passe:</translation>
+        <translation>Ancien mot de passe :</translation>
     </message>
     <message>
         <source>New password:</source>
-        <translation>Nouveau mot de passe:</translation>
+        <translation>Nouveau mot de passe :</translation>
     </message>
     <message>
         <source>Confirm password:</source>
-        <translation>Confirmez le mot de passe:</translation>
+        <translation>Confirmez le mot de passe :</translation>
     </message>
     <message>
         <source>TextLabel</source>
@@ -219,23 +219,23 @@
     </message>
     <message>
         <source>Display icon in system tray</source>
-        <translation>Afficher l&apos;icone dans la barre des tâches</translation>
+        <translation>Afficher l&apos;icone dans la barre d&apos;état</translation>
     </message>
     <message>
         <source>Hide to system tray when minimized</source>
-        <translation>Cacher dans la barre des tâches à la réduction de la fenêtre</translation>
+        <translation>Cacher dans la barre d&apos;état à la réduction de la fenêtre</translation>
     </message>
     <message>
         <source>Hide to system tray when closed</source>
-        <translation>Cacher dans la barre des tâches à la fermeture de la fenêtre</translation>
+        <translation>Cacher dans la barre d&apos;état à la fermeture de la fenêtre</translation>
     </message>
     <message>
         <source>Hide to system tray after connection is established</source>
-        <translation>Cacher dans la barre des tâches quand la session est établie</translation>
+        <translation>Cacher dans la barre d&apos;état quand la session est établie</translation>
     </message>
     <message>
         <source>Restore from system tray after session is disconnected</source>
-        <translation>Cacher dans la barre des tâches quand la session est déconnectée</translation>
+        <translation>Cacher dans la barre d&apos;état quand la session est déconnectée</translation>
     </message>
     <message>
         <source>Use LDAP</source>
@@ -243,20 +243,20 @@
     </message>
     <message>
         <source>Server URL:</source>
-        <translation>URL du serveur:</translation>
+        <translation>URL du serveur :</translation>
     </message>
     <message>
         <source>BaseDN:</source>
-        <translation>BaseDN:</translation>
+        <translation>BaseDN :</translation>
     </message>
     <message>
         <source>Failover server 1 URL:</source>
         <translatorcomment>Failover en backup ? secours plutôt.</translatorcomment>
-        <translation>URL du premier serveur de secours:</translation>
+        <translation>URL du premier serveur de secours :</translation>
     </message>
     <message>
         <source>Failover server 2 URL:</source>
-        <translation>URL du second serveur de secours:</translation>
+        <translation>URL du second serveur de secours :</translation>
     </message>
     <message>
         <source>X-Server settings</source>
@@ -264,11 +264,11 @@
     </message>
     <message>
         <source>X11 application:</source>
-        <translation>Application X11:</translation>
+        <translation>Application X11 :</translation>
     </message>
     <message>
         <source>X11 version:</source>
-        <translation>Version X11:</translation>
+        <translation>Version X11 :</translation>
     </message>
     <message>
         <source>Find X11 application</source>
@@ -418,11 +418,11 @@ Vous la trouverez peut-être dans l&apos;un de ces emplacements standards :
     </message>
     <message>
         <source>PulseAudio settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Paramétrage de Pulseaudio</translation>
     </message>
     <message>
         <source>Disable sound input</source>
-        <translation type="unfinished"></translation>
+        <translation>Désactiver l&apos;entrée son</translation>
     </message>
 </context>
 <context>
@@ -433,7 +433,7 @@ Vous la trouverez peut-être dans l&apos;un de ces emplacements standards :
     </message>
     <message>
         <source>Connection speed:</source>
-        <translation>Vitesse de connection:</translation>
+        <translation>Vitesse de connection :</translation>
     </message>
     <message>
         <source>C&amp;ompression</source>
@@ -442,15 +442,15 @@ Vous la trouverez peut-être dans l&apos;un de ces emplacements standards :
     </message>
     <message>
         <source>Method:</source>
-        <translation>Méthode:</translation>
+        <translation>Méthode :</translation>
     </message>
     <message>
         <source>Compression method:</source>
-        <translation>Méthode de compression:</translation>
+        <translation>Méthode de compression :</translation>
     </message>
     <message>
         <source>Image quality:</source>
-        <translation>Qualité d&apos;image:</translation>
+        <translation>Qualité d&apos;image :</translation>
     </message>
 </context>
 <context>
@@ -465,15 +465,15 @@ Vous la trouverez peut-être dans l&apos;un de ces emplacements standards :
     </message>
     <message>
         <source>Page size:</source>
-        <translation>Taille de page:</translation>
+        <translation>Taille de page :</translation>
     </message>
     <message>
         <source>Paper type:</source>
-        <translation>Type de papier:</translation>
+        <translation>Type de papier :</translation>
     </message>
     <message>
         <source>Paper source:</source>
-        <translation>Source de papier:</translation>
+        <translation>Source de papier :</translation>
     </message>
     <message>
         <source>Duplex Printing</source>
@@ -662,175 +662,175 @@ Vous la trouverez peut-être dans l&apos;un de ces emplacements standards :
     <name>Help</name>
     <message>
         <source>Shows this message.</source>
-        <translation type="unfinished"></translation>
+        <translation>Montre ce message.</translation>
     </message>
     <message>
         <source>Prints version information.</source>
-        <translation type="unfinished"></translation>
+        <translation>Affiche le numéro de version.</translation>
     </message>
     <message>
         <source>Shows the changelog.</source>
-        <translation type="unfinished"></translation>
+        <translation>Montre le journal des modifications.</translation>
     </message>
     <message>
         <source>Shows git information as used at compile time. [Deprecated: please use --version.]</source>
-        <translation type="unfinished"></translation>
+        <translation>Montre les informations git utilisées au moment de la compilation</translation>
     </message>
     <message>
         <source>Shows available pack methods.</source>
-        <translation type="unfinished"></translation>
+        <translation>Montre les méthodes de compression disponibles.</translation>
     </message>
     <message>
         <source>Do not resume sessions automatically.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ne pas restaurer les sessions automatiquement.</translation>
     </message>
     <message>
         <source>Hides menu bar.</source>
-        <translation type="unfinished"></translation>
+        <translation>Cache la barre de menu.</translation>
     </message>
     <message>
         <source>Disables session editing.</source>
-        <translation type="unfinished"></translation>
+        <translation>Désactive la modification de session.</translation>
     </message>
     <message>
         <source>Starts maximized.</source>
-        <translation type="unfinished"></translation>
+        <translation>Démarre maximisé.</translation>
     </message>
     <message>
         <source>Starts hidden (minimized to system tray where available.)</source>
-        <translation type="unfinished"></translation>
+        <translation>Démarre caché (minimisé dans la barre d&apos;état si présente.)</translation>
     </message>
     <message>
         <source>Starts in &quot;portable&quot; mode.</source>
-        <translation type="unfinished"></translation>
+        <translation>Démarre en mode &quot;portable&quot;.</translation>
     </message>
     <message>
         <source>Forces OpenPGP smart card authentication.</source>
-        <translation type="unfinished"></translation>
+        <translation>Force l&apos;authentification par carte à puce OpenPGP.</translation>
     </message>
     <message>
         <source>Enables Xinerama by default.</source>
-        <translation type="unfinished"></translation>
+        <translation>Active Xinerama par défaut.</translation>
     </message>
     <message>
         <source>Allows client side printing in LDAP mode.</source>
-        <translation type="unfinished"></translation>
+        <translation>Permet l&apos;impression côté client en mode LDAP.</translation>
     </message>
     <message>
         <source>Enables thinclient mode. Starts without a window manager.</source>
-        <translation type="unfinished"></translation>
+        <translation>Active le mode client fin. Démarre sans gestionnaire de fenêtre.</translation>
     </message>
     <message>
         <source>Enables shutdown button.</source>
-        <translation type="unfinished"></translation>
+        <translation>Active le bouton d&apos;arrêt.</translation>
     </message>
     <message>
         <source>Adds RSA key fingerprint to &quot;.ssh/known_hosts&quot; if authenticity of the server can&apos;t be determined.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ajoute l&apos;empreinte de la clé RSA à &quot;.ssh/known_hosts&quot; si l&apos;authenticité du serveur ne peut être vérifiée.</translation>
     </message>
     <message>
         <source>Starts with LDAP support. Example: --ldap=ldapserver:389:o=organization,c=de</source>
-        <translation type="unfinished"></translation>
+        <translation>Démarre avec la prise en charge de LDAP. Exemple : --ldap=ldapserver:389:o=organisation,c=fr</translation>
     </message>
     <message>
         <source>Defines the first LDAP failover server.</source>
-        <translation type="unfinished"></translation>
+        <translation>Définit le premier serveur LDAP de secours.</translation>
     </message>
     <message>
         <source>Defines the second LDAP failover server.</source>
-        <translation type="unfinished"></translation>
+        <translation>Définit le second serveur LDAP de secours.</translation>
     </message>
     <message>
         <source>Defines the remote SSH server port. Default: 22.</source>
-        <translation type="unfinished"></translation>
+        <translation>Définit le port du serveur SSH distant. Par défaut : 22.</translation>
     </message>
     <message>
         <source>Defines the local machine&apos;s SSH server port. Needed for Client-Side Printing and File Sharing support. Default: 22.</source>
-        <translation type="unfinished"></translation>
+        <translation>Définit le numéro du port du serveur SSH de la machine locale. Requis pour la prise en charge de l&apos;impression côté client et du partage de fichiers. Par défaut : 22.</translation>
     </message>
     <message>
         <source>Sets the default command. Default: &apos;KDE&apos; (Desktop Session)</source>
-        <translation type="unfinished"></translation>
+        <translation>Donne la commande par défaut. Par défaut : &apos;KDE&apos; (Session de bureau)</translation>
     </message>
     <message>
         <source>Starts the session named &quot;session&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Démarre la session nommée &quot;session&quot;.</translation>
     </message>
     <message>
         <source>Sets the user name for connecting to the remote SSH server to &quot;username&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Donne le nom d&apos;utilisateur &quot;username&quot; pour la connexion au serveur SSH distant.</translation>
     </message>
     <message>
         <source>Sets the default window geometry. Default: 800x600.</source>
-        <translation type="unfinished"></translation>
+        <translation>Donne les dimensions de la fenêtre initiale. Par défaut : 800x600.</translation>
     </message>
     <message>
         <source>Sets the remote X2Go Agent&apos;s DPI value to &quot;dpi&quot;. Default: same as local display.</source>
-        <translation type="unfinished"></translation>
+        <translation>Règle la valeur de la définition (DPI) de l&apos;agent X2Go distant. Par défaut : celle de l&apos;affichage local.</translation>
     </message>
     <message>
         <source>Sets the default link type. Default: &quot;adsl&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Définit le type de lien. Par défaut : &quot;adsl&quot;.</translation>
     </message>
     <message>
         <source>Sets default pack method. Default: &quot;16m-jpeg-9&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Définit la méthode de compression. Par défaut : &quot;16m-jpeg-9&quot;.</translation>
     </message>
     <message>
         <source>Sets the default clipboard mode. Default: &quot;both&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Règle le mode du presse-papier par défaut. Par défaut : &quot;both&quot;.</translation>
     </message>
     <message>
         <source>Sets the default keyboard layout to &quot;layout&quot;. &quot;layout&quot; may be a comma-separated list.</source>
-        <translation type="unfinished"></translation>
+        <translation>Choisit la disposition du clavier &quot;layout&quot;. &quot;layout&quot; peut être une liste de noms séparés par des virgules.</translation>
     </message>
     <message>
         <source>Sets the default keyboard type.</source>
-        <translation type="unfinished"></translation>
+        <translation>Définit le type du clavier par défaut.</translation>
     </message>
     <message>
         <source>Sets the user&apos;s home directory.</source>
-        <translation type="unfinished"></translation>
+        <translation>Définit le dossier de départ (&quot;home&quot;) de l&apos;utilisateur.</translation>
     </message>
     <message>
         <source>Enables or disables overwriting the current keyboard settings.</source>
-        <translation type="unfinished"></translation>
+        <translation>Active ou désactive le remplacement des réglages actuels du clavier.</translation>
     </message>
     <message>
         <source>Automatically launches the application(s) &quot;app&quot;, &quot;app2&quot;, ... on session start in Published Applications mode.</source>
-        <translation type="unfinished"></translation>
+        <translation>Lance automatiquement la ou les application(s) &quot;app&quot;, &quot;app2&quot;, ... au démarrage de la session dans le mode &quot;Applications publiées&quot;.</translation>
     </message>
     <message>
         <source>Defines an alternative session config file path.</source>
-        <translation type="unfinished"></translation>
+        <translation>Définit le chemin du fichier d&apos;une session alternative.</translation>
     </message>
     <message>
         <source>Force-enables session system tray icon.</source>
-        <translation type="unfinished"></translation>
+        <translation>Force la présence dans la barre d&apos;état système de l&apos;icône de la session.</translation>
     </message>
     <message>
         <source>Automatically closes X2Go Client after a disconnect.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ferme automatiquement X2Go Client après une déconnexion.</translation>
     </message>
     <message>
         <source>Hides all Folder-Sharing-related options.</source>
-        <translation type="unfinished"></translation>
+        <translation>Cache toutes les options liées au partage de fichiers.</translation>
     </message>
     <message>
         <source>Sets the broker name to display in X2Go Client. This parameter is optional.</source>
-        <translation type="unfinished"></translation>
+        <translation>Définit le nom du broker à afficher dans X2Go Client. Ce paramètre est optionnel.</translation>
     </message>
     <message>
         <source>Sets the path to an SSH key to use for authentication against an SSH session broker. The client&apos;s behavior is undefined if this flag is used for non-SSH session brokers.</source>
-        <translation type="unfinished"></translation>
+        <translation>Définit le chemin d&apos;une clé SSH à utiliser pour l&apos;authentification auprès d&apos;un broker de session SSH. Le comportement du client est indéfini si cette option est utilisée pour des brokers de sessions non-SSH.</translation>
     </message>
     <message>
         <source>Enables the use of the default SSH key or SSH agent for authentication against an SSH session broker. The client&apos;s behavior is undefined if this flag is used for non-SSH session brokers.</source>
-        <translation type="unfinished"></translation>
+        <translation>Permet l&apos;utilisation de la clé SSH par défaut ou de l&apos;agent SSH pour l&apos;authentification auprès d&apos;un broker de session SSH. Le comportement du client est indéfini si cette option est utilisée pour des brokers de sessions non-SSH.</translation>
     </message>
     <message>
         <source>Does not ask for user credentials during session broker authentication. This can be useful if you are using an HTTP(S) session broker without authentication. If you run an HTTP(S) server without authentication, but with user-specific profiles, then put the user name into the broker URL (refer to --broker-url.) The user name then will be extracted from the broker URL and be sent to the session broker. The client&apos;s behavior is undefined if this flag is used for non-HTTP(S) session brokers.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ne demande pas les informations d&apos;identification de l&apos;utilisateur pendant l&apos;authentification auprès du broker de session. Ceci peut être utile sivous utilisez un broker de session HTTP(S) sans authentification. Si vous faites tourner un serveur HTTP(S) sans authentification, mais avec des profiles propres à chaque utilisateur, alors mettez le nom d&apos;utilisateur dans l&apos;URL du broker (voir --broker-url). Le nom d&apos;utilisateur sera alors extrait de l&apos;URL du broker et envoyé au broker de session. Le comportement du client est indéfini si cette option est utilisée pour des brokers de session non-HTTP(S).</translation>
     </message>
 </context>
 <context>
@@ -854,7 +854,7 @@ Vous la trouverez peut-être dans l&apos;un de ces emplacements standards :
         <source>Host key for server changed.
 It is now: </source>
         <translation>La clef du serveur a changée.
-C&apos;est maintenant: </translation>
+C&apos;est maintenant : </translation>
     </message>
     <message>
         <source>For security reasons, connection will be stopped</source>
@@ -871,7 +871,7 @@ C&apos;est maintenant: </translation>
     <message>
         <source>The server is unknown. Do you trust the host key?
 Public key hash: </source>
-        <translation>Le serveur n&apos;est pas connu. Avez-vous confiance en cette clef ? Hash de la clef publique: </translation>
+        <translation>Le serveur n&apos;est pas connu. Avez-vous confiance en cette clef ? Hash de la clef publique : </translation>
     </message>
     <message>
         <source>Host key verification failed</source>
@@ -908,7 +908,7 @@ Public key hash: </source>
     <message>
         <source>Issued to:
 </source>
-        <translation>Accordé à:</translation>
+        <translation>Accordé à :</translation>
     </message>
     <message>
         <source>Common Name(CN)	</source>
@@ -929,12 +929,12 @@ Public key hash: </source>
     <message>
         <source>Issued by:
 </source>
-        <translation>Accordé par:</translation>
+        <translation>Accordé par :</translation>
     </message>
     <message>
         <source>Validity:
 </source>
-        <translation>Validité:</translation>
+        <translation>Validité :</translation>
     </message>
     <message>
         <source>Issued on	</source>
@@ -947,7 +947,7 @@ Public key hash: </source>
     <message>
         <source>Fingerprints:
 </source>
-        <translation>Fingerprints:</translation>
+        <translation>Fingerprints :</translation>
     </message>
     <message>
         <source>SHA1	</source>
@@ -1036,19 +1036,23 @@ pour passer à travers les pare-feux</translation>
     </message>
     <message>
         <source>Deprecation Warning</source>
-        <translation type="unfinished"></translation>
+        <translation>Avertissement d&apos;obsolescence</translation>
     </message>
     <message>
         <source>ARTS support is scheduled to be removed soon.
 
 Please upgrade to PulseAudio.</source>
-        <translation type="unfinished"></translation>
+        <translation>La prise en charge d&apos;ARTS sera bientôt abandonnée.
+
+Veuillez passer à PulseAudio.</translation>
     </message>
     <message>
         <source>ESounD support is scheduled to be removed soon.
 
 Please upgrade to PulseAudio.</source>
-        <translation type="unfinished"></translation>
+        <translation>La prise en charge de ESounD sera bientôt abandonnée.
+
+Veuillez passer à PulseAudio.</translation>
     </message>
 </context>
 <context>
@@ -1123,7 +1127,7 @@ Please upgrade to PulseAudio.</source>
     </message>
     <message>
         <source>Session:</source>
-        <translation>Session:</translation>
+        <translation>Session :</translation>
     </message>
     <message>
         <source>&amp;Quit</source>
@@ -1187,7 +1191,7 @@ Please upgrade to PulseAudio.</source>
     </message>
     <message>
         <source>Login:</source>
-        <translation>Identifiant:</translation>
+        <translation>Identifiant :</translation>
     </message>
     <message>
         <source>Operation failed</source>
@@ -1337,7 +1341,7 @@ Utiliser le mode caché de X2Go Client ?</translation>
     </message>
     <message>
         <source>Select session:</source>
-        <translation>Sélectionnez la session:</translation>
+        <translation>Sélectionnez la session :</translation>
     </message>
     <message>
         <source>running</source>
@@ -1373,7 +1377,7 @@ Utiliser le mode caché de X2Go Client ?</translation>
     </message>
     <message>
         <source>Select desktop:</source>
-        <translation>Selectionnez un bureau:</translation>
+        <translation>Selectionnez un bureau :</translation>
     </message>
     <message>
         <source>Warning</source>
@@ -1403,7 +1407,7 @@ Utiliser le mode caché de X2Go Client ?</translation>
         <source>Host key for server changed.
 It is now: </source>
         <translation>La clef d&apos;hôte du serveur a changée.
-La nouvelle clef est:</translation>
+La nouvelle clef est :</translation>
     </message>
     <message>
         <source>For security reasons, connection will be stopped</source>
@@ -1421,7 +1425,7 @@ La nouvelle clef est:</translation>
         <source>The server is unknown. Do you trust the host key?
 Public key hash: </source>
         <translation>Le serveur est inconnu. Avez vous confiance en la clef d&apos;hôte ?
-Hash de la clef publique: </translation>
+Hash de la clef publique : </translation>
     </message>
     <message>
         <source>No</source>
@@ -1535,7 +1539,7 @@ Hash de la clef publique: </translation>
     </message>
     <message>
         <source>Keyboard layout:</source>
-        <translation>Disposition de clavier:</translation>
+        <translation>Disposition de clavier :</translation>
     </message>
     <message>
         <source>Ok</source>
@@ -1805,7 +1809,7 @@ utilisée pour exporter les dossiers et les imprimantes.</translation>
     </message>
     <message>
         <source>Connection error: </source>
-        <translation>Erreur de connexion: </translation>
+        <translation>Erreur de connexion : </translation>
     </message>
     <message>
         <source>Couldn&apos;t find an SSH connection.</source>
@@ -2271,27 +2275,27 @@ authorized_keys de l&apos;application.</translation>
     </message>
     <message>
         <source>Unable to create or append to file: </source>
-        <translation type="unfinished"></translation>
+        <translation>Impossible de créer ou de compléter le fichier : </translation>
     </message>
     <message>
         <source>Unable to change the permissions of file: </source>
-        <translation type="unfinished"></translation>
+        <translation>Impossible de changer les permissions du fichier : </translation>
     </message>
     <message>
         <source>This is an error because sshd would deny such a file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ceci est une erreur parce que sshd refuserait un tel fichier.</translation>
     </message>
     <message>
         <source>Unable to change the permissions of directory: </source>
-        <translation type="unfinished"></translation>
+        <translation>Impossible de changer les permissions du dossier : </translation>
     </message>
     <message>
         <source>This is an error because sshd would deny such a directory.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ceci est une erreur parce que sshd refuserait un tel dossier.</translation>
     </message>
     <message>
         <source>Unable to find the sftp-server binary. Neither bundled, nor found in $PATH nor additional directories.</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossible de trouver l&apos;executable sftp-serveur. Ni empaqueté, ni trouvé dans $PATH ni dans les dossiers supplémentaires.</translation>
     </message>
     <message>
         <source>If you are using a Linux-based operating system, please ask your system administrator to install the package containing the sftp-server binary. Common names are &lt;b&gt;openssh&lt;/b&gt;, &lt;b&gt;openssh-server&lt;/b&gt; or &lt;b&gt;openssh-sftp-server&lt;/b&gt; depending upon distribution.
@@ -2299,63 +2303,67 @@ authorized_keys de l&apos;application.</translation>
 If the sftp-server binary is installed on your system, please report a bug mentioning its path on:
 &lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Si vous utilisez un système d&apos;exploitation basé sur Linux, veuillez demander à votre administrateur système d&apos;installer le paquet qui contient le fichier executable sftp-server. Les noms courants sont &lt;b&gt;openssh&lt;/b&gt;, &lt;b&gt;openssh-server&lt;/b&gt; ou &lt;b&gt;openssh-sftp-server&lt;/b&gt; selon la distribution.
+
+Si l&apos;executable sftp-server est installé sur votre système, veuillez rapporter le bug en précisant son chemin sur :
+&lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
+</translation>
     </message>
     <message>
         <source>SSH key type selection error</source>
-        <translation type="unfinished"></translation>
+        <translation>Erreur de selection du type de clé SSH</translation>
     </message>
     <message>
         <source>Unknown SSH key selected.</source>
-        <translation type="unfinished"></translation>
+        <translation>Clé SSH selectionnée inconnue.</translation>
     </message>
     <message>
         <source>Terminating application.</source>
-        <translation type="unfinished"></translation>
+        <translation>Arrêt de l&apos;application.</translation>
     </message>
     <message>
         <source>SSH key base directory creation error</source>
-        <translation type="unfinished"></translation>
+        <translation>Erreur de création du dossier de base de la clé SSH</translation>
     </message>
     <message>
         <source>Unable to create SSH key base directory &apos;%1&apos;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossible de créer le dossier de base de la clé SSH &apos;%1&apos;.</translation>
     </message>
     <message>
         <source>ssh-keygen launching error</source>
-        <translation type="unfinished"></translation>
+        <translation>Erreur de démarrage de ssh-keygen</translation>
     </message>
     <message>
         <source>Unable to start the ssh-keygen binary.</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossible de démarrer l&apos;executable ssh-keygen.</translation>
     </message>
     <message>
         <source>ssh-keygen crashed</source>
-        <translation type="unfinished"></translation>
+        <translation>ssh-keygen a planté</translation>
     </message>
     <message>
         <source>The ssh-keygen binary crashed.</source>
-        <translation type="unfinished"></translation>
+        <translation>L&apos;executable ssh-keygen a planté.</translation>
     </message>
     <message>
         <source>ssh-keygen program error</source>
-        <translation type="unfinished"></translation>
+        <translation>Erreur du programme ssh-keygen</translation>
     </message>
     <message>
         <source>The ssh-keygen binary did not exit cleanly.</source>
-        <translation type="unfinished"></translation>
+        <translation>L&apos;executable ssh-keygen ne s&apos;est pas terminé proprement.</translation>
     </message>
     <message>
         <source>It was probably called with unknown arguments.</source>
-        <translation type="unfinished"></translation>
+        <translation>Il a probablement été appelé avec des arguments inconnus.</translation>
     </message>
     <message>
         <source>Unable to open newly generated %1 public host key file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossible d&apos;ouvrir le fichier de clé d&apos;hôte publique nouvelle généré %1.</translation>
     </message>
     <message>
         <source>%1 public host key file empty.</source>
-        <translation type="unfinished"></translation>
+        <translation>Le fichier de clé d&apos;hôte publique %1 est vide.</translation>
     </message>
     <message>
         <source>You have enabled Remote Printing or File Sharing.
@@ -2363,44 +2371,61 @@ These features require a running and functioning SSH server on your computer.
 &lt;b&gt;Printing and File Sharing will be disabled for this session.&lt;/b&gt;
 
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Vous avez activé l&apos;impression à distance ou le partage de fichiers.
+Ces fonctionnalités reposent sur un serveur SSH démarré et fonctionnel sur votre ordinateur.
+&lt;b&gt;L&apos;impression et le partage de fichiers seront désactivés pour cette session.&lt;/b&gt;
+
+</translation>
     </message>
     <message>
         <source>Normally, this should not happen as X2Go Client for Windows ships its own internal SSH server.
 
 If you see this message, please report a bug on:
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Normalement, ceci ne devrait pas arriver parce que X2Go Client pour Windows est livré avec son propre serveur SSH interne.
+
+Si vous voyez ce message, veuillez rapporter un bug sur :
+</translation>
     </message>
     <message>
         <source>The SSH server failed to start.
 
 Please report a bug on:
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Le serveur SSH n&apos;a pas démarré.
+
+Veuillez rapporter un bug sur :
+</translation>
     </message>
     <message>
         <source>&lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
 </source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
+</translation>
     </message>
     <message>
         <source>Normally, this should not happen as X2Go Client for Windows ships its own internal SSH server and automatically generates the required keys.
 
 If you see this message, please report a bug on:
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Normalement, ceci ne devrait pas arriver parce que X2Go Client pour Windows est livré avec son propre serveur SSH interne et génère automatiquement les clés requises.
+
+Si vous voyez ce message, veuillez rapporter un bug sur :
+</translation>
     </message>
     <message>
         <source>X2Go Client was unable to create SSH host keys.
 
 Please report a bug on:
 </source>
-        <translation type="unfinished"></translation>
+        <translation>X2Go Client n&apos;a pas réussi à créer les clés d&apos;hôte SSH.
+
+Veuillez rapporter le bug sur :
+</translation>
     </message>
     <message>
         <source>&lt;br&gt;(C) 2005-2017 by &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing&lt;br&gt;</source>
-        <translation type="unfinished">&lt;br&gt;(C) 2005-2016 par &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing&lt;br&gt; {2005-2017 ?}</translation>
+        <translation>&lt;br&gt;(C) 2005-2016 par &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing&lt;br&gt;</translation>
     </message>
 </context>
 <context>
@@ -2420,7 +2445,7 @@ Please report a bug on:
     <message>
         <source>You may reactivate this dialog using the X2Go Client settings dialog. To do so, follow this path in the menu bar: Options -&gt; Settings)</source>
         <translatorcomment>bizarre cette parenthèse toute seule</translatorcomment>
-        <translation>Vouz pouvez réactiver cette fenêtre de dialogue en utilisant la fenêtre des préférences de X2Go Client. Pour ce faire, suivez ce chemin dans la barre de menu : Options -&gt; Préférences)</translation>
+        <translation>Vous pouvez réactiver cette fenêtre de dialogue en utilisant la fenêtre des préférences de X2Go Client. Pour ce faire, suivez ce chemin dans la barre de menu : Options -&gt; Préférences)</translation>
     </message>
 </context>
 <context>
@@ -2574,25 +2599,27 @@ lpr -P hp_laserjet</translation>
     <name>PulseManager</name>
     <message>
         <source>Unable to find the PulseAudio binary. Neither bundled, nor found in $PATH nor additional directories.</source>
-        <translation type="unfinished"></translation>
+        <translation>Executable PulseAudio introuvable. Ni empaqueté, ni trouvé dans $PATH ni dans aucun dossier supplémentaire.</translation>
     </message>
     <message>
         <source>If you downloaded the bundled, pre-compiled version from the official home page, please report a bug on:
 &lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Si vous avez téléchargé la version empaquetée, pré-compilée à partir du site officiel, veuillez rapporter un bug sur :
+&lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
+</translation>
     </message>
     <message>
         <source>Could not allocate buffer for getting current working directory!</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossible d&apos;allouer un buffer pour obtenir le répertoire courant !</translation>
     </message>
     <message>
         <source>getcwd() failed!</source>
-        <translation type="unfinished"></translation>
+        <translation>getcwd() a échoué !</translation>
     </message>
     <message>
         <source>PulseAudio failed to start!</source>
-        <translation type="unfinished"></translation>
+        <translation>PulseAudio a échoué au démarrage !</translation>
     </message>
     <message>
         <source>Sound support will not be available.
@@ -2600,57 +2627,63 @@ lpr -P hp_laserjet</translation>
 If you downloaded the bundled, pre-compiled version from the official home page, please report a bug on:
 &lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
 </source>
-        <translation type="unfinished"></translation>
+        <translation>La prise en charge du son sera indisponible.
+
+Si vous avez téléchargé la version empaquetée, pré-compilée à partir du site officiel, veuillez rapporter un bug sur :
+&lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
+</translation>
     </message>
     <message>
         <source>Error fetching PulseAudio version number!</source>
-        <translation type="unfinished"></translation>
+        <translation>Erreur de récupération du numéro de version PulseAudio !</translation>
     </message>
     <message>
         <source>Unexpected character found when parsing version string for major version number</source>
-        <translation type="unfinished"></translation>
+        <translation>Trouvé un caractère inattendu pendant l&apos;interprétation de la chaîne du numéro de version pour trouver le numéro majeur de version</translation>
     </message>
     <message>
         <source>Unexpected character found when parsing version string for minor version number</source>
-        <translation type="unfinished"></translation>
+        <translation>Trouvé un caractère inattendu pendant l&apos;interprétation de la chaîne du numéro de version pour trouver le numéro mineur de version</translation>
     </message>
     <message>
         <source>Unexpected character found when parsing version string for micro version number</source>
-        <translation type="unfinished"></translation>
+        <translation>Trouvé un caractère inattendu pendant l&apos;interprétation de la chaîne du numéro de version pour trouver le numéro micro de version</translation>
     </message>
     <message>
         <source>Supposed to skip major version number. Something is wrong.</source>
-        <translation type="unfinished"></translation>
+        <translation>Censé sauter le numéro de version majeur. Quelque chose ne va pas.</translation>
     </message>
     <message>
         <source>Unable to convert major version number string to integer.</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossible de convertir la chaïne du numéro de version majeur en entier.</translation>
     </message>
     <message>
         <source>Unable to convert minor version number string to integer.</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossible de convertir la chaïne du numéro de version mineur en entier.</translation>
     </message>
     <message>
         <source>Unable to convert micro version number string to integer.</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossible de convertir la chaïne du numéro de version micro en entier.</translation>
     </message>
     <message>
         <source>Unexpected format encountered.</source>
-        <translation type="unfinished"></translation>
+        <translation>Rencontré un format inattendu.</translation>
     </message>
     <message>
         <source>Unable to start PulseAudio binary.</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossible de démarrer l&apos;executable PulseAudio.</translation>
     </message>
     <message>
         <source>Unable to play startup sound.</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossible de jouer le son d&apos;initialisation.</translation>
     </message>
     <message>
         <source>If you downloaded the bundled, pre-compiled version from the official home page or the upstream Linux packages, please report a bug on:
 &lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Si vous avez téléchargé la version empaquetée, pré-compilée à partir du site officiel ou les paquets Linux amonts, veuillez rapporter un bug sur :
+&lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
+</translation>
     </message>
 </context>
 <context>
@@ -2834,7 +2867,7 @@ Utiliser le mode caché de X2Go Client ?</translation>
     </message>
     <message>
         <source>Show session tray icon when running</source>
-        <translation>Montrer l&apos;icone de session dans la barre des tâches, pendant l&apos;utilisation</translation>
+        <translation>Montrer l&apos;icone de session dans la barre d&apos;état, pendant l&apos;utilisation</translation>
     </message>
     <message>
         <source>New Session</source>
@@ -2917,7 +2950,7 @@ Utiliser le mode caché de X2Go Client ?</translation>
     </message>
     <message>
         <source>Login:</source>
-        <translation>Identifiant:</translation>
+        <translation>Identifiant :</translation>
     </message>
     <message>
         <source>SSH port:</source>
