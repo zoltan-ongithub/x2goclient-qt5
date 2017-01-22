@@ -418,7 +418,7 @@ Vous la trouverez peut-être dans l&apos;un de ces emplacements standards :
     </message>
     <message>
         <source>PulseAudio settings</source>
-        <translation>Paramétrage de Pulseaudio</translation>
+        <translation>Paramétrage de PulseAudio</translation>
     </message>
     <message>
         <source>Disable sound input</source>
@@ -674,7 +674,8 @@ Vous la trouverez peut-être dans l&apos;un de ces emplacements standards :
     </message>
     <message>
         <source>Shows git information as used at compile time. [Deprecated: please use --version.]</source>
-        <translation>Montre les informations git utilisées au moment de la compilation</translation>
+        <extracomment>Please don&apos;t exclude the depcration notice.</extracomment>
+        <translation type="unfinished">Montre les informations git utilisées au moment de la compilation.</translation>
     </message>
     <message>
         <source>Shows available pack methods.</source>
@@ -2425,7 +2426,7 @@ Veuillez rapporter le bug sur :
     </message>
     <message>
         <source>&lt;br&gt;(C) 2005-2017 by &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing&lt;br&gt;</source>
-        <translation>&lt;br&gt;(C) 2005-2016 par &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing&lt;br&gt;</translation>
+        <translation>&lt;br&gt;(C) 2005-2017 par &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing&lt;br&gt;</translation>
     </message>
 </context>
 <context>
