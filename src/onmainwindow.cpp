@@ -203,6 +203,8 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
     embedControlChanged=false;
     statusString=tr ( "connecting" );
 
+    pulseManager = NULL;
+    pulseManagerThread = NULL;
 
 
     hide();
@@ -1507,8 +1509,10 @@ void ONMainWindow::closeClient()
     if (pulseManager) {
         delete (pulseManager);
 
-        pulseManagerThread->quit ();
-        pulseManagerThread->wait ();
+        if (pulseManagerThread) {
+            pulseManagerThread->quit ();
+            pulseManagerThread->wait ();
+        }
 
         delete (pulseManagerThread);
     }

@@ -551,6 +551,10 @@ x2goclient (4.1.0.0-0x2go1) UNRELEASED; urgency=medium
       heap. Keep it on the stack.
     - src/x2goclient.cpp: use $PATH-exploration when re-executing x2goclient
       in UNIX cleanup helper mode. Fixes: #1139.
+    - src/onmainwindow.cpp: correctly initialize pulseManager and
+      pulseManagerThread member variables. Fixes crashes on OS X and Windows
+      if X2Go Client terminates before these objects have been created at run
+      time (for instance when running x2goclient --help.)
 
   [ Bernard Cafarelli ]
   * New upstream version (4.1.0.0):
