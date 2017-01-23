@@ -178,13 +178,13 @@ NXPROXY="nxproxy"
 PULSEAUDIO_BINARIES=( "pulseaudio" "esdcompat" "pacat" "pacmd"      "pactl"
                       "pamon"      "paplay"    "parec" "parecord"   "pasuspender" )
 PULSEAUDIO_LIBRARIES=( "libpulse-simple.0.dylib"
-                       "pulse-9.0"
+                       "pulse-10.0"
                        "pulseaudio" )
 RESOURCE_FILES=( "audio/startup.wav" )
 
 typeset -a special_files_regex
-special_files_regex+=( "pulseaudio/libpulsecommon-[0-9]\.[0-9]\.dylib"
-                       "pulseaudio/libpulsecore-[0-9]\.[0-9]\.dylib"   )
+special_files_regex+=( "pulseaudio/libpulsecommon-[0-9]+\.[0-9]+\.dylib"
+                       "pulseaudio/libpulsecore-[0-9]+\.[0-9]+\.dylib"   )
 
 typeset -r dependency_base_format='@executable_path/../Frameworks/'
 

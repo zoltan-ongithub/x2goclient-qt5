@@ -545,6 +545,8 @@ x2goclient (4.1.0.0-0x2go1) UNRELEASED; urgency=medium
     - res/i18n/x2goclient_fr.ts: fixup French translation file.
     - res/i18n/x2goclient_sv.ts: fixup Swedish translation file a little bit
       and add comments/requests for re-translations for the next time.
+    - macbuild.sh: switch to bundling PulseAudio 10.0 since it's now available
+      in MacPorts.
 
   [ Bernard Cafarelli ]
   * New upstream version (4.1.0.0):
