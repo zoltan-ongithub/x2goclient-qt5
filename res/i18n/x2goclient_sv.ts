@@ -940,7 +940,7 @@ Några vanliga installationssökvägar är:
     <message>
         <location filename="../../src/help.cpp" line="134"/>
         <source>Sets the remote X2Go Agent&apos;s DPI value to &quot;dpi&quot;. Default: same as local display.</source>
-        <translation>Sätter DPI-värde för X2Go&apos;s fjärragent till &quot;dpi&quot;. Standardinställning: samma som lokal bildskärm. </translation>
+        <translation>Sätter DPI-värde för X2Go&apos;s fjärragent till &quot;dpi&quot;. Standardinställning: samma som lokal bildskärm.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="135"/>
@@ -980,7 +980,8 @@ Några vanliga installationssökvägar är:
     <message>
         <location filename="../../src/help.cpp" line="142"/>
         <source>Automatically launches the application(s) &quot;app&quot;, &quot;app2&quot;, ... on session start in Published Applications mode.</source>
-        <translation>Automatisk start av applikation(er) &quot;app&quot;, &quot;app2&quot;, ... vid sessionsstart.</translation>
+        <extracomment>Please make sure to include the information that applications are started in Published Application mode as described in the original string to not confuse the user, as Single Application and Published Applications modes behave differently.</extracomment>
+        <translation type="unfinished">Automatisk start av applikation(er) &quot;app&quot;, &quot;app2&quot;, ... vid sessionsstart.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="143"/>
@@ -1015,7 +1016,8 @@ Några vanliga installationssökvägar är:
     <message>
         <location filename="../../src/help.cpp" line="155"/>
         <source>Enables the use of the default SSH key or SSH agent for authentication against an SSH session broker. The client&apos;s behavior is undefined if this flag is used for non-SSH session brokers.</source>
-        <translation>Aktiverar användning av standard SSH-nyckel för autentisering mot SSH-broker. Klientens beteende är odefinierat om denna flagga används för icke-SSH-broker.</translation>
+        <extracomment>Missing the bit about SSH agent authentication.</extracomment>
+        <translation type="unfinished">Aktiverar användning av standard SSH-nyckel för autentisering mot SSH-broker. Klientens beteende är odefinierat om denna flagga används för icke-SSH-broker.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="156"/>
@@ -2014,7 +2016,8 @@ Data som ej sparats kommer att förloras.</translation>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="10232"/>
         <source>Unable to find the sftp-server binary. Neither bundled, nor found in $PATH nor additional directories.</source>
-        <translation>Kunde ej hitta binär för sftp-server.</translation>
+        <extracomment>Missing the second sentence.</extracomment>
+        <translation type="unfinished">Kunde ej hitta binär för sftp-server.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="10233"/>
@@ -2055,7 +2058,7 @@ Om sftp-server finns installerat på ditt system, var vänlig rapportera felet (
     <message>
         <location filename="../../src/onmainwindow.cpp" line="10352"/>
         <source>Unable to create SSH key base directory &apos;%1&apos;.</source>
-        <translation>Kunde ej skapa katalog &apos;%1&apos;.för SSH-nyckel.</translation>
+        <translation>Kunde ej skapa katalog &apos;%1&apos; för SSH-nyckel.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="10430"/>
@@ -2095,7 +2098,8 @@ Om sftp-server finns installerat på ditt system, var vänlig rapportera felet (
     <message>
         <location filename="../../src/onmainwindow.cpp" line="10508"/>
         <source>Unable to open newly generated %1 public host key file.</source>
-        <translation>Kunde ej öppna nyligen genererad publik nyckelfil %1.</translation>
+        <extracomment>%1 in this context will be replaced by the public host key *type*, e.g. "RSA", "DSA", "ECDSA" etc. You probably don't want to put %1 at the end of the sentence here (unless Swedish does that, of course.)</extracomment>
+        <translation type="unfinished">Kunde ej öppna nyligen genererad publik nyckelfil %1.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="10528"/>
@@ -3624,7 +3628,8 @@ Exempel:
     <message>
         <location filename="../../src/pulsemanager.cpp" line="127"/>
         <source>Unable to find the PulseAudio binary. Neither bundled, nor found in $PATH nor additional directories.</source>
-        <translation>Kunde ej hitta binär för PulseAudio.</translation>
+        <extracomment>Please also include the second sentence, might be interesting for users to know where we search and that it's not just $PATH.</extracomment>
+        <translation type="unfinished">Kunde ej hitta binär för PulseAudio.</translation>
     </message>
     <message>
         <location filename="../../src/pulsemanager.cpp" line="128"/>

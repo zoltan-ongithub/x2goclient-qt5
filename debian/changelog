@@ -543,6 +543,8 @@ x2goclient (4.1.0.0-0x2go1) UNRELEASED; urgency=medium
     - deduplicate.sh: remove file, now obsolete and merged into macbuild.sh.
     - res/i18n/: refresh translation files again after copyright date changes.
     - res/i18n/x2goclient_fr.ts: fixup French translation file.
+    - res/i18n/x2goclient_sv.ts: fixup Swedish translation file a little bit
+      and add comments/requests for re-translations for the next time.
 
   [ Bernard Cafarelli ]
   * New upstream version (4.1.0.0):
