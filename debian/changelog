@@ -547,6 +547,8 @@ x2goclient (4.1.0.0-0x2go1) UNRELEASED; urgency=medium
       and add comments/requests for re-translations for the next time.
     - macbuild.sh: switch to bundling PulseAudio 10.0 since it's now available
       in MacPorts.
+    - src/x2goclient.cpp: no need to put new_argv_c_str std::vector onto the
+      heap. Keep it on the stack.
 
   [ Bernard Cafarelli ]
   * New upstream version (4.1.0.0):

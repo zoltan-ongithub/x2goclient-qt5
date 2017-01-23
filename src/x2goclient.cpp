@@ -48,16 +48,16 @@ int fork_helper (int argc, char **argv) {
     new_argv.push_back (std::string (argv[0]));
     new_argv.push_back ("--unixhelper");
 
-    std::vector<char *> *new_argv_c_str = new (std::vector<char *>) ();
+    std::vector<char *> new_argv_c_str;
     for (std::vector<std::string>::iterator it = new_argv.begin (); it != new_argv.end (); ++it) {
       const char *elem = (*it).c_str ();
-      new_argv_c_str->push_back (strndup (elem, std::strlen (elem)));
+      new_argv_c_str.push_back (strndup (elem, std::strlen (elem)));
     }
 
     /* Add null pointer as last element. */
-    new_argv_c_str->push_back (0);
+    new_argv_c_str.push_back (0);
 
-    if (0 != execv (new_argv_c_str->front (), &(new_argv_c_str->front ()))) {
+    if (0 != execv (new_argv_c_str.front (), &(new_argv_c_str.front ()))) {
       const int saved_errno = errno;
       std::cerr << "Failed to re-execute process as UNIX cleanup helper tool: " << std::strerror (saved_errno) << "\n"
                 << "Terminating and killing parent." << "\n"
