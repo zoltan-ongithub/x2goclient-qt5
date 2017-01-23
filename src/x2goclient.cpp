@@ -57,7 +57,7 @@ int fork_helper (int argc, char **argv) {
     /* Add null pointer as last element. */
     new_argv_c_str.push_back (0);
 
-    if (0 != execv (new_argv_c_str.front (), &(new_argv_c_str.front ()))) {
+    if (0 != execvp (new_argv_c_str.front (), &(new_argv_c_str.front ()))) {
       const int saved_errno = errno;
       std::cerr << "Failed to re-execute process as UNIX cleanup helper tool: " << std::strerror (saved_errno) << "\n"
                 << "Terminating and killing parent." << "\n"

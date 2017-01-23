@@ -549,6 +549,8 @@ x2goclient (4.1.0.0-0x2go1) UNRELEASED; urgency=medium
       in MacPorts.
     - src/x2goclient.cpp: no need to put new_argv_c_str std::vector onto the
       heap. Keep it on the stack.
+    - src/x2goclient.cpp: use $PATH-exploration when re-executing x2goclient
+      in UNIX cleanup helper mode. Fixes: #1139.
 
   [ Bernard Cafarelli ]
   * New upstream version (4.1.0.0):
