@@ -555,6 +555,8 @@ x2goclient (4.1.0.0-0x2go1) UNRELEASED; urgency=medium
       pulseManagerThread member variables. Fixes crashes on OS X and Windows
       if X2Go Client terminates before these objects have been created at run
       time (for instance when running x2goclient --help.)
+    - src/onmainwindow.cpp: correctly guard the new lines from the previous
+      commit. Fixes compile issues on Linux and other systems.
 
   [ Bernard Cafarelli ]
   * New upstream version (4.1.0.0):

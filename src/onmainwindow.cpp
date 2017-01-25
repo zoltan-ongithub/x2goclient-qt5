@@ -203,8 +203,10 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
     embedControlChanged=false;
     statusString=tr ( "connecting" );
 
+#if defined (Q_OS_DARWIN) || defined (Q_OS_WIN)
     pulseManager = NULL;
     pulseManagerThread = NULL;
+#endif /* defined (Q_OS_DARWIN) || defined (Q_OS_WIN) */
 
 
     hide();
