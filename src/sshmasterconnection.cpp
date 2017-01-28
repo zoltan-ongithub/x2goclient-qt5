@@ -1793,7 +1793,7 @@ void SshMasterConnection::finalize ( int item )
     ssh_channel channel=channelConnections.at ( item ).channel;
     if ( channel )
     {
-        channel_send_eof ( channel );
+        ssh_channel_send_eof ( channel );
 #ifdef DEBUG
         x2goDebug<<"EOF sent.";
 #endif
