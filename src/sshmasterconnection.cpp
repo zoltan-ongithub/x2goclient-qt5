@@ -1602,11 +1602,11 @@ void SshMasterConnection::channelLoop()
 #ifdef DEBUG
                     x2goDebug<<"Executing remote: "<<channelConnections.at ( i ).command<<endl;
 #endif
-                    if ( channel_open_session ( channel ) !=SSH_OK )
+                    if ( ssh_channel_open_session ( channel ) !=SSH_OK )
                     {
                         QString err=ssh_get_error ( my_ssh_session );
-                        QString errorMsg=tr ( "channel_open_session failed." );
-                        emit ioErr ( channelConnections[i].creator, errorMsg, err );
+                        QString errorMsg=tr ( "ssh_channel_open_session failed" );
+                        emit ioErr ( channelConnections[i].creator, errorMsg + ".", err );
 #ifdef DEBUG
                         x2goDebug<<errorMsg<<": "<<err<<endl;
 #endif
