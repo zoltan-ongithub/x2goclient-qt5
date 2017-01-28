@@ -1611,11 +1611,11 @@ void SshMasterConnection::channelLoop()
                         x2goDebug<<errorMsg<<": "<<err<<endl;
 #endif
                     }
-                    else if ( channel_request_exec ( channel, channelConnections[i].command.toLatin1() ) != SSH_OK )
+                    else if ( ssh_channel_request_exec ( channel, channelConnections[i].command.toLatin1() ) != SSH_OK )
                     {
                         QString err=ssh_get_error ( my_ssh_session );
-                        QString errorMsg=tr ( "channel_request_exec failed" );
-                        emit ioErr ( channelConnections[i].creator, errorMsg, err );
+                        QString errorMsg=tr ( "ssh_channel_request_exec failed" );
+                        emit ioErr ( channelConnections[i].creator, errorMsg + ".", err );
 #ifdef DEBUG
                         x2goDebug<<errorMsg<<": "<<err<<endl;
 #endif
