@@ -1746,13 +1746,13 @@ void SshMasterConnection::channelLoop()
 #endif
                 if ( nbytes > 0 )
                 {
-                    if ( channel_write ( channel, buffer, nbytes ) !=nbytes )
+                    if ( ssh_channel_write ( channel, buffer, nbytes ) !=nbytes )
                     {
                         QString err=ssh_get_error ( my_ssh_session );
-                        QString errorMsg=tr ( "channel_write failed." );
-                        emit ioErr ( channelConnections[i].creator, errorMsg, err );
+                        QString errorMsg=tr ( "ssh_channel_write failed" );
+                        emit ioErr ( channelConnections[i].creator, errorMsg + ".", err );
 #ifdef DEBUG
-                        x2goDebug<<errorMsg<<" - "<<err<<endl;
+                        x2goDebug<<errorMsg<<": "<<err<<endl;
 #endif
                         finalize ( i );
                         continue;
