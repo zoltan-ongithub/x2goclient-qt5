@@ -1657,7 +1657,7 @@ void SshMasterConnection::channelLoop()
             ssh_channel channel=channelConnections.at ( i ).channel;
             if ( channel==0l )
                 continue;
-            if ( channel_poll ( channel,1 ) >0 )
+            if ( ssh_channel_poll ( channel,1 ) > 0 )
             {
 #ifdef DEBUG
                 //              x2goDebug<<"read err data from channel\n";
@@ -1668,7 +1668,7 @@ void SshMasterConnection::channelLoop()
                 //              x2goDebug<<nbytes<<" err from channel"<<endl;
 #endif
             }
-            int rez=channel_poll ( channel,0 );
+            int rez = ssh_channel_poll ( channel, 0 );
             if ( rez==SSH_EOF )
             {
 #ifdef DEBUG
