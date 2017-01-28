@@ -1662,7 +1662,7 @@ void SshMasterConnection::channelLoop()
 #ifdef DEBUG
                 //              x2goDebug<<"read err data from channel\n";
 #endif
-                nbytes = channel_read ( channel, buffer, sizeof ( buffer )-1, 1 );
+                nbytes = ssh_channel_read ( channel, buffer, sizeof ( buffer )-1, 1 );
                 emit stdErr ( channelConnections[i].creator, QByteArray ( buffer,nbytes ) );
 #ifdef DEBUG
                 //              x2goDebug<<nbytes<<" err from channel"<<endl;
@@ -1683,7 +1683,7 @@ void SshMasterConnection::channelLoop()
 #ifdef DEBUG
                 //                  x2goDebug<<"read data from channel "<<channel<<endl;
 #endif
-                nbytes = channel_read ( channel, buffer, sizeof ( buffer )-1, 0 );
+                nbytes = ssh_channel_read ( channel, buffer, sizeof ( buffer )-1, 0 );
 #ifdef DEBUG
                 //                  x2goDebug<<nbytes<<" from channel "<<channel<<endl;
 #endif
