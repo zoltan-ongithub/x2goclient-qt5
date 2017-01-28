@@ -1559,11 +1559,12 @@ void SshMasterConnection::channelLoop()
 
                 if (!channel) {
                     QString err = ssh_get_error (my_ssh_session);
-                    QString error_msg = tr ("ssh_channel_new failed");
-                    emit ioErr (channelConnections[i].creator, error_msg + ".", err);
+                    /*: Argument in this context will be a function name. */
+                    QString error_msg = tr ("%1 failed.").arg ("ssh_channel_new");
+                    emit ioErr (channelConnections[i].creator, error_msg, err);
 
 #ifdef DEBUG
-                    x2goDebug << errorMsg << ": " << err << endl;
+                    x2goDebug << error_msg.left (error_msg.size () - 1) << ": " << err << endl;
 #endif
 
                     continue;
@@ -1584,10 +1585,10 @@ void SshMasterConnection::channelLoop()
                                                     channelConnections.at ( i ).localPort ) != SSH_OK )
                     {
                         QString err=ssh_get_error ( my_ssh_session );
-                        QString errorMsg=tr ( "ssh_channel_open_forward failed" );
-                        emit ioErr ( channelConnections[i].creator, errorMsg + ".", err );
+                        QString errorMsg=tr ( "%1 failed." ).arg ("ssh_channel_open_forward");
+                        emit ioErr ( channelConnections[i].creator, errorMsg, err );
 #ifdef DEBUG
-                        x2goDebug<<errorMsg<<": "<<err<<endl;
+                        x2goDebug<<errorMsg.left (errorMsg.size () - 1)<<": "<<err<<endl;
 #endif
                     }
 #ifdef DEBUG
@@ -1605,19 +1606,19 @@ void SshMasterConnection::channelLoop()
                     if ( ssh_channel_open_session ( channel ) !=SSH_OK )
                     {
                         QString err=ssh_get_error ( my_ssh_session );
-                        QString errorMsg=tr ( "ssh_channel_open_session failed" );
-                        emit ioErr ( channelConnections[i].creator, errorMsg + ".", err );
+                        QString errorMsg=tr ( "%1 failed." ).arg ("ssh_channel_open_session");
+                        emit ioErr ( channelConnections[i].creator, errorMsg, err );
 #ifdef DEBUG
-                        x2goDebug<<errorMsg<<": "<<err<<endl;
+                        x2goDebug<<errorMsg.left (errorMsg.size () - 1)<<": "<<err<<endl;
 #endif
                     }
                     else if ( ssh_channel_request_exec ( channel, channelConnections[i].command.toLatin1() ) != SSH_OK )
                     {
                         QString err=ssh_get_error ( my_ssh_session );
-                        QString errorMsg=tr ( "ssh_channel_request_exec failed" );
-                        emit ioErr ( channelConnections[i].creator, errorMsg + ".", err );
+                        QString errorMsg=tr ( "%1 failed." ).arg ("ssh_channel_request_exec");
+                        emit ioErr ( channelConnections[i].creator, errorMsg, err );
 #ifdef DEBUG
-                        x2goDebug<<errorMsg<<": "<<err<<endl;
+                        x2goDebug<<errorMsg.left (errorMsg.size () - 1)<<": "<<err<<endl;
 #endif
                     }
 #ifdef DEBUG
@@ -1749,10 +1750,10 @@ void SshMasterConnection::channelLoop()
                     if ( ssh_channel_write ( channel, buffer, nbytes ) !=nbytes )
                     {
                         QString err=ssh_get_error ( my_ssh_session );
-                        QString errorMsg=tr ( "ssh_channel_write failed" );
-                        emit ioErr ( channelConnections[i].creator, errorMsg + ".", err );
+                        QString errorMsg=tr ( "%1 failed." ).arg ("ssh_channel_write");
+                        emit ioErr ( channelConnections[i].creator, errorMsg, err );
 #ifdef DEBUG
-                        x2goDebug<<errorMsg<<": "<<err<<endl;
+                        x2goDebug<<errorMsg.left (errorMsg.size () - 1)<<": "<<err<<endl;
 #endif
                         finalize ( i );
                         continue;
