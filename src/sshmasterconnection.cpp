@@ -1724,7 +1724,7 @@ void SshMasterConnection::channelLoop()
                     continue;
                 }
 
-                if ( channel_is_eof ( channel ) )
+                if ( ssh_channel_is_eof ( channel ) )
                 {
 #ifdef DEBUG
                     x2goDebug<<"EOF on channel "<<channel<<"; SshProcess object: "<<channelConnections[i].creator->pid;

@@ -33,6 +33,9 @@ x2goclient (4.1.0.1-0x2go1) UNRELEASED; urgency=medium
     - src/sshmasterconnection.cpp: replace deprecated channel_read () function
       with ssh_channel_read (). Might break on ancient systems, but we don't
       care.
+    - src/sshmasterconnection.cpp: replace deprecated channel_is_eof ()
+      function with ssh_channel_is_eof (). Might break on ancient systems, but
+      we don't care.
 
  -- X2Go Release Manager <git-admin@x2go.org>  Wed, 22 Feb 2017 07:13:10 +0100
 
