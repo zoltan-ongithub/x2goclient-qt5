@@ -1192,7 +1192,7 @@ bool SshMasterConnection::userAuthWithKey()
 
     int rc=ssh_userauth_pubkey(my_ssh_session, NULL, pubkeyStr, prkey);
     privatekey_free(prkey);
-    string_free(pubkeyStr);
+    ssh_string_free(pubkeyStr);
 
 #ifdef DEBUG
     x2goDebug<<"Authenticating with key: "<<rc<<endl;

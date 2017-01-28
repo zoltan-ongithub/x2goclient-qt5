@@ -13,6 +13,8 @@ x2goclient (4.1.0.1-0x2go1) UNRELEASED; urgency=medium
       ssh_get_hexa (). This will break on very old systems with a hopelessly
       outdated libssh version, but we do not care about these systems in the
       first place.
+    - src/sshmasterconnection.cpp: replace string_free () with its successor
+      ssh_string_free (). Will break on ancient systems, but we don't care.
 
  -- X2Go Release Manager <git-admin@x2go.org>  Wed, 22 Feb 2017 07:13:10 +0100
 
