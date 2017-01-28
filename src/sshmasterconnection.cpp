@@ -1577,15 +1577,15 @@ void SshMasterConnection::channelLoop()
 #ifdef DEBUG
                     x2goDebug<<"Forwarding new channel, local port: "<<channelConnections.at ( i ).localPort<<endl;
 #endif
-                    if ( channel_open_forward ( channel,
-                                                channelConnections.at ( i ).forwardHost.toLatin1(),
-                                                channelConnections.at ( i ).forwardPort,
-                                                channelConnections.at ( i ).localHost.toLatin1(),
-                                                channelConnections.at ( i ).localPort ) != SSH_OK )
+                    if ( ssh_channel_open_forward ( channel,
+                                                    channelConnections.at ( i ).forwardHost.toLatin1(),
+                                                    channelConnections.at ( i ).forwardPort,
+                                                    channelConnections.at ( i ).localHost.toLatin1(),
+                                                    channelConnections.at ( i ).localPort ) != SSH_OK )
                     {
                         QString err=ssh_get_error ( my_ssh_session );
-                        QString errorMsg=tr ( "channel_open_forward failed." );
-                        emit ioErr ( channelConnections[i].creator, errorMsg, err );
+                        QString errorMsg=tr ( "ssh_channel_open_forward failed" );
+                        emit ioErr ( channelConnections[i].creator, errorMsg + ".", err );
 #ifdef DEBUG
                         x2goDebug<<errorMsg<<": "<<err<<endl;
 #endif

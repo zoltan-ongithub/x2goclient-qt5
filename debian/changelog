@@ -18,6 +18,9 @@ x2goclient (4.1.0.1-0x2go1) UNRELEASED; urgency=medium
     - src/sshmasterconnection.cpp: replace deprecated channel_new () function
       with ssh_channel_new (). Might break on ancient systems, but we don't
       care. Also, add error handling in case ssh_channel_new () failed...
+    - src/sshmasterconnection.cpp: replace deprecated channel_open_forward ()
+      function with ssh_channel_open_forward (). Might break on ancient
+      systems, but we don't care.
 
  -- X2Go Release Manager <git-admin@x2go.org>  Wed, 22 Feb 2017 07:13:10 +0100
 
