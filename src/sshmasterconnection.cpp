@@ -1555,7 +1555,19 @@ void SshMasterConnection::channelLoop()
 #ifdef DEBUG
                 x2goDebug<<"Creating new channel."<<endl;
 #endif
-                ssh_channel channel=channel_new ( my_ssh_session );
+                ssh_channel channel = ssh_channel_new ( my_ssh_session );
+
+                if (!channel) {
+                    QString err = ssh_get_error (my_ssh_session);
+                    QString error_msg = tr ("ssh_channel_new failed");
+                    emit ioErr (channelConnections[i].creator, error_msg + ".", err);
+
+#ifdef DEBUG
+                    x2goDebug << errorMsg << ": " << err << endl;
+#endif
+
+                    continue;
+                }
 #ifdef DEBUG
                 x2goDebug<<"New channel:"<<channel<<endl;
 #endif
