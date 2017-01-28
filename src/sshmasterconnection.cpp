@@ -1801,7 +1801,7 @@ void SshMasterConnection::finalize ( int item )
 #ifdef DEBUG
         x2goDebug<<"Channel closed.";
 #endif
-        channel_free ( channel );
+        ssh_channel_free ( channel );
     }
     if ( tcpSocket>0 )
     {
