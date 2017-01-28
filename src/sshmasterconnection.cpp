@@ -20,6 +20,7 @@
 #include "sshmasterconnection.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include <stddef.h>
 #include "sshprocess.h"
 
 
@@ -812,21 +813,46 @@ int SshMasterConnection::serverAuth ( QString& errorMsg )
     x2goDebug<<"cserverAuth";
 #endif
 
-    int state, hlen;
+    int state = SSH_SERVER_ERROR;
     unsigned char *hash = NULL;
-    char *hexa;
+    char *hexa = NULL;
+#if LIBSSH_VERSION_INT >= SSH_VERSION_INT (0, 6, 0)
+    ssh_key srv_pubkey = { 0 };
+    int rc = SSH_ERROR;
+    size_t hlen = 0;
+#else
+    int hlen = 0;
+#endif
 
     state = ssh_is_server_known ( my_ssh_session );
+
+#if LIBSSH_VERSION_INT >= SSH_VERSION_INT (0, 6, 0)
+#if LIBSSH_VERSION_INT >= SSH_VERSION_INT (0, 8, 0)
+    rc = ssh_get_server_publickey (my_ssh_session, &srv_pubkey);
+#else /* LIBSSH_VERSION_INT >= SSH_VERSION_INT (0, 8, 0) */
+    rc = ssh_get_publickey (my_ssh_session, &srv_pubkey);
+#endif /* LIBSSH_VERSION_INT >= SSH_VERSION_INT (0, 8, 0) */
+
+    if (SSH_OK != rc) {
+        return (SSH_SERVER_ERROR);
+    }
+
+    rc = ssh_get_publickey_hash (srv_pubkey, SSH_PUBLICKEY_HASH_SHA1, &hash, &hlen);
+    ssh_key_free (srv_pubkey);
+
+    if (0 != rc) {
+        return (SSH_SERVER_ERROR);
+    }
+#else
     hlen = ssh_get_pubkey_hash ( my_ssh_session, &hash );
+#endif
 
-
-    if ( hlen < 0 )
+    if ( 0 >= hlen )
         return SSH_SERVER_ERROR;
 
 #ifdef DEBUG
     x2goDebug<<"state: "<<state<<endl;
 #endif
-
 
     switch ( state )
     {
@@ -836,7 +862,7 @@ int SshMasterConnection::serverAuth ( QString& errorMsg )
     case SSH_SERVER_KNOWN_CHANGED:
         hexa = ssh_get_hexa ( hash, hlen );
         errorMsg=host+":"+QString::number(port)+" - "+hexa;
-        free ( hexa );
+        ssh_string_free_char ( hexa );
         break;
     case SSH_SERVER_FOUND_OTHER:
         break;
@@ -846,7 +872,7 @@ int SshMasterConnection::serverAuth ( QString& errorMsg )
         {
             hexa = ssh_get_hexa ( hash, hlen );
             errorMsg=host+":"+QString::number(port)+" - "+hexa;
-            free ( hexa );
+            ssh_string_free_char ( hexa );
             break;
         }
         ssh_write_knownhost ( my_ssh_session );
