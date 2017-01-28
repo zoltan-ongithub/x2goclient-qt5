@@ -1797,7 +1797,7 @@ void SshMasterConnection::finalize ( int item )
 #ifdef DEBUG
         x2goDebug<<"EOF sent.";
 #endif
-        channel_close ( channel );
+        ssh_channel_close ( channel );
 #ifdef DEBUG
         x2goDebug<<"Channel closed.";
 #endif
