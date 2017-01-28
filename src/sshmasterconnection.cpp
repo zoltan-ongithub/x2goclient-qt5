@@ -279,22 +279,35 @@ void SshMasterConnection::addReverseTunnelConnections()
         if(!reverseTunnelRequest[i].listen)
         {
             reverseTunnelRequest[i].listen=true;
-            int rc=ssh_forward_listen(my_ssh_session, NULL, reverseTunnelRequest[i].forwardPort, NULL);
-            if(rc==SSH_OK)
-            {
-                emit reverseTunnelOk(reverseTunnelRequest[i].creator);
-#ifdef DEBUG
-                x2goDebug<<"Listening for TCP/IP connections on "<<reverseTunnelRequest[i].forwardPort;
+
+            int rc = SSH_AGAIN;
+
+#if LIBSSH_VERSION_INT >= SSH_VERSION_INT (0, 7, 0)
+            /* Non-blocking mode may return SSH_AGAIN, so try again if neceassary. */
+            while (SSH_AGAIN == rc) {
+                rc = ssh_channel_listen_forward(my_ssh_session, NULL, reverseTunnelRequest[i].forwardPort, NULL);
+#else
+                rc = ssh_forward_listen(my_ssh_session, NULL, reverseTunnelRequest[i].forwardPort, NULL);
 #endif
-            }
-            if(rc==SSH_ERROR)
-            {
-                QString err=ssh_get_error(my_ssh_session);
+
+                if(rc==SSH_OK)
+                {
+                    emit reverseTunnelOk(reverseTunnelRequest[i].creator);
 #ifdef DEBUG
-                x2goDebug<<"Forward port "<<reverseTunnelRequest[i].forwardPort<<" failed:"<<err;
+                    x2goDebug<<"Listening for TCP/IP connections on "<<reverseTunnelRequest[i].forwardPort;
 #endif
-                emit reverseTunnelFailed(reverseTunnelRequest[i].creator, err);
+                }
+                if(rc==SSH_ERROR)
+                {
+                    QString err=ssh_get_error(my_ssh_session);
+#ifdef DEBUG
+                    x2goDebug<<"Forward port "<<reverseTunnelRequest[i].forwardPort<<" failed:"<<err;
+#endif
+                    emit reverseTunnelFailed(reverseTunnelRequest[i].creator, err);
+                }
+#if LIBSSH_VERSION_INT >= SSH_VERSION_INT (0, 7, 0)
             }
+#endif
         }
     }
     reverseTunnelRequestMutex.unlock();
