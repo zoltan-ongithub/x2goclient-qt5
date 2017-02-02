@@ -84,17 +84,23 @@ SessionWidget::SessionWidget ( bool newSession, QString id, ONMainWindow * mw,
 #else
     QFrame* sgb=this;
 #endif
+    const QString ssh_port_tooltip_text = tr ("Values ranging from <b>0</b> to <b>65535</b> are allowed."
+                                              "<br />A value of <b>0</b> will either use the port specified in the "
+                                              "SSH configuration file belonging to a host or shortname, "
+                                              "or use the default of <b>22</b>.");
     server=new QLineEdit ( sgb );
     uname=new QLineEdit ( sgb );
     sshPort=new QSpinBox ( sgb );
     sshPort->setValue ( mainWindow->getDefaultSshPort().toInt() );
-    sshPort->setMinimum ( 1 );
-    sshPort->setMaximum ( 999999999 );
+    sshPort->setMinimum ( 0 );
+    sshPort->setMaximum ( 65535 );
+    sshPort->setToolTip (ssh_port_tooltip_text);
 #ifdef Q_OS_LINUX
     rdpPort=new QSpinBox ( sgb );
     rdpPort->setValue ( mainWindow->getDefaultSshPort().toInt() );
-    rdpPort->setMinimum ( 1 );
-    rdpPort->setMaximum ( 999999999 );
+    rdpPort->setMinimum ( 0 );
+    rdpPort->setMaximum ( 65535 );
+    rdpPort->setToolTip (ssh_port_tooltip_text);
 #endif
     key=new QLineEdit ( sgb );
 
@@ -156,8 +162,9 @@ SessionWidget::SessionWidget ( bool newSession, QString id, ONMainWindow * mw,
     proxyType->addButton(rbHttpProxy);
     proxyHost=new QLineEdit(proxyBox);
     proxyPort=new QSpinBox(proxyBox);
-    proxyPort->setMinimum ( 1 );
-    proxyPort->setMaximum ( 999999999 );
+    proxyPort->setMinimum ( 0 );
+    proxyPort->setMaximum ( 65535 );
+    proxyPort->setToolTip (ssh_port_tooltip_text);
 
     cbProxySameUser=new QCheckBox(tr("Same login as on X2Go Server"), proxyBox);
     proxyLogin=new QLineEdit(proxyBox);

@@ -195,14 +195,53 @@ SshMasterConnection::SshMasterConnection (QObject* parent, QString host, int por
     mainWnd=(ONMainWindow*) parent;
     kerberos=krblogin;
     challengeAuthVerificationCode=QString::null;
-    if(this->user==QString::null||this->user.length()<=0)
-    {
+
+    if (this->user.isEmpty ()) {
+        /* We might have a config file request pending, honor this. */
+        ssh_session tmp_session = ssh_new ();
+
+        if (!tmp_session) {
+            QString error_msg = tr ("Cannot create SSH session.");
+            error_msg += " " + tr ("Using environment-provided username.");
+#ifdef DEBUG
+            x2goDebug << error_msg;
+#endif
+        }
+        else {
+            QByteArray tmp_BA;
+
+            if ((useproxy) && (PROXYSSH == proxytype)) {
+                tmp_BA = this->proxyserver.toLocal8Bit ();
+            }
+            else {
+                tmp_BA = this->host.toLocal8Bit ();
+            }
+
+            ssh_options_set (tmp_session, SSH_OPTIONS_HOST, tmp_BA.data ());
+
+            if (ssh_options_parse_config (tmp_session, NULL) < 0) {
+                x2goDebug << "Warning: unable to parse the SSH config file.";
+            }
+
+            char *inferred_username = NULL;
+            ssh_options_get (tmp_session, SSH_OPTIONS_USER, &inferred_username);
+            x2goDebug << "Temporary session user name after config file parse: " << inferred_username;
+
+            this->user = QString::fromLocal8Bit (inferred_username);
+
+            ssh_string_free_char (inferred_username);
+            ssh_free (tmp_session);
+        }
+    }
+
+    if (this->user.isEmpty ()) {
 #ifdef Q_OS_WIN
-        this->user=getenv("USERNAME");
+        this->user = getenv ("USERNAME");
 #else
-        this->user=getenv("USER");
+        this->user = getenv ("USER");
 #endif
     }
+
 #ifdef DEBUG
     if (kerberos)
     {
@@ -773,14 +812,30 @@ bool SshMasterConnection::sshConnect()
     if(useproxy && proxytype==PROXYSSH)
     {
         ssh_options_set ( my_ssh_session, SSH_OPTIONS_HOST, "127.0.0.1" );
-        ssh_options_set ( my_ssh_session, SSH_OPTIONS_PORT, &localProxyPort );
-
+        if (localProxyPort) {
+            ssh_options_set ( my_ssh_session, SSH_OPTIONS_PORT, &localProxyPort );
+        }
     }
     else
     {
         ssh_options_set ( my_ssh_session, SSH_OPTIONS_HOST, tmpBA.data() );
-        ssh_options_set ( my_ssh_session, SSH_OPTIONS_PORT, &port );
+        if (port) {
+            ssh_options_set ( my_ssh_session, SSH_OPTIONS_PORT, &port );
+        }
     }
+
+    unsigned int cur_port = 0;
+    ssh_options_get_port (my_ssh_session, &cur_port);
+    x2goDebug << "Session port before config file parse: " << cur_port;
+
+    /* Parse ~/.ssh/config. */
+    if (ssh_options_parse_config (my_ssh_session, NULL) < 0) {
+        x2goDebug << "Warning: unable to parse the SSH config file.";
+    }
+
+    ssh_options_get_port (my_ssh_session, &cur_port);
+    x2goDebug << "Session port after config file parse: " << cur_port;
+
     rc = ssh_connect ( my_ssh_session );
     if ( rc != SSH_OK )
     {
@@ -790,9 +845,22 @@ bool SshMasterConnection::sshConnect()
     if(useproxy && proxytype==PROXYSSH)
     {
         ssh_options_set ( my_ssh_session, SSH_OPTIONS_HOST, tmpBA.data() );
-        ssh_options_set ( my_ssh_session, SSH_OPTIONS_PORT, &port );
-
+        if (port) {
+            ssh_options_set ( my_ssh_session, SSH_OPTIONS_PORT, &port );
+        }
     }
+
+    ssh_options_get_port (my_ssh_session, &cur_port);
+    x2goDebug << "Session port before config file parse (part 2): " << cur_port;
+
+    /* Parse ~/.ssh/config. */
+    if (ssh_options_parse_config (my_ssh_session, NULL) < 0) {
+        x2goDebug << "Warning: unable to parse the SSH config file.";
+    }
+
+    ssh_options_get_port (my_ssh_session, &cur_port);
+    x2goDebug << "Session port after config file parse (part 2): " << cur_port;
+
     return true;
 }
 
@@ -1581,25 +1649,72 @@ void SshMasterConnection::channelLoop()
                 if ( tcpSocket>0 )
                 {
 #ifdef DEBUG
-                    x2goDebug<<"Forwarding new channel, local port: "<<channelConnections.at ( i ).localPort<<endl;
+                    x2goDebug << "Forwarding parameters: from remote (" << channelConnections.at (i).forwardHost << ":"
+                              << channelConnections.at (i).forwardPort << ") to local ("
+                              << channelConnections.at (i).localHost << ":" << channelConnections.at (i).localPort
+                              << ")";
 #endif
-                    if ( ssh_channel_open_forward ( channel,
-                                                    channelConnections.at ( i ).forwardHost.toLatin1(),
-                                                    channelConnections.at ( i ).forwardPort,
-                                                    channelConnections.at ( i ).localHost.toLatin1(),
-                                                    channelConnections.at ( i ).localPort ) != SSH_OK )
-                    {
-                        QString err=ssh_get_error ( my_ssh_session );
-                        QString errorMsg=tr ( "%1 failed." ).arg ("ssh_channel_open_forward");
-                        emit ioErr ( channelConnections[i].creator, errorMsg, err );
+                    ssh_session tmp_session = ssh_new ();
+
+                    if (!tmp_session) {
+                        QString error_msg = tr ("Cannot create SSH session.");
 #ifdef DEBUG
-                        x2goDebug<<errorMsg.left (errorMsg.size () - 1)<<": "<<err<<endl;
+                        x2goDebug << error_msg;
 #endif
+                        emit ioErr (channelConnections[i].creator, error_msg, "");
                     }
-#ifdef DEBUG
-                    else
+                    else {
+                        QByteArray tmp_BA = channelConnections.at (i).forwardHost.toLocal8Bit ();
+                        const int tmp_port = channelConnections.at (i).forwardPort;
+
+                        ssh_options_set (tmp_session, SSH_OPTIONS_HOST, tmp_BA.data ());
+
+                        if (tmp_port) {
+                            ssh_options_set (tmp_session, SSH_OPTIONS_PORT, &tmp_port);
+                        }
+
+                        /* The host and port might be a shorthand and zero, so fetch the actual data. */
+                        if (ssh_options_parse_config (tmp_session, NULL) < 0) {
+                            x2goDebug << "Warning: unable to parse the SSH config file.";
+                        }
+
+                        unsigned int inferred_port = 0;
+                        ssh_options_get_port (tmp_session, &inferred_port);
+                        x2goDebug << "Temporary session port after config file parse: " << inferred_port;
+
+                        char *inferred_host = NULL;
+                        ssh_options_get (tmp_session, SSH_OPTIONS_HOST, &inferred_host);
+                        x2goDebug << "Temporary session host after config file parse: " << inferred_host;
+
+                        channelConnections[i].forwardHost = QString (inferred_host);
+                        channelConnections[i].forwardPort = static_cast<int> (inferred_port);
+
+                        ssh_string_free_char (inferred_host);
+                        ssh_free (tmp_session);
+                    }
+
                     {
-                        x2goDebug<<"New channel forwarded."<<endl;
+                        QByteArray tmp_BA_forward = channelConnections.at (i).forwardHost.toLocal8Bit ();
+                        QByteArray tmp_BA_local = channelConnections.at (i).localHost.toLocal8Bit ();
+
+                        if ( ssh_channel_open_forward ( channel,
+                                                        tmp_BA_forward.data (),
+                                                        channelConnections.at ( i ).forwardPort,
+                                                        tmp_BA_local.data (),
+                                                        channelConnections.at ( i ).localPort ) != SSH_OK )
+                        {
+                            QString err=ssh_get_error ( my_ssh_session );
+                            QString errorMsg=tr ( "%1 failed." ).arg ("ssh_channel_open_forward");
+                            emit ioErr ( channelConnections[i].creator, errorMsg, err );
+#ifdef DEBUG
+                            x2goDebug<<errorMsg.left (errorMsg.size () - 1)<<": "<<err<<endl;
+#endif
+                        }
+#ifdef DEBUG
+                        else
+                        {
+                            x2goDebug<<"New channel forwarded."<<endl;
+                        }
                     }
 #endif
                 }

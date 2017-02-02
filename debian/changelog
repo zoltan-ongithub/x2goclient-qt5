@@ -54,6 +54,9 @@ x2goclient (4.1.0.1-0x2go1) UNRELEASED; urgency=medium
     - src/sshmasterconnection.cpp: fix up some debug strings.
     - src/sshmasterconnection.cpp: port more occurrences of "QString to C
       string" akin to 1b21d75f2c10609f3586f5b5e0b4ceb7fca83fdd.
+    - src/sshmasterconnection.cpp: enable parsing of ~/.ssh/config.
+      Fixes: #1121. Shorthands as host names and other bells and whistles like
+      inferred port or user name values are now supported.
 
  -- X2Go Release Manager <git-admin@x2go.org>  Wed, 22 Feb 2017 07:13:10 +0100
 
