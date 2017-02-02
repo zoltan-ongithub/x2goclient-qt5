@@ -51,6 +51,7 @@ x2goclient (4.1.0.1-0x2go1) UNRELEASED; urgency=medium
     - src/sshmasterconnection.cpp: use QString::arg () to insert function name
       and thus deduplicate error translation messages. Also re-add the full
       stop sign and remove it when needed for x2goDebug.
+    - src/sshmasterconnection.cpp: fix up some debug strings.
 
  -- X2Go Release Manager <git-admin@x2go.org>  Wed, 22 Feb 2017 07:13:10 +0100
 
