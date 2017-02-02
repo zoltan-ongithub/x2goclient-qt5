@@ -541,16 +541,20 @@ void SshMasterConnection::run()
     }
 
 #ifdef Q_OS_WIN
-    ssh_options_set ( my_ssh_session, SSH_OPTIONS_SSH_DIR, (mainWnd->getHomeDirectory()+"/ssh").toLocal8Bit());
-#ifdef DEBUG
-    x2goDebug<<"Setting SSH directory to "<<(mainWnd->getHomeDirectory()+"/ssh").toLocal8Bit();
-#endif
-    if (kerberos)
     {
-        parseKnownHosts();
-    }
+        QByteArray tmp_BA = (mainWnd->getHomeDirectory () + "/ssh").toLocal8Bit ();
 
+        ssh_options_set ( my_ssh_session, SSH_OPTIONS_SSH_DIR, tmp_BA.data ());
+#ifdef DEBUG
+        x2goDebug << "Setting SSH directory to " << tmp_BA.data ();
 #endif
+        if (kerberos)
+        {
+            parseKnownHosts();
+        }
+    }
+#endif
+
     ssh_options_set(my_ssh_session, SSH_OPTIONS_LOG_VERBOSITY, &verbosity);
 
     ssh_options_set(my_ssh_session, SSH_OPTIONS_TIMEOUT, &timeout);
@@ -652,17 +656,18 @@ void SshMasterConnection::run()
         return;
     }
 
-#ifdef Q_OS_WIN
-    ssh_options_set ( my_ssh_session, SSH_OPTIONS_USER, user.toLocal8Bit() );
-#else
-    ssh_options_set ( my_ssh_session, SSH_OPTIONS_USER, user.toLatin1() );
-#endif
+    QByteArray tmp_BA = user.toLocal8Bit ();
+    ssh_options_set ( my_ssh_session, SSH_OPTIONS_USER, tmp_BA.data () );
 
 #ifdef Q_OS_WIN
-    ssh_options_set ( my_ssh_session, SSH_OPTIONS_SSH_DIR, (mainWnd->getHomeDirectory()+"/ssh").toLocal8Bit());
+    {
+        QByteArray tmp_BA = (mainWnd->getHomeDirectory () + "/ssh").toLocal8Bit ();
+
+        ssh_options_set ( my_ssh_session, SSH_OPTIONS_SSH_DIR, tmp_BA.data () );
 #ifdef DEBUG
-    x2goDebug<<"Setting SSH directory to "<<(mainWnd->getHomeDirectory()+"/ssh").toLocal8Bit();
+        x2goDebug << "Setting SSH directory to " << tmp_BA.data ();
 #endif
+    }
 #endif
 
     if ( userAuth() )
