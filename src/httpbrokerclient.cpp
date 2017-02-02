@@ -141,7 +141,7 @@ void HttpBrokerClient::slotSshServerAuthError(int error, QString sshMessage, Ssh
         return;
 
     case SSH_SERVER_FOUND_OTHER:
-        errMsg=tr ( "The host key for this server was not found but another"
+        errMsg=tr ( "The host key for this server was not found but another "
                     "type of key exists. An attacker might have changed the default server key to "
                     "trick your client into thinking the key does not exist yet." );
         connection->writeKnownHosts(false);
