@@ -229,7 +229,7 @@ void PulseManager::start_generic () {
    * Otherwise, we'd better use signals and slots to not block the main thread.
    */
   if (pulse_server_->waitForStarted (-1)) {
-    x2goDebug << "pulse started with arguments" << server_args_ << "; waiting for finish...";
+    x2goDebug << "pulse started with arguments " << server_args_ << "- waiting for it to finish...";
     state_ = QProcess::Running;
 
     connect (pulse_server_, SIGNAL (finished (int)),

@@ -60,6 +60,9 @@ x2goclient (4.1.0.1-0x2go1) UNRELEASED; urgency=medium
     - src/{onmainwindow,httpbrokerclient}.cpp: fix up error/warning message
       displayed when the server-specified key is unknown, but we have another
       key type stored already.
+    - src/pulsemanager.cpp: fix up a debug string. Qt drops a space where I'd
+      like to have one and inserts a space where I'd like none, so work around
+      that fancifully.
 
  -- X2Go Release Manager <git-admin@x2go.org>  Wed, 22 Feb 2017 07:13:10 +0100
 
