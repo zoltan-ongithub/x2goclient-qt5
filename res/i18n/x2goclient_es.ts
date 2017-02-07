@@ -824,7 +824,7 @@ Algunas localizaciones habituales pueden ser:
     <message>
         <location filename="../../src/help.cpp" line="106"/>
         <source>Shows git information as used at compile time. [Deprecated: please use --version.]</source>
-        <translation>Muestra la información git usada durante el compilado- [Obsoleto: mejor usar --version.]</translation>
+        <translation>Muestra la información git usada durante el compilado. [Obsoleto: mejor usar --version.]</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="109"/>
@@ -894,7 +894,7 @@ Algunas localizaciones habituales pueden ser:
     <message>
         <location filename="../../src/help.cpp" line="125"/>
         <source>Starts with LDAP support. Example: --ldap=ldapserver:389:o=organization,c=de</source>
-        <translation>Inicia con soporte LDAP. Ejempo: --ldap=ldapserver:389:o=orga nizacion,c=es</translation>
+        <translation>Inicia con soporte LDAP. Ejempo: --ldap=ldapserver:389:o=organizacion,c=es</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="126"/>
@@ -919,7 +919,7 @@ Algunas localizaciones habituales pueden ser:
     <message>
         <location filename="../../src/help.cpp" line="130"/>
         <source>Sets the default command. Default: &apos;KDE&apos; (Desktop Session)</source>
-        <translation>Define el comando por defecto: Por defecto &apos;KDE&apos; (Sesión de Escritorio)</translation>
+        <translation>Define el comando por defecto. Por defecto &apos;KDE&apos; (Sesión de Escritorio)</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="131"/>
@@ -1004,7 +1004,7 @@ Algunas localizaciones habituales pueden ser:
     <message>
         <location filename="../../src/help.cpp" line="147"/>
         <source>Sets the broker name to display in X2Go Client. This parameter is optional.</source>
-        <translation>Define el nombre del broer a mostrar en el cliente X2go. Este parámetro es opcional.</translation>
+        <translation>Define el nombre del broer a mostrar en el cliente X2Go. Este parámetro es opcional.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="154"/>
@@ -1300,14 +1300,16 @@ el sonido en conexiones a través de firewalls</translation>
         <source>ARTS support is scheduled to be removed soon.
 
 Please upgrade to PulseAudio.</source>
-        <translation>El soporte ARTS está previsto sea eliminado en breve.</translation>
+        <comment>Please don't forget the second line!</comment>
+        <translation type="unfinished">El soporte ARTS está previsto sea eliminado en breve.</translation>
     </message>
     <message>
         <location filename="../../src/mediawidget.cpp" line="175"/>
         <source>ESounD support is scheduled to be removed soon.
 
 Please upgrade to PulseAudio.</source>
-        <translation>El soporte ESounD está previsto sea eliminado en breve.</translation>
+        <comment>Please don't forget the second line!</comment>
+        <translation type="unfinished">El soporte ESounD está previsto sea eliminado en breve.</translation>
     </message>
 </context>
 <context>
@@ -2839,17 +2841,17 @@ Los documentos no guardados se perderán.</translation>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="9537"/>
         <source>Unable to change the permissions of directory: </source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="9538"/>
         <source>This is an error because sshd would deny such a directory.</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="10232"/>
         <source>Unable to find the sftp-server binary. Neither bundled, nor found in $PATH nor additional directories.</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="10233"/>
@@ -2858,7 +2860,7 @@ Los documentos no guardados se perderán.</translation>
 If the sftp-server binary is installed on your system, please report a bug mentioning its path on:
 &lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
 </source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="10275"/>
@@ -2882,7 +2884,8 @@ If the sftp-server binary is installed on your system, please report a bug menti
     <message>
         <location filename="../../src/onmainwindow.cpp" line="10351"/>
         <source>SSH key base directory creation error</source>
-        <translation>Error al crear la clave SSH</translation>
+        <comment>The error isn't really about the SSH key creation itself, but about the *base* directory.</comment>
+        <translation type="unfinished">Error al crear la clave SSH</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="10352"/>
@@ -2902,22 +2905,26 @@ If the sftp-server binary is installed on your system, please report a bug menti
     <message>
         <location filename="../../src/onmainwindow.cpp" line="10438"/>
         <source>ssh-keygen crashed</source>
-        <translation>fallo al ejecutar ssh-keygen</translation>
+        <comment>Please be more specific, "crashed" doesn't mean "execute"...</comment>
+        <translation type="unfinished">fallo al ejecutar ssh-keygen</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="10439"/>
         <source>The ssh-keygen binary crashed.</source>
-        <translation>fallo al ejecutar ssh-keygen.</translation>
+        <comment>Please be more specific, "crashed" doesn't mean "execute"...</comment>
+        <translation type="unfinished">fallo al ejecutar ssh-keygen.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="10446"/>
         <source>ssh-keygen program error</source>
-        <translation>fallo al ejecutar ssh-keygen</translation>
+        <comment>Please be more specific, "program error" doesn't mean "execute"...</comment>
+        <translation type="unfinished">fallo al ejecutar ssh-keygen</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="10447"/>
         <source>The ssh-keygen binary did not exit cleanly.</source>
-        <translation>fallo al ejecutar ssh-keygen.</translation>
+        <comment>Please be more specific, "unclean termination" doesn't mean "execute"...</comment>
+        <translation type="unfinished">fallo al ejecutar ssh-keygen.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="10449"/>
@@ -2927,12 +2934,16 @@ If the sftp-server binary is installed on your system, please report a bug menti
     <message>
         <location filename="../../src/onmainwindow.cpp" line="10508"/>
         <source>Unable to open newly generated %1 public host key file.</source>
-        <translation>Fallo al abrir el nuevo archivo de clave pública generada %1.</translation>
+        <comment>%1 in this context will be replaced with the SSH key type (e.g., "RSA", "DSA" or the like.) Please make sure that the translation is correct in this regard.
+                 Also, please include the "host" part, to make clear that we're not talking about client keys here.</comment>
+        <translation type="unfinished">Fallo al abrir el nuevo archivo de clave pública generada %1.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="10528"/>
         <source>%1 public host key file empty.</source>
-        <translation>archivo de clave pública vacío %1.</translation>
+        <comment>%1 in this context will be replaced with the SSH key type (e.g., "RSA", "DSA" or the like.) Please make sure that the translation is correct in this regard.
+                 Also, please include the "host" part, to make clear that we're not talking about client keys here.</comment>
+        <translation type="unfinished">archivo de clave pública vacío %1.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="10534"/>
@@ -3588,15 +3599,17 @@ Ejemplo:
     <message>
         <location filename="../../src/pulsemanager.cpp" line="127"/>
         <source>Unable to find the PulseAudio binary. Neither bundled, nor found in $PATH nor additional directories.</source>
-        <translation>No se ha encontrado el ejecutable de PulseAudio. Ni en incorpodado ni en el $PATH local.</translation>
+        <comment>We're not only searching for a bundled PA version or one in $PATH, but also other (non-disclosed) directories. That should be communicated.</comment>
+        <translation type="unfinished">No se ha encontrado el ejecutable de PulseAudio. Ni en incorpodado ni en el $PATH local.</translation>
     </message>
     <message>
         <location filename="../../src/pulsemanager.cpp" line="128"/>
         <source>If you downloaded the bundled, pre-compiled version from the official home page, please report a bug on:
 &lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
 </source>
-        <translation>Si has descargado el paquete pre compilado desde la web oficial, pro favor reporta el bug en:
-&lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;</translation>
+        <translation>Si has descargado el paquete pre compilado desde la web oficial, por favor reporta el bug en:
+&lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
+</translation>
     </message>
     <message>
         <location filename="../../src/pulsemanager.cpp" line="158"/>
@@ -3622,8 +3635,9 @@ If you downloaded the bundled, pre-compiled version from the official home page,
 </source>
         <translation>El soporte de sonido no está disponible
 
-Si has descargado el paquete pre compilado desde la web oficial, pro favor reporta el bug en:
-&lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;</translation>
+Si has descargado el paquete pre compilado desde la web oficial, por favor reporta el bug en:
+&lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
+</translation>
     </message>
     <message>
         <location filename="../../src/pulsemanager.cpp" line="407"/>
@@ -3693,8 +3707,9 @@ Si has descargado el paquete pre compilado desde la web oficial, pro favor repor
         <source>If you downloaded the bundled, pre-compiled version from the official home page or the upstream Linux packages, please report a bug on:
 &lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
 </source>
-        <translation>Si has descargado el paquete pre compilado desde la web oficial, pro favor reporta el bug en:
-&lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;</translation>
+        <translation>Si has descargado el paquete pre compilado desde la web oficial, por favor reporta el bug en:
+&lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
+</translation>
     </message>
 </context>
 <context>

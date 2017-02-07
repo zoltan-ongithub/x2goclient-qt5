@@ -557,6 +557,9 @@ x2goclient (4.1.0.0-0x2go1) UNRELEASED; urgency=medium
       time (for instance when running x2goclient --help.)
     - src/onmainwindow.cpp: correctly guard the new lines from the previous
       commit. Fixes compile issues on Linux and other systems.
+    - res/i18n/x2goclient_es.ts: fixup Spanish translation file where
+      necessary and add comments/requests for re-translations for the next
+      time.
 
   [ Bernard Cafarelli ]
   * New upstream version (4.1.0.0):
