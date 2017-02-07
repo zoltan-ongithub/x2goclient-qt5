@@ -330,12 +330,12 @@
     <message>
         <location filename="../../src/configdialog.cpp" line="342"/>
         <source>PulseAudio settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Configuración PulseAudio</translation>
     </message>
     <message>
         <location filename="../../src/configdialog.cpp" line="344"/>
         <source>Disable sound input</source>
-        <translation type="unfinished"></translation>
+        <translation>Desactivar entrada de sonido</translation>
     </message>
     <message>
         <source>Clientside (local) SSH daemon port for file system export usage:</source>
@@ -809,217 +809,217 @@ Algunas localizaciones habituales pueden ser:
     <message>
         <location filename="../../src/help.cpp" line="98"/>
         <source>Shows this message.</source>
-        <translation type="unfinished"></translation>
+        <translation>Muestra este mensaje.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="99"/>
         <source>Prints version information.</source>
-        <translation type="unfinished"></translation>
+        <translation>Imprime informacion de la versión.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="102"/>
         <source>Shows the changelog.</source>
-        <translation type="unfinished"></translation>
+        <translation>Muestra el registro de cambios.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="106"/>
         <source>Shows git information as used at compile time. [Deprecated: please use --version.]</source>
-        <translation type="unfinished"></translation>
+        <translation>Muestra la información git usada durante el compilado- [Obsoleto: mejor usar --version.]</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="109"/>
         <source>Shows available pack methods.</source>
-        <translation type="unfinished"></translation>
+        <translation>Muestra los métodos de empaquetado disponibles.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="113"/>
         <source>Do not resume sessions automatically.</source>
-        <translation type="unfinished"></translation>
+        <translation>No retomar sesiones automáticamente.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="114"/>
         <source>Hides menu bar.</source>
-        <translation type="unfinished"></translation>
+        <translation>Oculta la barra de menú.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="115"/>
         <source>Disables session editing.</source>
-        <translation type="unfinished"></translation>
+        <translation>Desactiva la edición de la sesión.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="116"/>
         <source>Starts maximized.</source>
-        <translation type="unfinished"></translation>
+        <translation>Inica maximizado.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="117"/>
         <source>Starts hidden (minimized to system tray where available.)</source>
-        <translation type="unfinished"></translation>
+        <translation>Inicia oculto (minimizado en la bandeja del sistema cuando esté disponible.)</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="118"/>
         <source>Starts in &quot;portable&quot; mode.</source>
-        <translation type="unfinished"></translation>
+        <translation>Inicia en modo &quot;portable&quot;.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="119"/>
         <source>Forces OpenPGP smart card authentication.</source>
-        <translation type="unfinished"></translation>
+        <translation>Fuerza autenticacación OpenPGP smart card.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="120"/>
         <source>Enables Xinerama by default.</source>
-        <translation type="unfinished"></translation>
+        <translation>Activa Xinerama por defecto.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="121"/>
         <source>Allows client side printing in LDAP mode.</source>
-        <translation type="unfinished"></translation>
+        <translation>Permite la impresión en el lado del cliente en el modo LDAP.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="122"/>
         <source>Enables thinclient mode. Starts without a window manager.</source>
-        <translation type="unfinished"></translation>
+        <translation>Activa el modo thinclient. Inicia sin gestor de ventanas.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="123"/>
         <source>Enables shutdown button.</source>
-        <translation type="unfinished"></translation>
+        <translation>Activa el botón de apagado.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="124"/>
         <source>Adds RSA key fingerprint to &quot;.ssh/known_hosts&quot; if authenticity of the server can&apos;t be determined.</source>
-        <translation type="unfinished"></translation>
+        <translation>Añade huella de clave RSA a &quot;.ssh/known_hosts&quot; if la autenticidad del servidor no se puede determinar.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="125"/>
         <source>Starts with LDAP support. Example: --ldap=ldapserver:389:o=organization,c=de</source>
-        <translation type="unfinished"></translation>
+        <translation>Inicia con soporte LDAP. Ejempo: --ldap=ldapserver:389:o=orga nizacion,c=es</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="126"/>
         <source>Defines the first LDAP failover server.</source>
-        <translation type="unfinished"></translation>
+        <translation>Define el primer servidor de reserva LDAP.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="127"/>
         <source>Defines the second LDAP failover server.</source>
-        <translation type="unfinished"></translation>
+        <translation>Define el segundo servidor de reserva LDAP.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="128"/>
         <source>Defines the remote SSH server port. Default: 22.</source>
-        <translation type="unfinished"></translation>
+        <translation>Define el puerto SSH del servidor remoto. Por defecto: 22.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="129"/>
         <source>Defines the local machine&apos;s SSH server port. Needed for Client-Side Printing and File Sharing support. Default: 22.</source>
-        <translation type="unfinished"></translation>
+        <translation>Define el puerto SSH del ordenador local. Es necesario para el soporte de impresión local y las carpetas compartidas. Por defecto: 22.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="130"/>
         <source>Sets the default command. Default: &apos;KDE&apos; (Desktop Session)</source>
-        <translation type="unfinished"></translation>
+        <translation>Define el comando por defecto: Por defecto &apos;KDE&apos; (Sesión de Escritorio)</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="131"/>
         <source>Starts the session named &quot;session&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Inicia la sesión llamada &quot;sesión&quot;.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="132"/>
         <source>Sets the user name for connecting to the remote SSH server to &quot;username&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Define el nombre de usuario para la conexión remota al servidor SSH de &quot;usuario&quot;.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="133"/>
         <source>Sets the default window geometry. Default: 800x600.</source>
-        <translation type="unfinished"></translation>
+        <translation>Define la geometría de la ventana. Por defecto: 800x600.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="134"/>
         <source>Sets the remote X2Go Agent&apos;s DPI value to &quot;dpi&quot;. Default: same as local display.</source>
-        <translation type="unfinished"></translation>
+        <translation>Define el valor DPI del agente X2Go al valor &quot;dpi&quot;. Por defecto: el mismo valor que la pantalla en local.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="135"/>
         <source>Sets the default link type. Default: &quot;adsl&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Define el tipo de enlace. Por defecto &quot;adsl&quot;.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="136"/>
         <source>Sets default pack method. Default: &quot;16m-jpeg-9&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Define el método de empaquetado. Por defecto &quot;16m-jpeg-9&quot;.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="137"/>
         <source>Sets the default clipboard mode. Default: &quot;both&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Define el modo de portapapeles. Por defecto &quot;ambos&quot;.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="138"/>
         <source>Sets the default keyboard layout to &quot;layout&quot;. &quot;layout&quot; may be a comma-separated list.</source>
-        <translation type="unfinished"></translation>
+        <translation>Define el mapa del teclado a &quot;mapa&quot;. El &quot;mapa&quot; debe estar en formato texto separado por coma.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="139"/>
         <source>Sets the default keyboard type.</source>
-        <translation type="unfinished"></translation>
+        <translation>Define el tipo de teclado por defecto.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="140"/>
         <source>Sets the user&apos;s home directory.</source>
-        <translation type="unfinished"></translation>
+        <translation>Define la carpeta home del usuario.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="141"/>
         <source>Enables or disables overwriting the current keyboard settings.</source>
-        <translation type="unfinished"></translation>
+        <translation>Activa o desactiva la sobreescritura de la configuración del teclado.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="142"/>
         <source>Automatically launches the application(s) &quot;app&quot;, &quot;app2&quot;, ... on session start in Published Applications mode.</source>
-        <translation type="unfinished"></translation>
+        <translation>Abrir automáticamente la/s aplicación/es: &quot;ap1&quot;, &quot;ap2&quot;, ... durante el inicio de la sesión en el modo Aplicaciones Publicadas.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="143"/>
         <source>Defines an alternative session config file path.</source>
-        <translation type="unfinished"></translation>
+        <translation>Define una ruta de configuración de sesión alternativa.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="144"/>
         <source>Force-enables session system tray icon.</source>
-        <translation type="unfinished"></translation>
+        <translation>Fuerza la activación del icono en la bandeja del sistema.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="145"/>
         <source>Automatically closes X2Go Client after a disconnect.</source>
-        <translation type="unfinished"></translation>
+        <translation>Cierra automáticamente el cliente X2Go después de desconectar.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="146"/>
         <source>Hides all Folder-Sharing-related options.</source>
-        <translation type="unfinished"></translation>
+        <translation>Oculta las opciones relacionadas con la compartición de carpetas.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="147"/>
         <source>Sets the broker name to display in X2Go Client. This parameter is optional.</source>
-        <translation type="unfinished"></translation>
+        <translation>Define el nombre del broer a mostrar en el cliente X2go. Este parámetro es opcional.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="154"/>
         <source>Sets the path to an SSH key to use for authentication against an SSH session broker. The client&apos;s behavior is undefined if this flag is used for non-SSH session brokers.</source>
-        <translation type="unfinished"></translation>
+        <translation>Define la ruta a la clave SSH usada para la autenticación SSH en el broker. Resultado indefinido si se usa este flag para brokers no SSH.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="155"/>
         <source>Enables the use of the default SSH key or SSH agent for authentication against an SSH session broker. The client&apos;s behavior is undefined if this flag is used for non-SSH session brokers.</source>
-        <translation type="unfinished"></translation>
+        <translation>Activa el uso de la clave SSH por defecto o el agente SSH para la autenticación sobre un broker SSH. Resultado indefinido si se usa este flag para brokers no SSH.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="156"/>
         <source>Does not ask for user credentials during session broker authentication. This can be useful if you are using an HTTP(S) session broker without authentication. If you run an HTTP(S) server without authentication, but with user-specific profiles, then put the user name into the broker URL (refer to --broker-url.) The user name then will be extracted from the broker URL and be sent to the session broker. The client&apos;s behavior is undefined if this flag is used for non-HTTP(S) session brokers.</source>
-        <translation type="unfinished"></translation>
+        <translation>No preguntar por las credenciales del usuario durante la autenticación con el broker. Esto puede ser útil si estás usando un servior broker HTTP(S) sin autenticación. Si usas un servidor broker HTTP(S) sin autenticación pero con perfiles de usuario específicos, debes poner el nombre de usuario dentro de la URL del broker (referido a --broker-url). El nombre de usuario debe sacarse de la URL del broker y debe ser enviada a la sesión del broker. Resultado indefinido si se usa este flag para sesiones de brokers no HTTP(S).</translation>
     </message>
 </context>
 <context>
@@ -1293,21 +1293,21 @@ el sonido en conexiones a través de firewalls</translation>
         <location filename="../../src/mediawidget.cpp" line="154"/>
         <location filename="../../src/mediawidget.cpp" line="174"/>
         <source>Deprecation Warning</source>
-        <translation type="unfinished"></translation>
+        <translation>Adevertencia de función obsoleta</translation>
     </message>
     <message>
         <location filename="../../src/mediawidget.cpp" line="155"/>
         <source>ARTS support is scheduled to be removed soon.
 
 Please upgrade to PulseAudio.</source>
-        <translation type="unfinished"></translation>
+        <translation>El soporte ARTS está previsto sea eliminado en breve.</translation>
     </message>
     <message>
         <location filename="../../src/mediawidget.cpp" line="175"/>
         <source>ESounD support is scheduled to be removed soon.
 
 Please upgrade to PulseAudio.</source>
-        <translation type="unfinished"></translation>
+        <translation>El soporte ESounD está previsto sea eliminado en breve.</translation>
     </message>
 </context>
 <context>
@@ -2819,37 +2819,37 @@ Los documentos no guardados se perderán.</translation>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="8437"/>
         <source>&lt;br&gt;(C) 2005-2017 by &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing&lt;br&gt;</source>
-        <translation type="unfinished">&lt;br&gt;(C) 2005-2016 de &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing&lt;br&gt; {2005-2017 ?}</translation>
+        <translation>&lt;br&gt;(C) 2005-2017 de &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing&lt;br&gt;</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="9499"/>
         <source>Unable to create or append to file: </source>
-        <translation type="unfinished"></translation>
+        <translation>Fallo al crear o añadir al archivo: </translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="9519"/>
         <source>Unable to change the permissions of file: </source>
-        <translation type="unfinished"></translation>
+        <translation>Fallo al cambiar los permisos de acceso al archivo: </translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="9520"/>
         <source>This is an error because sshd would deny such a file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Este es un error porque el sshd impide el acceso al archivo.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="9537"/>
         <source>Unable to change the permissions of directory: </source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="9538"/>
         <source>This is an error because sshd would deny such a directory.</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="10232"/>
         <source>Unable to find the sftp-server binary. Neither bundled, nor found in $PATH nor additional directories.</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="10233"/>
@@ -2858,17 +2858,17 @@ Los documentos no guardados se perderán.</translation>
 If the sftp-server binary is installed on your system, please report a bug mentioning its path on:
 &lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
 </source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="10275"/>
         <source>SSH key type selection error</source>
-        <translation type="unfinished"></translation>
+        <translation>Error de tipo de clave SSH</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="10276"/>
         <source>Unknown SSH key selected.</source>
-        <translation type="unfinished"></translation>
+        <translation>Clave SSH desconocida.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="10278"/>
@@ -2877,62 +2877,62 @@ If the sftp-server binary is installed on your system, please report a bug menti
         <location filename="../../src/onmainwindow.cpp" line="10441"/>
         <location filename="../../src/onmainwindow.cpp" line="10451"/>
         <source>Terminating application.</source>
-        <translation type="unfinished"></translation>
+        <translation>Finalizadon aplicación.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="10351"/>
         <source>SSH key base directory creation error</source>
-        <translation type="unfinished"></translation>
+        <translation>Error al crear la clave SSH</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="10352"/>
         <source>Unable to create SSH key base directory &apos;%1&apos;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Fallo al crear la calve SSH en el directorio: &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="10430"/>
         <source>ssh-keygen launching error</source>
-        <translation type="unfinished"></translation>
+        <translation>fallo al ejecutar ssh-keygen</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="10431"/>
         <source>Unable to start the ssh-keygen binary.</source>
-        <translation type="unfinished"></translation>
+        <translation>Fallo al ejecutar ssh-keygen.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="10438"/>
         <source>ssh-keygen crashed</source>
-        <translation type="unfinished"></translation>
+        <translation>fallo al ejecutar ssh-keygen</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="10439"/>
         <source>The ssh-keygen binary crashed.</source>
-        <translation type="unfinished"></translation>
+        <translation>fallo al ejecutar ssh-keygen.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="10446"/>
         <source>ssh-keygen program error</source>
-        <translation type="unfinished"></translation>
+        <translation>fallo al ejecutar ssh-keygen</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="10447"/>
         <source>The ssh-keygen binary did not exit cleanly.</source>
-        <translation type="unfinished"></translation>
+        <translation>fallo al ejecutar ssh-keygen.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="10449"/>
         <source>It was probably called with unknown arguments.</source>
-        <translation type="unfinished"></translation>
+        <translation>probablemente fue llamado sin argumentos.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="10508"/>
         <source>Unable to open newly generated %1 public host key file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Fallo al abrir el nuevo archivo de clave pública generada %1.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="10528"/>
         <source>%1 public host key file empty.</source>
-        <translation type="unfinished"></translation>
+        <translation>archivo de clave pública vacío %1.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="10534"/>
@@ -2947,7 +2947,11 @@ These features require a running and functioning SSH server on your computer.
 &lt;b&gt;Printing and File Sharing will be disabled for this session.&lt;/b&gt;
 
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Has activado la impresión remota o la compartición de archivos.
+Estas características requieren la ejecución y el funcionamiento de un servidor SSH en tu equipo.
+&lt;b&gt;Impresión remota y Compartición de archivos se desactivarán para esta sesión.&lt;/b&gt;
+
+</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="12149"/>
@@ -2955,7 +2959,10 @@ These features require a running and functioning SSH server on your computer.
 
 If you see this message, please report a bug on:
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Normalmente esto no debería pasar porque el clilente X2Go para Windows incorpora su propio servidor SSH.
+
+Si ves este mensaje, repórtalo como un bug en:
+</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="12154"/>
@@ -2963,14 +2970,17 @@ If you see this message, please report a bug on:
 
 Please report a bug on:
 </source>
-        <translation type="unfinished"></translation>
+        <translation>El servidor SSH falló en el inicio
+
+Por favor, reporta el bug en:
+</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="12158"/>
         <location filename="../../src/onmainwindow.cpp" line="12190"/>
         <source>&lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
 </source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="12180"/>
@@ -2978,7 +2988,10 @@ Please report a bug on:
 
 If you see this message, please report a bug on:
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Normalmente esto no debería pasar porque el cliente X2Go para Windows incluye su propio servidor SSH y automáticamente genera las claves necesarias.
+
+Si ves este mensaje, por favor repórtalo en:
+</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="12186"/>
@@ -2986,7 +2999,10 @@ If you see this message, please report a bug on:
 
 Please report a bug on:
 </source>
-        <translation type="unfinished"></translation>
+        <translation>El cliente X2Go falló al crear las claves SSH.
+
+Por favor reporta el bug en:
+</translation>
     </message>
     <message>
         <source>&lt;br&gt;(C) 2005-2016 by &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing&lt;br&gt;</source>
@@ -3572,29 +3588,30 @@ Ejemplo:
     <message>
         <location filename="../../src/pulsemanager.cpp" line="127"/>
         <source>Unable to find the PulseAudio binary. Neither bundled, nor found in $PATH nor additional directories.</source>
-        <translation type="unfinished"></translation>
+        <translation>No se ha encontrado el ejecutable de PulseAudio. Ni en incorpodado ni en el $PATH local.</translation>
     </message>
     <message>
         <location filename="../../src/pulsemanager.cpp" line="128"/>
         <source>If you downloaded the bundled, pre-compiled version from the official home page, please report a bug on:
 &lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Si has descargado el paquete pre compilado desde la web oficial, pro favor reporta el bug en:
+&lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;</translation>
     </message>
     <message>
         <location filename="../../src/pulsemanager.cpp" line="158"/>
         <source>Could not allocate buffer for getting current working directory!</source>
-        <translation type="unfinished"></translation>
+        <translation>¡Fallo al obtener el directorio actual!</translation>
     </message>
     <message>
         <location filename="../../src/pulsemanager.cpp" line="170"/>
         <source>getcwd() failed!</source>
-        <translation type="unfinished"></translation>
+        <translation>¡falló getcwd()!</translation>
     </message>
     <message>
         <location filename="../../src/pulsemanager.cpp" line="258"/>
         <source>PulseAudio failed to start!</source>
-        <translation type="unfinished"></translation>
+        <translation>¡No se pudo iniciar PulseAudio!</translation>
     </message>
     <message>
         <location filename="../../src/pulsemanager.cpp" line="259"/>
@@ -3603,7 +3620,10 @@ Ejemplo:
 If you downloaded the bundled, pre-compiled version from the official home page, please report a bug on:
 &lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
 </source>
-        <translation type="unfinished"></translation>
+        <translation>El soporte de sonido no está disponible
+
+Si has descargado el paquete pre compilado desde la web oficial, pro favor reporta el bug en:
+&lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;</translation>
     </message>
     <message>
         <location filename="../../src/pulsemanager.cpp" line="407"/>
@@ -3616,64 +3636,65 @@ If you downloaded the bundled, pre-compiled version from the official home page,
         <location filename="../../src/pulsemanager.cpp" line="532"/>
         <location filename="../../src/pulsemanager.cpp" line="540"/>
         <source>Error fetching PulseAudio version number!</source>
-        <translation type="unfinished"></translation>
+        <translation>¡Error obteniendo la versión de PulseAudio!</translation>
     </message>
     <message>
         <location filename="../../src/pulsemanager.cpp" line="408"/>
         <source>Unexpected character found when parsing version string for major version number</source>
-        <translation type="unfinished"></translation>
+        <translation>Se encontró un carácter inexperado al analizar el número de versión mayor</translation>
     </message>
     <message>
         <location filename="../../src/pulsemanager.cpp" line="433"/>
         <source>Unexpected character found when parsing version string for minor version number</source>
-        <translation type="unfinished"></translation>
+        <translation>Se encontró un carácter inexperado al analizar el número de versión menor</translation>
     </message>
     <message>
         <location filename="../../src/pulsemanager.cpp" line="451"/>
         <source>Unexpected character found when parsing version string for micro version number</source>
-        <translation type="unfinished"></translation>
+        <translation>Se encontró un carácter inexperado al analizar el número de versión micro</translation>
     </message>
     <message>
         <location filename="../../src/pulsemanager.cpp" line="466"/>
         <source>Supposed to skip major version number. Something is wrong.</source>
-        <translation type="unfinished"></translation>
+        <translation>Se intentó saltar el número de versión. Algo está mal.</translation>
     </message>
     <message>
         <location filename="../../src/pulsemanager.cpp" line="480"/>
         <source>Unable to convert major version number string to integer.</source>
-        <translation type="unfinished"></translation>
+        <translation>Fallo al convertir la versión mayor de texto a entero.</translation>
     </message>
     <message>
         <location filename="../../src/pulsemanager.cpp" line="498"/>
         <source>Unable to convert minor version number string to integer.</source>
-        <translation type="unfinished"></translation>
+        <translation>Fallo al convertir la versión menor de texto a entero.</translation>
     </message>
     <message>
         <location filename="../../src/pulsemanager.cpp" line="512"/>
         <source>Unable to convert micro version number string to integer.</source>
-        <translation type="unfinished"></translation>
+        <translation>Fallo al convertir la versión micro de texto a entero.</translation>
     </message>
     <message>
         <location filename="../../src/pulsemanager.cpp" line="533"/>
         <source>Unexpected format encountered.</source>
-        <translation type="unfinished"></translation>
+        <translation>Formato inexperado.</translation>
     </message>
     <message>
         <location filename="../../src/pulsemanager.cpp" line="541"/>
         <source>Unable to start PulseAudio binary.</source>
-        <translation type="unfinished"></translation>
+        <translation>Fallo al iniciar PulseAudio.</translation>
     </message>
     <message>
         <location filename="../../src/pulsemanager.cpp" line="765"/>
         <source>Unable to play startup sound.</source>
-        <translation type="unfinished"></translation>
+        <translation>Fallo al lanzar el sonido de inicio.</translation>
     </message>
     <message>
         <location filename="../../src/pulsemanager.cpp" line="766"/>
         <source>If you downloaded the bundled, pre-compiled version from the official home page or the upstream Linux packages, please report a bug on:
 &lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Si has descargado el paquete pre compilado desde la web oficial, pro favor reporta el bug en:
+&lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;</translation>
     </message>
 </context>
 <context>
@@ -4826,7 +4847,7 @@ el sonido en conexiones a través de firewalls</translation>
     <message>
         <location filename="../../src/ui/xsettingsui.ui" line="169"/>
         <source>whole display:</source>
-        <translation type="unfinished"></translation>
+        <translation>toda la pantalla:</translation>
     </message>
 </context>
 </TS>
