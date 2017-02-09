@@ -1300,7 +1300,6 @@ el sonido en conexiones a través de firewalls</translation>
         <source>ARTS support is scheduled to be removed soon.
 
 Please upgrade to PulseAudio.</source>
-        <comment>Please don&apos;t forget the second line!</comment>
         <translation>El soporte ARTS está previsto sea eliminado en breve.
 
 Por favor actualiza a PulseAudio.</translation>
@@ -1310,7 +1309,6 @@ Por favor actualiza a PulseAudio.</translation>
         <source>ESounD support is scheduled to be removed soon.
 
 Please upgrade to PulseAudio.</source>
-        <comment>Please don&apos;t forget the second line!</comment>
         <translation>El soporte ESounD está previsto sea eliminado en breve.
 
 Por favor actualiza a PulseAudio.</translation>
@@ -2892,8 +2890,6 @@ Si el ejecutable del servidro sftp está instalado en tu sistema, por favor repo
     <message>
         <location filename="../../src/onmainwindow.cpp" line="10351"/>
         <source>SSH key base directory creation error</source>
-        <comment>The error isn&apos;t really about the SSH key creation itself, but about the *base* directory.</comment>
-        <translatorcomment>Ok, my original translation wasn&apos;t so specific</translatorcomment>
         <translation>Error al crear la clave SSH en el directorio predeterminado</translation>
     </message>
     <message>
@@ -2914,25 +2910,21 @@ Si el ejecutable del servidro sftp está instalado en tu sistema, por favor repo
     <message>
         <location filename="../../src/onmainwindow.cpp" line="10438"/>
         <source>ssh-keygen crashed</source>
-        <comment>Please be more specific, &quot;crashed&quot; doesn&apos;t mean &quot;execute&quot;...</comment>
         <translation>fallo durante la ejecución de ssh-keygen</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="10439"/>
         <source>The ssh-keygen binary crashed.</source>
-        <comment>Please be more specific, &quot;crashed&quot; doesn&apos;t mean &quot;execute&quot;...</comment>
         <translation>fallo durante la ejecución de ssh-keygen.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="10446"/>
         <source>ssh-keygen program error</source>
-        <comment>Please be more specific, &quot;program error&quot; doesn&apos;t mean &quot;execute&quot;...</comment>
         <translation>fallo durante la ejecución de ssh-keygen</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="10447"/>
         <source>The ssh-keygen binary did not exit cleanly.</source>
-        <comment>Please be more specific, &quot;unclean termination&quot; doesn&apos;t mean &quot;execute&quot;...</comment>
         <translation>La ejecución de ssh-keygen finalizó de manera anormal.</translation>
     </message>
     <message>
@@ -2952,7 +2944,7 @@ Si el ejecutable del servidro sftp está instalado en tu sistema, por favor repo
         <source>%1 public host key file empty.</source>
         <comment>%1 in this context will be replaced with the SSH key type (e.g., &quot;RSA&quot;, &quot;DSA&quot; or the like.) Please make sure that the translation is correct in this regard.
                  Also, please include the &quot;host&quot; part, to make clear that we&apos;re not talking about client keys here.</comment>
-        <translation>archivo de clave pública %1 en el lado del servidor remoto vacío .</translation>
+        <translation>archivo de clave pública %1 en el lado del servidor remoto vacío.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="10534"/>
@@ -3608,8 +3600,6 @@ Ejemplo:
     <message>
         <location filename="../../src/pulsemanager.cpp" line="127"/>
         <source>Unable to find the PulseAudio binary. Neither bundled, nor found in $PATH nor additional directories.</source>
-        <comment>We&apos;re not only searching for a bundled PA version or one in $PATH, but also other (non-disclosed) directories. That should be communicated.</comment>
-        <translatorcomment>It&apos;s properly translated</translatorcomment>
         <translation>No se ha encontrado el ejecutable de PulseAudio. Ni el incorpodado ni en el $PATH local.</translation>
     </message>
     <message>

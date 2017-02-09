@@ -560,6 +560,8 @@ x2goclient (4.1.0.0-0x2go1) UNRELEASED; urgency=medium
     - res/i18n/x2goclient_es.ts: fixup Spanish translation file where
       necessary and add comments/requests for re-translations for the next
       time.
+    - res/i18n/x2goclient_es.ts: remove obsolete comments and very minor
+      whitespace fixup.
 
   [ Bernard Cafarelli ]
   * New upstream version (4.1.0.0):
