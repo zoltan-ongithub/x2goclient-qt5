@@ -1300,16 +1300,20 @@ el sonido en conexiones a través de firewalls</translation>
         <source>ARTS support is scheduled to be removed soon.
 
 Please upgrade to PulseAudio.</source>
-        <comment>Please don't forget the second line!</comment>
-        <translation type="unfinished">El soporte ARTS está previsto sea eliminado en breve.</translation>
+        <comment>Please don&apos;t forget the second line!</comment>
+        <translation>El soporte ARTS está previsto sea eliminado en breve.
+
+Por favor actualiza a PulseAudio.</translation>
     </message>
     <message>
         <location filename="../../src/mediawidget.cpp" line="175"/>
         <source>ESounD support is scheduled to be removed soon.
 
 Please upgrade to PulseAudio.</source>
-        <comment>Please don't forget the second line!</comment>
-        <translation type="unfinished">El soporte ESounD está previsto sea eliminado en breve.</translation>
+        <comment>Please don&apos;t forget the second line!</comment>
+        <translation>El soporte ESounD está previsto sea eliminado en breve.
+
+Por favor actualiza a PulseAudio.</translation>
     </message>
 </context>
 <context>
@@ -2459,7 +2463,7 @@ Actualiza el paquete x2goserver en el servidor</translation>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="627"/>
         <source>Non-fatal: can&apos;t load translator: </source>
-        <translation>Error no fatal: no se puede cargar el traductor. </translation>
+        <translation>Error no fatal: no se puede cargar el traductor: </translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="628"/>
@@ -2841,17 +2845,17 @@ Los documentos no guardados se perderán.</translation>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="9537"/>
         <source>Unable to change the permissions of directory: </source>
-        <translation type="unfinished"></translation>
+        <translation>Imposible cambiar los permisos del directorio: </translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="9538"/>
         <source>This is an error because sshd would deny such a directory.</source>
-        <translation type="unfinished"></translation>
+        <translation>Este error se ha producido porque el servicio sshd no permite el acceso al directorio.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="10232"/>
         <source>Unable to find the sftp-server binary. Neither bundled, nor found in $PATH nor additional directories.</source>
-        <translation type="unfinished"></translation>
+        <translation>Imposible encontrar el ejecutable del servidor sftp. No se encuentra el que viene incluído ni en otros directorios $PATH.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="10233"/>
@@ -2860,7 +2864,11 @@ Los documentos no guardados se perderán.</translation>
 If the sftp-server binary is installed on your system, please report a bug mentioning its path on:
 &lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Si estás usando Linux pídele al administrador que instale el paquete que contiene el ejecutable del servidor sftp. Los nombres más comunes son &lt;b&gt;openssh&lt;/b&gt;, &lt;b&gt;openssh-server&lt;/b&gt; or &lt;b&gt;openssh-sftp-server&lt;/b&gt; dependiendo de la distribución usada.
+
+Si el ejecutable del servidro sftp está instalado en tu sistema, por favor reporta el bug mencionando su ruta en:
+&lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
+</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="10275"/>
@@ -2884,8 +2892,9 @@ If the sftp-server binary is installed on your system, please report a bug menti
     <message>
         <location filename="../../src/onmainwindow.cpp" line="10351"/>
         <source>SSH key base directory creation error</source>
-        <comment>The error isn't really about the SSH key creation itself, but about the *base* directory.</comment>
-        <translation type="unfinished">Error al crear la clave SSH</translation>
+        <comment>The error isn&apos;t really about the SSH key creation itself, but about the *base* directory.</comment>
+        <translatorcomment>Ok, my original translation wasn&apos;t so specific</translatorcomment>
+        <translation>Error al crear la clave SSH en el directorio predeterminado</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="10352"/>
@@ -2905,26 +2914,26 @@ If the sftp-server binary is installed on your system, please report a bug menti
     <message>
         <location filename="../../src/onmainwindow.cpp" line="10438"/>
         <source>ssh-keygen crashed</source>
-        <comment>Please be more specific, "crashed" doesn't mean "execute"...</comment>
-        <translation type="unfinished">fallo al ejecutar ssh-keygen</translation>
+        <comment>Please be more specific, &quot;crashed&quot; doesn&apos;t mean &quot;execute&quot;...</comment>
+        <translation>fallo durante la ejecución de ssh-keygen</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="10439"/>
         <source>The ssh-keygen binary crashed.</source>
-        <comment>Please be more specific, "crashed" doesn't mean "execute"...</comment>
-        <translation type="unfinished">fallo al ejecutar ssh-keygen.</translation>
+        <comment>Please be more specific, &quot;crashed&quot; doesn&apos;t mean &quot;execute&quot;...</comment>
+        <translation>fallo durante la ejecución de ssh-keygen.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="10446"/>
         <source>ssh-keygen program error</source>
-        <comment>Please be more specific, "program error" doesn't mean "execute"...</comment>
-        <translation type="unfinished">fallo al ejecutar ssh-keygen</translation>
+        <comment>Please be more specific, &quot;program error&quot; doesn&apos;t mean &quot;execute&quot;...</comment>
+        <translation>fallo durante la ejecución de ssh-keygen</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="10447"/>
         <source>The ssh-keygen binary did not exit cleanly.</source>
-        <comment>Please be more specific, "unclean termination" doesn't mean "execute"...</comment>
-        <translation type="unfinished">fallo al ejecutar ssh-keygen.</translation>
+        <comment>Please be more specific, &quot;unclean termination&quot; doesn&apos;t mean &quot;execute&quot;...</comment>
+        <translation>La ejecución de ssh-keygen finalizó de manera anormal.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="10449"/>
@@ -2934,16 +2943,16 @@ If the sftp-server binary is installed on your system, please report a bug menti
     <message>
         <location filename="../../src/onmainwindow.cpp" line="10508"/>
         <source>Unable to open newly generated %1 public host key file.</source>
-        <comment>%1 in this context will be replaced with the SSH key type (e.g., "RSA", "DSA" or the like.) Please make sure that the translation is correct in this regard.
-                 Also, please include the "host" part, to make clear that we're not talking about client keys here.</comment>
-        <translation type="unfinished">Fallo al abrir el nuevo archivo de clave pública generada %1.</translation>
+        <comment>%1 in this context will be replaced with the SSH key type (e.g., &quot;RSA&quot;, &quot;DSA&quot; or the like.) Please make sure that the translation is correct in this regard.
+                 Also, please include the &quot;host&quot; part, to make clear that we&apos;re not talking about client keys here.</comment>
+        <translation>Fallo al abrir el nuevo archivo de clave pública %1 generada en el lado del servidor remoto.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="10528"/>
         <source>%1 public host key file empty.</source>
-        <comment>%1 in this context will be replaced with the SSH key type (e.g., "RSA", "DSA" or the like.) Please make sure that the translation is correct in this regard.
-                 Also, please include the "host" part, to make clear that we're not talking about client keys here.</comment>
-        <translation type="unfinished">archivo de clave pública vacío %1.</translation>
+        <comment>%1 in this context will be replaced with the SSH key type (e.g., &quot;RSA&quot;, &quot;DSA&quot; or the like.) Please make sure that the translation is correct in this regard.
+                 Also, please include the &quot;host&quot; part, to make clear that we&apos;re not talking about client keys here.</comment>
+        <translation>archivo de clave pública %1 en el lado del servidor remoto vacío .</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="10534"/>
@@ -3599,8 +3608,9 @@ Ejemplo:
     <message>
         <location filename="../../src/pulsemanager.cpp" line="127"/>
         <source>Unable to find the PulseAudio binary. Neither bundled, nor found in $PATH nor additional directories.</source>
-        <comment>We're not only searching for a bundled PA version or one in $PATH, but also other (non-disclosed) directories. That should be communicated.</comment>
-        <translation type="unfinished">No se ha encontrado el ejecutable de PulseAudio. Ni en incorpodado ni en el $PATH local.</translation>
+        <comment>We&apos;re not only searching for a bundled PA version or one in $PATH, but also other (non-disclosed) directories. That should be communicated.</comment>
+        <translatorcomment>It&apos;s properly translated</translatorcomment>
+        <translation>No se ha encontrado el ejecutable de PulseAudio. Ni el incorpodado ni en el $PATH local.</translation>
     </message>
     <message>
         <location filename="../../src/pulsemanager.cpp" line="128"/>
