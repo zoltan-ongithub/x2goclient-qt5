@@ -1229,7 +1229,7 @@ sound system connections through firewalls</source>
     <message>
         <location filename="../../src/help.cpp" line="118"/>
         <source>Starts in &quot;portable&quot; mode.</source>
-        <translation>Im portablen Modus starten.</translation>
+        <translation>Im &quot;portablen&quot; Modus starten.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="119"/>
@@ -1319,7 +1319,7 @@ sound system connections through firewalls</source>
     <message>
         <location filename="../../src/help.cpp" line="136"/>
         <source>Sets default pack method. Default: &quot;16m-jpeg-9&quot;.</source>
-        <translation>Setzt die zu verwendende Komprimierungsmethode. Standard: &quot;16m-jpeg.9&quot;.</translation>
+        <translation>Setzt die zu verwendende Komprimierungsmethode. Standard: &quot;16m-jpeg-9&quot;.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="137"/>
@@ -1349,7 +1349,7 @@ sound system connections through firewalls</source>
     <message>
         <location filename="../../src/help.cpp" line="142"/>
         <source>Automatically launches the application(s) &quot;app&quot;, &quot;app2&quot;, ... on session start in Published Applications mode.</source>
-        <translation>Startet im Veröffentlichte-Anwendungen-Modus beim Sitzungsstart automatisch die Anwendung(en) &quot;app&quot;, &quot;app2&quot;, &quot;...&quot; .</translation>
+        <translation>Startet im Veröffentlichte-Anwendungen-Modus beim Sitzungsstart automatisch die Anwendung(en) &quot;app&quot;, &quot;app2&quot;, ...</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="143"/>
@@ -1389,7 +1389,7 @@ sound system connections through firewalls</source>
     <message>
         <location filename="../../src/help.cpp" line="156"/>
         <source>Does not ask for user credentials during session broker authentication. This can be useful if you are using an HTTP(S) session broker without authentication. If you run an HTTP(S) server without authentication, but with user-specific profiles, then put the user name into the broker URL (refer to --broker-url.) The user name then will be extracted from the broker URL and be sent to the session broker. The client&apos;s behavior is undefined if this flag is used for non-HTTP(S) session brokers.</source>
-        <translation>Fragt keine Benutzerdaten für die Authentisierung am Session-Broker ab. Das kann nützlich sein, wenn man einen HTTP(S)-Session-Broker verwendet, der keine Authentisierung nutzt. Bei der Verwendung eines HTTP(S)-Servers ohne Authentisierung, aber mit benutzerspezifischen Profilen bitte den Benutzernamen in die Broker-URL einfügen (siehe --broker-url). Der Benutzername wird dann aus der Broker-URL extrahiert und an den Session Broker übergeben. Das Verhalten des Clients, wenn dieser Parameter bei einem nicht-HTTP(S)-Session-Broker verwendet wird, ist nicht definiert.</translation>
+        <translation>Fragt keine Benutzerdaten für die Authentisierung am Session-Broker ab. Das kann nützlich sein, wenn man einen HTTP(S)-Session-Broker verwendet, der keine Authentisierung nutzt. Bei der Verwendung eines HTTP(S)-Servers ohne Authentisierung, aber mit benutzerspezifischen Profilen bitte den Benutzernamen in die Broker-URL einfügen (siehe --broker-url). Der Benutzername wird dann aus der Broker-URL extrahiert und an den Session-Broker übergeben. Das Verhalten des Clients, wenn dieser Parameter bei einem nicht-HTTP(S)-Session-Broker verwendet wird, ist nicht definiert.</translation>
     </message>
 </context>
 <context>
@@ -2426,17 +2426,17 @@ Bitte melden Sie den Fehler wie auf der &lt;a href=&quot;http://wiki.x2go.org/do
     <message>
         <location filename="../../src/onmainwindow.cpp" line="8437"/>
         <source>&lt;br&gt;(C) 2005-2017 by &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing&lt;br&gt;</source>
-        <translation>&lt;br&gt; (C) 2005-2017 by &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing&lt;br&gt;</translation>
+        <translation>&lt;br&gt;(C) 2005-2017 by &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing&lt;br&gt;</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="9499"/>
         <source>Unable to create or append to file: </source>
-        <translation>Datei konnte nicht angelegt oder zum Anhängen geöffnet werden:</translation>
+        <translation>Datei konnte nicht angelegt oder zum Anhängen geöffnet werden: </translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="9519"/>
         <source>Unable to change the permissions of file: </source>
-        <translation>Kann Dateirechte nicht ändern:</translation>
+        <translation>Kann Dateirechte nicht ändern: </translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="9520"/>
@@ -2446,7 +2446,7 @@ Bitte melden Sie den Fehler wie auf der &lt;a href=&quot;http://wiki.x2go.org/do
     <message>
         <location filename="../../src/onmainwindow.cpp" line="9537"/>
         <source>Unable to change the permissions of directory: </source>
-        <translation>Kann Verzeichnisrechte nicht ändern:</translation>
+        <translation>Kann Verzeichnisrechte nicht ändern: </translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="9538"/>
@@ -2456,7 +2456,7 @@ Bitte melden Sie den Fehler wie auf der &lt;a href=&quot;http://wiki.x2go.org/do
     <message>
         <location filename="../../src/onmainwindow.cpp" line="10232"/>
         <source>Unable to find the sftp-server binary. Neither bundled, nor found in $PATH nor additional directories.</source>
-        <translation>Kann das sftp-Server-Binary nicht finden. Es ist weder im Paket, noch im $PATH, noch in zusätzlichen Verzeichnissen enthalten.</translation>
+        <translation>Kann das sftp-server-Binary nicht finden. Es ist weder im Paket, noch im $PATH, noch in zusätzlichen Verzeichnissen enthalten.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="10233"/>
@@ -2465,10 +2465,10 @@ Bitte melden Sie den Fehler wie auf der &lt;a href=&quot;http://wiki.x2go.org/do
 If the sftp-server binary is installed on your system, please report a bug mentioning its path on:
 &lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
 </source>
-        <translation>Wenn Sie ein Linux-basiertes Betriebssystem verwenden, bitten Sie Ihren Systemadministrator, das Paket mit dem sftp-Server-Binary zu installieren.
+        <translation>Wenn Sie ein Linux-basiertes Betriebssystem verwenden, bitten Sie Ihren Systemadministrator, das Paket mit dem sftp-server-Binary zu installieren.
 Übliche Namen hierfür sind &lt;b&gt;openssh&lt;/b&gt;, &lt;b&gt;openssh-server&lt;/b&gt; oder &lt;b&gt;openssh-sftp-server&lt;/b&gt;, je nach Distribution.
 
-Falls das sftp-Server-Binary auf Ihrem System installiert ist, melden Sie den Fehler bitte unter Angabe des Pfads zum Binary unter:
+Falls das sftp-server-Binary auf Ihrem System installiert ist, melden Sie den Fehler bitte unter Angabe des Pfads zum Binary unter:
 &lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
 </translation>
     </message>
@@ -2539,12 +2539,12 @@ Falls das sftp-Server-Binary auf Ihrem System installiert ist, melden Sie den Fe
     <message>
         <location filename="../../src/onmainwindow.cpp" line="10508"/>
         <source>Unable to open newly generated %1 public host key file.</source>
-        <translation>Kann die neu erstellte Public-Host-Key-Datei &apos;%1&apos; nicht öffnen.</translation>
+        <translation>Kann die neu erstellte %1-Public-Host-Key-Datei nicht öffnen.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="10528"/>
         <source>%1 public host key file empty.</source>
-        <translation>Die Public-Host-Key-Datei &apos;%1&apos; ist leer.</translation>
+        <translation>Die %1-Public-Host-Key-Datei ist leer.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="12145"/>
@@ -2556,7 +2556,9 @@ These features require a running and functioning SSH server on your computer.
 </source>
         <translation>Sie haben die clientseitige Druckerunterstützung oder den Dateiaustausch aktiviert.
 Diese Funktionen setzen einen gestarteten und funktionstüchtigen SSH-Server auf Ihrem Client voraus.
-&lt;b&gt;Die clientseitige Druckerunterstützung und der Dateiaustausch werden für diese Sitzung deaktiviert.&lt;/b</translation>
+&lt;b&gt;Die clientseitige Druckerunterstützung und der Dateiaustausch werden für diese Sitzung deaktiviert.&lt;/b&gt;
+
+</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="12149"/>
@@ -2566,7 +2568,8 @@ If you see this message, please report a bug on:
 </source>
         <translation>Dies sollte normalerweise nicht passieren, das X2GoClient für Windows seinen eigenen internen SSH-Server mitbringt.
 
-Wenn Sie diese Fehlermeldung sehen, senden Sie bitte einen Fehlerbericht:</translation>
+Wenn Sie diese Fehlermeldung sehen, senden Sie bitte einen Fehlerbericht:
+</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="12154"/>
@@ -2583,7 +2586,8 @@ Bitte senden Sie einen Fehlerbericht:</translation>
         <location filename="../../src/onmainwindow.cpp" line="12190"/>
         <source>&lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
 </source>
-        <translation>&lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;</translation>
+        <translation>&lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
+</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="12180"/>
@@ -2593,7 +2597,8 @@ If you see this message, please report a bug on:
 </source>
         <translation>Dies sollte normalerweise nicht passieren, das X2GoClient für Windows seinen eigenen internen SSH-Server mitbringt und automatisch die benötigten Schlüssel generiert.
 
-Wenn Sie diese Fehlermeldung sehen, senden Sie bitte einen Fehlerbericht:</translation>
+Wenn Sie diese Fehlermeldung sehen, senden Sie bitte einen Fehlerbericht:
+</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="12186"/>
@@ -2603,7 +2608,8 @@ Please report a bug on:
 </source>
         <translation>X2GoClient konnte keine SSH-Host-Keys erstellen.
 
-Bitte senden Sie einen Fehlerbericht:</translation>
+Bitte senden Sie einen Fehlerbericht:
+</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="12218"/>
@@ -4107,12 +4113,13 @@ Beispiel:
 &lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
 </source>
         <translation>Wenn Sie das Installationspaket mit der vorkompilierten Version von der offiziellen Homepage heruntergeladen haben, senden Sie bitte einen Fehlerbericht:
-&lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;</translation>
+&lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
+</translation>
     </message>
     <message>
         <location filename="../../src/pulsemanager.cpp" line="158"/>
         <source>Could not allocate buffer for getting current working directory!</source>
-        <translation>Konnte keinen Puffer zuweisen, um das aktuelle Arbeitsverzeichnis zu bestimmen!</translation>
+        <translation>Konnte keinen Puffer anlegen, um das aktuelle Arbeitsverzeichnis zu bestimmen!</translation>
     </message>
     <message>
         <location filename="../../src/pulsemanager.cpp" line="170"/>
@@ -4134,7 +4141,8 @@ If you downloaded the bundled, pre-compiled version from the official home page,
         <translation>Sound-Unterstützung wird nicht verfügbar sein.
 
 Wenn Sie das Installationspaket mit der vorkompilierten Version von der offiziellen Homepage heruntergeladen haben, senden Sie bitte einen Fehlerbericht:
-&lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;</translation>
+&lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
+</translation>
     </message>
     <message>
         <location filename="../../src/pulsemanager.cpp" line="407"/>
@@ -4205,7 +4213,8 @@ Wenn Sie das Installationspaket mit der vorkompilierten Version von der offiziel
 &lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
 </source>
         <translation>Wenn Sie das Installationspaket mit der vorkompilierten Version von der offiziellen Homepage oder die Linux-Pakete von Upstream heruntergeladen haben, senden Sie bitte einen Fehlerbericht:
-&lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;</translation>
+&lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
+</translation>
     </message>
 </context>
 <context>

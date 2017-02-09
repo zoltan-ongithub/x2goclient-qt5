@@ -562,6 +562,8 @@ x2goclient (4.1.0.0-0x2go1) UNRELEASED; urgency=medium
       time.
     - res/i18n/x2goclient_es.ts: remove obsolete comments and very minor
       whitespace fixup.
+    - res/i18n/x2goclient_de.ts: fixup German translation file, including
+      typo, whitespace, grammar fixes and other stuff.
 
   [ Bernard Cafarelli ]
   * New upstream version (4.1.0.0):
