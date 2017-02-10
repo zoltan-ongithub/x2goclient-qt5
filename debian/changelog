@@ -590,6 +590,7 @@ x2goclient (4.1.0.0-0x2go1) UNRELEASED; urgency=medium
   [ Daniel Lindgren ]
   * New upstream version (4.1.0.0):
     - res/i18n/x2goclient_sv.ts: update Swedish translation file.
+    - res/i18n/x2goclient_sv.ts: fixup Swedish translation file.
 
   [ Ricardo Díaz Martín ]
   * New upstream release (4.1.0.0):

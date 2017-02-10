@@ -981,7 +981,7 @@ Några vanliga installationssökvägar är:
         <location filename="../../src/help.cpp" line="142"/>
         <source>Automatically launches the application(s) &quot;app&quot;, &quot;app2&quot;, ... on session start in Published Applications mode.</source>
         <extracomment>Please make sure to include the information that applications are started in Published Application mode as described in the original string to not confuse the user, as Single Application and Published Applications modes behave differently.</extracomment>
-        <translation type="unfinished">Automatisk start av applikation(er) &quot;app&quot;, &quot;app2&quot;, ... vid sessionsstart.</translation>
+        <translation>Automatisk start av applikation(er) &quot;app&quot;, &quot;app2&quot;, ... vid sessionsstart som Publicerade applikationer.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="143"/>
@@ -1017,7 +1017,7 @@ Några vanliga installationssökvägar är:
         <location filename="../../src/help.cpp" line="155"/>
         <source>Enables the use of the default SSH key or SSH agent for authentication against an SSH session broker. The client&apos;s behavior is undefined if this flag is used for non-SSH session brokers.</source>
         <extracomment>Missing the bit about SSH agent authentication.</extracomment>
-        <translation type="unfinished">Aktiverar användning av standard SSH-nyckel för autentisering mot SSH-broker. Klientens beteende är odefinierat om denna flagga används för icke-SSH-broker.</translation>
+        <translation>Aktiverar användning av standard SSH-nyckel eller SSH-agent för autentisering mot SSH-broker. Klientens beteende är odefinierat om denna flagga används för icke-SSH-broker.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="156"/>
@@ -2017,7 +2017,7 @@ Data som ej sparats kommer att förloras.</translation>
         <location filename="../../src/onmainwindow.cpp" line="10232"/>
         <source>Unable to find the sftp-server binary. Neither bundled, nor found in $PATH nor additional directories.</source>
         <extracomment>Missing the second sentence.</extracomment>
-        <translation type="unfinished">Kunde ej hitta binär för sftp-server.</translation>
+        <translation>Kunde ej hitta binär för sftp-server. Varken som medskickad eller i $PATH eller i ytterligare sökvägar.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="10233"/>
@@ -2098,8 +2098,8 @@ Om sftp-server finns installerat på ditt system, var vänlig rapportera felet (
     <message>
         <location filename="../../src/onmainwindow.cpp" line="10508"/>
         <source>Unable to open newly generated %1 public host key file.</source>
-        <extracomment>%1 in this context will be replaced by the public host key *type*, e.g. "RSA", "DSA", "ECDSA" etc. You probably don't want to put %1 at the end of the sentence here (unless Swedish does that, of course.)</extracomment>
-        <translation type="unfinished">Kunde ej öppna nyligen genererad publik nyckelfil %1.</translation>
+        <extracomment>%1 in this context will be replaced by the public host key *type*, e.g. &quot;RSA&quot;, &quot;DSA&quot;, &quot;ECDSA&quot; etc. You probably don&apos;t want to put %1 at the end of the sentence here (unless Swedish does that, of course.)</extracomment>
+        <translation>Kunde ej öppna nyligen genererad %1 publik nyckelfil.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="10528"/>
@@ -3628,8 +3628,8 @@ Exempel:
     <message>
         <location filename="../../src/pulsemanager.cpp" line="127"/>
         <source>Unable to find the PulseAudio binary. Neither bundled, nor found in $PATH nor additional directories.</source>
-        <extracomment>Please also include the second sentence, might be interesting for users to know where we search and that it's not just $PATH.</extracomment>
-        <translation type="unfinished">Kunde ej hitta binär för PulseAudio.</translation>
+        <extracomment>Please also include the second sentence, might be interesting for users to know where we search and that it&apos;s not just $PATH.</extracomment>
+        <translation>Kunde ej hitta binär för PulseAudio. Varken som medskickad eller i $PATH eller i ytterligare sökvägar.</translation>
     </message>
     <message>
         <location filename="../../src/pulsemanager.cpp" line="128"/>
