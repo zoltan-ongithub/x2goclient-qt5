@@ -980,7 +980,6 @@ Några vanliga installationssökvägar är:
     <message>
         <location filename="../../src/help.cpp" line="142"/>
         <source>Automatically launches the application(s) &quot;app&quot;, &quot;app2&quot;, ... on session start in Published Applications mode.</source>
-        <extracomment>Please make sure to include the information that applications are started in Published Application mode as described in the original string to not confuse the user, as Single Application and Published Applications modes behave differently.</extracomment>
         <translation>Automatisk start av applikation(er) &quot;app&quot;, &quot;app2&quot;, ... vid sessionsstart som Publicerade applikationer.</translation>
     </message>
     <message>
@@ -1016,7 +1015,6 @@ Några vanliga installationssökvägar är:
     <message>
         <location filename="../../src/help.cpp" line="155"/>
         <source>Enables the use of the default SSH key or SSH agent for authentication against an SSH session broker. The client&apos;s behavior is undefined if this flag is used for non-SSH session brokers.</source>
-        <extracomment>Missing the bit about SSH agent authentication.</extracomment>
         <translation>Aktiverar användning av standard SSH-nyckel eller SSH-agent för autentisering mot SSH-broker. Klientens beteende är odefinierat om denna flagga används för icke-SSH-broker.</translation>
     </message>
     <message>
@@ -2016,7 +2014,6 @@ Data som ej sparats kommer att förloras.</translation>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="10232"/>
         <source>Unable to find the sftp-server binary. Neither bundled, nor found in $PATH nor additional directories.</source>
-        <extracomment>Missing the second sentence.</extracomment>
         <translation>Kunde ej hitta binär för sftp-server. Varken som medskickad eller i $PATH eller i ytterligare sökvägar.</translation>
     </message>
     <message>
@@ -2029,7 +2026,8 @@ If the sftp-server binary is installed on your system, please report a bug menti
         <translation>Om du använder ett Linuxbaserat operativsystem, var vänlig kontakta din systemadministratör och begär att paket för sftp-server installeras. Vanliga paketnamn är &lt;b&gt;openssh&lt;/b&gt;,&lt;b&gt;openssh-server&lt;/b&gt; eller &lt;b&gt;openssh-sftp-server&lt;/b&gt;, beroende på distribution.
 
 Om sftp-server finns installerat på ditt system, var vänlig rapportera felet (med sökväg till sftp-server) på:
-&lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;</translation>
+&lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
+</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="10275"/>
@@ -3628,7 +3626,6 @@ Exempel:
     <message>
         <location filename="../../src/pulsemanager.cpp" line="127"/>
         <source>Unable to find the PulseAudio binary. Neither bundled, nor found in $PATH nor additional directories.</source>
-        <extracomment>Please also include the second sentence, might be interesting for users to know where we search and that it&apos;s not just $PATH.</extracomment>
         <translation>Kunde ej hitta binär för PulseAudio. Varken som medskickad eller i $PATH eller i ytterligare sökvägar.</translation>
     </message>
     <message>
