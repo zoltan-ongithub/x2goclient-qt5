@@ -566,6 +566,8 @@ x2goclient (4.1.0.0-0x2go1) UNRELEASED; urgency=medium
       typo, whitespace, grammar fixes and other stuff.
     - res/i18n/x2goclient_sv.ts: remove obsolete comments and very minor
       whitespace fix.
+    - macbuild.sh: sanitize find input, as BSD find and GNU find behave
+      differently.
 
   [ Bernard Cafarelli ]
   * New upstream version (4.1.0.0):

@@ -404,8 +404,9 @@ if [ "${BUNDLE}" = "1" ]; then
   typeset -a all_files
   typeset entry=""
   while read -r -d '' entry; do
-    echo "Adding ${entry} to all files"
-    all_files+=( "${entry}" )
+    typeset sanitized_entry="$(lazy_canonical_path "${entry}")"
+    echo "Adding ${sanitized_entry} to all files"
+    all_files+=( "${sanitized_entry}" )
   done < <(find "${base_dir}" -type 'f' -print0)
 
   typeset -a top_files
