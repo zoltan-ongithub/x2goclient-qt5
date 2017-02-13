@@ -568,6 +568,8 @@ x2goclient (4.1.0.0-0x2go1) UNRELEASED; urgency=medium
       whitespace fix.
     - macbuild.sh: sanitize find input, as BSD find and GNU find behave
       differently.
+    - macbuild.sh: get rid of problems and use gfind directly. We need special
+      GNU features.
 
   [ Bernard Cafarelli ]
   * New upstream version (4.1.0.0):

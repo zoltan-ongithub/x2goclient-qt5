@@ -283,7 +283,7 @@ for cur_lib_or_libdir in ${PULSEAUDIO_LIBRARIES[@]}; do
         echo "Adding $(lazy_canonical_path "${entry}") to \${PULSEAUDIO_LIBRARIES_FULL}"
         PULSEAUDIO_LIBRARIES_FULL+=( "$(lazy_canonical_path "${entry}")" )
       fi
-    done < <(find "${cur_lib_or_libdir}" -type 'f' -print0)
+    done < <(gfind "${cur_lib_or_libdir}" -type 'f' -print0)
   else
     fail="1"
     break
@@ -407,7 +407,7 @@ if [ "${BUNDLE}" = "1" ]; then
     typeset sanitized_entry="$(lazy_canonical_path "${entry}")"
     echo "Adding ${sanitized_entry} to all files"
     all_files+=( "${sanitized_entry}" )
-  done < <(find "${base_dir}" -type 'f' -print0)
+  done < <(gfind "${base_dir}" -type 'f' -print0)
 
   typeset -a top_files
   for entry in "${all_files[@]}"; do
@@ -511,7 +511,7 @@ if [ "${BUNDLE}" = "1" ]; then
   while read -r -d '' entry; do
     echo "Adding ${entry} to all files"
     all_files+=( "${entry}" )
-  done < <(find "${EXE_DIR}" -type 'f' -executable -print0)
+  done < <(gfind "${EXE_DIR}" -type 'f' -executable -print0)
 
   # Try to fixup files broken by duplicates removal.
   for all_entry in "${all_files[@]}"; do
