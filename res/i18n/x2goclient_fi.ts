@@ -919,7 +919,7 @@ Muutama standardiasennuksia löytyy täältä:
     <message>
         <location filename="../../src/help.cpp" line="130"/>
         <source>Sets the default command. Default: &apos;KDE&apos; (Desktop Session)</source>
-        <translation>Määrittää oletuskomennon. Oletu: &apos;KDE&apos; (Desktop Session)</translation>
+        <translation>Määrittää oletuskomennon. Oletus: &apos;KDE&apos; (Desktop Session)</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="131"/>
@@ -979,7 +979,7 @@ Muutama standardiasennuksia löytyy täältä:
     <message>
         <location filename="../../src/help.cpp" line="142"/>
         <source>Automatically launches the application(s) &quot;app&quot;, &quot;app2&quot;, ... on session start in Published Applications mode.</source>
-        <translation>Käynnistää automaattisesti sovellukset &quot;app&quot;, &quot;app2&quot;,... kun istunto käynnistyy Published Application tilassa.</translation>
+        <translation>Käynnistää automaattisesti sovellukset &quot;app&quot;, &quot;app2&quot;, ... kun istunto käynnistyy Published Application tilassa.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="143"/>
@@ -2111,7 +2111,7 @@ Jos sftp-server on asennettu järjestelmääsi, raportoi virheestä ja ilmoita m
     <message>
         <location filename="../../src/onmainwindow.cpp" line="10351"/>
         <source>SSH key base directory creation error</source>
-        <translation>SSH -avaimen kotihakemistoa ei pystytty luomaan</translation>
+        <translation>SSH-avaimen kotihakemistoa ei pystytty luomaan</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="10352"/>
@@ -2196,14 +2196,16 @@ Please report a bug on:
 </source>
         <translation>The SSH server ei käynnistyntyt.
 
-Ilmoita virheestä:</translation>
+Ilmoita virheestä:
+</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="12158"/>
         <location filename="../../src/onmainwindow.cpp" line="12190"/>
         <source>&lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
 </source>
-        <translation>&lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center</translation>
+        <translation>&lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
+</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="12180"/>
@@ -2222,7 +2224,7 @@ Jos näet tämän viestin ilmoita virheestä:
 
 Please report a bug on:
 </source>
-        <translation>X2Go Client ei pysytynyt luomaan SSH host key -faileja.
+        <translation>X2Go Client ei pysytynyt luomaan SSH host key-faileja.
 
 Ilmoita virheesta:
 </translation>
@@ -3491,8 +3493,9 @@ voit asentaa sshd komennolla
     </message>
     <message>
         <location filename="../../src/printwidget.cpp" line="59"/>
+        <comment>&quot;and&quot; between the first two links untranslated.</comment>
         <source>Please configure your client side printing settings.&lt;br&gt;&lt;br&gt;If you want to print the created file, you&apos;ll need an external application. Typically you can use &lt;a href=&quot;http://pages.cs.wisc.edu/~ghost/doc/GPL/index.htm&quot;&gt;ghostprint&lt;/a&gt; and &lt;a href=&quot;http://pages.cs.wisc.edu/~ghost/gsview/&quot;&gt;ghostview&lt;/a&gt;&lt;br&gt;You can find further information &lt;a href=&quot;http://www.x2go.org/index.php?id=49&quot;&gt;here&lt;/a&gt;.</source>
-        <translation>Aseta päälle asiakasohjelman tulostus.&lt;br&gt;&lt;br&gt;Jos haluat tulostaa tiedoton, tarvitsen erillisen sovelluksen. Tyyppillisesti voit käyttää tätä &lt;a href=&quot;http://pages.cs.wisc.edu/~ghost/doc/GPL/index.htm&quot;&gt;ghostprint&lt;/a&gt; and &lt;a href=&quot;http://pages.cs.wisc.edu/~ghost/gsview/&quot;&gt;ghostview&lt;/a&gt;&lt;br&gt;Löydät lisäohjeita &lt;a href=&quot;http://www.x2go.org/index.php?id=49&quot;&gt;täältä&lt;/a&gt;.</translation>
+        <translation type="unfinished">Aseta päälle asiakasohjelman tulostus.&lt;br&gt;&lt;br&gt;Jos haluat tulostaa tiedoton, tarvitsen erillisen sovelluksen. Tyyppillisesti voit käyttää tätä &lt;a href=&quot;http://pages.cs.wisc.edu/~ghost/doc/GPL/index.htm&quot;&gt;ghostprint&lt;/a&gt; and &lt;a href=&quot;http://pages.cs.wisc.edu/~ghost/gsview/&quot;&gt;ghostview&lt;/a&gt;&lt;br&gt;Löydät lisäohjeita &lt;a href=&quot;http://www.x2go.org/index.php?id=49&quot;&gt;täältä&lt;/a&gt;.</translation>
     </message>
 </context>
 <context>
@@ -3578,7 +3581,7 @@ Esimerkki:
     <message>
         <location filename="../../src/pulsemanager.cpp" line="127"/>
         <source>Unable to find the PulseAudio binary. Neither bundled, nor found in $PATH nor additional directories.</source>
-        <translation>PulseAudio ohjelmaa ei löydy. Se ei ole sisäänrakennettuna eikä se löydy $PATH -muuttujan avullakaan.</translation>
+        <translation>PulseAudio ohjelmaa ei löydy. Se ei ole sisäänrakennettuna eikä se löydy $PATH-muuttujan avullakaan.</translation>
     </message>
     <message>
         <location filename="../../src/pulsemanager.cpp" line="128"/>
@@ -3597,12 +3600,12 @@ Esimerkki:
     <message>
         <location filename="../../src/pulsemanager.cpp" line="170"/>
         <source>getcwd() failed!</source>
-        <translation>getcwd() failed!</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/pulsemanager.cpp" line="258"/>
         <source>PulseAudio failed to start!</source>
-        <translation>PulseAudio failed to start!</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/pulsemanager.cpp" line="259"/>
@@ -3628,42 +3631,42 @@ Jos latasit paketista, valmiin version viralliselta kotisivulat, ilmoita virhees
         <location filename="../../src/pulsemanager.cpp" line="532"/>
         <location filename="../../src/pulsemanager.cpp" line="540"/>
         <source>Error fetching PulseAudio version number!</source>
-        <translation>Error fetching PulseAudio version number!</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/pulsemanager.cpp" line="408"/>
         <source>Unexpected character found when parsing version string for major version number</source>
-        <translation>Unexpected character found when parsing version string for major version number</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/pulsemanager.cpp" line="433"/>
         <source>Unexpected character found when parsing version string for minor version number</source>
-        <translation>Unexpected character found when parsing version string for minor version number</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/pulsemanager.cpp" line="451"/>
         <source>Unexpected character found when parsing version string for micro version number</source>
-        <translation>Unexpected character found when parsing version string for micro version number</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/pulsemanager.cpp" line="466"/>
         <source>Supposed to skip major version number. Something is wrong.</source>
-        <translation>Supposed to skip major version number. Something is wrong.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/pulsemanager.cpp" line="480"/>
         <source>Unable to convert major version number string to integer.</source>
-        <translation>Unable to convert major version number string to integer.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/pulsemanager.cpp" line="498"/>
         <source>Unable to convert minor version number string to integer.</source>
-        <translation>Unable to convert minor version number string to integer.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/pulsemanager.cpp" line="512"/>
         <source>Unable to convert micro version number string to integer.</source>
-        <translation>Unable to convert micro version number string to integer.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/pulsemanager.cpp" line="533"/>

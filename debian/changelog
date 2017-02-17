@@ -572,6 +572,9 @@ x2goclient (4.1.0.0-0x2go1) UNRELEASED; urgency=medium
       GNU features.
     - src/appdialog.cpp: logic so that X2Go-Top applications are shown again.
       Used faulty logic when silencing compiler warnings.
+    - res/i18n/x2goclient_fi.ts: fix up Finnish translation file, including
+      typo, whitespace fixes and marking untranslated entries as such again,
+      after removing the English "translation" text.
 
   [ Bernard Cafarelli ]
   * New upstream version (4.1.0.0):
