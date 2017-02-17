@@ -330,12 +330,12 @@
     <message>
         <location filename="../../src/configdialog.cpp" line="342"/>
         <source>PulseAudio settings</source>
-        <translation type="unfinished"></translation>
+        <translation>PulseAudio asetukset</translation>
     </message>
     <message>
         <location filename="../../src/configdialog.cpp" line="344"/>
         <source>Disable sound input</source>
-        <translation type="unfinished"></translation>
+        <translation>Poista mikrofoni käytöstä</translation>
     </message>
     <message>
         <source>Clientside (local) SSH daemon port for file system export usage:</source>
@@ -809,217 +809,217 @@ Muutama standardiasennuksia löytyy täältä:
     <message>
         <location filename="../../src/help.cpp" line="98"/>
         <source>Shows this message.</source>
-        <translation type="unfinished"></translation>
+        <translation>Näytä tämä ilmoitus.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="99"/>
         <source>Prints version information.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tulosta versiotiedot.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="102"/>
         <source>Shows the changelog.</source>
-        <translation type="unfinished"></translation>
+        <translation>Näyttää muutokset.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="106"/>
         <source>Shows git information as used at compile time. [Deprecated: please use --version.]</source>
-        <translation type="unfinished"></translation>
+        <translation>Näyttää git-asetukset, jotka olivat käytössä käännöshetkellä. [Ei käytössä: käytä --version.]</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="109"/>
         <source>Shows available pack methods.</source>
-        <translation type="unfinished"></translation>
+        <translation>Näyttää käytettävissä olevat pakkausmenetelmät.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="113"/>
         <source>Do not resume sessions automatically.</source>
-        <translation type="unfinished"></translation>
+        <translation>Älä uudista istuntoa automaattisesti.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="114"/>
         <source>Hides menu bar.</source>
-        <translation type="unfinished"></translation>
+        <translation>Piilottaa menu barin.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="115"/>
         <source>Disables session editing.</source>
-        <translation type="unfinished"></translation>
+        <translation>Istunnon muokkaus estetty.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="116"/>
         <source>Starts maximized.</source>
-        <translation type="unfinished"></translation>
+        <translation>Käynnistä maksimikoossa.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="117"/>
         <source>Starts hidden (minimized to system tray where available.)</source>
-        <translation type="unfinished"></translation>
+        <translation>Käynnistyy piilossa (minimoitu systeemilokeroon josta voit käynnistää.)</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="118"/>
         <source>Starts in &quot;portable&quot; mode.</source>
-        <translation type="unfinished"></translation>
+        <translation>Käynnsityy &quot;portable&quot; tilassa.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="119"/>
         <source>Forces OpenPGP smart card authentication.</source>
-        <translation type="unfinished"></translation>
+        <translation>Pakottaa OpenPGP korttitunnistuksen käytttöön.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="120"/>
         <source>Enables Xinerama by default.</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktivoi Xineraman oletukseksi.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="121"/>
         <source>Allows client side printing in LDAP mode.</source>
-        <translation type="unfinished"></translation>
+        <translation>Mahdollistaa etätyöasesta tulostuksen LDAP tilassa.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="122"/>
         <source>Enables thinclient mode. Starts without a window manager.</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktivoi thinclient tilan. Käynnistyy ilman ikkunointia.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="123"/>
         <source>Enables shutdown button.</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktivoi shutdonw nappulan.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="124"/>
         <source>Adds RSA key fingerprint to &quot;.ssh/known_hosts&quot; if authenticity of the server can&apos;t be determined.</source>
-        <translation type="unfinished"></translation>
+        <translation>Lisää RSA avaimen tiivisteen tiedostoon &quot;.ssh/known_hosts&quot; jos palvelimen autenttisuutta ei voida selvittää.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="125"/>
         <source>Starts with LDAP support. Example: --ldap=ldapserver:389:o=organization,c=de</source>
-        <translation type="unfinished"></translation>
+        <translation>Käynnistyy LDAP tuen kanssa. Esimerkiksi: --ldap=ldapserver:389:o=orgaanization,c=de</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="126"/>
         <source>Defines the first LDAP failover server.</source>
-        <translation type="unfinished"></translation>
+        <translation>Määrittää ensimmäisen LDAP varapalvelimen.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="127"/>
         <source>Defines the second LDAP failover server.</source>
-        <translation type="unfinished"></translation>
+        <translation>Käynnistää toisen LDAP varapalvelimen.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="128"/>
         <source>Defines the remote SSH server port. Default: 22.</source>
-        <translation type="unfinished"></translation>
+        <translation>Määrittää SSH serverin portin. Oletus: 22.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="129"/>
         <source>Defines the local machine&apos;s SSH server port. Needed for Client-Side Printing and File Sharing support. Default: 22.</source>
-        <translation type="unfinished"></translation>
+        <translation>Määrittää paikallsasemenn SSH portin. Tarvitaan paikallistulostusta ja tiedostojakoa varten. Oletus: 22.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="130"/>
         <source>Sets the default command. Default: &apos;KDE&apos; (Desktop Session)</source>
-        <translation type="unfinished"></translation>
+        <translation>Määrittää oletuskomennon. Oletu: &apos;KDE&apos; (Desktop Session)</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="131"/>
         <source>Starts the session named &quot;session&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Käynnistää istunnon nimellä &quot;session&quot;.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="132"/>
         <source>Sets the user name for connecting to the remote SSH server to &quot;username&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Määrittää SSH palvelimen yhteytta varten käyttäjätunnuksen &quot;username&quot;.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="133"/>
         <source>Sets the default window geometry. Default: 800x600.</source>
-        <translation type="unfinished"></translation>
+        <translation>Määrittää oletus ikkunakoon. Oletus: 800x600.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="134"/>
         <source>Sets the remote X2Go Agent&apos;s DPI value to &quot;dpi&quot;. Default: same as local display.</source>
-        <translation type="unfinished"></translation>
+        <translation>Asettaa palvelimen X2Go Agenti DPI arvokdi &quot;dpi&quot;. Oletus: sama kuin paikallistyöasemassa.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="135"/>
         <source>Sets the default link type. Default: &quot;adsl&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Määrittää oletusyhteyden. Oletus: &quot;adsl&quot;.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="136"/>
         <source>Sets default pack method. Default: &quot;16m-jpeg-9&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Määrittää oletus pakkausmenetelmän. Oletus: &quot;16m-jpeg-9&quot;.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="137"/>
         <source>Sets the default clipboard mode. Default: &quot;both&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Määrittää leikepöydän oletustoiminnan. Oletus: &quot;both&quot;. </translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="138"/>
         <source>Sets the default keyboard layout to &quot;layout&quot;. &quot;layout&quot; may be a comma-separated list.</source>
-        <translation type="unfinished"></translation>
+        <translation>Määrittää oletusnäppäimistöksi &quot;layout&quot;. &quot;layout&quot; voi olla pilkulla eroteltu lista.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="139"/>
         <source>Sets the default keyboard type.</source>
-        <translation type="unfinished"></translation>
+        <translation>Määrittää oletusnäppäimistön.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="140"/>
         <source>Sets the user&apos;s home directory.</source>
-        <translation type="unfinished"></translation>
+        <translation>Määrittää käyttäjän kotihakemiston.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="141"/>
         <source>Enables or disables overwriting the current keyboard settings.</source>
-        <translation type="unfinished"></translation>
+        <translation>Sallii tai estää nykyisten näppäimistöasetusten muuttamisen.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="142"/>
         <source>Automatically launches the application(s) &quot;app&quot;, &quot;app2&quot;, ... on session start in Published Applications mode.</source>
-        <translation type="unfinished"></translation>
+        <translation>Käynnistää automaattisesti sovellukset &quot;app&quot;, &quot;app2&quot;,... kun istunto käynnistyy Published Application tilassa.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="143"/>
         <source>Defines an alternative session config file path.</source>
-        <translation type="unfinished"></translation>
+        <translation>Määrittää vaihtoehtoisen polun isunnon asetustietoihin.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="144"/>
         <source>Force-enables session system tray icon.</source>
-        <translation type="unfinished"></translation>
+        <translation>Pakottaa systeemilokeron käyttöön.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="145"/>
         <source>Automatically closes X2Go Client after a disconnect.</source>
-        <translation type="unfinished"></translation>
+        <translation>Sulkee automaattisesti X2Go Clientin yhteyden katketessa.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="146"/>
         <source>Hides all Folder-Sharing-related options.</source>
-        <translation type="unfinished"></translation>
+        <translation>Piilottaa kaikki Folder Sharingiin liittyvät valinnat.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="147"/>
         <source>Sets the broker name to display in X2Go Client. This parameter is optional.</source>
-        <translation type="unfinished"></translation>
+        <translation>Asetta brokernimen näkyuväksi X2Go Clientiin. Tämä ohjain on valinnainen.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="154"/>
         <source>Sets the path to an SSH key to use for authentication against an SSH session broker. The client&apos;s behavior is undefined if this flag is used for non-SSH session brokers.</source>
-        <translation type="unfinished"></translation>
+        <translation>Määrittää SSH avaimen hakemistopolun jota käytetään kun autentikoidutaan SSH brokeriin. Etätyöaseman käyttäytyminen jää avoimeksi jos tätä asetusta käytetään non-SSH istuntobrokerissa.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="155"/>
         <source>Enables the use of the default SSH key or SSH agent for authentication against an SSH session broker. The client&apos;s behavior is undefined if this flag is used for non-SSH session brokers.</source>
-        <translation type="unfinished"></translation>
+        <translation>Mahdollistaa oletus SSH avaimen tai SSH agentin käytön kun autentikoidutann SSH session brokeriin. Työaseman käyttäytyminen on määrittelemätön jos tätä käytetään non SSH session brokerissa.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="156"/>
         <source>Does not ask for user credentials during session broker authentication. This can be useful if you are using an HTTP(S) session broker without authentication. If you run an HTTP(S) server without authentication, but with user-specific profiles, then put the user name into the broker URL (refer to --broker-url.) The user name then will be extracted from the broker URL and be sent to the session broker. The client&apos;s behavior is undefined if this flag is used for non-HTTP(S) session brokers.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tunnistustietoja ei kysytä session brokerin autentikoinnissa. Tämä voi olla tarpeen jos käytät HTTP(S) session brokeria ilma autentikointia. Jos käytät HTTP(S) palvelinta ilman autentikointia, mutta kuitenkin käyttäjäkohtaisilla profiileilla, lisää käyttäjätunnus brokerin URL-iin (kts --broke-url.) Käyttäjätunnus ottaa sen jälkeen käyttäjätunnuksen broker URL-stä ja se lähetetään session brokerille. Etätyöaseman käyttäytyminen on määrittelemätön jos tätä asetusta käytetään ei-HTTP(S) session brokerissa.</translation>
     </message>
 </context>
 <context>
@@ -1282,21 +1282,25 @@ sound system connections through firewalls</source>
         <location filename="../../src/mediawidget.cpp" line="154"/>
         <location filename="../../src/mediawidget.cpp" line="174"/>
         <source>Deprecation Warning</source>
-        <translation type="unfinished"></translation>
+        <translation>Poistuu käytöstä - varoitus</translation>
     </message>
     <message>
         <location filename="../../src/mediawidget.cpp" line="155"/>
         <source>ARTS support is scheduled to be removed soon.
 
 Please upgrade to PulseAudio.</source>
-        <translation type="unfinished"></translation>
+        <translation>ARTS tuki poistuu pian.
+
+Päivitä PulseAudioon.</translation>
     </message>
     <message>
         <location filename="../../src/mediawidget.cpp" line="175"/>
         <source>ESounD support is scheduled to be removed soon.
 
 Please upgrade to PulseAudio.</source>
-        <translation type="unfinished"></translation>
+        <translation>ESounD tuki poistuu pian.
+
+Päivitä PulseAudioon.</translation>
     </message>
 </context>
 <context>
@@ -2039,38 +2043,38 @@ Tallentamattomat tiedot katoavat.</translation>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="8437"/>
         <source>&lt;br&gt;(C) 2005-2017 by &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing&lt;br&gt;</source>
-        <translation type="unfinished">&lt;br&gt;(C) 2005-2016 &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing&lt;br&gt;
-Suomenkielinen versio: Martti Pitkänen, martti@aplcomp.fi&lt;br&gt; {2005-2017 ?}</translation>
+        <translation>&lt;br&gt;(C) 2005-2017 by &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing&lt;br&gt;
+Suomenkielinen versio: Martti Pitkänen, martti@aplcomp.fi&lt;br&gt;</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="9499"/>
         <source>Unable to create or append to file: </source>
-        <translation type="unfinished"></translation>
+        <translation>Ei pysty luomaan eikä lisäämäään tiedostoon: </translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="9519"/>
         <source>Unable to change the permissions of file: </source>
-        <translation type="unfinished"></translation>
+        <translation>Tiedoston käyttöoikeuksien muutos ei onnistu: </translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="9520"/>
         <source>This is an error because sshd would deny such a file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tämä on virhe koska sshd kieltäisi tällaisen tiedoston.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="9537"/>
         <source>Unable to change the permissions of directory: </source>
-        <translation type="unfinished"></translation>
+        <translation>Hakemiston oikeuksien muutos ei onnistu: </translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="9538"/>
         <source>This is an error because sshd would deny such a directory.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tämä on virhe koska sshd kieltäisi tällaisen hakemiston.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="10232"/>
         <source>Unable to find the sftp-server binary. Neither bundled, nor found in $PATH nor additional directories.</source>
-        <translation type="unfinished"></translation>
+        <translation>Sftp palvelinohjelmaa ei löydy. Ei sisäänrakennettua versiota, eikä löydy $PATH muuttujan avullakaan.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="10233"/>
@@ -2079,17 +2083,21 @@ Suomenkielinen versio: Martti Pitkänen, martti@aplcomp.fi&lt;br&gt; {2005-2017 
 If the sftp-server binary is installed on your system, please report a bug mentioning its path on:
 &lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Jos käytä Linux käytöjäjestelmää, pyydä tukihenkilöä asentamaan sftp palvelin. Yleisiä nimiä ovat &lt;b&gt;openssh&lt;/b&gt;, &lt;b&gt;openssh-server&lt;/b&gt; tai &lt;b&gt;openssh-sftp-server&lt;/b&gt; riippuen distrosta.
+
+Jos sftp-server on asennettu järjestelmääsi, raportoi virheestä ja ilmoita myös sen polku:
+&lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
+</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="10275"/>
         <source>SSH key type selection error</source>
-        <translation type="unfinished"></translation>
+        <translation>SSH avaintyypin valintavirhe</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="10276"/>
         <source>Unknown SSH key selected.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tunnistamanton SSH avain valittu.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="10278"/>
@@ -2098,62 +2106,62 @@ If the sftp-server binary is installed on your system, please report a bug menti
         <location filename="../../src/onmainwindow.cpp" line="10441"/>
         <location filename="../../src/onmainwindow.cpp" line="10451"/>
         <source>Terminating application.</source>
-        <translation type="unfinished"></translation>
+        <translation>Sovellus suljetaan.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="10351"/>
         <source>SSH key base directory creation error</source>
-        <translation type="unfinished"></translation>
+        <translation>SSH -avaimen kotihakemistoa ei pystytty luomaan</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="10352"/>
         <source>Unable to create SSH key base directory &apos;%1&apos;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ei pystytty luomaan SSH avaimen kotihakemistoa &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="10430"/>
         <source>ssh-keygen launching error</source>
-        <translation type="unfinished"></translation>
+        <translation>ssh-keygen ei käynnisty</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="10431"/>
         <source>Unable to start the ssh-keygen binary.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ei pystytty käynnistämään ssh-keygen ohjelmaa.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="10438"/>
         <source>ssh-keygen crashed</source>
-        <translation type="unfinished"></translation>
+        <translation>ssk-keygen kaatui</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="10439"/>
         <source>The ssh-keygen binary crashed.</source>
-        <translation type="unfinished"></translation>
+        <translation>ssh-keygen ohjelma kaatui.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="10446"/>
         <source>ssh-keygen program error</source>
-        <translation type="unfinished"></translation>
+        <translation>ssh-keygen ohjelmassa oli virhe</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="10447"/>
         <source>The ssh-keygen binary did not exit cleanly.</source>
-        <translation type="unfinished"></translation>
+        <translation>ssh-keygen ohjelma ei sulkeutunut oikein.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="10449"/>
         <source>It was probably called with unknown arguments.</source>
-        <translation type="unfinished"></translation>
+        <translation>Sitä oli mahdollsesti käytetty väärillä argumenteilla.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="10508"/>
         <source>Unable to open newly generated %1 public host key file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ei pysty avaamaan juuri generoitua %1 public host key tiedostoa.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="10528"/>
         <source>%1 public host key file empty.</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 public host key tiedosto on tyhjä.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="12145"/>
@@ -2163,7 +2171,11 @@ These features require a running and functioning SSH server on your computer.
 &lt;b&gt;Printing and File Sharing will be disabled for this session.&lt;/b&gt;
 
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Olet aktivoinut etätulostuksen tai tiedostojaon.
+Nämä toiminnot vaativat että työasemassasi on käynnissä SSH server.
+&lt;b&gt;Printing and File Sharing ovat pois käytössä tässä istunnnossa.&lt;/b&gt;
+
+</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="12149"/>
@@ -2171,7 +2183,10 @@ These features require a running and functioning SSH server on your computer.
 
 If you see this message, please report a bug on:
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Normaalisti tätä ei tapahdu koska X2Go Client for Windows sisältää SSH serverin.
+
+Jos näet tämän iilmoituksen, ilmoita virheestä:
+</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="12154"/>
@@ -2179,14 +2194,16 @@ If you see this message, please report a bug on:
 
 Please report a bug on:
 </source>
-        <translation type="unfinished"></translation>
+        <translation>The SSH server ei käynnistyntyt.
+
+Ilmoita virheestä:</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="12158"/>
         <location filename="../../src/onmainwindow.cpp" line="12190"/>
         <source>&lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
 </source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="12180"/>
@@ -2194,7 +2211,10 @@ Please report a bug on:
 
 If you see this message, please report a bug on:
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Normaalista tätä ei tapahdu koska X2Go Client for Windows sisältää SSH serverin ja se luo automaattisesti tarvittavat avaimet.
+
+Jos näet tämän viestin ilmoita virheestä:
+</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="12186"/>
@@ -2202,7 +2222,10 @@ If you see this message, please report a bug on:
 
 Please report a bug on:
 </source>
-        <translation type="unfinished"></translation>
+        <translation>X2Go Client ei pysytynyt luomaan SSH host key -faileja.
+
+Ilmoita virheesta:
+</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="12218"/>
@@ -3469,7 +3492,7 @@ voit asentaa sshd komennolla
     <message>
         <location filename="../../src/printwidget.cpp" line="59"/>
         <source>Please configure your client side printing settings.&lt;br&gt;&lt;br&gt;If you want to print the created file, you&apos;ll need an external application. Typically you can use &lt;a href=&quot;http://pages.cs.wisc.edu/~ghost/doc/GPL/index.htm&quot;&gt;ghostprint&lt;/a&gt; and &lt;a href=&quot;http://pages.cs.wisc.edu/~ghost/gsview/&quot;&gt;ghostview&lt;/a&gt;&lt;br&gt;You can find further information &lt;a href=&quot;http://www.x2go.org/index.php?id=49&quot;&gt;here&lt;/a&gt;.</source>
-        <translation type="unfinished">Aseta päälle asiakasohjelman tulostus.&lt;br&gt;&lt;br&gt;Jos haluat tulostaa tiedoton, tarvitsen erillisen sovelluksen. Tyyppillisesti voit käyttää tätä &lt;a href=&quot;http://pages.cs.wisc.edu/~ghost/doc/GPL/index.htm&quot;&gt;ghostprint&lt;/a&gt; and &lt;a href=&quot;http://pages.cs.wisc.edu/~ghost/gsview/&quot;&gt;ghostview&lt;/a&gt;&lt;br&gt;Löydät lisäohjeita &lt;a href=&quot;http://www.x2go.org/index.php?id=49&quot;&gt;täältä&lt;/a&gt;.</translation>
+        <translation>Aseta päälle asiakasohjelman tulostus.&lt;br&gt;&lt;br&gt;Jos haluat tulostaa tiedoton, tarvitsen erillisen sovelluksen. Tyyppillisesti voit käyttää tätä &lt;a href=&quot;http://pages.cs.wisc.edu/~ghost/doc/GPL/index.htm&quot;&gt;ghostprint&lt;/a&gt; and &lt;a href=&quot;http://pages.cs.wisc.edu/~ghost/gsview/&quot;&gt;ghostview&lt;/a&gt;&lt;br&gt;Löydät lisäohjeita &lt;a href=&quot;http://www.x2go.org/index.php?id=49&quot;&gt;täältä&lt;/a&gt;.</translation>
     </message>
 </context>
 <context>
@@ -3555,29 +3578,31 @@ Esimerkki:
     <message>
         <location filename="../../src/pulsemanager.cpp" line="127"/>
         <source>Unable to find the PulseAudio binary. Neither bundled, nor found in $PATH nor additional directories.</source>
-        <translation type="unfinished"></translation>
+        <translation>PulseAudio ohjelmaa ei löydy. Se ei ole sisäänrakennettuna eikä se löydy $PATH -muuttujan avullakaan.</translation>
     </message>
     <message>
         <location filename="../../src/pulsemanager.cpp" line="128"/>
         <source>If you downloaded the bundled, pre-compiled version from the official home page, please report a bug on:
 &lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Jos latasit paketin, valmiiksi käännetyn version viralliselta kotisivulta, ilmoita virheestä:
+&lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
+</translation>
     </message>
     <message>
         <location filename="../../src/pulsemanager.cpp" line="158"/>
         <source>Could not allocate buffer for getting current working directory!</source>
-        <translation type="unfinished"></translation>
+        <translation>Muistin allokonti ei onnistu kotihakemiston saavuttamiseksi!</translation>
     </message>
     <message>
         <location filename="../../src/pulsemanager.cpp" line="170"/>
         <source>getcwd() failed!</source>
-        <translation type="unfinished"></translation>
+        <translation>getcwd() failed!</translation>
     </message>
     <message>
         <location filename="../../src/pulsemanager.cpp" line="258"/>
         <source>PulseAudio failed to start!</source>
-        <translation type="unfinished"></translation>
+        <translation>PulseAudio failed to start!</translation>
     </message>
     <message>
         <location filename="../../src/pulsemanager.cpp" line="259"/>
@@ -3586,7 +3611,11 @@ Esimerkki:
 If you downloaded the bundled, pre-compiled version from the official home page, please report a bug on:
 &lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Äänen käyttö ei ole mahdollista.
+
+Jos latasit paketista, valmiin version viralliselta kotisivulat, ilmoita virheestä:
+&lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
+</translation>
     </message>
     <message>
         <location filename="../../src/pulsemanager.cpp" line="407"/>
@@ -3599,64 +3628,66 @@ If you downloaded the bundled, pre-compiled version from the official home page,
         <location filename="../../src/pulsemanager.cpp" line="532"/>
         <location filename="../../src/pulsemanager.cpp" line="540"/>
         <source>Error fetching PulseAudio version number!</source>
-        <translation type="unfinished"></translation>
+        <translation>Error fetching PulseAudio version number!</translation>
     </message>
     <message>
         <location filename="../../src/pulsemanager.cpp" line="408"/>
         <source>Unexpected character found when parsing version string for major version number</source>
-        <translation type="unfinished"></translation>
+        <translation>Unexpected character found when parsing version string for major version number</translation>
     </message>
     <message>
         <location filename="../../src/pulsemanager.cpp" line="433"/>
         <source>Unexpected character found when parsing version string for minor version number</source>
-        <translation type="unfinished"></translation>
+        <translation>Unexpected character found when parsing version string for minor version number</translation>
     </message>
     <message>
         <location filename="../../src/pulsemanager.cpp" line="451"/>
         <source>Unexpected character found when parsing version string for micro version number</source>
-        <translation type="unfinished"></translation>
+        <translation>Unexpected character found when parsing version string for micro version number</translation>
     </message>
     <message>
         <location filename="../../src/pulsemanager.cpp" line="466"/>
         <source>Supposed to skip major version number. Something is wrong.</source>
-        <translation type="unfinished"></translation>
+        <translation>Supposed to skip major version number. Something is wrong.</translation>
     </message>
     <message>
         <location filename="../../src/pulsemanager.cpp" line="480"/>
         <source>Unable to convert major version number string to integer.</source>
-        <translation type="unfinished"></translation>
+        <translation>Unable to convert major version number string to integer.</translation>
     </message>
     <message>
         <location filename="../../src/pulsemanager.cpp" line="498"/>
         <source>Unable to convert minor version number string to integer.</source>
-        <translation type="unfinished"></translation>
+        <translation>Unable to convert minor version number string to integer.</translation>
     </message>
     <message>
         <location filename="../../src/pulsemanager.cpp" line="512"/>
         <source>Unable to convert micro version number string to integer.</source>
-        <translation type="unfinished"></translation>
+        <translation>Unable to convert micro version number string to integer.</translation>
     </message>
     <message>
         <location filename="../../src/pulsemanager.cpp" line="533"/>
         <source>Unexpected format encountered.</source>
-        <translation type="unfinished"></translation>
+        <translation>Virheellinen muoto.</translation>
     </message>
     <message>
         <location filename="../../src/pulsemanager.cpp" line="541"/>
         <source>Unable to start PulseAudio binary.</source>
-        <translation type="unfinished"></translation>
+        <translation>PulseAudio ei käynnisty.</translation>
     </message>
     <message>
         <location filename="../../src/pulsemanager.cpp" line="765"/>
         <source>Unable to play startup sound.</source>
-        <translation type="unfinished"></translation>
+        <translation>Käynnistysääni ei toimi.</translation>
     </message>
     <message>
         <location filename="../../src/pulsemanager.cpp" line="766"/>
         <source>If you downloaded the bundled, pre-compiled version from the official home page or the upstream Linux packages, please report a bug on:
 &lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Jos latasit paketin, valmiiksi käännetyn version viralliselta kotivulta tai upstream Linux paketin, ilmoita virheestä:
+&lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
+</translation>
     </message>
 </context>
 <context>
