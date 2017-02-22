@@ -1,3 +1,9 @@
+x2goclient (4.1.0.1-0x2go1) UNRELEASED; urgency=medium
+
+  * Continue development
+
+ -- X2Go Release Manager <git-admin@x2go.org>  Wed, 22 Feb 2017 07:13:10 +0100
+
 x2goclient (4.1.0.0-0x2go1) unstable; urgency=medium
 
   [ Mihai Moldovan ]
