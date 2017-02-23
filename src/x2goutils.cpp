@@ -299,7 +299,7 @@ QString add_to_path (const QString &orig_path, const QStringList &add, const boo
     }
   }
   else {
-    for (int i = (clean_add.size () - 1); i > 0; --i) {
+    for (int i = (clean_add.size () - 1); i >= 0; --i) {
       if (!found[i]) {
         ret.prepend (QString (clean_add[i] + ":"));
       }
