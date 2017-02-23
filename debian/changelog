@@ -67,6 +67,13 @@ x2goclient (4.1.0.1-0x2go1) UNRELEASED; urgency=medium
       ssh_options_get () API, but instead expects users to pull out
       information directly from the ssh_session structure. This fixes compile
       issues on systems with older libssh versions.
+    - src/sshmasterconnection.cpp: turns out libssh < 0.6.0 doesn't support
+      fetching the host, port and username parameters at all. We're in the
+      clear for non-SSH-proxied connections and can use config file parsing,
+      but have to disable config file parsing in the proxy settings, as
+      there's no way to query the remote endpoint information. As a result we
+      will be unable to open a new socket to the remote endpoint and proxying
+      will fail badly.
 
  -- X2Go Release Manager <git-admin@x2go.org>  Wed, 22 Feb 2017 07:13:10 +0100
 

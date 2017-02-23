@@ -196,6 +196,7 @@ SshMasterConnection::SshMasterConnection (QObject* parent, QString host, int por
     kerberos=krblogin;
     challengeAuthVerificationCode=QString::null;
 
+#if LIBSSH_VERSION_INT >= SSH_VERSION_INT (0, 6, 0)
     if (this->user.isEmpty ()) {
         /* We might have a config file request pending, honor this. */
         ssh_session tmp_session = ssh_new ();
@@ -224,11 +225,7 @@ SshMasterConnection::SshMasterConnection (QObject* parent, QString host, int por
             }
 
             char *inferred_username = NULL;
-#if LIBSSH_VERSION_INT < SSH_VERSION_INT (0, 6, 0)
-            inferred_username = tmp_session->username;
-#else
             ssh_options_get (tmp_session, SSH_OPTIONS_USER, &inferred_username);
-#endif
             x2goDebug << "Temporary session user name after config file parse: " << inferred_username;
 
             this->user = QString::fromLocal8Bit (inferred_username);
@@ -237,6 +234,7 @@ SshMasterConnection::SshMasterConnection (QObject* parent, QString host, int por
             ssh_free (tmp_session);
         }
     }
+#endif
 
     if (this->user.isEmpty ()) {
 #ifdef Q_OS_WIN
@@ -828,25 +826,21 @@ bool SshMasterConnection::sshConnect()
         }
     }
 
+#if LIBSSH_VERSION_INT >= SSH_VERSION_INT (0, 6, 0)
     unsigned int cur_port = 0;
-#if LIBSSH_VERSION_INT < SSH_VERSION_INT (0, 6, 0)
-    cur_port = my_ssh_session->port;
-#else
     ssh_options_get_port (my_ssh_session, &cur_port);
-#endif
     x2goDebug << "Session port before config file parse: " << cur_port;
+#endif
 
     /* Parse ~/.ssh/config. */
     if (ssh_options_parse_config (my_ssh_session, NULL) < 0) {
         x2goDebug << "Warning: unable to parse the SSH config file.";
     }
 
-#if LIBSSH_VERSION_INT < SSH_VERSION_INT (0, 6, 0)
-    cur_port = my_ssh_session->port;
-#else
+#if LIBSSH_VERSION_INT >= SSH_VERSION_INT (0, 6, 0)
     ssh_options_get_port (my_ssh_session, &cur_port);
-#endif
     x2goDebug << "Session port after config file parse: " << cur_port;
+#endif
 
     rc = ssh_connect ( my_ssh_session );
     if ( rc != SSH_OK )
@@ -862,24 +856,20 @@ bool SshMasterConnection::sshConnect()
         }
     }
 
-#if LIBSSH_VERSION_INT < SSH_VERSION_INT (0, 6, 0)
-    cur_port = my_ssh_session->port;
-#else
+#if LIBSSH_VERSION_INT >= SSH_VERSION_INT (0, 6, 0)
     ssh_options_get_port (my_ssh_session, &cur_port);
-#endif
     x2goDebug << "Session port before config file parse (part 2): " << cur_port;
+#endif
 
     /* Parse ~/.ssh/config. */
     if (ssh_options_parse_config (my_ssh_session, NULL) < 0) {
         x2goDebug << "Warning: unable to parse the SSH config file.";
     }
 
-#if LIBSSH_VERSION_INT < SSH_VERSION_INT (0, 6, 0)
-    cur_port = my_ssh_session->port;
-#else
+#if LIBSSH_VERSION_INT >= SSH_VERSION_INT (0, 6, 0)
     ssh_options_get_port (my_ssh_session, &cur_port);
-#endif
     x2goDebug << "Session port after config file parse (part 2): " << cur_port;
+#endif
 
     return true;
 }
@@ -1674,6 +1664,12 @@ void SshMasterConnection::channelLoop()
                               << channelConnections.at (i).localHost << ":" << channelConnections.at (i).localPort
                               << ")";
 #endif
+
+                    /*
+                     * Cannot support config file parsing here with pre-0.6.0 libssh versions.
+                     * There's just no way to get the inferred host and port values.
+                     */
+#if LIBSSH_VERSION_INT >= SSH_VERSION_INT (0, 6, 0)
                     ssh_session tmp_session = ssh_new ();
 
                     if (!tmp_session) {
@@ -1699,36 +1695,20 @@ void SshMasterConnection::channelLoop()
                         }
 
                         unsigned int inferred_port = 0;
-#if LIBSSH_VERSION_INT < SSH_VERSION_INT (0, 6, 0)
-                        inferred_port = tmp_session->port;
-#else
                         ssh_options_get_port (tmp_session, &inferred_port);
-#endif
                         x2goDebug << "Temporary session port after config file parse: " << inferred_port;
 
                         char *inferred_host = NULL;
-#if LIBSSH_VERSION_INT < SSH_VERSION_INT (0, 6, 0)
-                        if (inferred_host) {
-                            inferred_host = strdup(tmp_session->host);
-                        }
-                        else {
-                            x2goDebug << "Temporary session host after config file parse NULL; should not happen, as it was set before.";
-                        }
-#else
                         ssh_options_get (tmp_session, SSH_OPTIONS_HOST, &inferred_host);
-#endif
                         x2goDebug << "Temporary session host after config file parse: " << inferred_host;
 
                         channelConnections[i].forwardHost = QString (inferred_host);
                         channelConnections[i].forwardPort = static_cast<int> (inferred_port);
 
-#if LIBSSH_VERSION_INT < SSH_VERSION_INT (0, 6, 0)
-                        free (inferred_host);
-#else
                         ssh_string_free_char (inferred_host);
-#endif
                         ssh_free (tmp_session);
                     }
+#endif
 
                     {
                         QByteArray tmp_BA_forward = channelConnections.at (i).forwardHost.toLocal8Bit ();
