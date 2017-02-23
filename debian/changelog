@@ -63,6 +63,10 @@ x2goclient (4.1.0.1-0x2go1) UNRELEASED; urgency=medium
     - src/pulsemanager.cpp: fix up a debug string. Qt drops a space where I'd
       like to have one and inserts a space where I'd like none, so work around
       that fancifully.
+    - src/sshmasterconnection.cpp: libssh < 0.6.0 does not have the
+      ssh_options_get () API, but instead expects users to pull out
+      information directly from the ssh_session structure. This fixes compile
+      issues on systems with older libssh versions.
 
  -- X2Go Release Manager <git-admin@x2go.org>  Wed, 22 Feb 2017 07:13:10 +0100
 

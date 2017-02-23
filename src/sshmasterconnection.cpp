@@ -224,7 +224,11 @@ SshMasterConnection::SshMasterConnection (QObject* parent, QString host, int por
             }
 
             char *inferred_username = NULL;
+#if LIBSSH_VERSION_INT < SSH_VERSION_INT (0, 6, 0)
+            inferred_username = tmp_session->username;
+#else
             ssh_options_get (tmp_session, SSH_OPTIONS_USER, &inferred_username);
+#endif
             x2goDebug << "Temporary session user name after config file parse: " << inferred_username;
 
             this->user = QString::fromLocal8Bit (inferred_username);
@@ -825,7 +829,11 @@ bool SshMasterConnection::sshConnect()
     }
 
     unsigned int cur_port = 0;
+#if LIBSSH_VERSION_INT < SSH_VERSION_INT (0, 6, 0)
+    cur_port = my_ssh_session->port;
+#else
     ssh_options_get_port (my_ssh_session, &cur_port);
+#endif
     x2goDebug << "Session port before config file parse: " << cur_port;
 
     /* Parse ~/.ssh/config. */
@@ -833,7 +841,11 @@ bool SshMasterConnection::sshConnect()
         x2goDebug << "Warning: unable to parse the SSH config file.";
     }
 
+#if LIBSSH_VERSION_INT < SSH_VERSION_INT (0, 6, 0)
+    cur_port = my_ssh_session->port;
+#else
     ssh_options_get_port (my_ssh_session, &cur_port);
+#endif
     x2goDebug << "Session port after config file parse: " << cur_port;
 
     rc = ssh_connect ( my_ssh_session );
@@ -850,7 +862,11 @@ bool SshMasterConnection::sshConnect()
         }
     }
 
+#if LIBSSH_VERSION_INT < SSH_VERSION_INT (0, 6, 0)
+    cur_port = my_ssh_session->port;
+#else
     ssh_options_get_port (my_ssh_session, &cur_port);
+#endif
     x2goDebug << "Session port before config file parse (part 2): " << cur_port;
 
     /* Parse ~/.ssh/config. */
@@ -858,7 +874,11 @@ bool SshMasterConnection::sshConnect()
         x2goDebug << "Warning: unable to parse the SSH config file.";
     }
 
+#if LIBSSH_VERSION_INT < SSH_VERSION_INT (0, 6, 0)
+    cur_port = my_ssh_session->port;
+#else
     ssh_options_get_port (my_ssh_session, &cur_port);
+#endif
     x2goDebug << "Session port after config file parse (part 2): " << cur_port;
 
     return true;
@@ -1679,17 +1699,34 @@ void SshMasterConnection::channelLoop()
                         }
 
                         unsigned int inferred_port = 0;
+#if LIBSSH_VERSION_INT < SSH_VERSION_INT (0, 6, 0)
+                        inferred_port = tmp_session->port;
+#else
                         ssh_options_get_port (tmp_session, &inferred_port);
+#endif
                         x2goDebug << "Temporary session port after config file parse: " << inferred_port;
 
                         char *inferred_host = NULL;
+#if LIBSSH_VERSION_INT < SSH_VERSION_INT (0, 6, 0)
+                        if (inferred_host) {
+                            inferred_host = strdup(tmp_session->host);
+                        }
+                        else {
+                            x2goDebug << "Temporary session host after config file parse NULL; should not happen, as it was set before.";
+                        }
+#else
                         ssh_options_get (tmp_session, SSH_OPTIONS_HOST, &inferred_host);
+#endif
                         x2goDebug << "Temporary session host after config file parse: " << inferred_host;
 
                         channelConnections[i].forwardHost = QString (inferred_host);
                         channelConnections[i].forwardPort = static_cast<int> (inferred_port);
 
+#if LIBSSH_VERSION_INT < SSH_VERSION_INT (0, 6, 0)
+                        free (inferred_host);
+#else
                         ssh_string_free_char (inferred_host);
+#endif
                         ssh_free (tmp_session);
                     }
 
