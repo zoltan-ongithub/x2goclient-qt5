@@ -65,7 +65,7 @@ private slots:
     void slot_accepted();
     void slot_default();
 #ifdef Q_OS_LINUX
-    void slot_directRDP(bool direct);
+    void slot_directRDP(bool direct, bool isXDMCP);
 #endif
 };
 

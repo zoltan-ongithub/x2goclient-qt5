@@ -228,6 +228,32 @@ SettingsWidget::SettingsWidget ( QString id, ONMainWindow * mw,
     connect (params, SIGNAL(textChanged(QString)), this, SLOT(updateCmdLine()));
     connect (width, SIGNAL(valueChanged(int)), this, SLOT(updateCmdLine()));
     connect (height, SIGNAL(valueChanged(int)), this, SLOT(updateCmdLine()));
+
+
+    xdmcpBox=new QGroupBox ( tr ( "XDMCP client" ),this );
+    setLay->addWidget ( xdmcpBox );
+    rXnest=new QRadioButton ("Xnest",xdmcpBox );
+    rXnest->setChecked(true);
+    rXephyr=new QRadioButton ( "Xephyr",xdmcpBox);
+    rX2goagent=new QRadioButton ( "x2goagent ",xdmcpBox);
+    QButtonGroup* rXdmcpClient=new QButtonGroup(xdmcpBox);
+    rXdmcpClient->addButton ( rXnest );
+    rXdmcpClient->addButton ( rXephyr );
+    rXdmcpClient->addButton ( rX2goagent );
+    rXdmcpClient->setExclusive ( true );
+    QGridLayout *xdmcpLay=new QGridLayout(xdmcpBox);
+    xdmcpLay->addWidget(rXnest,0,0);
+    xdmcpLay->addWidget(rXephyr,1,0);
+    xdmcpLay->addWidget(rX2goagent,2,0);
+    xdmcpLay->addWidget(new QLabel(tr("Additional parameters:")),3,0);
+    xdmcpLay->addWidget(new QLabel(tr("Command line:")),4,0);
+    xdmcpCmdLine=new QLineEdit(xdmcpBox);
+    xdmcpCmdLine->setReadOnly(true);
+    xdmcpParams=new QLineEdit(xdmcpBox);
+    xdmcpLay->addWidget(xdmcpCmdLine,4,0,1,2);
+    xdmcpLay->addWidget(xdmcpParams,3,1);
+    connect (rXdmcpClient, SIGNAL(buttonClicked(int)), this, SLOT(updateCmdLine()));
+    connect (xdmcpParams, SIGNAL(textChanged(QString)), this, SLOT(updateCmdLine()));
 #endif //CFGCLIENT
 #endif //Q_OS_LINUX
 #else
@@ -276,7 +302,7 @@ void SettingsWidget::slot_kbdClicked()
 
 
 #ifdef Q_OS_LINUX
-void SettingsWidget::setDirectRdp(bool direct)
+void SettingsWidget::setDirectRdp(bool direct, bool isXDMCP)
 {
     clipGr->setVisible(!direct);
     kgb->setVisible(!direct);
@@ -290,7 +316,8 @@ void SettingsWidget::setDirectRdp(bool direct)
     pbIdentDisp->setVisible(!direct);
     hLine1->setVisible(!direct);
     hLine2->setVisible(!direct);
-    rdpBox->setVisible(direct);
+    rdpBox->setVisible(direct && !isXDMCP);
+    xdmcpBox->setVisible(direct && isXDMCP);
     if (direct)
     {
         if (display->isChecked())
@@ -307,6 +334,7 @@ void SettingsWidget::setDirectRdp(bool direct)
             custom->setChecked(true);
         }
     }
+    updateCmdLine();
 }
 #endif
 
@@ -398,6 +426,15 @@ void SettingsWidget::readConfig()
     else
         rXfreeRDPOld->setChecked(true);
     params->setText(st.setting()->value ( sessionId+"/directrdpsettings","").toString());
+
+    client=st.setting()->value ( sessionId+"/xdmcpclient","Xnest").toString();
+    if(client=="Xnest")
+        rXnest->setChecked(true);
+    else if(client=="x2goagent")
+        rX2goagent->setChecked(true);
+    else
+        rXephyr->setChecked(true);
+    xdmcpParams->setText(st.setting()->value ( sessionId+"/directxdmcpsettings","").toString());
 #endif
 #endif
 
@@ -536,6 +573,25 @@ void SettingsWidget::saveSettings()
     }
     st.setting()->setValue ( sessionId+"/directrdpsettings",
                              ( QVariant ) params->text());
+
+    if (rXnest->isChecked())
+    {
+        st.setting()->setValue ( sessionId+"/xdmcpclient",
+                                 ( QVariant ) "Xnest" );
+    }
+    else if (rXephyr->isChecked())
+    {
+        st.setting()->setValue ( sessionId+"/xdmcpclient",
+                                 ( QVariant ) "Xephyr" );
+    }
+    else
+    {
+        st.setting()->setValue ( sessionId+"/xdmcpclient",
+                                 ( QVariant ) "x2goagent" );
+    }
+    st.setting()->setValue ( sessionId+"/directxdmcpsettings",
+                             ( QVariant ) xdmcpParams->text());
+
 #endif
 #endif
 
@@ -668,6 +724,50 @@ void SettingsWidget::updateCmdLine()
         }
         cmdLine->setText(client +" "+params->text()+ grOpt +userOpt+" /p:<"+tr("password")+"> /v:"+ server+":"+port );
     }
+    fs->setEnabled(true);
+    if(!rXephyr->isChecked() && !xdmcpBox->isHidden())
+    {
+        fs->setEnabled(false);
+        if(fs->isChecked())
+        {
+            custom->setChecked(true);
+        }
+    }
+    if(rX2goagent->isChecked())
+    {
+        client="x2goagent";
+    }
+    else
+    {
+        client="Xnest";
+    }
+    if (maxRes->isChecked())
+    {
+        grOpt=" -geometry <maxW>x<maxH>";
+    }
+    if (custom->isChecked())
+    {
+        grOpt=" -geometry "+QString::number(width->value())+"x"+QString::number(height->value());
+    }
+
+    if(rXephyr->isChecked())
+    {
+        client="Xephyr";
+        if (fs->isChecked())
+        {
+            grOpt=" -fullscreen ";
+        }
+        if (maxRes->isChecked())
+        {
+            grOpt=" -screen <maxW>x<maxH>";
+        }
+        if (custom->isChecked())
+        {
+            grOpt=" -screen "+QString::number(width->value())+"x"+QString::number(height->value());
+        }
+    }
+    xdmcpCmdLine->setText(client +" "+xdmcpParams->text()+ grOpt +" -query "+ server+ " :<DISPLAY>");
+
 #endif
 }
 #endif

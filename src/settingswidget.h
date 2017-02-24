@@ -44,7 +44,7 @@ public:
     void setDefaults();
     void saveSettings();
 #ifdef Q_OS_LINUX
-    void setDirectRdp(bool direct);
+    void setDirectRdp(bool direct, bool isXDMCP);
 public slots:
     void setServerSettings(QString server, QString port, QString user);
     void updateCmdLine();
@@ -97,6 +97,12 @@ private:
     QString server;
     QString user;
     QString port;
+    QGroupBox *xdmcpBox;
+    QRadioButton* rXnest;
+    QRadioButton* rXephyr;
+    QRadioButton* rX2goagent;
+    QLineEdit* xdmcpCmdLine;
+    QLineEdit* xdmcpParams;
 #endif
     QFrame* hLine1;
     QFrame* hLine2;

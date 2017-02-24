@@ -85,7 +85,7 @@ EditConnectionDialog::EditConnectionDialog ( bool newSession, QString id, QWidge
     connect ( sessSet,SIGNAL ( nameChanged ( const QString & ) ),this,
               SLOT ( slot_changeCaption ( const QString& ) ) );
     connect ( this,SIGNAL ( accepted() ),this,SLOT ( slot_accepted() ) );
-    connect (sessSet, SIGNAL(directRDP(bool)), this, SLOT(slot_directRDP(bool)));
+    connect (sessSet, SIGNAL(directRDP(bool,bool)), this, SLOT(slot_directRDP(bool,bool)));
 
     connect (sessSet,
 	     SIGNAL(settingsChanged(QString,QString,QString)), otherSet,
@@ -170,11 +170,11 @@ void EditConnectionDialog::slot_default()
 }
 
 #ifdef Q_OS_LINUX
-void EditConnectionDialog::slot_directRDP(bool direct)
+void EditConnectionDialog::slot_directRDP(bool direct, bool isXDMCP)
 {
     fr->setTabEnabled(1,!direct);
     fr->setTabEnabled(3,!direct);
     fr->setTabEnabled(4,!direct);
-    otherSet->setDirectRdp(direct);
+    otherSet->setDirectRdp(direct, isXDMCP);
 }
 #endif

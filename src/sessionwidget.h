@@ -85,6 +85,7 @@ private:
     QLabel* lPort;
     QLabel* lKey;
     QLabel* lPath;
+    QLabel* lLogin;
     QPushButton* pbAdvanced;
     QString rdpOptions;
     QString rdpServer;
@@ -110,7 +111,7 @@ private:
 signals:
     void nameChanged ( const QString & );
 #ifdef Q_OS_LINUX
-    void directRDP(bool);
+    void directRDP(bool, bool);
     void settingsChanged(const QString &, const QString &, const QString &);
 #endif
 };

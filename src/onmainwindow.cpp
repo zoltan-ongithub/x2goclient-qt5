@@ -3235,10 +3235,20 @@ void ONMainWindow::slotSessEnter()
         QString sid=sessionExplorer->getLastSession()->id();
         QString cmd=st->setting()->value ( sid+"/command",
                                            ( QVariant ) QString::null ).toString();
-        bool directRDP=(st->setting()->value ( sid+"/directrdp",
+        directRDP=(st->setting()->value ( sid+"/directrdp",
                                                ( QVariant ) false ).toBool() && cmd == "RDP");
 
         if (cmd =="RDP" && directRDP)
+        {
+            x2goDebug<<"Starting direct RDP Session from broker";
+            startSession ( sid );
+            return;
+        }
+
+        directRDP=(st->setting()->value ( sid+"/directxdmcp",
+                                               ( QVariant ) false ).toBool() && cmd == "RDP");
+
+        if (cmd =="XDMCP" && directRDP)
         {
             x2goDebug<<"Starting direct RDP Session from broker";
             startSession ( sid );
@@ -3313,6 +3323,8 @@ void ONMainWindow::startDirectRDP()
                                      ( QVariant ) defaultHeight ).toInt();
     int width=st->setting()->value ( sid+"/width",
                                     ( QVariant ) defaultWidth ).toInt();
+    QString sessionType=st->setting()->value ( sid+"/command",
+                                         ( QVariant ) "").toString();
 
     QString client=st->setting()->value ( sid+"/rdpclient",
                                          ( QVariant ) "rdesktop").toString();
@@ -3409,6 +3421,58 @@ void ONMainWindow::startDirectRDP()
             grOpt=" /w:"+QString::number(width)+" /h:"+QString::number(height);
         }
         proxyCmd= client +" "+params+ grOpt +userOpt+passOpt + "/v:"+host +":"+port ;
+    }
+    if(sessionType=="XDMCP")
+    {
+        x2goDebug<<"starting direct XDMCP session";
+        client=st->setting()->value ( sid+"/xdmcpclient",
+                                         ( QVariant ) "Xnest").toString();
+        params=st->setting()->value ( sid+"/directxdmcpsettings",
+                                         ( QVariant ) "").toString();
+        if(client == "Xephyr")
+        {
+            if (fullscreen)
+            {
+                grOpt=" -fullscreen ";
+            }
+            else if (maxRes)
+            {
+                QDesktopWidget wd;
+                grOpt=" -screen "+QString::number( wd.screenGeometry().width())+"x"+QString::number(wd.screenGeometry().height())+" ";
+            }
+            else
+            {
+                grOpt=" -screen "+QString::number(width)+"x"+QString::number(height);
+            }
+        }
+        else
+        {
+            if (maxRes)
+            {
+                QDesktopWidget wd;
+                grOpt=" -geometry "+QString::number( wd.screenGeometry().width())+"x"+QString::number(wd.screenGeometry().height())+" ";
+            }
+            else
+            {
+                grOpt=" -geometry "+QString::number(width)+"x"+QString::number(height);
+            }
+        }
+        int p=0;
+        while(true)
+        {
+             QString fname="/tmp/.X"+QString::number(p)+"-lock";
+             if(QFile::exists(fname))
+             {
+                 ++p;
+             }
+             else
+                 break;
+        }
+        proxyCmd= client +" "+params+ grOpt + " -query "+host +" :"+QString::number(p) ;
+    }
+    else
+    {
+        x2goDebug<<"starting direct RDP session";
     }
 //     x2goDebug<<"starting direct session with cmd:"<<proxyCmd;
     nxproxy->start ( proxyCmd );
@@ -3532,6 +3596,16 @@ bool ONMainWindow::startSession ( const QString& sid )
 
 
     if (cmd =="RDP" && directRDP)
+    {
+        startDirectRDP();
+        return true;
+    }
+
+    directRDP=(st->setting()->value ( sid+"/directxdmcp",
+                                      ( QVariant ) false ).toBool() && cmd == "XDMCP");
+
+
+    if (cmd =="XDMCP" && directRDP)
     {
         startDirectRDP();
         return true;
@@ -5866,8 +5940,15 @@ void ONMainWindow::handle_xmodmap_error (QProcess &proc) {
 }
 #endif
 
-void ONMainWindow::slotProxyError ( QProcess::ProcessError )
+void ONMainWindow::slotProxyError ( QProcess::ProcessError err )
 {
+    if(err==QProcess::FailedToStart && directRDP)
+    {
+        QString main_text = tr("Failed to start RDP or XMDCP client");
+        QString informative_text = tr ("Check session settings and ensure that selected client is installed on your system.");
+
+        show_RichText_ErrorMsgBox (main_text, informative_text);
+    }
     slotProxyFinished ( -1,QProcess::CrashExit );
 }
 

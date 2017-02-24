@@ -120,7 +120,8 @@ SessionWidget::SessionWidget ( bool newSession, QString id, ONMainWindow * mw,
     QVBoxLayout *slLay =new QVBoxLayout();
     QVBoxLayout *elLay =new QVBoxLayout();
     slLay->addWidget ( new QLabel ( tr ( "Host:" ),sgb ) );
-    slLay->addWidget ( new QLabel ( tr ( "Login:" ),sgb ) );
+    lLogin= new QLabel ( tr ( "Login:" ),sgb );
+    slLay->addWidget (lLogin );
     lPort=new QLabel ( tr ( "SSH port:" ),sgb );
     slLay->addWidget ( lPort );
     elLay->addWidget ( server );
@@ -376,6 +377,16 @@ void SessionWidget::slot_proxyType()
 void SessionWidget::slot_rdpDirectClicked()
 {
     bool isDirectRDP=cbDirectRDP->isChecked();
+    bool isXDMCP=false;
+    if(sessBox->currentText()== tr("XDMCP"))
+    {
+        cbDirectRDP->setText( tr("Direct XDMCP connection"));
+        isXDMCP=true;
+    }
+    else
+    {
+        cbDirectRDP->setText( tr("Direct RDP connection"));
+    }
     if (cbDirectRDP->isHidden())
         isDirectRDP=false;
     pbAdvanced->setVisible((!isDirectRDP) && (sessBox->currentIndex()==RDP));
@@ -386,7 +397,9 @@ void SessionWidget::slot_rdpDirectClicked()
     lKey->setVisible(!isDirectRDP);
     openKey->setVisible(!isDirectRDP);
     sshPort->setVisible(!isDirectRDP);
-    rdpPort->setVisible(isDirectRDP);
+    rdpPort->setVisible(isDirectRDP && (!isXDMCP));
+    lPort->setVisible(!(isDirectRDP && isXDMCP));
+
     cbKrbDelegation->setVisible(!isDirectRDP);
     cbKrbLogin->setVisible(!isDirectRDP);
 
@@ -401,8 +414,11 @@ void SessionWidget::slot_rdpDirectClicked()
     {
         lPort->setText(tr("SSH port:"));
     }
+    lLogin->setVisible(!(isXDMCP&&isDirectRDP));
+    uname->setVisible(!(isXDMCP&&isDirectRDP));
 
-    emit directRDP(isDirectRDP);
+
+    emit directRDP(isDirectRDP, isXDMCP);
     slot_emitSettings();
 }
 #endif
@@ -505,6 +521,10 @@ void SessionWidget::slot_changeCmd ( int var )
             {
                 leCmdIp->setText ( tr ( "XDMCP server:" ) );
                 cmd->setText ( xdmcpServer );
+#ifdef Q_OS_LINUX
+                cbDirectRDP->show();
+                cbDirectRDP->setText(tr ("direct XDMCP connection"));
+#endif
             }
         }
         else
@@ -677,8 +697,14 @@ void SessionWidget::readConfig()
     xdmcpServer=st.setting()->value ( sessionId+"/xdmcpserver",
                                       ( QVariant ) "localhost" ).toString().trimmed();
 #ifdef Q_OS_LINUX
-    cbDirectRDP->setChecked(st.setting()->value (
-                                sessionId+"/directrdp",false ).toBool());
+    if(st.setting()->value (sessionId+"/directrdp",false ).toBool())
+    {
+        cbDirectRDP->setChecked(true);
+    }
+    if(st.setting()->value (sessionId+"/directxdmcp",false ).toBool())
+    {
+        cbDirectRDP->setChecked(true);
+    }
 #endif
 
     for ( int i=0; i<appNames.count(); ++i )
@@ -750,6 +776,10 @@ void SessionWidget::readConfig()
             sessBox->setCurrentIndex ( XDMCP );
             cmd->setEnabled ( true );
             cmd->setText ( xdmcpServer );
+#ifdef Q_OS_LINUX
+            cbDirectRDP->show();
+            slot_rdpDirectClicked();
+#endif
         }
         else
         {
@@ -845,6 +875,7 @@ void SessionWidget::saveSettings()
     st.setting()->setValue(sessionId+"/krbdelegation",( QVariant ) cbKrbDelegation->isChecked());
 #ifdef Q_OS_LINUX
     st.setting()->setValue(sessionId+"/directrdp",( QVariant ) cbDirectRDP->isChecked());
+    st.setting()->setValue(sessionId+"/directxdmcp",( QVariant ) cbDirectRDP->isChecked());
 #endif
     QString command;
     bool rootless=false;
