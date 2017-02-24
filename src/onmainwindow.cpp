@@ -607,7 +607,7 @@ bool ONMainWindow::get_translator (QString file_name_start, QTranslator **transl
     for (QStringList::const_iterator it = ui_languages.constBegin (); it != ui_languages.constEnd (); ++it) {
         /* Respect English locales. Don't try to load any translation, because we do not ship nop-English translations. */
         if ((*it).startsWith ("en")) {
-            x2goWarningf (1) << tr ("English language requested, not loading translator.");
+            x2goWarningf (1) << "English language requested, not loading translator.";
             break;
         }
         else {

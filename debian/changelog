@@ -92,6 +92,9 @@ x2goclient (4.1.0.1-0x2go1) UNRELEASED; urgency=medium
       as languages are unique in the number of plural forms and the like.
     - {src/printdialog.cpp,res/i18n/x2goclient_*.ts}: drop spurious left-over
       parenthesis in warning message and adapt translations.
+    - src/onmainwindow.cpp: make the "not loading translator" message
+      non-translatable, as it doesn't make a lot of sense to actually
+      translate it.
 
   [ Oleksandr Shneyder ]
   * New upstream version (4.1.0.1):
