@@ -4799,45 +4799,24 @@ void ONMainWindow::slotResumeSess()
     }
     else
     {
-        QString depth=QString::number ( s.colorDepth );
         int res;
-        if ( s.colorDepth==24 || s.colorDepth==32 )
-        {
-            res=QMessageBox::warning (
-                    0l,tr ( "Warning" ),
-                    tr ("Your current color depth is different from "
-                        "the session's color depth. This may cause "
-                        "problems reconnecting to this session and "
-                        "in most cases <b>you will loose the "
-                        "session</b> and have to start a new one! "
-                        "It's highly recommended to change the color "
-                        "depth of your display to " ) +
-                    tr ( "24 or 32" ) +
-                    tr (" bits and restart your X.Org Server before you "
-                        "reconnect to this X2Go session.<br />"
-                        "Do you want to resume this session anyway?" ),
-                    tr ( "Yes" ),
-                    tr ( "No" ) );
-
-        }
-        else
-        {
-            res=QMessageBox::warning (
-                    0l,tr ( "Warning" ),
-                    tr ("Your current color depth is different from "
-                        "the session's color depth. This may cause "
-                        "problems reconnecting to this session and "
-                        "in most cases <b>you will loose the "
-                        "session</b> and have to start a new one! "
-                        "It's highly recommended to change the color "
-                        "depth of your display to " ) +
-                    depth +
-                    tr (" bits and restart your X.Org Server before you "
-                        "reconnect to this X2Go session.<br />"
-                        "Do you want to resume this session anyway?" ),
-                    tr ( "Yes" ),
-                    tr ( "No" ) );
-        }
+        res=QMessageBox::warning (
+                0l,tr ( "Warning" ),
+                tr ("Your current color depth is different from "
+                    "the session's color depth. This may cause "
+                    "problems reconnecting to this session and "
+                    "in most cases <b>you will loose the "
+                    "session</b> and have to start a new one! ")
+              + tr ("It's highly recommended to change the color "
+                    "depth of your display to %n bit(s) and "
+                    "restart your X.Org Server before you "
+                    "reconnect to this X2Go session.",
+                    "%n will be replaced with a number",
+                    s.colorDepth)
+              + tr ("<br />"
+                    "Do you want to resume this session anyway?"),
+                tr ( "Yes" ),
+                tr ( "No" ) );
         if ( res==0 )
             resumeSession ( s );
     }

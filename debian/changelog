@@ -86,6 +86,10 @@ x2goclient (4.1.0.1-0x2go1) UNRELEASED; urgency=medium
     - {src/{onmainwindow,httpbrokerclient}.cpp,res/i18n/x2goclient_*.ts}: fix
       another occurrence of a string missing a space separator between words
       and update translation files.
+    - src/onmainwindow.cpp: don't duplicate depth warning message needlessly,
+      use correct plural forms in translations and split string up in a
+      translation-friendly form. I'll leave translators to handle this beast,
+      as languages are unique in the number of plural forms and the like.
 
   [ Oleksandr Shneyder ]
   * New upstream version (4.1.0.1):
