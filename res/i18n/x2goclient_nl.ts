@@ -1123,7 +1123,7 @@ Publieke sleutel hash: </translation>
     </message>
     <message>
         <location filename="../../src/httpbrokerclient.cpp" line="144"/>
-        <source>The host key for this server was not found but anothertype of key exists. An attacker might have changed the default server key to trick your client into thinking the key does not exist yet.</source>
+        <source>The host key for this server was not found but another type of key exists. An attacker might have changed the default server key to trick your client into thinking the key does not exist yet.</source>
         <translation>De host sleutel voor deze server is niet gevonden maar een ander type sleutel is aanwezig. Een aanvaller heeft mogelijk de standaard serversleutel aangepast en wil uw client misleiden door deze te laten geloven dat de sleutel niet bestaat.</translation>
     </message>
     <message>
@@ -1788,7 +1788,7 @@ Wilt u de verbinding verbreken?</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="3090"/>
-        <source>The host key for this server was not found but anothertype of key exists. An attacker might have changed the default server key to trick your client into thinking the key does not exist yet.
+        <source>The host key for this server was not found but another type of key exists. An attacker might have changed the default server key to trick your client into thinking the key does not exist yet.
 For security reasons, it is recommended to stop the connection attempt.
 Do you want to terminate the connection?
 </source>

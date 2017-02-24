@@ -995,7 +995,7 @@ Public key hash: </source>
     </message>
     <message>
         <location filename="../../src/httpbrokerclient.cpp" line="144"/>
-        <source>The host key for this server was not found but anothertype of key exists. An attacker might have changed the default server key to trick your client into thinking the key does not exist yet.</source>
+        <source>The host key for this server was not found but another type of key exists. An attacker might have changed the default server key to trick your client into thinking the key does not exist yet.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1610,7 +1610,7 @@ Do you want to terminate the connection?
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="3090"/>
-        <source>The host key for this server was not found but anothertype of key exists. An attacker might have changed the default server key to trick your client into thinking the key does not exist yet.
+        <source>The host key for this server was not found but another type of key exists. An attacker might have changed the default server key to trick your client into thinking the key does not exist yet.
 For security reasons, it is recommended to stop the connection attempt.
 Do you want to terminate the connection?
 </source>

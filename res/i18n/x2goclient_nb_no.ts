@@ -1006,7 +1006,7 @@ Offentlig nøkkel: </translation>
         <translation>Av hensyn til sikkerheten vil tilkoblingen bli stoppet.</translation>
     </message>
     <message>
-        <source>The host key for this server was not found but anothertype of key exists. An attacker might have changed the default server key to trick your client into thinking the key does not exist yet.</source>
+        <source>The host key for this server was not found but another type of key exists. An attacker might have changed the default server key to trick your client into thinking the key does not exist yet.</source>
         <translation>Vertsnøkkelen for denne serveren ble ikke funnet, men en annen type av nøkkel eksisterer. En angriper kan ha endret standard servernøkkel for å lure klienten din til å tro at nøkkelen ikke finnes ennå.</translation>
     </message>
     <message>
@@ -2289,7 +2289,7 @@ Vil du avbryte tilkoblingen?
         <translation>Verifiseringen av vertsnøkkelen feilet.</translation>
     </message>
     <message>
-        <source>The host key for this server was not found but anothertype of key exists. An attacker might have changed the default server key to trick your client into thinking the key does not exist yet.
+        <source>The host key for this server was not found but another type of key exists. An attacker might have changed the default server key to trick your client into thinking the key does not exist yet.
 For security reasons, it is recommended to stop the connection attempt.
 Do you want to terminate the connection?
 </source>

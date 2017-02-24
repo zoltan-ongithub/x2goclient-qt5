@@ -80,6 +80,9 @@ x2goclient (4.1.0.1-0x2go1) UNRELEASED; urgency=medium
       only available on Linux, so guard new section.
     - res/i18n/x2goclient_et.ts: various fixups for the Estonian translation
       file.
+    - res/i18n/x2goclient_*.ts: go the extra mile and fix up translation files
+      manually after the "anothertype" fix in
+      8e503d89ee2d03a313c3deff11f0516fce503022.
 
   [ Oleksandr Shneyder ]
   * New upstream version (4.1.0.1):

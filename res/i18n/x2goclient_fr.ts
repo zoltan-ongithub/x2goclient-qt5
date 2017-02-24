@@ -975,7 +975,7 @@ Public key hash: </source>
         <translation>Par sécurité, la tentative de connexion va être abandonnée.</translation>
     </message>
     <message>
-        <source>The host key for this server was not found but anothertype of key exists. An attacker might have changed the default server key to trick your client into thinking the key does not exist yet.</source>
+        <source>The host key for this server was not found but another type of key exists. An attacker might have changed the default server key to trick your client into thinking the key does not exist yet.</source>
         <translation>La clé d&apos;hôte de ce serveur n&apos;a pas été reconnue mais un autre type de clef existe. Un attaquant peut avoir changé la clé par défaut du serveur pour faire croire à votre client que la clé n&apos;existe pas encore.</translation>
     </message>
     <message>
@@ -1833,7 +1833,7 @@ Voulez vous mettre fin à la connexion ?
         <translation>La vérification de la clef d&apos;hôte a échoué.</translation>
     </message>
     <message>
-        <source>The host key for this server was not found but anothertype of key exists. An attacker might have changed the default server key to trick your client into thinking the key does not exist yet.
+        <source>The host key for this server was not found but another type of key exists. An attacker might have changed the default server key to trick your client into thinking the key does not exist yet.
 For security reasons, it is recommended to stop the connection attempt.
 Do you want to terminate the connection?
 </source>
