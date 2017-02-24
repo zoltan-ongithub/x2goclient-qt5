@@ -369,13 +369,11 @@
         <translation>La version de votre XQuartz est trop ancienne.</translation>
     </message>
     <message>
-        <source>Your are using XQuartz (X Window System Server for OS X) version </source>
-        <translation>Vous utilisez XQuartz (Serveur de Système X Window pour OS X) version </translation>
+        <source>Your are using XQuartz (X Window System Server for OS X) version %1.</source>
+        <translation>Vous utilisez XQuartz (Serveur de Système X Window pour OS X) version %1.</translation>
     </message>
     <message>
-        <source>.
-
-This version causes problems with X applications in 24bit color mode.
+        <source>This version causes problems with X applications in 24bit color mode.
 You should update your X11 environment.
 
 MacPorts users please follow the steps outlined on:
@@ -383,10 +381,8 @@ MacPorts users please follow the steps outlined on:
 
 Users who have installed XQuartz via the installer package
 can find updated versions on:
-&lt;center&gt;&lt;a href=&quot;https://xquartz.macosforge.org/&quot;&gt;https://xquartz.macosforge.org/&lt;/a&gt;&lt;/center&gt;</source>
-        <translation>.
-
-Cette version provoque des problèmes avec les applications X en mode couleur 24bit.
+&lt;center&gt;&lt;a href=&quot;https://www.xquartz.org/&quot;&gt;https://www.xquartz.org/&lt;/a&gt;&lt;/center&gt;</source>
+        <translation>Cette version provoque des problèmes avec les applications X en mode couleur 24bit.
 Vous devriez mettre à jour votre environnement X11.
 
 Utilisateurs de MacPorts, veuillez suivre les instructions sur :
@@ -394,7 +390,7 @@ Utilisateurs de MacPorts, veuillez suivre les instructions sur :
 
 Les utilisateurs qui ont installé XQuartz par le paquet d&apos;installation
 peuvent trouver des versions mises à jour sur :
-&lt;center&gt;&lt;a href=&quot;https://xquartz.macosforge.org/&quot;&gt;https://xquartz.macosforge.org/&lt;/a&gt;&lt;/center&gt;</translation>
+&lt;center&gt;&lt;a href=&quot;https://www.xquartz.org/&quot;&gt;https://www.xquartz.org/&lt;/a&gt;&lt;/center&gt;</translation>
     </message>
     <message>
         <source>No valid XQuartz application selected.</source>
@@ -2734,7 +2730,7 @@ Upon successful installation, please follow the instructions printed
 by the port utility to autostart/load the server.
 
 All other users, please obtain and install XQuartz from:
-&lt;center&gt;&lt;a href=&quot;https://xquartz.macosforge.org/&quot;&gt;https://xquartz.macosforge.org/&lt;/a&gt;&lt;/center&gt;
+&lt;center&gt;&lt;a href=&quot;https://www.xquartz.org/&quot;&gt;https://www.xquartz.org/&lt;/a&gt;&lt;/center&gt;
 
 Afterwards, restart X2Go Client and select the correct path
 to the X11 application in the general X2Go Client settings.
@@ -2751,7 +2747,7 @@ pour le démarrage et le chargement automatiques du serveur.
 
 Pour tous les autres utilisateurs :
 téléchargez et installez XQuartz à partir de :
-&lt;center&gt;&lt;a href=&quot;https://xquartz.macosforge.org/&quot;&gt;https://xquartz.macosforge.org/&lt;/a&gt;&lt;/center&gt;
+&lt;center&gt;&lt;a href=&quot;https://www.xquartz.org/&quot;&gt;https://www.xquartz.org/&lt;/a&gt;&lt;/center&gt;
 
 Puis redémarrez X2Go Client et spécifiez le chemin correct
 de l&apos;application X11 dans les réglages dans les préférences générales de X2Go Client.

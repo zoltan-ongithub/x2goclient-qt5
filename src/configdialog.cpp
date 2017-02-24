@@ -546,10 +546,9 @@ void ConfigDialog::slot_findXDarwin ()
 void ConfigDialog::printXDarwinVersionWarning (QString version)
 {
     show_RichText_WarningMsgBox (tr ("Your XQuartz version is too old."),
-                                 tr ("Your are using XQuartz (X Window System Server for OS X) version ")
-                                 + version +
-                                 tr (".\n\n"
-                                     "This version causes problems with X applications in 24bit "
+                                 tr ("Your are using XQuartz (X Window System Server for OS X) version %1.").arg (version)
+                                 + "\n\n" +
+                                 tr ("This version causes problems with X applications in 24bit "
                                      "color mode.\n"
                                      "You should update your X11 environment.\n\n"
 
@@ -562,8 +561,8 @@ void ConfigDialog::printXDarwinVersionWarning (QString version)
                                      "Users who have installed XQuartz via the installer package\n"
                                      "can find updated versions on:\n"
 
-                                     "<center><a href=\"https://xquartz.macosforge.org/\">"
-                                         "https://xquartz.macosforge.org/"
+                                     "<center><a href=\"https://www.xquartz.org/\">"
+                                         "https://www.xquartz.org/"
                                      "</a></center>"));
 }
 

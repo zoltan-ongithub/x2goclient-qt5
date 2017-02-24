@@ -360,14 +360,12 @@
     </message>
     <message>
         <location filename="../../src/configdialog.cpp" line="549"/>
-        <source>Your are using XQuartz (X Window System Server for OS X) version </source>
-        <translation>Käytät XQuartz (X Window System Server for OS X) versiota </translation>
+        <source>Your are using XQuartz (X Window System Server for OS X) version %1.</source>
+        <translation>Käytät XQuartz (X Window System Server for OS X) versiota %1.</translation>
     </message>
     <message>
         <location filename="../../src/configdialog.cpp" line="551"/>
-        <source>.
-
-This version causes problems with X applications in 24bit color mode.
+        <source>This version causes problems with X applications in 24bit color mode.
 You should update your X11 environment.
 
 MacPorts users please follow the steps outlined on:
@@ -375,10 +373,8 @@ MacPorts users please follow the steps outlined on:
 
 Users who have installed XQuartz via the installer package
 can find updated versions on:
-&lt;center&gt;&lt;a href=&quot;https://xquartz.macosforge.org/&quot;&gt;https://xquartz.macosforge.org/&lt;/a&gt;&lt;/center&gt;</source>
-        <translation>.
-
-Tämä version aiheuttaa ongelmia X sovellusten kanssa 24 bitin moodissa.
+&lt;center&gt;&lt;a href=&quot;https://www.xquartz.org/&quot;&gt;https://www.xquartz.org/&lt;/a&gt;&lt;/center&gt;</source>
+        <translation>Tämä version aiheuttaa ongelmia X sovellusten kanssa 24 bitin moodissa.
 Sinun pitää päivitttää X11 ohjelmasi.
 
 MacPorts käyttäjät seuratkaa täältä löytyviä ohjeita:
@@ -386,7 +382,7 @@ MacPorts käyttäjät seuratkaa täältä löytyviä ohjeita:
 
 Ne käyttäjät jotka ovat asentaneet XQuartz-ohjelman asennuspaketista
 voivat hakea tuoreen version täältä:
-&lt;center&gt;&lt;a href=&quot;https://xquartz.macosforge.org/&quot;&gt;https://xquartz.macosforge.org/&lt;/a&gt;&lt;/center&gt;</translation>
+&lt;center&gt;&lt;a href=&quot;https://www.xquartz.org/&quot;&gt;https://www.xquartz.org/&lt;/a&gt;&lt;/center&gt;</translation>
     </message>
     <message>
         <location filename="../../src/configdialog.cpp" line="578"/>
@@ -3743,7 +3739,7 @@ Upon successful installation, please follow the instructions printed
 by the port utility to autostart/load the server.
 
 All other users, please obtain and install XQuartz from:
-&lt;center&gt;&lt;a href=&quot;https://xquartz.macosforge.org/&quot;&gt;https://xquartz.macosforge.org/&lt;/a&gt;&lt;/center&gt;
+&lt;center&gt;&lt;a href=&quot;https://www.xquartz.org/&quot;&gt;https://www.xquartz.org/&lt;/a&gt;&lt;/center&gt;
 
 Afterwards, restart X2Go Client and select the correct path
 to the X11 application in the general X2Go Client settings.
@@ -3757,7 +3753,7 @@ Kun asennus valmis, seuraa ohjeita jotka tulostuvat
 portilla joka käynnistää/lataa palvelimen.
 
 Kaikki muut käyttäjät, nouda ja asenna XQuartz täältä:
-&lt;center&gt;&lt;a href=&quot;https://xquartz.macosforge.org/&quot;&gt;https://xquartz.macosforge.org/&lt;/a&gt;&lt;/center&gt;
+&lt;center&gt;&lt;a href=&quot;https://www.xquartz.org/&quot;&gt;https://www.xquartz.org/&lt;/a&gt;&lt;/center&gt;
 
 Seuraavaksi, käynnistä X2Go-asiakasohjelma ja valitse oikea polku
 jolla pääset X11-sovellukseen X2Go-ohjelman asetuksilla.

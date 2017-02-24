@@ -504,14 +504,12 @@
     </message>
     <message>
         <location filename="../../src/configdialog.cpp" line="549"/>
-        <source>Your are using XQuartz (X Window System Server for OS X) version </source>
-        <translation>Sie verwenden XQuartz (X-Window-System-Server für OS X) in der Version </translation>
+        <source>Your are using XQuartz (X Window System Server for OS X) version %1.</source>
+        <translation>Sie verwenden XQuartz (X-Window-System-Server für OS X) in der Version %1.</translation>
     </message>
     <message>
         <location filename="../../src/configdialog.cpp" line="551"/>
-        <source>.
-
-This version causes problems with X applications in 24bit color mode.
+        <source>This version causes problems with X applications in 24bit color mode.
 You should update your X11 environment.
 
 MacPorts users please follow the steps outlined on:
@@ -519,10 +517,8 @@ MacPorts users please follow the steps outlined on:
 
 Users who have installed XQuartz via the installer package
 can find updated versions on:
-&lt;center&gt;&lt;a href=&quot;https://xquartz.macosforge.org/&quot;&gt;https://xquartz.macosforge.org/&lt;/a&gt;&lt;/center&gt;</source>
-        <translation>.
-
-Diese Version verursacht Probleme mit X-Anwendungen, wenn 24-Bit-Farbtiefe gesetzt sind.
+&lt;center&gt;&lt;a href=&quot;https://www.xquartz.org/&quot;&gt;https://www.xquartz.org/&lt;/a&gt;&lt;/center&gt;</source>
+        <translation>Diese Version verursacht Probleme mit X-Anwendungen, wenn 24-Bit-Farbtiefe gesetzt sind.
 Sie sollten Ihre X11-Umgebung aktualisieren.
 
 MacPorts-Benutzer gehen bitte gemäß der folgenden Anleitung vor:
@@ -530,7 +526,7 @@ MacPorts-Benutzer gehen bitte gemäß der folgenden Anleitung vor:
 
 Benutzer, die XQuartz über das Installationspaket installiert haben,
 können aktualisierte Versionen hier herunterladen:
-&lt;center&gt;&lt;a href=&quot;https://xquartz.macosforge.org/&quot;&gt;https://xquartz.macosforge.org/&lt;/a&gt;&lt;/center&gt;</translation>
+&lt;center&gt;&lt;a href=&quot;https://www.xquartz.org/&quot;&gt;https://www.xquartz.org/&lt;/a&gt;&lt;/center&gt;</translation>
     </message>
     <message>
         <location filename="../../src/configdialog.cpp" line="578"/>
@@ -4267,7 +4263,7 @@ Upon successful installation, please follow the instructions printed
 by the port utility to autostart/load the server.
 
 All other users, please obtain and install XQuartz from:
-&lt;center&gt;&lt;a href=&quot;https://xquartz.macosforge.org/&quot;&gt;https://xquartz.macosforge.org/&lt;/a&gt;&lt;/center&gt;
+&lt;center&gt;&lt;a href=&quot;https://www.xquartz.org/&quot;&gt;https://www.xquartz.org/&lt;/a&gt;&lt;/center&gt;
 
 Afterwards, restart X2Go Client and select the correct path
 to the X11 application in the general X2Go Client settings.
@@ -4281,7 +4277,7 @@ Nach erfolgreicher Installation befolgen Sie bitte die vom Port-Utility
 angezeigte Anleitung, um den Server automatisch zu laden und zu starten.
 
 Alle anderen Benutzer beziehen und installieren XQuartz bitte von:
-&lt;center&gt;&lt;a href=&quot;https://xquartz.macosforge.org/&quot;&gt;https://xquartz.macosforge.org/&lt;/a&gt;&lt;/center&gt;
+&lt;center&gt;&lt;a href=&quot;https://www.xquartz.org/&quot;&gt;https://www.xquartz.org/&lt;/a&gt;&lt;/center&gt;
 
 Starten Sie anschließend X2GoClient neu, und wählen Sie den passenden Pfad
 zur X11-Anwendung in den allgemeinen X2GoClient-Einstellungen.

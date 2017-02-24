@@ -196,8 +196,8 @@ void show_XQuartz_generic_error (const QString &main_error, const QString &addit
 
                                             "All other users, please obtain and install XQuartz from:\n"
 
-                                            "<center><a href=\"https://xquartz.macosforge.org/\">"
-                                                "https://xquartz.macosforge.org/"
+                                            "<center><a href=\"https://www.xquartz.org/\">"
+                                                "https://www.xquartz.org/"
                                             "</a></center>\n\n"
 
                                             "Afterwards, restart X2Go Client and select the correct path\n"
