@@ -1138,7 +1138,7 @@ Hash de su clave pública: </translation>
     </message>
     <message>
         <location filename="../../src/httpbrokerclient.cpp" line="170"/>
-        <source>Could not find known hosts file.If you accept the host key here, the file will be automatically created.</source>
+        <source>Could not find known hosts file. If you accept the host key here, the file will be automatically created.</source>
         <translation>No se ha encontrado el archivo know-hosts. Si aceptas el archivo se creará automáticamente.</translation>
     </message>
     <message>
@@ -2565,7 +2565,7 @@ Por razones de seguridad se recomienda finalizar la conexión.
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="3129"/>
-        <source>Could not find known hosts file.If you accept the host key here, the file will be automatically created.</source>
+        <source>Could not find known hosts file. If you accept the host key here, the file will be automatically created.</source>
         <translation>No se ha encontrado el archivo know-hosts. Si aceptas el archivo se creará automáticamente.</translation>
     </message>
     <message>

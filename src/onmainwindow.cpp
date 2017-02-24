@@ -3132,7 +3132,7 @@ void ONMainWindow::slotSshServerAuthError ( int error, QString sshMessage, SshMa
         slotSshUserAuthError ( sshMessage );
         return ;
     case SSH_SERVER_FILE_NOT_FOUND:
-        errMsg=tr ( "Could not find known hosts file."
+        errMsg=tr ( "Could not find known hosts file. "
                     "If you accept the host key here, the file will be automatically created." );
         break;
 

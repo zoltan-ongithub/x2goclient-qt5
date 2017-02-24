@@ -1127,7 +1127,7 @@ Julkinen avain: </translation>
     </message>
     <message>
         <location filename="../../src/httpbrokerclient.cpp" line="170"/>
-        <source>Could not find known hosts file.If you accept the host key here, the file will be automatically created.</source>
+        <source>Could not find known hosts file. If you accept the host key here, the file will be automatically created.</source>
         <translation>Tunnettujen palvelinten nimitiedostoa ei löydy.Jos hyväksyt palvelimen tunnistusavaimen, nimitiedosto luodaan automaattisesti.</translation>
     </message>
     <message>
@@ -1806,7 +1806,7 @@ Halutako keskeyttää?
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="3129"/>
-        <source>Could not find known hosts file.If you accept the host key here, the file will be automatically created.</source>
+        <source>Could not find known hosts file. If you accept the host key here, the file will be automatically created.</source>
         <translation>Tunnettujen palvelinten sijaintitiedostoa ei löydy.Jos hyväksyt palvelimen tunnistusavaimen, puuttuva tiedosto perustetaan automaattisesti.</translation>
     </message>
     <message>

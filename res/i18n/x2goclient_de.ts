@@ -2242,7 +2242,7 @@ Möchten Sie die Verbindung abbrechen?
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="3129"/>
-        <source>Could not find known hosts file.If you accept the host key here, the file will be automatically created.</source>
+        <source>Could not find known hosts file. If you accept the host key here, the file will be automatically created.</source>
         <translation>Die „Known Hosts“-Datei konnte nicht gefunden werden. Wenn Sie den Host-Key hier akzeptieren, dann wird die Datei automatisch erstellt.</translation>
     </message>
     <message>
@@ -3073,7 +3073,7 @@ Er lautet jetzt: </translation>
         <translation type="obsolete">Der Host-Key des Servers konnte nicht gefunden werden aber ein anderer Schlüsseltyp existiert. Ein Angreifer kann den Schlüssel verändert haben, um dem Client vorzutäuschen, dass der Schlüssel nicht existiert</translation>
     </message>
     <message>
-        <source>Could not find known host file.If you accept the host key here, the file will be automatically created</source>
+        <source>Could not find known host file. If you accept the host key here, the file will be automatically created</source>
         <translation type="obsolete">Die ,,Known Host&apos;&apos;-Datei konnte nicht gefunden werden. Wenn Sie den Host-Key hier akzeptieren, dann wird die Datei automatisch erstellt.</translation>
     </message>
     <message>

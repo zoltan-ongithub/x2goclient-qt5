@@ -979,7 +979,7 @@ Public key hash: </source>
         <translation>La clé d&apos;hôte de ce serveur n&apos;a pas été reconnue mais un autre type de clef existe. Un attaquant peut avoir changé la clé par défaut du serveur pour faire croire à votre client que la clé n&apos;existe pas encore.</translation>
     </message>
     <message>
-        <source>Could not find known hosts file.If you accept the host key here, the file will be automatically created.</source>
+        <source>Could not find known hosts file. If you accept the host key here, the file will be automatically created.</source>
         <translation>Impossible de trouver le fichier des hôtes connus. Si vous acceptez l&apos;hôte maintenant, le fichier sera créé automatiquement.</translation>
     </message>
     <message>
@@ -1843,7 +1843,7 @@ Voulez-vous mettre fin à la connexion ?
 </translation>
     </message>
     <message>
-        <source>Could not find known hosts file.If you accept the host key here, the file will be automatically created.</source>
+        <source>Could not find known hosts file. If you accept the host key here, the file will be automatically created.</source>
         <translation>Impossible de trouver le fichier des hôtes connus. Si vous acceptez l&apos;hôte maintenant, le fichier sera créé automatiquement.</translation>
     </message>
     <message>

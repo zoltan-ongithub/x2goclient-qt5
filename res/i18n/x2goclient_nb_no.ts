@@ -1010,7 +1010,7 @@ Offentlig nøkkel: </translation>
         <translation>Vertsnøkkelen for denne serveren ble ikke funnet, men en annen type av nøkkel eksisterer. En angriper kan ha endret standard servernøkkel for å lure klienten din til å tro at nøkkelen ikke finnes ennå.</translation>
     </message>
     <message>
-        <source>Could not find known hosts file.If you accept the host key here, the file will be automatically created.</source>
+        <source>Could not find known hosts file. If you accept the host key here, the file will be automatically created.</source>
         <translation>Kan ikke finne known host filen. Om du aksepterer vertsnøkkelen her vil filen automatisk bli opprettet.</translation>
     </message>
     <message>
@@ -2299,7 +2299,7 @@ Vil du avbryte tilkoblingen?
 </translation>
     </message>
     <message>
-        <source>Could not find known hosts file.If you accept the host key here, the file will be automatically created.</source>
+        <source>Could not find known hosts file. If you accept the host key here, the file will be automatically created.</source>
         <translation>Kan ikke finne known host filen. Om du aksepterer vertsnøkkelen her vil filen automatisk bli opprettet.</translation>
     </message>
     <message>

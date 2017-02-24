@@ -1141,7 +1141,7 @@ Publik nyckel: </translation>
     </message>
     <message>
         <location filename="../../src/httpbrokerclient.cpp" line="170"/>
-        <source>Could not find known hosts file.If you accept the host key here, the file will be automatically created.</source>
+        <source>Could not find known hosts file. If you accept the host key here, the file will be automatically created.</source>
         <translation>Hittar ej fil för kända servrar. Om du accepterar serverns nyckel så kommer filen att skapas automatiskt.</translation>
     </message>
     <message>
@@ -1815,7 +1815,7 @@ Vill du avsluta anslutningen?
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="3129"/>
-        <source>Could not find known hosts file.If you accept the host key here, the file will be automatically created.</source>
+        <source>Could not find known hosts file. If you accept the host key here, the file will be automatically created.</source>
         <translation>Hittar ej fil för kända servrar. Om du accepterar serverns nyckel så kommer filen att skapas automatiskt.</translation>
     </message>
     <message>

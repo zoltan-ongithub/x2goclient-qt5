@@ -1113,7 +1113,7 @@ offentlig nøgle hash: </translation>
     </message>
     <message>
         <location filename="../../src/httpbrokerclient.cpp" line="170"/>
-        <source>Could not find known hosts file.If you accept the host key here, the file will be automatically created.</source>
+        <source>Could not find known hosts file. If you accept the host key here, the file will be automatically created.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2519,7 +2519,7 @@ Do you want to terminate the connection?
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="3129"/>
-        <source>Could not find known hosts file.If you accept the host key here, the file will be automatically created.</source>
+        <source>Could not find known hosts file. If you accept the host key here, the file will be automatically created.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

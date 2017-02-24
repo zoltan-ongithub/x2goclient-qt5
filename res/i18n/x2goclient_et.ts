@@ -1108,7 +1108,7 @@ Tema avaliku võtme &apos;hash&apos; on:</translation>
     </message>
     <message>
         <location filename="../../src/httpbrokerclient.cpp" line="170"/>
-        <source>Could not find known hosts file.If you accept the host key here, the file will be automatically created.</source>
+        <source>Could not find known hosts file. If you accept the host key here, the file will be automatically created.</source>
         <translation>Ei leidu tuntud võtmete faili (known_hosts). Kui kinnitad selle serveri võtme, moodustame automaatselt ka tuntud võtmete faili.</translation>
     </message>
     <message>
@@ -1783,7 +1783,7 @@ Kas Sa soovid ühenduse katkestada?
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="3129"/>
-        <source>Could not find known hosts file.If you accept the host key here, the file will be automatically created.</source>
+        <source>Could not find known hosts file. If you accept the host key here, the file will be automatically created.</source>
         <translation>Ei leidu tuntud võtmete faili (known_host). Kui kinnitad selle serveri võtme, moodustame automaatselt ka tuntud võtmete faili.</translation>
     </message>
     <message>

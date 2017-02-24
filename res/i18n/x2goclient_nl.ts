@@ -1128,7 +1128,7 @@ Publieke sleutel hash: </translation>
     </message>
     <message>
         <location filename="../../src/httpbrokerclient.cpp" line="170"/>
-        <source>Could not find known hosts file.If you accept the host key here, the file will be automatically created.</source>
+        <source>Could not find known hosts file. If you accept the host key here, the file will be automatically created.</source>
         <translation>Kon het known host bestand niet vinden. Als u deze sleutel accepteert zal het bestand automatisch aangemaakt worden.</translation>
     </message>
     <message>
@@ -1798,7 +1798,7 @@ Wilt u de verbinding afbreken?</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="3129"/>
-        <source>Could not find known hosts file.If you accept the host key here, the file will be automatically created.</source>
+        <source>Could not find known hosts file. If you accept the host key here, the file will be automatically created.</source>
         <translation>Kon het known host bestand niet vinden. Als u de host sleutel accepteert zal dit bestand automatisch aangemaakt worden.</translation>
     </message>
     <message>

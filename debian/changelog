@@ -83,6 +83,9 @@ x2goclient (4.1.0.1-0x2go1) UNRELEASED; urgency=medium
     - res/i18n/x2goclient_*.ts: go the extra mile and fix up translation files
       manually after the "anothertype" fix in
       8e503d89ee2d03a313c3deff11f0516fce503022.
+    - {src/{onmainwindow,httpbrokerclient}.cpp,res/i18n/x2goclient_*.ts}: fix
+      another occurrence of a string missing a space separator between words
+      and update translation files.
 
   [ Oleksandr Shneyder ]
   * New upstream version (4.1.0.1):
