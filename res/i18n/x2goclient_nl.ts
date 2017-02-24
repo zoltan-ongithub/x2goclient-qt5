@@ -3336,8 +3336,9 @@ u kunt sshd installeren met
     </message>
     <message>
         <location filename="../../src/printdialog.cpp" line="63"/>
-        <source>You may reactivate this dialog using the X2Go Client settings dialog. To do so, follow this path in the menu bar: Options -&gt; Settings)</source>
-        <translation>U kunt deze dialoog opnieuw activeren via de X2Go Client instellingen dialoog (Menu -&gt; Opties -&gt; Instellingen)</translation>
+        <comment>Please adapt this to the new message. Note that it has changed.</comment>
+        <source>You may reactivate this dialog using the X2Go Client settings dialog. To do so, follow this path in the menu bar: Options -&gt; Settings</source>
+        <translation type="unfinished">U kunt deze dialoog opnieuw activeren via de X2Go Client instellingen dialoog (Menu -&gt; Opties -&gt; Instellingen)</translation>
     </message>
     <message>
         <source>You&apos;ve deactivated the x2go client printing dialog.</source>

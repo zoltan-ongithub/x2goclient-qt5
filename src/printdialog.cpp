@@ -63,6 +63,6 @@ void PrintDialog::slot_dlgShowEnabled ( bool enable )
 		                       tr ( "You may reactivate this dialog "
 		                            "using the X2Go Client settings "
 		                            "dialog. To do so, follow this path "
-                                            "in the menu bar: Options -> "
-		                            "Settings)" ) );
+		                            "in the menu bar: Options -> "
+		                            "Settings" ) );
 }

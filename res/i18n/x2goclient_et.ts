@@ -3196,7 +3196,7 @@ võid installeerida selle kasutades käsku
     </message>
     <message>
         <location filename="../../src/printdialog.cpp" line="63"/>
-        <source>You may reactivate this dialog using the X2Go Client settings dialog. To do so, follow this path in the menu bar: Options -&gt; Settings)</source>
+        <source>You may reactivate this dialog using the X2Go Client settings dialog. To do so, follow this path in the menu bar: Options -&gt; Settings</source>
         <translation>Sa võid selle dialoogi uuesti taastada X2Go Client-Seadete menüüs. Kasuta menüüs: Valikud -&gt; Seaded)</translation>
     </message>
     <message>

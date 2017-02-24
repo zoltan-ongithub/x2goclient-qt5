@@ -90,6 +90,8 @@ x2goclient (4.1.0.1-0x2go1) UNRELEASED; urgency=medium
       use correct plural forms in translations and split string up in a
       translation-friendly form. I'll leave translators to handle this beast,
       as languages are unique in the number of plural forms and the like.
+    - {src/printdialog.cpp,res/i18n/x2goclient_*.ts}: drop spurious left-over
+      parenthesis in warning message and adapt translations.
 
   [ Oleksandr Shneyder ]
   * New upstream version (4.1.0.1):

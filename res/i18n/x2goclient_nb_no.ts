@@ -2904,7 +2904,8 @@ Please report a bug on:
         <translation type="obsolete">Du kan reaktivere denne dialogen ved å benytte X2Go Client innstillingene (Innstillinger -&gt; Innstillinger)</translation>
     </message>
     <message>
-        <source>You may reactivate this dialog using the X2Go Client settings dialog. To do so, follow this path in the menu bar: Options -&gt; Settings)</source>
+        <comment>Please adapt this to the new message, note that it has changed.</comment>
+        <source>You may reactivate this dialog using the X2Go Client settings dialog. To do so, follow this path in the menu bar: Options -&gt; Settings</source>
         <translation type="unfinished">Du kan reaktivere denne dialogen ved å benytte X2Go Client innstillingene (Innstillinger -&gt; Innstillinger)</translation>
     </message>
 </context>

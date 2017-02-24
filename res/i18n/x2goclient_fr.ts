@@ -2444,7 +2444,7 @@ Veuillez rapporter le bug sur :
         <translation>Vous avez désactivé la fenêtre de dialogue d&apos;impression de X2Go Client.</translation>
     </message>
     <message>
-        <source>You may reactivate this dialog using the X2Go Client settings dialog. To do so, follow this path in the menu bar: Options -&gt; Settings)</source>
+        <source>You may reactivate this dialog using the X2Go Client settings dialog. To do so, follow this path in the menu bar: Options -&gt; Settings</source>
         <translatorcomment>bizarre cette parenthèse toute seule</translatorcomment>
         <translation>Vous pouvez réactiver cette fenêtre de dialogue en utilisant la fenêtre des préférences de X2Go Client. Pour ce faire, suivez ce chemin dans la barre de menu : Options -&gt; Préférences)</translation>
     </message>

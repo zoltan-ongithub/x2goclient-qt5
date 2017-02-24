@@ -3370,7 +3370,7 @@ voit asentaa sshd komennolla
     </message>
     <message>
         <location filename="../../src/printdialog.cpp" line="63"/>
-        <source>You may reactivate this dialog using the X2Go Client settings dialog. To do so, follow this path in the menu bar: Options -&gt; Settings)</source>
+        <source>You may reactivate this dialog using the X2Go Client settings dialog. To do so, follow this path in the menu bar: Options -&gt; Settings</source>
         <translation>Voit palauttaa takaisin tämän vaihtoehdon käyttäen X2Go asiakasohjelman asetuksia. Se onnistuu päävalikon toiminnnolla: Valinnat -&gt; Asetukset)</translation>
     </message>
     <message>

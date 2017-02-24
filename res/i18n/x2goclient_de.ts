@@ -3895,7 +3895,7 @@ Bitte installieren Sie dort eine neuere Version des X2GoServer-Pakets.</translat
     </message>
     <message>
         <location filename="../../src/printdialog.cpp" line="63"/>
-        <source>You may reactivate this dialog using the X2Go Client settings dialog. To do so, follow this path in the menu bar: Options -&gt; Settings)</source>
+        <source>You may reactivate this dialog using the X2Go Client settings dialog. To do so, follow this path in the menu bar: Options -&gt; Settings</source>
         <translation>Über die Clienteinstellungen (Menü -&gt; Einstellungen -&gt; Konfiguration) können Sie den Dialog wieder einblenden.</translation>
     </message>
     <message>
