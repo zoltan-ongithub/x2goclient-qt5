@@ -99,6 +99,9 @@ x2goclient (4.1.0.1-0x2go1) UNRELEASED; urgency=medium
       XQuartz project homepage references, adapt translations.
     - src/pulsemanager.{cpp,h}: make get_* () functions const.
     - src/pulsemanager.{cpp,h}: make is_server_running () const.
+    - src/pulsemanager.{cpp,h}: add new pulse_version_valid_ boolean class
+      member variable, set it correctly and use it whenever the version is
+      accessed.
 
   [ Oleksandr Shneyder ]
   * New upstream version (4.1.0.1):

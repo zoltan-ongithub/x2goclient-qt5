@@ -43,6 +43,7 @@ PulseManager::PulseManager () : app_dir_ (QApplication::applicationDirPath ()),
                                 pulse_version_minor_ (0),
                                 pulse_version_micro_ (0),
                                 pulse_version_misc_ (""),
+                                pulse_version_valid_ (false),
                                 record_ (true),
                                 playback_ (true),
                                 debug_ (false),
@@ -272,6 +273,10 @@ void PulseManager::start_osx () {
                << "-F" << QDir::toNativeSeparators (pulse_dir_.absolutePath () + "/config.pa");
 
   if (!system_pulse_) {
+    if (!(pulse_version_valid_)) {
+      x2goDebug << "PulseAudio version number was not fetched successfully, data is invalid. Continuing anyway.";
+    }
+
     server_args_ << "-p"
                  << QDir::toNativeSeparators (QDir (app_dir_
                                                     + "/../Frameworks/pulse-"
@@ -303,6 +308,11 @@ void PulseManager::start_win () {
  */
 #ifdef Q_OS_WIN
   server_args_ = QStringList ();
+
+  if (!(pulse_version_valid_)) {
+    x2goDebug << "PulseAudio version number was not fetched successfully, data is invalid. Continuing anyway.";
+  }
+
   server_args_ << "--exit-idle-time=-1" << "-n"
                << "-F" << QDir::toNativeSeparators (QDir (pulse_dir_.absolutePath ()
                                                           + "/config.pa").absolutePath ())
@@ -511,13 +521,16 @@ void PulseManager::fetch_pulseaudio_version () {
             show_RichText_ErrorMsgBox (tr ("Error fetching PulseAudio version number!"),
                                        tr ("Unable to convert micro version number string to integer."),
                                        true);
-            abort ();
+            stop_processing = true;
           }
         }
 
         /* Misc version part will be set to the trailing string. */
         if (found) {
           pulse_version_misc_ = tmp_remaining_str;
+
+          pulse_version_valid_ = true;
+
           break;
         }
       }
@@ -607,7 +620,7 @@ bool PulseManager::generate_server_config () {
      * Tanu Kaskinen recommended we specify the absolute path instead.
      * The absolute path works with at least 5.0 and 6.0.
      */
-    if (pulse_version_major_ > 2) {
+    if ((!(pulse_version_valid_)) || (pulse_version_major_ > 2)) {
       QString clean_pulse_dir = pulse_dir_.absolutePath ();
 
 #ifdef Q_OS_WIN

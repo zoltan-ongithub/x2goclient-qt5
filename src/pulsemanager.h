@@ -119,6 +119,7 @@ class PulseManager: public QObject {
     std::uint32_t pulse_version_minor_;
     std::uint32_t pulse_version_micro_;
     QString pulse_version_misc_;
+    bool pulse_version_valid_;
 
     bool record_;
     bool playback_;
