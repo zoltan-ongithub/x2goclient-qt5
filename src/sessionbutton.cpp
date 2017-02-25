@@ -449,15 +449,23 @@ void SessionButton::redraw()
     }
     else if ( command =="RDP" )
     {
+#ifdef Q_OS_LINUX
         if (st->setting()->value ( sid+"/directrdp",
                                    ( QVariant ) false ).toBool())
             directRDP=true;
+#endif
         cmdpix.load ( par->iconsPath ( "/16x16/rdp.png" ) );
         cmdBox->setCurrentIndex ( RDP );
         command=tr ( "RDP connection" );
     }
     else if ( command =="XDMCP" )
     {
+#ifdef Q_OS_LINUX
+        if (st->setting()->value ( sid+"/directxdmcp",
+                                   ( QVariant ) false ).toBool())
+            directRDP=true;
+            server->setText ( "XDM@"+sv );
+#endif
         cmdpix.load ( par->iconsPath ( "/16x16/X.png" ) );
         cmdBox->setCurrentIndex ( XDMCP );
         command=tr ( "XDMCP" );
@@ -566,6 +574,8 @@ void SessionButton::redraw()
 
 
     snd=st->setting()->value ( sid+"/sound", ( QVariant ) true ).toBool();
+    if(directRDP)
+        snd=false;
     if ( snd )
         sound->setText ( tr ( "Enabled" ) );
     else

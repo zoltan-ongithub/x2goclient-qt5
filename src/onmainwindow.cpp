@@ -2730,6 +2730,12 @@ void ONMainWindow::slotSelectedFromList ( SessionButton* session )
         autologin=st->setting()->value (
                       sid+"/autologin",
                       ( QVariant ) false ).toBool();
+#ifdef Q_OS_LINUX
+        if(command =="XDMCP" && st->setting()->value (
+                      sid+"/directxdmcp",
+                      ( QVariant ) false ).toBool())
+             autologin=true;
+#endif
         krblogin=st->setting()->value (
                      sid+"/krblogin",
                      ( QVariant ) false ).toBool();
@@ -3469,14 +3475,16 @@ void ONMainWindow::startDirectRDP()
                  break;
         }
         proxyCmd= client +" "+params+ grOpt + " -query "+host +" :"+QString::number(p) ;
+        login->setText(tr("XDM"));
+        resumingSession.display=tr("XDMCP");
     }
     else
     {
         x2goDebug<<"starting direct RDP session";
+        resumingSession.display=tr("RDP");
     }
 //     x2goDebug<<"starting direct session with cmd:"<<proxyCmd;
     nxproxy->start ( proxyCmd );
-    resumingSession.display="RDP";
     resumingSession.server=host;
     resumingSession.sessionId=sessionExplorer->getLastSession()->name();
     resumingSession.crTime=QDateTime::currentDateTime().toString("dd.MM.yy HH:mm:ss");

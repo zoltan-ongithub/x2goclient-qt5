@@ -128,6 +128,9 @@ x2goclient (4.1.0.1-0x2go1) UNRELEASED; urgency=medium
   [ Oleksandr Shneyder ]
   * New upstream version (4.1.0.1):
     - Add "direct XDMCP" functionality.
+    - Disable sound button on direct RDP and XDMCP sessions.
+      Set for direct XDMCP session autologin=true.
+      Set for direct XDMCP session username=XDM.
 
   [ Robert Parts ]
   * New upstream version (4.1.0.1):
