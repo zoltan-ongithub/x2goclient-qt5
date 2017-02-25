@@ -119,6 +119,7 @@ x2goclient (4.1.0.1-0x2go1) UNRELEASED; urgency=medium
       files, coming up next.
     - res/i18n/x2goclient_*.ts: regenerate translation files and fix up some
       SSH and PulseManager messages manually, where possible.
+    - src/x2ogutils.h: guard UNUSED macro definition.
 
   [ Oleksandr Shneyder ]
   * New upstream version (4.1.0.1):

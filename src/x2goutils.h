@@ -23,7 +23,9 @@
 #include <QFont>
 #include <QMessageBox>
 
+#ifndef UNUSED
 #define UNUSED(x) do { (void) x; } while (0)
+#endif
 
 QString expandHome (QString path);
 
