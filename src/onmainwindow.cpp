@@ -5942,6 +5942,7 @@ void ONMainWindow::handle_xmodmap_error (QProcess &proc) {
 
 void ONMainWindow::slotProxyError ( QProcess::ProcessError err )
 {
+#ifdef Q_OS_LINUX
     if(err==QProcess::FailedToStart && directRDP)
     {
         QString main_text = tr("Failed to start RDP or XMDCP client");
@@ -5949,6 +5950,7 @@ void ONMainWindow::slotProxyError ( QProcess::ProcessError err )
 
         show_RichText_ErrorMsgBox (main_text, informative_text);
     }
+#endif
     slotProxyFinished ( -1,QProcess::CrashExit );
 }
 
