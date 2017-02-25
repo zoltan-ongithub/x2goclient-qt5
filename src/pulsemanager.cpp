@@ -931,3 +931,23 @@ void PulseManager::restart () {
 QProcess::ProcessState PulseManager::state () {
   return (state_);
 }
+
+void PulseManager::show_startup_warning (bool play_startup_sound) const {
+  QString main_text, informative_text;
+
+  if (!(play_startup_sound)) {
+    main_text = tr ("Unable to play startup sound.");
+  }
+  else {
+    main_text = tr ("PulseAudio failed to start!");
+    informative_text = tr ("Sound support will not be available.") + "\n\n";
+  }
+
+  informative_text += tr ("If you downloaded the bundled, pre-compiled version from the official home page "
+                          "or the upstream Linux packages, please report a bug on:\n"
+                          "<center><a href=\"https://wiki.x2go.org/doku.php/wiki:bugs\">"
+                            "https://wiki.x2go.org/doku.php/wiki:bugs"
+                          "</a></center>\n");
+
+  show_RichText_WarningMsgBox (main_text, informative_text, true);
+}

@@ -106,6 +106,8 @@ x2goclient (4.1.0.1-0x2go1) UNRELEASED; urgency=medium
       Instead of aborting hard when the version number could not be detected,
       break out of the loops only. We can make stuff work, even if the version
       is unknown. Or just continue without PA support as such.
+    - src/pulsemanager.{cpp,h}: add show_startup_warning () for both PA server
+      and (debug) startup sound playback.
 
   [ Oleksandr Shneyder ]
   * New upstream version (4.1.0.1):

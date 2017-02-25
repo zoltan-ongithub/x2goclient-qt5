@@ -90,6 +90,8 @@ class PulseManager: public QObject {
 
     bool is_server_running () const;
 
+    void show_startup_warning (bool play_startup_sound = false) const;
+
 
   private slots:
     void slot_on_pulse_finished (int exit_code);
