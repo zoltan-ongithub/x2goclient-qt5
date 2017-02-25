@@ -813,7 +813,7 @@ void PulseManager::slot_on_pulse_finished (int exit_code) {
   emit (sig_pulse_server_terminated ());
 }
 
-bool PulseManager::is_server_running () {
+bool PulseManager::is_server_running () const {
   if (pulse_server_)
     return (pulse_server_->state () == QProcess::Running);
   else

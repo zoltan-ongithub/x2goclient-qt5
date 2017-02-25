@@ -88,7 +88,7 @@ class PulseManager: public QObject {
 
     void shutdown ();
 
-    bool is_server_running ();
+    bool is_server_running () const;
 
 
   private slots:
