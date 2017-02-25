@@ -135,11 +135,13 @@ PulseManager::PulseManager () : app_dir_ (QApplication::applicationDirPath ()),
     abort ();
   }
 
-  QFileInfo tmp_file_info = QFileInfo (server_binary_);
-  server_working_dir_ = tmp_file_info.canonicalPath ();
+  if (!(server_binary_.isEmpty ())) {
+    QFileInfo tmp_file_info = QFileInfo (server_binary_);
+    server_working_dir_ = tmp_file_info.canonicalPath ();
 
-  x2goDebug << "Found PA binary as " << server_binary_;
-  x2goDebug << "Corresponding working dir: " << server_working_dir_;
+    x2goDebug << "Found PA binary as " << server_binary_;
+    x2goDebug << "Corresponding working dir: " << server_working_dir_;
+  }
 
 #elif defined (Q_OS_WIN)
   server_working_dir_ = QString (app_dir_ + "/pulse/");
@@ -182,7 +184,9 @@ PulseManager::PulseManager () : app_dir_ (QApplication::applicationDirPath ()),
   buf = ptr = NULL;
 #endif // defined (Q_OS_DARWIN)
 
-  fetch_pulseaudio_version ();
+  if (!(server_binary_.isEmpty ())) {
+    fetch_pulseaudio_version ();
+  }
 }
 
 PulseManager::~PulseManager () {
@@ -223,35 +227,37 @@ void PulseManager::start_generic () {
   pulse_server_->setProcessEnvironment (env_);
   pulse_server_->setWorkingDirectory (server_working_dir_);
 
-  pulse_server_->start (server_binary_, server_args_);
+  if (!(server_binary_.isEmpty ())) {
+    pulse_server_->start (server_binary_, server_args_);
 
-  /*
-   * We may wait here, because PulseManager runs in a separate thread.
-   * Otherwise, we'd better use signals and slots to not block the main thread.
-   */
-  if (pulse_server_->waitForStarted (-1)) {
-    x2goDebug << "pulse started with arguments " << server_args_ << "- waiting for it to finish...";
-    state_ = QProcess::Running;
+    /*
+     * We may wait here, because PulseManager runs in a separate thread.
+     * Otherwise, we'd better use signals and slots to not block the main thread.
+     */
+    if (pulse_server_->waitForStarted (-1)) {
+      x2goDebug << "pulse started with arguments " << server_args_ << "- waiting for it to finish...";
+      state_ = QProcess::Running;
 
-    connect (pulse_server_, SIGNAL (finished (int)),
-             this,          SLOT (slot_on_pulse_finished (int)));
+      connect (pulse_server_, SIGNAL (finished (int)),
+               this,          SLOT (slot_on_pulse_finished (int)));
 
-    env_.insert ("PULSE_SERVER", "127.0.0.1:" + QString::number (pulse_port_));
+      env_.insert ("PULSE_SERVER", "127.0.0.1:" + QString::number (pulse_port_));
 
 
-    QString clean_pulse_dir = pulse_dir_.absolutePath ();
+      QString clean_pulse_dir = pulse_dir_.absolutePath ();
 
 #ifdef Q_OS_WIN
-    clean_pulse_dir = wapiShortFileName (clean_pulse_dir);
+      clean_pulse_dir = wapiShortFileName (clean_pulse_dir);
 #endif /* defined (Q_OS_WIN) */
 
-    QString tmp_auth_cookie = QDir::toNativeSeparators (clean_pulse_dir + "/.pulse-cookie");
+      QString tmp_auth_cookie = QDir::toNativeSeparators (clean_pulse_dir + "/.pulse-cookie");
 
-    env_.insert ("PULSE_COOKIE", tmp_auth_cookie);
+      env_.insert ("PULSE_COOKIE", tmp_auth_cookie);
 
-    if (debug_) {
-      // Give PA a little time to come up.
-      QTimer::singleShot (3000, this, SLOT (slot_play_startup_sound ()));
+      if (debug_) {
+        // Give PA a little time to come up.
+        QTimer::singleShot (3000, this, SLOT (slot_play_startup_sound ()));
+      }
     }
   }
   else {

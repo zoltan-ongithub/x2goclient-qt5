@@ -108,6 +108,8 @@ x2goclient (4.1.0.1-0x2go1) UNRELEASED; urgency=medium
       is unknown. Or just continue without PA support as such.
     - src/pulsemanager.{cpp,h}: add show_startup_warning () for both PA server
       and (debug) startup sound playback.
+    - src/pulsemanager.cpp: check server_binary_ before using it and jump over
+      code that assumes the PA server binary to be available.
 
   [ Oleksandr Shneyder ]
   * New upstream version (4.1.0.1):
