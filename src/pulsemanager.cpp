@@ -838,23 +838,23 @@ void PulseManager::shutdown () {
   loop.exec ();
 }
 
-std::uint16_t PulseManager::get_pulse_port () {
+std::uint16_t PulseManager::get_pulse_port () const {
   return (pulse_port_);
 }
 
-std::uint16_t PulseManager::get_esd_port () {
+std::uint16_t PulseManager::get_esd_port () const {
   return (esd_port_);
 }
 
-bool PulseManager::get_record () {
+bool PulseManager::get_record () const {
   return (record_);
 }
 
-bool PulseManager::get_playback () {
+bool PulseManager::get_playback () const {
   return (playback_);
 }
 
-QDir PulseManager::get_pulse_dir () {
+QDir PulseManager::get_pulse_dir () const {
   return (pulse_dir_);
 }
 

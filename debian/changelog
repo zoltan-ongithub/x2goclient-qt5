@@ -97,6 +97,7 @@ x2goclient (4.1.0.1-0x2go1) UNRELEASED; urgency=medium
       translate it.
     - {src/{configdialog,x2goutils}.cpp,res/i18n/x2goclient_*.ts}: change
       XQuartz project homepage references, adapt translations.
+    - src/pulsemanager.{cpp,h}: make get_* () functions const.
 
   [ Oleksandr Shneyder ]
   * New upstream version (4.1.0.1):
