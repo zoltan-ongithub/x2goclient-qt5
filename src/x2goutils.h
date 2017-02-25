@@ -27,6 +27,10 @@
 #define UNUSED(x) do { (void) x; } while (0)
 #endif
 
+#ifndef MACPORTS_PREFIX
+#define MACPORTS_PREFIX "/opt/local"
+#endif
+
 QString expandHome (QString path);
 
 QString fixup_resource_URIs (const QString &res_path);

@@ -71,7 +71,7 @@ PulseManager::PulseManager () : app_dir_ (QApplication::applicationDirPath ()),
   QString path_val = tmp_env.value ("PATH");
 
   QStringList to_front, to_back;
-  to_front << "/opt/local/bin"; /* MacPorts default prefix, FIXME: might need to make that configurable. */
+  to_front << MACPORTS_PREFIX "/bin"; /* MacPorts prefix. */
   to_back << "/usr/local/bin"; /* Homebrew or random stuff. Probably even both intermingled... */
 
   path_val = add_to_path (path_val, to_back);
@@ -94,7 +94,7 @@ PulseManager::PulseManager () : app_dir_ (QApplication::applicationDirPath ()),
 
   if (server_binary_.isEmpty ()) {
     search_paths = QStringList ();
-    search_paths << "/opt/local/bin"; /* MacPorts default prefix, FIXME: might need to make that configurable. */
+    search_paths << MACPORTS_PREFIX "/bin"; /* MacPorts prefix. */
 
     server_binary_ = QStandardPaths::findExecutable ("pulseaudio", search_paths);
 

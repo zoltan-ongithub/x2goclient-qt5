@@ -120,6 +120,10 @@ x2goclient (4.1.0.1-0x2go1) UNRELEASED; urgency=medium
     - res/i18n/x2goclient_*.ts: regenerate translation files and fix up some
       SSH and PulseManager messages manually, where possible.
     - src/x2ogutils.h: guard UNUSED macro definition.
+    - {macbuild.sh,src/{x2goutils.h,{pulsemanager,onmainwindow}.cpp},
+       x2goclient.pro}: make MacPorts prefix selectable at compile time. Much
+      cleaner for downstream package maintainers (like, for instance, MacPorts
+      itself.)
 
   [ Oleksandr Shneyder ]
   * New upstream version (4.1.0.1):

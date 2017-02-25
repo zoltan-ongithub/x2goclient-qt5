@@ -5761,14 +5761,14 @@ void ONMainWindow::slotSetModMap()
         /* Let's set a reasonable default value if none is provided. */
         if (path_val.isEmpty ()) {
             /* Prefer the default MacPorts prefix. */
-            path_val = "/opt/local/bin:/opt/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/sbin:/usr/X11R6/bin:/opt/X11/bin";
+            path_val = MACPORTS_PREFIX "/bin:" MACPORTS_PREFIX "/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/sbin:/usr/X11R6/bin:/opt/X11/bin";
             tmp_env.insert ("PATH", path_val);
         }
         else {
             /* Search for and add specific directories to the PATH value, if necessary. */
             QStringList to_back, to_front;
             to_back << "/opt/X11/bin";
-            to_front << "/opt/local/bin" << "/usr/local/bin";
+            to_front << MACPORTS_PREFIX "/bin" << "/usr/local/bin";
 
             path_val = add_to_path (path_val, to_back);
             path_val = add_to_path (path_val, to_front, false);

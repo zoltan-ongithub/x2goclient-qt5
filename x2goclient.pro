@@ -221,6 +221,10 @@ macx {
     LIBS = -L$${MACPORTS_LIBRARY_PATH} $${LIBS}
   }
 
+  !isEmpty(MACPORTS_PREFIX) {
+    DEFINES += MACPORTS_PREFIX=\"\\\"$${MACPORTS_PREFIX}\\\"\"
+  }
+
   # Strictly speaking, this is a bug in qmake and we should neither need $${PWD}
   # nor QMAKE_INFO_PLIST_OUT nor PRE_TARGETDEPS nor QMAKE_POST_LINK.
   # Not defining the latter two will however lead to it being empty and no
