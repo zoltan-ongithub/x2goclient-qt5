@@ -102,6 +102,10 @@ x2goclient (4.1.0.1-0x2go1) UNRELEASED; urgency=medium
     - src/pulsemanager.{cpp,h}: add new pulse_version_valid_ boolean class
       member variable, set it correctly and use it whenever the version is
       accessed.
+    - src/pulsemanager.cpp: make fetch_pulseaudio_version () more resilient.
+      Instead of aborting hard when the version number could not be detected,
+      break out of the loops only. We can make stuff work, even if the version
+      is unknown. Or just continue without PA support as such.
 
   [ Oleksandr Shneyder ]
   * New upstream version (4.1.0.1):

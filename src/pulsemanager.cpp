@@ -365,6 +365,8 @@ void PulseManager::fetch_pulseaudio_version () {
   tmp_server.setWorkingDirectory (server_working_dir_);
   tmp_server.start (server_binary_, args);
 
+  bool stop_processing = false;
+
   /* Wait until the process exited again. */
   if (tmp_server.waitForFinished ()) {
     /* Read stdout and split it up on newlines. */
@@ -373,7 +375,7 @@ void PulseManager::fetch_pulseaudio_version () {
     QStringList stdout_list (stdout_data.split ("\n"));
 
     bool found = false;
-    for (QStringList::const_iterator cit = stdout_list.begin (); cit != stdout_list.end (); ++cit) {
+    for (QStringList::const_iterator cit = stdout_list.begin (); (cit != stdout_list.end ()) && (!stop_processing); ++cit) {
       /* Remove trailing whitespace, mostly carriage returns on Windows. */
       QString tmp_str (*cit);
       tmp_str = tmp_str.trimmed ();
@@ -390,7 +392,7 @@ void PulseManager::fetch_pulseaudio_version () {
         bool numbers_skip[3] = { false, false, false };
         QString tmp_remaining_str = QString ("");
         QString numbers[3] = { };
-        for (QString::const_iterator cit = tmp_str.begin (); cit != tmp_str.end (); ++cit) {
+        for (QString::const_iterator cit = tmp_str.begin (); (cit != tmp_str.end ()) && (!stop_processing); ++cit) {
           if (!(numbers_finished[0])) {
             if (((*cit) >= '0') && ((*cit) <= '9')) {
               numbers[0].append (*cit);
@@ -418,7 +420,7 @@ void PulseManager::fetch_pulseaudio_version () {
                                          tr ("Unexpected character found when parsing version string for major version number")
                                          + ": '" + QString (*cit) + "'.",
                                          true);
-              abort ();
+              stop_processing = true;
             }
           }
           else if ((!(numbers_finished[1])) && (!(numbers_skip[1]))) {
@@ -443,7 +445,7 @@ void PulseManager::fetch_pulseaudio_version () {
                                          tr ("Unexpected character found when parsing version string for minor version number")
                                          + ": '" + QString (*cit) + "'.",
                                          true);
-              abort ();
+              stop_processing = true;
             }
           }
           else if ((!(numbers_finished[2])) && (!(numbers_skip[2]))) {
@@ -461,7 +463,7 @@ void PulseManager::fetch_pulseaudio_version () {
                                          tr ("Unexpected character found when parsing version string for micro version number")
                                          + ": '" + QString (*cit) + "'.",
                                          true);
-              abort ();
+              stop_processing = true;
             }
           }
           else {
@@ -476,7 +478,7 @@ void PulseManager::fetch_pulseaudio_version () {
                                      tr ("Supposed to skip major version number. "
                                          "Something is wrong."),
                                      true);
-          abort ();
+          stop_processing = true;
         }
 
         /*     not skipping   and  ((met period or dash) or (have something to convert and met EOL)) */
@@ -489,7 +491,7 @@ void PulseManager::fetch_pulseaudio_version () {
             show_RichText_ErrorMsgBox (tr ("Error fetching PulseAudio version number!"),
                                        tr ("Unable to convert major version number string to integer."),
                                        true);
-            abort ();
+            stop_processing = true;
           }
           else {
             /* First number is enough to satisfy the "found" criterion. */
@@ -507,7 +509,7 @@ void PulseManager::fetch_pulseaudio_version () {
             show_RichText_ErrorMsgBox (tr ("Error fetching PulseAudio version number!"),
                                        tr ("Unable to convert minor version number string to integer."),
                                        true);
-            abort ();
+            stop_processing = true;
           }
         }
 
@@ -531,6 +533,7 @@ void PulseManager::fetch_pulseaudio_version () {
 
           pulse_version_valid_ = true;
 
+          stop_processing = true;
           break;
         }
       }
@@ -541,19 +544,17 @@ void PulseManager::fetch_pulseaudio_version () {
     }
 
     if (!found) {
-      x2goErrorf (19) << "Unable to fetch PulseAudio version - unexpected format. Exiting.";
+      x2goErrorf (19) << "Unable to fetch PulseAudio version - unexpected format.";
       show_RichText_ErrorMsgBox (tr ("Error fetching PulseAudio version number!"),
                                  tr ("Unexpected format encountered."),
                                  true);
-      abort ();
     }
   }
   else {
-    x2goErrorf (18) << "Unable to start PulseAudio to fetch its version number. Exiting.";
+    x2goErrorf (18) << "Unable to start PulseAudio to fetch its version number.";
     show_RichText_ErrorMsgBox (tr ("Error fetching PulseAudio version number!"),
                                tr ("Unable to start PulseAudio binary."),
                                true);
-    abort ();
   }
 }
 
