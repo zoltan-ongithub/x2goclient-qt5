@@ -465,8 +465,8 @@
     </message>
     <message>
         <location filename="../../src/configdialog.cpp" line="258"/>
-        <location filename="../../src/configdialog.cpp" line="611"/>
-        <location filename="../../src/configdialog.cpp" line="627"/>
+        <location filename="../../src/configdialog.cpp" line="610"/>
+        <location filename="../../src/configdialog.cpp" line="626"/>
         <source>Advanced options</source>
         <translation>Продвинутые установки</translation>
     </message>
@@ -509,12 +509,12 @@ can find updated versions on:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/configdialog.cpp" line="578"/>
+        <location filename="../../src/configdialog.cpp" line="577"/>
         <source>No valid XQuartz application selected.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/configdialog.cpp" line="579"/>
+        <location filename="../../src/configdialog.cpp" line="578"/>
         <source>You did not select a valid XQuartz application.
 Please try again.
 
@@ -525,17 +525,17 @@ Some standard installation locations may be:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/configdialog.cpp" line="624"/>
+        <location filename="../../src/configdialog.cpp" line="623"/>
         <source>&amp;Connection</source>
         <translation>С&amp;оединение</translation>
     </message>
     <message>
-        <location filename="../../src/configdialog.cpp" line="625"/>
+        <location filename="../../src/configdialog.cpp" line="624"/>
         <source>&amp;Input/Output</source>
         <translation>&amp;Ввод/Вывод</translation>
     </message>
     <message>
-        <location filename="../../src/configdialog.cpp" line="626"/>
+        <location filename="../../src/configdialog.cpp" line="625"/>
         <source>&amp;Media</source>
         <translation>&amp;Медиа</translation>
     </message>
@@ -1661,7 +1661,7 @@ Please upgrade to PulseAudio.</source>
     <name>ONMainWindow</name>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="106"/>
-        <location filename="../../src/onmainwindow.cpp" line="7187"/>
+        <location filename="../../src/onmainwindow.cpp" line="7255"/>
         <source>us</source>
         <translation>ru</translation>
     </message>
@@ -1670,30 +1670,30 @@ Please upgrade to PulseAudio.</source>
         <translation type="obsolete">pc105/ru</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="402"/>
+        <location filename="../../src/onmainwindow.cpp" line="406"/>
         <source>Support ...</source>
         <translation>Поддержка ...</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="807"/>
-        <location filename="../../src/onmainwindow.cpp" line="2222"/>
-        <location filename="../../src/onmainwindow.cpp" line="8556"/>
+        <location filename="../../src/onmainwindow.cpp" line="811"/>
+        <location filename="../../src/onmainwindow.cpp" line="2228"/>
+        <location filename="../../src/onmainwindow.cpp" line="8624"/>
         <source>Session:</source>
         <translation>Сессия:</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="868"/>
+        <location filename="../../src/onmainwindow.cpp" line="872"/>
         <source>&amp;Quit</source>
         <translation>&amp;Выход</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="869"/>
+        <location filename="../../src/onmainwindow.cpp" line="873"/>
         <source>Ctrl+Q</source>
         <translation>Ctrl+Q</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="870"/>
-        <location filename="../../src/onmainwindow.cpp" line="1208"/>
+        <location filename="../../src/onmainwindow.cpp" line="874"/>
+        <location filename="../../src/onmainwindow.cpp" line="1212"/>
         <source>Quit</source>
         <translation>Выход</translation>
     </message>
@@ -1702,7 +1702,7 @@ Please upgrade to PulseAudio.</source>
         <translation type="obsolete">&amp;Новая сессия ...</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="874"/>
+        <location filename="../../src/onmainwindow.cpp" line="878"/>
         <source>Ctrl+N</source>
         <translation>Ctrl+N</translation>
     </message>
@@ -1711,36 +1711,36 @@ Please upgrade to PulseAudio.</source>
         <translation type="obsolete">Управление сессиями...</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="880"/>
+        <location filename="../../src/onmainwindow.cpp" line="884"/>
         <source>Ctrl+E</source>
         <translation>Ctrl+E</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="398"/>
+        <location filename="../../src/onmainwindow.cpp" line="402"/>
         <source>&amp;Settings ...</source>
         <translation>&amp;Установки ...</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="12143"/>
+        <location filename="../../src/onmainwindow.cpp" line="12211"/>
         <source>SSH daemon could not be started.
 
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="12161"/>
-        <location filename="../../src/onmainwindow.cpp" line="12194"/>
+        <location filename="../../src/onmainwindow.cpp" line="12229"/>
+        <location filename="../../src/onmainwindow.cpp" line="12262"/>
         <source>Disabling Remote Printing or File Sharing support in the session settings will get rid of this message.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="12174"/>
+        <location filename="../../src/onmainwindow.cpp" line="12242"/>
         <source>SSH daemon failed to open its public host key.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="12206"/>
-        <location filename="../../src/onmainwindow.cpp" line="12217"/>
+        <location filename="../../src/onmainwindow.cpp" line="12274"/>
+        <location filename="../../src/onmainwindow.cpp" line="12285"/>
         <source>SSH Error</source>
         <translation>Ошибка SSH</translation>
     </message>
@@ -1781,7 +1781,7 @@ service on your computer.</source>
         <translation type="obsolete">Серверу SSH не удалось открыть &quot;public host key&quot; приложения.</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="12207"/>
+        <location filename="../../src/onmainwindow.cpp" line="12275"/>
         <source>SSH daemon failed to open the application&apos;s public key
 used for exporting folders and printers.</source>
         <translation>Серверу SSH не удалось открыть &quot;public host key&quot; приложения используемый для экспорта ФС и принтеров.</translation>
@@ -1792,7 +1792,7 @@ authoized_keys file.</source>
         <translation type="obsolete">Серверу SSH не удалось открыть &quot;authorized_keys&quot; файл приложения.</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="12259"/>
+        <location filename="../../src/onmainwindow.cpp" line="12327"/>
         <source>Restore toolbar</source>
         <translation>Восстановить панель инструментов</translation>
     </message>
@@ -1801,12 +1801,12 @@ authoized_keys file.</source>
         <translation type="obsolete">О программе &quot;X2GO Client&quot;</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="923"/>
+        <location filename="../../src/onmainwindow.cpp" line="927"/>
         <source>About Qt</source>
         <translation>О Qt</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="6459"/>
+        <location filename="../../src/onmainwindow.cpp" line="6527"/>
         <source>Session</source>
         <translation>Сессия</translation>
     </message>
@@ -1816,30 +1816,30 @@ authoized_keys file.</source>
         <translation type="obsolete">Ctrl+Q</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="942"/>
+        <location filename="../../src/onmainwindow.cpp" line="946"/>
         <source>&amp;Session</source>
         <translation>&amp;Сессия</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="945"/>
+        <location filename="../../src/onmainwindow.cpp" line="949"/>
         <source>&amp;Options</source>
         <translation>&amp;Опции</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="967"/>
+        <location filename="../../src/onmainwindow.cpp" line="971"/>
         <source>&amp;Help</source>
         <translation>&amp;Помощь</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="1006"/>
-        <location filename="../../src/onmainwindow.cpp" line="2215"/>
-        <location filename="../../src/onmainwindow.cpp" line="8549"/>
-        <location filename="../../src/onmainwindow.cpp" line="11548"/>
+        <location filename="../../src/onmainwindow.cpp" line="1010"/>
+        <location filename="../../src/onmainwindow.cpp" line="2221"/>
+        <location filename="../../src/onmainwindow.cpp" line="8617"/>
+        <location filename="../../src/onmainwindow.cpp" line="11616"/>
         <source>Login:</source>
         <translation>Пользователь:</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="2995"/>
+        <location filename="../../src/onmainwindow.cpp" line="3001"/>
         <source>Verification code:</source>
         <translation>Код проверки:</translation>
     </message>
@@ -1854,8 +1854,8 @@ Do you want to terminate the connection?
 Прервать соединение?</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="3084"/>
-        <location filename="../../src/onmainwindow.cpp" line="3112"/>
+        <location filename="../../src/onmainwindow.cpp" line="3090"/>
+        <location filename="../../src/onmainwindow.cpp" line="3118"/>
         <source>If you accept the new host key the security of your connection may be compromised.
 Do you want to update the host key?</source>
         <translation>Если Вы продолжите, безопасность соединения может быть скомпрометированой. Обновить ключ?</translation>
@@ -1869,36 +1869,36 @@ Do you want to terminate the connection?
 Прекратить соединение?</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="5178"/>
-        <location filename="../../src/onmainwindow.cpp" line="5180"/>
+        <location filename="../../src/onmainwindow.cpp" line="5237"/>
+        <location filename="../../src/onmainwindow.cpp" line="5239"/>
         <source>New session started</source>
         <translation>Новая сессия запущенна</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="5217"/>
-        <location filename="../../src/onmainwindow.cpp" line="5219"/>
+        <location filename="../../src/onmainwindow.cpp" line="5276"/>
+        <location filename="../../src/onmainwindow.cpp" line="5278"/>
         <source>Session resumed</source>
         <translation>Сессия восстановленна</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="5456"/>
-        <location filename="../../src/onmainwindow.cpp" line="5460"/>
+        <location filename="../../src/onmainwindow.cpp" line="5515"/>
+        <location filename="../../src/onmainwindow.cpp" line="5519"/>
         <source>Unable to create folder: </source>
         <translation>Невозможно создать каталог:</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="5486"/>
-        <location filename="../../src/onmainwindow.cpp" line="5490"/>
+        <location filename="../../src/onmainwindow.cpp" line="5545"/>
+        <location filename="../../src/onmainwindow.cpp" line="5549"/>
         <source>Unable to write file: </source>
         <translation>Невозможно записать файл:</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="5948"/>
+        <location filename="../../src/onmainwindow.cpp" line="6016"/>
         <source>Emergency exit.</source>
         <translation>Аварийный выход.</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="5957"/>
+        <location filename="../../src/onmainwindow.cpp" line="6025"/>
         <source>Waiting for proxy to exit.</source>
         <translation>Ожидание завершения прокси.</translation>
     </message>
@@ -1911,14 +1911,14 @@ Do you want to terminate the connection?
         <translation type="obsolete">неверное значение для параметра &quot;--clipboard&quot;</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="7626"/>
-        <location filename="../../src/onmainwindow.cpp" line="7630"/>
-        <location filename="../../src/onmainwindow.cpp" line="7635"/>
+        <location filename="../../src/onmainwindow.cpp" line="7694"/>
+        <location filename="../../src/onmainwindow.cpp" line="7698"/>
+        <location filename="../../src/onmainwindow.cpp" line="7703"/>
         <source>Wrong parameter: </source>
         <translation>Неверный параметр:</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="7644"/>
+        <location filename="../../src/onmainwindow.cpp" line="7712"/>
         <source>Help</source>
         <translation>Помощь</translation>
     </message>
@@ -1931,12 +1931,12 @@ Do you want to terminate the connection?
         <translation type="obsolete">Опция недоступна в этой сборке</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="7707"/>
+        <location filename="../../src/onmainwindow.cpp" line="7775"/>
         <source>Changelog</source>
         <translation>Изменения</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="7717"/>
+        <location filename="../../src/onmainwindow.cpp" line="7785"/>
         <source>Git Info</source>
         <translation>Информация Git</translation>
     </message>
@@ -1949,7 +1949,7 @@ Do you want to terminate the connection?
         <translation type="obsolete">Невозможно открыть ключ:</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="8889"/>
+        <location filename="../../src/onmainwindow.cpp" line="8957"/>
         <source>Card not configured.</source>
         <translation>Карта не сконфигурирована.</translation>
     </message>
@@ -1958,29 +1958,29 @@ Do you want to terminate the connection?
         <translation type="obsolete">Ошибка чтения геометрии окна (окно закрыто)?</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="11549"/>
+        <location filename="../../src/onmainwindow.cpp" line="11617"/>
         <source>Password:</source>
         <translation>Пароль:</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="11550"/>
+        <location filename="../../src/onmainwindow.cpp" line="11618"/>
         <source>Keyboard layout:</source>
         <translation>Раскладка Клавиатуры:</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="11591"/>
+        <location filename="../../src/onmainwindow.cpp" line="11659"/>
         <source>Ok</source>
         <translation>ОК</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="11593"/>
-        <location filename="../../src/onmainwindow.cpp" line="11917"/>
-        <location filename="../../src/onmainwindow.cpp" line="11919"/>
+        <location filename="../../src/onmainwindow.cpp" line="11661"/>
+        <location filename="../../src/onmainwindow.cpp" line="11985"/>
+        <location filename="../../src/onmainwindow.cpp" line="11987"/>
         <source>Cancel</source>
         <translation>Отмена</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="676"/>
+        <location filename="../../src/onmainwindow.cpp" line="680"/>
         <source>Applications...</source>
         <translation>Приложения...</translation>
     </message>
@@ -1989,52 +1989,52 @@ Do you want to terminate the connection?
         <translation type="obsolete">Неверный ответ брокера</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="1027"/>
-        <location filename="../../src/onmainwindow.cpp" line="1056"/>
-        <location filename="../../src/onmainwindow.cpp" line="1871"/>
-        <location filename="../../src/onmainwindow.cpp" line="1900"/>
-        <location filename="../../src/onmainwindow.cpp" line="1908"/>
-        <location filename="../../src/onmainwindow.cpp" line="2056"/>
-        <location filename="../../src/onmainwindow.cpp" line="2083"/>
-        <location filename="../../src/onmainwindow.cpp" line="2086"/>
-        <location filename="../../src/onmainwindow.cpp" line="2279"/>
-        <location filename="../../src/onmainwindow.cpp" line="2461"/>
-        <location filename="../../src/onmainwindow.cpp" line="2477"/>
-        <location filename="../../src/onmainwindow.cpp" line="2491"/>
-        <location filename="../../src/onmainwindow.cpp" line="2525"/>
-        <location filename="../../src/onmainwindow.cpp" line="2570"/>
-        <location filename="../../src/onmainwindow.cpp" line="3663"/>
-        <location filename="../../src/onmainwindow.cpp" line="3888"/>
-        <location filename="../../src/onmainwindow.cpp" line="3897"/>
-        <location filename="../../src/onmainwindow.cpp" line="4253"/>
-        <location filename="../../src/onmainwindow.cpp" line="4816"/>
-        <location filename="../../src/onmainwindow.cpp" line="4897"/>
-        <location filename="../../src/onmainwindow.cpp" line="4961"/>
-        <location filename="../../src/onmainwindow.cpp" line="4991"/>
-        <location filename="../../src/onmainwindow.cpp" line="5035"/>
-        <location filename="../../src/onmainwindow.cpp" line="5460"/>
-        <location filename="../../src/onmainwindow.cpp" line="5490"/>
-        <location filename="../../src/onmainwindow.cpp" line="5652"/>
-        <location filename="../../src/onmainwindow.cpp" line="6787"/>
-        <location filename="../../src/onmainwindow.cpp" line="6817"/>
-        <location filename="../../src/onmainwindow.cpp" line="7630"/>
-        <location filename="../../src/onmainwindow.cpp" line="7746"/>
-        <location filename="../../src/onmainwindow.cpp" line="7828"/>
-        <location filename="../../src/onmainwindow.cpp" line="8088"/>
-        <location filename="../../src/onmainwindow.cpp" line="8139"/>
-        <location filename="../../src/onmainwindow.cpp" line="8202"/>
-        <location filename="../../src/onmainwindow.cpp" line="8500"/>
-        <location filename="../../src/onmainwindow.cpp" line="8502"/>
-        <location filename="../../src/onmainwindow.cpp" line="8836"/>
-        <location filename="../../src/onmainwindow.cpp" line="8892"/>
-        <location filename="../../src/onmainwindow.cpp" line="8920"/>
-        <location filename="../../src/onmainwindow.cpp" line="9372"/>
-        <location filename="../../src/onmainwindow.cpp" line="9391"/>
-        <location filename="../../src/onmainwindow.cpp" line="9450"/>
-        <location filename="../../src/onmainwindow.cpp" line="9478"/>
-        <location filename="../../src/onmainwindow.cpp" line="9500"/>
-        <location filename="../../src/onmainwindow.cpp" line="9521"/>
-        <location filename="../../src/onmainwindow.cpp" line="9539"/>
+        <location filename="../../src/onmainwindow.cpp" line="1031"/>
+        <location filename="../../src/onmainwindow.cpp" line="1060"/>
+        <location filename="../../src/onmainwindow.cpp" line="1877"/>
+        <location filename="../../src/onmainwindow.cpp" line="1906"/>
+        <location filename="../../src/onmainwindow.cpp" line="1914"/>
+        <location filename="../../src/onmainwindow.cpp" line="2062"/>
+        <location filename="../../src/onmainwindow.cpp" line="2089"/>
+        <location filename="../../src/onmainwindow.cpp" line="2092"/>
+        <location filename="../../src/onmainwindow.cpp" line="2285"/>
+        <location filename="../../src/onmainwindow.cpp" line="2467"/>
+        <location filename="../../src/onmainwindow.cpp" line="2483"/>
+        <location filename="../../src/onmainwindow.cpp" line="2497"/>
+        <location filename="../../src/onmainwindow.cpp" line="2531"/>
+        <location filename="../../src/onmainwindow.cpp" line="2576"/>
+        <location filename="../../src/onmainwindow.cpp" line="3743"/>
+        <location filename="../../src/onmainwindow.cpp" line="3968"/>
+        <location filename="../../src/onmainwindow.cpp" line="3977"/>
+        <location filename="../../src/onmainwindow.cpp" line="4333"/>
+        <location filename="../../src/onmainwindow.cpp" line="4875"/>
+        <location filename="../../src/onmainwindow.cpp" line="4956"/>
+        <location filename="../../src/onmainwindow.cpp" line="5020"/>
+        <location filename="../../src/onmainwindow.cpp" line="5050"/>
+        <location filename="../../src/onmainwindow.cpp" line="5094"/>
+        <location filename="../../src/onmainwindow.cpp" line="5519"/>
+        <location filename="../../src/onmainwindow.cpp" line="5549"/>
+        <location filename="../../src/onmainwindow.cpp" line="5711"/>
+        <location filename="../../src/onmainwindow.cpp" line="6855"/>
+        <location filename="../../src/onmainwindow.cpp" line="6885"/>
+        <location filename="../../src/onmainwindow.cpp" line="7698"/>
+        <location filename="../../src/onmainwindow.cpp" line="7814"/>
+        <location filename="../../src/onmainwindow.cpp" line="7896"/>
+        <location filename="../../src/onmainwindow.cpp" line="8156"/>
+        <location filename="../../src/onmainwindow.cpp" line="8207"/>
+        <location filename="../../src/onmainwindow.cpp" line="8270"/>
+        <location filename="../../src/onmainwindow.cpp" line="8568"/>
+        <location filename="../../src/onmainwindow.cpp" line="8570"/>
+        <location filename="../../src/onmainwindow.cpp" line="8904"/>
+        <location filename="../../src/onmainwindow.cpp" line="8960"/>
+        <location filename="../../src/onmainwindow.cpp" line="8988"/>
+        <location filename="../../src/onmainwindow.cpp" line="9440"/>
+        <location filename="../../src/onmainwindow.cpp" line="9459"/>
+        <location filename="../../src/onmainwindow.cpp" line="9518"/>
+        <location filename="../../src/onmainwindow.cpp" line="9546"/>
+        <location filename="../../src/onmainwindow.cpp" line="9568"/>
+        <location filename="../../src/onmainwindow.cpp" line="9589"/>
+        <location filename="../../src/onmainwindow.cpp" line="9607"/>
         <source>Error</source>
         <translation>Ошибка</translation>
     </message>
@@ -2043,7 +2043,7 @@ Do you want to terminate the connection?
         <translation type="obsolete">Проверте настройки LDAP</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="1907"/>
+        <location filename="../../src/onmainwindow.cpp" line="1913"/>
         <source>no X2Go Server found in LDAP </source>
         <translation type="unfinished">Сервер X2Go не найден в LDAP </translation>
     </message>
@@ -2052,13 +2052,13 @@ Do you want to terminate the connection?
         <translation type="obsolete">Удалить сессию?</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="2699"/>
-        <location filename="../../src/onmainwindow.cpp" line="6594"/>
+        <location filename="../../src/onmainwindow.cpp" line="2705"/>
+        <location filename="../../src/onmainwindow.cpp" line="6662"/>
         <source>KDE</source>
         <translation>KDE</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="2792"/>
+        <location filename="../../src/onmainwindow.cpp" line="2798"/>
         <source> on </source>
         <translation> на </translation>
     </message>
@@ -2068,7 +2068,7 @@ Do you want to terminate the connection?
         <translation type="obsolete">&lt;b&gt;Ошибка соединения&lt;/b&gt;&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="5020"/>
+        <location filename="../../src/onmainwindow.cpp" line="5079"/>
         <source>&lt;b&gt;Wrong Password!&lt;/b&gt;&lt;br&gt;&lt;br&gt;</source>
         <translation>&lt;b&gt;Неверный пароль!&lt;/b&gt;&lt;br&gt;&lt;br&gt;</translation>
     </message>
@@ -2077,51 +2077,51 @@ Do you want to terminate the connection?
         <translation type="obsolete">Не доступен ни один сервер</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="4532"/>
-        <location filename="../../src/onmainwindow.cpp" line="11913"/>
+        <location filename="../../src/onmainwindow.cpp" line="4612"/>
+        <location filename="../../src/onmainwindow.cpp" line="11981"/>
         <source>Select session:</source>
         <translation>Сессия:</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="11915"/>
+        <location filename="../../src/onmainwindow.cpp" line="11983"/>
         <source>Resume</source>
         <translation>Восстановить</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="679"/>
-        <location filename="../../src/onmainwindow.cpp" line="1190"/>
-        <location filename="../../src/onmainwindow.cpp" line="6136"/>
-        <location filename="../../src/onmainwindow.cpp" line="11922"/>
+        <location filename="../../src/onmainwindow.cpp" line="683"/>
+        <location filename="../../src/onmainwindow.cpp" line="1194"/>
+        <location filename="../../src/onmainwindow.cpp" line="6204"/>
+        <location filename="../../src/onmainwindow.cpp" line="11990"/>
         <source>Suspend</source>
         <translation>Прервать</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="682"/>
-        <location filename="../../src/onmainwindow.cpp" line="1191"/>
-        <location filename="../../src/onmainwindow.cpp" line="11760"/>
-        <location filename="../../src/onmainwindow.cpp" line="11924"/>
+        <location filename="../../src/onmainwindow.cpp" line="686"/>
+        <location filename="../../src/onmainwindow.cpp" line="1195"/>
+        <location filename="../../src/onmainwindow.cpp" line="11828"/>
+        <location filename="../../src/onmainwindow.cpp" line="11992"/>
         <source>Terminate</source>
         <translation>Завершить</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="11927"/>
+        <location filename="../../src/onmainwindow.cpp" line="11995"/>
         <source>New</source>
         <translation>Новая</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="6461"/>
-        <location filename="../../src/onmainwindow.cpp" line="11994"/>
-        <location filename="../../src/onmainwindow.cpp" line="12016"/>
+        <location filename="../../src/onmainwindow.cpp" line="6529"/>
+        <location filename="../../src/onmainwindow.cpp" line="12062"/>
+        <location filename="../../src/onmainwindow.cpp" line="12084"/>
         <source>Display</source>
         <translation>Дисплей</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="11996"/>
+        <location filename="../../src/onmainwindow.cpp" line="12064"/>
         <source>Status</source>
         <translation>Статус</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="12002"/>
+        <location filename="../../src/onmainwindow.cpp" line="12070"/>
         <source>Server</source>
         <translation>Сервер</translation>
     </message>
@@ -2130,33 +2130,32 @@ Do you want to terminate the connection?
         <translation type="obsolete">Время создания</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="12007"/>
+        <location filename="../../src/onmainwindow.cpp" line="12075"/>
         <source>Client IP</source>
         <translation>IP клиента</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="12009"/>
+        <location filename="../../src/onmainwindow.cpp" line="12077"/>
         <source>Session ID</source>
         <translation>ID сессии</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="4552"/>
-        <location filename="../../src/onmainwindow.cpp" line="4677"/>
-        <location filename="../../src/onmainwindow.cpp" line="6100"/>
+        <location filename="../../src/onmainwindow.cpp" line="4632"/>
+        <location filename="../../src/onmainwindow.cpp" line="4757"/>
+        <location filename="../../src/onmainwindow.cpp" line="6168"/>
         <source>running</source>
         <translation>активна</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="4554"/>
-        <location filename="../../src/onmainwindow.cpp" line="4909"/>
+        <location filename="../../src/onmainwindow.cpp" line="4634"/>
+        <location filename="../../src/onmainwindow.cpp" line="4968"/>
         <source>suspended</source>
         <translation>прервана</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="4727"/>
-        <location filename="../../src/onmainwindow.cpp" line="4746"/>
-        <location filename="../../src/onmainwindow.cpp" line="5682"/>
-        <location filename="../../src/onmainwindow.cpp" line="6364"/>
+        <location filename="../../src/onmainwindow.cpp" line="4804"/>
+        <location filename="../../src/onmainwindow.cpp" line="5741"/>
+        <location filename="../../src/onmainwindow.cpp" line="6432"/>
         <source>Warning</source>
         <translation>Предупреждение</translation>
     </message>
@@ -2165,32 +2164,30 @@ Do you want to terminate the connection?
         <translation type="obsolete">Глубина цвета вашего дисплея не соответствует глубине цвета данной сессии. Это может помешать восстановлению сессии и в большинстве случаев&lt;b&gt;сессия будет утеряна&lt;/b&gt; Рекомендуется изменить глубину цвета вашего дисплея на(sp)</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="4735"/>
         <source>24 or 32</source>
-        <translation>24 или 32</translation>
+        <translation type="obsolete">24 или 32</translation>
     </message>
     <message>
         <source> bit and restart your X-server before you reconnect to this x2go-session.&lt;br&gt;Resume this session anyway?</source>
         <translation type="obsolete"> бит и перезапустить X-сервер до восстановления сессии.&lt;br&gt;Попробовать восстановить сессию не смотря на данное предупреждение?</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="4739"/>
-        <location filename="../../src/onmainwindow.cpp" line="4758"/>
+        <location filename="../../src/onmainwindow.cpp" line="4818"/>
         <source>Yes</source>
         <translation>Да</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="2277"/>
+        <location filename="../../src/onmainwindow.cpp" line="2283"/>
         <source>No X2Go sessions found, closing.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="2851"/>
+        <location filename="../../src/onmainwindow.cpp" line="2857"/>
         <source>Starting connection to server: </source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="2860"/>
+        <location filename="../../src/onmainwindow.cpp" line="2866"/>
         <source> to </source>
         <translation></translation>
     </message>
@@ -2199,12 +2196,12 @@ Do you want to terminate the connection?
         <translation type="obsolete">Ошибка соединения(</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="2999"/>
+        <location filename="../../src/onmainwindow.cpp" line="3005"/>
         <source>Enter passphrase to decrypt a key</source>
         <translation>Введите фразу-пароль для ключа</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="3062"/>
+        <location filename="../../src/onmainwindow.cpp" line="3068"/>
         <source>Host key for server changed.
 It is now: </source>
         <translation>Ключ на сервере изменен:</translation>
@@ -2222,15 +2219,14 @@ It is now: </source>
         <translation type="obsolete">Не могу найти файл с ключами. Если вы примете этот ключ, файл будет создан автоматически</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="3134"/>
+        <location filename="../../src/onmainwindow.cpp" line="3140"/>
         <source>The server is unknown. Do you trust the host key?
 Public key hash: </source>
         <translation>Сервер не известен. Доверяете ли вы этому ключу?
 Public key hash: </translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="4740"/>
-        <location filename="../../src/onmainwindow.cpp" line="4759"/>
+        <location filename="../../src/onmainwindow.cpp" line="4819"/>
         <source>No</source>
         <translation>Нет</translation>
     </message>
@@ -2239,7 +2235,7 @@ Public key hash: </translation>
         <translation type="obsolete">Ошибка проверки ключа</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="3178"/>
+        <location filename="../../src/onmainwindow.cpp" line="3184"/>
         <source>Authentication failed: </source>
         <translation></translation>
     </message>
@@ -2248,23 +2244,23 @@ Public key hash: </translation>
         <translation type="obsolete">Ошибка авторизации</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="3633"/>
+        <location filename="../../src/onmainwindow.cpp" line="3713"/>
         <source>Enter password for SSH proxy</source>
         <translation>Введите пароль для SSH прокси</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="3669"/>
-        <location filename="../../src/onmainwindow.cpp" line="3672"/>
-        <location filename="../../src/onmainwindow.cpp" line="3674"/>
-        <location filename="../../src/onmainwindow.cpp" line="8145"/>
-        <location filename="../../src/onmainwindow.cpp" line="8148"/>
-        <location filename="../../src/onmainwindow.cpp" line="8150"/>
+        <location filename="../../src/onmainwindow.cpp" line="3749"/>
+        <location filename="../../src/onmainwindow.cpp" line="3752"/>
+        <location filename="../../src/onmainwindow.cpp" line="3754"/>
+        <location filename="../../src/onmainwindow.cpp" line="8213"/>
+        <location filename="../../src/onmainwindow.cpp" line="8216"/>
+        <location filename="../../src/onmainwindow.cpp" line="8218"/>
         <source>Connection failed: </source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="3672"/>
-        <location filename="../../src/onmainwindow.cpp" line="8148"/>
+        <location filename="../../src/onmainwindow.cpp" line="3752"/>
+        <location filename="../../src/onmainwindow.cpp" line="8216"/>
         <source> - Wrong password.</source>
         <translation></translation>
     </message>
@@ -2273,12 +2269,12 @@ Public key hash: </translation>
         <translation type="obsolete">Сервер не доступен</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="4843"/>
+        <location filename="../../src/onmainwindow.cpp" line="4902"/>
         <source>suspending</source>
         <translation>прерывается</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="4878"/>
+        <location filename="../../src/onmainwindow.cpp" line="4937"/>
         <source>terminating</source>
         <translation>завершается</translation>
     </message>
@@ -2298,106 +2294,101 @@ Public key hash: </translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="204"/>
-        <location filename="../../src/onmainwindow.cpp" line="3220"/>
-        <location filename="../../src/onmainwindow.cpp" line="6080"/>
+        <location filename="../../src/onmainwindow.cpp" line="3226"/>
+        <location filename="../../src/onmainwindow.cpp" line="6148"/>
         <source>connecting</source>
         <translation>соединение</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="277"/>
+        <location filename="../../src/onmainwindow.cpp" line="281"/>
         <source>Starting X2Go Client in portable mode. Data directory is: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="409"/>
-        <location filename="../../src/onmainwindow.cpp" line="8457"/>
+        <location filename="../../src/onmainwindow.cpp" line="413"/>
+        <location filename="../../src/onmainwindow.cpp" line="8525"/>
         <source>About X2Go Client</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="513"/>
+        <location filename="../../src/onmainwindow.cpp" line="517"/>
         <source>Started X2Go Client.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="593"/>
-        <location filename="../../src/onmainwindow.cpp" line="621"/>
+        <location filename="../../src/onmainwindow.cpp" line="597"/>
+        <location filename="../../src/onmainwindow.cpp" line="625"/>
         <source> found.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="606"/>
-        <source>English language requested, not loading translator.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/onmainwindow.cpp" line="627"/>
+        <location filename="../../src/onmainwindow.cpp" line="631"/>
         <source>Non-fatal: can&apos;t load translator: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="628"/>
+        <location filename="../../src/onmainwindow.cpp" line="632"/>
         <source>Trying to load language with lower preference, if existent.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="879"/>
+        <location filename="../../src/onmainwindow.cpp" line="883"/>
         <source>Session management ...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="890"/>
+        <location filename="../../src/onmainwindow.cpp" line="894"/>
         <source>&amp;Create session icon on desktop ...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="899"/>
+        <location filename="../../src/onmainwindow.cpp" line="903"/>
         <source>&amp;Set broker password ...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="910"/>
+        <location filename="../../src/onmainwindow.cpp" line="914"/>
         <source>&amp;Connectivity test ...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="1189"/>
-        <location filename="../../src/onmainwindow.cpp" line="11747"/>
+        <location filename="../../src/onmainwindow.cpp" line="1193"/>
+        <location filename="../../src/onmainwindow.cpp" line="11815"/>
         <source>Share folder ...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="1219"/>
+        <location filename="../../src/onmainwindow.cpp" line="1223"/>
         <source>A left click hides or restores the window. A right click displays the context menu.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="1405"/>
+        <location filename="../../src/onmainwindow.cpp" line="1409"/>
         <source>Closing X2Go Client ...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="1570"/>
+        <location filename="../../src/onmainwindow.cpp" line="1576"/>
         <source>Finished X2Go Client closing hooks.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="1823"/>
+        <location filename="../../src/onmainwindow.cpp" line="1829"/>
         <source>Broker authentication failed!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="2907"/>
+        <location filename="../../src/onmainwindow.cpp" line="2913"/>
         <source>Connection error: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="2976"/>
+        <location filename="../../src/onmainwindow.cpp" line="2982"/>
         <source>Couldn&apos;t find an SSH connection.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="3063"/>
+        <location filename="../../src/onmainwindow.cpp" line="3069"/>
         <source>This can be an indication of a man-in-the-middle attack.
 Somebody might be eavesdropping on you.
 For security reasons, it is recommended to stop the connection attempt.
@@ -2406,17 +2397,17 @@ Do you want to terminate the connection?
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="3067"/>
-        <location filename="../../src/onmainwindow.cpp" line="3078"/>
-        <location filename="../../src/onmainwindow.cpp" line="3095"/>
-        <location filename="../../src/onmainwindow.cpp" line="3106"/>
-        <location filename="../../src/onmainwindow.cpp" line="3138"/>
-        <location filename="../../src/onmainwindow.cpp" line="3150"/>
+        <location filename="../../src/onmainwindow.cpp" line="3073"/>
+        <location filename="../../src/onmainwindow.cpp" line="3084"/>
+        <location filename="../../src/onmainwindow.cpp" line="3101"/>
+        <location filename="../../src/onmainwindow.cpp" line="3112"/>
+        <location filename="../../src/onmainwindow.cpp" line="3144"/>
+        <location filename="../../src/onmainwindow.cpp" line="3156"/>
         <source>Host key verification failed.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="3090"/>
+        <location filename="../../src/onmainwindow.cpp" line="3096"/>
         <source>The host key for this server was not found but another type of key exists. An attacker might have changed the default server key to trick your client into thinking the key does not exist yet.
 For security reasons, it is recommended to stop the connection attempt.
 Do you want to terminate the connection?
@@ -2424,179 +2415,167 @@ Do you want to terminate the connection?
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="3129"/>
+        <location filename="../../src/onmainwindow.cpp" line="3135"/>
         <source>Could not find known hosts file. If you accept the host key here, the file will be automatically created.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="3182"/>
+        <location filename="../../src/onmainwindow.cpp" line="3188"/>
         <source>Authentication failed.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="3654"/>
-        <location filename="../../src/onmainwindow.cpp" line="4890"/>
-        <location filename="../../src/onmainwindow.cpp" line="4984"/>
-        <location filename="../../src/onmainwindow.cpp" line="5017"/>
-        <location filename="../../src/onmainwindow.cpp" line="7739"/>
-        <location filename="../../src/onmainwindow.cpp" line="7821"/>
-        <location filename="../../src/onmainwindow.cpp" line="8130"/>
-        <location filename="../../src/onmainwindow.cpp" line="8194"/>
-        <location filename="../../src/onmainwindow.cpp" line="9365"/>
+        <location filename="../../src/onmainwindow.cpp" line="3734"/>
+        <location filename="../../src/onmainwindow.cpp" line="4949"/>
+        <location filename="../../src/onmainwindow.cpp" line="5043"/>
+        <location filename="../../src/onmainwindow.cpp" line="5076"/>
+        <location filename="../../src/onmainwindow.cpp" line="7807"/>
+        <location filename="../../src/onmainwindow.cpp" line="7889"/>
+        <location filename="../../src/onmainwindow.cpp" line="8198"/>
+        <location filename="../../src/onmainwindow.cpp" line="8262"/>
+        <location filename="../../src/onmainwindow.cpp" line="9433"/>
         <source>&lt;b&gt;Connection failed.&lt;/b&gt;
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="3889"/>
+        <location filename="../../src/onmainwindow.cpp" line="3969"/>
         <source>No server available.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="3898"/>
-        <location filename="../../src/onmainwindow.cpp" line="4254"/>
-        <location filename="../../src/onmainwindow.cpp" line="4817"/>
-        <location filename="../../src/onmainwindow.cpp" line="4962"/>
+        <location filename="../../src/onmainwindow.cpp" line="3978"/>
+        <location filename="../../src/onmainwindow.cpp" line="4334"/>
+        <location filename="../../src/onmainwindow.cpp" line="4876"/>
+        <location filename="../../src/onmainwindow.cpp" line="5021"/>
         <source>Server not available.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="4598"/>
+        <location filename="../../src/onmainwindow.cpp" line="4678"/>
         <source>No accessible desktop found.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="4728"/>
-        <location filename="../../src/onmainwindow.cpp" line="4747"/>
-        <source>Your current color depth is different from the session&apos;s color depth. This may cause problems reconnecting to this session and in most cases &lt;b&gt;you will loose the session&lt;/b&gt; and have to start a new one! It&apos;s highly recommended to change the color depth of your display to </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/onmainwindow.cpp" line="4736"/>
-        <location filename="../../src/onmainwindow.cpp" line="4755"/>
-        <source> bits and restart your X.Org Server before you reconnect to this X2Go session.&lt;br /&gt;Do you want to resume this session anyway?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/onmainwindow.cpp" line="5650"/>
+        <location filename="../../src/onmainwindow.cpp" line="5709"/>
         <source>Unable to create SSH tunnel for X2Go session (NX) startup:
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="5680"/>
+        <location filename="../../src/onmainwindow.cpp" line="5739"/>
         <source>Unable to create SSH tunnel for audio data:
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="5806"/>
-        <location filename="../../src/onmainwindow.cpp" line="8764"/>
+        <location filename="../../src/onmainwindow.cpp" line="5865"/>
+        <location filename="../../src/onmainwindow.cpp" line="8832"/>
         <source>failed to start.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="5807"/>
+        <location filename="../../src/onmainwindow.cpp" line="5866"/>
         <source>This likely means the binary is not available.
 The current search path is: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="5821"/>
+        <location filename="../../src/onmainwindow.cpp" line="5880"/>
         <source>returned a non-zero exit code or crashed otherwise.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="5822"/>
+        <location filename="../../src/onmainwindow.cpp" line="5881"/>
         <source>Execution failed, exit code was: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="5827"/>
+        <location filename="../../src/onmainwindow.cpp" line="5886"/>
         <source>didn&apos;t start up in time.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="5828"/>
-        <location filename="../../src/onmainwindow.cpp" line="8792"/>
+        <location filename="../../src/onmainwindow.cpp" line="5887"/>
+        <location filename="../../src/onmainwindow.cpp" line="8860"/>
         <source>This error shouldn&apos;t come up.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="5832"/>
-        <location filename="../../src/onmainwindow.cpp" line="8796"/>
+        <location filename="../../src/onmainwindow.cpp" line="5891"/>
+        <location filename="../../src/onmainwindow.cpp" line="8864"/>
         <source>didn&apos;t accept a write operation.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="5833"/>
-        <location filename="../../src/onmainwindow.cpp" line="5838"/>
-        <location filename="../../src/onmainwindow.cpp" line="8797"/>
-        <location filename="../../src/onmainwindow.cpp" line="8802"/>
+        <location filename="../../src/onmainwindow.cpp" line="5892"/>
+        <location filename="../../src/onmainwindow.cpp" line="5897"/>
+        <location filename="../../src/onmainwindow.cpp" line="8865"/>
+        <location filename="../../src/onmainwindow.cpp" line="8870"/>
         <source>It is probably not running correctly or crashed in-between.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="5837"/>
+        <location filename="../../src/onmainwindow.cpp" line="5896"/>
         <source>Unable to read from xmodmap.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="5842"/>
-        <location filename="../../src/onmainwindow.cpp" line="8806"/>
+        <location filename="../../src/onmainwindow.cpp" line="5901"/>
+        <location filename="../../src/onmainwindow.cpp" line="8874"/>
         <source>encountered an unknown error during start up or execution.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="5846"/>
-        <location filename="../../src/onmainwindow.cpp" line="8810"/>
+        <location filename="../../src/onmainwindow.cpp" line="5905"/>
+        <location filename="../../src/onmainwindow.cpp" line="8878"/>
         <source>experienced an undefined error.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="5855"/>
-        <location filename="../../src/onmainwindow.cpp" line="8819"/>
+        <location filename="../../src/onmainwindow.cpp" line="5914"/>
+        <location filename="../../src/onmainwindow.cpp" line="8887"/>
         <source>X2Go Client will now terminate.
 
 File a bug report as outlined on the &lt;a href=&quot;http://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;bugs wiki page&lt;/a&gt;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="5960"/>
+        <location filename="../../src/onmainwindow.cpp" line="6028"/>
         <source>Proxy didn&apos;t terminate after 3 seconds. Killing the proxy.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="6002"/>
-        <location filename="../../src/onmainwindow.cpp" line="9402"/>
+        <location filename="../../src/onmainwindow.cpp" line="6070"/>
+        <location filename="../../src/onmainwindow.cpp" line="9470"/>
         <source>Closing X2Go Client because it was started in hidden mode.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="6007"/>
-        <location filename="../../src/onmainwindow.cpp" line="9407"/>
+        <location filename="../../src/onmainwindow.cpp" line="6075"/>
+        <location filename="../../src/onmainwindow.cpp" line="9475"/>
         <source>Closing X2Go Client because the --close-disconnect parameter was passed.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="6089"/>
+        <location filename="../../src/onmainwindow.cpp" line="6157"/>
         <source>starting</source>
         <translation>запуск</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="6093"/>
+        <location filename="../../src/onmainwindow.cpp" line="6161"/>
         <source>resuming</source>
         <translation>восстановление</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="6165"/>
-        <location filename="../../src/onmainwindow.cpp" line="6491"/>
-        <location filename="../../src/onmainwindow.cpp" line="6510"/>
+        <location filename="../../src/onmainwindow.cpp" line="6233"/>
+        <location filename="../../src/onmainwindow.cpp" line="6559"/>
+        <location filename="../../src/onmainwindow.cpp" line="6578"/>
         <source>Connection timeout, aborting</source>
         <translation>Таймаут соединения, отмена</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="6166"/>
+        <location filename="../../src/onmainwindow.cpp" line="6234"/>
         <source>aborting</source>
         <translation>отмена</translation>
     </message>
@@ -2605,7 +2584,7 @@ File a bug report as outlined on the &lt;a href=&quot;http://wiki.x2go.org/doku.
         <translation type="obsolete">&lt;b&gt;ID сессии:&lt;br&gt;Сервер:&lt;br&gt;Пользователь:&lt;br&gt;Дисплей:&lt;br&gt;Время создания:&lt;br&gt;Статус:&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="11753"/>
+        <location filename="../../src/onmainwindow.cpp" line="11821"/>
         <source>Abort</source>
         <translation>Отмена</translation>
     </message>
@@ -2625,7 +2604,7 @@ File a bug report as outlined on the &lt;a href=&quot;http://wiki.x2go.org/doku.
 </translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="7343"/>
+        <location filename="../../src/onmainwindow.cpp" line="7411"/>
         <source> (can&apos;t open file)</source>
         <translation> (невозможно открыть файл)</translation>
     </message>
@@ -2650,7 +2629,7 @@ File a bug report as outlined on the &lt;a href=&quot;http://wiki.x2go.org/doku.
         <translation type="obsolete">Available pack methodes:</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="8432"/>
+        <location filename="../../src/onmainwindow.cpp" line="8500"/>
         <source>Support</source>
         <translation>Поддержка</translation>
     </message>
@@ -2691,7 +2670,7 @@ File a bug report as outlined on the &lt;a href=&quot;http://wiki.x2go.org/doku.
         <translation type="obsolete">Эта карта не сконфигурирована для использования с X2Go</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="8921"/>
+        <location filename="../../src/onmainwindow.cpp" line="8989"/>
         <source>Unable to create file: </source>
         <translation>Невозможно создать файл: </translation>
     </message>
@@ -2730,42 +2709,42 @@ Please check your settings</source>
         <translation type="obsolete">Почтовый клиент</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="213"/>
+        <location filename="../../src/onmainwindow.cpp" line="217"/>
         <source>OpenOffice.org</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="214"/>
+        <location filename="../../src/onmainwindow.cpp" line="218"/>
         <source>Terminal</source>
         <translation>Терминал</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="3821"/>
+        <location filename="../../src/onmainwindow.cpp" line="3901"/>
         <source>unknown</source>
         <translation>неизвестно</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="11998"/>
+        <location filename="../../src/onmainwindow.cpp" line="12066"/>
         <source>Command</source>
         <translation>Команда</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="12000"/>
+        <location filename="../../src/onmainwindow.cpp" line="12068"/>
         <source>Type</source>
         <translation>Тип</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="4560"/>
+        <location filename="../../src/onmainwindow.cpp" line="4640"/>
         <source>Desktop</source>
         <translation>Оконный менеджер</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="4562"/>
+        <location filename="../../src/onmainwindow.cpp" line="4642"/>
         <source>single application</source>
         <translation>приложение</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="4564"/>
+        <location filename="../../src/onmainwindow.cpp" line="4644"/>
         <source>shadow session</source>
         <translation>теневая сессия</translation>
     </message>
@@ -2774,8 +2753,8 @@ Please check your settings</source>
         <translation type="obsolete">&lt;br&gt;Ошибка настроек &quot;sudo&quot;</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="9387"/>
-        <location filename="../../src/onmainwindow.cpp" line="9392"/>
+        <location filename="../../src/onmainwindow.cpp" line="9455"/>
+        <location filename="../../src/onmainwindow.cpp" line="9460"/>
         <source>Unable to execute: </source>
         <translation>Невозможно выполнить: </translation>
     </message>
@@ -2790,17 +2769,17 @@ Please check your settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="211"/>
+        <location filename="../../src/onmainwindow.cpp" line="215"/>
         <source>Internet browser</source>
         <translation>Веб-броузер</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="212"/>
+        <location filename="../../src/onmainwindow.cpp" line="216"/>
         <source>Email client</source>
         <translation>Почтовый клиент</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="873"/>
+        <location filename="../../src/onmainwindow.cpp" line="877"/>
         <source>&amp;New session ...</source>
         <translation>&amp;Новая сессия ...</translation>
     </message>
@@ -2809,8 +2788,8 @@ Please check your settings</source>
         <translation type="obsolete">Управление сессиями...</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="917"/>
-        <location filename="../../src/onmainwindow.cpp" line="938"/>
+        <location filename="../../src/onmainwindow.cpp" line="921"/>
+        <location filename="../../src/onmainwindow.cpp" line="942"/>
         <source>Show toolbar</source>
         <translation>Панель инструментов</translation>
     </message>
@@ -2819,9 +2798,9 @@ Please check your settings</source>
         <translation type="obsolete">О программе &quot;X2GO Client&quot;</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="1872"/>
-        <location filename="../../src/onmainwindow.cpp" line="2057"/>
-        <location filename="../../src/onmainwindow.cpp" line="2087"/>
+        <location filename="../../src/onmainwindow.cpp" line="1878"/>
+        <location filename="../../src/onmainwindow.cpp" line="2063"/>
+        <location filename="../../src/onmainwindow.cpp" line="2093"/>
         <source>Please check LDAP settings</source>
         <translation>Проверьте настройки LDAP</translation>
     </message>
@@ -2834,16 +2813,16 @@ Please check your settings</source>
         <translation type="obsolete">Удалить сессию?</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="3657"/>
-        <location filename="../../src/onmainwindow.cpp" line="4893"/>
-        <location filename="../../src/onmainwindow.cpp" line="4987"/>
-        <location filename="../../src/onmainwindow.cpp" line="6784"/>
-        <location filename="../../src/onmainwindow.cpp" line="6814"/>
-        <location filename="../../src/onmainwindow.cpp" line="7742"/>
-        <location filename="../../src/onmainwindow.cpp" line="7824"/>
-        <location filename="../../src/onmainwindow.cpp" line="8133"/>
-        <location filename="../../src/onmainwindow.cpp" line="8198"/>
-        <location filename="../../src/onmainwindow.cpp" line="9368"/>
+        <location filename="../../src/onmainwindow.cpp" line="3737"/>
+        <location filename="../../src/onmainwindow.cpp" line="4952"/>
+        <location filename="../../src/onmainwindow.cpp" line="5046"/>
+        <location filename="../../src/onmainwindow.cpp" line="6852"/>
+        <location filename="../../src/onmainwindow.cpp" line="6882"/>
+        <location filename="../../src/onmainwindow.cpp" line="7810"/>
+        <location filename="../../src/onmainwindow.cpp" line="7892"/>
+        <location filename="../../src/onmainwindow.cpp" line="8201"/>
+        <location filename="../../src/onmainwindow.cpp" line="8266"/>
+        <location filename="../../src/onmainwindow.cpp" line="9436"/>
         <source>&lt;b&gt;Wrong password!&lt;/b&gt;&lt;br&gt;&lt;br&gt;</source>
         <translation>&lt;b&gt;Неверный пароль!&lt;/b&gt;&lt;br&gt;&lt;br&gt;</translation>
     </message>
@@ -2852,15 +2831,15 @@ Please check your settings</source>
         <translation type="obsolete">Не доступен ни один сервер</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="1161"/>
-        <location filename="../../src/onmainwindow.cpp" line="5936"/>
+        <location filename="../../src/onmainwindow.cpp" line="1165"/>
+        <location filename="../../src/onmainwindow.cpp" line="6004"/>
         <source>Not connected</source>
         <oldsource>Active connection</oldsource>
         <translation>Соединение не установлено</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="6463"/>
-        <location filename="../../src/onmainwindow.cpp" line="12005"/>
+        <location filename="../../src/onmainwindow.cpp" line="6531"/>
+        <location filename="../../src/onmainwindow.cpp" line="12073"/>
         <source>Creation time</source>
         <translation>Время создания</translation>
     </message>
@@ -2879,17 +2858,17 @@ Please check your settings</source>
 </translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="11730"/>
+        <location filename="../../src/onmainwindow.cpp" line="11798"/>
         <source>&lt;b&gt;Session ID:&lt;br&gt;Server:&lt;br&gt;Username:&lt;br&gt;Display:&lt;br&gt;Creation time:&lt;br&gt;Status:&lt;/b&gt;</source>
         <translation>&lt;b&gt;ID сессии:&lt;br&gt;Сервер:&lt;br&gt;Пользователь:&lt;br&gt;Дисплей:&lt;br&gt;Время создания:&lt;br&gt;Статус:&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="673"/>
+        <location filename="../../src/onmainwindow.cpp" line="677"/>
         <source>Share folder...</source>
         <translation>Экспорт каталога...</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="11765"/>
+        <location filename="../../src/onmainwindow.cpp" line="11833"/>
         <source>Show details</source>
         <translation>Показать детали</translation>
     </message>
@@ -2914,13 +2893,13 @@ Please update to a newer x2goserver package</source>
         <translation type="obsolete">&amp;Создать ярлык сессии на рабочем столе...</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="597"/>
+        <location filename="../../src/onmainwindow.cpp" line="601"/>
         <source>Can&apos;t load translator: </source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="593"/>
-        <location filename="../../src/onmainwindow.cpp" line="621"/>
+        <location filename="../../src/onmainwindow.cpp" line="597"/>
+        <location filename="../../src/onmainwindow.cpp" line="625"/>
         <source>Translator: </source>
         <translation></translation>
     </message>
@@ -2933,82 +2912,82 @@ Please update to a newer x2goserver package</source>
         <translation type="obsolete">&amp;Тест соединения...</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="1027"/>
+        <location filename="../../src/onmainwindow.cpp" line="1031"/>
         <source>Operation failed</source>
         <translation>Ошибка</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="1031"/>
+        <location filename="../../src/onmainwindow.cpp" line="1035"/>
         <source>Password changed</source>
         <translation>Пароль изменен</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="1056"/>
+        <location filename="../../src/onmainwindow.cpp" line="1060"/>
         <source>Wrong password!</source>
         <translation>Неверный пароль!</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="1109"/>
+        <location filename="../../src/onmainwindow.cpp" line="1113"/>
         <source>&lt;b&gt;Authentication&lt;/b&gt;</source>
         <translation>&lt;b&gt;Авторизация&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="1159"/>
+        <location filename="../../src/onmainwindow.cpp" line="1163"/>
         <source>Restore</source>
         <translation>Восстановить</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="1163"/>
+        <location filename="../../src/onmainwindow.cpp" line="1167"/>
         <source>Multimedia</source>
         <translation>Мультимедиа</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="1165"/>
+        <location filename="../../src/onmainwindow.cpp" line="1169"/>
         <source>Development</source>
         <translation>Разработка</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="1167"/>
+        <location filename="../../src/onmainwindow.cpp" line="1171"/>
         <source>Education</source>
         <translation>Обучение</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="1169"/>
+        <location filename="../../src/onmainwindow.cpp" line="1173"/>
         <source>Game</source>
         <translation>Игры</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="1171"/>
+        <location filename="../../src/onmainwindow.cpp" line="1175"/>
         <source>Graphics</source>
         <translation>Графика</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="1173"/>
+        <location filename="../../src/onmainwindow.cpp" line="1177"/>
         <source>Network</source>
         <translation>Сеть</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="1175"/>
+        <location filename="../../src/onmainwindow.cpp" line="1179"/>
         <source>Office</source>
         <translation>Офис</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="1177"/>
+        <location filename="../../src/onmainwindow.cpp" line="1181"/>
         <source>Settings</source>
         <translation>Установки</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="1179"/>
+        <location filename="../../src/onmainwindow.cpp" line="1183"/>
         <source>System</source>
         <translation>Система</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="1181"/>
+        <location filename="../../src/onmainwindow.cpp" line="1185"/>
         <source>Utility</source>
         <translation>Утилиты</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="1183"/>
+        <location filename="../../src/onmainwindow.cpp" line="1187"/>
         <source>Other</source>
         <translation>Другие</translation>
     </message>
@@ -3042,24 +3021,24 @@ Use x2goclient hidden mode?</source>
         <translation type="obsolete">Сессия X2Go не найдена</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="2780"/>
+        <location filename="../../src/onmainwindow.cpp" line="2786"/>
         <source>RDP connection</source>
         <translation>RDP соединение</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="688"/>
-        <location filename="../../src/onmainwindow.cpp" line="11099"/>
+        <location filename="../../src/onmainwindow.cpp" line="692"/>
+        <location filename="../../src/onmainwindow.cpp" line="11167"/>
         <source>Detach X2Go window</source>
         <translation>Отсоединить окно</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="5624"/>
-        <location filename="../../src/onmainwindow.cpp" line="11074"/>
+        <location filename="../../src/onmainwindow.cpp" line="5683"/>
+        <location filename="../../src/onmainwindow.cpp" line="11142"/>
         <source>Attach X2Go window</source>
         <translation>Присоединить окно</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="6049"/>
+        <location filename="../../src/onmainwindow.cpp" line="6117"/>
         <source>Finished</source>
         <translation>завершена</translation>
     </message>
@@ -3080,19 +3059,19 @@ Please check your installation</source>
 Переустановите X2Go Client</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="11168"/>
+        <location filename="../../src/onmainwindow.cpp" line="11236"/>
         <source>X2Go Session</source>
         <translation>Сессия X2Go</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="691"/>
-        <location filename="../../src/onmainwindow.cpp" line="12271"/>
+        <location filename="../../src/onmainwindow.cpp" line="695"/>
+        <location filename="../../src/onmainwindow.cpp" line="12339"/>
         <source>Minimize toolbar</source>
         <translation>Свернуть панель</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="12145"/>
-        <location filename="../../src/onmainwindow.cpp" line="12176"/>
+        <location filename="../../src/onmainwindow.cpp" line="12213"/>
+        <location filename="../../src/onmainwindow.cpp" line="12244"/>
         <source>You have enabled Remote Printing or File Sharing.
 These features require a running and functioning SSH server on your computer.
 &lt;b&gt;Printing and File Sharing will be disabled for this session.&lt;/b&gt;
@@ -3101,7 +3080,7 @@ These features require a running and functioning SSH server on your computer.
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="12149"/>
+        <location filename="../../src/onmainwindow.cpp" line="12217"/>
         <source>Normally, this should not happen as X2Go Client for Windows ships its own internal SSH server.
 
 If you see this message, please report a bug on:
@@ -3109,7 +3088,7 @@ If you see this message, please report a bug on:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="12154"/>
+        <location filename="../../src/onmainwindow.cpp" line="12222"/>
         <source>The SSH server failed to start.
 
 Please report a bug on:
@@ -3117,14 +3096,14 @@ Please report a bug on:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="12158"/>
-        <location filename="../../src/onmainwindow.cpp" line="12190"/>
+        <location filename="../../src/onmainwindow.cpp" line="12226"/>
+        <location filename="../../src/onmainwindow.cpp" line="12258"/>
         <source>&lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="12180"/>
+        <location filename="../../src/onmainwindow.cpp" line="12248"/>
         <source>Normally, this should not happen as X2Go Client for Windows ships its own internal SSH server and automatically generates the required keys.
 
 If you see this message, please report a bug on:
@@ -3132,7 +3111,7 @@ If you see this message, please report a bug on:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="12186"/>
+        <location filename="../../src/onmainwindow.cpp" line="12254"/>
         <source>X2Go Client was unable to create SSH host keys.
 
 Please report a bug on:
@@ -3140,13 +3119,13 @@ Please report a bug on:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="12218"/>
+        <location filename="../../src/onmainwindow.cpp" line="12286"/>
         <source>SSH daemon failed to open the application&apos;s
 authorized_keys file.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="12305"/>
+        <location filename="../../src/onmainwindow.cpp" line="12373"/>
         <source>&lt;br&gt;&lt;b&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;Click this button&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;to restore toolbar&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/b&gt;&lt;br&gt;</source>
         <translation>&lt;br&gt;&lt;b&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;Щелкните по этой иконке&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;чтобы восстановить панель инструментов&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/b&gt;&lt;br&gt;</translation>
     </message>
@@ -3163,156 +3142,186 @@ you can install sshd with
 &lt;b&gt;sudo apt-get install openssh-server&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="2788"/>
+        <location filename="../../src/onmainwindow.cpp" line="2794"/>
         <source>Connection to local desktop</source>
         <translation>Соединение с локальным десктопом</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="4597"/>
+        <location filename="../../src/onmainwindow.cpp" line="4677"/>
         <source>Information</source>
         <translation>Информация</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="4611"/>
-        <location filename="../../src/onmainwindow.cpp" line="12375"/>
+        <location filename="../../src/onmainwindow.cpp" line="4691"/>
+        <location filename="../../src/onmainwindow.cpp" line="12443"/>
         <source>Filter</source>
         <translation>Фильтр</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="4618"/>
+        <location filename="../../src/onmainwindow.cpp" line="4698"/>
         <source>Select desktop:</source>
         <translation>Выбрать десктоп:</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="6365"/>
+        <location filename="../../src/onmainwindow.cpp" line="4805"/>
+        <source>Your current color depth is different from the session&apos;s color depth. This may cause problems reconnecting to this session and in most cases &lt;b&gt;you will loose the session&lt;/b&gt; and have to start a new one! </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message numerus="yes">
+        <location filename="../../src/onmainwindow.cpp" line="4810"/>
+        <source>It&apos;s highly recommended to change the color depth of your display to %n bit(s) and restart your X.Org Server before you reconnect to this X2Go session.</source>
+        <comment>%n will be replaced with a number</comment>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message>
+        <location filename="../../src/onmainwindow.cpp" line="4816"/>
+        <source>&lt;br /&gt;Do you want to resume this session anyway?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/onmainwindow.cpp" line="5927"/>
+        <source>Failed to start RDP or XMDCP client</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/onmainwindow.cpp" line="5928"/>
+        <source>Check session settings and ensure that selected client is installed on your system.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/onmainwindow.cpp" line="6433"/>
         <source>Are you sure you want to terminate this session?
 Unsaved documents will be lost.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="6781"/>
-        <location filename="../../src/onmainwindow.cpp" line="6811"/>
+        <location filename="../../src/onmainwindow.cpp" line="6849"/>
+        <location filename="../../src/onmainwindow.cpp" line="6879"/>
         <source>&lt;b&gt;Connection failed.&lt;/b&gt;
 :
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="7355"/>
-        <location filename="../../src/onmainwindow.cpp" line="7366"/>
-        <location filename="../../src/onmainwindow.cpp" line="7377"/>
+        <location filename="../../src/onmainwindow.cpp" line="7423"/>
+        <location filename="../../src/onmainwindow.cpp" line="7434"/>
+        <location filename="../../src/onmainwindow.cpp" line="7445"/>
         <source> (file does not exist)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="7404"/>
+        <location filename="../../src/onmainwindow.cpp" line="7472"/>
         <source> (directory does not exist)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="7431"/>
+        <location filename="../../src/onmainwindow.cpp" line="7499"/>
         <source>Invalid value for parameter &quot;--link&quot;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="7448"/>
+        <location filename="../../src/onmainwindow.cpp" line="7516"/>
         <source>Invalid value for parameter &quot;--clipboard&quot;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="7464"/>
+        <location filename="../../src/onmainwindow.cpp" line="7532"/>
         <source>Invalid value for parameter &quot;--sound&quot;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="7480"/>
-        <location filename="../../src/onmainwindow.cpp" line="7490"/>
+        <location filename="../../src/onmainwindow.cpp" line="7548"/>
+        <location filename="../../src/onmainwindow.cpp" line="7558"/>
         <source>Invalid value for parameter &quot;--geometry&quot;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="7507"/>
+        <location filename="../../src/onmainwindow.cpp" line="7575"/>
         <source>Invalid value for parameter &quot;--set-kbd&quot;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="7523"/>
+        <location filename="../../src/onmainwindow.cpp" line="7591"/>
         <source>Invalid value for parameter &quot;--ldap&quot;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="7544"/>
+        <location filename="../../src/onmainwindow.cpp" line="7612"/>
         <source>Invalid value for parameter &quot;--ldap1&quot;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="7563"/>
+        <location filename="../../src/onmainwindow.cpp" line="7631"/>
         <source>Invalid value for parameter &quot;--ldap2&quot;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="7617"/>
+        <location filename="../../src/onmainwindow.cpp" line="7685"/>
         <source>Invalid value for parameter &quot;--pack&quot;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="7652"/>
+        <location filename="../../src/onmainwindow.cpp" line="7720"/>
         <source>Available pack methods:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="7674"/>
+        <location filename="../../src/onmainwindow.cpp" line="7742"/>
         <source>Pack Methods</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="7704"/>
-        <location filename="../../src/onmainwindow.cpp" line="7714"/>
+        <location filename="../../src/onmainwindow.cpp" line="7772"/>
+        <location filename="../../src/onmainwindow.cpp" line="7782"/>
         <source>Option is not available in this build.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="8086"/>
+        <location filename="../../src/onmainwindow.cpp" line="8154"/>
         <source>Unable to create directory:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="8437"/>
+        <location filename="../../src/onmainwindow.cpp" line="8505"/>
         <source>&lt;br&gt;(C) 2005-2017 by &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing&lt;br&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="9499"/>
+        <location filename="../../src/onmainwindow.cpp" line="9567"/>
         <source>Unable to create or append to file: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="9519"/>
+        <location filename="../../src/onmainwindow.cpp" line="9587"/>
         <source>Unable to change the permissions of file: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="9520"/>
+        <location filename="../../src/onmainwindow.cpp" line="9588"/>
         <source>This is an error because sshd would deny such a file.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="9537"/>
+        <location filename="../../src/onmainwindow.cpp" line="9605"/>
         <source>Unable to change the permissions of directory: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="9538"/>
+        <location filename="../../src/onmainwindow.cpp" line="9606"/>
         <source>This is an error because sshd would deny such a directory.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="10232"/>
+        <location filename="../../src/onmainwindow.cpp" line="10300"/>
         <source>Unable to find the sftp-server binary. Neither bundled, nor found in $PATH nor additional directories.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="10233"/>
+        <location filename="../../src/onmainwindow.cpp" line="10301"/>
         <source>If you are using a Linux-based operating system, please ask your system administrator to install the package containing the sftp-server binary. Common names are &lt;b&gt;openssh&lt;/b&gt;, &lt;b&gt;openssh-server&lt;/b&gt; or &lt;b&gt;openssh-sftp-server&lt;/b&gt; depending upon distribution.
 
 If the sftp-server binary is installed on your system, please report a bug mentioning its path on:
@@ -3321,183 +3330,183 @@ If the sftp-server binary is installed on your system, please report a bug menti
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="10275"/>
+        <location filename="../../src/onmainwindow.cpp" line="10343"/>
         <source>SSH key type selection error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="10276"/>
+        <location filename="../../src/onmainwindow.cpp" line="10344"/>
         <source>Unknown SSH key selected.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="10278"/>
-        <location filename="../../src/onmainwindow.cpp" line="10354"/>
-        <location filename="../../src/onmainwindow.cpp" line="10433"/>
-        <location filename="../../src/onmainwindow.cpp" line="10441"/>
-        <location filename="../../src/onmainwindow.cpp" line="10451"/>
+        <location filename="../../src/onmainwindow.cpp" line="10346"/>
+        <location filename="../../src/onmainwindow.cpp" line="10422"/>
+        <location filename="../../src/onmainwindow.cpp" line="10501"/>
+        <location filename="../../src/onmainwindow.cpp" line="10509"/>
+        <location filename="../../src/onmainwindow.cpp" line="10519"/>
         <source>Terminating application.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="10351"/>
+        <location filename="../../src/onmainwindow.cpp" line="10419"/>
         <source>SSH key base directory creation error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="10352"/>
+        <location filename="../../src/onmainwindow.cpp" line="10420"/>
         <source>Unable to create SSH key base directory &apos;%1&apos;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="10430"/>
+        <location filename="../../src/onmainwindow.cpp" line="10498"/>
         <source>ssh-keygen launching error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="10431"/>
+        <location filename="../../src/onmainwindow.cpp" line="10499"/>
         <source>Unable to start the ssh-keygen binary.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="10438"/>
+        <location filename="../../src/onmainwindow.cpp" line="10506"/>
         <source>ssh-keygen crashed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="10439"/>
+        <location filename="../../src/onmainwindow.cpp" line="10507"/>
         <source>The ssh-keygen binary crashed.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="10446"/>
+        <location filename="../../src/onmainwindow.cpp" line="10514"/>
         <source>ssh-keygen program error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="10447"/>
+        <location filename="../../src/onmainwindow.cpp" line="10515"/>
         <source>The ssh-keygen binary did not exit cleanly.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="10449"/>
+        <location filename="../../src/onmainwindow.cpp" line="10517"/>
         <source>It was probably called with unknown arguments.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="10508"/>
+        <location filename="../../src/onmainwindow.cpp" line="10576"/>
         <source>Unable to open newly generated %1 public host key file.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="10528"/>
+        <location filename="../../src/onmainwindow.cpp" line="10596"/>
         <source>%1 public host key file empty.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="10534"/>
+        <location filename="../../src/onmainwindow.cpp" line="10602"/>
         <source>Cannot open key: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="8440"/>
+        <location filename="../../src/onmainwindow.cpp" line="8508"/>
         <source>&lt;br&gt;X2Go Plugin mode was sponsored by &lt;a href=&quot;http://www.foss-group.de/&quot;&gt;FOSS-Group GmbH (Freiburg)&lt;/a&gt;&lt;br&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="8444"/>
+        <location filename="../../src/onmainwindow.cpp" line="8512"/>
         <source>&lt;br&gt;This is a client to access the X2Go network-based computing environment. This client will be able to connect to X2Go Server(s) and start, stop, resume and terminate (running) desktop sessions. X2Go Client stores different server connections and may automatically request authentication data from LDAP directories. Furthermore, it can be used as a fullscreen login screen (replacement for login managers like XDM). Please visit &lt;a href=&quot;http://www.x2go.org&quot;&gt;the project home page at x2go.org&lt;/a&gt; for further information.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="8458"/>
+        <location filename="../../src/onmainwindow.cpp" line="8526"/>
         <source>&lt;b&gt;X2Go Client v. </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="8503"/>
+        <location filename="../../src/onmainwindow.cpp" line="8571"/>
         <source>Please check LDAP Settings.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="8765"/>
+        <location filename="../../src/onmainwindow.cpp" line="8833"/>
         <source>Check whether the package providing &quot;scdaemon&quot; is installed.
 The current search path is: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="8791"/>
+        <location filename="../../src/onmainwindow.cpp" line="8859"/>
         <source>didn&apos;t start yet.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="8801"/>
+        <location filename="../../src/onmainwindow.cpp" line="8869"/>
         <source>Unable to read from scdaemon.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="8837"/>
+        <location filename="../../src/onmainwindow.cpp" line="8905"/>
         <source>No valid card found.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="8893"/>
+        <location filename="../../src/onmainwindow.cpp" line="8961"/>
         <source>This card is unknown to the X2Go system.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="9221"/>
-        <location filename="../../src/onmainwindow.cpp" line="9930"/>
-        <location filename="../../src/onmainwindow.cpp" line="9960"/>
+        <location filename="../../src/onmainwindow.cpp" line="9289"/>
+        <location filename="../../src/onmainwindow.cpp" line="9998"/>
+        <location filename="../../src/onmainwindow.cpp" line="10028"/>
         <source>Can&apos;t start X.Org Server.
 Please check your installation.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="9423"/>
+        <location filename="../../src/onmainwindow.cpp" line="9491"/>
         <source>Remote server does not support file system exports through SSH tunnels.
 Please update your x2goserver package.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="9448"/>
+        <location filename="../../src/onmainwindow.cpp" line="9516"/>
         <source>Unable to create SSH tunnel for Folder Sharing and Printing support:
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="9477"/>
+        <location filename="../../src/onmainwindow.cpp" line="9545"/>
         <source>Unable to read:
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="10886"/>
+        <location filename="../../src/onmainwindow.cpp" line="10954"/>
         <source>Error getting window geometry. (Did you close the window?)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="11369"/>
+        <location filename="../../src/onmainwindow.cpp" line="11437"/>
         <source>Invalid value for argument &quot;speed&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="11740"/>
+        <location filename="../../src/onmainwindow.cpp" line="11808"/>
         <source>Applications ...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="11933"/>
+        <location filename="../../src/onmainwindow.cpp" line="12001"/>
         <source>View only</source>
         <translation>Только смотреть</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="12013"/>
+        <location filename="../../src/onmainwindow.cpp" line="12081"/>
         <source>User</source>
         <translation>Пользователь</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="2784"/>
+        <location filename="../../src/onmainwindow.cpp" line="2790"/>
         <source>XDMCP</source>
         <translation>XDMCP</translation>
     </message>
@@ -3506,24 +3515,24 @@ Please update your x2goserver package.</source>
         <translation type="obsolete">Доступный десктоп не найден</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="11930"/>
+        <location filename="../../src/onmainwindow.cpp" line="11998"/>
         <source>Full access</source>
         <translation>Полный доступ</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="12044"/>
+        <location filename="../../src/onmainwindow.cpp" line="12112"/>
         <source>Only my desktops</source>
         <translation>Только мои десктопы</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="684"/>
+        <location filename="../../src/onmainwindow.cpp" line="688"/>
         <source>Reconnect</source>
         <translation>Повторить соединение</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="1060"/>
-        <location filename="../../src/onmainwindow.cpp" line="3244"/>
-        <location filename="../../src/onmainwindow.cpp" line="12443"/>
+        <location filename="../../src/onmainwindow.cpp" line="1064"/>
+        <location filename="../../src/onmainwindow.cpp" line="3260"/>
+        <location filename="../../src/onmainwindow.cpp" line="12511"/>
         <source>Connecting to broker</source>
         <translation>Соединение с брокером</translation>
     </message>
@@ -3540,12 +3549,12 @@ Please update your x2goserver package.</source>
         <translation type="obsolete">&lt;br&gt;Клиент сетевого окружения X2Go. Данный клиент предназначен для соединения с сервером (серверами) X2Go и запуска, восстановления или завершения удаленной сессии. Клиент X2Go сохраняет настройки соединений и может запрашивать информацию о пользователях из LDAP. В последнем случае клиент может использоваться как менеджер входа в систему (замена менеджера подобного xdm) для окружения &quot;тонких клиентов&quot; X2Go. Посетите http://x2go.org для получения более детальной информации.</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="9632"/>
+        <location filename="../../src/onmainwindow.cpp" line="9700"/>
         <source>WINDOWS-1252</source>
         <translation>WINDOWS-1251</translation>
     </message>
     <message>
-        <location filename="../../src/onmainwindow.cpp" line="9644"/>
+        <location filename="../../src/onmainwindow.cpp" line="9712"/>
         <source>ISO8859-1</source>
         <translation>KOI8-R</translation>
     </message>
@@ -3779,106 +3788,90 @@ Example:
 <context>
     <name>PulseManager</name>
     <message>
-        <location filename="../../src/pulsemanager.cpp" line="127"/>
-        <source>Unable to find the PulseAudio binary. Neither bundled, nor found in $PATH nor additional directories.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/pulsemanager.cpp" line="128"/>
-        <source>If you downloaded the bundled, pre-compiled version from the official home page, please report a bug on:
-&lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
-</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/pulsemanager.cpp" line="158"/>
+        <location filename="../../src/pulsemanager.cpp" line="149"/>
         <source>Could not allocate buffer for getting current working directory!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/pulsemanager.cpp" line="170"/>
+        <location filename="../../src/pulsemanager.cpp" line="161"/>
         <source>getcwd() failed!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/pulsemanager.cpp" line="258"/>
+        <location filename="../../src/pulsemanager.cpp" line="926"/>
         <source>PulseAudio failed to start!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/pulsemanager.cpp" line="259"/>
-        <source>Sound support will not be available.
-
-If you downloaded the bundled, pre-compiled version from the official home page, please report a bug on:
-&lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
-</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/pulsemanager.cpp" line="407"/>
-        <location filename="../../src/pulsemanager.cpp" line="432"/>
-        <location filename="../../src/pulsemanager.cpp" line="450"/>
-        <location filename="../../src/pulsemanager.cpp" line="465"/>
-        <location filename="../../src/pulsemanager.cpp" line="479"/>
-        <location filename="../../src/pulsemanager.cpp" line="497"/>
-        <location filename="../../src/pulsemanager.cpp" line="511"/>
-        <location filename="../../src/pulsemanager.cpp" line="532"/>
-        <location filename="../../src/pulsemanager.cpp" line="540"/>
+        <location filename="../../src/pulsemanager.cpp" line="410"/>
+        <location filename="../../src/pulsemanager.cpp" line="435"/>
+        <location filename="../../src/pulsemanager.cpp" line="453"/>
+        <location filename="../../src/pulsemanager.cpp" line="468"/>
+        <location filename="../../src/pulsemanager.cpp" line="482"/>
+        <location filename="../../src/pulsemanager.cpp" line="500"/>
+        <location filename="../../src/pulsemanager.cpp" line="514"/>
+        <location filename="../../src/pulsemanager.cpp" line="539"/>
+        <location filename="../../src/pulsemanager.cpp" line="546"/>
         <source>Error fetching PulseAudio version number!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/pulsemanager.cpp" line="408"/>
+        <location filename="../../src/pulsemanager.cpp" line="411"/>
         <source>Unexpected character found when parsing version string for major version number</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/pulsemanager.cpp" line="433"/>
+        <location filename="../../src/pulsemanager.cpp" line="436"/>
         <source>Unexpected character found when parsing version string for minor version number</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/pulsemanager.cpp" line="451"/>
+        <location filename="../../src/pulsemanager.cpp" line="454"/>
         <source>Unexpected character found when parsing version string for micro version number</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/pulsemanager.cpp" line="466"/>
+        <location filename="../../src/pulsemanager.cpp" line="469"/>
         <source>Supposed to skip major version number. Something is wrong.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/pulsemanager.cpp" line="480"/>
+        <location filename="../../src/pulsemanager.cpp" line="483"/>
         <source>Unable to convert major version number string to integer.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/pulsemanager.cpp" line="498"/>
+        <location filename="../../src/pulsemanager.cpp" line="501"/>
         <source>Unable to convert minor version number string to integer.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/pulsemanager.cpp" line="512"/>
+        <location filename="../../src/pulsemanager.cpp" line="515"/>
         <source>Unable to convert micro version number string to integer.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/pulsemanager.cpp" line="533"/>
+        <location filename="../../src/pulsemanager.cpp" line="540"/>
         <source>Unexpected format encountered.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/pulsemanager.cpp" line="541"/>
+        <location filename="../../src/pulsemanager.cpp" line="547"/>
         <source>Unable to start PulseAudio binary.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/pulsemanager.cpp" line="765"/>
+        <location filename="../../src/pulsemanager.cpp" line="923"/>
         <source>Unable to play startup sound.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/pulsemanager.cpp" line="766"/>
+        <location filename="../../src/pulsemanager.cpp" line="927"/>
+        <source>Sound support will not be available.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/pulsemanager.cpp" line="930"/>
         <source>If you downloaded the bundled, pre-compiled version from the official home page or the upstream Linux packages, please report a bug on:
 &lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
 </source>
@@ -4226,25 +4219,25 @@ Use X2Go Client&apos;s hidden mode?</source>
         <translation>&amp;Сервер</translation>
     </message>
     <message>
-        <location filename="../../src/sessionwidget.cpp" line="116"/>
-        <location filename="../../src/sessionwidget.cpp" line="178"/>
+        <location filename="../../src/sessionwidget.cpp" line="122"/>
+        <location filename="../../src/sessionwidget.cpp" line="186"/>
         <source>Host:</source>
         <translation>Хост:</translation>
     </message>
     <message>
-        <location filename="../../src/sessionwidget.cpp" line="117"/>
-        <location filename="../../src/sessionwidget.cpp" line="184"/>
+        <location filename="../../src/sessionwidget.cpp" line="123"/>
+        <location filename="../../src/sessionwidget.cpp" line="192"/>
         <source>Login:</source>
         <translation>Пользователь:</translation>
     </message>
     <message>
-        <location filename="../../src/sessionwidget.cpp" line="118"/>
-        <location filename="../../src/sessionwidget.cpp" line="395"/>
+        <location filename="../../src/sessionwidget.cpp" line="125"/>
+        <location filename="../../src/sessionwidget.cpp" line="415"/>
         <source>SSH port:</source>
         <translation>SSH порт:</translation>
     </message>
     <message>
-        <location filename="../../src/sessionwidget.cpp" line="133"/>
+        <location filename="../../src/sessionwidget.cpp" line="140"/>
         <source>Use RSA/DSA key for ssh connection:</source>
         <translation>RSA/DSA ключ для ssh соединения:</translation>
     </message>
@@ -4253,48 +4246,48 @@ Use X2Go Client&apos;s hidden mode?</source>
         <translation type="obsolete">Автоматическое соединение с SSH ключом по умолчанию или программой ssh-agent</translation>
     </message>
     <message>
-        <location filename="../../src/sessionwidget.cpp" line="141"/>
-        <location filename="../../src/sessionwidget.cpp" line="172"/>
+        <location filename="../../src/sessionwidget.cpp" line="148"/>
+        <location filename="../../src/sessionwidget.cpp" line="180"/>
         <source>Kerberos 5 (GSSAPI) authentication</source>
         <translation>Авторизация Kerberos 5 (GSSAPI)</translation>
     </message>
     <message>
-        <location filename="../../src/sessionwidget.cpp" line="142"/>
+        <location filename="../../src/sessionwidget.cpp" line="149"/>
         <source>Delegation of GSSAPI credentials to the server</source>
         <translation>Делегация GSSAPI на сервер</translation>
     </message>
     <message>
-        <location filename="../../src/sessionwidget.cpp" line="146"/>
+        <location filename="../../src/sessionwidget.cpp" line="153"/>
         <source>Use Proxy server for SSH connection</source>
         <translation>Использовать прокси сервер для SSH соединения</translation>
     </message>
     <message>
-        <location filename="../../src/sessionwidget.cpp" line="147"/>
+        <location filename="../../src/sessionwidget.cpp" line="154"/>
         <source>Proxy server</source>
         <translation>Прокси сервер</translation>
     </message>
     <message>
-        <location filename="../../src/sessionwidget.cpp" line="153"/>
+        <location filename="../../src/sessionwidget.cpp" line="160"/>
         <source>SSH</source>
         <translation>SSH</translation>
     </message>
     <message>
-        <location filename="../../src/sessionwidget.cpp" line="154"/>
+        <location filename="../../src/sessionwidget.cpp" line="161"/>
         <source>HTTP</source>
         <translation>HTTP</translation>
     </message>
     <message>
-        <location filename="../../src/sessionwidget.cpp" line="162"/>
+        <location filename="../../src/sessionwidget.cpp" line="170"/>
         <source>Same login as on X2Go Server</source>
         <translation>Такое же имя пользователя как на сервере X2Go</translation>
     </message>
     <message>
-        <location filename="../../src/sessionwidget.cpp" line="164"/>
+        <location filename="../../src/sessionwidget.cpp" line="172"/>
         <source>Same password as on X2Go Server</source>
         <translation>Такой же пароль как на сервере X2Go</translation>
     </message>
     <message>
-        <location filename="../../src/sessionwidget.cpp" line="166"/>
+        <location filename="../../src/sessionwidget.cpp" line="174"/>
         <source>RSA/DSA key:</source>
         <translation>Ключ RSA/DSA:</translation>
     </message>
@@ -4303,22 +4296,22 @@ Use X2Go Client&apos;s hidden mode?</source>
         <translation type="obsolete">Автоматическое соединение с SSH ключом по умолчанию или программой ssh-agent</translation>
     </message>
     <message>
-        <location filename="../../src/sessionwidget.cpp" line="175"/>
+        <location filename="../../src/sessionwidget.cpp" line="183"/>
         <source>Type:</source>
         <translation>Тип:</translation>
     </message>
     <message>
-        <location filename="../../src/sessionwidget.cpp" line="179"/>
+        <location filename="../../src/sessionwidget.cpp" line="187"/>
         <source>Port:</source>
         <translation>Порт:</translation>
     </message>
     <message>
-        <location filename="../../src/sessionwidget.cpp" line="195"/>
+        <location filename="../../src/sessionwidget.cpp" line="203"/>
         <source>&amp;Session type</source>
         <translation>&amp;Тип сессии</translation>
     </message>
     <message>
-        <location filename="../../src/sessionwidget.cpp" line="200"/>
+        <location filename="../../src/sessionwidget.cpp" line="208"/>
         <source>Session type:</source>
         <translation>Тип сессии:</translation>
     </message>
@@ -4327,35 +4320,35 @@ Use X2Go Client&apos;s hidden mode?</source>
         <translation type="obsolete">Соединение с терминальным сервером Windows</translation>
     </message>
     <message>
-        <location filename="../../src/sessionwidget.cpp" line="219"/>
+        <location filename="../../src/sessionwidget.cpp" line="227"/>
         <source>Custom desktop</source>
         <translation>Другой оконный менеджер</translation>
     </message>
     <message>
-        <location filename="../../src/sessionwidget.cpp" line="220"/>
+        <location filename="../../src/sessionwidget.cpp" line="228"/>
         <source>Single application</source>
         <translation>Приложение</translation>
     </message>
     <message>
-        <location filename="../../src/sessionwidget.cpp" line="221"/>
+        <location filename="../../src/sessionwidget.cpp" line="229"/>
         <source>Published applications</source>
         <translation>Удаленные приложения</translation>
     </message>
     <message>
-        <location filename="../../src/sessionwidget.cpp" line="223"/>
-        <location filename="../../src/sessionwidget.cpp" line="463"/>
+        <location filename="../../src/sessionwidget.cpp" line="231"/>
+        <location filename="../../src/sessionwidget.cpp" line="486"/>
         <source>Command:</source>
         <translation>Команда:</translation>
     </message>
     <message>
-        <location filename="../../src/sessionwidget.cpp" line="224"/>
+        <location filename="../../src/sessionwidget.cpp" line="232"/>
         <source>Advanced options...</source>
         <translation>Продвинутые установки...</translation>
     </message>
     <message>
-        <location filename="../../src/sessionwidget.cpp" line="236"/>
-        <location filename="../../src/sessionwidget.cpp" line="776"/>
-        <location filename="../../src/sessionwidget.cpp" line="876"/>
+        <location filename="../../src/sessionwidget.cpp" line="244"/>
+        <location filename="../../src/sessionwidget.cpp" line="813"/>
+        <location filename="../../src/sessionwidget.cpp" line="914"/>
         <source>Path to executable</source>
         <translation>Путь к исполняемому файлу</translation>
     </message>
@@ -4364,95 +4357,112 @@ Use X2Go Client&apos;s hidden mode?</source>
         <translation type="obsolete">Прямое RDP соединение</translation>
     </message>
     <message>
-        <location filename="../../src/sessionwidget.cpp" line="391"/>
+        <location filename="../../src/sessionwidget.cpp" line="411"/>
         <source>RDP port:</source>
         <translation>RDP порт:</translation>
     </message>
     <message>
-        <location filename="../../src/sessionwidget.cpp" line="407"/>
+        <location filename="../../src/sessionwidget.cpp" line="430"/>
         <source>Open picture</source>
         <translation>Открыть изображение</translation>
     </message>
     <message>
-        <location filename="../../src/sessionwidget.cpp" line="409"/>
+        <location filename="../../src/sessionwidget.cpp" line="432"/>
         <source>Pictures</source>
         <translation>Изображения</translation>
     </message>
     <message>
-        <location filename="../../src/sessionwidget.cpp" line="315"/>
-        <location filename="../../src/sessionwidget.cpp" line="430"/>
+        <location filename="../../src/sessionwidget.cpp" line="323"/>
+        <location filename="../../src/sessionwidget.cpp" line="453"/>
         <source>Open key file</source>
         <translation>Открыть файл с ключом</translation>
     </message>
     <message>
-        <location filename="../../src/sessionwidget.cpp" line="140"/>
+        <location filename="../../src/sessionwidget.cpp" line="87"/>
+        <source>Values ranging from &lt;b&gt;0&lt;/b&gt; to &lt;b&gt;65535&lt;/b&gt; are allowed.&lt;br /&gt;A value of &lt;b&gt;0&lt;/b&gt; will either use the port specified in the SSH configuration file belonging to a host or shortname, or use the default of &lt;b&gt;22&lt;/b&gt;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/sessionwidget.cpp" line="147"/>
         <source>Try auto login (via SSH Agent or default SSH key)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/sessionwidget.cpp" line="171"/>
+        <location filename="../../src/sessionwidget.cpp" line="179"/>
         <source>SSH Agent or default SSH key</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/sessionwidget.cpp" line="216"/>
-        <location filename="../../src/sessionwidget.cpp" line="519"/>
+        <location filename="../../src/sessionwidget.cpp" line="224"/>
+        <location filename="../../src/sessionwidget.cpp" line="546"/>
         <source>Connect to Windows Terminal Server</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/sessionwidget.cpp" line="247"/>
+        <location filename="../../src/sessionwidget.cpp" line="255"/>
+        <location filename="../../src/sessionwidget.cpp" line="388"/>
         <source>Direct RDP connection</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/sessionwidget.cpp" line="317"/>
-        <location filename="../../src/sessionwidget.cpp" line="432"/>
+        <location filename="../../src/sessionwidget.cpp" line="325"/>
+        <location filename="../../src/sessionwidget.cpp" line="455"/>
         <source>All files</source>
         <translation>Все файлы</translation>
     </message>
     <message>
-        <location filename="../../src/sessionwidget.cpp" line="328"/>
-        <location filename="../../src/sessionwidget.cpp" line="443"/>
+        <location filename="../../src/sessionwidget.cpp" line="336"/>
+        <location filename="../../src/sessionwidget.cpp" line="466"/>
         <source>X2Go Client is running in portable mode. You should use a path on your USB device to be able to access your data wherever you are.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/sessionwidget.cpp" line="490"/>
-        <location filename="../../src/sessionwidget.cpp" line="730"/>
+        <location filename="../../src/sessionwidget.cpp" line="383"/>
+        <source>Direct XDMCP connection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/sessionwidget.cpp" line="513"/>
+        <location filename="../../src/sessionwidget.cpp" line="763"/>
         <source>Server:</source>
         <translation>Сервер:</translation>
     </message>
     <message>
-        <location filename="../../src/sessionwidget.cpp" line="520"/>
+        <location filename="../../src/sessionwidget.cpp" line="526"/>
+        <source>direct XDMCP connection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/sessionwidget.cpp" line="547"/>
         <source>rdesktop command line options:</source>
         <translation>Опции командной строки rdesktop:</translation>
     </message>
     <message>
-        <location filename="../../src/sessionwidget.cpp" line="532"/>
-        <location filename="../../src/sessionwidget.cpp" line="754"/>
+        <location filename="../../src/sessionwidget.cpp" line="559"/>
+        <location filename="../../src/sessionwidget.cpp" line="791"/>
         <source>New session</source>
         <translation>Новая сессия</translation>
     </message>
     <message>
-        <location filename="../../src/sessionwidget.cpp" line="218"/>
+        <location filename="../../src/sessionwidget.cpp" line="226"/>
         <source>Connect to local desktop</source>
         <translation>Соединение с локальным десктопом</translation>
     </message>
     <message>
-        <location filename="../../src/sessionwidget.cpp" line="499"/>
-        <location filename="../../src/sessionwidget.cpp" line="742"/>
+        <location filename="../../src/sessionwidget.cpp" line="522"/>
+        <location filename="../../src/sessionwidget.cpp" line="775"/>
         <source>XDMCP server:</source>
         <translation>Сервер XDMCP:</translation>
     </message>
     <message>
-        <location filename="../../src/sessionwidget.cpp" line="217"/>
+        <location filename="../../src/sessionwidget.cpp" line="225"/>
+        <location filename="../../src/sessionwidget.cpp" line="381"/>
         <source>XDMCP</source>
         <translation>XDMCP</translation>
     </message>
     <message>
-        <location filename="../../src/sessionwidget.cpp" line="327"/>
-        <location filename="../../src/sessionwidget.cpp" line="442"/>
+        <location filename="../../src/sessionwidget.cpp" line="335"/>
+        <location filename="../../src/sessionwidget.cpp" line="465"/>
         <source>Error</source>
         <translation>Ошибка</translation>
     </message>
@@ -4650,16 +4660,23 @@ sound system connections through firewalls</source>
     </message>
     <message>
         <location filename="../../src/settingswidget.cpp" line="219"/>
+        <location filename="../../src/settingswidget.cpp" line="248"/>
         <source>Additional parameters:</source>
         <translation>Дополнительные параметры:</translation>
     </message>
     <message>
         <location filename="../../src/settingswidget.cpp" line="220"/>
+        <location filename="../../src/settingswidget.cpp" line="249"/>
         <source>Command line:</source>
         <translation>Командная строка:</translation>
     </message>
     <message>
-        <location filename="../../src/settingswidget.cpp" line="497"/>
+        <location filename="../../src/settingswidget.cpp" line="233"/>
+        <source>XDMCP client</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/settingswidget.cpp" line="534"/>
         <source>us</source>
         <translation>ru</translation>
     </message>
@@ -4668,8 +4685,8 @@ sound system connections through firewalls</source>
         <translation type="obsolete">pc105/ru</translation>
     </message>
     <message>
-        <location filename="../../src/settingswidget.cpp" line="648"/>
-        <location filename="../../src/settingswidget.cpp" line="669"/>
+        <location filename="../../src/settingswidget.cpp" line="704"/>
+        <location filename="../../src/settingswidget.cpp" line="725"/>
         <source>password</source>
         <translation>пароль</translation>
     </message>
@@ -4770,94 +4787,96 @@ sound system connections through firewalls</source>
         <translation type="obsolete">Ошибка соединения с SSH прокси сервером</translation>
     </message>
     <message>
-        <location filename="../../src/sshmasterconnection.cpp" line="412"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="467"/>
         <source>SSH proxy connection error.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/sshmasterconnection.cpp" line="417"/>
-        <location filename="../../src/sshmasterconnection.cpp" line="423"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="472"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="478"/>
         <source>SSH proxy connection error: </source>
         <translation>Ошибка соединения с SSH прокси сервером:</translation>
     </message>
     <message>
-        <location filename="../../src/sshmasterconnection.cpp" line="439"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="494"/>
         <source>Failed to create SSH proxy tunnel.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/sshmasterconnection.cpp" line="492"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="547"/>
         <source>Cannot initialize libssh.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/sshmasterconnection.cpp" line="520"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="205"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="575"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="1676"/>
         <source>Cannot create SSH session.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/sshmasterconnection.cpp" line="555"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="206"/>
+        <source>Using environment-provided username.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/sshmasterconnection.cpp" line="614"/>
         <source>Cannot connect to proxy server.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/sshmasterconnection.cpp" line="686"/>
-        <location filename="../../src/sshmasterconnection.cpp" line="932"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="746"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="1054"/>
         <source>Authentication failed.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/sshmasterconnection.cpp" line="1250"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="1372"/>
         <source>Failed to start SSH client. Please check your installation and GSSApi configuration.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/sshmasterconnection.cpp" line="1276"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="1398"/>
         <source>Check your GSSApi configuration or choose another authentication method.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/sshmasterconnection.cpp" line="1378"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="1500"/>
         <source>Cannot open file </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/sshmasterconnection.cpp" line="1390"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="1512"/>
         <source>Cannot create remote file </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/sshmasterconnection.cpp" line="1405"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="1527"/>
         <source>Cannot write to remote file </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/sshmasterconnection.cpp" line="1536"/>
-        <source>channel_open_forward failed.</source>
+        <location filename="../../src/sshmasterconnection.cpp" line="1646"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="1724"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="1746"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="1755"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="1890"/>
+        <source>%1 failed.</source>
+        <extracomment>Argument in this context will be a function name.</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/sshmasterconnection.cpp" line="1557"/>
-        <source>channel_open_session failed.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/sshmasterconnection.cpp" line="1645"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="1834"/>
         <source>Error writing to socket.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/sshmasterconnection.cpp" line="1667"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="1856"/>
         <source>Error reading channel.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/sshmasterconnection.cpp" line="1701"/>
-        <source>channel_write failed.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/sshmasterconnection.cpp" line="1717"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="1906"/>
         <source>Error reading from TCP socket.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4878,14 +4897,9 @@ sound system connections through firewalls</source>
         <translation type="obsolete">Проверте настройки GSSAPI или выберите другой метод авторизации</translation>
     </message>
     <message>
-        <location filename="../../src/sshmasterconnection.cpp" line="345"/>
-        <location filename="../../src/sshmasterconnection.cpp" line="586"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="400"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="645"/>
         <source>Cannot connect to </source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../../src/sshmasterconnection.cpp" line="1566"/>
-        <source>channel_request_exec failed</source>
         <translation></translation>
     </message>
 </context>

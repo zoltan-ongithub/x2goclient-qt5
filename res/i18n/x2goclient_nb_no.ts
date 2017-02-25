@@ -1602,7 +1602,7 @@ Vennligst sjekk instillingene dine</translation>
     </message>
     <message>
         <source>24 or 32</source>
-        <translation>24 eller 32</translation>
+        <translation type="obsolete">24 eller 32</translation>
     </message>
     <message>
         <source> bit and restart your X-server before you reconnect to this x2go-session.&lt;br&gt;Resume this session anyway?</source>
@@ -2212,7 +2212,7 @@ authoized_keys file.</source>
     </message>
     <message>
         <source>English language requested, not loading translator.</source>
-        <translation>English language requested, not loading translator.</translation>
+        <translation type="obsolete">English language requested, not loading translator.</translation>
     </message>
     <message>
         <source>Non-fatal: can&apos;t load translator: </source>
@@ -2322,11 +2322,11 @@ Vil du avbryte tilkoblingen?
     </message>
     <message>
         <source>Your current color depth is different from the session&apos;s color depth. This may cause problems reconnecting to this session and in most cases &lt;b&gt;you will loose the session&lt;/b&gt; and have to start a new one! It&apos;s highly recommended to change the color depth of your display to </source>
-        <translation>Din nåværende fargedybde er forskjellig fra fargedybden i din X2Go sesjon. Dette kan skape problemer ved gjenoppkobling til denne sesjonen, og i de fleste tilfellene &lt;b&gt;vil du miste hele sesjonen&lt;/b&gt;. og du må starte en ny en! Det er sterkt anbefalt å endre fargedybden på skjemen din til </translation>
+        <translation type="obsolete">Din nåværende fargedybde er forskjellig fra fargedybden i din X2Go sesjon. Dette kan skape problemer ved gjenoppkobling til denne sesjonen, og i de fleste tilfellene &lt;b&gt;vil du miste hele sesjonen&lt;/b&gt;. og du må starte en ny en! Det er sterkt anbefalt å endre fargedybden på skjemen din til </translation>
     </message>
     <message>
         <source> bits and restart your X.Org Server before you reconnect to this X2Go session.&lt;br /&gt;Do you want to resume this session anyway?</source>
-        <translation> bit og deretter restarte X.Org Server før du kobler til denne X2Go sesjonen.&lt;br /&gt;Gjenoppta denne sesjonen uansett?</translation>
+        <translation type="obsolete"> bit og deretter restarte X.Org Server før du kobler til denne X2Go sesjonen.&lt;br /&gt;Gjenoppta denne sesjonen uansett?</translation>
     </message>
     <message>
         <source>Unable to create SSH tunnel for X2Go session (NX) startup:
@@ -2871,6 +2871,30 @@ Please report a bug on:
         <source>&lt;br&gt;(C) 2005-2017 by &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing&lt;br&gt;</source>
         <translation type="unfinished">&lt;br&gt;(C) 2005-2016 &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing&lt;br&gt; {2005-2017 ?}</translation>
     </message>
+    <message>
+        <source>Your current color depth is different from the session&apos;s color depth. This may cause problems reconnecting to this session and in most cases &lt;b&gt;you will loose the session&lt;/b&gt; and have to start a new one! </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message numerus="yes">
+        <source>It&apos;s highly recommended to change the color depth of your display to %n bit(s) and restart your X.Org Server before you reconnect to this X2Go session.</source>
+        <comment>%n will be replaced with a number</comment>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message>
+        <source>&lt;br /&gt;Do you want to resume this session anyway?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed to start RDP or XMDCP client</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Check session settings and ensure that selected client is installed on your system.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PrintDialog</name>
@@ -2900,7 +2924,11 @@ Please report a bug on:
         <translation type="obsolete">Du kan reaktivere denne dialogen ved å benytte X2Go Client innstillingene (Innstillinger -&gt; Innstillinger)</translation>
     </message>
     <message>
+        <source>You may reactivate this dialog using the X2Go Client settings dialog. To do so, follow this path in the menu bar: Options -&gt; Settings</source>
         <comment>Please adapt this to the new message, note that it has changed.</comment>
+        <translation type="obsolete">Du kan reaktivere denne dialogen ved å benytte X2Go Client innstillingene (Innstillinger -&gt; Innstillinger)</translation>
+    </message>
+    <message>
         <source>You may reactivate this dialog using the X2Go Client settings dialog. To do so, follow this path in the menu bar: Options -&gt; Settings</source>
         <translation type="unfinished">Du kan reaktivere denne dialogen ved å benytte X2Go Client innstillingene (Innstillinger -&gt; Innstillinger)</translation>
     </message>
@@ -3063,16 +3091,6 @@ Eksempel:
 <context>
     <name>PulseManager</name>
     <message>
-        <source>Unable to find the PulseAudio binary. Neither bundled, nor found in $PATH nor additional directories.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>If you downloaded the bundled, pre-compiled version from the official home page, please report a bug on:
-&lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
-</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Could not allocate buffer for getting current working directory!</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3082,14 +3100,6 @@ Eksempel:
     </message>
     <message>
         <source>PulseAudio failed to start!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Sound support will not be available.
-
-If you downloaded the bundled, pre-compiled version from the official home page, please report a bug on:
-&lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
-</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3134,6 +3144,10 @@ If you downloaded the bundled, pre-compiled version from the official home page,
     </message>
     <message>
         <source>Unable to play startup sound.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sound support will not be available.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3602,6 +3616,18 @@ Use X2Go Client&apos;s hidden mode?</source>
         <source>X2Go Client is running in portable mode. You should use a path on your USB device to be able to access your data wherever you are.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Values ranging from &lt;b&gt;0&lt;/b&gt; to &lt;b&gt;65535&lt;/b&gt; are allowed.&lt;br /&gt;A value of &lt;b&gt;0&lt;/b&gt; will either use the port specified in the SSH configuration file belonging to a host or shortname, or use the default of &lt;b&gt;22&lt;/b&gt;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Direct XDMCP connection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>direct XDMCP connection</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SettingsWidget</name>
@@ -3783,6 +3809,10 @@ lydsystem forbindelser gjennom brannmurer</translation>
         <source>RDP client</source>
         <translation>RDP klient</translation>
     </message>
+    <message>
+        <source>XDMCP client</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ShareWidget</name>
@@ -3932,7 +3962,7 @@ lydsystem forbindelser gjennom brannmurer</translation>
     </message>
     <message>
         <source>channel_request_exec failed</source>
-        <translation>channel_request_exec feilet</translation>
+        <translation type="obsolete">channel_request_exec feilet</translation>
     </message>
     <message>
         <source>error writing to socket</source>
@@ -3996,11 +4026,11 @@ lydsystem forbindelser gjennom brannmurer</translation>
     </message>
     <message>
         <source>channel_open_forward failed.</source>
-        <translation>channel_open_forward feilet.</translation>
+        <translation type="obsolete">channel_open_forward feilet.</translation>
     </message>
     <message>
         <source>channel_open_session failed.</source>
-        <translation>channel_open_session feilet.</translation>
+        <translation type="obsolete">channel_open_session feilet.</translation>
     </message>
     <message>
         <source>Error writing to socket.</source>
@@ -4012,11 +4042,20 @@ lydsystem forbindelser gjennom brannmurer</translation>
     </message>
     <message>
         <source>channel_write failed.</source>
-        <translation>channel_write feilet.</translation>
+        <translation type="obsolete">channel_write feilet.</translation>
     </message>
     <message>
         <source>Error reading from TCP socket.</source>
         <translation>Feil ved lesing av tcp sokkelen.</translation>
+    </message>
+    <message>
+        <source>Using environment-provided username.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 failed.</source>
+        <extracomment>Argument in this context will be a function name.</extracomment>
+        <translation>%1 feilet.</translation>
     </message>
 </context>
 <context>

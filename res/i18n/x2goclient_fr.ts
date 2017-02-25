@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="fr">
+<TS version="2.0" language="fr">
 <context>
     <name>AppDialog</name>
     <message>
@@ -670,7 +670,6 @@ Vous la trouverez peut-être dans l&apos;un de ces emplacements standards :
     </message>
     <message>
         <source>Shows git information as used at compile time. [Deprecated: please use --version.]</source>
-        <extracomment>Please don&apos;t exclude the depcration notice.</extracomment>
         <translation type="unfinished">Montre les informations git utilisées au moment de la compilation.</translation>
     </message>
     <message>
@@ -1386,7 +1385,7 @@ Utiliser le mode caché de X2Go Client ?</translation>
     </message>
     <message>
         <source>24 or 32</source>
-        <translation>24 ou 32</translation>
+        <translation type="obsolete">24 ou 32</translation>
     </message>
     <message>
         <source> bit and restart your X-server before you reconnect to this x2go-session.&lt;br&gt;Resume this session anyway?</source>
@@ -1753,7 +1752,7 @@ utilisée pour exporter les dossiers et les imprimantes.</translation>
     </message>
     <message>
         <source>English language requested, not loading translator.</source>
-        <translation>Langue anglaise demandée, pas de traducteur à charger.</translation>
+        <translation type="obsolete">Langue anglaise demandée, pas de traducteur à charger.</translation>
     </message>
     <message>
         <source>Non-fatal: can&apos;t load translator: </source>
@@ -1865,11 +1864,11 @@ Voulez-vous mettre fin à la connexion ?
     </message>
     <message>
         <source>Your current color depth is different from the session&apos;s color depth. This may cause problems reconnecting to this session and in most cases &lt;b&gt;you will loose the session&lt;/b&gt; and have to start a new one! It&apos;s highly recommended to change the color depth of your display to </source>
-        <translation>La profondeur de couleur de votre serveur X est différente de celle de votre session X2Go. Cela peut pauser problème pour se reconnecter et la plupart du temps, &lt;b&gt;vous allez perdre la session&lt;/b&gt;. Vous êtes fortement encouragé à changer la profondeur de couleur de couleur de votre serveur X à </translation>
+        <translation type="obsolete">La profondeur de couleur de votre serveur X est différente de celle de votre session X2Go. Cela peut pauser problème pour se reconnecter et la plupart du temps, &lt;b&gt;vous allez perdre la session&lt;/b&gt;. Vous êtes fortement encouragé à changer la profondeur de couleur de couleur de votre serveur X à </translation>
     </message>
     <message>
         <source> bits and restart your X.Org Server before you reconnect to this X2Go session.&lt;br /&gt;Do you want to resume this session anyway?</source>
-        <translation>bits et redémarrer votre serveur X avant de vous reconnecter à votre session.&lt;br /&gt;Souhaitez-vous tout de même rétablir cette session ?</translation>
+        <translation type="obsolete">bits et redémarrer votre serveur X avant de vous reconnecter à votre session.&lt;br /&gt;Souhaitez-vous tout de même rétablir cette session ?</translation>
     </message>
     <message>
         <source>Unable to create SSH tunnel for X2Go session (NX) startup:
@@ -2424,6 +2423,30 @@ Veuillez rapporter le bug sur :
         <source>&lt;br&gt;(C) 2005-2017 by &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing&lt;br&gt;</source>
         <translation>&lt;br&gt;(C) 2005-2017 par &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing&lt;br&gt;</translation>
     </message>
+    <message>
+        <source>Your current color depth is different from the session&apos;s color depth. This may cause problems reconnecting to this session and in most cases &lt;b&gt;you will loose the session&lt;/b&gt; and have to start a new one! </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message numerus="yes">
+        <source>It&apos;s highly recommended to change the color depth of your display to %n bit(s) and restart your X.Org Server before you reconnect to this X2Go session.</source>
+        <comment>%n will be replaced with a number</comment>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message>
+        <source>&lt;br /&gt;Do you want to resume this session anyway?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed to start RDP or XMDCP client</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Check session settings and ensure that selected client is installed on your system.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PrintDialog</name>
@@ -2596,13 +2619,13 @@ lpr -P hp_laserjet</translation>
     <name>PulseManager</name>
     <message>
         <source>Unable to find the PulseAudio binary. Neither bundled, nor found in $PATH nor additional directories.</source>
-        <translation>Executable PulseAudio introuvable. Ni empaqueté, ni trouvé dans $PATH ni dans aucun dossier supplémentaire.</translation>
+        <translation type="obsolete">Executable PulseAudio introuvable. Ni empaqueté, ni trouvé dans $PATH ni dans aucun dossier supplémentaire.</translation>
     </message>
     <message>
         <source>If you downloaded the bundled, pre-compiled version from the official home page, please report a bug on:
 &lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
 </source>
-        <translation>Si vous avez téléchargé la version empaquetée, pré-compilée à partir du site officiel, veuillez rapporter un bug sur :
+        <translation type="obsolete">Si vous avez téléchargé la version empaquetée, pré-compilée à partir du site officiel, veuillez rapporter un bug sur :
 &lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
 </translation>
     </message>
@@ -2624,7 +2647,7 @@ lpr -P hp_laserjet</translation>
 If you downloaded the bundled, pre-compiled version from the official home page, please report a bug on:
 &lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
 </source>
-        <translation>La prise en charge du son sera indisponible.
+        <translation type="obsolete">La prise en charge du son sera indisponible.
 
 Si vous avez téléchargé la version empaquetée, pré-compilée à partir du site officiel, veuillez rapporter un bug sur :
 &lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
@@ -2681,6 +2704,10 @@ Si vous avez téléchargé la version empaquetée, pré-compilée à partir du s
         <translation>Si vous avez téléchargé la version empaquetée, pré-compilée à partir du site officiel ou les paquets Linux amonts, veuillez rapporter un bug sur :
 &lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
 </translation>
+    </message>
+    <message>
+        <source>Sound support will not be available.</source>
+        <translation>La prise en charge du son sera indisponible.</translation>
     </message>
 </context>
 <context>
@@ -3105,6 +3132,18 @@ Utiliser le mode caché de X2Go Client ?</translation>
         <source>X2Go Client is running in portable mode. You should use a path on your USB device to be able to access your data wherever you are.</source>
         <translation>X2Go Client est démarré en mode portable. Vous devriez utiliser un chemin sur votre appareil USB pour pouvoir accéder à vos données où que vous soyez.</translation>
     </message>
+    <message>
+        <source>Values ranging from &lt;b&gt;0&lt;/b&gt; to &lt;b&gt;65535&lt;/b&gt; are allowed.&lt;br /&gt;A value of &lt;b&gt;0&lt;/b&gt; will either use the port specified in the SSH configuration file belonging to a host or shortname, or use the default of &lt;b&gt;22&lt;/b&gt;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Direct XDMCP connection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>direct XDMCP connection</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SettingsWidget</name>
@@ -3229,6 +3268,10 @@ Utiliser le mode caché de X2Go Client ?</translation>
         <source>RDP client</source>
         <translation>Client RDP</translation>
     </message>
+    <message>
+        <source>XDMCP client</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ShareWidget</name>
@@ -3305,7 +3348,7 @@ Utiliser le mode caché de X2Go Client ?</translation>
     </message>
     <message>
         <source>channel_request_exec failed</source>
-        <translation>échec de channel_request_exec</translation>
+        <translation type="obsolete">échec de channel_request_exec</translation>
     </message>
     <message>
         <source>SSH proxy connection error.</source>
@@ -3353,11 +3396,11 @@ Utiliser le mode caché de X2Go Client ?</translation>
     </message>
     <message>
         <source>channel_open_forward failed.</source>
-        <translation>échec de channel_open_forward.</translation>
+        <translation type="obsolete">échec de channel_open_forward.</translation>
     </message>
     <message>
         <source>channel_open_session failed.</source>
-        <translation>échec de channel_open_session.</translation>
+        <translation type="obsolete">échec de channel_open_session.</translation>
     </message>
     <message>
         <source>Error writing to socket.</source>
@@ -3369,11 +3412,20 @@ Utiliser le mode caché de X2Go Client ?</translation>
     </message>
     <message>
         <source>channel_write failed.</source>
-        <translation>échec de channel_write.</translation>
+        <translation type="obsolete">échec de channel_write.</translation>
     </message>
     <message>
         <source>Error reading from TCP socket.</source>
         <translation>Erreur de lecture à partir du socket TCP.</translation>
+    </message>
+    <message>
+        <source>Using environment-provided username.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 failed.</source>
+        <extracomment>Argument in this context will be a function name.</extracomment>
+        <translation>échec de %1.</translation>
     </message>
 </context>
 <context>
