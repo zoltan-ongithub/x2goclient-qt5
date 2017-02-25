@@ -114,6 +114,9 @@ x2goclient (4.1.0.1-0x2go1) UNRELEASED; urgency=medium
       could not be found in the constructor. We can live without PA and will
       show a warning message to the user later on when PA is supposed to be
       started.
+    - src/pulsemanager.cpp: deduplicate warning/error messages - make use of
+      show_startup_warning (). This does imply changes to the translation
+      files, coming up next.
 
   [ Oleksandr Shneyder ]
   * New upstream version (4.1.0.1):
