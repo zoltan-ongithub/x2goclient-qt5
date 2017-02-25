@@ -110,6 +110,10 @@ x2goclient (4.1.0.1-0x2go1) UNRELEASED; urgency=medium
       and (debug) startup sound playback.
     - src/pulsemanager.cpp: check server_binary_ before using it and jump over
       code that assumes the PA server binary to be available.
+    - src/pulsemanager.cpp: don't fail hard on OS X if the PA server binary
+      could not be found in the constructor. We can live without PA and will
+      show a warning message to the user later on when PA is supposed to be
+      started.
 
   [ Oleksandr Shneyder ]
   * New upstream version (4.1.0.1):
