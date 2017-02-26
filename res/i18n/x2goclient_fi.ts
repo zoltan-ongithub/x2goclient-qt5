@@ -3510,7 +3510,6 @@ voit asentaa sshd komennolla
     <message>
         <location filename="../../src/printwidget.cpp" line="59"/>
         <source>Please configure your client side printing settings.&lt;br&gt;&lt;br&gt;If you want to print the created file, you&apos;ll need an external application. Typically you can use &lt;a href=&quot;http://pages.cs.wisc.edu/~ghost/doc/GPL/index.htm&quot;&gt;ghostprint&lt;/a&gt; and &lt;a href=&quot;http://pages.cs.wisc.edu/~ghost/gsview/&quot;&gt;ghostview&lt;/a&gt;&lt;br&gt;You can find further information &lt;a href=&quot;http://www.x2go.org/index.php?id=49&quot;&gt;here&lt;/a&gt;.</source>
-        <comment>&quot;and&quot; between the first two links untranslated.</comment>
         <translation>Aseta päälle asiakasohjelman tulostus.&lt;br&gt;&lt;br&gt;Jos haluat tulostaa tiedoton, tarvitsen erillisen sovelluksen. Tyyppillisesti voit käyttää tätä &lt;a href=&quot;http://pages.cs.wisc.edu/~ghost/doc/GPL/index.htm&quot;&gt;ghostprint&lt;/a&gt; ja &lt;a href=&quot;http://pages.cs.wisc.edu/~ghost/gsview/&quot;&gt;ghostview&lt;/a&gt;&lt;br&gt;Löydät lisäohjeita &lt;a href=&quot;http://www.x2go.org/index.php?id=49&quot;&gt;täältä&lt;/a&gt;.</translation>
     </message>
 </context>
