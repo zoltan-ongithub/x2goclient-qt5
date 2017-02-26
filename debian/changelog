@@ -136,6 +136,10 @@ x2goclient (4.1.0.1-0x2go1) UNRELEASED; urgency=medium
   * New upstream version (4.1.0.1):
     - res/i18n/x2goclient_et.ts: update Estonian translation file.
 
+  [ Martti Pitkänen ]
+  * New upstream version (4.1.0.1):
+    - res/i18n/x2goclient_fi.ts: update Finnish translation file.
+
  -- X2Go Release Manager <git-admin@x2go.org>  Wed, 22 Feb 2017 07:13:10 +0100
 
 x2goclient (4.1.0.0-0x2go1) unstable; urgency=medium

@@ -3504,18 +3504,14 @@ voit asentaa sshd komennolla
     </message>
     <message>
         <source>Please configure your client side printing settings.&lt;br&gt;&lt;br&gt;If you want to print the created file, you&apos;ll need an external application. Typically you can use &lt;a href=&quot;http://pages.cs.wisc.edu/~ghost/doc/GPL/index.htm&quot;&gt;ghostprint&lt;/a&gt; and &lt;a href=&quot;http://pages.cs.wisc.edu/~ghost/gsview/&quot;&gt;ghostview&lt;/a&gt;&lt;br&gt;You can find further information &lt;a href=&quot;http://www.x2go.org/index.php?id=49&quot;&gt;here&lt;/a&gt;.</source>
-        <comment>&quot;and&quot; untranslated.</comment>
-        <translation type="obsolete">Aseta päälle asiakasohjelman tulostus.&lt;br&gt;&lt;br&gt;Jos haluat tulostaa tiedoton, tarvitsen erillisen sovelluksen. Tyyppillisesti voit käyttää tätä &lt;a href=&quot;http://pages.cs.wisc.edu/~ghost/doc/GPL/index.htm&quot;&gt;ghostprint&lt;/a&gt; and &lt;a href=&quot;http://pages.cs.wisc.edu/~ghost/gsview/&quot;&gt;ghostview&lt;/a&gt;&lt;br&gt;Löydät lisäohjeita &lt;a href=&quot;http://www.x2go.org/index.php?id=49&quot;&gt;täältä&lt;/a&gt;.</translation>
-    </message>
-    <message>
-        <source>Please configure your client side printing settings.&lt;br&gt;&lt;br&gt;If you want to print the created file, you&apos;ll need an external application. Typically you can use &lt;a href=&quot;http://pages.cs.wisc.edu/~ghost/doc/GPL/index.htm&quot;&gt;ghostprint&lt;/a&gt; and &lt;a href=&quot;http://pages.cs.wisc.edu/~ghost/gsview/&quot;&gt;ghostview&lt;/a&gt;&lt;br&gt;You can find further information &lt;a href=&quot;http://www.x2go.org/index.php?id=49&quot;&gt;here&lt;/a&gt;.</source>
         <comment>&quot;and&quot; between the first two links untranslated.</comment>
         <translation type="obsolete">Aseta päälle asiakasohjelman tulostus.&lt;br&gt;&lt;br&gt;Jos haluat tulostaa tiedoton, tarvitsen erillisen sovelluksen. Tyyppillisesti voit käyttää tätä &lt;a href=&quot;http://pages.cs.wisc.edu/~ghost/doc/GPL/index.htm&quot;&gt;ghostprint&lt;/a&gt; and &lt;a href=&quot;http://pages.cs.wisc.edu/~ghost/gsview/&quot;&gt;ghostview&lt;/a&gt;&lt;br&gt;Löydät lisäohjeita &lt;a href=&quot;http://www.x2go.org/index.php?id=49&quot;&gt;täältä&lt;/a&gt;.</translation>
     </message>
     <message>
         <location filename="../../src/printwidget.cpp" line="59"/>
         <source>Please configure your client side printing settings.&lt;br&gt;&lt;br&gt;If you want to print the created file, you&apos;ll need an external application. Typically you can use &lt;a href=&quot;http://pages.cs.wisc.edu/~ghost/doc/GPL/index.htm&quot;&gt;ghostprint&lt;/a&gt; and &lt;a href=&quot;http://pages.cs.wisc.edu/~ghost/gsview/&quot;&gt;ghostview&lt;/a&gt;&lt;br&gt;You can find further information &lt;a href=&quot;http://www.x2go.org/index.php?id=49&quot;&gt;here&lt;/a&gt;.</source>
-        <translation type="unfinished">Aseta päälle asiakasohjelman tulostus.&lt;br&gt;&lt;br&gt;Jos haluat tulostaa tiedoton, tarvitsen erillisen sovelluksen. Tyyppillisesti voit käyttää tätä &lt;a href=&quot;http://pages.cs.wisc.edu/~ghost/doc/GPL/index.htm&quot;&gt;ghostprint&lt;/a&gt; and &lt;a href=&quot;http://pages.cs.wisc.edu/~ghost/gsview/&quot;&gt;ghostview&lt;/a&gt;&lt;br&gt;Löydät lisäohjeita &lt;a href=&quot;http://www.x2go.org/index.php?id=49&quot;&gt;täältä&lt;/a&gt;.</translation>
+        <comment>&quot;and&quot; between the first two links untranslated.</comment>
+        <translation>Aseta päälle asiakasohjelman tulostus.&lt;br&gt;&lt;br&gt;Jos haluat tulostaa tiedoton, tarvitsen erillisen sovelluksen. Tyyppillisesti voit käyttää tätä &lt;a href=&quot;http://pages.cs.wisc.edu/~ghost/doc/GPL/index.htm&quot;&gt;ghostprint&lt;/a&gt; ja &lt;a href=&quot;http://pages.cs.wisc.edu/~ghost/gsview/&quot;&gt;ghostview&lt;/a&gt;&lt;br&gt;Löydät lisäohjeita &lt;a href=&quot;http://www.x2go.org/index.php?id=49&quot;&gt;täältä&lt;/a&gt;.</translation>
     </message>
 </context>
 <context>
@@ -3618,12 +3614,12 @@ Esimerkki:
     <message>
         <location filename="../../src/pulsemanager.cpp" line="161"/>
         <source>getcwd() failed!</source>
-        <translation type="unfinished"></translation>
+        <translation>getcwd() kaatui!</translation>
     </message>
     <message>
         <location filename="../../src/pulsemanager.cpp" line="926"/>
         <source>PulseAudio failed to start!</source>
-        <translation type="unfinished"></translation>
+        <translation>PulseAudio ei käynnistynyt!</translation>
     </message>
     <message>
         <source>Sound support will not be available.
@@ -3648,42 +3644,42 @@ Jos latasit paketista, valmiin version viralliselta kotisivulat, ilmoita virhees
         <location filename="../../src/pulsemanager.cpp" line="539"/>
         <location filename="../../src/pulsemanager.cpp" line="546"/>
         <source>Error fetching PulseAudio version number!</source>
-        <translation type="unfinished"></translation>
+        <translation>PulseAudion versionumeron luku ei onnistu!</translation>
     </message>
     <message>
         <location filename="../../src/pulsemanager.cpp" line="411"/>
         <source>Unexpected character found when parsing version string for major version number</source>
-        <translation type="unfinished"></translation>
+        <translation>Tunnistamaton merkki esti versionumeron lukemisen</translation>
     </message>
     <message>
         <location filename="../../src/pulsemanager.cpp" line="436"/>
         <source>Unexpected character found when parsing version string for minor version number</source>
-        <translation type="unfinished"></translation>
+        <translation>Tunnistamaton merkki esti versionumeron jälkiosan lukemisen</translation>
     </message>
     <message>
         <location filename="../../src/pulsemanager.cpp" line="454"/>
         <source>Unexpected character found when parsing version string for micro version number</source>
-        <translation type="unfinished"></translation>
+        <translation>Tunnistamaton merkki esti versionumeron lukemisen loppuun saakka</translation>
     </message>
     <message>
         <location filename="../../src/pulsemanager.cpp" line="469"/>
         <source>Supposed to skip major version number. Something is wrong.</source>
-        <translation type="unfinished"></translation>
+        <translation>Versionumerosta luettiin vain alkuosa.</translation>
     </message>
     <message>
         <location filename="../../src/pulsemanager.cpp" line="483"/>
         <source>Unable to convert major version number string to integer.</source>
-        <translation type="unfinished"></translation>
+        <translation>Versiotietoa ei voitu muuttaa numeeriseksi.</translation>
     </message>
     <message>
         <location filename="../../src/pulsemanager.cpp" line="501"/>
         <source>Unable to convert minor version number string to integer.</source>
-        <translation type="unfinished"></translation>
+        <translation>Versionumeron loppuosaa ei voitu muuttaa numeeriseksi.</translation>
     </message>
     <message>
         <location filename="../../src/pulsemanager.cpp" line="515"/>
         <source>Unable to convert micro version number string to integer.</source>
-        <translation type="unfinished"></translation>
+        <translation>Version viimeistä osaa ei voitu muuttaa numeeriseksi.</translation>
     </message>
     <message>
         <location filename="../../src/pulsemanager.cpp" line="540"/>
