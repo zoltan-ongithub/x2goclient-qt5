@@ -75,7 +75,7 @@ x2goclient (4.1.0.1-0x2go1) UNRELEASED; urgency=medium
       will be unable to open a new socket to the remote endpoint and proxying
       will fail badly.
     - src/x2goutils.cpp: ensure that add_to_path () also processes the first
-      value passed. Fixes startup problems in MacPorts.
+      value passed. Fixes startup problems in MacPorts. Fixes: #1093.
     - src/onmainwindow.cpp: unbreak Windows and OS X builds - directRDP is
       only available on Linux, so guard new section.
     - res/i18n/x2goclient_et.ts: various fixups for the Estonian translation
