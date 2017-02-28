@@ -125,6 +125,8 @@ x2goclient (4.1.0.1-0x2go1) UNRELEASED; urgency=medium
       cleaner for downstream package maintainers (like, for instance, MacPorts
       itself.)
     - res/i18n/x2goclient_fi.ts: remove outdated comment.
+    - src/sshprocess.cpp: bind direct tunnel socket to localhost instead of
+      any address. Fixes: #31.
 
   [ Oleksandr Shneyder ]
   * New upstream version (4.1.0.1):

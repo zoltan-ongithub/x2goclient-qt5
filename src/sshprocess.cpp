@@ -138,7 +138,7 @@ void SshProcess::tunnelLoop()
     setsockopt(serverSocket, IPPROTO_TCP, TCP_NODELAY,&y, sizeof(int));
 
     address.sin_family=AF_INET;
-    address.sin_addr.s_addr=INADDR_ANY;
+    address.sin_addr.s_addr=htonl(INADDR_LOOPBACK);
     address.sin_port=htons(localPort);
     if (bind(serverSocket,(struct sockaddr*) &address,sizeof(address))!=0)
     {
