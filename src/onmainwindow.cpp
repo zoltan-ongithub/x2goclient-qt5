@@ -1199,8 +1199,14 @@ void ONMainWindow::trayIconInit()
 
             if (sessionStatusDlg && sessionStatusDlg->isVisible())
             {
-                if (!useLdap)
-                    trayIconActiveConnectionMenu->setTitle(sessionExplorer->getLastSession()->name());
+                if (!useLdap) {
+                    if (!(sessionExplorer->getLastSession())) {
+                        x2goDebug << "No session selected, not setting tray icon title.";
+                    }
+                    else {
+                        trayIconActiveConnectionMenu->setTitle(sessionExplorer->getLastSession()->name());
+                    }
+                }
                 else
                     trayIconActiveConnectionMenu->setTitle(lastUser->username());
             }
@@ -3224,7 +3230,10 @@ void ONMainWindow::slotSessEnter()
         }
     }
 
-
+    if ((brokerMode || !embedMode) && !(sessionExplorer->getLastSession())) {
+        x2goDebug << "No session selected, returning without starting a session.";
+        return;
+    }
 
     resumingSession.sessionId=QString::null;
     resumingSession.server=QString::null;
@@ -3301,6 +3310,11 @@ void ONMainWindow::continueLDAPSession()
 #ifdef Q_OS_LINUX
 void ONMainWindow::startDirectRDP()
 {
+    if (!(sessionExplorer->getLastSession())) {
+        x2goDebug << "No session selected, returning without starting a session.";
+        return;
+    }
+
     X2goSettings* st;
     if(brokerMode)
     {
@@ -3999,8 +4013,17 @@ void ONMainWindow::startNewSession()
             st= new X2goSettings(config.iniFile,QSettings::IniFormat);
 
         QString sid;
-        if ( !embedMode )
+        if ( !embedMode ) {
+            if (!(sessionExplorer->getLastSession())) {
+                x2goDebug << "No session selected, returning without starting a session.";
+
+                delete st;
+
+                return;
+            }
+
             sid=sessionExplorer->getLastSession()->id();
+        }
         else
             sid="embedded";
         pack=st->setting()->value ( sid+"/pack",
@@ -4349,8 +4372,14 @@ void ONMainWindow::resumeSession ( const x2goSession& s )
     {
 
         QString sid;
-        if ( !embedMode )
+        if ( !embedMode ) {
+            if (!(sessionExplorer->getLastSession())) {
+                x2goDebug << "No session selected, returning without resuming a session.";
+                return;
+            }
+
             sid=sessionExplorer->getLastSession()->id();
+        }
         else
             sid="embedded";
         X2goSettings* st;
@@ -4587,6 +4616,8 @@ void ONMainWindow::setTrayIconToSessionIcon(QString info) {
 
         //send a information notification about the connection is done
         trayIcon->showMessage("X2Go - " + name, info, QSystemTrayIcon::Information, 15000);
+
+        delete (st);
     }
 
 }
@@ -4713,12 +4744,20 @@ void ONMainWindow::selectSession ( QStringList& sessions )
 
             if (!brokerMode)
             {
+                if (!(sessionExplorer->getLastSession())) {
+                    x2goDebug << "No session selected, returning without starting a shadow session.";
+                    return;
+                }
+
                 st=new X2goSettings( "sessions" );
 
                 QString sid=sessionExplorer->getLastSession()->id();
                 QString suser = st->setting()->value(sid + "/shadowuser", (QVariant) QString::null).toString();
                 QString sdisplay = st->setting()->value(sid + "/shadowdisplay", (QVariant) QString::null).toString();
                 bool fullAccess= st->setting()->value(sid + "/shadowfullaccess", (QVariant) false).toBool();
+
+                delete (st);
+
                 if(suser != QString::null && sdisplay != QString::null)
                 {
                     shadowUser=suser;
@@ -4870,6 +4909,12 @@ void ONMainWindow::slotSuspendSess()
         else
         {
             X2goSettings st ( "sessions" );
+
+            if (!(sessionExplorer->getLastSession())) {
+                x2goDebug << "No session selected, returning without suspending a session.";
+                return;
+            }
+
             QString sid=sessionExplorer->getLastSession()->id();
             host=st.setting()->value ( sid+"/host",
                                        ( QVariant ) host ).toString();
@@ -5014,6 +5059,11 @@ void ONMainWindow::slotTermSess()
         {
             X2goSettings st ( "sessions" );
 
+            if (!(sessionExplorer->getLastSession())) {
+                x2goDebug << "No session selected, returning without terminating a session.";
+                return;
+            }
+
             QString sid=sessionExplorer->getLastSession()->id();
         }
     }
@@ -5133,8 +5183,14 @@ void ONMainWindow::slotRetResumeSess ( bool result,
     else
     {
         QString sid;
-        if ( !embedMode )
+        if ( !embedMode ) {
+            if (!(sessionExplorer->getLastSession())) {
+                x2goDebug << "No session selected, this should not happen since we already started resuming a session.";
+                return;
+            }
+
             sid=sessionExplorer->getLastSession()->id();
+        }
         else
             sid="embedded";
 
@@ -6664,6 +6720,11 @@ void ONMainWindow::runCommand()
             command=sessionCmd;
         else
         {
+            if (!(sessionExplorer->getLastSession())) {
+                x2goDebug << "No session selected, not running command.";
+                return;
+            }
+
             QString sid=sessionExplorer->getLastSession()->id();
             command=st->setting()->value (
                         sid+"/command",
@@ -8048,6 +8109,11 @@ void ONMainWindow::exportDirs ( QString exports,bool removable )
         {
             X2goSettings st ( "sessions" );
 
+            if (!(sessionExplorer->getLastSession())) {
+                x2goDebug << "No session selected, not exporting directories.";
+                return;
+            }
+
             QString sid=sessionExplorer->getLastSession()->id();
 
             fsInTun=st.setting()->value ( sid+"/fstunnel",
@@ -8089,6 +8155,10 @@ void ONMainWindow::exportDefaultDirs()
     {
         if ( !embedMode )
         {
+            if (!(sessionExplorer->getLastSession())) {
+                x2goDebug << "No session selected, not exporting default directories.";
+                return;
+            }
 
             X2goSettings* st;
             if (!brokerMode)
@@ -9691,8 +9761,14 @@ void ONMainWindow::startX2goMount()
     if ( !useLdap )
     {
         QString sid;
-        if ( !embedMode )
+        if ( !embedMode ) {
+            if (!(sessionExplorer->getLastSession())) {
+                x2goDebug << "No session selected, not calling startx2gomount command.";
+                return;
+            }
+
             sid=sessionExplorer->getLastSession()->id();
+        }
         else
             sid="embedded";
         if ( st.setting()->value (
@@ -10801,8 +10877,14 @@ void ONMainWindow::setProxyWinTitle()
 
     QString title;
 
-    if (!useLdap)
+    if (!useLdap) {
+        if (!(sessionExplorer->getLastSession())) {
+            x2goDebug << "No session selected, not setting proxy window title.";
+            return;
+        }
+
         title=sessionExplorer->getLastSession()->name();
+    }
     else
         title=getCurrentUname()+"@"+resumingSession.server;
 
@@ -11053,8 +11135,14 @@ void ONMainWindow::slotFindProxyWin()
             {
                 X2goSettings *st;
                 QString sid;
-                if ( !embedMode )
+                if ( !embedMode ) {
+                    if (!(sessionExplorer->getLastSession())) {
+                        x2goDebug << "No session selected, not searching for proxy window.";
+                        return;
+                    }
+
                     sid=sessionExplorer->getLastSession()->id();
+                }
                 else
                     sid="embedded";
 
