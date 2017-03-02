@@ -1197,7 +1197,7 @@ void SshMasterConnection::setKeyPhrase(QString phrase)
 bool SshMasterConnection::userAuthWithKey()
 {
 #ifdef DEBUG
-    x2goDebug<<"Trying to authenticate user with private key." <<endl;
+    x2goDebug<<"Trying to authenticate user with private key.";
 #endif
     QString keyName=key;
     bool autoRemove=false;
@@ -1215,13 +1215,40 @@ bool SshMasterConnection::userAuthWithKey()
         fl.close();
         autoRemove=true;
 #ifdef DEBUG
-        x2goDebug<<"Temporarily saved key in "<<keyName<<endl;
+        x2goDebug<<"Temporarily saved key in "<<keyName;
 #endif
     }
 
-    ssh_private_key prkey=privatekey_from_file(my_ssh_session, keyName.toLatin1(), 0,"");
+    QByteArray tmp_ba = keyName.toLocal8Bit ();
+
+#if LIBSSH_VERSION_INT >= SSH_VERSION_INT (0, 6, 0)
+    ssh_key priv_key = { 0 };
+
+    int rc = ssh_pki_import_privkey_file (tmp_ba.data (), NULL, NULL, NULL, &priv_key);
+
+    if (SSH_EOF == rc) {
+        x2goDebug << "Failed to get private key from " << keyName << "; file does not exist.";
+
+        ssh_key_free (priv_key);
+
+        return (false);
+    }
+    else if (SSH_OK != rc) {
+        x2goDebug << "Failed to get private key from " << keyName << "; trying to query passphrase.";
+
+        ssh_key_free (priv_key);
+        priv_key = NULL;
+    }
+#else
+    ssh_private_key priv_key = privatekey_from_file (my_ssh_session, tmp_ba.data (), NULL, NULL);
+#endif
+
     int i=0;
-    while(!prkey)
+#if LIBSSH_VERSION_INT >= SSH_VERSION_INT (0, 6, 0)
+    while (SSH_OK != rc)
+#else
+    while (!priv_key)
+#endif
     {
         keyPhraseReady=false;
         emit needPassPhrase(this, false);
@@ -1238,44 +1265,105 @@ bool SshMasterConnection::userAuthWithKey()
         }
         if(keyPhrase==QString::null)
             break;
-        prkey=privatekey_from_file(my_ssh_session, keyName.toLatin1(), 0,keyPhrase.toLatin1());
+
+        QByteArray tmp_ba_passphrase = keyPhrase.toLocal8Bit ();
+
+#if LIBSSH_VERSION_INT >= SSH_VERSION_INT (0, 6, 0)
+        rc = ssh_pki_import_privkey_file (tmp_ba.data (), tmp_ba_passphrase.data (), NULL, NULL, &priv_key);
+
+        if (SSH_OK != rc) {
+            ssh_key_free (priv_key);
+            priv_key = NULL;
+        }
+#else
+        priv_key = privatekey_from_file (my_ssh_session, tmp_ba.data (), NULL, tmp_ba_passphrase.data ());
+#endif
+
         if(i++==2)
         {
             break;
         }
     }
+#if LIBSSH_VERSION_INT >= SSH_VERSION_INT (0, 6, 0)
+    if (SSH_OK != rc)
+#else
     if (!prkey)
+#endif
     {
 #ifdef DEBUG
-        x2goDebug<<"Failed to get private key from "<<keyName<<endl;
+        x2goDebug<<"Failed to get private key from "<<keyName;
 #endif
         if ( autoRemove )
             QFile::remove ( keyName );
         return false;
     }
-    ssh_public_key pubkey=publickey_from_privatekey(prkey);
+
+#if LIBSSH_VERSION_INT >= SSH_VERSION_INT (0, 6, 0)
+    ssh_key pub_key = { 0 };
+
+    rc = ssh_pki_export_privkey_to_pubkey (priv_key, &pub_key);
+#else
+    ssh_public_key pub_key = publickey_from_privatekey (priv_key);
+#endif
+
+#if LIBSSH_VERSION_INT >= SSH_VERSION_INT (0, 6, 0)
+    if (SSH_OK != rc)
+#else
     if (!pubkey)
+#endif
     {
 #ifdef DEBUG
-        x2goDebug<<"Failed to get public key from private key."<<endl;
+        x2goDebug<<"Failed to get public key from private key.";
 #endif
-        privatekey_free(prkey);
+#if LIBSSH_VERSION_INT >= SSH_VERSION_INT (0, 6, 0)
+        ssh_key_free (priv_key);
+        priv_key = NULL;
+
+        ssh_key_free (pub_key);
+        pub_key = NULL;
+#else
+        privatekey_free(priv_key);
+#endif
         if ( autoRemove )
             QFile::remove ( keyName );
         return false;
     }
 
-    ssh_string pubkeyStr=publickey_to_string(pubkey);
-    publickey_free(pubkey);
+#if LIBSSH_VERSION_INT >= SSH_VERSION_INT (0, 6, 0)
+    do {
+        rc = ssh_userauth_try_publickey (my_ssh_session, NULL, pub_key);
+    } while (SSH_AUTH_AGAIN == rc);
 
-    //not implemented before libssh 0.5
-    /*	int rc = ssh_userauth_privatekey_file ( my_ssh_session,NULL,
-                                               keyName.toLatin1(),
-                                               pass.toLatin1() );*/
+    ssh_key_free (pub_key);
+    pub_key = NULL;
 
-    int rc=ssh_userauth_pubkey(my_ssh_session, NULL, pubkeyStr, prkey);
-    privatekey_free(prkey);
+    /* FIXME: handle SSH_AUTH_PARTIAL correctly! */
+    if (SSH_AUTH_SUCCESS != rc) {
+        x2goDebug << "Unable to authenticate with public key.";
+
+        ssh_key_free (priv_key);
+        priv_key = NULL;
+
+        if (autoRemove) {
+            QFile::remove (keyName);
+        }
+
+        return (false);
+    }
+
+    do {
+        rc = ssh_userauth_publickey (my_ssh_session, NULL, priv_key);
+    } while (SSH_AUTH_AGAIN == rc);
+
+    ssh_key_free (priv_key);
+    priv_key = NULL;
+#else
+    ssh_string pubkeyStr=publickey_to_string(pub_key);
+    publickey_free(pub_key);
+    int rc=ssh_userauth_pubkey(my_ssh_session, NULL, pubkeyStr, priv_key);
+    privatekey_free(priv_key);
     ssh_string_free(pubkeyStr);
+#endif
 
 #ifdef DEBUG
     x2goDebug<<"Authenticating with key: "<<rc<<endl;
@@ -1283,6 +1371,8 @@ bool SshMasterConnection::userAuthWithKey()
 
     if ( autoRemove )
         QFile::remove ( keyName );
+
+    /* FIXME: handle SSH_AUTH_PARTIAL correctly! */
     if ( rc != SSH_AUTH_SUCCESS )
     {
         QString err=ssh_get_error ( my_ssh_session );
