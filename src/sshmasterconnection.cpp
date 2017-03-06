@@ -1241,7 +1241,18 @@ bool SshMasterConnection::userAuthWithKey()
         priv_key = NULL;
     }
 #else
-    ssh_private_key priv_key = privatekey_from_file (my_ssh_session, tmp_ba.data (), NULL, NULL);
+    /* This is TOCTU, but forced upon us by libssh's legacy function. */
+    {
+      QFile tmp_file (keyName);
+      if (tmp_file.open (QIODevice::ReadOnly)) {
+        tmp_file.close ();
+      }
+      else {
+        /* Don't pass invalid files to privatekey_from_file () - it crashes in this case. */
+        return (false);
+      }
+    }
+    ssh_private_key priv_key = privatekey_from_file (my_ssh_session, tmp_ba.data (), 0, NULL);
 #endif
 
     int i=0;
@@ -1288,7 +1299,7 @@ bool SshMasterConnection::userAuthWithKey()
 #if LIBSSH_VERSION_INT >= SSH_VERSION_INT (0, 6, 0)
     if (SSH_OK != rc)
 #else
-    if (!prkey)
+    if (!priv_key)
 #endif
     {
 #ifdef DEBUG
@@ -1310,7 +1321,7 @@ bool SshMasterConnection::userAuthWithKey()
 #if LIBSSH_VERSION_INT >= SSH_VERSION_INT (0, 6, 0)
     if (SSH_OK != rc)
 #else
-    if (!pubkey)
+    if (!pub_key)
 #endif
     {
 #ifdef DEBUG
