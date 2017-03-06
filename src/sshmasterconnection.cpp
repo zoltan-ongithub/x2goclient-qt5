@@ -60,7 +60,8 @@ const QString SshMasterConnection::challenge_auth_code_prompts_[] = {
   "Verification code:",            // GA      (http://github.com/google/google-authenticator)
   "One-time password (OATH) for",  // OATH    (http://www.nongnu.org/oath-toolkit/pam_oath.html)
   "passcode:",                     // MOTP    (http://motp.sourceforge.net)
-  "Enter PASSCODE:"                // SecurID
+  "Enter PASSCODE:",               // SecurID
+  "YubiKey for"                    // YubiKey (https://en.wikipedia.org/wiki/YubiKey)
 };
 
 
