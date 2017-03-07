@@ -590,7 +590,7 @@ if [ "${BUNDLE}" = "1" ]; then
     --copy "${TOP_DIR}/res/osxbundle/macdmg.DS_Store:/.DS_Store" \
     --copy "${TOP_DIR}/LICENSE" \
     --copy "${TOP_DIR}/COPYING" \
-    --symlink "/Applications: " \
+    --symlink "/Applications" \
     --icon "${TOP_DIR}/res/img/icons/x2go-mac.icns" \
     --format "UDBZ"
 fi
