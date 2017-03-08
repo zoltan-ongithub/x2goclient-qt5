@@ -138,6 +138,8 @@ x2goclient (4.1.0.1-0x2go1) UNRELEASED; urgency=medium
       issue.
     - macbuild.sh: fix long-standing issue that made the DMG bundle contain a
       symlink made up of only a space to /Applications.
+    - res/img/icons/dmg: add new image disk.svg, used as the basis for the new
+      OS X DMG bundle icon.
 
   [ Oleksandr Shneyder ]
   * New upstream version (4.1.0.1):
