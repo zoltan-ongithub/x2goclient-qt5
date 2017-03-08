@@ -591,7 +591,7 @@ if [ "${BUNDLE}" = "1" ]; then
     --copy "${TOP_DIR}/LICENSE" \
     --copy "${TOP_DIR}/COPYING" \
     --symlink "/Applications" \
-    --icon "${TOP_DIR}/res/img/icons/x2go-mac.icns" \
+    --icon "${TOP_DIR}/res/img/icons/dmg/x2go-mac-dmg.icns" \
     --format "UDBZ"
 fi
 

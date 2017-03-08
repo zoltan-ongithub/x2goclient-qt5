@@ -142,6 +142,8 @@ x2goclient (4.1.0.1-0x2go1) UNRELEASED; urgency=medium
       OS X DMG bundle icon.
     - res/img/icons/dmg: add new disk-drive-and-x2goclient icon for use as the
       volume icon of the OS X DMG bundle.
+    - macbuild.sh: use the new volume icon that actually also looks like a
+      disk drive. Fixes: #930.
 
   [ Oleksandr Shneyder ]
   * New upstream version (4.1.0.1):
