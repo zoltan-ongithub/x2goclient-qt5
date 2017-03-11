@@ -168,6 +168,12 @@ x2goclient (4.1.0.1-0x2go1) UNRELEASED; urgency=medium
       It is still available in "Programs and Features".
     - Windows: Upgrade Win32 OpenSSL from 1.0.1t to 1.0.2k
       Fixes numerous CVEs
+    - Windows: Upgrade libssh from 0.7.0 to 0.7.4 (while maintaining
+      Pageant support).
+      The possibly relevant changes are:
+        + CVE-2016-0739 was fixed
+        + improved id_ed25519 support
+        + numerous bug fixes
 
  -- X2Go Release Manager <git-admin@x2go.org>  Wed, 22 Feb 2017 07:13:10 +0100
 
@@ -994,12 +1000,6 @@ x2goclient (4.0.5.1-0x2go1) unstable; urgency=low
     - Windows: Update PuTTY from 0.64 to 0.66, which fixes
       CVE-2015-5309.
     - Windows: Remove libzip. libssh no longer uses it.
-    - Windows: Upgrade libssh from 0.7.0 to 0.7.4 (while maintaining
-      Pageant support).
-      The possibly relevant changes are:
-        + CVE-2016-0739 was fixed
-        + improved id_ed25519 support
-        + numerous bug fixes
 
   [ Orion Poplawski ]
   * New upstream release (4.0.5.1):
