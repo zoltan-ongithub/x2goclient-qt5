@@ -137,7 +137,6 @@ Section "X2Go Client (required)" base
   WriteUninstaller "$INSTDIR\Uninstall.exe"
   !insertmacro MUI_STARTMENU_WRITE_BEGIN Application
   CreateDirectory "$SMPROGRAMS\$STARTMENU_FOLDER"
-  CreateShortCut "$SMPROGRAMS\$STARTMENU_FOLDER\Uninstall.lnk" "$INSTDIR\Uninstall.exe"
   CreateShortCut "$INSTDIR\X2Go Client.lnk" "$INSTDIR\x2goclient.exe"
   CreateShortCut "$SMPROGRAMS\$STARTMENU_FOLDER\X2Go Client.lnk" "$INSTDIR\x2goclient.exe"
 
