@@ -181,6 +181,11 @@ x2goclient (4.1.0.1-0x2go1) UNRELEASED; urgency=medium
           users)
         + CVE-2017-6542 was fixed
 
+  [ Seth Galitzer ]
+  * New upstream version (4.1.0.1):
+    - src/help.cpp: add documentation for the --background option.
+      Part of #1162.
+
  -- X2Go Release Manager <git-admin@x2go.org>  Wed, 22 Feb 2017 07:13:10 +0100
 
 x2goclient (4.1.0.0-0x2go1) unstable; urgency=medium

@@ -154,6 +154,7 @@ help::params_t help::build_params () {
   ADD_OPT ("--broker-ssh-key=<path to key>", QT_TRANSLATE_NOOP ("Help", "Sets the path to an SSH key to use for authentication against an SSH session broker. The client's behavior is undefined if this flag is used for non-SSH session brokers."));
   ADD_OPT ("--broker-autologin", QT_TRANSLATE_NOOP ("Help", "Enables the use of the default SSH key or SSH agent for authentication against an SSH session broker. The client's behavior is undefined if this flag is used for non-SSH session brokers."));
   ADD_OPT ("--broker-noauth", QT_TRANSLATE_NOOP ("Help", "Does not ask for user credentials during session broker authentication. This can be useful if you are using an HTTP(S) session broker without authentication. If you run an HTTP(S) server without authentication, but with user-specific profiles, then put the user name into the broker URL (refer to --broker-url.) The user name then will be extracted from the broker URL and be sent to the session broker. The client's behavior is undefined if this flag is used for non-HTTP(S) session brokers."));
+  ADD_OPT ("--background=<svg-file>", QT_TRANSLATE_NOOP ("Help", "Use a custom/branded background image (SVG format) for X2Go Client's main window."));
 
 # undef NEWLINE
 # undef ADD_OPT
