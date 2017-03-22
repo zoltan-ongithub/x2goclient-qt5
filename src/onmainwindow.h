@@ -672,6 +672,7 @@ private:
 
     IMGFrame* fr;
     SVGFrame *bgFrame;
+    SVGFrame *on;
     QLineEdit* uname;
     ClickLineEdit* pass;
     ClickLineEdit* login;
@@ -801,6 +802,7 @@ private:
 
     QString supportMenuFile;
     QString BGFile;
+    QString OnFile;
     QString SPixFile;
 
     QString LDAPSndSys;

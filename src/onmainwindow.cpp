@@ -360,7 +360,11 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
     pl.setColor ( QPalette::Window, QColor ( 255,255,255,0 ) );
     x2g->setPalette ( pl );
 
-    SVGFrame* on=new SVGFrame ( ( QString ) ":/img/svg/onlogo.svg",false,fr );
+    if (OnFile.size())
+        on=new SVGFrame ( ( QString ) OnFile,false,fr );
+    else
+        on=new SVGFrame ( ( QString ) ":/img/svg/onlogo.svg",false,fr );
+
     on->setPalette ( pl );
 
     if ( !miniMode )
@@ -7543,6 +7547,17 @@ bool ONMainWindow::parseParameter ( QString param )
         }
         homeDir=value;
         portableDataPath=value;
+        return true;
+    }
+    if (setting == "--branding")
+    {
+        value = expandHome(value);
+        if (! QFile::exists(value))
+        {
+            printError( param + tr(" (file does not exist)"));
+            return false;
+        }
+        OnFile=value;
         return true;
     }
 
