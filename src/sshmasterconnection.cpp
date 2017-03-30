@@ -290,14 +290,14 @@ int SshMasterConnection::copyFile(const QString& src, const QString dst, QObject
     return proc->pid;
 }
 
-int SshMasterConnection::executeCommand(const QString& command, QObject* receiver, const char* slotFinished)
+int SshMasterConnection::executeCommand(const QString& command, QObject* receiver, const char* slotFinished, bool overridePath)
 {
     SshProcess* proc=new SshProcess(this, nextPid++);
     if(receiver && slotFinished)
     {
         connect(proc, SIGNAL(sshFinished(bool,QString,int)), receiver, slotFinished);
     }
-    proc->startNormal(command);
+    proc->startNormal(command, overridePath);
     processes<<proc;
     return proc->pid;
 

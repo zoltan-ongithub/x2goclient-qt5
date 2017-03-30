@@ -180,6 +180,9 @@ x2goclient (4.1.0.1-0x2go1) UNRELEASED; urgency=medium
           default because the installation dir is not writeable by
           users)
         + CVE-2017-6542 was fixed
+    - Don't override PATH for the actual session or application
+      command.
+      Fixes: #1100
 
   [ Seth Galitzer ]
   * New upstream version (4.1.0.1):

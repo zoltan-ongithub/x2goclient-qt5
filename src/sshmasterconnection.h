@@ -89,7 +89,7 @@ public:
     void writeKnownHosts(bool);
     void setKeyPhrase(QString);
 
-    int executeCommand(const QString& command, QObject* receiver=0, const char* slotFinished=0);
+    int executeCommand(const QString& command, QObject* receiver=0, const char* slotFinished=0, bool overridePath=true);
     int startTunnel(const QString& forwardHost, uint forwardPort, const QString& localHost,
                     uint localPort, bool reverse=false, QObject* receiver=0, const char* slotTunnelOk=0, const char* slotFinished=0);
     int copyFile(const QString& src, const QString dst, QObject* receiver=0, const char* slotFinished=0);

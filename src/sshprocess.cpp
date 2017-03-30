@@ -188,7 +188,7 @@ void SshProcess::rmPuttyReg(QString uuidStr)
 }
 #endif
 
-void SshProcess::startNormal(const QString& cmd)
+void SshProcess::startNormal(const QString& cmd, bool overridePath)
 {
     QUuid uuid = QUuid::createUuid();
     QString uuidStr = uuid.toString().mid(1, 36).toLower();
@@ -198,9 +198,18 @@ void SshProcess::startNormal(const QString& cmd)
 // ONLY UNCOMMENT FOR TESTING, MIGHT REVEAL PASSWORD WHEN command=RDP
     x2goDebug<<"Executing remote command via SshProcess object "<<pid<<": "<<cmd;
 // #endif
+    QString pathString;
+    if (overridePath)
+    {
+        pathString = "export PATH=\"/usr/local/bin:/usr/bin:/bin\";";
+    }
+    else
+    {
+        pathString= "";
+    }
     if(!masterCon->useKerberos())
     {
-        QString shcmd = "bash -l -c 'echo \"X2GODATABEGIN:" + uuidStr + "\"; export PATH=\"/usr/local/bin:/usr/bin:/bin\"; export TERM=\"dumb\"; "+cmd+"; echo \"X2GODATAEND:" + uuidStr + "\";'";
+        QString shcmd = "bash -l -c 'echo \"X2GODATABEGIN:" + uuidStr + "\"; " + pathString + "export TERM=\"dumb\"; "+cmd+"; echo \"X2GODATAEND:" + uuidStr + "\";'";
         x2goDebug << "this="<<this<<" Running masterCon->addChannelConnection(this, '" << uuidStr << "', '" << shcmd.left (200) << "');";
         masterCon->addChannelConnection(this, uuidStr, shcmd);
         connect(masterCon,SIGNAL(stdOut(SshProcess*,QByteArray)),this,SLOT(slotStdOut(SshProcess*,QByteArray)));
@@ -222,7 +231,7 @@ void SshProcess::startNormal(const QString& cmd)
          * as there is no preceding "outer double quote" the whole argument
          * is wrapped in.
          */
-        shcmd = "bash -l -c 'echo \"X2GODATABEGIN:" + uuidStr + "\"; export PATH=\"/usr/local/bin:/usr/bin:/bin\"; export TERM=\"dumb\"; "+cmd+"; echo \"X2GODATAEND:" + uuidStr + "\";'";
+        shcmd = "bash -l -c 'echo \"X2GODATABEGIN:" + uuidStr + "\";" + pathString + "export TERM=\"dumb\"; "+cmd+"; echo \"X2GODATAEND:" + uuidStr + "\";'";
 
         proc=new QProcess(this);
         QString local_cmd = "";

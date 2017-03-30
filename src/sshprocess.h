@@ -36,7 +36,7 @@ private:
     SshProcess(SshMasterConnection* master, int pid);
     ~SshProcess();
 
-    void startNormal(const QString& cmd);
+    void startNormal(const QString& cmd, bool overridePath);
     void startTunnel(const QString& forwardHost, uint forwardPort, const QString& localHost,
                      uint localPort, bool reverse=false);
     void start_cp(QString src, QString dst);

@@ -1080,6 +1080,7 @@ private slots:
     void slotShowAdvancedStat();
     void slotRestartProxy();
     void slotTestSessionStatus();
+    void SlotRunCommand(bool, QString output, int);
     void slotRetRunCommand ( bool result, QString output,
                              int );
     void slotGetServers ( bool result, QString output,

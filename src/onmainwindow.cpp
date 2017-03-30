@@ -6700,6 +6700,39 @@ void ONMainWindow::slotAppDialog()
 
 void ONMainWindow::runCommand()
 {
+
+    if ( runRemoteCommand )
+    {
+        /* 1st override PATH and determine the base path to x2goruncommand.
+         * Then in SlotRunCommand, call x2goruncommand without overriding PATH.
+         * This ensures that the PATH is never overriden for the actual user
+         * session.
+         * Fixes: #1100
+         */
+        sshConnection->executeCommand ( "x2gobasepath", this,
+                                        SLOT ( SlotRunCommand ( bool,
+                                        QString,
+                                        int )), true);
+    }
+#ifdef Q_WS_HILDON
+    //wait 5 seconds and execute xkbcomp
+    QTimer::singleShot ( 5000, this, SLOT ( slotExecXmodmap() ) );
+#endif
+}
+
+
+void ONMainWindow::runApplication(QString exec)
+{
+    QString cmd = "PULSE_CLIENTCONFIG=\"${HOME}/.x2go/C-"
+                + resumingSession.sessionId+"/.pulse-client.conf\" DISPLAY=:"
+                + resumingSession.display
+                + " setsid " + exec + " 1> /dev/null 2>/dev/null & exit";
+
+    sshConnection->executeCommand (cmd, 0, 0, false);
+}
+
+void ONMainWindow::SlotRunCommand(bool, QString output, int)
+{
     QString passwd=getCurrentPass();
     QString user=getCurrentUname();
     QString host=resumingSession.server;
@@ -6853,7 +6886,8 @@ void ONMainWindow::runCommand()
 
     if ( !startSessSound  || startSessSndSystem==PULSE )
     {
-        cmd=krbFwString+"setsid x2goruncommand "+resumingSession.display+" "+
+        cmd=krbFwString+"setsid " + output + "/bin/x2goruncommand "+
+            resumingSession.display+" "+
             resumingSession.agentPid + " " +
             resumingSession.sessionId+" "+
             resumingSession.sndPort+ " "+ command+" nosnd "+
@@ -6870,7 +6904,7 @@ void ONMainWindow::runCommand()
         switch ( startSessSndSystem )
         {
         case ESD:
-            cmd=krbFwString+"setsid x2goruncommand "+
+            cmd=krbFwString+"setsid " + output + "/bin/x2goruncommand "+
                 resumingSession.display+" "+
                 resumingSession.agentPid + " " +
                 resumingSession.sessionId+" "+
@@ -6879,7 +6913,7 @@ void ONMainWindow::runCommand()
                 sessionType +" 1> /dev/null 2>/dev/null & exit";
             break;
         case ARTS:
-            cmd=krbFwString+"setsid x2goruncommand "+
+            cmd=krbFwString+"setsid " + output + "/bin/x2goruncommand "+
                 resumingSession.display+" "+
                 resumingSession.agentPid + " " +
                 resumingSession.sessionId+" "+
@@ -6891,27 +6925,10 @@ void ONMainWindow::runCommand()
         }
     }
 
-    if ( runRemoteCommand )
-    {
-        sshConnection->executeCommand ( cmd, this,  SLOT ( slotRetRunCommand ( bool,
-                                        QString,
-                                        int ) ));
-    }
-#ifdef Q_WS_HILDON
-    //wait 5 seconds and execute xkbcomp
-    QTimer::singleShot ( 5000, this, SLOT ( slotExecXmodmap() ) );
-#endif
-}
-
-
-void ONMainWindow::runApplication(QString exec)
-{
-    QString cmd = "PULSE_CLIENTCONFIG=\"${HOME}/.x2go/C-"
-                + resumingSession.sessionId+"/.pulse-client.conf\" DISPLAY=:"
-                + resumingSession.display
-                + " setsid " + exec + " 1> /dev/null 2>/dev/null & exit";
-
-    sshConnection->executeCommand (cmd);
+    sshConnection->executeCommand ( cmd, this,
+                                    SLOT ( slotRetRunCommand ( bool,
+                                    QString,
+                                    int )), false);
 }
 
 void ONMainWindow::slotRetRunCommand ( bool result, QString output,
