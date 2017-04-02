@@ -6705,7 +6705,7 @@ void ONMainWindow::runCommand()
     {
         /* 1st override PATH and determine the base path to x2goruncommand.
          * Then in SlotRunCommand, call x2goruncommand without overriding PATH.
-         * This ensures that the PATH is never overriden for the actual user
+         * This ensures that the PATH is never overridden for the actual user
          * session.
          * Fixes: #1100
          */

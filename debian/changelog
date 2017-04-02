@@ -144,6 +144,7 @@ x2goclient (4.1.0.1-0x2go1) UNRELEASED; urgency=medium
       volume icon of the OS X DMG bundle.
     - macbuild.sh: use the new volume icon that actually also looks like a
       disk drive. Fixes: #930.
+    - src/onmainwindow.cpp: typo fix only.
 
   [ Oleksandr Shneyder ]
   * New upstream version (4.1.0.1):
