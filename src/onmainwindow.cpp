@@ -6393,17 +6393,6 @@ void ONMainWindow::slotShowPassForm()
         pass->setFocus();
         pass->selectAll();
     }
-    else
-    {
-#ifdef Q_OS_WIN
-        login->setText(getenv("USERNAME"));
-#else
-        login->setText(getenv("USER"));
-#endif
-        login->setFocus();
-        login->selectAll();
-    }
-
 
     if ( !embedMode )
     {

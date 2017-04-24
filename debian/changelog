@@ -145,6 +145,9 @@ x2goclient (4.1.0.1-0x2go1) UNRELEASED; urgency=medium
     - macbuild.sh: use the new volume icon that actually also looks like a
       disk drive. Fixes: #930.
     - src/onmainwindow.cpp: typo fix only.
+    - src/onmainwindow.cpp: do not automatically set login user name to
+      current system user if empty. Unbreaks default user name fetching via
+      libssh. Might break some use cases (especially RDP, XDMCP).
 
   [ Oleksandr Shneyder ]
   * New upstream version (4.1.0.1):
