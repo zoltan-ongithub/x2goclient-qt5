@@ -33,6 +33,7 @@
 #include "printprocess.h"
 #include "helpdialog.h"
 #include "appdialog.h"
+#include "InteractionDialog.h"
 #include <QDesktopServices>
 #include <QApplication>
 #include <QScrollBar>

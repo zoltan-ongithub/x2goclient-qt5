@@ -446,6 +446,9 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
     initPassDlg();
     initSelectSessDlg();
     initStatusDlg();
+    interDlg=new InteractionDialog(bgFrame);
+    connect(interDlg, SIGNAL(closeInterractionDialog()), this, SLOT(slotCloseInteractionDialog()));
+    username->addWidget ( interDlg );
 
 #if defined(CFGPLUGIN) && defined(Q_OS_LINUX)
 
@@ -2920,6 +2923,13 @@ SshMasterConnection* ONMainWindow::startSshConnection ( QString host, QString po
     connect ( con, SIGNAL ( userAuthError ( QString ) ),this,SLOT ( slotSshUserAuthError ( QString ) ) );
     connect ( con, SIGNAL ( connectionError ( QString,QString ) ), this,
               SLOT ( slotSshConnectionError ( QString,QString ) ) );
+    connect ( con, SIGNAL(startInteraction(SshMasterConnection*,QString)),this,
+               SLOT(slotSshInteractionStart(SshMasterConnection*,QString)) );
+    connect ( con, SIGNAL(updateInteraction(SshMasterConnection*,QString)),this,
+              SLOT(slotSshInteractionUpdate(SshMasterConnection*,QString)) );
+    connect (con, SIGNAL(finishInteraction(SshMasterConnection*)),this, SLOT(slotSshInteractionFinish(SshMasterConnection*)));
+    connect ( interDlg, SIGNAL(textEntered(QString)), con, SLOT(interactionTextEnter(QString)));
+    connect ( interDlg, SIGNAL(interrupt()), con, SLOT(interactionInterruptSlot()));
     con->start();
     return con;
 }
@@ -3008,6 +3018,44 @@ void ONMainWindow::slotServSshConnectionOk(QString server)
     con->executeCommand( "export HOSTNAME && x2golistsessions", this, SLOT (slotListAllSessions ( bool,QString,int ) ));
 }
 
+void ONMainWindow::slotSshInteractionFinish(SshMasterConnection* connection)
+{
+    if(interDlg->isInterrupted())
+    {
+         slotCloseInteractionDialog();
+    }
+    else
+    {
+         interDlg->setDisplayMode();
+    }
+}
+
+void ONMainWindow::slotCloseInteractionDialog()
+{
+         slotSshUserAuthError("NO_ERROR");
+}
+
+
+
+void ONMainWindow::slotSshInteractionStart(SshMasterConnection* connection, QString prompt)
+{
+    sessionStatusDlg->hide();
+    interDlg->show();
+    interDlg->reset();
+    interDlg->appendText(prompt);
+
+    setEnabled(true);
+    interDlg->setEnabled(true);
+    x2goDebug<<"SSH Session prompt:"<<prompt;
+
+}
+
+void ONMainWindow::slotSshInteractionUpdate(SshMasterConnection* connection, QString output)
+{
+    interDlg->appendText(output);
+    x2goDebug<<"SSH Interaction update:"<<output;
+}
+
 void ONMainWindow::slotSshServerAuthPassphrase(SshMasterConnection* connection, bool verificationCode)
 {
     bool ok;
@@ -3069,6 +3117,7 @@ void ONMainWindow::slotSshServerAuthChallengeResponse(SshMasterConnection* conne
 
 void ONMainWindow::slotSshServerAuthError ( int error, QString sshMessage, SshMasterConnection* connection )
 {
+    interDlg->hide();
     if ( startHidden )
     {
         startHidden=false;
@@ -3179,6 +3228,7 @@ void ONMainWindow::slotSshServerAuthError ( int error, QString sshMessage, SshMa
 
 void ONMainWindow::slotSshUserAuthError ( QString error )
 {
+    interDlg->hide();
     if ( sshConnection )
     {
         sshConnection->wait();
@@ -3201,9 +3251,10 @@ void ONMainWindow::slotSshUserAuthError ( QString error )
         trayQuit();
     }
 
-    QMessageBox::critical (0l, tr ("Authentication failed."),
-                           error, QMessageBox::Ok,
-                           QMessageBox::NoButton);
+    if(error != "NO_ERROR")
+        QMessageBox::critical (0l, tr ("Authentication failed."),
+                               error, QMessageBox::Ok,
+                               QMessageBox::NoButton);
     setEnabled ( true );
     passForm->setEnabled ( true );
     slotShowPassForm();
@@ -3752,6 +3803,7 @@ bool ONMainWindow::startSession ( const QString& sid )
 void ONMainWindow::slotListSessions ( bool result,QString output,
                                       int  )
 {
+    interDlg->hide();
     x2goDebug<<output;
     if ( result==false )
     {
@@ -12316,7 +12368,6 @@ void ONMainWindow::initSelectSessDlg()
 #endif
 
 }
-
 
 
 void ONMainWindow::printSshDError_startupFailure()

@@ -47,6 +47,7 @@ HEADERS += src/configdialog.h \
            src/sshmasterconnection.h \
            src/sshprocess.h \
            src/SVGFrame.h \
+           src/InteractionDialog.h \
            src/userbutton.h \
            src/x2goclientconfig.h \
            src/x2gologdebug.h \
@@ -101,6 +102,7 @@ SOURCES += src/sharewidget.cpp \
            src/sshmasterconnection.cpp \
            src/sshprocess.cpp \
            src/SVGFrame.cpp \
+           src/InteractionDialog.cpp \
            src/userbutton.cpp \
            src/x2gologdebug.cpp \
            src/printprocess.cpp \

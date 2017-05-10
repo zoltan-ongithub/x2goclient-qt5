@@ -724,7 +724,23 @@ void SshMasterConnection::run()
 #ifdef DEBUG
         x2goDebug<<"User authentication OK.";
 #endif
-        emit connectionOk(host);
+	if(checkLogin())
+	{
+	    x2goDebug<<"Login Check - OK";
+            emit connectionOk(host);
+	}
+	else
+	{
+	    x2goDebug<<"Login Check - Failed";
+// 	    if(!interactionInterrupt)
+	    {
+	      emit finishInteraction(this);
+	    }
+	    ssh_disconnect ( my_ssh_session );
+            ssh_free ( my_ssh_session );
+	    quit();
+	    return;
+	}
     }
     else
     {
@@ -1502,6 +1518,145 @@ bool SshMasterConnection::userAuthKrb()
 }
 
 
+void SshMasterConnection::interactionTextEnter(QString text)
+{
+    interactionInputMutex.lock();
+    interactionInputText=text;
+    interactionInputMutex.unlock();
+}
+
+void SshMasterConnection::interactionInterruptSlot()
+{
+    interactionInputMutex.lock();
+    interactionInterrupt=true;
+    interactionInputMutex.unlock();
+}
+
+bool SshMasterConnection::checkLogin()
+{
+    interactionInterrupt=false;
+    interactionInputText=QString::null;
+
+
+    ssh_channel channel = ssh_channel_new ( my_ssh_session );
+
+    if (!channel) {
+        QString err = ssh_get_error (my_ssh_session);
+        QString error_msg = tr ("%1 failed.").arg ("ssh_channel_new");
+
+#ifdef DEBUG
+        x2goDebug << error_msg.left (error_msg.size () - 1) << ": " << err << endl;
+#endif
+        return false;
+    }
+    if ( ssh_channel_open_session ( channel ) !=SSH_OK )
+    {
+        QString err=ssh_get_error ( my_ssh_session );
+        QString errorMsg=tr ( "%1 failed." ).arg ("ssh_channel_open_session");
+#ifdef DEBUG
+        x2goDebug<<errorMsg.left (errorMsg.size () - 1)<<": "<<err<<endl;
+#endif
+        return false;
+    }
+    if (ssh_channel_request_pty(channel)!=SSH_OK)
+    {
+        QString err=ssh_get_error ( my_ssh_session );
+        QString errorMsg=tr ( "%1 failed." ).arg ("ssh_channel_request_pty");
+#ifdef DEBUG
+        x2goDebug<<errorMsg.left (errorMsg.size () - 1)<<": "<<err<<endl;
+#endif
+        return false;
+    }
+    if(ssh_channel_change_pty_size(channel, 80, 24)!=SSH_OK)
+    {
+        QString err=ssh_get_error ( my_ssh_session );
+        QString errorMsg=tr ( "%1 failed." ).arg ("ssh_channel_change_pty_size");
+#ifdef DEBUG
+        x2goDebug<<errorMsg.left (errorMsg.size () - 1)<<": "<<err<<endl;
+#endif
+        return false;
+    }
+    if ( ssh_channel_request_exec ( channel, "echo \"LOGIN OK\"" ) != SSH_OK )
+    {
+        QString err=ssh_get_error ( my_ssh_session );
+        QString errorMsg=tr ( "%1 failed." ).arg ("ssh_channel_request_exec");
+#ifdef DEBUG
+        x2goDebug<<errorMsg.left (errorMsg.size () - 1)<<": "<<err<<endl;
+#endif
+    }
+    else
+    {
+        char buffer[1024*512]; //512K buffer
+        bool hasInterraction=true;
+	bool interactionStarted=false;
+//         x2goDebug<<"CHECK LOGIN channel created."<<endl;
+        while (ssh_channel_is_open(channel) &&
+                !ssh_channel_is_eof(channel))
+        {
+            int nbytes = ssh_channel_read_nonblocking(channel, buffer, sizeof(buffer), 0);
+            if (nbytes < 0)
+                return false;
+            if (nbytes > 0)
+            {
+                QString inf=QByteArray ( buffer,nbytes );
+                x2goDebug<<"LOGIN CHECK:"<<inf;
+                if(inf.indexOf("LOGIN OK")!=-1)
+                {
+		    x2goDebug<<"don't have interaction";
+                    hasInterraction=false;
+		    break;
+                }
+                else
+		{
+		  if(!interactionStarted)
+		  {
+		     interactionStarted=true;
+		     emit startInteraction(this, inf);
+		  }
+		  else
+		     emit updateInteraction(this,inf);
+		}
+            }
+            bool interrupt;
+            interactionInputMutex.lock();
+	    interrupt=interactionInterrupt;
+	    QString textToSend=interactionInputText;
+	    interactionInputText=QString::null;
+	    interactionInputMutex.unlock();
+	    if(textToSend.length()>0)
+	    {
+// 	        x2goDebug<<"SEND Input to SERVER";
+	        ssh_channel_write(channel, textToSend.toLocal8Bit().constData(), textToSend.length());
+	    }
+	    if(interrupt)
+	    {
+	        break;
+	    }
+            this->usleep(30);
+        }
+
+        x2goDebug<<"LOOP FINISHED";
+	bool retVal=false;
+        if(!hasInterraction)
+	{
+	    x2goDebug<<"No interaction needed, continue session";
+            retVal=true;
+	}
+	else
+        {
+            sshProcErrString=tr("Reconnect session");
+            x2goDebug<<"Reconnect session";
+        }
+        ssh_channel_close(channel);
+        ssh_channel_send_eof(channel);
+        ssh_channel_free(channel);
+	return retVal;
+
+    }
+    return false;
+
+}
+
 bool SshMasterConnection::userAuth()
 {
     if (kerberos)
@@ -2058,4 +2213,7 @@ void SshMasterConnection::finalize ( int item )
     channelConnections.removeAt ( item );
     emit channelClosed ( proc, uuid );
 }
+
+
+
 

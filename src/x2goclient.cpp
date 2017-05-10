@@ -92,6 +92,7 @@ int fork_helper (int argc, char **argv) {
 #endif /* defined (Q_OS_UNIX) */
 
 int main (int argc, char **argv) {
+   return (x2goMain(argc, argv));
 #ifdef Q_OS_UNIX
   /* Scan program arguments for --unixhelper flag. */
   bool unix_helper_request = 0;

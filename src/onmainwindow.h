@@ -88,6 +88,7 @@ class QStandardItemModel;
 class HttpBrokerClient;
 class QMenu;
 class QComboBox;
+class InteractionDialog;
 
 class SessionExplorer;
 struct user
@@ -577,6 +578,7 @@ public:
 
 
 private:
+    InteractionDialog* interDlg;
     QString m_x2goconfig;
     QStringList _internApplicationsNames;
     QStringList _transApplicationsNames;
@@ -1022,7 +1024,11 @@ private slots:
     void slotSshConnectionError ( QString message, QString lastSessionError );
     void slotSshServerAuthError ( int error, QString sshMessage, SshMasterConnection* connection );
     void slotSshServerAuthPassphrase ( SshMasterConnection* connection, bool verificationCode );
+    void slotSshInteractionStart ( SshMasterConnection* connection, QString prompt );
+    void slotSshInteractionUpdate ( SshMasterConnection* connection, QString output );
+    void slotSshInteractionFinish ( SshMasterConnection* connection);
     void slotSshServerAuthChallengeResponse( SshMasterConnection* connection, QString Challenge );
+    void slotCloseInteractionDialog();
     void slotSshUserAuthError ( QString error );
     void slotSshConnectionOk();
     void slotServSshConnectionOk(QString server);

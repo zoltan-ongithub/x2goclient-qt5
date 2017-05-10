@@ -155,6 +155,8 @@ x2goclient (4.1.0.1-0x2go1) UNRELEASED; urgency=medium
     - Disable sound button on direct RDP and XDMCP sessions.
       Set for direct XDMCP session autologin=true.
       Set for direct XDMCP session username=XDM.
+    - Interaction with SSH server (for example for changing
+      expired password). Fixes: #592.
 
   [ Robert Parts ]
   * New upstream version (4.1.0.1):

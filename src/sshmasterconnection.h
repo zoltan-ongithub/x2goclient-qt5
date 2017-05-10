@@ -122,6 +122,7 @@ private:
     bool userAuthAuto();
     bool userAuthWithKey();
     bool userChallengeAuth();
+    bool checkLogin();
     bool userAuth();
     bool userAuthKrb();
     void channelLoop();
@@ -147,6 +148,9 @@ private slots:
     void slotSshProxyTunnelOk(int);
     void slotSshProxyTunnelFailed(bool result,  QString output,
                                   int);
+public slots:
+    void interactionTextEnter(QString text);
+    void interactionInterruptSlot();
 
 private:
     ssh_session my_ssh_session;
@@ -158,6 +162,9 @@ private:
     QMutex disconnectFlagMutex;
     QMutex writeHostKeyMutex;
     QMutex reverseTunnelRequestMutex;
+    QMutex interactionInputMutex;
+    QString interactionInputText;
+    bool interactionInterrupt;
     bool writeHostKey;
     bool writeHostKeyReady;
     int nextPid;
@@ -219,7 +226,11 @@ signals:
 
     void needPassPhrase(SshMasterConnection*, bool verificationCode);
     void needChallengeResponse(SshMasterConnection*, QString Challenge);
+    void startInteraction(SshMasterConnection*, QString prompt);
+    void finishInteraction(SshMasterConnection*);
+    void updateInteraction(SshMasterConnection*, QString output);
 };
 
 
 #endif // SSHMASTERCONNECTION_H
+
