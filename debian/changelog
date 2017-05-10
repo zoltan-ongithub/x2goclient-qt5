@@ -148,6 +148,7 @@ x2goclient (4.1.0.1-0x2go1) UNRELEASED; urgency=medium
     - src/onmainwindow.cpp: do not automatically set login user name to
       current system user if empty. Unbreaks default user name fetching via
       libssh. Might break some use cases (especially RDP, XDMCP).
+    - src/x2goclient.cpp: revert change bypassing the UNIX cleanup helper.
 
   [ Oleksandr Shneyder ]
   * New upstream version (4.1.0.1):
