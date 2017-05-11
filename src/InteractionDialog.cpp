@@ -23,12 +23,18 @@
 #include <QPushButton>
 #include <QLabel>
 #include <QLineEdit>
+#include <QScrollBar>
+
+#ifndef Q_OS_LINUX
+#if QT_VERSION < 0x050000
+#include <QPlastiqueStyle>
+#endif
+#endif
 
 InteractionDialog::InteractionDialog(QWidget* parent): SVGFrame(":/img/svg/passform.svg",
             false,parent )
 {
     mw=(ONMainWindow*)parent;
-    mw->setWidgetStyle(this);
 
     if ( !mw->retMiniMode() )
         setFixedSize ( this->sizeHint().width(),this->sizeHint().height()*1.5 );
@@ -69,17 +75,30 @@ InteractionDialog::InteractionDialog(QWidget* parent): SVGFrame(":/img/svg/passf
     textEntry=new QLineEdit(this);
     textEntry->setEchoMode(QLineEdit::NoEcho);
     lay->addWidget(textEntry);
-    mw->setWidgetStyle(textEntry);
 
     cancelButton=new QPushButton(tr("Cancel"),this);
     lay->addWidget(cancelButton);
-    mw->setWidgetStyle(textEdit);
     textEdit->setReadOnly(true);
-    mw->setWidgetStyle(textEdit->viewport());
-    mw->setWidgetStyle((QWidget*)textEdit->verticalScrollBar());
-    mw->setWidgetStyle(cancelButton);
     connect(textEntry,SIGNAL(returnPressed()),this,SLOT(slotTextEntered()));
     connect(cancelButton, SIGNAL(clicked(bool)),this,SLOT(slotButtonPressed()));
+    textEdit->setFrameStyle ( QFrame::StyledPanel|QFrame::Plain );
+    cancelButton->setFlat(true);
+
+#ifndef Q_OS_LINUX
+    QStyle* widgetExtraStyle;
+#if QT_VERSION < 0x050000
+    widgetExtraStyle = new QPlastiqueStyle ();
+#else
+    widgetExtraStyle = QStyleFactory::create ("fusion");
+#endif
+
+    this->setStyle(widgetExtraStyle);
+    textEntry->setStyle(widgetExtraStyle);
+    textEdit->setStyle(widgetExtraStyle);
+    textEdit->viewport()->setStyle(widgetExtraStyle);
+    cancelButton->setStyle(widgetExtraStyle);
+
+#endif
 }
 
 InteractionDialog::~InteractionDialog()
@@ -95,6 +114,9 @@ void InteractionDialog::appendText(QString txt)
     interrupted=false;
     display=false;
     cancelButton->setText(tr("Cancel"));
+#ifdef Q_OS_WIN
+    QTimer::singleShot(0, textEntry, SLOT(setFocus()));
+#endif
 }
 
 void InteractionDialog::reset()

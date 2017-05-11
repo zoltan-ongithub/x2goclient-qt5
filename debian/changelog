@@ -158,7 +158,8 @@ x2goclient (4.1.0.1-0x2go1) UNRELEASED; urgency=medium
       Set for direct XDMCP session username=XDM.
     - Interaction with SSH server (for example for changing
       expired password). Fixes: #592.
-
+    - Fixing setting widget style issue in InteractionDialog on
+      Windows client.
   [ Robert Parts ]
   * New upstream version (4.1.0.1):
     - res/i18n/x2goclient_et.ts: update Estonian translation file.
