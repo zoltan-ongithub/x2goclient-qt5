@@ -125,6 +125,7 @@ private:
     bool checkLogin();
     bool userAuth();
     bool userAuthKrb();
+    bool userAuthKeyboardInteractive(QString prompt);
     void channelLoop();
     void finalize(int arg1);
     void copy();

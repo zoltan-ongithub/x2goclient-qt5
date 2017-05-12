@@ -160,6 +160,7 @@ x2goclient (4.1.0.1-0x2go1) UNRELEASED; urgency=medium
       expired password). Fixes: #592.
     - Fixing setting widget style issue in InteractionDialog on
     - SSH Interaction for SSH Broker and SSH Server.
+    - SSH Iteraction for method keyboard-interactive.
       Windows client.
   [ Robert Parts ]
   * New upstream version (4.1.0.1):

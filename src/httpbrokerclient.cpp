@@ -131,6 +131,7 @@ void HttpBrokerClient::slotSshConnectionError(QString message, QString lastSessi
 
 void HttpBrokerClient::slotSshConnectionOk()
 {
+    mainWindow->getInteractionDialog()->hide();
     getUserSessions();
 }
 
@@ -252,6 +253,7 @@ void HttpBrokerClient::slotSshUserAuthError(QString error)
         delete sshConnection;
         sshConnection=0l;
     }
+    mainWindow->getInteractionDialog()->hide();
 
     if(error!="NO_ERROR")
 

@@ -1021,6 +1021,95 @@ void SshMasterConnection::setVerficationCode(QString code)
 }
 
 
+
+bool SshMasterConnection::userAuthKeyboardInteractive(QString prompt)
+{
+    x2goDebug<<"Open Interaction dialog to complete authentication";
+    emit startInteraction(this, prompt);
+    interactionInterrupt=false;
+    interactionInputText=QString::null;
+    int rez=SSH_AUTH_INFO;
+    bool firstLoop=true;
+    int prompts=1;
+    while (rez==SSH_AUTH_INFO)
+    {
+
+        if(firstLoop)
+        {
+            firstLoop=false;
+        }
+        else
+        {
+            prompts=ssh_userauth_kbdint_getnprompts(my_ssh_session);
+            if(prompts>0)
+                emit updateInteraction(this, ssh_userauth_kbdint_getprompt(my_ssh_session,0,NULL));
+
+            QString name= ssh_userauth_kbdint_getname(my_ssh_session);
+            QString instruction = ssh_userauth_kbdint_getinstruction(my_ssh_session);
+#ifdef DEBUG
+            x2goDebug<<"Have prompts: "<<prompts<<endl;
+            x2goDebug<<"Name: "<<name<<endl;
+            x2goDebug<<"Instruction: "<<instruction<<endl;
+#endif
+        }
+        if(prompts>0)
+        {
+            while(true)
+            {
+                bool interrupt;
+                interactionInputMutex.lock();
+                interrupt=interactionInterrupt;
+                QString textToSend=interactionInputText;
+                interactionInputText=QString::null;
+                interactionInputMutex.unlock();
+                if(textToSend.length()>0)
+                {
+                    x2goDebug<<"SEND Input to SERVER";
+                    textToSend.replace("\n","");
+                    ssh_userauth_kbdint_setanswer(my_ssh_session,0,textToSend.toLocal8Bit());
+                    break;
+                }
+                if(interrupt)
+                {
+                    x2goDebug<<"Keyboard authentication failed";
+//         QString err=ssh_get_error ( my_ssh_session );
+                    authErrors<<"NO_ERROR";
+                    emit finishInteraction(this);
+
+                    return false;
+                }
+                this->usleep(30);
+            }
+        }
+
+        rez=ssh_userauth_kbdint(my_ssh_session, NULL, NULL);
+
+    }
+    if(rez==SSH_AUTH_SUCCESS)
+    {
+        x2goDebug<<"Keyboard authentication successful";
+        emit finishInteraction(this);
+        return true;
+    }
+    if(rez==SSH_AUTH_DENIED)
+    {
+        x2goDebug<<"Keyboard authentication failed";
+        QString err=ssh_get_error ( my_ssh_session );
+        authErrors<<err;
+        emit finishInteraction(this);
+
+        return false;
+    }
+
+    QString err=ssh_get_error ( my_ssh_session );
+    authErrors<<err;
+
+    return false;
+
+}
+
+
+
 bool SshMasterConnection::userChallengeAuth()
 {
     int rez=ssh_userauth_kbdint(my_ssh_session, NULL, NULL);
@@ -1103,10 +1192,10 @@ bool SshMasterConnection::userChallengeAuth()
                 ssh_userauth_kbdint_setanswer(my_ssh_session,0,challengeAuthVerificationCode.toLatin1());
                 return userChallengeAuth();
             }
-            QString err=ssh_get_error ( my_ssh_session );
-            authErrors<<err;
-
-            return false;
+            else
+	    {
+	        return userAuthKeyboardInteractive(prompt);
+	    }
         }
         else
         {

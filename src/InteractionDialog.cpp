@@ -24,6 +24,7 @@
 #include <QLabel>
 #include <QLineEdit>
 #include <QScrollBar>
+#include <QTimer>
 
 #ifndef Q_OS_LINUX
 #if QT_VERSION < 0x050000
@@ -114,9 +115,7 @@ void InteractionDialog::appendText(QString txt)
     interrupted=false;
     display=false;
     cancelButton->setText(tr("Cancel"));
-#ifdef Q_OS_WIN
     QTimer::singleShot(0, textEntry, SLOT(setFocus()));
-#endif
 }
 
 void InteractionDialog::reset()

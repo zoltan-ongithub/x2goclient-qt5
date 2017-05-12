@@ -342,7 +342,7 @@ public:
     void suspendSession ( QString sessId );
     bool termSession ( QString sessId,
                        bool warn=true );
-    const InteractionDialog* getInteractionDialog()
+    InteractionDialog* getInteractionDialog()
     {
       return interDlg;
     }

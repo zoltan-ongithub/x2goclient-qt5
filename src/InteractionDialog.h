@@ -31,7 +31,7 @@ class InteractionDialog: public SVGFrame
 
     Q_OBJECT
 public:
-    enum IMode{SESSION,BROKER};
+    enum IMode {SESSION,BROKER};
     InteractionDialog ( QWidget* parent=0);
     virtual ~InteractionDialog();
     void reset();
@@ -63,4 +63,3 @@ signals:
 };
 
 #endif
-
