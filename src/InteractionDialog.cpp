@@ -152,3 +152,8 @@ void InteractionDialog::setDisplayMode()
     display=true;
 }
 
+void InteractionDialog::setInteractionMode(IMode value)
+{
+    interactionMode=value;
+}
+

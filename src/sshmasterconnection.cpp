@@ -461,6 +461,22 @@ int SshMasterConnection::startTunnel(const QString& forwardHost, uint forwardPor
     return proc->pid;
 }
 
+void SshMasterConnection::slotSshProxyInteractionFinish(SshMasterConnection* connection)
+{
+    x2goDebug<<"SSH proxy interaction finished";
+    slotSshProxyUserAuthError("NO_ERROR");
+}
+
+void SshMasterConnection::slotSshProxyInteractionStart(SshMasterConnection* connection, QString prompt)
+{
+    emit startInteraction(this, prompt);
+}
+
+void SshMasterConnection::slotSshProxyInteractionUpdate(SshMasterConnection* connection, QString output)
+{
+    emit updateInteraction(this, output);
+}
+
 
 void SshMasterConnection::slotSshProxyConnectionError(QString err1, QString err2)
 {
@@ -476,7 +492,10 @@ void SshMasterConnection::slotSshProxyServerAuthError(int errCode, QString err, 
 void SshMasterConnection::slotSshProxyUserAuthError(QString err)
 {
     breakLoop=true;
-    emit userAuthError(tr("SSH proxy connection error: ")+err);
+    if(err=="NO_ERROR" || err=="NO_PROXY_ERROR")
+      emit userAuthError(err);
+    else
+      emit userAuthError(tr("SSH proxy connection error: ")+err);
 }
 
 
@@ -523,6 +542,15 @@ void SshMasterConnection::run()
         connect ( sshProxy, SIGNAL ( userAuthError ( QString ) ),this,SLOT ( slotSshProxyUserAuthError ( QString ) ) );
         connect ( sshProxy, SIGNAL ( connectionError ( QString,QString ) ), this,
                   SLOT ( slotSshProxyConnectionError ( QString,QString ) ) );
+
+        connect ( sshProxy, SIGNAL(startInteraction(SshMasterConnection*,QString)),this,
+                  SLOT(slotSshProxyInteractionStart(SshMasterConnection*,QString)) );
+        connect ( sshProxy, SIGNAL(updateInteraction(SshMasterConnection*,QString)),this,
+                  SLOT(slotSshProxyInteractionUpdate(SshMasterConnection*,QString)) );
+        connect ( sshProxy, SIGNAL(finishInteraction(SshMasterConnection*)),this,
+		  SLOT(slotSshProxyInteractionFinish(SshMasterConnection*)));
+//         connect ( interDlg, SIGNAL(textEntered(QString)), con, SLOT(interactionTextEnter(QString)));
+//         connect ( interDlg, SIGNAL(interrupt()), con, SLOT(interactionInterruptSlot()));
 
         sshProxyReady=false;
         sshProxy->start();
@@ -1520,6 +1548,11 @@ bool SshMasterConnection::userAuthKrb()
 
 void SshMasterConnection::interactionTextEnter(QString text)
 {
+    if(sshProxy && ! sshProxyReady)
+    {
+        sshProxy->interactionTextEnter(text);
+	return;
+    }
     interactionInputMutex.lock();
     interactionInputText=text;
     interactionInputMutex.unlock();
@@ -1527,6 +1560,11 @@ void SshMasterConnection::interactionTextEnter(QString text)
 
 void SshMasterConnection::interactionInterruptSlot()
 {
+    if(sshProxy && ! sshProxyReady)
+    {
+        sshProxy->interactionInterruptSlot();
+	return;
+    }
     interactionInputMutex.lock();
     interactionInterrupt=true;
     interactionInputMutex.unlock();

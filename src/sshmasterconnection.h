@@ -148,6 +148,10 @@ private slots:
     void slotSshProxyTunnelOk(int);
     void slotSshProxyTunnelFailed(bool result,  QString output,
                                   int);
+    void slotSshProxyInteractionStart ( SshMasterConnection* connection, QString prompt );
+    void slotSshProxyInteractionUpdate ( SshMasterConnection* connection, QString output );
+    void slotSshProxyInteractionFinish ( SshMasterConnection* connection);
+
 public slots:
     void interactionTextEnter(QString text);
     void interactionInterruptSlot();

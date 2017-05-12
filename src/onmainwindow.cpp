@@ -3022,7 +3022,7 @@ void ONMainWindow::slotSshInteractionFinish(SshMasterConnection* connection)
 {
     if(interDlg->isInterrupted())
     {
-         slotCloseInteractionDialog();
+          slotCloseInteractionDialog();
     }
     else
     {
@@ -3032,9 +3032,21 @@ void ONMainWindow::slotSshInteractionFinish(SshMasterConnection* connection)
 
 void ONMainWindow::slotCloseInteractionDialog()
 {
-         slotSshUserAuthError("NO_ERROR");
+    if(interDlg->getInteractionMode()==InteractionDialog::SESSION)
+    {
+          x2goDebug<<"Closed SSH Session interaction";
+          slotSshUserAuthError("NO_ERROR");
+    }
+    else
+    {
+        x2goDebug<<"Closed SSH Broker interaction";
+        if(broker)
+        {
+	    interDlg->hide();
+            broker->closeSSHInteractionDialog();
+        }
+    }
 }
-
 
 
 void ONMainWindow::slotSshInteractionStart(SshMasterConnection* connection, QString prompt)
@@ -3047,11 +3059,30 @@ void ONMainWindow::slotSshInteractionStart(SshMasterConnection* connection, QStr
     setEnabled(true);
     interDlg->setEnabled(true);
     x2goDebug<<"SSH Session prompt:"<<prompt;
-
+    if(connection==sshConnection)
+    {
+         x2goDebug<<"SSH Session interaction";
+	 interDlg->setInteractionMode(InteractionDialog::SESSION);
+    }
+    else
+    {
+	 interDlg->setInteractionMode(InteractionDialog::BROKER);
+         x2goDebug<<"SSH Broker interaction";
+    }
 }
 
 void ONMainWindow::slotSshInteractionUpdate(SshMasterConnection* connection, QString output)
 {
+    if(connection==sshConnection)
+    {
+         x2goDebug<<"SSH Session interaction";
+	 interDlg->setInteractionMode(InteractionDialog::SESSION);
+    }
+    else
+    {
+	 interDlg->setInteractionMode(InteractionDialog::BROKER);
+         x2goDebug<<"SSH Broker interaction";
+    }
     interDlg->appendText(output);
     x2goDebug<<"SSH Interaction update:"<<output;
 }

@@ -44,6 +44,7 @@ public:
     void selectUserSession(const QString& session );
     void changePassword(QString newPass);
     void testConnection();
+    void closeSSHInteractionDialog();
 private:
     QNetworkAccessManager* http;
     QNetworkRequest* netRequest;

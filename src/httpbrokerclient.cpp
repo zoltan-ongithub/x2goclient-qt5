@@ -36,6 +36,7 @@
 #include "onmainwindow.h"
 #include <QTemporaryFile>
 #include <QInputDialog>
+#include "InteractionDialog.h"
 
 
 HttpBrokerClient::HttpBrokerClient ( ONMainWindow* wnd, ConfigFile* cfg )
@@ -99,6 +100,18 @@ void HttpBrokerClient::createSshConnection()
               SLOT ( slotSshConnectionError ( QString,QString ) ) );
     connect ( sshConnection, SIGNAL(ioErr(SshProcess*,QString,QString)), this,
               SLOT(slotSshIoErr(SshProcess*,QString,QString)));
+
+
+    connect ( sshConnection, SIGNAL(startInteraction(SshMasterConnection*,QString)),mainWindow,
+              SLOT(slotSshInteractionStart(SshMasterConnection*,QString)) );
+    connect ( sshConnection, SIGNAL(updateInteraction(SshMasterConnection*,QString)),mainWindow,
+              SLOT(slotSshInteractionUpdate(SshMasterConnection*,QString)) );
+    connect ( sshConnection, SIGNAL(finishInteraction(SshMasterConnection*)),mainWindow,
+              SLOT(slotSshInteractionFinish(SshMasterConnection*)));
+    connect ( mainWindow->getInteractionDialog(), SIGNAL(textEntered(QString)), sshConnection,
+              SLOT(interactionTextEnter(QString)));
+    connect ( mainWindow->getInteractionDialog(), SIGNAL(interrupt()), sshConnection, SLOT(interactionInterruptSlot()));
+
     sshConnection->start();
 }
 
@@ -225,6 +238,12 @@ void HttpBrokerClient::slotSshServerAuthPassphrase(SshMasterConnection* connecti
 
 }
 
+void HttpBrokerClient::closeSSHInteractionDialog()
+{
+    slotSshUserAuthError("NO_ERROR");
+}
+
+
 void HttpBrokerClient::slotSshUserAuthError(QString error)
 {
     if ( sshConnection )
@@ -234,9 +253,11 @@ void HttpBrokerClient::slotSshUserAuthError(QString error)
         sshConnection=0l;
     }
 
-    QMessageBox::critical ( 0l,tr ( "Authentication failed." ),error,
-                            QMessageBox::Ok,
-                            QMessageBox::NoButton );
+    if(error!="NO_ERROR")
+
+        QMessageBox::critical ( 0l,tr ( "Authentication failed." ),error,
+                                QMessageBox::Ok,
+                                QMessageBox::NoButton );
     emit authFailed();
     return;
 }

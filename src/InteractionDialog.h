@@ -31,6 +31,7 @@ class InteractionDialog: public SVGFrame
 
     Q_OBJECT
 public:
+    enum IMode{SESSION,BROKER};
     InteractionDialog ( QWidget* parent=0);
     virtual ~InteractionDialog();
     void reset();
@@ -39,6 +40,11 @@ public:
         return interrupted;
     }
     void setDisplayMode();
+    void setInteractionMode(IMode value);
+    IMode getInteractionMode()
+    {
+        return interactionMode;
+    }
 private:
     ONMainWindow* mw;
     QTextEdit* textEdit;
@@ -46,6 +52,7 @@ private:
     QLineEdit* textEntry;
     bool interrupted;
     bool display;
+    IMode interactionMode;
 private slots:
     void slotTextEntered();
     void slotButtonPressed();

@@ -342,6 +342,10 @@ public:
     void suspendSession ( QString sessId );
     bool termSession ( QString sessId,
                        bool warn=true );
+    const InteractionDialog* getInteractionDialog()
+    {
+      return interDlg;
+    }
     void setStatStatus ( QString status=QString::null );
     x2goSession getNewSessionFromString ( const QString& string );
     void runCommand();
