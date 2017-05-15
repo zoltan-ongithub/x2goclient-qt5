@@ -47,6 +47,7 @@ PulseManager::PulseManager () : app_dir_ (QApplication::applicationDirPath ()),
                                 record_ (true),
                                 playback_ (true),
                                 debug_ (false),
+                                shutdownState(false),
                                 system_pulse_ (false) {
   pulse_dir_ = QDir (QDir::homePath ());
   pulse_dir_.mkpath (pulse_dir_.absolutePath () + pulse_X2Go_ + "/tmp");
@@ -773,12 +774,12 @@ void PulseManager::slot_play_startup_sound () {
 }
 
 void PulseManager::slot_on_pulse_finished (int exit_code) {
-  if (exit_code)
+  if (exit_code && !shutdownState)
   {
     x2goDebug << "Warning! Pulseaudio's exit code is non-zero.";
     show_startup_warning(true);
   }
-
+  shutdownState=false;
   x2goDebug << "Pulseaudio finished with code:"<<exit_code;
   QByteArray ba (pulse_server_->readAllStandardOutput ());
   char *data = ba.data ();
@@ -825,6 +826,7 @@ bool PulseManager::is_server_running () const {
 void PulseManager::shutdown () {
   QEventLoop loop;
 
+  shutdownState=true;
   connect (this,  SIGNAL (sig_pulse_server_terminated ()),
            &loop, SLOT (quit ()));
 
@@ -886,10 +888,9 @@ bool PulseManager::set_record (bool record) {
   bool ret = false;
 
   if (!(is_server_running ())) {
-    record_ = record;
     ret = true;
   }
-
+  record_ = record;
   return (ret);
 }
 

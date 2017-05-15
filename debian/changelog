@@ -165,6 +165,10 @@ x2goclient (4.1.0.1-0x2go1) UNRELEASED; urgency=medium
     - Move PulseManager MsgBox functions to main window:
       GUI functions should be used only from main thread.
     - Check "norecord" option on the first start of PulseAudio.
+    - Disable/Enable PulseAudio in config dialog.
+      New command line options:
+      --disable-pulse to disable start of PulseAudio
+      --disable-pulse-record to disable audio input.
 
   [ Robert Parts ]
   * New upstream version (4.1.0.1):

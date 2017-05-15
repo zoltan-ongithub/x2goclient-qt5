@@ -117,6 +117,10 @@ help::params_t help::build_params () {
   ADD_OPT ("--hide", QT_TRANSLATE_NOOP ("Help", "Starts hidden (minimized to system tray where available.)"));
   ADD_OPT ("--portable", QT_TRANSLATE_NOOP ("Help", "Starts in \"portable\" mode."));
   ADD_OPT ("--pgp-card", QT_TRANSLATE_NOOP ("Help", "Forces OpenPGP smart card authentication."));
+#if defined (Q_OS_DARWIN) || defined (Q_OS_WIN)
+  ADD_OPT ("--disable-pulse", QT_TRANSLATE_NOOP ("Help", "Disable PulseAudio."));
+  ADD_OPT ("--disable-pulse-record", QT_TRANSLATE_NOOP ("Help", "Disable sound input."));
+#endif /* defined (Q_OS_DARWIN) || defined (Q_OS_WIN) */
   ADD_OPT ("--xinerama", QT_TRANSLATE_NOOP ("Help", "Enables Xinerama by default."));
   ADD_OPT ("--ldap-printing", QT_TRANSLATE_NOOP ("Help", "Allows client side printing in LDAP mode."));
   ADD_OPT ("--thinclient", QT_TRANSLATE_NOOP ("Help", "Enables thinclient mode. Starts without a window manager."));

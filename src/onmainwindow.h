@@ -540,6 +540,17 @@ public:
         return &config;
     }
 
+#if defined (Q_OS_DARWIN) || defined (Q_OS_WIN)
+    bool getSystemDisablePARecord()
+    {
+        return systemDisablePARecord;
+    }
+    bool getSystemDisablePA()
+    {
+        return systemDisablePA;
+    }
+#endif /* defined (Q_OS_DARWIN) || defined (Q_OS_WIN) */
+
     void runApplication(QString exec);
 
 
@@ -853,6 +864,8 @@ private:
 #if defined (Q_OS_DARWIN) || defined (Q_OS_WIN)
     QThread *pulseManagerThread;
     PulseManager *pulseManager;
+    bool systemDisablePARecord;
+    bool systemDisablePA;
 #endif /* defined (Q_OS_DARWIN) || defined (Q_OS_WIN) */
 
 

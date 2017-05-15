@@ -341,10 +341,27 @@ ConfigDialog::ConfigDialog ( QWidget * parent,  Qt::WindowFlags f )
     QFrame* frp = new QFrame (this);
     tabWidg->addTab (frp, tr ("PulseAudio settings"));
     QVBoxLayout* l = new QVBoxLayout (frp);
+    cbDisablePA = new QCheckBox (tr ("Disable PulseAudio"), frp);
     cbNoRecord = new QCheckBox (tr ("Disable sound input"), frp);
+    connect(cbDisablePA, SIGNAL(stateChanged(int)), this, SLOT(slot_cbDisablePAStateChanged(int)));
+    l->addWidget (cbDisablePA);
     l->addWidget (cbNoRecord);
     l->addStretch (1);
     cbNoRecord->setChecked (st.setting ()->value ("pulse/norecord", false).toBool ());
+    cbDisablePA->setChecked (st.setting ()->value ("pulse/disable", false).toBool ());
+    ONMainWindow* par= ( ONMainWindow* ) parent;
+    systemDisablePA=par->getSystemDisablePA();
+    systemDisablePARecord=par->getSystemDisablePARecord();
+    if(systemDisablePA)
+    {
+        cbDisablePA->setChecked(true);
+        cbDisablePA->setEnabled(false);
+    }
+    if(systemDisablePARecord)
+    {
+        cbNoRecord->setChecked(true);
+        cbNoRecord->setEnabled(false);
+    }
 #endif /* defined (Q_OS_WIN) || defined (Q_OS_DARWIN) */
 }
 
@@ -364,7 +381,10 @@ void ConfigDialog::slot_accepted()
     st.setting()->setValue ( "trayicon/maxdiscon", cbMaxmizeTray->isChecked() );
 #endif
 #if defined (Q_OS_WIN) || defined (Q_OS_DARWIN)
-    st.setting()->setValue ( "pulse/norecord", cbNoRecord->isChecked() );
+    if(!systemDisablePARecord)
+        st.setting()->setValue ( "pulse/norecord", cbNoRecord->isChecked() );
+    if(!systemDisablePA)
+        st.setting()->setValue ( "pulse/disable", cbDisablePA->isChecked() );
 #endif /* defined (Q_OS_WIN) || defined (Q_OS_DARWIN) */
 #ifdef USELDAP
     if ( !embedMode )
@@ -602,6 +622,18 @@ QString ConfigDialog::getXDarwinDirectory()
 }
 #endif
 
+#if defined (Q_OS_WIN) || defined (Q_OS_DARWIN)
+void ConfigDialog::slot_cbDisablePAStateChanged(int state)
+{
+    cbNoRecord->setEnabled(state==Qt::Unchecked);
+    if(systemDisablePARecord)
+    {
+        cbNoRecord->setChecked(true);
+        cbNoRecord->setEnabled(false);
+    }
+}
+#endif /* defined (Q_OS_WIN) || defined (Q_OS_DARWIN) */
+
 
 void ConfigDialog::slotAdvClicked()
 {
@@ -636,7 +668,10 @@ void ConfigDialog::slotDefaults()
 #ifdef Q_OS_WIN
     case 3:
     {
-         cbNoRecord->setChecked(false);
+         if(!systemDisablePARecord)
+             cbNoRecord->setChecked(false);
+         if(!systemDisablePA)
+             cbDisablePA->setChecked(false);
     }
     break;
 #endif /* defined (Q_OS_WIN) */
@@ -647,6 +682,7 @@ void ConfigDialog::slotDefaults()
         clientSshPort->setValue ( 22 );
 #ifdef Q_OS_DARWIN
         cbNoRecord->setChecked (false);
+        cbDisablePA->setChecked (false);
 #endif /* defined (Q_OS_DARWIN) */
 #ifndef CFGPLUGIN
         gbTrayIcon->setChecked (false);

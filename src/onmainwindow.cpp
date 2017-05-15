@@ -133,6 +133,10 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
     config.brokerAutologoff=false;
     config.published=false;
     cmdAutologin=false;
+#if defined (Q_OS_DARWIN) || defined (Q_OS_WIN)
+    systemDisablePARecord=false;
+    systemDisablePA=false;
+#endif /* defined (Q_OS_DARWIN) || defined (Q_OS_WIN) */
 
 
 // Try to determine the native DPI and use it for the default
@@ -2193,19 +2197,40 @@ void ONMainWindow::slotConfig()
         int i;
 
 #if defined (Q_OS_WIN) || defined (Q_OS_DARWIN)
-        X2goSettings st ("settings");
-        bool newDisableInput = st.setting ()->value ("pulse/norecord",
+        if(!systemDisablePA)
+        {
+            X2goSettings st ("settings");
+            bool disablePA = st.setting ()->value ("pulse/disable",
                                                      (QVariant) false).toBool ();
+            if(!pulseManager && !disablePA)
+	    {
+	        x2goDebug<<"PA manager not inited yet, starting PA thread";
+		QTimer::singleShot (10, this, SLOT (pulseManagerWrapper ()));
+	    }
+	    else if(pulseManager && disablePA)
+	    {
+	        if(pulseManager->is_server_running())
+		{
+		    x2goDebug<<"Stopping PulseAudio";
+		    pulseManager->shutdown();
+		}
+	    }
+	    else if(pulseManager && !disablePA)//pulse is already inited and not disabled by config dialog
+	    {
+                bool newDisableInput = st.setting ()->value ("pulse/norecord",
+                                                         (QVariant) false).toBool ();
+                if(systemDisablePARecord)
+		    newDisableInput=true;
+                if (oldDisableInput != newDisableInput) {
+                    bool ret = pulseManager->set_record (!newDisableInput);
 
-        if (oldDisableInput != newDisableInput) {
-            bool ret = pulseManager->set_record (!newDisableInput);
-
-            if (!ret) {
-              x2goDebug << "Failed to change recording status of PulseManager. PulseAudio not started?" << endl;
-            }
-
-            pulseManager->restart ();
-        }
+                    if (!ret) {
+                      x2goDebug << "Failed to change recording status of PulseManager. PulseAudio not started?" << endl;
+                    }
+                    pulseManager->restart ();
+                }
+	    }
+	}
 #endif /* defined (Q_OS_WIN) || defined (Q_OS_DARWIN) */
 
         if ( passForm->isVisible() && !embedMode )
@@ -6748,12 +6773,19 @@ void ONMainWindow::pulseManagerWrapper () {
       (config.confSnd && config.useSnd))
 #endif /* defined (Q_OS_WIN) */
   {
+    X2goSettings st ("settings");
+    bool disablePulse = st.setting ()->value ("pulse/disable",
+                                                     (QVariant) false).toBool ();
+    if(disablePulse||systemDisablePA)
+    {
+        x2goDebug<<"Not starting PulseAudio";
+        return;
+    }
     pulseManagerThread = new QThread (0);
     pulseManager = new PulseManager ();
     connect(pulseManager, SIGNAL(sig_pulse_user_warning(bool, const QString&, const QString&, bool)),
             this, SLOT(slotShowPAMSGDialog(bool, const QString&, const QString&, bool)));
 
-    X2goSettings st ("settings");
     bool disableInput = st.setting ()->value ("pulse/norecord",
                                                      (QVariant) false).toBool ();
     pulseManager->set_record (!disableInput);
@@ -7251,6 +7283,19 @@ bool ONMainWindow::parseParameter ( QString param )
         ONMainWindow::debugging = true;
         return true;
     }
+
+#if defined (Q_OS_DARWIN) || defined (Q_OS_WIN)
+    if (param == "--disable-pulse")
+    {
+        systemDisablePA=true;
+        return true;
+    }
+    if (param == "--disable-pulse-record")
+    {
+        systemDisablePARecord=true;
+        return true;
+    }
+#endif /* defined (Q_OS_DARWIN) || defined (Q_OS_WIN) */
 
     if (param == "--no-autoresume")
     {

@@ -60,11 +60,14 @@ class PulseManager: public QObject {
     bool set_record (bool record);
     bool set_playback (bool playback);
     void set_debug (bool debug);
+    bool is_server_running () const;
+
 
 
   public slots:
     void start ();
     void restart ();
+    void shutdown ();
 
 
   private:
@@ -85,10 +88,6 @@ class PulseManager: public QObject {
 
     void create_client_dir ();
     void cleanup_client_dir ();
-
-    void shutdown ();
-
-    bool is_server_running () const;
 
     void show_startup_warning (bool play_startup_sound = false);
 
@@ -130,6 +129,7 @@ class PulseManager: public QObject {
     bool debug_;
 
     bool system_pulse_;
+    bool shutdownState;
 };
 
 #endif // PULSEMANAGER_H

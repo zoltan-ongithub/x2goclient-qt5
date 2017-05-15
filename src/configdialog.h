@@ -95,6 +95,9 @@ private:
 
 #if defined (Q_OS_WIN) || defined (Q_OS_DARWIN)
     QCheckBox *cbNoRecord;
+    QCheckBox *cbDisablePA;
+    bool systemDisablePA;
+    bool systemDisablePARecord;
 #endif /* defined (Q_OS_WIN) || defined (Q_OS_DARWIN) */
 
     QGroupBox *gbTrayIcon;
@@ -112,6 +115,10 @@ private slots:
     void slot_selectXDarwin();
     void slot_findXDarwin();
 #endif
+#if defined (Q_OS_WIN) || defined (Q_OS_DARWIN)
+    void slot_cbDisablePAStateChanged(int state);
+#endif /* defined (Q_OS_WIN) || defined (Q_OS_DARWIN) */
+
 private slots:
     void slotAdvClicked();
     void slotDefaults();
