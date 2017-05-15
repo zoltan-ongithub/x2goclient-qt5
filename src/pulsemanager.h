@@ -90,7 +90,7 @@ class PulseManager: public QObject {
 
     bool is_server_running () const;
 
-    void show_startup_warning (bool play_startup_sound = false) const;
+    void show_startup_warning (bool play_startup_sound = false);
 
 
   private slots:
@@ -100,6 +100,7 @@ class PulseManager: public QObject {
 
   signals:
     void sig_pulse_server_terminated ();
+    void sig_pulse_user_warning(bool error, const QString& main_text, const QString& inf_text, bool modal);
 
 
   private:

@@ -146,7 +146,7 @@ PulseManager::PulseManager () : app_dir_ (QApplication::applicationDirPath ()),
   for (buf = ptr = NULL; ptr == NULL; path_len += 20) {
     if (NULL == (buf = static_cast<char *> (realloc (buf, path_len)))) {
       x2goErrorf (16) << "Could not allocate buffer for getting current working directory!";
-      show_RichText_ErrorMsgBox (tr ("Could not allocate buffer for getting current working directory!"),
+      emit sig_pulse_user_warning (true, tr ("Could not allocate buffer for getting current working directory!"),
                                  QString (),
                                  true);
       abort ();
@@ -158,7 +158,7 @@ PulseManager::PulseManager () : app_dir_ (QApplication::applicationDirPath ()),
     if ((NULL == ptr) && (ERANGE != errno)) {
       int saved_errno = errno;
       x2goErrorf (17) << "getcwd() failed: " << QString (strerror (saved_errno));
-      show_RichText_ErrorMsgBox (tr ("getcwd() failed!"),
+      emit sig_pulse_user_warning (true, tr ("getcwd() failed!"),
                                  QString (strerror (saved_errno)),
                                  true);
       abort ();
@@ -407,7 +407,7 @@ void PulseManager::fetch_pulseaudio_version () {
             }
             else {
               x2goErrorf (21) << "Unexpected character found when parsing version string for major version number: '" << QString (*cit) << "'.";
-              show_RichText_ErrorMsgBox (tr ("Error fetching PulseAudio version number!"),
+              emit sig_pulse_user_warning (true, tr ("Error fetching PulseAudio version number!"),
                                          tr ("Unexpected character found when parsing version string for major version number")
                                          + ": '" + QString (*cit) + "'.",
                                          true);
@@ -432,7 +432,7 @@ void PulseManager::fetch_pulseaudio_version () {
             }
             else {
               x2goErrorf (23) << "Unexpected character found when parsing version string for minor version number: '" << QString (*cit) << "'.";
-              show_RichText_ErrorMsgBox (tr ("Error fetching PulseAudio version number!"),
+              emit sig_pulse_user_warning (true, tr ("Error fetching PulseAudio version number!"),
                                          tr ("Unexpected character found when parsing version string for minor version number")
                                          + ": '" + QString (*cit) + "'.",
                                          true);
@@ -450,7 +450,7 @@ void PulseManager::fetch_pulseaudio_version () {
             }
             else {
               x2goErrorf (25) << "Unexpected character found when parsing version string for micro version number: '" << QString (*cit) << "'.";
-              show_RichText_ErrorMsgBox (tr ("Error fetching PulseAudio version number!"),
+              emit sig_pulse_user_warning (true, tr ("Error fetching PulseAudio version number!"),
                                          tr ("Unexpected character found when parsing version string for micro version number")
                                          + ": '" + QString (*cit) + "'.",
                                          true);
@@ -465,7 +465,7 @@ void PulseManager::fetch_pulseaudio_version () {
 
         if (numbers_skip[0]) {
           x2goErrorf (30) << "Supposed to skip major version number. Something is wrong.";
-          show_RichText_ErrorMsgBox (tr ("Error fetching PulseAudio version number!"),
+          emit sig_pulse_user_warning (true, tr ("Error fetching PulseAudio version number!"),
                                      tr ("Supposed to skip major version number. "
                                          "Something is wrong."),
                                      true);
@@ -479,7 +479,7 @@ void PulseManager::fetch_pulseaudio_version () {
 
           if (!convert_success) {
             x2goErrorf (20) << "Unable to convert major version number string to integer.";
-            show_RichText_ErrorMsgBox (tr ("Error fetching PulseAudio version number!"),
+            emit sig_pulse_user_warning (true, tr ("Error fetching PulseAudio version number!"),
                                        tr ("Unable to convert major version number string to integer."),
                                        true);
             stop_processing = true;
@@ -497,7 +497,7 @@ void PulseManager::fetch_pulseaudio_version () {
 
           if (!convert_success) {
             x2goErrorf (22) << "Unable to convert minor version number string to integer.";
-            show_RichText_ErrorMsgBox (tr ("Error fetching PulseAudio version number!"),
+            emit sig_pulse_user_warning (true, tr ("Error fetching PulseAudio version number!"),
                                        tr ("Unable to convert minor version number string to integer."),
                                        true);
             stop_processing = true;
@@ -511,7 +511,7 @@ void PulseManager::fetch_pulseaudio_version () {
 
           if (!convert_success) {
             x2goErrorf (24) << "Unable to convert micro version number string to integer.";
-            show_RichText_ErrorMsgBox (tr ("Error fetching PulseAudio version number!"),
+            emit sig_pulse_user_warning (true, tr ("Error fetching PulseAudio version number!"),
                                        tr ("Unable to convert micro version number string to integer."),
                                        true);
             stop_processing = true;
@@ -536,14 +536,14 @@ void PulseManager::fetch_pulseaudio_version () {
 
     if (!found) {
       x2goErrorf (19) << "Unable to fetch PulseAudio version - unexpected format.";
-      show_RichText_ErrorMsgBox (tr ("Error fetching PulseAudio version number!"),
+      emit sig_pulse_user_warning (true, tr ("Error fetching PulseAudio version number!"),
                                  tr ("Unexpected format encountered."),
                                  true);
     }
   }
   else {
     x2goErrorf (18) << "Unable to start PulseAudio to fetch its version number.";
-    show_RichText_ErrorMsgBox (tr ("Error fetching PulseAudio version number!"),
+    emit sig_pulse_user_warning (true, tr ("Error fetching PulseAudio version number!"),
                                tr ("Unable to start PulseAudio binary."),
                                true);
   }
@@ -773,9 +773,13 @@ void PulseManager::slot_play_startup_sound () {
 }
 
 void PulseManager::slot_on_pulse_finished (int exit_code) {
-  if (!exit_code)
+  if (exit_code)
+  {
     x2goDebug << "Warning! Pulseaudio's exit code is non-zero.";
+    show_startup_warning(true);
+  }
 
+  x2goDebug << "Pulseaudio finished with code:"<<exit_code;
   QByteArray ba (pulse_server_->readAllStandardOutput ());
   char *data = ba.data ();
   x2goDebug << data;
@@ -916,7 +920,7 @@ QProcess::ProcessState PulseManager::state () {
   return (state_);
 }
 
-void PulseManager::show_startup_warning (bool play_startup_sound) const {
+void PulseManager::show_startup_warning (bool play_startup_sound){
   QString main_text, informative_text;
 
   if (!(play_startup_sound)) {
@@ -933,5 +937,5 @@ void PulseManager::show_startup_warning (bool play_startup_sound) const {
                             "https://wiki.x2go.org/doku.php/wiki:bugs"
                           "</a></center>\n");
 
-  show_RichText_WarningMsgBox (main_text, informative_text, true);
+  emit sig_pulse_user_warning (false, main_text, informative_text, true);
 }

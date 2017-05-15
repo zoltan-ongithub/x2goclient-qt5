@@ -1522,9 +1522,12 @@ void ONMainWindow::closeClient()
 
 #if defined (Q_OS_DARWIN) || defined (Q_OS_WIN)
     if (pulseManager) {
+        disconnect(pulseManager, SIGNAL(sig_pulse_user_warning(bool, const QString&, const QString&, bool)),
+                   this, SLOT(slotShowPAMSGDialog(bool, const QString&, const QString&, bool)));
         delete (pulseManager);
 
         if (pulseManagerThread) {
+
             pulseManagerThread->quit ();
             pulseManagerThread->wait ();
         }
@@ -6747,6 +6750,8 @@ void ONMainWindow::pulseManagerWrapper () {
   {
     pulseManagerThread = new QThread (0);
     pulseManager = new PulseManager ();
+    connect(pulseManager, SIGNAL(sig_pulse_user_warning(bool, const QString&, const QString&, bool)),
+            this, SLOT(slotShowPAMSGDialog(bool, const QString&, const QString&, bool)));
 
     pulseManager->set_debug (debugging);
 
@@ -9071,6 +9076,18 @@ void ONMainWindow::slotScDaemonError (QProcess::ProcessError error) {
 
     show_RichText_ErrorMsgBox (main_text, informative_text);
     trayQuit ();
+}
+
+void ONMainWindow::slotShowPAMSGDialog(bool error, const QString& main_text, const QString& info_text, bool modal)
+{
+    if(error)
+    {
+        show_RichText_ErrorMsgBox(main_text, info_text,modal);
+    }
+    else
+    {
+        show_RichText_WarningMsgBox(main_text, info_text, modal);
+    }
 }
 
 

@@ -1050,6 +1050,7 @@ public slots:
     void setFocus();
 
 private slots:
+    void slotShowPAMSGDialog(bool error, const QString& main_text, const QString& info_text, bool modal);
     void slotSnameChanged ( const QString& );
     void slotSelectedFromList ( SessionButton* session );
     void slotSessEnter();
