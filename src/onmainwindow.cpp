@@ -6753,6 +6753,10 @@ void ONMainWindow::pulseManagerWrapper () {
     connect(pulseManager, SIGNAL(sig_pulse_user_warning(bool, const QString&, const QString&, bool)),
             this, SLOT(slotShowPAMSGDialog(bool, const QString&, const QString&, bool)));
 
+    X2goSettings st ("settings");
+    bool disableInput = st.setting ()->value ("pulse/norecord",
+                                                     (QVariant) false).toBool ();
+    pulseManager->set_record (!disableInput);
     pulseManager->set_debug (debugging);
 
     pulseManager->moveToThread (pulseManagerThread);
