@@ -169,6 +169,10 @@ x2goclient (4.1.0.1-0x2go1) UNRELEASED; urgency=medium
       New command line options:
       --disable-pulse to disable start of PulseAudio
       --disable-pulse-record to disable audio input.
+    - Check if PulseAudio running at session start and resuming
+      when sound is enabled. Show warning if PulseAudio not running
+      and disable the sound support for the session to avoid
+      session freezes.
 
   [ Robert Parts ]
   * New upstream version (4.1.0.1):

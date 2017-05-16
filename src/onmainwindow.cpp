@@ -5358,21 +5358,25 @@ void ONMainWindow::slotRetResumeSess ( bool result,
 
 #if defined (Q_OS_WIN) || defined (Q_OS_DARWIN)
         if (sound) {
-            /*
-             * PulseManager::start () can be called even if the server
-             * is already started. In this case, it will do nothing.
-             */
-            pulseManager->start ();
+            if(!pulseManager || !(pulseManager->is_server_running()))
+	    {
+	        show_RichText_WarningMsgBox (tr("PulseAudio is not running"),
+					     tr("Sound output will be disabled for this session. Please enable PulseAudio in the configuration dialog or disable sound in the session settings"),true);
+		sound=false;
+	    }
+	    else
+	    {
+                switch (sndSystem) {
+                    case PULSE:
+                        sndPort = QString::number (pulseManager->get_pulse_port ());
+                    break;
+                    case ESD:
+                        sndPort = QString::number (pulseManager->get_esd_port ());
+                    break;
+               }
+	    }
         }
 
-        switch (sndSystem) {
-            case PULSE:
-                sndPort = QString::number (pulseManager->get_pulse_port ());
-                break;
-            case ESD:
-                sndPort = QString::number (pulseManager->get_esd_port ());
-                break;
-        }
 #endif /* defined (Q_OS_WIN) || defined (Q_OS_DARWIN) */
 
         delete st;
