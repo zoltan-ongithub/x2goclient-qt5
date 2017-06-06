@@ -149,6 +149,10 @@ x2goclient (4.1.0.1-0x2go1) UNRELEASED; urgency=medium
       current system user if empty. Unbreaks default user name fetching via
       libssh. Might break some use cases (especially RDP, XDMCP).
     - src/x2goclient.cpp: revert change bypassing the UNIX cleanup helper.
+    - src/onmainwindow.cpp: revert old behavior and select user name field
+      after a session has been suspended/terminated if user name was not
+      provided. Do not insert an user name, though, but leave it to
+      autodetection by default.
 
   [ Oleksandr Shneyder ]
   * New upstream version (4.1.0.1):

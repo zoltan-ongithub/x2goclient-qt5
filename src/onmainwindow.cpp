@@ -6508,6 +6508,12 @@ void ONMainWindow::slotShowPassForm()
         pass->setFocus();
         pass->selectAll();
     }
+    else
+    {
+        login->setFocus();
+        login->selectAll();
+    }
+
 
     if ( !embedMode )
     {
