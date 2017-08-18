@@ -153,6 +153,14 @@ x2goclient (4.1.0.1-0x2go1) UNRELEASED; urgency=medium
       after a session has been suspended/terminated if user name was not
       provided. Do not insert an user name, though, but leave it to
       autodetection by default.
+    - src/sshmasterconnection.cpp: fix SSH-proxied connections with port
+      numbers of zero.
+      In order to authenticate the remote server, SSH-proxied connections must
+      be reset to their remote host and port values after connecting via the
+      SSH tunnel. If the original port value was zero, setting it was skipped,
+      leading to connections like $REMOTE_HOST:$PROXY_PORT, which is certainly
+      wrong. Fetch the inferred port value and set this instead, fixing this
+      issue.
 
   [ Oleksandr Shneyder ]
   * New upstream version (4.1.0.1):

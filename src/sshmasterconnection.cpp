@@ -895,10 +895,54 @@ bool SshMasterConnection::sshConnect()
 //set values for remote host for proper server authentication
     if(useproxy && proxytype==PROXYSSH)
     {
+        x2goDebug << "Connected via proxy, resetting connection values on session to " << tmpBA.data() << ":" << port;
         ssh_options_set ( my_ssh_session, SSH_OPTIONS_HOST, tmpBA.data() );
-        if (port) {
-            ssh_options_set ( my_ssh_session, SSH_OPTIONS_PORT, &port );
+
+        /*
+         * The SSH port might be 0, which indicates to use the default port
+         * or a custom one specified in the config file.
+         * We need to fetch the latter and then set the port unconditionally.
+         *
+         * The tricky part is that we already set a port before (in this case our proxy port.)
+         * There's no way to reset the port for this session to its default value of 0 again,
+         * so we'll need to create a new session, set the hostname
+         * and fetch the inferred port value from there.
+         *
+         * Failure to do so will trigger funny bugs like connecting to the correct remote host,
+         * but at a proxied port value.
+         */
+        int work_port = port;
+
+        /* Oh, yeah, and we don't really support port values of 0 for pre-0.6.0 libssh. Sorry. */
+#if LIBSSH_VERSION_INT >= SSH_VERSION_INT (0, 6, 0)
+        if (!work_port) {
+            ssh_session tmp_session = ssh_new ();
+
+            if (!tmp_session) {
+                QString error_msg = tr ("Cannot create SSH session.");
+#ifdef DEBUG
+                x2goDebug << error_msg;
+#endif
+                return (false);
+            }
+            else {
+                ssh_options_set (tmp_session, SSH_OPTIONS_HOST, tmpBA.data ());
+
+                /* Parse ~/.ssh/config. */
+                if (ssh_options_parse_config (tmp_session, NULL) < 0) {
+                    x2goDebug << "Warning: unable to parse the SSH config file.";
+                }
+
+                unsigned int inferred_port = 0;
+                ssh_options_get_port (tmp_session, &inferred_port);
+                x2goDebug << "Fetched inferred session port: " << inferred_port;
+
+                work_port = inferred_port & 0xFFFF;
+            }
         }
+#endif
+
+        ssh_options_set ( my_ssh_session, SSH_OPTIONS_PORT, &work_port );
     }
 
 #if LIBSSH_VERSION_INT >= SSH_VERSION_INT (0, 6, 0)
