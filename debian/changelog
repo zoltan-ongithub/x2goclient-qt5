@@ -225,6 +225,12 @@ x2goclient (4.1.0.1-0x2go1) UNRELEASED; urgency=medium
     - {src/{help.cpp,onmainwindow.{cpp,h}},man/man1/x2goclient.1}: add new
       --branding option that replaces the seal logo. Fixes: #1162.
 
+  [ Walid Moghrabi ]
+  * New upstream version (4.1.0.1):
+    - {src/{help.cpp,onmainwindow.{cpp,h}},man/man1/x2goclient.1}: let
+      --background take a directory and randomly pick an SVG file in there.
+      Fixes: #1165.
+
  -- X2Go Release Manager <git-admin@x2go.org>  Wed, 22 Feb 2017 07:13:10 +0100
 
 x2goclient (4.1.0.0-0x2go1) unstable; urgency=medium

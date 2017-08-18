@@ -44,6 +44,7 @@
 #include <QTranslator>
 #include <QLocale>
 #include <QProcessEnvironment>
+#include <QDirIterator>
 #include "sshmasterconnection.h"
 #include "non_modal_messagebox.h"
 

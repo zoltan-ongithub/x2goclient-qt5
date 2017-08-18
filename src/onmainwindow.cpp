@@ -346,6 +346,22 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
 
 
 #ifndef Q_WS_HILDON
+
+    // See if BGFile is a directory and retrieve an SVG file randomly from within
+    QFileInfo bg_dir(BGFile);
+    if (bg_dir.isDir())
+    {
+        QDirIterator it(BGFile, QStringList() << "*.svg", QDir::Files, QDirIterator::NoIteratorFlags);
+        QStringList fileList;
+        while (it.hasNext())
+            fileList << it.next();
+
+        qsrand(QTime::currentTime().msec());
+        int max=fileList.size();
+        int random_selector=qrand() % max;
+        BGFile=fileList.at(random_selector);
+    }
+
     if (BGFile.size())
         bgFrame=new SVGFrame ( ( QString ) BGFile,true,fr );
     else
