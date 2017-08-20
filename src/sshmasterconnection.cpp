@@ -1874,7 +1874,7 @@ void SshMasterConnection::addChannelConnection ( SshProcess* creator, QString uu
 
     x2goDebug << "Locking SSH channel connection MUTEX.";
     channelConnectionsMutex.lock();
-    x2goDebug << "Passing new channel conenction object to channelConnections.";
+    x2goDebug << "Passing new channel connection object to channelConnections.";
     channelConnections<<con;
     x2goDebug << "Unlocking SSH channel connection MUTEX.";
     channelConnectionsMutex.unlock();
