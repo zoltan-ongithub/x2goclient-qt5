@@ -171,7 +171,7 @@ rm -r x2gobrowserplugin* || :
 
 %build
 export PATH=%{_qt4_bindir}:$PATH
-make %{?_smp_mflags}
+make %{?_smp_mflags} CXXFLAGS="%{optflags}" QMAKE_OPTS="QMAKE_STRIP=:"
 
 
 %install
