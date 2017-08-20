@@ -27,6 +27,8 @@ MOZPLUGDIR=$(PREFIX)/lib/mozilla/plugins
 QMAKE_BINARY=qmake-qt4
 LRELEASE_BINARY=lrelease-qt4
 QMAKE_OPTS=
+QMAKE_CFLAGS=$(CPPFLAGS) $(CFLAGS)
+QMAKE_CXXFLAGS=$(CPPFLAGS) $(CXXFLAGS)
 
 LDFLAGS+=-lldap -lcups -lX11 -lXpm
 
@@ -38,12 +40,12 @@ build: build_man build_pluginprovider
 
 build_client:
 	$(LRELEASE_BINARY) x2goclient.pro
-	mkdir -p $(CLIENT_DIR) && cd $(CLIENT_DIR) && $(QMAKE_BINARY) QMAKE_CFLAGS="${CPPFLAGS} ${CFLAGS}" QMAKE_CXXFLAGS="${CPPFLAGS} ${CXXFLAGS}" QMAKE_LFLAGS="${LDFLAGS}" $(QMAKE_OPTS) ../x2goclient.pro
+	mkdir -p $(CLIENT_DIR) && cd $(CLIENT_DIR) && $(QMAKE_BINARY) QMAKE_CFLAGS="${QMAKE_CFLAGS}" QMAKE_CXXFLAGS="${QMAKE_CXXFLAGS}" QMAKE_LFLAGS="${LDFLAGS}" $(QMAKE_OPTS) ../x2goclient.pro
 	cd $(CLIENT_DIR) && $(MAKE)
 
 build_plugin:
 	$(LRELEASE_BINARY) x2goclient.pro
-	mkdir -p $(PLUGIN_DIR) && cd $(PLUGIN_DIR) && X2GO_CLIENT_TARGET=plugin $(QMAKE_BINARY) QMAKE_CFLAGS="${CPPFLAGS} ${CFLAGS}" QMAKE_CXXFLAGS="${CPPFLAGS} ${CXXFLAGS}" QMAKE_LFLAGS="${LDFLAGS}" $(QMAKE_OPTS) ../x2goclient.pro
+	mkdir -p $(PLUGIN_DIR) && cd $(PLUGIN_DIR) && X2GO_CLIENT_TARGET=plugin $(QMAKE_BINARY) QMAKE_CFLAGS="${QMAKE_CFLAGS}" QMAKE_CXXFLAGS="${QMAKE_CXXFLAGS}" QMAKE_LFLAGS="${LDFLAGS}" $(QMAKE_OPTS) ../x2goclient.pro
 	cd $(PLUGIN_DIR) && $(MAKE)
 
 build_pluginprovider:
