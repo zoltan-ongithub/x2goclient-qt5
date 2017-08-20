@@ -171,6 +171,8 @@ x2goclient (4.1.0.1-0x2go1) UNRELEASED; urgency=medium
     - Makefile: qmake seems to act weird if QMAKE_C(XX)FLAGS starts with a
       space followed by additional non-whitespace characters. Refactor the
       variables a bit to work around this issue.
+    - Makefile: turns out the only somewhat portable way to do something like
+      this is via shell hackery.
   * x2goclient.spec:
     - Respect %{optflags} and pass QMAKE_STRIP=: to fix missing debug info
       issues.
