@@ -938,6 +938,8 @@ bool SshMasterConnection::sshConnect()
                 x2goDebug << "Fetched inferred session port: " << inferred_port;
 
                 work_port = inferred_port & 0xFFFF;
+
+                ssh_free (tmp_session);
             }
         }
 #endif
