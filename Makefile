@@ -38,13 +38,13 @@ build: build_man build_pluginprovider
 
 build_client:
 	$(LRELEASE_BINARY) x2goclient.pro
-	mkdir -p $(CLIENT_DIR) && cd $(CLIENT_DIR) && { tmp_cppflags="${CPPFLAGS}"; tmp_cppflags="$${tmp_cppflags:+$${tmp_cppflags} }"; tmp_cflags="$${tmp_cppflags}$(CFLAGS)"; tmp_cxxflags="$${tmp_cppflags}$(CXXFLAGS)"; $(QMAKE_BINARY) QMAKE_CFLAGS="$${tmp_cflags}" QMAKE_CXXFLAGS="$${tmp_cxxflags}" QMAKE_LFLAGS="${LDFLAGS}" $(QMAKE_OPTS) ../x2goclient.pro ; }
-	cd $(CLIENT_DIR) && $(MAKE)
+	mkdir -p $(CLIENT_DIR) && cd $(CLIENT_DIR) && $(QMAKE_BINARY) QMAKE_CFLAGS="${CPPFLAGS} ${CFLAGS}" QMAKE_CXXFLAGS="${CPPFLAGS} ${CXXFLAGS}" QMAKE_LFLAGS="${LDFLAGS}" $(QMAKE_OPTS) ../x2goclient.pro
+	cd $(CLIENT_DIR) && $(MAKE) MAKEFLAGS=
 
 build_plugin:
 	$(LRELEASE_BINARY) x2goclient.pro
-	mkdir -p $(PLUGIN_DIR) && cd $(PLUGIN_DIR) && { tmp_cppflags="${CPPFLAGS}"; tmp_cppflags="$${tmp_cppflags:+$${tmp_cppflags} }"; tmp_cflags="$${tmp_cppflags}$(CFLAGS)"; tmp_cxxflags="$${tmp_cppflags}$(CXXFLAGS)"; X2GO_CLIENT_TARGET=plugin $(QMAKE_BINARY) QMAKE_CFLAGS="$${tmp_cflags}" QMAKE_CXXFLAGS="$${tmp_cxxflags}" QMAKE_LFLAGS="${LDFLAGS}" $(QMAKE_OPTS) ../x2goclient.pro ; }
-	cd $(PLUGIN_DIR) && $(MAKE)
+	mkdir -p $(PLUGIN_DIR) && cd $(PLUGIN_DIR) && X2GO_CLIENT_TARGET=plugin $(QMAKE_BINARY) QMAKE_CFLAGS="${CPPFLAGS} ${CFLAGS}" QMAKE_CXXFLAGS="${CPPFLAGS} ${CXXFLAGS}" QMAKE_LFLAGS="${LDFLAGS}" $(QMAKE_OPTS) ../x2goclient.pro
+	cd $(PLUGIN_DIR) && $(MAKE) MAKEFLAGS=
 
 build_pluginprovider:
 
