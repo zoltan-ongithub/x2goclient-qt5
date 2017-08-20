@@ -166,6 +166,8 @@ x2goclient (4.1.0.1-0x2go1) UNRELEASED; urgency=medium
     - src/sshmasterconnection.cpp: typo fix in log message only.
     - src/sshmasterconnection.cpp: don't leak ssh_session data, free it once
       we're done with it.
+    - src/sessionbutton.cpp: only append "XDM@" string to server text if a
+      direct XDMCP session was requested. Issue automatically found by GCC.
   * x2goclient.spec:
     - Respect %{optflags} and pass QMAKE_STRIP=: to fix missing debug info
       issues.
