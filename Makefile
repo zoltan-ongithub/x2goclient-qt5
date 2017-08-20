@@ -30,10 +30,41 @@ QMAKE_OPTS=
 
 LDFLAGS+=-lldap -lcups -lX11 -lXpm
 
-all: build
 
+#####################################################################
+# Make sure that variables passed via the command line are not
+# automatically exported.
+#
+# By default, such variables are exported and passed on to child
+# (make) processes, which means that we will run into trouble if we
+# pass CXXFLAGS="some value" as an argument to the top-level
+# make call. Whatever qmake generates will be overridden by this
+# definition, leading to build failures (since the code expects
+# macro values to be set in some cases - which won't be the case
+# for "generic" CXXFLAGS values.)
+#
+# Doing that turns out to be somewhat difficult, though.
+#
+# While preventing make from passing down *options* is possible via
+# giving the new make call an empty MAKEFLAGS value and even though
+# variables defined on the command line are part of MAKEFLAGS, this
+# doesn't affect implicit exporting of variables (for most
+# implementations.)
+#
+# Even worse, the correct way to this stuff differs from make
+# implementation to make implementation.
+
+# GNU make way.
 MAKEOVERRIDES=
+
+# FreeBSD and NetBSD way.
 .MAKEOVERRIDES=
+
+# OpenBSD way.
+.MAKEFLAGS=
+
+
+all: build
 
 build: build_man build_pluginprovider
 	$(MAKE) build_client
