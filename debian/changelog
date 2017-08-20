@@ -161,6 +161,8 @@ x2goclient (4.1.0.1-0x2go1) UNRELEASED; urgency=medium
       leading to connections like $REMOTE_HOST:$PROXY_PORT, which is certainly
       wrong. Fetch the inferred port value and set this instead, fixing this
       issue.
+    - Makefile: add new QMAKE_OPTS variable so that packagers can pass
+      additional options to qmake directly.
 
   [ Oleksandr Shneyder ]
   * New upstream version (4.1.0.1):
