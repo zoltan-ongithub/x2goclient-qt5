@@ -182,6 +182,8 @@ x2goclient (4.1.0.1-0x2go1) UNRELEASED; urgency=medium
       effect on this behavior, so removing it again.
     - Makefile: add comment explaining why we need to do this in the first
       place and why it's so complicated.
+    - src/sshmasterconnection: ignore "garbage", but require at least one line
+      to start with a known challenge auth prompt. Fixes: #966.
   * x2goclient.spec:
     - Respect %{optflags} and pass QMAKE_STRIP=: to fix missing debug info
       issues.

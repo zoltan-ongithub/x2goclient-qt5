@@ -1196,9 +1196,20 @@ bool SshMasterConnection::userChallengeAuth()
             else {
               for (std::size_t i = 0; i < challenge_auth_code_prompts_size; ++i) {
                 x2goDebug << "Checking against known prompt #" << i << ": " << challenge_auth_code_prompts_[i] << endl;
-                if (pr.startsWith (challenge_auth_code_prompts_[i])) {
+
+                /* Ignore "garbage" at the start of the string, but require at least one line to start with a known prompt. */
+                QStringList tmp_str_list = pr.split ("\n", QString::SkipEmptyParts);
+
+                for (QStringList::const_iterator cit = tmp_str_list.constBegin (); cit != tmp_str_list.constEnd (); ++cit) {
+                  if ((*cit).startsWith (challenge_auth_code_prompts_[i])) {
                     has_challenge_auth_code_prompt = true;
                     break;
+                  }
+                }
+
+                /* Skip over other challenge auth code prompts if we found one already. */
+                if (has_challenge_auth_code_prompt) {
+                  break;
                 }
               }
             }
