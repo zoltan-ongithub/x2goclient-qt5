@@ -132,7 +132,7 @@ SOURCES += src/sharewidget.cpp \
            src/compat.cpp \
            src/pulsemanager.cpp
 
-LIBS += -lssh
+LIBS += -lssh -lssh_threads
 win32:LIBS += -lAdvAPI32 -lshell32 -lUser32
 
 plugin {
