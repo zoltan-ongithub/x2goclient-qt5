@@ -54,8 +54,6 @@
 #undef SSH_DEBUG
 // #define SSH_DEBUG
 
-static bool isLibSshInited=false;
-
 const QString SshMasterConnection::challenge_auth_code_prompts_[] = {
   "Verification code:",            // GA      (http://github.com/google/google-authenticator)
   "One-time password (OATH) for",  // OATH    (http://www.nongnu.org/oath-toolkit/pam_oath.html)
@@ -566,29 +564,6 @@ void SshMasterConnection::run()
         }
     }
     disconnectSessionFlag=false;
-    if ( !isLibSshInited )
-    {
-#ifdef DEBUG
-        x2goDebug<<"libssh not initialized yet. Initializing.";
-#endif
-        if ( ssh_init() !=0 )
-        {
-            QString err=tr ( "Cannot initialize libssh." );
-#ifdef DEBUG
-            x2goDebug<<err<<endl;
-#endif
-            emit connectionError ( err,"" );
-            quit();
-            return;
-        }
-        isLibSshInited=true;
-    }
-#ifdef DEBUG
-    else
-    {
-        x2goDebug<<"libssh already initialized.";
-    }
-#endif
 
 #ifdef SSH_DEBUG
     int verbosity=SSH_LOG_PACKET;
@@ -835,22 +810,6 @@ SshMasterConnection::~SshMasterConnection()
 #endif
 }
 
-
-void SshMasterConnection::finalizeLibSsh()
-{
-    if ( !isLibSshInited )
-    {
-#ifdef DEBUG
-        x2goDebug<<"libssh not initialized yet.";
-#endif
-        return;
-    }
-
-    ssh_finalize();
-#ifdef DEBUG
-    x2goDebug<<"libssh finalized.";
-#endif
-}
 
 bool SshMasterConnection::sshConnect()
 {

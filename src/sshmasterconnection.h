@@ -81,7 +81,6 @@ public:
                         QString proxylogin=QString::null, QString proxypassword=QString::null, QString proxyKey=QString::null,
                         bool proxyAutologin=false, bool proxyKrbLogin=false);
     ~SshMasterConnection();
-    static void finalizeLibSsh();
     void addChannelConnection(SshProcess* creator, int sock, QString forwardHost,
                               int forwardPort, QString localHost, int localPort, void* channel=0l);
     void addChannelConnection(SshProcess* creator, QString uuid, QString cmd);

@@ -188,6 +188,10 @@ x2goclient (4.1.0.1-0x2go1) UNRELEASED; urgency=medium
       Client is multi-threaded.
     - copy-deps-win32.bat: also copy libssh_threads.dll to go with the
       previous change.
+    - src/{onmainwindow,sshmasterconnection}.{cpp,h}: correctly initialize and
+      finalize libssh. We ought to do both only once - in our main thread.
+      Previously, we initialized libssh in a new thread, which might be
+      problematic.
   * x2goclient.spec:
     - Respect %{optflags} and pass QMAKE_STRIP=: to fix missing debug info
       issues.

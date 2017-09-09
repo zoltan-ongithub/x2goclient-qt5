@@ -550,6 +550,8 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
         activateWindow();
         raise();
     }
+
+    QTimer::singleShot (200, this, SLOT (slotInitLibssh ()));
 }
 
 
@@ -1607,7 +1609,13 @@ void ONMainWindow::closeClient()
 #endif
         cleanPortable();
     }
-    SshMasterConnection::finalizeLibSsh();
+
+    if (ssh_finalize ()) {
+        x2goDebug << "Unable to finalize libssh. Something may be wrong!";
+    }
+    else {
+        x2goDebug << "libssh finalized.";
+    }
 
     x2goInfof(7)<<tr("Finished X2Go Client closing hooks.");
 }
@@ -12933,6 +12941,18 @@ long ONMainWindow::findWindow ( QString text )
     return ( long ) wapiFindWindow ( 0,text.utf16() );
 #endif
     return 0;
+}
+
+void ONMainWindow::slotInitLibssh () {
+  /* Initialize libssh. This must be done outside of any threading context. */
+  x2goDebug << "libssh not initialized yet. Initializing.";
+  ssh_threads_set_callbacks(ssh_threads_get_pthread ());
+  if (ssh_init ()) {
+      x2goDebug << "Cannot initialize libssh.";
+      QMessageBox::critical (this, tr ("libssh initialization failure"),
+                             tr ("Unable to initialize libssh."));
+      trayQuit ();
+  }
 }
 
 //////////////////////////plugin stuff//////////////

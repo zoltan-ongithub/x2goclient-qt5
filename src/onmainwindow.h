@@ -45,6 +45,7 @@
 #include <QLocale>
 #include <QProcessEnvironment>
 #include <QDirIterator>
+#include <libssh/callbacks.h>
 #include "sshmasterconnection.h"
 #include "non_modal_messagebox.h"
 
@@ -1166,6 +1167,7 @@ private slots:
     void slotReconnectSession();
     void slotStartBroker();
     void slotStartNewBrokerSession ();
+    void slotInitLibssh ();
 #ifdef Q_OS_DARWIN
     void slotSetModMap();
     void handle_xmodmap_error (QProcess &proc);
