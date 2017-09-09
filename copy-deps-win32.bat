@@ -5,6 +5,7 @@ if "%~3"=="" (
 xcopy /E /Y    %1\cygwin\20160121-3_bin %3\ || exit /b  %errorlevel%
 del %3\nxproxy.exe.unstripped %3\libXcomp.a %3\libXcomp.dll.a || exit /b  %errorlevel%
 xcopy /E /Y    %1\libssh\0.7.4-x2go1-mingw482_bin\bin\libssh.dll %3\ || exit /b  %errorlevel%
+xcopy /E /Y    %1\libssh\0.7.4-x2go1-mingw482_bin\bin\libssh_threads.dll %3\ || exit /b  %errorlevel%
 xcopy /E /Y    %1\MinGW-DLLs\i686-4.8.2-release-posix-dwarf-rt_v3-rev3\libgcc_s_dw2-1.dll %3\ || exit /b  %errorlevel%
 xcopy /E /Y    %1\MinGW-DLLs\i686-4.8.2-release-posix-dwarf-rt_v3-rev3\libstdc++-6.dll %3\ || exit /b  %errorlevel%
 xcopy /E /Y    %1\MinGW-DLLs\i686-4.8.2-release-posix-dwarf-rt_v3-rev3\libwinpthread-1.dll %3\ || exit /b  %errorlevel%

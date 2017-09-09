@@ -186,6 +186,8 @@ x2goclient (4.1.0.1-0x2go1) UNRELEASED; urgency=medium
       to start with a known challenge auth prompt. Fixes: #966.
     - x2goclient.pro: add libssh_threads library. We need this since X2Go
       Client is multi-threaded.
+    - copy-deps-win32.bat: also copy libssh_threads.dll to go with the
+      previous change.
   * x2goclient.spec:
     - Respect %{optflags} and pass QMAKE_STRIP=: to fix missing debug info
       issues.
