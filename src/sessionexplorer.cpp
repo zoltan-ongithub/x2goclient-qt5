@@ -87,7 +87,7 @@ void SessionExplorer::cleanSessions()
 
 void SessionExplorer::exportsEdit ( SessionButton* bt )
 {
-    EditConnectionDialog dlg (false, bt->id(),parent,3 );
+    EditConnectionDialog dlg (false, bt->id(),parent,4 );
     if ( dlg.exec() ==QDialog::Accepted )
     {
         bt->redraw();

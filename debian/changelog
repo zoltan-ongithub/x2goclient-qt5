@@ -188,6 +188,8 @@ x2goclient (4.1.1.0-0x2go1) UNRELEASED; urgency=medium
       finalize libssh. We ought to do both only once - in our main thread.
       Previously, we initialized libssh in a new thread, which might be
       problematic.
+    - src/sessionexplorer.cpp: open the correct tab when editing a session
+      from the exports menu.
   * x2goclient.spec:
     - Respect %{optflags} and pass QMAKE_STRIP=: to fix missing debug info
       issues.
