@@ -76,8 +76,6 @@ x2goclient (4.1.1.0-0x2go1) UNRELEASED; urgency=medium
       will fail badly.
     - src/x2goutils.cpp: ensure that add_to_path () also processes the first
       value passed. Fixes startup problems in MacPorts. Fixes: #1093.
-    - src/onmainwindow.cpp: unbreak Windows and OS X builds - directRDP is
-      only available on Linux, so guard new section.
     - res/i18n/x2goclient_et.ts: various fixups for the Estonian translation
       file.
     - res/i18n/x2goclient_*.ts: go the extra mile and fix up translation files
@@ -166,8 +164,6 @@ x2goclient (4.1.1.0-0x2go1) UNRELEASED; urgency=medium
     - src/sshmasterconnection.cpp: typo fix in log message only.
     - src/sshmasterconnection.cpp: don't leak ssh_session data, free it once
       we're done with it.
-    - src/sessionbutton.cpp: only append "XDM@" string to server text if a
-      direct XDMCP session was requested. Issue automatically found by GCC.
     - Makefile: qmake seems to act weird if QMAKE_C(XX)FLAGS starts with a
       space followed by additional non-whitespace characters. Refactor the
       variables a bit to work around this issue.
@@ -198,10 +194,6 @@ x2goclient (4.1.1.0-0x2go1) UNRELEASED; urgency=medium
 
   [ Oleksandr Shneyder ]
   * New upstream version (4.1.1.0):
-    - Add "direct XDMCP" functionality.
-    - Disable sound button on direct RDP and XDMCP sessions.
-      Set for direct XDMCP session autologin=true.
-      Set for direct XDMCP session username=XDM.
     - Interaction with SSH server (for example for changing
       expired password). Fixes: #592.
     - Fixing setting widget style issue in InteractionDialog on
@@ -252,13 +244,6 @@ x2goclient (4.1.1.0-0x2go1) UNRELEASED; urgency=medium
       command.
       Fixes: #1100
 
-  [ Seth Galitzer ]
-  * New upstream version (4.1.1.0):
-    - src/help.cpp: add documentation for the --background option.
-      Part of #1162.
-    - {src/{help.cpp,onmainwindow.{cpp,h}},man/man1/x2goclient.1}: add new
-      --branding option that replaces the seal logo. Fixes: #1162.
-
   [ Walid Moghrabi ]
   * New upstream version (4.1.1.0):
     - {src/{help.cpp,onmainwindow.{cpp,h}},man/man1/x2goclient.1}: let
@@ -266,6 +251,31 @@ x2goclient (4.1.1.0-0x2go1) UNRELEASED; urgency=medium
       Fixes: #1165.
 
  -- X2Go Release Manager <git-admin@x2go.org>  Wed, 22 Feb 2017 07:13:10 +0100
+
+x2goclient (4.1.0.1-0x2go1) unstable; urgency=medium
+
+  [ Mihai Moldovan ]
+  * New upstream version (4.1.0.1):
+    - src/onmainwindow.cpp: unbreak Windows and OS X builds - directRDP is
+      only available on Linux, so guard new section.
+    - src/sessionbutton.cpp: only append "XDM@" string to server text if a
+      direct XDMCP session was requested. Issue automatically found by GCC.
+
+  [ Oleksandr Shneyder ]
+  * New upstream version (4.1.0.1):
+    - Add "direct XDMCP" functionality.
+    - Disable sound button on direct RDP and XDMCP sessions.
+      Set for direct XDMCP session autologin=true.
+      Set for direct XDMCP session username=XDM.
+
+  [ Seth Galitzer ]
+  * New upstream version (4.1.0.1):
+    - src/help.cpp: add documentation for the --background option.
+      Part of #1162.
+    - {src/{help.cpp,onmainwindow.{cpp,h}},man/man1/x2goclient.1}: add new
+      --branding option that replaces the seal logo. Fixes: #1162.
+
+ -- X2Go Release Manager <git-admin@x2go.org>  Thu, 14 Sep 2017 03:06:33 +0200
 
 x2goclient (4.1.0.0-0x2go1) unstable; urgency=medium
 
