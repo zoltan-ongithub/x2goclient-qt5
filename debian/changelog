@@ -190,6 +190,9 @@ x2goclient (4.1.1.0-0x2go1) UNRELEASED; urgency=medium
       problematic.
     - src/sessionexplorer.cpp: open the correct tab when editing a session
       from the exports menu.
+    - src/onmainwindow.cpp: try to workaround window placement if settings
+      contain a (newly) invalid position (e.g., a position that refers to a
+      disconnected display.)
   * x2goclient.spec:
     - Respect %{optflags} and pass QMAKE_STRIP=: to fix missing debug info
       issues.

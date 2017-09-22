@@ -8220,6 +8220,13 @@ void ONMainWindow::slotResize()
     {
         resize ( mwSize );
         move ( mwPos );
+
+        /*
+         * Make window position a hint, workaround for
+         * buggy placements on screen coordinates out of range.
+         */
+        setAttribute (Qt::WA_Moved, false);
+
         show();
     }
     else
