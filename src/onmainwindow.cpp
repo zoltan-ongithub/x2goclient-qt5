@@ -6255,6 +6255,10 @@ void ONMainWindow::slotProxyFinished ( int,QProcess::ExitStatus )
 #ifdef Q_OS_LINUX
     if (directRDP)
     {
+        if (closeDisconnect)
+        {
+            close();
+        }
         pass->setText ( "" );
         QTimer::singleShot ( 2000,this,
                              SLOT ( slotShowPassForm() ) );
