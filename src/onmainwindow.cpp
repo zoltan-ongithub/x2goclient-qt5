@@ -74,6 +74,7 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
     keepTrayIcon=false;
     hideFolderSharing=false;
     brokerNoauthWithSessionUsername=false;
+    brokerCredsForSession=false;
     thinMode=false;
     closeDisconnect=false;
     showHaltBtn=false;
@@ -3499,10 +3500,10 @@ void ONMainWindow::startDirectRDP()
                                          ( QVariant ) "").toString();
 
     QString user,password;
-    if(!brokerMode)
+    if ((!brokerMode) || (brokerCredsForSession))
     {
-        user=login->text();
-        password=pass->text();
+        user=getCurrentUname();
+        password=getCurrentPass();
     }
     else
     {
@@ -7452,6 +7453,12 @@ bool ONMainWindow::parseParameter ( QString param )
     if ( param=="--broker-noauth-with-session-username" )
     {
         brokerNoauthWithSessionUsername=true;
+        return true;
+    }
+
+    if ( param=="--broker-use-creds-for-session" )
+    {
+        brokerCredsForSession=true;
         return true;
     }
 
