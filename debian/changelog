@@ -193,6 +193,9 @@ x2goclient (4.1.1.0-0x2go1) UNRELEASED; urgency=medium
     - src/onmainwindow.cpp: try to workaround window placement if settings
       contain a (newly) invalid position (e.g., a position that refers to a
       disconnected display.)
+    - src/onmainwindow.cpp: try to find a display that can hold the window's
+      position fetched from the sizes settings. Use the default if none could
+      be found.
   * x2goclient.spec:
     - Respect %{optflags} and pass QMAKE_STRIP=: to fix missing debug info
       issues.

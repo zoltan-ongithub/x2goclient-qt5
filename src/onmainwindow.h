@@ -45,6 +45,8 @@
 #include <QLocale>
 #include <QProcessEnvironment>
 #include <QDirIterator>
+#include <QApplication>
+#include <QDesktopWidget>
 #include <libssh/callbacks.h>
 #include "sshmasterconnection.h"
 #include "non_modal_messagebox.h"

@@ -1695,6 +1695,26 @@ void ONMainWindow::loadSettings()
     mwMax=st.setting()->value ( "mainwindow/maximized",
                                 ( QVariant ) false ).toBool();
 
+    /*
+     * Sanity check for X2Go Client main window position.
+     * Check whether the given position is within bounds of any connected display.
+     * Otherwise use the default.
+     */
+    bool placement_found = false;
+    QDesktopWidget *desktop_widget = QApplication::desktop ();
+    for (size_t i = 0; i < desktop_widget->screenCount (); ++i) {
+        QRect tmp_geom = desktop_widget->availableGeometry (i);
+
+        if (((tmp_geom.x () + tmp_geom.width ()) < mwPos.x ()) &&
+            ((tmp_geom.y () + tmp_geom.height ()) < mwPos.y ())) {
+            placement_found = true;
+            break;
+        }
+    }
+
+    if (!placement_found) {
+        mwPos = QPoint (20, 20);
+    }
 
     X2goSettings st1 ( "settings" );
 
@@ -8231,12 +8251,6 @@ void ONMainWindow::slotResize()
     {
         resize ( mwSize );
         move ( mwPos );
-
-        /*
-         * Make window position a hint, workaround for
-         * buggy placements on screen coordinates out of range.
-         */
-        setAttribute (Qt::WA_Moved, false);
 
         show();
     }
