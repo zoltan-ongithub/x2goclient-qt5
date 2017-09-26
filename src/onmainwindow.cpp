@@ -1702,11 +1702,11 @@ void ONMainWindow::loadSettings()
      */
     bool placement_found = false;
     QDesktopWidget *desktop_widget = QApplication::desktop ();
-    for (size_t i = 0; i < desktop_widget->screenCount (); ++i) {
+    QRect main_window_geom (mwPos, mwSize);
+    for (size_t i = 0; i < static_cast<size_t> (desktop_widget->screenCount ()); ++i) {
         QRect tmp_geom = desktop_widget->availableGeometry (i);
 
-        if (((tmp_geom.x () + tmp_geom.width ()) < mwPos.x ()) &&
-            ((tmp_geom.y () + tmp_geom.height ()) < mwPos.y ())) {
+        if (tmp_geom.intersects (main_window_geom)) {
             placement_found = true;
             break;
         }
