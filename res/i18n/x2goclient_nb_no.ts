@@ -421,6 +421,10 @@ Noen vanlige lokasjoner er:
         <source>Disable sound input</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Disable PulseAudio</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ConnectionWidget</name>
@@ -843,6 +847,26 @@ Noen vanlige lokasjoner er:
         <source>Does not ask for user credentials during session broker authentication. This can be useful if you are using an HTTP(S) session broker without authentication. If you run an HTTP(S) server without authentication, but with user-specific profiles, then put the user name into the broker URL (refer to --broker-url.) The user name then will be extracted from the broker URL and be sent to the session broker. The client&apos;s behavior is undefined if this flag is used for non-HTTP(S) session brokers.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Disable PulseAudio.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Disable sound input.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use broker credentials as session user/password credentials when using broker mode with broker authentication. Currently only affects direct RDP sessions.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use a custom/branded background image (SVG format) for X2Go Client&apos;s main window. If a directory is given, will randomly pick an SVG file inside of it.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use a custom icon (SVG format) for additional branding to replace the default in the lower left corner of X2Go Client&apos;s main window.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>HelpDialog</name>
@@ -1024,6 +1048,21 @@ Offentlig nøkkel: </translation>
     <message>
         <source>Secure connection failed.</source>
         <translation>Sikker tilkobling feilet.</translation>
+    </message>
+</context>
+<context>
+    <name>InteractionDialog</name>
+    <message>
+        <source>Terminal output:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation type="unfinished">Avbryt</translation>
+    </message>
+    <message>
+        <source>Reconnect</source>
+        <translation type="unfinished">Gjenoppkoble</translation>
     </message>
 </context>
 <context>
@@ -2895,6 +2934,30 @@ Please report a bug on:
         <source>Check session settings and ensure that selected client is installed on your system.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>XDM</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>RDP</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>PulseAudio is not running</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sound output will be disabled for this session. Please enable PulseAudio in the configuration dialog or disable sound in the session settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>libssh initialization failure</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to initialize libssh.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PrintDialog</name>
@@ -3990,7 +4053,7 @@ lydsystem forbindelser gjennom brannmurer</translation>
     </message>
     <message>
         <source>Cannot initialize libssh.</source>
-        <translation>Klarer ikke å initiere libssh.</translation>
+        <translation type="obsolete">Klarer ikke å initiere libssh.</translation>
     </message>
     <message>
         <source>Cannot create SSH session.</source>
@@ -4056,6 +4119,10 @@ lydsystem forbindelser gjennom brannmurer</translation>
         <source>%1 failed.</source>
         <extracomment>Argument in this context will be a function name.</extracomment>
         <translation>%1 feilet.</translation>
+    </message>
+    <message>
+        <source>Reconnect session</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
