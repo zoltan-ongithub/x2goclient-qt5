@@ -198,6 +198,8 @@ x2goclient (4.1.1.0-0x2go1) UNRELEASED; urgency=medium
       be found.
     - src/onmainwindow.cpp: fix up main window position check; use
       QRect.intersects ().
+    - src/pulsemanager.{cpp,h}: rename shutdownState to shutdown_state_,
+      reorder in initializer list.
   * x2goclient.spec:
     - Respect %{optflags} and pass QMAKE_STRIP=: to fix missing debug info
       issues.

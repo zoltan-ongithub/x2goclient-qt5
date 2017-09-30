@@ -129,7 +129,7 @@ class PulseManager: public QObject {
     bool debug_;
 
     bool system_pulse_;
-    bool shutdownState;
+    bool shutdown_state_;
 };
 
 #endif // PULSEMANAGER_H
