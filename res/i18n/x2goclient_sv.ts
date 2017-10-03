@@ -336,7 +336,7 @@
     <message>
         <location filename="../../src/configdialog.cpp" line="344"/>
         <source>Disable PulseAudio</source>
-        <translation type="unfinished"></translation>
+        <translation>Deaktivera PulseAudio</translation>
     </message>
     <message>
         <location filename="../../src/configdialog.cpp" line="345"/>
@@ -873,12 +873,12 @@ Några vanliga installationssökvägar är:
     <message>
         <location filename="../../src/help.cpp" line="121"/>
         <source>Disable PulseAudio.</source>
-        <translation type="unfinished"></translation>
+        <translation>Deaktivera PulseAudio.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="122"/>
         <source>Disable sound input.</source>
-        <translation type="unfinished"></translation>
+        <translation>Deaktivera ljudinmatning.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="124"/>
@@ -1038,17 +1038,17 @@ Några vanliga installationssökvägar är:
     <message>
         <location filename="../../src/help.cpp" line="161"/>
         <source>Use broker credentials as session user/password credentials when using broker mode with broker authentication. Currently only affects direct RDP sessions.</source>
-        <translation type="unfinished"></translation>
+        <translation>Använd agentautentiseringsuppgifter som användarnamn / lösenordsuppgifter när du använder agentläge med agentautentisering. För närvarande påverkar det bara direkta RDP-sessioner.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="162"/>
         <source>Use a custom/branded background image (SVG format) for X2Go Client&apos;s main window. If a directory is given, will randomly pick an SVG file inside of it.</source>
-        <translation type="unfinished"></translation>
+        <translation>Använd anpassad bakgrundsbild (SVG-format) för X2Go Clients huvudfönster. Om en mapp anges så väljs en SVG-fil slumpvis från mappen.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="163"/>
         <source>Use a custom icon (SVG format) for additional branding to replace the default in the lower left corner of X2Go Client&apos;s main window.</source>
-        <translation type="unfinished"></translation>
+        <translation>Använd en anpassad ikon (SVG-format) som ersättning för standardikonen i nedre vänstra hörnet av X2Go Clients huvudfönster.</translation>
     </message>
 </context>
 <context>
@@ -1279,18 +1279,18 @@ Publik nyckel: </translation>
     <message>
         <location filename="../../src/InteractionDialog.cpp" line="73"/>
         <source>Terminal output:</source>
-        <translation type="unfinished"></translation>
+        <translation>Terminalutdata:</translation>
     </message>
     <message>
         <location filename="../../src/InteractionDialog.cpp" line="80"/>
         <location filename="../../src/InteractionDialog.cpp" line="117"/>
         <source>Cancel</source>
-        <translation type="unfinished">Avbryt</translation>
+        <translation>Avbryt</translation>
     </message>
     <message>
         <location filename="../../src/InteractionDialog.cpp" line="149"/>
         <source>Reconnect</source>
-        <translation type="unfinished">Återanslut</translation>
+        <translation>Återanslut</translation>
     </message>
 </context>
 <context>
@@ -1872,12 +1872,12 @@ Vill du avsluta anslutningen?
     <message>
         <location filename="../../src/onmainwindow.cpp" line="3651"/>
         <source>XDM</source>
-        <translation type="unfinished"></translation>
+        <translation>XDM</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="3657"/>
         <source>RDP</source>
-        <translation type="unfinished"></translation>
+        <translation>RDP</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="3916"/>
@@ -1923,41 +1923,41 @@ Vill du avsluta anslutningen?
     <message>
         <location filename="../../src/onmainwindow.cpp" line="5012"/>
         <source>Your current color depth is different from the session&apos;s color depth. This may cause problems reconnecting to this session and in most cases &lt;b&gt;you will loose the session&lt;/b&gt; and have to start a new one! </source>
-        <translation type="unfinished"></translation>
+        <translation>Ditt nuvarande färgdjup avviker från sessionens färgdjup. Det kan orsaka problem vid återanslutning till denna session och oftast &lt;b&gt;tappar du sessionen&lt;/b&gt; och måste starta en ny!</translation>
     </message>
     <message numerus="yes">
         <location filename="../../src/onmainwindow.cpp" line="5017"/>
         <source>It&apos;s highly recommended to change the color depth of your display to %n bit(s) and restart your X.Org Server before you reconnect to this X2Go session.</source>
         <comment>%n will be replaced with a number</comment>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Det är starkt rekommenderat att ändra färgdjup till %n bitar och starta om din X.Org Server innan du återansluter till denna X2Go-session.</numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="5023"/>
         <source>&lt;br /&gt;Do you want to resume this session anyway?</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;br /&gt;Vill du återansluta ändå?</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="5408"/>
         <source>PulseAudio is not running</source>
-        <translation type="unfinished"></translation>
+        <translation>PulseAudio är inte aktivt</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="5409"/>
         <source>Sound output will be disabled for this session. Please enable PulseAudio in the configuration dialog or disable sound in the session settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Ljudutmatning deaktiveras för denna session. Var vänlig aktivera PulseAudio i konfigurationen eller deaktivera ljud i sessionsinställningarna</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="6155"/>
         <source>Failed to start RDP or XMDCP client</source>
-        <translation type="unfinished"></translation>
+        <translation>Start av RDP- eller XDMCP-klient misslyckades</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="6156"/>
         <source>Check session settings and ensure that selected client is installed on your system.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kontrollera sessionsinställningar och verifiera att den valda klienten är installerad i ditt system.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="6256"/>
@@ -2268,12 +2268,12 @@ Var vänlig rapportera en bug på:
     <message>
         <location filename="../../src/onmainwindow.cpp" line="12984"/>
         <source>libssh initialization failure</source>
-        <translation type="unfinished"></translation>
+        <translation>initaliseringsfel i libssh</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="12985"/>
         <source>Unable to initialize libssh.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kan ej initialisera libssh.</translation>
     </message>
     <message>
         <source>&lt;br&gt;(C) 2005-2016 by &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing&lt;br&gt;</source>
@@ -3520,7 +3520,7 @@ du kan installera sshd med (Debian/Ubuntu)
     <message>
         <location filename="../../src/printdialog.cpp" line="63"/>
         <source>You may reactivate this dialog using the X2Go Client settings dialog. To do so, follow this path in the menu bar: Options -&gt; Settings</source>
-        <translation type="unfinished">Du kan återaktivera denna dialog via X2Go-klientens inställningar (Meny -&gt; Alternativ -&gt; Inställningar)</translation>
+        <translation>Du kan återaktivera denna dialog via X2Go-klientens inställningar. För att göra det, välj Meny -&gt; Alternativ -&gt; Inställningar</translation>
     </message>
     <message>
         <source>You may reactivate this dialog using the X2Go Client settings dialog. To do so, follow this path in the menu bar: Options -&gt; Settings</source>
@@ -4199,7 +4199,7 @@ Använd dolt läge?</translation>
     <message>
         <location filename="../../src/sessionwidget.cpp" line="87"/>
         <source>Values ranging from &lt;b&gt;0&lt;/b&gt; to &lt;b&gt;65535&lt;/b&gt; are allowed.&lt;br /&gt;A value of &lt;b&gt;0&lt;/b&gt; will either use the port specified in the SSH configuration file belonging to a host or shortname, or use the default of &lt;b&gt;22&lt;/b&gt;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Värden mellan &lt;b&gt;0&lt;/b&gt; och &lt;b&gt;65535&lt;/b&gt; är tillåtna.&lt;br /&gt;Väljs &lt;b&gt;0&lt;/b&gt; så kommer antingen porten specificerad i SSH-konfigurationen eller standardporten &lt;b&gt;22&lt;/b&gt; att användas.</translation>
     </message>
     <message>
         <location filename="../../src/sessionwidget.cpp" line="122"/>
@@ -4283,7 +4283,7 @@ Använd dolt läge?</translation>
     <message>
         <location filename="../../src/sessionwidget.cpp" line="383"/>
         <source>Direct XDMCP connection</source>
-        <translation type="unfinished"></translation>
+        <translation>Direktanslutning via XDMCP</translation>
     </message>
     <message>
         <source>ssh-agent or default ssh key</source>
@@ -4435,7 +4435,7 @@ Använd dolt läge?</translation>
     <message>
         <location filename="../../src/sessionwidget.cpp" line="526"/>
         <source>direct XDMCP connection</source>
-        <translation type="unfinished"></translation>
+        <translation>direktanslutning via XDMCP</translation>
     </message>
     <message>
         <location filename="../../src/sessionwidget.cpp" line="547"/>
@@ -4652,7 +4652,7 @@ ljudström genom brandväggar</translation>
     <message>
         <location filename="../../src/settingswidget.cpp" line="233"/>
         <source>XDMCP client</source>
-        <translation type="unfinished"></translation>
+        <translation>XDMCP-klient</translation>
     </message>
     <message>
         <location filename="../../src/settingswidget.cpp" line="534"/>
@@ -4796,7 +4796,7 @@ ljudström genom brandväggar</translation>
     <message>
         <location filename="../../src/sshmasterconnection.cpp" line="205"/>
         <source>Using environment-provided username.</source>
-        <translation type="unfinished"></translation>
+        <translation>Användarnamn från miljö används.</translation>
     </message>
     <message>
         <location filename="../../src/sshmasterconnection.cpp" line="618"/>
@@ -4822,7 +4822,7 @@ ljudström genom brandväggar</translation>
     <message>
         <location filename="../../src/sshmasterconnection.cpp" line="1790"/>
         <source>Reconnect session</source>
-        <translation type="unfinished"></translation>
+        <translation>Återanslut session</translation>
     </message>
     <message>
         <location filename="../../src/sshmasterconnection.cpp" line="1900"/>
