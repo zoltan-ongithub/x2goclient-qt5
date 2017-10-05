@@ -2682,7 +2682,7 @@ Por razones de seguridad se recomienda finalizar la conexión.
     <message>
         <location filename="../../src/onmainwindow.cpp" line="5023"/>
         <source>&lt;br /&gt;Do you want to resume this session anyway?</source>
-        <translation>&lt;br/&gt;¿Aún así quieres recuperar esta sesión?</translation>
+        <translation>&lt;br /&gt;¿Aún así quieres recuperar esta sesión?</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="5408"/>
@@ -4161,7 +4161,7 @@ Use X2Go Client&apos;s hidden mode?</source>
     <message>
         <location filename="../../src/sessionwidget.cpp" line="87"/>
         <source>Values ranging from &lt;b&gt;0&lt;/b&gt; to &lt;b&gt;65535&lt;/b&gt; are allowed.&lt;br /&gt;A value of &lt;b&gt;0&lt;/b&gt; will either use the port specified in the SSH configuration file belonging to a host or shortname, or use the default of &lt;b&gt;22&lt;/b&gt;.</source>
-        <translation>Se permiten valores del rango &lt;b&gt;0&lt;/b&gt; a &lt;b&gt;65535&lt;/b&gt;. &lt;br /&gt;Un valor de &lt;b&gt;0&lt;/b&gt; usará siempre el puerto especificado en el archivo de configuración del servidor o de su nombre corto, o puede usar el valor por defecto de &lt;b&gt;22&lt;/b&gt;.</translation>
+        <translation>Se permiten valores del rango &lt;b&gt;0&lt;/b&gt; a &lt;b&gt;65535&lt;/b&gt;.&lt;br /&gt;Un valor de &lt;b&gt;0&lt;/b&gt; usará siempre el puerto especificado en el archivo de configuración del servidor o de su nombre corto, o puede usar el valor por defecto de &lt;b&gt;22&lt;/b&gt;.</translation>
     </message>
     <message>
         <location filename="../../src/sessionwidget.cpp" line="122"/>
