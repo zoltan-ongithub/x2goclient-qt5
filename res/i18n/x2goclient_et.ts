@@ -1024,7 +1024,7 @@ Mõned standardsed asukohad oleks:
     <message>
         <location filename="../../src/help.cpp" line="162"/>
         <source>Use a custom/branded background image (SVG format) for X2Go Client&apos;s main window. If a directory is given, will randomly pick an SVG file inside of it.</source>
-        <translation>Kasuta omaloodud taustapilti (SVG formaadis) X2Go Client&apos;i peaaknas. Kui on antud kataloog siis valitakse sealt juhuslik svg fail.</translation>
+        <translation>Kasuta omaloodud taustapilti (SVG formaadis) X2Go Client&apos;i peaaknas. Kui on antud kataloog siis valitakse sealt juhuslik SVG fail.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="163"/>
@@ -1066,7 +1066,7 @@ See on nüüd:</translation>
         <source>The server is unknown. Do you trust the host key?
 Public key hash: </source>
         <translation>Tundmatu server. Kas Sa usaldad tema võtit?
-Tema avaliku võtme &apos;hash&apos; on:</translation>
+Tema avaliku võtme &apos;hash&apos; on: </translation>
     </message>
     <message>
         <source>Host key verification failed</source>
@@ -1164,7 +1164,8 @@ Tema avaliku võtme &apos;hash&apos; on:</translation>
         <location filename="../../src/httpbrokerclient.cpp" line="623"/>
         <source>Issued to:
 </source>
-        <translation>Antud:</translation>
+        <translation>Antud:
+</translation>
     </message>
     <message>
         <location filename="../../src/httpbrokerclient.cpp" line="624"/>
@@ -1176,7 +1177,7 @@ Tema avaliku võtme &apos;hash&apos; on:</translation>
         <location filename="../../src/httpbrokerclient.cpp" line="631"/>
         <location filename="../../src/httpbrokerclient.cpp" line="655"/>
         <source>Organization(O)	</source>
-        <translation>Organisatsioon (O) </translation>
+        <translation>Organisatsioon (O)	</translation>
     </message>
     <message>
         <location filename="../../src/httpbrokerclient.cpp" line="638"/>
@@ -1193,7 +1194,8 @@ Tema avaliku võtme &apos;hash&apos; on:</translation>
         <location filename="../../src/httpbrokerclient.cpp" line="647"/>
         <source>Issued by:
 </source>
-        <translation>Väljaandja:</translation>
+        <translation>Väljaandja:
+</translation>
     </message>
     <message>
         <location filename="../../src/httpbrokerclient.cpp" line="670"/>
@@ -1924,7 +1926,7 @@ Kas Sa soovid ühenduse katkestada?
     <message>
         <location filename="../../src/onmainwindow.cpp" line="5408"/>
         <source>PulseAudio is not running</source>
-        <translation>&quot;PulseAusio&quot; ei ole käivitunud</translation>
+        <translation>&quot;PulseAudio&quot; ei ole käivitunud</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="5409"/>
@@ -2028,7 +2030,7 @@ Teata veast &lt;a href=&quot;http://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;&q
     <message>
         <location filename="../../src/onmainwindow.cpp" line="6156"/>
         <source>Check session settings and ensure that selected client is installed on your system.</source>
-        <translation>Kontrolli sessiooni seadeid ja veendu et valitud klient on  paigaldatud.</translation>
+        <translation>Kontrolli sessiooni seadeid ja veendu et valitud klient on paigaldatud.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="6256"/>
@@ -3709,7 +3711,7 @@ This will most likely be
 &lt;center&gt;&lt;b&gt;/Applications/MacPorts/X11.app&lt;/b&gt;&lt;/center&gt;
 or
 &lt;center&gt;&lt;b&gt;/Applications/Utilities/XQuartz.app&lt;/b&gt;&lt;/center&gt;</source>
-        <translation>MacPort kasutajad, palun installige &lt;b&lt;zxorg-server&lt;/b&gt;
+        <translation>MacPort kasutajad, palun installige &lt;b&lt;xorg-server&lt;/b&gt;
 või &lt;b&gt;xorg-server-devel&lt;/b&gt; port.
 Pärast õnnestunud installi, jägige instruktsiooni mille printis
 port utiliit et käivitada server.
@@ -3718,7 +3720,7 @@ Kõigil teistel juhtudel installige XQuartz:
 &lt;center&gt;&lt;a href=&quot;https://www.xquartz.org/&quot;&gt;https://www.xquartz.org/&lt;/a&gt;&lt;/center&gt;
 
 Seejärel käivitage X2Go Client uuesti ja valige X11 uus aplikatsioon X2Go peamiste sätete alt.
-Tõenäoliselt saab see olema 
+Tõenäoliselt saab see olema
 &lt;center&gt;&lt;b&gt;/Applications/MacPorts/X11.app&lt;/b&gt;&lt;/center&gt;
 või
 &lt;center&gt;&lt;b&gt;/Applications/Utilities/XQuartz.app&lt;/b&gt;&lt;/center&gt;</translation>
