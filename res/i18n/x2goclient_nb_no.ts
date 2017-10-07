@@ -415,15 +415,15 @@ Noen vanlige lokasjoner er:
     </message>
     <message>
         <source>PulseAudio settings</source>
-        <translation type="unfinished"></translation>
+        <translation>PulseAudio innstillinger</translation>
     </message>
     <message>
         <source>Disable sound input</source>
-        <translation type="unfinished"></translation>
+        <translation>Skru av lydinngang</translation>
     </message>
     <message>
         <source>Disable PulseAudio</source>
-        <translation type="unfinished"></translation>
+        <translation>Skru av PulseAudio</translation>
     </message>
 </context>
 <context>
@@ -677,15 +677,15 @@ Noen vanlige lokasjoner er:
     <name>Help</name>
     <message>
         <source>Shows this message.</source>
-        <translation type="unfinished"></translation>
+        <translation>Vis denne meldingen.</translation>
     </message>
     <message>
         <source>Prints version information.</source>
-        <translation type="unfinished"></translation>
+        <translation>Skriv ut informasjon om versjon.</translation>
     </message>
     <message>
         <source>Shows the changelog.</source>
-        <translation type="unfinished"></translation>
+        <translation>Vis endringsloggen.</translation>
     </message>
     <message>
         <source>Shows git information as used at compile time. [Deprecated: please use --version.]</source>
@@ -709,7 +709,7 @@ Noen vanlige lokasjoner er:
     </message>
     <message>
         <source>Starts maximized.</source>
-        <translation type="unfinished"></translation>
+        <translation>Starter maksimert.</translation>
     </message>
     <message>
         <source>Starts hidden (minimized to system tray where available.)</source>
@@ -737,7 +737,7 @@ Noen vanlige lokasjoner er:
     </message>
     <message>
         <source>Enables shutdown button.</source>
-        <translation type="unfinished"></translation>
+        <translation>Muliggjør skruav-knapp.</translation>
     </message>
     <message>
         <source>Adds RSA key fingerprint to &quot;.ssh/known_hosts&quot; if authenticity of the server can&apos;t be determined.</source>
@@ -749,15 +749,15 @@ Noen vanlige lokasjoner er:
     </message>
     <message>
         <source>Defines the first LDAP failover server.</source>
-        <translation type="unfinished"></translation>
+        <translation>Definerer første LDAP reserveserver.</translation>
     </message>
     <message>
         <source>Defines the second LDAP failover server.</source>
-        <translation type="unfinished"></translation>
+        <translation>Definerer andre LDAP reserveserver.</translation>
     </message>
     <message>
         <source>Defines the remote SSH server port. Default: 22.</source>
-        <translation type="unfinished"></translation>
+        <translation>Definerer SSH port på fjernserver. Standard: 22.</translation>
     </message>
     <message>
         <source>Defines the local machine&apos;s SSH server port. Needed for Client-Side Printing and File Sharing support. Default: 22.</source>
@@ -769,7 +769,7 @@ Noen vanlige lokasjoner er:
     </message>
     <message>
         <source>Starts the session named &quot;session&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Starter økt kalt &quot;session&quot;.</translation>
     </message>
     <message>
         <source>Sets the user name for connecting to the remote SSH server to &quot;username&quot;.</source>
@@ -777,7 +777,7 @@ Noen vanlige lokasjoner er:
     </message>
     <message>
         <source>Sets the default window geometry. Default: 800x600.</source>
-        <translation type="unfinished"></translation>
+        <translation>Setter størrelsen på standardvindu. Stamdard: 800x600.</translation>
     </message>
     <message>
         <source>Sets the remote X2Go Agent&apos;s DPI value to &quot;dpi&quot;. Default: same as local display.</source>
@@ -849,11 +849,11 @@ Noen vanlige lokasjoner er:
     </message>
     <message>
         <source>Disable PulseAudio.</source>
-        <translation type="unfinished"></translation>
+        <translation>Skru av PulseAudio.</translation>
     </message>
     <message>
         <source>Disable sound input.</source>
-        <translation type="unfinished"></translation>
+        <translation>Skru av lydinngang.</translation>
     </message>
     <message>
         <source>Use broker credentials as session user/password credentials when using broker mode with broker authentication. Currently only affects direct RDP sessions.</source>
@@ -1054,15 +1054,15 @@ Offentlig nøkkel: </translation>
     <name>InteractionDialog</name>
     <message>
         <source>Terminal output:</source>
-        <translation type="unfinished"></translation>
+        <translation>Terminal utdata:</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished">Avbryt</translation>
+        <translation>Avbryt</translation>
     </message>
     <message>
         <source>Reconnect</source>
-        <translation type="unfinished">Gjenoppkoble</translation>
+        <translation>Koble til på nytt</translation>
     </message>
 </context>
 <context>
@@ -1103,19 +1103,23 @@ lydsystem forbindelser gjennom brannmurer</translation>
     </message>
     <message>
         <source>Deprecation Warning</source>
-        <translation type="unfinished"></translation>
+        <translation>Utfasingsvarsel</translation>
     </message>
     <message>
         <source>ARTS support is scheduled to be removed soon.
 
 Please upgrade to PulseAudio.</source>
-        <translation type="unfinished"></translation>
+        <translation>Støtte for ARTS er planlagt å snart bli fjernet.
+
+Oppgradert til PulseAudio.</translation>
     </message>
     <message>
         <source>ESounD support is scheduled to be removed soon.
 
 Please upgrade to PulseAudio.</source>
-        <translation type="unfinished"></translation>
+        <translation>Støtte for EsoundD er planlagt å snart bli fjernet.
+
+Oppgradert til PulseAudio.</translation>
     </message>
 </context>
 <context>
@@ -2771,31 +2775,31 @@ authorized_keys fil.</translation>
     </message>
     <message>
         <source>Non-fatal: can&apos;t load translator: </source>
-        <translation type="unfinished">Non-fatal: can&apos;t load translator: </translation>
+        <translation>Ikke-kritisk: kunne ikke laste inn oversettelse: </translation>
     </message>
     <message>
         <source>Trying to load language with lower preference, if existent.</source>
-        <translation type="unfinished">Trying to load language with lower preference, if existent.</translation>
+        <translation>Forsøker å laste en annen oversettelse, hvis det finnes.</translation>
     </message>
     <message>
         <source>Unable to create or append to file: </source>
-        <translation type="unfinished"></translation>
+        <translation>Kunne ikke opprette, eller legge til fil: </translation>
     </message>
     <message>
         <source>Unable to change the permissions of file: </source>
-        <translation type="unfinished"></translation>
+        <translation>Kunne ikke endre rettigheter på fil: </translation>
     </message>
     <message>
         <source>This is an error because sshd would deny such a file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Dette er en feil, fordi sshd ville ikke tillatt en slik fil.</translation>
     </message>
     <message>
         <source>Unable to change the permissions of directory: </source>
-        <translation type="unfinished"></translation>
+        <translation>Kunne ikke endre rettigheter på mappen: </translation>
     </message>
     <message>
         <source>This is an error because sshd would deny such a directory.</source>
-        <translation type="unfinished"></translation>
+        <translation>Dette er en feil, siden sshd ikke ville tillatt en slik mappe. </translation>
     </message>
     <message>
         <source>Unable to find the sftp-server binary. Neither bundled, nor found in $PATH nor additional directories.</source>
@@ -2811,15 +2815,15 @@ If the sftp-server binary is installed on your system, please report a bug menti
     </message>
     <message>
         <source>SSH key type selection error</source>
-        <translation type="unfinished"></translation>
+        <translation>Feil ved valg av SSH nøkkel type</translation>
     </message>
     <message>
         <source>Unknown SSH key selected.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ukjent SSH nøkkel valgt.</translation>
     </message>
     <message>
         <source>Terminating application.</source>
-        <translation type="unfinished"></translation>
+        <translation>Avslutter program.</translation>
     </message>
     <message>
         <source>SSH key base directory creation error</source>
@@ -2831,39 +2835,39 @@ If the sftp-server binary is installed on your system, please report a bug menti
     </message>
     <message>
         <source>ssh-keygen launching error</source>
-        <translation type="unfinished"></translation>
+        <translation>feil ved start av ssh-keygen</translation>
     </message>
     <message>
         <source>Unable to start the ssh-keygen binary.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kunne ikke starte ssh-keygen binæren.</translation>
     </message>
     <message>
         <source>ssh-keygen crashed</source>
-        <translation type="unfinished"></translation>
+        <translation>ssh-keygen krasjet</translation>
     </message>
     <message>
         <source>The ssh-keygen binary crashed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Binæren til ssh-keygen krasjet.</translation>
     </message>
     <message>
         <source>ssh-keygen program error</source>
-        <translation type="unfinished"></translation>
+        <translation>ssh-keygen programfeil</translation>
     </message>
     <message>
         <source>The ssh-keygen binary did not exit cleanly.</source>
-        <translation type="unfinished"></translation>
+        <translation>ssh-keygen binæren avsluttet feilaktig.</translation>
     </message>
     <message>
         <source>It was probably called with unknown arguments.</source>
-        <translation type="unfinished"></translation>
+        <translation>Den ble trolig startet med ukjente argumenter.</translation>
     </message>
     <message>
         <source>Unable to open newly generated %1 public host key file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kunne ikke åpne nylig opprettet %1 offentlig vertsnøkkelfil.</translation>
     </message>
     <message>
         <source>%1 public host key file empty.</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 offentlig vertsnøkkelfil er tom.</translation>
     </message>
     <message>
         <source>You have enabled Remote Printing or File Sharing.
@@ -2885,7 +2889,9 @@ If you see this message, please report a bug on:
 
 Please report a bug on:
 </source>
-        <translation type="unfinished"></translation>
+        <translation>SSH serveren klarte ikke å starte.
+
+Rapporter dette som en feil på:</translation>
     </message>
     <message>
         <source>&lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
@@ -2904,11 +2910,13 @@ If you see this message, please report a bug on:
 
 Please report a bug on:
 </source>
-        <translation type="unfinished"></translation>
+        <translation>X2GO klienten klarte ikke å lage SSH vertsnøkler.
+
+Rapporter dette som en feil på:</translation>
     </message>
     <message>
         <source>&lt;br&gt;(C) 2005-2017 by &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing&lt;br&gt;</source>
-        <translation type="unfinished">&lt;br&gt;(C) 2005-2016 &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing&lt;br&gt; {2005-2017 ?}</translation>
+        <translation>&lt;br&gt;(C) 2005-2017 av &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing&lt;br&gt;</translation>
     </message>
     <message>
         <source>Your current color depth is different from the session&apos;s color depth. This may cause problems reconnecting to this session and in most cases &lt;b&gt;you will loose the session&lt;/b&gt; and have to start a new one! </source>
@@ -2919,7 +2927,6 @@ Please report a bug on:
         <comment>%n will be replaced with a number</comment>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -2928,7 +2935,7 @@ Please report a bug on:
     </message>
     <message>
         <source>Failed to start RDP or XMDCP client</source>
-        <translation type="unfinished"></translation>
+        <translation>Kunne ikke starte RDP eller XMDCP klient </translation>
     </message>
     <message>
         <source>Check session settings and ensure that selected client is installed on your system.</source>
@@ -2936,15 +2943,15 @@ Please report a bug on:
     </message>
     <message>
         <source>XDM</source>
-        <translation type="unfinished"></translation>
+        <translation>XDM</translation>
     </message>
     <message>
         <source>RDP</source>
-        <translation type="unfinished"></translation>
+        <translation>RDP</translation>
     </message>
     <message>
         <source>PulseAudio is not running</source>
-        <translation type="unfinished"></translation>
+        <translation>PulseAudio kjører ikke</translation>
     </message>
     <message>
         <source>Sound output will be disabled for this session. Please enable PulseAudio in the configuration dialog or disable sound in the session settings</source>
@@ -2952,11 +2959,11 @@ Please report a bug on:
     </message>
     <message>
         <source>libssh initialization failure</source>
-        <translation type="unfinished"></translation>
+        <translation>start av libssh feilet </translation>
     </message>
     <message>
         <source>Unable to initialize libssh.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kunne ikke starte libssh. </translation>
     </message>
 </context>
 <context>
@@ -2993,7 +3000,7 @@ Please report a bug on:
     </message>
     <message>
         <source>You may reactivate this dialog using the X2Go Client settings dialog. To do so, follow this path in the menu bar: Options -&gt; Settings</source>
-        <translation type="unfinished">Du kan reaktivere denne dialogen ved å benytte X2Go Client innstillingene (Innstillinger -&gt; Innstillinger)</translation>
+        <translation>Du kan reaktivere denne dialogen ved å benytte X2Go Client innstillingene (Innstillinger -&gt; Innstillinger)</translation>
     </message>
 </context>
 <context>
@@ -3155,69 +3162,69 @@ Eksempel:
     <name>PulseManager</name>
     <message>
         <source>Could not allocate buffer for getting current working directory!</source>
-        <translation type="unfinished"></translation>
+        <translation>Kunne ikke allokere nok buffer for å finne gjeldene arbeidsmappe! </translation>
     </message>
     <message>
         <source>getcwd() failed!</source>
-        <translation type="unfinished"></translation>
+        <translation>getcwd() feilet!</translation>
     </message>
     <message>
         <source>PulseAudio failed to start!</source>
-        <translation type="unfinished"></translation>
+        <translation>PulseAudio kunne ikke starte!</translation>
     </message>
     <message>
         <source>Error fetching PulseAudio version number!</source>
-        <translation type="unfinished"></translation>
+        <translation>Kunne ikke finne versjonsnummeret til PulseAudio!</translation>
     </message>
     <message>
         <source>Unexpected character found when parsing version string for major version number</source>
-        <translation type="unfinished"></translation>
+        <translation>Uventet tegn funnet i versjonsnummer</translation>
     </message>
     <message>
         <source>Unexpected character found when parsing version string for minor version number</source>
-        <translation type="unfinished"></translation>
+        <translation>Uventet tegn funnet i versjonsnummer</translation>
     </message>
     <message>
         <source>Unexpected character found when parsing version string for micro version number</source>
-        <translation type="unfinished"></translation>
+        <translation>Uventet tegn funnet i versjonsnummer</translation>
     </message>
     <message>
         <source>Supposed to skip major version number. Something is wrong.</source>
-        <translation type="unfinished"></translation>
+        <translation>Skal hoppe over versjonsnummer. Noe er feil.</translation>
     </message>
     <message>
         <source>Unable to convert major version number string to integer.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kunne ikke konvertere versjonsnummer til heltall.</translation>
     </message>
     <message>
         <source>Unable to convert minor version number string to integer.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kunne ikke konvertere versjonsnummer til heltall.</translation>
     </message>
     <message>
         <source>Unable to convert micro version number string to integer.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kunne ikke konvertere versjonsnummer til heltall. </translation>
     </message>
     <message>
         <source>Unexpected format encountered.</source>
-        <translation type="unfinished"></translation>
+        <translation>Fant uventet format.</translation>
     </message>
     <message>
         <source>Unable to start PulseAudio binary.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kunne ikke starte PulseAudio binæren.</translation>
     </message>
     <message>
         <source>Unable to play startup sound.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kunne ikke spille oppstartslyd.</translation>
     </message>
     <message>
         <source>Sound support will not be available.</source>
-        <translation type="unfinished"></translation>
+        <translation>Lydstøtte vil ikke være tilgjengelig.</translation>
     </message>
     <message>
         <source>If you downloaded the bundled, pre-compiled version from the official home page or the upstream Linux packages, please report a bug on:
 &lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Om du lastet ned din versjon fra den offisielle hjemmesiden, eller fra oppstrøm, vennligst rapporter feil på&lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;   </translation>
     </message>
 </context>
 <context>
@@ -3435,7 +3442,7 @@ Use X2Go Client&apos;s hidden mode?</source>
         <source>Desktop icons can be configured not to show X2Go Client (hidden mode.) If you like to use this feature you&apos;ll need to configure login via a GPG key or GPG Smart Card.
 
 Use X2Go Client&apos;s hidden mode?</source>
-        <translation type="unfinished">Skrivebordsikoner kan konfigureres til å ikke vise X2Go Client (skjult modus). Om du ønsker å benytte denne muligheten må du konfigurere pålogging ved bruk av en GPG-nøkkel, eller et GPG basert smartkort.
+        <translation>Skrivebordsikoner kan konfigureres til å ikke vise X2Go Client (skjult modus). Om du vil benytte denne muligheten må du konfigurere pålogging ved bruk av en GPG-nøkkel, eller et GPG basert smartkort.
 
 Ønsker du å aktivere skjult modus for X2Go Client?</translation>
     </message>
@@ -3677,19 +3684,19 @@ Use X2Go Client&apos;s hidden mode?</source>
     </message>
     <message>
         <source>X2Go Client is running in portable mode. You should use a path on your USB device to be able to access your data wherever you are.</source>
-        <translation type="unfinished"></translation>
+        <translation>X2Go Client kjører i portabel modus. Du burde bruke en sti på din USB enhet for å kunne benytte dataene dine uavhengig av hvor du er.</translation>
     </message>
     <message>
         <source>Values ranging from &lt;b&gt;0&lt;/b&gt; to &lt;b&gt;65535&lt;/b&gt; are allowed.&lt;br /&gt;A value of &lt;b&gt;0&lt;/b&gt; will either use the port specified in the SSH configuration file belonging to a host or shortname, or use the default of &lt;b&gt;22&lt;/b&gt;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Verdier mellom &lt;b&gt;0&lt;/b&gt; og &lt;b&gt;65535&lt;/b&gt; er tillat.&lt;br /&gt;Verdien &lt;b&gt;0&lt;/b&gt; vil enten bruke porten som er spesifisert i SSH sin konfigurasjonsfil for en spesifikk maskin, ellers brukes standardport &lt;b&gt;22&lt;/b&gt;.   </translation>
     </message>
     <message>
         <source>Direct XDMCP connection</source>
-        <translation type="unfinished"></translation>
+        <translation>Direkte XDMCP oppkobling</translation>
     </message>
     <message>
         <source>direct XDMCP connection</source>
-        <translation type="unfinished"></translation>
+        <translation>direkte XDMCP oppkobling</translation>
     </message>
 </context>
 <context>
@@ -3874,7 +3881,7 @@ lydsystem forbindelser gjennom brannmurer</translation>
     </message>
     <message>
         <source>XDMCP client</source>
-        <translation type="unfinished"></translation>
+        <translation>XDMCP klient</translation>
     </message>
 </context>
 <context>
@@ -3950,7 +3957,7 @@ lydsystem forbindelser gjennom brannmurer</translation>
     </message>
     <message>
         <source>X2Go Client is running in portable mode. You should use a path on your USB device to be able to access your data wherever you are.</source>
-        <translation type="unfinished"></translation>
+        <translation>X2Go Client kjører i portabel modus. Du burde bruke en sti på din USB enhet for å kunne benytte dataene dine uavhengig av hvor du er.</translation>
     </message>
 </context>
 <context>
@@ -4113,7 +4120,7 @@ lydsystem forbindelser gjennom brannmurer</translation>
     </message>
     <message>
         <source>Using environment-provided username.</source>
-        <translation type="unfinished"></translation>
+        <translation>Benytter brukernavn fra omgivelsene.</translation>
     </message>
     <message>
         <source>%1 failed.</source>
@@ -4122,7 +4129,7 @@ lydsystem forbindelser gjennom brannmurer</translation>
     </message>
     <message>
         <source>Reconnect session</source>
-        <translation type="unfinished"></translation>
+        <translation>Koble til på nytt</translation>
     </message>
 </context>
 <context>

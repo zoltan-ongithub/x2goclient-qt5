@@ -290,6 +290,10 @@ x2goclient (4.1.1.0-0x2go1) UNRELEASED; urgency=medium
   * New upstream version (4.1.1.0):
     - res/i18n/x2goclient_nl.ts: update Dutch translation file.
 
+  [ Klaus Ade Johnstad ]
+  * New upstream version (4.1.1.0):
+    - res/i18n/x2goclient_nb_no.ts: update Bokmål (Norway) translation file.
+
  -- X2Go Release Manager <git-admin@x2go.org>  Wed, 22 Feb 2017 07:13:10 +0100
 
 x2goclient (4.1.0.1-0x2go1) unstable; urgency=medium
