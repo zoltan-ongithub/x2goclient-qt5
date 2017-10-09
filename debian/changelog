@@ -208,6 +208,7 @@ x2goclient (4.1.1.0-0x2go1) UNRELEASED; urgency=medium
       discussed on list.
     - res/i18n/x2goclient_es.ts: add singular form to translation entry as
       discussed off list.
+    - res/i18n/x2goclient_nl.ts: various fixups for Dutch translation file.
   * x2goclient.spec:
     - Respect %{optflags} and pass QMAKE_STRIP=: to fix missing debug info
       issues.

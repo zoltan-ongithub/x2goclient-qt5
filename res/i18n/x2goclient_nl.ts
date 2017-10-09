@@ -826,7 +826,7 @@ Locaties voor installatie kunnen de volgende zijn:
     <message>
         <location filename="../../src/help.cpp" line="106"/>
         <source>Shows git information as used at compile time. [Deprecated: please use --version.]</source>
-        <translation>Toont git informatie als gebruikt tijdens compile tijd. [Verouders: gebruik aub --versie.]</translation>
+        <translation>Toont git informatie als gebruikt tijdens compile tijd. [Verouders: gebruik aub --version.]</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="109"/>
@@ -931,7 +931,8 @@ Locaties voor installatie kunnen de volgende zijn:
     <message>
         <location filename="../../src/help.cpp" line="134"/>
         <source>Sets the default command. Default: &apos;KDE&apos; (Desktop Session)</source>
-        <translation>Standaard instelling. Standaard: &apos;KDE&apos; (Desktop sessie_</translation>
+        <comment>That looks like it translates to &quot;default setting&quot; - the &quot;command&quot; part seems to be missing. You can delete this comment after revisiting this.</comment>
+        <translation type="unfinished">Standaard instelling. Standaard: &apos;KDE&apos; (Desktop sessie_</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="135"/>
@@ -1006,7 +1007,7 @@ Locaties voor installatie kunnen de volgende zijn:
     <message>
         <location filename="../../src/help.cpp" line="149"/>
         <source>Automatically closes X2Go Client after a disconnect.</source>
-        <translation>X2Go client zal automatisch afgesloten worden na een disconnect.</translation>
+        <translation>X2Go Client zal automatisch afgesloten worden na een disconnect.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="150"/>
@@ -1031,7 +1032,7 @@ Locaties voor installatie kunnen de volgende zijn:
     <message>
         <location filename="../../src/help.cpp" line="160"/>
         <source>Does not ask for user credentials during session broker authentication. This can be useful if you are using an HTTP(S) session broker without authentication. If you run an HTTP(S) server without authentication, but with user-specific profiles, then put the user name into the broker URL (refer to --broker-url.) The user name then will be extracted from the broker URL and be sent to the session broker. The client&apos;s behavior is undefined if this flag is used for non-HTTP(S) session brokers.</source>
-        <translation>Wordt niet om inloggegevens gevraagd tijden authenticatie met sessie broker. Dit kan nuttig zijn als een HTTP(S) sessie broker in gebruik is zonder authenticatie. Als u een HTTP(S) server gebruikt zonder authenticatie, maar met specifieke gebruikersprofielen, plaats dan de gebruikersnaam in de broker url. (verwijs naar --broker-url.). De gebruikersnaam zal dan worden afgeleid uit de broker URL en naar de sessie broker worden verzonden. Deze client instelling is niet actief bij gebruik van niet HTTP(S) sessie brokers.</translation>
+        <translation>Wordt niet om inloggegevens gevraagd tijden authenticatie met sessie broker. Dit kan nuttig zijn als een HTTP(S) sessie broker in gebruik is zonder authenticatie. Als u een HTTP(S) server gebruikt zonder authenticatie, maar met specifieke gebruikersprofielen, plaats dan de gebruikersnaam in de broker URL. (Verwijs naar --broker-url.). De gebruikersnaam zal dan worden afgeleid uit de broker URL en naar de sessie broker worden verzonden. Deze client instelling is niet actief bij gebruik van niet HTTP(S) sessie brokers.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="161"/>
@@ -1822,7 +1823,8 @@ Do you want to terminate the connection?
         <translation>Dit kan een indicatie zijn voor een &quot; man in the middle&quot; aanval.
 Iemand is u mogelijk aan het afluisteren.
 Vanwege veiligheidsoverwegingen is het aanbevolen de verbinding te verbreken.
-Wilt u de verbinding verbreken?</translation>
+Wilt u de verbinding verbreken?
+</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="3242"/>
@@ -1842,7 +1844,8 @@ Do you want to terminate the connection?
 </source>
         <translation>De host sleutel voor deze server is niet gevonden maar een ander type sleutel is aanwezig. Een aanvaller heeft mogelijk de standaard server sleutel aangepast en wil uw client misleiden door deze te laten geloven dat de sleutel niet bestaat.
 Vanwege veiligheidsoverwegingen is het aanbevolen om de verbinding te stoppen.
-Wilt u de verbinding afbreken?</translation>
+Wilt u de verbinding afbreken?
+</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="3304"/>
@@ -1914,11 +1917,9 @@ Wilt u de verbinding afbreken?</translation>
         <location filename="../../src/onmainwindow.cpp" line="5017"/>
         <source>It&apos;s highly recommended to change the color depth of your display to %n bit(s) and restart your X.Org Server before you reconnect to this X2Go session.</source>
         <comment>%n will be replaced with a number</comment>
-        <translation>
-            <numerusform>Het is ten zeerste aanbevolen om de kleurdiepte van uw scherm aan te passen naar %n bit(s) en uw X.Org Server te herstarten voordat u een verbinding maakt met deze X2Go sessie.
-</numerusform>
-            <numerusform>Opmerking voor ontwikkelaars
-%n zal worden vervangen door een nummer.</numerusform>
+        <translation type="unfinished">
+            <numerusform>Het is ten zeerste aanbevolen om de kleurdiepte van uw scherm aan te passen naar %n bits en uw X.Org Server te herstarten voordat u een verbinding maakt met deze X2Go sessie.</numerusform>
+            <numerusform>Het is ten zeerste aanbevolen om de kleurdiepte van uw scherm aan te passen naar %n bit en uw X.Org Server te herstarten voordat u een verbinding maakt met deze X2Go sessie.</numerusform>
         </translation>
     </message>
     <message>
@@ -2167,7 +2168,7 @@ Niet opgeslagen documenten zullen verloren gaan.</translation>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="9902"/>
         <source>This is an error because sshd would deny such a file.</source>
-        <translation>Dit is een fout omdat sshd  een dergelijk bestand zou weigeren.</translation>
+        <translation>Dit is een fout omdat sshd een dergelijk bestand zou weigeren.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="9919"/>
@@ -2182,7 +2183,7 @@ Niet opgeslagen documenten zullen verloren gaan.</translation>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="10620"/>
         <source>Unable to find the sftp-server binary. Neither bundled, nor found in $PATH nor additional directories.</source>
-        <translation>Kan de sftp server binary niet vinden. Niet gebundeld, niet gevonden in $PATH of in overige directories.</translation>
+        <translation>Kan de sftp-server binary niet vinden. Niet gebundeld, niet gevonden in $PATH of in overige directories.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="10621"/>
@@ -2191,7 +2192,7 @@ Niet opgeslagen documenten zullen verloren gaan.</translation>
 If the sftp-server binary is installed on your system, please report a bug mentioning its path on:
 &lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
 </source>
-        <translation>Als u een LInux besturingssysteem gebruikt, vraag aub uw systeembeheerder om het pakket met de sftp binary te installere. Veel voorkomende namen zijn &lt;b&gt;openssh&lt;/b&gt;, &lt;b&gt;openssh-server&lt;/b&gt; or &lt;b&gt;openssh-sftp-server&lt;/b&gt; afhankelijk van uw distributie.
+        <translation>Als u een Linux besturingssysteem gebruikt, vraag aub uw systeembeheerder om het pakket met de sftp-binary te installere. Veel voorkomende namen zijn &lt;b&gt;openssh&lt;/b&gt;, &lt;b&gt;openssh-server&lt;/b&gt; or &lt;b&gt;openssh-sftp-server&lt;/b&gt; afhankelijk van uw distributie.
 
 Als de sftp-server binary wel is geïnstalleerd op uw systeem, geef dan aub een bug door met vermelding van het pad op:
 &lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
@@ -2291,7 +2292,7 @@ Voor deze opties is het noodzakelijk dat er een SSH server actief is op uw syste
 
 If you see this message, please report a bug on:
 </source>
-        <translation>Normaal gesproken zou dit niet voor mogen komen omdat de X2Go client voor Windows is voorzien van een eigen interne SSH server.
+        <translation>Normaal gesproken zou dit niet voor mogen komen omdat de X2Go Client voor Windows is voorzien van een eigen interne SSH server.
 
 Als u dit bericht ziet wilt u deze foutmelding dan aub kenbaar maken op:
 </translation>
@@ -2304,14 +2305,16 @@ Please report a bug on:
 </source>
         <translation>SSH server kon niet gestart worden.
 
-Als u dit bericht ziet wilt u deze foutmelding dan aub kenbaar maken op:</translation>
+Als u dit bericht ziet wilt u deze foutmelding dan aub kenbaar maken op:
+</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="12557"/>
         <location filename="../../src/onmainwindow.cpp" line="12589"/>
         <source>&lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
 </source>
-        <translation>&lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;</translation>
+        <translation>&lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
+</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="12579"/>
@@ -2319,9 +2322,10 @@ Als u dit bericht ziet wilt u deze foutmelding dan aub kenbaar maken op:</transl
 
 If you see this message, please report a bug on:
 </source>
-        <translation>Normaal gesproken zou dit niet voor mogen komen omdat de X2Go client voor Windows is voorzien van een eigen interne SSH server die automatisch de vereiste sleutels aanmaakt.
+        <translation>Normaal gesproken zou dit niet voor mogen komen omdat de X2Go Client voor Windows is voorzien van een eigen interne SSH server die automatisch de vereiste sleutels aanmaakt.
 
-Als u dit bericht ziet wilt u deze foutmelding dan aub kenbaar maken op:</translation>
+Als u dit bericht ziet wilt u deze foutmelding dan aub kenbaar maken op:
+</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="12585"/>
@@ -2331,7 +2335,8 @@ Please report a bug on:
 </source>
         <translation>X2Go Client kon geen SSH sleutels aanmaken.
 
-Als u dit bericht ziet wilt u deze foutmelding dan aub kenbaar maken op:</translation>
+Als u dit bericht ziet wilt u deze foutmelding dan aub kenbaar maken op:
+</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="12617"/>
