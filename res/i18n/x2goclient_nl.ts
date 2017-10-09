@@ -330,7 +330,7 @@
     <message>
         <location filename="../../src/configdialog.cpp" line="342"/>
         <source>PulseAudio settings</source>
-        <translation type="unfinished"></translation>
+        <translation>PulseAudio instellingen</translation>
     </message>
     <message>
         <location filename="../../src/configdialog.cpp" line="344"/>
@@ -340,7 +340,7 @@
     <message>
         <location filename="../../src/configdialog.cpp" line="345"/>
         <source>Disable sound input</source>
-        <translation type="unfinished"></translation>
+        <translation>Geluids invoer uitschakelen</translation>
     </message>
     <message>
         <source>Clientside (local) SSH daemon port for file system export usage:</source>
@@ -811,62 +811,62 @@ Locaties voor installatie kunnen de volgende zijn:
     <message>
         <location filename="../../src/help.cpp" line="98"/>
         <source>Shows this message.</source>
-        <translation type="unfinished"></translation>
+        <translation>Toont dit bericht.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="99"/>
         <source>Prints version information.</source>
-        <translation type="unfinished"></translation>
+        <translation>Print versie informatie.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="102"/>
         <source>Shows the changelog.</source>
-        <translation type="unfinished"></translation>
+        <translation>Toont de changelog.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="106"/>
         <source>Shows git information as used at compile time. [Deprecated: please use --version.]</source>
-        <translation type="unfinished"></translation>
+        <translation>Toont git informatie als gebruikt tijdens compile tijd. [Verouders: gebruik aub --versie.]</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="109"/>
         <source>Shows available pack methods.</source>
-        <translation type="unfinished"></translation>
+        <translation>Toont beschikbare pack methoden.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="113"/>
         <source>Do not resume sessions automatically.</source>
-        <translation type="unfinished"></translation>
+        <translation>Sessies niet automatisch hervatten.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="114"/>
         <source>Hides menu bar.</source>
-        <translation type="unfinished"></translation>
+        <translation>Verbergt menu balk.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="115"/>
         <source>Disables session editing.</source>
-        <translation type="unfinished"></translation>
+        <translation>Deactiveert sessie bewerking.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="116"/>
         <source>Starts maximized.</source>
-        <translation type="unfinished"></translation>
+        <translation>Start gemaximaliseerd.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="117"/>
         <source>Starts hidden (minimized to system tray where available.)</source>
-        <translation type="unfinished"></translation>
+        <translation>Start verborgen (geminimaliseerd naar taakbalk indien beschikbaar.)</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="118"/>
         <source>Starts in &quot;portable&quot; mode.</source>
-        <translation type="unfinished"></translation>
+        <translation>Start in &quot;portable&quot; modus.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="119"/>
         <source>Forces OpenPGP smart card authentication.</source>
-        <translation type="unfinished"></translation>
+        <translation>Forceert OpenPGP smartcard authenticatie.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="121"/>
@@ -881,157 +881,157 @@ Locaties voor installatie kunnen de volgende zijn:
     <message>
         <location filename="../../src/help.cpp" line="124"/>
         <source>Enables Xinerama by default.</source>
-        <translation type="unfinished"></translation>
+        <translation>Xinerama ingesteld als standaard.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="125"/>
         <source>Allows client side printing in LDAP mode.</source>
-        <translation type="unfinished"></translation>
+        <translation>Staat printen in LDAP modus toe aan client zijde.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="126"/>
         <source>Enables thinclient mode. Starts without a window manager.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ingesteld als thinclient modus. Start zonder window manager.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="127"/>
         <source>Enables shutdown button.</source>
-        <translation type="unfinished"></translation>
+        <translation>Shutdown knop beschikbaar.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="128"/>
         <source>Adds RSA key fingerprint to &quot;.ssh/known_hosts&quot; if authenticity of the server can&apos;t be determined.</source>
-        <translation type="unfinished"></translation>
+        <translation>Voegt RSA key fingerprint toe aan &quot;.ssh/known_hosts&quot; als authenticiteit van de server niet vastgesteld kan worden.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="129"/>
         <source>Starts with LDAP support. Example: --ldap=ldapserver:389:o=organization,c=de</source>
-        <translation type="unfinished"></translation>
+        <translation>Start met LDAP ondersteuning. Bijvoorbeeld: --ldap=ldapserver:389:o=organisatie,c=nl</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="130"/>
         <source>Defines the first LDAP failover server.</source>
-        <translation type="unfinished"></translation>
+        <translation>Definieert de eerste LDAP failover server.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="131"/>
         <source>Defines the second LDAP failover server.</source>
-        <translation type="unfinished"></translation>
+        <translation>Definieert de tweede LDAP failover server.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="132"/>
         <source>Defines the remote SSH server port. Default: 22.</source>
-        <translation type="unfinished"></translation>
+        <translation>Definieert de remote SSH server poort. Standaard: 22.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="133"/>
         <source>Defines the local machine&apos;s SSH server port. Needed for Client-Side Printing and File Sharing support. Default: 22.</source>
-        <translation type="unfinished"></translation>
+        <translation>Definieert de SSH poort van de locale machine. Nodig voor printen client zijde en ondersteuning voor delen van bestanden. Standaard: 22.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="134"/>
         <source>Sets the default command. Default: &apos;KDE&apos; (Desktop Session)</source>
-        <translation type="unfinished"></translation>
+        <translation>Standaard instelling. Standaard: &apos;KDE&apos; (Desktop sessie_</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="135"/>
         <source>Starts the session named &quot;session&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Start de sessie met de naam &quot;session&quot;.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="136"/>
         <source>Sets the user name for connecting to the remote SSH server to &quot;username&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Gebruikersnaam voor connectie met de remote SSH server ingesteld op &quot;username&quot;.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="137"/>
         <source>Sets the default window geometry. Default: 800x600.</source>
-        <translation type="unfinished"></translation>
+        <translation>Standaard beeldscherminstelling. Standaard: 800x600.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="138"/>
         <source>Sets the remote X2Go Agent&apos;s DPI value to &quot;dpi&quot;. Default: same as local display.</source>
-        <translation type="unfinished"></translation>
+        <translation>Stelt de remote X2Go agent DPI waarde in op &quot;dpi&quot;. Standaard: dezelfde waarde als lokale instelling.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="139"/>
         <source>Sets the default link type. Default: &quot;adsl&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Standaardinstelling voor verbindingstype. Standaard: &quot;adsl&quot;.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="140"/>
         <source>Sets default pack method. Default: &quot;16m-jpeg-9&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Standaardinstelling pack method. Standaard: &quot;16m-jpeg-9&quot;.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="141"/>
         <source>Sets the default clipboard mode. Default: &quot;both&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Standaardinstelling klembord. Standaard: &quot;beide&quot;.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="142"/>
         <source>Sets the default keyboard layout to &quot;layout&quot;. &quot;layout&quot; may be a comma-separated list.</source>
-        <translation type="unfinished"></translation>
+        <translation>Standaardinstelling toetsenbord ingesteld op &quot;layout&quot; kan een komma gescheiden lijst zijn.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="143"/>
         <source>Sets the default keyboard type.</source>
-        <translation type="unfinished"></translation>
+        <translation>Instelling standaard toetsenbord type.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="144"/>
         <source>Sets the user&apos;s home directory.</source>
-        <translation type="unfinished"></translation>
+        <translation>Instelling voor home directory gebruiker.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="145"/>
         <source>Enables or disables overwriting the current keyboard settings.</source>
-        <translation type="unfinished"></translation>
+        <translation>Overschrijven van de huidige toetstenbord instellingen wel of niet mogelijk.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="146"/>
         <source>Automatically launches the application(s) &quot;app&quot;, &quot;app2&quot;, ... on session start in Published Applications mode.</source>
-        <translation type="unfinished"></translation>
+        <translation>Automatisch starten van de applicatie(s) &quot;app&quot;, &quot;app2&quot;, ... bij starten sessie in Gepubliceerde Applicaties modus.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="147"/>
         <source>Defines an alternative session config file path.</source>
-        <translation type="unfinished"></translation>
+        <translation>Definieert een alternatief pad voor sessie configuratiebestand.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="148"/>
         <source>Force-enables session system tray icon.</source>
-        <translation type="unfinished"></translation>
+        <translation>Sessie icoon gedwongen beschikbaar in taakbalk.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="149"/>
         <source>Automatically closes X2Go Client after a disconnect.</source>
-        <translation type="unfinished"></translation>
+        <translation>X2Go client zal automatisch afgesloten worden na een disconnect.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="150"/>
         <source>Hides all Folder-Sharing-related options.</source>
-        <translation type="unfinished"></translation>
+        <translation>Verbergen van alle opties voor bestandsdeling.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="151"/>
         <source>Sets the broker name to display in X2Go Client. This parameter is optional.</source>
-        <translation type="unfinished"></translation>
+        <translation>Instellen weergeven brokernaam in X2Go Client. Deze parameter is optioneel.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="158"/>
         <source>Sets the path to an SSH key to use for authentication against an SSH session broker. The client&apos;s behavior is undefined if this flag is used for non-SSH session brokers.</source>
-        <translation type="unfinished"></translation>
+        <translation>Instelling voor pad naar SSH sleutel voor authenticatie met een SSH sessie broker. Deze client instelling is niet actief bij gebruik van niet SSH sessie brokers.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="159"/>
         <source>Enables the use of the default SSH key or SSH agent for authentication against an SSH session broker. The client&apos;s behavior is undefined if this flag is used for non-SSH session brokers.</source>
-        <translation type="unfinished"></translation>
+        <translation>Activeert gebruik van de standaard SSH sleutel of SSH agent voor authenticatie met een SSH sessie broker. Deze client instelling is niet actief bij gebruik van niet SSH sessie brokers.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="160"/>
         <source>Does not ask for user credentials during session broker authentication. This can be useful if you are using an HTTP(S) session broker without authentication. If you run an HTTP(S) server without authentication, but with user-specific profiles, then put the user name into the broker URL (refer to --broker-url.) The user name then will be extracted from the broker URL and be sent to the session broker. The client&apos;s behavior is undefined if this flag is used for non-HTTP(S) session brokers.</source>
-        <translation type="unfinished"></translation>
+        <translation>Wordt niet om inloggegevens gevraagd tijden authenticatie met sessie broker. Dit kan nuttig zijn als een HTTP(S) sessie broker in gebruik is zonder authenticatie. Als u een HTTP(S) server gebruikt zonder authenticatie, maar met specifieke gebruikersprofielen, plaats dan de gebruikersnaam in de broker url. (verwijs naar --broker-url.). De gebruikersnaam zal dan worden afgeleid uit de broker URL en naar de sessie broker worden verzonden. Deze client instelling is niet actief bij gebruik van niet HTTP(S) sessie brokers.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="161"/>
@@ -1328,21 +1328,25 @@ van geluidssysteemverbindingen door firewalls</translation>
         <location filename="../../src/mediawidget.cpp" line="154"/>
         <location filename="../../src/mediawidget.cpp" line="174"/>
         <source>Deprecation Warning</source>
-        <translation type="unfinished"></translation>
+        <translation>Vervallen waarschuwing</translation>
     </message>
     <message>
         <location filename="../../src/mediawidget.cpp" line="155"/>
         <source>ARTS support is scheduled to be removed soon.
 
 Please upgrade to PulseAudio.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ondersteuning voor ARTS komt binnenkort te vervallen.
+
+A.u.b upgraden naar PulseAudio.</translation>
     </message>
     <message>
         <location filename="../../src/mediawidget.cpp" line="175"/>
         <source>ESounD support is scheduled to be removed soon.
 
 Please upgrade to PulseAudio.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ondersteuning voor ESounD komt binnenkort te vervallen.
+
+A.u.b upgraden naar PulseAudio.</translation>
     </message>
 </context>
 <context>
@@ -1904,21 +1908,23 @@ Wilt u de verbinding afbreken?</translation>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="5012"/>
         <source>Your current color depth is different from the session&apos;s color depth. This may cause problems reconnecting to this session and in most cases &lt;b&gt;you will loose the session&lt;/b&gt; and have to start a new one! </source>
-        <translation type="unfinished"></translation>
+        <translation>Uw huidige kleurdiepte verschilt van de sessie kleurdiepte. Dit kan problemen veroorzaken bij het opnieuw verbinden met deze sessie. In de meeste gevallen &lt;b&gt;zult u deze sessie verliezen&lt;/b&gt; en moet u een nieuwe starten! </translation>
     </message>
     <message numerus="yes">
         <location filename="../../src/onmainwindow.cpp" line="5017"/>
         <source>It&apos;s highly recommended to change the color depth of your display to %n bit(s) and restart your X.Org Server before you reconnect to this X2Go session.</source>
         <comment>%n will be replaced with a number</comment>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Het is ten zeerste aanbevolen om de kleurdiepte van uw scherm aan te passen naar %n bit(s) en uw X.Org Server te herstarten voordat u een verbinding maakt met deze X2Go sessie.
+</numerusform>
+            <numerusform>Opmerking voor ontwikkelaars
+%n zal worden vervangen door een nummer.</numerusform>
         </translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="5023"/>
         <source>&lt;br /&gt;Do you want to resume this session anyway?</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;br /&gt;Wilt u deze sessie toch hervatten?</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="5408"/>
@@ -2022,12 +2028,12 @@ U kunt deze fout melden zoals beschreven op deze &lt;a href=&quot;http://wiki.x2
     <message>
         <location filename="../../src/onmainwindow.cpp" line="6155"/>
         <source>Failed to start RDP or XMDCP client</source>
-        <translation type="unfinished"></translation>
+        <translation>Starten van RDP of XMDCP client mislukt</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="6156"/>
         <source>Check session settings and ensure that selected client is installed on your system.</source>
-        <translation type="unfinished"></translation>
+        <translation>Controleer de sessie instellingen en verzeker u ervan dat de geselecteerde client geïnstalleerd is op uw systeem.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="6256"/>
@@ -2141,42 +2147,42 @@ Niet opgeslagen documenten zullen verloren gaan.</translation>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="8807"/>
         <source>&lt;br&gt;(C) 2005-2017 by &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing&lt;br&gt;</source>
-        <translation type="unfinished">&lt;br&gt;(C) 2005-2016 by &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing&lt;br&gt; {2005-2017 ?}</translation>
+        <translation>&lt;br&gt;(C) 2005-2017 by &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing&lt;br&gt;</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="8814"/>
         <source>&lt;br&gt;This is a client to access the X2Go network-based computing environment. This client will be able to connect to X2Go Server(s) and start, stop, resume and terminate (running) desktop sessions. X2Go Client stores different server connections and may automatically request authentication data from LDAP directories. Furthermore, it can be used as a fullscreen login screen (replacement for login managers like XDM). Please visit &lt;a href=&quot;http://www.x2go.org&quot;&gt;the project home page at x2go.org&lt;/a&gt; for further information.</source>
-        <translation type="unfinished">&lt;br&gt;Client voor gebruik van de X2Go netwerkgebasseerde computeromgeving. Met deze client maakt u verbinding met de X2Go server(s) en kunt u desktop-sessies starten, stoppen, hervatten en (actieve sessies) beeindigen. De X2Go Client slaat verschillende serververbindingen op in, en kan automatisch authenticatie data opvragen van, LDAP directories. Verder kan de client gebruikt worden als fullscreen inlog scherm (vervanging voor inlog managers als KDM, XDM etc.). Bezoek aub &lt;a href=&quot;http://www.x2go.org&quot;&gt;het project home page op x2go.org&lt;/a&gt; voor meer informatie.</translation>
+        <translation>&lt;br&gt;Client voor gebruik van de X2Go netwerkgebasseerde computeromgeving. Met deze client maakt u verbinding met de X2Go server(s) en kunt u desktop-sessies starten, stoppen, hervatten en (actieve sessies) beeindigen. De X2Go Client slaat verschillende serververbindingen op in, en kan automatisch authenticatie data opvragen van, LDAP directories. Verder kan de client gebruikt worden als fullscreen inlog scherm (vervanging voor inlog managers als KDM, XDM etc.). Bezoek aub &lt;a href=&quot;http://www.x2go.org&quot;&gt;de project home page op x2go.org&lt;/a&gt; voor meer informatie.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="9881"/>
         <source>Unable to create or append to file: </source>
-        <translation type="unfinished"></translation>
+        <translation>Aanmaken of toevoegen van bestand niet mogelijk: </translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="9901"/>
         <source>Unable to change the permissions of file: </source>
-        <translation type="unfinished"></translation>
+        <translation>Wijzigen van bestandsrechten niet mogeljk: </translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="9902"/>
         <source>This is an error because sshd would deny such a file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Dit is een fout omdat sshd  een dergelijk bestand zou weigeren.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="9919"/>
         <source>Unable to change the permissions of directory: </source>
-        <translation type="unfinished"></translation>
+        <translation>Wijzigen van rechten niet mogelijk voor directory: </translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="9920"/>
         <source>This is an error because sshd would deny such a directory.</source>
-        <translation type="unfinished"></translation>
+        <translation>Dit is een fout omdat sshd een dergelijke directory zou weigeren.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="10620"/>
         <source>Unable to find the sftp-server binary. Neither bundled, nor found in $PATH nor additional directories.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kan de sftp server binary niet vinden. Niet gebundeld, niet gevonden in $PATH of in overige directories.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="10621"/>
@@ -2185,17 +2191,21 @@ Niet opgeslagen documenten zullen verloren gaan.</translation>
 If the sftp-server binary is installed on your system, please report a bug mentioning its path on:
 &lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Als u een LInux besturingssysteem gebruikt, vraag aub uw systeembeheerder om het pakket met de sftp binary te installere. Veel voorkomende namen zijn &lt;b&gt;openssh&lt;/b&gt;, &lt;b&gt;openssh-server&lt;/b&gt; or &lt;b&gt;openssh-sftp-server&lt;/b&gt; afhankelijk van uw distributie.
+
+Als de sftp-server binary wel is geïnstalleerd op uw systeem, geef dan aub een bug door met vermelding van het pad op:
+&lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
+</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="10663"/>
         <source>SSH key type selection error</source>
-        <translation type="unfinished"></translation>
+        <translation>SSH sleutel type selectie fout</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="10664"/>
         <source>Unknown SSH key selected.</source>
-        <translation type="unfinished"></translation>
+        <translation>Onbekende SSH sleutel geselecteerd.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="10666"/>
@@ -2204,62 +2214,62 @@ If the sftp-server binary is installed on your system, please report a bug menti
         <location filename="../../src/onmainwindow.cpp" line="10829"/>
         <location filename="../../src/onmainwindow.cpp" line="10839"/>
         <source>Terminating application.</source>
-        <translation type="unfinished"></translation>
+        <translation>Applicatie beëindigen.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="10739"/>
         <source>SSH key base directory creation error</source>
-        <translation type="unfinished"></translation>
+        <translation>Aanmaken van SSH sleutel directory is mislukt</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="10740"/>
         <source>Unable to create SSH key base directory &apos;%1&apos;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Aanmaken van directory &apos;%1&apos; voor SSH sleutel niet mogelijk.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="10818"/>
         <source>ssh-keygen launching error</source>
-        <translation type="unfinished"></translation>
+        <translation>Fout bij aanmaken ssh-keygen</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="10819"/>
         <source>Unable to start the ssh-keygen binary.</source>
-        <translation type="unfinished"></translation>
+        <translation>Starten van ssh-keygen binary niet mogelijk.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="10826"/>
         <source>ssh-keygen crashed</source>
-        <translation type="unfinished"></translation>
+        <translation>ssh-keygen gebroken</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="10827"/>
         <source>The ssh-keygen binary crashed.</source>
-        <translation type="unfinished"></translation>
+        <translation>De ssh-keygen binary is gebroken.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="10834"/>
         <source>ssh-keygen program error</source>
-        <translation type="unfinished"></translation>
+        <translation>ssh-keygen programma fout</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="10835"/>
         <source>The ssh-keygen binary did not exit cleanly.</source>
-        <translation type="unfinished"></translation>
+        <translation>De ssh-keygen binary is niet juist afgesloten.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="10837"/>
         <source>It was probably called with unknown arguments.</source>
-        <translation type="unfinished"></translation>
+        <translation>Het programma is waarschijnlijk aangeroepen met onbekende argumenten.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="10896"/>
         <source>Unable to open newly generated %1 public host key file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Niet mogelijk om de nieuw aangemaakte %1 publieke host sleutel aan te maken.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="10916"/>
         <source>%1 public host key file empty.</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 publieke host sleutel bestand leeg.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="12544"/>
@@ -2269,7 +2279,11 @@ These features require a running and functioning SSH server on your computer.
 &lt;b&gt;Printing and File Sharing will be disabled for this session.&lt;/b&gt;
 
 </source>
-        <translation type="unfinished"></translation>
+        <translation>U heeft remote printen en delen van mappen ingeschakeld.
+Voor deze opties is het noodzakelijk dat er een SSH server actief is op uw systeem.
+&lt;b&gt;Printen en het delen van mappen zijn uitgeschakeld voor deze sessie.&lt;/b&gt;
+
+</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="12548"/>
@@ -2277,7 +2291,10 @@ These features require a running and functioning SSH server on your computer.
 
 If you see this message, please report a bug on:
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Normaal gesproken zou dit niet voor mogen komen omdat de X2Go client voor Windows is voorzien van een eigen interne SSH server.
+
+Als u dit bericht ziet wilt u deze foutmelding dan aub kenbaar maken op:
+</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="12553"/>
@@ -2285,14 +2302,16 @@ If you see this message, please report a bug on:
 
 Please report a bug on:
 </source>
-        <translation type="unfinished"></translation>
+        <translation>SSH server kon niet gestart worden.
+
+Als u dit bericht ziet wilt u deze foutmelding dan aub kenbaar maken op:</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="12557"/>
         <location filename="../../src/onmainwindow.cpp" line="12589"/>
         <source>&lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
 </source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="12579"/>
@@ -2300,7 +2319,9 @@ Please report a bug on:
 
 If you see this message, please report a bug on:
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Normaal gesproken zou dit niet voor mogen komen omdat de X2Go client voor Windows is voorzien van een eigen interne SSH server die automatisch de vereiste sleutels aanmaakt.
+
+Als u dit bericht ziet wilt u deze foutmelding dan aub kenbaar maken op:</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="12585"/>
@@ -2308,7 +2329,9 @@ If you see this message, please report a bug on:
 
 Please report a bug on:
 </source>
-        <translation type="unfinished"></translation>
+        <translation>X2Go Client kon geen SSH sleutels aanmaken.
+
+Als u dit bericht ziet wilt u deze foutmelding dan aub kenbaar maken op:</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="12617"/>
@@ -2865,7 +2888,7 @@ Niet opgeslagen documenten zullen verloren gaan</translation>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="8810"/>
         <source>&lt;br&gt;X2Go Plugin mode was sponsored by &lt;a href=&quot;http://www.foss-group.de/&quot;&gt;FOSS-Group GmbH (Freiburg)&lt;/a&gt;&lt;br&gt;</source>
-        <translation type="unfinished">&lt;br&gt;X2Go Plugin mode was sponsored by &lt;a href=&quot;http://www.foss-group.de/&quot;&gt;FOSS-Group GmbH (Freiburg)&lt;/a&gt;&lt;br&gt;</translation>
+        <translation>&lt;br&gt;X2Go Plugin mode is gesponsord door &lt;a href=&quot;http://www.foss-group.de/&quot;&gt;FOSS-Group GmbH (Freiburg)&lt;/a&gt;&lt;br&gt;</translation>
     </message>
     <message>
         <source>&lt;br&gt;This is a client to access the X2Go network-based computing environment. This client will be able to connect to X2Go Server(s) and start, stop, resume and terminate (running) desktop sessions. X2Go Client stores different server connections and may automatically request authentication data from LDAP directories. Furthermore, it can be used as a fullscreen login screen (replacement for login managers like XDM). Please visit &lt;a href=&quot;http://www.x2go.org&quot;&gt;the project home page at x2go.org&lt;/a&gt; for further information.</source>
@@ -3434,7 +3457,7 @@ u kunt sshd installeren met
     <message>
         <location filename="../../src/printdialog.cpp" line="63"/>
         <source>You may reactivate this dialog using the X2Go Client settings dialog. To do so, follow this path in the menu bar: Options -&gt; Settings</source>
-        <translation type="unfinished">U kunt deze dialoog opnieuw activeren via de X2Go Client instellingen dialoog (Menu -&gt; Opties -&gt; Instellingen)</translation>
+        <translation>U kunt deze dialoog opnieuw activeren via de X2Go Client instellingen dialoog. Via menu -&gt; Opties -&gt; Instellingen</translation>
     </message>
     <message>
         <source>You may reactivate this dialog using the X2Go Client settings dialog. To do so, follow this path in the menu bar: Options -&gt; Settings</source>
@@ -3643,17 +3666,17 @@ Voorbeeld:
     <message>
         <location filename="../../src/pulsemanager.cpp" line="150"/>
         <source>Could not allocate buffer for getting current working directory!</source>
-        <translation type="unfinished"></translation>
+        <translation>Kon geen buffer toewijzen voor verkrijgen huidige directory!</translation>
     </message>
     <message>
         <location filename="../../src/pulsemanager.cpp" line="162"/>
         <source>getcwd() failed!</source>
-        <translation type="unfinished"></translation>
+        <translation>getcwd() mislukt!</translation>
     </message>
     <message>
         <location filename="../../src/pulsemanager.cpp" line="931"/>
         <source>PulseAudio failed to start!</source>
-        <translation type="unfinished"></translation>
+        <translation>Starten van PulseAudio mislukt!</translation>
     </message>
     <message>
         <location filename="../../src/pulsemanager.cpp" line="411"/>
@@ -3666,69 +3689,71 @@ Voorbeeld:
         <location filename="../../src/pulsemanager.cpp" line="540"/>
         <location filename="../../src/pulsemanager.cpp" line="547"/>
         <source>Error fetching PulseAudio version number!</source>
-        <translation type="unfinished"></translation>
+        <translation>Fout bij ophalen PulseAudio versie nummer!</translation>
     </message>
     <message>
         <location filename="../../src/pulsemanager.cpp" line="412"/>
         <source>Unexpected character found when parsing version string for major version number</source>
-        <translation type="unfinished"></translation>
+        <translation>Onverwacht karakter gevonden bij ontleden van versie string voor major versienummer</translation>
     </message>
     <message>
         <location filename="../../src/pulsemanager.cpp" line="437"/>
         <source>Unexpected character found when parsing version string for minor version number</source>
-        <translation type="unfinished"></translation>
+        <translation>Onverwacht karakter gevonden bij ontleden van versie string voor minor versienummer</translation>
     </message>
     <message>
         <location filename="../../src/pulsemanager.cpp" line="455"/>
         <source>Unexpected character found when parsing version string for micro version number</source>
-        <translation type="unfinished"></translation>
+        <translation>Onverwacht karakter gevonden bij ontleden van versie string voor micro versienummer</translation>
     </message>
     <message>
         <location filename="../../src/pulsemanager.cpp" line="470"/>
         <source>Supposed to skip major version number. Something is wrong.</source>
-        <translation type="unfinished"></translation>
+        <translation>Verondersteld om major versienummer over te slaan. Er is iets fout.</translation>
     </message>
     <message>
         <location filename="../../src/pulsemanager.cpp" line="484"/>
         <source>Unable to convert major version number string to integer.</source>
-        <translation type="unfinished"></translation>
+        <translation>Converteren van major versienummer string naar geheel getal niet mogelijk.</translation>
     </message>
     <message>
         <location filename="../../src/pulsemanager.cpp" line="502"/>
         <source>Unable to convert minor version number string to integer.</source>
-        <translation type="unfinished"></translation>
+        <translation>Converteren van minor versienummer string naar geheel getal niet mogelijk.</translation>
     </message>
     <message>
         <location filename="../../src/pulsemanager.cpp" line="516"/>
         <source>Unable to convert micro version number string to integer.</source>
-        <translation type="unfinished"></translation>
+        <translation>Converteren van micro versienummer string naar geheel getal niet mogelijk.</translation>
     </message>
     <message>
         <location filename="../../src/pulsemanager.cpp" line="541"/>
         <source>Unexpected format encountered.</source>
-        <translation type="unfinished"></translation>
+        <translation>Onverwacht formaat gevonden.</translation>
     </message>
     <message>
         <location filename="../../src/pulsemanager.cpp" line="548"/>
         <source>Unable to start PulseAudio binary.</source>
-        <translation type="unfinished"></translation>
+        <translation>Starten van PulseAudio binary niet mogelijk.</translation>
     </message>
     <message>
         <location filename="../../src/pulsemanager.cpp" line="928"/>
         <source>Unable to play startup sound.</source>
-        <translation type="unfinished"></translation>
+        <translation>Afspelen van opstartgeluid niet mogelijk.</translation>
     </message>
     <message>
         <location filename="../../src/pulsemanager.cpp" line="932"/>
         <source>Sound support will not be available.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ondersteuning voor geluid niet beschikbaar.</translation>
     </message>
     <message>
         <location filename="../../src/pulsemanager.cpp" line="935"/>
         <source>If you downloaded the bundled, pre-compiled version from the official home page or the upstream Linux packages, please report a bug on:
 &lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Als u de gebundelde, voorgecompileerde versie van de officiële home pagina of van de upstream Linux pakketten heeft gedownload, geef aub een bug door op:
+&lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
+</translation>
     </message>
 </context>
 <context>
@@ -3789,7 +3814,7 @@ This will most likely be
 &lt;center&gt;&lt;b&gt;/Applications/MacPorts/X11.app&lt;/b&gt;&lt;/center&gt;
 or
 &lt;center&gt;&lt;b&gt;/Applications/Utilities/XQuartz.app&lt;/b&gt;&lt;/center&gt;</source>
-        <translation type="unfinished">MacPorts users, please install either the port &lt;b&gt;xorg-server&lt;/b&gt;
+        <translation>MacPorts users, please install either the port &lt;b&gt;xorg-server&lt;/b&gt;
 or the port &lt;b&gt;xorg-server-devel&lt;/b&gt;.
 Upon successful installation, please follow the instructions printed
 by the port utility to autostart/load the server.
@@ -4063,7 +4088,7 @@ X2Go Client in verborgen modus gebruiken?</translation>
     <message>
         <location filename="../../src/sessionwidget.cpp" line="87"/>
         <source>Values ranging from &lt;b&gt;0&lt;/b&gt; to &lt;b&gt;65535&lt;/b&gt; are allowed.&lt;br /&gt;A value of &lt;b&gt;0&lt;/b&gt; will either use the port specified in the SSH configuration file belonging to a host or shortname, or use the default of &lt;b&gt;22&lt;/b&gt;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Waardes tussen &lt;b&gt;0&lt;/b&gt; tot &lt;b&gt;65535&lt;/b&gt; zijn toegestaan.&lt;br /&gt;Een waarde van &lt;b&gt;0&lt;/b&gt; zal de poort gebruiken zoals bepaald in het SSH configuratie bestand behorend tot een hostnaam, of gebruikt de standaaard waarde van &lt;b&gt;22&lt;/b&gt;.</translation>
     </message>
     <message>
         <location filename="../../src/sessionwidget.cpp" line="122"/>
@@ -4169,7 +4194,7 @@ X2Go Client in verborgen modus gebruiken?</translation>
     <message>
         <location filename="../../src/sessionwidget.cpp" line="383"/>
         <source>Direct XDMCP connection</source>
-        <translation type="unfinished"></translation>
+        <translation>Direct XDMCP connectie</translation>
     </message>
     <message>
         <source>ssh-agent or default ssh key</source>
@@ -4300,7 +4325,7 @@ maar bent</translation>
     <message>
         <location filename="../../src/sessionwidget.cpp" line="526"/>
         <source>direct XDMCP connection</source>
-        <translation type="unfinished"></translation>
+        <translation>direct XDMCP connectie</translation>
     </message>
     <message>
         <location filename="../../src/sessionwidget.cpp" line="547"/>
@@ -4503,7 +4528,7 @@ sound system connections through firewalls</source>
     <message>
         <location filename="../../src/settingswidget.cpp" line="233"/>
         <source>XDMCP client</source>
-        <translation type="unfinished"></translation>
+        <translation>XDMCP client</translation>
     </message>
     <message>
         <location filename="../../src/settingswidget.cpp" line="534"/>
@@ -4639,7 +4664,7 @@ sound system connections through firewalls</source>
     <message>
         <location filename="../../src/sshmasterconnection.cpp" line="205"/>
         <source>Using environment-provided username.</source>
-        <translation type="unfinished"></translation>
+        <translation>Gebruikt door systeem voorziene gebruikersnaam.</translation>
     </message>
     <message>
         <location filename="../../src/sshmasterconnection.cpp" line="618"/>
