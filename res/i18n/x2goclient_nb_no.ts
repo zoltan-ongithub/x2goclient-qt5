@@ -689,23 +689,23 @@ Noen vanlige lokasjoner er:
     </message>
     <message>
         <source>Shows git information as used at compile time. [Deprecated: please use --version.]</source>
-        <translation type="unfinished"></translation>
+        <translation>Hvis git informasjon som ble brukt ved kompilering. [Avlegs: bruk heller  --version.] </translation>
     </message>
     <message>
         <source>Shows available pack methods.</source>
-        <translation type="unfinished"></translation>
+        <translation>Viser tilgjengelige pakke-metoder.</translation>
     </message>
     <message>
         <source>Do not resume sessions automatically.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ikke gjennoppta økter automatisk.</translation>
     </message>
     <message>
         <source>Hides menu bar.</source>
-        <translation type="unfinished"></translation>
+        <translation>Skjuler menylinja.</translation>
     </message>
     <message>
         <source>Disables session editing.</source>
-        <translation type="unfinished"></translation>
+        <translation>Fjerner mulighet for å redigerer økter.</translation>
     </message>
     <message>
         <source>Starts maximized.</source>
@@ -713,27 +713,27 @@ Noen vanlige lokasjoner er:
     </message>
     <message>
         <source>Starts hidden (minimized to system tray where available.)</source>
-        <translation type="unfinished"></translation>
+        <translation>Starter skjult (minimalisert til systemkurven, om tilgjengelig.)</translation>
     </message>
     <message>
         <source>Starts in &quot;portable&quot; mode.</source>
-        <translation type="unfinished"></translation>
+        <translation>Starter i &quot;flyttbar&quot; modus.</translation>
     </message>
     <message>
         <source>Forces OpenPGP smart card authentication.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tvinger OpenPGP smartcard modus.</translation>
     </message>
     <message>
         <source>Enables Xinerama by default.</source>
-        <translation type="unfinished"></translation>
+        <translation>Skrur på Xinerama som standard.</translation>
     </message>
     <message>
         <source>Allows client side printing in LDAP mode.</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Enables thinclient mode. Starts without a window manager.</source>
-        <translation type="unfinished"></translation>
+        <translation>Skrur på tynnklientmodus. Starer uten en vindusbehandler.</translation>
     </message>
     <message>
         <source>Enables shutdown button.</source>
@@ -741,11 +741,11 @@ Noen vanlige lokasjoner er:
     </message>
     <message>
         <source>Adds RSA key fingerprint to &quot;.ssh/known_hosts&quot; if authenticity of the server can&apos;t be determined.</source>
-        <translation type="unfinished"></translation>
+        <translation>Legger RSA nøkkel fingeravtrykk til &quot;.ssh/known_hosts&quot; hvis autentisiteten til serveren ikke kan fastslås.</translation>
     </message>
     <message>
         <source>Starts with LDAP support. Example: --ldap=ldapserver:389:o=organization,c=de</source>
-        <translation type="unfinished"></translation>
+        <translation>Starter med LDA støtte. ksempel: --ldap=ldapserver:389:o=organization,c=de</translation>
     </message>
     <message>
         <source>Defines the first LDAP failover server.</source>
@@ -761,11 +761,11 @@ Noen vanlige lokasjoner er:
     </message>
     <message>
         <source>Defines the local machine&apos;s SSH server port. Needed for Client-Side Printing and File Sharing support. Default: 22.</source>
-        <translation type="unfinished"></translation>
+        <translation>Definerer porten på lokal maskin som brukes for SSH server. Dette trengs for å kunne skrive ut lokalt, og for fildeling. Standard er: 22.</translation>
     </message>
     <message>
         <source>Sets the default command. Default: &apos;KDE&apos; (Desktop Session)</source>
-        <translation type="unfinished"></translation>
+        <translation>Setter standard kommando. Standard er &apos;KDE&apos; (Skriverbordsøkt)</translation>
     </message>
     <message>
         <source>Starts the session named &quot;session&quot;.</source>
@@ -773,7 +773,7 @@ Noen vanlige lokasjoner er:
     </message>
     <message>
         <source>Sets the user name for connecting to the remote SSH server to &quot;username&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Setter brukernavnet som brukes for å koble til SSH-server til &quot;username&quot;</translation>
     </message>
     <message>
         <source>Sets the default window geometry. Default: 800x600.</source>
@@ -781,19 +781,19 @@ Noen vanlige lokasjoner er:
     </message>
     <message>
         <source>Sets the remote X2Go Agent&apos;s DPI value to &quot;dpi&quot;. Default: same as local display.</source>
-        <translation type="unfinished"></translation>
+        <translation>Setter ekstern X2GO Agent sin DPI-verdi til &apos;dpi&apos;. Standard: samme som lokalt.</translation>
     </message>
     <message>
         <source>Sets the default link type. Default: &quot;adsl&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Setter standard oppkoblingstype. Standard: &quot;adsl&quot;.</translation>
     </message>
     <message>
         <source>Sets default pack method. Default: &quot;16m-jpeg-9&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Setter standard kompresjons metode. Standard:&quot;16m-jpeg-9&quot;. </translation>
     </message>
     <message>
         <source>Sets the default clipboard mode. Default: &quot;both&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Setter stanard klippebord modus. Standard: &quot;begge&quot;.</translation>
     </message>
     <message>
         <source>Sets the default keyboard layout to &quot;layout&quot;. &quot;layout&quot; may be a comma-separated list.</source>
@@ -801,11 +801,11 @@ Noen vanlige lokasjoner er:
     </message>
     <message>
         <source>Sets the default keyboard type.</source>
-        <translation type="unfinished"></translation>
+        <translation>Setter standard tastaturtype.</translation>
     </message>
     <message>
         <source>Sets the user&apos;s home directory.</source>
-        <translation type="unfinished"></translation>
+        <translation>Setter brukerens hjemområde.</translation>
     </message>
     <message>
         <source>Enables or disables overwriting the current keyboard settings.</source>
@@ -817,23 +817,23 @@ Noen vanlige lokasjoner er:
     </message>
     <message>
         <source>Defines an alternative session config file path.</source>
-        <translation type="unfinished"></translation>
+        <translation>Definerer stien til en alternativ økt-konfigurasfil.</translation>
     </message>
     <message>
         <source>Force-enables session system tray icon.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tvinger bruk av ikon i oppgavekurven.</translation>
     </message>
     <message>
         <source>Automatically closes X2Go Client after a disconnect.</source>
-        <translation type="unfinished"></translation>
+        <translation>Lukker X2GO automatisk etter avslutting.</translation>
     </message>
     <message>
         <source>Hides all Folder-Sharing-related options.</source>
-        <translation type="unfinished"></translation>
+        <translation>Skjuler alle valg som har med fildeling å gjøre.</translation>
     </message>
     <message>
         <source>Sets the broker name to display in X2Go Client. This parameter is optional.</source>
-        <translation type="unfinished"></translation>
+        <translation>Setter meglernavnet som visningsnavn i X2GO klienten. Dette er valgfritt.</translation>
     </message>
     <message>
         <source>Sets the path to an SSH key to use for authentication against an SSH session broker. The client&apos;s behavior is undefined if this flag is used for non-SSH session brokers.</source>
@@ -861,11 +861,11 @@ Noen vanlige lokasjoner er:
     </message>
     <message>
         <source>Use a custom/branded background image (SVG format) for X2Go Client&apos;s main window. If a directory is given, will randomly pick an SVG file inside of it.</source>
-        <translation type="unfinished"></translation>
+        <translation>Bruk et eget bakgrunnsbild (SVG format) for egenreklame i X2GO klienten sitt hovedvindu. Hvis en mappe oppgis, så vil en tilfldig valgt SVG fil bli brukt.</translation>
     </message>
     <message>
         <source>Use a custom icon (SVG format) for additional branding to replace the default in the lower left corner of X2Go Client&apos;s main window.</source>
-        <translation type="unfinished"></translation>
+        <translation>Bruk et eget ikon (SVG format) for egenreklame, bytter ut ikonet som er nede i venstre hjørne i X2GO klienten sitt hovedvindu.</translation>
     </message>
 </context>
 <context>
@@ -2803,7 +2803,7 @@ authorized_keys fil.</translation>
     </message>
     <message>
         <source>Unable to find the sftp-server binary. Neither bundled, nor found in $PATH nor additional directories.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kunne ikke finne sftp-binæren. Fant den verken inkludert, eller i $PATH eller i ekstra-mapper.</translation>
     </message>
     <message>
         <source>If you are using a Linux-based operating system, please ask your system administrator to install the package containing the sftp-server binary. Common names are &lt;b&gt;openssh&lt;/b&gt;, &lt;b&gt;openssh-server&lt;/b&gt; or &lt;b&gt;openssh-sftp-server&lt;/b&gt; depending upon distribution.
@@ -2811,7 +2811,9 @@ authorized_keys fil.</translation>
 If the sftp-server binary is installed on your system, please report a bug mentioning its path on:
 &lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Hvis du bruker et Linux-basert operativsystem, så be din administrator om å installere pakken som inneholder sftp-server-binæren. Vanlige navn er &lt;b&gt;openssh&lt;/b&gt;, &lt;b&gt;openssh-server&lt;/b&gt; eller &lt;b&gt;openssh-sftp-server&lt;/b&gt;avhengig av Linux-distribusjon.
+
+Hvis sftp-server-binæren faktisk er installert, venligst rapprter dette som en feil, og oppgi hvor den er installert på:&lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center   </translation>
     </message>
     <message>
         <source>SSH key type selection error</source>
@@ -2827,11 +2829,11 @@ If the sftp-server binary is installed on your system, please report a bug menti
     </message>
     <message>
         <source>SSH key base directory creation error</source>
-        <translation type="unfinished"></translation>
+        <translation>Feil ved oppretting av mappe for SSH nøkler</translation>
     </message>
     <message>
         <source>Unable to create SSH key base directory &apos;%1&apos;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kunne ikke opprette mappe for SSH nøkler &apos;%1&apos;.</translation>
     </message>
     <message>
         <source>ssh-keygen launching error</source>
@@ -2875,14 +2877,18 @@ These features require a running and functioning SSH server on your computer.
 &lt;b&gt;Printing and File Sharing will be disabled for this session.&lt;/b&gt;
 
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Du har aktivert fjern-utskrift eller fjern-fildeling. 
+Disse valgene krever en kjørende og fungerende SSH-server på din datamaskin.
+&lt;b&gt;Utskrift og fildeling vil ikke være skrudd på for denne økten.&lt;/b&gt;</translation>
     </message>
     <message>
         <source>Normally, this should not happen as X2Go Client for Windows ships its own internal SSH server.
 
 If you see this message, please report a bug on:
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Dette skal vanligvis ikke skje, siden X2GO klienten for Windows kommer med egen innebygd SSH-server.
+
+Hvis du ser denne meldingen, så rapporter dette som feil på:</translation>
     </message>
     <message>
         <source>The SSH server failed to start.
@@ -2896,14 +2902,16 @@ Rapporter dette som en feil på:</translation>
     <message>
         <source>&lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
 </source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center</translation>
     </message>
     <message>
         <source>Normally, this should not happen as X2Go Client for Windows ships its own internal SSH server and automatically generates the required keys.
 
 If you see this message, please report a bug on:
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Dette skal vanligvis ikke skje, siden X2GO klienten for Windows kommer med egen innebygd SSH-server, og automatisk lager nødvendige nøkler.
+
+Hvis du ser denne meldingen, så rapporter dette som feil på:</translation>
     </message>
     <message>
         <source>X2Go Client was unable to create SSH host keys.
@@ -2920,19 +2928,19 @@ Rapporter dette som en feil på:</translation>
     </message>
     <message>
         <source>Your current color depth is different from the session&apos;s color depth. This may cause problems reconnecting to this session and in most cases &lt;b&gt;you will loose the session&lt;/b&gt; and have to start a new one! </source>
-        <translation type="unfinished"></translation>
+        <translation>Din fargedybde er forskjellig fra den i økten. Dette kan lage problemer når du kobler til økten igjen, og vil i de fleste tilfeller føre til at du &lt;b&gt;mister økten &lt;/b&gt; og du må da starte en ny økt!</translation>
     </message>
     <message numerus="yes">
         <source>It&apos;s highly recommended to change the color depth of your display to %n bit(s) and restart your X.Org Server before you reconnect to this X2Go session.</source>
         <comment>%n will be replaced with a number</comment>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Det  anbefales at du endrer fargedybden til %n bit(er), og deretter restarter din X.Org-server før du kobler til din X2GO økt.</numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
     <message>
         <source>&lt;br /&gt;Do you want to resume this session anyway?</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;br /&gt;Vil du gjennoppta denne økten allikevel?</translation>
     </message>
     <message>
         <source>Failed to start RDP or XMDCP client</source>
@@ -2940,7 +2948,7 @@ Rapporter dette som en feil på:</translation>
     </message>
     <message>
         <source>Check session settings and ensure that selected client is installed on your system.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kontroller innstillingene for økten, og sjekk at den aktuelle klienten er installert på ditt system.</translation>
     </message>
     <message>
         <source>XDM</source>
@@ -2956,7 +2964,7 @@ Rapporter dette som en feil på:</translation>
     </message>
     <message>
         <source>Sound output will be disabled for this session. Please enable PulseAudio in the configuration dialog or disable sound in the session settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Avspilling av lyd vil ikke være mulig for denne økten. Du må enten skru på PulseAudio i ditt oppsett, eller skru av lyd i dine økt-innstillinger.</translation>
     </message>
     <message>
         <source>libssh initialization failure</source>
@@ -3180,37 +3188,37 @@ Eksempel:
     <message>
         <source>Unexpected character found when parsing version string for major version number</source>
         <comment>Please mention &quot;major&quot; (translated if necessary) as well.</comment>
-        <translation type="unfinished">Uventet tegn funnet i versjonsnummer</translation>
+        <translation>Uventet tegn funnet i &quot;major&quot;-versjonsnummer</translation>
     </message>
     <message>
         <source>Unexpected character found when parsing version string for minor version number</source>
         <comment>Please mention &quot;minor&quot; (translated if necessary) as well.</comment>
-        <translation type="unfinished">Uventet tegn funnet i versjonsnummer</translation>
+        <translation>Uventet tegn funnet i &quot;minor&quot;-versjonsnummer</translation>
     </message>
     <message>
         <source>Unexpected character found when parsing version string for micro version number</source>
         <comment>Please mention &quot;micro&quot; (translated if necessary) as well.</comment>
-        <translation type="unfinished">Uventet tegn funnet i versjonsnummer</translation>
+        <translation>Uventet tegn funnet i &quot;micro&quot;-versjonsnummer</translation>
     </message>
     <message>
         <source>Supposed to skip major version number. Something is wrong.</source>
         <comment>Please mention &quot;major&quot; (translated if necessary) as well.</comment>
-        <translation type="unfinished">Skal hoppe over versjonsnummer. Noe er feil.</translation>
+        <translation>Skal hoppe over &quot;major&quot;-versjonsnummer. Noe er feil.</translation>
     </message>
     <message>
         <source>Unable to convert major version number string to integer.</source>
         <comment>Please mention &quot;major&quot; (translated if necessary) as well.</comment>
-        <translation type="unfinished">Kunne ikke konvertere versjonsnummer til heltall.</translation>
+        <translation>Kunne ikke konvertere &quot;major&quot;-versjonsnummer til heltall.</translation>
     </message>
     <message>
         <source>Unable to convert minor version number string to integer.</source>
         <comment>Please mention &quot;minor&quot; (translated if necessary) as well.</comment>
-        <translation type="unfinished">Kunne ikke konvertere versjonsnummer til heltall.</translation>
+        <translation>Kunne ikke konvertere &quot;minor&quot;-versjonsnummer til heltall.</translation>
     </message>
     <message>
         <source>Unable to convert micro version number string to integer.</source>
         <comment>Please mention &quot;micro&quot; (translated if necessary) as well.</comment>
-        <translation type="unfinished">Kunne ikke konvertere versjonsnummer til heltall.</translation>
+        <translation>Kunne ikke konvertere &quot;micro&quot;-versjonsnummer til heltall.</translation>
     </message>
     <message>
         <source>Unexpected format encountered.</source>
