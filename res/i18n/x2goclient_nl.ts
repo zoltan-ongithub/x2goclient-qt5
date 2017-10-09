@@ -335,7 +335,7 @@
     <message>
         <location filename="../../src/configdialog.cpp" line="344"/>
         <source>Disable PulseAudio</source>
-        <translation type="unfinished"></translation>
+        <translation>PulseAudio uitschakelen</translation>
     </message>
     <message>
         <location filename="../../src/configdialog.cpp" line="345"/>
@@ -826,7 +826,7 @@ Locaties voor installatie kunnen de volgende zijn:
     <message>
         <location filename="../../src/help.cpp" line="106"/>
         <source>Shows git information as used at compile time. [Deprecated: please use --version.]</source>
-        <translation>Toont git informatie als gebruikt tijdens compile tijd. [Verouders: gebruik aub --version.]</translation>
+        <translation>Toont git informatie als gebruikt tijdens compile tijd. [Verouderd: gebruik aub --version.]</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="109"/>
@@ -871,12 +871,12 @@ Locaties voor installatie kunnen de volgende zijn:
     <message>
         <location filename="../../src/help.cpp" line="121"/>
         <source>Disable PulseAudio.</source>
-        <translation type="unfinished"></translation>
+        <translation>PulseAudio uitschakelen.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="122"/>
         <source>Disable sound input.</source>
-        <translation type="unfinished"></translation>
+        <translation>Geluidsinvoer uitschakelen.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="124"/>
@@ -932,7 +932,7 @@ Locaties voor installatie kunnen de volgende zijn:
         <location filename="../../src/help.cpp" line="134"/>
         <source>Sets the default command. Default: &apos;KDE&apos; (Desktop Session)</source>
         <comment>That looks like it translates to &quot;default setting&quot; - the &quot;command&quot; part seems to be missing. You can delete this comment after revisiting this.</comment>
-        <translation type="unfinished">Standaard instelling. Standaard: &apos;KDE&apos; (Desktop sessie_</translation>
+        <translation>Instelling voor standaard commando. Standaard: &apos;KDE&apos; (Desktop sessie)</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="135"/>
@@ -1032,22 +1032,22 @@ Locaties voor installatie kunnen de volgende zijn:
     <message>
         <location filename="../../src/help.cpp" line="160"/>
         <source>Does not ask for user credentials during session broker authentication. This can be useful if you are using an HTTP(S) session broker without authentication. If you run an HTTP(S) server without authentication, but with user-specific profiles, then put the user name into the broker URL (refer to --broker-url.) The user name then will be extracted from the broker URL and be sent to the session broker. The client&apos;s behavior is undefined if this flag is used for non-HTTP(S) session brokers.</source>
-        <translation>Wordt niet om inloggegevens gevraagd tijden authenticatie met sessie broker. Dit kan nuttig zijn als een HTTP(S) sessie broker in gebruik is zonder authenticatie. Als u een HTTP(S) server gebruikt zonder authenticatie, maar met specifieke gebruikersprofielen, plaats dan de gebruikersnaam in de broker URL. (Verwijs naar --broker-url.). De gebruikersnaam zal dan worden afgeleid uit de broker URL en naar de sessie broker worden verzonden. Deze client instelling is niet actief bij gebruik van niet HTTP(S) sessie brokers.</translation>
+        <translation>Wordt niet om inloggegevens gevraagd tijdens authenticatie met sessie broker. Dit kan nuttig zijn als een HTTP(S) sessie broker in gebruik is zonder authenticatie. Als u een HTTP(S) server gebruikt zonder authenticatie, maar met specifieke gebruikersprofielen, plaats dan de gebruikersnaam in de broker URL. (Verwijs naar --broker-url.). De gebruikersnaam zal dan worden afgeleid uit de broker URL en naar de sessie broker worden verzonden. Deze client instelling is niet actief bij gebruik van niet HTTP(S) sessie brokers.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="161"/>
         <source>Use broker credentials as session user/password credentials when using broker mode with broker authentication. Currently only affects direct RDP sessions.</source>
-        <translation type="unfinished"></translation>
+        <translation>Gebruik de broker gebruikersgegevens zoals gebruiker/wachtwoord wanneer de broker met broker authenticatie in gebruik is. Betreft momenteel alleen direct RDP sessies. </translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="162"/>
         <source>Use a custom/branded background image (SVG format) for X2Go Client&apos;s main window. If a directory is given, will randomly pick an SVG file inside of it.</source>
-        <translation type="unfinished"></translation>
+        <translation>Gebruik een eigen achtergrondafbeelding (SVG formaat) voor het hoofdvenster van de X2Go Client. Als een directory is opgegeven, zal een willekeurig bestand gekozen worden. </translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="163"/>
         <source>Use a custom icon (SVG format) for additional branding to replace the default in the lower left corner of X2Go Client&apos;s main window.</source>
-        <translation type="unfinished"></translation>
+        <translation>Gebruik een eigen icoon (SVG formaat) voor het personaliseren en ter vervanging van het standaard icoon links onderin het hoofdvenster van de X2Go Client.</translation>
     </message>
 </context>
 <context>
@@ -1266,18 +1266,18 @@ Publieke sleutel hash: </translation>
     <message>
         <location filename="../../src/InteractionDialog.cpp" line="73"/>
         <source>Terminal output:</source>
-        <translation type="unfinished"></translation>
+        <translation>Terminal uitvoer:</translation>
     </message>
     <message>
         <location filename="../../src/InteractionDialog.cpp" line="80"/>
         <location filename="../../src/InteractionDialog.cpp" line="117"/>
         <source>Cancel</source>
-        <translation type="unfinished">Annuleren</translation>
+        <translation>Annuleren</translation>
     </message>
     <message>
         <location filename="../../src/InteractionDialog.cpp" line="149"/>
         <source>Reconnect</source>
-        <translation type="unfinished">Opnieuw verbinden</translation>
+        <translation>Opnieuw verbinden</translation>
     </message>
 </context>
 <context>
@@ -1844,7 +1844,7 @@ Do you want to terminate the connection?
 </source>
         <translation>De host sleutel voor deze server is niet gevonden maar een ander type sleutel is aanwezig. Een aanvaller heeft mogelijk de standaard server sleutel aangepast en wil uw client misleiden door deze te laten geloven dat de sleutel niet bestaat.
 Vanwege veiligheidsoverwegingen is het aanbevolen om de verbinding te stoppen.
-Wilt u de verbinding afbreken?
+Wilt u de verbinding verbreken?
 </translation>
     </message>
     <message>
@@ -1860,12 +1860,12 @@ Wilt u de verbinding afbreken?
     <message>
         <location filename="../../src/onmainwindow.cpp" line="3651"/>
         <source>XDM</source>
-        <translation type="unfinished"></translation>
+        <translation>XDM</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="3657"/>
         <source>RDP</source>
-        <translation type="unfinished"></translation>
+        <translation>RDP</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="3916"/>
@@ -1917,9 +1917,9 @@ Wilt u de verbinding afbreken?
         <location filename="../../src/onmainwindow.cpp" line="5017"/>
         <source>It&apos;s highly recommended to change the color depth of your display to %n bit(s) and restart your X.Org Server before you reconnect to this X2Go session.</source>
         <comment>%n will be replaced with a number</comment>
-        <translation type="unfinished">
-            <numerusform>Het is ten zeerste aanbevolen om de kleurdiepte van uw scherm aan te passen naar %n bits en uw X.Org Server te herstarten voordat u een verbinding maakt met deze X2Go sessie.</numerusform>
-            <numerusform>Het is ten zeerste aanbevolen om de kleurdiepte van uw scherm aan te passen naar %n bit en uw X.Org Server te herstarten voordat u een verbinding maakt met deze X2Go sessie.</numerusform>
+        <translation>
+            <numerusform></numerusform>
+            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -1930,12 +1930,12 @@ Wilt u de verbinding afbreken?
     <message>
         <location filename="../../src/onmainwindow.cpp" line="5408"/>
         <source>PulseAudio is not running</source>
-        <translation type="unfinished"></translation>
+        <translation>PulseAudio is niet actief</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="5409"/>
         <source>Sound output will be disabled for this session. Please enable PulseAudio in the configuration dialog or disable sound in the session settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Uitvoer van geluid niet beschikbaar voor deze sessie. Activeer a.u.b. PulseAudio in het configuratie dialoogvenster of schakel geluid uit in de sessie instellingen</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="5937"/>
@@ -2348,12 +2348,12 @@ deze applicatie niet openen.</translation>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="12984"/>
         <source>libssh initialization failure</source>
-        <translation type="unfinished"></translation>
+        <translation>libssh initialisatie fout</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="12985"/>
         <source>Unable to initialize libssh.</source>
-        <translation type="unfinished"></translation>
+        <translation>Initialiseren van libssh niet mogelijk.</translation>
     </message>
     <message>
         <source>Left mouse button to hide/restore - Right mouse button to display context menu</source>
@@ -4695,7 +4695,7 @@ sound system connections through firewalls</source>
     <message>
         <location filename="../../src/sshmasterconnection.cpp" line="1790"/>
         <source>Reconnect session</source>
-        <translation type="unfinished"></translation>
+        <translation>Sessie opnieuw verbinden</translation>
     </message>
     <message>
         <location filename="../../src/sshmasterconnection.cpp" line="1900"/>
