@@ -2675,8 +2675,8 @@ Por razones de seguridad se recomienda finalizar la conexión.
         <source>It&apos;s highly recommended to change the color depth of your display to %n bit(s) and restart your X.Org Server before you reconnect to this X2Go session.</source>
         <comment>%n will be replaced with a number</comment>
         <translation>
-            <numerusform>Se recomienda cambiar la profundidad de color actual a %n bit(s) y reiniciar el servidor X Org antes de reconectar a esta sesión X2Go.</numerusform>
-            <numerusform></numerusform>
+            <numerusform>Se recomienda cambiar la profundidad de color actual a %n bit y reiniciar el servidor X Org antes de reconectar a esta sesión X2Go.</numerusform>
+            <numerusform>Se recomienda cambiar la profundidad de color actual a %n bits y reiniciar el servidor X Org antes de reconectar a esta sesión X2Go.</numerusform>
         </translation>
     </message>
     <message>
