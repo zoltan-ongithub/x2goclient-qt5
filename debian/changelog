@@ -204,6 +204,8 @@ x2goclient (4.1.1.0-0x2go1) UNRELEASED; urgency=medium
     - res/i18n/x2goclient_es.ts: fixup Spanish translation file.
     - res/i18n/x2goclient_et.ts: fixup some typos in the Estonian translation
       file.
+    - res/i18n/x2goclient_sv.ts: add singular form to translation entry as
+      discussed on list.
   * x2goclient.spec:
     - Respect %{optflags} and pass QMAKE_STRIP=: to fix missing debug info
       issues.

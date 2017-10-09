@@ -1930,8 +1930,8 @@ Vill du avsluta anslutningen?
         <source>It&apos;s highly recommended to change the color depth of your display to %n bit(s) and restart your X.Org Server before you reconnect to this X2Go session.</source>
         <comment>%n will be replaced with a number</comment>
         <translation>
+            <numerusform>Det är starkt rekommenderat att ändra färgdjup till %n bit och starta om din X.Org Server innan du återansluter till denna X2Go-session.</numerusform>
             <numerusform>Det är starkt rekommenderat att ändra färgdjup till %n bitar och starta om din X.Org Server innan du återansluter till denna X2Go-session.</numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message>
