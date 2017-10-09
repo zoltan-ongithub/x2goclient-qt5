@@ -2927,6 +2927,7 @@ Rapporter dette som en feil på:</translation>
         <comment>%n will be replaced with a number</comment>
         <translation type="unfinished">
             <numerusform></numerusform>
+            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -2935,7 +2936,7 @@ Rapporter dette som en feil på:</translation>
     </message>
     <message>
         <source>Failed to start RDP or XMDCP client</source>
-        <translation>Kunne ikke starte RDP eller XMDCP klient </translation>
+        <translation>Kunne ikke starte RDP eller XMDCP klient</translation>
     </message>
     <message>
         <source>Check session settings and ensure that selected client is installed on your system.</source>
@@ -2959,11 +2960,11 @@ Rapporter dette som en feil på:</translation>
     </message>
     <message>
         <source>libssh initialization failure</source>
-        <translation>start av libssh feilet </translation>
+        <translation>start av libssh feilet</translation>
     </message>
     <message>
         <source>Unable to initialize libssh.</source>
-        <translation>Kunne ikke starte libssh. </translation>
+        <translation>Kunne ikke starte libssh.</translation>
     </message>
 </context>
 <context>
@@ -3162,7 +3163,7 @@ Eksempel:
     <name>PulseManager</name>
     <message>
         <source>Could not allocate buffer for getting current working directory!</source>
-        <translation>Kunne ikke allokere nok buffer for å finne gjeldene arbeidsmappe! </translation>
+        <translation>Kunne ikke allokere nok buffer for å finne gjeldene arbeidsmappe!</translation>
     </message>
     <message>
         <source>getcwd() failed!</source>
@@ -3178,31 +3179,38 @@ Eksempel:
     </message>
     <message>
         <source>Unexpected character found when parsing version string for major version number</source>
-        <translation>Uventet tegn funnet i versjonsnummer</translation>
+        <comment>Please mention &quot;major&quot; (translated if necessary) as well.</comment>
+        <translation type="unfinished">Uventet tegn funnet i versjonsnummer</translation>
     </message>
     <message>
         <source>Unexpected character found when parsing version string for minor version number</source>
-        <translation>Uventet tegn funnet i versjonsnummer</translation>
+        <comment>Please mention &quot;minor&quot; (translated if necessary) as well.</comment>
+        <translation type="unfinished">Uventet tegn funnet i versjonsnummer</translation>
     </message>
     <message>
         <source>Unexpected character found when parsing version string for micro version number</source>
-        <translation>Uventet tegn funnet i versjonsnummer</translation>
+        <comment>Please mention &quot;micro&quot; (translated if necessary) as well.</comment>
+        <translation type="unfinished">Uventet tegn funnet i versjonsnummer</translation>
     </message>
     <message>
         <source>Supposed to skip major version number. Something is wrong.</source>
-        <translation>Skal hoppe over versjonsnummer. Noe er feil.</translation>
+        <comment>Please mention &quot;major&quot; (translated if necessary) as well.</comment>
+        <translation type="unfinished">Skal hoppe over versjonsnummer. Noe er feil.</translation>
     </message>
     <message>
         <source>Unable to convert major version number string to integer.</source>
-        <translation>Kunne ikke konvertere versjonsnummer til heltall.</translation>
+        <comment>Please mention &quot;major&quot; (translated if necessary) as well.</comment>
+        <translation type="unfinished">Kunne ikke konvertere versjonsnummer til heltall.</translation>
     </message>
     <message>
         <source>Unable to convert minor version number string to integer.</source>
-        <translation>Kunne ikke konvertere versjonsnummer til heltall.</translation>
+        <comment>Please mention &quot;minor&quot; (translated if necessary) as well.</comment>
+        <translation type="unfinished">Kunne ikke konvertere versjonsnummer til heltall.</translation>
     </message>
     <message>
         <source>Unable to convert micro version number string to integer.</source>
-        <translation>Kunne ikke konvertere versjonsnummer til heltall. </translation>
+        <comment>Please mention &quot;micro&quot; (translated if necessary) as well.</comment>
+        <translation type="unfinished">Kunne ikke konvertere versjonsnummer til heltall.</translation>
     </message>
     <message>
         <source>Unexpected format encountered.</source>
@@ -3224,7 +3232,9 @@ Eksempel:
         <source>If you downloaded the bundled, pre-compiled version from the official home page or the upstream Linux packages, please report a bug on:
 &lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
 </source>
-        <translation>Om du lastet ned din versjon fra den offisielle hjemmesiden, eller fra oppstrøm, vennligst rapporter feil på&lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;   </translation>
+        <translation>Om du lastet ned din versjon fra den offisielle hjemmesiden, eller fra oppstrøm, vennligst rapporter feil på:
+&lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
+</translation>
     </message>
 </context>
 <context>
@@ -3688,7 +3698,7 @@ Use X2Go Client&apos;s hidden mode?</source>
     </message>
     <message>
         <source>Values ranging from &lt;b&gt;0&lt;/b&gt; to &lt;b&gt;65535&lt;/b&gt; are allowed.&lt;br /&gt;A value of &lt;b&gt;0&lt;/b&gt; will either use the port specified in the SSH configuration file belonging to a host or shortname, or use the default of &lt;b&gt;22&lt;/b&gt;.</source>
-        <translation>Verdier mellom &lt;b&gt;0&lt;/b&gt; og &lt;b&gt;65535&lt;/b&gt; er tillat.&lt;br /&gt;Verdien &lt;b&gt;0&lt;/b&gt; vil enten bruke porten som er spesifisert i SSH sin konfigurasjonsfil for en spesifikk maskin, ellers brukes standardport &lt;b&gt;22&lt;/b&gt;.   </translation>
+        <translation>Verdier mellom &lt;b&gt;0&lt;/b&gt; og &lt;b&gt;65535&lt;/b&gt; er tillat.&lt;br /&gt;Verdien &lt;b&gt;0&lt;/b&gt; vil enten bruke porten som er spesifisert i SSH sin konfigurasjonsfil for en spesifikk maskin, ellers brukes standardport &lt;b&gt;22&lt;/b&gt;.</translation>
     </message>
     <message>
         <source>Direct XDMCP connection</source>
