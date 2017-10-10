@@ -689,7 +689,7 @@ Noen vanlige lokasjoner er:
     </message>
     <message>
         <source>Shows git information as used at compile time. [Deprecated: please use --version.]</source>
-        <translation>Hvis git informasjon som ble brukt ved kompilering. [Avlegs: bruk heller  --version.] </translation>
+        <translation>Hvis git informasjon som ble brukt ved kompilering. [Avlegs: bruk heller --version.]</translation>
     </message>
     <message>
         <source>Shows available pack methods.</source>
@@ -729,7 +729,7 @@ Noen vanlige lokasjoner er:
     </message>
     <message>
         <source>Allows client side printing in LDAP mode.</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Enables thinclient mode. Starts without a window manager.</source>
@@ -745,7 +745,7 @@ Noen vanlige lokasjoner er:
     </message>
     <message>
         <source>Starts with LDAP support. Example: --ldap=ldapserver:389:o=organization,c=de</source>
-        <translation>Starter med LDA støtte. ksempel: --ldap=ldapserver:389:o=organization,c=de</translation>
+        <translation>Starter med LDAP støtte. Eksempel: --ldap=ldapserver:389:o=organisasjon,c=no</translation>
     </message>
     <message>
         <source>Defines the first LDAP failover server.</source>
@@ -781,7 +781,7 @@ Noen vanlige lokasjoner er:
     </message>
     <message>
         <source>Sets the remote X2Go Agent&apos;s DPI value to &quot;dpi&quot;. Default: same as local display.</source>
-        <translation>Setter ekstern X2GO Agent sin DPI-verdi til &apos;dpi&apos;. Standard: samme som lokalt.</translation>
+        <translation>Setter ekstern X2Go Agent sin DPI-verdi til &apos;dpi&apos;. Standard: samme som lokalt.</translation>
     </message>
     <message>
         <source>Sets the default link type. Default: &quot;adsl&quot;.</source>
@@ -789,7 +789,7 @@ Noen vanlige lokasjoner er:
     </message>
     <message>
         <source>Sets default pack method. Default: &quot;16m-jpeg-9&quot;.</source>
-        <translation>Setter standard kompresjons metode. Standard:&quot;16m-jpeg-9&quot;. </translation>
+        <translation>Setter standard kompresjons metode. Standard:&quot;16m-jpeg-9&quot;.</translation>
     </message>
     <message>
         <source>Sets the default clipboard mode. Default: &quot;both&quot;.</source>
@@ -825,7 +825,7 @@ Noen vanlige lokasjoner er:
     </message>
     <message>
         <source>Automatically closes X2Go Client after a disconnect.</source>
-        <translation>Lukker X2GO automatisk etter avslutting.</translation>
+        <translation>Lukker X2Go klienten automatisk etter avslutting.</translation>
     </message>
     <message>
         <source>Hides all Folder-Sharing-related options.</source>
@@ -833,7 +833,7 @@ Noen vanlige lokasjoner er:
     </message>
     <message>
         <source>Sets the broker name to display in X2Go Client. This parameter is optional.</source>
-        <translation>Setter meglernavnet som visningsnavn i X2GO klienten. Dette er valgfritt.</translation>
+        <translation>Setter meglernavnet som visningsnavn i X2Go klienten. Dette er valgfritt.</translation>
     </message>
     <message>
         <source>Sets the path to an SSH key to use for authentication against an SSH session broker. The client&apos;s behavior is undefined if this flag is used for non-SSH session brokers.</source>
@@ -861,11 +861,11 @@ Noen vanlige lokasjoner er:
     </message>
     <message>
         <source>Use a custom/branded background image (SVG format) for X2Go Client&apos;s main window. If a directory is given, will randomly pick an SVG file inside of it.</source>
-        <translation>Bruk et eget bakgrunnsbild (SVG format) for egenreklame i X2GO klienten sitt hovedvindu. Hvis en mappe oppgis, så vil en tilfldig valgt SVG fil bli brukt.</translation>
+        <translation>Bruk et eget bakgrunnsbild (SVG format) for egenreklame i X2Go klienten sitt hovedvindu. Hvis en mappe oppgis, så vil en tilfldig valgt SVG fil bli brukt.</translation>
     </message>
     <message>
         <source>Use a custom icon (SVG format) for additional branding to replace the default in the lower left corner of X2Go Client&apos;s main window.</source>
-        <translation>Bruk et eget ikon (SVG format) for egenreklame, bytter ut ikonet som er nede i venstre hjørne i X2GO klienten sitt hovedvindu.</translation>
+        <translation>Bruk et eget ikon (SVG format) for egenreklame, bytter ut ikonet som er nede i venstre hjørne i X2Go klienten sitt hovedvindu.</translation>
     </message>
 </context>
 <context>
@@ -2803,7 +2803,7 @@ authorized_keys fil.</translation>
     </message>
     <message>
         <source>Unable to find the sftp-server binary. Neither bundled, nor found in $PATH nor additional directories.</source>
-        <translation>Kunne ikke finne sftp-binæren. Fant den verken inkludert, eller i $PATH eller i ekstra-mapper.</translation>
+        <translation>Kunne ikke finne sftp-server-binæren. Fant den verken inkludert, eller i $PATH eller i ekstra-mapper.</translation>
     </message>
     <message>
         <source>If you are using a Linux-based operating system, please ask your system administrator to install the package containing the sftp-server binary. Common names are &lt;b&gt;openssh&lt;/b&gt;, &lt;b&gt;openssh-server&lt;/b&gt; or &lt;b&gt;openssh-sftp-server&lt;/b&gt; depending upon distribution.
@@ -2811,9 +2811,11 @@ authorized_keys fil.</translation>
 If the sftp-server binary is installed on your system, please report a bug mentioning its path on:
 &lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
 </source>
-        <translation>Hvis du bruker et Linux-basert operativsystem, så be din administrator om å installere pakken som inneholder sftp-server-binæren. Vanlige navn er &lt;b&gt;openssh&lt;/b&gt;, &lt;b&gt;openssh-server&lt;/b&gt; eller &lt;b&gt;openssh-sftp-server&lt;/b&gt;avhengig av Linux-distribusjon.
+        <translation>Hvis du bruker et Linux-basert operativsystem, så be din administrator om å installere pakken som inneholder sftp-server-binæren. Vanlige navn er &lt;b&gt;openssh&lt;/b&gt;, &lt;b&gt;openssh-server&lt;/b&gt; eller &lt;b&gt;openssh-sftp-server&lt;/b&gt; avhengig av Linux-distribusjon.
 
-Hvis sftp-server-binæren faktisk er installert, venligst rapprter dette som en feil, og oppgi hvor den er installert på:&lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center   </translation>
+Hvis sftp-server-binæren faktisk er installert, venligst rapprter dette som en feil, og oppgi hvor den er installert på:
+&lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
+</translation>
     </message>
     <message>
         <source>SSH key type selection error</source>
@@ -2877,18 +2879,21 @@ These features require a running and functioning SSH server on your computer.
 &lt;b&gt;Printing and File Sharing will be disabled for this session.&lt;/b&gt;
 
 </source>
-        <translation>Du har aktivert fjern-utskrift eller fjern-fildeling. 
+        <translation>Du har aktivert fjern-utskrift eller fjern-fildeling.
 Disse valgene krever en kjørende og fungerende SSH-server på din datamaskin.
-&lt;b&gt;Utskrift og fildeling vil ikke være skrudd på for denne økten.&lt;/b&gt;</translation>
+&lt;b&gt;Utskrift og fildeling vil ikke være skrudd på for denne økten.&lt;/b&gt;
+
+</translation>
     </message>
     <message>
         <source>Normally, this should not happen as X2Go Client for Windows ships its own internal SSH server.
 
 If you see this message, please report a bug on:
 </source>
-        <translation>Dette skal vanligvis ikke skje, siden X2GO klienten for Windows kommer med egen innebygd SSH-server.
+        <translation>Dette skal vanligvis ikke skje, siden X2Go klienten for Windows kommer med egen innebygd SSH-server.
 
-Hvis du ser denne meldingen, så rapporter dette som feil på:</translation>
+Hvis du ser denne meldingen, så rapporter dette som feil på:
+</translation>
     </message>
     <message>
         <source>The SSH server failed to start.
@@ -2897,30 +2902,34 @@ Please report a bug on:
 </source>
         <translation>SSH serveren klarte ikke å starte.
 
-Rapporter dette som en feil på:</translation>
+Rapporter dette som en feil på:
+</translation>
     </message>
     <message>
         <source>&lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
 </source>
-        <translation>&lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center</translation>
+        <translation>&lt;center&gt;&lt;a href=&quot;https://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;https://wiki.x2go.org/doku.php/wiki:bugs&lt;/a&gt;&lt;/center&gt;
+</translation>
     </message>
     <message>
         <source>Normally, this should not happen as X2Go Client for Windows ships its own internal SSH server and automatically generates the required keys.
 
 If you see this message, please report a bug on:
 </source>
-        <translation>Dette skal vanligvis ikke skje, siden X2GO klienten for Windows kommer med egen innebygd SSH-server, og automatisk lager nødvendige nøkler.
+        <translation>Dette skal vanligvis ikke skje, siden X2Go klienten for Windows kommer med egen innebygd SSH-server, og automatisk lager nødvendige nøkler.
 
-Hvis du ser denne meldingen, så rapporter dette som feil på:</translation>
+Hvis du ser denne meldingen, så rapporter dette som feil på:
+</translation>
     </message>
     <message>
         <source>X2Go Client was unable to create SSH host keys.
 
 Please report a bug on:
 </source>
-        <translation>X2GO klienten klarte ikke å lage SSH vertsnøkler.
+        <translation>X2Go klienten klarte ikke å lage SSH vertsnøkler.
 
-Rapporter dette som en feil på:</translation>
+Rapporter dette som en feil på:
+</translation>
     </message>
     <message>
         <source>&lt;br&gt;(C) 2005-2017 by &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing&lt;br&gt;</source>
@@ -2928,14 +2937,14 @@ Rapporter dette som en feil på:</translation>
     </message>
     <message>
         <source>Your current color depth is different from the session&apos;s color depth. This may cause problems reconnecting to this session and in most cases &lt;b&gt;you will loose the session&lt;/b&gt; and have to start a new one! </source>
-        <translation>Din fargedybde er forskjellig fra den i økten. Dette kan lage problemer når du kobler til økten igjen, og vil i de fleste tilfeller føre til at du &lt;b&gt;mister økten &lt;/b&gt; og du må da starte en ny økt!</translation>
+        <translation>Din fargedybde er forskjellig fra den i økten. Dette kan lage problemer når du kobler til økten igjen, og vil i de fleste tilfeller føre til at du &lt;b&gt;mister økten&lt;/b&gt; og du må da starte en ny økt! </translation>
     </message>
     <message numerus="yes">
         <source>It&apos;s highly recommended to change the color depth of your display to %n bit(s) and restart your X.Org Server before you reconnect to this X2Go session.</source>
         <comment>%n will be replaced with a number</comment>
         <translation>
-            <numerusform>Det  anbefales at du endrer fargedybden til %n bit(er), og deretter restarter din X.Org-server før du kobler til din X2GO økt.</numerusform>
-            <numerusform></numerusform>
+            <numerusform>Det anbefales at du endrer fargedybden til %n bit, og deretter restarter din X.Org-server før du kobler til din X2Go økt.</numerusform>
+            <numerusform>Det anbefales at du endrer fargedybden til %n biter, og deretter restarter din X.Org-server før du kobler til din X2Go økt.</numerusform>
         </translation>
     </message>
     <message>
@@ -2964,7 +2973,7 @@ Rapporter dette som en feil på:</translation>
     </message>
     <message>
         <source>Sound output will be disabled for this session. Please enable PulseAudio in the configuration dialog or disable sound in the session settings</source>
-        <translation>Avspilling av lyd vil ikke være mulig for denne økten. Du må enten skru på PulseAudio i ditt oppsett, eller skru av lyd i dine økt-innstillinger.</translation>
+        <translation>Avspilling av lyd vil ikke være mulig for denne økten. Du må enten skru på PulseAudio i ditt oppsett, eller skru av lyd i dine økt-innstillinger</translation>
     </message>
     <message>
         <source>libssh initialization failure</source>
