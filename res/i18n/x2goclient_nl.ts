@@ -1037,12 +1037,12 @@ Locaties voor installatie kunnen de volgende zijn:
     <message>
         <location filename="../../src/help.cpp" line="161"/>
         <source>Use broker credentials as session user/password credentials when using broker mode with broker authentication. Currently only affects direct RDP sessions.</source>
-        <translation>Gebruik de broker gebruikersgegevens zoals gebruiker/wachtwoord wanneer de broker met broker authenticatie in gebruik is. Betreft momenteel alleen direct RDP sessies. </translation>
+        <translation>Gebruik de broker gebruikersgegevens zoals gebruiker/wachtwoord wanneer de broker met broker authenticatie in gebruik is. Betreft momenteel alleen direct RDP sessies.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="162"/>
         <source>Use a custom/branded background image (SVG format) for X2Go Client&apos;s main window. If a directory is given, will randomly pick an SVG file inside of it.</source>
-        <translation>Gebruik een eigen achtergrondafbeelding (SVG formaat) voor het hoofdvenster van de X2Go Client. Als een directory is opgegeven, zal een willekeurig bestand gekozen worden. </translation>
+        <translation>Gebruik een eigen achtergrondafbeelding (SVG formaat) voor het hoofdvenster van de X2Go Client. Als een directory is opgegeven, zal een willekeurig bestand gekozen worden.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="163"/>
@@ -1918,8 +1918,8 @@ Wilt u de verbinding verbreken?
         <source>It&apos;s highly recommended to change the color depth of your display to %n bit(s) and restart your X.Org Server before you reconnect to this X2Go session.</source>
         <comment>%n will be replaced with a number</comment>
         <translation>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+            <numerusform>Het is ten zeerste aanbevolen om de kleurdiepte van uw scherm aan te passen naar %n bit en uw X.Org Server te herstarten voordat u een verbinding maakt met deze X2Go sessie.</numerusform>
+            <numerusform>Het is ten zeerste aanbevolen om de kleurdiepte van uw scherm aan te passen naar %n bits en uw X.Org Server te herstarten voordat u een verbinding maakt met deze X2Go sessie.</numerusform>
         </translation>
     </message>
     <message>

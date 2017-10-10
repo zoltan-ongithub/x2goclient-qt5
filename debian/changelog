@@ -211,6 +211,8 @@ x2goclient (4.1.1.0-0x2go1) UNRELEASED; urgency=medium
     - res/i18n/x2goclient_nl.ts: various fixups for Dutch translation file.
     - res/i18n/x2goclient_nb_no.ts: various fixups for Bokmål (Norway)
       translation file.
+    - res/i18n/x2goclient_nl.ts: fix whitespace issues in Dutch translation
+      file and re-add numerus form translation.
   * x2goclient.spec:
     - Respect %{optflags} and pass QMAKE_STRIP=: to fix missing debug info
       issues.
