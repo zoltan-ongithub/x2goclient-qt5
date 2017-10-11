@@ -215,6 +215,8 @@ x2goclient (4.1.1.0-0x2go1) UNRELEASED; urgency=medium
       file and re-add numerus form translation.
     - res/i18n/x2goclient_nb_no.ts: various fixups for Bokmål (Norway)
       translation file, including numerus form.
+    - src/sshmasterconnection.cpp: for proxied connections, fetch the user
+      name matching the given host, not proxy host.
   * x2goclient.spec:
     - Respect %{optflags} and pass QMAKE_STRIP=: to fix missing debug info
       issues.

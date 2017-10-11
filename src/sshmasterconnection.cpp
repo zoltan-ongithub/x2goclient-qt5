@@ -210,12 +210,7 @@ SshMasterConnection::SshMasterConnection (QObject* parent, QString host, int por
         else {
             QByteArray tmp_BA;
 
-            if ((useproxy) && (PROXYSSH == proxytype)) {
-                tmp_BA = this->proxyserver.toLocal8Bit ();
-            }
-            else {
-                tmp_BA = this->host.toLocal8Bit ();
-            }
+            tmp_BA = this->host.toLocal8Bit ();
 
             ssh_options_set (tmp_session, SSH_OPTIONS_HOST, tmp_BA.data ());
 
