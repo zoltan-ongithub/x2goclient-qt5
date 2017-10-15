@@ -1035,17 +1035,17 @@ Muutama standardiasennuksia löytyy täältä:
     <message>
         <location filename="../../src/help.cpp" line="161"/>
         <source>Use broker credentials as session user/password credentials when using broker mode with broker authentication. Currently only affects direct RDP sessions.</source>
-        <translation>Käytä brokerin tunnstautumistietoine kun olet broker -moodissa.Käytössä vain RDP istunnoissa.</translation>
+        <translation>Käytä brokerin tunnstautumistietoine kun olet broker-moodissa. Käytössä vain RDP istunnoissa.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="162"/>
         <source>Use a custom/branded background image (SVG format) for X2Go Client&apos;s main window. If a directory is given, will randomly pick an SVG file inside of it.</source>
-        <translation>Käytä räätälöitya taustakuvaa (SVG) X2Go -clientissä. Jos hakemisto annettu, käytetään satunnaisesti löydettyä kuvaa sen sijasta.</translation>
+        <translation>Käytä räätälöitya taustakuvaa (SVG) X2Go-clientissä. Jos hakemisto annettu, käytetään satunnaisesti löydettyä kuvaa sen sijasta.</translation>
     </message>
     <message>
         <location filename="../../src/help.cpp" line="163"/>
         <source>Use a custom icon (SVG format) for additional branding to replace the default in the lower left corner of X2Go Client&apos;s main window.</source>
-        <translation>Käytä omaa ikonia (SVGt) oletuksen sijasta X2Go -clientin ikkunaan alakulmassa.</translation>
+        <translation>Käytä omaa ikonia (SVG) oletuksen sijasta X2Go-clientin ikkunaan alakulmassa.</translation>
     </message>
 </context>
 <context>
@@ -1919,7 +1919,7 @@ Halutako keskeyttää?
         <source>It&apos;s highly recommended to change the color depth of your display to %n bit(s) and restart your X.Org Server before you reconnect to this X2Go session.</source>
         <comment>%n will be replaced with a number</comment>
         <translation>
-            <numerusform>Vaihda värikartta näytölläsi %n bittiseksi ja käynnistä X.Org -server uudelleen ennenkuin käynnistät X2Go -istunnon.</numerusform>
+            <numerusform>Vaihda värikartta näytölläsi %n bittiseksi ja käynnistä X.Org-server uudelleen ennenkuin käynnistät X2Go-istunnon.</numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -2030,13 +2030,12 @@ Lähetä virheraportti kuten ohjeistettu sivulla &lt;a href=&quot;http://wiki.x2
     <message>
         <location filename="../../src/onmainwindow.cpp" line="6155"/>
         <source>Failed to start RDP or XMDCP client</source>
-        <translatorcomment>RDP tai XMDCP -clientin käynnistys epäonnistui</translatorcomment>
-        <translation>Failed to start RDP or XMDCP client</translation>
+        <translation>RDP tai XMDCP-clientin käynnistys epäonnistui</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="6156"/>
         <source>Check session settings and ensure that selected client is installed on your system.</source>
-        <translation>Tarkista istunnon asetukset ja varmista että client -ohjelma on asennettu työasemaasi.</translation>
+        <translation>Tarkista istunnon asetukset ja varmista että client-ohjelma on asennettu työasemaasi.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="6256"/>
@@ -4124,7 +4123,7 @@ Käytätkö X2Go-ohjelmaa piilomoodissa?</translation>
     <message>
         <location filename="../../src/sessionwidget.cpp" line="87"/>
         <source>Values ranging from &lt;b&gt;0&lt;/b&gt; to &lt;b&gt;65535&lt;/b&gt; are allowed.&lt;br /&gt;A value of &lt;b&gt;0&lt;/b&gt; will either use the port specified in the SSH configuration file belonging to a host or shortname, or use the default of &lt;b&gt;22&lt;/b&gt;.</source>
-        <translation>Arvot väliltä &lt;b&gt;0&lt;/b&gt; to &lt;b&gt;65535&lt;/b&gt; ovat sallittuja.&lt;br /&gt;Arvo &lt;b&gt;0&lt;/b&gt; käyttää joko SSH -asetuksen arvoa , tai oletusta &lt;b&gt;22&lt;/b&gt;.</translation>
+        <translation>Arvot väliltä &lt;b&gt;0&lt;/b&gt; to &lt;b&gt;65535&lt;/b&gt; ovat sallittuja.&lt;br /&gt;Arvo &lt;b&gt;0&lt;/b&gt; käyttää joko SSH-asetuksen arvoa , tai oletusta &lt;b&gt;22&lt;/b&gt;.</translation>
     </message>
     <message>
         <location filename="../../src/sessionwidget.cpp" line="122"/>
