@@ -4123,7 +4123,7 @@ Käytätkö X2Go-ohjelmaa piilomoodissa?</translation>
     <message>
         <location filename="../../src/sessionwidget.cpp" line="87"/>
         <source>Values ranging from &lt;b&gt;0&lt;/b&gt; to &lt;b&gt;65535&lt;/b&gt; are allowed.&lt;br /&gt;A value of &lt;b&gt;0&lt;/b&gt; will either use the port specified in the SSH configuration file belonging to a host or shortname, or use the default of &lt;b&gt;22&lt;/b&gt;.</source>
-        <translation>Arvot väliltä &lt;b&gt;0&lt;/b&gt; to &lt;b&gt;65535&lt;/b&gt; ovat sallittuja.&lt;br /&gt;Arvo &lt;b&gt;0&lt;/b&gt; käyttää joko SSH-asetuksen arvoa , tai oletusta &lt;b&gt;22&lt;/b&gt;.</translation>
+        <translation>Arvot väliltä &lt;b&gt;0&lt;/b&gt; to &lt;b&gt;65535&lt;/b&gt; ovat sallittuja.&lt;br /&gt;Arvo &lt;b&gt;0&lt;/b&gt; käyttää joko SSH-asetuksen arvoa, tai oletusta &lt;b&gt;22&lt;/b&gt;.</translation>
     </message>
     <message>
         <location filename="../../src/sessionwidget.cpp" line="122"/>

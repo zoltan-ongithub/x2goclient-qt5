@@ -218,6 +218,8 @@ x2goclient (4.1.1.0-0x2go1) UNRELEASED; urgency=medium
     - src/sshmasterconnection.cpp: for proxied connections, fetch the user
       name matching the given host, not proxy host.
     - res/i18n/x2goclient_fi.ts: various fixups for Finnish translation file.
+    - res/i18n/x2goclient_fi.ts: another tiny whitespace fixup for Finnish
+      translation file.
   * x2goclient.spec:
     - Respect %{optflags} and pass QMAKE_STRIP=: to fix missing debug info
       issues.
