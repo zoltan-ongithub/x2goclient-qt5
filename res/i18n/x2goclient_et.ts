@@ -1907,7 +1907,7 @@ Kas Sa soovid ühenduse katkestada?
     <message>
         <location filename="../../src/onmainwindow.cpp" line="5012"/>
         <source>Your current color depth is different from the session&apos;s color depth. This may cause problems reconnecting to this session and in most cases &lt;b&gt;you will lose the session&lt;/b&gt; and have to start a new one! </source>
-        <translation>Su praegune värvieraldus on erinev kui x2go sessioonil. See võib põhjustada probleeme taasühendamisel ja enamusel juhtudest &lt;b&gt;ühendus kaob&lt;/b&gt; ja sa pead alustama uuesti! </translation>
+        <translation>Su praegune värvieraldus on erinev kui sessioonil. See võib põhjustada probleeme taasühendamisel ja enamusel juhtudest &lt;b&gt;ühendus kaob&lt;/b&gt; ja sa pead alustama uuesti! </translation>
     </message>
     <message numerus="yes">
         <location filename="../../src/onmainwindow.cpp" line="5017"/>
