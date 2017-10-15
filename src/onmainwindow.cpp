@@ -6152,7 +6152,7 @@ void ONMainWindow::slotProxyError ( QProcess::ProcessError err )
 #ifdef Q_OS_LINUX
     if(err==QProcess::FailedToStart && directRDP)
     {
-        QString main_text = tr("Failed to start RDP or XMDCP client");
+        QString main_text = tr("Failed to start RDP or XDMCP client");
         QString informative_text = tr ("Check session settings and ensure that selected client is installed on your system.");
 
         show_RichText_ErrorMsgBox (main_text, informative_text);
