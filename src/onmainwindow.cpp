@@ -5012,7 +5012,7 @@ void ONMainWindow::slotResumeSess()
                 tr ("Your current color depth is different from "
                     "the session's color depth. This may cause "
                     "problems reconnecting to this session and "
-                    "in most cases <b>you will loose the "
+                    "in most cases <b>you will lose the "
                     "session</b> and have to start a new one! ")
               + tr ("It's highly recommended to change the color "
                     "depth of your display to %n bit(s) and "

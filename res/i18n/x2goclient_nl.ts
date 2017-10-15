@@ -1910,7 +1910,7 @@ Wilt u de verbinding verbreken?
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="5012"/>
-        <source>Your current color depth is different from the session&apos;s color depth. This may cause problems reconnecting to this session and in most cases &lt;b&gt;you will loose the session&lt;/b&gt; and have to start a new one! </source>
+        <source>Your current color depth is different from the session&apos;s color depth. This may cause problems reconnecting to this session and in most cases &lt;b&gt;you will lose the session&lt;/b&gt; and have to start a new one! </source>
         <translation>Uw huidige kleurdiepte verschilt van de sessie kleurdiepte. Dit kan problemen veroorzaken bij het opnieuw verbinden met deze sessie. In de meeste gevallen &lt;b&gt;zult u deze sessie verliezen&lt;/b&gt; en moet u een nieuwe starten! </translation>
     </message>
     <message numerus="yes">

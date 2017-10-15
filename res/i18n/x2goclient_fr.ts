@@ -2463,7 +2463,7 @@ Veuillez rapporter le bug sur :
         <translation>&lt;br&gt;(C) 2005-2017 par &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing&lt;br&gt;</translation>
     </message>
     <message>
-        <source>Your current color depth is different from the session&apos;s color depth. This may cause problems reconnecting to this session and in most cases &lt;b&gt;you will loose the session&lt;/b&gt; and have to start a new one! </source>
+        <source>Your current color depth is different from the session&apos;s color depth. This may cause problems reconnecting to this session and in most cases &lt;b&gt;you will lose the session&lt;/b&gt; and have to start a new one! </source>
         <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">

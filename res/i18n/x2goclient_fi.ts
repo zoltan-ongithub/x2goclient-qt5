@@ -1911,7 +1911,7 @@ Halutako keskeyttää?
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="5012"/>
-        <source>Your current color depth is different from the session&apos;s color depth. This may cause problems reconnecting to this session and in most cases &lt;b&gt;you will loose the session&lt;/b&gt; and have to start a new one! </source>
+        <source>Your current color depth is different from the session&apos;s color depth. This may cause problems reconnecting to this session and in most cases &lt;b&gt;you will lose the session&lt;/b&gt; and have to start a new one! </source>
         <translation>Värikartta poikkaa istunnon kartasta. Se voi aiheuttaa ongellmia ja useimmiten &lt;b&gt;istunto katkeaa&lt;/b&gt; ja joudut aloittamaan alusta! </translation>
     </message>
     <message numerus="yes">

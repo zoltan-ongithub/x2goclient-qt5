@@ -2667,7 +2667,7 @@ Por razones de seguridad se recomienda finalizar la conexión.
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="5012"/>
-        <source>Your current color depth is different from the session&apos;s color depth. This may cause problems reconnecting to this session and in most cases &lt;b&gt;you will loose the session&lt;/b&gt; and have to start a new one! </source>
+        <source>Your current color depth is different from the session&apos;s color depth. This may cause problems reconnecting to this session and in most cases &lt;b&gt;you will lose the session&lt;/b&gt; and have to start a new one! </source>
         <translation>La profundidad de color actual es diferente de la que tiene la sesión remota. Esto puede provocar problemas durante la reconexión a esta sesión y en la mayoría de los casos &lt;b&gt;se perderá la sesión remota&lt;/b&gt; y ¡tendrás que iniciar una nueva! </translation>
     </message>
     <message numerus="yes">

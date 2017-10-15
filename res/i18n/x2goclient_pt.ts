@@ -2065,7 +2065,7 @@ If the sftp-server binary is installed on your system, please report a bug menti
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="5012"/>
-        <source>Your current color depth is different from the session&apos;s color depth. This may cause problems reconnecting to this session and in most cases &lt;b&gt;you will loose the session&lt;/b&gt; and have to start a new one! </source>
+        <source>Your current color depth is different from the session&apos;s color depth. This may cause problems reconnecting to this session and in most cases &lt;b&gt;you will lose the session&lt;/b&gt; and have to start a new one! </source>
         <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">

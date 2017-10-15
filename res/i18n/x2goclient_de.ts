@@ -3679,7 +3679,7 @@ Sie können SSHD über folgenden Befehl installieren:
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="5012"/>
-        <source>Your current color depth is different from the session&apos;s color depth. This may cause problems reconnecting to this session and in most cases &lt;b&gt;you will loose the session&lt;/b&gt; and have to start a new one! </source>
+        <source>Your current color depth is different from the session&apos;s color depth. This may cause problems reconnecting to this session and in most cases &lt;b&gt;you will lose the session&lt;/b&gt; and have to start a new one! </source>
         <translation>Die aktuell verwendete Farbtiefe unterscheidet sich von der der wiederherzustellenden Sitzung. Der Versuch, die Sitzung fortzuführen kann zu Fehlern führen, inbesondere dem &lt;b&gt;Verlust der ganzen Sitzung&lt;/b&gt;! </translation>
     </message>
     <message numerus="yes">

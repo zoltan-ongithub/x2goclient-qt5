@@ -2936,7 +2936,7 @@ Rapporter dette som en feil på:
         <translation>&lt;br&gt;(C) 2005-2017 av &lt;b&gt;obviously nice&lt;/b&gt;: Oleksandr Shneyder, Heinz-Markus Graesing&lt;br&gt;</translation>
     </message>
     <message>
-        <source>Your current color depth is different from the session&apos;s color depth. This may cause problems reconnecting to this session and in most cases &lt;b&gt;you will loose the session&lt;/b&gt; and have to start a new one! </source>
+        <source>Your current color depth is different from the session&apos;s color depth. This may cause problems reconnecting to this session and in most cases &lt;b&gt;you will lose the session&lt;/b&gt; and have to start a new one! </source>
         <translation>Din fargedybde er forskjellig fra den i økten. Dette kan lage problemer når du kobler til økten igjen, og vil i de fleste tilfeller føre til at du &lt;b&gt;mister økten&lt;/b&gt; og du må da starte en ny økt! </translation>
     </message>
     <message numerus="yes">
