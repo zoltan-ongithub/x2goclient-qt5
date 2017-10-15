@@ -2674,7 +2674,7 @@ der Anwendung nicht öffnen.</translation>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="12984"/>
         <source>libssh initialization failure</source>
-        <translation>konnte libssh nicht initialisieren</translation>
+        <translation>libssh-Initialisierungsfehler</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="12985"/>
@@ -3680,15 +3680,15 @@ Sie können SSHD über folgenden Befehl installieren:
     <message>
         <location filename="../../src/onmainwindow.cpp" line="5012"/>
         <source>Your current color depth is different from the session&apos;s color depth. This may cause problems reconnecting to this session and in most cases &lt;b&gt;you will loose the session&lt;/b&gt; and have to start a new one! </source>
-        <translation>Die aktuell verwendete Farbtiefe unterscheidet sich von der der wiederherzustellenden Sitzung. Der Versuch, die Sitzung fortzuführen kann zu Fehlern führen, inbesondere dem &lt;b&gt;Verlust der ganzen Sitzung&lt;/b&gt;!</translation>
+        <translation>Die aktuell verwendete Farbtiefe unterscheidet sich von der der wiederherzustellenden Sitzung. Der Versuch, die Sitzung fortzuführen kann zu Fehlern führen, inbesondere dem &lt;b&gt;Verlust der ganzen Sitzung&lt;/b&gt;! </translation>
     </message>
     <message numerus="yes">
         <location filename="../../src/onmainwindow.cpp" line="5017"/>
         <source>It&apos;s highly recommended to change the color depth of your display to %n bit(s) and restart your X.Org Server before you reconnect to this X2Go session.</source>
         <comment>%n will be replaced with a number</comment>
         <translation>
-            <numerusform>Es wäre wahrscheinlich besser, die Farbtiefe Ihres Displays auf %n bit zu ändern und den X.Org-Server neu zu starten, bevor Sie sich erneut zu dieser Sitzung verbinden versuchen.</numerusform>
-            <numerusform>Es wäre wahrscheinlich besser, die Farbtiefe Ihres Displays auf %n bits zu ändern und den X.Org-Server neu zu starten, bevor Sie sich erneut zu dieser Sitzung verbinden versuchen.</numerusform>
+            <numerusform>Es wäre wahrscheinlich besser, die Farbtiefe Ihres Displays auf %n Bit zu ändern und den X.Org-Server neu zu starten, bevor Sie erneut versuchen sich zu dieser Sitzung zu verbinden.</numerusform>
+            <numerusform>Es wäre wahrscheinlich besser, die Farbtiefe Ihres Displays auf %n Bits zu ändern und den X.Org-Server neu zu starten, bevor Sie erneut versuchen sich zu dieser Sitzung zu verbinden.</numerusform>
         </translation>
     </message>
     <message>
@@ -3699,8 +3699,7 @@ Sie können SSHD über folgenden Befehl installieren:
     <message>
         <location filename="../../src/onmainwindow.cpp" line="5408"/>
         <source>PulseAudio is not running</source>
-        <translation>PulseAudio läuft nicht
-</translation>
+        <translation>PulseAudio läuft nicht</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="5409"/>
