@@ -3196,37 +3196,30 @@ Eksempel:
     </message>
     <message>
         <source>Unexpected character found when parsing version string for major version number</source>
-        <comment>Please mention &quot;major&quot; (translated if necessary) as well.</comment>
         <translation>Uventet tegn funnet i &quot;major&quot;-versjonsnummer</translation>
     </message>
     <message>
         <source>Unexpected character found when parsing version string for minor version number</source>
-        <comment>Please mention &quot;minor&quot; (translated if necessary) as well.</comment>
         <translation>Uventet tegn funnet i &quot;minor&quot;-versjonsnummer</translation>
     </message>
     <message>
         <source>Unexpected character found when parsing version string for micro version number</source>
-        <comment>Please mention &quot;micro&quot; (translated if necessary) as well.</comment>
         <translation>Uventet tegn funnet i &quot;micro&quot;-versjonsnummer</translation>
     </message>
     <message>
         <source>Supposed to skip major version number. Something is wrong.</source>
-        <comment>Please mention &quot;major&quot; (translated if necessary) as well.</comment>
         <translation>Skal hoppe over &quot;major&quot;-versjonsnummer. Noe er feil.</translation>
     </message>
     <message>
         <source>Unable to convert major version number string to integer.</source>
-        <comment>Please mention &quot;major&quot; (translated if necessary) as well.</comment>
         <translation>Kunne ikke konvertere &quot;major&quot;-versjonsnummer til heltall.</translation>
     </message>
     <message>
         <source>Unable to convert minor version number string to integer.</source>
-        <comment>Please mention &quot;minor&quot; (translated if necessary) as well.</comment>
         <translation>Kunne ikke konvertere &quot;minor&quot;-versjonsnummer til heltall.</translation>
     </message>
     <message>
         <source>Unable to convert micro version number string to integer.</source>
-        <comment>Please mention &quot;micro&quot; (translated if necessary) as well.</comment>
         <translation>Kunne ikke konvertere &quot;micro&quot;-versjonsnummer til heltall.</translation>
     </message>
     <message>
