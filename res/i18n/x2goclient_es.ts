@@ -4727,18 +4727,18 @@ el sonido en conexiones a través de firewalls</translation>
         <translation type="obsolete">Error en la conexión con el proxy SSH</translation>
     </message>
     <message>
-        <location filename="../../src/sshmasterconnection.cpp" line="482"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="477"/>
         <source>SSH proxy connection error.</source>
         <translation>Error en la conexión con el proxy SSH.</translation>
     </message>
     <message>
-        <location filename="../../src/sshmasterconnection.cpp" line="487"/>
-        <location filename="../../src/sshmasterconnection.cpp" line="496"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="482"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="491"/>
         <source>SSH proxy connection error: </source>
         <translation>Error en la conexión con el proxy SSH: </translation>
     </message>
     <message>
-        <location filename="../../src/sshmasterconnection.cpp" line="512"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="507"/>
         <source>Failed to create SSH proxy tunnel.</source>
         <translation>Fallo al crear el tunel SSH.</translation>
     </message>
@@ -4748,9 +4748,9 @@ el sonido en conexiones a través de firewalls</translation>
     </message>
     <message>
         <location filename="../../src/sshmasterconnection.cpp" line="204"/>
-        <location filename="../../src/sshmasterconnection.cpp" line="579"/>
-        <location filename="../../src/sshmasterconnection.cpp" line="881"/>
-        <location filename="../../src/sshmasterconnection.cpp" line="2076"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="574"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="876"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="2071"/>
         <source>Cannot create SSH session.</source>
         <translation>No se puede crear la sesión SSH.</translation>
     </message>
@@ -4760,57 +4760,57 @@ el sonido en conexiones a través de firewalls</translation>
         <translation>Usando el nombre de usuario del sistema.</translation>
     </message>
     <message>
-        <location filename="../../src/sshmasterconnection.cpp" line="618"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="613"/>
         <source>Cannot connect to proxy server.</source>
         <translation>No hay conexión con el servidor proxy.</translation>
     </message>
     <message>
-        <location filename="../../src/sshmasterconnection.cpp" line="766"/>
-        <location filename="../../src/sshmasterconnection.cpp" line="1204"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="761"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="1199"/>
         <source>Authentication failed.</source>
         <translation>Falló la autenticación.</translation>
     </message>
     <message>
-        <location filename="../../src/sshmasterconnection.cpp" line="1623"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="1618"/>
         <source>Failed to start SSH client. Please check your installation and GSSApi configuration.</source>
         <translation>Fallo al iniciar el cliente SSH. Por favor comprueba tu instalación y la configuración GSSApi.</translation>
     </message>
     <message>
-        <location filename="../../src/sshmasterconnection.cpp" line="1649"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="1644"/>
         <source>Check your GSSApi configuration or choose another authentication method.</source>
         <translation>Comprueba tu configuración GSSApi o elije otro método de autenticación.</translation>
     </message>
     <message>
-        <location filename="../../src/sshmasterconnection.cpp" line="1790"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="1785"/>
         <source>Reconnect session</source>
         <translation>Reconectar a la sesión</translation>
     </message>
     <message>
-        <location filename="../../src/sshmasterconnection.cpp" line="1900"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="1895"/>
         <source>Cannot open file </source>
         <translation>No se puede abrir el archivo </translation>
     </message>
     <message>
-        <location filename="../../src/sshmasterconnection.cpp" line="1912"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="1907"/>
         <source>Cannot create remote file </source>
         <translation>No se puede crear el archivo remoto </translation>
     </message>
     <message>
-        <location filename="../../src/sshmasterconnection.cpp" line="1927"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="1922"/>
         <source>Cannot write to remote file </source>
         <translation>No se puede escribir en el archivo remoto </translation>
     </message>
     <message>
-        <location filename="../../src/sshmasterconnection.cpp" line="1688"/>
-        <location filename="../../src/sshmasterconnection.cpp" line="1698"/>
-        <location filename="../../src/sshmasterconnection.cpp" line="1707"/>
-        <location filename="../../src/sshmasterconnection.cpp" line="1716"/>
-        <location filename="../../src/sshmasterconnection.cpp" line="1725"/>
-        <location filename="../../src/sshmasterconnection.cpp" line="2046"/>
-        <location filename="../../src/sshmasterconnection.cpp" line="2124"/>
-        <location filename="../../src/sshmasterconnection.cpp" line="2146"/>
-        <location filename="../../src/sshmasterconnection.cpp" line="2155"/>
-        <location filename="../../src/sshmasterconnection.cpp" line="2290"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="1683"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="1693"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="1702"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="1711"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="1720"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="2041"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="2119"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="2141"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="2150"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="2285"/>
         <source>%1 failed.</source>
         <extracomment>Argument in this context will be a function name.</extracomment>
         <translation>error en %1.</translation>
@@ -4824,12 +4824,12 @@ el sonido en conexiones a través de firewalls</translation>
         <translation type="obsolete">error en channel_open_session.</translation>
     </message>
     <message>
-        <location filename="../../src/sshmasterconnection.cpp" line="2234"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="2229"/>
         <source>Error writing to socket.</source>
         <translation>Error escribiendo en el socket.</translation>
     </message>
     <message>
-        <location filename="../../src/sshmasterconnection.cpp" line="2256"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="2251"/>
         <source>Error reading channel.</source>
         <translation>Error leyendo el canal.</translation>
     </message>
@@ -4838,7 +4838,7 @@ el sonido en conexiones a través de firewalls</translation>
         <translation type="obsolete">error en channel_write.</translation>
     </message>
     <message>
-        <location filename="../../src/sshmasterconnection.cpp" line="2306"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="2301"/>
         <source>Error reading from TCP socket.</source>
         <translation>Error leyendo el socket TCP.</translation>
     </message>
@@ -4891,8 +4891,8 @@ el sonido en conexiones a través de firewalls</translation>
         <translation type="obsolete">No se puede escribir en el archivo remoto</translation>
     </message>
     <message>
-        <location filename="../../src/sshmasterconnection.cpp" line="399"/>
-        <location filename="../../src/sshmasterconnection.cpp" line="649"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="394"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="644"/>
         <source>Cannot connect to </source>
         <translation>no se puede conectar a </translation>
     </message>

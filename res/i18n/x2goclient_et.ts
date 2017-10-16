@@ -4549,18 +4549,18 @@ sound system connections through firewalls</source>
         <translation type="obsolete">SSH vaheserveriga ühendumise viga</translation>
     </message>
     <message>
-        <location filename="../../src/sshmasterconnection.cpp" line="482"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="477"/>
         <source>SSH proxy connection error.</source>
         <translation>SSH vaheserveriga ühendumise viga.</translation>
     </message>
     <message>
-        <location filename="../../src/sshmasterconnection.cpp" line="487"/>
-        <location filename="../../src/sshmasterconnection.cpp" line="496"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="482"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="491"/>
         <source>SSH proxy connection error: </source>
         <translation>SSH vaheserveriga ühendumise viga:</translation>
     </message>
     <message>
-        <location filename="../../src/sshmasterconnection.cpp" line="512"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="507"/>
         <source>Failed to create SSH proxy tunnel.</source>
         <translation>Viga SSH vaheserveri ühenduse loomisel.</translation>
     </message>
@@ -4569,35 +4569,35 @@ sound system connections through firewalls</source>
         <translation type="obsolete">Libssh-teegi initsialiseerimise viga.</translation>
     </message>
     <message>
-        <location filename="../../src/sshmasterconnection.cpp" line="1623"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="1618"/>
         <source>Failed to start SSH client. Please check your installation and GSSApi configuration.</source>
         <translation>Ei õnnestu SSH kliendi käivitamine. Palun kontrolli oma installeerimist ja GSSApi konfiguratsiooni.</translation>
     </message>
     <message>
-        <location filename="../../src/sshmasterconnection.cpp" line="1649"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="1644"/>
         <source>Check your GSSApi configuration or choose another authentication method.</source>
         <translation>Kontrolli oma GSSApi konfiguratsiooni või vali mõni muu atentimismeetod.</translation>
     </message>
     <message>
-        <location filename="../../src/sshmasterconnection.cpp" line="1688"/>
-        <location filename="../../src/sshmasterconnection.cpp" line="1698"/>
-        <location filename="../../src/sshmasterconnection.cpp" line="1707"/>
-        <location filename="../../src/sshmasterconnection.cpp" line="1716"/>
-        <location filename="../../src/sshmasterconnection.cpp" line="1725"/>
-        <location filename="../../src/sshmasterconnection.cpp" line="2046"/>
-        <location filename="../../src/sshmasterconnection.cpp" line="2124"/>
-        <location filename="../../src/sshmasterconnection.cpp" line="2146"/>
-        <location filename="../../src/sshmasterconnection.cpp" line="2155"/>
-        <location filename="../../src/sshmasterconnection.cpp" line="2290"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="1683"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="1693"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="1702"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="1711"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="1720"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="2041"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="2119"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="2141"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="2150"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="2285"/>
         <source>%1 failed.</source>
         <extracomment>Argument in this context will be a function name.</extracomment>
         <translation>%1 ebaõnnestus.</translation>
     </message>
     <message>
         <location filename="../../src/sshmasterconnection.cpp" line="204"/>
-        <location filename="../../src/sshmasterconnection.cpp" line="579"/>
-        <location filename="../../src/sshmasterconnection.cpp" line="881"/>
-        <location filename="../../src/sshmasterconnection.cpp" line="2076"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="574"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="876"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="2071"/>
         <source>Cannot create SSH session.</source>
         <translation>SSH-sessiooni loomine ei õnnestu.</translation>
     </message>
@@ -4607,18 +4607,18 @@ sound system connections through firewalls</source>
         <translation>Kasuta keskkonnas olevat kasutajanime.</translation>
     </message>
     <message>
-        <location filename="../../src/sshmasterconnection.cpp" line="618"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="613"/>
         <source>Cannot connect to proxy server.</source>
         <translation>Vaheserveriga ühendumise viga.</translation>
     </message>
     <message>
-        <location filename="../../src/sshmasterconnection.cpp" line="766"/>
-        <location filename="../../src/sshmasterconnection.cpp" line="1204"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="761"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="1199"/>
         <source>Authentication failed.</source>
         <translation>Autentimine ebaõnnestus.</translation>
     </message>
     <message>
-        <location filename="../../src/sshmasterconnection.cpp" line="1790"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="1785"/>
         <source>Reconnect session</source>
         <translation>Ühendu uuesti</translation>
     </message>
@@ -4633,17 +4633,17 @@ sound system connections through firewalls</source>
         <translation type="obsolete">Kontrolli oma GSSApi konfiguratsiooni või vali mõni muu atentimismeetod.</translation>
     </message>
     <message>
-        <location filename="../../src/sshmasterconnection.cpp" line="1900"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="1895"/>
         <source>Cannot open file </source>
         <translation>Ei saa avada faili </translation>
     </message>
     <message>
-        <location filename="../../src/sshmasterconnection.cpp" line="1912"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="1907"/>
         <source>Cannot create remote file </source>
         <translation>Ei saa luua serverile faili </translation>
     </message>
     <message>
-        <location filename="../../src/sshmasterconnection.cpp" line="1927"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="1922"/>
         <source>Cannot write to remote file </source>
         <translation>Ei suuda kirjutada serveri faili </translation>
     </message>
@@ -4656,12 +4656,12 @@ sound system connections through firewalls</source>
         <translation type="obsolete">channel_open_session ebaõnnestus.</translation>
     </message>
     <message>
-        <location filename="../../src/sshmasterconnection.cpp" line="2234"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="2229"/>
         <source>Error writing to socket.</source>
         <translation>Viga socket&apos;isse kirjutamisel.</translation>
     </message>
     <message>
-        <location filename="../../src/sshmasterconnection.cpp" line="2256"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="2251"/>
         <source>Error reading channel.</source>
         <translation>Kanali lugemisviga.</translation>
     </message>
@@ -4670,7 +4670,7 @@ sound system connections through firewalls</source>
         <translation type="obsolete">channel_write ebaõnnestus.</translation>
     </message>
     <message>
-        <location filename="../../src/sshmasterconnection.cpp" line="2306"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="2301"/>
         <source>Error reading from TCP socket.</source>
         <translation>Viga TCP socket&apos;ist lugemisel.</translation>
     </message>
@@ -4723,8 +4723,8 @@ sound system connections through firewalls</source>
         <translation type="obsolete">Ei suuda kirjutada serveri faili </translation>
     </message>
     <message>
-        <location filename="../../src/sshmasterconnection.cpp" line="399"/>
-        <location filename="../../src/sshmasterconnection.cpp" line="649"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="394"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="644"/>
         <source>Cannot connect to </source>
         <translation>ei suuda ühenduda </translation>
     </message>

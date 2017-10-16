@@ -4224,26 +4224,26 @@ sound system connections through firewalls</source>
 <context>
     <name>SshMasterConnection</name>
     <message>
-        <location filename="../../src/sshmasterconnection.cpp" line="482"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="477"/>
         <source>SSH proxy connection error.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/sshmasterconnection.cpp" line="487"/>
-        <location filename="../../src/sshmasterconnection.cpp" line="496"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="482"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="491"/>
         <source>SSH proxy connection error: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/sshmasterconnection.cpp" line="512"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="507"/>
         <source>Failed to create SSH proxy tunnel.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/sshmasterconnection.cpp" line="204"/>
-        <location filename="../../src/sshmasterconnection.cpp" line="579"/>
-        <location filename="../../src/sshmasterconnection.cpp" line="881"/>
-        <location filename="../../src/sshmasterconnection.cpp" line="2076"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="574"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="876"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="2071"/>
         <source>Cannot create SSH session.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4253,73 +4253,73 @@ sound system connections through firewalls</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/sshmasterconnection.cpp" line="618"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="613"/>
         <source>Cannot connect to proxy server.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/sshmasterconnection.cpp" line="766"/>
-        <location filename="../../src/sshmasterconnection.cpp" line="1204"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="761"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="1199"/>
         <source>Authentication failed.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/sshmasterconnection.cpp" line="1623"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="1618"/>
         <source>Failed to start SSH client. Please check your installation and GSSApi configuration.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/sshmasterconnection.cpp" line="1649"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="1644"/>
         <source>Check your GSSApi configuration or choose another authentication method.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/sshmasterconnection.cpp" line="1790"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="1785"/>
         <source>Reconnect session</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/sshmasterconnection.cpp" line="1900"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="1895"/>
         <source>Cannot open file </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/sshmasterconnection.cpp" line="1912"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="1907"/>
         <source>Cannot create remote file </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/sshmasterconnection.cpp" line="1927"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="1922"/>
         <source>Cannot write to remote file </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/sshmasterconnection.cpp" line="1688"/>
-        <location filename="../../src/sshmasterconnection.cpp" line="1698"/>
-        <location filename="../../src/sshmasterconnection.cpp" line="1707"/>
-        <location filename="../../src/sshmasterconnection.cpp" line="1716"/>
-        <location filename="../../src/sshmasterconnection.cpp" line="1725"/>
-        <location filename="../../src/sshmasterconnection.cpp" line="2046"/>
-        <location filename="../../src/sshmasterconnection.cpp" line="2124"/>
-        <location filename="../../src/sshmasterconnection.cpp" line="2146"/>
-        <location filename="../../src/sshmasterconnection.cpp" line="2155"/>
-        <location filename="../../src/sshmasterconnection.cpp" line="2290"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="1683"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="1693"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="1702"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="1711"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="1720"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="2041"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="2119"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="2141"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="2150"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="2285"/>
         <source>%1 failed.</source>
         <extracomment>Argument in this context will be a function name.</extracomment>
         <translation type="unfinished">%1失敗，</translation>
     </message>
     <message>
-        <location filename="../../src/sshmasterconnection.cpp" line="2234"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="2229"/>
         <source>Error writing to socket.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/sshmasterconnection.cpp" line="2256"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="2251"/>
         <source>Error reading channel.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/sshmasterconnection.cpp" line="2306"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="2301"/>
         <source>Error reading from TCP socket.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4356,8 +4356,8 @@ sound system connections through firewalls</source>
         <translation type="obsolete">無法寫入資料至遠端檔案</translation>
     </message>
     <message>
-        <location filename="../../src/sshmasterconnection.cpp" line="399"/>
-        <location filename="../../src/sshmasterconnection.cpp" line="649"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="394"/>
+        <location filename="../../src/sshmasterconnection.cpp" line="644"/>
         <source>Cannot connect to </source>
         <translation>無法連線至 </translation>
     </message>
