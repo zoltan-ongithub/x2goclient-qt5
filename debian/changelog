@@ -225,6 +225,7 @@ x2goclient (4.1.1.0-0x2go1) UNRELEASED; urgency=medium
     - src/onmainwindow.cpp: fix "loose" vs. "lose" spelling mistake.
     - res/i18n/x2goclient_et.ts: remove obsolete and wrongly capitalized
       "x2go" part from an Estonian translation message.
+    - res/i18n/x2goclient_sv.ts: minor whitespace fixup.
   * x2goclient.spec:
     - Respect %{optflags} and pass QMAKE_STRIP=: to fix missing debug info
       issues.

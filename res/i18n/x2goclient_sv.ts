@@ -1923,7 +1923,7 @@ Vill du avsluta anslutningen?
     <message>
         <location filename="../../src/onmainwindow.cpp" line="5012"/>
         <source>Your current color depth is different from the session&apos;s color depth. This may cause problems reconnecting to this session and in most cases &lt;b&gt;you will lose the session&lt;/b&gt; and have to start a new one! </source>
-        <translation>Ditt nuvarande färgdjup avviker från sessionens färgdjup. Det kan orsaka problem vid återanslutning till denna session och oftast &lt;b&gt;tappar du sessionen&lt;/b&gt; och måste starta en ny!</translation>
+        <translation>Ditt nuvarande färgdjup avviker från sessionens färgdjup. Det kan orsaka problem vid återanslutning till denna session och oftast &lt;b&gt;tappar du sessionen&lt;/b&gt; och måste starta en ny! </translation>
     </message>
     <message numerus="yes">
         <location filename="../../src/onmainwindow.cpp" line="5017"/>
