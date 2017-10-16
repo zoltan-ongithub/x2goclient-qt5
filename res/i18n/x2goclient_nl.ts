@@ -2028,8 +2028,8 @@ U kunt deze fout melden zoals beschreven op deze &lt;a href=&quot;http://wiki.x2
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="6155"/>
-        <source>Failed to start RDP or XMDCP client</source>
-        <translation>Starten van RDP of XMDCP client mislukt</translation>
+        <source>Failed to start RDP or XDMCP client</source>
+        <translation>Starten van RDP of XDMCP client mislukt</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="6156"/>

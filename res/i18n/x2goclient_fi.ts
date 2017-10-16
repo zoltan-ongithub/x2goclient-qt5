@@ -2029,8 +2029,8 @@ Lähetä virheraportti kuten ohjeistettu sivulla &lt;a href=&quot;http://wiki.x2
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="6155"/>
-        <source>Failed to start RDP or XMDCP client</source>
-        <translation>RDP tai XMDCP-clientin käynnistys epäonnistui</translation>
+        <source>Failed to start RDP or XDMCP client</source>
+        <translation>RDP tai XDMCP-clientin käynnistys epäonnistui</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="6156"/>

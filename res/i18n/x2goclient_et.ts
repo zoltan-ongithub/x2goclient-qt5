@@ -2024,8 +2024,8 @@ Teata veast &lt;a href=&quot;http://wiki.x2go.org/doku.php/wiki:bugs&quot;&gt;&q
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="6155"/>
-        <source>Failed to start RDP or XMDCP client</source>
-        <translation>Ei õnnestu käivitada RDP või XMDCP klienti</translation>
+        <source>Failed to start RDP or XDMCP client</source>
+        <translation>Ei õnnestu käivitada RDP või XDMCP klienti</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="6156"/>

@@ -1951,7 +1951,7 @@ Vill du avsluta anslutningen?
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="6155"/>
-        <source>Failed to start RDP or XMDCP client</source>
+        <source>Failed to start RDP or XDMCP client</source>
         <translation>Start av RDP- eller XDMCP-klient misslyckades</translation>
     </message>
     <message>

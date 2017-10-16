@@ -2785,8 +2785,8 @@ Rellena un informe de error en &lt;a href=&quot;http://wiki.x2go.org/doku.php/wi
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="6155"/>
-        <source>Failed to start RDP or XMDCP client</source>
-        <translation>Fallo al iniciar el cliente RDP o XMDCP</translation>
+        <source>Failed to start RDP or XDMCP client</source>
+        <translation>Fallo al iniciar el cliente RDP o XDMCP</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="6156"/>

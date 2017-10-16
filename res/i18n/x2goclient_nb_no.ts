@@ -2952,8 +2952,8 @@ Rapporter dette som en feil på:
         <translation>&lt;br /&gt;Vil du gjennoppta denne økten allikevel?</translation>
     </message>
     <message>
-        <source>Failed to start RDP or XMDCP client</source>
-        <translation>Kunne ikke starte RDP eller XMDCP klient</translation>
+        <source>Failed to start RDP or XDMCP client</source>
+        <translation>Kunne ikke starte RDP eller XDMCP klient</translation>
     </message>
     <message>
         <source>Check session settings and ensure that selected client is installed on your system.</source>

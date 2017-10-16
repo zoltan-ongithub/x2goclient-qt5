@@ -1984,7 +1984,7 @@ File a bug report as outlined on the &lt;a href=&quot;http://wiki.x2go.org/doku.
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="6155"/>
-        <source>Failed to start RDP or XMDCP client</source>
+        <source>Failed to start RDP or XDMCP client</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

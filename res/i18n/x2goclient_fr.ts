@@ -2479,7 +2479,7 @@ Veuillez rapporter le bug sur :
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Failed to start RDP or XMDCP client</source>
+        <source>Failed to start RDP or XDMCP client</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

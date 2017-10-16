@@ -2429,7 +2429,7 @@ Bitte melden Sie den Fehler wie auf der &lt;a href=&quot;http://wiki.x2go.org/do
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="6155"/>
-        <source>Failed to start RDP or XMDCP client</source>
+        <source>Failed to start RDP or XDMCP client</source>
         <translation>Konnte RDP oder XDMCP-Client nicht starten</translation>
     </message>
     <message>
