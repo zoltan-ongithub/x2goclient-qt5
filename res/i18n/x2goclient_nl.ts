@@ -931,7 +931,6 @@ Locaties voor installatie kunnen de volgende zijn:
     <message>
         <location filename="../../src/help.cpp" line="134"/>
         <source>Sets the default command. Default: &apos;KDE&apos; (Desktop Session)</source>
-        <comment>That looks like it translates to &quot;default setting&quot; - the &quot;command&quot; part seems to be missing. You can delete this comment after revisiting this.</comment>
         <translation>Instelling voor standaard commando. Standaard: &apos;KDE&apos; (Desktop sessie)</translation>
     </message>
     <message>
