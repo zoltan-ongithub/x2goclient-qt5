@@ -344,7 +344,7 @@
     </message>
     <message>
         <source>X.Org Server settings</source>
-        <translation>Réglages du serveur X.Org</translation>
+        <translation>Réglages de X.Org Server</translation>
     </message>
     <message>
         <source>Clientside (local) SSH daemon port for file system export usage:</source>
@@ -422,7 +422,7 @@ Vous la trouverez peut-être dans l&apos;un de ces emplacements standards :
     </message>
     <message>
         <source>Disable PulseAudio</source>
-        <translation type="unfinished"></translation>
+        <translation>Désactiver PulseAudio</translation>
     </message>
 </context>
 <context>
@@ -674,7 +674,7 @@ Vous la trouverez peut-être dans l&apos;un de ces emplacements standards :
     </message>
     <message>
         <source>Shows git information as used at compile time. [Deprecated: please use --version.]</source>
-        <translation type="unfinished">Montre les informations git utilisées au moment de la compilation.</translation>
+        <translation>Montre les informations git utilisées au moment de la compilation. [Déprécié : veuillez utiliser --version.]</translation>
     </message>
     <message>
         <source>Shows available pack methods.</source>
@@ -834,23 +834,23 @@ Vous la trouverez peut-être dans l&apos;un de ces emplacements standards :
     </message>
     <message>
         <source>Disable PulseAudio.</source>
-        <translation type="unfinished"></translation>
+        <translation>Désactiver PulseAudio.</translation>
     </message>
     <message>
         <source>Disable sound input.</source>
-        <translation type="unfinished"></translation>
+        <translation>Désactiver l&apos;entrée son.</translation>
     </message>
     <message>
         <source>Use broker credentials as session user/password credentials when using broker mode with broker authentication. Currently only affects direct RDP sessions.</source>
-        <translation type="unfinished"></translation>
+        <translation>Utiliser les codes d&apos;accès au broker comme codes d&apos;accès utilisateur/mot de passe quand on utilise le mode broker avec l&apos;authentification broker. Ne concerne pour l&apos;instant que les sessions RDP directes.</translation>
     </message>
     <message>
         <source>Use a custom/branded background image (SVG format) for X2Go Client&apos;s main window. If a directory is given, will randomly pick an SVG file inside of it.</source>
-        <translation type="unfinished"></translation>
+        <translation>Utilise une image de fond personnalisée/marquée (au format SVG) pour la fenêtre principale de X2Go Client. Si un dossier est donné, choisira au hasard un fichier SVG dans le dossier.</translation>
     </message>
     <message>
         <source>Use a custom icon (SVG format) for additional branding to replace the default in the lower left corner of X2Go Client&apos;s main window.</source>
-        <translation type="unfinished"></translation>
+        <translation>Utilise un icône personnalité (au format SVG) pour marquage additionnel pour remplacer l&apos;original dans le coin inférieur gauche de la fenêtre principale de X2Go Client.</translation>
     </message>
 </context>
 <context>
@@ -1022,15 +1022,15 @@ Public key hash: </source>
     <name>InteractionDialog</name>
     <message>
         <source>Terminal output:</source>
-        <translation type="unfinished"></translation>
+        <translation>Sortie du terminal :</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished">Annuler</translation>
+        <translation>Annuler</translation>
     </message>
     <message>
         <source>Reconnect</source>
-        <translation type="unfinished">Reconnecter</translation>
+        <translation>Reconnecter</translation>
     </message>
 </context>
 <context>
@@ -2464,51 +2464,52 @@ Veuillez rapporter le bug sur :
     </message>
     <message>
         <source>Your current color depth is different from the session&apos;s color depth. This may cause problems reconnecting to this session and in most cases &lt;b&gt;you will lose the session&lt;/b&gt; and have to start a new one! </source>
-        <translation type="unfinished"></translation>
+        <translation>Votre profondeur de couleur est différente de la profondeur de couleur de la session. Cela peut pauser problème pour se reconnecter et la plupart du temps, &lt;b&gt;vous allez perdre la session&lt;/b&gt; et devrez en démarrer une nouvelle! </translation>
     </message>
     <message numerus="yes">
         <source>It&apos;s highly recommended to change the color depth of your display to %n bit(s) and restart your X.Org Server before you reconnect to this X2Go session.</source>
         <comment>%n will be replaced with a number</comment>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>Il est fortement recommandé de changer la profondeur de couleur de l&apos;affichage à %n bit et redémarrer votre X.Org Server avant de vous reconnecter à cette session X2Go.</numerusform>
+            <numerusform>Il est fortement recommandé de changer la profondeur de couleur de l&apos;affichage à %n bits et redémarrer votre X.Org Server avant de vous reconnecter à cette session X2Go.</numerusform>
         </translation>
     </message>
     <message>
         <source>&lt;br /&gt;Do you want to resume this session anyway?</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;br /&gt;Voulez-vous quand même restaurer cette session ?</translation>
     </message>
     <message>
         <source>Failed to start RDP or XDMCP client</source>
-        <translation type="unfinished"></translation>
+        <translation>Échec de démarrage du client RDP ou XDMCP</translation>
     </message>
     <message>
         <source>Check session settings and ensure that selected client is installed on your system.</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Check et ensure sont très proches de vérifier. Mais pour éviter la répétition j&apos;ai choisi regarder pour le premier.</translatorcomment>
+        <translation>Regardez les réglages de la session et vérifiez que le client sélectionné est bien installé sur votre système.</translation>
     </message>
     <message>
         <source>XDM</source>
-        <translation type="unfinished"></translation>
+        <translation>XDM</translation>
     </message>
     <message>
         <source>RDP</source>
-        <translation type="unfinished"></translation>
+        <translation>RDP</translation>
     </message>
     <message>
         <source>PulseAudio is not running</source>
-        <translation type="unfinished"></translation>
+        <translation>PulseAudio n&apos;est pas en cours d&apos;execution</translation>
     </message>
     <message>
         <source>Sound output will be disabled for this session. Please enable PulseAudio in the configuration dialog or disable sound in the session settings</source>
-        <translation type="unfinished"></translation>
+        <translation>La sortie audio sera désactivée pour cette session. Veuillez activer PulseAudio dans la fenêtre de configuration ou désactivez le son dans les réglages de la session</translation>
     </message>
     <message>
         <source>libssh initialization failure</source>
-        <translation type="unfinished"></translation>
+        <translation>Échec d&apos;initialisation de libssh</translation>
     </message>
     <message>
         <source>Unable to initialize libssh.</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossible d&apos;initialiser libssh.</translation>
     </message>
 </context>
 <context>
@@ -3197,15 +3198,15 @@ Utiliser le mode caché de X2Go Client ?</translation>
     </message>
     <message>
         <source>Values ranging from &lt;b&gt;0&lt;/b&gt; to &lt;b&gt;65535&lt;/b&gt; are allowed.&lt;br /&gt;A value of &lt;b&gt;0&lt;/b&gt; will either use the port specified in the SSH configuration file belonging to a host or shortname, or use the default of &lt;b&gt;22&lt;/b&gt;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Les valeurs entre &lt;b&gt;0&lt;/b&gt; et &lt;b&gt;65535&lt;/b&gt; sont autorisées.&lt;br /&gt;Une valeur de &lt;b&gt;0&lt;/b&gt; va soit utiliser le port donné dans le fichier de configuration de SSH appartenant à l&apos;hôte ou nom court, soit utiliser la valeur par défaut &lt;b&gt;22&lt;/b&gt;.</translation>
     </message>
     <message>
         <source>Direct XDMCP connection</source>
-        <translation type="unfinished"></translation>
+        <translation>Connexion XDMCP directe</translation>
     </message>
     <message>
         <source>direct XDMCP connection</source>
-        <translation type="unfinished"></translation>
+        <translation>connexion XDMCP directe</translation>
     </message>
 </context>
 <context>
@@ -3333,7 +3334,7 @@ Utiliser le mode caché de X2Go Client ?</translation>
     </message>
     <message>
         <source>XDMCP client</source>
-        <translation type="unfinished"></translation>
+        <translation>client XDMCP</translation>
     </message>
 </context>
 <context>
@@ -3483,7 +3484,7 @@ Utiliser le mode caché de X2Go Client ?</translation>
     </message>
     <message>
         <source>Using environment-provided username.</source>
-        <translation type="unfinished"></translation>
+        <translation>Utilisation du nom d&apos;utilisateur fourni par l&apos;environnement.</translation>
     </message>
     <message>
         <source>%1 failed.</source>
@@ -3492,7 +3493,7 @@ Utiliser le mode caché de X2Go Client ?</translation>
     </message>
     <message>
         <source>Reconnect session</source>
-        <translation type="unfinished"></translation>
+        <translation>Reconnecter la session</translation>
     </message>
 </context>
 <context>
