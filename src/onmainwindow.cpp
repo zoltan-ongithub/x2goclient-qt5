@@ -3865,10 +3865,17 @@ bool ONMainWindow::startSession ( const QString& sid )
                             sid+"/sshproxysameuser",
                             false
                         ).toBool() );
-
+    bool proxySameKey=(st->setting()->value (
+                            sid+"/sshproxysamekey",
+                            false
+                        ).toBool() );
     if(proxyKey.length()<=0 && proxyType==SshMasterConnection::PROXYSSH)
     {
         proxyKey=findSshKeyForServer(proxylogin, proxyserver, QString::number(proxyport));
+    }
+    if(proxySameKey)
+    {
+        proxyKey=currentKey;
     }
 
     if(proxySameUser)

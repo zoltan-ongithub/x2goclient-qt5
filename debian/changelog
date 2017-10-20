@@ -256,6 +256,11 @@ x2goclient (4.1.1.0-0x2go1) UNRELEASED; urgency=medium
       when sound is enabled. Show warning if PulseAudio not running
       and disable the sound support for the session to avoid
       session freezes.
+    - Add session config file option "sshproxysamekey". With this option
+      client will use for proxy authentication same key as for X2Go server.
+      This is important in first case for broker users, where key can be
+      generated "on the fly". Maybe it makes sence to add this option in UI
+      and command line later.
 
   [ Robert Parts ]
   * New upstream version (4.1.1.0):
