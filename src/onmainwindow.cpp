@@ -11305,7 +11305,12 @@ void ONMainWindow::slotConfigXinerama()
     {
         QRect intersection;
         if (resumingSession.fullscreen)
+        {
+            x2goDebug<<"correcting display geometry for full screen session";
+            lastDisplayGeometry.setX(0);
+            lastDisplayGeometry.setY(0);
             intersection=root->screenGeometry(i);
+        }
         else
             intersection=root->screenGeometry(i).intersected(lastDisplayGeometry);
         if (!intersection.isNull())
