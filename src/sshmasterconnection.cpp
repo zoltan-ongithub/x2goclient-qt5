@@ -1982,7 +1982,7 @@ void SshMasterConnection::channelLoop()
             if (tcpNetworkProxy != NULL)
                 delete tcpNetworkProxy;
 #ifdef DEBUG
-            x2goDebug<<"All channels closed and session disconnected. Quiting session loop."<<endl;
+            x2goDebug<<"All channels closed and session disconnected. Quitting session loop."<<endl;
 #endif
             quit();
             return;
