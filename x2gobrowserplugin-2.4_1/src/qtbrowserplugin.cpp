@@ -395,7 +395,7 @@ static bool NPClass_Invoke(NPObject *npobj, NPIdentifier name, const NPVariant *
         }
         QVariant qvar = args[p];
         if (type != QVariant::Invalid && !qvar.convert(type)) {
-            NPN_SetException(npobj, QString("Parameter %1 to method '%2' needs to be convertable to '%3'")
+            NPN_SetException(npobj, QString("Parameter %1 to method '%2' needs to be convertible to '%3'")
                 .arg(p).arg(QString::fromUtf8(slotName)).arg(QString::fromAscii(parameterTypes.at(p))).toAscii().constData());
             return false;
         }
