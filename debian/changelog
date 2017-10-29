@@ -1,6 +1,8 @@
 x2goclient (4.1.1.1-0x2go1) UNRELEASED; urgency=medium
 
-  * Continue development
+  [ Mihai Moldovan ]
+  * New upstream version (4.1.1.1):
+    - src/pulsemanager.cpp: print out PA --version output as a debug message.
 
  -- X2Go Release Manager <git-admin@x2go.org>  Sun, 29 Oct 2017 11:44:44 +0100
 

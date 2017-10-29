@@ -366,6 +366,8 @@ void PulseManager::fetch_pulseaudio_version () {
     QString stdout_data (ba.data ());
     QStringList stdout_list (stdout_data.split ("\n"));
 
+    x2goDebug << "pulseaudio --version returned:" << stdout_data << endl;
+
     bool found = false;
     for (QStringList::const_iterator cit = stdout_list.begin (); (cit != stdout_list.end ()) && (!stop_processing); ++cit) {
       /* Remove trailing whitespace, mostly carriage returns on Windows. */
