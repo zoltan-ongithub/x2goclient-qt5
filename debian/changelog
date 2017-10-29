@@ -1,4 +1,4 @@
-x2goclient (4.1.1.0-0x2go1) UNRELEASED; urgency=medium
+x2goclient (4.1.1.0-0x2go1) unstable; urgency=medium
 
   [ Mihai Moldovan ]
   * New upstream version (4.1.1.0):
@@ -340,7 +340,7 @@ x2goclient (4.1.1.0-0x2go1) UNRELEASED; urgency=medium
   * New upstream version (4.1.1.0):
     - res/i18n/x2goclient_fr.ts: update French translation file.
 
- -- X2Go Release Manager <git-admin@x2go.org>  Wed, 22 Feb 2017 07:13:10 +0100
+ -- X2Go Release Manager <git-admin@x2go.org>  Sun, 29 Oct 2017 08:43:45 +0100
 
 x2goclient (4.1.0.1-0x2go1) unstable; urgency=medium
 
