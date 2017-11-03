@@ -32,7 +32,7 @@ usage() {
   printf "\tDEBUG\t\t\t\tenables or disables debug builds [boolean]\n\t\t\t\t\tdefault: disabled\n"
   printf "\tBUNDLE\t\t\t\tenables or disables library bundling and the creation of a .dmg installer [boolean]\n\t\t\t\t\tdefault: enabled\n"
   printf "\tUNIVERSAL\t\t\tenables or disables x86 support. x86_64 support is always enabled [boolean]\n\t\t\t\t\tdefault: enabled\n"
-  printf "\tMACPORTS_PREFIX\t\t\tsets the (MacPorts) prefix used to detect PulseAudio and nxproxy binaries\n\t\t\t\t\tdefault: /opt/local/\n"
+  printf "\tMACPORTS_PREFIX\t\t\tsets the (MacPorts) prefix used to detect PulseAudio, nxproxy and xauth binaries [string]\n\t\t\t\t\tdefault: /opt/local/\n"
   printf "\n"
   printf "Boolean values help:\n"
   printf "\ta value of ${NO_VAL} will be treated as false\n"
@@ -175,6 +175,7 @@ else
 fi
 
 NXPROXY="nxproxy"
+NXAUTH="xauth"
 PULSEAUDIO_BINARIES=( "pulseaudio" "esdcompat" "pacat" "pacmd"      "pactl"
                       "pamon"      "paplay"    "parec" "parecord"   "pasuspender" )
 PULSEAUDIO_LIBRARIES=( "libpulse-simple.0.dylib"
@@ -232,8 +233,10 @@ fi
 
 # Gather files.
 NXPROXY="$(lazy_canonical_path "${MACPORTS_PREFIX}/bin/${NXPROXY}")"
+NXAUTH="$(lazy_canonical_path "${MACPORTS_PREFIX}/bin/${NXAUTH}")"
 
 [ -x "${NXPROXY}" ] || dependency_error "nxproxy" "nxproxy" "binary"
+[ -x "${NXAUTH}" ] || dependency_error "xauth" "xauth" "binary"
 
 typeset -i i
 typeset -i fail
@@ -331,6 +334,9 @@ mkdir -p "${FRAMEWORKS_DIR}/"
 phase "Copying nxproxy"
 cp -av "${NXPROXY}" "${EXE_DIR}/"
 
+phase "Copying (n)xauth"
+cp -av "${NXAUTH}" "${EXE_DIR}/nxauth"
+
 phase "Copying misc resources"
 typeset cur_res_file
 for cur_res_file in ${RESOURCE_FILES[@]}; do
@@ -358,6 +364,14 @@ if [ "${BUNDLE}" = "1" ]; then
   phase "Bundling nxproxy"
   dylibbundler \
     --fix-file "${EXE_DIR}/nxproxy" \
+    --bundle-deps \
+    --dest-dir "${FRAMEWORKS_DIR}/" \
+    --install-path "@executable_path/../Frameworks/" \
+    --create-dir
+
+  phase "Bundling (n)xauth"
+  dylibbundler \
+    --fix-file "${EXE_DIR}/nxauth" \
     --bundle-deps \
     --dest-dir "${FRAMEWORKS_DIR}/" \
     --install-path "@executable_path/../Frameworks/" \
