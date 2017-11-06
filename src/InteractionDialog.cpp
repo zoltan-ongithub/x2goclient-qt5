@@ -74,7 +74,7 @@ InteractionDialog::InteractionDialog(QWidget* parent): SVGFrame(":/img/svg/passf
     lay->addWidget(textEdit);
 
     textEntry=new QLineEdit(this);
-    textEntry->setEchoMode(QLineEdit::NoEcho);
+    textEntry->setEchoMode(QLineEdit::Password);
     lay->addWidget(textEntry);
 
     cancelButton=new QPushButton(tr("Cancel"),this);

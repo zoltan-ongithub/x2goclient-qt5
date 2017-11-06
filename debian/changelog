@@ -7,6 +7,9 @@ x2goclient (4.1.1.1-0x2go1) UNRELEASED; urgency=medium
     - macbuild.sh: switch to bundling PulseAudio 11.1 since it's now available
       in MacPorts.
 
+  [ Oleksandr Shneyder ]
+  * Change echo mode for user input in InteractionDialog.
+
  -- X2Go Release Manager <git-admin@x2go.org>  Sun, 29 Oct 2017 11:44:44 +0100
 
 x2goclient (4.1.1.0-0x2go1) unstable; urgency=medium
