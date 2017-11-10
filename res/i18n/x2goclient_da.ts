@@ -2433,7 +2433,7 @@ Venligst opdater til en nyere version af x2goserver pakken</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="61"/>
-        <source>Starting X2Go Client...</source>
+        <source>Starting X2Go Client %1...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

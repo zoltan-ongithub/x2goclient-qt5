@@ -2470,8 +2470,8 @@ Actualiza el paquete x2goserver en el servidor</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="61"/>
-        <source>Starting X2Go Client...</source>
-        <translation>Iniciando cliente X2Go...</translation>
+        <source>Starting X2Go Client %1...</source>
+        <translation>Iniciando cliente X2Go %1...</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="286"/>

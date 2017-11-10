@@ -1530,8 +1530,8 @@ Palun uuenda kasutamaks PulseAudio-t.</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="61"/>
-        <source>Starting X2Go Client...</source>
-        <translation>X2Go Client käivitub...</translation>
+        <source>Starting X2Go Client %1...</source>
+        <translation>X2Go Client %1 käivitub...</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="286"/>

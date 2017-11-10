@@ -2157,8 +2157,8 @@ Möchten Sie die Verbindung abbrechen?</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="61"/>
-        <source>Starting X2Go Client...</source>
-        <translation>X2GoClient wird gestartet ...</translation>
+        <source>Starting X2Go Client %1...</source>
+        <translation>X2GoClient %1 wird gestartet ...</translation>
     </message>
     <message>
         <location filename="../../src/onmainwindow.cpp" line="286"/>

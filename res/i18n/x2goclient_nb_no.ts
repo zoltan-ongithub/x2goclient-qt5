@@ -2234,8 +2234,8 @@ authoized_keys file.</source>
         <translation type="obsolete">feil verdi til argumentet&quot;--clipboard&quot;</translation>
     </message>
     <message>
-        <source>Starting X2Go Client...</source>
-        <translation>Starter X2Go klienten...</translation>
+        <source>Starting X2Go Client %1...</source>
+        <translation>Starter X2Go klienten %1...</translation>
     </message>
     <message>
         <source>Starting X2Go Client in portable mode. Data directory is: </source>

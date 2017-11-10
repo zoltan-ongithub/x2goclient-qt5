@@ -1770,8 +1770,8 @@ used for exporting folders and printers.</source>
 utilisée pour exporter les dossiers et les imprimantes.</translation>
     </message>
     <message>
-        <source>Starting X2Go Client...</source>
-        <translation>Démarrage de X2Go Client...</translation>
+        <source>Starting X2Go Client %1...</source>
+        <translation>Démarrage de X2Go Client %1...</translation>
     </message>
     <message>
         <source>Starting X2Go Client in portable mode. Data directory is: </source>
