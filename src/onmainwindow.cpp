@@ -2989,8 +2989,8 @@ SshMasterConnection* ONMainWindow::startSshConnection ( QString host, QString po
 
     connect ( con, SIGNAL ( serverAuthError ( int,QString, SshMasterConnection* ) ),this,
               SLOT ( slotSshServerAuthError ( int,QString, SshMasterConnection* ) ) );
-    connect ( con, SIGNAL ( needPassPhrase(SshMasterConnection*, bool)),this,
-              SLOT ( slotSshServerAuthPassphrase(SshMasterConnection*, bool)) );
+    connect ( con, SIGNAL ( needPassPhrase(SshMasterConnection*, SshMasterConnection::passphrase_types)),this,
+              SLOT ( slotSshServerAuthPassphrase(SshMasterConnection*, SshMasterConnection::passphrase_types)) );
     connect ( con, SIGNAL ( needChallengeResponse(SshMasterConnection*, QString)),this,
               SLOT ( slotSshServerAuthChallengeResponse(SshMasterConnection*, QString)) );
     connect ( con, SIGNAL ( userAuthError ( QString ) ),this,SLOT ( slotSshUserAuthError ( QString ) ) );
@@ -3160,34 +3160,41 @@ void ONMainWindow::slotSshInteractionUpdate(SshMasterConnection* connection, QSt
     x2goDebug<<"SSH Interaction update:"<<output;
 }
 
-void ONMainWindow::slotSshServerAuthPassphrase(SshMasterConnection* connection, bool verificationCode)
+void ONMainWindow::slotSshServerAuthPassphrase(SshMasterConnection* connection, SshMasterConnection::passphrase_types passphrase_type)
 {
     bool ok;
     QString message;
-    if(verificationCode)
-    {
-        message=tr("Verification code:");
+
+    switch (passphrase_type) {
+        case SshMasterConnection::PASSPHRASE_PRIVKEY:
+                                                        message = tr ("Enter passphrase to decrypt a key");
+                                                        ok = true;
+                                                        break;
+        case SshMasterConnection::PASSPHRASE_CHALLENGE:
+                                                        message = tr ("Verification code:");
+                                                        ok = true;
+                                                        break;
+        case SshMasterConnection::PASSPHRASE_PASSWORD:
+                                                        message = tr ("Enter user account password:");
+                                                        ok = true;
+                                                        break;
+        default:
+                                                        x2goDebug << "Unknown passphrase type requested! Was: " << passphrase_type << endl;
+                                                        ok = false;
+                                                        break;
     }
-    else
-    {
-        message=tr("Enter passphrase to decrypt a key");
-    }
-    QString phrase=QInputDialog::getText(0,connection->getUser()+"@"+connection->getHost()+":"+QString::number(connection->getPort()),
-                                         message,QLineEdit::Password,QString::null, &ok);
-    if(!ok)
-    {
-        phrase=QString::null;
-    }
-    else
-    {
-        if(phrase==QString::null)
-            phrase="";
-    }
-    connection->setKeyPhrase(phrase);
-    if(isHidden())
-    {
-        show();
-        QTimer::singleShot(1, this, SLOT(hide()));
+
+    if (ok) {
+        QString phrase = QInputDialog::getText (0, connection->getUser () + "@" + connection->getHost () + ":" + QString::number (connection->getPort ()),
+                                                message, QLineEdit::Password, QString (""), &ok);
+        if (!ok) {
+            phrase = QString ("");
+        }
+        connection->setKeyPhrase (phrase);
+        if(isHidden ()) {
+            show ();
+            QTimer::singleShot (1, this, SLOT (hide ()));
+        }
     }
 }
 

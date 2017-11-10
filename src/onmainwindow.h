@@ -1045,7 +1045,7 @@ private slots:
     void showSessionStatus();
     void slotSshConnectionError ( QString message, QString lastSessionError );
     void slotSshServerAuthError ( int error, QString sshMessage, SshMasterConnection* connection );
-    void slotSshServerAuthPassphrase ( SshMasterConnection* connection, bool verificationCode );
+    void slotSshServerAuthPassphrase ( SshMasterConnection* connection, SshMasterConnection::passphrase_types passphrase_type );
     void slotSshInteractionStart ( SshMasterConnection* connection, QString prompt );
     void slotSshInteractionUpdate ( SshMasterConnection* connection, QString output );
     void slotSshInteractionFinish ( SshMasterConnection* connection);

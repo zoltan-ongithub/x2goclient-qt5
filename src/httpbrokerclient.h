@@ -72,7 +72,7 @@ private slots:
     QString getHexVal ( const QByteArray& ba );
     void slotSshConnectionError ( QString message, QString lastSessionError );
     void slotSshServerAuthError ( int error, QString sshMessage, SshMasterConnection* connection );
-    void slotSshServerAuthPassphrase ( SshMasterConnection* connection, bool verificationCode=false );
+    void slotSshServerAuthPassphrase ( SshMasterConnection* connection, SshMasterConnection::passphrase_types passphrase_type = SshMasterConnection::PASSPHRASE_PRIVKEY );
     void slotSshUserAuthError ( QString error );
     void slotSshConnectionOk();
     void slotListSessions ( bool success, QString answer, int pid);

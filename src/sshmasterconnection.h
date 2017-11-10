@@ -74,6 +74,14 @@ class SshMasterConnection: public QThread
     PROPERTY(bool, kerberosDelegation)
 public:
     enum ProxyType {PROXYSSH, PROXYHTTP};
+
+    enum passphrase_types {
+        PASSPHRASE_PRIVKEY,
+        PASSPHRASE_CHALLENGE,
+        PASSPHRASE_PASSWORD,
+        PASSPHRASE_UNKNOWN
+    };
+
     void run();
     SshMasterConnection(QObject* parent, QString host, int port, bool acceptUnknownServers, QString user,
                         QString pass, QString key, bool autologin, bool krblogin=false,
@@ -228,7 +236,7 @@ signals:
 
     void connectionOk( QString host);
 
-    void needPassPhrase(SshMasterConnection*, bool verificationCode);
+    void needPassPhrase(SshMasterConnection*, passphrase_types);
     void needChallengeResponse(SshMasterConnection*, QString Challenge);
     void startInteraction(SshMasterConnection*, QString prompt);
     void finishInteraction(SshMasterConnection*);

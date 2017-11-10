@@ -93,8 +93,8 @@ void HttpBrokerClient::createSshConnection()
     connect ( sshConnection, SIGNAL ( connectionOk(QString)), this, SLOT ( slotSshConnectionOk() ) );
     connect ( sshConnection, SIGNAL ( serverAuthError ( int,QString, SshMasterConnection* ) ),this,
               SLOT ( slotSshServerAuthError ( int,QString, SshMasterConnection* ) ) );
-    connect ( sshConnection, SIGNAL ( needPassPhrase(SshMasterConnection*, bool)),this,
-              SLOT ( slotSshServerAuthPassphrase(SshMasterConnection*, bool)) );
+    connect ( sshConnection, SIGNAL ( needPassPhrase(SshMasterConnection*, SshMasterConnection::passphrase_types)),this,
+              SLOT ( slotSshServerAuthPassphrase(SshMasterConnection*, SshMasterConnection::passphrase_types)) );
     connect ( sshConnection, SIGNAL ( userAuthError ( QString ) ),this,SLOT ( slotSshUserAuthError ( QString ) ) );
     connect ( sshConnection, SIGNAL ( connectionError(QString,QString)), this,
               SLOT ( slotSshConnectionError ( QString,QString ) ) );
@@ -209,34 +209,38 @@ void HttpBrokerClient::slotSshServerAuthError(int error, QString sshMessage, Ssh
 
 }
 
-void HttpBrokerClient::slotSshServerAuthPassphrase(SshMasterConnection* connection, bool verificationCode)
+void HttpBrokerClient::slotSshServerAuthPassphrase(SshMasterConnection* connection, SshMasterConnection::passphrase_types passphrase_type)
 {
     bool ok;
     QString message;
 
-    if(verificationCode)
-    {
-        message=tr("Verification code:");
-    }
-    else
-    {
-        message=tr("Enter passphrase to decrypt a key");
+    switch (passphrase_type) {
+        case SshMasterConnection::PASSPHRASE_PRIVKEY:
+                                                        message = tr ("Enter passphrase to decrypt a key");
+                                                        ok = true;
+                                                        break;
+        case SshMasterConnection::PASSPHRASE_CHALLENGE:
+                                                        message = tr ("Verification code:");
+                                                        ok = true;
+                                                        break;
+        case SshMasterConnection::PASSPHRASE_PASSWORD:
+                                                        message = tr ("Enter user account password:");
+                                                        ok = true;
+                                                        break;
+        default:
+                                                        x2goDebug << "Unknown passphrase type requested! Was: " << passphrase_type << endl;
+                                                        ok = false;
+                                                        break;
     }
 
-
-    QString phrase=QInputDialog::getText(0,connection->getUser()+"@"+connection->getHost()+":"+QString::number(connection->getPort()),
-                                         message, QLineEdit::Password,QString::null, &ok);
-    if(!ok)
-    {
-        phrase=QString::null;
+    if (ok) {
+        QString phrase = QInputDialog::getText (0, connection->getUser () + "@" + connection->getHost () + ":" + QString::number (connection->getPort ()),
+                                                message, QLineEdit::Password, QString (""), &ok);
+        if (!ok) {
+            phrase = QString ("");
+        }
+        connection->setKeyPhrase (phrase);
     }
-    else
-    {
-        if(phrase==QString::null)
-            phrase="";
-    }
-    connection->setKeyPhrase(phrase);
-
 }
 
 void HttpBrokerClient::closeSSHInteractionDialog()

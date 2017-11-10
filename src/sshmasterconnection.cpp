@@ -528,8 +528,8 @@ void SshMasterConnection::run()
 
         connect ( sshProxy, SIGNAL ( serverAuthError ( int,QString,SshMasterConnection* ) ),this,
                   SLOT ( slotSshProxyServerAuthError ( int,QString, SshMasterConnection* ) ) );
-        connect ( sshProxy, SIGNAL ( needPassPhrase(SshMasterConnection*, bool)),this,
-                  SIGNAL ( needPassPhrase(SshMasterConnection*, bool)) );
+        connect ( sshProxy, SIGNAL ( needPassPhrase(SshMasterConnection*, SshMasterConnection::passphrase_types)),this,
+                  SIGNAL ( needPassPhrase(SshMasterConnection*, SshMasterConnection::passphrase_types)) );
         connect ( sshProxy, SIGNAL ( serverAuthAborted()),this,
                   SLOT ( slotSshProxyServerAuthAborted()) );
         connect ( sshProxy, SIGNAL ( userAuthError ( QString ) ),this,SLOT ( slotSshProxyUserAuthError ( QString ) ) );
@@ -1180,7 +1180,7 @@ bool SshMasterConnection::userChallengeAuth()
                     if (need_to_display_auth_code_prompt) {
                       emit needChallengeResponse(this, pr);
                     } else {
-                      emit needPassPhrase(this, true);
+                      emit needPassPhrase(this, PASSPHRASE_CHALLENGE);
                     }
                     for(;;)
                     {
@@ -1303,7 +1303,7 @@ bool SshMasterConnection::userAuthAuto()
 
         /* This section should only be executed if rc is SSH_AUTH_ERROR. */
         keyPhraseReady=false;
-        emit needPassPhrase(this, false);
+        emit needPassPhrase(this, PASSPHRASE_PRIVKEY);
         for(;;)
         {
             bool ready=false;
@@ -1413,7 +1413,7 @@ bool SshMasterConnection::userAuthWithKey()
 #endif
     {
         keyPhraseReady=false;
-        emit needPassPhrase(this, false);
+        emit needPassPhrase(this, PASSPHRASE_PRIVKEY);
         for(;;)
         {
             bool ready=false;
