@@ -236,13 +236,14 @@ signals:
 
     void connectionOk( QString host);
 
-    void needPassPhrase(SshMasterConnection*, passphrase_types);
+    void needPassPhrase(SshMasterConnection*, SshMasterConnection::passphrase_types);
     void needChallengeResponse(SshMasterConnection*, QString Challenge);
     void startInteraction(SshMasterConnection*, QString prompt);
     void finishInteraction(SshMasterConnection*);
     void updateInteraction(SshMasterConnection*, QString output);
 };
 
+Q_DECLARE_METATYPE (SshMasterConnection::passphrase_types)
 
 #endif // SSHMASTERCONNECTION_H
 

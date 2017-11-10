@@ -90,6 +90,8 @@ void HttpBrokerClient::createSshConnection()
                                            config->brokerUser, config->brokerPass,config->brokerSshKey,config->brokerAutologin,
                                            config->brokerKrbLogin, false);
 
+    qRegisterMetaType<SshMasterConnection::passphrase_types> ("SshMasterConnection::passphrase_types");
+
     connect ( sshConnection, SIGNAL ( connectionOk(QString)), this, SLOT ( slotSshConnectionOk() ) );
     connect ( sshConnection, SIGNAL ( serverAuthError ( int,QString, SshMasterConnection* ) ),this,
               SLOT ( slotSshServerAuthError ( int,QString, SshMasterConnection* ) ) );

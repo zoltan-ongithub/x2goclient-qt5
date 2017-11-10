@@ -58,7 +58,7 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
 #ifdef Q_OS_LINUX
     image=shape=0;
 #endif
-    x2goInfof(1) << tr("Starting X2Go Client...");
+    x2goInfof(1) << tr("Starting X2Go Client %1...").arg (QString (VERSION));
     debugging = false;
 
     setFocusPolicy ( Qt::NoFocus );
@@ -2986,6 +2986,8 @@ SshMasterConnection* ONMainWindow::startSshConnection ( QString host, QString po
         connect ( con, SIGNAL ( connectionOk(QString) ), this, SLOT ( slotSshConnectionOk() ) );
     else
         connect ( con, SIGNAL ( connectionOk(QString)), this, SLOT ( slotServSshConnectionOk(QString) ) );
+
+    qRegisterMetaType<SshMasterConnection::passphrase_types> ("SshMasterConnection::passphrase_types");
 
     connect ( con, SIGNAL ( serverAuthError ( int,QString, SshMasterConnection* ) ),this,
               SLOT ( slotSshServerAuthError ( int,QString, SshMasterConnection* ) ) );

@@ -524,6 +524,9 @@ void SshMasterConnection::run()
         x2goDebug << "proxyserver: " << proxyserver << "; proxyport: " << proxyport << "; proxylogin: " << proxylogin;
         sshProxy=new SshMasterConnection (0, proxyserver, proxyport,acceptUnknownServers,
                                           proxylogin, proxypassword, proxykey, proxyautologin, proxyKrbLogin, false);
+
+        qRegisterMetaType<SshMasterConnection::passphrase_types> ("SshMasterConnection::passphrase_types");
+
         connect ( sshProxy, SIGNAL ( connectionOk(QString) ), this, SLOT ( slotSshProxyConnectionOk() ) );
 
         connect ( sshProxy, SIGNAL ( serverAuthError ( int,QString,SshMasterConnection* ) ),this,
