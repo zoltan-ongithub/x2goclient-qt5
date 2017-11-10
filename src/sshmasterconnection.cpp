@@ -1250,36 +1250,51 @@ bool SshMasterConnection::userAuthWithPass()
 
     int method = ssh_userauth_list(my_ssh_session, NULL);
 
-    if (method& SSH_AUTH_METHOD_INTERACTIVE)
-    {
-#ifdef DEBUG
-        x2goDebug<<"Challenge authentication requested."<<endl;
-#endif
-        challengeAuthPasswordAccepted=false;
-        ret = userChallengeAuth();
+    if (method & SSH_AUTH_METHOD_INTERACTIVE) {
+        x2goDebug << "Challenge authentication requested." << endl;
+
+        challengeAuthPasswordAccepted = false;
+        ret = userChallengeAuth ();
+
+        if (!ret) {
+            x2goDebug << "Challenge authentication failed." << endl;
+        }
     }
 
     if (!ret) {
-        x2goDebug << "Challenge authentication failed. Trying password mechanism if available." << endl;
+        x2goDebug << "Trying password mechanism if available." << endl;
     }
 
-    if ((!ret) && (method & SSH_AUTH_METHOD_PASSWORD))
-    {
-        if (!ret) {
-            x2goDebug << "Password mechanism available. Continuing." << endl;
-        }
+    if ((!ret) && (method & SSH_AUTH_METHOD_PASSWORD)) {
+        x2goDebug << "Password mechanism available. Continuing." << endl;
 
-#ifdef DEBUG
-        x2goDebug<<"Password authentication requested."<<endl;
-#endif
-        int rc = ssh_userauth_password ( my_ssh_session, NULL, pass.toLatin1() );
+        QString auth_password = pass;
+
+        if (auth_password.isEmpty ()) {
+            keyPhraseReady = false;
+            emit needPassPhrase (this, PASSPHRASE_PASSWORD);
+
+            for (bool ready = false; !ready;) {
+                this->usleep (200);
+
+                keyPhraseMutex.lock ();
+                ready = keyPhraseReady;
+                keyPhraseMutex.unlock ();
+            }
+
+            if (keyPhrase.isNull ()) {
+                return (ret);
+            }
+            else {
+                auth_password = keyPhrase;
+            }
+        }
+        int rc = ssh_userauth_password (my_ssh_session, NULL, auth_password.toLatin1 ());
         if ( rc != SSH_AUTH_SUCCESS )
         {
             QString err=ssh_get_error ( my_ssh_session );
             authErrors<<err;
-#ifdef DEBUG
-            x2goDebug<<"userAuthWithPass failed:" <<err<<endl;
-#endif
+            x2goDebug << "Password authentication failed: " << err << endl;
         }
         else {
             ret = true;

@@ -17,6 +17,12 @@ x2goclient (4.1.1.1-0x2go1) UNRELEASED; urgency=medium
       since we also have to use it in SshMasterConnection, that may not
       include onmainwindow.h to avoid a circular dependency, it has to be
       part of SshMasterConnection for now.
+    - src/sshmasterconnection.cpp: query for password if it wasn't already
+      provided. This usually happens if auto-login is enabled, which bypasses
+      the password prompt. If auto-login fails, authentication normally
+      continues via challenge auth or plain passwords, but since users had no
+      chance to input a password, such authentication will always fail. Give
+      users a way to enter passwords, in case the auto-login failed.
 
   [ Oleksandr Shneyder ]
   * Change echo mode for user input in InteractionDialog.
