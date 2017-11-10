@@ -6,6 +6,8 @@ x2goclient (4.1.1.1-0x2go1) UNRELEASED; urgency=medium
     - macbuild.sh: also bundle xauth binary as nxauth binary.
     - macbuild.sh: switch to bundling PulseAudio 11.1 since it's now available
       in MacPorts.
+    - src/sshmasterconnection.cpp: don't ask for private key passphrase if
+      auto-login merely failed due to the server denying the public key.
 
   [ Oleksandr Shneyder ]
   * Change echo mode for user input in InteractionDialog.

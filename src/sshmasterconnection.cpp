@@ -1296,6 +1296,12 @@ bool SshMasterConnection::userAuthAuto()
     int i=0;
     while(rc != SSH_AUTH_SUCCESS)
     {
+        if (SSH_AUTH_DENIED == rc) {
+          /* No need to continue, all keys have been rejected by the server. */
+          break;
+        }
+
+        /* This section should only be executed if rc is SSH_AUTH_ERROR. */
         keyPhraseReady=false;
         emit needPassPhrase(this, false);
         for(;;)
@@ -1323,7 +1329,7 @@ bool SshMasterConnection::userAuthAuto()
         QString err=ssh_get_error ( my_ssh_session );
         authErrors<<err;
 #ifdef DEBUG
-        x2goDebug<<"userAuthAuto failed:" <<err<<endl;
+        x2goDebug << "userAuthAuto failed:" << err << " (code " << rc << ")" << endl;
 #endif
         return false;
     }
