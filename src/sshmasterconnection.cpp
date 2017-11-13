@@ -1286,6 +1286,7 @@ bool SshMasterConnection::userAuthWithPass()
             }
 
             if (keyPhrase.isNull ()) {
+                authErrors << "No password provided.";
                 return (ret);
             }
             else {
