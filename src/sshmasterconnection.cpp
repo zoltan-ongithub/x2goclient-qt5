@@ -1305,6 +1305,13 @@ bool SshMasterConnection::userAuthWithPass()
         }
     }
 
+    if ((!ret) && (method & ~SSH_AUTH_METHOD_PASSWORD)) {
+        /* In case password auth is disabled, make sure the error message is not empty. */
+        QString err = ssh_get_error (my_ssh_session);
+        authErrors << err;
+        x2goDebug << "Password authentication not available: " << err << endl;
+    }
+
     return (ret);
 }
 
