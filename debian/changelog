@@ -31,7 +31,7 @@ x2goclient (4.1.1.1-0x2go1) UNRELEASED; urgency=medium
       case no password has been provided when doing password authentication.
     - src/sshmasterconnection.cpp: don't output an empty error message if
       password authencation has been requested but the server does not support
-      this mechanism.
+      this mechanism. Fixes: #408.
 
   [ Oleksandr Shneyder ]
   * New upstream version (4.1.1.1):
