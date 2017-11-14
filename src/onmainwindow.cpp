@@ -9995,11 +9995,11 @@ void ONMainWindow::startX2goMount()
         dirs=dirs+"__REVERSESSH_PORT__"+resumingSession.fsPort;
     }
     if ( !rem )
-        cmd="export HOSTNAME && x2gomountdirs dir "+sessionId+" "+cuser+
-            " "+dir->dstKey+" "+dirs;
+        cmd = "export HOSTNAME && x2gomountdirs dir " + sessionId + " \"" + cuser +
+              "\" " + dir->dstKey + " " + dirs;
     else
-        cmd="export HOSTNAME && x2gomountdirs rem "+sessionId+" "+cuser+
-            " "+dir->dstKey+" "+dirs;
+        cmd = "export HOSTNAME && x2gomountdirs rem " + sessionId + " \"" + cuser +
+              "\" " + dir->dstKey + " " + dirs;
 
 #ifdef Q_OS_WIN
 

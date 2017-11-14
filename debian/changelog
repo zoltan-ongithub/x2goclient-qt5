@@ -32,6 +32,9 @@ x2goclient (4.1.1.1-0x2go1) UNRELEASED; urgency=medium
     - src/sshmasterconnection.cpp: don't output an empty error message if
       password authencation has been requested but the server does not support
       this mechanism. Fixes: #408.
+    - src/onmainwindow.cpp: wrap user name for client-side mounts in quotes.
+      Fixes: #559. Will fail with user names that contain quotes, but oh
+      well...
 
   [ Oleksandr Shneyder ]
   * New upstream version (4.1.1.1):
