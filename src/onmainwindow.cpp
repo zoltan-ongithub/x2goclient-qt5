@@ -3090,7 +3090,7 @@ void ONMainWindow::slotServSshConnectionOk(QString server)
     if (!con)
         return;
     x2goDebug<<"Getting sessions on host: " + server;
-    con->executeCommand( "export HOSTNAME && x2golistsessions", this, SLOT (slotListAllSessions ( bool,QString,int ) ));
+    con->executeCommand( "x2golistsessions", this, SLOT (slotListAllSessions ( bool,QString,int ) ));
 }
 
 void ONMainWindow::slotSshInteractionFinish(SshMasterConnection* connection)
@@ -3464,9 +3464,9 @@ void ONMainWindow::continueNormalSession()
         return;
     }
     if ( !shadowSession )
-        sshConnection->executeCommand ( "export HOSTNAME && x2golistsessions", this,SLOT ( slotListSessions ( bool, QString,int )));
+        sshConnection->executeCommand ( "x2golistsessions", this,SLOT ( slotListSessions ( bool, QString,int )));
     else
-        sshConnection->executeCommand ( "export HOSTNAME && x2golistdesktops", this,SLOT ( slotListSessions ( bool, QString,int )));
+        sshConnection->executeCommand ( "x2golistdesktops", this,SLOT ( slotListSessions ( bool, QString,int )));
 
 }
 
@@ -8793,7 +8793,7 @@ void ONMainWindow::slotExportTimer()
 
     for ( int i=0; i<args.size(); ++i )
     {
-        sshConnection->executeCommand ( "export HOSTNAME && x2goumount_session "+
+        sshConnection->executeCommand ( "x2goumount_session "+
                                         sessionId+" "+args[i] );
     }
 }
@@ -9995,10 +9995,10 @@ void ONMainWindow::startX2goMount()
         dirs=dirs+"__REVERSESSH_PORT__"+resumingSession.fsPort;
     }
     if ( !rem )
-        cmd = "export HOSTNAME && x2gomountdirs dir " + sessionId + " \"" + cuser +
+        cmd = "x2gomountdirs dir " + sessionId + " \"" + cuser +
               "\" " + dir->dstKey + " " + dirs;
     else
-        cmd = "export HOSTNAME && x2gomountdirs rem " + sessionId + " \"" + cuser +
+        cmd = "x2gomountdirs rem " + sessionId + " \"" + cuser +
               "\" " + dir->dstKey + " " + dirs;
 
 #ifdef Q_OS_WIN

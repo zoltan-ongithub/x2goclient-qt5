@@ -389,13 +389,13 @@ if(!$ssh_key)
 {
   $pass=read_password('Password:');
   printpass $askpass,$pass;
-  $sessions=`DISPLAY=:0 SSH_ASKPASS=$askpass setsid ssh -p $port $user\@$server "export HOSTNAME&&x2golistsessions"`;
+  $sessions=`DISPLAY=:0 SSH_ASKPASS=$askpass setsid ssh -p $port $user\@$server "x2golistsessions"`;
   hidepass $askpass;
   checkstat $askpass;
 }
 else
 {
-  $sessions=`ssh -p $port -i $ssh_key $user\@$server "export HOSTNAME&&x2golistsessions"`;
+  $sessions=`ssh -p $port -i $ssh_key $user\@$server "x2golistsessions"`;
 }
 
 my @sess=split("\n","$sessions");
