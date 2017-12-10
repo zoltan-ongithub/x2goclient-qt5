@@ -8,6 +8,7 @@ x2goclient (4.1.1.1-0x2go1) UNRELEASED; urgency=medium
       in MacPorts.
     - src/sshmasterconnection.cpp: don't ask for private key passphrase if
       auto-login merely failed due to the server denying the public key.
+      Fixes: #1122.
     - src/{httpbrokerclient,onmainwindow,sshmasterconnection}.{cpp,h}:
       introduce new passphrase_type enum and replace the old verificationCode
       boolean value with that. Allows using more messages, including a new one
@@ -18,11 +19,12 @@ x2goclient (4.1.1.1-0x2go1) UNRELEASED; urgency=medium
       include onmainwindow.h to avoid a circular dependency, it has to be
       part of SshMasterConnection for now.
     - src/sshmasterconnection.cpp: query for password if it wasn't already
-      provided. This usually happens if auto-login is enabled, which bypasses
-      the password prompt. If auto-login fails, authentication normally
-      continues via challenge auth or plain passwords, but since users had no
-      chance to input a password, such authentication will always fail. Give
-      users a way to enter passwords, in case the auto-login failed.
+      provided. Fixes: #1122. This usually happens if auto-login is enabled,
+      which bypasses the password prompt. If auto-login fails, authentication
+      normally continues via challenge auth or plain passwords, but since
+      users had no chance to input a password, such authentication will always
+      fail. Give users a way to enter passwords, in case the auto-login
+      failed.
     - src/onmainwindow.cpp: finally include version information in debug
       output.
     - res/i18n/x2goclient_*.ts: apply last change to translation files
