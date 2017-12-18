@@ -39,6 +39,9 @@ x2goclient (4.1.1.1-0x2go1) UNRELEASED; urgency=medium
       well...
     - {example/x2goclient-cli,src/onmainwindow.cpp}: remove hopefully obsolete
       HOSTNAME exporting into environment.
+    - src/onmainwindow.cpp: remove client-side LD_LIBRARY_PATH meddling.
+      Nothing of value is in that directory and nxproxy hasn't needed that for
+      years.
 
   [ Oleksandr Shneyder ]
   * New upstream version (4.1.1.1):

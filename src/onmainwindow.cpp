@@ -5814,7 +5814,6 @@ void ONMainWindow::slotTunnelOk(int)
     nxproxy=new QProcess;
     proxyErrString="";
     QStringList env = QProcess::systemEnvironment();
-    QString x2golibpath="/usr/lib/x2go";
 #if defined ( Q_OS_WIN ) || defined ( Q_OS_DARWIN )
     int dispInd=-1;
 #endif
@@ -5822,10 +5821,6 @@ void ONMainWindow::slotTunnelOk(int)
     {
 // 		x2goDebug<<env[l]<<endl;
 
-        if ( env[l].indexOf ( "X2GO_LIB" ) ==0 )
-        {
-            x2golibpath=env[l].split ( "=" ) [1];
-        }
 #if defined ( Q_OS_WIN ) || defined ( Q_OS_DARWIN )
         if ( env[l].indexOf ( "DISPLAY" ) ==0 )
         {
@@ -5833,7 +5828,6 @@ void ONMainWindow::slotTunnelOk(int)
         }
 #endif
     }
-    env << "LD_LIBRARY_PATH="+x2golibpath;
     env << "NX_CLIENT="+QCoreApplication::applicationFilePath ();
 
 #if defined ( Q_OS_WIN ) || defined ( Q_OS_DARWIN )
