@@ -115,7 +115,7 @@ SettingsWidget::SettingsWidget ( QString id, ONMainWindow * mw,
 
     displayNumber->setMinimum(1);
     displayNumber->setMaximum(QApplication::desktop()->screenCount());
-    if (!multiDisp)
+    if ((!multiDisp) || (mainWindow->debugging))
     {
         displayNumber->hide();
         lDisplay->hide();
@@ -308,12 +308,15 @@ void SettingsWidget::setDirectRdp(bool direct, bool isXDMCP)
     kgb->setVisible(!direct);
     cbSetDPI->setVisible(!direct);
     cbXinerama->setVisible(!direct);
-    display->setVisible(!direct);
     maxRes->setVisible(direct);
     DPI->setVisible(!direct);
-    lDisplay->setVisible(!direct);
-    displayNumber->setVisible(!direct);
-    pbIdentDisp->setVisible(!direct);
+
+    bool whole_display_enable = ((!direct) && ((multiDisp) || (mainWindow->debugging)));
+    display->setVisible(whole_display_enable);
+    lDisplay->setVisible(whole_display_enable);
+    displayNumber->setVisible(whole_display_enable);
+    pbIdentDisp->setVisible(whole_display_enable);
+
     hLine1->setVisible(!direct);
     hLine2->setVisible(!direct);
     rdpBox->setVisible(direct && !isXDMCP);
@@ -401,8 +404,7 @@ void SettingsWidget::readConfig()
         st.setting()->value ( sessionId+"/height",
                               ( QVariant ) mainWindow->getDefaultHeight() ).toInt() );
 
-    if (multiDisp)
-    {
+    if ((multiDisp) || (mainWindow->debugging)) {
         bool md=st.setting()->value ( sessionId+"/multidisp",
                                       ( QVariant ) false).toBool();
         if (md)

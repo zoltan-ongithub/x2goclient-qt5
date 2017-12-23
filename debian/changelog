@@ -42,6 +42,9 @@ x2goclient (4.1.1.1-0x2go1) UNRELEASED; urgency=medium
     - src/onmainwindow.cpp: remove client-side LD_LIBRARY_PATH meddling.
       Nothing of value is in that directory and nxproxy hasn't needed that for
       years.
+    - src/settingswidgets.cpp: don't incorrectly enable whole display settings
+      in single display setups. Let debugging mode override this behavior,
+      though.
 
   [ Oleksandr Shneyder ]
   * New upstream version (4.1.1.1):
