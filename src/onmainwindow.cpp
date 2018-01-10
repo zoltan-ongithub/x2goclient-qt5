@@ -4130,6 +4130,7 @@ void ONMainWindow::startNewSession()
     bool rootless=false;
     resumingSession.published=false;
     bool setDPI=defaultSetDPI;
+    bool xinerama = false;
     uint dpi=defaultDPI;
     QString layout;
     QString type;
@@ -4148,6 +4149,7 @@ void ONMainWindow::startNewSession()
         width=defaultWidth;
         quality=defaultQuality;
         speed=defaultLink;
+        xinerama = defaultXinerama;
         usekbd=defaultSetKbd;
         layout=defaultLayout[0];
         type=defaultKbdType;
@@ -4239,6 +4241,9 @@ void ONMainWindow::startNewSession()
                     ( QVariant ) defaultQuality ).toInt();
         speed=st->setting()->value ( sid+"/speed",
                                      ( QVariant ) defaultLink ).toInt();
+
+        xinerama = st->setting ()->value (sid + "/xinerama",
+                                          static_cast<QVariant>(defaultXinerama)).toBool ();
 
         clipMode=st->setting()->value ( sid+"/clipboard",
                                         ( QVariant ) defaultClipboardMode ).toString();
@@ -4458,13 +4463,22 @@ void ONMainWindow::startNewSession()
     }
     QString dpiEnv;
     QString xdmcpEnv;
+    QString xinerama_env = "X2GO_RANDR_XINERAMA=";
     if ( runRemoteCommand==false && command=="XDMCP" )
         xdmcpEnv="X2GOXDMCP="+xdmcpServer+" ";
     if ( setDPI )
     {
         dpiEnv="X2GODPI="+QString::number ( dpi ) +" ";
     }
-    QString cmd=dpiEnv+xdmcpEnv+"x2gostartagent "+
+
+    if (xinerama) {
+      xinerama_env += "yes";
+    }
+    else {
+      xinerama_env += "no";
+    }
+
+    QString cmd=dpiEnv+xdmcpEnv+ xinerama_env + " x2gostartagent "+
                 geometry+" "+link+" "+pack+
                 " unix-kde-depth_"+depth+" "+layout+" "+type+" ";
     if ( usekbd )
