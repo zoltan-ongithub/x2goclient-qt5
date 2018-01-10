@@ -11424,6 +11424,7 @@ void ONMainWindow::slotFindProxyWin()
                 {
                     uint disp=st->setting()->value ( sid+"/display",
                                                      ( QVariant ) 1 ).toUInt();
+                    delete st;
                     if (disp>displays)
                     {
                         disp=1;
@@ -11433,6 +11434,7 @@ void ONMainWindow::slotFindProxyWin()
                     return;
                 }
 #endif
+                delete st;
             }
             if (xinerama)
             {

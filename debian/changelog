@@ -49,6 +49,7 @@ x2goclient (4.1.1.1-0x2go1) UNRELEASED; urgency=medium
       x2gostartagent as an environment variable based upon the xinerama
       session setting. Has no effect when connecting to older X2Go Server
       versions and handles startup correctly with X2Go Server 4.1.0.0.
+    - src/onmainwindow.cpp: fix another leaked X2goSettings object.
 
   [ Oleksandr Shneyder ]
   * New upstream version (4.1.1.1):
