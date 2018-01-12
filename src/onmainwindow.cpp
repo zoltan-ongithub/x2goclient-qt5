@@ -4532,6 +4532,7 @@ void ONMainWindow::resumeSession ( const x2goSession& s )
     int width;
     int quality;
     int speed;
+    bool xinerama = false;
     bool usekbd;
     QString layout;
     QString type;
@@ -4545,6 +4546,7 @@ void ONMainWindow::resumeSession ( const x2goSession& s )
         width=defaultWidth;
         quality=defaultQuality;
         speed=defaultLink;
+        xinerama = defaultXinerama;
         usekbd=defaultSetKbd;
         layout=defaultLayout[0];
         type=defaultKbdType;
@@ -4593,6 +4595,9 @@ void ONMainWindow::resumeSession ( const x2goSession& s )
                                        defaultQuality ).toInt();
         speed=st->setting()->value ( sid+"/speed",
                                      ( QVariant ) defaultLink ).toInt();
+
+        xinerama = st->setting ()->value (sid + "/xinerama",
+                                          static_cast<QVariant>(defaultXinerama)).toBool ();
 
         clipMode=st->setting()->value ( sid+"/clipboard",
                                         ( QVariant ) defaultClipboardMode ).toString();
@@ -4760,6 +4765,16 @@ void ONMainWindow::resumeSession ( const x2goSession& s )
     else
         cmd += "0";
     cmd +=" "+clipMode;
+
+    QString xinerama_opt;
+    if (xinerama) {
+      xinerama_opt = "yes";
+    }
+    else {
+      xinerama_opt = "no";
+    }
+
+    cmd += " " + xinerama_opt;
 
     sshConnection->executeCommand ( cmd, this,  SLOT ( slotRetResumeSess ( bool, QString,
                                     int ) ));
