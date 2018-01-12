@@ -4463,7 +4463,7 @@ void ONMainWindow::startNewSession()
     }
     QString dpiEnv;
     QString xdmcpEnv;
-    QString xinerama_env = "X2GO_RANDR_XINERAMA=";
+    QString xinerama_env = "X2GO_XINERAMA=";
     if ( runRemoteCommand==false && command=="XDMCP" )
         xdmcpEnv="X2GOXDMCP="+xdmcpServer+" ";
     if ( setDPI )
