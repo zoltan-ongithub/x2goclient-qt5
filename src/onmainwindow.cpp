@@ -78,6 +78,7 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
     thinMode=false;
     closeDisconnect=false;
     showHaltBtn=false;
+    showCloseBtn=false;
     defaultUseSound=true;
     defaultSetKbd=true;
     extStarted=false;
@@ -521,6 +522,25 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
         bHalt->move(10,10);
         bHalt->show();
         connect(bHalt,SIGNAL(clicked()),this, SLOT(slotShutdownThinClient()));
+    }
+
+    if (showCloseBtn)
+    {
+        QPushButton* bClose=new QPushButton(bgFrame);
+        QPixmap p(":/img/png/close-button.png");
+        bClose->setIcon(p);
+        bClose->setFocusPolicy(Qt::NoFocus);
+        bClose->setFixedSize(32,32);
+        if (showHaltBtn)
+        {
+            bClose->move(40,10);
+        }
+        else
+        {
+            bClose->move(10,10);
+        }
+        bClose->show();
+        connect(bClose,SIGNAL(clicked()),this, SLOT(close()));
     }
 
     if (brokerMode)
@@ -7442,6 +7462,11 @@ bool ONMainWindow::parseParameter ( QString param )
     if (param == "--haltbt")
     {
         showHaltBtn=true;
+        return true;
+    }
+    if (param == "--closebt")
+    {
+        showCloseBtn=true;
         return true;
     }
     if ( param=="--hide" )

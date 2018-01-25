@@ -125,6 +125,7 @@ help::params_t help::build_params () {
   ADD_OPT ("--ldap-printing", QT_TRANSLATE_NOOP ("Help", "Allows client side printing in LDAP mode."));
   ADD_OPT ("--thinclient", QT_TRANSLATE_NOOP ("Help", "Enables thinclient mode. Starts without a window manager."));
   ADD_OPT ("--haltbt", QT_TRANSLATE_NOOP ("Help", "Enables shutdown button."));
+  ADD_OPT ("--closebt", QT_TRANSLATE_NOOP ("Help", "Enables close button."));
   ADD_OPT ("--add-to-known-hosts", QT_TRANSLATE_NOOP ("Help", "Adds RSA key fingerprint to \".ssh/known_hosts\" if authenticity of the server can't be determined."));
   ADD_OPT ("--ldap=<host:port:dn>", QT_TRANSLATE_NOOP ("Help", "Starts with LDAP support. Example: --ldap=ldapserver:389:o=organization,c=de"));
   ADD_OPT ("--ldap1=<host:port>", QT_TRANSLATE_NOOP ("Help", "Defines the first LDAP failover server."));

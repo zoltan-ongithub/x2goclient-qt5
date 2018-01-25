@@ -64,6 +64,10 @@ x2goclient (4.1.1.1-0x2go1) UNRELEASED; urgency=medium
   [ Walid Moghrabi ]
   * New upstream version (4.1.1.1):
     - {res/img/png/,res/resources.qrc}: add close-button.png file.
+    - {src/{help.cpp,onmainwindow.{cpp,h}},man/man1/x2goclient.1}: add new
+      option --closebt. Fixes: #1227. Adds a close button in the top-left
+      client corner (maybe next to the halt button) that currently just
+      terminates the client.
 
  -- X2Go Release Manager <git-admin@x2go.org>  Sun, 29 Oct 2017 11:44:44 +0100
 

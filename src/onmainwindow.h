@@ -796,6 +796,7 @@ private:
     bool useLdap;
     bool showToolBar;
     bool showHaltBtn;
+    bool showCloseBtn;
     bool newSession;
     bool runStartApp;
     bool ldapOnly;
