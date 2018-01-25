@@ -526,21 +526,21 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
 
     if (showCloseBtn)
     {
-        QPushButton* bClose=new QPushButton(bgFrame);
-        QPixmap p(":/img/png/close-button.png");
-        bClose->setIcon(p);
-        bClose->setFocusPolicy(Qt::NoFocus);
-        bClose->setFixedSize(32,32);
+        QPushButton *bClose = new QPushButton (bgFrame);
+        QPixmap p (":/img/png/close-button.png");
+        bClose->setIcon (p);
+        bClose->setFocusPolicy (Qt::NoFocus);
+        bClose->setFixedSize (32,32);
         if (showHaltBtn)
         {
-            bClose->move(40,10);
+            bClose->move (40,10);
         }
         else
         {
-            bClose->move(10,10);
+            bClose->move (10,10);
         }
-        bClose->show();
-        connect(bClose,SIGNAL(clicked()),this, SLOT(close()));
+        bClose->show ();
+        connect (bClose, SIGNAL (clicked ()), this, SLOT (slotCloseButton ()));
     }
 
     if (brokerMode)
@@ -593,6 +593,14 @@ void ONMainWindow::slotShutdownThinClient()
     QTextStream out(&file);
     out << "\n";
     file.close();
+}
+
+void ONMainWindow::slotCloseButton () {
+  /*
+   * Needs a lot more logic here to suspend a session if one
+   * is running and log out of the broker.
+   */
+  close ();
 }
 
 

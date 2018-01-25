@@ -1058,6 +1058,7 @@ private slots:
     void slotChangeKbdLayout(const QString& layout);
     void slotSyncX();
     void slotShutdownThinClient();
+    void slotCloseButton ();
     void slotReadApplications(bool result, QString output, int pid );
 
 public slots:
