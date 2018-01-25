@@ -61,6 +61,10 @@ x2goclient (4.1.1.1-0x2go1) UNRELEASED; urgency=medium
   * New upstream version (4.1.1.1):
     - Change echo mode for user input in InteractionDialog.
 
+  [ Walid Moghrabi ]
+  * New upstream version (4.1.1.1):
+    - {res/img/png/,res/resources.qrc}: add close-button.png file.
+
  -- X2Go Release Manager <git-admin@x2go.org>  Sun, 29 Oct 2017 11:44:44 +0100
 
 x2goclient (4.1.1.0-0x2go1) unstable; urgency=medium
