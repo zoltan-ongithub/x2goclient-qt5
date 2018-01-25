@@ -58,6 +58,7 @@ x2goclient (4.1.1.1-0x2go1) UNRELEASED; urgency=medium
       it's editable. Fixes: #1214.
     - {src/{help.cpp,onmainwindow.{cpp,h}},man/man1/x2goclient.1}: reformat,
       whitespace fixes, split out close button slot in a separate function.
+    - src/onmainwindow.{cpp,h}: let close button be a member variable.
 
   [ Oleksandr Shneyder ]
   * New upstream version (4.1.1.1):

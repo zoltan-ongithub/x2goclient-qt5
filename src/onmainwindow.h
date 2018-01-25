@@ -684,6 +684,9 @@ private:
     QPushButton* bCancel;
 
 
+    QPushButton *bClose;
+
+
     QLabel* selectSessionLabel;
     SessTreeView* sessTv;
 

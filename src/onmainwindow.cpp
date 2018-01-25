@@ -197,6 +197,7 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
     gpgAgent=0l;
     statusLabel=0;
     gpg=0l;
+    bClose = NULL;
     restartResume=false;
     isPassShown=true;
     readExportsFrom=QString::null;
@@ -526,7 +527,7 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
 
     if (showCloseBtn)
     {
-        QPushButton *bClose = new QPushButton (bgFrame);
+        bClose = new QPushButton (bgFrame);
         QPixmap p (":/img/png/close-button.png");
         bClose->setIcon (p);
         bClose->setFocusPolicy (Qt::NoFocus);
@@ -1645,6 +1646,8 @@ void ONMainWindow::closeClient()
     else {
         x2goDebug << "libssh finalized.";
     }
+
+    delete (bClose);
 
     x2goInfof(7)<<tr("Finished X2Go Client closing hooks.");
 }
