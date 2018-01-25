@@ -140,6 +140,7 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
     systemDisablePA=false;
 #endif /* defined (Q_OS_DARWIN) || defined (Q_OS_WIN) */
 
+    directRDP = false;
 
 // Try to determine the native DPI and use it for the default
     int dpix = QApplication::desktop()->physicalDpiX();

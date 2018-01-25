@@ -61,6 +61,8 @@ x2goclient (4.1.1.1-0x2go1) UNRELEASED; urgency=medium
     - src/onmainwindow.{cpp,h}: let close button be a member variable.
     - src/onmainwindow.cpp: disable and enable close button during and after
       connection startup.
+    - src/onmainwindow.cpp: initialize directRDP to false to be able to call
+      slotSuspendSessFromSt () even if no session has previously been started.
 
   [ Oleksandr Shneyder ]
   * New upstream version (4.1.1.1):
