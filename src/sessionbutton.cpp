@@ -37,6 +37,7 @@
 #include <QPainter>
 #include <QImage>
 #include <QPixmap>
+#include <QPolygon>
 #include "sessionexplorer.h"
 
 
@@ -602,11 +603,57 @@ void SessionButton::mousePressEvent ( QMouseEvent * event )
 void SessionButton::mouseReleaseEvent ( QMouseEvent * event )
 {
     SVGFrame::mouseReleaseEvent ( event );
-    int x=event->x();
-    int y=event->y();
     loadBg ( ":/img/svg/sessionbut.svg" );
-    if ( x>=0 && x< width() && y>=0 && y<height() )
-        emit clicked();
+
+    QPoint click_pos (event->x (), event->y ());
+
+    QRect sensitive_area (0, 0, width (), height ());
+
+    bool recognized_click = false;
+
+    /*
+     * If button is editable, let only the top "half"
+     * of the button be clickable to trigger an event.
+     *
+     * Actually, the area will look something like that:
+     * ----------------------------
+     * |                          |
+     * |    -----------------------
+     * |    |
+     * |    |
+     * |    |
+     * ------
+     *
+     */
+    if (editable) {
+        bool mini_mode = par->retMiniMode ();
+
+        QRect sensitive_area2;
+
+        if (!mini_mode) {
+          sensitive_area.setHeight (84);
+          sensitive_area2 = QRect (0, 83, 58, height () - 84);
+        }
+        else {
+          sensitive_area.setHeight (44);
+          sensitive_area2 = QRect (0, 43, 66, height () - 44);
+        }
+
+        QPolygon real_sensitive_area;
+        real_sensitive_area << sensitive_area.topLeft () << sensitive_area.topRight ()
+                            << sensitive_area.bottomRight () << sensitive_area2.topRight ()
+                            << sensitive_area2.bottomRight () << sensitive_area2.bottomLeft ()
+                            << sensitive_area.topLeft ();
+
+        recognized_click = real_sensitive_area.containsPoint (click_pos, Qt::WindingFill);
+    }
+    else {
+        recognized_click = sensitive_area.contains (click_pos);
+    }
+
+    if (recognized_click) {
+        emit clicked ();
+    }
 }
 
 void SessionButton::mouseMoveEvent ( QMouseEvent * event )
