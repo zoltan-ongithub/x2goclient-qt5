@@ -528,25 +528,35 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
         connect(bHalt,SIGNAL(clicked()),this, SLOT(slotShutdownThinClient()));
     }
 
+
+    bClose = new QPushButton (bgFrame);
+    QPixmap p (":/img/png/close-button.png");
+    bClose->setIcon (p);
+    bClose->setFocusPolicy (Qt::NoFocus);
+    bClose->setFixedSize (32,32);
+
+    if (showHaltBtn)
+    {
+        bClose->move (40,10);
+    }
+    else
+    {
+        bClose->move (10,10);
+    }
+
+    bClose->setEnabled (true);
+
     if (showCloseBtn)
     {
-        bClose = new QPushButton (bgFrame);
-        QPixmap p (":/img/png/close-button.png");
-        bClose->setIcon (p);
-        bClose->setFocusPolicy (Qt::NoFocus);
-        bClose->setFixedSize (32,32);
-        if (showHaltBtn)
-        {
-            bClose->move (40,10);
-        }
-        else
-        {
-            bClose->move (10,10);
-        }
-        bClose->setEnabled (true);
         bClose->show ();
-        connect (bClose, SIGNAL (clicked ()), this, SLOT (slotCloseButton ()));
     }
+    else
+    {
+        bClose->hide ();
+    }
+
+    connect (bClose, SIGNAL (clicked ()), this, SLOT (slotCloseButton ()));
+
 
     if (brokerMode)
     {
