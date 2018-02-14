@@ -67,6 +67,11 @@ x2goclient (4.1.1.1-0x2go1) UNRELEASED; urgency=medium
       Linux. Fixes compile failures on Windows and OS X.
     - src/onmainwindow.cpp: always create close button, but either hide or
       show it based upon whether --closebt was provided or not.
+    - src/onmainwindow.cpp: revert 3060183a78d8b6bd81bec9968c985c38bfd1e5c2.
+      Being able to suspend sessions via the close button is complex and
+      unnecessary, since in thinclient mode, for which this feature is
+      useful, users will not be able to see the client window while a session
+      is executing, due to it running in full screen mode.
 
   [ Oleksandr Shneyder ]
   * New upstream version (4.1.1.1):

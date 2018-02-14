@@ -3075,7 +3075,6 @@ void ONMainWindow::slotSshConnectionError ( QString message, QString lastSession
         pass->setFocus();
         pass->selectAll();
 
-        bClose->setEnabled (true);
 
         passForm->setEnabled ( true );
     }
@@ -3307,7 +3306,6 @@ void ONMainWindow::slotSshServerAuthError ( int error, QString sshMessage, SshMa
             }
             slotSshUserAuthError ( tr ( "Host key verification failed." ) );
             sshConnection=0;
-            bClose->setEnabled (true);
             return;
         }
         else
@@ -3336,7 +3334,6 @@ void ONMainWindow::slotSshServerAuthError ( int error, QString sshMessage, SshMa
             }
             slotSshUserAuthError ( tr ( "Host key verification failed." ) );
             sshConnection=0;
-            bClose->setEnabled (true);
             return;
         }
         else
@@ -3356,7 +3353,6 @@ void ONMainWindow::slotSshServerAuthError ( int error, QString sshMessage, SshMa
         }
         sshConnection=0;
         slotSshUserAuthError ( sshMessage );
-        bClose->setEnabled (true);
         return ;
     case SSH_SERVER_FILE_NOT_FOUND:
         errMsg=tr ( "Could not find known hosts file. "
@@ -3381,7 +3377,6 @@ void ONMainWindow::slotSshServerAuthError ( int error, QString sshMessage, SshMa
         }
         sshConnection=0;
         slotSshUserAuthError ( tr ( "Host key verification failed." ) );
-        bClose->setEnabled (true);
         return;
     }
     connection->writeKnownHosts(true);
@@ -3424,7 +3419,7 @@ void ONMainWindow::slotSshUserAuthError ( QString error )
     pass->setFocus();
     pass->selectAll();
 
-    bClose->setEnabled (true);
+
 
     passForm->setEnabled ( true );
 }
@@ -3452,8 +3447,6 @@ void ONMainWindow::slotSessEnter()
         x2goDebug << "No session selected, returning without starting a session.";
         return;
     }
-
-    bClose->setEnabled (false);
 
     resumingSession.sessionId=QString::null;
     resumingSession.server=QString::null;
@@ -5410,7 +5403,6 @@ void ONMainWindow::slotRetResumeSess ( bool result,
                                 message,QMessageBox::Ok,
                                 QMessageBox::NoButton );
         slotShowPassForm();
-        bClose->setEnabled (true);
         return;
     }
 
@@ -5605,9 +5597,6 @@ void ONMainWindow::slotRetResumeSess ( bool result,
         }
 
     }
-
-    bClose->setEnabled (true);
-
     if ( !useLdap )
     {
         if ( brokerMode )
