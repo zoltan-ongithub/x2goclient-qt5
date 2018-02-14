@@ -72,6 +72,9 @@ x2goclient (4.1.1.1-0x2go1) UNRELEASED; urgency=medium
       unnecessary, since in thinclient mode, for which this feature is
       useful, users will not be able to see the client window while a session
       is executing, due to it running in full screen mode.
+    - src/onmainwindow.cpp: always enable close button, let it log out from a
+      broker if already authenticated or close the client on click. Fixes:
+      #1209.
 
   [ Oleksandr Shneyder ]
   * New upstream version (4.1.1.1):

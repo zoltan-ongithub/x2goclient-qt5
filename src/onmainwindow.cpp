@@ -612,10 +612,17 @@ void ONMainWindow::slotShutdownThinClient()
 
 void ONMainWindow::slotCloseButton () {
   /*
-   * Needs a lot more logic here to suspend a session if one
-   * is running and log out of the broker.
+   * Log out of the broker if currently logged in, otherwise
+   * close the client.
    */
-  close ();
+  if (config.brokerAuthenticated) {
+    x2goDebug << "Logging off from broker via close button.";
+    QTimer::singleShot (1, this, SLOT (slotGetBrokerAuth ()));
+  }
+  else {
+    x2goDebug << "Closing client via close button.";
+    close ();
+  }
 }
 
 
