@@ -133,6 +133,7 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
     config.brokerAutologin=false;
     config.brokerKrbLogin=false;
     config.brokerAutologoff=false;
+    config.brokerAuthenticated = false;
     config.published=false;
     cmdAutologin=false;
 #if defined (Q_OS_DARWIN) || defined (Q_OS_WIN)
