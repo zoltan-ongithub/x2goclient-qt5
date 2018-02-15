@@ -84,6 +84,8 @@ x2goclient (4.1.1.1-0x2go1) UNRELEASED; urgency=medium
        man/man1/x2goclient.1}: rename close button to broker logout button.
       Reimplement the way it is shown - disable it upon startup and only
       enable it after successful broker authentication.
+    - man/man1/x2goclient.1: add missing escape signs before dash/minus
+      characters.
 
   [ Oleksandr Shneyder ]
   * New upstream version (4.1.1.1):

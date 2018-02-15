@@ -71,7 +71,7 @@ Launch <app> by session start in "published applications" mode. This parameter s
 with --session=<session-profile-name>, where the given session profile should be configured as
 a session profile of type "Published Applications".
 .TP
-\*(T<\fB\-\-support\-menu=<html-file>\fR\*(T>
+\*(T<\fB\-\-support\-menu=<html\-file>\fR\*(T>
 Add a "Support..." submenu item to X2Go Client's "Help" menu.
 
 The support information is provided via a simple HTML file. Example:
@@ -94,12 +94,12 @@ The support information is provided via a simple HTML file. Example:
 .RE
 .\}
 .TP
-\*(T<\fB\-\-background=<svg-file|dir>\fR\*(T>
+\*(T<\fB\-\-background=<svg\-file|dir>\fR\*(T>
 Use a custom/branded background image (SVG format) for X2Go Client's main window (i.e. replace the blue gradient area
 in X2Go Client by some background of your own (business/workgroup/project).
 If a directory is given, will randomly pick an SVG file inside of it.
 .TP
-\*(T<\fB\-\-branding=<svg-file>\fR\*(T>
+\*(T<\fB\-\-branding=<svg\-file>\fR\*(T>
 Use a custom icon (SVG format) for additional branding to replace the default in the lower left corner of X2Go Client's main window.
 
 .SH SESSION PROFILE DEFAULTS
@@ -108,7 +108,7 @@ You can set certain defaults for session profiles via command line switches usin
 \*(T<\fB\-\-user\fR\*(T>
 Pre-selection of user at client startup (LDAP mode only).
 .TP
-\*(T<\fB\-\-command=<default-command>\fR\*(T>
+\*(T<\fB\-\-command=<default\-command>\fR\*(T>
 Default command for session startup.
 .TP
 \*(T<\fB\-\-ssh\-port\fR\*(T>
@@ -156,7 +156,7 @@ Which soundsystem to use: arts, esd, pulse (default: pulse).
 \*(T<\fB\-\-xinerama\fR\*(T>
 Use Xinerama by default.
 .TP
-\*(T<\fB\-\-session-icon=<128x128px-icon-png-file>\fR\*(T>
+\*(T<\fB\-\-session\-icon=<128x128px\-icon\-png\-file>\fR\*(T>
 Use a custom session icon by default.
 
 .SH THIN CLIENT OPTIONS
@@ -166,10 +166,10 @@ as a login manager on X2Go thin clients.
 \*(T<\fB\-\-thinclient\fR\*(T>
 Let X2Go Client run without window manager.
 .TP
-\*(T<\fB\-\-sessionid=<session-profile-id>\fR\*(T>
+\*(T<\fB\-\-sessionid=<session\-profile-id>\fR\*(T>
 Pre-selection of a session profile (by its session profile ID) at client startup.
 .TP
-\*(T<\fB\-\-session=<session-profile-name>\fR\*(T>
+\*(T<\fB\-\-session=<session\-profile\-name>\fR\*(T>
 Pre-selection of a session profile (by its session profile name) at client startup.
 .TP
 \*(T<\fB\-\-no\-session\-edit\fR\*(T>
@@ -178,7 +178,7 @@ Disable session editing.
 \*(T<\fB\-\-pgp\-card\fR\*(T>
 Use openPGP Card authentication (default: false).
 .TP
-\*(T<\fB\-\-external\-login=<smartcard-logins>\fR\*(T>
+\*(T<\fB\-\-external\-login=<smartcard\-logins>\fR\*(T>
 Authenticate via SMART card, path to login notification file.
 .TP
 \*(T<\fB\-\-add\-to\-known\-hosts\fR\*(T>
@@ -205,7 +205,7 @@ Set the users home directory. This is the directory where X2Go Client will store
 \*(T<\fB\-\-session\-conf=<file>\fR\*(T>
 Path to alternative session profile config (default: $HOME/.x2goclient/sessions).
 .TP
-\*(T<\fB\-\-clean-all-files\fR\*(T>
+\*(T<\fB\-\-clean\-all\-files\fR\*(T>
 In portable mode, X2Go Client removes several directories it has created (and probably directories you
 don't want to have removed on a normal system):
 
@@ -240,7 +240,7 @@ Specify a special (self-signed) root-CACert file that shall get used when connec
 \*(T<\fB\-\-broker\-noauth\fR\*(T>
 The X2Go Session Broker is accessible without authentication.
 .TP
-\*(T<\fB\-\-broker-krblogin\fR\*(T>
+\*(T<\fB\-\-broker\-krblogin\fR\*(T>
 Login to X2Go Session Broker via GSSAPI. Only supported with ssh:// broker URLs.
 .TP
 \*(T<\fB\-\-auth\-id=<USERNAME>\fR\*(T>
@@ -260,15 +260,16 @@ For SSH based X2Go Session Brokers. Full path to a valid SSH private key file.
 \*(T<\fB\-\-broker\-name=<NAME>\fR\*(T>
 Currently unused...
 .TP
-\*(T<\fB\-\-connectivity-test\fR\*(T>
+\*(T<\fB\-\-connectivity\-test\fR\*(T>
 Run a connectivity test against X2Go Session Broker. Not supported by all broker implementations.
 .TP
-\*(T<\fB\-\-change-broker-pass\fR\*(T>
+\*(T<\fB\-\-change\-broker\-pass\fR\*(T>
 Send a change-password request to an X2Go Session Broker. Not supported by all broker implementations.
 .TP
-\*(T<\fB\-\-broker-noauth-with-session-username\fR\*(T>
+\*(T<\fB\-\-broker\-noauth\-with\-session\-username\fR\*(T>
 Informs the broker to use the username you entered for X2Go Server authentication when selecting a server/session. Only has functionality if --broker-noauth is used.
-\*(T<\fB\-\-broker-use-creds-for-session\fR\*(T>
+.TP
+\*(T<\fB\-\-broker\-use\-creds\-for\-session\fR\*(T>
 Use broker credentials as session user/password credentials when using broker mode with broker authentication. Currently only affects direct RDP sessions.
 .TP
 \*(T<\fB\-\-broker\-logoutbt\fR\*(T>
@@ -291,7 +292,7 @@ Failover LDAP URI No. 1.
 \*(T<\fB\-\-ldap2=<host:port:dn>\fR\*(T>
 Failover LDAP URI No. 2.
 .TP
-\*(T<\fB\-\-ldap-printing\fR\*(T>
+\*(T<\fB\-\-ldap\-printing\fR\*(T>
 Allow client side printing in LDAP mode.
 
 .PP
