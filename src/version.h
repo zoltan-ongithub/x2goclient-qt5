@@ -19,6 +19,6 @@
 #ifndef VERSION_H
 #define VERSION_H
 
-#define VERSION "4.1.1.1"
+#define VERSION "4.1.1.2"
 
 #endif /* !defined (VERSION_H) */
