@@ -684,7 +684,7 @@ private:
     QPushButton* bCancel;
 
 
-    QPushButton *bClose;
+    QPushButton *bBrokerLogout;
 
 
     QLabel* selectSessionLabel;
@@ -799,7 +799,7 @@ private:
     bool useLdap;
     bool showToolBar;
     bool showHaltBtn;
-    bool showCloseBtn;
+    bool showBrokerLogoutBtn;
     bool newSession;
     bool runStartApp;
     bool ldapOnly;
@@ -1061,7 +1061,7 @@ private slots:
     void slotChangeKbdLayout(const QString& layout);
     void slotSyncX();
     void slotShutdownThinClient();
-    void slotCloseButton ();
+    void slotBrokerLogoutButton ();
     void slotReadApplications(bool result, QString output, int pid );
 
 public slots:
@@ -1071,6 +1071,7 @@ public slots:
     void slotDetachProxyWindow();
     void slotActivateWindow();
     void setFocus();
+    void slotEnableBrokerLogoutButton ();
 
 private slots:
     void slotShowPAMSGDialog(bool error, const QString& main_text, const QString& info_text, bool modal);

@@ -92,6 +92,7 @@ signals:
     void sessionSelected( );
     void passwordChanged( QString );
     void connectionTime(int, int);
+    void enableBrokerLogoutButton ();
 };
 
 #endif

@@ -79,6 +79,11 @@ x2goclient (4.1.1.1-0x2go1) UNRELEASED; urgency=medium
       lets the user re-login to the broker or closes the client.
     - src/onmainwindow.cpp: correctly initialize brokerAuthentication member
       of ConfigFile struct.
+    - {res/{img/png/close-button.png,resources.qrc},
+       src/{{onmainwindow,httpbrokerclient}.{cpp,h},help.cpp},
+       man/man1/x2goclient.1}: rename close button to broker logout button.
+      Reimplement the way it is shown - disable it upon startup and only
+      enable it after successful broker authentication.
 
   [ Oleksandr Shneyder ]
   * New upstream version (4.1.1.1):

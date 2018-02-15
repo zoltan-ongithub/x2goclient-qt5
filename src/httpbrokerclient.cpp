@@ -436,6 +436,7 @@ bool HttpBrokerClient::checkAccess(QString answer )
         return false;
     }
     config->brokerAuthenticated=true;
+    emit (enableBrokerLogoutButton ());
     int authBegin=answer.indexOf("AUTHID:");
     if (authBegin!=-1)
     {

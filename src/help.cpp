@@ -125,7 +125,6 @@ help::params_t help::build_params () {
   ADD_OPT ("--ldap-printing", QT_TRANSLATE_NOOP ("Help", "Allows client side printing in LDAP mode."));
   ADD_OPT ("--thinclient", QT_TRANSLATE_NOOP ("Help", "Enables thinclient mode. Starts without a window manager."));
   ADD_OPT ("--haltbt", QT_TRANSLATE_NOOP ("Help", "Enables shutdown button."));
-  ADD_OPT ("--closebt", QT_TRANSLATE_NOOP ("Help", "Enables close button."));
   ADD_OPT ("--add-to-known-hosts", QT_TRANSLATE_NOOP ("Help", "Adds RSA key fingerprint to \".ssh/known_hosts\" if authenticity of the server can't be determined."));
   ADD_OPT ("--ldap=<host:port:dn>", QT_TRANSLATE_NOOP ("Help", "Starts with LDAP support. Example: --ldap=ldapserver:389:o=organization,c=de"));
   ADD_OPT ("--ldap1=<host:port>", QT_TRANSLATE_NOOP ("Help", "Defines the first LDAP failover server."));
@@ -160,6 +159,7 @@ help::params_t help::build_params () {
   ADD_OPT ("--broker-autologin", QT_TRANSLATE_NOOP ("Help", "Enables the use of the default SSH key or SSH agent for authentication against an SSH session broker. The client's behavior is undefined if this flag is used for non-SSH session brokers."));
   ADD_OPT ("--broker-noauth", QT_TRANSLATE_NOOP ("Help", "Does not ask for user credentials during session broker authentication. This can be useful if you are using an HTTP(S) session broker without authentication. If you run an HTTP(S) server without authentication, but with user-specific profiles, then put the user name into the broker URL (refer to --broker-url.) The user name then will be extracted from the broker URL and be sent to the session broker. The client's behavior is undefined if this flag is used for non-HTTP(S) session brokers."));
   ADD_OPT ("--broker-use-creds-for-session", QT_TRANSLATE_NOOP ("Help", "Use broker credentials as session user/password credentials when using broker mode with broker authentication. Currently only affects direct RDP sessions."));
+  ADD_OPT ("--broker-logoutbt", QT_TRANSLATE_NOOP ("Help", "Enables broker logout button."));
   ADD_OPT ("--background=<svg-file|dir>", QT_TRANSLATE_NOOP ("Help", "Use a custom/branded background image (SVG format) for X2Go Client's main window. If a directory is given, will randomly pick an SVG file inside of it."));
   ADD_OPT ("--branding=<svg-file>", QT_TRANSLATE_NOOP ("Help", "Use a custom icon (SVG format) for additional branding to replace the default in the lower left corner of X2Go Client's main window."));
 

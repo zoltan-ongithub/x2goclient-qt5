@@ -78,7 +78,7 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
     thinMode=false;
     closeDisconnect=false;
     showHaltBtn=false;
-    showCloseBtn=false;
+    showBrokerLogoutBtn=false;
     defaultUseSound=true;
     defaultSetKbd=true;
     extStarted=false;
@@ -201,7 +201,7 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
     gpgAgent=0l;
     statusLabel=0;
     gpg=0l;
-    bClose = NULL;
+    bBrokerLogout = NULL;
     restartResume=false;
     isPassShown=true;
     readExportsFrom=QString::null;
@@ -530,33 +530,33 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
     }
 
 
-    bClose = new QPushButton (bgFrame);
-    QPixmap p (":/img/png/close-button.png");
-    bClose->setIcon (p);
-    bClose->setFocusPolicy (Qt::NoFocus);
-    bClose->setFixedSize (32,32);
+    bBrokerLogout = new QPushButton (bgFrame);
+    QPixmap p (":/img/png/broker-logout-button.png");
+    bBrokerLogout->setIcon (p);
+    bBrokerLogout->setFocusPolicy (Qt::NoFocus);
+    bBrokerLogout->setFixedSize (32,32);
 
     if (showHaltBtn)
     {
-        bClose->move (40,10);
+        bBrokerLogout->move (40,10);
     }
     else
     {
-        bClose->move (10,10);
+        bBrokerLogout->move (10,10);
     }
 
-    bClose->setEnabled (true);
+    bBrokerLogout->setEnabled (false);
 
-    if (showCloseBtn)
+    if (showBrokerLogoutBtn)
     {
-        bClose->show ();
+        bBrokerLogout->show ();
     }
     else
     {
-        bClose->hide ();
+        bBrokerLogout->hide ();
     }
 
-    connect (bClose, SIGNAL (clicked ()), this, SLOT (slotCloseButton ()));
+    connect (bBrokerLogout, SIGNAL (clicked ()), this, SLOT (slotBrokerLogoutButton ()));
 
 
     if (brokerMode)
@@ -568,6 +568,7 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
         connect ( broker, SIGNAL( sessionsLoaded()), this, SLOT (slotReadSessions()));
         connect ( broker, SIGNAL ( sessionSelected()), this, SLOT (slotGetBrokerSession()));
         connect ( broker, SIGNAL ( passwordChanged(QString)), this, SLOT ( slotPassChanged(QString)));
+        connect (broker, SIGNAL (enableBrokerLogoutButton ()), this, SLOT (slotEnableBrokerLogoutButton ()));
     }
 
     proxyWinTimer=new QTimer ( this );
@@ -611,18 +612,18 @@ void ONMainWindow::slotShutdownThinClient()
     file.close();
 }
 
-void ONMainWindow::slotCloseButton () {
+void ONMainWindow::slotEnableBrokerLogoutButton () {
+  bBrokerLogout->setEnabled (true);
+}
+
+void ONMainWindow::slotBrokerLogoutButton () {
   /*
    * Log out of the broker if currently logged in, otherwise
-   * close the client.
+   * does nothing.
    */
   if (config.brokerAuthenticated) {
-    x2goDebug << "Logging off from broker via close button.";
+    x2goDebug << "Logging off from broker via logout button.";
     QTimer::singleShot (1, this, SLOT (slotGetBrokerAuth ()));
-  }
-  else {
-    x2goDebug << "Closing client via close button.";
-    close ();
   }
 }
 
@@ -1198,7 +1199,8 @@ void ONMainWindow::slotGetBrokerAuth()
        text+=config.brokerurl;*/
     nameLabel->setText ( text );
     slotShowPassForm();
-    config.brokerAuthenticated=false;
+    config.brokerAuthenticated = false;
+    bBrokerLogout->setEnabled (false);
 
     if(config.brokerUser.length()>0)
     {
@@ -1669,7 +1671,7 @@ void ONMainWindow::closeClient()
         x2goDebug << "libssh finalized.";
     }
 
-    delete (bClose);
+    delete (bBrokerLogout);
 
     x2goInfof(7)<<tr("Finished X2Go Client closing hooks.");
 }
@@ -7497,9 +7499,9 @@ bool ONMainWindow::parseParameter ( QString param )
         showHaltBtn=true;
         return true;
     }
-    if (param == "--closebt")
+    if (param == "--broker-logoutbt")
     {
-        showCloseBtn=true;
+        showBrokerLogoutBtn=true;
         return true;
     }
     if ( param=="--hide" )
