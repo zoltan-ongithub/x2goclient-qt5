@@ -725,23 +725,29 @@ void SshMasterConnection::run()
 #ifdef DEBUG
         x2goDebug<<"User authentication OK.";
 #endif
-	if(checkLogin())
-	{
-	    x2goDebug<<"Login Check - OK";
+        // checkLogin() is currently specific to libssh.
+        if(kerberos)
             emit connectionOk(host);
-	}
-	else
-	{
-	    x2goDebug<<"Login Check - Failed";
-// 	    if(!interactionInterrupt)
-	    {
-	      emit finishInteraction(this);
-	    }
-	    ssh_disconnect ( my_ssh_session );
-            ssh_free ( my_ssh_session );
-	    quit();
-	    return;
-	}
+        else
+        {
+            if(checkLogin())
+            {
+                x2goDebug<<"Login Check - OK";
+                emit connectionOk(host);
+            }
+            else
+            {
+                x2goDebug<<"Login Check - Failed";
+//          if(!interactionInterrupt)
+                {
+                  emit finishInteraction(this);
+                }
+                ssh_disconnect ( my_ssh_session );
+                ssh_free ( my_ssh_session );
+                quit();
+                return;
+            }
+        }
     }
     else
     {
