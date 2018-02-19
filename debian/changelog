@@ -5,6 +5,7 @@ x2goclient (4.1.1.2-0x2go1) UNRELEASED; urgency=medium
     - src/sshmasterconnection.cpp: Do not attempt to perform Interaction with
       SSH Server (e.g. for changing expired password) when using
       GSSAPI/Kerberos because the interaction code does not support it yet.
+      Fixes: #1258
     - Windows: Update PuTTY from 0.68 to 0.70, which fixes PuTTY vulns
       vuln-indirect-dll-hijack-2 & vuln-indirect-dll-hijack-3.
       Note that x2goclient was only ever affected if the permissions on the
