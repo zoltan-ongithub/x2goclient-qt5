@@ -15,6 +15,7 @@ x2goclient (4.1.1.2-0x2go1) UNRELEASED; urgency=medium
   [ Oleksandr Shneyder ]
   * New upstream version (4.1.1.2):
     - don't start gpg agent for PGP card authentication. Use system agent instead.
+    - change search string for pcsc_scan.
 
  -- X2Go Release Manager <git-admin@x2go.org>  Thu, 15 Feb 2018 22:01:32 +0100
 

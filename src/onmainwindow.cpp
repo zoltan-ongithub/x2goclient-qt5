@@ -9100,7 +9100,7 @@ void ONMainWindow::slotStartPGPAuth()
                   slotScDaemonFinished ( int, QProcess::ExitStatus ) ) );
     connect (scDaemon, SIGNAL (error (QProcess::ProcessError)), this,
              SLOT (slotScDaemonError (QProcess::ProcessError)));
-    scDaemon->start ( "pcsc_scan");
+    scDaemon->start ( "pcsc_scan -n");
 
 }
 
@@ -9117,12 +9117,13 @@ void ONMainWindow::slotScDaemonStdOut()
     QString stdOut ( scDaemon->readAllStandardOutput() );
     stdOut=stdOut.simplified();
 
-    x2goDebug<<"PCSC out: "<<stdOut;
-    if(stdOut.indexOf("Card state: Card inserted")!=-1)
+    x2goDebug<<"PCSC out: |"<<stdOut<<"|";
+    if(stdOut.indexOf("Card inserted")!=-1)
     {
+        x2goDebug<<"GOT NEW CARD!!!!!";
         startGPG();
     }
-    if(stdOut.indexOf("Card state: Card removed")!=-1)
+    if(stdOut.indexOf("Card removed")!=-1)
     {
        cardReady=false;
        if ( cardStarted )
