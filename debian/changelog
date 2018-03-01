@@ -12,6 +12,10 @@ x2goclient (4.1.1.2-0x2go1) UNRELEASED; urgency=medium
       installation folder were changed to give users write access, or if
       x2goclient was copied/extracted to a folder where users could write.
 
+  [ Oleksandr Shneyder ]
+  * New upstream version (4.1.1.2):
+    - don't start gpg agent for PGP card authentication. Use system agent instead.
+
  -- X2Go Release Manager <git-admin@x2go.org>  Thu, 15 Feb 2018 22:01:32 +0100
 
 x2goclient (4.1.1.1-0x2go1) unstable; urgency=medium

@@ -198,7 +198,6 @@ ONMainWindow::ONMainWindow ( QWidget *parent ) :QMainWindow ( parent )
     nxproxy=0l;
     soundServer=0l;
     scDaemon=0l;
-    gpgAgent=0l;
     statusLabel=0;
     gpg=0l;
     bBrokerLogout = NULL;
@@ -1556,27 +1555,6 @@ void ONMainWindow::closeClient()
         delete soundServer;
         x2goDebug<<"Deleted the sound server.";
     }
-    if ( gpgAgent!=0l )
-    {
-        if ( gpgAgent->state() ==QProcess::Running )
-        {
-            x2goDebug<<"Terminating GPG Agent ...";
-            gpgAgent->terminate();
-            x2goDebug<<"Terminated GPG Agent.";
-        }
-    }
-
-#ifndef Q_OS_WIN
-    if ( agentPid.length() >0 )
-    {
-        if ( checkAgentProcess() )
-        {
-            QStringList arg;
-            arg<<"-9"<<agentPid;
-            QProcess::execute ( "kill",arg );
-        }
-    }
-#endif
 #ifdef Q_OS_WIN
     if ( xorg )
     {
@@ -3006,18 +2984,6 @@ SshMasterConnection* ONMainWindow::startSshConnection ( QString host, QString po
 
     x2goDebug<<"Starting new ssh connection to server:"<<host<<":"<<port<<" krbLogin: "<<krbLogin;
 
-    for ( int i=0; i<sshEnv.size(); ++i )
-    {
-#ifndef Q_OS_WIN
-        QStringList args=sshEnv[i].split ( "=" );
-        x2goDebug<<"Setting ENV " + args[0] + tr(" to ") + args[1];
-        setenv ( args[0].toLatin1(),args[1].toLatin1(),1 );
-#else
-        x2goDebug<<"Set ENV: "<<sshEnv[i];
-
-        _putenv ( sshEnv[i].toLatin1() );
-#endif
-    }
 
     if ( usePGPCard/*||useSshAgent*/ )
         autologin=true;
@@ -9123,32 +9089,6 @@ void ONMainWindow::externalLogout ( const QString& )
 void ONMainWindow::slotStartPGPAuth()
 {
     scDaemon=new QProcess ( this );
-    QStringList arguments;
-    arguments<<"--multi-server";
-
-    /* FIXME: probably use add_to_path () instead. */
-
-    QProcessEnvironment scdaemon_env = QProcessEnvironment::systemEnvironment ();
-
-    QString path_env_separator = ":";
-    /* Let's hope that's really the only override... */
-#ifdef Q_OS_WIN
-    path_env_separator = ";";
-#endif
-
-    QString new_path_value = scdaemon_env.value ("PATH", "");
-
-    if (!new_path_value.isEmpty ()) {
-        new_path_value += path_env_separator;
-    }
-
-    new_path_value += "/usr/lib/gnupg2/";
-
-    scdaemon_env.insert ("PATH", new_path_value);
-
-    x2goDebug << "New PATH value for scdaemon: " << new_path_value;
-
-    scDaemon->setProcessEnvironment (scdaemon_env);
 
     connect ( scDaemon,SIGNAL ( readyReadStandardError() ),this,
               SLOT ( slotScDaemonStdErr() ) );
@@ -9160,37 +9100,16 @@ void ONMainWindow::slotStartPGPAuth()
                   slotScDaemonFinished ( int, QProcess::ExitStatus ) ) );
     connect (scDaemon, SIGNAL (error (QProcess::ProcessError)), this,
              SLOT (slotScDaemonError (QProcess::ProcessError)));
-    scDaemon->start ( "scdaemon",arguments );
-    QTimer::singleShot ( 3000, this, SLOT ( slotCheckScDaemon() ) );
-    isScDaemonOk=false;
+    scDaemon->start ( "pcsc_scan");
+
 }
 
-void ONMainWindow::slotCheckScDaemon()
-{
-    if ( !isScDaemonOk )
-    {
-        scDaemon->kill();
-    }
-}
 
 void ONMainWindow::slotScDaemonStdErr()
 {
     QString stdOut ( scDaemon->readAllStandardError() );
     stdOut=stdOut.simplified();
-
-    x2goDebug<<"SCDAEMON error: "<<stdOut;
-
-    if ( stdOut.indexOf ( "updating slot" ) !=-1 ||
-            stdOut.indexOf ( "updating status of slot" ) !=-1 )
-    {
-        isScDaemonOk=true;
-        //USABLE or PRESENT
-        if ( ( stdOut.indexOf ( "0x0002" ) !=-1 ) ||
-                ( stdOut.indexOf ( "0x0007" ) !=-1 ) )
-        {
-            scDaemon->kill();
-        }
-    }
+    x2goDebug<<"PCSC error: "<<stdOut;
 }
 
 void ONMainWindow::slotScDaemonStdOut()
@@ -9198,56 +9117,46 @@ void ONMainWindow::slotScDaemonStdOut()
     QString stdOut ( scDaemon->readAllStandardOutput() );
     stdOut=stdOut.simplified();
 
-    x2goDebug<<"SCDAEMON out: "<<stdOut;
+    x2goDebug<<"PCSC out: "<<stdOut;
+    if(stdOut.indexOf("Card state: Card inserted")!=-1)
+    {
+        startGPG();
+    }
+    if(stdOut.indexOf("Card state: Card removed")!=-1)
+    {
+       cardReady=false;
+       if ( cardStarted )
+       {
+           cardStarted=false;
+           if ( nxproxy )
+              if ( nxproxy->state() ==QProcess::Running )
+              {
+                  x2goDebug<<"Suspending session ...";
+                  slotSuspendSessFromSt();
+                  x2goDebug<<"Suspended session.";
+              }
+       }
+    }
 }
 
 void ONMainWindow::slotScDaemonFinished ( int , QProcess::ExitStatus )
 {
+    //this should not happen, restart...
     scDaemon=0l;
-    if ( isScDaemonOk )
-    {
-
-        x2goDebug<<"SCDAEMON finished."<<endl;
-
-        gpg=new QProcess ( this );
-        QStringList arguments;
-        arguments<<"--card-status";
-        connect ( gpg,SIGNAL ( readyReadStandardError() ),
-                  this,SLOT ( slotGpgError() ) );
-        connect ( gpg,SIGNAL ( finished ( int,
-                                          QProcess::ExitStatus ) ),this,
-                  SLOT ( slotGpgFinished ( int,
-                                           QProcess::ExitStatus ) ) );
-        gpg->start ( "gpg",arguments );
-    }
-    else
-        slotStartPGPAuth();
+    x2goDebug<<"SCDAEMON finished."<<endl;
+    slotStartPGPAuth();
 }
 
 void ONMainWindow::slotScDaemonError (QProcess::ProcessError error) {
-    QString main_text ("scdaemon ");
+    QString main_text ("pcsc_scan ");
     QString informative_text;
 
     switch (error) {
         case QProcess::FailedToStart: {
             main_text += tr ("failed to start.");
-            informative_text = tr ("Check whether the package providing \"scdaemon\" is installed.\n"
+            informative_text = tr ("Check whether the package providing \"pcsc_scan\" is installed.\n"
                                    "The current search path is: ");
 
-            QProcessEnvironment tmp_env = QProcessEnvironment::systemEnvironment ();
-
-            if (!(scDaemon->processEnvironment ().isEmpty ())) {
-                tmp_env = scDaemon->processEnvironment ();
-            }
-
-            QString path_val = tmp_env.value ("PATH", "unknown");
-
-            /* Add a newline every 100 characters. */
-            for (std::size_t i = 100; i < static_cast<std::size_t> (path_val.size ()); i += 100) {
-                path_val.insert (i, "\n");
-            }
-
-            informative_text += path_val;
             break;
         }
         case QProcess::Crashed: {
@@ -9375,111 +9284,50 @@ void ONMainWindow::slotGpgFinished ( int exitCode,
                     "This card is unknown to the X2Go system." ),
                 QMessageBox::Ok,
                 QMessageBox::NoButton );
-            QTimer::singleShot ( 1000, this,
-                                 SLOT ( slotStartPGPAuth() ) );
         }
         else
-            startGPGAgent ( login,appId );
+        {
+            cardReady=true;
+            cardLogin=login;
+            //card is ready
+            GPGCardLogin(login);
+        }
     }
-    else
-        QTimer::singleShot ( 1000, this, SLOT ( slotStartPGPAuth() ) );
     gpg=0l;
 }
 
-
-
-void ONMainWindow::startGPGAgent ( const QString& login, const QString& appId )
+void ONMainWindow::startGPG()
 {
-    QString gpgPath=homeDir +"/.x2goclient/gnupg";
-    QDir d;
-    cardLogin=login;
-    d.mkpath ( gpgPath );
-    QFile file ( gpgPath+"/scd-event" );
-    if ( !file.open ( QIODevice::WriteOnly | QIODevice::Text ) )
-    {
-        QMessageBox::critical (
-            0l,tr ( "Error" ),
-            tr (
-                "Unable to create file: " ) +
-            gpgPath+"/scd-event"
-            ,QMessageBox::Ok,
-            QMessageBox::NoButton );
-        exit ( -1 );
-    }
-    QTextStream out ( &file );
-    out << "#!/bin/bash\n\n"
-        "if [ \"$6\" != \"0x0002\" ] && [ \"$6\" != "
-        "\"0x0007\" ]\n\
-	then\n\
-	kill -9 $_assuan_pipe_connect_pid\n\
-	fi"<<endl;
-    file.close();
-    file.setPermissions ( gpgPath+"/scd-event",
-                          QFile::ReadOwner|
-                          QFile::WriteOwner|
-                          QFile::ExeOwner );
 
-    gpgAgent=new QProcess ( this );
-    QStringList arguments;
-    arguments<<"--pinentry-program"<<"/usr/bin/pinentry-x2go"<<
-             "--enable-ssh-support"<<"--daemon"<<"--no-detach";
+        QStringList arguments;
+        gpg=new QProcess ( this );
+        arguments<<"--card-status";
+        connect ( gpg,SIGNAL ( readyReadStandardError() ),
+                  this,SLOT ( slotGpgError() ) );
+        connect ( gpg,SIGNAL ( finished ( int,
+                                          QProcess::ExitStatus ) ),this,
+                  SLOT ( slotGpgFinished ( int,
+                                           QProcess::ExitStatus ) ) );
+        gpg->start ( "gpg",arguments );
+        x2goDebug<<"gpg started";
 
-    connect ( gpgAgent,SIGNAL ( finished ( int,QProcess::ExitStatus ) ),
-              this,
-              SLOT ( slotGpgAgentFinished ( int,
-                                            QProcess::ExitStatus ) ) );
-
-    QStringList env=QProcess::systemEnvironment();
-    env<<"GNUPGHOME="+gpgPath<<"CARDAPPID="+appId;
-    gpgAgent->setEnvironment ( env );
-    gpgAgent->start ( "gpg-agent",arguments );
 }
 
-void ONMainWindow::slotGpgAgentFinished ( int , QProcess::ExitStatus )
+void ONMainWindow::GPGCardLogin ( const QString& cardLogin)
 {
-    QString stdOut ( gpgAgent->readAllStandardOutput() );
-    stdOut=stdOut.simplified();
-    stdOut.replace ( " ","" );
-    QStringList envLst=stdOut.split ( ";" );
-    QString gpg_agent_info=envLst[0].split ( "=" ) [1];
-    QString ssh_auth_sock=envLst[2].split ( "=" ) [1];
-    agentPid=envLst[4].split ( "=" ) [1];
-
-    x2goDebug<<"GPG Agent info: "<<gpg_agent_info<<ssh_auth_sock<<agentPid;
-    x2goDebug<<"GPG Agent PID: "<<agentPid;
-    x2goDebug<<"GPG Agent out: "<<envLst[0]<<envLst[2]<<envLst[4];
-
-    agentCheckTimer->start ( 1000 );
-    cardReady=true;
-
-    sshEnv.clear();
-    sshEnv<<envLst[0]<<envLst[2]<<envLst[4];
-
     if ( !useLdap )
     {
-        if ( passForm->isVisible() && !brokerMode)
-        {
-            if ( passForm->isEnabled() )
-            {
-                if ( login->isEnabled() )
-                {
-                    login->setText ( cardLogin );
-                    slotSessEnter();
-                    return;
-                }
-            }
+         if ( passForm->isVisible() && !brokerMode)
+         {
+             if ( passForm->isEnabled() )
+             {
+                 if ( login->isEnabled() )
+                 {
+                     login->setText ( cardLogin );
+                     slotSessEnter();
+                 }
+             }
         }
-        QProcess sshadd ( this ); //using it to start scdaemon
-        sshadd.setEnvironment ( sshEnv );
-        QStringList arguments;
-        arguments<<"-l";
-        sshadd.start ( "ssh-add",arguments );
-        sshadd.waitForFinished ( -1 );
-        QString sshout ( sshadd.readAllStandardOutput() );
-        sshout=sshout.simplified();
-
-        x2goDebug<<"ssh-add out: "<<sshout;
-
         if(brokerMode && (!config.brokerAutologoff))
         {
             broker->getUserSessions();
@@ -9487,23 +9335,6 @@ void ONMainWindow::slotGpgAgentFinished ( int , QProcess::ExitStatus )
     }
     else
     {
-        if ( selectSessionDlg->isVisible() ||
-                sessionStatusDlg->isVisible() )
-        {
-            QProcess sshadd ( this ); //using it to start scdaemon
-            sshadd.setEnvironment ( sshEnv );
-            QStringList arguments;
-            arguments<<"-l";
-            sshadd.start ( "ssh-add",arguments );
-            sshadd.waitForFinished ( -1 );
-            QString sshout ( sshadd.readAllStandardOutput() );
-            sshout=sshout.simplified();
-
-            x2goDebug<<"ssh-add out: "<<sshout;
-
-            return;
-        }
-
         if ( passForm->isVisible() )
             slotClosePass();
         uname->setText ( cardLogin );
@@ -9512,44 +9343,6 @@ void ONMainWindow::slotGpgAgentFinished ( int , QProcess::ExitStatus )
     }
 }
 
-
-void ONMainWindow::slotCheckAgentProcess()
-{
-    if ( checkAgentProcess() )
-        return;
-    agentCheckTimer->stop();
-    cardReady=false;
-    if ( cardStarted )
-    {
-        cardStarted=false;
-        if ( nxproxy )
-            if ( nxproxy->state() ==QProcess::Running )
-            {
-                x2goDebug<<"Suspending session ...";
-                slotSuspendSessFromSt();
-                x2goDebug<<"Suspended session.";
-//                 nxproxy->terminate();
-            }
-    }
-
-    x2goDebug<<"GPG Agent finished.";
-    slotStartPGPAuth();
-}
-
-bool ONMainWindow::checkAgentProcess()
-{
-    QFile file ( "/proc/"+agentPid+"/cmdline" );
-    if ( file.open ( QIODevice::ReadOnly | QIODevice::Text ) )
-    {
-        QString line ( file.readLine() );
-        file.close();
-        if ( line.indexOf ( "gpg-agent" ) !=-1 )
-        {
-            return true;
-        }
-    }
-    return false;
-}
 
 #if defined ( Q_OS_DARWIN )
 QString ONMainWindow::getXDisplay()

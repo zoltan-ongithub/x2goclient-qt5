@@ -790,7 +790,6 @@ private:
     QProcess* ssh;
     QProcess* soundServer;
     QProcess* scDaemon;
-    QProcess* gpgAgent;
     QProcess* gpg;
     LDAPSession* ld;
     long embedParent;
@@ -803,7 +802,6 @@ private:
     bool newSession;
     bool runStartApp;
     bool ldapOnly;
-    bool isScDaemonOk;
 #ifdef Q_OS_LINUX
     bool directRDP;
 #endif
@@ -891,8 +889,6 @@ private:
     bool shadowSession;
     int firstUid;
     int lastUid;
-    QStringList sshEnv;
-    QString agentPid;
     bool cardReady;
     HttpBrokerClient* broker;
 
@@ -968,8 +964,8 @@ private:
     void setUsersEnabled ( bool enable );
     void externalLogout ( const QString& logoutDir );
     void externalLogin ( const QString& loginDir );
-    void startGPGAgent ( const QString& login,
-                         const QString& appId );
+    void startGPG();
+    void GPGCardLogin ( const QString& cardLogin);
     void closeClient();
     void continueNormalSession();
     void continueLDAPSession();
@@ -1152,10 +1148,6 @@ private slots:
                                 QProcess::ExitStatus exitStatus );
     void slotScDaemonError (QProcess::ProcessError error);
     void slotGpgError();
-    void slotCheckScDaemon();
-    void slotGpgAgentFinished ( int exitCode,
-                                QProcess::ExitStatus exitStatus );
-    void slotCheckAgentProcess();
     void slotExecXmodmap();
     void slotCreateSessionIcon();
     void slotFindProxyWin();
