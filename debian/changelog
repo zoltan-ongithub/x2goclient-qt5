@@ -1,7 +1,7 @@
-x2goclient (4.1.1.2-0x2go1) UNRELEASED; urgency=medium
+x2goclient (4.1.2.0-0x2go1) UNRELEASED; urgency=medium
 
   [ Mike DePaulo ]
-  * New upstream version (4.1.1.2):
+  * New upstream version (4.1.2.0):
     - src/sshmasterconnection.cpp: Do not attempt to perform Interaction with
       SSH Server (e.g. for changing expired password) when using
       GSSAPI/Kerberos because the interaction code does not support it yet.
@@ -13,9 +13,13 @@ x2goclient (4.1.1.2-0x2go1) UNRELEASED; urgency=medium
       x2goclient was copied/extracted to a folder where users could write.
 
   [ Oleksandr Shneyder ]
-  * New upstream version (4.1.1.2):
+  * New upstream version (4.1.2.0):
     - don't start gpg agent for PGP card authentication. Use system agent instead.
     - change search string for pcsc_scan.
+
+  [ Mihai Moldovan ]
+  * New upstream version (4.1.2.0):
+    - misc: update version to 4.1.2.0.
 
  -- X2Go Release Manager <git-admin@x2go.org>  Thu, 15 Feb 2018 22:01:32 +0100
 
