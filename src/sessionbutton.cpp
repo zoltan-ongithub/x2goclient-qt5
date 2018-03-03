@@ -376,6 +376,7 @@ void SessionButton::redraw()
     cmdBox->addItem ( "KDE" );
     cmdBox->addItem ( "GNOME" );
     cmdBox->addItem ( "LXDE" );
+    cmdBox->addItem ("LXQt");
     cmdBox->addItem ( "XFCE" );
     cmdBox->addItem ( "MATE" );
     cmdBox->addItem ( "UNITY" );
@@ -421,6 +422,11 @@ void SessionButton::redraw()
     {
         cmdpix.load ( par->iconsPath ( "/16x16/lxde.png" ) );
         cmdBox->setCurrentIndex ( LXDE );
+    }
+    else if (command == "LXQt")
+    {
+        cmdpix.load (par->iconsPath ("/16x16/lxqt.png"));
+        cmdBox->setCurrentIndex (LXQt);
     }
     else if ( command == "CINNAMON" )
     {
@@ -791,6 +797,11 @@ void SessionButton::slot_cmd_change ( const QString& command )
         newRootless=false;
         pix.load ( par->iconsPath ( "/16x16/lxde.png" ) );
     }
+    else if (command == "LXQt")
+    {
+        newRootless = false;
+        pix.load (par->iconsPath ("/16x16/lxqt.png"));
+    }
     else if ( command =="UNITY" )
     {
         newRootless=false;
@@ -865,6 +876,11 @@ void SessionButton::slot_cmd_change ( const QString& command )
     {
         cmd="LXDE";
         newRootless=false;
+    }
+    if (command == "LXQt")
+    {
+        cmd = "LXQt";
+        newRootless = false;
     }
     if ( command=="unity" )
     {

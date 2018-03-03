@@ -7066,6 +7066,10 @@ void ONMainWindow::SlotRunCommand(bool, QString output, int)
     {
         command="startlxde";
     }
+    else if (command == "LXQt")
+    {
+        command = "startlxqt";
+    }
     // Note that there are multiple possible Cinnamon commands that the server
     // may call.
     else if ( command=="CINNAMON" )

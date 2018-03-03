@@ -214,6 +214,7 @@ SessionWidget::SessionWidget ( bool newSession, QString id, ONMainWindow * mw,
     sessBox->addItem ( "KDE" );
     sessBox->addItem ( "GNOME" );
     sessBox->addItem ( "LXDE" );
+    sessBox->addItem ("LXQt");
     sessBox->addItem ( "XFCE" );
     sessBox->addItem ( "MATE" );
     sessBox->addItem ( "UNITY" );
@@ -742,6 +743,11 @@ void SessionWidget::readConfig()
         {
             sessBox->setCurrentIndex ( LXDE );
             cmd->setEnabled ( false );
+        }
+        else if (command == "LXQt")
+        {
+            sessBox->setCurrentIndex (LXQt);
+            cmd->setEnabled (false);
         }
         else if ( command=="UNITY" )
         {

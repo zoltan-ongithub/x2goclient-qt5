@@ -23,6 +23,8 @@ x2goclient (4.1.2.0-0x2go1) UNRELEASED; urgency=medium
     - res/img/svg: add new lxqt.svg icon file (really helix.svg).
     - res/img/icons/*x*: add new rasterized lxqt.png files in different sizes.
     - res/qresources.qrc: add new lxqt files.
+    - src/{onmainwindow.cpp,session{button,widget}.{cpp,h}}: add support for
+      LXQt. Fixes: #1263.
 
  -- X2Go Release Manager <git-admin@x2go.org>  Thu, 15 Feb 2018 22:01:32 +0100
 
