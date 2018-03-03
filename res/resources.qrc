@@ -11,6 +11,7 @@
        <file>img/svg/folder_grey.svg</file>
        <file>img/svg/sessionbut_grey.svg</file>
        <file>img/svg/hamburger.svg</file>
+       <file>img/svg/lxqt.svg</file>
        <file>img/png/ico.png</file>
        <file>img/png/ico_mini.png</file>
        <file>img/png/sess_ico.png</file>
@@ -22,12 +23,14 @@
        <file>img/icons/128x128/x2gosession.png</file>
        <file>img/icons/128x128/create_file.png</file>
        <file>img/icons/128x128/lxde.png</file>
+       <file>img/icons/128x128/lxqt.png</file>
        <file>img/icons/128x128/preferences.png</file>
        <file>img/icons/128x128/rdp.png</file>
        <file>img/icons/64x64/audio.png</file>
        <file>img/icons/64x64/personal.png</file>
        <file>img/icons/64x64/create_file.png</file>
        <file>img/icons/64x64/lxde.png</file>
+       <file>img/icons/64x64/lxqt.png</file>
        <file>img/icons/64x64/preferences.png</file>
        <file>img/icons/64x64/rdp.png</file>
        <file>img/icons/32x32/edit.png</file>
@@ -37,6 +40,7 @@
        <file>img/icons/32x32/new_file.png</file>
        <file>img/icons/32x32/create_file.png</file>
        <file>img/icons/32x32/lxde.png</file>
+       <file>img/icons/32x32/lxqt.png</file>
        <file>img/icons/32x32/preferences.png</file>
        <file>img/icons/32x32/rdp.png</file>
        <file>img/icons/32x32/reconnect.png</file>
@@ -75,6 +79,7 @@
        <file>img/icons/16x16/X.png</file>
        <file>img/icons/16x16/create_file.png</file>
        <file>img/icons/16x16/lxde.png</file>
+       <file>img/icons/16x16/lxqt.png</file>
        <file>img/icons/16x16/preferences.png</file>
        <file>img/icons/16x16/rdp.png</file>
        <file>img/icons/22x22/applications-development.png</file>
@@ -88,6 +93,7 @@
        <file>img/icons/22x22/applications-system.png</file>
        <file>img/icons/22x22/applications-utilities.png</file>
        <file>img/icons/22x22/preferences-system.png</file>
+       <file>img/icons/22x22/lxqt.png</file>
        <file>txt/packs</file>
        <file>txt/encodings</file>
        <file>i18n/x2goclient_da.qm</file>
