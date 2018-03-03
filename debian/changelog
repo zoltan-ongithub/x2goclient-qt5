@@ -21,6 +21,7 @@ x2goclient (4.1.2.0-0x2go1) UNRELEASED; urgency=medium
   * New upstream version (4.1.2.0):
     - misc: update version to 4.1.2.0.
     - res/img/svg: add new lxqt.svg icon file (really helix.svg).
+    - res/img/icons/*x*: add new rasterized lxqt.png files in different sizes.
 
  -- X2Go Release Manager <git-admin@x2go.org>  Thu, 15 Feb 2018 22:01:32 +0100
 
