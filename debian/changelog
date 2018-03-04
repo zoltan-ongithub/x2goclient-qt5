@@ -11,6 +11,8 @@ x2goclient (4.1.2.0-0x2go1) UNRELEASED; urgency=medium
       Note that x2goclient was only ever affected if the permissions on the
       installation folder were changed to give users write access, or if
       x2goclient was copied/extracted to a folder where users could write.
+    - Windows: Update Win32 OpenSSL from 1.0.2k to 1.0.2n
+      Fixes several CVEs
 
   [ Oleksandr Shneyder ]
   * New upstream version (4.1.2.0):
