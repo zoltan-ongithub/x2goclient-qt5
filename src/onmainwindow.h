@@ -559,6 +559,7 @@ public:
 
 
     SshMasterConnection* findServerSshConnection(QString host);
+    void cleanServerSshConnections();
 
     void showHelp();
     void showVersion();

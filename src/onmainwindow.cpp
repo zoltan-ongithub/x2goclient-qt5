@@ -1547,6 +1547,7 @@ void ONMainWindow::closeClient()
                 x2goDebug<<"SSH connection finished.";
             }
         }
+        serverSshConnections.clear();
     }
 
     if ( soundServer )
@@ -3086,6 +3087,18 @@ void ONMainWindow::slotSshConnectionOk()
         continueNormalSession();
 }
 
+void ONMainWindow::cleanServerSshConnections()
+{
+    for(int i=serverSshConnections.size()-1;i>=0;--i)
+    {
+        if(serverSshConnections[i]!=sshConnection)
+        {
+            delete serverSshConnections[i];
+        }
+    }
+    serverSshConnections.clear();
+}
+
 
 SshMasterConnection*  ONMainWindow::findServerSshConnection(QString host)
 {
@@ -4201,6 +4214,7 @@ void ONMainWindow::startNewSession()
                                     QMessageBox::NoButton );
             return;
         }
+        cleanServerSshConnections();
     }
     else
     {
@@ -4580,6 +4594,7 @@ void ONMainWindow::resumeSession ( const x2goSession& s )
                                     QMessageBox::NoButton );
             return;
         }
+        cleanServerSshConnections();
     }
     else
     {

@@ -18,6 +18,7 @@ x2goclient (4.1.2.0-0x2go1) UNRELEASED; urgency=medium
   * New upstream version (4.1.2.0):
     - don't start gpg agent for PGP card authentication. Use system agent instead.
     - change search string for pcsc_scan.
+    - destroy unused SSH sessions for LDAP authentication.
 
   [ Mihai Moldovan ]
   * New upstream version (4.1.2.0):
