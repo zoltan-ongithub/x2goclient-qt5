@@ -1,5 +1,5 @@
 /***************************************************************************
- *  Copyright (C) 2012-2017 by Mihai Moldovan <ionic@ionic.de>             *
+   Copyright (C) 2012-2017 by Mihai Moldovan <ionic@ionic.de>             *
  *                                                                         *
  *  This program is free software; you can redistribute it and/or modify   *
  *  it under the terms of the GNU General Public License as published by   *
@@ -128,8 +128,6 @@ PulseManager::PulseManager () : app_dir_ (QApplication::applicationDirPath ()),
     QFileInfo tmp_file_info = QFileInfo (server_binary_);
     server_working_dir_ = tmp_file_info.canonicalPath ();
 
-    x2goDebug << "Found PA binary as " << server_binary_;
-    x2goDebug << "Corresponding working dir: " << server_working_dir_;
   }
 
 #elif defined (Q_OS_WIN)
@@ -224,7 +222,6 @@ void PulseManager::start_generic () {
      * Otherwise, we'd better use signals and slots to not block the main thread.
      */
     if (pulse_server_->waitForStarted (-1)) {
-      x2goDebug << "pulse started with arguments " << server_args_ << "- waiting for it to finish...";
       state_ = QProcess::Running;
 
       connect (pulse_server_, SIGNAL (finished (int)),

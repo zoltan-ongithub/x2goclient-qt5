@@ -17,7 +17,7 @@
 
 #include "onmainwindow_privat.h"
 #include "help.h"
-
+#include <iostream>
 void x2goSession::operator = ( const x2goSession& s )
 {
     agentPid=s.agentPid;
@@ -3699,7 +3699,8 @@ void ONMainWindow::startDirectRDP()
         x2goDebug<<"starting direct RDP session";
         resumingSession.display=tr("RDP");
     }
-//     x2goDebug<<"starting direct session with cmd:"<<proxyCmd;
+    std::cout << "Command = " << proxyCmd.toUtf8().constData() << std::endl;
+    x2goDebug<<"starting direct0 session with cmd:"<< proxyCmd.toUtf8().constData() ;
     nxproxy->start ( proxyCmd );
     resumingSession.server=host;
     resumingSession.sessionId=sessionExplorer->getLastSession()->name();

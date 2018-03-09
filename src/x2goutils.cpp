@@ -239,8 +239,6 @@ QString add_to_path (const QString &orig_path, const QStringList &add, const boo
     }
   }
 
-  x2goDebug << "tmp_clean_add: " << tmp_clean_add;
-
   /* Nothing to add, really... */
   if (tmp_clean_add.isEmpty ()) {
     return (ret);
@@ -266,8 +264,6 @@ QString add_to_path (const QString &orig_path, const QStringList &add, const boo
       }
     }
   }
-
-  x2goDebug << "clean_add: " << clean_add;
 
   /* Nothing to add. */
   if (clean_add.isEmpty ()) {

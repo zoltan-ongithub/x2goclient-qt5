@@ -23,7 +23,7 @@
 #include <qglobal.h>
 
 
-//#define LOGFILE QDir::homePath()+"/x2goclient.log"
+#define LOGFILE QDir::homePath()+"/x2goclient.log"
 
 #if !defined Q_OS_WIN
 #define USELDAP
