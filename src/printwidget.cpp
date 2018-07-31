@@ -26,6 +26,7 @@
 #ifdef Q_OS_WIN
 #include "wapi.h"
 #endif
+#include <QButtonGroup>
 PrintWidget::PrintWidget ( QWidget* parent )
 		: QWidget ( parent )
 {
